@@ -16,15 +16,4 @@
     <ProjectReference Include="..\Tooling\MetaDataVault.Tooling.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="..\Workspaces\MetaRawDataVault\model.xml">
-      <Link>Models\MetaRawDataVault.model.xml</Link>
-      <LogicalName>MetaDataVault.Core.Models.MetaRawDataVault.model.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\Workspaces\MetaBusinessDataVault\model.xml">
-      <Link>Models\MetaBusinessDataVault.model.xml</Link>
-      <LogicalName>MetaDataVault.Core.Models.MetaBusinessDataVault.model.xml</LogicalName>
-    </EmbeddedResource>
-  </ItemGroup>
-
 </Project>

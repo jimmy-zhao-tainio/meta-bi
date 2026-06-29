@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationList>
+    <Application Id="app-meta-datavault-business">
+      <ExecutableName>meta-datavault-business</ExecutableName>
+      <Name>meta-datavault-business</Name>
+    </Application>
+  </ApplicationList>
+</MetaCli>

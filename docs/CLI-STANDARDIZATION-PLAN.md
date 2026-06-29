@@ -66,17 +66,17 @@ Port one CLI at a time. Do not do a broad sweep.
 
 Recommended order:
 
-1. `meta-transform-script`
-2. `meta-schema`
-3. `meta-sql`
-4. `meta-convert`
-5. `meta-orchestration`
-6. `meta-analytics`
-7. `meta-data-warehouse`
-8. `meta-multidimensional`
-9. `meta-tabular`
-10. `meta-datavault-raw`
-11. `meta-datavault-business`
+1. Done: `meta-transform-script`
+2. Done: `meta-schema`
+3. Done: `meta-sql`
+4. Done: `meta-convert`
+5. Done: `meta-orchestration`
+6. Done: `meta-analytics`
+7. Done: `meta-data-warehouse`
+8. Done: `meta-multi-dimensional`
+9. Done: `meta-tabular`
+10. Done: `meta-datavault-raw`
+11. Done: `meta-datavault-business`
 
 Start near transform/schema/sql because those are central and will expose the reusable patterns early. Leave authoring-heavy DataVault/Tabular surfaces until the runtime/service pattern is boring.
 
@@ -107,4 +107,3 @@ Stop and call it out when:
 - a handler grows beyond adapter/presenter work
 - a model or generated tooling boundary blocks a clean typed service
 - docs, generated artifacts, and source disagree
-

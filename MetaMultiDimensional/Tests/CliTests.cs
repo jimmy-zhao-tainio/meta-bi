@@ -10,7 +10,8 @@ public sealed class CliTests
         var result = RunCli("help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("meta-multi-dimensional [--new-workspace <path> | <command> [options]]", result.Output);
+        Assert.Contains("meta-multi-dimensional <command> [options]", result.Output);
+        Assert.Contains("new-workspace", result.Output);
         Assert.Contains("deploy", result.Output);
         Assert.Contains("restore", result.Output);
         Assert.Contains("drop", result.Output);
@@ -25,7 +26,7 @@ public sealed class CliTests
         var result = RunCli("deploy --workspace .");
 
         Assert.NotEqual(0, result.ExitCode);
-        Assert.Contains("missing required option --server <server>.", result.Output);
+        Assert.Contains("Required parameter 'server' was not provided.", result.Output);
     }
 
     [Fact]
@@ -34,12 +35,11 @@ public sealed class CliTests
         var result = RunCli("deploy --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("Creates multidimensional database objects", result.Output);
+        Assert.Contains("Create modeled multidimensional database objects", result.Output);
         Assert.Contains("data source views", result.Output);
         Assert.Contains("--drop-existing", result.Output);
         Assert.Contains("--no-process", result.Output);
-        Assert.Contains("fails if processing fails", result.Output);
-        Assert.Contains("drop, create, full-process", result.Output);
+        Assert.Contains("processing failures fail the command", result.Output);
         Assert.DoesNotContain("--replace", result.Output);
     }
 
@@ -49,7 +49,7 @@ public sealed class CliTests
         var result = RunCli("drop --database-name Commerce");
 
         Assert.NotEqual(0, result.ExitCode);
-        Assert.Contains("missing required option --server <server>.", result.Output);
+        Assert.Contains("Required parameter 'server' was not provided.", result.Output);
     }
 
     [Fact]
@@ -58,7 +58,7 @@ public sealed class CliTests
         var result = RunCli("drop --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("Drops a multidimensional database", result.Output);
+        Assert.Contains("Drop a multidimensional database", result.Output);
         Assert.Contains("--server", result.Output);
         Assert.Contains("--database-name", result.Output);
         Assert.Contains("no confirmation prompt", result.Output);
@@ -70,7 +70,7 @@ public sealed class CliTests
         var result = RunCli("restore --target-server localhost\\MULTI --target-database-name Prod --backup-file C:\\Temp\\prod.abf");
 
         Assert.NotEqual(0, result.ExitCode);
-        Assert.Contains("missing required option --source-server <server>.", result.Output);
+        Assert.Contains("Required parameter 'source-server' was not provided.", result.Output);
     }
 
     [Fact]
@@ -81,7 +81,7 @@ public sealed class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("pre-prod-to-prod promotion", result.Output);
         Assert.Contains("--backup-file", result.Output);
-        Assert.Contains("Restore does not process", result.Output);
+        Assert.Contains("restore does not process", result.Output);
         Assert.DoesNotContain("--replace", result.Output);
     }
 
@@ -91,7 +91,7 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            Assert.Equal(0, RunCli($"--new-workspace \"{path}\"").ExitCode);
+            Assert.Equal(0, RunCli($"new-workspace \"{path}\"").ExitCode);
             Assert.Equal(0, RunCli($"add-multi-dimensional-database --workspace \"{path}\" --id CommerceDb --name Commerce").ExitCode);
             Assert.Equal(0, RunCli($"add-cube --workspace \"{path}\" --id CommerceCube --multi-dimensional-database CommerceDb --name Commerce").ExitCode);
             Assert.Equal(0, RunCli($"add-dimension --workspace \"{path}\" --id Date --multi-dimensional-database CommerceDb --name Date").ExitCode);
@@ -123,6 +123,30 @@ public sealed class CliTests
     }
 
     [Fact]
+    public void AuthoringCommandWithoutWorkspace_UsesCurrentDirectoryWorkspace()
+    {
+        var path = CreateTempPath();
+        try
+        {
+            Assert.Equal(0, RunCli($"new-workspace \"{path}\"").ExitCode);
+
+            var add = RunCli(
+                "--id CommerceDb --name Commerce",
+                command: "add-multi-dimensional-database",
+                workingDirectory: path);
+
+            Assert.Equal(0, add.ExitCode);
+            var model = MetaMultiDimensionalModel.LoadFromXmlWorkspace(path, searchUpward: false);
+            var database = Assert.Single(model.MultiDimensionalDatabaseList);
+            Assert.Equal("Commerce", database.Name);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(path);
+        }
+    }
+
+    [Fact]
     public void AddDimensionHelp_ShowsModeDefaults()
     {
         var result = RunCli("add-dimension --help");
@@ -136,8 +160,20 @@ public sealed class CliTests
         Assert.Contains("Default: ByAttribute", result.Output);
     }
 
-    private static (int ExitCode, string Output) RunCli(string arguments) =>
-        CliTestRunner.RunStandardCli("MetaMultiDimensional", "meta-multi-dimensional.exe", arguments);
+    private static (int ExitCode, string Output) RunCli(
+        string arguments,
+        string? command = null,
+        string? workingDirectory = null)
+    {
+        var cliArguments = string.IsNullOrWhiteSpace(command)
+            ? arguments
+            : $"{command} {arguments}";
+        return CliTestRunner.RunStandardCli(
+            "MetaMultiDimensional",
+            "meta-multi-dimensional.exe",
+            cliArguments,
+            workingDirectory: workingDirectory);
+    }
 
     private static string CreateTempPath()
     {

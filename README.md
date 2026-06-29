@@ -139,7 +139,7 @@ Purpose:
 - author sanctioned raw Data Vault workspaces
 
 Command surface:
-- `meta-datavault-raw --new-workspace <path>`
+- `meta-datavault-raw new-workspace <path>`
 - `meta-datavault-raw add-*`
 
 `add-*` commands:
@@ -162,7 +162,7 @@ Command surface:
 Examples:
 
 ```cmd
-meta-datavault-raw --new-workspace .\MetaRawDataVault.Workspace
+meta-datavault-raw new-workspace .\MetaRawDataVault.Workspace
 ```
 
 ### meta-datavault-business
@@ -171,7 +171,7 @@ Purpose:
 - author sanctioned business Data Vault workspaces
 
 Command surface:
-- `meta-datavault-business --new-workspace <path>`
+- `meta-datavault-business new-workspace <path>`
 - `meta-datavault-business add-*`
 - typed business authoring commands take optional datatype facets inline via `--length`, `--precision`, and `--scale`; the CLI persists the underlying detail rows for you
 
@@ -187,7 +187,7 @@ Representative `add-*` families:
 Example:
 
 ```cmd
-meta-datavault-business --new-workspace .\MetaBusinessDataVault.Workspace
+meta-datavault-business new-workspace .\MetaBusinessDataVault.Workspace
 ```
 
 ### meta-data-warehouse
@@ -197,7 +197,7 @@ Purpose:
 
 Command surface:
 - `meta-data-warehouse help`
-- `meta-data-warehouse --new-workspace <path>`
+- `meta-data-warehouse new-workspace <path>`
 - `meta-data-warehouse add-warehouse --id <id> --name <name>`
 - `meta-data-warehouse add-dimension --id <id> --warehouse <id> --name <name>`
 - `meta-data-warehouse add-dimension-attribute --id <id> --dimension <id> --name <name> --data-type-id meta:type:<type>`
@@ -219,7 +219,7 @@ Behavior summary:
 Examples:
 
 ```cmd
-meta-data-warehouse --new-workspace .\MetaDataWarehouse.Workspace
+meta-data-warehouse new-workspace .\MetaDataWarehouse.Workspace
 meta-data-warehouse add-warehouse --workspace .\MetaDataWarehouse.Workspace --id Commerce --name Commerce
 meta-data-warehouse add-dimension --workspace .\MetaDataWarehouse.Workspace --id Customer --warehouse Commerce --name Customer
 meta-data-warehouse add-dimension-attribute --workspace .\MetaDataWarehouse.Workspace --id CustomerNumber --dimension Customer --name CustomerNumber --data-type-id meta:type:String
@@ -284,7 +284,7 @@ Purpose:
 
 Command surface:
 - `meta-tabular help`
-- `meta-tabular --new-workspace <path>`
+- `meta-tabular new-workspace <path>`
 - `meta-tabular add-tabular-model --id <id> --name <name>`
 - `meta-tabular add-tabular-table --id <id> --tabular-model <id> --name <name>`
 - `meta-tabular add-tabular-column --id <id> --tabular-table <id> --name <name> --data-type-id meta:type:<type>`
@@ -292,7 +292,7 @@ Command surface:
 - `meta-tabular add-tabular-calculation-group --id <id> --tabular-model <id> --name <name> --precedence <number>`
 - `meta-tabular add-tabular-calculation-item --id <id> --tabular-calculation-group <id> --name <name> --expression <dax>`
 - `meta-tabular add-tabular-partition --id <id> --tabular-table <id> --name <name>`
-- `meta-tabular add-tabular-kpi --id <id> --base-measure <id> --name <name>`
+- `meta-tabular add-tabular-kpi --id <id> --base-measure <id> [--target-measure <id>] [--target-expression <dax>]`
 - `meta-tabular add-tabular-role-filter --id <id> --tabular-security-role <id> --tabular-table <id> --expression <dax>`
 - `meta-tabular deploy [--workspace <path>] --server <server> [--database-name <name>] [--drop-existing] [--no-process]`
 - `meta-tabular process --server <server> --database-name <name> [--refresh-type <type>] [--table <name>] [--partition <name>]`
@@ -342,7 +342,7 @@ Purpose:
 
 Command surface:
 - `meta-multi-dimensional help`
-- `meta-multi-dimensional --new-workspace <path>`
+- `meta-multi-dimensional new-workspace <path>`
 - `meta-multi-dimensional add-multi-dimensional-database --id <id> --name <name>`
 - `meta-multi-dimensional add-cube --id <id> --multi-dimensional-database <id> --name <name>`
 - `meta-multi-dimensional add-dimension --id <id> --multi-dimensional-database <id> --name <name>`

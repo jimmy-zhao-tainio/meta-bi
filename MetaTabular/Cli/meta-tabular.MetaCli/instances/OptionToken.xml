@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionTokenList>
+    <OptionToken Id="token-deploy-workspace" OptionId="option-deploy-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-server" OptionId="option-deploy-server">
+      <Token>--server</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-database-name" OptionId="option-deploy-database-name">
+      <Token>--database-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-drop-existing" OptionId="option-deploy-drop-existing">
+      <Token>--drop-existing</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-no-process" OptionId="option-deploy-no-process">
+      <Token>--no-process</Token>
+    </OptionToken>
+    <OptionToken Id="token-process-server" OptionId="option-process-server">
+      <Token>--server</Token>
+    </OptionToken>
+    <OptionToken Id="token-process-database-name" OptionId="option-process-database-name">
+      <Token>--database-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-process-refresh-type" OptionId="option-process-refresh-type">
+      <Token>--refresh-type</Token>
+    </OptionToken>
+    <OptionToken Id="token-process-table" OptionId="option-process-table">
+      <Token>--table</Token>
+    </OptionToken>
+    <OptionToken Id="token-process-partition" OptionId="option-process-partition">
+      <Token>--partition</Token>
+    </OptionToken>
+    <OptionToken Id="token-restore-source-server" OptionId="option-restore-source-server">
+      <Token>--source-server</Token>
+    </OptionToken>
+    <OptionToken Id="token-restore-source-database-name" OptionId="option-restore-source-database-name">
+      <Token>--source-database-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-restore-target-server" OptionId="option-restore-target-server">
+      <Token>--target-server</Token>
+    </OptionToken>
+    <OptionToken Id="token-restore-target-database-name" OptionId="option-restore-target-database-name">
+      <Token>--target-database-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-restore-backup-file" OptionId="option-restore-backup-file">
+      <Token>--backup-file</Token>
+    </OptionToken>
+    <OptionToken Id="token-restore-drop-existing" OptionId="option-restore-drop-existing">
+      <Token>--drop-existing</Token>
+    </OptionToken>
+    <OptionToken Id="token-restore-overwrite-backup-file" OptionId="option-restore-overwrite-backup-file">
+      <Token>--overwrite-backup-file</Token>
+    </OptionToken>
+    <OptionToken Id="token-drop-server" OptionId="option-drop-server">
+      <Token>--server</Token>
+    </OptionToken>
+    <OptionToken Id="token-drop-database-name" OptionId="option-drop-database-name">
+      <Token>--database-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-group-workspace" OptionId="option-add-tabular-calculation-group-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-group-id" OptionId="option-add-tabular-calculation-group-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-group-description" OptionId="option-add-tabular-calculation-group-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-group-name" OptionId="option-add-tabular-calculation-group-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-group-precedence" OptionId="option-add-tabular-calculation-group-precedence">
+      <Token>--precedence</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-group-tabular-model" OptionId="option-add-tabular-calculation-group-tabular-model">
+      <Token>--tabular-model</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-item-workspace" OptionId="option-add-tabular-calculation-item-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-item-id" OptionId="option-add-tabular-calculation-item-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-item-description" OptionId="option-add-tabular-calculation-item-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-item-expression" OptionId="option-add-tabular-calculation-item-expression">
+      <Token>--expression</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-item-format-string-expression" OptionId="option-add-tabular-calculation-item-format-string-expression">
+      <Token>--format-string-expression</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-item-name" OptionId="option-add-tabular-calculation-item-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-item-ordinal" OptionId="option-add-tabular-calculation-item-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-calculation-item-tabular-calculation-group" OptionId="option-add-tabular-calculation-item-tabular-calculation-group">
+      <Token>--tabular-calculation-group</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-workspace" OptionId="option-add-tabular-column-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-id" OptionId="option-add-tabular-column-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-data-category" OptionId="option-add-tabular-column-data-category">
+      <Token>--data-category</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-data-type-id" OptionId="option-add-tabular-column-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-description" OptionId="option-add-tabular-column-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-expression" OptionId="option-add-tabular-column-expression">
+      <Token>--expression</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-format-string" OptionId="option-add-tabular-column-format-string">
+      <Token>--format-string</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-is-hidden" OptionId="option-add-tabular-column-is-hidden">
+      <Token>--is-hidden</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-is-key" OptionId="option-add-tabular-column-is-key">
+      <Token>--is-key</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-is-nullable" OptionId="option-add-tabular-column-is-nullable">
+      <Token>--is-nullable</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-name" OptionId="option-add-tabular-column-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-ordinal" OptionId="option-add-tabular-column-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-source-name" OptionId="option-add-tabular-column-source-name">
+      <Token>--source-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-summarize-by" OptionId="option-add-tabular-column-summarize-by">
+      <Token>--summarize-by</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-tabular-table" OptionId="option-add-tabular-column-tabular-table">
+      <Token>--tabular-table</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-permission-workspace" OptionId="option-add-tabular-column-permission-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-permission-id" OptionId="option-add-tabular-column-permission-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-permission-metadata-permission" OptionId="option-add-tabular-column-permission-metadata-permission">
+      <Token>--metadata-permission</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-permission-tabular-column" OptionId="option-add-tabular-column-permission-tabular-column">
+      <Token>--tabular-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-permission-tabular-security-role" OptionId="option-add-tabular-column-permission-tabular-security-role">
+      <Token>--tabular-security-role</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-translation-workspace" OptionId="option-add-tabular-column-translation-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-translation-id" OptionId="option-add-tabular-column-translation-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-translation-caption" OptionId="option-add-tabular-column-translation-caption">
+      <Token>--caption</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-translation-description" OptionId="option-add-tabular-column-translation-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-translation-tabular-column" OptionId="option-add-tabular-column-translation-tabular-column">
+      <Token>--tabular-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-column-translation-tabular-culture" OptionId="option-add-tabular-column-translation-tabular-culture">
+      <Token>--tabular-culture</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-culture-workspace" OptionId="option-add-tabular-culture-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-culture-id" OptionId="option-add-tabular-culture-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-culture-name" OptionId="option-add-tabular-culture-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-culture-tabular-model" OptionId="option-add-tabular-culture-tabular-model">
+      <Token>--tabular-model</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-data-source-workspace" OptionId="option-add-tabular-data-source-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-data-source-id" OptionId="option-add-tabular-data-source-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-data-source-connection-reference" OptionId="option-add-tabular-data-source-connection-reference">
+      <Token>--connection-reference</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-data-source-description" OptionId="option-add-tabular-data-source-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-data-source-name" OptionId="option-add-tabular-data-source-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-data-source-provider" OptionId="option-add-tabular-data-source-provider">
+      <Token>--provider</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-data-source-tabular-model" OptionId="option-add-tabular-data-source-tabular-model">
+      <Token>--tabular-model</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-workspace" OptionId="option-add-tabular-hierarchy-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-id" OptionId="option-add-tabular-hierarchy-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-description" OptionId="option-add-tabular-hierarchy-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-display-folder" OptionId="option-add-tabular-hierarchy-display-folder">
+      <Token>--display-folder</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-is-hidden" OptionId="option-add-tabular-hierarchy-is-hidden">
+      <Token>--is-hidden</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-name" OptionId="option-add-tabular-hierarchy-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-tabular-table" OptionId="option-add-tabular-hierarchy-tabular-table">
+      <Token>--tabular-table</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-level-workspace" OptionId="option-add-tabular-hierarchy-level-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-level-id" OptionId="option-add-tabular-hierarchy-level-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-level-name" OptionId="option-add-tabular-hierarchy-level-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-level-ordinal" OptionId="option-add-tabular-hierarchy-level-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-level-tabular-column" OptionId="option-add-tabular-hierarchy-level-tabular-column">
+      <Token>--tabular-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-level-tabular-hierarchy" OptionId="option-add-tabular-hierarchy-level-tabular-hierarchy">
+      <Token>--tabular-hierarchy</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-translation-workspace" OptionId="option-add-tabular-hierarchy-translation-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-translation-id" OptionId="option-add-tabular-hierarchy-translation-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-translation-caption" OptionId="option-add-tabular-hierarchy-translation-caption">
+      <Token>--caption</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-translation-description" OptionId="option-add-tabular-hierarchy-translation-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-translation-tabular-culture" OptionId="option-add-tabular-hierarchy-translation-tabular-culture">
+      <Token>--tabular-culture</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-hierarchy-translation-tabular-hierarchy" OptionId="option-add-tabular-hierarchy-translation-tabular-hierarchy">
+      <Token>--tabular-hierarchy</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-workspace" OptionId="option-add-tabular-kpi-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-id" OptionId="option-add-tabular-kpi-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-description" OptionId="option-add-tabular-kpi-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-status-expression" OptionId="option-add-tabular-kpi-status-expression">
+      <Token>--status-expression</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-status-graphic" OptionId="option-add-tabular-kpi-status-graphic">
+      <Token>--status-graphic</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-target-expression" OptionId="option-add-tabular-kpi-target-expression">
+      <Token>--target-expression</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-trend-expression" OptionId="option-add-tabular-kpi-trend-expression">
+      <Token>--trend-expression</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-trend-graphic" OptionId="option-add-tabular-kpi-trend-graphic">
+      <Token>--trend-graphic</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-base-measure" OptionId="option-add-tabular-kpi-base-measure">
+      <Token>--base-measure</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-target-measure" OptionId="option-add-tabular-kpi-target-measure">
+      <Token>--target-measure</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-translation-workspace" OptionId="option-add-tabular-kpi-translation-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-translation-id" OptionId="option-add-tabular-kpi-translation-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-translation-description" OptionId="option-add-tabular-kpi-translation-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-translation-tabular-culture" OptionId="option-add-tabular-kpi-translation-tabular-culture">
+      <Token>--tabular-culture</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-kpi-translation-tabular-kpi" OptionId="option-add-tabular-kpi-translation-tabular-kpi">
+      <Token>--tabular-kpi</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-workspace" OptionId="option-add-tabular-measure-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-id" OptionId="option-add-tabular-measure-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-description" OptionId="option-add-tabular-measure-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-display-folder" OptionId="option-add-tabular-measure-display-folder">
+      <Token>--display-folder</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-expression" OptionId="option-add-tabular-measure-expression">
+      <Token>--expression</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-format-string" OptionId="option-add-tabular-measure-format-string">
+      <Token>--format-string</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-is-hidden" OptionId="option-add-tabular-measure-is-hidden">
+      <Token>--is-hidden</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-name" OptionId="option-add-tabular-measure-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-tabular-table" OptionId="option-add-tabular-measure-tabular-table">
+      <Token>--tabular-table</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-translation-workspace" OptionId="option-add-tabular-measure-translation-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-translation-id" OptionId="option-add-tabular-measure-translation-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-translation-caption" OptionId="option-add-tabular-measure-translation-caption">
+      <Token>--caption</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-translation-description" OptionId="option-add-tabular-measure-translation-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-translation-tabular-culture" OptionId="option-add-tabular-measure-translation-tabular-culture">
+      <Token>--tabular-culture</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-measure-translation-tabular-measure" OptionId="option-add-tabular-measure-translation-tabular-measure">
+      <Token>--tabular-measure</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-model-workspace" OptionId="option-add-tabular-model-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-model-id" OptionId="option-add-tabular-model-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-model-collation" OptionId="option-add-tabular-model-collation">
+      <Token>--collation</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-model-compatibility-level" OptionId="option-add-tabular-model-compatibility-level">
+      <Token>--compatibility-level</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-model-default-culture" OptionId="option-add-tabular-model-default-culture">
+      <Token>--default-culture</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-model-default-data-view" OptionId="option-add-tabular-model-default-data-view">
+      <Token>--default-data-view</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-model-description" OptionId="option-add-tabular-model-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-model-name" OptionId="option-add-tabular-model-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-partition-workspace" OptionId="option-add-tabular-partition-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-partition-id" OptionId="option-add-tabular-partition-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-partition-description" OptionId="option-add-tabular-partition-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-partition-expression" OptionId="option-add-tabular-partition-expression">
+      <Token>--expression</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-partition-mode" OptionId="option-add-tabular-partition-mode">
+      <Token>--mode</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-partition-name" OptionId="option-add-tabular-partition-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-partition-ordinal" OptionId="option-add-tabular-partition-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-partition-tabular-data-source" OptionId="option-add-tabular-partition-tabular-data-source">
+      <Token>--tabular-data-source</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-partition-tabular-table" OptionId="option-add-tabular-partition-tabular-table">
+      <Token>--tabular-table</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-workspace" OptionId="option-add-tabular-perspective-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-id" OptionId="option-add-tabular-perspective-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-description" OptionId="option-add-tabular-perspective-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-name" OptionId="option-add-tabular-perspective-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-tabular-model" OptionId="option-add-tabular-perspective-tabular-model">
+      <Token>--tabular-model</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-calculation-group-workspace" OptionId="option-add-tabular-perspective-calculation-group-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-calculation-group-id" OptionId="option-add-tabular-perspective-calculation-group-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-calculation-group-tabular-calculation-group" OptionId="option-add-tabular-perspective-calculation-group-tabular-calculation-group">
+      <Token>--tabular-calculation-group</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-calculation-group-tabular-perspective" OptionId="option-add-tabular-perspective-calculation-group-tabular-perspective">
+      <Token>--tabular-perspective</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-column-workspace" OptionId="option-add-tabular-perspective-column-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-column-id" OptionId="option-add-tabular-perspective-column-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-column-tabular-column" OptionId="option-add-tabular-perspective-column-tabular-column">
+      <Token>--tabular-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-column-tabular-perspective" OptionId="option-add-tabular-perspective-column-tabular-perspective">
+      <Token>--tabular-perspective</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-hierarchy-workspace" OptionId="option-add-tabular-perspective-hierarchy-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-hierarchy-id" OptionId="option-add-tabular-perspective-hierarchy-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-hierarchy-tabular-hierarchy" OptionId="option-add-tabular-perspective-hierarchy-tabular-hierarchy">
+      <Token>--tabular-hierarchy</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-hierarchy-tabular-perspective" OptionId="option-add-tabular-perspective-hierarchy-tabular-perspective">
+      <Token>--tabular-perspective</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-kpi-workspace" OptionId="option-add-tabular-perspective-kpi-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-kpi-id" OptionId="option-add-tabular-perspective-kpi-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-kpi-tabular-kpi" OptionId="option-add-tabular-perspective-kpi-tabular-kpi">
+      <Token>--tabular-kpi</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-kpi-tabular-perspective" OptionId="option-add-tabular-perspective-kpi-tabular-perspective">
+      <Token>--tabular-perspective</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-measure-workspace" OptionId="option-add-tabular-perspective-measure-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-measure-id" OptionId="option-add-tabular-perspective-measure-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-measure-tabular-measure" OptionId="option-add-tabular-perspective-measure-tabular-measure">
+      <Token>--tabular-measure</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-measure-tabular-perspective" OptionId="option-add-tabular-perspective-measure-tabular-perspective">
+      <Token>--tabular-perspective</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-table-workspace" OptionId="option-add-tabular-perspective-table-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-table-id" OptionId="option-add-tabular-perspective-table-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-table-tabular-perspective" OptionId="option-add-tabular-perspective-table-tabular-perspective">
+      <Token>--tabular-perspective</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-table-tabular-table" OptionId="option-add-tabular-perspective-table-tabular-table">
+      <Token>--tabular-table</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-translation-workspace" OptionId="option-add-tabular-perspective-translation-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-translation-id" OptionId="option-add-tabular-perspective-translation-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-translation-caption" OptionId="option-add-tabular-perspective-translation-caption">
+      <Token>--caption</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-translation-description" OptionId="option-add-tabular-perspective-translation-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-translation-tabular-culture" OptionId="option-add-tabular-perspective-translation-tabular-culture">
+      <Token>--tabular-culture</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-perspective-translation-tabular-perspective" OptionId="option-add-tabular-perspective-translation-tabular-perspective">
+      <Token>--tabular-perspective</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-workspace" OptionId="option-add-tabular-relationship-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-id" OptionId="option-add-tabular-relationship-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-cardinality" OptionId="option-add-tabular-relationship-cardinality">
+      <Token>--cardinality</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-cross-filter-direction" OptionId="option-add-tabular-relationship-cross-filter-direction">
+      <Token>--cross-filter-direction</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-is-active" OptionId="option-add-tabular-relationship-is-active">
+      <Token>--is-active</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-is-required" OptionId="option-add-tabular-relationship-is-required">
+      <Token>--is-required</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-name" OptionId="option-add-tabular-relationship-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-from-column" OptionId="option-add-tabular-relationship-from-column">
+      <Token>--from-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-from-table" OptionId="option-add-tabular-relationship-from-table">
+      <Token>--from-table</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-to-column" OptionId="option-add-tabular-relationship-to-column">
+      <Token>--to-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-relationship-to-table" OptionId="option-add-tabular-relationship-to-table">
+      <Token>--to-table</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-role-filter-workspace" OptionId="option-add-tabular-role-filter-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-role-filter-id" OptionId="option-add-tabular-role-filter-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-role-filter-expression" OptionId="option-add-tabular-role-filter-expression">
+      <Token>--expression</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-role-filter-tabular-security-role" OptionId="option-add-tabular-role-filter-tabular-security-role">
+      <Token>--tabular-security-role</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-role-filter-tabular-table" OptionId="option-add-tabular-role-filter-tabular-table">
+      <Token>--tabular-table</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-role-member-workspace" OptionId="option-add-tabular-role-member-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-role-member-id" OptionId="option-add-tabular-role-member-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-role-member-member-id" OptionId="option-add-tabular-role-member-member-id">
+      <Token>--member-id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-role-member-member-name" OptionId="option-add-tabular-role-member-member-name">
+      <Token>--member-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-role-member-tabular-security-role" OptionId="option-add-tabular-role-member-tabular-security-role">
+      <Token>--tabular-security-role</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-security-role-workspace" OptionId="option-add-tabular-security-role-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-security-role-id" OptionId="option-add-tabular-security-role-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-security-role-description" OptionId="option-add-tabular-security-role-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-security-role-name" OptionId="option-add-tabular-security-role-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-security-role-permission" OptionId="option-add-tabular-security-role-permission">
+      <Token>--permission</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-security-role-tabular-model" OptionId="option-add-tabular-security-role-tabular-model">
+      <Token>--tabular-model</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-sort-by-column-workspace" OptionId="option-add-tabular-sort-by-column-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-sort-by-column-id" OptionId="option-add-tabular-sort-by-column-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-sort-by-column-sort-column" OptionId="option-add-tabular-sort-by-column-sort-column">
+      <Token>--sort-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-sort-by-column-source-column" OptionId="option-add-tabular-sort-by-column-source-column">
+      <Token>--source-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-workspace" OptionId="option-add-tabular-table-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-id" OptionId="option-add-tabular-table-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-data-category" OptionId="option-add-tabular-table-data-category">
+      <Token>--data-category</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-description" OptionId="option-add-tabular-table-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-is-hidden" OptionId="option-add-tabular-table-is-hidden">
+      <Token>--is-hidden</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-name" OptionId="option-add-tabular-table-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-tabular-model" OptionId="option-add-tabular-table-tabular-model">
+      <Token>--tabular-model</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-permission-workspace" OptionId="option-add-tabular-table-permission-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-permission-id" OptionId="option-add-tabular-table-permission-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-permission-metadata-permission" OptionId="option-add-tabular-table-permission-metadata-permission">
+      <Token>--metadata-permission</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-permission-tabular-security-role" OptionId="option-add-tabular-table-permission-tabular-security-role">
+      <Token>--tabular-security-role</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-permission-tabular-table" OptionId="option-add-tabular-table-permission-tabular-table">
+      <Token>--tabular-table</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-translation-workspace" OptionId="option-add-tabular-table-translation-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-translation-id" OptionId="option-add-tabular-table-translation-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-translation-caption" OptionId="option-add-tabular-table-translation-caption">
+      <Token>--caption</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-translation-description" OptionId="option-add-tabular-table-translation-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-translation-tabular-culture" OptionId="option-add-tabular-table-translation-tabular-culture">
+      <Token>--tabular-culture</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-tabular-table-translation-tabular-table" OptionId="option-add-tabular-table-translation-tabular-table">
+      <Token>--tabular-table</Token>
+    </OptionToken>
+  </OptionTokenList>
+</MetaCli>

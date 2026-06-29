@@ -7,19 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Microsoft.AnalysisServices.NetCore.retail.amd64" Version="19.84.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Tooling\MetaMultiDimensional.Tooling.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="..\Workspaces\MetaMultiDimensional\model.xml">
-      <Link>Models\MetaMultiDimensional.model.xml</Link>
-      <LogicalName>MetaMultiDimensional.Core.Models.MetaMultiDimensional.model.xml</LogicalName>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

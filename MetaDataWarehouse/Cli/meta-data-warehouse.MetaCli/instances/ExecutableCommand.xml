@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandList>
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-new-workspace" CommandId="cmd-new-workspace">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-warehouse" CommandId="cmd-add-warehouse">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-dimension" CommandId="cmd-add-dimension">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-conformed-dimension" CommandId="cmd-add-conformed-dimension">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-dimension-attribute" CommandId="cmd-add-dimension-attribute">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-dimension-business-key" CommandId="cmd-add-dimension-business-key">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-dimension-business-key-part" CommandId="cmd-add-dimension-business-key-part">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-slowly-changing-dimension" CommandId="cmd-add-slowly-changing-dimension">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-type1-dimension-attribute" CommandId="cmd-add-type1-dimension-attribute">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-type2-dimension-attribute" CommandId="cmd-add-type2-dimension-attribute">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-dimension-hierarchy" CommandId="cmd-add-dimension-hierarchy">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-dimension-hierarchy-level" CommandId="cmd-add-dimension-hierarchy-level">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-junk-dimension" CommandId="cmd-add-junk-dimension">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-junk-dimension-component" CommandId="cmd-add-junk-dimension-component">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-mini-dimension" CommandId="cmd-add-mini-dimension">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-outrigger-dimension" CommandId="cmd-add-outrigger-dimension">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-fact" CommandId="cmd-add-fact">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-fact-grain" CommandId="cmd-add-fact-grain">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-fact-dimension" CommandId="cmd-add-fact-dimension">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-fact-measure" CommandId="cmd-add-fact-measure">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-degenerate-dimension" CommandId="cmd-add-degenerate-dimension">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-transaction-fact" CommandId="cmd-add-transaction-fact">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-periodic-snapshot-fact" CommandId="cmd-add-periodic-snapshot-fact">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-accumulating-snapshot-fact" CommandId="cmd-add-accumulating-snapshot-fact">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-accumulating-snapshot-milestone" CommandId="cmd-add-accumulating-snapshot-milestone">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-factless-fact" CommandId="cmd-add-factless-fact">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-aggregate-fact" CommandId="cmd-add-aggregate-fact">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-bridge" CommandId="cmd-add-bridge">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-bridge-participant" CommandId="cmd-add-bridge-participant">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-bridge-weight" CommandId="cmd-add-bridge-weight">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-fact-bridge" CommandId="cmd-add-fact-bridge">
+    </ExecutableCommand>
+  </ExecutableCommandList>
+</MetaCli>

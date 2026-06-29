@@ -1,4 +1,5 @@
-using MetaMultiDimensional.Core;
+using System.Reflection;
+using MetaMultiDimensionalModel = MetaMultiDimensional.MetaMultiDimensionalModel;
 
 namespace MetaMultiDimensional.Tests;
 
@@ -7,8 +8,12 @@ public sealed class ModelShapeTests
     [Fact]
     public void MetaMultiDimensionalModel_CarriesMultidimensionalImplementationConcepts()
     {
-        var model = MetaMultiDimensionalModels.CreateMetaMultiDimensionalModel();
-        var entityNames = model.Entities.Select(entity => entity.Name).ToHashSet(StringComparer.Ordinal);
+        var modelType = typeof(MetaMultiDimensionalModel);
+        var entityNames = modelType.GetProperties(BindingFlags.Instance | BindingFlags.Public)
+            .Where(property => property.PropertyType.IsGenericType &&
+                               property.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
+            .Select(property => property.PropertyType.GetGenericArguments()[0].Name)
+            .ToHashSet(StringComparer.Ordinal);
 
         Assert.Contains("MultiDimensionalDatabase", entityNames);
         Assert.Contains("Cube", entityNames);
@@ -23,20 +28,23 @@ public sealed class ModelShapeTests
         Assert.Contains("CubeAction", entityNames);
         Assert.Contains("CellPermission", entityNames);
 
-        var dimension = Assert.Single(model.Entities, entity => entity.Name == "Dimension");
-        var dimensionProperties = dimension.Properties.Select(property => property.Name).ToHashSet(StringComparer.Ordinal);
+        var dimensionProperties = EntityProperties<Dimension>();
         Assert.Contains("StorageMode", dimensionProperties);
         Assert.Contains("ProcessingMode", dimensionProperties);
         Assert.Contains("ProcessingGroup", dimensionProperties);
 
-        var cube = Assert.Single(model.Entities, entity => entity.Name == "Cube");
-        var cubeProperties = cube.Properties.Select(property => property.Name).ToHashSet(StringComparer.Ordinal);
+        var cubeProperties = EntityProperties<Cube>();
         Assert.Contains("StorageMode", cubeProperties);
         Assert.Contains("ProcessingMode", cubeProperties);
 
-        var measureGroup = Assert.Single(model.Entities, entity => entity.Name == "MeasureGroup");
-        var measureGroupProperties = measureGroup.Properties.Select(property => property.Name).ToHashSet(StringComparer.Ordinal);
+        var measureGroupProperties = EntityProperties<MeasureGroup>();
         Assert.Contains("StorageMode", measureGroupProperties);
         Assert.Contains("ProcessingMode", measureGroupProperties);
     }
+
+    private static HashSet<string> EntityProperties<T>() =>
+        typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.Public)
+            .Where(property => property.CanRead && property.CanWrite)
+            .Select(property => property.Name)
+            .ToHashSet(StringComparer.Ordinal);
 }

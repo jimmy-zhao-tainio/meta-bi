@@ -17,7 +17,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var createResult = RunRawCli($"--new-workspace \"{workspacePath}\"");
+            var createResult = RunRawCli($"new-workspace \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             var sqlWorkspace = await Converter.ConvertAsync(
@@ -54,7 +54,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var createResult = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+            var createResult = RunBusinessCli($"new-workspace \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             var sqlWorkspace = await Converter.ConvertAsync(
@@ -734,7 +734,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var createResult = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+            var createResult = RunBusinessCli($"new-workspace \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Customer --name Customer").ExitCode);
@@ -996,9 +996,10 @@ public sealed class ConvertToMetaSqlTests
     private static (int ExitCode, string Output) RunBusinessCli(string arguments)
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var localExePath = Path.Combine(repoRoot, "MetaDataVault", "Cli", "Business", "bin", "Debug", "net8.0", "meta-datavault-business.exe");
         var startInfo = new System.Diagnostics.ProcessStartInfo
         {
-            FileName = "meta-datavault-business",
+            FileName = File.Exists(localExePath) ? localExePath : "meta-datavault-business",
             Arguments = arguments,
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,

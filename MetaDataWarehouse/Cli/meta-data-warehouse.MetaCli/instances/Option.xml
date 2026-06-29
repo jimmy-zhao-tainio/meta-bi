@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionList>
+    <Option Id="opt-add-warehouse-workspace" ParameterId="param-add-warehouse-workspace">
+    </Option>
+    <Option Id="opt-add-warehouse-id" ParameterId="param-add-warehouse-id">
+    </Option>
+    <Option Id="opt-add-warehouse-name" ParameterId="param-add-warehouse-name">
+    </Option>
+    <Option Id="opt-add-warehouse-description" ParameterId="param-add-warehouse-description">
+    </Option>
+    <Option Id="opt-add-dimension-workspace" ParameterId="param-add-dimension-workspace">
+    </Option>
+    <Option Id="opt-add-dimension-id" ParameterId="param-add-dimension-id">
+    </Option>
+    <Option Id="opt-add-dimension-name" ParameterId="param-add-dimension-name">
+    </Option>
+    <Option Id="opt-add-dimension-description" ParameterId="param-add-dimension-description">
+    </Option>
+    <Option Id="opt-add-dimension-warehouse" ParameterId="param-add-dimension-warehouse">
+    </Option>
+    <Option Id="opt-add-conformed-dimension-workspace" ParameterId="param-add-conformed-dimension-workspace">
+    </Option>
+    <Option Id="opt-add-conformed-dimension-id" ParameterId="param-add-conformed-dimension-id">
+    </Option>
+    <Option Id="opt-add-conformed-dimension-conformance-name" ParameterId="param-add-conformed-dimension-conformance-name">
+    </Option>
+    <Option Id="opt-add-conformed-dimension-description" ParameterId="param-add-conformed-dimension-description">
+    </Option>
+    <Option Id="opt-add-conformed-dimension-dimension" ParameterId="param-add-conformed-dimension-dimension">
+    </Option>
+    <Option Id="opt-add-dimension-attribute-workspace" ParameterId="param-add-dimension-attribute-workspace">
+    </Option>
+    <Option Id="opt-add-dimension-attribute-id" ParameterId="param-add-dimension-attribute-id">
+    </Option>
+    <Option Id="opt-add-dimension-attribute-name" ParameterId="param-add-dimension-attribute-name">
+    </Option>
+    <Option Id="opt-add-dimension-attribute-data-type-id" ParameterId="param-add-dimension-attribute-data-type-id">
+    </Option>
+    <Option Id="opt-add-dimension-attribute-ordinal" ParameterId="param-add-dimension-attribute-ordinal">
+    </Option>
+    <Option Id="opt-add-dimension-attribute-is-nullable" ParameterId="param-add-dimension-attribute-is-nullable">
+    </Option>
+    <Option Id="opt-add-dimension-attribute-description" ParameterId="param-add-dimension-attribute-description">
+    </Option>
+    <Option Id="opt-add-dimension-attribute-dimension" ParameterId="param-add-dimension-attribute-dimension">
+    </Option>
+    <Option Id="opt-add-dimension-business-key-workspace" ParameterId="param-add-dimension-business-key-workspace">
+    </Option>
+    <Option Id="opt-add-dimension-business-key-id" ParameterId="param-add-dimension-business-key-id">
+    </Option>
+    <Option Id="opt-add-dimension-business-key-name" ParameterId="param-add-dimension-business-key-name">
+    </Option>
+    <Option Id="opt-add-dimension-business-key-description" ParameterId="param-add-dimension-business-key-description">
+    </Option>
+    <Option Id="opt-add-dimension-business-key-dimension" ParameterId="param-add-dimension-business-key-dimension">
+    </Option>
+    <Option Id="opt-add-dimension-business-key-part-workspace" ParameterId="param-add-dimension-business-key-part-workspace">
+    </Option>
+    <Option Id="opt-add-dimension-business-key-part-id" ParameterId="param-add-dimension-business-key-part-id">
+    </Option>
+    <Option Id="opt-add-dimension-business-key-part-ordinal" ParameterId="param-add-dimension-business-key-part-ordinal">
+    </Option>
+    <Option Id="opt-add-dimension-business-key-part-business-key" ParameterId="param-add-dimension-business-key-part-business-key">
+    </Option>
+    <Option Id="opt-add-dimension-business-key-part-attribute" ParameterId="param-add-dimension-business-key-part-attribute">
+    </Option>
+    <Option Id="opt-add-slowly-changing-dimension-workspace" ParameterId="param-add-slowly-changing-dimension-workspace">
+    </Option>
+    <Option Id="opt-add-slowly-changing-dimension-id" ParameterId="param-add-slowly-changing-dimension-id">
+    </Option>
+    <Option Id="opt-add-slowly-changing-dimension-name" ParameterId="param-add-slowly-changing-dimension-name">
+    </Option>
+    <Option Id="opt-add-slowly-changing-dimension-description" ParameterId="param-add-slowly-changing-dimension-description">
+    </Option>
+    <Option Id="opt-add-slowly-changing-dimension-dimension" ParameterId="param-add-slowly-changing-dimension-dimension">
+    </Option>
+    <Option Id="opt-add-type1-dimension-attribute-workspace" ParameterId="param-add-type1-dimension-attribute-workspace">
+    </Option>
+    <Option Id="opt-add-type1-dimension-attribute-id" ParameterId="param-add-type1-dimension-attribute-id">
+    </Option>
+    <Option Id="opt-add-type1-dimension-attribute-description" ParameterId="param-add-type1-dimension-attribute-description">
+    </Option>
+    <Option Id="opt-add-type1-dimension-attribute-slowly-changing-dimension" ParameterId="param-add-type1-dimension-attribute-slowly-changing-dimension">
+    </Option>
+    <Option Id="opt-add-type1-dimension-attribute-attribute" ParameterId="param-add-type1-dimension-attribute-attribute">
+    </Option>
+    <Option Id="opt-add-type2-dimension-attribute-workspace" ParameterId="param-add-type2-dimension-attribute-workspace">
+    </Option>
+    <Option Id="opt-add-type2-dimension-attribute-id" ParameterId="param-add-type2-dimension-attribute-id">
+    </Option>
+    <Option Id="opt-add-type2-dimension-attribute-description" ParameterId="param-add-type2-dimension-attribute-description">
+    </Option>
+    <Option Id="opt-add-type2-dimension-attribute-slowly-changing-dimension" ParameterId="param-add-type2-dimension-attribute-slowly-changing-dimension">
+    </Option>
+    <Option Id="opt-add-type2-dimension-attribute-attribute" ParameterId="param-add-type2-dimension-attribute-attribute">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-workspace" ParameterId="param-add-dimension-hierarchy-workspace">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-id" ParameterId="param-add-dimension-hierarchy-id">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-name" ParameterId="param-add-dimension-hierarchy-name">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-description" ParameterId="param-add-dimension-hierarchy-description">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-dimension" ParameterId="param-add-dimension-hierarchy-dimension">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-level-workspace" ParameterId="param-add-dimension-hierarchy-level-workspace">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-level-id" ParameterId="param-add-dimension-hierarchy-level-id">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-level-name" ParameterId="param-add-dimension-hierarchy-level-name">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-level-ordinal" ParameterId="param-add-dimension-hierarchy-level-ordinal">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-level-hierarchy" ParameterId="param-add-dimension-hierarchy-level-hierarchy">
+    </Option>
+    <Option Id="opt-add-dimension-hierarchy-level-attribute" ParameterId="param-add-dimension-hierarchy-level-attribute">
+    </Option>
+    <Option Id="opt-add-junk-dimension-workspace" ParameterId="param-add-junk-dimension-workspace">
+    </Option>
+    <Option Id="opt-add-junk-dimension-id" ParameterId="param-add-junk-dimension-id">
+    </Option>
+    <Option Id="opt-add-junk-dimension-description" ParameterId="param-add-junk-dimension-description">
+    </Option>
+    <Option Id="opt-add-junk-dimension-dimension" ParameterId="param-add-junk-dimension-dimension">
+    </Option>
+    <Option Id="opt-add-junk-dimension-component-workspace" ParameterId="param-add-junk-dimension-component-workspace">
+    </Option>
+    <Option Id="opt-add-junk-dimension-component-id" ParameterId="param-add-junk-dimension-component-id">
+    </Option>
+    <Option Id="opt-add-junk-dimension-component-ordinal" ParameterId="param-add-junk-dimension-component-ordinal">
+    </Option>
+    <Option Id="opt-add-junk-dimension-component-description" ParameterId="param-add-junk-dimension-component-description">
+    </Option>
+    <Option Id="opt-add-junk-dimension-component-junk-dimension" ParameterId="param-add-junk-dimension-component-junk-dimension">
+    </Option>
+    <Option Id="opt-add-junk-dimension-component-attribute" ParameterId="param-add-junk-dimension-component-attribute">
+    </Option>
+    <Option Id="opt-add-mini-dimension-workspace" ParameterId="param-add-mini-dimension-workspace">
+    </Option>
+    <Option Id="opt-add-mini-dimension-id" ParameterId="param-add-mini-dimension-id">
+    </Option>
+    <Option Id="opt-add-mini-dimension-role-name" ParameterId="param-add-mini-dimension-role-name">
+    </Option>
+    <Option Id="opt-add-mini-dimension-description" ParameterId="param-add-mini-dimension-description">
+    </Option>
+    <Option Id="opt-add-mini-dimension-source-dimension" ParameterId="param-add-mini-dimension-source-dimension">
+    </Option>
+    <Option Id="opt-add-mini-dimension-profile-dimension" ParameterId="param-add-mini-dimension-profile-dimension">
+    </Option>
+    <Option Id="opt-add-outrigger-dimension-workspace" ParameterId="param-add-outrigger-dimension-workspace">
+    </Option>
+    <Option Id="opt-add-outrigger-dimension-id" ParameterId="param-add-outrigger-dimension-id">
+    </Option>
+    <Option Id="opt-add-outrigger-dimension-role-name" ParameterId="param-add-outrigger-dimension-role-name">
+    </Option>
+    <Option Id="opt-add-outrigger-dimension-ordinal" ParameterId="param-add-outrigger-dimension-ordinal">
+    </Option>
+    <Option Id="opt-add-outrigger-dimension-is-required" ParameterId="param-add-outrigger-dimension-is-required">
+    </Option>
+    <Option Id="opt-add-outrigger-dimension-description" ParameterId="param-add-outrigger-dimension-description">
+    </Option>
+    <Option Id="opt-add-outrigger-dimension-parent-dimension" ParameterId="param-add-outrigger-dimension-parent-dimension">
+    </Option>
+    <Option Id="opt-add-outrigger-dimension-child-dimension" ParameterId="param-add-outrigger-dimension-child-dimension">
+    </Option>
+    <Option Id="opt-add-fact-workspace" ParameterId="param-add-fact-workspace">
+    </Option>
+    <Option Id="opt-add-fact-id" ParameterId="param-add-fact-id">
+    </Option>
+    <Option Id="opt-add-fact-name" ParameterId="param-add-fact-name">
+    </Option>
+    <Option Id="opt-add-fact-description" ParameterId="param-add-fact-description">
+    </Option>
+    <Option Id="opt-add-fact-warehouse" ParameterId="param-add-fact-warehouse">
+    </Option>
+    <Option Id="opt-add-fact-grain-workspace" ParameterId="param-add-fact-grain-workspace">
+    </Option>
+    <Option Id="opt-add-fact-grain-id" ParameterId="param-add-fact-grain-id">
+    </Option>
+    <Option Id="opt-add-fact-grain-name" ParameterId="param-add-fact-grain-name">
+    </Option>
+    <Option Id="opt-add-fact-grain-description" ParameterId="param-add-fact-grain-description">
+    </Option>
+    <Option Id="opt-add-fact-grain-fact" ParameterId="param-add-fact-grain-fact">
+    </Option>
+    <Option Id="opt-add-fact-dimension-workspace" ParameterId="param-add-fact-dimension-workspace">
+    </Option>
+    <Option Id="opt-add-fact-dimension-id" ParameterId="param-add-fact-dimension-id">
+    </Option>
+    <Option Id="opt-add-fact-dimension-role-name" ParameterId="param-add-fact-dimension-role-name">
+    </Option>
+    <Option Id="opt-add-fact-dimension-ordinal" ParameterId="param-add-fact-dimension-ordinal">
+    </Option>
+    <Option Id="opt-add-fact-dimension-is-required" ParameterId="param-add-fact-dimension-is-required">
+    </Option>
+    <Option Id="opt-add-fact-dimension-description" ParameterId="param-add-fact-dimension-description">
+    </Option>
+    <Option Id="opt-add-fact-dimension-fact" ParameterId="param-add-fact-dimension-fact">
+    </Option>
+    <Option Id="opt-add-fact-dimension-dimension" ParameterId="param-add-fact-dimension-dimension">
+    </Option>
+    <Option Id="opt-add-fact-measure-workspace" ParameterId="param-add-fact-measure-workspace">
+    </Option>
+    <Option Id="opt-add-fact-measure-id" ParameterId="param-add-fact-measure-id">
+    </Option>
+    <Option Id="opt-add-fact-measure-name" ParameterId="param-add-fact-measure-name">
+    </Option>
+    <Option Id="opt-add-fact-measure-data-type-id" ParameterId="param-add-fact-measure-data-type-id">
+    </Option>
+    <Option Id="opt-add-fact-measure-ordinal" ParameterId="param-add-fact-measure-ordinal">
+    </Option>
+    <Option Id="opt-add-fact-measure-is-nullable" ParameterId="param-add-fact-measure-is-nullable">
+    </Option>
+    <Option Id="opt-add-fact-measure-description" ParameterId="param-add-fact-measure-description">
+    </Option>
+    <Option Id="opt-add-fact-measure-fact" ParameterId="param-add-fact-measure-fact">
+    </Option>
+    <Option Id="opt-add-degenerate-dimension-workspace" ParameterId="param-add-degenerate-dimension-workspace">
+    </Option>
+    <Option Id="opt-add-degenerate-dimension-id" ParameterId="param-add-degenerate-dimension-id">
+    </Option>
+    <Option Id="opt-add-degenerate-dimension-name" ParameterId="param-add-degenerate-dimension-name">
+    </Option>
+    <Option Id="opt-add-degenerate-dimension-data-type-id" ParameterId="param-add-degenerate-dimension-data-type-id">
+    </Option>
+    <Option Id="opt-add-degenerate-dimension-ordinal" ParameterId="param-add-degenerate-dimension-ordinal">
+    </Option>
+    <Option Id="opt-add-degenerate-dimension-description" ParameterId="param-add-degenerate-dimension-description">
+    </Option>
+    <Option Id="opt-add-degenerate-dimension-fact" ParameterId="param-add-degenerate-dimension-fact">
+    </Option>
+    <Option Id="opt-add-transaction-fact-workspace" ParameterId="param-add-transaction-fact-workspace">
+    </Option>
+    <Option Id="opt-add-transaction-fact-id" ParameterId="param-add-transaction-fact-id">
+    </Option>
+    <Option Id="opt-add-transaction-fact-description" ParameterId="param-add-transaction-fact-description">
+    </Option>
+    <Option Id="opt-add-transaction-fact-fact" ParameterId="param-add-transaction-fact-fact">
+    </Option>
+    <Option Id="opt-add-periodic-snapshot-fact-workspace" ParameterId="param-add-periodic-snapshot-fact-workspace">
+    </Option>
+    <Option Id="opt-add-periodic-snapshot-fact-id" ParameterId="param-add-periodic-snapshot-fact-id">
+    </Option>
+    <Option Id="opt-add-periodic-snapshot-fact-period-name" ParameterId="param-add-periodic-snapshot-fact-period-name">
+    </Option>
+    <Option Id="opt-add-periodic-snapshot-fact-description" ParameterId="param-add-periodic-snapshot-fact-description">
+    </Option>
+    <Option Id="opt-add-periodic-snapshot-fact-fact" ParameterId="param-add-periodic-snapshot-fact-fact">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-fact-workspace" ParameterId="param-add-accumulating-snapshot-fact-workspace">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-fact-id" ParameterId="param-add-accumulating-snapshot-fact-id">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-fact-description" ParameterId="param-add-accumulating-snapshot-fact-description">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-fact-fact" ParameterId="param-add-accumulating-snapshot-fact-fact">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-milestone-workspace" ParameterId="param-add-accumulating-snapshot-milestone-workspace">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-milestone-id" ParameterId="param-add-accumulating-snapshot-milestone-id">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-milestone-name" ParameterId="param-add-accumulating-snapshot-milestone-name">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-milestone-ordinal" ParameterId="param-add-accumulating-snapshot-milestone-ordinal">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-milestone-date-role-name" ParameterId="param-add-accumulating-snapshot-milestone-date-role-name">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-milestone-description" ParameterId="param-add-accumulating-snapshot-milestone-description">
+    </Option>
+    <Option Id="opt-add-accumulating-snapshot-milestone-accumulating-snapshot" ParameterId="param-add-accumulating-snapshot-milestone-accumulating-snapshot">
+    </Option>
+    <Option Id="opt-add-factless-fact-workspace" ParameterId="param-add-factless-fact-workspace">
+    </Option>
+    <Option Id="opt-add-factless-fact-id" ParameterId="param-add-factless-fact-id">
+    </Option>
+    <Option Id="opt-add-factless-fact-description" ParameterId="param-add-factless-fact-description">
+    </Option>
+    <Option Id="opt-add-factless-fact-fact" ParameterId="param-add-factless-fact-fact">
+    </Option>
+    <Option Id="opt-add-aggregate-fact-workspace" ParameterId="param-add-aggregate-fact-workspace">
+    </Option>
+    <Option Id="opt-add-aggregate-fact-id" ParameterId="param-add-aggregate-fact-id">
+    </Option>
+    <Option Id="opt-add-aggregate-fact-description" ParameterId="param-add-aggregate-fact-description">
+    </Option>
+    <Option Id="opt-add-aggregate-fact-aggregated-fact" ParameterId="param-add-aggregate-fact-aggregated-fact">
+    </Option>
+    <Option Id="opt-add-aggregate-fact-source-fact" ParameterId="param-add-aggregate-fact-source-fact">
+    </Option>
+    <Option Id="opt-add-bridge-workspace" ParameterId="param-add-bridge-workspace">
+    </Option>
+    <Option Id="opt-add-bridge-id" ParameterId="param-add-bridge-id">
+    </Option>
+    <Option Id="opt-add-bridge-name" ParameterId="param-add-bridge-name">
+    </Option>
+    <Option Id="opt-add-bridge-description" ParameterId="param-add-bridge-description">
+    </Option>
+    <Option Id="opt-add-bridge-warehouse" ParameterId="param-add-bridge-warehouse">
+    </Option>
+    <Option Id="opt-add-bridge-participant-workspace" ParameterId="param-add-bridge-participant-workspace">
+    </Option>
+    <Option Id="opt-add-bridge-participant-id" ParameterId="param-add-bridge-participant-id">
+    </Option>
+    <Option Id="opt-add-bridge-participant-role-name" ParameterId="param-add-bridge-participant-role-name">
+    </Option>
+    <Option Id="opt-add-bridge-participant-ordinal" ParameterId="param-add-bridge-participant-ordinal">
+    </Option>
+    <Option Id="opt-add-bridge-participant-is-required" ParameterId="param-add-bridge-participant-is-required">
+    </Option>
+    <Option Id="opt-add-bridge-participant-bridge" ParameterId="param-add-bridge-participant-bridge">
+    </Option>
+    <Option Id="opt-add-bridge-participant-dimension" ParameterId="param-add-bridge-participant-dimension">
+    </Option>
+    <Option Id="opt-add-bridge-weight-workspace" ParameterId="param-add-bridge-weight-workspace">
+    </Option>
+    <Option Id="opt-add-bridge-weight-id" ParameterId="param-add-bridge-weight-id">
+    </Option>
+    <Option Id="opt-add-bridge-weight-name" ParameterId="param-add-bridge-weight-name">
+    </Option>
+    <Option Id="opt-add-bridge-weight-data-type-id" ParameterId="param-add-bridge-weight-data-type-id">
+    </Option>
+    <Option Id="opt-add-bridge-weight-description" ParameterId="param-add-bridge-weight-description">
+    </Option>
+    <Option Id="opt-add-bridge-weight-bridge" ParameterId="param-add-bridge-weight-bridge">
+    </Option>
+    <Option Id="opt-add-fact-bridge-workspace" ParameterId="param-add-fact-bridge-workspace">
+    </Option>
+    <Option Id="opt-add-fact-bridge-id" ParameterId="param-add-fact-bridge-id">
+    </Option>
+    <Option Id="opt-add-fact-bridge-role-name" ParameterId="param-add-fact-bridge-role-name">
+    </Option>
+    <Option Id="opt-add-fact-bridge-ordinal" ParameterId="param-add-fact-bridge-ordinal">
+    </Option>
+    <Option Id="opt-add-fact-bridge-description" ParameterId="param-add-fact-bridge-description">
+    </Option>
+    <Option Id="opt-add-fact-bridge-fact" ParameterId="param-add-fact-bridge-fact">
+    </Option>
+    <Option Id="opt-add-fact-bridge-bridge" ParameterId="param-add-fact-bridge-bridge">
+    </Option>
+  </OptionList>
+</MetaCli>

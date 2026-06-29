@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandParameterList>
+    <ExecutableCommandParameter Id="exec-new-workspace:parameter:param-new-workspace-path" ExecutableCommandId="exec-new-workspace" ParameterId="param-new-workspace-path">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-workspace" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-server" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-server">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-database-name" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-database-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-drop-existing" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-drop-existing">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-no-process" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-no-process">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-process:parameter:param-process-server" ExecutableCommandId="exec-process" ParameterId="param-process-server">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-process:parameter:param-process-database-name" ExecutableCommandId="exec-process" ParameterId="param-process-database-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-process:parameter:param-process-refresh-type" ExecutableCommandId="exec-process" ParameterId="param-process-refresh-type">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-process:parameter:param-process-table" ExecutableCommandId="exec-process" ParameterId="param-process-table">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-process:parameter:param-process-partition" ExecutableCommandId="exec-process" ParameterId="param-process-partition">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-restore:parameter:param-restore-source-server" ExecutableCommandId="exec-restore" ParameterId="param-restore-source-server">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-restore:parameter:param-restore-source-database-name" ExecutableCommandId="exec-restore" ParameterId="param-restore-source-database-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-restore:parameter:param-restore-target-server" ExecutableCommandId="exec-restore" ParameterId="param-restore-target-server">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-restore:parameter:param-restore-target-database-name" ExecutableCommandId="exec-restore" ParameterId="param-restore-target-database-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-restore:parameter:param-restore-backup-file" ExecutableCommandId="exec-restore" ParameterId="param-restore-backup-file">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-restore:parameter:param-restore-drop-existing" ExecutableCommandId="exec-restore" ParameterId="param-restore-drop-existing">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-restore:parameter:param-restore-overwrite-backup-file" ExecutableCommandId="exec-restore" ParameterId="param-restore-overwrite-backup-file">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-drop:parameter:param-drop-server" ExecutableCommandId="exec-drop" ParameterId="param-drop-server">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-drop:parameter:param-drop-database-name" ExecutableCommandId="exec-drop" ParameterId="param-drop-database-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-group:parameter:param-add-tabular-calculation-group-workspace" ExecutableCommandId="exec-add-tabular-calculation-group" ParameterId="param-add-tabular-calculation-group-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-group:parameter:param-add-tabular-calculation-group-id" ExecutableCommandId="exec-add-tabular-calculation-group" ParameterId="param-add-tabular-calculation-group-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-group:parameter:param-add-tabular-calculation-group-description" ExecutableCommandId="exec-add-tabular-calculation-group" ParameterId="param-add-tabular-calculation-group-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-group:parameter:param-add-tabular-calculation-group-name" ExecutableCommandId="exec-add-tabular-calculation-group" ParameterId="param-add-tabular-calculation-group-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-group:parameter:param-add-tabular-calculation-group-precedence" ExecutableCommandId="exec-add-tabular-calculation-group" ParameterId="param-add-tabular-calculation-group-precedence">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-group:parameter:param-add-tabular-calculation-group-tabular-model" ExecutableCommandId="exec-add-tabular-calculation-group" ParameterId="param-add-tabular-calculation-group-tabular-model">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-item:parameter:param-add-tabular-calculation-item-workspace" ExecutableCommandId="exec-add-tabular-calculation-item" ParameterId="param-add-tabular-calculation-item-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-item:parameter:param-add-tabular-calculation-item-id" ExecutableCommandId="exec-add-tabular-calculation-item" ParameterId="param-add-tabular-calculation-item-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-item:parameter:param-add-tabular-calculation-item-description" ExecutableCommandId="exec-add-tabular-calculation-item" ParameterId="param-add-tabular-calculation-item-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-item:parameter:param-add-tabular-calculation-item-expression" ExecutableCommandId="exec-add-tabular-calculation-item" ParameterId="param-add-tabular-calculation-item-expression">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-item:parameter:param-add-tabular-calculation-item-format-string-expression" ExecutableCommandId="exec-add-tabular-calculation-item" ParameterId="param-add-tabular-calculation-item-format-string-expression">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-item:parameter:param-add-tabular-calculation-item-name" ExecutableCommandId="exec-add-tabular-calculation-item" ParameterId="param-add-tabular-calculation-item-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-item:parameter:param-add-tabular-calculation-item-ordinal" ExecutableCommandId="exec-add-tabular-calculation-item" ParameterId="param-add-tabular-calculation-item-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-calculation-item:parameter:param-add-tabular-calculation-item-tabular-calculation-group" ExecutableCommandId="exec-add-tabular-calculation-item" ParameterId="param-add-tabular-calculation-item-tabular-calculation-group">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-workspace" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-id" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-data-category" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-data-category">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-data-type-id" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-description" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-expression" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-expression">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-format-string" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-format-string">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-is-hidden" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-is-hidden">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-is-key" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-is-key">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-is-nullable" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-is-nullable">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-name" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-ordinal" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-source-name" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-source-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-summarize-by" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-summarize-by">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column:parameter:param-add-tabular-column-tabular-table" ExecutableCommandId="exec-add-tabular-column" ParameterId="param-add-tabular-column-tabular-table">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-permission:parameter:param-add-tabular-column-permission-workspace" ExecutableCommandId="exec-add-tabular-column-permission" ParameterId="param-add-tabular-column-permission-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-permission:parameter:param-add-tabular-column-permission-id" ExecutableCommandId="exec-add-tabular-column-permission" ParameterId="param-add-tabular-column-permission-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-permission:parameter:param-add-tabular-column-permission-metadata-permission" ExecutableCommandId="exec-add-tabular-column-permission" ParameterId="param-add-tabular-column-permission-metadata-permission">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-permission:parameter:param-add-tabular-column-permission-tabular-column" ExecutableCommandId="exec-add-tabular-column-permission" ParameterId="param-add-tabular-column-permission-tabular-column">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-permission:parameter:param-add-tabular-column-permission-tabular-security-role" ExecutableCommandId="exec-add-tabular-column-permission" ParameterId="param-add-tabular-column-permission-tabular-security-role">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-translation:parameter:param-add-tabular-column-translation-workspace" ExecutableCommandId="exec-add-tabular-column-translation" ParameterId="param-add-tabular-column-translation-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-translation:parameter:param-add-tabular-column-translation-id" ExecutableCommandId="exec-add-tabular-column-translation" ParameterId="param-add-tabular-column-translation-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-translation:parameter:param-add-tabular-column-translation-caption" ExecutableCommandId="exec-add-tabular-column-translation" ParameterId="param-add-tabular-column-translation-caption">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-translation:parameter:param-add-tabular-column-translation-description" ExecutableCommandId="exec-add-tabular-column-translation" ParameterId="param-add-tabular-column-translation-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-translation:parameter:param-add-tabular-column-translation-tabular-column" ExecutableCommandId="exec-add-tabular-column-translation" ParameterId="param-add-tabular-column-translation-tabular-column">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-column-translation:parameter:param-add-tabular-column-translation-tabular-culture" ExecutableCommandId="exec-add-tabular-column-translation" ParameterId="param-add-tabular-column-translation-tabular-culture">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-culture:parameter:param-add-tabular-culture-workspace" ExecutableCommandId="exec-add-tabular-culture" ParameterId="param-add-tabular-culture-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-culture:parameter:param-add-tabular-culture-id" ExecutableCommandId="exec-add-tabular-culture" ParameterId="param-add-tabular-culture-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-culture:parameter:param-add-tabular-culture-name" ExecutableCommandId="exec-add-tabular-culture" ParameterId="param-add-tabular-culture-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-culture:parameter:param-add-tabular-culture-tabular-model" ExecutableCommandId="exec-add-tabular-culture" ParameterId="param-add-tabular-culture-tabular-model">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-data-source:parameter:param-add-tabular-data-source-workspace" ExecutableCommandId="exec-add-tabular-data-source" ParameterId="param-add-tabular-data-source-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-data-source:parameter:param-add-tabular-data-source-id" ExecutableCommandId="exec-add-tabular-data-source" ParameterId="param-add-tabular-data-source-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-data-source:parameter:param-add-tabular-data-source-connection-reference" ExecutableCommandId="exec-add-tabular-data-source" ParameterId="param-add-tabular-data-source-connection-reference">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-data-source:parameter:param-add-tabular-data-source-description" ExecutableCommandId="exec-add-tabular-data-source" ParameterId="param-add-tabular-data-source-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-data-source:parameter:param-add-tabular-data-source-name" ExecutableCommandId="exec-add-tabular-data-source" ParameterId="param-add-tabular-data-source-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-data-source:parameter:param-add-tabular-data-source-provider" ExecutableCommandId="exec-add-tabular-data-source" ParameterId="param-add-tabular-data-source-provider">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-data-source:parameter:param-add-tabular-data-source-tabular-model" ExecutableCommandId="exec-add-tabular-data-source" ParameterId="param-add-tabular-data-source-tabular-model">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy:parameter:param-add-tabular-hierarchy-workspace" ExecutableCommandId="exec-add-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy:parameter:param-add-tabular-hierarchy-id" ExecutableCommandId="exec-add-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy:parameter:param-add-tabular-hierarchy-description" ExecutableCommandId="exec-add-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy:parameter:param-add-tabular-hierarchy-display-folder" ExecutableCommandId="exec-add-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-display-folder">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy:parameter:param-add-tabular-hierarchy-is-hidden" ExecutableCommandId="exec-add-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-is-hidden">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy:parameter:param-add-tabular-hierarchy-name" ExecutableCommandId="exec-add-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy:parameter:param-add-tabular-hierarchy-tabular-table" ExecutableCommandId="exec-add-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-tabular-table">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-level:parameter:param-add-tabular-hierarchy-level-workspace" ExecutableCommandId="exec-add-tabular-hierarchy-level" ParameterId="param-add-tabular-hierarchy-level-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-level:parameter:param-add-tabular-hierarchy-level-id" ExecutableCommandId="exec-add-tabular-hierarchy-level" ParameterId="param-add-tabular-hierarchy-level-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-level:parameter:param-add-tabular-hierarchy-level-name" ExecutableCommandId="exec-add-tabular-hierarchy-level" ParameterId="param-add-tabular-hierarchy-level-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-level:parameter:param-add-tabular-hierarchy-level-ordinal" ExecutableCommandId="exec-add-tabular-hierarchy-level" ParameterId="param-add-tabular-hierarchy-level-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-level:parameter:param-add-tabular-hierarchy-level-tabular-column" ExecutableCommandId="exec-add-tabular-hierarchy-level" ParameterId="param-add-tabular-hierarchy-level-tabular-column">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-level:parameter:param-add-tabular-hierarchy-level-tabular-hierarchy" ExecutableCommandId="exec-add-tabular-hierarchy-level" ParameterId="param-add-tabular-hierarchy-level-tabular-hierarchy">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-translation:parameter:param-add-tabular-hierarchy-translation-workspace" ExecutableCommandId="exec-add-tabular-hierarchy-translation" ParameterId="param-add-tabular-hierarchy-translation-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-translation:parameter:param-add-tabular-hierarchy-translation-id" ExecutableCommandId="exec-add-tabular-hierarchy-translation" ParameterId="param-add-tabular-hierarchy-translation-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-translation:parameter:param-add-tabular-hierarchy-translation-caption" ExecutableCommandId="exec-add-tabular-hierarchy-translation" ParameterId="param-add-tabular-hierarchy-translation-caption">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-translation:parameter:param-add-tabular-hierarchy-translation-description" ExecutableCommandId="exec-add-tabular-hierarchy-translation" ParameterId="param-add-tabular-hierarchy-translation-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-translation:parameter:param-add-tabular-hierarchy-translation-tabular-culture" ExecutableCommandId="exec-add-tabular-hierarchy-translation" ParameterId="param-add-tabular-hierarchy-translation-tabular-culture">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-hierarchy-translation:parameter:param-add-tabular-hierarchy-translation-tabular-hierarchy" ExecutableCommandId="exec-add-tabular-hierarchy-translation" ParameterId="param-add-tabular-hierarchy-translation-tabular-hierarchy">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi:parameter:param-add-tabular-kpi-workspace" ExecutableCommandId="exec-add-tabular-kpi" ParameterId="param-add-tabular-kpi-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi:parameter:param-add-tabular-kpi-id" ExecutableCommandId="exec-add-tabular-kpi" ParameterId="param-add-tabular-kpi-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi:parameter:param-add-tabular-kpi-description" ExecutableCommandId="exec-add-tabular-kpi" ParameterId="param-add-tabular-kpi-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi:parameter:param-add-tabular-kpi-status-expression" ExecutableCommandId="exec-add-tabular-kpi" ParameterId="param-add-tabular-kpi-status-expression">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi:parameter:param-add-tabular-kpi-status-graphic" ExecutableCommandId="exec-add-tabular-kpi" ParameterId="param-add-tabular-kpi-status-graphic">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi:parameter:param-add-tabular-kpi-target-expression" ExecutableCommandId="exec-add-tabular-kpi" ParameterId="param-add-tabular-kpi-target-expression">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi:parameter:param-add-tabular-kpi-trend-expression" ExecutableCommandId="exec-add-tabular-kpi" ParameterId="param-add-tabular-kpi-trend-expression">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi:parameter:param-add-tabular-kpi-trend-graphic" ExecutableCommandId="exec-add-tabular-kpi" ParameterId="param-add-tabular-kpi-trend-graphic">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi:parameter:param-add-tabular-kpi-base-measure" ExecutableCommandId="exec-add-tabular-kpi" ParameterId="param-add-tabular-kpi-base-measure">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi:parameter:param-add-tabular-kpi-target-measure" ExecutableCommandId="exec-add-tabular-kpi" ParameterId="param-add-tabular-kpi-target-measure">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi-translation:parameter:param-add-tabular-kpi-translation-workspace" ExecutableCommandId="exec-add-tabular-kpi-translation" ParameterId="param-add-tabular-kpi-translation-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi-translation:parameter:param-add-tabular-kpi-translation-id" ExecutableCommandId="exec-add-tabular-kpi-translation" ParameterId="param-add-tabular-kpi-translation-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi-translation:parameter:param-add-tabular-kpi-translation-description" ExecutableCommandId="exec-add-tabular-kpi-translation" ParameterId="param-add-tabular-kpi-translation-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi-translation:parameter:param-add-tabular-kpi-translation-tabular-culture" ExecutableCommandId="exec-add-tabular-kpi-translation" ParameterId="param-add-tabular-kpi-translation-tabular-culture">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-kpi-translation:parameter:param-add-tabular-kpi-translation-tabular-kpi" ExecutableCommandId="exec-add-tabular-kpi-translation" ParameterId="param-add-tabular-kpi-translation-tabular-kpi">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure:parameter:param-add-tabular-measure-workspace" ExecutableCommandId="exec-add-tabular-measure" ParameterId="param-add-tabular-measure-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure:parameter:param-add-tabular-measure-id" ExecutableCommandId="exec-add-tabular-measure" ParameterId="param-add-tabular-measure-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure:parameter:param-add-tabular-measure-description" ExecutableCommandId="exec-add-tabular-measure" ParameterId="param-add-tabular-measure-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure:parameter:param-add-tabular-measure-display-folder" ExecutableCommandId="exec-add-tabular-measure" ParameterId="param-add-tabular-measure-display-folder">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure:parameter:param-add-tabular-measure-expression" ExecutableCommandId="exec-add-tabular-measure" ParameterId="param-add-tabular-measure-expression">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure:parameter:param-add-tabular-measure-format-string" ExecutableCommandId="exec-add-tabular-measure" ParameterId="param-add-tabular-measure-format-string">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure:parameter:param-add-tabular-measure-is-hidden" ExecutableCommandId="exec-add-tabular-measure" ParameterId="param-add-tabular-measure-is-hidden">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure:parameter:param-add-tabular-measure-name" ExecutableCommandId="exec-add-tabular-measure" ParameterId="param-add-tabular-measure-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure:parameter:param-add-tabular-measure-tabular-table" ExecutableCommandId="exec-add-tabular-measure" ParameterId="param-add-tabular-measure-tabular-table">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure-translation:parameter:param-add-tabular-measure-translation-workspace" ExecutableCommandId="exec-add-tabular-measure-translation" ParameterId="param-add-tabular-measure-translation-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure-translation:parameter:param-add-tabular-measure-translation-id" ExecutableCommandId="exec-add-tabular-measure-translation" ParameterId="param-add-tabular-measure-translation-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure-translation:parameter:param-add-tabular-measure-translation-caption" ExecutableCommandId="exec-add-tabular-measure-translation" ParameterId="param-add-tabular-measure-translation-caption">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure-translation:parameter:param-add-tabular-measure-translation-description" ExecutableCommandId="exec-add-tabular-measure-translation" ParameterId="param-add-tabular-measure-translation-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure-translation:parameter:param-add-tabular-measure-translation-tabular-culture" ExecutableCommandId="exec-add-tabular-measure-translation" ParameterId="param-add-tabular-measure-translation-tabular-culture">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-measure-translation:parameter:param-add-tabular-measure-translation-tabular-measure" ExecutableCommandId="exec-add-tabular-measure-translation" ParameterId="param-add-tabular-measure-translation-tabular-measure">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-model:parameter:param-add-tabular-model-workspace" ExecutableCommandId="exec-add-tabular-model" ParameterId="param-add-tabular-model-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-model:parameter:param-add-tabular-model-id" ExecutableCommandId="exec-add-tabular-model" ParameterId="param-add-tabular-model-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-model:parameter:param-add-tabular-model-collation" ExecutableCommandId="exec-add-tabular-model" ParameterId="param-add-tabular-model-collation">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-model:parameter:param-add-tabular-model-compatibility-level" ExecutableCommandId="exec-add-tabular-model" ParameterId="param-add-tabular-model-compatibility-level">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-model:parameter:param-add-tabular-model-default-culture" ExecutableCommandId="exec-add-tabular-model" ParameterId="param-add-tabular-model-default-culture">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-model:parameter:param-add-tabular-model-default-data-view" ExecutableCommandId="exec-add-tabular-model" ParameterId="param-add-tabular-model-default-data-view">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-model:parameter:param-add-tabular-model-description" ExecutableCommandId="exec-add-tabular-model" ParameterId="param-add-tabular-model-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-model:parameter:param-add-tabular-model-name" ExecutableCommandId="exec-add-tabular-model" ParameterId="param-add-tabular-model-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-partition:parameter:param-add-tabular-partition-workspace" ExecutableCommandId="exec-add-tabular-partition" ParameterId="param-add-tabular-partition-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-partition:parameter:param-add-tabular-partition-id" ExecutableCommandId="exec-add-tabular-partition" ParameterId="param-add-tabular-partition-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-partition:parameter:param-add-tabular-partition-description" ExecutableCommandId="exec-add-tabular-partition" ParameterId="param-add-tabular-partition-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-partition:parameter:param-add-tabular-partition-expression" ExecutableCommandId="exec-add-tabular-partition" ParameterId="param-add-tabular-partition-expression">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-partition:parameter:param-add-tabular-partition-mode" ExecutableCommandId="exec-add-tabular-partition" ParameterId="param-add-tabular-partition-mode">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-partition:parameter:param-add-tabular-partition-name" ExecutableCommandId="exec-add-tabular-partition" ParameterId="param-add-tabular-partition-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-partition:parameter:param-add-tabular-partition-ordinal" ExecutableCommandId="exec-add-tabular-partition" ParameterId="param-add-tabular-partition-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-partition:parameter:param-add-tabular-partition-tabular-data-source" ExecutableCommandId="exec-add-tabular-partition" ParameterId="param-add-tabular-partition-tabular-data-source">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-partition:parameter:param-add-tabular-partition-tabular-table" ExecutableCommandId="exec-add-tabular-partition" ParameterId="param-add-tabular-partition-tabular-table">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective:parameter:param-add-tabular-perspective-workspace" ExecutableCommandId="exec-add-tabular-perspective" ParameterId="param-add-tabular-perspective-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective:parameter:param-add-tabular-perspective-id" ExecutableCommandId="exec-add-tabular-perspective" ParameterId="param-add-tabular-perspective-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective:parameter:param-add-tabular-perspective-description" ExecutableCommandId="exec-add-tabular-perspective" ParameterId="param-add-tabular-perspective-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective:parameter:param-add-tabular-perspective-name" ExecutableCommandId="exec-add-tabular-perspective" ParameterId="param-add-tabular-perspective-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective:parameter:param-add-tabular-perspective-tabular-model" ExecutableCommandId="exec-add-tabular-perspective" ParameterId="param-add-tabular-perspective-tabular-model">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-calculation-group:parameter:param-add-tabular-perspective-calculation-group-workspace" ExecutableCommandId="exec-add-tabular-perspective-calculation-group" ParameterId="param-add-tabular-perspective-calculation-group-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-calculation-group:parameter:param-add-tabular-perspective-calculation-group-id" ExecutableCommandId="exec-add-tabular-perspective-calculation-group" ParameterId="param-add-tabular-perspective-calculation-group-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-calculation-group:parameter:param-add-tabular-perspective-calculation-group-tabular-calculation-group" ExecutableCommandId="exec-add-tabular-perspective-calculation-group" ParameterId="param-add-tabular-perspective-calculation-group-tabular-calculation-group">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-calculation-group:parameter:param-add-tabular-perspective-calculation-group-tabular-perspective" ExecutableCommandId="exec-add-tabular-perspective-calculation-group" ParameterId="param-add-tabular-perspective-calculation-group-tabular-perspective">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-column:parameter:param-add-tabular-perspective-column-workspace" ExecutableCommandId="exec-add-tabular-perspective-column" ParameterId="param-add-tabular-perspective-column-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-column:parameter:param-add-tabular-perspective-column-id" ExecutableCommandId="exec-add-tabular-perspective-column" ParameterId="param-add-tabular-perspective-column-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-column:parameter:param-add-tabular-perspective-column-tabular-column" ExecutableCommandId="exec-add-tabular-perspective-column" ParameterId="param-add-tabular-perspective-column-tabular-column">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-column:parameter:param-add-tabular-perspective-column-tabular-perspective" ExecutableCommandId="exec-add-tabular-perspective-column" ParameterId="param-add-tabular-perspective-column-tabular-perspective">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-hierarchy:parameter:param-add-tabular-perspective-hierarchy-workspace" ExecutableCommandId="exec-add-tabular-perspective-hierarchy" ParameterId="param-add-tabular-perspective-hierarchy-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-hierarchy:parameter:param-add-tabular-perspective-hierarchy-id" ExecutableCommandId="exec-add-tabular-perspective-hierarchy" ParameterId="param-add-tabular-perspective-hierarchy-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-hierarchy:parameter:param-add-tabular-perspective-hierarchy-tabular-hierarchy" ExecutableCommandId="exec-add-tabular-perspective-hierarchy" ParameterId="param-add-tabular-perspective-hierarchy-tabular-hierarchy">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-hierarchy:parameter:param-add-tabular-perspective-hierarchy-tabular-perspective" ExecutableCommandId="exec-add-tabular-perspective-hierarchy" ParameterId="param-add-tabular-perspective-hierarchy-tabular-perspective">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-kpi:parameter:param-add-tabular-perspective-kpi-workspace" ExecutableCommandId="exec-add-tabular-perspective-kpi" ParameterId="param-add-tabular-perspective-kpi-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-kpi:parameter:param-add-tabular-perspective-kpi-id" ExecutableCommandId="exec-add-tabular-perspective-kpi" ParameterId="param-add-tabular-perspective-kpi-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-kpi:parameter:param-add-tabular-perspective-kpi-tabular-kpi" ExecutableCommandId="exec-add-tabular-perspective-kpi" ParameterId="param-add-tabular-perspective-kpi-tabular-kpi">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-kpi:parameter:param-add-tabular-perspective-kpi-tabular-perspective" ExecutableCommandId="exec-add-tabular-perspective-kpi" ParameterId="param-add-tabular-perspective-kpi-tabular-perspective">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-measure:parameter:param-add-tabular-perspective-measure-workspace" ExecutableCommandId="exec-add-tabular-perspective-measure" ParameterId="param-add-tabular-perspective-measure-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-measure:parameter:param-add-tabular-perspective-measure-id" ExecutableCommandId="exec-add-tabular-perspective-measure" ParameterId="param-add-tabular-perspective-measure-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-measure:parameter:param-add-tabular-perspective-measure-tabular-measure" ExecutableCommandId="exec-add-tabular-perspective-measure" ParameterId="param-add-tabular-perspective-measure-tabular-measure">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-measure:parameter:param-add-tabular-perspective-measure-tabular-perspective" ExecutableCommandId="exec-add-tabular-perspective-measure" ParameterId="param-add-tabular-perspective-measure-tabular-perspective">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-table:parameter:param-add-tabular-perspective-table-workspace" ExecutableCommandId="exec-add-tabular-perspective-table" ParameterId="param-add-tabular-perspective-table-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-table:parameter:param-add-tabular-perspective-table-id" ExecutableCommandId="exec-add-tabular-perspective-table" ParameterId="param-add-tabular-perspective-table-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-table:parameter:param-add-tabular-perspective-table-tabular-perspective" ExecutableCommandId="exec-add-tabular-perspective-table" ParameterId="param-add-tabular-perspective-table-tabular-perspective">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-table:parameter:param-add-tabular-perspective-table-tabular-table" ExecutableCommandId="exec-add-tabular-perspective-table" ParameterId="param-add-tabular-perspective-table-tabular-table">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-translation:parameter:param-add-tabular-perspective-translation-workspace" ExecutableCommandId="exec-add-tabular-perspective-translation" ParameterId="param-add-tabular-perspective-translation-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-translation:parameter:param-add-tabular-perspective-translation-id" ExecutableCommandId="exec-add-tabular-perspective-translation" ParameterId="param-add-tabular-perspective-translation-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-translation:parameter:param-add-tabular-perspective-translation-caption" ExecutableCommandId="exec-add-tabular-perspective-translation" ParameterId="param-add-tabular-perspective-translation-caption">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-translation:parameter:param-add-tabular-perspective-translation-description" ExecutableCommandId="exec-add-tabular-perspective-translation" ParameterId="param-add-tabular-perspective-translation-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-translation:parameter:param-add-tabular-perspective-translation-tabular-culture" ExecutableCommandId="exec-add-tabular-perspective-translation" ParameterId="param-add-tabular-perspective-translation-tabular-culture">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-perspective-translation:parameter:param-add-tabular-perspective-translation-tabular-perspective" ExecutableCommandId="exec-add-tabular-perspective-translation" ParameterId="param-add-tabular-perspective-translation-tabular-perspective">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-workspace" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-id" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-cardinality" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-cardinality">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-cross-filter-direction" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-cross-filter-direction">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-is-active" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-is-active">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-is-required" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-is-required">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-name" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-from-column" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-from-column">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-from-table" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-from-table">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-to-column" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-to-column">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-relationship:parameter:param-add-tabular-relationship-to-table" ExecutableCommandId="exec-add-tabular-relationship" ParameterId="param-add-tabular-relationship-to-table">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-role-filter:parameter:param-add-tabular-role-filter-workspace" ExecutableCommandId="exec-add-tabular-role-filter" ParameterId="param-add-tabular-role-filter-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-role-filter:parameter:param-add-tabular-role-filter-id" ExecutableCommandId="exec-add-tabular-role-filter" ParameterId="param-add-tabular-role-filter-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-role-filter:parameter:param-add-tabular-role-filter-expression" ExecutableCommandId="exec-add-tabular-role-filter" ParameterId="param-add-tabular-role-filter-expression">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-role-filter:parameter:param-add-tabular-role-filter-tabular-security-role" ExecutableCommandId="exec-add-tabular-role-filter" ParameterId="param-add-tabular-role-filter-tabular-security-role">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-role-filter:parameter:param-add-tabular-role-filter-tabular-table" ExecutableCommandId="exec-add-tabular-role-filter" ParameterId="param-add-tabular-role-filter-tabular-table">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-role-member:parameter:param-add-tabular-role-member-workspace" ExecutableCommandId="exec-add-tabular-role-member" ParameterId="param-add-tabular-role-member-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-role-member:parameter:param-add-tabular-role-member-id" ExecutableCommandId="exec-add-tabular-role-member" ParameterId="param-add-tabular-role-member-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-role-member:parameter:param-add-tabular-role-member-member-id" ExecutableCommandId="exec-add-tabular-role-member" ParameterId="param-add-tabular-role-member-member-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-role-member:parameter:param-add-tabular-role-member-member-name" ExecutableCommandId="exec-add-tabular-role-member" ParameterId="param-add-tabular-role-member-member-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-role-member:parameter:param-add-tabular-role-member-tabular-security-role" ExecutableCommandId="exec-add-tabular-role-member" ParameterId="param-add-tabular-role-member-tabular-security-role">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-security-role:parameter:param-add-tabular-security-role-workspace" ExecutableCommandId="exec-add-tabular-security-role" ParameterId="param-add-tabular-security-role-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-security-role:parameter:param-add-tabular-security-role-id" ExecutableCommandId="exec-add-tabular-security-role" ParameterId="param-add-tabular-security-role-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-security-role:parameter:param-add-tabular-security-role-description" ExecutableCommandId="exec-add-tabular-security-role" ParameterId="param-add-tabular-security-role-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-security-role:parameter:param-add-tabular-security-role-name" ExecutableCommandId="exec-add-tabular-security-role" ParameterId="param-add-tabular-security-role-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-security-role:parameter:param-add-tabular-security-role-permission" ExecutableCommandId="exec-add-tabular-security-role" ParameterId="param-add-tabular-security-role-permission">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-security-role:parameter:param-add-tabular-security-role-tabular-model" ExecutableCommandId="exec-add-tabular-security-role" ParameterId="param-add-tabular-security-role-tabular-model">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-sort-by-column:parameter:param-add-tabular-sort-by-column-workspace" ExecutableCommandId="exec-add-tabular-sort-by-column" ParameterId="param-add-tabular-sort-by-column-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-sort-by-column:parameter:param-add-tabular-sort-by-column-id" ExecutableCommandId="exec-add-tabular-sort-by-column" ParameterId="param-add-tabular-sort-by-column-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-sort-by-column:parameter:param-add-tabular-sort-by-column-sort-column" ExecutableCommandId="exec-add-tabular-sort-by-column" ParameterId="param-add-tabular-sort-by-column-sort-column">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-sort-by-column:parameter:param-add-tabular-sort-by-column-source-column" ExecutableCommandId="exec-add-tabular-sort-by-column" ParameterId="param-add-tabular-sort-by-column-source-column">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table:parameter:param-add-tabular-table-workspace" ExecutableCommandId="exec-add-tabular-table" ParameterId="param-add-tabular-table-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table:parameter:param-add-tabular-table-id" ExecutableCommandId="exec-add-tabular-table" ParameterId="param-add-tabular-table-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table:parameter:param-add-tabular-table-data-category" ExecutableCommandId="exec-add-tabular-table" ParameterId="param-add-tabular-table-data-category">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table:parameter:param-add-tabular-table-description" ExecutableCommandId="exec-add-tabular-table" ParameterId="param-add-tabular-table-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table:parameter:param-add-tabular-table-is-hidden" ExecutableCommandId="exec-add-tabular-table" ParameterId="param-add-tabular-table-is-hidden">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table:parameter:param-add-tabular-table-name" ExecutableCommandId="exec-add-tabular-table" ParameterId="param-add-tabular-table-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table:parameter:param-add-tabular-table-tabular-model" ExecutableCommandId="exec-add-tabular-table" ParameterId="param-add-tabular-table-tabular-model">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-permission:parameter:param-add-tabular-table-permission-workspace" ExecutableCommandId="exec-add-tabular-table-permission" ParameterId="param-add-tabular-table-permission-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-permission:parameter:param-add-tabular-table-permission-id" ExecutableCommandId="exec-add-tabular-table-permission" ParameterId="param-add-tabular-table-permission-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-permission:parameter:param-add-tabular-table-permission-metadata-permission" ExecutableCommandId="exec-add-tabular-table-permission" ParameterId="param-add-tabular-table-permission-metadata-permission">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-permission:parameter:param-add-tabular-table-permission-tabular-security-role" ExecutableCommandId="exec-add-tabular-table-permission" ParameterId="param-add-tabular-table-permission-tabular-security-role">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-permission:parameter:param-add-tabular-table-permission-tabular-table" ExecutableCommandId="exec-add-tabular-table-permission" ParameterId="param-add-tabular-table-permission-tabular-table">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-translation:parameter:param-add-tabular-table-translation-workspace" ExecutableCommandId="exec-add-tabular-table-translation" ParameterId="param-add-tabular-table-translation-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-translation:parameter:param-add-tabular-table-translation-id" ExecutableCommandId="exec-add-tabular-table-translation" ParameterId="param-add-tabular-table-translation-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-translation:parameter:param-add-tabular-table-translation-caption" ExecutableCommandId="exec-add-tabular-table-translation" ParameterId="param-add-tabular-table-translation-caption">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-translation:parameter:param-add-tabular-table-translation-description" ExecutableCommandId="exec-add-tabular-table-translation" ParameterId="param-add-tabular-table-translation-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-translation:parameter:param-add-tabular-table-translation-tabular-culture" ExecutableCommandId="exec-add-tabular-table-translation" ParameterId="param-add-tabular-table-translation-tabular-culture">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-tabular-table-translation:parameter:param-add-tabular-table-translation-tabular-table" ExecutableCommandId="exec-add-tabular-table-translation" ParameterId="param-add-tabular-table-translation-tabular-table">
+    </ExecutableCommandParameter>
+  </ExecutableCommandParameterList>
+</MetaCli>

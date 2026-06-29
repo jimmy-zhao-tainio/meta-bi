@@ -325,359 +325,285 @@ Notes:
 
 ```text
 Usage:
-  meta-datavault-raw [--new-workspace <path> | <command> [options]]
+  meta-datavault-raw <command> [options]
 
 Commands:
+  add-hub                              Add a RawHub row.
+  add-hub-key-part                     Add a RawHubKeyPart row.
+  add-hub-satellite                    Add a RawHubSatellite row.
+  add-hub-satellite-attribute          Add a RawHubSatelliteAttribute row.
+  add-link                             Add a RawLink row.
+  add-link-hub                         Add a RawLinkHub row.
+  add-link-satellite                   Add a RawLinkSatellite row.
+  add-link-satellite-attribute         Add a RawLinkSatelliteAttribute row.
+  add-source-field                     Add a SourceField row.
+  add-source-field-data-type-detail    Add a SourceFieldDataTypeDetail row.
+  add-source-schema                    Add a SourceSchema row.
+  add-source-system                    Add a SourceSystem row.
+  add-source-table                     Add a SourceTable row.
+  add-source-table-relationship        Add a SourceTableRelationship row.
+  add-source-table-relationship-field  Add a SourceTableRelationshipField row.
+  help                                 Show help.
+  new-workspace                        Create a MetaRawDataVault workspace.
 
-  help                                 Show this help.
-  --new-workspace                      Create an empty MetaRawDataVault workspace.
-  add-hub                              Add a raw hub.
-  add-hub-key-part                     Add a raw hub key part.
-  add-hub-satellite                    Add a raw hub satellite.
-  add-hub-satellite-attribute          Add a raw hub satellite attribute.
-  add-link                             Add a raw link.
-  add-link-hub                         Add a participating hub to a raw link.
-  add-link-satellite                   Add a raw link satellite.
-  add-link-satellite-attribute         Add a raw link satellite attribute.
-  add-source-field                     Add a source field.
-  add-source-field-data-type-detail    Add a source field datatype detail.
-  add-source-schema                    Add a source schema.
-  add-source-system                    Add a source system.
-  add-source-table                     Add a source table.
-  add-source-table-relationship        Add a source table relationship.
-  add-source-table-relationship-field  Add a source table relationship field.
-
-Next: meta-datavault-raw add-hub --help
-```
-
-### `meta-datavault-raw --new-workspace --help`
-
-```text
-Command: --new-workspace
-Usage:
-  meta-datavault-raw --new-workspace <path>
-
-Options:
-
-  --new-workspace <path>  Required. Directory where the empty MetaRawDataVault workspace will be
-                          created.
+Next: meta-datavault-raw help <command>
 ```
 
 ### `meta-datavault-raw add-hub --help`
 
 ```text
-Command: add-hub
 Usage:
-  meta-datavault-raw add-hub [--workspace <path>] --id <id> --name <value> --source-table <id>
+  meta-datavault-raw add-hub [--workspace <path>] --id <value> --name <value> --source-table <value>
+
+Add a RawHub row.
 
 Options:
-
-  --workspace <path>   Optional. Workspace path. Default: current working directory.
-  --id <id>            Required. RawHub row id.
-  --name <value>       Required. Name.
-  --source-table <id>  Required. SourceTable id for SourceTableId.
-
-Notes:
-  Adds one RawHub row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  RawHub row id.
+  --name <value>                Name.
+  --source-table <value>        SourceTable id for SourceTableId.
 ```
 
 ### `meta-datavault-raw add-hub-key-part --help`
 
 ```text
-Command: add-hub-key-part
 Usage:
-  meta-datavault-raw add-hub-key-part [--workspace <path>] --id <id> --name <value> [--ordinal
-  <value>] --hub <id> --source-field <id>
+  meta-datavault-raw add-hub-key-part [--workspace <path>] --id <value> --name <value> [--ordinal <value>] --hub <value> --source-field <value>
+
+Add a RawHubKeyPart row.
 
 Options:
-
-  --workspace <path>   Optional. Workspace path. Default: current working directory.
-  --id <id>            Required. RawHubKeyPart row id.
-  --name <value>       Required. Name.
-  --ordinal <value>    Optional. Ordinal.
-  --hub <id>           Required. RawHub id for RawHubId.
-  --source-field <id>  Required. SourceField id for SourceFieldId.
-
-Notes:
-  Adds one RawHubKeyPart row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  RawHubKeyPart row id.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --hub <value>                 RawHub id for RawHubId.
+  --source-field <value>        SourceField id for SourceFieldId.
 ```
 
 ### `meta-datavault-raw add-hub-satellite --help`
 
 ```text
-Command: add-hub-satellite
 Usage:
-  meta-datavault-raw add-hub-satellite [--workspace <path>] --id <id> --name <value>
-  --satellite-kind <value> --hub <id> --source-table <id>
+  meta-datavault-raw add-hub-satellite [--workspace <path>] --id <value> --name <value> --satellite-kind <value> --hub <value> --source-table <value>
+
+Add a RawHubSatellite row.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. RawHubSatellite row id.
-  --name <value>            Required. Name.
-  --satellite-kind <value>  Required. SatelliteKind.
-  --hub <id>                Required. RawHub id for RawHubId.
-  --source-table <id>       Required. SourceTable id for SourceTableId.
-
-Notes:
-  Adds one RawHubSatellite row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  RawHubSatellite row id.
+  --name <value>                Name.
+  --satellite-kind <value>      SatelliteKind.
+  --hub <value>                 RawHub id for RawHubId.
+  --source-table <value>        SourceTable id for SourceTableId.
 ```
 
 ### `meta-datavault-raw add-hub-satellite-attribute --help`
 
 ```text
-Command: add-hub-satellite-attribute
 Usage:
-  meta-datavault-raw add-hub-satellite-attribute [--workspace <path>] --id <id> --name <value>
-  [--ordinal <value>] --hub-satellite <id> --source-field <id>
+  meta-datavault-raw add-hub-satellite-attribute [--workspace <path>] --id <value> --name <value> [--ordinal <value>] --hub-satellite <value> --source-field <value>
+
+Add a RawHubSatelliteAttribute row.
 
 Options:
-
-  --workspace <path>    Optional. Workspace path. Default: current working directory.
-  --id <id>             Required. RawHubSatelliteAttribute row id.
-  --name <value>        Required. Name.
-  --ordinal <value>     Optional. Ordinal.
-  --hub-satellite <id>  Required. RawHubSatellite id for RawHubSatelliteId.
-  --source-field <id>   Required. SourceField id for SourceFieldId.
-
-Notes:
-  Adds one RawHubSatelliteAttribute row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  RawHubSatelliteAttribute row id.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --hub-satellite <value>       RawHubSatellite id for RawHubSatelliteId.
+  --source-field <value>        SourceField id for SourceFieldId.
 ```
 
 ### `meta-datavault-raw add-link --help`
 
 ```text
-Command: add-link
 Usage:
-  meta-datavault-raw add-link [--workspace <path>] --id <id> --name <value> [--link-kind <value>]
-  --source-relationship <id>
+  meta-datavault-raw add-link [--workspace <path>] --id <value> --link-kind <value> --name <value> --source-relationship <value>
+
+Add a RawLink row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. RawLink row id.
-  --name <value>              Required. Name.
-  --link-kind <value>         Optional. LinkKind.
-  --source-relationship <id>  Required. SourceTableRelationship id for SourceTableRelationshipId.
-
-Notes:
-  Adds one RawLink row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  RawLink row id.
+  --link-kind <value>           LinkKind.
+  --name <value>                Name.
+  --source-relationship <value>  SourceTableRelationship id for SourceTableRelationshipId.
 ```
 
 ### `meta-datavault-raw add-link-hub --help`
 
 ```text
-Command: add-link-hub
 Usage:
-  meta-datavault-raw add-link-hub [--workspace <path>] --id <id> [--ordinal <value>] [--role-name
-  <value>] --link <id> --hub <id>
+  meta-datavault-raw add-link-hub [--workspace <path>] --id <value> [--ordinal <value>] [--role-name <value>] --hub <value> --link <value>
+
+Add a RawLinkHub row.
 
 Options:
-
-  --workspace <path>   Optional. Workspace path. Default: current working directory.
-  --id <id>            Required. RawLinkHub row id.
-  --ordinal <value>    Optional. Ordinal.
-  --role-name <value>  Optional. RoleName.
-  --link <id>          Required. RawLink id for RawLinkId.
-  --hub <id>           Required. RawHub id for RawHubId.
-
-Notes:
-  Adds one RawLinkHub row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  RawLinkHub row id.
+  --ordinal <value>             Ordinal.
+  --role-name <value>           RoleName.
+  --hub <value>                 RawHub id for RawHubId.
+  --link <value>                RawLink id for RawLinkId.
 ```
 
 ### `meta-datavault-raw add-link-satellite --help`
 
 ```text
-Command: add-link-satellite
 Usage:
-  meta-datavault-raw add-link-satellite [--workspace <path>] --id <id> --name <value>
-  --satellite-kind <value> --link <id> --source-table <id>
+  meta-datavault-raw add-link-satellite [--workspace <path>] --id <value> --name <value> --satellite-kind <value> --link <value> --source-table <value>
+
+Add a RawLinkSatellite row.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. RawLinkSatellite row id.
-  --name <value>            Required. Name.
-  --satellite-kind <value>  Required. SatelliteKind.
-  --link <id>               Required. RawLink id for RawLinkId.
-  --source-table <id>       Required. SourceTable id for SourceTableId.
-
-Notes:
-  Adds one RawLinkSatellite row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  RawLinkSatellite row id.
+  --name <value>                Name.
+  --satellite-kind <value>      SatelliteKind.
+  --link <value>                RawLink id for RawLinkId.
+  --source-table <value>        SourceTable id for SourceTableId.
 ```
 
 ### `meta-datavault-raw add-link-satellite-attribute --help`
 
 ```text
-Command: add-link-satellite-attribute
 Usage:
-  meta-datavault-raw add-link-satellite-attribute [--workspace <path>] --id <id> --name <value>
-  [--ordinal <value>] --link-satellite <id> --source-field <id>
+  meta-datavault-raw add-link-satellite-attribute [--workspace <path>] --id <value> --name <value> [--ordinal <value>] --link-satellite <value> --source-field <value>
+
+Add a RawLinkSatelliteAttribute row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. RawLinkSatelliteAttribute row id.
-  --name <value>         Required. Name.
-  --ordinal <value>      Optional. Ordinal.
-  --link-satellite <id>  Required. RawLinkSatellite id for RawLinkSatelliteId.
-  --source-field <id>    Required. SourceField id for SourceFieldId.
-
-Notes:
-  Adds one RawLinkSatelliteAttribute row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  RawLinkSatelliteAttribute row id.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --link-satellite <value>      RawLinkSatellite id for RawLinkSatelliteId.
+  --source-field <value>        SourceField id for SourceFieldId.
 ```
 
 ### `meta-datavault-raw add-source-field --help`
 
 ```text
-Command: add-source-field
 Usage:
-  meta-datavault-raw add-source-field [--workspace <path>] --id <id> --name <value> --data-type-id
-  <value> [--ordinal <value>] [--is-nullable <value>] --table <id>
+  meta-datavault-raw add-source-field [--workspace <path>] --id <value> --data-type-id <value> [--is-nullable true|false] --name <value> [--ordinal <value>] --table <value>
+
+Add a SourceField row.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. SourceField row id.
-  --name <value>          Required. Name.
-  --data-type-id <value>  Required. DataTypeId.
-  --ordinal <value>       Optional. Ordinal.
-  --is-nullable <value>   Optional. IsNullable.
-  --table <id>            Required. SourceTable id for SourceTableId.
-
-Notes:
-  Adds one SourceField row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  SourceField row id.
+  --data-type-id <value>        DataTypeId.
+  --is-nullable true|false      IsNullable.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --table <value>               SourceTable id for SourceTableId.
 ```
 
 ### `meta-datavault-raw add-source-field-data-type-detail --help`
 
 ```text
-Command: add-source-field-data-type-detail
 Usage:
-  meta-datavault-raw add-source-field-data-type-detail [--workspace <path>] --id <id> --name <value>
-  --value <value> --field <id>
+  meta-datavault-raw add-source-field-data-type-detail [--workspace <path>] --id <value> --name <value> --value <value> --field <value>
+
+Add a SourceFieldDataTypeDetail row.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. SourceFieldDataTypeDetail row id.
-  --name <value>      Required. Name.
-  --value <value>     Required. Value.
-  --field <id>        Required. SourceField id for SourceFieldId.
-
-Notes:
-  Adds one SourceFieldDataTypeDetail row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  SourceFieldDataTypeDetail row id.
+  --name <value>                Name.
+  --value <value>               Value.
+  --field <value>               SourceField id for SourceFieldId.
 ```
 
 ### `meta-datavault-raw add-source-schema --help`
 
 ```text
-Command: add-source-schema
 Usage:
-  meta-datavault-raw add-source-schema [--workspace <path>] --id <id> --name <value> --system <id>
+  meta-datavault-raw add-source-schema [--workspace <path>] --id <value> --name <value> --system <value>
+
+Add a SourceSchema row.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. SourceSchema row id.
-  --name <value>      Required. Name.
-  --system <id>       Required. SourceSystem id for SourceSystemId.
-
-Notes:
-  Adds one SourceSchema row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  SourceSchema row id.
+  --name <value>                Name.
+  --system <value>              SourceSystem id for SourceSystemId.
 ```
 
 ### `meta-datavault-raw add-source-system --help`
 
 ```text
-Command: add-source-system
 Usage:
-  meta-datavault-raw add-source-system [--workspace <path>] --id <id> --name <value> [--description
-  <value>]
+  meta-datavault-raw add-source-system [--workspace <path>] --id <value> [--description <value>] --name <value>
+
+Add a SourceSystem row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. SourceSystem row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-
-Notes:
-  Adds one SourceSystem row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  SourceSystem row id.
+  --description <value>         Description.
+  --name <value>                Name.
 ```
 
 ### `meta-datavault-raw add-source-table --help`
 
 ```text
-Command: add-source-table
 Usage:
-  meta-datavault-raw add-source-table [--workspace <path>] --id <id> --name <value> --schema <id>
+  meta-datavault-raw add-source-table [--workspace <path>] --id <value> --name <value> --schema <value>
+
+Add a SourceTable row.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. SourceTable row id.
-  --name <value>      Required. Name.
-  --schema <id>       Required. SourceSchema id for SourceSchemaId.
-
-Notes:
-  Adds one SourceTable row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  SourceTable row id.
+  --name <value>                Name.
+  --schema <value>              SourceSchema id for SourceSchemaId.
 ```
 
 ### `meta-datavault-raw add-source-table-relationship --help`
 
 ```text
-Command: add-source-table-relationship
 Usage:
-  meta-datavault-raw add-source-table-relationship [--workspace <path>] --id <id> --name <value>
-  --source-table <id> --target-table <id>
+  meta-datavault-raw add-source-table-relationship [--workspace <path>] --id <value> --name <value> --source-table <value> --target-table <value>
+
+Add a SourceTableRelationship row.
 
 Options:
-
-  --workspace <path>   Optional. Workspace path. Default: current working directory.
-  --id <id>            Required. SourceTableRelationship row id.
-  --name <value>       Required. Name.
-  --source-table <id>  Required. SourceTable id for SourceTableId.
-  --target-table <id>  Required. SourceTable id for TargetTableId.
-
-Notes:
-  Adds one SourceTableRelationship row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  SourceTableRelationship row id.
+  --name <value>                Name.
+  --source-table <value>        SourceTable id for SourceTableId.
+  --target-table <value>        SourceTable id for TargetTableId.
 ```
 
 ### `meta-datavault-raw add-source-table-relationship-field --help`
 
 ```text
-Command: add-source-table-relationship-field
 Usage:
-  meta-datavault-raw add-source-table-relationship-field [--workspace <path>] --id <id> [--ordinal
-  <value>] --relationship <id> --source-field <id> --target-field <id>
+  meta-datavault-raw add-source-table-relationship-field [--workspace <path>] --id <value> [--ordinal <value>] --source-field <value> --relationship <value> --target-field <value>
+
+Add a SourceTableRelationshipField row.
 
 Options:
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  SourceTableRelationshipField row id.
+  --ordinal <value>             Ordinal.
+  --source-field <value>        SourceField id for SourceFieldId.
+  --relationship <value>        SourceTableRelationship id for SourceTableRelationshipId.
+  --target-field <value>        SourceField id for TargetFieldId.
+```
 
-  --workspace <path>   Optional. Workspace path. Default: current working directory.
-  --id <id>            Required. SourceTableRelationshipField row id.
-  --ordinal <value>    Optional. Ordinal.
-  --relationship <id>  Required. SourceTableRelationship id for SourceTableRelationshipId.
-  --source-field <id>  Required. SourceField id for SourceFieldId.
-  --target-field <id>  Required. SourceField id for TargetFieldId.
+### `meta-datavault-raw new-workspace --help`
 
-Notes:
-  Adds one SourceTableRelationshipField row to a MetaRawDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+```text
+Usage:
+  meta-datavault-raw new-workspace <path>
+
+Create a MetaRawDataVault workspace.
+
+Arguments:
+  <path>
 ```
 
 ## meta-datavault-business
@@ -686,631 +612,484 @@ Notes:
 
 ```text
 Usage:
-  meta-datavault-business [--new-workspace <path> | <command> [options]]
+  meta-datavault-business <command> [options]
 
 Commands:
+  add-bridge                                 Add a BusinessBridge row.
+  add-bridge-hub                             Add a BusinessBridgeHub row.
+  add-bridge-link                            Add a BusinessBridgeLink row.
+  add-hierarchical-link                      Add a BusinessHierarchicalLink row.
+  add-hierarchical-link-satellite            Add a BusinessHierarchicalLinkSatellite row.
+  add-hierarchical-link-satellite-attribute  Add a BusinessHierarchicalLinkSatelliteAttribute row.
+  add-hub                                    Add a BusinessHub row.
+  add-hub-key-part                           Add a BusinessHubKeyPart row.
+  add-hub-satellite                          Add a BusinessHubSatellite row.
+  add-hub-satellite-attribute                Add a BusinessHubSatelliteAttribute row.
+  add-link                                   Add a BusinessLink row.
+  add-link-hub                               Add a BusinessLinkHub row.
+  add-link-satellite                         Add a BusinessLinkSatellite row.
+  add-link-satellite-attribute               Add a BusinessLinkSatelliteAttribute row.
+  add-point-in-time                          Add a BusinessPointInTime row.
+  add-point-in-time-hub-satellite            Add a BusinessPointInTimeHubSatellite row.
+  add-point-in-time-link-satellite           Add a BusinessPointInTimeLinkSatellite row.
+  add-point-in-time-stamp                    Add a BusinessPointInTimeStamp row.
+  add-reference                              Add a BusinessReference row.
+  add-reference-key-part                     Add a BusinessReferenceKeyPart row.
+  add-reference-satellite                    Add a BusinessReferenceSatellite row.
+  add-reference-satellite-attribute          Add a BusinessReferenceSatelliteAttribute row.
+  add-same-as-link                           Add a BusinessSameAsLink row.
+  add-same-as-link-satellite                 Add a BusinessSameAsLinkSatellite row.
+  add-same-as-link-satellite-attribute       Add a BusinessSameAsLinkSatelliteAttribute row.
+  help                                       Show help.
+  new-workspace                              Create a MetaBusinessDataVault workspace.
 
-  help                                       Show this help.
-  --new-workspace                            Create an empty MetaBusinessDataVault workspace.
-  add-bridge                                 Add a business bridge.
-  add-bridge-hub                             Add a business hub to an ordered bridge path.
-  add-bridge-link                            Add a business link to an ordered bridge path.
-  add-hierarchical-link                      Add a hierarchical link.
-  add-hierarchical-link-satellite            Add a hierarchical link satellite.
-  add-hierarchical-link-satellite-attribute  Add a hierarchical link satellite attribute.
-  add-hub                                    Add a business hub.
-  add-hub-key-part                           Add a business hub key part.
-  add-hub-satellite                          Add a business hub satellite.
-  add-hub-satellite-attribute                Add a business hub satellite attribute.
-  add-link                                   Add a standard business link.
-  add-link-hub                               Add a participating hub to a standard business link.
-  add-link-satellite                         Add a business link satellite.
-  add-link-satellite-attribute               Add a business link satellite attribute.
-  add-point-in-time                          Add a business point-in-time table.
-  add-point-in-time-hub-satellite            Add a hub-satellite reference to a point-in-time table.
-  add-point-in-time-link-satellite           Add a link-satellite reference to a point-in-time
-                                             table.
-  add-point-in-time-stamp                    Add a business point-in-time stamp column.
-  add-reference                              Add a business reference.
-  add-reference-key-part                     Add a business reference key part.
-  add-reference-satellite                    Add a business reference satellite.
-  add-reference-satellite-attribute          Add a business reference satellite attribute.
-  add-same-as-link                           Add a same-as link.
-  add-same-as-link-satellite                 Add a same-as link satellite.
-  add-same-as-link-satellite-attribute       Add a same-as link satellite attribute.
-
-Next: meta-datavault-business add-hub --help
-```
-
-### `meta-datavault-business --new-workspace --help`
-
-```text
-Command: --new-workspace
-Usage:
-  meta-datavault-business --new-workspace <path>
-
-Options:
-
-  --new-workspace <path>  Required. Directory where the empty MetaBusinessDataVault workspace will
-                          be created.
+Next: meta-datavault-business help <command>
 ```
 
 ### `meta-datavault-business add-bridge --help`
 
 ```text
-Command: add-bridge
 Usage:
-  meta-datavault-business add-bridge [--workspace <path>] --id <id> --name <value> [--description
-  <value>] --hub <id>
+  meta-datavault-business add-bridge [--workspace <path>] --id <value> --name <value> [--description <value>] --hub <value>
+
+Add a BusinessBridge row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessBridge row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --hub <id>             Required. BusinessHub id for BusinessHubId.
-
-Notes:
-  Adds one BusinessBridge row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
+  --hub <value>                 BusinessHub id.
 ```
 
 ### `meta-datavault-business add-bridge-hub --help`
 
 ```text
-Command: add-bridge-hub
 Usage:
-  meta-datavault-business add-bridge-hub [--workspace <path>] --id <id> [--ordinal <value>]
-  [--role-name <value>] --bridge <id> --hub <id>
+  meta-datavault-business add-bridge-hub [--workspace <path>] --id <value> [--ordinal <value>] [--role-name <value>] --bridge <value> --hub <value>
+
+Add a BusinessBridgeHub row.
 
 Options:
-
-  --workspace <path>   Optional. Workspace path. Default: current working directory.
-  --id <id>            Required. BusinessBridgeHub row id.
-  --ordinal <value>    Optional. Ordinal.
-  --role-name <value>  Optional. RoleName.
-  --bridge <id>        Required. BusinessBridge id for BusinessBridgeId.
-  --hub <id>           Required. BusinessHub id for BusinessHubId.
-
-Notes:
-  Adds one BusinessBridgeHub row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --ordinal <value>
+  --role-name <value>
+  --bridge <value>              BusinessBridge id.
+  --hub <value>                 BusinessHub id.
 ```
 
 ### `meta-datavault-business add-bridge-link --help`
 
 ```text
-Command: add-bridge-link
 Usage:
-  meta-datavault-business add-bridge-link [--workspace <path>] --id <id> [--ordinal <value>]
-  [--role-name <value>] --bridge <id> --link <id>
+  meta-datavault-business add-bridge-link [--workspace <path>] --id <value> [--ordinal <value>] [--role-name <value>] --bridge <value> --link <value>
+
+Add a BusinessBridgeLink row.
 
 Options:
-
-  --workspace <path>   Optional. Workspace path. Default: current working directory.
-  --id <id>            Required. BusinessBridgeLink row id.
-  --ordinal <value>    Optional. Ordinal.
-  --role-name <value>  Optional. RoleName.
-  --bridge <id>        Required. BusinessBridge id for BusinessBridgeId.
-  --link <id>          Required. BusinessLink id for BusinessLinkId.
-
-Notes:
-  Adds one BusinessBridgeLink row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --ordinal <value>
+  --role-name <value>
+  --bridge <value>              BusinessBridge id.
+  --link <value>                BusinessLink id.
 ```
 
 ### `meta-datavault-business add-hierarchical-link --help`
 
 ```text
-Command: add-hierarchical-link
 Usage:
-  meta-datavault-business add-hierarchical-link [--workspace <path>] --id <id> --name <value>
-  [--description <value>] --parent-hub <id> --child-hub <id>
+  meta-datavault-business add-hierarchical-link [--workspace <path>] --id <value> --name <value> [--description <value>] --parent-hub <value> --child-hub <value>
+
+Add a BusinessHierarchicalLink row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessHierarchicalLink row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --parent-hub <id>      Required. BusinessHub id for ParentHubId.
-  --child-hub <id>       Required. BusinessHub id for ChildHubId.
-
-Notes:
-  Adds one BusinessHierarchicalLink row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
+  --parent-hub <value>          BusinessHub id.
+  --child-hub <value>           BusinessHub id.
 ```
 
 ### `meta-datavault-business add-hierarchical-link-satellite --help`
 
 ```text
-Command: add-hierarchical-link-satellite
 Usage:
-  meta-datavault-business add-hierarchical-link-satellite [--workspace <path>] --id <id> --name
-  <value> [--description <value>] --hierarchical-link <id>
+  meta-datavault-business add-hierarchical-link-satellite [--workspace <path>] --id <value> --name <value> [--description <value>] --hierarchical-link <value>
+
+Add a BusinessHierarchicalLinkSatellite row.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. BusinessHierarchicalLinkSatellite row id.
-  --name <value>            Required. Name.
-  --description <value>     Optional. Description.
-  --hierarchical-link <id>  Required. BusinessHierarchicalLink id for BusinessHierarchicalLinkId.
-
-Notes:
-  Adds one BusinessHierarchicalLinkSatellite row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
+  --hierarchical-link <value>   BusinessHierarchicalLink id.
 ```
 
 ### `meta-datavault-business add-hierarchical-link-satellite-attribute --help`
 
 ```text
-Command: add-hierarchical-link-satellite-attribute
 Usage:
-  meta-datavault-business add-hierarchical-link-satellite-attribute [--workspace <path>] --id <id>
-  --name <value> --data-type-id <value> [--ordinal <value>] --hierarchical-link-satellite <id>
-  [--length <value>] [--precision <value>] [--scale <value>]
+  meta-datavault-business add-hierarchical-link-satellite-attribute [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] --hierarchical-link-satellite <value> [--length <value>] [--precision <value>] [--scale <value>]
+
+Add a BusinessHierarchicalLinkSatelliteAttribute row.
 
 Options:
-
-  --workspace <path>                  Optional. Workspace path. Default: current working directory.
-  --id <id>                           Required. BusinessHierarchicalLinkSatelliteAttribute row id.
-  --name <value>                      Required. Name.
-  --data-type-id <value>              Required. DataTypeId.
-  --ordinal <value>                   Optional. Ordinal.
-  --hierarchical-link-satellite <id>  Required. BusinessHierarchicalLinkSatellite id for
-                                      BusinessHierarchicalLinkSatelliteId.
-  --length <value>                    Optional. Length datatype facet authored as metadata.
-  --precision <value>                 Optional. Precision datatype facet authored as metadata.
-  --scale <value>                     Optional. Scale datatype facet authored as metadata.
-
-Notes:
-  Adds one BusinessHierarchicalLinkSatelliteAttribute row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
-  Optional datatype facets are authored as internal metadata rows.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --data-type-id <value>
+  --ordinal <value>
+  --hierarchical-link-satellite <value>  BusinessHierarchicalLinkSatellite id.
+  --length <value>              Optional length datatype facet authored as metadata.
+  --precision <value>           Optional precision datatype facet authored as metadata.
+  --scale <value>               Optional scale datatype facet authored as metadata.
 ```
 
 ### `meta-datavault-business add-hub --help`
 
 ```text
-Command: add-hub
 Usage:
-  meta-datavault-business add-hub [--workspace <path>] --id <id> --name <value> [--description
-  <value>]
+  meta-datavault-business add-hub [--workspace <path>] --id <value> --name <value> [--description <value>]
+
+Add a BusinessHub row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessHub row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-
-Notes:
-  Adds one BusinessHub row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
 ```
 
 ### `meta-datavault-business add-hub-key-part --help`
 
 ```text
-Command: add-hub-key-part
 Usage:
-  meta-datavault-business add-hub-key-part [--workspace <path>] --id <id> --name <value>
-  --data-type-id <value> [--ordinal <value>] --hub <id> [--length <value>] [--precision <value>]
-  [--scale <value>]
+  meta-datavault-business add-hub-key-part [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] --hub <value> [--length <value>] [--precision <value>] [--scale <value>]
+
+Add a BusinessHubKeyPart row.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. BusinessHubKeyPart row id.
-  --name <value>          Required. Name.
-  --data-type-id <value>  Required. DataTypeId.
-  --ordinal <value>       Optional. Ordinal.
-  --hub <id>              Required. BusinessHub id for BusinessHubId.
-  --length <value>        Optional. Length datatype facet authored as metadata.
-  --precision <value>     Optional. Precision datatype facet authored as metadata.
-  --scale <value>         Optional. Scale datatype facet authored as metadata.
-
-Notes:
-  Adds one BusinessHubKeyPart row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
-  Optional datatype facets are authored as internal metadata rows.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --data-type-id <value>
+  --ordinal <value>
+  --hub <value>                 BusinessHub id.
+  --length <value>              Optional length datatype facet authored as metadata.
+  --precision <value>           Optional precision datatype facet authored as metadata.
+  --scale <value>               Optional scale datatype facet authored as metadata.
 ```
 
 ### `meta-datavault-business add-hub-satellite --help`
 
 ```text
-Command: add-hub-satellite
 Usage:
-  meta-datavault-business add-hub-satellite [--workspace <path>] --id <id> --name <value>
-  [--description <value>] --hub <id>
+  meta-datavault-business add-hub-satellite [--workspace <path>] --id <value> --name <value> [--description <value>] --hub <value>
+
+Add a BusinessHubSatellite row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessHubSatellite row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --hub <id>             Required. BusinessHub id for BusinessHubId.
-
-Notes:
-  Adds one BusinessHubSatellite row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
+  --hub <value>                 BusinessHub id.
 ```
 
 ### `meta-datavault-business add-hub-satellite-attribute --help`
 
 ```text
-Command: add-hub-satellite-attribute
 Usage:
-  meta-datavault-business add-hub-satellite-attribute [--workspace <path>] --id <id> --name <value>
-  --data-type-id <value> [--ordinal <value>] --hub-satellite <id> [--length <value>] [--precision
-  <value>] [--scale <value>]
+  meta-datavault-business add-hub-satellite-attribute [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] --hub-satellite <value> [--length <value>] [--precision <value>] [--scale <value>]
+
+Add a BusinessHubSatelliteAttribute row.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. BusinessHubSatelliteAttribute row id.
-  --name <value>          Required. Name.
-  --data-type-id <value>  Required. DataTypeId.
-  --ordinal <value>       Optional. Ordinal.
-  --hub-satellite <id>    Required. BusinessHubSatellite id for BusinessHubSatelliteId.
-  --length <value>        Optional. Length datatype facet authored as metadata.
-  --precision <value>     Optional. Precision datatype facet authored as metadata.
-  --scale <value>         Optional. Scale datatype facet authored as metadata.
-
-Notes:
-  Adds one BusinessHubSatelliteAttribute row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
-  Optional datatype facets are authored as internal metadata rows.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --data-type-id <value>
+  --ordinal <value>
+  --hub-satellite <value>       BusinessHubSatellite id.
+  --length <value>              Optional length datatype facet authored as metadata.
+  --precision <value>           Optional precision datatype facet authored as metadata.
+  --scale <value>               Optional scale datatype facet authored as metadata.
 ```
 
 ### `meta-datavault-business add-link --help`
 
 ```text
-Command: add-link
 Usage:
-  meta-datavault-business add-link [--workspace <path>] --id <id> --name <value> [--description
-  <value>]
+  meta-datavault-business add-link [--workspace <path>] --id <value> --name <value> [--description <value>]
+
+Add a BusinessLink row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessLink row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-
-Notes:
-  Adds one BusinessLink row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
 ```
 
 ### `meta-datavault-business add-link-hub --help`
 
 ```text
-Command: add-link-hub
 Usage:
-  meta-datavault-business add-link-hub [--workspace <path>] --id <id> [--ordinal <value>]
-  [--role-name <value>] --link <id> --hub <id>
+  meta-datavault-business add-link-hub [--workspace <path>] --id <value> [--ordinal <value>] [--role-name <value>] --link <value> --hub <value>
+
+Add a BusinessLinkHub row.
 
 Options:
-
-  --workspace <path>   Optional. Workspace path. Default: current working directory.
-  --id <id>            Required. BusinessLinkHub row id.
-  --ordinal <value>    Optional. Ordinal.
-  --role-name <value>  Optional. RoleName.
-  --link <id>          Required. BusinessLink id for BusinessLinkId.
-  --hub <id>           Required. BusinessHub id for BusinessHubId.
-
-Notes:
-  Adds one BusinessLinkHub row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --ordinal <value>
+  --role-name <value>
+  --link <value>                BusinessLink id.
+  --hub <value>                 BusinessHub id.
 ```
 
 ### `meta-datavault-business add-link-satellite --help`
 
 ```text
-Command: add-link-satellite
 Usage:
-  meta-datavault-business add-link-satellite [--workspace <path>] --id <id> --name <value>
-  [--description <value>] --link <id>
+  meta-datavault-business add-link-satellite [--workspace <path>] --id <value> --name <value> [--description <value>] --link <value>
+
+Add a BusinessLinkSatellite row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessLinkSatellite row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --link <id>            Required. BusinessLink id for BusinessLinkId.
-
-Notes:
-  Adds one BusinessLinkSatellite row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
+  --link <value>                BusinessLink id.
 ```
 
 ### `meta-datavault-business add-link-satellite-attribute --help`
 
 ```text
-Command: add-link-satellite-attribute
 Usage:
-  meta-datavault-business add-link-satellite-attribute [--workspace <path>] --id <id> --name <value>
-  --data-type-id <value> [--ordinal <value>] --link-satellite <id> [--length <value>] [--precision
-  <value>] [--scale <value>]
+  meta-datavault-business add-link-satellite-attribute [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] --link-satellite <value> [--length <value>] [--precision <value>] [--scale <value>]
+
+Add a BusinessLinkSatelliteAttribute row.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. BusinessLinkSatelliteAttribute row id.
-  --name <value>          Required. Name.
-  --data-type-id <value>  Required. DataTypeId.
-  --ordinal <value>       Optional. Ordinal.
-  --link-satellite <id>   Required. BusinessLinkSatellite id for BusinessLinkSatelliteId.
-  --length <value>        Optional. Length datatype facet authored as metadata.
-  --precision <value>     Optional. Precision datatype facet authored as metadata.
-  --scale <value>         Optional. Scale datatype facet authored as metadata.
-
-Notes:
-  Adds one BusinessLinkSatelliteAttribute row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
-  Optional datatype facets are authored as internal metadata rows.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --data-type-id <value>
+  --ordinal <value>
+  --link-satellite <value>      BusinessLinkSatellite id.
+  --length <value>              Optional length datatype facet authored as metadata.
+  --precision <value>           Optional precision datatype facet authored as metadata.
+  --scale <value>               Optional scale datatype facet authored as metadata.
 ```
 
 ### `meta-datavault-business add-point-in-time --help`
 
 ```text
-Command: add-point-in-time
 Usage:
-  meta-datavault-business add-point-in-time [--workspace <path>] --id <id> --name <value>
-  [--description <value>] --hub <id>
+  meta-datavault-business add-point-in-time [--workspace <path>] --id <value> --name <value> [--description <value>] --hub <value>
+
+Add a BusinessPointInTime row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessPointInTime row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --hub <id>             Required. BusinessHub id for BusinessHubId.
-
-Notes:
-  Adds one BusinessPointInTime row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
+  --hub <value>                 BusinessHub id.
 ```
 
 ### `meta-datavault-business add-point-in-time-hub-satellite --help`
 
 ```text
-Command: add-point-in-time-hub-satellite
 Usage:
-  meta-datavault-business add-point-in-time-hub-satellite [--workspace <path>] --id <id> [--ordinal
-  <value>] --point-in-time <id> --hub-satellite <id>
+  meta-datavault-business add-point-in-time-hub-satellite [--workspace <path>] --id <value> [--ordinal <value>] --point-in-time <value> --hub-satellite <value>
+
+Add a BusinessPointInTimeHubSatellite row.
 
 Options:
-
-  --workspace <path>    Optional. Workspace path. Default: current working directory.
-  --id <id>             Required. BusinessPointInTimeHubSatellite row id.
-  --ordinal <value>     Optional. Ordinal.
-  --point-in-time <id>  Required. BusinessPointInTime id for BusinessPointInTimeId.
-  --hub-satellite <id>  Required. BusinessHubSatellite id for BusinessHubSatelliteId.
-
-Notes:
-  Adds one BusinessPointInTimeHubSatellite row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --ordinal <value>
+  --point-in-time <value>       BusinessPointInTime id.
+  --hub-satellite <value>       BusinessHubSatellite id.
 ```
 
 ### `meta-datavault-business add-point-in-time-link-satellite --help`
 
 ```text
-Command: add-point-in-time-link-satellite
 Usage:
-  meta-datavault-business add-point-in-time-link-satellite [--workspace <path>] --id <id> [--ordinal
-  <value>] --point-in-time <id> --link-satellite <id>
+  meta-datavault-business add-point-in-time-link-satellite [--workspace <path>] --id <value> [--ordinal <value>] --point-in-time <value> --link-satellite <value>
+
+Add a BusinessPointInTimeLinkSatellite row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessPointInTimeLinkSatellite row id.
-  --ordinal <value>      Optional. Ordinal.
-  --point-in-time <id>   Required. BusinessPointInTime id for BusinessPointInTimeId.
-  --link-satellite <id>  Required. BusinessLinkSatellite id for BusinessLinkSatelliteId.
-
-Notes:
-  Adds one BusinessPointInTimeLinkSatellite row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --ordinal <value>
+  --point-in-time <value>       BusinessPointInTime id.
+  --link-satellite <value>      BusinessLinkSatellite id.
 ```
 
 ### `meta-datavault-business add-point-in-time-stamp --help`
 
 ```text
-Command: add-point-in-time-stamp
 Usage:
-  meta-datavault-business add-point-in-time-stamp [--workspace <path>] --id <id> --name <value>
-  --data-type-id <value> [--ordinal <value>] --point-in-time <id> [--length <value>] [--precision
-  <value>] [--scale <value>]
+  meta-datavault-business add-point-in-time-stamp [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] --point-in-time <value> [--length <value>] [--precision <value>] [--scale <value>]
+
+Add a BusinessPointInTimeStamp row.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. BusinessPointInTimeStamp row id.
-  --name <value>          Required. Name.
-  --data-type-id <value>  Required. DataTypeId.
-  --ordinal <value>       Optional. Ordinal.
-  --point-in-time <id>    Required. BusinessPointInTime id for BusinessPointInTimeId.
-  --length <value>        Optional. Length datatype facet authored as metadata.
-  --precision <value>     Optional. Precision datatype facet authored as metadata.
-  --scale <value>         Optional. Scale datatype facet authored as metadata.
-
-Notes:
-  Adds one BusinessPointInTimeStamp row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
-  Optional datatype facets are authored as internal metadata rows.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --data-type-id <value>
+  --ordinal <value>
+  --point-in-time <value>       BusinessPointInTime id.
+  --length <value>              Optional length datatype facet authored as metadata.
+  --precision <value>           Optional precision datatype facet authored as metadata.
+  --scale <value>               Optional scale datatype facet authored as metadata.
 ```
 
 ### `meta-datavault-business add-reference --help`
 
 ```text
-Command: add-reference
 Usage:
-  meta-datavault-business add-reference [--workspace <path>] --id <id> --name <value> [--description
-  <value>]
+  meta-datavault-business add-reference [--workspace <path>] --id <value> --name <value> [--description <value>]
+
+Add a BusinessReference row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessReference row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-
-Notes:
-  Adds one BusinessReference row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
 ```
 
 ### `meta-datavault-business add-reference-key-part --help`
 
 ```text
-Command: add-reference-key-part
 Usage:
-  meta-datavault-business add-reference-key-part [--workspace <path>] --id <id> --name <value>
-  --data-type-id <value> [--ordinal <value>] --reference <id> [--length <value>] [--precision
-  <value>] [--scale <value>]
+  meta-datavault-business add-reference-key-part [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] --reference <value> [--length <value>] [--precision <value>] [--scale <value>]
+
+Add a BusinessReferenceKeyPart row.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. BusinessReferenceKeyPart row id.
-  --name <value>          Required. Name.
-  --data-type-id <value>  Required. DataTypeId.
-  --ordinal <value>       Optional. Ordinal.
-  --reference <id>        Required. BusinessReference id for BusinessReferenceId.
-  --length <value>        Optional. Length datatype facet authored as metadata.
-  --precision <value>     Optional. Precision datatype facet authored as metadata.
-  --scale <value>         Optional. Scale datatype facet authored as metadata.
-
-Notes:
-  Adds one BusinessReferenceKeyPart row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
-  Optional datatype facets are authored as internal metadata rows.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --data-type-id <value>
+  --ordinal <value>
+  --reference <value>           BusinessReference id.
+  --length <value>              Optional length datatype facet authored as metadata.
+  --precision <value>           Optional precision datatype facet authored as metadata.
+  --scale <value>               Optional scale datatype facet authored as metadata.
 ```
 
 ### `meta-datavault-business add-reference-satellite --help`
 
 ```text
-Command: add-reference-satellite
 Usage:
-  meta-datavault-business add-reference-satellite [--workspace <path>] --id <id> --name <value>
-  [--description <value>] --reference <id>
+  meta-datavault-business add-reference-satellite [--workspace <path>] --id <value> --name <value> [--description <value>] --reference <value>
+
+Add a BusinessReferenceSatellite row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessReferenceSatellite row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --reference <id>       Required. BusinessReference id for BusinessReferenceId.
-
-Notes:
-  Adds one BusinessReferenceSatellite row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
+  --reference <value>           BusinessReference id.
 ```
 
 ### `meta-datavault-business add-reference-satellite-attribute --help`
 
 ```text
-Command: add-reference-satellite-attribute
 Usage:
-  meta-datavault-business add-reference-satellite-attribute [--workspace <path>] --id <id> --name
-  <value> --data-type-id <value> [--ordinal <value>] --reference-satellite <id> [--length <value>]
-  [--precision <value>] [--scale <value>]
+  meta-datavault-business add-reference-satellite-attribute [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] --reference-satellite <value> [--length <value>] [--precision <value>] [--scale <value>]
+
+Add a BusinessReferenceSatelliteAttribute row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. BusinessReferenceSatelliteAttribute row id.
-  --name <value>              Required. Name.
-  --data-type-id <value>      Required. DataTypeId.
-  --ordinal <value>           Optional. Ordinal.
-  --reference-satellite <id>  Required. BusinessReferenceSatellite id for
-                              BusinessReferenceSatelliteId.
-  --length <value>            Optional. Length datatype facet authored as metadata.
-  --precision <value>         Optional. Precision datatype facet authored as metadata.
-  --scale <value>             Optional. Scale datatype facet authored as metadata.
-
-Notes:
-  Adds one BusinessReferenceSatelliteAttribute row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
-  Optional datatype facets are authored as internal metadata rows.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --data-type-id <value>
+  --ordinal <value>
+  --reference-satellite <value>  BusinessReferenceSatellite id.
+  --length <value>              Optional length datatype facet authored as metadata.
+  --precision <value>           Optional precision datatype facet authored as metadata.
+  --scale <value>               Optional scale datatype facet authored as metadata.
 ```
 
 ### `meta-datavault-business add-same-as-link --help`
 
 ```text
-Command: add-same-as-link
 Usage:
-  meta-datavault-business add-same-as-link [--workspace <path>] --id <id> --name <value>
-  [--description <value>] --primary-hub <id> --equivalent-hub <id>
+  meta-datavault-business add-same-as-link [--workspace <path>] --id <value> --name <value> [--description <value>] --primary-hub <value> --equivalent-hub <value>
+
+Add a BusinessSameAsLink row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessSameAsLink row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --primary-hub <id>     Required. BusinessHub id for PrimaryHubId.
-  --equivalent-hub <id>  Required. BusinessHub id for EquivalentHubId.
-
-Notes:
-  Adds one BusinessSameAsLink row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
+  --primary-hub <value>         BusinessHub id.
+  --equivalent-hub <value>      BusinessHub id.
 ```
 
 ### `meta-datavault-business add-same-as-link-satellite --help`
 
 ```text
-Command: add-same-as-link-satellite
 Usage:
-  meta-datavault-business add-same-as-link-satellite [--workspace <path>] --id <id> --name <value>
-  [--description <value>] --same-as-link <id>
+  meta-datavault-business add-same-as-link-satellite [--workspace <path>] --id <value> --name <value> [--description <value>] --same-as-link <value>
+
+Add a BusinessSameAsLinkSatellite row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BusinessSameAsLinkSatellite row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --same-as-link <id>    Required. BusinessSameAsLink id for BusinessSameAsLinkId.
-
-Notes:
-  Adds one BusinessSameAsLinkSatellite row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --description <value>
+  --same-as-link <value>        BusinessSameAsLink id.
 ```
 
 ### `meta-datavault-business add-same-as-link-satellite-attribute --help`
 
 ```text
-Command: add-same-as-link-satellite-attribute
 Usage:
-  meta-datavault-business add-same-as-link-satellite-attribute [--workspace <path>] --id <id> --name
-  <value> --data-type-id <value> [--ordinal <value>] --same-as-link-satellite <id> [--length
-  <value>] [--precision <value>] [--scale <value>]
+  meta-datavault-business add-same-as-link-satellite-attribute [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] --same-as-link-satellite <value> [--length <value>] [--precision <value>] [--scale <value>]
+
+Add a BusinessSameAsLinkSatelliteAttribute row.
 
 Options:
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>
+  --name <value>
+  --data-type-id <value>
+  --ordinal <value>
+  --same-as-link-satellite <value>  BusinessSameAsLinkSatellite id.
+  --length <value>              Optional length datatype facet authored as metadata.
+  --precision <value>           Optional precision datatype facet authored as metadata.
+  --scale <value>               Optional scale datatype facet authored as metadata.
+```
 
-  --workspace <path>             Optional. Workspace path. Default: current working directory.
-  --id <id>                      Required. BusinessSameAsLinkSatelliteAttribute row id.
-  --name <value>                 Required. Name.
-  --data-type-id <value>         Required. DataTypeId.
-  --ordinal <value>              Optional. Ordinal.
-  --same-as-link-satellite <id>  Required. BusinessSameAsLinkSatellite id for
-                                 BusinessSameAsLinkSatelliteId.
-  --length <value>               Optional. Length datatype facet authored as metadata.
-  --precision <value>            Optional. Precision datatype facet authored as metadata.
-  --scale <value>                Optional. Scale datatype facet authored as metadata.
+### `meta-datavault-business new-workspace --help`
 
-Notes:
-  Adds one BusinessSameAsLinkSatelliteAttribute row to a MetaBusinessDataVault workspace.
-  Defaults to the current working directory when --workspace is omitted.
-  Optional datatype facets are authored as internal metadata rows.
+```text
+Usage:
+  meta-datavault-business new-workspace <Path>
+
+Create a MetaBusinessDataVault workspace.
+
+Arguments:
+  <Path>
 ```
 
 ## meta-transform-script
@@ -2315,12 +2094,9 @@ Options:
 
 ```text
 Usage:
-  meta-data-warehouse [--new-workspace <path> | <command> [options]]
+  meta-data-warehouse <command> [options]
 
 Commands:
-
-  help                                 Show this help.
-  --new-workspace                      Create an empty MetaDataWarehouse workspace.
   add-accumulating-snapshot-fact       Mark a fact as an accumulating snapshot.
   add-accumulating-snapshot-milestone  Add a lifecycle milestone to an accumulating snapshot.
   add-aggregate-fact                   Declare an aggregate fact derived from a source fact.
@@ -2351,679 +2127,521 @@ Commands:
   add-type1-dimension-attribute        Declare a Type 1 attribute in an SCD dimension.
   add-type2-dimension-attribute        Declare a Type 2 attribute in an SCD dimension.
   add-warehouse                        Add a dimensional warehouse.
+  help                                 Show help.
+  new-workspace                        Create a MetaDataWarehouse workspace.
 
-Notes:
-  MetaDataWarehouse owns logical dimensional warehouse concepts; SQL Server realization belongs to conversion and deploy tooling.
-
-Next: meta-data-warehouse add-dimension --help
+Next: meta-data-warehouse help <command>
 ```
 
-### `meta-data-warehouse --new-workspace --help`
+### `meta-data-warehouse new-workspace --help`
 
 ```text
-Command: --new-workspace
 Usage:
-  meta-data-warehouse --new-workspace <path>
+  meta-data-warehouse new-workspace <path>
 
-Options:
+Create a MetaDataWarehouse workspace.
 
-  --new-workspace <path>  Required. Directory where the empty MetaDataWarehouse workspace will be
-                          created.
+Arguments:
+  <path>
 ```
 
 ### `meta-data-warehouse add-accumulating-snapshot-fact --help`
 
 ```text
-Command: add-accumulating-snapshot-fact
 Usage:
-  meta-data-warehouse add-accumulating-snapshot-fact [--workspace <path>] --id <id> [--description
-  <value>] --fact <id>
+  meta-data-warehouse add-accumulating-snapshot-fact [--workspace <path>] --id <value> [--description <value>] --fact <value>
+
+Mark a fact as an accumulating snapshot.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. AccumulatingSnapshotFact row id.
-  --description <value>  Optional. Description.
-  --fact <id>            Required. Fact id for FactId.
-
-Notes:
-  Adds one AccumulatingSnapshotFact row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  AccumulatingSnapshotFact row id.
+  --description <value>         Description.
+  --fact <value>                Fact id for FactId.
 ```
 
 ### `meta-data-warehouse add-accumulating-snapshot-milestone --help`
 
 ```text
-Command: add-accumulating-snapshot-milestone
 Usage:
-  meta-data-warehouse add-accumulating-snapshot-milestone [--workspace <path>] --id <id> --name
-  <value> [--ordinal <value>] --date-role-name <value> [--description <value>]
-  --accumulating-snapshot <id>
+  meta-data-warehouse add-accumulating-snapshot-milestone [--workspace <path>] --id <value> --name <value> [--ordinal <value>] --date-role-name <value> [--description <value>] --accumulating-snapshot <value>
+
+Add a lifecycle milestone to an accumulating snapshot.
 
 Options:
-
-  --workspace <path>            Optional. Workspace path. Default: current working directory.
-  --id <id>                     Required. AccumulatingSnapshotMilestone row id.
-  --name <value>                Required. Name.
-  --ordinal <value>             Optional. Ordinal.
-  --date-role-name <value>      Required. DateRoleName.
-  --description <value>         Optional. Description.
-  --accumulating-snapshot <id>  Required. AccumulatingSnapshotFact id for
-                                AccumulatingSnapshotFactId.
-
-Notes:
-  Adds one AccumulatingSnapshotMilestone row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  AccumulatingSnapshotMilestone row id.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --date-role-name <value>      DateRoleName.
+  --description <value>         Description.
+  --accumulating-snapshot <value>  AccumulatingSnapshotFact id for AccumulatingSnapshotFactId.
 ```
 
 ### `meta-data-warehouse add-aggregate-fact --help`
 
 ```text
-Command: add-aggregate-fact
 Usage:
-  meta-data-warehouse add-aggregate-fact [--workspace <path>] --id <id> [--description <value>]
-  --aggregated-fact <id> --source-fact <id>
+  meta-data-warehouse add-aggregate-fact [--workspace <path>] --id <value> [--description <value>] --aggregated-fact <value> --source-fact <value>
+
+Declare an aggregate fact derived from a source fact.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. AggregateFact row id.
-  --description <value>   Optional. Description.
-  --aggregated-fact <id>  Required. Fact id for AggregatedFactId.
-  --source-fact <id>      Required. Fact id for SourceFactId.
-
-Notes:
-  Adds one AggregateFact row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  AggregateFact row id.
+  --description <value>         Description.
+  --aggregated-fact <value>     Fact id for AggregatedFactId.
+  --source-fact <value>         Fact id for SourceFactId.
 ```
 
 ### `meta-data-warehouse add-bridge --help`
 
 ```text
-Command: add-bridge
 Usage:
-  meta-data-warehouse add-bridge [--workspace <path>] --id <id> --name <value> [--description
-  <value>] --warehouse <id>
+  meta-data-warehouse add-bridge [--workspace <path>] --id <value> --name <value> [--description <value>] --warehouse <value>
+
+Add a dimensional bridge table.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BridgeTable row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --warehouse <id>       Required. Warehouse id for WarehouseId.
-
-Notes:
-  Adds one BridgeTable row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  BridgeTable row id.
+  --name <value>                Name.
+  --description <value>         Description.
+  --warehouse <value>           Warehouse id for WarehouseId.
 ```
 
 ### `meta-data-warehouse add-bridge-participant --help`
 
 ```text
-Command: add-bridge-participant
 Usage:
-  meta-data-warehouse add-bridge-participant [--workspace <path>] --id <id> --role-name <value>
-  [--ordinal <value>] [--is-required <value>] --bridge <id> --dimension <id>
+  meta-data-warehouse add-bridge-participant [--workspace <path>] --id <value> --role-name <value> [--ordinal <value>] [--is-required true|false] --bridge <value> --dimension <value>
+
+Add a dimension participant to a bridge.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. BridgeParticipant row id.
-  --role-name <value>    Required. RoleName.
-  --ordinal <value>      Optional. Ordinal.
-  --is-required <value>  Optional. IsRequired.
-  --bridge <id>          Required. BridgeTable id for BridgeTableId.
-  --dimension <id>       Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one BridgeParticipant row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  BridgeParticipant row id.
+  --role-name <value>           RoleName.
+  --ordinal <value>             Ordinal.
+  --is-required true|false      IsRequired.
+  --bridge <value>              BridgeTable id for BridgeTableId.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-data-warehouse add-bridge-weight --help`
 
 ```text
-Command: add-bridge-weight
 Usage:
-  meta-data-warehouse add-bridge-weight [--workspace <path>] --id <id> --name <value> --data-type-id
-  <value> [--description <value>] --bridge <id>
+  meta-data-warehouse add-bridge-weight [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--description <value>] --bridge <value>
+
+Add a bridge weighting measure with a Meta data type.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. BridgeWeight row id.
-  --name <value>          Required. Name.
-  --data-type-id <value>  Required. DataTypeId.
-  --description <value>   Optional. Description.
-  --bridge <id>           Required. BridgeTable id for BridgeTableId.
-
-Notes:
-  Adds one BridgeWeight row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  BridgeWeight row id.
+  --name <value>                Name.
+  --data-type-id <value>        DataTypeId.
+  --description <value>         Description.
+  --bridge <value>              BridgeTable id for BridgeTableId.
 ```
 
 ### `meta-data-warehouse add-conformed-dimension --help`
 
 ```text
-Command: add-conformed-dimension
 Usage:
-  meta-data-warehouse add-conformed-dimension [--workspace <path>] --id <id> --conformance-name
-  <value> [--description <value>] --dimension <id>
+  meta-data-warehouse add-conformed-dimension [--workspace <path>] --id <value> --conformance-name <value> [--description <value>] --dimension <value>
+
+Mark a dimension as conformed.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. ConformedDimension row id.
-  --conformance-name <value>  Required. ConformanceName.
-  --description <value>       Optional. Description.
-  --dimension <id>            Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one ConformedDimension row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  ConformedDimension row id.
+  --conformance-name <value>    ConformanceName.
+  --description <value>         Description.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-data-warehouse add-degenerate-dimension --help`
 
 ```text
-Command: add-degenerate-dimension
 Usage:
-  meta-data-warehouse add-degenerate-dimension [--workspace <path>] --id <id> --name <value>
-  --data-type-id <value> [--ordinal <value>] [--description <value>] --fact <id>
+  meta-data-warehouse add-degenerate-dimension [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] [--description <value>] --fact <value>
+
+Add a degenerate dimension value to a fact.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. DegenerateDimension row id.
-  --name <value>          Required. Name.
-  --data-type-id <value>  Required. DataTypeId.
-  --ordinal <value>       Optional. Ordinal.
-  --description <value>   Optional. Description.
-  --fact <id>             Required. Fact id for FactId.
-
-Notes:
-  Adds one DegenerateDimension row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DegenerateDimension row id.
+  --name <value>                Name.
+  --data-type-id <value>        DataTypeId.
+  --ordinal <value>             Ordinal.
+  --description <value>         Description.
+  --fact <value>                Fact id for FactId.
 ```
 
 ### `meta-data-warehouse add-dimension --help`
 
 ```text
-Command: add-dimension
 Usage:
-  meta-data-warehouse add-dimension [--workspace <path>] --id <id> --name <value> [--description
-  <value>] --warehouse <id>
+  meta-data-warehouse add-dimension [--workspace <path>] --id <value> --name <value> [--description <value>] --warehouse <value>
+
+Add a dimension.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. Dimension row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --warehouse <id>       Required. Warehouse id for WarehouseId.
-
-Notes:
-  Adds one Dimension row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Dimension row id.
+  --name <value>                Name.
+  --description <value>         Description.
+  --warehouse <value>           Warehouse id for WarehouseId.
 ```
 
 ### `meta-data-warehouse add-dimension-attribute --help`
 
 ```text
-Command: add-dimension-attribute
 Usage:
-  meta-data-warehouse add-dimension-attribute [--workspace <path>] --id <id> --name <value>
-  --data-type-id <value> [--ordinal <value>] [--is-nullable <value>] [--description <value>]
-  --dimension <id>
+  meta-data-warehouse add-dimension-attribute [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] [--is-nullable true|false] [--description <value>] --dimension <value>
+
+Add a dimension attribute with a Meta data type.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. DimensionAttribute row id.
-  --name <value>          Required. Name.
-  --data-type-id <value>  Required. DataTypeId.
-  --ordinal <value>       Optional. Ordinal.
-  --is-nullable <value>   Optional. IsNullable.
-  --description <value>   Optional. Description.
-  --dimension <id>        Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one DimensionAttribute row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionAttribute row id.
+  --name <value>                Name.
+  --data-type-id <value>        DataTypeId.
+  --ordinal <value>             Ordinal.
+  --is-nullable true|false      IsNullable.
+  --description <value>         Description.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-data-warehouse add-dimension-business-key --help`
 
 ```text
-Command: add-dimension-business-key
 Usage:
-  meta-data-warehouse add-dimension-business-key [--workspace <path>] --id <id> --name <value>
-  [--description <value>] --dimension <id>
+  meta-data-warehouse add-dimension-business-key [--workspace <path>] --id <value> --name <value> [--description <value>] --dimension <value>
+
+Add a dimension business key.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. DimensionBusinessKey row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --dimension <id>       Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one DimensionBusinessKey row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionBusinessKey row id.
+  --name <value>                Name.
+  --description <value>         Description.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-data-warehouse add-dimension-business-key-part --help`
 
 ```text
-Command: add-dimension-business-key-part
 Usage:
-  meta-data-warehouse add-dimension-business-key-part [--workspace <path>] --id <id> [--ordinal
-  <value>] --business-key <id> --attribute <id>
+  meta-data-warehouse add-dimension-business-key-part [--workspace <path>] --id <value> [--ordinal <value>] --business-key <value> --attribute <value>
+
+Add an ordered attribute to a dimension business key.
 
 Options:
-
-  --workspace <path>   Optional. Workspace path. Default: current working directory.
-  --id <id>            Required. DimensionBusinessKeyPart row id.
-  --ordinal <value>    Optional. Ordinal.
-  --business-key <id>  Required. DimensionBusinessKey id for DimensionBusinessKeyId.
-  --attribute <id>     Required. DimensionAttribute id for DimensionAttributeId.
-
-Notes:
-  Adds one DimensionBusinessKeyPart row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionBusinessKeyPart row id.
+  --ordinal <value>             Ordinal.
+  --business-key <value>        DimensionBusinessKey id for DimensionBusinessKeyId.
+  --attribute <value>           DimensionAttribute id for DimensionAttributeId.
 ```
 
 ### `meta-data-warehouse add-dimension-hierarchy --help`
 
 ```text
-Command: add-dimension-hierarchy
 Usage:
-  meta-data-warehouse add-dimension-hierarchy [--workspace <path>] --id <id> --name <value>
-  [--description <value>] --dimension <id>
+  meta-data-warehouse add-dimension-hierarchy [--workspace <path>] --id <value> --name <value> [--description <value>] --dimension <value>
+
+Add a dimension hierarchy.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. DimensionHierarchy row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --dimension <id>       Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one DimensionHierarchy row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionHierarchy row id.
+  --name <value>                Name.
+  --description <value>         Description.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-data-warehouse add-dimension-hierarchy-level --help`
 
 ```text
-Command: add-dimension-hierarchy-level
 Usage:
-  meta-data-warehouse add-dimension-hierarchy-level [--workspace <path>] --id <id> --name <value>
-  [--ordinal <value>] --hierarchy <id> --attribute <id>
+  meta-data-warehouse add-dimension-hierarchy-level [--workspace <path>] --id <value> --name <value> [--ordinal <value>] --hierarchy <value> --attribute <value>
+
+Add a hierarchy level.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. DimensionHierarchyLevel row id.
-  --name <value>      Required. Name.
-  --ordinal <value>   Optional. Ordinal.
-  --hierarchy <id>    Required. DimensionHierarchy id for DimensionHierarchyId.
-  --attribute <id>    Required. DimensionAttribute id for DimensionAttributeId.
-
-Notes:
-  Adds one DimensionHierarchyLevel row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionHierarchyLevel row id.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --hierarchy <value>           DimensionHierarchy id for DimensionHierarchyId.
+  --attribute <value>           DimensionAttribute id for DimensionAttributeId.
 ```
 
 ### `meta-data-warehouse add-fact --help`
 
 ```text
-Command: add-fact
 Usage:
-  meta-data-warehouse add-fact [--workspace <path>] --id <id> --name <value> [--description <value>]
-  --warehouse <id>
+  meta-data-warehouse add-fact [--workspace <path>] --id <value> --name <value> [--description <value>] --warehouse <value>
+
+Add a fact table concept.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. Fact row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --warehouse <id>       Required. Warehouse id for WarehouseId.
-
-Notes:
-  Adds one Fact row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Fact row id.
+  --name <value>                Name.
+  --description <value>         Description.
+  --warehouse <value>           Warehouse id for WarehouseId.
 ```
 
 ### `meta-data-warehouse add-fact-bridge --help`
 
 ```text
-Command: add-fact-bridge
 Usage:
-  meta-data-warehouse add-fact-bridge [--workspace <path>] --id <id> --role-name <value> [--ordinal
-  <value>] [--description <value>] --fact <id> --bridge <id>
+  meta-data-warehouse add-fact-bridge [--workspace <path>] --id <value> --role-name <value> [--ordinal <value>] [--description <value>] --fact <value> --bridge <value>
+
+Connect a fact to a bridge table.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. FactBridge row id.
-  --role-name <value>    Required. RoleName.
-  --ordinal <value>      Optional. Ordinal.
-  --description <value>  Optional. Description.
-  --fact <id>            Required. Fact id for FactId.
-  --bridge <id>          Required. BridgeTable id for BridgeTableId.
-
-Notes:
-  Adds one FactBridge row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  FactBridge row id.
+  --role-name <value>           RoleName.
+  --ordinal <value>             Ordinal.
+  --description <value>         Description.
+  --fact <value>                Fact id for FactId.
+  --bridge <value>              BridgeTable id for BridgeTableId.
 ```
 
 ### `meta-data-warehouse add-fact-dimension --help`
 
 ```text
-Command: add-fact-dimension
 Usage:
-  meta-data-warehouse add-fact-dimension [--workspace <path>] --id <id> --role-name <value>
-  [--ordinal <value>] [--is-required <value>] [--description <value>] --fact <id> --dimension <id>
+  meta-data-warehouse add-fact-dimension [--workspace <path>] --id <value> --role-name <value> [--ordinal <value>] [--is-required true|false] [--description <value>] --fact <value> --dimension <value>
+
+Add a dimensional role to a fact.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. FactDimension row id.
-  --role-name <value>    Required. RoleName.
-  --ordinal <value>      Optional. Ordinal.
-  --is-required <value>  Optional. IsRequired.
-  --description <value>  Optional. Description.
-  --fact <id>            Required. Fact id for FactId.
-  --dimension <id>       Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one FactDimension row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  FactDimension row id.
+  --role-name <value>           RoleName.
+  --ordinal <value>             Ordinal.
+  --is-required true|false      IsRequired.
+  --description <value>         Description.
+  --fact <value>                Fact id for FactId.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-data-warehouse add-fact-grain --help`
 
 ```text
-Command: add-fact-grain
 Usage:
-  meta-data-warehouse add-fact-grain [--workspace <path>] --id <id> --name <value> --description
-  <value> --fact <id>
+  meta-data-warehouse add-fact-grain [--workspace <path>] --id <value> --name <value> --description <value> --fact <value>
+
+Declare a fact grain.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. FactGrain row id.
-  --name <value>         Required. Name.
-  --description <value>  Required. Description.
-  --fact <id>            Required. Fact id for FactId.
-
-Notes:
-  Adds one FactGrain row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
-```
-
-### `meta-data-warehouse add-fact-measure --help`
-
-```text
-Command: add-fact-measure
-Usage:
-  meta-data-warehouse add-fact-measure [--workspace <path>] --id <id> --name <value> --data-type-id
-  <value> [--ordinal <value>] [--is-nullable <value>] [--description <value>] --fact <id>
-
-Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. FactMeasure row id.
-  --name <value>          Required. Name.
-  --data-type-id <value>  Required. DataTypeId.
-  --ordinal <value>       Optional. Ordinal.
-  --is-nullable <value>   Optional. IsNullable.
-  --description <value>   Optional. Description.
-  --fact <id>             Required. Fact id for FactId.
-
-Notes:
-  Adds one FactMeasure row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  FactGrain row id.
+  --name <value>                Name.
+  --description <value>         Description.
+  --fact <value>                Fact id for FactId.
 ```
 
 ### `meta-data-warehouse add-factless-fact --help`
 
 ```text
-Command: add-factless-fact
 Usage:
-  meta-data-warehouse add-factless-fact [--workspace <path>] --id <id> [--description <value>]
-  --fact <id>
+  meta-data-warehouse add-factless-fact [--workspace <path>] --id <value> [--description <value>] --fact <value>
+
+Mark a fact as factless.
 
 Options:
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  FactlessFact row id.
+  --description <value>         Description.
+  --fact <value>                Fact id for FactId.
+```
 
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. FactlessFact row id.
-  --description <value>  Optional. Description.
-  --fact <id>            Required. Fact id for FactId.
+### `meta-data-warehouse add-fact-measure --help`
 
-Notes:
-  Adds one FactlessFact row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+```text
+Usage:
+  meta-data-warehouse add-fact-measure [--workspace <path>] --id <value> --name <value> --data-type-id <value> [--ordinal <value>] [--is-nullable true|false] [--description <value>] --fact <value>
+
+Add a typed fact measure.
+
+Options:
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  FactMeasure row id.
+  --name <value>                Name.
+  --data-type-id <value>        DataTypeId.
+  --ordinal <value>             Ordinal.
+  --is-nullable true|false      IsNullable.
+  --description <value>         Description.
+  --fact <value>                Fact id for FactId.
 ```
 
 ### `meta-data-warehouse add-junk-dimension --help`
 
 ```text
-Command: add-junk-dimension
 Usage:
-  meta-data-warehouse add-junk-dimension [--workspace <path>] --id <id> [--description <value>]
-  --dimension <id>
+  meta-data-warehouse add-junk-dimension [--workspace <path>] --id <value> [--description <value>] --dimension <value>
+
+Declare a junk dimension.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. JunkDimension row id.
-  --description <value>  Optional. Description.
-  --dimension <id>       Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one JunkDimension row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  JunkDimension row id.
+  --description <value>         Description.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-data-warehouse add-junk-dimension-component --help`
 
 ```text
-Command: add-junk-dimension-component
 Usage:
-  meta-data-warehouse add-junk-dimension-component [--workspace <path>] --id <id> [--ordinal
-  <value>] [--description <value>] --junk-dimension <id> --attribute <id>
+  meta-data-warehouse add-junk-dimension-component [--workspace <path>] --id <value> [--ordinal <value>] [--description <value>] --junk-dimension <value> --attribute <value>
+
+Add an attribute component to a junk dimension.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. JunkDimensionComponent row id.
-  --ordinal <value>      Optional. Ordinal.
-  --description <value>  Optional. Description.
-  --junk-dimension <id>  Required. JunkDimension id for JunkDimensionId.
-  --attribute <id>       Required. DimensionAttribute id for DimensionAttributeId.
-
-Notes:
-  Adds one JunkDimensionComponent row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  JunkDimensionComponent row id.
+  --ordinal <value>             Ordinal.
+  --description <value>         Description.
+  --junk-dimension <value>      JunkDimension id for JunkDimensionId.
+  --attribute <value>           DimensionAttribute id for DimensionAttributeId.
 ```
 
 ### `meta-data-warehouse add-mini-dimension --help`
 
 ```text
-Command: add-mini-dimension
 Usage:
-  meta-data-warehouse add-mini-dimension [--workspace <path>] --id <id> [--role-name <value>]
-  [--description <value>] --source-dimension <id> --profile-dimension <id>
+  meta-data-warehouse add-mini-dimension [--workspace <path>] --id <value> [--role-name <value>] [--description <value>] --source-dimension <value> --profile-dimension <value>
+
+Declare a mini-dimension relationship.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. MiniDimension row id.
-  --role-name <value>       Optional. RoleName.
-  --description <value>     Optional. Description.
-  --source-dimension <id>   Required. Dimension id for SourceDimensionId.
-  --profile-dimension <id>  Required. Dimension id for ProfileDimensionId.
-
-Notes:
-  Adds one MiniDimension row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  MiniDimension row id.
+  --role-name <value>           RoleName.
+  --description <value>         Description.
+  --source-dimension <value>    Dimension id for SourceDimensionId.
+  --profile-dimension <value>   Dimension id for ProfileDimensionId.
 ```
 
 ### `meta-data-warehouse add-outrigger-dimension --help`
 
 ```text
-Command: add-outrigger-dimension
 Usage:
-  meta-data-warehouse add-outrigger-dimension [--workspace <path>] --id <id> --role-name <value>
-  [--ordinal <value>] [--is-required <value>] [--description <value>] --parent-dimension <id>
-  --child-dimension <id>
+  meta-data-warehouse add-outrigger-dimension [--workspace <path>] --id <value> --role-name <value> [--ordinal <value>] [--is-required true|false] [--description <value>] --parent-dimension <value> --child-dimension <value>
+
+Declare an outrigger dimension relationship.
 
 Options:
-
-  --workspace <path>       Optional. Workspace path. Default: current working directory.
-  --id <id>                Required. OutriggerDimension row id.
-  --role-name <value>      Required. RoleName.
-  --ordinal <value>        Optional. Ordinal.
-  --is-required <value>    Optional. IsRequired.
-  --description <value>    Optional. Description.
-  --parent-dimension <id>  Required. Dimension id for ParentDimensionId.
-  --child-dimension <id>   Required. Dimension id for ChildDimensionId.
-
-Notes:
-  Adds one OutriggerDimension row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  OutriggerDimension row id.
+  --role-name <value>           RoleName.
+  --ordinal <value>             Ordinal.
+  --is-required true|false      IsRequired.
+  --description <value>         Description.
+  --parent-dimension <value>    Dimension id for ParentDimensionId.
+  --child-dimension <value>     Dimension id for ChildDimensionId.
 ```
 
 ### `meta-data-warehouse add-periodic-snapshot-fact --help`
 
 ```text
-Command: add-periodic-snapshot-fact
 Usage:
-  meta-data-warehouse add-periodic-snapshot-fact [--workspace <path>] --id <id> --period-name
-  <value> [--description <value>] --fact <id>
+  meta-data-warehouse add-periodic-snapshot-fact [--workspace <path>] --id <value> --period-name <value> [--description <value>] --fact <value>
+
+Mark a fact as a periodic snapshot.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. PeriodicSnapshotFact row id.
-  --period-name <value>  Required. PeriodName.
-  --description <value>  Optional. Description.
-  --fact <id>            Required. Fact id for FactId.
-
-Notes:
-  Adds one PeriodicSnapshotFact row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  PeriodicSnapshotFact row id.
+  --period-name <value>         PeriodName.
+  --description <value>         Description.
+  --fact <value>                Fact id for FactId.
 ```
 
 ### `meta-data-warehouse add-slowly-changing-dimension --help`
 
 ```text
-Command: add-slowly-changing-dimension
 Usage:
-  meta-data-warehouse add-slowly-changing-dimension [--workspace <path>] --id <id> [--name <value>]
-  [--description <value>] --dimension <id>
+  meta-data-warehouse add-slowly-changing-dimension [--workspace <path>] --id <value> [--name <value>] [--description <value>] --dimension <value>
+
+Declare SCD behavior for a dimension.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. SlowlyChangingDimension row id.
-  --name <value>         Optional. Name.
-  --description <value>  Optional. Description.
-  --dimension <id>       Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one SlowlyChangingDimension row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  SlowlyChangingDimension row id.
+  --name <value>                Name.
+  --description <value>         Description.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-data-warehouse add-transaction-fact --help`
 
 ```text
-Command: add-transaction-fact
 Usage:
-  meta-data-warehouse add-transaction-fact [--workspace <path>] --id <id> [--description <value>]
-  --fact <id>
+  meta-data-warehouse add-transaction-fact [--workspace <path>] --id <value> [--description <value>] --fact <value>
+
+Mark a fact as transaction-grain.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. TransactionFact row id.
-  --description <value>  Optional. Description.
-  --fact <id>            Required. Fact id for FactId.
-
-Notes:
-  Adds one TransactionFact row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TransactionFact row id.
+  --description <value>         Description.
+  --fact <value>                Fact id for FactId.
 ```
 
 ### `meta-data-warehouse add-type1-dimension-attribute --help`
 
 ```text
-Command: add-type1-dimension-attribute
 Usage:
-  meta-data-warehouse add-type1-dimension-attribute [--workspace <path>] --id <id> [--description
-  <value>] --slowly-changing-dimension <id> --attribute <id>
+  meta-data-warehouse add-type1-dimension-attribute [--workspace <path>] --id <value> [--description <value>] --slowly-changing-dimension <value> --attribute <value>
+
+Declare a Type 1 attribute in an SCD dimension.
 
 Options:
-
-  --workspace <path>                Optional. Workspace path. Default: current working directory.
-  --id <id>                         Required. Type1DimensionAttribute row id.
-  --description <value>             Optional. Description.
-  --slowly-changing-dimension <id>  Required. SlowlyChangingDimension id for
-                                    SlowlyChangingDimensionId.
-  --attribute <id>                  Required. DimensionAttribute id for DimensionAttributeId.
-
-Notes:
-  Adds one Type1DimensionAttribute row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Type1DimensionAttribute row id.
+  --description <value>         Description.
+  --slowly-changing-dimension <value>  SlowlyChangingDimension id for SlowlyChangingDimensionId.
+  --attribute <value>           DimensionAttribute id for DimensionAttributeId.
 ```
 
 ### `meta-data-warehouse add-type2-dimension-attribute --help`
 
 ```text
-Command: add-type2-dimension-attribute
 Usage:
-  meta-data-warehouse add-type2-dimension-attribute [--workspace <path>] --id <id> [--description
-  <value>] --slowly-changing-dimension <id> --attribute <id>
+  meta-data-warehouse add-type2-dimension-attribute [--workspace <path>] --id <value> [--description <value>] --slowly-changing-dimension <value> --attribute <value>
+
+Declare a Type 2 attribute in an SCD dimension.
 
 Options:
-
-  --workspace <path>                Optional. Workspace path. Default: current working directory.
-  --id <id>                         Required. Type2DimensionAttribute row id.
-  --description <value>             Optional. Description.
-  --slowly-changing-dimension <id>  Required. SlowlyChangingDimension id for
-                                    SlowlyChangingDimensionId.
-  --attribute <id>                  Required. DimensionAttribute id for DimensionAttributeId.
-
-Notes:
-  Adds one Type2DimensionAttribute row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Type2DimensionAttribute row id.
+  --description <value>         Description.
+  --slowly-changing-dimension <value>  SlowlyChangingDimension id for SlowlyChangingDimensionId.
+  --attribute <value>           DimensionAttribute id for DimensionAttributeId.
 ```
 
 ### `meta-data-warehouse add-warehouse --help`
 
 ```text
-Command: add-warehouse
 Usage:
-  meta-data-warehouse add-warehouse [--workspace <path>] --id <id> --name <value> [--description
-  <value>]
+  meta-data-warehouse add-warehouse [--workspace <path>] --id <value> --name <value> [--description <value>]
+
+Add a dimensional warehouse.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. Warehouse row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-
-Notes:
-  Adds one Warehouse row to a MetaDataWarehouse workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Warehouse row id.
+  --name <value>                Name.
+  --description <value>         Description.
 ```
 
 ## meta-analytics
@@ -3796,20 +3414,9 @@ Notes:
 
 ```text
 Usage:
-  meta-tabular [--new-workspace <path> | <command> [options]]
+  meta-tabular <command> [options]
 
 Commands:
-
-  help                                       Show this help.
-  --new-workspace                            Create an empty MetaTabular workspace.
-  deploy                                     Create modeled objects on an Analysis Services tabular
-                                             instance.
-  process                                    Process an existing tabular database, table, or
-                                             partition.
-  restore                                    Promote a processed tabular database through backup and
-                                             restore.
-  drop                                       Drop a tabular database from an Analysis Services
-                                             tabular instance.
   add-tabular-calculation-group              Add a TabularCalculationGroup row.
   add-tabular-calculation-item               Add a TabularCalculationItem row.
   add-tabular-column                         Add a TabularColumn row.
@@ -3842,840 +3449,642 @@ Commands:
   add-tabular-table                          Add a TabularTable row.
   add-tabular-table-permission               Add a TabularTablePermission row.
   add-tabular-table-translation              Add a TabularTableTranslation row.
+  deploy                                     Create modeled tabular database objects, including calculation groups, and process unless --no-process is used; processing failures fail the command.
+  drop                                       Drop a tabular database from an Analysis Services tabular instance with no confirmation prompt.
+  help                                       Show help.
+  new-workspace                              Create a MetaTabular workspace.
+  process                                    Process an existing tabular database, table, or partition.
+  restore                                    Promote a processed tabular database through backup and restore for pre-prod-to-prod promotion; restore does not process.
 
-Next: meta-tabular add-tabular-model --help
-```
-
-### `meta-tabular --new-workspace --help`
-
-```text
-Command: --new-workspace
-Usage:
-  meta-tabular --new-workspace <path>
-
-Options:
-
-  --new-workspace <path>  Required. Directory where the empty MetaTabular workspace will be created.
-```
-
-### `meta-tabular deploy --help`
-
-```text
-Command: deploy
-Usage:
-  meta-tabular deploy [--workspace <path>] --server <server> [--database-name <name>]
-  [--drop-existing] [--no-process]
-
-Options:
-
-  --workspace <path>      MetaTabular workspace to deploy. Defaults to the current directory.
-  --server <server>       Required. Analysis Services tabular server.
-  --database-name <name>  Optional target database name. Defaults to the modeled database name.
-  --drop-existing         Drop an existing target database before create/deploy.
-  --no-process            Deploy metadata only and skip full processing.
-
-Notes:
-  Creates tabular database objects on an Analysis Services tabular instance.
-  By default, the command runs full processing after deploy and fails if processing fails.
-  Without --drop-existing, the command fails if the database already exists.
-  With --drop-existing, the command uses the safe drop, create, full-process sequence.
-  With --no-process, the command deploys metadata only.
-  This deploys modeled data sources, tables, columns, partitions, measures, relationships, calculation groups, and role filters.
-```
-
-### `meta-tabular process --help`
-
-```text
-Command: process
-Usage:
-  meta-tabular process --server <server> --database-name <name> [--refresh-type <type>] [--table
-  <name>] [--partition <name>]
-
-Options:
-
-  --server <server>       Required. Analysis Services tabular server.
-  --database-name <name>  Required. Database name to process.
-  --refresh-type <type>   Refresh type. Defaults to Full. Common values: Full, DataOnly, Calculate,
-                          ClearValues, Automatic, Add, Defragment.
-  --table <name>          Optional table name or id to process instead of the whole database.
-  --partition <name>      Optional partition name or id to process. Requires --table.
-
-Notes:
-  Processes an existing Analysis Services tabular database without changing modeled metadata.
-  Without --table, the command requests refresh on the database model.
-  With --table, the command requests refresh on that table.
-  With --table and --partition, the command requests refresh on that partition.
-  Use deploy --no-process when deployment and processing need separate pipeline tasks.
-```
-
-### `meta-tabular restore --help`
-
-```text
-Command: restore
-Usage:
-  meta-tabular restore --source-server <server> --source-database-name <name> --target-server
-  <server> --target-database-name <name> --backup-file <path> [--drop-existing]
-  [--overwrite-backup-file]
-
-Options:
-
-  --source-server <server>       Required. Source Analysis Services server containing the processed
-                                 database.
-  --source-database-name <name>  Required. Source processed database name.
-  --target-server <server>       Required. Target Analysis Services server.
-  --target-database-name <name>  Required. Target database name to restore.
-  --backup-file <path>           Required. Backup file path accessible to the Analysis Services
-                                 service accounts.
-  --drop-existing                Drop an existing target database before restore.
-  --overwrite-backup-file        Overwrite an existing backup file.
-
-Notes:
-  Backs up a processed source tabular database and restores it as the target database.
-  Use this for pre-prod-to-prod promotion after pre-prod deploy and processing succeeds.
-  If the target database exists, --drop-existing is required before restore.
-  Restore does not process. Use process for post-restore or object-level processing.
-  The backup file path must be accessible to the Analysis Services service accounts on both source and target servers.
-```
-
-### `meta-tabular drop --help`
-
-```text
-Command: drop
-Usage:
-  meta-tabular drop --server <server> --database-name <name>
-
-Options:
-
-  --server <server>       Required. Analysis Services tabular server.
-  --database-name <name>  Required. Database name to drop.
-
-Notes:
-  Drops a tabular database from an Analysis Services tabular instance.
-  This command has no confirmation prompt; use it only with an explicit database name.
-  The command fails if the database does not exist.
+Next: meta-tabular help <command>
 ```
 
 ### `meta-tabular add-tabular-calculation-group --help`
 
 ```text
-Command: add-tabular-calculation-group
 Usage:
-  meta-tabular add-tabular-calculation-group [--workspace <path>] --id <id> [--description <value>]
-  --name <value> --precedence <value> --tabular-model <id>
+  meta-tabular add-tabular-calculation-group [--workspace <path>] --id <value> [--description <value>] --name <value> --precedence <value> --tabular-model <value>
+
+Add a TabularCalculationGroup row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. TabularCalculationGroup row id.
-  --description <value>  Optional. Description.
-  --name <value>         Required. Name.
-  --precedence <value>   Required. Precedence.
-  --tabular-model <id>   Required. TabularModel id for TabularModelId.
-
-Notes:
-  Adds one TabularCalculationGroup row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularCalculationGroup row id.
+  --description <value>         Description.
+  --name <value>                Name.
+  --precedence <value>          Precedence.
+  --tabular-model <value>       TabularModel id for TabularModelId.
 ```
 
 ### `meta-tabular add-tabular-calculation-item --help`
 
 ```text
-Command: add-tabular-calculation-item
 Usage:
-  meta-tabular add-tabular-calculation-item [--workspace <path>] --id <id> [--description <value>]
-  --expression <value> [--format-string-expression <value>] --name <value> [--ordinal <value>]
-  --tabular-calculation-group <id>
+  meta-tabular add-tabular-calculation-item [--workspace <path>] --id <value> [--description <value>] --expression <value> [--format-string-expression <value>] --name <value> [--ordinal <value>] --tabular-calculation-group <value>
+
+Add a TabularCalculationItem row.
 
 Options:
-
-  --workspace <path>                  Optional. Workspace path. Default: current working directory.
-  --id <id>                           Required. TabularCalculationItem row id.
-  --description <value>               Optional. Description.
-  --expression <value>                Required. Expression.
-  --format-string-expression <value>  Optional. FormatStringExpression.
-  --name <value>                      Required. Name.
-  --ordinal <value>                   Optional. Ordinal.
-  --tabular-calculation-group <id>    Required. TabularCalculationGroup id for
-                                      TabularCalculationGroupId.
-
-Notes:
-  Adds one TabularCalculationItem row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularCalculationItem row id.
+  --description <value>         Description.
+  --expression <value>          Expression.
+  --format-string-expression <value>  FormatStringExpression.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --tabular-calculation-group <value>  TabularCalculationGroup id for TabularCalculationGroupId.
 ```
 
 ### `meta-tabular add-tabular-column --help`
 
 ```text
-Command: add-tabular-column
 Usage:
-  meta-tabular add-tabular-column [--workspace <path>] --id <id> [--data-category <value>]
-  --data-type-id <value> [--description <value>] [--expression <value>] [--format-string <value>]
-  [--is-hidden <value>] [--is-key <value>] [--is-nullable <value>] --name <value> [--ordinal
-  <value>] [--source-name <value>] [--summarize-by <value>] --tabular-table <id>
+  meta-tabular add-tabular-column [--workspace <path>] --id <value> [--data-category <value>] --data-type-id <value> [--description <value>] [--expression <value>] [--format-string <value>] [--is-hidden true|false] [--is-key true|false] [--is-nullable true|false] --name <value> [--ordinal <value>] [--source-name <value>] [--summarize-by <value>] --tabular-table <value>
+
+Add a TabularColumn row.
 
 Options:
-
-  --workspace <path>       Optional. Workspace path. Default: current working directory.
-  --id <id>                Required. TabularColumn row id.
-  --data-category <value>  Optional. DataCategory.
-  --data-type-id <value>   Required. DataTypeId.
-  --description <value>    Optional. Description.
-  --expression <value>     Optional. Expression.
-  --format-string <value>  Optional. FormatString.
-  --is-hidden <value>      Optional. IsHidden.
-  --is-key <value>         Optional. IsKey.
-  --is-nullable <value>    Optional. IsNullable.
-  --name <value>           Required. Name.
-  --ordinal <value>        Optional. Ordinal.
-  --source-name <value>    Optional. SourceName.
-  --summarize-by <value>   Optional. SummarizeBy.
-  --tabular-table <id>     Required. TabularTable id for TabularTableId.
-
-Notes:
-  Adds one TabularColumn row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularColumn row id.
+  --data-category <value>       DataCategory.
+  --data-type-id <value>        DataTypeId.
+  --description <value>         Description.
+  --expression <value>          Expression.
+  --format-string <value>       FormatString.
+  --is-hidden true|false        IsHidden.
+  --is-key true|false           IsKey.
+  --is-nullable true|false      IsNullable.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --source-name <value>         SourceName.
+  --summarize-by <value>        SummarizeBy.
+  --tabular-table <value>       TabularTable id for TabularTableId.
 ```
 
 ### `meta-tabular add-tabular-column-permission --help`
 
 ```text
-Command: add-tabular-column-permission
 Usage:
-  meta-tabular add-tabular-column-permission [--workspace <path>] --id <id> --metadata-permission
-  <value> --tabular-column <id> --tabular-security-role <id>
+  meta-tabular add-tabular-column-permission [--workspace <path>] --id <value> --metadata-permission <value> --tabular-column <value> --tabular-security-role <value>
+
+Add a TabularColumnPermission row.
 
 Options:
-
-  --workspace <path>             Optional. Workspace path. Default: current working directory.
-  --id <id>                      Required. TabularColumnPermission row id.
-  --metadata-permission <value>  Required. MetadataPermission.
-  --tabular-column <id>          Required. TabularColumn id for TabularColumnId.
-  --tabular-security-role <id>   Required. TabularSecurityRole id for TabularSecurityRoleId.
-
-Notes:
-  Adds one TabularColumnPermission row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularColumnPermission row id.
+  --metadata-permission <value>  MetadataPermission.
+  --tabular-column <value>      TabularColumn id for TabularColumnId.
+  --tabular-security-role <value>  TabularSecurityRole id for TabularSecurityRoleId.
 ```
 
 ### `meta-tabular add-tabular-column-translation --help`
 
 ```text
-Command: add-tabular-column-translation
 Usage:
-  meta-tabular add-tabular-column-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --tabular-column <id> --tabular-culture <id>
+  meta-tabular add-tabular-column-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --tabular-column <value> --tabular-culture <value>
+
+Add a TabularColumnTranslation row.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. TabularColumnTranslation row id.
-  --caption <value>       Optional. Caption.
-  --description <value>   Optional. Description.
-  --tabular-column <id>   Required. TabularColumn id for TabularColumnId.
-  --tabular-culture <id>  Required. TabularCulture id for TabularCultureId.
-
-Notes:
-  Adds one TabularColumnTranslation row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularColumnTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --tabular-column <value>      TabularColumn id for TabularColumnId.
+  --tabular-culture <value>     TabularCulture id for TabularCultureId.
 ```
 
 ### `meta-tabular add-tabular-culture --help`
 
 ```text
-Command: add-tabular-culture
 Usage:
-  meta-tabular add-tabular-culture [--workspace <path>] --id <id> --name <value> --tabular-model
-  <id>
+  meta-tabular add-tabular-culture [--workspace <path>] --id <value> --name <value> --tabular-model <value>
+
+Add a TabularCulture row.
 
 Options:
-
-  --workspace <path>    Optional. Workspace path. Default: current working directory.
-  --id <id>             Required. TabularCulture row id.
-  --name <value>        Required. Name.
-  --tabular-model <id>  Required. TabularModel id for TabularModelId.
-
-Notes:
-  Adds one TabularCulture row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularCulture row id.
+  --name <value>                Name.
+  --tabular-model <value>       TabularModel id for TabularModelId.
 ```
 
 ### `meta-tabular add-tabular-data-source --help`
 
 ```text
-Command: add-tabular-data-source
 Usage:
-  meta-tabular add-tabular-data-source [--workspace <path>] --id <id> [--connection-reference
-  <value>] [--description <value>] --name <value> [--provider <value>] --tabular-model <id>
+  meta-tabular add-tabular-data-source [--workspace <path>] --id <value> [--connection-reference <value>] [--description <value>] --name <value> [--provider <value>] --tabular-model <value>
+
+Add a TabularDataSource row.
 
 Options:
-
-  --workspace <path>              Optional. Workspace path. Default: current working directory.
-  --id <id>                       Required. TabularDataSource row id.
-  --connection-reference <value>  Optional. ConnectionReference.
-  --description <value>           Optional. Description.
-  --name <value>                  Required. Name.
-  --provider <value>              Optional. Provider.
-  --tabular-model <id>            Required. TabularModel id for TabularModelId.
-
-Notes:
-  Adds one TabularDataSource row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularDataSource row id.
+  --connection-reference <value>  ConnectionReference.
+  --description <value>         Description.
+  --name <value>                Name.
+  --provider <value>            Provider.
+  --tabular-model <value>       TabularModel id for TabularModelId.
 ```
 
 ### `meta-tabular add-tabular-hierarchy --help`
 
 ```text
-Command: add-tabular-hierarchy
 Usage:
-  meta-tabular add-tabular-hierarchy [--workspace <path>] --id <id> [--description <value>]
-  [--display-folder <value>] [--is-hidden <value>] --name <value> --tabular-table <id>
+  meta-tabular add-tabular-hierarchy [--workspace <path>] --id <value> [--description <value>] [--display-folder <value>] [--is-hidden true|false] --name <value> --tabular-table <value>
+
+Add a TabularHierarchy row.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. TabularHierarchy row id.
-  --description <value>     Optional. Description.
-  --display-folder <value>  Optional. DisplayFolder.
-  --is-hidden <value>       Optional. IsHidden.
-  --name <value>            Required. Name.
-  --tabular-table <id>      Required. TabularTable id for TabularTableId.
-
-Notes:
-  Adds one TabularHierarchy row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularHierarchy row id.
+  --description <value>         Description.
+  --display-folder <value>      DisplayFolder.
+  --is-hidden true|false        IsHidden.
+  --name <value>                Name.
+  --tabular-table <value>       TabularTable id for TabularTableId.
 ```
 
 ### `meta-tabular add-tabular-hierarchy-level --help`
 
 ```text
-Command: add-tabular-hierarchy-level
 Usage:
-  meta-tabular add-tabular-hierarchy-level [--workspace <path>] --id <id> --name <value> [--ordinal
-  <value>] --tabular-column <id> --tabular-hierarchy <id>
+  meta-tabular add-tabular-hierarchy-level [--workspace <path>] --id <value> --name <value> [--ordinal <value>] --tabular-column <value> --tabular-hierarchy <value>
+
+Add a TabularHierarchyLevel row.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. TabularHierarchyLevel row id.
-  --name <value>            Required. Name.
-  --ordinal <value>         Optional. Ordinal.
-  --tabular-column <id>     Required. TabularColumn id for TabularColumnId.
-  --tabular-hierarchy <id>  Required. TabularHierarchy id for TabularHierarchyId.
-
-Notes:
-  Adds one TabularHierarchyLevel row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularHierarchyLevel row id.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --tabular-column <value>      TabularColumn id for TabularColumnId.
+  --tabular-hierarchy <value>   TabularHierarchy id for TabularHierarchyId.
 ```
 
 ### `meta-tabular add-tabular-hierarchy-translation --help`
 
 ```text
-Command: add-tabular-hierarchy-translation
 Usage:
-  meta-tabular add-tabular-hierarchy-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --tabular-culture <id> --tabular-hierarchy <id>
+  meta-tabular add-tabular-hierarchy-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --tabular-culture <value> --tabular-hierarchy <value>
+
+Add a TabularHierarchyTranslation row.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. TabularHierarchyTranslation row id.
-  --caption <value>         Optional. Caption.
-  --description <value>     Optional. Description.
-  --tabular-culture <id>    Required. TabularCulture id for TabularCultureId.
-  --tabular-hierarchy <id>  Required. TabularHierarchy id for TabularHierarchyId.
-
-Notes:
-  Adds one TabularHierarchyTranslation row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularHierarchyTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --tabular-culture <value>     TabularCulture id for TabularCultureId.
+  --tabular-hierarchy <value>   TabularHierarchy id for TabularHierarchyId.
 ```
 
 ### `meta-tabular add-tabular-kpi --help`
 
 ```text
-Command: add-tabular-kpi
 Usage:
-  meta-tabular add-tabular-kpi [--workspace <path>] --id <id> [--description <value>]
-  [--status-expression <value>] [--status-graphic <value>] [--target-expression <value>]
-  [--trend-expression <value>] [--trend-graphic <value>] --base-measure <id> [--target-measure <id>]
+  meta-tabular add-tabular-kpi [--workspace <path>] --id <value> [--description <value>] [--status-expression <value>] [--status-graphic <value>] [--target-expression <value>] [--trend-expression <value>] [--trend-graphic <value>] --base-measure <value> [--target-measure <value>]
+
+Add a TabularKpi row.
 
 Options:
-
-  --workspace <path>           Optional. Workspace path. Default: current working directory.
-  --id <id>                    Required. TabularKpi row id.
-  --description <value>        Optional. Description.
-  --status-expression <value>  Optional. StatusExpression.
-  --status-graphic <value>     Optional. StatusGraphic.
-  --target-expression <value>  Optional. TargetExpression.
-  --trend-expression <value>   Optional. TrendExpression.
-  --trend-graphic <value>      Optional. TrendGraphic.
-  --base-measure <id>          Required. TabularMeasure id for BaseMeasureId.
-  --target-measure <id>        Optional. TabularMeasure id for TargetMeasureId.
-
-Notes:
-  Adds one TabularKpi row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularKpi row id.
+  --description <value>         Description.
+  --status-expression <value>   StatusExpression.
+  --status-graphic <value>      StatusGraphic.
+  --target-expression <value>   TargetExpression.
+  --trend-expression <value>    TrendExpression.
+  --trend-graphic <value>       TrendGraphic.
+  --base-measure <value>        TabularMeasure id for BaseMeasureId.
+  --target-measure <value>      TabularMeasure id for TargetMeasureId.
 ```
 
 ### `meta-tabular add-tabular-kpi-translation --help`
 
 ```text
-Command: add-tabular-kpi-translation
 Usage:
-  meta-tabular add-tabular-kpi-translation [--workspace <path>] --id <id> [--description <value>]
-  --tabular-culture <id> --tabular-kpi <id>
+  meta-tabular add-tabular-kpi-translation [--workspace <path>] --id <value> [--description <value>] --tabular-culture <value> --tabular-kpi <value>
+
+Add a TabularKpiTranslation row.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. TabularKpiTranslation row id.
-  --description <value>   Optional. Description.
-  --tabular-culture <id>  Required. TabularCulture id for TabularCultureId.
-  --tabular-kpi <id>      Required. TabularKpi id for TabularKpiId.
-
-Notes:
-  Adds one TabularKpiTranslation row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularKpiTranslation row id.
+  --description <value>         Description.
+  --tabular-culture <value>     TabularCulture id for TabularCultureId.
+  --tabular-kpi <value>         TabularKpi id for TabularKpiId.
 ```
 
 ### `meta-tabular add-tabular-measure --help`
 
 ```text
-Command: add-tabular-measure
 Usage:
-  meta-tabular add-tabular-measure [--workspace <path>] --id <id> [--description <value>]
-  [--display-folder <value>] [--expression <value>] [--format-string <value>] [--is-hidden <value>]
-  --name <value> --tabular-table <id>
+  meta-tabular add-tabular-measure [--workspace <path>] --id <value> [--description <value>] [--display-folder <value>] [--expression <value>] [--format-string <value>] [--is-hidden true|false] --name <value> --tabular-table <value>
+
+Add a TabularMeasure row.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. TabularMeasure row id.
-  --description <value>     Optional. Description.
-  --display-folder <value>  Optional. DisplayFolder.
-  --expression <value>      Optional. Expression.
-  --format-string <value>   Optional. FormatString.
-  --is-hidden <value>       Optional. IsHidden.
-  --name <value>            Required. Name.
-  --tabular-table <id>      Required. TabularTable id for TabularTableId.
-
-Notes:
-  Adds one TabularMeasure row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularMeasure row id.
+  --description <value>         Description.
+  --display-folder <value>      DisplayFolder.
+  --expression <value>          Expression.
+  --format-string <value>       FormatString.
+  --is-hidden true|false        IsHidden.
+  --name <value>                Name.
+  --tabular-table <value>       TabularTable id for TabularTableId.
 ```
 
 ### `meta-tabular add-tabular-measure-translation --help`
 
 ```text
-Command: add-tabular-measure-translation
 Usage:
-  meta-tabular add-tabular-measure-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --tabular-culture <id> --tabular-measure <id>
+  meta-tabular add-tabular-measure-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --tabular-culture <value> --tabular-measure <value>
+
+Add a TabularMeasureTranslation row.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. TabularMeasureTranslation row id.
-  --caption <value>       Optional. Caption.
-  --description <value>   Optional. Description.
-  --tabular-culture <id>  Required. TabularCulture id for TabularCultureId.
-  --tabular-measure <id>  Required. TabularMeasure id for TabularMeasureId.
-
-Notes:
-  Adds one TabularMeasureTranslation row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularMeasureTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --tabular-culture <value>     TabularCulture id for TabularCultureId.
+  --tabular-measure <value>     TabularMeasure id for TabularMeasureId.
 ```
 
 ### `meta-tabular add-tabular-model --help`
 
 ```text
-Command: add-tabular-model
 Usage:
-  meta-tabular add-tabular-model [--workspace <path>] --id <id> [--collation <value>]
-  [--compatibility-level <value>] [--default-culture <value>] [--default-data-view <value>]
-  [--description <value>] --name <value>
+  meta-tabular add-tabular-model [--workspace <path>] --id <value> [--collation <value>] [--compatibility-level <value>] [--default-culture <value>] [--default-data-view <value>] [--description <value>] --name <value>
+
+Add a TabularModel row.
 
 Options:
-
-  --workspace <path>             Optional. Workspace path. Default: current working directory.
-  --id <id>                      Required. TabularModel row id.
-  --collation <value>            Optional. Collation.
-  --compatibility-level <value>  Optional. CompatibilityLevel.
-  --default-culture <value>      Optional. DefaultCulture.
-  --default-data-view <value>    Optional. DefaultDataView.
-  --description <value>          Optional. Description.
-  --name <value>                 Required. Name.
-
-Notes:
-  Adds one TabularModel row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularModel row id.
+  --collation <value>           Collation.
+  --compatibility-level <value>  CompatibilityLevel.
+  --default-culture <value>     DefaultCulture.
+  --default-data-view <value>   DefaultDataView.
+  --description <value>         Description.
+  --name <value>                Name.
 ```
 
 ### `meta-tabular add-tabular-partition --help`
 
 ```text
-Command: add-tabular-partition
 Usage:
-  meta-tabular add-tabular-partition [--workspace <path>] --id <id> [--description <value>]
-  [--expression <value>] [--mode <value>] --name <value> [--ordinal <value>] [--tabular-data-source
-  <id>] --tabular-table <id>
+  meta-tabular add-tabular-partition [--workspace <path>] --id <value> [--description <value>] [--expression <value>] [--mode <value>] --name <value> [--ordinal <value>] [--tabular-data-source <value>] --tabular-table <value>
+
+Add a TabularPartition row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. TabularPartition row id.
-  --description <value>       Optional. Description.
-  --expression <value>        Optional. Expression.
-  --mode <value>              Optional. Mode.
-  --name <value>              Required. Name.
-  --ordinal <value>           Optional. Ordinal.
-  --tabular-data-source <id>  Optional. TabularDataSource id for TabularDataSourceId.
-  --tabular-table <id>        Required. TabularTable id for TabularTableId.
-
-Notes:
-  Adds one TabularPartition row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularPartition row id.
+  --description <value>         Description.
+  --expression <value>          Expression.
+  --mode <value>                Mode.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --tabular-data-source <value>  TabularDataSource id for TabularDataSourceId.
+  --tabular-table <value>       TabularTable id for TabularTableId.
 ```
 
 ### `meta-tabular add-tabular-perspective --help`
 
 ```text
-Command: add-tabular-perspective
 Usage:
-  meta-tabular add-tabular-perspective [--workspace <path>] --id <id> [--description <value>] --name
-  <value> --tabular-model <id>
+  meta-tabular add-tabular-perspective [--workspace <path>] --id <value> [--description <value>] --name <value> --tabular-model <value>
+
+Add a TabularPerspective row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. TabularPerspective row id.
-  --description <value>  Optional. Description.
-  --name <value>         Required. Name.
-  --tabular-model <id>   Required. TabularModel id for TabularModelId.
-
-Notes:
-  Adds one TabularPerspective row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularPerspective row id.
+  --description <value>         Description.
+  --name <value>                Name.
+  --tabular-model <value>       TabularModel id for TabularModelId.
 ```
 
 ### `meta-tabular add-tabular-perspective-calculation-group --help`
 
 ```text
-Command: add-tabular-perspective-calculation-group
 Usage:
-  meta-tabular add-tabular-perspective-calculation-group [--workspace <path>] --id <id>
-  --tabular-calculation-group <id> --tabular-perspective <id>
+  meta-tabular add-tabular-perspective-calculation-group [--workspace <path>] --id <value> --tabular-calculation-group <value> --tabular-perspective <value>
+
+Add a TabularPerspectiveCalculationGroup row.
 
 Options:
-
-  --workspace <path>                Optional. Workspace path. Default: current working directory.
-  --id <id>                         Required. TabularPerspectiveCalculationGroup row id.
-  --tabular-calculation-group <id>  Required. TabularCalculationGroup id for
-                                    TabularCalculationGroupId.
-  --tabular-perspective <id>        Required. TabularPerspective id for TabularPerspectiveId.
-
-Notes:
-  Adds one TabularPerspectiveCalculationGroup row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularPerspectiveCalculationGroup row id.
+  --tabular-calculation-group <value>  TabularCalculationGroup id for TabularCalculationGroupId.
+  --tabular-perspective <value>  TabularPerspective id for TabularPerspectiveId.
 ```
 
 ### `meta-tabular add-tabular-perspective-column --help`
 
 ```text
-Command: add-tabular-perspective-column
 Usage:
-  meta-tabular add-tabular-perspective-column [--workspace <path>] --id <id> --tabular-column <id>
-  --tabular-perspective <id>
+  meta-tabular add-tabular-perspective-column [--workspace <path>] --id <value> --tabular-column <value> --tabular-perspective <value>
+
+Add a TabularPerspectiveColumn row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. TabularPerspectiveColumn row id.
-  --tabular-column <id>       Required. TabularColumn id for TabularColumnId.
-  --tabular-perspective <id>  Required. TabularPerspective id for TabularPerspectiveId.
-
-Notes:
-  Adds one TabularPerspectiveColumn row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularPerspectiveColumn row id.
+  --tabular-column <value>      TabularColumn id for TabularColumnId.
+  --tabular-perspective <value>  TabularPerspective id for TabularPerspectiveId.
 ```
 
 ### `meta-tabular add-tabular-perspective-hierarchy --help`
 
 ```text
-Command: add-tabular-perspective-hierarchy
 Usage:
-  meta-tabular add-tabular-perspective-hierarchy [--workspace <path>] --id <id> --tabular-hierarchy
-  <id> --tabular-perspective <id>
+  meta-tabular add-tabular-perspective-hierarchy [--workspace <path>] --id <value> --tabular-hierarchy <value> --tabular-perspective <value>
+
+Add a TabularPerspectiveHierarchy row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. TabularPerspectiveHierarchy row id.
-  --tabular-hierarchy <id>    Required. TabularHierarchy id for TabularHierarchyId.
-  --tabular-perspective <id>  Required. TabularPerspective id for TabularPerspectiveId.
-
-Notes:
-  Adds one TabularPerspectiveHierarchy row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularPerspectiveHierarchy row id.
+  --tabular-hierarchy <value>   TabularHierarchy id for TabularHierarchyId.
+  --tabular-perspective <value>  TabularPerspective id for TabularPerspectiveId.
 ```
 
 ### `meta-tabular add-tabular-perspective-kpi --help`
 
 ```text
-Command: add-tabular-perspective-kpi
 Usage:
-  meta-tabular add-tabular-perspective-kpi [--workspace <path>] --id <id> --tabular-kpi <id>
-  --tabular-perspective <id>
+  meta-tabular add-tabular-perspective-kpi [--workspace <path>] --id <value> --tabular-kpi <value> --tabular-perspective <value>
+
+Add a TabularPerspectiveKpi row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. TabularPerspectiveKpi row id.
-  --tabular-kpi <id>          Required. TabularKpi id for TabularKpiId.
-  --tabular-perspective <id>  Required. TabularPerspective id for TabularPerspectiveId.
-
-Notes:
-  Adds one TabularPerspectiveKpi row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularPerspectiveKpi row id.
+  --tabular-kpi <value>         TabularKpi id for TabularKpiId.
+  --tabular-perspective <value>  TabularPerspective id for TabularPerspectiveId.
 ```
 
 ### `meta-tabular add-tabular-perspective-measure --help`
 
 ```text
-Command: add-tabular-perspective-measure
 Usage:
-  meta-tabular add-tabular-perspective-measure [--workspace <path>] --id <id> --tabular-measure <id>
-  --tabular-perspective <id>
+  meta-tabular add-tabular-perspective-measure [--workspace <path>] --id <value> --tabular-measure <value> --tabular-perspective <value>
+
+Add a TabularPerspectiveMeasure row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. TabularPerspectiveMeasure row id.
-  --tabular-measure <id>      Required. TabularMeasure id for TabularMeasureId.
-  --tabular-perspective <id>  Required. TabularPerspective id for TabularPerspectiveId.
-
-Notes:
-  Adds one TabularPerspectiveMeasure row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularPerspectiveMeasure row id.
+  --tabular-measure <value>     TabularMeasure id for TabularMeasureId.
+  --tabular-perspective <value>  TabularPerspective id for TabularPerspectiveId.
 ```
 
 ### `meta-tabular add-tabular-perspective-table --help`
 
 ```text
-Command: add-tabular-perspective-table
 Usage:
-  meta-tabular add-tabular-perspective-table [--workspace <path>] --id <id> --tabular-perspective
-  <id> --tabular-table <id>
+  meta-tabular add-tabular-perspective-table [--workspace <path>] --id <value> --tabular-perspective <value> --tabular-table <value>
+
+Add a TabularPerspectiveTable row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. TabularPerspectiveTable row id.
-  --tabular-perspective <id>  Required. TabularPerspective id for TabularPerspectiveId.
-  --tabular-table <id>        Required. TabularTable id for TabularTableId.
-
-Notes:
-  Adds one TabularPerspectiveTable row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularPerspectiveTable row id.
+  --tabular-perspective <value>  TabularPerspective id for TabularPerspectiveId.
+  --tabular-table <value>       TabularTable id for TabularTableId.
 ```
 
 ### `meta-tabular add-tabular-perspective-translation --help`
 
 ```text
-Command: add-tabular-perspective-translation
 Usage:
-  meta-tabular add-tabular-perspective-translation [--workspace <path>] --id <id> [--caption
-  <value>] [--description <value>] --tabular-culture <id> --tabular-perspective <id>
+  meta-tabular add-tabular-perspective-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --tabular-culture <value> --tabular-perspective <value>
+
+Add a TabularPerspectiveTranslation row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. TabularPerspectiveTranslation row id.
-  --caption <value>           Optional. Caption.
-  --description <value>       Optional. Description.
-  --tabular-culture <id>      Required. TabularCulture id for TabularCultureId.
-  --tabular-perspective <id>  Required. TabularPerspective id for TabularPerspectiveId.
-
-Notes:
-  Adds one TabularPerspectiveTranslation row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularPerspectiveTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --tabular-culture <value>     TabularCulture id for TabularCultureId.
+  --tabular-perspective <value>  TabularPerspective id for TabularPerspectiveId.
 ```
 
 ### `meta-tabular add-tabular-relationship --help`
 
 ```text
-Command: add-tabular-relationship
 Usage:
-  meta-tabular add-tabular-relationship [--workspace <path>] --id <id> --cardinality <value>
-  [--cross-filter-direction <value>] [--is-active <value>] [--is-required <value>] --name <value>
-  --from-column <id> --from-table <id> --to-column <id> --to-table <id>
+  meta-tabular add-tabular-relationship [--workspace <path>] --id <value> --cardinality <value> [--cross-filter-direction <value>] [--is-active true|false] [--is-required true|false] --name <value> --from-column <value> --from-table <value> --to-column <value> --to-table <value>
+
+Add a TabularRelationship row.
 
 Options:
-
-  --workspace <path>                Optional. Workspace path. Default: current working directory.
-  --id <id>                         Required. TabularRelationship row id.
-  --cardinality <value>             Required. Cardinality.
-  --cross-filter-direction <value>  Optional. CrossFilterDirection.
-  --is-active <value>               Optional. IsActive.
-  --is-required <value>             Optional. IsRequired.
-  --name <value>                    Required. Name.
-  --from-column <id>                Required. TabularColumn id for FromColumnId.
-  --from-table <id>                 Required. TabularTable id for FromTableId.
-  --to-column <id>                  Required. TabularColumn id for ToColumnId.
-  --to-table <id>                   Required. TabularTable id for ToTableId.
-
-Notes:
-  Adds one TabularRelationship row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularRelationship row id.
+  --cardinality <value>         Cardinality.
+  --cross-filter-direction <value>  CrossFilterDirection.
+  --is-active true|false        IsActive.
+  --is-required true|false      IsRequired.
+  --name <value>                Name.
+  --from-column <value>         TabularColumn id for FromColumnId.
+  --from-table <value>          TabularTable id for FromTableId.
+  --to-column <value>           TabularColumn id for ToColumnId.
+  --to-table <value>            TabularTable id for ToTableId.
 ```
 
 ### `meta-tabular add-tabular-role-filter --help`
 
 ```text
-Command: add-tabular-role-filter
 Usage:
-  meta-tabular add-tabular-role-filter [--workspace <path>] --id <id> --expression <value>
-  --tabular-security-role <id> --tabular-table <id>
+  meta-tabular add-tabular-role-filter [--workspace <path>] --id <value> --expression <value> --tabular-security-role <value> --tabular-table <value>
+
+Add a TabularRoleFilter row.
 
 Options:
-
-  --workspace <path>            Optional. Workspace path. Default: current working directory.
-  --id <id>                     Required. TabularRoleFilter row id.
-  --expression <value>          Required. Expression.
-  --tabular-security-role <id>  Required. TabularSecurityRole id for TabularSecurityRoleId.
-  --tabular-table <id>          Required. TabularTable id for TabularTableId.
-
-Notes:
-  Adds one TabularRoleFilter row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularRoleFilter row id.
+  --expression <value>          Expression.
+  --tabular-security-role <value>  TabularSecurityRole id for TabularSecurityRoleId.
+  --tabular-table <value>       TabularTable id for TabularTableId.
 ```
 
 ### `meta-tabular add-tabular-role-member --help`
 
 ```text
-Command: add-tabular-role-member
 Usage:
-  meta-tabular add-tabular-role-member [--workspace <path>] --id <id> [--member-id <value>]
-  --member-name <value> --tabular-security-role <id>
+  meta-tabular add-tabular-role-member [--workspace <path>] --id <value> [--member-id <value>] --member-name <value> --tabular-security-role <value>
+
+Add a TabularRoleMember row.
 
 Options:
-
-  --workspace <path>            Optional. Workspace path. Default: current working directory.
-  --id <id>                     Required. TabularRoleMember row id.
-  --member-id <value>           Optional. MemberId.
-  --member-name <value>         Required. MemberName.
-  --tabular-security-role <id>  Required. TabularSecurityRole id for TabularSecurityRoleId.
-
-Notes:
-  Adds one TabularRoleMember row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularRoleMember row id.
+  --member-id <value>           MemberId.
+  --member-name <value>         MemberName.
+  --tabular-security-role <value>  TabularSecurityRole id for TabularSecurityRoleId.
 ```
 
 ### `meta-tabular add-tabular-security-role --help`
 
 ```text
-Command: add-tabular-security-role
 Usage:
-  meta-tabular add-tabular-security-role [--workspace <path>] --id <id> [--description <value>]
-  --name <value> --permission <value> --tabular-model <id>
+  meta-tabular add-tabular-security-role [--workspace <path>] --id <value> [--description <value>] --name <value> --permission <value> --tabular-model <value>
+
+Add a TabularSecurityRole row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. TabularSecurityRole row id.
-  --description <value>  Optional. Description.
-  --name <value>         Required. Name.
-  --permission <value>   Required. Permission.
-  --tabular-model <id>   Required. TabularModel id for TabularModelId.
-
-Notes:
-  Adds one TabularSecurityRole row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularSecurityRole row id.
+  --description <value>         Description.
+  --name <value>                Name.
+  --permission <value>          Permission.
+  --tabular-model <value>       TabularModel id for TabularModelId.
 ```
 
 ### `meta-tabular add-tabular-sort-by-column --help`
 
 ```text
-Command: add-tabular-sort-by-column
 Usage:
-  meta-tabular add-tabular-sort-by-column [--workspace <path>] --id <id> --sort-column <id>
-  --source-column <id>
+  meta-tabular add-tabular-sort-by-column [--workspace <path>] --id <value> --sort-column <value> --source-column <value>
+
+Add a TabularSortByColumn row.
 
 Options:
-
-  --workspace <path>    Optional. Workspace path. Default: current working directory.
-  --id <id>             Required. TabularSortByColumn row id.
-  --sort-column <id>    Required. TabularColumn id for SortColumnId.
-  --source-column <id>  Required. TabularColumn id for SourceColumnId.
-
-Notes:
-  Adds one TabularSortByColumn row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularSortByColumn row id.
+  --sort-column <value>         TabularColumn id for SortColumnId.
+  --source-column <value>       TabularColumn id for SourceColumnId.
 ```
 
 ### `meta-tabular add-tabular-table --help`
 
 ```text
-Command: add-tabular-table
 Usage:
-  meta-tabular add-tabular-table [--workspace <path>] --id <id> [--data-category <value>]
-  [--description <value>] [--is-hidden <value>] --name <value> --tabular-model <id>
+  meta-tabular add-tabular-table [--workspace <path>] --id <value> [--data-category <value>] [--description <value>] [--is-hidden true|false] --name <value> --tabular-model <value>
+
+Add a TabularTable row.
 
 Options:
-
-  --workspace <path>       Optional. Workspace path. Default: current working directory.
-  --id <id>                Required. TabularTable row id.
-  --data-category <value>  Optional. DataCategory.
-  --description <value>    Optional. Description.
-  --is-hidden <value>      Optional. IsHidden.
-  --name <value>           Required. Name.
-  --tabular-model <id>     Required. TabularModel id for TabularModelId.
-
-Notes:
-  Adds one TabularTable row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularTable row id.
+  --data-category <value>       DataCategory.
+  --description <value>         Description.
+  --is-hidden true|false        IsHidden.
+  --name <value>                Name.
+  --tabular-model <value>       TabularModel id for TabularModelId.
 ```
 
 ### `meta-tabular add-tabular-table-permission --help`
 
 ```text
-Command: add-tabular-table-permission
 Usage:
-  meta-tabular add-tabular-table-permission [--workspace <path>] --id <id> --metadata-permission
-  <value> --tabular-security-role <id> --tabular-table <id>
+  meta-tabular add-tabular-table-permission [--workspace <path>] --id <value> --metadata-permission <value> --tabular-security-role <value> --tabular-table <value>
+
+Add a TabularTablePermission row.
 
 Options:
-
-  --workspace <path>             Optional. Workspace path. Default: current working directory.
-  --id <id>                      Required. TabularTablePermission row id.
-  --metadata-permission <value>  Required. MetadataPermission.
-  --tabular-security-role <id>   Required. TabularSecurityRole id for TabularSecurityRoleId.
-  --tabular-table <id>           Required. TabularTable id for TabularTableId.
-
-Notes:
-  Adds one TabularTablePermission row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularTablePermission row id.
+  --metadata-permission <value>  MetadataPermission.
+  --tabular-security-role <value>  TabularSecurityRole id for TabularSecurityRoleId.
+  --tabular-table <value>       TabularTable id for TabularTableId.
 ```
 
 ### `meta-tabular add-tabular-table-translation --help`
 
 ```text
-Command: add-tabular-table-translation
 Usage:
-  meta-tabular add-tabular-table-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --tabular-culture <id> --tabular-table <id>
+  meta-tabular add-tabular-table-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --tabular-culture <value> --tabular-table <value>
+
+Add a TabularTableTranslation row.
 
 Options:
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  TabularTableTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --tabular-culture <value>     TabularCulture id for TabularCultureId.
+  --tabular-table <value>       TabularTable id for TabularTableId.
+```
 
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. TabularTableTranslation row id.
-  --caption <value>       Optional. Caption.
-  --description <value>   Optional. Description.
-  --tabular-culture <id>  Required. TabularCulture id for TabularCultureId.
-  --tabular-table <id>    Required. TabularTable id for TabularTableId.
+### `meta-tabular deploy --help`
 
-Notes:
-  Adds one TabularTableTranslation row to a MetaTabular workspace.
-  Defaults to the current working directory when --workspace is omitted.
+```text
+Usage:
+  meta-tabular deploy [--workspace <path>] --server <value> [--database-name <value>] [--drop-existing] [--no-process]
+
+Create modeled tabular database objects, including calculation groups, and process unless --no-process is used; processing failures fail the command.
+
+Options:
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --server <value>              Analysis Services tabular server.
+  --database-name <value>       Target database name. Defaults to the modeled database name.
+  --drop-existing               Drop an existing target database before create/deploy.
+  --no-process                  Deploy metadata only and skip full processing.
+```
+
+### `meta-tabular drop --help`
+
+```text
+Usage:
+  meta-tabular drop --server <value> --database-name <value>
+
+Drop a tabular database from an Analysis Services tabular instance with no confirmation prompt.
+
+Options:
+  --server <value>              Analysis Services tabular server.
+  --database-name <value>       Database name to drop.
+```
+
+### `meta-tabular new-workspace --help`
+
+```text
+Usage:
+  meta-tabular new-workspace <path>
+
+Create a MetaTabular workspace.
+
+Arguments:
+  <path>
+```
+
+### `meta-tabular process --help`
+
+```text
+Usage:
+  meta-tabular process --server <value> --database-name <value> [--refresh-type <value>] [--table <value>] [--partition <value>]
+
+Process an existing tabular database, table, or partition.
+
+Options:
+  --server <value>              Analysis Services tabular server.
+  --database-name <value>       Database name to process.
+  --refresh-type <value>        Refresh type. Defaults to Full. Common values: Full, DataOnly, Calculate, ClearValues, Automatic, Add, Defragment.
+  --table <value>               Table name or id to process instead of the whole database.
+  --partition <value>           Partition name or id to process. Requires --table.
+```
+
+### `meta-tabular restore --help`
+
+```text
+Usage:
+  meta-tabular restore --source-server <value> --source-database-name <value> --target-server <value> --target-database-name <value> --backup-file <path> [--drop-existing] [--overwrite-backup-file]
+
+Promote a processed tabular database through backup and restore for pre-prod-to-prod promotion; restore does not process.
+
+Options:
+  --source-server <value>       Source Analysis Services server containing the processed database.
+  --source-database-name <value>  Source processed database name.
+  --target-server <value>       Target Analysis Services server.
+  --target-database-name <value>  Target database name to restore.
+  --backup-file <path>          Backup file path accessible to the Analysis Services service accounts.
+  --drop-existing               Drop an existing target database before restore.
+  --overwrite-backup-file       Overwrite an existing backup file.
 ```
 
 ## meta-multi-dimensional
@@ -4684,18 +4093,9 @@ Notes:
 
 ```text
 Usage:
-  meta-multi-dimensional [--new-workspace <path> | <command> [options]]
+  meta-multi-dimensional <command> [options]
 
 Commands:
-
-  help                               Show this help.
-  --new-workspace                    Create an empty MetaMultiDimensional workspace.
-  deploy                             Create modeled objects on an Analysis Services multidimensional
-                                     instance.
-  restore                            Promote a processed multidimensional database through backup
-                                     and restore.
-  drop                               Drop a multidimensional database from an Analysis Services
-                                     multidimensional instance.
   add-action-translation             Add a ActionTranslation row.
   add-attribute-relationship         Add a AttributeRelationship row.
   add-attribute-translation          Add a AttributeTranslation row.
@@ -4734,985 +4134,749 @@ Commands:
   add-perspective-translation        Add a PerspectiveTranslation row.
   add-role-member                    Add a RoleMember row.
   add-security-role                  Add a SecurityRole row.
+  deploy                             Create modeled multidimensional database objects, including data source views, and process unless --no-process is used; processing failures fail the command.
+  drop                               Drop a multidimensional database from an Analysis Services multidimensional instance with no confirmation prompt.
+  help                               Show help.
+  new-workspace                      Create a MetaMultiDimensional workspace.
+  restore                            Promote a processed multidimensional database through backup and restore for pre-prod-to-prod promotion; restore does not process.
 
-Next: meta-multi-dimensional add-cube --help
+Next: meta-multi-dimensional help <command>
 ```
 
-### `meta-multi-dimensional --new-workspace --help`
+### `meta-multi-dimensional new-workspace --help`
 
 ```text
-Command: --new-workspace
 Usage:
-  meta-multi-dimensional --new-workspace <path>
+  meta-multi-dimensional new-workspace <path>
 
-Options:
+Create a MetaMultiDimensional workspace.
 
-  --new-workspace <path>  Required. Directory where the empty MetaMultiDimensional workspace will be
-                          created.
+Arguments:
+  <path>
 ```
 
 ### `meta-multi-dimensional deploy --help`
 
 ```text
-Command: deploy
 Usage:
-  meta-multi-dimensional deploy [--workspace <path>] --server <server> [--database-name <name>]
-  [--drop-existing] [--no-process]
+  meta-multi-dimensional deploy [--workspace <path>] --server <value> [--database-name <value>] [--drop-existing] [--no-process]
+
+Create modeled multidimensional database objects, including data source views, and process unless --no-process is used; processing failures fail the command.
 
 Options:
-
-  --workspace <path>      MetaMultiDimensional workspace to deploy. Defaults to the current
-                          directory.
-  --server <server>       Required. Analysis Services multidimensional server.
-  --database-name <name>  Optional target database name. Defaults to the modeled database name.
-  --drop-existing         Drop an existing target database before create/deploy.
-  --no-process            Deploy metadata only and skip full processing.
-
-Notes:
-  Creates multidimensional database objects on an Analysis Services multidimensional instance.
-  By default, the command runs full processing after deploy and fails if processing fails.
-  Without --drop-existing, the command fails if the database already exists.
-  With --drop-existing, the command uses the safe drop, create, full-process sequence.
-  With --no-process, the command deploys metadata only.
-  This deploys modeled data sources, data source views, dimensions, cubes, measure groups, measures, partitions, MDX scripts, actions, and roles.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --server <value>              Analysis Services multidimensional server.
+  --database-name <value>       Target database name. Defaults to the modeled database name.
+  --drop-existing               Drop an existing target database before create/deploy.
+  --no-process                  Deploy metadata only and skip full processing.
 ```
 
 ### `meta-multi-dimensional restore --help`
 
 ```text
-Command: restore
 Usage:
-  meta-multi-dimensional restore --source-server <server> --source-database-name <name>
-  --target-server <server> --target-database-name <name> --backup-file <path> [--drop-existing]
-  [--overwrite-backup-file]
+  meta-multi-dimensional restore --source-server <value> --source-database-name <value> --target-server <value> --target-database-name <value> --backup-file <path> [--drop-existing] [--overwrite-backup-file]
+
+Promote a processed multidimensional database through backup and restore for pre-prod-to-prod promotion; restore does not process.
 
 Options:
-
-  --source-server <server>       Required. Source Analysis Services server containing the processed
-                                 database.
-  --source-database-name <name>  Required. Source processed database name.
-  --target-server <server>       Required. Target Analysis Services server.
-  --target-database-name <name>  Required. Target database name to restore.
-  --backup-file <path>           Required. Backup file path accessible to the Analysis Services
-                                 service accounts.
-  --drop-existing                Drop an existing target database before restore.
-  --overwrite-backup-file        Overwrite an existing backup file.
-
-Notes:
-  Backs up a processed multidimensional database and restores it as the target database.
-  Use this for pre-prod-to-prod promotion after pre-prod deploy and processing succeeds.
-  If the target database exists, --drop-existing is required before restore.
-  Restore does not process. Partial or object-level processing belongs in a separate command.
-  The backup file path must be accessible to the Analysis Services service accounts on both source and target servers.
+  --source-server <value>       Source Analysis Services server containing the processed database.
+  --source-database-name <value>  Source processed database name.
+  --target-server <value>       Target Analysis Services server.
+  --target-database-name <value>  Target database name to restore.
+  --backup-file <path>          Backup file path accessible to the Analysis Services service accounts.
+  --drop-existing               Drop an existing target database before restore.
+  --overwrite-backup-file       Overwrite an existing backup file.
 ```
 
 ### `meta-multi-dimensional drop --help`
 
 ```text
-Command: drop
 Usage:
-  meta-multi-dimensional drop --server <server> --database-name <name>
+  meta-multi-dimensional drop --server <value> --database-name <value>
+
+Drop a multidimensional database from an Analysis Services multidimensional instance with no confirmation prompt.
 
 Options:
-
-  --server <server>       Required. Analysis Services multidimensional server.
-  --database-name <name>  Required. Database name to drop.
-
-Notes:
-  Drops a multidimensional database from an Analysis Services multidimensional instance.
-  This command has no confirmation prompt; use it only with an explicit database name.
-  The command fails if the database does not exist.
+  --server <value>              Analysis Services multidimensional server.
+  --database-name <value>       Database name to drop.
 ```
 
 ### `meta-multi-dimensional add-action-translation --help`
 
 ```text
-Command: add-action-translation
 Usage:
-  meta-multi-dimensional add-action-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --cube-action <id> --culture <id>
+  meta-multi-dimensional add-action-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --cube-action <value> --culture <value>
+
+Add a ActionTranslation row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. ActionTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --cube-action <id>     Required. CubeAction id for CubeActionId.
-  --culture <id>         Required. Culture id for CultureId.
-
-Notes:
-  Adds one ActionTranslation row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  ActionTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --cube-action <value>         CubeAction id for CubeActionId.
+  --culture <value>             Culture id for CultureId.
 ```
 
 ### `meta-multi-dimensional add-attribute-relationship --help`
 
 ```text
-Command: add-attribute-relationship
 Usage:
-  meta-multi-dimensional add-attribute-relationship [--workspace <path>] --id <id> [--description
-  <value>] [--relationship-type <value>] --child-attribute <id> --parent-attribute <id>
+  meta-multi-dimensional add-attribute-relationship [--workspace <path>] --id <value> [--description <value>] [--relationship-type <value>] --child-attribute <value> --parent-attribute <value>
+
+Add a AttributeRelationship row.
 
 Options:
-
-  --workspace <path>           Optional. Workspace path. Default: current working directory.
-  --id <id>                    Required. AttributeRelationship row id.
-  --description <value>        Optional. Description.
-  --relationship-type <value>  Optional. RelationshipType.
-  --child-attribute <id>       Required. DimensionAttribute id for ChildAttributeId.
-  --parent-attribute <id>      Required. DimensionAttribute id for ParentAttributeId.
-
-Notes:
-  Adds one AttributeRelationship row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  AttributeRelationship row id.
+  --description <value>         Description.
+  --relationship-type <value>   RelationshipType.
+  --child-attribute <value>     DimensionAttribute id for ChildAttributeId.
+  --parent-attribute <value>    DimensionAttribute id for ParentAttributeId.
 ```
 
 ### `meta-multi-dimensional add-attribute-translation --help`
 
 ```text
-Command: add-attribute-translation
 Usage:
-  meta-multi-dimensional add-attribute-translation [--workspace <path>] --id <id> [--caption
-  <value>] [--description <value>] --culture <id> --dimension-attribute <id>
+  meta-multi-dimensional add-attribute-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --culture <value> --dimension-attribute <value>
+
+Add a AttributeTranslation row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. AttributeTranslation row id.
-  --caption <value>           Optional. Caption.
-  --description <value>       Optional. Description.
-  --culture <id>              Required. Culture id for CultureId.
-  --dimension-attribute <id>  Required. DimensionAttribute id for DimensionAttributeId.
-
-Notes:
-  Adds one AttributeTranslation row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  AttributeTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id for CultureId.
+  --dimension-attribute <value>  DimensionAttribute id for DimensionAttributeId.
 ```
 
 ### `meta-multi-dimensional add-cell-permission --help`
 
 ```text
-Command: add-cell-permission
 Usage:
-  meta-multi-dimensional add-cell-permission [--workspace <path>] --id <id> [--description <value>]
-  --expression <value> --cube <id> --security-role <id>
+  meta-multi-dimensional add-cell-permission [--workspace <path>] --id <value> [--description <value>] --expression <value> --cube <value> --security-role <value>
+
+Add a CellPermission row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. CellPermission row id.
-  --description <value>  Optional. Description.
-  --expression <value>   Required. Expression.
-  --cube <id>            Required. Cube id for CubeId.
-  --security-role <id>   Required. SecurityRole id for SecurityRoleId.
-
-Notes:
-  Adds one CellPermission row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  CellPermission row id.
+  --description <value>         Description.
+  --expression <value>          Expression.
+  --cube <value>                Cube id for CubeId.
+  --security-role <value>       SecurityRole id for SecurityRoleId.
 ```
 
 ### `meta-multi-dimensional add-cube --help`
 
 ```text
-Command: add-cube
 Usage:
-  meta-multi-dimensional add-cube [--workspace <path>] --id <id> [--default-measure-name <value>]
-  [--description <value>] --name <value> [--processing-mode <value>] [--storage-mode <value>]
-  --multi-dimensional-database <id>
+  meta-multi-dimensional add-cube [--workspace <path>] --id <value> [--default-measure-name <value>] [--description <value>] --name <value> [--processing-mode <value>] [--storage-mode <value>] --multi-dimensional-database <value>
+
+Add a Cube row.
 
 Options:
-
-  --workspace <path>                 Optional. Workspace path. Default: current working directory.
-  --id <id>                          Required. Cube row id.
-  --default-measure-name <value>     Optional. DefaultMeasureName.
-  --description <value>              Optional. Description.
-  --name <value>                     Required. Name.
-  --processing-mode <value>          Optional. ProcessingMode. Default: Regular.
-  --storage-mode <value>             Optional. StorageMode. Default: Molap.
-  --multi-dimensional-database <id>  Required. MultiDimensionalDatabase id for
-                                     MultiDimensionalDatabaseId.
-
-Notes:
-  Adds one Cube row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Cube row id.
+  --default-measure-name <value>  DefaultMeasureName.
+  --description <value>         Description.
+  --name <value>                Name.
+  --processing-mode <value>     ProcessingMode. Default: Regular.
+  --storage-mode <value>        StorageMode. Default: Molap.
+  --multi-dimensional-database <value>  MultiDimensionalDatabase id for MultiDimensionalDatabaseId.
 ```
 
 ### `meta-multi-dimensional add-cube-action --help`
 
 ```text
-Command: add-cube-action
 Usage:
-  meta-multi-dimensional add-cube-action [--workspace <path>] --id <id> --action-type <value>
-  [--caption <value>] [--description <value>] --expression <value> --name <value> [--target <value>]
-  --target-kind <value> --cube <id>
+  meta-multi-dimensional add-cube-action [--workspace <path>] --id <value> --action-type <value> [--caption <value>] [--description <value>] --expression <value> --name <value> [--target <value>] --target-kind <value> --cube <value>
+
+Add a CubeAction row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. CubeAction row id.
-  --action-type <value>  Required. ActionType.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --expression <value>   Required. Expression.
-  --name <value>         Required. Name.
-  --target <value>       Optional. Target.
-  --target-kind <value>  Required. TargetKind.
-  --cube <id>            Required. Cube id for CubeId.
-
-Notes:
-  Adds one CubeAction row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  CubeAction row id.
+  --action-type <value>         ActionType.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --expression <value>          Expression.
+  --name <value>                Name.
+  --target <value>              Target.
+  --target-kind <value>         TargetKind.
+  --cube <value>                Cube id for CubeId.
 ```
 
 ### `meta-multi-dimensional add-cube-dimension --help`
 
 ```text
-Command: add-cube-dimension
 Usage:
-  meta-multi-dimensional add-cube-dimension [--workspace <path>] --id <id> [--description <value>]
-  --name <value> [--role-name <value>] --cube <id> --dimension <id>
+  meta-multi-dimensional add-cube-dimension [--workspace <path>] --id <value> [--description <value>] --name <value> [--role-name <value>] --cube <value> --dimension <value>
+
+Add a CubeDimension row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. CubeDimension row id.
-  --description <value>  Optional. Description.
-  --name <value>         Required. Name.
-  --role-name <value>    Optional. RoleName.
-  --cube <id>            Required. Cube id for CubeId.
-  --dimension <id>       Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one CubeDimension row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  CubeDimension row id.
+  --description <value>         Description.
+  --name <value>                Name.
+  --role-name <value>           RoleName.
+  --cube <value>                Cube id for CubeId.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-multi-dimensional add-cube-translation --help`
 
 ```text
-Command: add-cube-translation
 Usage:
-  meta-multi-dimensional add-cube-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --cube <id> --culture <id>
+  meta-multi-dimensional add-cube-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --cube <value> --culture <value>
+
+Add a CubeTranslation row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. CubeTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --cube <id>            Required. Cube id for CubeId.
-  --culture <id>         Required. Culture id for CultureId.
-
-Notes:
-  Adds one CubeTranslation row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  CubeTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --cube <value>                Cube id for CubeId.
+  --culture <value>             Culture id for CultureId.
 ```
 
 ### `meta-multi-dimensional add-culture --help`
 
 ```text
-Command: add-culture
 Usage:
-  meta-multi-dimensional add-culture [--workspace <path>] --id <id> [--description <value>]
-  [--language-id <value>] --name <value> --multi-dimensional-database <id>
+  meta-multi-dimensional add-culture [--workspace <path>] --id <value> [--description <value>] [--language-id <value>] --name <value> --multi-dimensional-database <value>
+
+Add a Culture row.
 
 Options:
-
-  --workspace <path>                 Optional. Workspace path. Default: current working directory.
-  --id <id>                          Required. Culture row id.
-  --description <value>              Optional. Description.
-  --language-id <value>              Optional. LanguageId.
-  --name <value>                     Required. Name.
-  --multi-dimensional-database <id>  Required. MultiDimensionalDatabase id for
-                                     MultiDimensionalDatabaseId.
-
-Notes:
-  Adds one Culture row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Culture row id.
+  --description <value>         Description.
+  --language-id <value>         LanguageId.
+  --name <value>                Name.
+  --multi-dimensional-database <value>  MultiDimensionalDatabase id for MultiDimensionalDatabaseId.
 ```
 
 ### `meta-multi-dimensional add-dimension --help`
 
 ```text
-Command: add-dimension
 Usage:
-  meta-multi-dimensional add-dimension [--workspace <path>] --id <id> [--description <value>]
-  [--dimension-type <value>] --name <value> [--processing-group <value>] [--processing-mode <value>]
-  [--source-name <value>] [--storage-mode <value>] --multi-dimensional-database <id>
+  meta-multi-dimensional add-dimension [--workspace <path>] --id <value> [--description <value>] [--dimension-type <value>] --name <value> [--processing-group <value>] [--processing-mode <value>] [--source-name <value>] [--storage-mode <value>] --multi-dimensional-database <value>
+
+Add a Dimension row.
 
 Options:
-
-  --workspace <path>                 Optional. Workspace path. Default: current working directory.
-  --id <id>                          Required. Dimension row id.
-  --description <value>              Optional. Description.
-  --dimension-type <value>           Optional. DimensionType.
-  --name <value>                     Required. Name.
-  --processing-group <value>         Optional. ProcessingGroup. Default: ByAttribute.
-  --processing-mode <value>          Optional. ProcessingMode. Default: Regular.
-  --source-name <value>              Optional. SourceName.
-  --storage-mode <value>             Optional. StorageMode. Default: Molap.
-  --multi-dimensional-database <id>  Required. MultiDimensionalDatabase id for
-                                     MultiDimensionalDatabaseId.
-
-Notes:
-  Adds one Dimension row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Dimension row id.
+  --description <value>         Description.
+  --dimension-type <value>      DimensionType.
+  --name <value>                Name.
+  --processing-group <value>    ProcessingGroup. Default: ByAttribute.
+  --processing-mode <value>     ProcessingMode. Default: Regular.
+  --source-name <value>         SourceName.
+  --storage-mode <value>        StorageMode. Default: Molap.
+  --multi-dimensional-database <value>  MultiDimensionalDatabase id for MultiDimensionalDatabaseId.
 ```
 
 ### `meta-multi-dimensional add-dimension-attribute --help`
 
 ```text
-Command: add-dimension-attribute
 Usage:
-  meta-multi-dimensional add-dimension-attribute [--workspace <path>] --id <id>
-  [--attribute-hierarchy-enabled <value>] [--attribute-hierarchy-visible <value>] --data-type-id
-  <value> [--description <value>] [--is-key <value>] --name <value> [--ordinal <value>]
-  [--source-name <value>] [--usage <value>] --dimension <id>
+  meta-multi-dimensional add-dimension-attribute [--workspace <path>] --id <value> [--attribute-hierarchy-enabled <value>] [--attribute-hierarchy-visible <value>] --data-type-id <value> [--description <value>] [--is-key <value>] --name <value> [--ordinal <value>] [--source-name <value>] [--usage <value>] --dimension <value>
+
+Add a DimensionAttribute row.
 
 Options:
-
-  --workspace <path>                     Optional. Workspace path. Default: current working
-                                         directory.
-  --id <id>                              Required. DimensionAttribute row id.
-  --attribute-hierarchy-enabled <value>  Optional. AttributeHierarchyEnabled.
-  --attribute-hierarchy-visible <value>  Optional. AttributeHierarchyVisible.
-  --data-type-id <value>                 Required. DataTypeId.
-  --description <value>                  Optional. Description.
-  --is-key <value>                       Optional. IsKey.
-  --name <value>                         Required. Name.
-  --ordinal <value>                      Optional. Ordinal.
-  --source-name <value>                  Optional. SourceName.
-  --usage <value>                        Optional. Usage.
-  --dimension <id>                       Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one DimensionAttribute row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionAttribute row id.
+  --attribute-hierarchy-enabled <value>  AttributeHierarchyEnabled.
+  --attribute-hierarchy-visible <value>  AttributeHierarchyVisible.
+  --data-type-id <value>        DataTypeId.
+  --description <value>         Description.
+  --is-key <value>              IsKey.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --source-name <value>         SourceName.
+  --usage <value>               Usage.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-multi-dimensional add-dimension-hierarchy --help`
 
 ```text
-Command: add-dimension-hierarchy
 Usage:
-  meta-multi-dimensional add-dimension-hierarchy [--workspace <path>] --id <id> [--description
-  <value>] [--hierarchy-type <value>] --name <value> --dimension <id>
+  meta-multi-dimensional add-dimension-hierarchy [--workspace <path>] --id <value> [--description <value>] [--hierarchy-type <value>] --name <value> --dimension <value>
+
+Add a DimensionHierarchy row.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. DimensionHierarchy row id.
-  --description <value>     Optional. Description.
-  --hierarchy-type <value>  Optional. HierarchyType.
-  --name <value>            Required. Name.
-  --dimension <id>          Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one DimensionHierarchy row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionHierarchy row id.
+  --description <value>         Description.
+  --hierarchy-type <value>      HierarchyType.
+  --name <value>                Name.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-multi-dimensional add-dimension-hierarchy-level --help`
 
 ```text
-Command: add-dimension-hierarchy-level
 Usage:
-  meta-multi-dimensional add-dimension-hierarchy-level [--workspace <path>] --id <id> --name <value>
-  [--ordinal <value>] --dimension-attribute <id> --dimension-hierarchy <id>
+  meta-multi-dimensional add-dimension-hierarchy-level [--workspace <path>] --id <value> --name <value> [--ordinal <value>] --dimension-attribute <value> --dimension-hierarchy <value>
+
+Add a DimensionHierarchyLevel row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. DimensionHierarchyLevel row id.
-  --name <value>              Required. Name.
-  --ordinal <value>           Optional. Ordinal.
-  --dimension-attribute <id>  Required. DimensionAttribute id for DimensionAttributeId.
-  --dimension-hierarchy <id>  Required. DimensionHierarchy id for DimensionHierarchyId.
-
-Notes:
-  Adds one DimensionHierarchyLevel row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionHierarchyLevel row id.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --dimension-attribute <value>  DimensionAttribute id for DimensionAttributeId.
+  --dimension-hierarchy <value>  DimensionHierarchy id for DimensionHierarchyId.
 ```
 
 ### `meta-multi-dimensional add-dimension-permission --help`
 
 ```text
-Command: add-dimension-permission
 Usage:
-  meta-multi-dimensional add-dimension-permission [--workspace <path>] --id <id>
-  [--allowed-set-expression <value>] [--default-member-expression <value>] [--denied-set-expression
-  <value>] [--description <value>] [--visual-totals <value>] --dimension-attribute <id> --dimension
-  <id> --security-role <id>
+  meta-multi-dimensional add-dimension-permission [--workspace <path>] --id <value> [--allowed-set-expression <value>] [--default-member-expression <value>] [--denied-set-expression <value>] [--description <value>] [--visual-totals <value>] --dimension-attribute <value> --dimension <value> --security-role <value>
+
+Add a DimensionPermission row.
 
 Options:
-
-  --workspace <path>                   Optional. Workspace path. Default: current working directory.
-  --id <id>                            Required. DimensionPermission row id.
-  --allowed-set-expression <value>     Optional. AllowedSetExpression.
-  --default-member-expression <value>  Optional. DefaultMemberExpression.
-  --denied-set-expression <value>      Optional. DeniedSetExpression.
-  --description <value>                Optional. Description.
-  --visual-totals <value>              Optional. VisualTotals.
-  --dimension-attribute <id>           Required. DimensionAttribute id for DimensionAttributeId.
-  --dimension <id>                     Required. Dimension id for DimensionId.
-  --security-role <id>                 Required. SecurityRole id for SecurityRoleId.
-
-Notes:
-  Adds one DimensionPermission row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionPermission row id.
+  --allowed-set-expression <value>  AllowedSetExpression.
+  --default-member-expression <value>  DefaultMemberExpression.
+  --denied-set-expression <value>  DeniedSetExpression.
+  --description <value>         Description.
+  --visual-totals <value>       VisualTotals.
+  --dimension-attribute <value>  DimensionAttribute id for DimensionAttributeId.
+  --dimension <value>           Dimension id for DimensionId.
+  --security-role <value>       SecurityRole id for SecurityRoleId.
 ```
 
 ### `meta-multi-dimensional add-dimension-translation --help`
 
 ```text
-Command: add-dimension-translation
 Usage:
-  meta-multi-dimensional add-dimension-translation [--workspace <path>] --id <id> [--caption
-  <value>] [--description <value>] --culture <id> --dimension <id>
+  meta-multi-dimensional add-dimension-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --culture <value> --dimension <value>
+
+Add a DimensionTranslation row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. DimensionTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --culture <id>         Required. Culture id for CultureId.
-  --dimension <id>       Required. Dimension id for DimensionId.
-
-Notes:
-  Adds one DimensionTranslation row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id for CultureId.
+  --dimension <value>           Dimension id for DimensionId.
 ```
 
 ### `meta-multi-dimensional add-dimension-usage --help`
 
 ```text
-Command: add-dimension-usage
 Usage:
-  meta-multi-dimensional add-dimension-usage [--workspace <path>] --id <id> [--description <value>]
-  [--is-required <value>] [--role-name <value>] --usage-kind <value> --cube-dimension <id>
-  [--granularity-attribute <id>] [--intermediate-measure-group <id>] --measure-group <id>
+  meta-multi-dimensional add-dimension-usage [--workspace <path>] --id <value> [--description <value>] [--is-required <value>] [--role-name <value>] --usage-kind <value> --cube-dimension <value> [--granularity-attribute <value>] [--intermediate-measure-group <value>] --measure-group <value>
+
+Add a DimensionUsage row.
 
 Options:
-
-  --workspace <path>                 Optional. Workspace path. Default: current working directory.
-  --id <id>                          Required. DimensionUsage row id.
-  --description <value>              Optional. Description.
-  --is-required <value>              Optional. IsRequired.
-  --role-name <value>                Optional. RoleName.
-  --usage-kind <value>               Required. UsageKind.
-  --cube-dimension <id>              Required. CubeDimension id for CubeDimensionId.
-  --granularity-attribute <id>       Optional. DimensionAttribute id for GranularityAttributeId.
-  --intermediate-measure-group <id>  Optional. MeasureGroup id for IntermediateMeasureGroupId.
-  --measure-group <id>               Required. MeasureGroup id for MeasureGroupId.
-
-Notes:
-  Adds one DimensionUsage row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  DimensionUsage row id.
+  --description <value>         Description.
+  --is-required <value>         IsRequired.
+  --role-name <value>           RoleName.
+  --usage-kind <value>          UsageKind.
+  --cube-dimension <value>      CubeDimension id for CubeDimensionId.
+  --granularity-attribute <value>  DimensionAttribute id for GranularityAttributeId.
+  --intermediate-measure-group <value>  MeasureGroup id for IntermediateMeasureGroupId.
+  --measure-group <value>       MeasureGroup id for MeasureGroupId.
 ```
 
 ### `meta-multi-dimensional add-kpi --help`
 
 ```text
-Command: add-kpi
 Usage:
-  meta-multi-dimensional add-kpi [--workspace <path>] --id <id> [--description <value>]
-  [--goal-expression <value>] --name <value> [--status-expression <value>] [--status-graphic
-  <value>] [--trend-expression <value>] [--trend-graphic <value>] [--value-expression <value>]
-  [--associated-measure <id>] --cube <id>
+  meta-multi-dimensional add-kpi [--workspace <path>] --id <value> [--description <value>] [--goal-expression <value>] --name <value> [--status-expression <value>] [--status-graphic <value>] [--trend-expression <value>] [--trend-graphic <value>] [--value-expression <value>] [--associated-measure <value>] --cube <value>
+
+Add a Kpi row.
 
 Options:
-
-  --workspace <path>           Optional. Workspace path. Default: current working directory.
-  --id <id>                    Required. Kpi row id.
-  --description <value>        Optional. Description.
-  --goal-expression <value>    Optional. GoalExpression.
-  --name <value>               Required. Name.
-  --status-expression <value>  Optional. StatusExpression.
-  --status-graphic <value>     Optional. StatusGraphic.
-  --trend-expression <value>   Optional. TrendExpression.
-  --trend-graphic <value>      Optional. TrendGraphic.
-  --value-expression <value>   Optional. ValueExpression.
-  --associated-measure <id>    Optional. Measure id for AssociatedMeasureId.
-  --cube <id>                  Required. Cube id for CubeId.
-
-Notes:
-  Adds one Kpi row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Kpi row id.
+  --description <value>         Description.
+  --goal-expression <value>     GoalExpression.
+  --name <value>                Name.
+  --status-expression <value>   StatusExpression.
+  --status-graphic <value>      StatusGraphic.
+  --trend-expression <value>    TrendExpression.
+  --trend-graphic <value>       TrendGraphic.
+  --value-expression <value>    ValueExpression.
+  --associated-measure <value>  Measure id for AssociatedMeasureId.
+  --cube <value>                Cube id for CubeId.
 ```
 
 ### `meta-multi-dimensional add-kpi-translation --help`
 
 ```text
-Command: add-kpi-translation
 Usage:
-  meta-multi-dimensional add-kpi-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --culture <id> --kpi <id>
+  meta-multi-dimensional add-kpi-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --culture <value> --kpi <value>
+
+Add a KpiTranslation row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. KpiTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --culture <id>         Required. Culture id for CultureId.
-  --kpi <id>             Required. Kpi id for KpiId.
-
-Notes:
-  Adds one KpiTranslation row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  KpiTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id for CultureId.
+  --kpi <value>                 Kpi id for KpiId.
 ```
 
 ### `meta-multi-dimensional add-mdx-calculation --help`
 
 ```text
-Command: add-mdx-calculation
 Usage:
-  meta-multi-dimensional add-mdx-calculation [--workspace <path>] --id <id> --calculation-kind
-  <value> [--description <value>] [--display-folder <value>] --expression <value> --name <value>
-  [--solve-order <value>] --cube <id>
+  meta-multi-dimensional add-mdx-calculation [--workspace <path>] --id <value> --calculation-kind <value> [--description <value>] [--display-folder <value>] --expression <value> --name <value> [--solve-order <value>] --cube <value>
+
+Add a MdxCalculation row.
 
 Options:
-
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. MdxCalculation row id.
-  --calculation-kind <value>  Required. CalculationKind.
-  --description <value>       Optional. Description.
-  --display-folder <value>    Optional. DisplayFolder.
-  --expression <value>        Required. Expression.
-  --name <value>              Required. Name.
-  --solve-order <value>       Optional. SolveOrder.
-  --cube <id>                 Required. Cube id for CubeId.
-
-Notes:
-  Adds one MdxCalculation row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  MdxCalculation row id.
+  --calculation-kind <value>    CalculationKind.
+  --description <value>         Description.
+  --display-folder <value>      DisplayFolder.
+  --expression <value>          Expression.
+  --name <value>                Name.
+  --solve-order <value>         SolveOrder.
+  --cube <value>                Cube id for CubeId.
 ```
 
 ### `meta-multi-dimensional add-measure --help`
 
 ```text
-Command: add-measure
 Usage:
-  meta-multi-dimensional add-measure [--workspace <path>] --id <id> [--aggregate-function <value>]
-  [--data-type-id <value>] [--description <value>] [--display-folder <value>] [--format-string
-  <value>] --name <value> [--source-name <value>] --measure-group <id>
+  meta-multi-dimensional add-measure [--workspace <path>] --id <value> [--aggregate-function <value>] [--data-type-id <value>] [--description <value>] [--display-folder <value>] [--format-string <value>] --name <value> [--source-name <value>] --measure-group <value>
+
+Add a Measure row.
 
 Options:
-
-  --workspace <path>            Optional. Workspace path. Default: current working directory.
-  --id <id>                     Required. Measure row id.
-  --aggregate-function <value>  Optional. AggregateFunction.
-  --data-type-id <value>        Optional. DataTypeId.
-  --description <value>         Optional. Description.
-  --display-folder <value>      Optional. DisplayFolder.
-  --format-string <value>       Optional. FormatString.
-  --name <value>                Required. Name.
-  --source-name <value>         Optional. SourceName.
-  --measure-group <id>          Required. MeasureGroup id for MeasureGroupId.
-
-Notes:
-  Adds one Measure row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Measure row id.
+  --aggregate-function <value>  AggregateFunction.
+  --data-type-id <value>        DataTypeId.
+  --description <value>         Description.
+  --display-folder <value>      DisplayFolder.
+  --format-string <value>       FormatString.
+  --name <value>                Name.
+  --source-name <value>         SourceName.
+  --measure-group <value>       MeasureGroup id for MeasureGroupId.
 ```
 
 ### `meta-multi-dimensional add-measure-group --help`
 
 ```text
-Command: add-measure-group
 Usage:
-  meta-multi-dimensional add-measure-group [--workspace <path>] --id <id> [--description <value>]
-  --name <value> [--processing-mode <value>] [--source-name <value>] [--storage-mode <value>] --cube
-  <id>
+  meta-multi-dimensional add-measure-group [--workspace <path>] --id <value> [--description <value>] --name <value> [--processing-mode <value>] [--source-name <value>] [--storage-mode <value>] --cube <value>
+
+Add a MeasureGroup row.
 
 Options:
-
-  --workspace <path>         Optional. Workspace path. Default: current working directory.
-  --id <id>                  Required. MeasureGroup row id.
-  --description <value>      Optional. Description.
-  --name <value>             Required. Name.
-  --processing-mode <value>  Optional. ProcessingMode. Default: Regular.
-  --source-name <value>      Optional. SourceName.
-  --storage-mode <value>     Optional. StorageMode. Default: Molap.
-  --cube <id>                Required. Cube id for CubeId.
-
-Notes:
-  Adds one MeasureGroup row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  MeasureGroup row id.
+  --description <value>         Description.
+  --name <value>                Name.
+  --processing-mode <value>     ProcessingMode. Default: Regular.
+  --source-name <value>         SourceName.
+  --storage-mode <value>        StorageMode. Default: Molap.
+  --cube <value>                Cube id for CubeId.
 ```
 
 ### `meta-multi-dimensional add-measure-translation --help`
 
 ```text
-Command: add-measure-translation
 Usage:
-  meta-multi-dimensional add-measure-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --culture <id> --measure <id>
+  meta-multi-dimensional add-measure-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --culture <value> --measure <value>
+
+Add a MeasureTranslation row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. MeasureTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --culture <id>         Required. Culture id for CultureId.
-  --measure <id>         Required. Measure id for MeasureId.
-
-Notes:
-  Adds one MeasureTranslation row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
-```
-
-### `meta-multi-dimensional add-multi-dimensional-data-source --help`
-
-```text
-Command: add-multi-dimensional-data-source
-Usage:
-  meta-multi-dimensional add-multi-dimensional-data-source [--workspace <path>] --id <id>
-  [--connection-reference <value>] [--description <value>] --name <value> [--provider <value>]
-  [--source-kind <value>] --multi-dimensional-database <id>
-
-Options:
-
-  --workspace <path>                 Optional. Workspace path. Default: current working directory.
-  --id <id>                          Required. MultiDimensionalDataSource row id.
-  --connection-reference <value>     Optional. ConnectionReference.
-  --description <value>              Optional. Description.
-  --name <value>                     Required. Name.
-  --provider <value>                 Optional. Provider.
-  --source-kind <value>              Optional. SourceKind.
-  --multi-dimensional-database <id>  Required. MultiDimensionalDatabase id for
-                                     MultiDimensionalDatabaseId.
-
-Notes:
-  Adds one MultiDimensionalDataSource row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  MeasureTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id for CultureId.
+  --measure <value>             Measure id for MeasureId.
 ```
 
 ### `meta-multi-dimensional add-multi-dimensional-database --help`
 
 ```text
-Command: add-multi-dimensional-database
 Usage:
-  meta-multi-dimensional add-multi-dimensional-database [--workspace <path>] --id <id> [--collation
-  <value>] [--default-language <value>] [--description <value>] --name <value>
+  meta-multi-dimensional add-multi-dimensional-database [--workspace <path>] --id <value> [--collation <value>] [--default-language <value>] [--description <value>] --name <value>
+
+Add a MultiDimensionalDatabase row.
 
 Options:
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  MultiDimensionalDatabase row id.
+  --collation <value>           Collation.
+  --default-language <value>    DefaultLanguage.
+  --description <value>         Description.
+  --name <value>                Name.
+```
 
-  --workspace <path>          Optional. Workspace path. Default: current working directory.
-  --id <id>                   Required. MultiDimensionalDatabase row id.
-  --collation <value>         Optional. Collation.
-  --default-language <value>  Optional. DefaultLanguage.
-  --description <value>       Optional. Description.
-  --name <value>              Required. Name.
+### `meta-multi-dimensional add-multi-dimensional-data-source --help`
 
-Notes:
-  Adds one MultiDimensionalDatabase row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+```text
+Usage:
+  meta-multi-dimensional add-multi-dimensional-data-source [--workspace <path>] --id <value> [--connection-reference <value>] [--description <value>] --name <value> [--provider <value>] [--source-kind <value>] --multi-dimensional-database <value>
+
+Add a MultiDimensionalDataSource row.
+
+Options:
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  MultiDimensionalDataSource row id.
+  --connection-reference <value>  ConnectionReference.
+  --description <value>         Description.
+  --name <value>                Name.
+  --provider <value>            Provider.
+  --source-kind <value>         SourceKind.
+  --multi-dimensional-database <value>  MultiDimensionalDatabase id for MultiDimensionalDatabaseId.
 ```
 
 ### `meta-multi-dimensional add-named-set --help`
 
 ```text
-Command: add-named-set
 Usage:
-  meta-multi-dimensional add-named-set [--workspace <path>] --id <id> [--description <value>]
-  [--display-folder <value>] --expression <value> --name <value> --cube <id>
+  meta-multi-dimensional add-named-set [--workspace <path>] --id <value> [--description <value>] [--display-folder <value>] --expression <value> --name <value> --cube <value>
+
+Add a NamedSet row.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. NamedSet row id.
-  --description <value>     Optional. Description.
-  --display-folder <value>  Optional. DisplayFolder.
-  --expression <value>      Required. Expression.
-  --name <value>            Required. Name.
-  --cube <id>               Required. Cube id for CubeId.
-
-Notes:
-  Adds one NamedSet row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  NamedSet row id.
+  --description <value>         Description.
+  --display-folder <value>      DisplayFolder.
+  --expression <value>          Expression.
+  --name <value>                Name.
+  --cube <value>                Cube id for CubeId.
 ```
 
 ### `meta-multi-dimensional add-named-set-translation --help`
 
 ```text
-Command: add-named-set-translation
 Usage:
-  meta-multi-dimensional add-named-set-translation [--workspace <path>] --id <id> [--caption
-  <value>] [--description <value>] --culture <id> --named-set <id>
+  meta-multi-dimensional add-named-set-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --culture <value> --named-set <value>
+
+Add a NamedSetTranslation row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. NamedSetTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --culture <id>         Required. Culture id for CultureId.
-  --named-set <id>       Required. NamedSet id for NamedSetId.
-
-Notes:
-  Adds one NamedSetTranslation row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  NamedSetTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id for CultureId.
+  --named-set <value>           NamedSet id for NamedSetId.
 ```
 
 ### `meta-multi-dimensional add-partition --help`
 
 ```text
-Command: add-partition
 Usage:
-  meta-multi-dimensional add-partition [--workspace <path>] --id <id> [--description <value>] --name
-  <value> [--ordinal <value>] [--processing-mode <value>] [--slice-expression <value>]
-  [--source-expression <value>] [--storage-mode <value>] --measure-group <id>
-  [--multi-dimensional-data-source <id>]
+  meta-multi-dimensional add-partition [--workspace <path>] --id <value> [--description <value>] --name <value> [--ordinal <value>] [--processing-mode <value>] [--slice-expression <value>] [--source-expression <value>] [--storage-mode <value>] --measure-group <value> [--multi-dimensional-data-source <value>]
+
+Add a Partition row.
 
 Options:
-
-  --workspace <path>                    Optional. Workspace path. Default: current working
-                                        directory.
-  --id <id>                             Required. Partition row id.
-  --description <value>                 Optional. Description.
-  --name <value>                        Required. Name.
-  --ordinal <value>                     Optional. Ordinal.
-  --processing-mode <value>             Optional. ProcessingMode. Default: Regular.
-  --slice-expression <value>            Optional. SliceExpression.
-  --source-expression <value>           Optional. SourceExpression.
-  --storage-mode <value>                Optional. StorageMode. Default: Molap.
-  --measure-group <id>                  Required. MeasureGroup id for MeasureGroupId.
-  --multi-dimensional-data-source <id>  Optional. MultiDimensionalDataSource id for
-                                        MultiDimensionalDataSourceId.
-
-Notes:
-  Adds one Partition row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Partition row id.
+  --description <value>         Description.
+  --name <value>                Name.
+  --ordinal <value>             Ordinal.
+  --processing-mode <value>     ProcessingMode. Default: Regular.
+  --slice-expression <value>    SliceExpression.
+  --source-expression <value>   SourceExpression.
+  --storage-mode <value>        StorageMode. Default: Molap.
+  --measure-group <value>       MeasureGroup id for MeasureGroupId.
+  --multi-dimensional-data-source <value>  MultiDimensionalDataSource id for MultiDimensionalDataSourceId.
 ```
 
 ### `meta-multi-dimensional add-perspective --help`
 
 ```text
-Command: add-perspective
 Usage:
-  meta-multi-dimensional add-perspective [--workspace <path>] --id <id> [--default-measure-name
-  <value>] [--description <value>] --name <value> --cube <id>
+  meta-multi-dimensional add-perspective [--workspace <path>] --id <value> [--default-measure-name <value>] [--description <value>] --name <value> --cube <value>
+
+Add a Perspective row.
 
 Options:
-
-  --workspace <path>              Optional. Workspace path. Default: current working directory.
-  --id <id>                       Required. Perspective row id.
-  --default-measure-name <value>  Optional. DefaultMeasureName.
-  --description <value>           Optional. Description.
-  --name <value>                  Required. Name.
-  --cube <id>                     Required. Cube id for CubeId.
-
-Notes:
-  Adds one Perspective row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  Perspective row id.
+  --default-measure-name <value>  DefaultMeasureName.
+  --description <value>         Description.
+  --name <value>                Name.
+  --cube <value>                Cube id for CubeId.
 ```
 
 ### `meta-multi-dimensional add-perspective-action --help`
 
 ```text
-Command: add-perspective-action
 Usage:
-  meta-multi-dimensional add-perspective-action [--workspace <path>] --id <id> --cube-action <id>
-  --perspective <id>
+  meta-multi-dimensional add-perspective-action [--workspace <path>] --id <value> --cube-action <value> --perspective <value>
+
+Add a PerspectiveAction row.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. PerspectiveAction row id.
-  --cube-action <id>  Required. CubeAction id for CubeActionId.
-  --perspective <id>  Required. Perspective id for PerspectiveId.
-
-Notes:
-  Adds one PerspectiveAction row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  PerspectiveAction row id.
+  --cube-action <value>         CubeAction id for CubeActionId.
+  --perspective <value>         Perspective id for PerspectiveId.
 ```
 
 ### `meta-multi-dimensional add-perspective-calculation --help`
 
 ```text
-Command: add-perspective-calculation
 Usage:
-  meta-multi-dimensional add-perspective-calculation [--workspace <path>] --id <id>
-  --mdx-calculation <id> --perspective <id>
+  meta-multi-dimensional add-perspective-calculation [--workspace <path>] --id <value> --mdx-calculation <value> --perspective <value>
+
+Add a PerspectiveCalculation row.
 
 Options:
-
-  --workspace <path>      Optional. Workspace path. Default: current working directory.
-  --id <id>               Required. PerspectiveCalculation row id.
-  --mdx-calculation <id>  Required. MdxCalculation id for MdxCalculationId.
-  --perspective <id>      Required. Perspective id for PerspectiveId.
-
-Notes:
-  Adds one PerspectiveCalculation row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  PerspectiveCalculation row id.
+  --mdx-calculation <value>     MdxCalculation id for MdxCalculationId.
+  --perspective <value>         Perspective id for PerspectiveId.
 ```
 
 ### `meta-multi-dimensional add-perspective-dimension --help`
 
 ```text
-Command: add-perspective-dimension
 Usage:
-  meta-multi-dimensional add-perspective-dimension [--workspace <path>] --id <id> --cube-dimension
-  <id> --perspective <id>
+  meta-multi-dimensional add-perspective-dimension [--workspace <path>] --id <value> --cube-dimension <value> --perspective <value>
+
+Add a PerspectiveDimension row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. PerspectiveDimension row id.
-  --cube-dimension <id>  Required. CubeDimension id for CubeDimensionId.
-  --perspective <id>     Required. Perspective id for PerspectiveId.
-
-Notes:
-  Adds one PerspectiveDimension row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  PerspectiveDimension row id.
+  --cube-dimension <value>      CubeDimension id for CubeDimensionId.
+  --perspective <value>         Perspective id for PerspectiveId.
 ```
 
 ### `meta-multi-dimensional add-perspective-kpi --help`
 
 ```text
-Command: add-perspective-kpi
 Usage:
-  meta-multi-dimensional add-perspective-kpi [--workspace <path>] --id <id> --kpi <id> --perspective
-  <id>
+  meta-multi-dimensional add-perspective-kpi [--workspace <path>] --id <value> --kpi <value> --perspective <value>
+
+Add a PerspectiveKpi row.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. PerspectiveKpi row id.
-  --kpi <id>          Required. Kpi id for KpiId.
-  --perspective <id>  Required. Perspective id for PerspectiveId.
-
-Notes:
-  Adds one PerspectiveKpi row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  PerspectiveKpi row id.
+  --kpi <value>                 Kpi id for KpiId.
+  --perspective <value>         Perspective id for PerspectiveId.
 ```
 
 ### `meta-multi-dimensional add-perspective-measure --help`
 
 ```text
-Command: add-perspective-measure
 Usage:
-  meta-multi-dimensional add-perspective-measure [--workspace <path>] --id <id> --measure <id>
-  --perspective <id>
+  meta-multi-dimensional add-perspective-measure [--workspace <path>] --id <value> --measure <value> --perspective <value>
+
+Add a PerspectiveMeasure row.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. PerspectiveMeasure row id.
-  --measure <id>      Required. Measure id for MeasureId.
-  --perspective <id>  Required. Perspective id for PerspectiveId.
-
-Notes:
-  Adds one PerspectiveMeasure row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  PerspectiveMeasure row id.
+  --measure <value>             Measure id for MeasureId.
+  --perspective <value>         Perspective id for PerspectiveId.
 ```
 
 ### `meta-multi-dimensional add-perspective-measure-group --help`
 
 ```text
-Command: add-perspective-measure-group
 Usage:
-  meta-multi-dimensional add-perspective-measure-group [--workspace <path>] --id <id>
-  --measure-group <id> --perspective <id>
+  meta-multi-dimensional add-perspective-measure-group [--workspace <path>] --id <value> --measure-group <value> --perspective <value>
+
+Add a PerspectiveMeasureGroup row.
 
 Options:
-
-  --workspace <path>    Optional. Workspace path. Default: current working directory.
-  --id <id>             Required. PerspectiveMeasureGroup row id.
-  --measure-group <id>  Required. MeasureGroup id for MeasureGroupId.
-  --perspective <id>    Required. Perspective id for PerspectiveId.
-
-Notes:
-  Adds one PerspectiveMeasureGroup row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  PerspectiveMeasureGroup row id.
+  --measure-group <value>       MeasureGroup id for MeasureGroupId.
+  --perspective <value>         Perspective id for PerspectiveId.
 ```
 
 ### `meta-multi-dimensional add-perspective-named-set --help`
 
 ```text
-Command: add-perspective-named-set
 Usage:
-  meta-multi-dimensional add-perspective-named-set [--workspace <path>] --id <id> --named-set <id>
-  --perspective <id>
+  meta-multi-dimensional add-perspective-named-set [--workspace <path>] --id <value> --named-set <value> --perspective <value>
+
+Add a PerspectiveNamedSet row.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. PerspectiveNamedSet row id.
-  --named-set <id>    Required. NamedSet id for NamedSetId.
-  --perspective <id>  Required. Perspective id for PerspectiveId.
-
-Notes:
-  Adds one PerspectiveNamedSet row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  PerspectiveNamedSet row id.
+  --named-set <value>           NamedSet id for NamedSetId.
+  --perspective <value>         Perspective id for PerspectiveId.
 ```
 
 ### `meta-multi-dimensional add-perspective-translation --help`
 
 ```text
-Command: add-perspective-translation
 Usage:
-  meta-multi-dimensional add-perspective-translation [--workspace <path>] --id <id> [--caption
-  <value>] [--description <value>] --culture <id> --perspective <id>
+  meta-multi-dimensional add-perspective-translation [--workspace <path>] --id <value> [--caption <value>] [--description <value>] --culture <value> --perspective <value>
+
+Add a PerspectiveTranslation row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. PerspectiveTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --culture <id>         Required. Culture id for CultureId.
-  --perspective <id>     Required. Perspective id for PerspectiveId.
-
-Notes:
-  Adds one PerspectiveTranslation row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  PerspectiveTranslation row id.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id for CultureId.
+  --perspective <value>         Perspective id for PerspectiveId.
 ```
 
 ### `meta-multi-dimensional add-role-member --help`
 
 ```text
-Command: add-role-member
 Usage:
-  meta-multi-dimensional add-role-member [--workspace <path>] --id <id> --member-name <value>
-  [--member-sid <value>] --security-role <id>
+  meta-multi-dimensional add-role-member [--workspace <path>] --id <value> --member-name <value> [--member-sid <value>] --security-role <value>
+
+Add a RoleMember row.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. RoleMember row id.
-  --member-name <value>  Required. MemberName.
-  --member-sid <value>   Optional. MemberSid.
-  --security-role <id>   Required. SecurityRole id for SecurityRoleId.
-
-Notes:
-  Adds one RoleMember row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  RoleMember row id.
+  --member-name <value>         MemberName.
+  --member-sid <value>          MemberSid.
+  --security-role <value>       SecurityRole id for SecurityRoleId.
 ```
 
 ### `meta-multi-dimensional add-security-role --help`
 
 ```text
-Command: add-security-role
 Usage:
-  meta-multi-dimensional add-security-role [--workspace <path>] --id <id> [--description <value>]
-  --name <value> --permission <value> --multi-dimensional-database <id>
+  meta-multi-dimensional add-security-role [--workspace <path>] --id <value> [--description <value>] --name <value> --permission <value> --multi-dimensional-database <value>
+
+Add a SecurityRole row.
 
 Options:
-
-  --workspace <path>                 Optional. Workspace path. Default: current working directory.
-  --id <id>                          Required. SecurityRole row id.
-  --description <value>              Optional. Description.
-  --name <value>                     Required. Name.
-  --permission <value>               Required. Permission.
-  --multi-dimensional-database <id>  Required. MultiDimensionalDatabase id for
-                                     MultiDimensionalDatabaseId.
-
-Notes:
-  Adds one SecurityRole row to a MetaMultiDimensional workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --workspace <path>            Workspace path. Defaults to the current directory.
+  --id <value>                  SecurityRole row id.
+  --description <value>         Description.
+  --name <value>                Name.
+  --permission <value>          Permission.
+  --multi-dimensional-database <value>  MultiDimensionalDatabase id for MultiDimensionalDatabaseId.
 ```

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationList>
+    <Application Id="app-meta-multi-dimensional">
+      <ExecutableName>meta-multi-dimensional</ExecutableName>
+      <Name>meta-multi-dimensional</Name>
+    </Application>
+  </ApplicationList>
+</MetaCli>

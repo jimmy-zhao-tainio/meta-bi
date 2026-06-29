@@ -10,8 +10,8 @@ public sealed class CliTests
         var result = RunCli("help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("meta-data-warehouse [--new-workspace <path> | <command> [options]]", result.Output);
-        Assert.Contains("--new-workspace", result.Output);
+        Assert.Contains("meta-data-warehouse <command> [options]", result.Output);
+        Assert.Contains("new-workspace", result.Output);
         Assert.Contains("add-dimension", result.Output);
         Assert.DoesNotContain("create-sample", result.Output);
         Assert.DoesNotContain("init-implementation", result.Output);
@@ -24,12 +24,12 @@ public sealed class CliTests
         var result = RunCli("add-dimension --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("Command: add-dimension", result.Output);
+        Assert.Contains("meta-data-warehouse add-dimension", result.Output);
         Assert.Contains("Options:", result.Output);
         Assert.Contains("--workspace <path>", result.Output);
-        Assert.Contains("--id <id>", result.Output);
-        Assert.Contains("--warehouse <id>", result.Output);
-        Assert.Contains("MetaDataWarehouse workspace", result.Output);
+        Assert.Contains("--id <value>", result.Output);
+        Assert.Contains("--warehouse <value>", result.Output);
+        Assert.Contains("Workspace path. Defaults to the current directory.", result.Output);
     }
 
     [Fact]
@@ -38,9 +38,9 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            var create = RunCli($"--new-workspace \"{path}\"");
+            var create = RunCli($"new-workspace \"{path}\"");
             Assert.Equal(0, create.ExitCode);
-            Assert.Contains("Ok", create.Output);
+            Assert.Contains("MetaDataWarehouse workspace created", create.Output);
             Assert.True(File.Exists(Path.Combine(path, "workspace.xml")));
             Assert.True(File.Exists(Path.Combine(path, "model.xml")));
 
@@ -67,8 +67,41 @@ public sealed class CliTests
         }
     }
 
-    private static (int ExitCode, string Output) RunCli(string arguments) =>
-        CliTestRunner.RunStandardCli("MetaDataWarehouse", "meta-data-warehouse.exe", arguments);
+    [Fact]
+    public void AuthoringCommandWithoutWorkspace_UsesCurrentDirectoryWorkspace()
+    {
+        var path = CreateTempPath();
+        try
+        {
+            Assert.Equal(0, RunCli($"new-workspace \"{path}\"").ExitCode);
+
+            var add = RunCli("--id Commerce --name Commerce", command: "add-warehouse", workingDirectory: path);
+
+            Assert.Equal(0, add.ExitCode);
+            var model = MetaDataWarehouseModel.LoadFromXmlWorkspace(path, searchUpward: false);
+            var warehouse = Assert.Single(model.WarehouseList);
+            Assert.Equal("Commerce", warehouse.Name);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(path);
+        }
+    }
+
+    private static (int ExitCode, string Output) RunCli(
+        string arguments,
+        string? command = null,
+        string? workingDirectory = null)
+    {
+        var cliArguments = string.IsNullOrWhiteSpace(command)
+            ? arguments
+            : $"{command} {arguments}";
+        return CliTestRunner.RunStandardCli(
+            "MetaDataWarehouse",
+            "meta-data-warehouse.exe",
+            cliArguments,
+            workingDirectory: workingDirectory);
+    }
 
     private static string CreateTempPath()
     {

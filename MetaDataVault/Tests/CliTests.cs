@@ -14,7 +14,7 @@ public sealed partial class CliTests
 
         try
         {
-            var createResult = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+            var createResult = RunBusinessCli($"new-workspace \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
@@ -93,7 +93,7 @@ public sealed partial class CliTests
 
         try
         {
-            var createResult = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+            var createResult = RunBusinessCli($"new-workspace \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
@@ -116,7 +116,7 @@ public sealed partial class CliTests
 
         try
         {
-            var createResult = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+            var createResult = RunBusinessCli($"new-workspace \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
@@ -145,7 +145,7 @@ public sealed partial class CliTests
 
         try
         {
-            Assert.Equal(0, RunBusinessCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"new-workspace \"{workspacePath}\"").ExitCode);
 
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
             RunBusinessAdd(workspacePath, "add-hub --id Order --name Order");
@@ -187,6 +187,32 @@ public sealed partial class CliTests
     }
 
     [Fact]
+    public async Task BusinessAuthoringCommandWithoutWorkspace_UsesCurrentDirectoryWorkspace()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+
+        try
+        {
+            Assert.Equal(0, RunBusinessCli($"new-workspace \"{workspacePath}\"").ExitCode);
+
+            var result = RunBusinessCli("add-hub --id Customer --name Customer", workspacePath);
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
+
+            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            var hubs = workspace.Instance.GetOrCreateEntityRecords("BusinessHub");
+            Assert.Single(hubs);
+            Assert.Equal("Customer", hubs[0].Id);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
     public async Task RawAuthoringCommands_CoverBaselineAddCommands()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
@@ -194,7 +220,7 @@ public sealed partial class CliTests
 
         try
         {
-            var createResult = RunRawCli($"--new-workspace \"{workspacePath}\"");
+            var createResult = RunRawCli($"new-workspace \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             RunRawAdd(workspacePath, "add-source-system --id Sales --name Sales");
@@ -246,7 +272,7 @@ public sealed partial class CliTests
 
         try
         {
-            Assert.Equal(0, RunRawCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunRawCli($"new-workspace \"{workspacePath}\"").ExitCode);
 
             RunRawAdd(workspacePath, "add-source-system --id Sales --name Sales");
             RunRawAdd(workspacePath, "add-source-schema --id dbo --system Sales --name dbo");
@@ -612,14 +638,15 @@ public sealed partial class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
     }
-    private static (int ExitCode, string Output) RunBusinessCli(string arguments)
+    private static (int ExitCode, string Output) RunBusinessCli(string arguments, string? workingDirectory = null)
     {
         var repoRoot = FindRepositoryRoot();
+        var localExePath = Path.Combine(repoRoot, "MetaDataVault", "Cli", "Business", "bin", "Debug", "net8.0", "meta-datavault-business.exe");
         var startInfo = new ProcessStartInfo
         {
-            FileName = "meta-datavault-business",
+            FileName = File.Exists(localExePath) ? localExePath : "meta-datavault-business",
             Arguments = arguments,
-            WorkingDirectory = repoRoot,
+            WorkingDirectory = workingDirectory ?? repoRoot,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,

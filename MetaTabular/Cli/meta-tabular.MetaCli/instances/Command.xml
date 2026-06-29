@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <CommandList>
+    <Command Id="cmd-help" ApplicationId="app-meta-tabular">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-new-workspace" ApplicationId="app-meta-tabular">
+      <Description>Create a MetaTabular workspace.</Description>
+      <Name>new-workspace</Name>
+      <Token>new-workspace</Token>
+    </Command>
+    <Command Id="cmd-deploy" ApplicationId="app-meta-tabular">
+      <Description>Create modeled tabular database objects, including calculation groups, and process unless --no-process is used; processing failures fail the command.</Description>
+      <Name>deploy</Name>
+      <Token>deploy</Token>
+    </Command>
+    <Command Id="cmd-process" ApplicationId="app-meta-tabular">
+      <Description>Process an existing tabular database, table, or partition.</Description>
+      <Name>process</Name>
+      <Token>process</Token>
+    </Command>
+    <Command Id="cmd-restore" ApplicationId="app-meta-tabular">
+      <Description>Promote a processed tabular database through backup and restore for pre-prod-to-prod promotion; restore does not process.</Description>
+      <Name>restore</Name>
+      <Token>restore</Token>
+    </Command>
+    <Command Id="cmd-drop" ApplicationId="app-meta-tabular">
+      <Description>Drop a tabular database from an Analysis Services tabular instance with no confirmation prompt.</Description>
+      <Name>drop</Name>
+      <Token>drop</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-calculation-group" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularCalculationGroup row.</Description>
+      <Name>add-tabular-calculation-group</Name>
+      <Token>add-tabular-calculation-group</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-calculation-item" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularCalculationItem row.</Description>
+      <Name>add-tabular-calculation-item</Name>
+      <Token>add-tabular-calculation-item</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-column" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularColumn row.</Description>
+      <Name>add-tabular-column</Name>
+      <Token>add-tabular-column</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-column-permission" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularColumnPermission row.</Description>
+      <Name>add-tabular-column-permission</Name>
+      <Token>add-tabular-column-permission</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-column-translation" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularColumnTranslation row.</Description>
+      <Name>add-tabular-column-translation</Name>
+      <Token>add-tabular-column-translation</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-culture" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularCulture row.</Description>
+      <Name>add-tabular-culture</Name>
+      <Token>add-tabular-culture</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-data-source" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularDataSource row.</Description>
+      <Name>add-tabular-data-source</Name>
+      <Token>add-tabular-data-source</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-hierarchy" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularHierarchy row.</Description>
+      <Name>add-tabular-hierarchy</Name>
+      <Token>add-tabular-hierarchy</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-hierarchy-level" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularHierarchyLevel row.</Description>
+      <Name>add-tabular-hierarchy-level</Name>
+      <Token>add-tabular-hierarchy-level</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-hierarchy-translation" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularHierarchyTranslation row.</Description>
+      <Name>add-tabular-hierarchy-translation</Name>
+      <Token>add-tabular-hierarchy-translation</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-kpi" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularKpi row.</Description>
+      <Name>add-tabular-kpi</Name>
+      <Token>add-tabular-kpi</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-kpi-translation" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularKpiTranslation row.</Description>
+      <Name>add-tabular-kpi-translation</Name>
+      <Token>add-tabular-kpi-translation</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-measure" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularMeasure row.</Description>
+      <Name>add-tabular-measure</Name>
+      <Token>add-tabular-measure</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-measure-translation" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularMeasureTranslation row.</Description>
+      <Name>add-tabular-measure-translation</Name>
+      <Token>add-tabular-measure-translation</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-model" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularModel row.</Description>
+      <Name>add-tabular-model</Name>
+      <Token>add-tabular-model</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-partition" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularPartition row.</Description>
+      <Name>add-tabular-partition</Name>
+      <Token>add-tabular-partition</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-perspective" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularPerspective row.</Description>
+      <Name>add-tabular-perspective</Name>
+      <Token>add-tabular-perspective</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-perspective-calculation-group" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularPerspectiveCalculationGroup row.</Description>
+      <Name>add-tabular-perspective-calculation-group</Name>
+      <Token>add-tabular-perspective-calculation-group</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-perspective-column" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularPerspectiveColumn row.</Description>
+      <Name>add-tabular-perspective-column</Name>
+      <Token>add-tabular-perspective-column</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-perspective-hierarchy" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularPerspectiveHierarchy row.</Description>
+      <Name>add-tabular-perspective-hierarchy</Name>
+      <Token>add-tabular-perspective-hierarchy</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-perspective-kpi" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularPerspectiveKpi row.</Description>
+      <Name>add-tabular-perspective-kpi</Name>
+      <Token>add-tabular-perspective-kpi</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-perspective-measure" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularPerspectiveMeasure row.</Description>
+      <Name>add-tabular-perspective-measure</Name>
+      <Token>add-tabular-perspective-measure</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-perspective-table" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularPerspectiveTable row.</Description>
+      <Name>add-tabular-perspective-table</Name>
+      <Token>add-tabular-perspective-table</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-perspective-translation" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularPerspectiveTranslation row.</Description>
+      <Name>add-tabular-perspective-translation</Name>
+      <Token>add-tabular-perspective-translation</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-relationship" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularRelationship row.</Description>
+      <Name>add-tabular-relationship</Name>
+      <Token>add-tabular-relationship</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-role-filter" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularRoleFilter row.</Description>
+      <Name>add-tabular-role-filter</Name>
+      <Token>add-tabular-role-filter</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-role-member" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularRoleMember row.</Description>
+      <Name>add-tabular-role-member</Name>
+      <Token>add-tabular-role-member</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-security-role" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularSecurityRole row.</Description>
+      <Name>add-tabular-security-role</Name>
+      <Token>add-tabular-security-role</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-sort-by-column" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularSortByColumn row.</Description>
+      <Name>add-tabular-sort-by-column</Name>
+      <Token>add-tabular-sort-by-column</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-table" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularTable row.</Description>
+      <Name>add-tabular-table</Name>
+      <Token>add-tabular-table</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-table-permission" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularTablePermission row.</Description>
+      <Name>add-tabular-table-permission</Name>
+      <Token>add-tabular-table-permission</Token>
+    </Command>
+    <Command Id="cmd-add-tabular-table-translation" ApplicationId="app-meta-tabular">
+      <Description>Add a TabularTableTranslation row.</Description>
+      <Name>add-tabular-table-translation</Name>
+      <Token>add-tabular-table-translation</Token>
+    </Command>
+  </CommandList>
+</MetaCli>

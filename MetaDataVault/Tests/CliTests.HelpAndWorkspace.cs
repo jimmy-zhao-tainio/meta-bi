@@ -12,10 +12,10 @@ public sealed partial class CliTests
 
         try
         {
-            var result = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+            var result = RunBusinessCli($"new-workspace \"{workspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
+            Assert.Contains("MetaBusinessDataVault workspace created", result.Output, StringComparison.Ordinal);
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
             Assert.Equal("MetaBusinessDataVault", workspace.Model.Name);
@@ -34,10 +34,10 @@ public sealed partial class CliTests
 
         try
         {
-            var result = RunRawCli($"--new-workspace \"{workspacePath}\"");
+            var result = RunRawCli($"new-workspace \"{workspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
+            Assert.Contains("MetaRawDataVault workspace created", result.Output, StringComparison.Ordinal);
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
             Assert.Equal("MetaRawDataVault", workspace.Model.Name);
@@ -70,8 +70,8 @@ public sealed partial class CliTests
         Assert.Contains("schema-to-raw-datavault", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--source-workspace <path>", result.Output);
         Assert.Contains("--new-workspace <path>", result.Output);
-        Assert.Contains("[--ignore-field-name <name>]", result.Output);
-        Assert.Contains("[--ignore-field-suffix <suffix>]", result.Output);
+        Assert.Contains("[--ignore-field-name <value>]", result.Output);
+        Assert.Contains("[--ignore-field-suffix <value>]", result.Output);
         Assert.Contains("[--include-views]", result.Output);
         Assert.Contains("[--verbose]", result.Output);
     }
@@ -84,12 +84,9 @@ public sealed partial class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("[--workspace <path>]", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
-        Assert.Contains("--database-name <name>", result.Output);
+        Assert.Contains("--database-name <value>", result.Output);
         Assert.Contains("--out <path>", result.Output);
-        Assert.Contains("current sanctioned MetaBusinessDataVault workspace", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Target schema comes from the sanctioned MetaDataVaultImplementation workspace", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Does not query any live database", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Defaults to the current working directory when --workspace is omitted", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Source workspace path. Defaults to the current directory.", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -97,8 +94,8 @@ public sealed partial class CliTests
     {
         var result = RunMetaConvertCli("business-datavault-to-sql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --out C:\\temp\\sql");
 
-        Assert.Equal(1, result.ExitCode);
-        Assert.Contains("missing required option --database-name", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Equal(2, result.ExitCode);
+        Assert.Contains("Required parameter 'database-name' was not provided.", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -109,12 +106,9 @@ public sealed partial class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("[--workspace <path>]", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
-        Assert.Contains("--database-name <name>", result.Output);
+        Assert.Contains("--database-name <value>", result.Output);
         Assert.Contains("--out <path>", result.Output);
-        Assert.Contains("current sanctioned MetaRawDataVault workspace", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Target schema comes from the sanctioned MetaDataVaultImplementation workspace", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Does not query any live database", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Defaults to the current working directory when --workspace is omitted", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Source workspace path. Defaults to the current directory.", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -122,8 +116,8 @@ public sealed partial class CliTests
     {
         var result = RunMetaConvertCli("raw-datavault-to-sql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --out C:\\temp\\sql");
 
-        Assert.Equal(1, result.ExitCode);
-        Assert.Contains("missing required option --database-name", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Equal(2, result.ExitCode);
+        Assert.Contains("Required parameter 'database-name' was not provided.", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]

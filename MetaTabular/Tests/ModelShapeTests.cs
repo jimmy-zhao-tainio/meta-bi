@@ -1,5 +1,3 @@
-using MetaTabular.Core;
-
 namespace MetaTabular.Tests;
 
 public sealed class ModelShapeTests
@@ -7,8 +5,11 @@ public sealed class ModelShapeTests
     [Fact]
     public void MetaTabularModel_CarriesTabularImplementationConcepts()
     {
-        var model = MetaTabularModels.CreateMetaTabularModel();
-        var entityNames = model.Entities.Select(entity => entity.Name).ToHashSet(StringComparer.Ordinal);
+        var entityNames = typeof(MetaTabularModel).GetProperties()
+            .Where(property => property.PropertyType.IsGenericType &&
+                               property.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
+            .Select(property => property.PropertyType.GetGenericArguments()[0].Name)
+            .ToHashSet(StringComparer.Ordinal);
 
         Assert.Contains("TabularModel", entityNames);
         Assert.Contains("TabularTable", entityNames);

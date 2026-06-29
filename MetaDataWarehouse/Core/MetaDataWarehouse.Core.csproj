@@ -7,18 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="..\Workspaces\MetaDataWarehouse\model.xml">
-      <Link>Models\MetaDataWarehouse.model.xml</Link>
-      <LogicalName>MetaDataWarehouse.Core.Models.MetaDataWarehouse.model.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\Workspaces\MetaDataWarehouseImplementation\model.xml">
-      <Link>Models\MetaDataWarehouseImplementation.model.xml</Link>
-      <LogicalName>MetaDataWarehouse.Core.Models.MetaDataWarehouseImplementation.model.xml</LogicalName>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Tooling\MetaDataWarehouse.Tooling.csproj" />
   </ItemGroup>
 
 </Project>

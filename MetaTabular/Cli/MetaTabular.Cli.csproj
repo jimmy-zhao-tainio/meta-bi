@@ -10,8 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\Core\MetaTabular.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="meta-tabular.MetaCli\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <CommandList>
+    <Command Id="cmd-help" ApplicationId="app-meta-multi-dimensional">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-new-workspace" ApplicationId="app-meta-multi-dimensional">
+      <Description>Create a MetaMultiDimensional workspace.</Description>
+      <Name>new-workspace</Name>
+      <Token>new-workspace</Token>
+    </Command>
+    <Command Id="cmd-deploy" ApplicationId="app-meta-multi-dimensional">
+      <Description>Create modeled multidimensional database objects, including data source views, and process unless --no-process is used; processing failures fail the command.</Description>
+      <Name>deploy</Name>
+      <Token>deploy</Token>
+    </Command>
+    <Command Id="cmd-restore" ApplicationId="app-meta-multi-dimensional">
+      <Description>Promote a processed multidimensional database through backup and restore for pre-prod-to-prod promotion; restore does not process.</Description>
+      <Name>restore</Name>
+      <Token>restore</Token>
+    </Command>
+    <Command Id="cmd-drop" ApplicationId="app-meta-multi-dimensional">
+      <Description>Drop a multidimensional database from an Analysis Services multidimensional instance with no confirmation prompt.</Description>
+      <Name>drop</Name>
+      <Token>drop</Token>
+    </Command>
+    <Command Id="cmd-add-action-translation" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a ActionTranslation row.</Description>
+      <Name>add-action-translation</Name>
+      <Token>add-action-translation</Token>
+    </Command>
+    <Command Id="cmd-add-attribute-relationship" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a AttributeRelationship row.</Description>
+      <Name>add-attribute-relationship</Name>
+      <Token>add-attribute-relationship</Token>
+    </Command>
+    <Command Id="cmd-add-attribute-translation" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a AttributeTranslation row.</Description>
+      <Name>add-attribute-translation</Name>
+      <Token>add-attribute-translation</Token>
+    </Command>
+    <Command Id="cmd-add-cell-permission" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a CellPermission row.</Description>
+      <Name>add-cell-permission</Name>
+      <Token>add-cell-permission</Token>
+    </Command>
+    <Command Id="cmd-add-cube" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a Cube row.</Description>
+      <Name>add-cube</Name>
+      <Token>add-cube</Token>
+    </Command>
+    <Command Id="cmd-add-cube-action" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a CubeAction row.</Description>
+      <Name>add-cube-action</Name>
+      <Token>add-cube-action</Token>
+    </Command>
+    <Command Id="cmd-add-cube-dimension" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a CubeDimension row.</Description>
+      <Name>add-cube-dimension</Name>
+      <Token>add-cube-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-cube-translation" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a CubeTranslation row.</Description>
+      <Name>add-cube-translation</Name>
+      <Token>add-cube-translation</Token>
+    </Command>
+    <Command Id="cmd-add-culture" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a Culture row.</Description>
+      <Name>add-culture</Name>
+      <Token>add-culture</Token>
+    </Command>
+    <Command Id="cmd-add-dimension" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a Dimension row.</Description>
+      <Name>add-dimension</Name>
+      <Token>add-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-attribute" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a DimensionAttribute row.</Description>
+      <Name>add-dimension-attribute</Name>
+      <Token>add-dimension-attribute</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-hierarchy" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a DimensionHierarchy row.</Description>
+      <Name>add-dimension-hierarchy</Name>
+      <Token>add-dimension-hierarchy</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-hierarchy-level" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a DimensionHierarchyLevel row.</Description>
+      <Name>add-dimension-hierarchy-level</Name>
+      <Token>add-dimension-hierarchy-level</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-permission" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a DimensionPermission row.</Description>
+      <Name>add-dimension-permission</Name>
+      <Token>add-dimension-permission</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-translation" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a DimensionTranslation row.</Description>
+      <Name>add-dimension-translation</Name>
+      <Token>add-dimension-translation</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-usage" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a DimensionUsage row.</Description>
+      <Name>add-dimension-usage</Name>
+      <Token>add-dimension-usage</Token>
+    </Command>
+    <Command Id="cmd-add-kpi" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a Kpi row.</Description>
+      <Name>add-kpi</Name>
+      <Token>add-kpi</Token>
+    </Command>
+    <Command Id="cmd-add-kpi-translation" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a KpiTranslation row.</Description>
+      <Name>add-kpi-translation</Name>
+      <Token>add-kpi-translation</Token>
+    </Command>
+    <Command Id="cmd-add-mdx-calculation" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a MdxCalculation row.</Description>
+      <Name>add-mdx-calculation</Name>
+      <Token>add-mdx-calculation</Token>
+    </Command>
+    <Command Id="cmd-add-measure" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a Measure row.</Description>
+      <Name>add-measure</Name>
+      <Token>add-measure</Token>
+    </Command>
+    <Command Id="cmd-add-measure-group" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a MeasureGroup row.</Description>
+      <Name>add-measure-group</Name>
+      <Token>add-measure-group</Token>
+    </Command>
+    <Command Id="cmd-add-measure-translation" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a MeasureTranslation row.</Description>
+      <Name>add-measure-translation</Name>
+      <Token>add-measure-translation</Token>
+    </Command>
+    <Command Id="cmd-add-multi-dimensional-database" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a MultiDimensionalDatabase row.</Description>
+      <Name>add-multi-dimensional-database</Name>
+      <Token>add-multi-dimensional-database</Token>
+    </Command>
+    <Command Id="cmd-add-multi-dimensional-data-source" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a MultiDimensionalDataSource row.</Description>
+      <Name>add-multi-dimensional-data-source</Name>
+      <Token>add-multi-dimensional-data-source</Token>
+    </Command>
+    <Command Id="cmd-add-named-set" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a NamedSet row.</Description>
+      <Name>add-named-set</Name>
+      <Token>add-named-set</Token>
+    </Command>
+    <Command Id="cmd-add-named-set-translation" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a NamedSetTranslation row.</Description>
+      <Name>add-named-set-translation</Name>
+      <Token>add-named-set-translation</Token>
+    </Command>
+    <Command Id="cmd-add-partition" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a Partition row.</Description>
+      <Name>add-partition</Name>
+      <Token>add-partition</Token>
+    </Command>
+    <Command Id="cmd-add-perspective" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a Perspective row.</Description>
+      <Name>add-perspective</Name>
+      <Token>add-perspective</Token>
+    </Command>
+    <Command Id="cmd-add-perspective-action" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a PerspectiveAction row.</Description>
+      <Name>add-perspective-action</Name>
+      <Token>add-perspective-action</Token>
+    </Command>
+    <Command Id="cmd-add-perspective-calculation" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a PerspectiveCalculation row.</Description>
+      <Name>add-perspective-calculation</Name>
+      <Token>add-perspective-calculation</Token>
+    </Command>
+    <Command Id="cmd-add-perspective-dimension" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a PerspectiveDimension row.</Description>
+      <Name>add-perspective-dimension</Name>
+      <Token>add-perspective-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-perspective-kpi" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a PerspectiveKpi row.</Description>
+      <Name>add-perspective-kpi</Name>
+      <Token>add-perspective-kpi</Token>
+    </Command>
+    <Command Id="cmd-add-perspective-measure" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a PerspectiveMeasure row.</Description>
+      <Name>add-perspective-measure</Name>
+      <Token>add-perspective-measure</Token>
+    </Command>
+    <Command Id="cmd-add-perspective-measure-group" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a PerspectiveMeasureGroup row.</Description>
+      <Name>add-perspective-measure-group</Name>
+      <Token>add-perspective-measure-group</Token>
+    </Command>
+    <Command Id="cmd-add-perspective-named-set" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a PerspectiveNamedSet row.</Description>
+      <Name>add-perspective-named-set</Name>
+      <Token>add-perspective-named-set</Token>
+    </Command>
+    <Command Id="cmd-add-perspective-translation" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a PerspectiveTranslation row.</Description>
+      <Name>add-perspective-translation</Name>
+      <Token>add-perspective-translation</Token>
+    </Command>
+    <Command Id="cmd-add-role-member" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a RoleMember row.</Description>
+      <Name>add-role-member</Name>
+      <Token>add-role-member</Token>
+    </Command>
+    <Command Id="cmd-add-security-role" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a SecurityRole row.</Description>
+      <Name>add-security-role</Name>
+      <Token>add-security-role</Token>
+    </Command>
+  </CommandList>
+</MetaCli>

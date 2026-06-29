@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandList>
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-new-workspace" CommandId="cmd-new-workspace">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-deploy" CommandId="cmd-deploy">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-process" CommandId="cmd-process">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-restore" CommandId="cmd-restore">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-drop" CommandId="cmd-drop">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-calculation-group" CommandId="cmd-add-tabular-calculation-group">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-calculation-item" CommandId="cmd-add-tabular-calculation-item">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-column" CommandId="cmd-add-tabular-column">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-column-permission" CommandId="cmd-add-tabular-column-permission">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-column-translation" CommandId="cmd-add-tabular-column-translation">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-culture" CommandId="cmd-add-tabular-culture">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-data-source" CommandId="cmd-add-tabular-data-source">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-hierarchy" CommandId="cmd-add-tabular-hierarchy">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-hierarchy-level" CommandId="cmd-add-tabular-hierarchy-level">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-hierarchy-translation" CommandId="cmd-add-tabular-hierarchy-translation">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-kpi" CommandId="cmd-add-tabular-kpi">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-kpi-translation" CommandId="cmd-add-tabular-kpi-translation">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-measure" CommandId="cmd-add-tabular-measure">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-measure-translation" CommandId="cmd-add-tabular-measure-translation">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-model" CommandId="cmd-add-tabular-model">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-partition" CommandId="cmd-add-tabular-partition">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-perspective" CommandId="cmd-add-tabular-perspective">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-perspective-calculation-group" CommandId="cmd-add-tabular-perspective-calculation-group">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-perspective-column" CommandId="cmd-add-tabular-perspective-column">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-perspective-hierarchy" CommandId="cmd-add-tabular-perspective-hierarchy">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-perspective-kpi" CommandId="cmd-add-tabular-perspective-kpi">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-perspective-measure" CommandId="cmd-add-tabular-perspective-measure">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-perspective-table" CommandId="cmd-add-tabular-perspective-table">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-perspective-translation" CommandId="cmd-add-tabular-perspective-translation">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-relationship" CommandId="cmd-add-tabular-relationship">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-role-filter" CommandId="cmd-add-tabular-role-filter">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-role-member" CommandId="cmd-add-tabular-role-member">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-security-role" CommandId="cmd-add-tabular-security-role">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-sort-by-column" CommandId="cmd-add-tabular-sort-by-column">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-table" CommandId="cmd-add-tabular-table">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-table-permission" CommandId="cmd-add-tabular-table-permission">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-tabular-table-translation" CommandId="cmd-add-tabular-table-translation">
+    </ExecutableCommand>
+  </ExecutableCommandList>
+</MetaCli>

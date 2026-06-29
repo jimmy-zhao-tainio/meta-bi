@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandParameterList>
+    <ExecutableCommandParameter Id="exec-new-workspace:parameter:param-new-workspace-path" ExecutableCommandId="exec-new-workspace" ParameterId="param-new-workspace-path">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-warehouse:parameter:param-add-warehouse-workspace" ExecutableCommandId="exec-add-warehouse" ParameterId="param-add-warehouse-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-warehouse:parameter:param-add-warehouse-id" ExecutableCommandId="exec-add-warehouse" ParameterId="param-add-warehouse-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-warehouse:parameter:param-add-warehouse-name" ExecutableCommandId="exec-add-warehouse" ParameterId="param-add-warehouse-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-warehouse:parameter:param-add-warehouse-description" ExecutableCommandId="exec-add-warehouse" ParameterId="param-add-warehouse-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension:parameter:param-add-dimension-workspace" ExecutableCommandId="exec-add-dimension" ParameterId="param-add-dimension-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension:parameter:param-add-dimension-id" ExecutableCommandId="exec-add-dimension" ParameterId="param-add-dimension-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension:parameter:param-add-dimension-name" ExecutableCommandId="exec-add-dimension" ParameterId="param-add-dimension-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension:parameter:param-add-dimension-description" ExecutableCommandId="exec-add-dimension" ParameterId="param-add-dimension-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension:parameter:param-add-dimension-warehouse" ExecutableCommandId="exec-add-dimension" ParameterId="param-add-dimension-warehouse">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-conformed-dimension:parameter:param-add-conformed-dimension-workspace" ExecutableCommandId="exec-add-conformed-dimension" ParameterId="param-add-conformed-dimension-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-conformed-dimension:parameter:param-add-conformed-dimension-id" ExecutableCommandId="exec-add-conformed-dimension" ParameterId="param-add-conformed-dimension-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-conformed-dimension:parameter:param-add-conformed-dimension-conformance-name" ExecutableCommandId="exec-add-conformed-dimension" ParameterId="param-add-conformed-dimension-conformance-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-conformed-dimension:parameter:param-add-conformed-dimension-description" ExecutableCommandId="exec-add-conformed-dimension" ParameterId="param-add-conformed-dimension-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-conformed-dimension:parameter:param-add-conformed-dimension-dimension" ExecutableCommandId="exec-add-conformed-dimension" ParameterId="param-add-conformed-dimension-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-attribute:parameter:param-add-dimension-attribute-workspace" ExecutableCommandId="exec-add-dimension-attribute" ParameterId="param-add-dimension-attribute-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-attribute:parameter:param-add-dimension-attribute-id" ExecutableCommandId="exec-add-dimension-attribute" ParameterId="param-add-dimension-attribute-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-attribute:parameter:param-add-dimension-attribute-name" ExecutableCommandId="exec-add-dimension-attribute" ParameterId="param-add-dimension-attribute-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-attribute:parameter:param-add-dimension-attribute-data-type-id" ExecutableCommandId="exec-add-dimension-attribute" ParameterId="param-add-dimension-attribute-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-attribute:parameter:param-add-dimension-attribute-ordinal" ExecutableCommandId="exec-add-dimension-attribute" ParameterId="param-add-dimension-attribute-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-attribute:parameter:param-add-dimension-attribute-is-nullable" ExecutableCommandId="exec-add-dimension-attribute" ParameterId="param-add-dimension-attribute-is-nullable">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-attribute:parameter:param-add-dimension-attribute-description" ExecutableCommandId="exec-add-dimension-attribute" ParameterId="param-add-dimension-attribute-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-attribute:parameter:param-add-dimension-attribute-dimension" ExecutableCommandId="exec-add-dimension-attribute" ParameterId="param-add-dimension-attribute-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-business-key:parameter:param-add-dimension-business-key-workspace" ExecutableCommandId="exec-add-dimension-business-key" ParameterId="param-add-dimension-business-key-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-business-key:parameter:param-add-dimension-business-key-id" ExecutableCommandId="exec-add-dimension-business-key" ParameterId="param-add-dimension-business-key-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-business-key:parameter:param-add-dimension-business-key-name" ExecutableCommandId="exec-add-dimension-business-key" ParameterId="param-add-dimension-business-key-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-business-key:parameter:param-add-dimension-business-key-description" ExecutableCommandId="exec-add-dimension-business-key" ParameterId="param-add-dimension-business-key-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-business-key:parameter:param-add-dimension-business-key-dimension" ExecutableCommandId="exec-add-dimension-business-key" ParameterId="param-add-dimension-business-key-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-business-key-part:parameter:param-add-dimension-business-key-part-workspace" ExecutableCommandId="exec-add-dimension-business-key-part" ParameterId="param-add-dimension-business-key-part-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-business-key-part:parameter:param-add-dimension-business-key-part-id" ExecutableCommandId="exec-add-dimension-business-key-part" ParameterId="param-add-dimension-business-key-part-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-business-key-part:parameter:param-add-dimension-business-key-part-ordinal" ExecutableCommandId="exec-add-dimension-business-key-part" ParameterId="param-add-dimension-business-key-part-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-business-key-part:parameter:param-add-dimension-business-key-part-business-key" ExecutableCommandId="exec-add-dimension-business-key-part" ParameterId="param-add-dimension-business-key-part-business-key">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-business-key-part:parameter:param-add-dimension-business-key-part-attribute" ExecutableCommandId="exec-add-dimension-business-key-part" ParameterId="param-add-dimension-business-key-part-attribute">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-slowly-changing-dimension:parameter:param-add-slowly-changing-dimension-workspace" ExecutableCommandId="exec-add-slowly-changing-dimension" ParameterId="param-add-slowly-changing-dimension-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-slowly-changing-dimension:parameter:param-add-slowly-changing-dimension-id" ExecutableCommandId="exec-add-slowly-changing-dimension" ParameterId="param-add-slowly-changing-dimension-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-slowly-changing-dimension:parameter:param-add-slowly-changing-dimension-name" ExecutableCommandId="exec-add-slowly-changing-dimension" ParameterId="param-add-slowly-changing-dimension-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-slowly-changing-dimension:parameter:param-add-slowly-changing-dimension-description" ExecutableCommandId="exec-add-slowly-changing-dimension" ParameterId="param-add-slowly-changing-dimension-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-slowly-changing-dimension:parameter:param-add-slowly-changing-dimension-dimension" ExecutableCommandId="exec-add-slowly-changing-dimension" ParameterId="param-add-slowly-changing-dimension-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-type1-dimension-attribute:parameter:param-add-type1-dimension-attribute-workspace" ExecutableCommandId="exec-add-type1-dimension-attribute" ParameterId="param-add-type1-dimension-attribute-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-type1-dimension-attribute:parameter:param-add-type1-dimension-attribute-id" ExecutableCommandId="exec-add-type1-dimension-attribute" ParameterId="param-add-type1-dimension-attribute-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-type1-dimension-attribute:parameter:param-add-type1-dimension-attribute-description" ExecutableCommandId="exec-add-type1-dimension-attribute" ParameterId="param-add-type1-dimension-attribute-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-type1-dimension-attribute:parameter:param-add-type1-dimension-attribute-slowly-changing-dimension" ExecutableCommandId="exec-add-type1-dimension-attribute" ParameterId="param-add-type1-dimension-attribute-slowly-changing-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-type1-dimension-attribute:parameter:param-add-type1-dimension-attribute-attribute" ExecutableCommandId="exec-add-type1-dimension-attribute" ParameterId="param-add-type1-dimension-attribute-attribute">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-type2-dimension-attribute:parameter:param-add-type2-dimension-attribute-workspace" ExecutableCommandId="exec-add-type2-dimension-attribute" ParameterId="param-add-type2-dimension-attribute-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-type2-dimension-attribute:parameter:param-add-type2-dimension-attribute-id" ExecutableCommandId="exec-add-type2-dimension-attribute" ParameterId="param-add-type2-dimension-attribute-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-type2-dimension-attribute:parameter:param-add-type2-dimension-attribute-description" ExecutableCommandId="exec-add-type2-dimension-attribute" ParameterId="param-add-type2-dimension-attribute-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-type2-dimension-attribute:parameter:param-add-type2-dimension-attribute-slowly-changing-dimension" ExecutableCommandId="exec-add-type2-dimension-attribute" ParameterId="param-add-type2-dimension-attribute-slowly-changing-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-type2-dimension-attribute:parameter:param-add-type2-dimension-attribute-attribute" ExecutableCommandId="exec-add-type2-dimension-attribute" ParameterId="param-add-type2-dimension-attribute-attribute">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy:parameter:param-add-dimension-hierarchy-workspace" ExecutableCommandId="exec-add-dimension-hierarchy" ParameterId="param-add-dimension-hierarchy-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy:parameter:param-add-dimension-hierarchy-id" ExecutableCommandId="exec-add-dimension-hierarchy" ParameterId="param-add-dimension-hierarchy-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy:parameter:param-add-dimension-hierarchy-name" ExecutableCommandId="exec-add-dimension-hierarchy" ParameterId="param-add-dimension-hierarchy-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy:parameter:param-add-dimension-hierarchy-description" ExecutableCommandId="exec-add-dimension-hierarchy" ParameterId="param-add-dimension-hierarchy-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy:parameter:param-add-dimension-hierarchy-dimension" ExecutableCommandId="exec-add-dimension-hierarchy" ParameterId="param-add-dimension-hierarchy-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy-level:parameter:param-add-dimension-hierarchy-level-workspace" ExecutableCommandId="exec-add-dimension-hierarchy-level" ParameterId="param-add-dimension-hierarchy-level-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy-level:parameter:param-add-dimension-hierarchy-level-id" ExecutableCommandId="exec-add-dimension-hierarchy-level" ParameterId="param-add-dimension-hierarchy-level-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy-level:parameter:param-add-dimension-hierarchy-level-name" ExecutableCommandId="exec-add-dimension-hierarchy-level" ParameterId="param-add-dimension-hierarchy-level-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy-level:parameter:param-add-dimension-hierarchy-level-ordinal" ExecutableCommandId="exec-add-dimension-hierarchy-level" ParameterId="param-add-dimension-hierarchy-level-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy-level:parameter:param-add-dimension-hierarchy-level-hierarchy" ExecutableCommandId="exec-add-dimension-hierarchy-level" ParameterId="param-add-dimension-hierarchy-level-hierarchy">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dimension-hierarchy-level:parameter:param-add-dimension-hierarchy-level-attribute" ExecutableCommandId="exec-add-dimension-hierarchy-level" ParameterId="param-add-dimension-hierarchy-level-attribute">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-junk-dimension:parameter:param-add-junk-dimension-workspace" ExecutableCommandId="exec-add-junk-dimension" ParameterId="param-add-junk-dimension-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-junk-dimension:parameter:param-add-junk-dimension-id" ExecutableCommandId="exec-add-junk-dimension" ParameterId="param-add-junk-dimension-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-junk-dimension:parameter:param-add-junk-dimension-description" ExecutableCommandId="exec-add-junk-dimension" ParameterId="param-add-junk-dimension-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-junk-dimension:parameter:param-add-junk-dimension-dimension" ExecutableCommandId="exec-add-junk-dimension" ParameterId="param-add-junk-dimension-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-junk-dimension-component:parameter:param-add-junk-dimension-component-workspace" ExecutableCommandId="exec-add-junk-dimension-component" ParameterId="param-add-junk-dimension-component-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-junk-dimension-component:parameter:param-add-junk-dimension-component-id" ExecutableCommandId="exec-add-junk-dimension-component" ParameterId="param-add-junk-dimension-component-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-junk-dimension-component:parameter:param-add-junk-dimension-component-ordinal" ExecutableCommandId="exec-add-junk-dimension-component" ParameterId="param-add-junk-dimension-component-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-junk-dimension-component:parameter:param-add-junk-dimension-component-description" ExecutableCommandId="exec-add-junk-dimension-component" ParameterId="param-add-junk-dimension-component-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-junk-dimension-component:parameter:param-add-junk-dimension-component-junk-dimension" ExecutableCommandId="exec-add-junk-dimension-component" ParameterId="param-add-junk-dimension-component-junk-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-junk-dimension-component:parameter:param-add-junk-dimension-component-attribute" ExecutableCommandId="exec-add-junk-dimension-component" ParameterId="param-add-junk-dimension-component-attribute">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-mini-dimension:parameter:param-add-mini-dimension-workspace" ExecutableCommandId="exec-add-mini-dimension" ParameterId="param-add-mini-dimension-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-mini-dimension:parameter:param-add-mini-dimension-id" ExecutableCommandId="exec-add-mini-dimension" ParameterId="param-add-mini-dimension-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-mini-dimension:parameter:param-add-mini-dimension-role-name" ExecutableCommandId="exec-add-mini-dimension" ParameterId="param-add-mini-dimension-role-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-mini-dimension:parameter:param-add-mini-dimension-description" ExecutableCommandId="exec-add-mini-dimension" ParameterId="param-add-mini-dimension-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-mini-dimension:parameter:param-add-mini-dimension-source-dimension" ExecutableCommandId="exec-add-mini-dimension" ParameterId="param-add-mini-dimension-source-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-mini-dimension:parameter:param-add-mini-dimension-profile-dimension" ExecutableCommandId="exec-add-mini-dimension" ParameterId="param-add-mini-dimension-profile-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-outrigger-dimension:parameter:param-add-outrigger-dimension-workspace" ExecutableCommandId="exec-add-outrigger-dimension" ParameterId="param-add-outrigger-dimension-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-outrigger-dimension:parameter:param-add-outrigger-dimension-id" ExecutableCommandId="exec-add-outrigger-dimension" ParameterId="param-add-outrigger-dimension-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-outrigger-dimension:parameter:param-add-outrigger-dimension-role-name" ExecutableCommandId="exec-add-outrigger-dimension" ParameterId="param-add-outrigger-dimension-role-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-outrigger-dimension:parameter:param-add-outrigger-dimension-ordinal" ExecutableCommandId="exec-add-outrigger-dimension" ParameterId="param-add-outrigger-dimension-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-outrigger-dimension:parameter:param-add-outrigger-dimension-is-required" ExecutableCommandId="exec-add-outrigger-dimension" ParameterId="param-add-outrigger-dimension-is-required">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-outrigger-dimension:parameter:param-add-outrigger-dimension-description" ExecutableCommandId="exec-add-outrigger-dimension" ParameterId="param-add-outrigger-dimension-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-outrigger-dimension:parameter:param-add-outrigger-dimension-parent-dimension" ExecutableCommandId="exec-add-outrigger-dimension" ParameterId="param-add-outrigger-dimension-parent-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-outrigger-dimension:parameter:param-add-outrigger-dimension-child-dimension" ExecutableCommandId="exec-add-outrigger-dimension" ParameterId="param-add-outrigger-dimension-child-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact:parameter:param-add-fact-workspace" ExecutableCommandId="exec-add-fact" ParameterId="param-add-fact-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact:parameter:param-add-fact-id" ExecutableCommandId="exec-add-fact" ParameterId="param-add-fact-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact:parameter:param-add-fact-name" ExecutableCommandId="exec-add-fact" ParameterId="param-add-fact-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact:parameter:param-add-fact-description" ExecutableCommandId="exec-add-fact" ParameterId="param-add-fact-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact:parameter:param-add-fact-warehouse" ExecutableCommandId="exec-add-fact" ParameterId="param-add-fact-warehouse">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-grain:parameter:param-add-fact-grain-workspace" ExecutableCommandId="exec-add-fact-grain" ParameterId="param-add-fact-grain-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-grain:parameter:param-add-fact-grain-id" ExecutableCommandId="exec-add-fact-grain" ParameterId="param-add-fact-grain-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-grain:parameter:param-add-fact-grain-name" ExecutableCommandId="exec-add-fact-grain" ParameterId="param-add-fact-grain-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-grain:parameter:param-add-fact-grain-description" ExecutableCommandId="exec-add-fact-grain" ParameterId="param-add-fact-grain-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-grain:parameter:param-add-fact-grain-fact" ExecutableCommandId="exec-add-fact-grain" ParameterId="param-add-fact-grain-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-dimension:parameter:param-add-fact-dimension-workspace" ExecutableCommandId="exec-add-fact-dimension" ParameterId="param-add-fact-dimension-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-dimension:parameter:param-add-fact-dimension-id" ExecutableCommandId="exec-add-fact-dimension" ParameterId="param-add-fact-dimension-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-dimension:parameter:param-add-fact-dimension-role-name" ExecutableCommandId="exec-add-fact-dimension" ParameterId="param-add-fact-dimension-role-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-dimension:parameter:param-add-fact-dimension-ordinal" ExecutableCommandId="exec-add-fact-dimension" ParameterId="param-add-fact-dimension-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-dimension:parameter:param-add-fact-dimension-is-required" ExecutableCommandId="exec-add-fact-dimension" ParameterId="param-add-fact-dimension-is-required">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-dimension:parameter:param-add-fact-dimension-description" ExecutableCommandId="exec-add-fact-dimension" ParameterId="param-add-fact-dimension-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-dimension:parameter:param-add-fact-dimension-fact" ExecutableCommandId="exec-add-fact-dimension" ParameterId="param-add-fact-dimension-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-dimension:parameter:param-add-fact-dimension-dimension" ExecutableCommandId="exec-add-fact-dimension" ParameterId="param-add-fact-dimension-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-measure:parameter:param-add-fact-measure-workspace" ExecutableCommandId="exec-add-fact-measure" ParameterId="param-add-fact-measure-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-measure:parameter:param-add-fact-measure-id" ExecutableCommandId="exec-add-fact-measure" ParameterId="param-add-fact-measure-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-measure:parameter:param-add-fact-measure-name" ExecutableCommandId="exec-add-fact-measure" ParameterId="param-add-fact-measure-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-measure:parameter:param-add-fact-measure-data-type-id" ExecutableCommandId="exec-add-fact-measure" ParameterId="param-add-fact-measure-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-measure:parameter:param-add-fact-measure-ordinal" ExecutableCommandId="exec-add-fact-measure" ParameterId="param-add-fact-measure-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-measure:parameter:param-add-fact-measure-is-nullable" ExecutableCommandId="exec-add-fact-measure" ParameterId="param-add-fact-measure-is-nullable">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-measure:parameter:param-add-fact-measure-description" ExecutableCommandId="exec-add-fact-measure" ParameterId="param-add-fact-measure-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-measure:parameter:param-add-fact-measure-fact" ExecutableCommandId="exec-add-fact-measure" ParameterId="param-add-fact-measure-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-degenerate-dimension:parameter:param-add-degenerate-dimension-workspace" ExecutableCommandId="exec-add-degenerate-dimension" ParameterId="param-add-degenerate-dimension-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-degenerate-dimension:parameter:param-add-degenerate-dimension-id" ExecutableCommandId="exec-add-degenerate-dimension" ParameterId="param-add-degenerate-dimension-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-degenerate-dimension:parameter:param-add-degenerate-dimension-name" ExecutableCommandId="exec-add-degenerate-dimension" ParameterId="param-add-degenerate-dimension-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-degenerate-dimension:parameter:param-add-degenerate-dimension-data-type-id" ExecutableCommandId="exec-add-degenerate-dimension" ParameterId="param-add-degenerate-dimension-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-degenerate-dimension:parameter:param-add-degenerate-dimension-ordinal" ExecutableCommandId="exec-add-degenerate-dimension" ParameterId="param-add-degenerate-dimension-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-degenerate-dimension:parameter:param-add-degenerate-dimension-description" ExecutableCommandId="exec-add-degenerate-dimension" ParameterId="param-add-degenerate-dimension-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-degenerate-dimension:parameter:param-add-degenerate-dimension-fact" ExecutableCommandId="exec-add-degenerate-dimension" ParameterId="param-add-degenerate-dimension-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-transaction-fact:parameter:param-add-transaction-fact-workspace" ExecutableCommandId="exec-add-transaction-fact" ParameterId="param-add-transaction-fact-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-transaction-fact:parameter:param-add-transaction-fact-id" ExecutableCommandId="exec-add-transaction-fact" ParameterId="param-add-transaction-fact-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-transaction-fact:parameter:param-add-transaction-fact-description" ExecutableCommandId="exec-add-transaction-fact" ParameterId="param-add-transaction-fact-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-transaction-fact:parameter:param-add-transaction-fact-fact" ExecutableCommandId="exec-add-transaction-fact" ParameterId="param-add-transaction-fact-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-periodic-snapshot-fact:parameter:param-add-periodic-snapshot-fact-workspace" ExecutableCommandId="exec-add-periodic-snapshot-fact" ParameterId="param-add-periodic-snapshot-fact-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-periodic-snapshot-fact:parameter:param-add-periodic-snapshot-fact-id" ExecutableCommandId="exec-add-periodic-snapshot-fact" ParameterId="param-add-periodic-snapshot-fact-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-periodic-snapshot-fact:parameter:param-add-periodic-snapshot-fact-period-name" ExecutableCommandId="exec-add-periodic-snapshot-fact" ParameterId="param-add-periodic-snapshot-fact-period-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-periodic-snapshot-fact:parameter:param-add-periodic-snapshot-fact-description" ExecutableCommandId="exec-add-periodic-snapshot-fact" ParameterId="param-add-periodic-snapshot-fact-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-periodic-snapshot-fact:parameter:param-add-periodic-snapshot-fact-fact" ExecutableCommandId="exec-add-periodic-snapshot-fact" ParameterId="param-add-periodic-snapshot-fact-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-fact:parameter:param-add-accumulating-snapshot-fact-workspace" ExecutableCommandId="exec-add-accumulating-snapshot-fact" ParameterId="param-add-accumulating-snapshot-fact-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-fact:parameter:param-add-accumulating-snapshot-fact-id" ExecutableCommandId="exec-add-accumulating-snapshot-fact" ParameterId="param-add-accumulating-snapshot-fact-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-fact:parameter:param-add-accumulating-snapshot-fact-description" ExecutableCommandId="exec-add-accumulating-snapshot-fact" ParameterId="param-add-accumulating-snapshot-fact-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-fact:parameter:param-add-accumulating-snapshot-fact-fact" ExecutableCommandId="exec-add-accumulating-snapshot-fact" ParameterId="param-add-accumulating-snapshot-fact-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-milestone:parameter:param-add-accumulating-snapshot-milestone-workspace" ExecutableCommandId="exec-add-accumulating-snapshot-milestone" ParameterId="param-add-accumulating-snapshot-milestone-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-milestone:parameter:param-add-accumulating-snapshot-milestone-id" ExecutableCommandId="exec-add-accumulating-snapshot-milestone" ParameterId="param-add-accumulating-snapshot-milestone-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-milestone:parameter:param-add-accumulating-snapshot-milestone-name" ExecutableCommandId="exec-add-accumulating-snapshot-milestone" ParameterId="param-add-accumulating-snapshot-milestone-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-milestone:parameter:param-add-accumulating-snapshot-milestone-ordinal" ExecutableCommandId="exec-add-accumulating-snapshot-milestone" ParameterId="param-add-accumulating-snapshot-milestone-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-milestone:parameter:param-add-accumulating-snapshot-milestone-date-role-name" ExecutableCommandId="exec-add-accumulating-snapshot-milestone" ParameterId="param-add-accumulating-snapshot-milestone-date-role-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-milestone:parameter:param-add-accumulating-snapshot-milestone-description" ExecutableCommandId="exec-add-accumulating-snapshot-milestone" ParameterId="param-add-accumulating-snapshot-milestone-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-accumulating-snapshot-milestone:parameter:param-add-accumulating-snapshot-milestone-accumulating-snapshot" ExecutableCommandId="exec-add-accumulating-snapshot-milestone" ParameterId="param-add-accumulating-snapshot-milestone-accumulating-snapshot">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-factless-fact:parameter:param-add-factless-fact-workspace" ExecutableCommandId="exec-add-factless-fact" ParameterId="param-add-factless-fact-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-factless-fact:parameter:param-add-factless-fact-id" ExecutableCommandId="exec-add-factless-fact" ParameterId="param-add-factless-fact-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-factless-fact:parameter:param-add-factless-fact-description" ExecutableCommandId="exec-add-factless-fact" ParameterId="param-add-factless-fact-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-factless-fact:parameter:param-add-factless-fact-fact" ExecutableCommandId="exec-add-factless-fact" ParameterId="param-add-factless-fact-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-aggregate-fact:parameter:param-add-aggregate-fact-workspace" ExecutableCommandId="exec-add-aggregate-fact" ParameterId="param-add-aggregate-fact-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-aggregate-fact:parameter:param-add-aggregate-fact-id" ExecutableCommandId="exec-add-aggregate-fact" ParameterId="param-add-aggregate-fact-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-aggregate-fact:parameter:param-add-aggregate-fact-description" ExecutableCommandId="exec-add-aggregate-fact" ParameterId="param-add-aggregate-fact-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-aggregate-fact:parameter:param-add-aggregate-fact-aggregated-fact" ExecutableCommandId="exec-add-aggregate-fact" ParameterId="param-add-aggregate-fact-aggregated-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-aggregate-fact:parameter:param-add-aggregate-fact-source-fact" ExecutableCommandId="exec-add-aggregate-fact" ParameterId="param-add-aggregate-fact-source-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge:parameter:param-add-bridge-workspace" ExecutableCommandId="exec-add-bridge" ParameterId="param-add-bridge-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge:parameter:param-add-bridge-id" ExecutableCommandId="exec-add-bridge" ParameterId="param-add-bridge-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge:parameter:param-add-bridge-name" ExecutableCommandId="exec-add-bridge" ParameterId="param-add-bridge-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge:parameter:param-add-bridge-description" ExecutableCommandId="exec-add-bridge" ParameterId="param-add-bridge-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge:parameter:param-add-bridge-warehouse" ExecutableCommandId="exec-add-bridge" ParameterId="param-add-bridge-warehouse">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-participant:parameter:param-add-bridge-participant-workspace" ExecutableCommandId="exec-add-bridge-participant" ParameterId="param-add-bridge-participant-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-participant:parameter:param-add-bridge-participant-id" ExecutableCommandId="exec-add-bridge-participant" ParameterId="param-add-bridge-participant-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-participant:parameter:param-add-bridge-participant-role-name" ExecutableCommandId="exec-add-bridge-participant" ParameterId="param-add-bridge-participant-role-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-participant:parameter:param-add-bridge-participant-ordinal" ExecutableCommandId="exec-add-bridge-participant" ParameterId="param-add-bridge-participant-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-participant:parameter:param-add-bridge-participant-is-required" ExecutableCommandId="exec-add-bridge-participant" ParameterId="param-add-bridge-participant-is-required">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-participant:parameter:param-add-bridge-participant-bridge" ExecutableCommandId="exec-add-bridge-participant" ParameterId="param-add-bridge-participant-bridge">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-participant:parameter:param-add-bridge-participant-dimension" ExecutableCommandId="exec-add-bridge-participant" ParameterId="param-add-bridge-participant-dimension">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-weight:parameter:param-add-bridge-weight-workspace" ExecutableCommandId="exec-add-bridge-weight" ParameterId="param-add-bridge-weight-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-weight:parameter:param-add-bridge-weight-id" ExecutableCommandId="exec-add-bridge-weight" ParameterId="param-add-bridge-weight-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-weight:parameter:param-add-bridge-weight-name" ExecutableCommandId="exec-add-bridge-weight" ParameterId="param-add-bridge-weight-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-weight:parameter:param-add-bridge-weight-data-type-id" ExecutableCommandId="exec-add-bridge-weight" ParameterId="param-add-bridge-weight-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-weight:parameter:param-add-bridge-weight-description" ExecutableCommandId="exec-add-bridge-weight" ParameterId="param-add-bridge-weight-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-bridge-weight:parameter:param-add-bridge-weight-bridge" ExecutableCommandId="exec-add-bridge-weight" ParameterId="param-add-bridge-weight-bridge">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-bridge:parameter:param-add-fact-bridge-workspace" ExecutableCommandId="exec-add-fact-bridge" ParameterId="param-add-fact-bridge-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-bridge:parameter:param-add-fact-bridge-id" ExecutableCommandId="exec-add-fact-bridge" ParameterId="param-add-fact-bridge-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-bridge:parameter:param-add-fact-bridge-role-name" ExecutableCommandId="exec-add-fact-bridge" ParameterId="param-add-fact-bridge-role-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-bridge:parameter:param-add-fact-bridge-ordinal" ExecutableCommandId="exec-add-fact-bridge" ParameterId="param-add-fact-bridge-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-bridge:parameter:param-add-fact-bridge-description" ExecutableCommandId="exec-add-fact-bridge" ParameterId="param-add-fact-bridge-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-bridge:parameter:param-add-fact-bridge-fact" ExecutableCommandId="exec-add-fact-bridge" ParameterId="param-add-fact-bridge-fact">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-fact-bridge:parameter:param-add-fact-bridge-bridge" ExecutableCommandId="exec-add-fact-bridge" ParameterId="param-add-fact-bridge-bridge">
+    </ExecutableCommandParameter>
+  </ExecutableCommandParameterList>
+</MetaCli>

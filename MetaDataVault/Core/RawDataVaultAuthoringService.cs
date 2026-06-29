@@ -1,5 +1,6 @@
-using Meta.Core.Domain;
-using Meta.Core.Services;
+using System.Collections;
+using System.Reflection;
+using MetaRawDataVault;
 
 namespace MetaDataVault.Core;
 
@@ -14,25 +15,44 @@ public sealed class RawDataVaultAuthoringRequest
 
 public sealed record RawDataVaultRelationshipAssignment(string ColumnName, string TargetEntityName, string TargetRecordId);
 
+public sealed record RawDataVaultWorkspaceCreationResult(
+    string WorkspacePath,
+    string ModelName,
+    int RowCount);
+
 public interface IRawDataVaultAuthoringService
 {
-    Task<Workspace> AddRecordAsync(RawDataVaultAuthoringRequest request, CancellationToken cancellationToken = default);
+    RawDataVaultWorkspaceCreationResult CreateWorkspace(string workspacePath);
+
+    MetaRawDataVaultModel AddRecord(RawDataVaultAuthoringRequest request);
 }
 
 public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
 {
-    private readonly IWorkspaceService _workspaceService;
-    private readonly ValidationService _validationService;
+    private const string ModelName = "MetaRawDataVault";
 
-    public RawDataVaultAuthoringService() : this(new WorkspaceService(), new ValidationService()) { }
+    private static readonly Type ModelType = typeof(MetaRawDataVaultModel);
 
-    public RawDataVaultAuthoringService(IWorkspaceService workspaceService, ValidationService validationService)
+    private static readonly IReadOnlyDictionary<string, OrdinalScope> OrdinalScopes =
+        new Dictionary<string, OrdinalScope>(StringComparer.Ordinal)
+        {
+            ["SourceField"] = new("SourceTable", ["SourceField"]),
+            ["SourceTableRelationshipField"] = new("SourceTableRelationship", ["SourceTableRelationshipField"]),
+            ["RawHubKeyPart"] = new("RawHub", ["RawHubKeyPart"]),
+            ["RawHubSatelliteAttribute"] = new("RawHubSatellite", ["RawHubSatelliteAttribute"]),
+            ["RawLinkHub"] = new("RawLink", ["RawLinkHub"]),
+            ["RawLinkSatelliteAttribute"] = new("RawLinkSatellite", ["RawLinkSatelliteAttribute"]),
+        };
+
+    public RawDataVaultWorkspaceCreationResult CreateWorkspace(string workspacePath)
     {
-        _workspaceService = workspaceService ?? throw new ArgumentNullException(nameof(workspaceService));
-        _validationService = validationService ?? throw new ArgumentNullException(nameof(validationService));
+        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
+
+        var fullPath = MetaRawDataVaultTooling.CreateWorkspace(Path.GetFullPath(workspacePath));
+        return new RawDataVaultWorkspaceCreationResult(fullPath, ModelName, RowCount: 0);
     }
 
-    public async Task<Workspace> AddRecordAsync(RawDataVaultAuthoringRequest request, CancellationToken cancellationToken = default)
+    public MetaRawDataVaultModel AddRecord(RawDataVaultAuthoringRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.WorkspacePath);
@@ -40,49 +60,170 @@ public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
         ArgumentException.ThrowIfNullOrWhiteSpace(request.RecordId);
 
         var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var workspace = await _workspaceService.LoadAsync(workspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
-        if (!string.Equals(workspace.Model.Name, MetaDataVaultModels.MetaRawDataVaultModelName, StringComparison.Ordinal))
+        var model = MetaRawDataVaultTooling.Load(workspacePath);
+        var entityType = ResolveEntityType(request.EntityName);
+        var rows = GetEntityRows(model, entityType, request.EntityName);
+        if (rows.Cast<object>().Any(row => string.Equals(ReadId(row), request.RecordId, StringComparison.Ordinal)))
         {
-            throw new InvalidOperationException($"Workspace '{workspacePath}' contained model '{workspace.Model.Name}', not '{MetaDataVaultModels.MetaRawDataVaultModelName}'.");
+            throw new InvalidOperationException($"{request.EntityName} '{request.RecordId}' already exists.");
         }
 
-        var entity = workspace.Model.FindEntity(request.EntityName) ?? throw new InvalidOperationException($"Entity '{request.EntityName}' was not found in model '{workspace.Model.Name}'.");
-        var records = workspace.Instance.GetOrCreateEntityRecords(entity.Name);
-        if (records.Any(record => string.Equals(record.Id, request.RecordId, StringComparison.Ordinal)))
+        var rowToAdd = Activator.CreateInstance(entityType)
+            ?? throw new InvalidOperationException($"Could not create {request.EntityName} row.");
+        SetText(rowToAdd, "Id", request.RecordId, request.EntityName);
+
+        foreach (var value in request.Values)
         {
-            throw new InvalidOperationException($"{entity.Name} '{request.RecordId}' already exists.");
+            SetText(rowToAdd, value.Key, value.Value, request.EntityName);
         }
 
         foreach (var relationship in request.Relationships)
         {
-            if (!entity.Relationships.Any(item => string.Equals(item.GetColumnName(), relationship.ColumnName, StringComparison.Ordinal)))
-            {
-                throw new InvalidOperationException($"Entity '{entity.Name}' does not define relationship column '{relationship.ColumnName}'.");
-            }
-
-            var targetRecords = workspace.Instance.GetOrCreateEntityRecords(relationship.TargetEntityName);
-            if (!targetRecords.Any(record => string.Equals(record.Id, relationship.TargetRecordId, StringComparison.Ordinal)))
-            {
-                throw new InvalidOperationException($"{relationship.TargetEntityName} '{relationship.TargetRecordId}' was not found.");
-            }
+            AssignRelationship(model, rowToAdd, request.EntityName, relationship);
         }
 
-        var valuesToAdd = new Dictionary<string, string>(request.Values, StringComparer.OrdinalIgnoreCase);
-        OrdinalAssignment.AssignRawOrdinalIfMissing(workspace, entity.Name, valuesToAdd, request.Relationships);
-
-        var recordToAdd = new GenericRecord { Id = request.RecordId };
-        foreach (var value in valuesToAdd) recordToAdd.Values[value.Key] = value.Value;
-        foreach (var relationship in request.Relationships) recordToAdd.RelationshipIds[relationship.ColumnName] = relationship.TargetRecordId;
-        records.Add(recordToAdd);
-
-        var validation = _validationService.Validate(workspace);
-        if (validation.HasErrors)
-        {
-            throw new InvalidOperationException(string.Join(Environment.NewLine,
-                validation.Issues.Where(issue => issue.Severity == IssueSeverity.Error).Select(issue => $"{issue.Code}: {issue.Message}")));
-        }
-
-        await _workspaceService.SaveAsync(workspace, cancellationToken: cancellationToken).ConfigureAwait(false);
-        return workspace;
+        AssignOrdinalIfMissing(model, rowToAdd, request);
+        rows.Add(rowToAdd);
+        model.SaveToXmlWorkspace(workspacePath);
+        return model;
     }
+
+    private static Type ResolveEntityType(string entityName)
+    {
+        var type = ModelType.Assembly.GetType($"MetaRawDataVault.{entityName}", throwOnError: false);
+        if (type is null)
+        {
+            throw new InvalidOperationException($"Entity '{entityName}' was not found in model '{ModelName}'.");
+        }
+
+        return type;
+    }
+
+    private static IList GetEntityRows(MetaRawDataVaultModel model, Type entityType, string entityName)
+    {
+        var listProperty = ModelType.GetProperty($"{entityName}List", BindingFlags.Instance | BindingFlags.Public);
+        if (listProperty is null)
+        {
+            throw new InvalidOperationException($"Model '{ModelName}' does not expose {entityName}List.");
+        }
+
+        if (!listProperty.PropertyType.IsGenericType ||
+            listProperty.PropertyType.GetGenericTypeDefinition() != typeof(List<>) ||
+            listProperty.PropertyType.GetGenericArguments()[0] != entityType)
+        {
+            throw new InvalidOperationException($"Model list '{listProperty.Name}' is not List<{entityName}>.");
+        }
+
+        return (IList)(listProperty.GetValue(model)
+            ?? throw new InvalidOperationException($"Model list '{listProperty.Name}' is null."));
+    }
+
+    private static object ResolveRow(MetaRawDataVaultModel model, string entityName, string id)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(id);
+
+        var targetType = ResolveEntityType(entityName);
+        var rows = GetEntityRows(model, targetType, entityName);
+        var matches = rows.Cast<object>()
+            .Where(row => string.Equals(ReadId(row), id, StringComparison.Ordinal))
+            .Take(2)
+            .ToArray();
+
+        return matches.Length switch
+        {
+            1 => matches[0],
+            0 => throw new InvalidOperationException($"{entityName} '{id}' was not found."),
+            _ => throw new InvalidOperationException($"{entityName} '{id}' matched more than one row.")
+        };
+    }
+
+    private static void SetText(object row, string propertyName, string value, string entityName)
+    {
+        var property = row.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public)
+            ?? throw new InvalidOperationException($"Entity '{entityName}' does not define property '{propertyName}'.");
+        if (!property.CanWrite || property.PropertyType != typeof(string))
+        {
+            throw new InvalidOperationException($"Entity '{entityName}' property '{propertyName}' is not a text property.");
+        }
+
+        property.SetValue(row, value);
+    }
+
+    private static void AssignRelationship(
+        MetaRawDataVaultModel model,
+        object row,
+        string entityName,
+        RawDataVaultRelationshipAssignment relationship)
+    {
+        var propertyName = RelationshipPropertyName(relationship.ColumnName);
+        var property = row.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public)
+            ?? throw new InvalidOperationException($"Entity '{entityName}' does not define relationship '{propertyName}'.");
+
+        var target = ResolveRow(model, relationship.TargetEntityName, relationship.TargetRecordId);
+        if (!CanAssignRelationship(property.PropertyType, target.GetType()))
+        {
+            throw new InvalidOperationException(
+                $"Entity '{entityName}' relationship '{propertyName}' cannot reference {relationship.TargetEntityName}.");
+        }
+
+        property.SetValue(row, target);
+    }
+
+    private static bool CanAssignRelationship(Type propertyType, Type targetType)
+    {
+        var nullableTarget = Nullable.GetUnderlyingType(propertyType);
+        return (nullableTarget ?? propertyType).IsAssignableFrom(targetType);
+    }
+
+    private static string RelationshipPropertyName(string columnName) =>
+        columnName.EndsWith("Id", StringComparison.Ordinal)
+            ? columnName[..^2]
+            : columnName;
+
+    private static string ReadId(object row)
+    {
+        var property = row.GetType().GetProperty("Id", BindingFlags.Instance | BindingFlags.Public)
+            ?? throw new InvalidOperationException($"Entity '{row.GetType().Name}' does not define Id.");
+        return (string?)property.GetValue(row) ?? string.Empty;
+    }
+
+    private static void AssignOrdinalIfMissing(
+        MetaRawDataVaultModel model,
+        object rowToAdd,
+        RawDataVaultAuthoringRequest request)
+    {
+        var ordinalProperty = rowToAdd.GetType().GetProperty("Ordinal", BindingFlags.Instance | BindingFlags.Public);
+        if (ordinalProperty is null ||
+            request.Values.ContainsKey("Ordinal") ||
+            !OrdinalScopes.TryGetValue(request.EntityName, out var scope))
+        {
+            return;
+        }
+
+        var ownerProperty = rowToAdd.GetType().GetProperty(scope.RelationshipPropertyName, BindingFlags.Instance | BindingFlags.Public);
+        if (ownerProperty is null)
+        {
+            return;
+        }
+
+        var owner = ownerProperty.GetValue(rowToAdd);
+        if (owner is null)
+        {
+            return;
+        }
+
+        var nextOrdinal = scope.EntityNames
+            .SelectMany(entityName => GetEntityRows(model, ResolveEntityType(entityName), entityName).Cast<object>())
+            .Where(row => ReferenceEquals(row.GetType().GetProperty(scope.RelationshipPropertyName, BindingFlags.Instance | BindingFlags.Public)?.GetValue(row), owner))
+            .Select(row => (string?)ordinalProperty.GetValue(row))
+            .Select(value => int.TryParse(value, out var parsed) && parsed > 0 ? parsed : 0)
+            .DefaultIfEmpty(0)
+            .Max() + 1;
+
+        ordinalProperty.SetValue(rowToAdd, nextOrdinal.ToString(System.Globalization.CultureInfo.InvariantCulture));
+    }
+
+    private sealed record OrdinalScope(
+        string RelationshipPropertyName,
+        IReadOnlyList<string> EntityNames);
 }
