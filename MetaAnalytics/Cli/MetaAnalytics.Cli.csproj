@@ -11,7 +11,14 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\Core\MetaAnalytics.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="meta-analytics.MetaCli\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

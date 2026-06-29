@@ -9,6 +9,7 @@
 
 #nullable enable
 
+using Meta.Core.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,18 +19,28 @@ namespace MetaPipeline
     {
         public static MetaPipelineModel Load(
             string workspacePath,
-            bool searchUpward = true)
+            bool searchUpward = false)
         {
             return MetaPipelineModel.LoadFromXmlWorkspace(workspacePath, searchUpward);
         }
 
         public static Task<MetaPipelineModel> LoadAsync(
             string workspacePath,
-            bool searchUpward = true,
+            bool searchUpward = false,
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
             return MetaPipelineModel.LoadFromXmlWorkspaceAsync(workspacePath, searchUpward, cancellationToken);
+        }
+
+        public static string CreateWorkspace(string workspacePath)
+        {
+            return TypedWorkspaceXmlSerializer.CreateWorkspace<MetaPipelineModel>(workspacePath);
+        }
+
+        public static bool IsWorkspace(string workspacePath)
+        {
+            return TypedWorkspaceXmlSerializer.IsWorkspace<MetaPipelineModel>(workspacePath);
         }
 
         public static void Save(MetaPipelineModel model, string workspacePath)

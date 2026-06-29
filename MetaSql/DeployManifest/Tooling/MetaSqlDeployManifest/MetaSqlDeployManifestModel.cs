@@ -96,14 +96,14 @@ namespace MetaSqlDeployManifest
 
         public static MetaSqlDeployManifestModel LoadFromXmlWorkspace(
             string workspacePath,
-            bool searchUpward = true)
+            bool searchUpward = false)
         {
             return MetaSqlDeployManifestModelXmlSerializer.Load(workspacePath, searchUpward);
         }
 
         public static Task<MetaSqlDeployManifestModel> LoadFromXmlWorkspaceAsync(
             string workspacePath,
-            bool searchUpward = true,
+            bool searchUpward = false,
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -132,18 +132,17 @@ namespace MetaSqlDeployManifest
         internal static MetaSqlDeployManifestModel Load(string workspacePath, bool searchUpward)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
+            if (searchUpward)
+            {
+                throw new NotSupportedException("Typed workspace loading does not search parent directories. Pass an explicit workspace path.");
+            }
+
             if (HasRuntimeExtendedShape())
             {
                 return TypedWorkspaceXmlSerializer.Load<MetaSqlDeployManifestModel>(workspacePath, searchUpward);
             }
 
-            var workspaceRootPath = searchUpward
-                ? TypedWorkspaceXmlSerializer.DiscoverWorkspaceRoot(workspacePath)
-                : TypedWorkspaceXmlSerializer.ResolveWorkspaceRootFromPath(workspacePath);
-            if (!Directory.Exists(workspaceRootPath))
-            {
-                throw new DirectoryNotFoundException($"Workspace '{workspaceRootPath}' was not found.");
-            }
+            var workspaceRootPath = TypedWorkspaceXmlSerializer.RequireWorkspace<MetaSqlDeployManifestModel>(workspacePath);
 
             var model = new MetaSqlDeployManifestModel();
             var loadState = new LoadState();

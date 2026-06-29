@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterList>
+    <Parameter Id="param-schema-to-raw-datavault-source-workspace" ValueShapeId="shape-path">
+      <Description>MetaSchema workspace to convert.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-schema-to-raw-datavault-new-workspace" ValueShapeId="shape-path">
+      <Description>Directory where the MetaRawDataVault workspace will be created.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>new-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-schema-to-raw-datavault-ignore-field-name" ValueShapeId="shape-text">
+      <Description>Source field name to ignore. May be repeated.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <Name>ignore-field-name</Name>
+    </Parameter>
+    <Parameter Id="param-schema-to-raw-datavault-ignore-field-suffix" ValueShapeId="shape-text">
+      <Description>Source field suffix to ignore. May be repeated.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <Name>ignore-field-suffix</Name>
+    </Parameter>
+    <Parameter Id="param-schema-to-raw-datavault-include-views" ValueShapeId="shape-flag">
+      <Description>Include source views.</Description>
+      <Name>include-views</Name>
+    </Parameter>
+    <Parameter Id="param-schema-to-raw-datavault-verbose" ValueShapeId="shape-flag">
+      <Description>Print conversion summary.</Description>
+      <Name>verbose</Name>
+    </Parameter>
+    <Parameter Id="param-raw-datavault-to-sql-workspace" ValueShapeId="shape-path">
+      <Description>Source workspace path. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-raw-datavault-to-sql-implementation-workspace" ValueShapeId="shape-path">
+      <Description>Implementation policy workspace.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>implementation-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-raw-datavault-to-sql-database-name" ValueShapeId="shape-text">
+      <Description>Target MetaSql database name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>database-name</Name>
+    </Parameter>
+    <Parameter Id="param-raw-datavault-to-sql-out" ValueShapeId="shape-path">
+      <Description>Output MetaSql workspace path.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>out</Name>
+    </Parameter>
+    <Parameter Id="param-business-datavault-to-sql-workspace" ValueShapeId="shape-path">
+      <Description>Source workspace path. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-business-datavault-to-sql-implementation-workspace" ValueShapeId="shape-path">
+      <Description>Implementation policy workspace.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>implementation-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-business-datavault-to-sql-database-name" ValueShapeId="shape-text">
+      <Description>Target MetaSql database name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>database-name</Name>
+    </Parameter>
+    <Parameter Id="param-business-datavault-to-sql-out" ValueShapeId="shape-path">
+      <Description>Output MetaSql workspace path.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>out</Name>
+    </Parameter>
+    <Parameter Id="param-data-warehouse-to-sql-workspace" ValueShapeId="shape-path">
+      <Description>Source workspace path. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-data-warehouse-to-sql-implementation-workspace" ValueShapeId="shape-path">
+      <Description>Implementation policy workspace.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>implementation-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-data-warehouse-to-sql-database-name" ValueShapeId="shape-text">
+      <Description>Target MetaSql database name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>database-name</Name>
+    </Parameter>
+    <Parameter Id="param-data-warehouse-to-sql-out" ValueShapeId="shape-path">
+      <Description>Output MetaSql workspace path.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>out</Name>
+    </Parameter>
+    <Parameter Id="param-data-quality-to-sql-workspace" ValueShapeId="shape-path">
+      <Description>Source workspace path. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-data-quality-to-sql-out" ValueShapeId="shape-path">
+      <Description>Output workspace or script folder path.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>out</Name>
+    </Parameter>
+    <Parameter Id="param-analytics-to-tabular-workspace" ValueShapeId="shape-path">
+      <Description>Source workspace path. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-analytics-to-tabular-out" ValueShapeId="shape-path">
+      <Description>Output workspace or script folder path.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>out</Name>
+    </Parameter>
+    <Parameter Id="param-analytics-to-multi-dimensional-workspace" ValueShapeId="shape-path">
+      <Description>Source workspace path. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-analytics-to-multi-dimensional-out" ValueShapeId="shape-path">
+      <Description>Output workspace or script folder path.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>out</Name>
+    </Parameter>
+    <Parameter Id="param-transform-script-to-sql-workspace" ValueShapeId="shape-path">
+      <Description>Source MetaTransformScript workspace path. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-transform-script-to-sql-database-name" ValueShapeId="shape-text">
+      <Description>Target MetaSql database name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>database-name</Name>
+    </Parameter>
+    <Parameter Id="param-transform-script-to-sql-out" ValueShapeId="shape-path">
+      <Description>Output MetaSql workspace path.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>out</Name>
+    </Parameter>
+    <Parameter Id="param-sql-to-transform-script-workspace" ValueShapeId="shape-path">
+      <Description>Source MetaSql workspace path. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-sql-to-transform-script-out" ValueShapeId="shape-path">
+      <Description>Output MetaTransformScript workspace path.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>out</Name>
+    </Parameter>
+    <Parameter Id="param-sql-to-transform-script-include-views" ValueShapeId="shape-flag">
+      <Description>Convert view modules. If no include switch is provided, all module kinds are selected.</Description>
+      <Name>include-views</Name>
+    </Parameter>
+    <Parameter Id="param-sql-to-transform-script-include-functions" ValueShapeId="shape-flag">
+      <Description>Convert function modules. If no include switch is provided, all module kinds are selected.</Description>
+      <Name>include-functions</Name>
+    </Parameter>
+    <Parameter Id="param-sql-to-transform-script-include-stored-procedures" ValueShapeId="shape-flag">
+      <Description>Convert stored procedure modules. If no include switch is provided, all module kinds are selected.</Description>
+      <Name>include-stored-procedures</Name>
+    </Parameter>
+    <Parameter Id="param-sql-to-transform-script-allow-empty" ValueShapeId="shape-flag">
+      <Description>Create an empty MetaTransformScript workspace when selected module kinds have no convertible modules.</Description>
+      <Name>allow-empty</Name>
+    </Parameter>
+  </ParameterList>
+</MetaCli>

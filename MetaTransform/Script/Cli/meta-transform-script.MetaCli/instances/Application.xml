@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationList>
+    <Application Id="app-meta-transform-script">
+      <ExecutableName>meta-transform-script</ExecutableName>
+      <Name>meta-transform-script</Name>
+    </Application>
+  </ApplicationList>
+</MetaCli>

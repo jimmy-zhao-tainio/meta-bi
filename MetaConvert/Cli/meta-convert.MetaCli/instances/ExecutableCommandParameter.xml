@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandParameterList>
+    <ExecutableCommandParameter Id="exec-schema-to-raw-datavault:parameter:param-schema-to-raw-datavault-source-workspace" ExecutableCommandId="exec-schema-to-raw-datavault" ParameterId="param-schema-to-raw-datavault-source-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-schema-to-raw-datavault:parameter:param-schema-to-raw-datavault-new-workspace" ExecutableCommandId="exec-schema-to-raw-datavault" ParameterId="param-schema-to-raw-datavault-new-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-schema-to-raw-datavault:parameter:param-schema-to-raw-datavault-ignore-field-name" ExecutableCommandId="exec-schema-to-raw-datavault" ParameterId="param-schema-to-raw-datavault-ignore-field-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-schema-to-raw-datavault:parameter:param-schema-to-raw-datavault-ignore-field-suffix" ExecutableCommandId="exec-schema-to-raw-datavault" ParameterId="param-schema-to-raw-datavault-ignore-field-suffix">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-schema-to-raw-datavault:parameter:param-schema-to-raw-datavault-include-views" ExecutableCommandId="exec-schema-to-raw-datavault" ParameterId="param-schema-to-raw-datavault-include-views">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-schema-to-raw-datavault:parameter:param-schema-to-raw-datavault-verbose" ExecutableCommandId="exec-schema-to-raw-datavault" ParameterId="param-schema-to-raw-datavault-verbose">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-raw-datavault-to-sql:parameter:param-raw-datavault-to-sql-workspace" ExecutableCommandId="exec-raw-datavault-to-sql" ParameterId="param-raw-datavault-to-sql-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-raw-datavault-to-sql:parameter:param-raw-datavault-to-sql-implementation-workspace" ExecutableCommandId="exec-raw-datavault-to-sql" ParameterId="param-raw-datavault-to-sql-implementation-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-raw-datavault-to-sql:parameter:param-raw-datavault-to-sql-database-name" ExecutableCommandId="exec-raw-datavault-to-sql" ParameterId="param-raw-datavault-to-sql-database-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-raw-datavault-to-sql:parameter:param-raw-datavault-to-sql-out" ExecutableCommandId="exec-raw-datavault-to-sql" ParameterId="param-raw-datavault-to-sql-out">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-business-datavault-to-sql:parameter:param-business-datavault-to-sql-workspace" ExecutableCommandId="exec-business-datavault-to-sql" ParameterId="param-business-datavault-to-sql-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-business-datavault-to-sql:parameter:param-business-datavault-to-sql-implementation-workspace" ExecutableCommandId="exec-business-datavault-to-sql" ParameterId="param-business-datavault-to-sql-implementation-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-business-datavault-to-sql:parameter:param-business-datavault-to-sql-database-name" ExecutableCommandId="exec-business-datavault-to-sql" ParameterId="param-business-datavault-to-sql-database-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-business-datavault-to-sql:parameter:param-business-datavault-to-sql-out" ExecutableCommandId="exec-business-datavault-to-sql" ParameterId="param-business-datavault-to-sql-out">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-data-warehouse-to-sql:parameter:param-data-warehouse-to-sql-workspace" ExecutableCommandId="exec-data-warehouse-to-sql" ParameterId="param-data-warehouse-to-sql-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-data-warehouse-to-sql:parameter:param-data-warehouse-to-sql-implementation-workspace" ExecutableCommandId="exec-data-warehouse-to-sql" ParameterId="param-data-warehouse-to-sql-implementation-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-data-warehouse-to-sql:parameter:param-data-warehouse-to-sql-database-name" ExecutableCommandId="exec-data-warehouse-to-sql" ParameterId="param-data-warehouse-to-sql-database-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-data-warehouse-to-sql:parameter:param-data-warehouse-to-sql-out" ExecutableCommandId="exec-data-warehouse-to-sql" ParameterId="param-data-warehouse-to-sql-out">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-data-quality-to-sql:parameter:param-data-quality-to-sql-workspace" ExecutableCommandId="exec-data-quality-to-sql" ParameterId="param-data-quality-to-sql-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-data-quality-to-sql:parameter:param-data-quality-to-sql-out" ExecutableCommandId="exec-data-quality-to-sql" ParameterId="param-data-quality-to-sql-out">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-analytics-to-tabular:parameter:param-analytics-to-tabular-workspace" ExecutableCommandId="exec-analytics-to-tabular" ParameterId="param-analytics-to-tabular-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-analytics-to-tabular:parameter:param-analytics-to-tabular-out" ExecutableCommandId="exec-analytics-to-tabular" ParameterId="param-analytics-to-tabular-out">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-analytics-to-multi-dimensional:parameter:param-analytics-to-multi-dimensional-workspace" ExecutableCommandId="exec-analytics-to-multi-dimensional" ParameterId="param-analytics-to-multi-dimensional-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-analytics-to-multi-dimensional:parameter:param-analytics-to-multi-dimensional-out" ExecutableCommandId="exec-analytics-to-multi-dimensional" ParameterId="param-analytics-to-multi-dimensional-out">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-transform-script-to-sql:parameter:param-transform-script-to-sql-workspace" ExecutableCommandId="exec-transform-script-to-sql" ParameterId="param-transform-script-to-sql-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-transform-script-to-sql:parameter:param-transform-script-to-sql-database-name" ExecutableCommandId="exec-transform-script-to-sql" ParameterId="param-transform-script-to-sql-database-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-transform-script-to-sql:parameter:param-transform-script-to-sql-out" ExecutableCommandId="exec-transform-script-to-sql" ParameterId="param-transform-script-to-sql-out">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-sql-to-transform-script:parameter:param-sql-to-transform-script-workspace" ExecutableCommandId="exec-sql-to-transform-script" ParameterId="param-sql-to-transform-script-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-sql-to-transform-script:parameter:param-sql-to-transform-script-out" ExecutableCommandId="exec-sql-to-transform-script" ParameterId="param-sql-to-transform-script-out">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-sql-to-transform-script:parameter:param-sql-to-transform-script-include-views" ExecutableCommandId="exec-sql-to-transform-script" ParameterId="param-sql-to-transform-script-include-views">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-sql-to-transform-script:parameter:param-sql-to-transform-script-include-functions" ExecutableCommandId="exec-sql-to-transform-script" ParameterId="param-sql-to-transform-script-include-functions">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-sql-to-transform-script:parameter:param-sql-to-transform-script-include-stored-procedures" ExecutableCommandId="exec-sql-to-transform-script" ParameterId="param-sql-to-transform-script-include-stored-procedures">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-sql-to-transform-script:parameter:param-sql-to-transform-script-allow-empty" ExecutableCommandId="exec-sql-to-transform-script" ParameterId="param-sql-to-transform-script-allow-empty">
+    </ExecutableCommandParameter>
+  </ExecutableCommandParameterList>
+</MetaCli>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterList>
+    <Parameter Id="param-extract-sqlserver-new-workspace" ValueShapeId="shape-path">
+      <Description>Directory where the MetaSql workspace will be created.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>new-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL Server connection string.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-schema" ValueShapeId="shape-text">
+      <Description>Extract only one SQL Server schema.</Description>
+      <Name>schema</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-table" ValueShapeId="shape-text">
+      <Description>Extract only one table. SQL module extraction is skipped when a table filter is used.</Description>
+      <Name>table</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-include-tables" ValueShapeId="shape-flag">
+      <Description>Extract tables, columns, keys, and indexes. If no include switch is provided, all object kinds are extracted.</Description>
+      <Name>include-tables</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-include-views" ValueShapeId="shape-flag">
+      <Description>Extract view modules. If any include switch is provided, only selected object kinds are extracted.</Description>
+      <Name>include-views</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-include-functions" ValueShapeId="shape-flag">
+      <Description>Extract function modules. If any include switch is provided, only selected object kinds are extracted.</Description>
+      <Name>include-functions</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-include-stored-procedures" ValueShapeId="shape-flag">
+      <Description>Extract stored procedure modules. If any include switch is provided, only selected object kinds are extracted.</Description>
+      <Name>include-stored-procedures</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-allow-empty" ValueShapeId="shape-flag">
+      <Description>Create an empty database/schema workspace when no tables or modules match.</Description>
+      <Name>allow-empty</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-plan-source-workspace" ValueShapeId="shape-path">
+      <Description>Source MetaSql workspace to compare with the live database.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-plan-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL Server connection string.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-plan-out" ValueShapeId="shape-path">
+      <Description>Directory where the deploy manifest workspace will be written.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>out</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-plan-approve-drop-table" ValueShapeId="shape-text">
+      <Description>Approve one exact destructive table drop in the form schema.table.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <Name>approve-drop-table</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-plan-approve-drop-column" ValueShapeId="shape-text">
+      <Description>Approve one exact destructive column drop in the form schema.table.column.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <Name>approve-drop-column</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-plan-approve-truncate-column" ValueShapeId="shape-text">
+      <Description>Approve one exact destructive column truncation in the form schema.table.column.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <Name>approve-truncate-column</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-plan-approval-file" ValueShapeId="shape-path">
+      <Description>JSON file containing destructive approvals.</Description>
+      <Name>approval-file</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-manifest-workspace" ValueShapeId="shape-path">
+      <Description>Deploy manifest workspace created by deploy-plan.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>manifest-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-source-workspace" ValueShapeId="shape-path">
+      <Description>Source MetaSql workspace used to create the manifest.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL Server connection string.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-execute-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL Server connection string.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-execute-file" ValueShapeId="shape-path">
+      <Description>Execute SQL from a file. Mutually exclusive with --query.</Description>
+      <Name>file</Name>
+    </Parameter>
+    <Parameter Id="param-execute-query" ValueShapeId="shape-text">
+      <Description>Execute inline SQL. Mutually exclusive with --file.</Description>
+      <Name>query</Name>
+    </Parameter>
+    <Parameter Id="param-execute-var" ValueShapeId="shape-text">
+      <Description>Replace one SQLCMD-style $(NAME) token before execution.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <Name>var</Name>
+    </Parameter>
+    <Parameter Id="param-execute-timeout-seconds" ValueShapeId="shape-text">
+      <Description>Command timeout for each SQL batch. 0 or omitted means no timeout.</Description>
+      <Name>timeout-seconds</Name>
+    </Parameter>
+    <Parameter Id="param-execute-quiet" ValueShapeId="shape-flag">
+      <Description>Suppress result-set and success output.</Description>
+      <Name>quiet</Name>
+    </Parameter>
+  </ParameterList>
+</MetaCli>

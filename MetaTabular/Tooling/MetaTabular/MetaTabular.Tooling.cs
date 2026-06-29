@@ -9,6 +9,7 @@
 
 #nullable enable
 
+using Meta.Core.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,18 +19,28 @@ namespace MetaTabular
     {
         public static MetaTabularModel Load(
             string workspacePath,
-            bool searchUpward = true)
+            bool searchUpward = false)
         {
             return MetaTabularModel.LoadFromXmlWorkspace(workspacePath, searchUpward);
         }
 
         public static Task<MetaTabularModel> LoadAsync(
             string workspacePath,
-            bool searchUpward = true,
+            bool searchUpward = false,
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
             return MetaTabularModel.LoadFromXmlWorkspaceAsync(workspacePath, searchUpward, cancellationToken);
+        }
+
+        public static string CreateWorkspace(string workspacePath)
+        {
+            return TypedWorkspaceXmlSerializer.CreateWorkspace<MetaTabularModel>(workspacePath);
+        }
+
+        public static bool IsWorkspace(string workspacePath)
+        {
+            return TypedWorkspaceXmlSerializer.IsWorkspace<MetaTabularModel>(workspacePath);
         }
 
         public static void Save(MetaTabularModel model, string workspacePath)

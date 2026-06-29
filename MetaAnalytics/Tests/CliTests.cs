@@ -10,11 +10,12 @@ public sealed class CliTests
         var result = RunCli("help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("meta-analytics [--new-workspace <path> | <command> [options]]", result.Output);
-        Assert.Contains("--new-workspace", result.Output);
+        Assert.Contains("meta-analytics <command> [options]", result.Output);
+        Assert.Contains("new-workspace", result.Output);
         Assert.Contains("add-data-source", result.Output);
         Assert.Contains("add-role-filter", result.Output);
         Assert.Contains("add-attribute-permission", result.Output);
+        Assert.DoesNotContain("--new-workspace", result.Output);
         Assert.DoesNotContain("add-measure-expression", result.Output);
         Assert.DoesNotContain("add-kpi", result.Output);
         Assert.DoesNotContain("add-calculation-group", result.Output);
@@ -28,10 +29,10 @@ public sealed class CliTests
         var result = RunCli("add-model --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("Command: add-model", result.Output);
+        Assert.Contains("meta-analytics add-model", result.Output);
         Assert.Contains("Options:", result.Output);
         Assert.Contains("--workspace <path>", result.Output);
-        Assert.Contains("--id <id>", result.Output);
+        Assert.Contains("--id <value>", result.Output);
         Assert.Contains("--name <value>", result.Output);
         Assert.Contains("MetaAnalytics workspace", result.Output);
     }
@@ -42,9 +43,9 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            var create = RunCli($"--new-workspace \"{path}\"");
+            var create = RunCli($"new-workspace \"{path}\"");
             Assert.Equal(0, create.ExitCode);
-            Assert.Contains("Ok", create.Output);
+            Assert.Contains("MetaAnalytics workspace created", create.Output);
 
             Assert.Equal(0, RunCli($"add-model --workspace \"{path}\" --id Commerce --name Commerce --default-culture en-US").ExitCode);
             Assert.Equal(0, RunCli($"add-data-source --workspace \"{path}\" --id WarehouseSource --model Commerce --name Warehouse --provider SqlServer --connection-reference COMMERCE_DW").ExitCode);
@@ -85,7 +86,7 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            Assert.Equal(0, RunCli($"--new-workspace \"{path}\"").ExitCode);
+            Assert.Equal(0, RunCli($"new-workspace \"{path}\"").ExitCode);
             Assert.Equal(0, RunCli($"add-model --workspace \"{path}\" --id Commerce --name Commerce").ExitCode);
             Assert.Equal(0, RunCli($"add-table --workspace \"{path}\" --id Date --model Commerce --name Date --kind Dimension").ExitCode);
             Assert.Equal(0, RunCli($"add-table --workspace \"{path}\" --id Product --model Commerce --name Product --kind Dimension").ExitCode);
@@ -102,8 +103,30 @@ public sealed class CliTests
         }
     }
 
-    private static (int ExitCode, string Output) RunCli(string arguments) =>
-        CliTestRunner.RunStandardCli("MetaAnalytics", "meta-analytics.exe", arguments);
+    [Fact]
+    public void AuthoringCommandWithoutWorkspaceDoesNotCreateWorkspaceInArbitraryDirectory()
+    {
+        var path = CreateTempPath();
+        try
+        {
+            Directory.CreateDirectory(path);
+
+            var result = RunCli("add-model --id Commerce --name Commerce", workingDirectory: path);
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("does not contain workspace.xml", result.Output);
+            Assert.False(File.Exists(Path.Combine(path, "workspace.xml")));
+            Assert.False(File.Exists(Path.Combine(path, "model.xml")));
+            Assert.False(Directory.Exists(Path.Combine(path, "instances")));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(path);
+        }
+    }
+
+    private static (int ExitCode, string Output) RunCli(string arguments, string? workingDirectory = null) =>
+        CliTestRunner.RunStandardCli("MetaAnalytics", "meta-analytics.exe", arguments, workingDirectory: workingDirectory);
 
     private static string CreateTempPath()
     {

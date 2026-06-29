@@ -506,7 +506,7 @@ internal static class HairballDemo
         }
 
         setupCommands.Add(HairballBatchCommand.Run("meta-pipeline inspect --workspace PipelineWS"));
-        setupCommands.Add(HairballBatchCommand.Run("meta-orchestration --pipeline-workspace PipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --new-workspace OrchestrationWS --description \"Deterministic hairball CLI demo\""));
+        setupCommands.Add(HairballBatchCommand.Run("meta-orchestration infer --pipeline-workspace PipelineWS --new-workspace OrchestrationWS --description \"Deterministic hairball CLI demo\""));
         setupCommands.Add(HairballBatchCommand.Run("meta-orchestration inspect --workspace OrchestrationWS"));
         setupCommands.Add(HairballBatchCommand.Run("meta-orchestration refresh-run-plan --workspace OrchestrationWS"));
         setupCommands.Add(HairballBatchCommand.Capture(
@@ -524,7 +524,7 @@ internal static class HairballDemo
             executeScriptPath,
             [
                 HairballBatchCommand.Capture(
-                    "meta-orchestration execute --workspace OrchestrationWS --pipeline-workspace PipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --max-degree-of-parallelism 12 --run-artifacts-root RunArtifacts",
+                    "meta-orchestration execute --workspace OrchestrationWS --pipeline-workspace PipelineWS --max-degree-of-parallelism 12 --run-artifacts-root RunArtifacts",
                     ExecuteOutputCapturePath)
             ],
             [

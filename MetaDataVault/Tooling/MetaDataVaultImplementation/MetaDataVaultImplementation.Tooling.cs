@@ -9,6 +9,7 @@
 
 #nullable enable
 
+using Meta.Core.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,18 +19,28 @@ namespace MetaDataVaultImplementation
     {
         public static MetaDataVaultImplementationModel Load(
             string workspacePath,
-            bool searchUpward = true)
+            bool searchUpward = false)
         {
             return MetaDataVaultImplementationModel.LoadFromXmlWorkspace(workspacePath, searchUpward);
         }
 
         public static Task<MetaDataVaultImplementationModel> LoadAsync(
             string workspacePath,
-            bool searchUpward = true,
+            bool searchUpward = false,
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
             return MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(workspacePath, searchUpward, cancellationToken);
+        }
+
+        public static string CreateWorkspace(string workspacePath)
+        {
+            return TypedWorkspaceXmlSerializer.CreateWorkspace<MetaDataVaultImplementationModel>(workspacePath);
+        }
+
+        public static bool IsWorkspace(string workspacePath)
+        {
+            return TypedWorkspaceXmlSerializer.IsWorkspace<MetaDataVaultImplementationModel>(workspacePath);
         }
 
         public static void Save(MetaDataVaultImplementationModel model, string workspacePath)

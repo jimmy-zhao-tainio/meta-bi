@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <CommandList>
+    <Command Id="cmd-help" ApplicationId="app-meta-schema">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-extract" ApplicationId="app-meta-schema">
+      <Description>Materialize sanctioned MetaSchema workspaces from external sources.</Description>
+      <Name>extract</Name>
+      <Token>extract</Token>
+    </Command>
+    <Command Id="cmd-extract-sqlserver" ApplicationId="app-meta-schema" ParentCommandId="cmd-extract">
+      <Description>Extract SQL Server schema into a MetaSchema workspace.</Description>
+      <Name>extract sqlserver</Name>
+      <Token>sqlserver</Token>
+    </Command>
+  </CommandList>
+</MetaCli>

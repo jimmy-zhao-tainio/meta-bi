@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandList>
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-schema-to-raw-datavault" CommandId="cmd-schema-to-raw-datavault">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-raw-datavault-to-sql" CommandId="cmd-raw-datavault-to-sql">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-business-datavault-to-sql" CommandId="cmd-business-datavault-to-sql">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-data-quality-to-sql" CommandId="cmd-data-quality-to-sql">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-data-warehouse-to-sql" CommandId="cmd-data-warehouse-to-sql">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-transform-script-to-sql" CommandId="cmd-transform-script-to-sql">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-sql-to-transform-script" CommandId="cmd-sql-to-transform-script">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-analytics-to-tabular" CommandId="cmd-analytics-to-tabular">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-analytics-to-multi-dimensional" CommandId="cmd-analytics-to-multi-dimensional">
+    </ExecutableCommand>
+  </ExecutableCommandList>
+</MetaCli>

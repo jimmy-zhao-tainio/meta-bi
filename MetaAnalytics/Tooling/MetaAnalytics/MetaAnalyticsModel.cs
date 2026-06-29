@@ -82,14 +82,14 @@ namespace MetaAnalytics
 
         public static MetaAnalyticsModel LoadFromXmlWorkspace(
             string workspacePath,
-            bool searchUpward = true)
+            bool searchUpward = false)
         {
             return MetaAnalyticsModelXmlSerializer.Load(workspacePath, searchUpward);
         }
 
         public static Task<MetaAnalyticsModel> LoadFromXmlWorkspaceAsync(
             string workspacePath,
-            bool searchUpward = true,
+            bool searchUpward = false,
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -118,18 +118,17 @@ namespace MetaAnalytics
         internal static MetaAnalyticsModel Load(string workspacePath, bool searchUpward)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
+            if (searchUpward)
+            {
+                throw new NotSupportedException("Typed workspace loading does not search parent directories. Pass an explicit workspace path.");
+            }
+
             if (HasRuntimeExtendedShape())
             {
                 return TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(workspacePath, searchUpward);
             }
 
-            var workspaceRootPath = searchUpward
-                ? TypedWorkspaceXmlSerializer.DiscoverWorkspaceRoot(workspacePath)
-                : TypedWorkspaceXmlSerializer.ResolveWorkspaceRootFromPath(workspacePath);
-            if (!Directory.Exists(workspaceRootPath))
-            {
-                throw new DirectoryNotFoundException($"Workspace '{workspaceRootPath}' was not found.");
-            }
+            var workspaceRootPath = TypedWorkspaceXmlSerializer.RequireWorkspace<MetaAnalyticsModel>(workspacePath);
 
             var model = new MetaAnalyticsModel();
             var loadState = new LoadState();

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationList>
+    <Application Id="app-meta-sql">
+      <ExecutableName>meta-sql</ExecutableName>
+      <Name>meta-sql</Name>
+    </Application>
+  </ApplicationList>
+</MetaCli>

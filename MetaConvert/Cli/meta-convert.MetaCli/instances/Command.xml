@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <CommandList>
+    <Command Id="cmd-help" ApplicationId="app-meta-convert">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-schema-to-raw-datavault" ApplicationId="app-meta-convert">
+      <Description>Convert MetaSchema workspace to MetaRawDataVault workspace.</Description>
+      <Name>schema-to-raw-datavault</Name>
+      <Token>schema-to-raw-datavault</Token>
+    </Command>
+    <Command Id="cmd-raw-datavault-to-sql" ApplicationId="app-meta-convert">
+      <Description>Convert MetaRawDataVault workspace to MetaSql workspace.</Description>
+      <Name>raw-datavault-to-sql</Name>
+      <Token>raw-datavault-to-sql</Token>
+    </Command>
+    <Command Id="cmd-business-datavault-to-sql" ApplicationId="app-meta-convert">
+      <Description>Convert MetaBusinessDataVault workspace to MetaSql workspace.</Description>
+      <Name>business-datavault-to-sql</Name>
+      <Token>business-datavault-to-sql</Token>
+    </Command>
+    <Command Id="cmd-data-quality-to-sql" ApplicationId="app-meta-convert">
+      <Description>Convert promoted MetaDataQuality candidates to SQL data-quality views.</Description>
+      <Name>data-quality-to-sql</Name>
+      <Token>data-quality-to-sql</Token>
+    </Command>
+    <Command Id="cmd-data-warehouse-to-sql" ApplicationId="app-meta-convert">
+      <Description>Convert MetaDataWarehouse workspace to MetaSql workspace.</Description>
+      <Name>data-warehouse-to-sql</Name>
+      <Token>data-warehouse-to-sql</Token>
+    </Command>
+    <Command Id="cmd-transform-script-to-sql" ApplicationId="app-meta-convert">
+      <Description>Convert MetaTransformScript SQL modules to MetaSql workspace.</Description>
+      <Name>transform-script-to-sql</Name>
+      <Token>transform-script-to-sql</Token>
+    </Command>
+    <Command Id="cmd-sql-to-transform-script" ApplicationId="app-meta-convert">
+      <Description>Convert MetaSql SQL modules to MetaTransformScript workspace.</Description>
+      <Name>sql-to-transform-script</Name>
+      <Token>sql-to-transform-script</Token>
+    </Command>
+    <Command Id="cmd-analytics-to-tabular" ApplicationId="app-meta-convert">
+      <Description>Convert MetaAnalytics workspace to MetaTabular workspace.</Description>
+      <Name>analytics-to-tabular</Name>
+      <Token>analytics-to-tabular</Token>
+    </Command>
+    <Command Id="cmd-analytics-to-multi-dimensional" ApplicationId="app-meta-convert">
+      <Description>Convert MetaAnalytics workspace to MetaMultiDimensional workspace.</Description>
+      <Name>analytics-to-multi-dimensional</Name>
+      <Token>analytics-to-multi-dimensional</Token>
+    </Command>
+  </CommandList>
+</MetaCli>

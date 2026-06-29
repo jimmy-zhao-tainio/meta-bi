@@ -20,7 +20,7 @@ public sealed class MetaSqlDifferenceService
     public async Task<IReadOnlyList<MetaSqlDifference>> BuildDifferencesAsync(
         string sourceWorkspacePath,
         string liveWorkspacePath,
-        bool searchUpward = true,
+        bool searchUpward = false,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sourceWorkspacePath);

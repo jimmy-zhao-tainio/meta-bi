@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupList>
+    <ParameterGroup Id="group-extract-sqlserver-schema-scope" ExecutableCommandId="exec-extract-sqlserver">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Choose one schema scope.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>schema-scope</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-extract-sqlserver-table-scope" ExecutableCommandId="exec-extract-sqlserver">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Choose one table scope.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>table-scope</Name>
+    </ParameterGroup>
+  </ParameterGroupList>
+</MetaCli>

@@ -178,7 +178,7 @@ It is for work where the live quantity changes the user's confidence: rows movin
 ```
 
 ```text
-> meta-orchestration execute --workspace Orchestration --pipeline-workspace Pipeline --transform-workspace Transform --binding-workspace Binding --pipeline-db-connection-env META_PIPELINE --max-degree-of-parallelism 2
+> meta-orchestration execute --workspace Orchestration --pipeline-workspace Pipeline --pipeline-db-connection-env META_PIPELINE --max-degree-of-parallelism 2
 |  [=============-------] 12 of 18  4 running
 [====================] 18 of 18
 ```
@@ -270,7 +270,7 @@ Next: add an explicit order or scoped lock policy.
 ```
 
 ```text
-> meta-orchestration execute --workspace Orchestration --pipeline-workspace Pipeline --transform-workspace Transform --binding-workspace Binding --pipeline-db-connection-env META_PIPELINE
+> meta-orchestration execute --workspace Orchestration --pipeline-workspace Pipeline --pipeline-db-connection-env META_PIPELINE
 Cannot execute orchestration.
 
 Connection environment variable 'META_PIPELINE' was not found.
@@ -329,7 +329,7 @@ Large systems fail in branches.
 The CLI should show that without turning into a dashboard.
 
 ```text
-> meta-orchestration execute --workspace Orchestration --pipeline-workspace Pipeline --transform-workspace Transform --binding-workspace Binding --pipeline-db-connection-env META_PIPELINE --max-degree-of-parallelism 2
+> meta-orchestration execute --workspace Orchestration --pipeline-workspace Pipeline --pipeline-db-connection-env META_PIPELINE --max-degree-of-parallelism 2
 |  [===============-----] 18 of 24  3 running
 
 Cannot complete orchestration.

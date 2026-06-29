@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterList>
+    <Parameter Id="param-new-workspace-path" ValueShapeId="shape-path">
+      <Description>Directory where the MetaAnalytics workspace will be created.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>path</Name>
+    </Parameter>
+    <Parameter Id="param-add-model-id" ValueShapeId="shape-text">
+      <Description>AnalyticsModel row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-model-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-model-name" ValueShapeId="shape-text">
+      <Description>Analytics model name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-model-default-culture" ValueShapeId="shape-text">
+      <Description>Default culture.</Description>
+      <Name>default-culture</Name>
+    </Parameter>
+    <Parameter Id="param-add-model-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-data-source-id" ValueShapeId="shape-text">
+      <Description>DataSource row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-data-source-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-data-source-name" ValueShapeId="shape-text">
+      <Description>Data source name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-data-source-provider" ValueShapeId="shape-text">
+      <Description>Provider name.</Description>
+      <Name>provider</Name>
+    </Parameter>
+    <Parameter Id="param-add-data-source-connection-reference" ValueShapeId="shape-text">
+      <Description>Connection reference.</Description>
+      <Name>connection-reference</Name>
+    </Parameter>
+    <Parameter Id="param-add-data-source-source-kind" ValueShapeId="shape-text">
+      <Description>Source kind.</Description>
+      <Name>source-kind</Name>
+    </Parameter>
+    <Parameter Id="param-add-data-source-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-data-source-model" ValueShapeId="shape-text">
+      <Description>AnalyticsModel id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>model</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-id" ValueShapeId="shape-text">
+      <Description>Table row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-name" ValueShapeId="shape-text">
+      <Description>Table name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-kind" ValueShapeId="shape-text">
+      <Description>Table kind.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>kind</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-data-category" ValueShapeId="shape-text">
+      <Description>Data category.</Description>
+      <Name>data-category</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-is-hidden" ValueShapeId="shape-bool">
+      <Description>Whether the table is hidden.</Description>
+      <Name>is-hidden</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-display-folder" ValueShapeId="shape-text">
+      <Description>Display folder.</Description>
+      <Name>display-folder</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-model" ValueShapeId="shape-text">
+      <Description>AnalyticsModel id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>model</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-id" ValueShapeId="shape-text">
+      <Description>Attribute row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-name" ValueShapeId="shape-text">
+      <Description>Attribute name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-data-type-id" ValueShapeId="shape-text">
+      <Description>Data type id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>data-type-id</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-ordinal" ValueShapeId="shape-text">
+      <Description>Attribute ordinal.</Description>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-kind" ValueShapeId="shape-text">
+      <Description>Attribute kind.</Description>
+      <Name>kind</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-source-name" ValueShapeId="shape-text">
+      <Description>Source column name.</Description>
+      <Name>source-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-expression-language" ValueShapeId="shape-text">
+      <Description>Expression language.</Description>
+      <Name>expression-language</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-expression" ValueShapeId="shape-text">
+      <Description>Expression.</Description>
+      <Name>expression</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-is-key" ValueShapeId="shape-bool">
+      <Description>Whether the attribute is a key.</Description>
+      <Name>is-key</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-is-nullable" ValueShapeId="shape-bool">
+      <Description>Whether the attribute is nullable.</Description>
+      <Name>is-nullable</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-is-hidden" ValueShapeId="shape-bool">
+      <Description>Whether the attribute is hidden.</Description>
+      <Name>is-hidden</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-format-string" ValueShapeId="shape-text">
+      <Description>Format string.</Description>
+      <Name>format-string</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-summarize-by" ValueShapeId="shape-text">
+      <Description>Summarize by.</Description>
+      <Name>summarize-by</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-data-category" ValueShapeId="shape-text">
+      <Description>Data category.</Description>
+      <Name>data-category</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-table" ValueShapeId="shape-text">
+      <Description>Table id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>table</Name>
+    </Parameter>
+    <Parameter Id="param-add-sort-by-attribute-id" ValueShapeId="shape-text">
+      <Description>SortByAttribute row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-sort-by-attribute-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-sort-by-attribute-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-sort-by-attribute-source-attribute" ValueShapeId="shape-text">
+      <Description>Source attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-sort-by-attribute-sort-attribute" ValueShapeId="shape-text">
+      <Description>Sort attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>sort-attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-relationship-id" ValueShapeId="shape-text">
+      <Description>AttributeRelationship row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-relationship-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-relationship-relationship-type" ValueShapeId="shape-text">
+      <Description>Relationship type.</Description>
+      <Name>relationship-type</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-relationship-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-relationship-child-attribute" ValueShapeId="shape-text">
+      <Description>Child attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>child-attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-relationship-parent-attribute" ValueShapeId="shape-text">
+      <Description>Parent attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>parent-attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-id" ValueShapeId="shape-text">
+      <Description>Hierarchy row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-name" ValueShapeId="shape-text">
+      <Description>Hierarchy name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-kind" ValueShapeId="shape-text">
+      <Description>Hierarchy kind.</Description>
+      <Name>kind</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-is-hidden" ValueShapeId="shape-bool">
+      <Description>Whether the hierarchy is hidden.</Description>
+      <Name>is-hidden</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-display-folder" ValueShapeId="shape-text">
+      <Description>Display folder.</Description>
+      <Name>display-folder</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-table" ValueShapeId="shape-text">
+      <Description>Table id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>table</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-level-id" ValueShapeId="shape-text">
+      <Description>HierarchyLevel row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-level-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-level-name" ValueShapeId="shape-text">
+      <Description>Level name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-level-ordinal" ValueShapeId="shape-text">
+      <Description>Hierarchy level ordinal.</Description>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-level-hierarchy" ValueShapeId="shape-text">
+      <Description>Hierarchy id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hierarchy</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-level-attribute" ValueShapeId="shape-text">
+      <Description>Attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-id" ValueShapeId="shape-text">
+      <Description>Relationship row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-name" ValueShapeId="shape-text">
+      <Description>Relationship name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-role-name" ValueShapeId="shape-text">
+      <Description>Role name.</Description>
+      <Name>role-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-relationship-kind" ValueShapeId="shape-text">
+      <Description>Relationship kind.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>relationship-kind</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-cardinality" ValueShapeId="shape-text">
+      <Description>Cardinality.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>cardinality</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-cross-filter-direction" ValueShapeId="shape-text">
+      <Description>Cross-filter direction.</Description>
+      <Name>cross-filter-direction</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-is-active" ValueShapeId="shape-bool">
+      <Description>Whether the relationship is active.</Description>
+      <Name>is-active</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-is-required" ValueShapeId="shape-bool">
+      <Description>Whether the relationship is required.</Description>
+      <Name>is-required</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-from-table" ValueShapeId="shape-text">
+      <Description>From table id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>from-table</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-from-attribute" ValueShapeId="shape-text">
+      <Description>From attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>from-attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-to-table" ValueShapeId="shape-text">
+      <Description>To table id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>to-table</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-to-attribute" ValueShapeId="shape-text">
+      <Description>To attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>to-attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-granularity-attribute" ValueShapeId="shape-text">
+      <Description>Granularity attribute id.</Description>
+      <Name>granularity-attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-relationship-intermediate-table" ValueShapeId="shape-text">
+      <Description>Intermediate table id.</Description>
+      <Name>intermediate-table</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-id" ValueShapeId="shape-text">
+      <Description>Measure row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-name" ValueShapeId="shape-text">
+      <Description>Measure name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-data-type-id" ValueShapeId="shape-text">
+      <Description>Data type id.</Description>
+      <Name>data-type-id</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-format-string" ValueShapeId="shape-text">
+      <Description>Format string.</Description>
+      <Name>format-string</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-display-folder" ValueShapeId="shape-text">
+      <Description>Display folder.</Description>
+      <Name>display-folder</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-is-hidden" ValueShapeId="shape-bool">
+      <Description>Whether the measure is hidden.</Description>
+      <Name>is-hidden</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-table" ValueShapeId="shape-text">
+      <Description>Table id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>table</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-source-attribute" ValueShapeId="shape-text">
+      <Description>Source attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-aggregation-behavior-id" ValueShapeId="shape-text">
+      <Description>AggregationBehavior row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-aggregation-behavior-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-aggregation-behavior-function" ValueShapeId="shape-text">
+      <Description>Aggregate function.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>function</Name>
+    </Parameter>
+    <Parameter Id="param-add-aggregation-behavior-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-aggregation-behavior-measure" ValueShapeId="shape-text">
+      <Description>Measure id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>measure</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-id" ValueShapeId="shape-text">
+      <Description>Perspective row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-name" ValueShapeId="shape-text">
+      <Description>Perspective name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-model" ValueShapeId="shape-text">
+      <Description>AnalyticsModel id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>model</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-table-id" ValueShapeId="shape-text">
+      <Description>PerspectiveTable row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-table-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-table-perspective" ValueShapeId="shape-text">
+      <Description>Perspective id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>perspective</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-table-table" ValueShapeId="shape-text">
+      <Description>Table id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>table</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-attribute-id" ValueShapeId="shape-text">
+      <Description>PerspectiveAttribute row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-attribute-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-attribute-perspective" ValueShapeId="shape-text">
+      <Description>Perspective id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>perspective</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-attribute-attribute" ValueShapeId="shape-text">
+      <Description>Attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-hierarchy-id" ValueShapeId="shape-text">
+      <Description>PerspectiveHierarchy row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-hierarchy-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-hierarchy-perspective" ValueShapeId="shape-text">
+      <Description>Perspective id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>perspective</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-hierarchy-hierarchy" ValueShapeId="shape-text">
+      <Description>Hierarchy id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hierarchy</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-measure-id" ValueShapeId="shape-text">
+      <Description>PerspectiveMeasure row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-measure-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-measure-perspective" ValueShapeId="shape-text">
+      <Description>Perspective id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>perspective</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-measure-measure" ValueShapeId="shape-text">
+      <Description>Measure id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>measure</Name>
+    </Parameter>
+    <Parameter Id="param-add-security-role-id" ValueShapeId="shape-text">
+      <Description>SecurityRole row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-security-role-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-security-role-name" ValueShapeId="shape-text">
+      <Description>Security role name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-security-role-permission" ValueShapeId="shape-text">
+      <Description>Permission.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>permission</Name>
+    </Parameter>
+    <Parameter Id="param-add-security-role-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-security-role-model" ValueShapeId="shape-text">
+      <Description>AnalyticsModel id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>model</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-member-id" ValueShapeId="shape-text">
+      <Description>RoleMember row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-member-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-member-member-name" ValueShapeId="shape-text">
+      <Description>Member name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>member-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-member-member-kind" ValueShapeId="shape-text">
+      <Description>Member kind.</Description>
+      <Name>member-kind</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-member-role" ValueShapeId="shape-text">
+      <Description>SecurityRole id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>role</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-filter-id" ValueShapeId="shape-text">
+      <Description>RoleFilter row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-filter-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-filter-expression-language" ValueShapeId="shape-text">
+      <Description>Expression language.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>expression-language</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-filter-expression" ValueShapeId="shape-text">
+      <Description>Expression.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>expression</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-filter-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-filter-role" ValueShapeId="shape-text">
+      <Description>SecurityRole id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>role</Name>
+    </Parameter>
+    <Parameter Id="param-add-role-filter-table" ValueShapeId="shape-text">
+      <Description>Table id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>table</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-permission-id" ValueShapeId="shape-text">
+      <Description>TablePermission row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-permission-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-permission-metadata-permission" ValueShapeId="shape-text">
+      <Description>Metadata permission.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>metadata-permission</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-permission-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-permission-role" ValueShapeId="shape-text">
+      <Description>SecurityRole id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>role</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-permission-table" ValueShapeId="shape-text">
+      <Description>Table id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>table</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-permission-id" ValueShapeId="shape-text">
+      <Description>AttributePermission row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-permission-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-permission-metadata-permission" ValueShapeId="shape-text">
+      <Description>Metadata permission.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>metadata-permission</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-permission-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-permission-role" ValueShapeId="shape-text">
+      <Description>SecurityRole id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>role</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-permission-attribute" ValueShapeId="shape-text">
+      <Description>Attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-culture-id" ValueShapeId="shape-text">
+      <Description>Culture row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-culture-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-culture-name" ValueShapeId="shape-text">
+      <Description>Culture name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-culture-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-culture-model" ValueShapeId="shape-text">
+      <Description>AnalyticsModel id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>model</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-translation-id" ValueShapeId="shape-text">
+      <Description>TableTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-translation-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-translation-caption" ValueShapeId="shape-text">
+      <Description>Caption.</Description>
+      <Name>caption</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-translation-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-translation-culture" ValueShapeId="shape-text">
+      <Description>Culture id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>culture</Name>
+    </Parameter>
+    <Parameter Id="param-add-table-translation-table" ValueShapeId="shape-text">
+      <Description>Table id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>table</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-translation-id" ValueShapeId="shape-text">
+      <Description>AttributeTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-translation-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-translation-caption" ValueShapeId="shape-text">
+      <Description>Caption.</Description>
+      <Name>caption</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-translation-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-translation-culture" ValueShapeId="shape-text">
+      <Description>Culture id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>culture</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-translation-attribute" ValueShapeId="shape-text">
+      <Description>Attribute id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-translation-id" ValueShapeId="shape-text">
+      <Description>HierarchyTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-translation-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-translation-caption" ValueShapeId="shape-text">
+      <Description>Caption.</Description>
+      <Name>caption</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-translation-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-translation-culture" ValueShapeId="shape-text">
+      <Description>Culture id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>culture</Name>
+    </Parameter>
+    <Parameter Id="param-add-hierarchy-translation-hierarchy" ValueShapeId="shape-text">
+      <Description>Hierarchy id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hierarchy</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-translation-id" ValueShapeId="shape-text">
+      <Description>MeasureTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-translation-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-translation-caption" ValueShapeId="shape-text">
+      <Description>Caption.</Description>
+      <Name>caption</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-translation-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-translation-culture" ValueShapeId="shape-text">
+      <Description>Culture id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>culture</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-translation-measure" ValueShapeId="shape-text">
+      <Description>Measure id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>measure</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-translation-id" ValueShapeId="shape-text">
+      <Description>PerspectiveTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-translation-workspace" ValueShapeId="shape-path">
+      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-translation-caption" ValueShapeId="shape-text">
+      <Description>Caption.</Description>
+      <Name>caption</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-translation-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-translation-culture" ValueShapeId="shape-text">
+      <Description>Culture id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>culture</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-translation-perspective" ValueShapeId="shape-text">
+      <Description>Perspective id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>perspective</Name>
+    </Parameter>
+  </ParameterList>
+</MetaCli>

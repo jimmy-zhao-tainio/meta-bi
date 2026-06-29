@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandParameterList>
+    <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-path" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-path">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-target" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-target">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-new-workspace" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-new-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-workspace" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-manifest" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-manifest">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-new-workspace" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-new-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-workspace" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-report" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-report">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-verbose" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-verbose">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-code" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-code">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-target" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-target">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-new-workspace" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-new-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-workspace" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-name" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-to-sql-path:parameter:param-to-sql-path-workspace" ExecutableCommandId="exec-to-sql-path" ParameterId="param-to-sql-path-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-to-sql-path:parameter:param-to-sql-path-out" ExecutableCommandId="exec-to-sql-path" ParameterId="param-to-sql-path-out">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-to-sql-code:parameter:param-to-sql-code-workspace" ExecutableCommandId="exec-to-sql-code" ParameterId="param-to-sql-code-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-to-sql-code:parameter:param-to-sql-code-name" ExecutableCommandId="exec-to-sql-code" ParameterId="param-to-sql-code-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-target-identifiers-from-pattern:parameter:param-target-identifiers-from-pattern-workspace" ExecutableCommandId="exec-target-identifiers-from-pattern" ParameterId="param-target-identifiers-from-pattern-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-target-identifiers-from-pattern:parameter:param-target-identifiers-from-pattern-source-pattern" ExecutableCommandId="exec-target-identifiers-from-pattern" ParameterId="param-target-identifiers-from-pattern-source-pattern">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-target-identifiers-from-pattern:parameter:param-target-identifiers-from-pattern-target-pattern" ExecutableCommandId="exec-target-identifiers-from-pattern" ParameterId="param-target-identifiers-from-pattern-target-pattern">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-target-identifiers-from-pattern:parameter:param-target-identifiers-from-pattern-only-missing" ExecutableCommandId="exec-target-identifiers-from-pattern" ParameterId="param-target-identifiers-from-pattern-only-missing">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-target-identifiers-from-pattern:parameter:param-target-identifiers-from-pattern-dry-run" ExecutableCommandId="exec-target-identifiers-from-pattern" ParameterId="param-target-identifiers-from-pattern-dry-run">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-target-identifiers-from-pattern:parameter:param-target-identifiers-from-pattern-allow-empty" ExecutableCommandId="exec-target-identifiers-from-pattern" ParameterId="param-target-identifiers-from-pattern-allow-empty">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-target-identifiers-from-pattern:parameter:param-target-identifiers-from-pattern-verbose" ExecutableCommandId="exec-target-identifiers-from-pattern" ParameterId="param-target-identifiers-from-pattern-verbose">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-stored-procedure-view-contract:parameter:param-stored-procedure-view-contract-workspace" ExecutableCommandId="exec-stored-procedure-view-contract" ParameterId="param-stored-procedure-view-contract-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-stored-procedure-view-contract:parameter:param-stored-procedure-view-contract-name" ExecutableCommandId="exec-stored-procedure-view-contract" ParameterId="param-stored-procedure-view-contract-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-stored-procedure-add-contract:parameter:param-stored-procedure-add-contract-workspace" ExecutableCommandId="exec-stored-procedure-add-contract" ParameterId="param-stored-procedure-add-contract-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-stored-procedure-add-contract:parameter:param-stored-procedure-add-contract-name" ExecutableCommandId="exec-stored-procedure-add-contract" ParameterId="param-stored-procedure-add-contract-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-stored-procedure-add-contract:parameter:param-stored-procedure-add-contract-operation" ExecutableCommandId="exec-stored-procedure-add-contract" ParameterId="param-stored-procedure-add-contract-operation">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-stored-procedure-add-contract:parameter:param-stored-procedure-add-contract-result-rowset" ExecutableCommandId="exec-stored-procedure-add-contract" ParameterId="param-stored-procedure-add-contract-result-rowset">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-stored-procedure-add-contract:parameter:param-stored-procedure-add-contract-result-column" ExecutableCommandId="exec-stored-procedure-add-contract" ParameterId="param-stored-procedure-add-contract-result-column">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-stored-procedure-add-contract:parameter:param-stored-procedure-add-contract-notes" ExecutableCommandId="exec-stored-procedure-add-contract" ParameterId="param-stored-procedure-add-contract-notes">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-stored-procedure-remove-contract:parameter:param-stored-procedure-remove-contract-workspace" ExecutableCommandId="exec-stored-procedure-remove-contract" ParameterId="param-stored-procedure-remove-contract-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-stored-procedure-remove-contract:parameter:param-stored-procedure-remove-contract-name" ExecutableCommandId="exec-stored-procedure-remove-contract" ParameterId="param-stored-procedure-remove-contract-name">
+    </ExecutableCommandParameter>
+  </ExecutableCommandParameterList>
+</MetaCli>

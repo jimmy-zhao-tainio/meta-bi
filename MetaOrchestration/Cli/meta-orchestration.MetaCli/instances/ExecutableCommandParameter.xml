@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandParameterList>
+    <ExecutableCommandParameter Id="exec-infer:parameter:param-infer-pipeline-workspace" ExecutableCommandId="exec-infer" ParameterId="param-infer-pipeline-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-infer:parameter:param-infer-new-workspace" ExecutableCommandId="exec-infer" ParameterId="param-infer-new-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-infer:parameter:param-infer-description" ExecutableCommandId="exec-infer" ParameterId="param-infer-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-inspect:parameter:param-inspect-workspace" ExecutableCommandId="exec-inspect" ParameterId="param-inspect-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-list-issues:parameter:param-list-issues-workspace" ExecutableCommandId="exec-list-issues" ParameterId="param-list-issues-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-explain-issue:parameter:param-explain-issue-workspace" ExecutableCommandId="exec-explain-issue" ParameterId="param-explain-issue-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dependency:parameter:param-add-dependency-workspace" ExecutableCommandId="exec-add-dependency" ParameterId="param-add-dependency-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-order:parameter:param-add-order-workspace" ExecutableCommandId="exec-add-order" ParameterId="param-add-order-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-allow-concurrent-append:parameter:param-allow-concurrent-append-workspace" ExecutableCommandId="exec-allow-concurrent-append" ParameterId="param-allow-concurrent-append-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-set-lock-policy:parameter:param-set-lock-policy-workspace" ExecutableCommandId="exec-set-lock-policy" ParameterId="param-set-lock-policy-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-refresh-run-plan:parameter:param-refresh-run-plan-workspace" ExecutableCommandId="exec-refresh-run-plan" ParameterId="param-refresh-run-plan-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-inspect-run-plan:parameter:param-inspect-run-plan-workspace" ExecutableCommandId="exec-inspect-run-plan" ParameterId="param-inspect-run-plan-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-explain-issue:parameter:param-explain-issue-issue" ExecutableCommandId="exec-explain-issue" ParameterId="param-explain-issue-issue">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dependency:parameter:param-add-dependency-from-task" ExecutableCommandId="exec-add-dependency" ParameterId="param-add-dependency-from-task">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dependency:parameter:param-add-dependency-to-task" ExecutableCommandId="exec-add-dependency" ParameterId="param-add-dependency-to-task">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dependency:parameter:param-add-dependency-condition" ExecutableCommandId="exec-add-dependency" ParameterId="param-add-dependency-condition">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dependency:parameter:param-add-dependency-object" ExecutableCommandId="exec-add-dependency" ParameterId="param-add-dependency-object">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-dependency:parameter:param-add-dependency-reason" ExecutableCommandId="exec-add-dependency" ParameterId="param-add-dependency-reason">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-order:parameter:param-add-order-from-task" ExecutableCommandId="exec-add-order" ParameterId="param-add-order-from-task">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-order:parameter:param-add-order-to-task" ExecutableCommandId="exec-add-order" ParameterId="param-add-order-to-task">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-order:parameter:param-add-order-condition" ExecutableCommandId="exec-add-order" ParameterId="param-add-order-condition">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-order:parameter:param-add-order-object" ExecutableCommandId="exec-add-order" ParameterId="param-add-order-object">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-order:parameter:param-add-order-reason" ExecutableCommandId="exec-add-order" ParameterId="param-add-order-reason">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-allow-concurrent-append:parameter:param-allow-concurrent-append-object" ExecutableCommandId="exec-allow-concurrent-append" ParameterId="param-allow-concurrent-append-object">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-allow-concurrent-append:parameter:param-allow-concurrent-append-reason" ExecutableCommandId="exec-allow-concurrent-append" ParameterId="param-allow-concurrent-append-reason">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-set-lock-policy:parameter:param-set-lock-policy-object" ExecutableCommandId="exec-set-lock-policy" ParameterId="param-set-lock-policy-object">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-set-lock-policy:parameter:param-set-lock-policy-left-effect" ExecutableCommandId="exec-set-lock-policy" ParameterId="param-set-lock-policy-left-effect">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-set-lock-policy:parameter:param-set-lock-policy-right-effect" ExecutableCommandId="exec-set-lock-policy" ParameterId="param-set-lock-policy-right-effect">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-set-lock-policy:parameter:param-set-lock-policy-behavior" ExecutableCommandId="exec-set-lock-policy" ParameterId="param-set-lock-policy-behavior">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-set-lock-policy:parameter:param-set-lock-policy-reason" ExecutableCommandId="exec-set-lock-policy" ParameterId="param-set-lock-policy-reason">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-pipeline-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-pipeline-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-data-type-conversion-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-data-type-conversion-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-pipeline-db-connection-env" ExecutableCommandId="exec-execute" ParameterId="param-execute-pipeline-db-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-max-degree-of-parallelism" ExecutableCommandId="exec-execute" ParameterId="param-execute-max-degree-of-parallelism">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-run-artifacts-root" ExecutableCommandId="exec-execute" ParameterId="param-execute-run-artifacts-root">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-worker-event-timeout-seconds" ExecutableCommandId="exec-execute" ParameterId="param-execute-worker-event-timeout-seconds">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-worker-activation-timeout-seconds" ExecutableCommandId="exec-execute" ParameterId="param-execute-worker-activation-timeout-seconds">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-worker-control-pipe-connect-timeout-seconds" ExecutableCommandId="exec-execute" ParameterId="param-execute-worker-control-pipe-connect-timeout-seconds">
+    </ExecutableCommandParameter>
+  </ExecutableCommandParameterList>
+</MetaCli>

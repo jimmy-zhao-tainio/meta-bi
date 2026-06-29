@@ -33,11 +33,8 @@ public sealed class MetaOrchestrationAnalysisServiceTests
         Assert.Contains("--max-degree-of-parallelism", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--run-artifacts-root", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Options:", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Required. MetaOrchestration workspace", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Refreshes run-plan rows", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("named pipe control channel", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("stops a worker at a blocked task", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("exclusive lease", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Defaults to the current directory", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("child pipeline workers", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("execute-step", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -2136,7 +2133,7 @@ public sealed class MetaOrchestrationAnalysisServiceTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--condition success|failure", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Options:", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Failure edges", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("success or failure dependency", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--from-task", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -2144,11 +2141,16 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     public void CliWorkspaceCreationHelp_UsesNewWorkspaceForInferenceOnly()
     {
         var help = RunCli("--help");
+        var infer = RunCli("infer --help");
         var runPlan = RunCli("refresh-run-plan --help");
 
         Assert.Equal(0, help.ExitCode);
+        Assert.Equal(0, infer.ExitCode);
         Assert.Equal(0, runPlan.ExitCode);
-        Assert.Contains("--new-workspace", help.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("infer", help.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("--new-workspace", infer.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("--pipeline-workspace", infer.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("--new-workspace", help.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--new-workspace", runPlan.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--plan", help.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--schedule", runPlan.Output, StringComparison.OrdinalIgnoreCase);
@@ -3436,7 +3438,7 @@ INNER JOIN dw.DimCustomer AS d
                 (PipelineName: "TruncateStage", Script: ResolveScript(transformModel, "truncate-stage"), InsertRowsTarget: null),
                 (PipelineName: "ReadStage", Script: ResolveScript(transformModel, "read-stage"), InsertRowsTarget: "dbo.DimCustomer"));
 
-            var result = RunCli($"--pipeline-workspace \"{pipelineWorkspace}\" --new-workspace \"{orchestrationWorkspace}\"");
+            var result = RunCli($"infer --pipeline-workspace \"{pipelineWorkspace}\" --new-workspace \"{orchestrationWorkspace}\"");
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("Cannot continue", result.Output, StringComparison.Ordinal);
@@ -4686,7 +4688,6 @@ INNER JOIN dw.DimCustomer AS d
                 Id = $"{pipeline.Id}:task:transform",
                 Pipeline = pipeline,
                 Name = "transform",
-                Ordinal = "1",
             };
             model.PipelineTaskList.Add(transformTask);
             model.TransformExecutionTaskList.Add(new TransformExecutionTask
@@ -4724,7 +4725,6 @@ INNER JOIN dw.DimCustomer AS d
                 Id = $"{pipeline.Id}:task:target-write",
                 Pipeline = pipeline,
                 Name = "target-write",
-                Ordinal = "2",
             };
             model.PipelineTaskList.Add(targetWriteTask);
             var targetWrite = new TargetWriteTask
@@ -4781,7 +4781,6 @@ INNER JOIN dw.DimCustomer AS d
                     Id = $"{pipeline.Id}:task:{++ordinal}",
                     Pipeline = pipeline,
                     Name = taskSeed.TaskName,
-                    Ordinal = ordinal.ToString(CultureInfo.InvariantCulture),
                 };
                 model.PipelineTaskList.Add(pipelineTask);
                 model.ExecutableTaskList.Add(new MetaPipeline.ExecutableTask

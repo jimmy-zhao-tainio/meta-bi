@@ -21,7 +21,7 @@ public sealed class MetaSqlDiffService
     public async Task<InstanceDiffBuildResult> BuildEqualDiffWorkspaceAsync(
         string sourceWorkspacePath,
         string liveWorkspacePath,
-        bool searchUpward = true,
+        bool searchUpward = false,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sourceWorkspacePath);

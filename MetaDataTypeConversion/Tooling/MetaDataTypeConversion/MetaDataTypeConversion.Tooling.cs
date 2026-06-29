@@ -9,6 +9,7 @@
 
 #nullable enable
 
+using Meta.Core.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,18 +19,28 @@ namespace MetaDataTypeConversion
     {
         public static MetaDataTypeConversionModel Load(
             string workspacePath,
-            bool searchUpward = true)
+            bool searchUpward = false)
         {
             return MetaDataTypeConversionModel.LoadFromXmlWorkspace(workspacePath, searchUpward);
         }
 
         public static Task<MetaDataTypeConversionModel> LoadAsync(
             string workspacePath,
-            bool searchUpward = true,
+            bool searchUpward = false,
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
             return MetaDataTypeConversionModel.LoadFromXmlWorkspaceAsync(workspacePath, searchUpward, cancellationToken);
+        }
+
+        public static string CreateWorkspace(string workspacePath)
+        {
+            return TypedWorkspaceXmlSerializer.CreateWorkspace<MetaDataTypeConversionModel>(workspacePath);
+        }
+
+        public static bool IsWorkspace(string workspacePath)
+        {
+            return TypedWorkspaceXmlSerializer.IsWorkspace<MetaDataTypeConversionModel>(workspacePath);
         }
 
         public static void Save(MetaDataTypeConversionModel model, string workspacePath)

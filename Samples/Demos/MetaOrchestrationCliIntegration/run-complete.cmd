@@ -35,7 +35,7 @@ meta-pipeline add-pipeline --workspace CompletePipelineWS --name CleanupPrivateS
 meta-pipeline add-step --workspace CompletePipelineWS --pipeline CleanupPrivateScratch --step-name cleanup-private-scratch --script private_scratch_cleanup --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-orchestration --pipeline-workspace CompletePipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --new-workspace CompleteOrchestrationWS
+meta-orchestration infer --pipeline-workspace CompletePipelineWS --new-workspace CompleteOrchestrationWS
 @if errorlevel 1 exit /b %errorlevel%
 
 meta-orchestration inspect --workspace CompleteOrchestrationWS
@@ -47,5 +47,5 @@ meta-orchestration refresh-run-plan --workspace CompleteOrchestrationWS
 meta-orchestration inspect-run-plan --workspace CompleteOrchestrationWS
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-orchestration execute --workspace CompleteOrchestrationWS --pipeline-workspace CompletePipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --pipeline-db-connection-env META_ORCHESTRATION_DEMO_SQL --max-degree-of-parallelism 2
+meta-orchestration execute --workspace CompleteOrchestrationWS --pipeline-workspace CompletePipelineWS --pipeline-db-connection-env META_ORCHESTRATION_DEMO_SQL --max-degree-of-parallelism 2
 @if errorlevel 1 exit /b %errorlevel%

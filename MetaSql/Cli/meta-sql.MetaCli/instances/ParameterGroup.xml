@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupList>
+    <ParameterGroup Id="group-execute-sql-input" ExecutableCommandId="exec-execute">
+      <Description>Choose one SQL input source.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>sql-input</Name>
+    </ParameterGroup>
+  </ParameterGroupList>
+</MetaCli>

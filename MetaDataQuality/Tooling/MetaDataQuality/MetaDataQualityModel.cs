@@ -86,14 +86,14 @@ namespace MetaDataQuality
 
         public static MetaDataQualityModel LoadFromXmlWorkspace(
             string workspacePath,
-            bool searchUpward = true)
+            bool searchUpward = false)
         {
             return MetaDataQualityModelXmlSerializer.Load(workspacePath, searchUpward);
         }
 
         public static Task<MetaDataQualityModel> LoadFromXmlWorkspaceAsync(
             string workspacePath,
-            bool searchUpward = true,
+            bool searchUpward = false,
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -122,18 +122,17 @@ namespace MetaDataQuality
         internal static MetaDataQualityModel Load(string workspacePath, bool searchUpward)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
+            if (searchUpward)
+            {
+                throw new NotSupportedException("Typed workspace loading does not search parent directories. Pass an explicit workspace path.");
+            }
+
             if (HasRuntimeExtendedShape())
             {
                 return TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(workspacePath, searchUpward);
             }
 
-            var workspaceRootPath = searchUpward
-                ? TypedWorkspaceXmlSerializer.DiscoverWorkspaceRoot(workspacePath)
-                : TypedWorkspaceXmlSerializer.ResolveWorkspaceRootFromPath(workspacePath);
-            if (!Directory.Exists(workspaceRootPath))
-            {
-                throw new DirectoryNotFoundException($"Workspace '{workspaceRootPath}' was not found.");
-            }
+            var workspaceRootPath = TypedWorkspaceXmlSerializer.RequireWorkspace<MetaDataQualityModel>(workspacePath);
 
             var model = new MetaDataQualityModel();
             var loadState = new LoadState();

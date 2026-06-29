@@ -104,14 +104,14 @@ namespace MetaMultiDimensional
 
         public static MetaMultiDimensionalModel LoadFromXmlWorkspace(
             string workspacePath,
-            bool searchUpward = true)
+            bool searchUpward = false)
         {
             return MetaMultiDimensionalModelXmlSerializer.Load(workspacePath, searchUpward);
         }
 
         public static Task<MetaMultiDimensionalModel> LoadFromXmlWorkspaceAsync(
             string workspacePath,
-            bool searchUpward = true,
+            bool searchUpward = false,
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -140,18 +140,17 @@ namespace MetaMultiDimensional
         internal static MetaMultiDimensionalModel Load(string workspacePath, bool searchUpward)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
+            if (searchUpward)
+            {
+                throw new NotSupportedException("Typed workspace loading does not search parent directories. Pass an explicit workspace path.");
+            }
+
             if (HasRuntimeExtendedShape())
             {
                 return TypedWorkspaceXmlSerializer.Load<MetaMultiDimensionalModel>(workspacePath, searchUpward);
             }
 
-            var workspaceRootPath = searchUpward
-                ? TypedWorkspaceXmlSerializer.DiscoverWorkspaceRoot(workspacePath)
-                : TypedWorkspaceXmlSerializer.ResolveWorkspaceRootFromPath(workspacePath);
-            if (!Directory.Exists(workspaceRootPath))
-            {
-                throw new DirectoryNotFoundException($"Workspace '{workspaceRootPath}' was not found.");
-            }
+            var workspaceRootPath = TypedWorkspaceXmlSerializer.RequireWorkspace<MetaMultiDimensionalModel>(workspacePath);
 
             var model = new MetaMultiDimensionalModel();
             var loadState = new LoadState();

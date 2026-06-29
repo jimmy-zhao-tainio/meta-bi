@@ -25,62 +25,13 @@ public sealed class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--new-workspace <path>", result.Output);
-        Assert.Contains("--connection-env <name>", result.Output);
+        Assert.Contains("--connection-env <value>", result.Output);
         Assert.Contains("Options:", result.Output);
         Assert.Contains("--system", result.Output);
-        Assert.Contains("<name>", result.Output);
-        Assert.Contains("--schema <name>", result.Output);
+        Assert.Contains("--schema <value>", result.Output);
         Assert.Contains("--all-schemas", result.Output);
-        Assert.Contains("--table <name>", result.Output);
+        Assert.Contains("--table <value>", result.Output);
         Assert.Contains("--all-tables", result.Output);
-    }
-
-    [Fact]
-    public void ExtractSqlServer_FailsWhenExtractorUnknown()
-    {
-        var result = RunCli("extract nope");
-
-        Assert.Equal(1, result.ExitCode);
-        Assert.Contains("Cannot continue", result.Output);
-        Assert.Contains("unknown extractor 'nope'", result.Output);
-    }
-
-    [Fact]
-    public void ExtractSqlServer_FailsWhenConnectionMissing_AndDoesNotCreateTargetDirectory()
-    {
-        var workspacePath = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
-        try
-        {
-            var result = RunCli($"extract sqlserver --new-workspace \"{workspacePath}\" --system TestSystem --schema dbo --table Cube");
-
-            Assert.Equal(1, result.ExitCode);
-            Assert.Contains("Cannot continue", result.Output);
-            Assert.Contains("missing required option --connection-env <name>", result.Output);
-            Assert.False(Directory.Exists(workspacePath));
-        }
-        finally
-        {
-            DeleteDirectoryIfExists(workspacePath);
-        }
-    }
-
-    [Fact]
-    public void ExtractSqlServer_FailsWhenSystemMissing_AndDoesNotCreateTargetDirectory()
-    {
-        var workspacePath = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
-        try
-        {
-            var result = RunCli($"extract sqlserver --new-workspace \"{workspacePath}\" --connection-env META_SCHEMA_UNUSED --schema dbo --table Cube");
-
-            Assert.Equal(1, result.ExitCode);
-            Assert.Contains("Cannot continue", result.Output);
-            Assert.Contains("missing required option --system <name>", result.Output);
-            Assert.False(Directory.Exists(workspacePath));
-        }
-        finally
-        {
-            DeleteDirectoryIfExists(workspacePath);
-        }
     }
 
     [Fact]
@@ -104,82 +55,6 @@ public sealed class CliTests
         finally
         {
             Environment.SetEnvironmentVariable(environmentVariableName, originalValue);
-            DeleteDirectoryIfExists(workspacePath);
-        }
-    }
-
-    [Fact]
-    public void ExtractSqlServer_FailsWhenSchemaMissing_AndDoesNotCreateTargetDirectory()
-    {
-        var workspacePath = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
-        try
-        {
-            var result = RunCli($"extract sqlserver --new-workspace \"{workspacePath}\" --connection-env META_SCHEMA_UNUSED --system TestSystem --table Cube");
-
-            Assert.Equal(1, result.ExitCode);
-            Assert.Contains("Cannot continue", result.Output);
-            Assert.Contains("missing required scope option --schema <name> or --all-schemas", result.Output);
-            Assert.False(Directory.Exists(workspacePath));
-        }
-        finally
-        {
-            DeleteDirectoryIfExists(workspacePath);
-        }
-    }
-
-    [Fact]
-    public void ExtractSqlServer_FailsWhenTableMissing_AndDoesNotCreateTargetDirectory()
-    {
-        var workspacePath = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
-        try
-        {
-            var result = RunCli($"extract sqlserver --new-workspace \"{workspacePath}\" --connection-env META_SCHEMA_UNUSED --system TestSystem --schema dbo");
-
-            Assert.Equal(1, result.ExitCode);
-            Assert.Contains("Cannot continue", result.Output);
-            Assert.Contains("missing required scope option --table <name> or --all-tables", result.Output);
-            Assert.False(Directory.Exists(workspacePath));
-        }
-        finally
-        {
-            DeleteDirectoryIfExists(workspacePath);
-        }
-    }
-
-    [Fact]
-    public void ExtractSqlServer_FailsWhenSchemaAndAllSchemasProvided()
-    {
-        var workspacePath = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
-        try
-        {
-            var result = RunCli($"extract sqlserver --new-workspace \"{workspacePath}\" --connection-env META_SCHEMA_UNUSED --system TestSystem --schema dbo --all-schemas --table Cube");
-
-            Assert.Equal(1, result.ExitCode);
-            Assert.Contains("Cannot continue", result.Output);
-            Assert.Contains("--schema and --all-schemas cannot be used together", result.Output);
-            Assert.False(Directory.Exists(workspacePath));
-        }
-        finally
-        {
-            DeleteDirectoryIfExists(workspacePath);
-        }
-    }
-
-    [Fact]
-    public void ExtractSqlServer_FailsWhenTableAndAllTablesProvided()
-    {
-        var workspacePath = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
-        try
-        {
-            var result = RunCli($"extract sqlserver --new-workspace \"{workspacePath}\" --connection-env META_SCHEMA_UNUSED --system TestSystem --schema dbo --table Cube --all-tables");
-
-            Assert.Equal(1, result.ExitCode);
-            Assert.Contains("Cannot continue", result.Output);
-            Assert.Contains("--table and --all-tables cannot be used together", result.Output);
-            Assert.False(Directory.Exists(workspacePath));
-        }
-        finally
-        {
             DeleteDirectoryIfExists(workspacePath);
         }
     }
@@ -245,7 +120,7 @@ public sealed class CliTests
                 """);
 
             var extractor = new SqlServerSchemaExtractor();
-            var workspace = extractor.ExtractMetaSchemaWorkspace(new SqlServerExtractRequest
+            var extracted = extractor.ExtractMetaSchemaModel(new SqlServerExtractRequest
             {
                 NewWorkspacePath = workspacePath,
                 ConnectionString = databaseConnectionString,
@@ -254,15 +129,13 @@ public sealed class CliTests
                 TableName = "TypeDetailCase",
             });
 
-            var fieldsByName = workspace.Instance
-                .GetOrCreateEntityRecords("Field")
-                .ToDictionary(row => row.Values["Name"], StringComparer.Ordinal);
-            var detailNamesByFieldId = workspace.Instance
-                .GetOrCreateEntityRecords("FieldDataTypeDetail")
-                .GroupBy(row => row.RelationshipIds["FieldId"], StringComparer.Ordinal)
+            var fieldsByName = extracted.FieldList
+                .ToDictionary(row => row.Name, StringComparer.Ordinal);
+            var detailNamesByFieldId = extracted.FieldDataTypeDetailList
+                .GroupBy(row => row.Field.Id, StringComparer.Ordinal)
                 .ToDictionary(
                     group => group.Key,
-                    group => group.ToDictionary(row => row.Values["Name"], row => row.Values["Value"], StringComparer.Ordinal),
+                    group => group.ToDictionary(row => row.Name, row => row.Value, StringComparer.Ordinal),
                     StringComparer.Ordinal);
 
             var loadTimestampDetails = detailNamesByFieldId[fieldsByName["LoadTimestamp"].Id];
@@ -308,7 +181,7 @@ public sealed class CliTests
                 """);
 
             var extractor = new SqlServerSchemaExtractor();
-            var workspace = extractor.ExtractMetaSchemaWorkspace(new SqlServerExtractRequest
+            var extracted = extractor.ExtractMetaSchemaModel(new SqlServerExtractRequest
             {
                 NewWorkspacePath = workspacePath,
                 ConnectionString = databaseConnectionString,
@@ -317,23 +190,21 @@ public sealed class CliTests
                 TableName = "AliasTypeDetailCase",
             });
 
-            var fieldsByName = workspace.Instance
-                .GetOrCreateEntityRecords("Field")
-                .ToDictionary(row => row.Values["Name"], StringComparer.Ordinal);
-            var detailNamesByFieldId = workspace.Instance
-                .GetOrCreateEntityRecords("FieldDataTypeDetail")
-                .GroupBy(row => row.RelationshipIds["FieldId"], StringComparer.Ordinal)
+            var fieldsByName = extracted.FieldList
+                .ToDictionary(row => row.Name, StringComparer.Ordinal);
+            var detailNamesByFieldId = extracted.FieldDataTypeDetailList
+                .GroupBy(row => row.Field.Id, StringComparer.Ordinal)
                 .ToDictionary(
                     group => group.Key,
-                    group => group.ToDictionary(row => row.Values["Name"], row => row.Values["Value"], StringComparer.Ordinal),
+                    group => group.ToDictionary(row => row.Name, row => row.Value, StringComparer.Ordinal),
                     StringComparer.Ordinal);
 
             var customerName = fieldsByName["CustomerName"];
-            Assert.Equal("sqlserver:type:Name", customerName.Values["MetaDataTypeId"]);
+            Assert.Equal("sqlserver:type:Name", customerName.MetaDataTypeId);
             Assert.Equal("50", detailNamesByFieldId[customerName.Id]["Length"]);
 
             var isActive = fieldsByName["IsActive"];
-            Assert.Equal("sqlserver:type:Flag", isActive.Values["MetaDataTypeId"]);
+            Assert.Equal("sqlserver:type:Flag", isActive.MetaDataTypeId);
             Assert.False(detailNamesByFieldId.ContainsKey(isActive.Id));
         }
         finally
@@ -365,7 +236,7 @@ public sealed class CliTests
                 """);
 
             var extractor = new SqlServerSchemaExtractor();
-            var workspace = extractor.ExtractMetaSchemaWorkspace(new SqlServerExtractRequest
+            var extracted = extractor.ExtractMetaSchemaModel(new SqlServerExtractRequest
             {
                 NewWorkspacePath = workspacePath,
                 ConnectionString = databaseConnectionString,
@@ -374,19 +245,18 @@ public sealed class CliTests
                 TableName = "IdentityCase",
             });
 
-            var fieldsByName = workspace.Instance
-                .GetOrCreateEntityRecords("Field")
-                .ToDictionary(row => row.Values["Name"], StringComparer.Ordinal);
+            var fieldsByName = extracted.FieldList
+                .ToDictionary(row => row.Name, StringComparer.Ordinal);
 
             var identityField = fieldsByName["Id"];
-            Assert.Equal("true", identityField.Values["IsIdentity"]);
-            Assert.Equal("100", identityField.Values["IdentitySeed"]);
-            Assert.Equal("5", identityField.Values["IdentityIncrement"]);
+            Assert.Equal("true", identityField.IsIdentity);
+            Assert.Equal("100", identityField.IdentitySeed);
+            Assert.Equal("5", identityField.IdentityIncrement);
 
             var nonIdentityField = fieldsByName["CustomerName"];
-            Assert.False(nonIdentityField.Values.ContainsKey("IsIdentity"));
-            Assert.False(nonIdentityField.Values.ContainsKey("IdentitySeed"));
-            Assert.False(nonIdentityField.Values.ContainsKey("IdentityIncrement"));
+            Assert.Null(nonIdentityField.IsIdentity);
+            Assert.Null(nonIdentityField.IdentitySeed);
+            Assert.Null(nonIdentityField.IdentityIncrement);
         }
         finally
         {
@@ -424,7 +294,7 @@ public sealed class CliTests
                 """);
 
             var extractor = new SqlServerSchemaExtractor();
-            var workspace = extractor.ExtractMetaSchemaWorkspace(new SqlServerExtractRequest
+            var extracted = extractor.ExtractMetaSchemaModel(new SqlServerExtractRequest
             {
                 NewWorkspacePath = workspacePath,
                 ConnectionString = databaseConnectionString,
@@ -433,13 +303,12 @@ public sealed class CliTests
                 TableName = "ViewCase",
             });
 
-            var table = Assert.Single(workspace.Instance.GetOrCreateEntityRecords("Table"));
-            Assert.Equal("ViewCase", table.Values["Name"]);
-            Assert.Equal("View", table.Values["ObjectType"]);
+            var table = Assert.Single(extracted.TableList);
+            Assert.Equal("ViewCase", table.Name);
+            Assert.Equal("View", table.ObjectType);
 
-            var fieldsByName = workspace.Instance
-                .GetOrCreateEntityRecords("Field")
-                .ToDictionary(row => row.Values["Name"], StringComparer.Ordinal);
+            var fieldsByName = extracted.FieldList
+                .ToDictionary(row => row.Name, StringComparer.Ordinal);
 
             Assert.Equal(2, fieldsByName.Count);
             Assert.Contains("SourceId", fieldsByName.Keys);

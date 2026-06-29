@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationList>
+    <Application Id="app-meta-schema">
+      <ExecutableName>meta-schema</ExecutableName>
+      <Name>meta-schema</Name>
+    </Application>
+  </ApplicationList>
+</MetaCli>

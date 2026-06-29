@@ -52,14 +52,14 @@ namespace MetaPipeline
 
         public static MetaPipelineModel LoadFromXmlWorkspace(
             string workspacePath,
-            bool searchUpward = true)
+            bool searchUpward = false)
         {
             return MetaPipelineModelXmlSerializer.Load(workspacePath, searchUpward);
         }
 
         public static Task<MetaPipelineModel> LoadFromXmlWorkspaceAsync(
             string workspacePath,
-            bool searchUpward = true,
+            bool searchUpward = false,
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -88,18 +88,17 @@ namespace MetaPipeline
         internal static MetaPipelineModel Load(string workspacePath, bool searchUpward)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
+            if (searchUpward)
+            {
+                throw new NotSupportedException("Typed workspace loading does not search parent directories. Pass an explicit workspace path.");
+            }
+
             if (HasRuntimeExtendedShape())
             {
                 return TypedWorkspaceXmlSerializer.Load<MetaPipelineModel>(workspacePath, searchUpward);
             }
 
-            var workspaceRootPath = searchUpward
-                ? TypedWorkspaceXmlSerializer.DiscoverWorkspaceRoot(workspacePath)
-                : TypedWorkspaceXmlSerializer.ResolveWorkspaceRootFromPath(workspacePath);
-            if (!Directory.Exists(workspaceRootPath))
-            {
-                throw new DirectoryNotFoundException($"Workspace '{workspaceRootPath}' was not found.");
-            }
+            var workspaceRootPath = TypedWorkspaceXmlSerializer.RequireWorkspace<MetaPipelineModel>(workspacePath);
 
             var model = new MetaPipelineModel();
             var loadState = new LoadState();

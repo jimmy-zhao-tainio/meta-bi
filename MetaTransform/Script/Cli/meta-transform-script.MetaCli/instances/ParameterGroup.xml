@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupList>
+    <ParameterGroup Id="group-from-sql-file-workspace-target" ExecutableCommandId="exec-from-sql-file">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Choose either a new workspace or an existing workspace.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>workspace-target</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-from-sql-files-workspace-target" ExecutableCommandId="exec-from-sql-files">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Choose either a new workspace or an existing workspace.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>workspace-target</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-from-sql-code-workspace-target" ExecutableCommandId="exec-from-sql-code">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Choose either a new workspace or an existing workspace.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>workspace-target</Name>
+    </ParameterGroup>
+  </ParameterGroupList>
+</MetaCli>

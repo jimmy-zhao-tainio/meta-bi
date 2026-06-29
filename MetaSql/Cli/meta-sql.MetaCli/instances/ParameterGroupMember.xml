@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupMemberList>
+    <ParameterGroupMember Id="member-execute-file" ParameterGroupId="group-execute-sql-input" ParameterId="param-execute-file">
+    </ParameterGroupMember>
+    <ParameterGroupMember Id="member-execute-query" ParameterGroupId="group-execute-sql-input" ParameterId="param-execute-query" PreviousMemberId="member-execute-file">
+    </ParameterGroupMember>
+  </ParameterGroupMemberList>
+</MetaCli>

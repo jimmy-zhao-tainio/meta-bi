@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionTokenList>
+    <OptionToken Id="token-from-sql-file-path" OptionId="opt-from-sql-file-path">
+      <Token>--path</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-file-target" OptionId="opt-from-sql-file-target">
+      <Token>--target</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-file-new-workspace" OptionId="opt-from-sql-file-new-workspace">
+      <Token>--new-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-file-workspace" OptionId="opt-from-sql-file-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-files-manifest" OptionId="opt-from-sql-files-manifest">
+      <Token>--manifest</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-files-new-workspace" OptionId="opt-from-sql-files-new-workspace">
+      <Token>--new-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-files-workspace" OptionId="opt-from-sql-files-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-files-report" OptionId="opt-from-sql-files-report">
+      <Token>--report</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-files-verbose" OptionId="opt-from-sql-files-verbose">
+      <Token>--verbose</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-code-code" OptionId="opt-from-sql-code-code">
+      <Token>--code</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-code-target" OptionId="opt-from-sql-code-target">
+      <Token>--target</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-code-new-workspace" OptionId="opt-from-sql-code-new-workspace">
+      <Token>--new-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-code-workspace" OptionId="opt-from-sql-code-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-code-name" OptionId="opt-from-sql-code-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-to-sql-path-workspace" OptionId="opt-to-sql-path-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-to-sql-path-out" OptionId="opt-to-sql-path-out">
+      <Token>--out</Token>
+    </OptionToken>
+    <OptionToken Id="token-to-sql-code-workspace" OptionId="opt-to-sql-code-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-to-sql-code-name" OptionId="opt-to-sql-code-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-target-identifiers-from-pattern-workspace" OptionId="opt-target-identifiers-from-pattern-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-target-identifiers-from-pattern-source-pattern" OptionId="opt-target-identifiers-from-pattern-source-pattern">
+      <Token>--source-pattern</Token>
+    </OptionToken>
+    <OptionToken Id="token-target-identifiers-from-pattern-target-pattern" OptionId="opt-target-identifiers-from-pattern-target-pattern">
+      <Token>--target-pattern</Token>
+    </OptionToken>
+    <OptionToken Id="token-target-identifiers-from-pattern-only-missing" OptionId="opt-target-identifiers-from-pattern-only-missing">
+      <Token>--only-missing</Token>
+    </OptionToken>
+    <OptionToken Id="token-target-identifiers-from-pattern-dry-run" OptionId="opt-target-identifiers-from-pattern-dry-run">
+      <Token>--dry-run</Token>
+    </OptionToken>
+    <OptionToken Id="token-target-identifiers-from-pattern-allow-empty" OptionId="opt-target-identifiers-from-pattern-allow-empty">
+      <Token>--allow-empty</Token>
+    </OptionToken>
+    <OptionToken Id="token-target-identifiers-from-pattern-verbose" OptionId="opt-target-identifiers-from-pattern-verbose">
+      <Token>--verbose</Token>
+    </OptionToken>
+    <OptionToken Id="token-stored-procedure-view-contract-workspace" OptionId="opt-stored-procedure-view-contract-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-stored-procedure-view-contract-name" OptionId="opt-stored-procedure-view-contract-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-stored-procedure-add-contract-workspace" OptionId="opt-stored-procedure-add-contract-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-stored-procedure-add-contract-name" OptionId="opt-stored-procedure-add-contract-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-stored-procedure-add-contract-operation" OptionId="opt-stored-procedure-add-contract-operation">
+      <Token>--operation</Token>
+    </OptionToken>
+    <OptionToken Id="token-stored-procedure-add-contract-result-rowset" OptionId="opt-stored-procedure-add-contract-result-rowset">
+      <Token>--result-rowset</Token>
+    </OptionToken>
+    <OptionToken Id="token-stored-procedure-add-contract-result-column" OptionId="opt-stored-procedure-add-contract-result-column">
+      <Token>--result-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-stored-procedure-add-contract-notes" OptionId="opt-stored-procedure-add-contract-notes">
+      <Token>--notes</Token>
+    </OptionToken>
+    <OptionToken Id="token-stored-procedure-remove-contract-workspace" OptionId="opt-stored-procedure-remove-contract-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-stored-procedure-remove-contract-name" OptionId="opt-stored-procedure-remove-contract-name">
+      <Token>--name</Token>
+    </OptionToken>
+  </OptionTokenList>
+</MetaCli>

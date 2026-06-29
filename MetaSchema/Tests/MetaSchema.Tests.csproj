@@ -21,6 +21,7 @@
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
+    <ProjectReference Include="..\\Cli\\MetaSchema.Cli.csproj" />
     <ProjectReference Include="..\\Core\\MetaSchema.Core.csproj" />
     <ProjectReference Include="..\\Extractors.SqlServer\\MetaSchema.Extractors.SqlServer.csproj" />
   </ItemGroup>

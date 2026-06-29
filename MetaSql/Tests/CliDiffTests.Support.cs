@@ -1290,6 +1290,18 @@ public sealed partial class CliDiffTests
     }
     private static (int ExitCode, string Output) RunProcess(ProcessStartInfo startInfo, string errorMessage)
     {
+        if (string.Equals(startInfo.FileName, "meta-sql", StringComparison.OrdinalIgnoreCase))
+        {
+            startInfo.FileName = Path.Combine(
+                FindRepositoryRoot(),
+                "MetaSql",
+                "Cli",
+                "bin",
+                "Debug",
+                "net8.0",
+                "meta-sql.exe");
+        }
+
         RewriteConnectionArguments(startInfo);
 
         using var process = new Process { StartInfo = startInfo };

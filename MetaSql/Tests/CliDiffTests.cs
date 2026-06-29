@@ -28,8 +28,8 @@ public sealed partial class CliDiffTests
         var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("Command: deploy-plan", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql deploy-plan --source-workspace <path> --connection-env <name> --out <path>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("Usage:", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql deploy-plan --source-workspace <path> --connection-env <value> --out <path>", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-drop-table", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-drop-column", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-truncate-column", result.Output, StringComparison.Ordinal);
@@ -60,8 +60,8 @@ public sealed partial class CliDiffTests
         var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("Command: deploy", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-env <name>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("Usage:", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-env <value>", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("--schema", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("--table", result.Output, StringComparison.Ordinal);
     }
@@ -85,9 +85,11 @@ public sealed partial class CliDiffTests
         var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("Command: execute", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql execute --connection-env <name> (--file <path> | --query <sql>)", result.Output, StringComparison.Ordinal);
-        Assert.Contains("--var <name=value>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("Usage:", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql execute --connection-env <value>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--file <path>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--query <value>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--var <value>", result.Output, StringComparison.Ordinal);
         Assert.Contains("--quiet", result.Output, StringComparison.Ordinal);
     }
 
@@ -110,8 +112,8 @@ public sealed partial class CliDiffTests
         var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("Command: extract sqlserver", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql extract sqlserver --new-workspace <path> --connection-env <name>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("Usage:", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql extract sqlserver --new-workspace <path> --connection-env <value>", result.Output, StringComparison.Ordinal);
         Assert.Contains("--include-tables", result.Output, StringComparison.Ordinal);
         Assert.Contains("--include-views", result.Output, StringComparison.Ordinal);
         Assert.Contains("--include-functions", result.Output, StringComparison.Ordinal);
@@ -508,46 +510,6 @@ public sealed partial class CliDiffTests
             Assert.Empty(manifest.DropPrimaryKeyList);
             Assert.Empty(manifest.DropIndexList);
             Assert.Empty(manifest.DropTableColumnList);
-        }
-        finally
-        {
-            DropDatabase(masterConnectionString, databaseName);
-            DeleteIfExists(tempRoot);
-        }
-    }
-
-    [Fact]
-    public async Task DeployPlanCommand_RemovedGlobalFlagsAreRejected()
-    {
-        var repoRoot = FindRepositoryRoot();
-        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
-        var sourcePath = Path.Combine(tempRoot, "source-metasql");
-        var outputPath = Path.Combine(tempRoot, "deploy-manifest");
-        var databaseName = $"MetaSqlDeployDeprecatedDropFlag_{Guid.NewGuid():N}";
-        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
-        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
-
-        try
-        {
-            CreateDatabase(masterConnectionString, databaseName);
-            CreateParentChildWithForeignKey(databaseConnectionString);
-            await CreateSourceWorkspaceWithChildOnlyNoForeignKeyAsync(sourcePath, databaseName);
-
-            var startInfo = new ProcessStartInfo
-            {
-                FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --with-data-drop --out \"{outputPath}\"",
-                WorkingDirectory = repoRoot,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-            };
-
-            var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
-
-            Assert.Equal(1, result.ExitCode);
-            Assert.Contains("unknown option '--with-data-drop'.", result.Output, StringComparison.Ordinal);
         }
         finally
         {

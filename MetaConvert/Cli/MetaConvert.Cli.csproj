@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\..\MetaSchema\Instance\MetaSchema.Instance.csproj" />
     <ProjectReference Include="..\..\MetaDataVault\Instance\MetaRawDataVault.Instance.csproj" />
     <ProjectReference Include="..\..\MetaDataQuality\Tooling\MetaDataQuality.Tooling.csproj" />
@@ -22,5 +23,12 @@
     <ProjectReference Include="..\AnalyticsToTabular\MetaConvert.AnalyticsToTabular.csproj" />
     <ProjectReference Include="..\AnalyticsToMultiDimensional\MetaConvert.AnalyticsToMultiDimensional.csproj" />
     <ProjectReference Include="..\SchemaToDataVault\MetaConvert.SchemaToDataVault.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="meta-convert.MetaCli\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>meta-convert.MetaCli\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
   </ItemGroup>
 </Project>

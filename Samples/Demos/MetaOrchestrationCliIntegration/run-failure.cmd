@@ -20,7 +20,7 @@ meta-pipeline add-pipeline --workspace FailurePipelineWS --name FailureHandler
 meta-pipeline add-step --workspace FailurePipelineWS --pipeline FailureHandler --step-name record-failure --script failure_handler --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-orchestration --pipeline-workspace FailurePipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --new-workspace FailureOrchestrationWS
+meta-orchestration infer --pipeline-workspace FailurePipelineWS --new-workspace FailureOrchestrationWS
 @if errorlevel 1 exit /b %errorlevel%
 
 meta-orchestration add-dependency --workspace FailureOrchestrationWS --from-task BrokenStageCustomer.load-stage-customer --to-task FailureHandler.record-failure --condition failure --reason "Run the modeled failure dependency branch."
@@ -38,7 +38,7 @@ meta-orchestration inspect-run-plan --workspace FailureOrchestrationWS
 meta-sql execute --connection-env META_ORCHESTRATION_DEMO_SQL --quiet --query "DROP TABLE dbo.RawCustomer;"
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-orchestration execute --workspace FailureOrchestrationWS --pipeline-workspace FailurePipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --pipeline-db-connection-env META_ORCHESTRATION_DEMO_SQL
+meta-orchestration execute --workspace FailureOrchestrationWS --pipeline-workspace FailurePipelineWS --pipeline-db-connection-env META_ORCHESTRATION_DEMO_SQL
 @if "%ERRORLEVEL%"=="0" exit /b 1
 @if not "%ERRORLEVEL%"=="4" exit /b %ERRORLEVEL%
 

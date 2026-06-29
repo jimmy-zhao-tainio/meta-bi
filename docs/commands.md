@@ -2148,259 +2148,165 @@ Notes:
 
 ```text
 Usage:
-  meta-orchestration --pipeline-workspace <path> [--transform-workspace <path>] [--binding-workspace
-  <path>] --new-workspace <path> [--description <text>]
-Usage:
   meta-orchestration <command> [options]
 
 Commands:
-
-  inspect                  Inspect a MetaOrchestration workspace.
-  list-issues              List analyzer issues recorded in an orchestration workspace.
-  explain-issue            Explain one analyzer issue and its participating pipelines.
   add-dependency           Record an explicit success or failure dependency between tasks.
   add-order                Record an explicit success dependency/order resolution in an
                            orchestration workspace.
   allow-concurrent-append  Allow concurrent execution for multiple Append effects on one object.
-  set-lock-policy          Record scoped lock compatibility for one object/effect interaction.
-  refresh-run-plan         Refresh lock-aware run-plan rows in an orchestration workspace.
-  inspect-run-plan         Inspect the planned task dependency graph.
   execute                  Execute the current run plan by coordinating meta-pipeline worker
                            processes.
-  help                     Show this help.
+  explain-issue            Explain one analyzer issue and its participating pipelines.
+  help                     Show help.
+  infer                    Infer a MetaOrchestration workspace from a modeled MetaPipeline workspace.
+  inspect                  Inspect a MetaOrchestration workspace.
+  inspect-run-plan         Inspect the planned task dependency graph.
+  list-issues              List analyzer issues recorded in an orchestration workspace.
+  refresh-run-plan         Refresh lock-aware run-plan rows in an orchestration workspace.
+  set-lock-policy          Record scoped lock compatibility for one object/effect interaction.
 
-Notes:
-  --new-workspace creates a MetaOrchestration workspace by inferring from modeled MetaPipeline steps.
-  Transform-backed steps require binding; executable process steps do not.
-  The workspace separates dependency DAG status from determinism and synchronization status.
-  Data dependencies are inferred from published producers to dependency consumers.
-  Same-object writer interactions become determinism or synchronization issues instead of artificial dependency edges.
+Next: meta-orchestration help <command>
+```
 
-Next: meta-orchestration refresh-run-plan --help
+### `meta-orchestration infer --help`
+
+```text
+Usage:
+  meta-orchestration infer --pipeline-workspace <path> --new-workspace <path> [--description <value>]
+
+Infer a MetaOrchestration workspace from a modeled MetaPipeline workspace.
+
+Options:
+  --pipeline-workspace <path>   MetaPipeline workspace to analyze.
+  --new-workspace <path>        Directory where the MetaOrchestration workspace will be created.
+  --description <value>         Description recorded on the orchestration plan.
 ```
 
 ### `meta-orchestration inspect --help`
 
 ```text
-Command: inspect
 Usage:
-  meta-orchestration inspect --workspace <path>
+  meta-orchestration inspect [--workspace <path>]
 
 Options:
-
-  --workspace <path>  Required. MetaOrchestration workspace to inspect.
-
-Notes:
-  Shows DAG, determinism, synchronization, dependency, effect, retry-policy, and issue summaries.
+  --workspace <path>  MetaOrchestration workspace. Defaults to the current directory.
 ```
 
 ### `meta-orchestration list-issues --help`
 
 ```text
-Command: list-issues
 Usage:
-  meta-orchestration list-issues --workspace <path>
+  meta-orchestration list-issues [--workspace <path>]
 
 Options:
-
-  --workspace <path>  Required. MetaOrchestration workspace to inspect.
-
-Notes:
-  Lists dependency, determinism, synchronization, and policy issues without changing analysis evidence.
+  --workspace <path>  MetaOrchestration workspace. Defaults to the current directory.
 ```
 
 ### `meta-orchestration explain-issue --help`
 
 ```text
-Command: explain-issue
 Usage:
-  meta-orchestration explain-issue --workspace <path> --issue <id-or-unique-code>
+  meta-orchestration explain-issue [--workspace <path>] --issue <value>
 
 Options:
-
-  --workspace <path>           Required. MetaOrchestration workspace to inspect.
-  --issue <id-or-unique-code>  Required. Issue id or unique issue code.
-
-Notes:
-  Shows issue domain, severity, blocking flags, object, message, and participating pipelines.
+  --workspace <path>   MetaOrchestration workspace. Defaults to the current directory.
+  --issue <value>      Issue id or unique issue code.
 ```
 
 ### `meta-orchestration add-dependency --help`
 
 ```text
-Command: add-dependency
 Usage:
-  meta-orchestration add-dependency --workspace <path> --from-task <task> --to-task <task>
-  --condition success|failure [--object <sql-identifier>] [--reason <text>]
+  meta-orchestration add-dependency [--workspace <path>] --from-task <value> --to-task <value> --condition success|failure [--object <value>] [--reason <value>]
 
 Options:
-
-  --workspace <path>           Required. MetaOrchestration workspace to update.
-  --from-task <task>           Required. Predecessor task selector.
-  --to-task <task>             Required. Successor task selector.
-  --condition success|failure  Required. Whether the successor follows predecessor success or
-                               failure.
-  --object <sql-identifier>    Optional object selector for object-scoped dependency resolution.
-  --reason <text>              Optional reason recorded with the policy row.
-
-Notes:
-  Adds an explicit conditional DAG edge between planned tasks.
-  Success edges run the successor only when the predecessor succeeds.
-  Failure edges run the successor only when the predecessor fails.
-  Task selectors may be task id, task name, MetaPipeline task id, or Pipeline.Task.
+  --workspace <path>            MetaOrchestration workspace. Defaults to the current directory.
+  --from-task <value>           Predecessor task selector.
+  --to-task <value>             Successor task selector.
+  --condition success|failure   Whether the successor follows predecessor success or failure.
+  --object <value>              Object selector for object-scoped dependency resolution.
+  --reason <value>              Reason recorded with the policy row.
 ```
 
 ### `meta-orchestration add-order --help`
 
 ```text
-Command: add-order
 Usage:
-  meta-orchestration add-order --workspace <path> --from-task <task> --to-task <task> [--condition
-  success|failure] [--object <sql-identifier>] [--reason <text>]
+  meta-orchestration add-order [--workspace <path>] --from-task <value> --to-task <value> [--condition success|failure] [--object <value>] [--reason <value>]
 
 Options:
-
-  --workspace <path>           Required. MetaOrchestration workspace to update.
-  --from-task <task>           Required. Predecessor task selector.
-  --to-task <task>             Required. Successor task selector.
-  --condition success|failure  Optional dependency condition. Default: success.
-  --object <sql-identifier>    Optional object selector for object-scoped dependency resolution.
-  --reason <text>              Optional reason recorded with the policy row.
-
-Notes:
-  Adds an explicit task dependency resolution for a determinism issue.
-  The default condition is success. Use add-dependency when authoring failure branches.
-  Failure dependencies are graph edges, not post-run action hooks.
-  Task selectors may be task id, task name, MetaPipeline task id, or Pipeline.Task.
+  --workspace <path>            MetaOrchestration workspace. Defaults to the current directory.
+  --from-task <value>           Predecessor task selector.
+  --to-task <value>             Successor task selector.
+  --condition success|failure   Dependency condition. Default: success.
+  --object <value>              Object selector for object-scoped dependency resolution.
+  --reason <value>              Reason recorded with the policy row.
 ```
 
 ### `meta-orchestration allow-concurrent-append --help`
 
 ```text
-Command: allow-concurrent-append
 Usage:
-  meta-orchestration allow-concurrent-append --workspace <path> --object <sql-identifier> [--reason
-  <text>]
+  meta-orchestration allow-concurrent-append [--workspace <path>] --object <value> [--reason <value>]
 
 Options:
-
-  --workspace <path>         Required. MetaOrchestration workspace to update.
-  --object <sql-identifier>  Required. Data object whose append writers can overlap.
-  --reason <text>            Optional reason recorded with the policy row.
-
-Notes:
-  Adds a scoped Append/Append lock compatibility policy for concurrent append writers.
+  --workspace <path>   MetaOrchestration workspace. Defaults to the current directory.
+  --object <value>     Data object whose append writers can overlap.
+  --reason <value>     Reason recorded with the policy row.
 ```
 
 ### `meta-orchestration set-lock-policy --help`
 
 ```text
-Command: set-lock-policy
 Usage:
-  meta-orchestration set-lock-policy --workspace <path> --object <sql-identifier> --left-effect
-  <effect> --right-effect <effect> --behavior <serialize|allow> [--reason <text>]
+  meta-orchestration set-lock-policy [--workspace <path>] --object <value> --left-effect <value> --right-effect <value> --behavior serialize|allow [--reason <value>]
 
 Options:
-
-  --workspace <path>            Required. MetaOrchestration workspace to update.
-  --object <sql-identifier>     Required. Data object whose effect interaction is being resolved.
-  --left-effect <effect>        Required. Left write effect, such as Append, Replace, Mutation,
-                                KeyedUpsert, or ConditionalKeyedUpsert.
-  --right-effect <effect>       Required. Right write effect, such as Append, Replace, Mutation,
-                                KeyedUpsert, or ConditionalKeyedUpsert.
-  --behavior <serialize|allow>  Required. Lock behavior for the object/effect pair.
-  --reason <text>               Optional reason recorded with the policy row.
-
-Notes:
-  Adds or updates scoped lock compatibility for an object/effect interaction.
-  allow is currently accepted only for Append/Append; use serialize for other pairs.
+  --workspace <path>          MetaOrchestration workspace. Defaults to the current directory.
+  --object <value>            Data object whose effect interaction is being resolved.
+  --left-effect <value>       Left write effect, such as Append, Replace, Mutation, KeyedUpsert, or ConditionalKeyedUpsert.
+  --right-effect <value>      Right write effect, such as Append, Replace, Mutation, KeyedUpsert, or ConditionalKeyedUpsert.
+  --behavior serialize|allow  Lock behavior for the object/effect pair.
+  --reason <value>            Reason recorded with the policy row.
 ```
 
 ### `meta-orchestration refresh-run-plan --help`
 
 ```text
-Command: refresh-run-plan
 Usage:
-  meta-orchestration refresh-run-plan --workspace <path>
+  meta-orchestration refresh-run-plan [--workspace <path>]
 
 Options:
-
-  --workspace <path>  Required. MetaOrchestration workspace to update.
-
-Notes:
-  Writes the run plan, default run-plan retry policy assignment, planned tasks, and task locks into the existing orchestration workspace.
-  The DAG must be complete and run-planning policy must resolve blocking determinism/synchronization issues.
-  Execute refreshes the run plan automatically; this command is for preflight and inspection workflows.
+  --workspace <path>  MetaOrchestration workspace. Defaults to the current directory.
 ```
 
 ### `meta-orchestration inspect-run-plan --help`
 
 ```text
-Command: inspect-run-plan
 Usage:
-  meta-orchestration inspect-run-plan --workspace <path>
+  meta-orchestration inspect-run-plan [--workspace <path>]
 
 Options:
-
-  --workspace <path>  Required. MetaOrchestration workspace to inspect.
-
-Notes:
-  Shows the task dependency graph as an adjacency list.
-  The graph is printed from dependency rows, not from planned-task order.
-  Use issue/policy inspection commands when you need the reasoning behind the plan.
+  --workspace <path>  MetaOrchestration workspace. Defaults to the current directory.
 ```
 
 ### `meta-orchestration execute --help`
 
 ```text
-Command: execute
 Usage:
-  meta-orchestration execute --workspace <path> --pipeline-workspace <path> [--transform-workspace
-  <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>]
-  [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>] [--run-artifacts-root
-  <path>] [--worker-event-timeout-seconds <n>] [--worker-activation-timeout-seconds <n>]
-  [--worker-control-pipe-connect-timeout-seconds <n>]
+  meta-orchestration execute [--workspace <path>] --pipeline-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <value>] [--max-degree-of-parallelism <n>] [--run-artifacts-root <path>] [--worker-event-timeout-seconds <n>] [--worker-activation-timeout-seconds <n>] [--worker-control-pipe-connect-timeout-seconds <n>]
 
 Options:
-
-  --workspace <path>                                 Required. MetaOrchestration workspace
-                                                     containing the analysis and run-plan rows.
-  --pipeline-workspace <path>                        Required. MetaPipeline workspace used by child
-                                                     pipeline workers.
-  --transform-workspace <path>                       Required when planned tasks include
-                                                     transform-backed MetaPipeline steps.
-  --binding-workspace <path>                         Required when planned tasks include
-                                                     transform-backed MetaPipeline steps.
-  --data-type-conversion-workspace <path>            Optional conversion policy workspace passed to
-                                                     child workers.
-  --pipeline-db-connection-env <name>                Optional operational DB connection env passed
-                                                     to child workers.
-  --max-degree-of-parallelism <n>                    Maximum concurrently granted pipeline tasks.
-                                                     Default: 1.
-  --run-artifacts-root <path>                        Optional operational root for run journals,
-                                                     worker logs, and workspace execution leases.
-  --worker-event-timeout-seconds <n>                 Optional timeout for silent worker protocol
-                                                     periods. 0 or omitted means no timeout.
-  --worker-activation-timeout-seconds <n>            Optional startup/activation timeout. Omitted
-                                                     follows --worker-event-timeout-seconds; 0
-                                                     disables activation timeout.
-  --worker-control-pipe-connect-timeout-seconds <n>  Optional timeout while waiting for child
-                                                     workers to connect to the named pipe. 0 or
-                                                     omitted means no timeout.
-
-Notes:
-  Refreshes run-plan rows from current workspace state, then executes the run plan.
-  Each MetaPipeline pipeline is launched once as a worker with a named pipe control channel.
-  Executable-only pipeline workers do not require transform or binding workspace arguments.
-  Orchestration sends StartPipeline after WorkerReady, before any task grants.
-  Replacement workers receive StartPipeline with a resume task id so prior same-pipeline tasks are not replayed after retryable worker loss.
-  Orchestration grants TaskReady work or stops a worker at a blocked task.
-  Workers parked at TaskReady do not count as silent. Timeout options are disabled by default; use zero to explicitly disable a timeout.
-  Retry policy is read from modeled RetryPolicy/RetryPolicyFailureClass/RunPlanRetryPolicy rows, not from a command-line switch.
-  Failed tasks block OnSuccess dependents, enable OnFailure branches, and leave unrelated paths running.
-  Task dependencies and locks define runtime eligibility; --max-degree-of-parallelism throttles concurrent task grants.
-  Execution takes an exclusive lease for the orchestration workspace; different workspaces may execute concurrently.
-  MetaPipeline remains the owner of transform execution and operational DB evidence.
+  --workspace <path>            MetaOrchestration workspace. Defaults to the current directory.
+  --pipeline-workspace <path>   MetaPipeline workspace used by child pipeline workers.
+  --data-type-conversion-workspace <path>  Conversion policy workspace passed to child workers.
+  --pipeline-db-connection-env <value>  Operational DB connection environment variable passed to child workers.
+  --max-degree-of-parallelism <n>  Maximum concurrently granted pipeline tasks. Default: 1.
+  --run-artifacts-root <path>   Operational root for run journals, worker logs, and workspace execution leases.
+  --worker-event-timeout-seconds <n>  Timeout for silent worker protocol periods. 0 or omitted means no timeout.
+  --worker-activation-timeout-seconds <n>  Startup/activation timeout. Omitted follows --worker-event-timeout-seconds; 0 disables activation timeout.
+  --worker-control-pipe-connect-timeout-seconds <n>  Timeout while waiting for child workers to connect to the named pipe. 0 or omitted means no timeout.
 ```
 
 ## meta-data-warehouse
@@ -3122,16 +3028,13 @@ Notes:
 
 ## meta-analytics
 
-### `meta-analytics --help`
+### `meta-analytics help`
 
 ```text
 Usage:
-  meta-analytics [--new-workspace <path> | <command> [options]]
+  meta-analytics <command> [options]
 
 Commands:
-
-  help                         Show this help.
-  --new-workspace              Create an empty MetaAnalytics workspace.
   add-aggregation-behavior     Declare a base measure aggregate function.
   add-attribute                Add a typed table attribute or calculated attribute.
   add-attribute-permission     Add object-level security for an attribute.
@@ -3159,645 +3062,500 @@ Commands:
   add-table                    Add an analytics table.
   add-table-permission         Add object-level security for a table.
   add-table-translation        Translate table metadata.
+  help                         Show help.
+  new-workspace                Create a MetaAnalytics workspace.
 
-Notes:
-  MetaAnalytics owns common analytics concepts; target-specific scripts and deployment belong in MetaTabular or MetaMultiDimensional.
-
-Next: meta-analytics add-model --help
+Next: meta-analytics help <command>
 ```
 
-### `meta-analytics --new-workspace --help`
+### `meta-analytics new-workspace --help`
 
 ```text
-Command: --new-workspace
 Usage:
-  meta-analytics --new-workspace <path>
+  meta-analytics new-workspace <path>
 
-Options:
+Create a MetaAnalytics workspace.
 
-  --new-workspace <path>  Required. Directory where the empty MetaAnalytics workspace will be
-                          created.
+Arguments:
+  <path>                        Directory where the MetaAnalytics workspace will be created.
 ```
 
 ### `meta-analytics add-aggregation-behavior --help`
 
 ```text
-Command: add-aggregation-behavior
 Usage:
-  meta-analytics add-aggregation-behavior [--workspace <path>] --id <id> --function <value>
-  [--description <value>] --measure <id>
+  meta-analytics add-aggregation-behavior --id <value> [--workspace <path>] --function <value> [--description <value>] --measure <value>
+
+Declare a base measure aggregate function.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. AggregationBehavior row id.
-  --function <value>     Required. Function.
-  --description <value>  Optional. Description.
-  --measure <id>         Required. Measure id for MeasureId.
-
-Notes:
-  Adds one AggregationBehavior row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  AggregationBehavior row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --function <value>            Aggregate function.
+  --description <value>         Description.
+  --measure <value>             Measure id.
 ```
 
 ### `meta-analytics add-attribute --help`
 
 ```text
-Command: add-attribute
 Usage:
-  meta-analytics add-attribute [--workspace <path>] --id <id> --name <value> --data-type-id <value>
-  [--ordinal <value>] [--kind <value>] [--source-name <value>] [--expression-language <value>]
-  [--expression <value>] [--is-key <value>] [--is-nullable <value>] [--is-hidden <value>]
-  [--format-string <value>] [--summarize-by <value>] [--data-category <value>] [--description
-  <value>] --table <id>
+  meta-analytics add-attribute --id <value> [--workspace <path>] --name <value> --data-type-id <value> [--ordinal <value>] [--kind <value>] [--source-name <value>] [--expression-language <value>] [--expression <value>] [--is-key true|false] [--is-nullable true|false] [--is-hidden true|false] [--format-string <value>] [--summarize-by <value>] [--data-category <value>] [--description <value>] --table <value>
+
+Add a typed table attribute or calculated attribute.
 
 Options:
-
-  --workspace <path>             Optional. Workspace path. Default: current working directory.
-  --id <id>                      Required. Attribute row id.
-  --name <value>                 Required. Name.
-  --data-type-id <value>         Required. DataTypeId.
-  --ordinal <value>              Optional. Ordinal.
-  --kind <value>                 Optional. Kind.
-  --source-name <value>          Optional. SourceName.
-  --expression-language <value>  Optional. ExpressionLanguage.
-  --expression <value>           Optional. Expression.
-  --is-key <value>               Optional. IsKey.
-  --is-nullable <value>          Optional. IsNullable.
-  --is-hidden <value>            Optional. IsHidden.
-  --format-string <value>        Optional. FormatString.
-  --summarize-by <value>         Optional. SummarizeBy.
-  --data-category <value>        Optional. DataCategory.
-  --description <value>          Optional. Description.
-  --table <id>                   Required. Table id for TableId.
-
-Notes:
-  Adds one Attribute row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  Attribute row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Attribute name.
+  --data-type-id <value>        Data type id.
+  --ordinal <value>             Attribute ordinal.
+  --kind <value>                Attribute kind.
+  --source-name <value>         Source column name.
+  --expression-language <value>  Expression language.
+  --expression <value>          Expression.
+  --is-key true|false           Whether the attribute is a key.
+  --is-nullable true|false      Whether the attribute is nullable.
+  --is-hidden true|false        Whether the attribute is hidden.
+  --format-string <value>       Format string.
+  --summarize-by <value>        Summarize by.
+  --data-category <value>       Data category.
+  --description <value>         Description.
+  --table <value>               Table id.
 ```
 
 ### `meta-analytics add-attribute-permission --help`
 
 ```text
-Command: add-attribute-permission
 Usage:
-  meta-analytics add-attribute-permission [--workspace <path>] --id <id> --metadata-permission
-  <value> [--description <value>] --role <id> --attribute <id>
+  meta-analytics add-attribute-permission --id <value> [--workspace <path>] --metadata-permission <value> [--description <value>] --role <value> --attribute <value>
+
+Add object-level security for an attribute.
 
 Options:
-
-  --workspace <path>             Optional. Workspace path. Default: current working directory.
-  --id <id>                      Required. AttributePermission row id.
-  --metadata-permission <value>  Required. MetadataPermission.
-  --description <value>          Optional. Description.
-  --role <id>                    Required. SecurityRole id for SecurityRoleId.
-  --attribute <id>               Required. Attribute id for AttributeId.
-
-Notes:
-  Adds one AttributePermission row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  AttributePermission row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --metadata-permission <value>  Metadata permission.
+  --description <value>         Description.
+  --role <value>                SecurityRole id.
+  --attribute <value>           Attribute id.
 ```
 
 ### `meta-analytics add-attribute-relationship --help`
 
 ```text
-Command: add-attribute-relationship
 Usage:
-  meta-analytics add-attribute-relationship [--workspace <path>] --id <id> [--relationship-type
-  <value>] [--description <value>] --child-attribute <id> --parent-attribute <id>
+  meta-analytics add-attribute-relationship --id <value> [--workspace <path>] [--relationship-type <value>] [--description <value>] --child-attribute <value> --parent-attribute <value>
+
+Declare an attribute relationship inside a table.
 
 Options:
-
-  --workspace <path>           Optional. Workspace path. Default: current working directory.
-  --id <id>                    Required. AttributeRelationship row id.
-  --relationship-type <value>  Optional. RelationshipType.
-  --description <value>        Optional. Description.
-  --child-attribute <id>       Required. Attribute id for ChildAttributeId.
-  --parent-attribute <id>      Required. Attribute id for ParentAttributeId.
-
-Notes:
-  Adds one AttributeRelationship row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  AttributeRelationship row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --relationship-type <value>   Relationship type.
+  --description <value>         Description.
+  --child-attribute <value>     Child attribute id.
+  --parent-attribute <value>    Parent attribute id.
 ```
 
 ### `meta-analytics add-attribute-translation --help`
 
 ```text
-Command: add-attribute-translation
 Usage:
-  meta-analytics add-attribute-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --culture <id> --attribute <id>
+  meta-analytics add-attribute-translation --id <value> [--workspace <path>] [--caption <value>] [--description <value>] --culture <value> --attribute <value>
+
+Translate attribute metadata.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. AttributeTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --culture <id>         Required. Culture id for CultureId.
-  --attribute <id>       Required. Attribute id for AttributeId.
-
-Notes:
-  Adds one AttributeTranslation row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  AttributeTranslation row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id.
+  --attribute <value>           Attribute id.
 ```
 
 ### `meta-analytics add-culture --help`
 
 ```text
-Command: add-culture
 Usage:
-  meta-analytics add-culture [--workspace <path>] --id <id> --name <value> [--description <value>]
-  --model <id>
+  meta-analytics add-culture --id <value> [--workspace <path>] --name <value> [--description <value>] --model <value>
+
+Add a model culture.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. Culture row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --model <id>           Required. AnalyticsModel id for AnalyticsModelId.
-
-Notes:
-  Adds one Culture row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  Culture row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Culture name.
+  --description <value>         Description.
+  --model <value>               AnalyticsModel id.
 ```
 
 ### `meta-analytics add-data-source --help`
 
 ```text
-Command: add-data-source
 Usage:
-  meta-analytics add-data-source [--workspace <path>] --id <id> --name <value> [--provider <value>]
-  [--connection-reference <value>] [--source-kind <value>] [--description <value>] --model <id>
+  meta-analytics add-data-source --id <value> [--workspace <path>] --name <value> [--provider <value>] [--connection-reference <value>] [--source-kind <value>] [--description <value>] --model <value>
+
+Add an analytics source declaration.
 
 Options:
-
-  --workspace <path>              Optional. Workspace path. Default: current working directory.
-  --id <id>                       Required. DataSource row id.
-  --name <value>                  Required. Name.
-  --provider <value>              Optional. Provider.
-  --connection-reference <value>  Optional. ConnectionReference.
-  --source-kind <value>           Optional. SourceKind.
-  --description <value>           Optional. Description.
-  --model <id>                    Required. AnalyticsModel id for AnalyticsModelId.
-
-Notes:
-  Adds one DataSource row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  DataSource row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Data source name.
+  --provider <value>            Provider name.
+  --connection-reference <value>  Connection reference.
+  --source-kind <value>         Source kind.
+  --description <value>         Description.
+  --model <value>               AnalyticsModel id.
 ```
 
 ### `meta-analytics add-hierarchy --help`
 
 ```text
-Command: add-hierarchy
 Usage:
-  meta-analytics add-hierarchy [--workspace <path>] --id <id> --name <value> [--kind <value>]
-  [--is-hidden <value>] [--display-folder <value>] [--description <value>] --table <id>
+  meta-analytics add-hierarchy --id <value> [--workspace <path>] --name <value> [--kind <value>] [--is-hidden true|false] [--display-folder <value>] [--description <value>] --table <value>
+
+Add a hierarchy.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. Hierarchy row id.
-  --name <value>            Required. Name.
-  --kind <value>            Optional. Kind.
-  --is-hidden <value>       Optional. IsHidden.
-  --display-folder <value>  Optional. DisplayFolder.
-  --description <value>     Optional. Description.
-  --table <id>              Required. Table id for TableId.
-
-Notes:
-  Adds one Hierarchy row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  Hierarchy row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Hierarchy name.
+  --kind <value>                Hierarchy kind.
+  --is-hidden true|false        Whether the hierarchy is hidden.
+  --display-folder <value>      Display folder.
+  --description <value>         Description.
+  --table <value>               Table id.
 ```
 
 ### `meta-analytics add-hierarchy-level --help`
 
 ```text
-Command: add-hierarchy-level
 Usage:
-  meta-analytics add-hierarchy-level [--workspace <path>] --id <id> --name <value> [--ordinal
-  <value>] --hierarchy <id> --attribute <id>
+  meta-analytics add-hierarchy-level --id <value> [--workspace <path>] --name <value> [--ordinal <value>] --hierarchy <value> --attribute <value>
+
+Add an ordered hierarchy level.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. HierarchyLevel row id.
-  --name <value>      Required. Name.
-  --ordinal <value>   Optional. Ordinal.
-  --hierarchy <id>    Required. Hierarchy id for HierarchyId.
-  --attribute <id>    Required. Attribute id for AttributeId.
-
-Notes:
-  Adds one HierarchyLevel row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  HierarchyLevel row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Level name.
+  --ordinal <value>             Hierarchy level ordinal.
+  --hierarchy <value>           Hierarchy id.
+  --attribute <value>           Attribute id.
 ```
 
 ### `meta-analytics add-hierarchy-translation --help`
 
 ```text
-Command: add-hierarchy-translation
 Usage:
-  meta-analytics add-hierarchy-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --culture <id> --hierarchy <id>
+  meta-analytics add-hierarchy-translation --id <value> [--workspace <path>] [--caption <value>] [--description <value>] --culture <value> --hierarchy <value>
+
+Translate hierarchy metadata.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. HierarchyTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --culture <id>         Required. Culture id for CultureId.
-  --hierarchy <id>       Required. Hierarchy id for HierarchyId.
-
-Notes:
-  Adds one HierarchyTranslation row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  HierarchyTranslation row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id.
+  --hierarchy <value>           Hierarchy id.
 ```
 
 ### `meta-analytics add-measure --help`
 
 ```text
-Command: add-measure
 Usage:
-  meta-analytics add-measure [--workspace <path>] --id <id> --name <value> [--data-type-id <value>]
-  [--format-string <value>] [--display-folder <value>] [--is-hidden <value>] [--description <value>]
-  --table <id> --source-attribute <id>
+  meta-analytics add-measure --id <value> [--workspace <path>] --name <value> [--data-type-id <value>] [--format-string <value>] [--display-folder <value>] [--is-hidden true|false] [--description <value>] --table <value> --source-attribute <value>
+
+Add a source-backed base measure.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. Measure row id.
-  --name <value>            Required. Name.
-  --data-type-id <value>    Optional. DataTypeId.
-  --format-string <value>   Optional. FormatString.
-  --display-folder <value>  Optional. DisplayFolder.
-  --is-hidden <value>       Optional. IsHidden.
-  --description <value>     Optional. Description.
-  --table <id>              Required. Table id for TableId.
-  --source-attribute <id>   Required. Attribute id for SourceAttributeId.
-
-Notes:
-  Adds one Measure row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  Measure row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Measure name.
+  --data-type-id <value>        Data type id.
+  --format-string <value>       Format string.
+  --display-folder <value>      Display folder.
+  --is-hidden true|false        Whether the measure is hidden.
+  --description <value>         Description.
+  --table <value>               Table id.
+  --source-attribute <value>    Source attribute id.
 ```
 
 ### `meta-analytics add-measure-translation --help`
 
 ```text
-Command: add-measure-translation
 Usage:
-  meta-analytics add-measure-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --culture <id> --measure <id>
+  meta-analytics add-measure-translation --id <value> [--workspace <path>] [--caption <value>] [--description <value>] --culture <value> --measure <value>
+
+Translate measure metadata.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. MeasureTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --culture <id>         Required. Culture id for CultureId.
-  --measure <id>         Required. Measure id for MeasureId.
-
-Notes:
-  Adds one MeasureTranslation row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  MeasureTranslation row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id.
+  --measure <value>             Measure id.
 ```
 
 ### `meta-analytics add-model --help`
 
 ```text
-Command: add-model
 Usage:
-  meta-analytics add-model [--workspace <path>] --id <id> --name <value> [--default-culture <value>]
-  [--description <value>]
+  meta-analytics add-model --id <value> [--workspace <path>] --name <value> [--default-culture <value>] [--description <value>]
+
+Add an analytics model.
 
 Options:
-
-  --workspace <path>         Optional. Workspace path. Default: current working directory.
-  --id <id>                  Required. AnalyticsModel row id.
-  --name <value>             Required. Name.
-  --default-culture <value>  Optional. DefaultCulture.
-  --description <value>      Optional. Description.
-
-Notes:
-  Adds one AnalyticsModel row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  AnalyticsModel row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Analytics model name.
+  --default-culture <value>     Default culture.
+  --description <value>         Description.
 ```
 
 ### `meta-analytics add-perspective --help`
 
 ```text
-Command: add-perspective
 Usage:
-  meta-analytics add-perspective [--workspace <path>] --id <id> --name <value> [--description
-  <value>] --model <id>
+  meta-analytics add-perspective --id <value> [--workspace <path>] --name <value> [--description <value>] --model <value>
+
+Add a perspective.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. Perspective row id.
-  --name <value>         Required. Name.
-  --description <value>  Optional. Description.
-  --model <id>           Required. AnalyticsModel id for AnalyticsModelId.
-
-Notes:
-  Adds one Perspective row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  Perspective row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Perspective name.
+  --description <value>         Description.
+  --model <value>               AnalyticsModel id.
 ```
 
 ### `meta-analytics add-perspective-attribute --help`
 
 ```text
-Command: add-perspective-attribute
 Usage:
-  meta-analytics add-perspective-attribute [--workspace <path>] --id <id> --perspective <id>
-  --attribute <id>
+  meta-analytics add-perspective-attribute --id <value> [--workspace <path>] --perspective <value> --attribute <value>
+
+Expose an attribute in a perspective.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. PerspectiveAttribute row id.
-  --perspective <id>  Required. Perspective id for PerspectiveId.
-  --attribute <id>    Required. Attribute id for AttributeId.
-
-Notes:
-  Adds one PerspectiveAttribute row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  PerspectiveAttribute row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --perspective <value>         Perspective id.
+  --attribute <value>           Attribute id.
 ```
 
 ### `meta-analytics add-perspective-hierarchy --help`
 
 ```text
-Command: add-perspective-hierarchy
 Usage:
-  meta-analytics add-perspective-hierarchy [--workspace <path>] --id <id> --perspective <id>
-  --hierarchy <id>
+  meta-analytics add-perspective-hierarchy --id <value> [--workspace <path>] --perspective <value> --hierarchy <value>
+
+Expose a hierarchy in a perspective.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. PerspectiveHierarchy row id.
-  --perspective <id>  Required. Perspective id for PerspectiveId.
-  --hierarchy <id>    Required. Hierarchy id for HierarchyId.
-
-Notes:
-  Adds one PerspectiveHierarchy row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  PerspectiveHierarchy row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --perspective <value>         Perspective id.
+  --hierarchy <value>           Hierarchy id.
 ```
 
 ### `meta-analytics add-perspective-measure --help`
 
 ```text
-Command: add-perspective-measure
 Usage:
-  meta-analytics add-perspective-measure [--workspace <path>] --id <id> --perspective <id> --measure
-  <id>
+  meta-analytics add-perspective-measure --id <value> [--workspace <path>] --perspective <value> --measure <value>
+
+Expose a measure in a perspective.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. PerspectiveMeasure row id.
-  --perspective <id>  Required. Perspective id for PerspectiveId.
-  --measure <id>      Required. Measure id for MeasureId.
-
-Notes:
-  Adds one PerspectiveMeasure row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  PerspectiveMeasure row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --perspective <value>         Perspective id.
+  --measure <value>             Measure id.
 ```
 
 ### `meta-analytics add-perspective-table --help`
 
 ```text
-Command: add-perspective-table
 Usage:
-  meta-analytics add-perspective-table [--workspace <path>] --id <id> --perspective <id> --table
-  <id>
+  meta-analytics add-perspective-table --id <value> [--workspace <path>] --perspective <value> --table <value>
+
+Expose a table in a perspective.
 
 Options:
-
-  --workspace <path>  Optional. Workspace path. Default: current working directory.
-  --id <id>           Required. PerspectiveTable row id.
-  --perspective <id>  Required. Perspective id for PerspectiveId.
-  --table <id>        Required. Table id for TableId.
-
-Notes:
-  Adds one PerspectiveTable row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  PerspectiveTable row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --perspective <value>         Perspective id.
+  --table <value>               Table id.
 ```
 
 ### `meta-analytics add-perspective-translation --help`
 
 ```text
-Command: add-perspective-translation
 Usage:
-  meta-analytics add-perspective-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --culture <id> --perspective <id>
+  meta-analytics add-perspective-translation --id <value> [--workspace <path>] [--caption <value>] [--description <value>] --culture <value> --perspective <value>
+
+Translate perspective metadata.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. PerspectiveTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --culture <id>         Required. Culture id for CultureId.
-  --perspective <id>     Required. Perspective id for PerspectiveId.
-
-Notes:
-  Adds one PerspectiveTranslation row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  PerspectiveTranslation row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id.
+  --perspective <value>         Perspective id.
 ```
 
 ### `meta-analytics add-relationship --help`
 
 ```text
-Command: add-relationship
 Usage:
-  meta-analytics add-relationship [--workspace <path>] --id <id> --name <value> [--role-name
-  <value>] --relationship-kind <value> --cardinality <value> [--cross-filter-direction <value>]
-  [--is-active <value>] [--is-required <value>] [--description <value>] --from-table <id>
-  --from-attribute <id> --to-table <id> --to-attribute <id> [--granularity-attribute <id>]
-  [--intermediate-table <id>]
+  meta-analytics add-relationship --id <value> [--workspace <path>] --name <value> [--role-name <value>] --relationship-kind <value> --cardinality <value> [--cross-filter-direction <value>] [--is-active true|false] [--is-required true|false] [--description <value>] --from-table <value> --from-attribute <value> --to-table <value> --to-attribute <value> [--granularity-attribute <value>] [--intermediate-table <value>]
+
+Add a relationship between analytics tables.
 
 Options:
-
-  --workspace <path>                Optional. Workspace path. Default: current working directory.
-  --id <id>                         Required. Relationship row id.
-  --name <value>                    Required. Name.
-  --role-name <value>               Optional. RoleName.
-  --relationship-kind <value>       Required. RelationshipKind.
-  --cardinality <value>             Required. Cardinality.
-  --cross-filter-direction <value>  Optional. CrossFilterDirection.
-  --is-active <value>               Optional. IsActive.
-  --is-required <value>             Optional. IsRequired.
-  --description <value>             Optional. Description.
-  --from-table <id>                 Required. Table id for FromTableId.
-  --from-attribute <id>             Required. Attribute id for FromAttributeId.
-  --to-table <id>                   Required. Table id for ToTableId.
-  --to-attribute <id>               Required. Attribute id for ToAttributeId.
-  --granularity-attribute <id>      Optional. Attribute id for GranularityAttributeId.
-  --intermediate-table <id>         Optional. Table id for IntermediateTableId.
-
-Notes:
-  Adds one Relationship row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  Relationship row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Relationship name.
+  --role-name <value>           Role name.
+  --relationship-kind <value>   Relationship kind.
+  --cardinality <value>         Cardinality.
+  --cross-filter-direction <value>  Cross-filter direction.
+  --is-active true|false        Whether the relationship is active.
+  --is-required true|false      Whether the relationship is required.
+  --description <value>         Description.
+  --from-table <value>          From table id.
+  --from-attribute <value>      From attribute id.
+  --to-table <value>            To table id.
+  --to-attribute <value>        To attribute id.
+  --granularity-attribute <value>  Granularity attribute id.
+  --intermediate-table <value>  Intermediate table id.
 ```
 
 ### `meta-analytics add-role-filter --help`
 
 ```text
-Command: add-role-filter
 Usage:
-  meta-analytics add-role-filter [--workspace <path>] --id <id> --expression-language <value>
-  --expression <value> [--description <value>] --role <id> --table <id>
+  meta-analytics add-role-filter --id <value> [--workspace <path>] --expression-language <value> --expression <value> [--description <value>] --role <value> --table <value>
+
+Add row-level security over a table.
 
 Options:
-
-  --workspace <path>             Optional. Workspace path. Default: current working directory.
-  --id <id>                      Required. RoleFilter row id.
-  --expression-language <value>  Required. ExpressionLanguage.
-  --expression <value>           Required. Expression.
-  --description <value>          Optional. Description.
-  --role <id>                    Required. SecurityRole id for SecurityRoleId.
-  --table <id>                   Required. Table id for TableId.
-
-Notes:
-  Adds one RoleFilter row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  RoleFilter row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --expression-language <value>  Expression language.
+  --expression <value>          Expression.
+  --description <value>         Description.
+  --role <value>                SecurityRole id.
+  --table <value>               Table id.
 ```
 
 ### `meta-analytics add-role-member --help`
 
 ```text
-Command: add-role-member
 Usage:
-  meta-analytics add-role-member [--workspace <path>] --id <id> --member-name <value> [--member-kind
-  <value>] --role <id>
+  meta-analytics add-role-member --id <value> [--workspace <path>] --member-name <value> [--member-kind <value>] --role <value>
+
+Add a member to a security role.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. RoleMember row id.
-  --member-name <value>  Required. MemberName.
-  --member-kind <value>  Optional. MemberKind.
-  --role <id>            Required. SecurityRole id for SecurityRoleId.
-
-Notes:
-  Adds one RoleMember row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  RoleMember row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --member-name <value>         Member name.
+  --member-kind <value>         Member kind.
+  --role <value>                SecurityRole id.
 ```
 
 ### `meta-analytics add-security-role --help`
 
 ```text
-Command: add-security-role
 Usage:
-  meta-analytics add-security-role [--workspace <path>] --id <id> --name <value> --permission
-  <value> [--description <value>] --model <id>
+  meta-analytics add-security-role --id <value> [--workspace <path>] --name <value> --permission <value> [--description <value>] --model <value>
+
+Add a security role.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. SecurityRole row id.
-  --name <value>         Required. Name.
-  --permission <value>   Required. Permission.
-  --description <value>  Optional. Description.
-  --model <id>           Required. AnalyticsModel id for AnalyticsModelId.
-
-Notes:
-  Adds one SecurityRole row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  SecurityRole row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Security role name.
+  --permission <value>          Permission.
+  --description <value>         Description.
+  --model <value>               AnalyticsModel id.
 ```
 
 ### `meta-analytics add-sort-by-attribute --help`
 
 ```text
-Command: add-sort-by-attribute
 Usage:
-  meta-analytics add-sort-by-attribute [--workspace <path>] --id <id> [--description <value>]
-  --source-attribute <id> --sort-attribute <id>
+  meta-analytics add-sort-by-attribute --id <value> [--workspace <path>] [--description <value>] --source-attribute <value> --sort-attribute <value>
+
+Declare one attribute as the sort key for another.
 
 Options:
-
-  --workspace <path>       Optional. Workspace path. Default: current working directory.
-  --id <id>                Required. SortByAttribute row id.
-  --description <value>    Optional. Description.
-  --source-attribute <id>  Required. Attribute id for SourceAttributeId.
-  --sort-attribute <id>    Required. Attribute id for SortAttributeId.
-
-Notes:
-  Adds one SortByAttribute row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  SortByAttribute row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --description <value>         Description.
+  --source-attribute <value>    Source attribute id.
+  --sort-attribute <value>      Sort attribute id.
 ```
 
 ### `meta-analytics add-table --help`
 
 ```text
-Command: add-table
 Usage:
-  meta-analytics add-table [--workspace <path>] --id <id> --name <value> --kind <value>
-  [--data-category <value>] [--is-hidden <value>] [--display-folder <value>] [--description <value>]
-  --model <id>
+  meta-analytics add-table --id <value> [--workspace <path>] --name <value> --kind <value> [--data-category <value>] [--is-hidden true|false] [--display-folder <value>] [--description <value>] --model <value>
+
+Add an analytics table.
 
 Options:
-
-  --workspace <path>        Optional. Workspace path. Default: current working directory.
-  --id <id>                 Required. Table row id.
-  --name <value>            Required. Name.
-  --kind <value>            Required. Kind.
-  --data-category <value>   Optional. DataCategory.
-  --is-hidden <value>       Optional. IsHidden.
-  --display-folder <value>  Optional. DisplayFolder.
-  --description <value>     Optional. Description.
-  --model <id>              Required. AnalyticsModel id for AnalyticsModelId.
-
-Notes:
-  Adds one Table row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  Table row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --name <value>                Table name.
+  --kind <value>                Table kind.
+  --data-category <value>       Data category.
+  --is-hidden true|false        Whether the table is hidden.
+  --display-folder <value>      Display folder.
+  --description <value>         Description.
+  --model <value>               AnalyticsModel id.
 ```
 
 ### `meta-analytics add-table-permission --help`
 
 ```text
-Command: add-table-permission
 Usage:
-  meta-analytics add-table-permission [--workspace <path>] --id <id> --metadata-permission <value>
-  [--description <value>] --role <id> --table <id>
+  meta-analytics add-table-permission --id <value> [--workspace <path>] --metadata-permission <value> [--description <value>] --role <value> --table <value>
+
+Add object-level security for a table.
 
 Options:
-
-  --workspace <path>             Optional. Workspace path. Default: current working directory.
-  --id <id>                      Required. TablePermission row id.
-  --metadata-permission <value>  Required. MetadataPermission.
-  --description <value>          Optional. Description.
-  --role <id>                    Required. SecurityRole id for SecurityRoleId.
-  --table <id>                   Required. Table id for TableId.
-
-Notes:
-  Adds one TablePermission row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  TablePermission row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --metadata-permission <value>  Metadata permission.
+  --description <value>         Description.
+  --role <value>                SecurityRole id.
+  --table <value>               Table id.
 ```
 
 ### `meta-analytics add-table-translation --help`
 
 ```text
-Command: add-table-translation
 Usage:
-  meta-analytics add-table-translation [--workspace <path>] --id <id> [--caption <value>]
-  [--description <value>] --culture <id> --table <id>
+  meta-analytics add-table-translation --id <value> [--workspace <path>] [--caption <value>] [--description <value>] --culture <value> --table <value>
+
+Translate table metadata.
 
 Options:
-
-  --workspace <path>     Optional. Workspace path. Default: current working directory.
-  --id <id>              Required. TableTranslation row id.
-  --caption <value>      Optional. Caption.
-  --description <value>  Optional. Description.
-  --culture <id>         Required. Culture id for CultureId.
-  --table <id>           Required. Table id for TableId.
-
-Notes:
-  Adds one TableTranslation row to a MetaAnalytics workspace.
-  Defaults to the current working directory when --workspace is omitted.
+  --id <value>                  TableTranslation row id.
+  --workspace <path>            MetaAnalytics workspace. Defaults to the current directory.
+  --caption <value>             Caption.
+  --description <value>         Description.
+  --culture <value>             Culture id.
+  --table <value>               Table id.
 ```
 
 ## meta-convert

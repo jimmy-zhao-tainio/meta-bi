@@ -11,6 +11,11 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\Sql\MetaTransformScript.Sql.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="meta-transform-script.MetaCli\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

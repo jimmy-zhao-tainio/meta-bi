@@ -116,16 +116,14 @@ public sealed class MetaOrchestrationAnalysisService
     {
         var taskProfiles = new List<PipelineTaskAccessProfile>();
         var issues = new List<PipelineDependencyProfileIssue>();
-        var taskDetails = pipelineModel.PipelineTaskList
-            .Where(item => string.Equals(item.Pipeline.Id, pipeline.Id, StringComparison.Ordinal))
+        var taskDetails = ResolvePipelineTasksInDependencyOrder(pipelineModel, pipeline)
             .Select(task => new PipelineTaskDetail(
                 task,
                 ResolveTransformExecutionTask(pipelineModel, task),
                 ResolveExecutableTask(pipelineModel, task),
-                ParseOrdinalOrMax(task.Ordinal)))
+                Ordinal: 0))
             .Where(static item => item.TransformExecution is not null || item.Executable is not null)
-            .OrderBy(static item => item.Ordinal)
-            .ThenBy(static item => item.PipelineTask.Name, StringComparer.OrdinalIgnoreCase)
+            .Select((item, index) => item with { Ordinal = index + 1 })
             .ToArray();
 
         foreach (var task in taskDetails)
@@ -1630,6 +1628,92 @@ public sealed class MetaOrchestrationAnalysisService
         }
 
         return builder.Length == 0 ? "id" : builder.ToString();
+    }
+
+    private static IReadOnlyList<MP.PipelineTask> ResolvePipelineTasksInDependencyOrder(
+        MP.MetaPipelineModel model,
+        MP.Pipeline pipeline)
+    {
+        var tasks = model.PipelineTaskList
+            .Where(item => string.Equals(item.Pipeline.Id, pipeline.Id, StringComparison.Ordinal))
+            .ToArray();
+        if (tasks.Length <= 1)
+        {
+            return tasks;
+        }
+
+        var tasksById = tasks.ToDictionary(static item => item.Id, StringComparer.Ordinal);
+        var dependencies = model.TaskDependencyList
+            .Where(item => string.Equals(item.Pipeline.Id, pipeline.Id, StringComparison.Ordinal))
+            .Where(item => tasksById.ContainsKey(item.Predecessor.Id) && tasksById.ContainsKey(item.Successor.Id))
+            .ToArray();
+        if (dependencies.Length == 0)
+        {
+            throw new InvalidOperationException(
+                $"Pipeline '{pipeline.Name}' has multiple tasks but no TaskDependency rows. Serial pipelines must declare task order.");
+        }
+
+        var successorByPredecessor = new Dictionary<string, string>(StringComparer.Ordinal);
+        var predecessorBySuccessor = new Dictionary<string, string>(StringComparer.Ordinal);
+        foreach (var dependency in dependencies)
+        {
+            var predecessorId = dependency.Predecessor.Id;
+            var successorId = dependency.Successor.Id;
+            if (string.Equals(predecessorId, successorId, StringComparison.Ordinal))
+            {
+                throw new InvalidOperationException(
+                    $"Pipeline '{pipeline.Name}' dependency '{dependency.Id}' points a task at itself.");
+            }
+
+            if (!successorByPredecessor.TryAdd(predecessorId, successorId))
+            {
+                throw new InvalidOperationException(
+                    $"Pipeline '{pipeline.Name}' task '{tasksById[predecessorId].Name}' has multiple successors.");
+            }
+
+            if (!predecessorBySuccessor.TryAdd(successorId, predecessorId))
+            {
+                throw new InvalidOperationException(
+                    $"Pipeline '{pipeline.Name}' task '{tasksById[successorId].Name}' has multiple predecessors.");
+            }
+        }
+
+        var roots = tasks
+            .Where(item => !predecessorBySuccessor.ContainsKey(item.Id))
+            .ToArray();
+        if (roots.Length != 1)
+        {
+            throw new InvalidOperationException(
+                $"Pipeline '{pipeline.Name}' TaskDependency rows must form one serial chain.");
+        }
+
+        var ordered = new List<MP.PipelineTask>();
+        var visited = new HashSet<string>(StringComparer.Ordinal);
+        var current = roots[0];
+        while (true)
+        {
+            if (!visited.Add(current.Id))
+            {
+                throw new InvalidOperationException(
+                    $"Pipeline '{pipeline.Name}' contains a cycle in TaskDependency rows.");
+            }
+
+            ordered.Add(current);
+            if (!successorByPredecessor.TryGetValue(current.Id, out var successorId))
+            {
+                break;
+            }
+
+            current = tasksById[successorId];
+        }
+
+        if (ordered.Count != tasks.Length)
+        {
+            throw new InvalidOperationException(
+                $"Pipeline '{pipeline.Name}' TaskDependency rows do not form one connected serial chain.");
+        }
+
+        return ordered;
     }
 
     private static int ParseOrdinalOrMax(string value) =>

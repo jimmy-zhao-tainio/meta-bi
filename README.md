@@ -237,7 +237,7 @@ Purpose:
 
 Command surface:
 - `meta-analytics help`
-- `meta-analytics --new-workspace <path>`
+- `meta-analytics new-workspace <path>`
 - `meta-analytics add-model --id <id> --name <name>`
 - `meta-analytics add-data-source --id <id> --model <id> --name <name>`
 - `meta-analytics add-table --id <id> --model <id> --name <name> --kind <kind>`
@@ -260,7 +260,7 @@ Behavior summary:
 Example:
 
 ```cmd
-meta-analytics --new-workspace .\MetaAnalytics.Workspace
+meta-analytics new-workspace .\MetaAnalytics.Workspace
 meta-analytics add-model --workspace .\MetaAnalytics.Workspace --id Commerce --name Commerce --default-culture en-US
 meta-analytics add-data-source --workspace .\MetaAnalytics.Workspace --id Warehouse --model Commerce --name Warehouse --provider SqlServer --connection-reference COMMERCE_DW
 meta-analytics add-table --workspace .\MetaAnalytics.Workspace --id Sales --model Commerce --name Sales --kind Fact
@@ -507,7 +507,7 @@ Purpose:
 
 Command surface:
 - `meta-orchestration help`
-- `meta-orchestration --pipeline-workspace <path> [--transform-workspace <path>] [--binding-workspace <path>] --new-workspace <path> [--description <text>]`
+- `meta-orchestration infer --pipeline-workspace <path> --new-workspace <path> [--description <text>]`
 - `meta-orchestration inspect --workspace <path>`
 - `meta-orchestration list-issues --workspace <path>`
 - `meta-orchestration explain-issue --workspace <path> --issue <id-or-unique-code>`
@@ -517,14 +517,14 @@ Command surface:
 - `meta-orchestration set-lock-policy --workspace <path> --object <sql-identifier> --left-effect <effect> --right-effect <effect> --behavior <serialize|allow> [--reason <text>]`
 - `meta-orchestration refresh-run-plan --workspace <path>`
 - `meta-orchestration inspect-run-plan --workspace <path>`
-- `meta-orchestration execute --workspace <path> --pipeline-workspace <path> [--transform-workspace <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>]`
+- `meta-orchestration execute --workspace <path> --pipeline-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>]`
 
 Behavior summary:
 - orchestration does not parse or bind SQL; it consumes already-bound transform metadata when transform-backed tasks are present
 - executable-only pipeline workers do not require transform or binding workspace arguments
 - scalar function definitions in a transform workspace are treated as helper objects; if a pipeline task references one directly, orchestration records a blocking `NonExecutableTransformScript` issue instead of treating it as an unknown SQL statement
 - source reads surfaced from same-workspace scalar function return-expression bodies participate in normal dependency inference for executable transforms that call those functions
-- there is no empty `init` surface today; root `--new-workspace` creates the orchestration workspace by inference from pipeline/binding profiles, and `refresh-run-plan --workspace` writes run-plan rows into that same workspace
+- there is no empty `init` surface today; `infer --new-workspace` creates the orchestration workspace by inference from modeled pipeline profiles, and `refresh-run-plan --workspace` writes run-plan rows into that same workspace
 - each modeled pipeline becomes a `PipelineReference`
 - ordered transform-backed and executable process steps become `TaskAccessProfile` rows
 - object reads/writes become `ObjectAccess` and `PipelineObjectAccess` rows
@@ -549,7 +549,7 @@ Behavior summary:
 Example:
 
 ```cmd
-meta-orchestration --pipeline-workspace .\PipelineWS --transform-workspace .\TransformWS --binding-workspace .\BindingWS --new-workspace .\OrchestrationWS
+meta-orchestration infer --pipeline-workspace .\PipelineWS --new-workspace .\OrchestrationWS
 meta-orchestration list-issues --workspace .\OrchestrationWS
 meta-orchestration add-order --workspace .\OrchestrationWS --from-task Stage.Refresh --to-task Stage.Append --object dbo.Stage
 meta-orchestration add-dependency --workspace .\OrchestrationWS --from-task Stage.Load --to-task FailureHandler.Record --condition failure
@@ -557,7 +557,7 @@ meta-orchestration allow-concurrent-append --workspace .\OrchestrationWS --objec
 meta-orchestration set-lock-policy --workspace .\OrchestrationWS --object dbo.Stage --left-effect Mutation --right-effect Mutation --behavior serialize
 meta-orchestration refresh-run-plan --workspace .\OrchestrationWS
 meta-orchestration inspect-run-plan --workspace .\OrchestrationWS
-meta-orchestration execute --workspace .\OrchestrationWS --pipeline-workspace .\PipelineWS --transform-workspace .\TransformWS --binding-workspace .\BindingWS --max-degree-of-parallelism 4
+meta-orchestration execute --workspace .\OrchestrationWS --pipeline-workspace .\PipelineWS --max-degree-of-parallelism 4
 ```
 
 Demo:

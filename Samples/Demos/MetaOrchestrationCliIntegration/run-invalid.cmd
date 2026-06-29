@@ -23,7 +23,7 @@ meta-pipeline add-pipeline --workspace InvalidPipelineWS --name SharedWriterB
 meta-pipeline add-step --workspace InvalidPipelineWS --pipeline SharedWriterB --step-name write-shared-b --script dbo.v_shared_writer_b --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL --target-connection-env META_ORCHESTRATION_DEMO_SQL --target dbo.SharedLanding
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-orchestration --pipeline-workspace InvalidPipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --new-workspace InvalidOrchestrationWS
+meta-orchestration infer --pipeline-workspace InvalidPipelineWS --new-workspace InvalidOrchestrationWS
 @if "%ERRORLEVEL%"=="0" exit /b 1
 @if not "%ERRORLEVEL%"=="4" exit /b %ERRORLEVEL%
 

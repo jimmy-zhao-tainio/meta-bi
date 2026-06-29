@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ValueShapeList>
+    <ValueShape Id="shape-flag" ValueArityId="arity-none">
+      <Name>Flag</Name>
+    </ValueShape>
+    <ValueShape Id="shape-text" ValueArityId="arity-one">
+      <Name>Text</Name>
+      <ValueLabel>&lt;value&gt;</ValueLabel>
+    </ValueShape>
+    <ValueShape Id="shape-path" ValueArityId="arity-one">
+      <AllowsOptionLikeValue>true</AllowsOptionLikeValue>
+      <Name>Path</Name>
+      <ValueLabel>&lt;path&gt;</ValueLabel>
+    </ValueShape>
+    <ValueShape Id="shape-token" ValueArityId="arity-one">
+      <AllowsOptionLikeValue>true</AllowsOptionLikeValue>
+      <Name>Token</Name>
+      <ValueLabel>&lt;token&gt;</ValueLabel>
+    </ValueShape>
+    <ValueShape Id="shape-bool" ValueArityId="arity-one">
+      <Name>Boolean</Name>
+      <ValueLabel>true|false</ValueLabel>
+    </ValueShape>
+    <ValueShape Id="shape-sql" ValueArityId="arity-one">
+      <AllowsOptionLikeValue>true</AllowsOptionLikeValue>
+      <Description>SQL text.</Description>
+      <Name>Sql</Name>
+      <ValueLabel>&lt;sql&gt;</ValueLabel>
+    </ValueShape>
+    <ValueShape Id="shape-sql-identifier" ValueArityId="arity-one">
+      <Description>SQL identifier.</Description>
+      <Name>SqlIdentifier</Name>
+      <ValueLabel>&lt;sql-identifier&gt;</ValueLabel>
+    </ValueShape>
+    <ValueShape Id="shape-manifest" ValueArityId="arity-one">
+      <Description>Manifest path.</Description>
+      <Name>ManifestPath</Name>
+      <ValueLabel>&lt;manifest.tsv&gt;</ValueLabel>
+    </ValueShape>
+    <ValueShape Id="shape-sql-file" ValueArityId="arity-one">
+      <Description>SQL file path.</Description>
+      <Name>SqlFilePath</Name>
+      <ValueLabel>&lt;file.sql&gt;</ValueLabel>
+    </ValueShape>
+    <ValueShape Id="shape-pattern" ValueArityId="arity-one">
+      <AllowsOptionLikeValue>true</AllowsOptionLikeValue>
+      <Description>Pattern text.</Description>
+      <Name>Pattern</Name>
+      <ValueLabel>&lt;pattern&gt;</ValueLabel>
+    </ValueShape>
+    <ValueShape Id="shape-operation" ValueArityId="arity-one">
+      <Description>Stored procedure operation declaration.</Description>
+      <Name>Operation</Name>
+      <ValueLabel>&lt;operation&gt;</ValueLabel>
+    </ValueShape>
+    <ValueShape Id="shape-rowset-column" ValueArityId="arity-one">
+      <Description>Stored procedure result column declaration.</Description>
+      <Name>RowsetColumn</Name>
+      <ValueLabel>&lt;rowset&gt;=&lt;column&gt;</ValueLabel>
+    </ValueShape>
+  </ValueShapeList>
+</MetaCli>

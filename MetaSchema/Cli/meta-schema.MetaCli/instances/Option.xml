@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionList>
+    <Option Id="opt-extract-sqlserver-new-workspace" ParameterId="param-extract-sqlserver-new-workspace">
+    </Option>
+    <Option Id="opt-extract-sqlserver-connection-env" ParameterId="param-extract-sqlserver-connection-env">
+    </Option>
+    <Option Id="opt-extract-sqlserver-system" ParameterId="param-extract-sqlserver-system">
+    </Option>
+    <Option Id="opt-extract-sqlserver-schema" ParameterId="param-extract-sqlserver-schema">
+    </Option>
+    <Option Id="opt-extract-sqlserver-all-schemas" ParameterId="param-extract-sqlserver-all-schemas">
+    </Option>
+    <Option Id="opt-extract-sqlserver-table" ParameterId="param-extract-sqlserver-table">
+    </Option>
+    <Option Id="opt-extract-sqlserver-all-tables" ParameterId="param-extract-sqlserver-all-tables">
+    </Option>
+  </OptionList>
+</MetaCli>

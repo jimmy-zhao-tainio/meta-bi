@@ -7,14 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="..\Workspaces\MetaAnalytics\model.xml">
-      <Link>Models\MetaAnalytics.model.xml</Link>
-      <LogicalName>MetaAnalytics.Core.Models.MetaAnalytics.model.xml</LogicalName>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Tooling\MetaAnalytics.Tooling.csproj" />
   </ItemGroup>
 
 </Project>

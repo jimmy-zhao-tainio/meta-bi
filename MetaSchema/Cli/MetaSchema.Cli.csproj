@@ -11,7 +11,13 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\Core\MetaSchema.Core.csproj" />
     <ProjectReference Include="..\Extractors.SqlServer\MetaSchema.Extractors.SqlServer.csproj" />
+    <ProjectReference Include="..\Instance\MetaSchema.Instance.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="meta-schema.MetaCli\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

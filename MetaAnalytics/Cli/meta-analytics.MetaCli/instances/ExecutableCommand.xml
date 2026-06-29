@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandList>
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-new-workspace" CommandId="cmd-new-workspace">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-model" CommandId="cmd-add-model">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-data-source" CommandId="cmd-add-data-source">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-table" CommandId="cmd-add-table">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-attribute" CommandId="cmd-add-attribute">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-sort-by-attribute" CommandId="cmd-add-sort-by-attribute">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-attribute-relationship" CommandId="cmd-add-attribute-relationship">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-hierarchy" CommandId="cmd-add-hierarchy">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-hierarchy-level" CommandId="cmd-add-hierarchy-level">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-relationship" CommandId="cmd-add-relationship">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-measure" CommandId="cmd-add-measure">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-aggregation-behavior" CommandId="cmd-add-aggregation-behavior">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-perspective" CommandId="cmd-add-perspective">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-perspective-table" CommandId="cmd-add-perspective-table">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-perspective-attribute" CommandId="cmd-add-perspective-attribute">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-perspective-hierarchy" CommandId="cmd-add-perspective-hierarchy">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-perspective-measure" CommandId="cmd-add-perspective-measure">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-security-role" CommandId="cmd-add-security-role">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-role-member" CommandId="cmd-add-role-member">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-role-filter" CommandId="cmd-add-role-filter">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-table-permission" CommandId="cmd-add-table-permission">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-attribute-permission" CommandId="cmd-add-attribute-permission">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-culture" CommandId="cmd-add-culture">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-table-translation" CommandId="cmd-add-table-translation">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-attribute-translation" CommandId="cmd-add-attribute-translation">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-hierarchy-translation" CommandId="cmd-add-hierarchy-translation">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-measure-translation" CommandId="cmd-add-measure-translation">
+    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-perspective-translation" CommandId="cmd-add-perspective-translation">
+    </ExecutableCommand>
+  </ExecutableCommandList>
+</MetaCli>

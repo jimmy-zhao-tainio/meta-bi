@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionTokenList>
+    <OptionToken Id="token-extract-sqlserver-new-workspace" OptionId="opt-extract-sqlserver-new-workspace">
+      <Token>--new-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-connection-env" OptionId="opt-extract-sqlserver-connection-env">
+      <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-schema" OptionId="opt-extract-sqlserver-schema">
+      <Token>--schema</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-table" OptionId="opt-extract-sqlserver-table">
+      <Token>--table</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-include-tables" OptionId="opt-extract-sqlserver-include-tables">
+      <Token>--include-tables</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-include-views" OptionId="opt-extract-sqlserver-include-views">
+      <Token>--include-views</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-include-functions" OptionId="opt-extract-sqlserver-include-functions">
+      <Token>--include-functions</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-include-stored-procedures" OptionId="opt-extract-sqlserver-include-stored-procedures">
+      <Token>--include-stored-procedures</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-allow-empty" OptionId="opt-extract-sqlserver-allow-empty">
+      <Token>--allow-empty</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-source-workspace" OptionId="opt-deploy-plan-source-workspace">
+      <Token>--source-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-connection-env" OptionId="opt-deploy-plan-connection-env">
+      <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-out" OptionId="opt-deploy-plan-out">
+      <Token>--out</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-approve-drop-table" OptionId="opt-deploy-plan-approve-drop-table">
+      <Token>--approve-drop-table</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-approve-drop-column" OptionId="opt-deploy-plan-approve-drop-column">
+      <Token>--approve-drop-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-approve-truncate-column" OptionId="opt-deploy-plan-approve-truncate-column">
+      <Token>--approve-truncate-column</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-approval-file" OptionId="opt-deploy-plan-approval-file">
+      <Token>--approval-file</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-manifest-workspace" OptionId="opt-deploy-manifest-workspace">
+      <Token>--manifest-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-source-workspace" OptionId="opt-deploy-source-workspace">
+      <Token>--source-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-connection-env" OptionId="opt-deploy-connection-env">
+      <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-connection-env" OptionId="opt-execute-connection-env">
+      <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-file" OptionId="opt-execute-file">
+      <Token>--file</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-query" OptionId="opt-execute-query">
+      <Token>--query</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-var" OptionId="opt-execute-var">
+      <Token>--var</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-timeout-seconds" OptionId="opt-execute-timeout-seconds">
+      <Token>--timeout-seconds</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-quiet" OptionId="opt-execute-quiet">
+      <Token>--quiet</Token>
+    </OptionToken>
+  </OptionTokenList>
+</MetaCli>

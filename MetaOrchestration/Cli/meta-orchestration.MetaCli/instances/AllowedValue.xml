@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <AllowedValueList>
+    <AllowedValue Id="allowed-boolean-true" ValueShapeId="shape-bool">
+      <Value>true</Value>
+    </AllowedValue>
+    <AllowedValue Id="allowed-boolean-false" ValueShapeId="shape-bool">
+      <Value>false</Value>
+    </AllowedValue>
+    <AllowedValue Id="value-dependency-success" ValueShapeId="shape-dependency-condition">
+      <Value>success</Value>
+    </AllowedValue>
+    <AllowedValue Id="value-dependency-failure" ValueShapeId="shape-dependency-condition">
+      <Value>failure</Value>
+    </AllowedValue>
+    <AllowedValue Id="value-lock-serialize" ValueShapeId="shape-lock-behavior">
+      <Value>serialize</Value>
+    </AllowedValue>
+    <AllowedValue Id="value-lock-allow" ValueShapeId="shape-lock-behavior">
+      <Value>allow</Value>
+    </AllowedValue>
+  </AllowedValueList>
+</MetaCli>

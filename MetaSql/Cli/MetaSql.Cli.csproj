@@ -11,8 +11,16 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\Core\MetaSql.Core.csproj" />
     <ProjectReference Include="..\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
     <ProjectReference Include="..\Tooling\MetaSql.Tooling.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="meta-sql.MetaCli\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>meta-sql.MetaCli\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
   </ItemGroup>
 </Project>

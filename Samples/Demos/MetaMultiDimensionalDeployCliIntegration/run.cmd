@@ -6,7 +6,7 @@ if "%META_MULTI_DIMENSIONAL_DEMO_DATABASE%"=="" set META_MULTI_DIMENSIONAL_DEMO_
 
 call cleanup.cmd >nul 2>&1
 
-meta-analytics --new-workspace AnalyticsWorkspace || exit /b 1
+meta-analytics new-workspace AnalyticsWorkspace || exit /b 1
 pushd AnalyticsWorkspace || exit /b 1
 
 meta-analytics add-model --id Commerce --name Commerce --default-culture en-US || exit /b 1

@@ -13,7 +13,7 @@ meta-pipeline add-pipeline --workspace PolicyPipelineWS --name MergeSharedLandin
 meta-pipeline add-step --workspace PolicyPipelineWS --pipeline MergeSharedLanding --step-name merge-shared-landing --script merge_shared_landing --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-orchestration --pipeline-workspace PolicyPipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --new-workspace PolicyOrchestrationWS
+meta-orchestration infer --pipeline-workspace PolicyPipelineWS --new-workspace PolicyOrchestrationWS
 @if errorlevel 1 exit /b %errorlevel%
 
 meta-orchestration inspect --workspace PolicyOrchestrationWS

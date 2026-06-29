@@ -188,10 +188,10 @@ Failure handlers are not post-run action hooks. A handler pipeline is part of th
 
 ## CLI
 
-`MetaOrchestration` does not currently have an empty `init` command. The root `--new-workspace` command creates the orchestration workspace by inferring from modeled pipeline profiles. Transform-backed pipeline steps require transform and binding workspaces during inference; executable process steps are included as dependency-neutral task profiles. Run planning is a resolution/planning pass inside that same workspace, so the common path is model -> inferred orchestration workspace -> refreshed run plan -> execution.
+`MetaOrchestration` does not currently have an empty `init` command. The `infer --new-workspace` command creates the orchestration workspace by inferring from modeled pipeline profiles. Transform-backed pipeline steps carry transform and binding workspace paths in the pipeline model; executable process steps are included as dependency-neutral task profiles. Run planning is a resolution/planning pass inside that same workspace, so the common path is model -> inferred orchestration workspace -> refreshed run plan -> execution.
 
 ```cmd
-meta-orchestration --pipeline-workspace .\PipelineWS --transform-workspace .\TransformWS --binding-workspace .\BindingWS --new-workspace .\OrchestrationWS
+meta-orchestration infer --pipeline-workspace .\PipelineWS --new-workspace .\OrchestrationWS
 meta-orchestration list-issues --workspace .\OrchestrationWS
 meta-orchestration add-order --workspace .\OrchestrationWS --from-task RefreshStage.load --to-task AppendStage.load --object dbo.Stage --reason "Refresh before append."
 meta-orchestration add-dependency --workspace .\OrchestrationWS --from-task RefreshStage.load --to-task FailureHandler.record --condition failure --reason "Record failed refresh."
@@ -199,7 +199,7 @@ meta-orchestration allow-concurrent-append --workspace .\OrchestrationWS --objec
 meta-orchestration set-lock-policy --workspace .\OrchestrationWS --object dbo.Stage --left-effect Mutation --right-effect Mutation --behavior serialize --reason "Stage access should not overlap."
 meta-orchestration refresh-run-plan --workspace .\OrchestrationWS
 meta-orchestration inspect-run-plan --workspace .\OrchestrationWS
-meta-orchestration execute --workspace .\OrchestrationWS --pipeline-workspace .\PipelineWS --transform-workspace .\TransformWS --binding-workspace .\BindingWS --max-degree-of-parallelism 4 --run-artifacts-root .\TestRuns
+meta-orchestration execute --workspace .\OrchestrationWS --pipeline-workspace .\PipelineWS --max-degree-of-parallelism 4 --run-artifacts-root .\TestRuns
 ```
 
 Workspace creation returns nonzero when `DagStatus` is `Invalid`, while still writing the orchestration workspace with issue rows. A complete DAG may still have determinism or synchronization issues that must be handled before automatic parallel run planning. `refresh-run-plan` returns nonzero until those policy gaps are resolved.

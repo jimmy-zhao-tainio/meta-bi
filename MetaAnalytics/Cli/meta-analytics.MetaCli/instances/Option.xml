@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionList>
+    <Option Id="opt-add-model-id" ParameterId="param-add-model-id">
+    </Option>
+    <Option Id="opt-add-model-workspace" ParameterId="param-add-model-workspace">
+    </Option>
+    <Option Id="opt-add-model-name" ParameterId="param-add-model-name">
+    </Option>
+    <Option Id="opt-add-model-default-culture" ParameterId="param-add-model-default-culture">
+    </Option>
+    <Option Id="opt-add-model-description" ParameterId="param-add-model-description">
+    </Option>
+    <Option Id="opt-add-data-source-id" ParameterId="param-add-data-source-id">
+    </Option>
+    <Option Id="opt-add-data-source-workspace" ParameterId="param-add-data-source-workspace">
+    </Option>
+    <Option Id="opt-add-data-source-name" ParameterId="param-add-data-source-name">
+    </Option>
+    <Option Id="opt-add-data-source-provider" ParameterId="param-add-data-source-provider">
+    </Option>
+    <Option Id="opt-add-data-source-connection-reference" ParameterId="param-add-data-source-connection-reference">
+    </Option>
+    <Option Id="opt-add-data-source-source-kind" ParameterId="param-add-data-source-source-kind">
+    </Option>
+    <Option Id="opt-add-data-source-description" ParameterId="param-add-data-source-description">
+    </Option>
+    <Option Id="opt-add-data-source-model" ParameterId="param-add-data-source-model">
+    </Option>
+    <Option Id="opt-add-table-id" ParameterId="param-add-table-id">
+    </Option>
+    <Option Id="opt-add-table-workspace" ParameterId="param-add-table-workspace">
+    </Option>
+    <Option Id="opt-add-table-name" ParameterId="param-add-table-name">
+    </Option>
+    <Option Id="opt-add-table-kind" ParameterId="param-add-table-kind">
+    </Option>
+    <Option Id="opt-add-table-data-category" ParameterId="param-add-table-data-category">
+    </Option>
+    <Option Id="opt-add-table-is-hidden" ParameterId="param-add-table-is-hidden">
+    </Option>
+    <Option Id="opt-add-table-display-folder" ParameterId="param-add-table-display-folder">
+    </Option>
+    <Option Id="opt-add-table-description" ParameterId="param-add-table-description">
+    </Option>
+    <Option Id="opt-add-table-model" ParameterId="param-add-table-model">
+    </Option>
+    <Option Id="opt-add-attribute-id" ParameterId="param-add-attribute-id">
+    </Option>
+    <Option Id="opt-add-attribute-workspace" ParameterId="param-add-attribute-workspace">
+    </Option>
+    <Option Id="opt-add-attribute-name" ParameterId="param-add-attribute-name">
+    </Option>
+    <Option Id="opt-add-attribute-data-type-id" ParameterId="param-add-attribute-data-type-id">
+    </Option>
+    <Option Id="opt-add-attribute-ordinal" ParameterId="param-add-attribute-ordinal">
+    </Option>
+    <Option Id="opt-add-attribute-kind" ParameterId="param-add-attribute-kind">
+    </Option>
+    <Option Id="opt-add-attribute-source-name" ParameterId="param-add-attribute-source-name">
+    </Option>
+    <Option Id="opt-add-attribute-expression-language" ParameterId="param-add-attribute-expression-language">
+    </Option>
+    <Option Id="opt-add-attribute-expression" ParameterId="param-add-attribute-expression">
+    </Option>
+    <Option Id="opt-add-attribute-is-key" ParameterId="param-add-attribute-is-key">
+    </Option>
+    <Option Id="opt-add-attribute-is-nullable" ParameterId="param-add-attribute-is-nullable">
+    </Option>
+    <Option Id="opt-add-attribute-is-hidden" ParameterId="param-add-attribute-is-hidden">
+    </Option>
+    <Option Id="opt-add-attribute-format-string" ParameterId="param-add-attribute-format-string">
+    </Option>
+    <Option Id="opt-add-attribute-summarize-by" ParameterId="param-add-attribute-summarize-by">
+    </Option>
+    <Option Id="opt-add-attribute-data-category" ParameterId="param-add-attribute-data-category">
+    </Option>
+    <Option Id="opt-add-attribute-description" ParameterId="param-add-attribute-description">
+    </Option>
+    <Option Id="opt-add-attribute-table" ParameterId="param-add-attribute-table">
+    </Option>
+    <Option Id="opt-add-sort-by-attribute-id" ParameterId="param-add-sort-by-attribute-id">
+    </Option>
+    <Option Id="opt-add-sort-by-attribute-workspace" ParameterId="param-add-sort-by-attribute-workspace">
+    </Option>
+    <Option Id="opt-add-sort-by-attribute-description" ParameterId="param-add-sort-by-attribute-description">
+    </Option>
+    <Option Id="opt-add-sort-by-attribute-source-attribute" ParameterId="param-add-sort-by-attribute-source-attribute">
+    </Option>
+    <Option Id="opt-add-sort-by-attribute-sort-attribute" ParameterId="param-add-sort-by-attribute-sort-attribute">
+    </Option>
+    <Option Id="opt-add-attribute-relationship-id" ParameterId="param-add-attribute-relationship-id">
+    </Option>
+    <Option Id="opt-add-attribute-relationship-workspace" ParameterId="param-add-attribute-relationship-workspace">
+    </Option>
+    <Option Id="opt-add-attribute-relationship-relationship-type" ParameterId="param-add-attribute-relationship-relationship-type">
+    </Option>
+    <Option Id="opt-add-attribute-relationship-description" ParameterId="param-add-attribute-relationship-description">
+    </Option>
+    <Option Id="opt-add-attribute-relationship-child-attribute" ParameterId="param-add-attribute-relationship-child-attribute">
+    </Option>
+    <Option Id="opt-add-attribute-relationship-parent-attribute" ParameterId="param-add-attribute-relationship-parent-attribute">
+    </Option>
+    <Option Id="opt-add-hierarchy-id" ParameterId="param-add-hierarchy-id">
+    </Option>
+    <Option Id="opt-add-hierarchy-workspace" ParameterId="param-add-hierarchy-workspace">
+    </Option>
+    <Option Id="opt-add-hierarchy-name" ParameterId="param-add-hierarchy-name">
+    </Option>
+    <Option Id="opt-add-hierarchy-kind" ParameterId="param-add-hierarchy-kind">
+    </Option>
+    <Option Id="opt-add-hierarchy-is-hidden" ParameterId="param-add-hierarchy-is-hidden">
+    </Option>
+    <Option Id="opt-add-hierarchy-display-folder" ParameterId="param-add-hierarchy-display-folder">
+    </Option>
+    <Option Id="opt-add-hierarchy-description" ParameterId="param-add-hierarchy-description">
+    </Option>
+    <Option Id="opt-add-hierarchy-table" ParameterId="param-add-hierarchy-table">
+    </Option>
+    <Option Id="opt-add-hierarchy-level-id" ParameterId="param-add-hierarchy-level-id">
+    </Option>
+    <Option Id="opt-add-hierarchy-level-workspace" ParameterId="param-add-hierarchy-level-workspace">
+    </Option>
+    <Option Id="opt-add-hierarchy-level-name" ParameterId="param-add-hierarchy-level-name">
+    </Option>
+    <Option Id="opt-add-hierarchy-level-ordinal" ParameterId="param-add-hierarchy-level-ordinal">
+    </Option>
+    <Option Id="opt-add-hierarchy-level-hierarchy" ParameterId="param-add-hierarchy-level-hierarchy">
+    </Option>
+    <Option Id="opt-add-hierarchy-level-attribute" ParameterId="param-add-hierarchy-level-attribute">
+    </Option>
+    <Option Id="opt-add-relationship-id" ParameterId="param-add-relationship-id">
+    </Option>
+    <Option Id="opt-add-relationship-workspace" ParameterId="param-add-relationship-workspace">
+    </Option>
+    <Option Id="opt-add-relationship-name" ParameterId="param-add-relationship-name">
+    </Option>
+    <Option Id="opt-add-relationship-role-name" ParameterId="param-add-relationship-role-name">
+    </Option>
+    <Option Id="opt-add-relationship-relationship-kind" ParameterId="param-add-relationship-relationship-kind">
+    </Option>
+    <Option Id="opt-add-relationship-cardinality" ParameterId="param-add-relationship-cardinality">
+    </Option>
+    <Option Id="opt-add-relationship-cross-filter-direction" ParameterId="param-add-relationship-cross-filter-direction">
+    </Option>
+    <Option Id="opt-add-relationship-is-active" ParameterId="param-add-relationship-is-active">
+    </Option>
+    <Option Id="opt-add-relationship-is-required" ParameterId="param-add-relationship-is-required">
+    </Option>
+    <Option Id="opt-add-relationship-description" ParameterId="param-add-relationship-description">
+    </Option>
+    <Option Id="opt-add-relationship-from-table" ParameterId="param-add-relationship-from-table">
+    </Option>
+    <Option Id="opt-add-relationship-from-attribute" ParameterId="param-add-relationship-from-attribute">
+    </Option>
+    <Option Id="opt-add-relationship-to-table" ParameterId="param-add-relationship-to-table">
+    </Option>
+    <Option Id="opt-add-relationship-to-attribute" ParameterId="param-add-relationship-to-attribute">
+    </Option>
+    <Option Id="opt-add-relationship-granularity-attribute" ParameterId="param-add-relationship-granularity-attribute">
+    </Option>
+    <Option Id="opt-add-relationship-intermediate-table" ParameterId="param-add-relationship-intermediate-table">
+    </Option>
+    <Option Id="opt-add-measure-id" ParameterId="param-add-measure-id">
+    </Option>
+    <Option Id="opt-add-measure-workspace" ParameterId="param-add-measure-workspace">
+    </Option>
+    <Option Id="opt-add-measure-name" ParameterId="param-add-measure-name">
+    </Option>
+    <Option Id="opt-add-measure-data-type-id" ParameterId="param-add-measure-data-type-id">
+    </Option>
+    <Option Id="opt-add-measure-format-string" ParameterId="param-add-measure-format-string">
+    </Option>
+    <Option Id="opt-add-measure-display-folder" ParameterId="param-add-measure-display-folder">
+    </Option>
+    <Option Id="opt-add-measure-is-hidden" ParameterId="param-add-measure-is-hidden">
+    </Option>
+    <Option Id="opt-add-measure-description" ParameterId="param-add-measure-description">
+    </Option>
+    <Option Id="opt-add-measure-table" ParameterId="param-add-measure-table">
+    </Option>
+    <Option Id="opt-add-measure-source-attribute" ParameterId="param-add-measure-source-attribute">
+    </Option>
+    <Option Id="opt-add-aggregation-behavior-id" ParameterId="param-add-aggregation-behavior-id">
+    </Option>
+    <Option Id="opt-add-aggregation-behavior-workspace" ParameterId="param-add-aggregation-behavior-workspace">
+    </Option>
+    <Option Id="opt-add-aggregation-behavior-function" ParameterId="param-add-aggregation-behavior-function">
+    </Option>
+    <Option Id="opt-add-aggregation-behavior-description" ParameterId="param-add-aggregation-behavior-description">
+    </Option>
+    <Option Id="opt-add-aggregation-behavior-measure" ParameterId="param-add-aggregation-behavior-measure">
+    </Option>
+    <Option Id="opt-add-perspective-id" ParameterId="param-add-perspective-id">
+    </Option>
+    <Option Id="opt-add-perspective-workspace" ParameterId="param-add-perspective-workspace">
+    </Option>
+    <Option Id="opt-add-perspective-name" ParameterId="param-add-perspective-name">
+    </Option>
+    <Option Id="opt-add-perspective-description" ParameterId="param-add-perspective-description">
+    </Option>
+    <Option Id="opt-add-perspective-model" ParameterId="param-add-perspective-model">
+    </Option>
+    <Option Id="opt-add-perspective-table-id" ParameterId="param-add-perspective-table-id">
+    </Option>
+    <Option Id="opt-add-perspective-table-workspace" ParameterId="param-add-perspective-table-workspace">
+    </Option>
+    <Option Id="opt-add-perspective-table-perspective" ParameterId="param-add-perspective-table-perspective">
+    </Option>
+    <Option Id="opt-add-perspective-table-table" ParameterId="param-add-perspective-table-table">
+    </Option>
+    <Option Id="opt-add-perspective-attribute-id" ParameterId="param-add-perspective-attribute-id">
+    </Option>
+    <Option Id="opt-add-perspective-attribute-workspace" ParameterId="param-add-perspective-attribute-workspace">
+    </Option>
+    <Option Id="opt-add-perspective-attribute-perspective" ParameterId="param-add-perspective-attribute-perspective">
+    </Option>
+    <Option Id="opt-add-perspective-attribute-attribute" ParameterId="param-add-perspective-attribute-attribute">
+    </Option>
+    <Option Id="opt-add-perspective-hierarchy-id" ParameterId="param-add-perspective-hierarchy-id">
+    </Option>
+    <Option Id="opt-add-perspective-hierarchy-workspace" ParameterId="param-add-perspective-hierarchy-workspace">
+    </Option>
+    <Option Id="opt-add-perspective-hierarchy-perspective" ParameterId="param-add-perspective-hierarchy-perspective">
+    </Option>
+    <Option Id="opt-add-perspective-hierarchy-hierarchy" ParameterId="param-add-perspective-hierarchy-hierarchy">
+    </Option>
+    <Option Id="opt-add-perspective-measure-id" ParameterId="param-add-perspective-measure-id">
+    </Option>
+    <Option Id="opt-add-perspective-measure-workspace" ParameterId="param-add-perspective-measure-workspace">
+    </Option>
+    <Option Id="opt-add-perspective-measure-perspective" ParameterId="param-add-perspective-measure-perspective">
+    </Option>
+    <Option Id="opt-add-perspective-measure-measure" ParameterId="param-add-perspective-measure-measure">
+    </Option>
+    <Option Id="opt-add-security-role-id" ParameterId="param-add-security-role-id">
+    </Option>
+    <Option Id="opt-add-security-role-workspace" ParameterId="param-add-security-role-workspace">
+    </Option>
+    <Option Id="opt-add-security-role-name" ParameterId="param-add-security-role-name">
+    </Option>
+    <Option Id="opt-add-security-role-permission" ParameterId="param-add-security-role-permission">
+    </Option>
+    <Option Id="opt-add-security-role-description" ParameterId="param-add-security-role-description">
+    </Option>
+    <Option Id="opt-add-security-role-model" ParameterId="param-add-security-role-model">
+    </Option>
+    <Option Id="opt-add-role-member-id" ParameterId="param-add-role-member-id">
+    </Option>
+    <Option Id="opt-add-role-member-workspace" ParameterId="param-add-role-member-workspace">
+    </Option>
+    <Option Id="opt-add-role-member-member-name" ParameterId="param-add-role-member-member-name">
+    </Option>
+    <Option Id="opt-add-role-member-member-kind" ParameterId="param-add-role-member-member-kind">
+    </Option>
+    <Option Id="opt-add-role-member-role" ParameterId="param-add-role-member-role">
+    </Option>
+    <Option Id="opt-add-role-filter-id" ParameterId="param-add-role-filter-id">
+    </Option>
+    <Option Id="opt-add-role-filter-workspace" ParameterId="param-add-role-filter-workspace">
+    </Option>
+    <Option Id="opt-add-role-filter-expression-language" ParameterId="param-add-role-filter-expression-language">
+    </Option>
+    <Option Id="opt-add-role-filter-expression" ParameterId="param-add-role-filter-expression">
+    </Option>
+    <Option Id="opt-add-role-filter-description" ParameterId="param-add-role-filter-description">
+    </Option>
+    <Option Id="opt-add-role-filter-role" ParameterId="param-add-role-filter-role">
+    </Option>
+    <Option Id="opt-add-role-filter-table" ParameterId="param-add-role-filter-table">
+    </Option>
+    <Option Id="opt-add-table-permission-id" ParameterId="param-add-table-permission-id">
+    </Option>
+    <Option Id="opt-add-table-permission-workspace" ParameterId="param-add-table-permission-workspace">
+    </Option>
+    <Option Id="opt-add-table-permission-metadata-permission" ParameterId="param-add-table-permission-metadata-permission">
+    </Option>
+    <Option Id="opt-add-table-permission-description" ParameterId="param-add-table-permission-description">
+    </Option>
+    <Option Id="opt-add-table-permission-role" ParameterId="param-add-table-permission-role">
+    </Option>
+    <Option Id="opt-add-table-permission-table" ParameterId="param-add-table-permission-table">
+    </Option>
+    <Option Id="opt-add-attribute-permission-id" ParameterId="param-add-attribute-permission-id">
+    </Option>
+    <Option Id="opt-add-attribute-permission-workspace" ParameterId="param-add-attribute-permission-workspace">
+    </Option>
+    <Option Id="opt-add-attribute-permission-metadata-permission" ParameterId="param-add-attribute-permission-metadata-permission">
+    </Option>
+    <Option Id="opt-add-attribute-permission-description" ParameterId="param-add-attribute-permission-description">
+    </Option>
+    <Option Id="opt-add-attribute-permission-role" ParameterId="param-add-attribute-permission-role">
+    </Option>
+    <Option Id="opt-add-attribute-permission-attribute" ParameterId="param-add-attribute-permission-attribute">
+    </Option>
+    <Option Id="opt-add-culture-id" ParameterId="param-add-culture-id">
+    </Option>
+    <Option Id="opt-add-culture-workspace" ParameterId="param-add-culture-workspace">
+    </Option>
+    <Option Id="opt-add-culture-name" ParameterId="param-add-culture-name">
+    </Option>
+    <Option Id="opt-add-culture-description" ParameterId="param-add-culture-description">
+    </Option>
+    <Option Id="opt-add-culture-model" ParameterId="param-add-culture-model">
+    </Option>
+    <Option Id="opt-add-table-translation-id" ParameterId="param-add-table-translation-id">
+    </Option>
+    <Option Id="opt-add-table-translation-workspace" ParameterId="param-add-table-translation-workspace">
+    </Option>
+    <Option Id="opt-add-table-translation-caption" ParameterId="param-add-table-translation-caption">
+    </Option>
+    <Option Id="opt-add-table-translation-description" ParameterId="param-add-table-translation-description">
+    </Option>
+    <Option Id="opt-add-table-translation-culture" ParameterId="param-add-table-translation-culture">
+    </Option>
+    <Option Id="opt-add-table-translation-table" ParameterId="param-add-table-translation-table">
+    </Option>
+    <Option Id="opt-add-attribute-translation-id" ParameterId="param-add-attribute-translation-id">
+    </Option>
+    <Option Id="opt-add-attribute-translation-workspace" ParameterId="param-add-attribute-translation-workspace">
+    </Option>
+    <Option Id="opt-add-attribute-translation-caption" ParameterId="param-add-attribute-translation-caption">
+    </Option>
+    <Option Id="opt-add-attribute-translation-description" ParameterId="param-add-attribute-translation-description">
+    </Option>
+    <Option Id="opt-add-attribute-translation-culture" ParameterId="param-add-attribute-translation-culture">
+    </Option>
+    <Option Id="opt-add-attribute-translation-attribute" ParameterId="param-add-attribute-translation-attribute">
+    </Option>
+    <Option Id="opt-add-hierarchy-translation-id" ParameterId="param-add-hierarchy-translation-id">
+    </Option>
+    <Option Id="opt-add-hierarchy-translation-workspace" ParameterId="param-add-hierarchy-translation-workspace">
+    </Option>
+    <Option Id="opt-add-hierarchy-translation-caption" ParameterId="param-add-hierarchy-translation-caption">
+    </Option>
+    <Option Id="opt-add-hierarchy-translation-description" ParameterId="param-add-hierarchy-translation-description">
+    </Option>
+    <Option Id="opt-add-hierarchy-translation-culture" ParameterId="param-add-hierarchy-translation-culture">
+    </Option>
+    <Option Id="opt-add-hierarchy-translation-hierarchy" ParameterId="param-add-hierarchy-translation-hierarchy">
+    </Option>
+    <Option Id="opt-add-measure-translation-id" ParameterId="param-add-measure-translation-id">
+    </Option>
+    <Option Id="opt-add-measure-translation-workspace" ParameterId="param-add-measure-translation-workspace">
+    </Option>
+    <Option Id="opt-add-measure-translation-caption" ParameterId="param-add-measure-translation-caption">
+    </Option>
+    <Option Id="opt-add-measure-translation-description" ParameterId="param-add-measure-translation-description">
+    </Option>
+    <Option Id="opt-add-measure-translation-culture" ParameterId="param-add-measure-translation-culture">
+    </Option>
+    <Option Id="opt-add-measure-translation-measure" ParameterId="param-add-measure-translation-measure">
+    </Option>
+    <Option Id="opt-add-perspective-translation-id" ParameterId="param-add-perspective-translation-id">
+    </Option>
+    <Option Id="opt-add-perspective-translation-workspace" ParameterId="param-add-perspective-translation-workspace">
+    </Option>
+    <Option Id="opt-add-perspective-translation-caption" ParameterId="param-add-perspective-translation-caption">
+    </Option>
+    <Option Id="opt-add-perspective-translation-description" ParameterId="param-add-perspective-translation-description">
+    </Option>
+    <Option Id="opt-add-perspective-translation-culture" ParameterId="param-add-perspective-translation-culture">
+    </Option>
+    <Option Id="opt-add-perspective-translation-perspective" ParameterId="param-add-perspective-translation-perspective">
+    </Option>
+  </OptionList>
+</MetaCli>

@@ -1,19 +1,63 @@
 using System.Data;
+using System.Globalization;
 using Microsoft.Data.SqlClient;
-using Meta.Core.Domain;
-using MetaSchema.Core;
+using MetaSchema.Instance;
+using MS = global::MetaSchema;
 
 namespace MetaSchema.Extractors.SqlServer;
 
-public sealed class SqlServerSchemaExtractor
+public sealed class MetaSchemaSqlServerExtractService
 {
-    public Workspace ExtractMetaSchemaWorkspace(SqlServerExtractRequest request)
+    private readonly SqlServerSchemaExtractor extractor;
+
+    public MetaSchemaSqlServerExtractService()
+        : this(new SqlServerSchemaExtractor())
+    {
+    }
+
+    public MetaSchemaSqlServerExtractService(SqlServerSchemaExtractor extractor)
+    {
+        this.extractor = extractor;
+    }
+
+    public async Task<SqlServerExtractResult> ExtractToNewWorkspaceAsync(
+        SqlServerExtractRequest request,
+        CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
-        if (string.IsNullOrWhiteSpace(request.NewWorkspacePath))
-        {
-            throw new InvalidOperationException("extract sqlserver requires --new-workspace <path>.");
-        }
+        ArgumentException.ThrowIfNullOrWhiteSpace(request.NewWorkspacePath);
+        cancellationToken.ThrowIfCancellationRequested();
+
+        var workspacePath = Path.GetFullPath(request.NewWorkspacePath);
+        var model = extractor.ExtractMetaSchemaModel(request);
+        await MetaSchemaInstance.SaveToWorkspaceAsync(model, workspacePath, cancellationToken)
+            .ConfigureAwait(false);
+
+        return new SqlServerExtractResult(
+            workspacePath,
+            model.SystemList.Count,
+            model.SchemaList.Count,
+            model.TableList.Count,
+            model.FieldList.Count,
+            model.TableKeyList.Count,
+            model.TableRelationshipList.Count);
+    }
+}
+
+public sealed record SqlServerExtractResult(
+    string WorkspacePath,
+    int SystemCount,
+    int SchemaCount,
+    int TableCount,
+    int FieldCount,
+    int TableKeyCount,
+    int TableRelationshipCount);
+
+public sealed class SqlServerSchemaExtractor
+{
+    public MS.MetaSchemaModel ExtractMetaSchemaModel(SqlServerExtractRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
 
         if (string.IsNullOrWhiteSpace(request.ConnectionString))
         {
@@ -45,8 +89,6 @@ public sealed class SqlServerSchemaExtractor
             throw new InvalidOperationException("extract sqlserver does not allow --table with --all-tables.");
         }
 
-        var workspace = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(request.NewWorkspacePath);
-
         using var connection = new SqlConnection(request.ConnectionString);
         connection.Open();
 
@@ -58,10 +100,10 @@ public sealed class SqlServerSchemaExtractor
         var schemaFilter = request.AllSchemas ? null : request.SchemaName.Trim();
         var tableFilter = request.AllTables ? null : request.TableName.Trim();
         var tableRows = LoadTables(connection, schemaFilter, tableFilter)
-            .OrderBy(row => row.SchemaName, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(row => row.SchemaName, StringComparer.Ordinal)
-            .ThenBy(row => row.TableName, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(row => row.TableName, StringComparer.Ordinal)
+            .OrderBy(static row => row.SchemaName, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static row => row.SchemaName, StringComparer.Ordinal)
+            .ThenBy(static row => row.TableName, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static row => row.TableName, StringComparer.Ordinal)
             .ToList();
         if (tableRows.Count == 0)
         {
@@ -76,37 +118,6 @@ public sealed class SqlServerSchemaExtractor
                 $"No SQL Server tables matched {filterDescription} in database '{connection.Database}'.");
         }
 
-        var systemId = BuildSystemId(systemName);
-
-        AddRecord(
-            workspace,
-            "System",
-            systemId,
-            values =>
-            {
-                values["Name"] = systemName;
-                if (!string.IsNullOrWhiteSpace(dataSource))
-                {
-                    values["Description"] = databaseName + " @ " + dataSource;
-                }
-            });
-
-        var schemaNames = tableRows.Select(row => row.SchemaName).Distinct(StringComparer.Ordinal).OrderBy(name => name, StringComparer.Ordinal);
-        foreach (var schemaName in schemaNames)
-        {
-            var schemaId = BuildSchemaId(databaseName, schemaName);
-            AddRecord(
-                workspace,
-                "Schema",
-                schemaId,
-                values => values["Name"] = schemaName,
-                relationships => relationships["SystemId"] = systemId);
-        }
-
-        var tableIdsByKey = tableRows.ToDictionary(
-            row => BuildScopedObjectKey(row.SchemaName, row.TableName),
-            row => BuildTableId(databaseName, row.SchemaName, row.TableName),
-            StringComparer.OrdinalIgnoreCase);
         var columnsByTableKey = tableRows.ToDictionary(
             row => BuildScopedObjectKey(row.SchemaName, row.TableName),
             row => LoadColumns(connection, row.SchemaName, row.TableName),
@@ -128,207 +139,202 @@ public sealed class SqlServerSchemaExtractor
             row => LoadForeignKeyColumns(connection, row.SchemaName, row.TableName),
             StringComparer.OrdinalIgnoreCase);
 
+        var model = MS.MetaSchemaModel.CreateEmpty();
+        var system = new MS.System
+        {
+            Id = BuildSystemId(systemName),
+            Name = systemName,
+            Description = string.IsNullOrWhiteSpace(dataSource) ? null : databaseName + " @ " + dataSource
+        };
+        model.SystemList.Add(system);
+
+        var schemasByName = new Dictionary<string, MS.Schema>(StringComparer.Ordinal);
+        var schemaNames = tableRows
+            .Select(static row => row.SchemaName)
+            .Distinct(StringComparer.Ordinal)
+            .OrderBy(static name => name, StringComparer.Ordinal);
+        foreach (var schemaName in schemaNames)
+        {
+            var schema = new MS.Schema
+            {
+                Id = BuildSchemaId(databaseName, schemaName),
+                Name = schemaName,
+                System = system
+            };
+            model.SchemaList.Add(schema);
+            schemasByName.Add(schemaName, schema);
+        }
+
+        var tablesByKey = new Dictionary<string, MS.Table>(StringComparer.OrdinalIgnoreCase);
         foreach (var tableRow in tableRows)
         {
-            var schemaId = BuildSchemaId(databaseName, tableRow.SchemaName);
-            var scopedTableKey = BuildScopedObjectKey(tableRow.SchemaName, tableRow.TableName);
-            var columnRows = columnsByTableKey[scopedTableKey];
-            var tableKeys = tableKeysByTableKey[scopedTableKey];
-            var tableKeyFields = tableKeyFieldsByTableKey[scopedTableKey];
-            var foreignKeys = foreignKeysByTableKey[scopedTableKey];
-            var foreignKeyColumns = foreignKeyColumnsByTableKey[scopedTableKey];
+            var tableKey = BuildScopedObjectKey(tableRow.SchemaName, tableRow.TableName);
+            var table = new MS.Table
+            {
+                Id = BuildTableId(databaseName, tableRow.SchemaName, tableRow.TableName),
+                Name = tableRow.TableName,
+                ObjectType = string.IsNullOrWhiteSpace(tableRow.ObjectType) ? null : tableRow.ObjectType,
+                Schema = schemasByName[tableRow.SchemaName]
+            };
+            model.TableList.Add(table);
+            tablesByKey.Add(tableKey, table);
+        }
 
-            var tableId = BuildTableId(databaseName, tableRow.SchemaName, tableRow.TableName);
-            AddRecord(
-                workspace,
-                "Table",
-                tableId,
-                values =>
+        var fieldsByColumnNameByTableKey = new Dictionary<string, Dictionary<string, MS.Field>>(StringComparer.OrdinalIgnoreCase);
+        foreach (var tableRow in tableRows)
+        {
+            var tableKey = BuildScopedObjectKey(tableRow.SchemaName, tableRow.TableName);
+            var table = tablesByKey[tableKey];
+            var fieldsByColumnName = new Dictionary<string, MS.Field>(StringComparer.OrdinalIgnoreCase);
+            fieldsByColumnNameByTableKey.Add(tableKey, fieldsByColumnName);
+
+            foreach (var columnRow in columnsByTableKey[tableKey]
+                         .OrderBy(static row => row.TableName, StringComparer.OrdinalIgnoreCase)
+                         .ThenBy(static row => row.TableName, StringComparer.Ordinal)
+                         .ThenBy(static row => row.OrdinalPosition))
+            {
+                var field = new MS.Field
                 {
-                    values["Name"] = tableRow.TableName;
-                    if (!string.IsNullOrWhiteSpace(tableRow.ObjectType))
-                    {
-                        values["ObjectType"] = tableRow.ObjectType;
-                    }
-                },
-                relationships => relationships["SchemaId"] = schemaId);
+                    Id = BuildFieldId(databaseName, columnRow.SchemaName, columnRow.TableName, columnRow.ColumnName),
+                    Name = columnRow.ColumnName,
+                    MetaDataTypeId = BuildDataTypeId(columnRow.DataTypeName),
+                    Ordinal = columnRow.OrdinalPosition.ToString(CultureInfo.InvariantCulture),
+                    IsNullable = columnRow.IsNullable ? "true" : "false",
+                    IsIdentity = columnRow.IsIdentity ? "true" : null,
+                    IdentitySeed = string.IsNullOrWhiteSpace(columnRow.IdentitySeed) ? null : columnRow.IdentitySeed,
+                    IdentityIncrement = string.IsNullOrWhiteSpace(columnRow.IdentityIncrement) ? null : columnRow.IdentityIncrement,
+                    Table = table
+                };
 
-            var sourceFieldIdByColumnName = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            foreach (var columnRow in columnRows
-                         .OrderBy(row => row.TableName, StringComparer.OrdinalIgnoreCase)
-                         .ThenBy(row => row.TableName, StringComparer.Ordinal)
-                         .ThenBy(row => row.OrdinalPosition))
-            {
-                var fieldId = BuildFieldId(databaseName, columnRow.SchemaName, columnRow.TableName, columnRow.ColumnName);
-                sourceFieldIdByColumnName[columnRow.ColumnName] = fieldId;
-                AddRecord(
-                    workspace,
-                    "Field",
-                    fieldId,
-                    values =>
-                    {
-                        values["Name"] = columnRow.ColumnName;
-                        values["MetaDataTypeId"] = BuildDataTypeId(columnRow.DataTypeName);
-                        values["Ordinal"] = columnRow.OrdinalPosition.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                        values["IsNullable"] = columnRow.IsNullable ? "true" : "false";
-                        if (columnRow.IsIdentity)
-                        {
-                            values["IsIdentity"] = "true";
-                        }
-                        if (!string.IsNullOrWhiteSpace(columnRow.IdentitySeed))
-                        {
-                            values["IdentitySeed"] = columnRow.IdentitySeed;
-                        }
-                        if (!string.IsNullOrWhiteSpace(columnRow.IdentityIncrement))
-                        {
-                            values["IdentityIncrement"] = columnRow.IdentityIncrement;
-                        }
-                    },
-                    relationships => relationships["TableId"] = tableId);
-
-                AddFieldDataTypeDetails(workspace, fieldId, columnRow);
+                model.FieldList.Add(field);
+                fieldsByColumnName.Add(columnRow.ColumnName, field);
+                AddFieldDataTypeDetails(model, field, columnRow);
             }
+        }
 
-            var fieldIdsByColumnName = sourceFieldIdByColumnName;
-            var keyFieldsByName = tableKeyFields
-                .GroupBy(row => row.KeyName, StringComparer.Ordinal)
-                .ToDictionary(group => group.Key, group => group
-                    .OrderBy(item => item.Ordinal)
-                    .ToList(), StringComparer.Ordinal);
+        foreach (var tableRow in tableRows)
+        {
+            var tableKey = BuildScopedObjectKey(tableRow.SchemaName, tableRow.TableName);
+            var table = tablesByKey[tableKey];
+            var fieldsByColumnName = fieldsByColumnNameByTableKey[tableKey];
+            var keyFieldsByName = tableKeyFieldsByTableKey[tableKey]
+                .GroupBy(static row => row.KeyName, StringComparer.Ordinal)
+                .ToDictionary(
+                    static group => group.Key,
+                    static group => group.OrderBy(static item => item.Ordinal).ToList(),
+                    StringComparer.Ordinal);
 
-            foreach (var tableKey in tableKeys
-                         .OrderBy(row => row.KeyType, StringComparer.Ordinal)
-                         .ThenBy(row => row.Name, StringComparer.Ordinal))
+            foreach (var keyRow in tableKeysByTableKey[tableKey]
+                         .OrderBy(static row => row.KeyType, StringComparer.Ordinal)
+                         .ThenBy(static row => row.Name, StringComparer.Ordinal))
             {
-                var tableKeyId = BuildTableKeyId(databaseName, tableRow.SchemaName, tableRow.TableName, tableKey.Name);
-                AddRecord(
-                    workspace,
-                    "TableKey",
-                    tableKeyId,
-                    values =>
-                    {
-                        values["Name"] = tableKey.Name;
-                        values["KeyType"] = tableKey.KeyType;
-                    },
-                    relationships => relationships["TableId"] = tableId);
+                var tableKeyRow = new MS.TableKey
+                {
+                    Id = BuildTableKeyId(databaseName, tableRow.SchemaName, tableRow.TableName, keyRow.Name),
+                    Name = keyRow.Name,
+                    KeyType = keyRow.KeyType,
+                    Table = table
+                };
+                model.TableKeyList.Add(tableKeyRow);
 
-                if (!keyFieldsByName.TryGetValue(tableKey.Name, out var keyFields))
+                if (!keyFieldsByName.TryGetValue(keyRow.Name, out var keyFields))
                 {
                     continue;
                 }
 
                 foreach (var keyField in keyFields)
                 {
-                    if (!fieldIdsByColumnName.TryGetValue(keyField.ColumnName, out var sourceFieldId))
+                    if (!fieldsByColumnName.TryGetValue(keyField.ColumnName, out var field))
                     {
                         throw new InvalidOperationException(
-                            $"SQL Server key '{tableRow.SchemaName}.{tableRow.TableName}.{tableKey.Name}' referenced column '{keyField.ColumnName}' that was not extracted.");
+                            $"SQL Server key '{tableRow.SchemaName}.{tableRow.TableName}.{keyRow.Name}' referenced column '{keyField.ColumnName}' that was not extracted.");
                     }
 
-                    var tableKeyFieldId = BuildTableKeyFieldId(
-                        databaseName,
-                        tableRow.SchemaName,
-                        tableRow.TableName,
-                        tableKey.Name,
-                        keyField.Ordinal);
-                    AddRecord(
-                        workspace,
-                        "TableKeyField",
-                        tableKeyFieldId,
-                        values =>
-                        {
-                            values["Ordinal"] = keyField.Ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                            values["FieldName"] = keyField.ColumnName;
-                        },
-                        relationships =>
-                        {
-                            relationships["TableKeyId"] = tableKeyId;
-                            relationships["FieldId"] = sourceFieldId;
-                        });
+                    model.TableKeyFieldList.Add(new MS.TableKeyField
+                    {
+                        Id = BuildTableKeyFieldId(
+                            databaseName,
+                            tableRow.SchemaName,
+                            tableRow.TableName,
+                            keyRow.Name,
+                            keyField.Ordinal),
+                        Ordinal = keyField.Ordinal.ToString(CultureInfo.InvariantCulture),
+                        FieldName = keyField.ColumnName,
+                        TableKey = tableKeyRow,
+                        Field = field
+                    });
                 }
             }
+        }
 
-            var foreignKeyColumnsByName = foreignKeyColumns
-                .GroupBy(row => row.ForeignKeyName, StringComparer.Ordinal)
-                .ToDictionary(group => group.Key, group => group
-                    .OrderBy(item => item.Ordinal)
-                    .ToList(), StringComparer.Ordinal);
+        foreach (var tableRow in tableRows)
+        {
+            var tableKey = BuildScopedObjectKey(tableRow.SchemaName, tableRow.TableName);
+            var sourceTable = tablesByKey[tableKey];
+            var sourceFieldsByColumnName = fieldsByColumnNameByTableKey[tableKey];
+            var foreignKeyColumnsByName = foreignKeyColumnsByTableKey[tableKey]
+                .GroupBy(static row => row.ForeignKeyName, StringComparer.Ordinal)
+                .ToDictionary(
+                    static group => group.Key,
+                    static group => group.OrderBy(static item => item.Ordinal).ToList(),
+                    StringComparer.Ordinal);
 
-            foreach (var foreignKey in foreignKeys
-                         .OrderBy(row => row.Name, StringComparer.Ordinal))
+            foreach (var foreignKey in foreignKeysByTableKey[tableKey]
+                         .OrderBy(static row => row.Name, StringComparer.Ordinal))
             {
                 var targetTableKey = BuildScopedObjectKey(foreignKey.TargetSchemaName, foreignKey.TargetTableName);
-                if (!tableIdsByKey.TryGetValue(targetTableKey, out var targetTableId))
+                if (!tablesByKey.TryGetValue(targetTableKey, out var targetTable))
                 {
                     continue;
                 }
 
-                var relationshipId = BuildRelationshipId(databaseName, tableRow.SchemaName, tableRow.TableName, foreignKey.Name);
-                AddRecord(
-                    workspace,
-                    "TableRelationship",
-                    relationshipId,
-                    values =>
-                    {
-                        values["Name"] = foreignKey.Name;
-                    },
-                    relationships =>
-                    {
-                        relationships["SourceTableId"] = tableId;
-                        relationships["TargetTableId"] = targetTableId;
-                    });
+                var relationship = new MS.TableRelationship
+                {
+                    Id = BuildRelationshipId(databaseName, tableRow.SchemaName, tableRow.TableName, foreignKey.Name),
+                    Name = foreignKey.Name,
+                    SourceTable = sourceTable,
+                    TargetTable = targetTable
+                };
+                model.TableRelationshipList.Add(relationship);
 
                 if (!foreignKeyColumnsByName.TryGetValue(foreignKey.Name, out var fkColumns))
                 {
                     continue;
                 }
 
-                var targetFieldIdByColumnName = columnsByTableKey[targetTableKey]
-                    .ToDictionary(
-                        row => row.ColumnName,
-                        row => BuildFieldId(databaseName, row.SchemaName, row.TableName, row.ColumnName),
-                        StringComparer.OrdinalIgnoreCase);
-
+                var targetFieldsByColumnName = fieldsByColumnNameByTableKey[targetTableKey];
                 foreach (var fkColumn in fkColumns)
                 {
-                    if (!fieldIdsByColumnName.TryGetValue(fkColumn.SourceColumnName, out var sourceFieldId))
+                    if (!sourceFieldsByColumnName.TryGetValue(fkColumn.SourceColumnName, out var sourceField))
                     {
                         throw new InvalidOperationException(
                             $"SQL Server foreign key '{tableRow.SchemaName}.{tableRow.TableName}.{foreignKey.Name}' referenced source column '{fkColumn.SourceColumnName}' that was not extracted.");
                     }
 
-                    if (!targetFieldIdByColumnName.TryGetValue(fkColumn.TargetColumnName, out var targetFieldId))
+                    if (!targetFieldsByColumnName.TryGetValue(fkColumn.TargetColumnName, out var targetField))
                     {
                         throw new InvalidOperationException(
                             $"SQL Server foreign key '{tableRow.SchemaName}.{tableRow.TableName}.{foreignKey.Name}' referenced target column '{fkColumn.TargetColumnName}' that was not extracted.");
                     }
 
-                    var relationshipFieldId = BuildRelationshipFieldId(
-                        databaseName,
-                        tableRow.SchemaName,
-                        tableRow.TableName,
-                        foreignKey.Name,
-                        fkColumn.Ordinal);
-                    AddRecord(
-                        workspace,
-                        "TableRelationshipField",
-                        relationshipFieldId,
-                        values =>
-                        {
-                            values["Ordinal"] = fkColumn.Ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                        },
-                        relationships =>
-                        {
-                            relationships["TableRelationshipId"] = relationshipId;
-                            relationships["SourceFieldId"] = sourceFieldId;
-                            relationships["TargetFieldId"] = targetFieldId;
-                        });
+                    model.TableRelationshipFieldList.Add(new MS.TableRelationshipField
+                    {
+                        Id = BuildRelationshipFieldId(
+                            databaseName,
+                            tableRow.SchemaName,
+                            tableRow.TableName,
+                            foreignKey.Name,
+                            fkColumn.Ordinal),
+                        Ordinal = fkColumn.Ordinal.ToString(CultureInfo.InvariantCulture),
+                        TableRelationship = relationship,
+                        SourceField = sourceField,
+                        TargetField = targetField
+                    });
                 }
             }
         }
 
-        workspace.IsDirty = true;
-        return workspace;
+        return model;
     }
 
     private static List<TableRow> LoadTables(SqlConnection connection, string? schemaName, string? tableName)
@@ -583,7 +589,7 @@ public sealed class SqlServerSchemaExtractor
             int intValue => intValue,
             long longValue => checked((int)longValue),
             decimal decimalValue => decimal.ToInt32(decimalValue),
-            _ => Convert.ToInt32(value, System.Globalization.CultureInfo.InvariantCulture),
+            _ => Convert.ToInt32(value, CultureInfo.InvariantCulture),
         };
     }
 
@@ -598,92 +604,52 @@ public sealed class SqlServerSchemaExtractor
         return value.Value;
     }
 
-    private static string? ReadNullableString(SqlDataReader reader, int ordinal)
-    {
-        return reader.IsDBNull(ordinal)
-            ? null
-            : reader.GetString(ordinal);
-    }
+    private static string? ReadNullableString(SqlDataReader reader, int ordinal) =>
+        reader.IsDBNull(ordinal) ? null : reader.GetString(ordinal);
 
-    private static string NormalizeTableType(string tableType)
-    {
-        return tableType switch
+    private static string NormalizeTableType(string tableType) =>
+        tableType switch
         {
             "BASE TABLE" => "Table",
             "VIEW" => "View",
             _ => tableType,
         };
-    }
 
-    private static string NormalizeKeyType(string keyConstraintType)
-    {
-        return keyConstraintType switch
+    private static string NormalizeKeyType(string keyConstraintType) =>
+        keyConstraintType switch
         {
             "PK" => "primary",
             "UQ" => "unique",
             _ => keyConstraintType,
         };
-    }
 
-    private static void AddRecord(
-        Workspace workspace,
-        string entityName,
-        string id,
-        Action<Dictionary<string, string>>? populateValues = null,
-        Action<Dictionary<string, string>>? populateRelationships = null)
-    {
-        var record = new GenericRecord
-        {
-            Id = id,
-        };
-        populateValues?.Invoke(record.Values);
-        populateRelationships?.Invoke(record.RelationshipIds);
-        workspace.Instance.GetOrCreateEntityRecords(entityName).Add(record);
-    }
+    private static string BuildSystemId(string databaseName) =>
+        "sqlserver:system:" + databaseName;
 
-    private static string BuildSystemId(string databaseName)
-    {
-        return "sqlserver:system:" + databaseName;
-    }
+    private static string BuildSchemaId(string databaseName, string schemaName) =>
+        "sqlserver:" + databaseName + ":schema:" + schemaName;
 
-    private static string BuildSchemaId(string databaseName, string schemaName)
-    {
-        return "sqlserver:" + databaseName + ":schema:" + schemaName;
-    }
+    private static string BuildTableId(string databaseName, string schemaName, string tableName) =>
+        "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName;
 
-    private static string BuildTableId(string databaseName, string schemaName, string tableName)
-    {
-        return "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName;
-    }
+    private static string BuildDataTypeId(string dataTypeName) =>
+        "sqlserver:type:" + dataTypeName;
 
-    private static string BuildDataTypeId(string dataTypeName)
-    {
-        return "sqlserver:type:" + dataTypeName;
-    }
+    private static string BuildScopedObjectKey(string schemaName, string objectName) =>
+        schemaName + "." + objectName;
 
-    private static string BuildScopedObjectKey(string schemaName, string objectName)
-    {
-        return schemaName + "." + objectName;
-    }
+    private static string BuildTableKeyId(string databaseName, string schemaName, string tableName, string keyName) =>
+        "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName + ":key:" + keyName;
 
-    private static string BuildTableKeyId(string databaseName, string schemaName, string tableName, string keyName)
-    {
-        return "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName + ":key:" + keyName;
-    }
+    private static string BuildTableKeyFieldId(string databaseName, string schemaName, string tableName, string keyName, int ordinal) =>
+        BuildTableKeyId(databaseName, schemaName, tableName, keyName) +
+        ":field:" +
+        ordinal.ToString(CultureInfo.InvariantCulture);
 
-    private static string BuildTableKeyFieldId(string databaseName, string schemaName, string tableName, string keyName, int ordinal)
-    {
-        return BuildTableKeyId(databaseName, schemaName, tableName, keyName) +
-               ":field:" +
-               ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture);
-    }
+    private static string BuildFieldId(string databaseName, string schemaName, string tableName, string columnName) =>
+        "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName + ":field:" + columnName;
 
-    private static string BuildFieldId(string databaseName, string schemaName, string tableName, string columnName)
-    {
-        return "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName + ":field:" + columnName;
-    }
-
-    private static void AddFieldDataTypeDetails(Workspace workspace, string fieldId, ColumnRow columnRow)
+    private static void AddFieldDataTypeDetails(MS.MetaSchemaModel model, MS.Field field, ColumnRow columnRow)
     {
         switch (columnRow.SystemDataTypeName.ToLowerInvariant())
         {
@@ -693,53 +659,46 @@ public sealed class SqlServerSchemaExtractor
             case "nvarchar":
             case "binary":
             case "varbinary":
-                AddFieldDataTypeDetail(workspace, fieldId, "Length", columnRow.Length);
+                AddFieldDataTypeDetail(model, field, "Length", columnRow.Length);
                 break;
 
             case "decimal":
             case "numeric":
-                AddFieldDataTypeDetail(workspace, fieldId, "Precision", columnRow.Precision);
-                AddFieldDataTypeDetail(workspace, fieldId, "Scale", columnRow.Scale);
+                AddFieldDataTypeDetail(model, field, "Precision", columnRow.Precision);
+                AddFieldDataTypeDetail(model, field, "Scale", columnRow.Scale);
                 break;
 
             case "time":
             case "datetime2":
             case "datetimeoffset":
-                AddFieldDataTypeDetail(workspace, fieldId, "Precision", columnRow.Precision);
+                AddFieldDataTypeDetail(model, field, "Precision", columnRow.Precision);
                 break;
         }
     }
 
-    private static void AddFieldDataTypeDetail(Workspace workspace, string fieldId, string detailName, int? detailValue)
+    private static void AddFieldDataTypeDetail(MS.MetaSchemaModel model, MS.Field field, string detailName, int? detailValue)
     {
         if (!detailValue.HasValue)
         {
             return;
         }
 
-        AddRecord(
-            workspace,
-            "FieldDataTypeDetail",
-            fieldId + ":detail:" + detailName,
-            values =>
-            {
-                values["Name"] = detailName;
-                values["Value"] = detailValue.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
-            },
-            relationships => relationships["FieldId"] = fieldId);
+        model.FieldDataTypeDetailList.Add(new MS.FieldDataTypeDetail
+        {
+            Id = field.Id + ":detail:" + detailName,
+            Name = detailName,
+            Value = detailValue.Value.ToString(CultureInfo.InvariantCulture),
+            Field = field
+        });
     }
 
-    private static string BuildRelationshipId(string databaseName, string schemaName, string tableName, string relationshipName)
-    {
-        return "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName + ":relationship:" + relationshipName;
-    }
+    private static string BuildRelationshipId(string databaseName, string schemaName, string tableName, string relationshipName) =>
+        "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName + ":relationship:" + relationshipName;
 
-    private static string BuildRelationshipFieldId(string databaseName, string schemaName, string tableName, string relationshipName, int ordinal)
-    {
-        return BuildRelationshipId(databaseName, schemaName, tableName, relationshipName) +
-               ":field:" +
-               ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture);
-    }
+    private static string BuildRelationshipFieldId(string databaseName, string schemaName, string tableName, string relationshipName, int ordinal) =>
+        BuildRelationshipId(databaseName, schemaName, tableName, relationshipName) +
+        ":field:" +
+        ordinal.ToString(CultureInfo.InvariantCulture);
 
     private readonly record struct TableRow(
         string SchemaName,
