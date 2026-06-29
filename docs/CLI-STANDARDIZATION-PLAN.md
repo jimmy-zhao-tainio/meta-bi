@@ -62,9 +62,9 @@ Do not let ignored surfaces create false positives in CLI architecture scans.
 ## Current Status
 
 - Done: live `meta-bi` production CLIs now use checked-in `.MetaCli` workspaces, `MetaCliRuntime<TModel>`, runtime-owned help/parsing, and executable command bindings.
-- Done: `../meta` production CLIs `meta-cli`, `meta-docs`, `meta-mesh`, and `meta-weave` use the same runtime shape.
-- Exception: `../meta/Meta/Cli` still needs the full standard shape. It has `meta.MetaCli` material, but its runtime/help path remains custom enough that it should be treated as not ported.
-- Cleanup tail: the tracked `meta-bi` runtime-shaped CLIs have been service-thinned/audited. Remaining tracked exception is `../meta/Meta/Cli`.
+- Done: `../meta` production CLIs `meta`, `meta-cli`, `meta-docs`, `meta-mesh`, and `meta-weave` use the runtime-owned help/parsing shape.
+- Done: the tracked `meta-bi` runtime-shaped CLIs have been service-thinned/audited.
+- Remaining tracked exceptions: none. Future work should be new hardening or service extraction, not catch-up to the basic CLI shape.
 
 ## Phase 1: Tighten Runtime-Aligned CLIs
 
