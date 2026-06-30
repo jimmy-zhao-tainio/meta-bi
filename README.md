@@ -11,19 +11,11 @@ Two high-value behaviors are intentionally model-driven:
 
 For the normal modeled BI path -- source schema, SQL transforms in the supported `MetaTransformScript` surface, strict binding, generated DQ, modeled pipeline tasks, orchestration, and Tabular/MultiDimensional output -- this covers a large automatic slice of the stack. Dynamic SQL or legacy opaque procedural SQL needs explicit guarantees before orchestration/DQ can safely trust it.
 
-## MetaMesh Ergonomics
+## MetaMesh
 
-The core product proof is already the model-first full-stack path: source to analytics, agent-driven, with automatically derived DQ and automatically derived orchestration. MetaMesh is the models-of-models ergonomics layer in `../meta` for making that multi-workspace BI stack navigable without turning paths, folders, or inferred lineage into product truth. It models stable workspace handles, mounts, declared links, lifecycle, providers/capabilities, and suggestions.
+MetaMesh lives in `../meta`. Its current role is to declare which workspaces an operation works with and which executable steps perform that operation. This is the right layer for cross-workspace BI routines such as refreshing MetaDocs inputs or replaying a modeled demo pipeline: the mesh names the participating workspaces, gives each operation explicit workspace roles, and orders the operation steps with modeled relationships.
 
-This repo contains the BI pressure-test map at `Samples/Demos/MetaMeshBiStackDemo/BIStackDemo.MetaMesh`. After building `..\meta\MetaMesh.sln`, try:
-
-```cmd
-..\meta\MetaMesh\Cli\bin\Debug\net8.0\meta-mesh.exe show --mesh Samples\Demos\MetaMeshBiStackDemo\BIStackDemo.MetaMesh
-..\meta\MetaMesh\Cli\bin\Debug\net8.0\meta-mesh.exe check --mesh Samples\Demos\MetaMeshBiStackDemo\BIStackDemo.MetaMesh
-..\meta\MetaMesh\Cli\bin\Debug\net8.0\meta-mesh.exe impact --mesh Samples\Demos\MetaMeshBiStackDemo\BIStackDemo.MetaMesh --workspace transform
-```
-
-The CLI uses `suggest`, not `doctor`: findings are reviewable suggestions, not hidden authority. A future `MetaHost` may accelerate these operations, but the durable truth remains the modeled workspace artifacts.
+MetaMesh is not a BI lineage inference layer and this repo no longer carries a checked-in old-style mesh demo. BI-specific meshes should be authored when there is a concrete operation to run, not generated from folder shape.
 
 ## CLI Guide
 

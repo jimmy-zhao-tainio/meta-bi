@@ -66,6 +66,17 @@ Do not let ignored surfaces create false positives in CLI architecture scans.
 - Done: the tracked `meta-bi` runtime-shaped CLIs have been service-thinned/audited.
 - Remaining tracked exceptions: none. Future work should be new hardening or service extraction, not catch-up to the basic CLI shape.
 
+## Deferred Command-Surface Issues
+
+Captured during the 2026-06-30 MetaMesh/MetaDocs documentation workflow pass:
+
+- `meta-docs merge` had been modeled as `--new-workspace`; this was corrected to `--workspace` because the suite workspace is a declared persistent workspace in the docs mesh.
+- `meta-docs author-page`, `import-cli`, and `import-workspace-model` still expose both `--workspace` and `--new-workspace`. That may be acceptable for create-vs-update authoring commands, but the command family needs a deliberate policy so `--new-workspace` is not used as a casual overwrite switch.
+- `meta` still has real public command surfaces such as `meta import sql --new-workspace`, `meta import csv --new-workspace`, and `meta workspace merge --new-workspace`. These were not reviewed in the MetaMesh pass.
+- Some README examples still mention older command shapes such as `meta-weave init --new-workspace`. Those are documentation drift, not necessarily live CLI drift, but they should be cleaned when the README is regenerated from MetaDocs.
+- `MetaDocsImportSession` still supports the historical `MissingFromSource` lifecycle. CLI imports now prune stale generated CLI rows, but model/instance/prose importers still use missing-state behavior. Review before treating generated docs workspaces as fully self-cleaning.
+- `meta-mesh add-step` currently models operation steps as `Executable`, `Arguments`, and `WorkingDirectory`. This is intentionally simple and script-replacement oriented, but it is still a free-form command surface. Revisit only if agents need structured editing of executable arguments rather than direct executable step declarations.
+
 ## Phase 1: Tighten Runtime-Aligned CLIs
 
 These already use authored `.MetaCli` workspaces and `MetaCliRuntime<TModel>`, but not all are equally service-thin.
