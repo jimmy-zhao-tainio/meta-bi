@@ -1546,7 +1546,7 @@ Notes:
 
 ```text
 Usage:
-  meta-pipeline --new-workspace <path>
+  meta-pipeline new-workspace <path>
 Usage:
   meta-pipeline <command> [options]
 

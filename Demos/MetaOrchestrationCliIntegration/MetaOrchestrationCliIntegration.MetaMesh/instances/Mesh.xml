@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <MeshList>
+    <Mesh Id="mesh:default">
+      <Description>Operation mesh for the prepared MetaOrchestration CLI integration workspaces.</Description>
+      <Name>MetaOrchestrationCliIntegration</Name>
+      <RootPath>..</RootPath>
+    </Mesh>
+  </MeshList>
+</MetaMesh>

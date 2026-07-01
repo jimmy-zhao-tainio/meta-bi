@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:schema" MeshId="mesh:default">
+      <Description>Extracted SQL Server schema workspace.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>schema</Name>
+      <Path>SchemaWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:transform" MeshId="mesh:default">
+      <Description>Imported transform scripts used by pipeline tasks.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform</Name>
+      <Path>TransformWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:binding" MeshId="mesh:default">
+      <Description>Transform binding workspace over the demo schema.</Description>
+      <ModelName>MetaTransformBinding</ModelName>
+      <Name>binding</Name>
+      <Path>BindingWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:complete-pipeline" MeshId="mesh:default">
+      <Description>Pipeline workspace for the complete happy-path DAG.</Description>
+      <ModelName>MetaPipeline</ModelName>
+      <Name>complete-pipeline</Name>
+      <Path>CompletePipelineWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:complete-orchestration" MeshId="mesh:default">
+      <Description>Orchestration workspace inferred from the complete pipeline DAG.</Description>
+      <ModelName>MetaOrchestration</ModelName>
+      <Name>complete-orchestration</Name>
+      <Path>CompleteOrchestrationWS</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

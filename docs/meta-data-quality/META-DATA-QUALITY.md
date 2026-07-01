@@ -1,4 +1,4 @@
-﻿# MetaDataQuality
+# MetaDataQuality
 
 `MetaDataQuality` scans a sanctioned `MetaTransformScript` workspace and proposes SQL data-quality views from the joins it finds.
 
@@ -152,7 +152,7 @@ Those should become explicit metadata or policy when the project needs them. The
 See:
 
 ```cmd
-Samples\Demos\MetaDataQualityCliIntegration\run.cmd
+Demos\MetaDataQualityCliIntegration\run.cmd
 ```
 
 The demo creates a local SQL Server database, deploys the original transform views, discovers DQ candidates, promotes the generated first-run pack, generates SQL views plus `dq.v_DataQualityReview`, deploys them, and queries returned rows.

@@ -1,0 +1,493 @@
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>call cleanup.cmd  1>nul 2>&1
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\001_basic_select\view.sql --target dbo.v_basic --new-workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Created MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Scripts: 1
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\002_select_star\view.sql --target dbo.v_select_star --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 2
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\003_join_variants\view.sql --target dbo.v_join_variants --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 3
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\004_apply_sources\view.sql --target dbo.v_apply_sources --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 4
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\005_pivot\view.sql --target dbo.v_pivot --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 5
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\006_unpivot\view.sql --target dbo.v_unpivot --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 6
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\007_where_predicates\view.sql --target dbo.v_where_predicates --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 7
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\008_group_by_having\view.sql --target dbo.v_group_by_having --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 8
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\009_grouping_sets\view.sql --target dbo.v_grouping_sets --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 9
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\010_rollup_cube\view.sql --target dbo.v_rollup_cube --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 10
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\011_subqueries_and_correlation\view.sql --target dbo.v_subqueries_and_correlation --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 11
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\012_subquery_predicates\view.sql --target dbo.v_subquery_predicates --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 12
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\013_set_operations\view.sql --target dbo.v_set_operations --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 13
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\014_value_expressions\view.sql --target dbo.v_value_expressions --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 14
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\015_window_functions\view.sql --target dbo.v_window_functions --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 15
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\016_named_window\view.sql --target dbo.v_named_window --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 16
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\017_cte\view.sql --target dbo.v_cte --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 17
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\018_ordering_and_top\view.sql --target dbo.v_ordering_and_top --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 18
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\019_offset_fetch\view.sql --target dbo.v_offset_fetch --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 19
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\020_xml_namespaces_and_methods\view.sql --target dbo.v_xml_namespaces_and_methods --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 20
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\021_inline_values\view.sql --target dbo.v_inline_values --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 21
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\023_table_sample\view.sql --target dbo.v_table_sample --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 22
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\024_query_parentheses\view.sql --target dbo.v_query_parentheses --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 23
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\025_distinct_predicate\view.sql --target dbo.v_distinct_predicate --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 24
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\026_builtin_table_functions\view.sql --target dbo.v_builtin_table_functions --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 25
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\027_fulltext\view.sql --target dbo.v_fulltext --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 26
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\028_fulltext_table\view.sql --target dbo.v_fulltext_table --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 27
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\029_literals_and_special_calls\view.sql --target dbo.v_literals_and_special_calls --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 28
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\030_time_zone_extract\view.sql --target dbo.v_time_zone_extract --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 29
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\031_join_parentheses\view.sql --target dbo.v_join_parentheses --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 30
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\036_sequence_and_globals\view.sql --target dbo.v_sequence_and_globals --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 31
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path SourceViews\040_view_column_list\view.sql --target dbo.v_view_column_list --workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Added: 1
+  Scripts: 32
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>pushd MetaTransformScriptReferenceCorpusWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace>meta-transform-script to sql-path --out ..\RoundTrippedViews
+OK: Exported 32 transform scripts
+Output:
+  Scripts: 32
+  Path: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\RoundTrippedViews
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace>meta-transform-script to sql-path --out ..\RoundTrippedViews.sql
+OK: Exported 32 transform scripts
+Output:
+  Scripts: 32
+  Path: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\RoundTrippedViews.sql
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace>meta-transform-script to sql-code --name dbo.v_window_functions
+SELECT
+    s.CustomerId,
+    s.OrderId,
+    SUM(s.Amount) OVER (PARTITION BY s.CustomerId ORDER BY s.OrderDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS RunningAmount,
+    AVG(s.Amount) OVER (PARTITION BY s.CustomerId) AS AvgAmount,
+    ROW_NUMBER() OVER (PARTITION BY s.CustomerId ORDER BY s.OrderDate DESC) AS RowNum,
+    LAG(s.Amount, 1, 0) OVER (PARTITION BY s.CustomerId ORDER BY s.OrderDate) AS PrevAmount
+FROM dbo.Sales AS s
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace>popd
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view.sql --target dbo.v_basic --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Created MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Scripts: 1
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_2.sql --target dbo.v_select_star --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 2
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_3.sql --target dbo.v_join_variants --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 3
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_4.sql --target dbo.v_apply_sources --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 4
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_5.sql --target dbo.v_pivot --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 5
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_6.sql --target dbo.v_unpivot --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 6
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_7.sql --target dbo.v_where_predicates --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 7
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_8.sql --target dbo.v_group_by_having --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 8
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_9.sql --target dbo.v_grouping_sets --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 9
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_10.sql --target dbo.v_rollup_cube --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 10
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_11.sql --target dbo.v_subqueries_and_correlation --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 11
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_12.sql --target dbo.v_subquery_predicates --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 12
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_13.sql --target dbo.v_set_operations --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 13
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_14.sql --target dbo.v_value_expressions --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 14
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_15.sql --target dbo.v_window_functions --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 15
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_16.sql --target dbo.v_named_window --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 16
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_17.sql --target dbo.v_cte --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 17
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_18.sql --target dbo.v_ordering_and_top --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 18
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_19.sql --target dbo.v_offset_fetch --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 19
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_20.sql --target dbo.v_xml_namespaces_and_methods --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 20
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_21.sql --target dbo.v_inline_values --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 21
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_22.sql --target dbo.v_table_sample --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 22
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_23.sql --target dbo.v_query_parentheses --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 23
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_24.sql --target dbo.v_distinct_predicate --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 24
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_25.sql --target dbo.v_builtin_table_functions --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 25
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_26.sql --target dbo.v_fulltext --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 26
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_27.sql --target dbo.v_fulltext_table --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 27
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_28.sql --target dbo.v_literals_and_special_calls --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 28
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_29.sql --target dbo.v_time_zone_extract --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 29
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_30.sql --target dbo.v_join_parentheses --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 30
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_31.sql --target dbo.v_sequence_and_globals --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 31
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta-transform-script from sql-file --path RoundTrippedViews\view_32.sql --target dbo.v_view_column_list --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Updated MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Added: 1
+  Scripts: 32
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>meta instance diff MetaTransformScriptReferenceCorpusWorkspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Instance diff: differences found.
+DiffWorkspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace.instance-diff
+Rows: left=4997, right=4997  Properties: left=8099, right=8099
+NotIn: left-not-in-right=31, right-not-in-left=31
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration>pushd MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace>meta-transform-script to sql-code --name dbo.v_xml_namespaces_and_methods
+WITH XMLNAMESPACES ('urn:test' AS ns)
+SELECT
+    s.Id,
+    s.XmlPayload.value('(/ns:Root/ns:Id/text())[1]', 'int') AS XmlId,
+    s.XmlPayload.query('/ns:Root') AS XmlFragment,
+    s.XmlPayload.exist('/ns:Root') AS HasRoot
+FROM dbo.XmlSource AS s
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace>popd

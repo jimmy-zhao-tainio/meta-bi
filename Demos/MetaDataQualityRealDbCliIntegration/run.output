@@ -1,0 +1,382 @@
+Changed database context to 'MetaDataQualityRealDbDemo'.
+OK: Executed SQL
+Batches: 12
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Executed SQL
+Batches: 1
+OK: Created MetaTransformScript.Workspace
+Import:
+  Scripts: 1
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 2
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 3
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 4
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 5
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 6
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 7
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 8
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 9
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 10
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 11
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 12
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 13
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 14
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 15
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 16
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 17
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 18
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 19
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 20
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 21
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 22
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 23
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 24
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 25
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 26
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+OK: Updated MetaTransformScript.Workspace
+Import:
+  Added: 1
+  Scripts: 27
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaTransformScript.Workspace
+Imported 27 source views into MetaTransformScript workspace.
+OK: Created MetaDataQuality.Workspace
+MetaDataQuality can create SQL views that return rows to investigate.
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Views ready to create: 18
+
+Run This First:
+  meta-data-quality promote --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --all
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+
+Review The Results:
+  Run the generated views and decide whether the reported rows are real data-quality issues.
+  Some rows may be valid for your business rules; keep the views that reveal useful problems.
+OK: Loaded MetaDataQuality workspace
+
+MetaDataQuality can create SQL views that return rows to investigate.
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Views ready to create: 18
+
+Why These Views Exist:
+  MetaDataQuality found joins in the transform workspace.
+  The generated views check whether the data behind those joins behaves as expected.
+
+The Views Check For:
+  Row multiplication: a join may turn one business row into several rows.
+  Missing referenced rows: a row may point to related data that is not present.
+  Duplicate output rows: a transform may produce the same business row more than once.
+  Unexpected NULLs from outer joins: an optional join may leave related columns empty.
+  Minority join pattern: a relationship is joined using a rare pattern compared to corpus consensus.
+  Incomplete composite join: an outlier join omits key parts from a dominant composite pattern.
+  Suspicious extra join predicate: an outlier join adds predicates beyond the dominant relationship pattern.
+  Inner join against usually optional side: an INNER join appears where the relationship is usually optional on one canonical side.
+  Implied missing referenced rows: high-consensus relationship evidence suggests reference misses should be checked globally.
+  Implied unique-key violation: high-consensus relationship evidence suggests duplicate lookup keys should be checked globally.
+
+Relationships Checked:
+  1. dqdemo.Customer joined with dqdemo.Campaign
+     Keys: c.CompanyId = g.CompanyId; c.CustomerId = g.CampaignId; c.CustomerNo = g.CampaignName
+     Views: Row multiplication, Missing referenced rows, Duplicate output rows
+  2. dqdemo.OrderHeader joined with dqdemo.Campaign
+     Keys: o.CompanyId = g.CompanyId; o.CampaignId = g.CampaignId
+     Views: Missing referenced rows, Unexpected NULLs from outer joins
+  3. dqdemo.Customer joined with dqdemo.Campaign
+     Keys: c.CustomerId = g.CampaignId
+     Views: Missing referenced rows
+  4. dqdemo.Customer joined with dqdemo.Campaign
+     Keys: c.CompanyId = g.CompanyId; c.CustomerId = g.CampaignId
+     Views: Missing referenced rows
+  5. dqdemo.Customer joined with dqdemo.OrderHeader
+     Keys: c.CompanyId = o.CompanyId; c.CustomerId = o.CustomerId
+     Views: Missing referenced rows
+  Showing 5 of 6 relationships. Use --show-cases to see more.
+
+Corpus Inference:
+  Relationships observed: 3
+  Dominant relationship patterns: 3
+  Column equivalence edges: 7
+  Minority join-pattern candidates: 2 (waiting 2, promoted 0)
+  Incomplete-composite candidates: 1 (waiting 1, promoted 0)
+  Suspicious-extra-predicate candidates: 1 (waiting 1, promoted 0)
+  Missing-common-filter candidates: 0
+  Minority column-equivalence candidates: 0
+  Optionality-drift (inner vs usually optional): 1 (waiting 1, promoted 0)
+  Optionality-drift (left vs usually mandatory): 0
+  Implied fanout-risk candidates: 0
+  Implied output-duplicate-risk candidates: 0
+  Dominant relationship preview:
+    dqdemo.Campaign <-> dqdemo.OrderHeader | Ratio 1 (9/9)
+    dqdemo.Campaign <-> dqdemo.Customer | Ratio 0.8 (8/10)
+    dqdemo.Customer <-> dqdemo.OrderHeader | Ratio 1 (8/8)
+  Implied relationship checks:
+    Implied missing referenced rows | dqdemo.Campaign <-> dqdemo.OrderHeader | Consensus 1, Outlier 0 | Confidence High | Discovered
+      Diversity: Distinct transforms: 9; source objects: 2; relationship patterns: 1; effective transforms: 9.
+    Implied unique-key violation | dqdemo.Campaign <-> dqdemo.OrderHeader | Consensus 1, Outlier 0 | Confidence High | Discovered
+      Diversity: Distinct transforms: 9; source objects: 2; relationship patterns: 1; effective transforms: 9.
+    Implied missing referenced rows | dqdemo.Customer <-> dqdemo.OrderHeader | Consensus 1, Outlier 0 | Confidence High | Discovered
+      Diversity: Distinct transforms: 8; source objects: 2; relationship patterns: 1; effective transforms: 8.
+    Implied unique-key violation | dqdemo.Customer <-> dqdemo.OrderHeader | Consensus 1, Outlier 0 | Confidence High | Discovered
+      Diversity: Distinct transforms: 8; source objects: 2; relationship patterns: 1; effective transforms: 8.
+  Optionality drift checks:
+    Inner join against usually optional side | dqdemo.Campaign <-> dqdemo.OrderHeader | Pattern 'campaignid=campaignid&companyid=companyid' is usually LEFT OUTER joined (nullable side is 'dqdemo.Campaign') but has INNER outlier usage. | Consensus 0.8889, Outlier 0.1111 | Confidence Low | Discovered
+      Diversity: Distinct transforms: 1; source objects: 2; relationship patterns: 1; effective transforms: 1.
+
+Run This First:
+  meta-data-quality promote --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --all
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+
+Review The Results:
+  Run the generated views and decide whether the reported rows are real data-quality issues.
+  Some rows may be valid for your business rules; keep the views that reveal useful problems.
+
+Need to exclude a few candidates? meta-data-quality inspect --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --show-cases --show-candidate-ids
+
+Adjustment View:
+  Use this when you want to promote or skip a few generated candidates before creating SQL.
+  1. dqdemo.Customer joined with dqdemo.Campaign
+     Keys: c.CompanyId = g.CompanyId; c.CustomerId = g.CampaignId; c.CustomerNo = g.CampaignName
+     SQL join: Inner
+     Views: Row multiplication, Missing referenced rows, Duplicate output rows
+     Candidate ids: JoinMultiplicityExplosion.JoinPattern.1.4, JoinOrphan.JoinPattern.1.3, OutputDuplicateRisk.JoinPattern.1.5
+  2. dqdemo.OrderHeader joined with dqdemo.Campaign
+     Keys: o.CompanyId = g.CompanyId; o.CampaignId = g.CampaignId
+     SQL join: Left Outer
+     Views: Missing referenced rows, Unexpected NULLs from outer joins
+     Candidate ids: JoinOrphan.JoinPattern.5.8, OuterJoinNullExpansion.JoinPattern.5.9
+  3. dqdemo.Customer joined with dqdemo.Campaign
+     Keys: c.CustomerId = g.CampaignId
+     SQL join: Inner
+     Views: Missing referenced rows
+     Candidate ids: JoinOrphan.JoinPattern.2.1
+  4. dqdemo.Customer joined with dqdemo.Campaign
+     Keys: c.CompanyId = g.CompanyId; c.CustomerId = g.CampaignId
+     SQL join: Inner
+     Views: Missing referenced rows
+     Candidate ids: JoinOrphan.JoinPattern.2
+  5. dqdemo.Customer joined with dqdemo.OrderHeader
+     Keys: c.CompanyId = o.CompanyId; c.CustomerId = o.CustomerId
+     SQL join: Inner
+     Views: Missing referenced rows
+     Candidate ids: JoinOrphan.JoinPattern.3.6
+  6. dqdemo.OrderHeader joined with dqdemo.Campaign
+     Keys: o.CompanyId = g.CompanyId; o.CampaignId = g.CampaignId
+     SQL join: Inner
+     Views: Missing referenced rows
+     Candidate ids: JoinOrphan.JoinPattern.4.7
+SQL-output candidate ids: DataQualityCandidate.ImpliedForeignKeyMissingReference.1, DataQualityCandidate.ImpliedForeignKeyMissingReference.2, DataQualityCandidate.ImpliedUniqueKeyViolation.1, DataQualityCandidate.ImpliedUniqueKeyViolation.2, DataQualityCandidate.IncompleteCompositeJoin.1, DataQualityCandidate.InnerJoinAgainstUsuallyOptionalRelationship.1, DataQualityCandidate.MinorityJoinPattern.1, DataQualityCandidate.MinorityJoinPattern.2, DataQualityCandidate.SuspiciousExtraJoinPredicate.1
+OK: Promoted 1 data quality candidates
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Candidates promoted for SQL: 1
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+OK: Promoted 1 data quality candidates
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Candidates promoted for SQL: 2
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+OK: Promoted 1 data quality candidates
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Candidates promoted for SQL: 3
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+OK: Promoted 1 data quality candidates
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Candidates promoted for SQL: 4
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+OK: Promoted 1 data quality candidates
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Candidates promoted for SQL: 5
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+OK: Promoted 1 data quality candidates
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Candidates promoted for SQL: 6
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+OK: Promoted 1 data quality candidates
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Candidates promoted for SQL: 7
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+OK: Promoted 1 data quality candidates
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Candidates promoted for SQL: 8
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+OK: Promoted 1 data quality candidates
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  Candidates promoted for SQL: 9
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace" --out DataQualityViews.sql
+OK: Generated 9 data quality view scripts, 1 review dashboard, and MetaDQ operational SQL (2 tables, 2 procedure).
+Output:
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\MetaDataQuality.Workspace
+  DataQualityViews: 9
+  Dashboard: dq.v_DataQualityReview
+  MetaDQTables: 2
+  MetaDQProcedures: 2
+  Scripts: 11
+  Path: C:\Users\jimmy\Desktop\meta-bi\Demos\MetaDataQualityRealDbCliIntegration\DataQualityViews.sql
+OK: Executed SQL
+Batches: 15

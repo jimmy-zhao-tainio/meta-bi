@@ -67,7 +67,7 @@ Ok
 ```
 
 ```text
-> meta-pipeline --new-workspace Pipeline
+> meta-pipeline new-workspace Pipeline
 Ok
 ```
 
@@ -374,21 +374,22 @@ Next: meta-transform-script from --help
 > meta-orchestration --help
 
 Usage:
-  meta-orchestration [--new-workspace <path> | <command> [options]]
+  meta-orchestration <command> [options]
 
 Commands:
-  inspect
-  list-issues
-  explain-issue
   add-dependency
   add-order
   allow-concurrent-append
-  set-lock-policy
-  refresh-run-plan
-  inspect-run-plan
   execute
+  explain-issue
+  infer
+  inspect
+  inspect-run-plan
+  list-issues
+  refresh-run-plan
+  set-lock-policy
 
-Next: meta-orchestration --new-workspace --help
+Next: meta-orchestration help <command>
 ```
 
 Help should orient, not advertise.

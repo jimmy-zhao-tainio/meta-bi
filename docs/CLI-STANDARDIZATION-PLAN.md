@@ -54,7 +54,7 @@ Tracked production CLI surfaces:
 Ignored for this plan:
 
 - installer utilities such as `MetaInstaller` / `Meta/Installer`
-- demo-only programs under `Samples/Demos`
+- demo-only programs under `Demos`
 - copied source snapshots under `artifacts/public-sector-pilot`
 
 Do not let ignored surfaces create false positives in CLI architecture scans.

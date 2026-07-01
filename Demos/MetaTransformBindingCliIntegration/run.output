@@ -1,0 +1,27 @@
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformBindingCliIntegration>call cleanup.cmd  1>nul 2>&1
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformBindingCliIntegration>meta-transform-script from sql-file --path SourceViews\001_customer_order_summary\view.sql --target sales.CustomerOrderSummary --new-workspace TransformWS
+OK: Created TransformWS
+Import:
+  Scripts: 1
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformBindingCliIntegration>meta-transform-script from sql-file --path SourceViews\002_invoice_window\view.sql --target reporting.InvoiceWindow --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 2
+
+C:\Users\jimmy\Desktop\meta-bi\Demos\MetaTransformBindingCliIntegration>meta-transform-binding bind --transform-workspace TransformWS --source-schema SchemaWS --target-schema SchemaWS --execute-system MetaTransformBindingCliIntegration --new-workspace BindingWS
+OK: Created BindingWS
+Binding:
+  Scripts: 2
+  Bindings: 2
+  Sources: 3
+  Targets: 2
+  SourceRowsets: 3
+  TargetRowsets: 2
+  SourceColumns: 10
+  TargetColumns: 9
+  IgnoredTargetColumns: 0
+  DataTypeConversionWorkspace: <default>

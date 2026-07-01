@@ -323,7 +323,7 @@ meta-tabular drop --server localhost\TABULAR --database-name Commerce
 Runnable deploy demo:
 
 ```cmd
-Samples\Demos\MetaTabularDeployCliIntegration\run.cmd
+Demos\MetaTabularDeployCliIntegration\run.cmd
 ```
 
 ### meta-multi-dimensional
@@ -378,7 +378,7 @@ meta-multi-dimensional drop --server localhost\MULTI --database-name Commerce
 Runnable deploy demo:
 
 ```cmd
-Samples\Demos\MetaMultiDimensionalDeployCliIntegration\run.cmd
+Demos\MetaMultiDimensionalDeployCliIntegration\run.cmd
 ```
 
 ### meta-convert analytics targets
@@ -435,7 +435,7 @@ Purpose:
 
 Command surface:
 - `meta-pipeline help`
-- `meta-pipeline --new-workspace <path>`
+- `meta-pipeline new-workspace <path>`
 - `meta-pipeline add-pipeline --workspace <path> --name <name> [--description <text>]`
 - `meta-pipeline add-step --workspace <path> --pipeline <name> --script <name-or-id> --transform-workspace <path> --binding-workspace <path> --execution-connection-env <name> [--step-name <name>] [--binding <id>] [--target-connection-env <name>] [--target <sql-identifier>] [--target-write <insert-rows>] [--batch-size <n>] [--timeout-seconds <n>] [--target-data-type-system <name>]`
 - `meta-pipeline add-executable-step --workspace <path> --pipeline <name> --executable <path> [--step-name <name>] [--arguments <text>] [--working-directory <path>] [--success-exit-code <n>] [--timeout-seconds <n>]`
@@ -479,7 +479,7 @@ Example:
 ```cmd
 meta-pipeline create-pipeline-db --pipeline-db-connection-env META_PIPELINE_ADMIN_SQL --pipeline-db-name MetaPipeline
 
-meta-pipeline --new-workspace .\PipelineWS
+meta-pipeline new-workspace .\PipelineWS
 meta-pipeline add-pipeline --workspace .\PipelineWS --name CustomerLoad
 meta-pipeline add-executable-step --workspace .\PipelineWS --pipeline CustomerLoad --step-name prepare-files --executable dotnet --arguments "--info"
 meta-pipeline add-step --workspace .\PipelineWS --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace .\TransformWS --binding-workspace .\BindingWS --execution-connection-env META_PIPELINE_EXECUTION --target-connection-env META_PIPELINE_TARGET --target dbo.TargetCustomer --target-data-type-system SqlServer
@@ -553,7 +553,7 @@ meta-orchestration execute --workspace .\OrchestrationWS --pipeline-workspace .\
 ```
 
 Demo:
-- `Samples\Demos\MetaOrchestrationCliIntegration\run.cmd` builds the focused complete DAG/run-plan/execution scenario. The same folder also provides `run-all.cmd` plus named scenario scripts for write-order policy, invalid DAG evidence, and modeled failure dependency execution.
+- `Demos\MetaOrchestrationCliIntegration\run.cmd` builds the focused complete DAG/run-plan/execution scenario. The same folder also provides `run-all.cmd` plus named scenario scripts for write-order policy, invalid DAG evidence, and modeled failure dependency execution.
 
 ### meta-transform-script
 
@@ -813,7 +813,7 @@ Reference corpus status:
 Reference corpus demo commands:
 
 ```cmd
-cd Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration
+cd Demos\MetaTransformScriptReferenceCorpusCliIntegration
 call cleanup.cmd
 
 meta-transform-script from sql-file --path SourceViews\001_basic_select\view.sql --target dbo.v_basic --new-workspace MetaTransformScriptReferenceCorpusWorkspace
@@ -836,7 +836,7 @@ meta-transform-script to sql-code --name dbo.v_xml_namespaces_and_methods
 popd
 ```
 
-Captured output excerpt from `Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration\run.output`:
+Captured output excerpt from `Demos\MetaTransformScriptReferenceCorpusCliIntegration\run.output`:
 
 ```text
 > meta-transform-script from sql-file --path SourceViews\001_basic_select\view.sql --target dbo.v_basic --new-workspace MetaTransformScriptReferenceCorpusWorkspace
@@ -883,7 +883,7 @@ Behavior summary:
 - source-to-target data type conformance is checked as exact or sanctioned conversion path, not hardcoded widening logic
 - bind is atomic: if binding or validation fails, no output workspace is created
 - `--allow-partial` is an explicit corpus/discovery mode; it saves only scripts that bind and validate successfully, and `--partial-report` can write skipped object diagnostics as TSV
-- scale proof is included in `Samples\Demos\MetaTransformScriptTpcDsCliIntegration\run.cmd`, which imports and binds TPC-DS `q01`-`q99` in one workspace run
+- scale proof is included in `Demos\MetaTransformScriptTpcDsCliIntegration\run.cmd`, which imports and binds TPC-DS `q01`-`q99` in one workspace run
 
 Examples:
 
@@ -896,9 +896,9 @@ meta-transform-binding bind --transform-workspace .\TransformWS --source-schema 
 ```
 
 See also:
-- `Samples\Demos\MetaTransformBindingCliIntegration\run.cmd`
-- `Samples\Demos\MetaTransformBindingCliIntegration\README.md`
-- `Samples\Demos\MetaTransformScriptTpcDsCliIntegration\run.cmd`
+- `Demos\MetaTransformBindingCliIntegration\run.cmd`
+- `Demos\MetaTransformBindingCliIntegration\README.md`
+- `Demos\MetaTransformScriptTpcDsCliIntegration\run.cmd`
 
 ### meta-data-quality
 
@@ -972,7 +972,7 @@ Reviewer-facing dashboard semantics:
 - semantic findings are explicit (`OutputMode=SemanticReviewFinding`) and keep runtime count columns `NULL`
 
 Real SQL Server end-to-end demo:
-- `Samples\Demos\MetaDataQualityRealDbCliIntegration\run.cmd`
+- `Demos\MetaDataQualityRealDbCliIntegration\run.cmd`
 - proves mixed promoted runtime + semantic conversion, dashboard output, and `MetaDQ` run persistence on real data
 
 

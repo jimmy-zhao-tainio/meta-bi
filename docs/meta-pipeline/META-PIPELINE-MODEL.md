@@ -182,7 +182,7 @@ The smallest honest model nucleus is:
 The initial instance CLI supports:
 
 ```text
-meta-pipeline --new-workspace <path>
+meta-pipeline new-workspace <path>
 meta-pipeline add-pipeline --workspace <path> --name <name> [--description <text>]
 meta-pipeline add-step --workspace <path> --pipeline <name> --script <name-or-id> --transform-workspace <path> --binding-workspace <path> --execution-connection-env <name> [--step-name <name>] [--binding <id>] [--target-connection-env <name>] [--target <sql-identifier>] [--target-write <insert-rows>] [--batch-size <n>] [--timeout-seconds <n>]
 meta-pipeline add-executable-step --workspace <path> --pipeline <name> --executable <path> [--step-name <name>] [--arguments <text>] [--working-directory <path>] [--success-exit-code <n>] [--timeout-seconds <n>]

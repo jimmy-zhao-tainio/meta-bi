@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:prepare-shared-workspaces" MeshId="mesh:default">
+      <Description>Create the SQL database, schema workspace, transform workspace, and binding workspace used by the orchestration demo.</Description>
+      <Name>prepare-shared-workspaces</Name>
+    </Operation>
+    <Operation Id="operation:create-complete-run-plan" MeshId="mesh:default">
+      <Description>Author the complete MetaPipeline workspace, infer the MetaOrchestration workspace, and refresh the run plan.</Description>
+      <Name>create-complete-run-plan</Name>
+    </Operation>
+    <Operation Id="operation:inspect-complete" MeshId="mesh:default">
+      <Description>Inspect the prepared complete pipeline and orchestration workspaces.</Description>
+      <Name>inspect-complete</Name>
+    </Operation>
+    <Operation Id="operation:refresh-complete-run-plan" MeshId="mesh:default">
+      <Description>Rebuild run-plan rows in the prepared complete orchestration workspace.</Description>
+      <Name>refresh-complete-run-plan</Name>
+    </Operation>
+    <Operation Id="operation:execute-complete" MeshId="mesh:default">
+      <Description>Execute the prepared complete orchestration run plan. Requires META_ORCHESTRATION_DEMO_SQL in the caller environment.</Description>
+      <Name>execute-complete</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>
