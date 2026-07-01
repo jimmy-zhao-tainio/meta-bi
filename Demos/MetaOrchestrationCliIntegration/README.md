@@ -53,8 +53,20 @@ meta-mesh run --operation execute-complete
 ```
 
 The MetaMesh workspace declares the demo workspaces and operation steps. `prepare-shared-workspaces`
-and `create-complete-run-plan` are first-run authoring operations: run `cleanup.cmd` from the demo
-folder first if generated workspace folders already exist.
+and the scenario creation operations are first-run authoring operations: run `cleanup.cmd` from the
+demo folder first if generated workspace folders already exist.
+
+Additional MetaMesh scenario operations:
+
+```cmd
+meta-mesh run --operation create-policy-run-plan
+meta-mesh run --operation create-invalid-evidence
+meta-mesh run --operation execute-failure-branch
+```
+
+`create-invalid-evidence` and `execute-failure-branch` model expected diagnostic failures directly
+on their operation steps. The mesh treats exit code `4` as successful for those steps, so the
+operation remains honest without wrapper script branching.
 
 Run every scenario:
 
@@ -77,4 +89,4 @@ The scenario scripts assume `prepare.cmd` has created the shared `SchemaWS`, `Tr
 Requirements:
 
 - SQL Server available as `Server=.`
-- `meta-sql`, `meta-schema`, `meta-transform-script`, `meta-transform-binding`, `meta-pipeline`, and `meta-orchestration` available on `PATH`
+- `meta-mesh`, `meta-sql`, `meta-schema`, `meta-transform-script`, `meta-transform-binding`, `meta-pipeline`, and `meta-orchestration` available on `PATH`

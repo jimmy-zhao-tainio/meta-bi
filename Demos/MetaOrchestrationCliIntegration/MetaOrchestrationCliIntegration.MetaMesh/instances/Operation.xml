@@ -21,5 +21,17 @@
       <Description>Execute the prepared complete orchestration run plan. Requires META_ORCHESTRATION_DEMO_SQL in the caller environment.</Description>
       <Name>execute-complete</Name>
     </Operation>
+    <Operation Id="operation:create-policy-run-plan" MeshId="mesh:default">
+      <Description>Author the policy MetaPipeline workspace, infer orchestration, add explicit order and lock policy, and refresh the run plan.</Description>
+      <Name>create-policy-run-plan</Name>
+    </Operation>
+    <Operation Id="operation:create-invalid-evidence" MeshId="mesh:default">
+      <Description>Author an invalid pipeline graph, expect inference diagnostics, and inspect the emitted orchestration evidence.</Description>
+      <Name>create-invalid-evidence</Name>
+    </Operation>
+    <Operation Id="operation:execute-failure-branch" MeshId="mesh:default">
+      <Description>Author and run the failure dependency scenario, expecting the modeled execution failure while verifying the failure branch ran.</Description>
+      <Name>execute-failure-branch</Name>
+    </Operation>
   </OperationList>
 </MetaMesh>

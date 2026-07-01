@@ -31,5 +31,41 @@
       <Name>complete-orchestration</Name>
       <Path>CompleteOrchestrationWS</Path>
     </Workspace>
+    <Workspace Id="workspace:policy-pipeline" MeshId="mesh:default">
+      <Description>Pipeline workspace for explicit mutation policy evidence.</Description>
+      <ModelName>MetaPipeline</ModelName>
+      <Name>policy-pipeline</Name>
+      <Path>PolicyPipelineWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:policy-orchestration" MeshId="mesh:default">
+      <Description>Orchestration workspace with explicit order and lock policy.</Description>
+      <ModelName>MetaOrchestration</ModelName>
+      <Name>policy-orchestration</Name>
+      <Path>PolicyOrchestrationWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:invalid-pipeline" MeshId="mesh:default">
+      <Description>Pipeline workspace that demonstrates invalid DAG evidence.</Description>
+      <ModelName>MetaPipeline</ModelName>
+      <Name>invalid-pipeline</Name>
+      <Path>InvalidPipelineWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:invalid-orchestration" MeshId="mesh:default">
+      <Description>Orchestration workspace emitted with invalid DAG diagnostics.</Description>
+      <ModelName>MetaOrchestration</ModelName>
+      <Name>invalid-orchestration</Name>
+      <Path>InvalidOrchestrationWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:failure-pipeline" MeshId="mesh:default">
+      <Description>Pipeline workspace for failure dependency execution evidence.</Description>
+      <ModelName>MetaPipeline</ModelName>
+      <Name>failure-pipeline</Name>
+      <Path>FailurePipelineWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:failure-orchestration" MeshId="mesh:default">
+      <Description>Orchestration workspace with a modeled failure branch.</Description>
+      <ModelName>MetaOrchestration</ModelName>
+      <Name>failure-orchestration</Name>
+      <Path>FailureOrchestrationWS</Path>
+    </Workspace>
   </WorkspaceList>
 </MetaMesh>
