@@ -33,5 +33,13 @@
       <Description>Author and run the failure dependency scenario, expecting the modeled execution failure while verifying the failure branch ran.</Description>
       <Name>execute-failure-branch</Name>
     </Operation>
+    <Operation Id="operation:validate-environment" MeshId="mesh:default">
+      <Description>Validate that the caller has populated the SQL environment variables used by the demo.</Description>
+      <Name>validate-environment</Name>
+    </Operation>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Drop the demo SQL database and remove generated demo workspaces.</Description>
+      <Name>cleanup</Name>
+    </Operation>
   </OperationList>
 </MetaMesh>

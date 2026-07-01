@@ -3,5 +3,5 @@ AS
 SELECT
     CustomerId,
     CustomerName
-FROM dbo.StageCustomer;
+FROM MetaOrchestrationCliIntegration.dbo.StageCustomer;
 GO

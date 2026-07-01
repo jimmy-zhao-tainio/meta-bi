@@ -67,6 +67,8 @@ Metadata.code-workspace
 /Demos/MetaOrchestrationCliIntegration/PolicyScheduleWS/
 /Demos/MetaOrchestrationCliIntegration/InvalidPipelineWS/
 /Demos/MetaOrchestrationCliIntegration/InvalidOrchestrationWS/
+/Demos/MetaOrchestrationCliIntegration/FailurePipelineWS/
+/Demos/MetaOrchestrationCliIntegration/FailureOrchestrationWS/
 /Demos/MetaTabularConvertCliIntegration/AnalyticsWorkspace/
 /Demos/MetaTabularConvertCliIntegration/TabularWorkspace/
 /Demos/MetaMultiDimensionalConvertCliIntegration/AnalyticsWorkspace/

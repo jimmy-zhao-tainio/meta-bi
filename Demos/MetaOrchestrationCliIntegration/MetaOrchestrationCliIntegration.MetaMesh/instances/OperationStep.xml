@@ -351,13 +351,13 @@
       <Name>list-policy-issues</Name>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:add-shared-landing-order" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:list-policy-issues">
-      <Arguments>add-order --workspace {workspace:policy-orchestration.path} --from-task UpdateSharedLanding.update-shared-landing --to-task MergeSharedLanding.merge-shared-landing --object dbo.SharedLanding --reason &quot;Update shared landing before merge.&quot;</Arguments>
+      <Arguments>add-order --workspace {workspace:policy-orchestration.path} --from-task UpdateSharedLanding.update-shared-landing --to-task MergeSharedLanding.merge-shared-landing --object MetaOrchestrationCliIntegration.dbo.SharedLanding --reason "Update shared landing before merge."</Arguments>
       <Description>Add an explicit order between shared landing mutations.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>add-shared-landing-order</Name>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:set-shared-landing-lock-policy" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:add-shared-landing-order">
-      <Arguments>set-lock-policy --workspace {workspace:policy-orchestration.path} --object dbo.SharedLanding --left-effect Mutation --right-effect Mutation --behavior serialize --reason &quot;Shared landing mutations should not overlap.&quot;</Arguments>
+      <Arguments>set-lock-policy --workspace {workspace:policy-orchestration.path} --object MetaOrchestrationCliIntegration.dbo.SharedLanding --left-effect Mutation --right-effect Mutation --behavior serialize --reason "Shared landing mutations should not overlap."</Arguments>
       <Description>Declare serialization policy for shared landing mutations.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>set-shared-landing-lock-policy</Name>
@@ -496,13 +496,13 @@
       <Name>infer-failure-orchestration</Name>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:add-failure-dependency" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:infer-failure-orchestration">
-      <Arguments>add-dependency --workspace {workspace:failure-orchestration.path} --from-task BrokenStageCustomer.load-stage-customer --to-task FailureHandler.record-failure --condition failure --reason &quot;Run the modeled failure dependency branch.&quot;</Arguments>
+      <Arguments>add-dependency --workspace {workspace:failure-orchestration.path} --from-task BrokenStageCustomer.load-stage-customer --to-task FailureHandler.record-failure --condition failure --reason "Run the modeled failure dependency branch."</Arguments>
       <Description>Add the failure dependency branch.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>add-failure-dependency</Name>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:allow-failure-log-append" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-failure-dependency">
-      <Arguments>allow-concurrent-append --workspace {workspace:failure-orchestration.path} --object dbo.OrchestrationFailureLog --reason &quot;Failure demo log rows are append-only.&quot;</Arguments>
+      <Arguments>allow-concurrent-append --workspace {workspace:failure-orchestration.path} --object MetaOrchestrationCliIntegration.dbo.OrchestrationFailureLog --reason "Failure demo log rows are append-only."</Arguments>
       <Description>Allow concurrent append writes to the failure log.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>allow-failure-log-append</Name>
@@ -520,7 +520,7 @@
       <Name>inspect-failure-run-plan</Name>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:drop-raw-customer" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:inspect-failure-run-plan">
-      <Arguments>execute --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --quiet --query &quot;DROP TABLE dbo.RawCustomer;&quot;</Arguments>
+      <Arguments>execute --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --quiet --query "DROP TABLE dbo.RawCustomer;"</Arguments>
       <Description>Drop the raw customer table to force the modeled execution failure.</Description>
       <Executable>meta-sql.exe</Executable>
       <Name>drop-raw-customer</Name>
@@ -533,16 +533,86 @@
       <Name>execute-failure-orchestration</Name>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:verify-failure-handler" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:execute-failure-orchestration">
-      <Arguments>execute --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --quiet --query &quot;IF NOT EXISTS (SELECT 1 FROM dbo.OrchestrationFailureLog WHERE Message = N'MetaOrchestration failure dependency branch fired') THROW 50000, 'Failure handler did not run.', 1;&quot;</Arguments>
+      <Arguments>execute --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --quiet --query "IF NOT EXISTS (SELECT 1 FROM dbo.OrchestrationFailureLog WHERE Message = N'MetaOrchestration failure dependency branch fired') THROW 50000, 'Failure handler did not run.', 1;"</Arguments>
       <Description>Verify the failure handler branch wrote evidence.</Description>
       <Executable>meta-sql.exe</Executable>
       <Name>verify-failure-handler</Name>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:verify-independent-path" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:verify-failure-handler">
-      <Arguments>execute --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --quiet --query &quot;IF NOT EXISTS (SELECT 1 FROM dbo.OrchestrationFailureLog WHERE Message = N'Independent failure path followup') THROW 50000, 'Independent viable path did not continue.', 1;&quot;</Arguments>
+      <Arguments>execute --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --quiet --query "IF NOT EXISTS (SELECT 1 FROM dbo.OrchestrationFailureLog WHERE Message = N'Independent failure path followup') THROW 50000, 'Independent viable path did not continue.', 1;"</Arguments>
       <Description>Verify the independent path continued after failure.</Description>
       <Executable>meta-sql.exe</Executable>
       <Name>verify-independent-path</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:validate-environment:require-admin-sql-env" OperationId="operation:validate-environment">
+      <Arguments>/c echo {env:META_ORCHESTRATION_DEMO_ADMIN_SQL}</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>require-admin-sql-env</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:validate-environment:require-demo-sql-env" OperationId="operation:validate-environment" PreviousStepId="operation-step:validate-environment:require-admin-sql-env">
+      <Arguments>/c echo {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>require-demo-sql-env</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:drop-demo-database" OperationId="operation:cleanup">
+      <Arguments>execute --connection-env {env:META_ORCHESTRATION_DEMO_ADMIN_SQL} --quiet --query "IF DB_ID(N'MetaOrchestrationCliIntegration') IS NOT NULL BEGIN ALTER DATABASE [MetaOrchestrationCliIntegration] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [MetaOrchestrationCliIntegration]; END"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>drop-demo-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-schema-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-demo-database">
+      <Arguments>/c if exist SchemaWS rmdir /s /q SchemaWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-schema-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-schema-workspace">
+      <Arguments>/c if exist TransformWS rmdir /s /q TransformWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-binding-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
+      <Arguments>/c if exist BindingWS rmdir /s /q BindingWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-binding-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-complete-pipeline-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-binding-workspace">
+      <Arguments>/c if exist CompletePipelineWS rmdir /s /q CompletePipelineWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-complete-pipeline-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-complete-orchestration-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-complete-pipeline-workspace">
+      <Arguments>/c if exist CompleteOrchestrationWS rmdir /s /q CompleteOrchestrationWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-complete-orchestration-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-policy-pipeline-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-complete-orchestration-workspace">
+      <Arguments>/c if exist PolicyPipelineWS rmdir /s /q PolicyPipelineWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-policy-pipeline-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-policy-orchestration-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-policy-pipeline-workspace">
+      <Arguments>/c if exist PolicyOrchestrationWS rmdir /s /q PolicyOrchestrationWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-policy-orchestration-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-invalid-pipeline-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-policy-orchestration-workspace">
+      <Arguments>/c if exist InvalidPipelineWS rmdir /s /q InvalidPipelineWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-invalid-pipeline-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-invalid-orchestration-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-invalid-pipeline-workspace">
+      <Arguments>/c if exist InvalidOrchestrationWS rmdir /s /q InvalidOrchestrationWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-invalid-orchestration-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-failure-pipeline-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-invalid-orchestration-workspace">
+      <Arguments>/c if exist FailurePipelineWS rmdir /s /q FailurePipelineWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-failure-pipeline-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-failure-orchestration-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-failure-pipeline-workspace">
+      <Arguments>/c if exist FailureOrchestrationWS rmdir /s /q FailureOrchestrationWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-failure-orchestration-workspace</Name>
     </OperationStep>
   </OperationStepList>
 </MetaMesh>
