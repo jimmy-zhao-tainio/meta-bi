@@ -303,7 +303,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q12:field:i_current_price" TableId="table:TpcDsSnapshot:tpcds:v_q12">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
       <Name>i_current_price</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -579,7 +579,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q20:field:i_current_price" TableId="table:TpcDsSnapshot:tpcds:v_q20">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
       <Name>i_current_price</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -1203,7 +1203,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q37:field:i_current_price" TableId="table:TpcDsSnapshot:tpcds:v_q37">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
       <Name>i_current_price</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -2031,13 +2031,13 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q65:field:i_current_price" TableId="table:TpcDsSnapshot:tpcds:v_q65">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
       <Name>i_current_price</Name>
       <Ordinal>3</Ordinal>
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q65:field:i_wholesale_cost" TableId="table:TpcDsSnapshot:tpcds:v_q65">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
       <Name>i_wholesale_cost</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -2979,7 +2979,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q82:field:i_current_price" TableId="table:TpcDsSnapshot:tpcds:v_q82">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
       <Name>i_current_price</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -3291,7 +3291,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q98:field:i_current_price" TableId="table:TpcDsSnapshot:tpcds:v_q98">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
       <Name>i_current_price</Name>
       <Ordinal>3</Ordinal>
     </Field>

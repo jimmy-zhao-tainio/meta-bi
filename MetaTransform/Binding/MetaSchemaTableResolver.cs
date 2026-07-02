@@ -60,6 +60,7 @@ internal sealed class MetaSchemaTableResolver
                     systemName,
                     schemaName,
                     item.Name,
+                    item.ObjectType,
                     canonicalSqlIdentifier,
                     fieldRowsByTableId.GetValueOrDefault(item.Id) ?? []);
             })
@@ -279,6 +280,7 @@ internal sealed record ResolvedSchemaTable(
     string SystemName,
     string SchemaName,
     string TableName,
+    string? ObjectType,
     string CanonicalSqlIdentifier,
     IReadOnlyList<ResolvedSchemaField> Fields);
 

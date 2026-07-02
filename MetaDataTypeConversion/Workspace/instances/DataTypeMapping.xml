@@ -187,6 +187,11 @@
       <SourceDataTypeId>sqlserver:type:varchar</SourceDataTypeId>
       <TargetDataTypeId>meta:type:AnsiString</TargetDataTypeId>
     </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:varchar-to-nvarchar" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <Notes>SQL Server write compatibility for text normalization.</Notes>
+      <SourceDataTypeId>sqlserver:type:varchar</SourceDataTypeId>
+      <TargetDataTypeId>sqlserver:type:nvarchar</TargetDataTypeId>
+    </DataTypeMapping>
     <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:xml" ConversionImplementationId="MetaDataTypeConversion:implementation:structural">
       <SourceDataTypeId>sqlserver:type:xml</SourceDataTypeId>
       <TargetDataTypeId>meta:type:Xml</TargetDataTypeId>

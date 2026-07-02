@@ -46,10 +46,16 @@ Metadata.code-workspace
 /Demos/MetaTransformScriptReferenceCorpusCliIntegration/RoundTrippedViews/
 /Demos/MetaTransformScriptReferenceCorpusCliIntegration/RoundTrippedViews.sql
 /Demos/MetaTransformScriptTpcDsCliIntegration/TransformWS/
+/Demos/MetaTransformScriptTpcDsCliIntegration/TransformRoundTripWS/
+/Demos/MetaTransformScriptTpcDsCliIntegration/TransformRoundTripWS.instance-diff/
 /Demos/MetaTransformScriptTpcDsCliIntegration/BindingWS/
 /Demos/MetaTransformScriptTpcDsCliIntegration/MetaSqlWS/
+/Demos/MetaTransformScriptTpcDsCliIntegration/MetaSqlRoundTripWS/
+/Demos/MetaTransformScriptTpcDsCliIntegration/MetaSqlRoundTripWS.instance-diff/
 /Demos/MetaTransformScriptTpcDsCliIntegration/RoundTrippedViews/
 /Demos/MetaTransformScriptTpcDsCliIntegration/RoundTrippedViews.sql
+/Demos/MetaTransformBindingCliIntegration/TransformWS/
+/Demos/MetaTransformBindingCliIntegration/BindingWS/
 /Demos/MetaDataQualityCliIntegration/DataQualityViews.sql
 /Demos/MetaDataQualityCliIntegration/DataQualityWS/
 /Demos/MetaDataQualityCliIntegration/TransformWS/

@@ -275,6 +275,8 @@ public sealed class TransformBindingValidationService
             ThrowResolutionFailure(isSource: false, targetSqlIdentifier, resolution);
         }
 
+        EnsureWritableTargetContract(targetSqlIdentifier, resolution.Table!);
+
         if (finalRowset is null)
         {
             throw new TransformBindingValidationException(
@@ -480,6 +482,20 @@ public sealed class TransformBindingValidationService
                 "TargetRequiredColumnMissing",
                 $"Final output rowset for target '{targetSqlIdentifier}' is missing required writable target column(s): {missingNames}.");
         }
+    }
+
+    private static void EnsureWritableTargetContract(string? targetSqlIdentifier, ResolvedSchemaTable targetTable)
+    {
+        var objectType = targetTable.ObjectType?.Trim();
+        if (string.IsNullOrWhiteSpace(objectType) ||
+            string.Equals(objectType, "Table", StringComparison.OrdinalIgnoreCase))
+        {
+            return;
+        }
+
+        throw new TransformBindingValidationException(
+            "TargetSchemaObjectNotWritable",
+            $"Declared target identifier '{targetSqlIdentifier}' resolves to {objectType} '{targetTable.CanonicalSqlIdentifier}', but transform binding targets must be writable table contracts.");
     }
 
     private static void ThrowResolutionFailure(

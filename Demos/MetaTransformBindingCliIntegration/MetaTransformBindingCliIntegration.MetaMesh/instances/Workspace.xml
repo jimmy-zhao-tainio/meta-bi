@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:schema" MeshId="mesh:default">
+      <Description>Tracked schema workspace used as both source and target schema for the binding demo.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>schema</Name>
+      <Path>SchemaWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:transform" MeshId="mesh:default">
+      <Description>Generated transform script workspace imported from SourceViews.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform</Name>
+      <Path>TransformWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:binding" MeshId="mesh:default">
+      <Description>Generated binding workspace created from the transform and schema workspaces.</Description>
+      <ModelName>MetaTransformBinding</ModelName>
+      <Name>binding</Name>
+      <Path>BindingWS</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

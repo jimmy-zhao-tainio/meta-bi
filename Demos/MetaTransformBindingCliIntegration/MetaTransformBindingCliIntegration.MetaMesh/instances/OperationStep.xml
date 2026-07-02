@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup">
+      <Arguments>/c if exist TransformWS rmdir /s /q TransformWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-binding-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
+      <Arguments>/c if exist BindingWS rmdir /s /q BindingWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-binding-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:bind-transforms:import-customer-order-summary" OperationId="operation:bind-transforms">
+      <Arguments>from sql-file --path SourceViews\001_customer_order_summary\view.sql --target sales.CustomerOrderSummary --new-workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-summary</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:bind-transforms:import-invoice-window" OperationId="operation:bind-transforms" PreviousStepId="operation-step:bind-transforms:import-customer-order-summary">
+      <Arguments>from sql-file --path SourceViews\002_invoice_window\view.sql --target reporting.InvoiceWindow --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-invoice-window</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:bind-transforms:bind-transform-workspace" OperationId="operation:bind-transforms" PreviousStepId="operation-step:bind-transforms:import-invoice-window">
+      <Arguments>bind --transform-workspace "{workspace:transform.path}" --source-schema "{workspace:schema.path}" --target-schema "{workspace:schema.path}" --execute-system MetaTransformBindingCliIntegration --new-workspace "{workspace:binding.path}"</Arguments>
+      <Executable>meta-transform-binding.exe</Executable>
+      <Name>bind-transform-workspace</Name>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

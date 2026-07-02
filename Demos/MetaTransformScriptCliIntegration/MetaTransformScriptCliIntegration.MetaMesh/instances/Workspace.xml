@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:transform" MeshId="mesh:default">
+      <Description>Generated transform script workspace imported from source SQL views.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform</Name>
+      <Path>MetaTransformScriptCliIntegrationWorkspace</Path>
+    </Workspace>
+    <Workspace Id="workspace:transform-roundtrip" MeshId="mesh:default">
+      <Description>Generated transform script workspace imported from emitted SQL views.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform-roundtrip</Name>
+      <Path>MetaTransformScriptRoundTripWorkspace</Path>
+    </Workspace>
+    <Workspace Id="workspace:sql" MeshId="mesh:default">
+      <Description>Generated MetaSql workspace converted from the first transform workspace.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>sql</Name>
+      <Path>MetaSqlWorkspace</Path>
+    </Workspace>
+    <Workspace Id="workspace:sql-roundtrip" MeshId="mesh:default">
+      <Description>Generated MetaSql workspace converted from the round-tripped transform workspace.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>sql-roundtrip</Name>
+      <Path>MetaSqlRoundTripWorkspace</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

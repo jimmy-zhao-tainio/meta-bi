@@ -4,27 +4,45 @@ This demo imports a TPC-DS query slice (`q01`-`q99`) into a `MetaTransformScript
 
 Purpose of this sample is gap-finding, not only green-path demonstration. Parse/export failures are signal and should be used to drive fix slices.
 
-Current status: full `q01`-`q99` import, one-shot workspace bind, SQL export roundtrip, and MetaSql conversion succeed.
+Current status: full `q01`-`q99` import, one-shot workspace bind, SQL export
+roundtrip, re-import of emitted SQL, and MetaSql projection diff succeed
+offline.
 
 See [CURRENT_GAPS.md](./CURRENT_GAPS.md) for the latest known failures from this demo run.
 
 ## Schema Snapshot
 
-`SchemaWS` is checked in as a one-off snapshot and is treated as the persisted schema contract for this demo.
+`SchemaWS` is checked in as a one-off schema snapshot for this corpus.
 It includes:
 - TPC-DS source tables used by the corpus.
-- `tpcds.v_q01`..`tpcds.v_q99` target tables.
+- `tpcds.v_q01`..`tpcds.v_q99` target table contracts used by binding.
 
-The demo does not re-extract schema on each run.
+The target contracts are modeled as tables because transform binding validates
+writable target contracts. This demo does not deploy or extract SQL Server
+objects.
+
+Known limitation: the checked-in target contract uses broad target field types.
+That is sufficient for this parser/binding integration proof, but it is not a
+SQL Server result-type extraction proof.
 
 ## Run
 
-```cmd
-run.cmd
+The workflow is modeled in:
+
+```text
+MetaTransformScriptTpcDsCliIntegration.MetaMesh
 ```
 
-## Cleanup
+Run commands from the mesh folder. `--workspace` is omitted because `meta-mesh`
+defaults to the current directory:
 
-```cmd
-cleanup.cmd
+```powershell
+cd MetaTransformScriptTpcDsCliIntegration.MetaMesh
+meta-mesh show
+meta-mesh run --operation cleanup
+meta-mesh run --operation build-tpc-ds-snapshot
 ```
+
+`build-tpc-ds-snapshot` imports, binds, exports, re-imports the emitted SQL,
+converts both transform workspaces to MetaSql, and diffs the MetaSql
+workspaces without a database connection.

@@ -51,16 +51,18 @@ public sealed class ServiceTests
         Assert.Equal("sqlserver", resolution.TargetDataTypeSystemName);
     }
 
-    [Fact]
-    public void ResolveCompatibility_AllowsSanctionedPath()
+    [Theory]
+    [InlineData("sqlserver:type:int", "sqlserver:type:nvarchar")]
+    [InlineData("sqlserver:type:varchar", "sqlserver:type:nvarchar")]
+    public void ResolveCompatibility_AllowsSanctionedPath(string sourceDataTypeId, string targetDataTypeId)
     {
         var resolution = new MetaDataTypeConversionService().ResolveCompatibility(
             MetaDataTypeConversionWorkspaceProvider.GetDefaultWorkspace(),
-            "sqlserver:type:int",
-            "sqlserver:type:nvarchar");
+            sourceDataTypeId,
+            targetDataTypeId);
 
-        Assert.Equal("sqlserver:type:int", resolution.SourceDataTypeId);
-        Assert.Equal("sqlserver:type:nvarchar", resolution.TargetDataTypeId);
+        Assert.Equal(sourceDataTypeId, resolution.SourceDataTypeId);
+        Assert.Equal(targetDataTypeId, resolution.TargetDataTypeId);
         Assert.False(resolution.IsExact);
         Assert.NotEmpty(resolution.Path);
     }

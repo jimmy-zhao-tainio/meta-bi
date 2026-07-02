@@ -4,16 +4,20 @@ This demo authors a small sanctioned `MetaAnalytics` workspace through CLI comma
 
 ## Commands
 
-Run from this directory:
+The workflow is modeled in:
 
-```cmd
-run.cmd
+```text
+MetaAnalyticsCliIntegration.MetaMesh
 ```
 
-Remove generated workspaces:
+Run commands from the mesh folder. `--workspace` is omitted because `meta-mesh`
+defaults to the current directory:
 
-```cmd
-cleanup.cmd
+```powershell
+cd MetaAnalyticsCliIntegration.MetaMesh
+meta-mesh show
+meta-mesh run --operation cleanup
+meta-mesh run --operation author-analytics-model
 ```
 
 ## Output

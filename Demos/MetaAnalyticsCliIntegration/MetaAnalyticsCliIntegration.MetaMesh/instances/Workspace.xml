@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:analytics" MeshId="mesh:default">
+      <Description>Generated MetaAnalytics workspace authored by the demo operation.</Description>
+      <ModelName>MetaAnalytics</ModelName>
+      <Name>analytics</Name>
+      <Path>MetaAnalyticsCliIntegrationWorkspace</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:schema" MeshId="mesh:default">
+      <Description>Tracked schema snapshot for TPC-DS source tables and target table contracts.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>schema</Name>
+      <Path>SchemaWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:transform" MeshId="mesh:default">
+      <Description>Generated transform script workspace imported from TPC-DS query files.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform</Name>
+      <Path>TransformWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:transform-roundtrip" MeshId="mesh:default">
+      <Description>Generated transform script workspace imported from emitted TPC-DS SQL.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform-roundtrip</Name>
+      <Path>TransformRoundTripWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:binding" MeshId="mesh:default">
+      <Description>Generated transform binding workspace for the TPC-DS transform scripts.</Description>
+      <ModelName>MetaTransformBinding</ModelName>
+      <Name>binding</Name>
+      <Path>BindingWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:sql" MeshId="mesh:default">
+      <Description>Generated MetaSql workspace converted from the TPC-DS transform workspace.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>sql</Name>
+      <Path>MetaSqlWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:sql-roundtrip" MeshId="mesh:default">
+      <Description>Generated MetaSql workspace converted from the round-tripped TPC-DS transform workspace.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>sql-roundtrip</Name>
+      <Path>MetaSqlRoundTripWS</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

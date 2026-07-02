@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove generated reference corpus workspaces, diffs, and emitted SQL outputs.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:round-trip-reference-corpus" MeshId="mesh:default">
+      <Description>Import the reference SQL corpus, emit SQL, re-import it, convert both sides to MetaSql, and diff both model surfaces.</Description>
+      <Name>round-trip-reference-corpus</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

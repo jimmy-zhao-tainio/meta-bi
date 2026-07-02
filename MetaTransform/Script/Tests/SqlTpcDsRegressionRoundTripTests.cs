@@ -29,19 +29,18 @@ public sealed class SqlTpcDsRegressionRoundTripTests
     private static string GetTpcDsSqlPath(string sourceViewFolder)
     {
         var root = new DirectoryInfo(AppContext.BaseDirectory);
-        while (root is not null && !Directory.Exists(Path.Combine(root.FullName, "Samples")))
+        while (root is not null && !Directory.Exists(Path.Combine(root.FullName, "Demos", "MetaTransformScriptTpcDsCliIntegration")))
         {
             root = root.Parent;
         }
 
         if (root is null)
         {
-            throw new DirectoryNotFoundException("Could not locate repository root containing the Samples directory.");
+            throw new DirectoryNotFoundException("Could not locate repository root containing the TPC-DS demo directory.");
         }
 
         return Path.Combine(
             root.FullName,
-            "Samples",
             "Demos",
             "MetaTransformScriptTpcDsCliIntegration",
             "SourceViews",

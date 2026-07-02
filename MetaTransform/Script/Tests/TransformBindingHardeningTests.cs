@@ -161,6 +161,62 @@ FROM src
         }
     }
 
+    [Fact]
+    public void BindingWorkspaceService_RejectsExplicitViewAsTargetContract()
+    {
+        var transformModel = new MetaTransformScriptSqlService().ImportFromSqlCode("""
+CREATE VIEW dbo.Target AS
+SELECT s.CustomerId
+FROM dbo.SourceView AS s
+""");
+        var transformScript = Assert.Single(transformModel.TransformScriptList);
+        transformModel.ScriptObjectViewList.Add(new ScriptObjectView
+        {
+            Id = "ScriptObjectView:Target",
+            TransformScript = transformScript,
+            TargetSqlIdentifier = "dbo.Target"
+        });
+        var sourceSchema = CreateSchema("ExecDb", ("dbo", "SourceView", ["CustomerId"]));
+        sourceSchema.TableList[0].ObjectType = "View";
+        var targetSchema = CreateSchema("WarehouseDb", ("dbo", "Target", ["CustomerId"]));
+        targetSchema.TableList[0].ObjectType = "View";
+        var tempRoot = Path.Combine(
+            Path.GetTempPath(),
+            "MetaTransform.Binding.Hardening.Tests",
+            Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var sourceSchemaWorkspacePath = Path.Combine(tempRoot, "SourceSchemaWorkspace");
+        var targetSchemaWorkspacePath = Path.Combine(tempRoot, "TargetSchemaWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            sourceSchema.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
+            targetSchema.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+                    transformWorkspacePath,
+                    new[] { sourceSchemaWorkspacePath },
+                    targetSchemaWorkspacePath,
+                    executeSystemName: "ExecDb",
+                    executeSystemDefaultSchemaName: null,
+                    newWorkspacePath: bindingWorkspacePath));
+
+            Assert.Equal("TargetSchemaObjectNotWritable", ex.Code);
+            Assert.Contains("View", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("writable table contracts", ex.Message, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
     private static TransformBindingResult BindSql(string sql)
     {
         var model = new MetaTransformScriptSqlService().ImportFromSqlCode(sql);

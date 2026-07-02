@@ -1,22 +1,38 @@
 # Current Gaps
 
-## TransformScript Import / Export (`run.cmd`)
+## TransformScript Import / Export
 
 - Coverage: `q01`-`q99`
 - Result: `99/99` scripts imported.
-- Result: SQL export roundtrip succeeded for all imported scripts.
+- Result: SQL export, re-import, and MetaSql projection diff succeeded for
+  all imported scripts.
 - Remaining import/export gaps in this slice: none.
 
-## Binding + Validate Against Captured `SchemaWS`
+## Binding + Validate Against Checked-In `SchemaWS`
 
 Run basis:
 - Coverage: `q01`-`q99`
 - Active schema contract: checked-in `SchemaWS` in this demo folder.
-- Execution mode: per-script bind+validate against the same captured `SchemaWS`.
+- Execution mode: one workspace bind+validate against the checked-in `SchemaWS`
+  as both source and target schema.
 
 Result summary:
-- Validated: `99/99` (`001_q01`-`099_q99`)
-- Remaining gaps: `0/99`
+- Current operation: `meta-mesh run --operation build-tpc-ds-snapshot`
+- Current result: imports, binds, exports, re-imports emitted SQL, converts
+  both transform workspaces to MetaSql, and diffs the MetaSql workspaces
+  offline.
+- Remaining gaps: none known for this integration proof.
 
 Gap classes:
-- none in this slice.
+- none known for offline import/export/bind.
+
+Notes:
+- Transform binding validates writable target contracts, so `tpcds.v_qNN`
+  target contracts are modeled as `ObjectType=Table`.
+- The transform workspace diff records expected source-path provenance drift
+  caused by re-importing emitted `RoundTrippedViews\view_N.sql` files.
+- The MetaSql workspace diff is the semantic round-trip proof and currently
+  reports no differences.
+- The checked-in target contract still uses broad target field types. That is
+  enough for this transform-script/binding integration proof, but it is not a
+  SQL Server result-type extraction proof.

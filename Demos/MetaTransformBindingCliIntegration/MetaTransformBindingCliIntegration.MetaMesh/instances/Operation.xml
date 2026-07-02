@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove generated transform and binding workspaces.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:bind-transforms" MeshId="mesh:default">
+      <Description>Import SQL view definitions into a transform workspace and bind them against the demo schema workspace.</Description>
+      <Name>bind-transforms</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup:remove-analytics-workspace" OperationId="operation:cleanup">
+      <Arguments>/c if exist MetaAnalyticsCliIntegrationWorkspace rmdir /s /q MetaAnalyticsCliIntegrationWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-analytics-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:new-workspace" OperationId="operation:author-analytics-model">
+      <Arguments>new-workspace "{workspace:analytics.path}"</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>new-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-model" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:new-workspace">
+      <Arguments>add-model --workspace "{workspace:analytics.path}" --id Commerce --name Commerce --default-culture en-US</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-model</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-data-source" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-model">
+      <Arguments>add-data-source --workspace "{workspace:analytics.path}" --id Warehouse --model Commerce --name Warehouse --provider SqlServer --connection-reference COMMERCE_DW --source-kind Relational</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-data-source</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-date-table" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-data-source">
+      <Arguments>add-table --workspace "{workspace:analytics.path}" --id Date --model Commerce --name Date --kind Dimension --data-category Time</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-date-table</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-date-key" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-date-table">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id DateKey --table Date --name DateKey --data-type-id meta:type:Int32 --is-key true --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-date-key</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-calendar-date" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-date-key">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id CalendarDate --table Date --name CalendarDate --data-type-id meta:type:Date</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-calendar-date</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-calendar-year" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-calendar-date">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id CalendarYear --table Date --name CalendarYear --data-type-id meta:type:Int32</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-calendar-year</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-calendar-hierarchy" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-calendar-year">
+      <Arguments>add-hierarchy --workspace "{workspace:analytics.path}" --id Calendar --table Date --name Calendar</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-calendar-hierarchy</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-calendar-year-level" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-calendar-hierarchy">
+      <Arguments>add-hierarchy-level --workspace "{workspace:analytics.path}" --id CalendarYearLevel --hierarchy Calendar --attribute CalendarYear --name Year</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-calendar-year-level</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-calendar-date-level" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-calendar-year-level">
+      <Arguments>add-hierarchy-level --workspace "{workspace:analytics.path}" --id CalendarDateLevel --hierarchy Calendar --attribute CalendarDate --name Date</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-calendar-date-level</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-customer-table" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-calendar-date-level">
+      <Arguments>add-table --workspace "{workspace:analytics.path}" --id Customer --model Commerce --name Customer --kind Dimension --data-category Customers</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-customer-table</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-customer-key" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-customer-table">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id CustomerKey --table Customer --name CustomerKey --data-type-id meta:type:Int64 --is-key true --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-customer-key</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-customer-name" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-customer-key">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id CustomerName --table Customer --name CustomerName --data-type-id meta:type:String</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-customer-name</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-customer-region" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-customer-name">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id CustomerRegion --table Customer --name Region --data-type-id meta:type:String</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-customer-region</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-table" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-customer-region">
+      <Arguments>add-table --workspace "{workspace:analytics.path}" --id Sales --model Commerce --name Sales --kind Fact</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-table</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-order-date-key" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-table">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id OrderDateKey --table Sales --name OrderDateKey --data-type-id meta:type:Int32 --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-order-date-key</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-customer-sales-key" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-order-date-key">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id CustomerSalesKey --table Sales --name CustomerKey --data-type-id meta:type:Int64 --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-customer-sales-key</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-amount-column" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-customer-sales-key">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id SalesAmountColumn --table Sales --name SalesAmount --data-type-id meta:type:Decimal --is-hidden true --summarize-by Sum</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-amount-column</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-target-column" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-amount-column">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id SalesTargetColumn --table Sales --name SalesTarget --data-type-id meta:type:Decimal --is-hidden true --summarize-by Sum</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-target-column</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-order-date-relationship" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-target-column">
+      <Arguments>add-relationship --workspace "{workspace:analytics.path}" --id SalesOrderDate --name OrderDate --role-name OrderDate --relationship-kind Regular --cardinality ManyToOne --from-table Sales --from-attribute OrderDateKey --to-table Date --to-attribute DateKey --is-active true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-order-date-relationship</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-customer-relationship" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-order-date-relationship">
+      <Arguments>add-relationship --workspace "{workspace:analytics.path}" --id SalesCustomer --name Customer --role-name Customer --relationship-kind Regular --cardinality ManyToOne --from-table Sales --from-attribute CustomerSalesKey --to-table Customer --to-attribute CustomerKey --is-active true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-customer-relationship</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-amount-measure" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-customer-relationship">
+      <Arguments>add-measure --workspace "{workspace:analytics.path}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00" --display-folder Sales</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-amount-measure</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-amount-aggregation" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-amount-measure">
+      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.path}" --id SalesAmountAggregation --measure SalesAmount --function Sum</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-amount-aggregation</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-target-measure" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-amount-aggregation">
+      <Arguments>add-measure --workspace "{workspace:analytics.path}" --id SalesTarget --table Sales --source-attribute SalesTargetColumn --name "Sales Target" --data-type-id meta:type:Decimal --format-string "#,0.00" --display-folder Sales</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-target-measure</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-target-aggregation" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-target-measure">
+      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.path}" --id SalesTargetAggregation --measure SalesTarget --function Sum</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-target-aggregation</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-perspective" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-target-aggregation">
+      <Arguments>add-perspective --workspace "{workspace:analytics.path}" --id SalesPerspective --model Commerce --name Sales</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-perspective</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-perspective-table" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-perspective">
+      <Arguments>add-perspective-table --workspace "{workspace:analytics.path}" --id SalesPerspectiveSalesTable --perspective SalesPerspective --table Sales</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-perspective-table</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-perspective-calendar" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-perspective-table">
+      <Arguments>add-perspective-hierarchy --workspace "{workspace:analytics.path}" --id SalesPerspectiveCalendar --perspective SalesPerspective --hierarchy Calendar</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-perspective-calendar</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-perspective-sales-amount" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-perspective-calendar">
+      <Arguments>add-perspective-measure --workspace "{workspace:analytics.path}" --id SalesPerspectiveSalesAmount --perspective SalesPerspective --measure SalesAmount</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-perspective-sales-amount</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-perspective-sales-target" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-perspective-sales-amount">
+      <Arguments>add-perspective-measure --workspace "{workspace:analytics.path}" --id SalesPerspectiveSalesTarget --perspective SalesPerspective --measure SalesTarget</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-perspective-sales-target</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-readers-role" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-perspective-sales-target">
+      <Arguments>add-security-role --workspace "{workspace:analytics.path}" --id SalesReaders --model Commerce --name SalesReaders --permission Read</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-readers-role</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-readers-group" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-readers-role">
+      <Arguments>add-role-member --workspace "{workspace:analytics.path}" --id SalesReadersGroup --role SalesReaders --member-name CONTOSO\SalesReaders --member-kind WindowsGroup</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-readers-group</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-readers-region-filter" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-readers-group">
+      <Arguments>add-role-filter --workspace "{workspace:analytics.path}" --id SalesReadersRegionFilter --role SalesReaders --table Customer --expression-language DAX --expression "Customer[Region] = USERNAME()"</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-readers-region-filter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-readers-table-permission" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-readers-region-filter">
+      <Arguments>add-table-permission --workspace "{workspace:analytics.path}" --id SalesReadersSalesTablePermission --role SalesReaders --table Sales --metadata-permission Read</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-readers-table-permission</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-readers-region-permission" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-readers-table-permission">
+      <Arguments>add-attribute-permission --workspace "{workspace:analytics.path}" --id SalesReadersCustomerRegionPermission --role SalesReaders --attribute CustomerRegion --metadata-permission None</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-readers-region-permission</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-swedish-culture" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-readers-region-permission">
+      <Arguments>add-culture --workspace "{workspace:analytics.path}" --id svSE --model Commerce --name sv-SE</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-swedish-culture</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-swedish-sales-table-translation" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-swedish-culture">
+      <Arguments>add-table-translation --workspace "{workspace:analytics.path}" --id svSESalesTable --culture svSE --table Sales --caption Forsaljning</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-swedish-sales-table-translation</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-swedish-sales-amount-translation" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-swedish-sales-table-translation">
+      <Arguments>add-measure-translation --workspace "{workspace:analytics.path}" --id svSESalesAmount --culture svSE --measure SalesAmount --caption Forsaljningsbelopp</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-swedish-sales-amount-translation</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:author-analytics-model:add-swedish-calendar-translation" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-swedish-sales-amount-translation">
+      <Arguments>add-hierarchy-translation --workspace "{workspace:analytics.path}" --id svSECalendar --culture svSE --hierarchy Calendar --caption Kalender</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-swedish-calendar-translation</Name>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

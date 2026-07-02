@@ -1,33 +1,43 @@
 MetaTransformBinding CLI integration sample.
 
+This demo imports two SQL view definitions into a generated `MetaTransformScript`
+workspace, then binds those scripts against the tracked `SchemaWS` workspace to
+produce a generated `MetaTransformBinding` workspace.
+
+The workflow is modeled in:
+
+```text
+MetaTransformBindingCliIntegration.MetaMesh
+```
+
+Run commands from the mesh folder. `--workspace` is omitted because `meta-mesh`
+defaults to the current directory:
+
+```powershell
+cd MetaTransformBindingCliIntegration.MetaMesh
+meta-mesh show
+meta-mesh run --operation cleanup
+meta-mesh run --operation bind-transforms
+```
+
 Source tables in `SchemaWS`:
+
 - `sales.Customer`
 - `sales.Order`
 - `sales.Invoice`
 
-Intended target tables in `SchemaWS`:
+Target tables in `SchemaWS`:
+
 - `sales.CustomerOrderSummary`
 - `reporting.InvoiceWindow`
 
-Binding infers source rowset identifiers from SQL and reads each target SQL identifier from `TransformScript.TargetSqlIdentifier`.
-`meta-transform-binding bind` processes all transform scripts in `TransformWS` into one binding workspace.
+`bind-transforms` runs:
 
-The sample binds with:
-- `--source-schema SchemaWS`
-- `--target-schema SchemaWS`
-- `--execute-system MetaTransformBindingCliIntegration`
+- `meta-transform-script from sql-file` for `SourceViews\001_customer_order_summary\view.sql`
+- `meta-transform-script from sql-file` for `SourceViews\002_invoice_window\view.sql`
+- `meta-transform-binding bind` with `--source-schema SchemaWS`, `--target-schema SchemaWS`, and `--execute-system MetaTransformBindingCliIntegration`
 
-`meta-transform-binding bind` resolves source identifiers against source schema workspaces and target identifiers against the target schema workspace. It hard-fails on:
-- missing source/target tables
-- ambiguous one/two/three-part identifiers
-- source column subset mismatches
-- final output/target structural mismatches
-
-Optional:
-- `--ignore-target-columns <col[,col...]>` excludes named non-identity target columns from target conformance checks.
-- ignored names must exist on each target table or validation fails with `TargetIgnoredColumnNotFound`.
-- `--ignore-target-columns-if-present <col[,col...]>` excludes named non-identity target columns only on target tables where they exist.
-- if any one-part source identifier is present, `--execute-system-default-schema-name <schema>` is required.
-- bind is atomic: if binding or validation fails, no binding workspace is created.
-- `--allow-partial` is an explicit corpus/discovery mode that saves only successfully bound/validated objects.
-- `--partial-report <path>` writes skipped object diagnostics as TSV and requires `--allow-partial`.
+`meta-transform-binding bind` resolves source identifiers against source schema
+workspaces and target identifiers against the target schema workspace. It
+hard-fails on missing source or target tables, ambiguous identifiers, source
+column subset mismatches, and target structural mismatches.
