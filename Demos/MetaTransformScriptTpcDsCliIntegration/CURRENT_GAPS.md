@@ -33,6 +33,7 @@ Notes:
   caused by re-importing emitted `RoundTrippedViews\view_N.sql` files.
 - The MetaSql workspace diff is the semantic round-trip proof and currently
   reports no differences.
-- The checked-in target contract still uses broad target field types. That is
-  enough for this transform-script/binding integration proof, but it is not a
-  SQL Server result-type extraction proof.
+- The checked-in target rows come from extracted TPC-DS view metadata, with
+  view rows changed to table rows so binding validates writable targets. The
+  current fixture preserves the projected `varchar` and `decimal` fields needed
+  by strict binding.

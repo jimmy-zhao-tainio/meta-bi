@@ -135,7 +135,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q08:field:s_store_name" TableId="table:TpcDsSnapshot:tpcds:v_q08">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_store_name</Name>
       <Ordinal>0</Ordinal>
     </Field>
@@ -285,7 +285,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q12:field:i_item_desc" TableId="table:TpcDsSnapshot:tpcds:v_q12">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>i_item_desc</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -375,7 +375,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q17:field:i_item_desc" TableId="table:TpcDsSnapshot:tpcds:v_q17">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>i_item_desc</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -465,7 +465,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q18:field:ca_country" TableId="table:TpcDsSnapshot:tpcds:v_q18">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>ca_country</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -477,7 +477,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q18:field:ca_county" TableId="table:TpcDsSnapshot:tpcds:v_q18">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>ca_county</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -561,7 +561,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q20:field:i_item_desc" TableId="table:TpcDsSnapshot:tpcds:v_q20">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>i_item_desc</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -597,7 +597,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q21:field:w_warehouse_name" TableId="table:TpcDsSnapshot:tpcds:v_q21">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>w_warehouse_name</Name>
       <Ordinal>0</Ordinal>
     </Field>
@@ -663,7 +663,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q24:field:s_store_name" TableId="table:TpcDsSnapshot:tpcds:v_q24">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_store_name</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -681,7 +681,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q25:field:i_item_desc" TableId="table:TpcDsSnapshot:tpcds:v_q25">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>i_item_desc</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -693,7 +693,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q25:field:s_store_name" TableId="table:TpcDsSnapshot:tpcds:v_q25">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_store_name</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -903,7 +903,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q29:field:i_item_desc" TableId="table:TpcDsSnapshot:tpcds:v_q29">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>i_item_desc</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -915,7 +915,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q29:field:s_store_name" TableId="table:TpcDsSnapshot:tpcds:v_q29">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_store_name</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -987,7 +987,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q30:field:c_birth_country" TableId="table:TpcDsSnapshot:tpcds:v_q30">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>c_birth_country</Name>
       <Ordinal>8</Ordinal>
     </Field>
@@ -1197,7 +1197,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q37:field:i_item_desc" TableId="table:TpcDsSnapshot:tpcds:v_q37">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>i_item_desc</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -1281,7 +1281,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q43:field:s_store_name" TableId="table:TpcDsSnapshot:tpcds:v_q43">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_store_name</Name>
       <Ordinal>0</Ordinal>
     </Field>
@@ -1359,7 +1359,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q45:field:ca_city" TableId="table:TpcDsSnapshot:tpcds:v_q45">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>ca_city</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -1419,13 +1419,13 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q47:field:s_store_name" TableId="table:TpcDsSnapshot:tpcds:v_q47">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_store_name</Name>
       <Ordinal>2</Ordinal>
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q47:field:s_company_name" TableId="table:TpcDsSnapshot:tpcds:v_q47">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_company_name</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -1497,7 +1497,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q50:field:s_store_name" TableId="table:TpcDsSnapshot:tpcds:v_q50">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_store_name</Name>
       <Ordinal>0</Ordinal>
     </Field>
@@ -1509,13 +1509,13 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q50:field:s_street_number" TableId="table:TpcDsSnapshot:tpcds:v_q50">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_street_number</Name>
       <Ordinal>2</Ordinal>
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q50:field:s_street_name" TableId="table:TpcDsSnapshot:tpcds:v_q50">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_street_name</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -1533,13 +1533,13 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q50:field:s_city" TableId="table:TpcDsSnapshot:tpcds:v_q50">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_city</Name>
       <Ordinal>6</Ordinal>
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q50:field:s_county" TableId="table:TpcDsSnapshot:tpcds:v_q50">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_county</Name>
       <Ordinal>7</Ordinal>
     </Field>
@@ -1725,7 +1725,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q57:field:cc_name" TableId="table:TpcDsSnapshot:tpcds:v_q57">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>cc_name</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -1863,7 +1863,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q62:field:web_name" TableId="table:TpcDsSnapshot:tpcds:v_q62">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>web_name</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -2013,13 +2013,13 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q65:field:s_store_name" TableId="table:TpcDsSnapshot:tpcds:v_q65">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_store_name</Name>
       <Ordinal>0</Ordinal>
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q65:field:i_item_desc" TableId="table:TpcDsSnapshot:tpcds:v_q65">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>i_item_desc</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -2529,13 +2529,13 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q72:field:i_item_desc" TableId="table:TpcDsSnapshot:tpcds:v_q72">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>i_item_desc</Name>
       <Ordinal>0</Ordinal>
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q72:field:w_warehouse_name" TableId="table:TpcDsSnapshot:tpcds:v_q72">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>w_warehouse_name</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -2973,7 +2973,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q82:field:i_item_desc" TableId="table:TpcDsSnapshot:tpcds:v_q82">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>i_item_desc</Name>
       <Ordinal>1</Ordinal>
     </Field>
@@ -3141,13 +3141,13 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q89:field:s_store_name" TableId="table:TpcDsSnapshot:tpcds:v_q89">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_store_name</Name>
       <Ordinal>3</Ordinal>
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q89:field:s_company_name" TableId="table:TpcDsSnapshot:tpcds:v_q89">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>s_company_name</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -3273,7 +3273,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q98:field:i_item_desc" TableId="table:TpcDsSnapshot:tpcds:v_q98">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>i_item_desc</Name>
       <Ordinal>0</Ordinal>
     </Field>
@@ -3315,7 +3315,7 @@
     </Field>
     <Field Id="table:TpcDsSnapshot:tpcds:v_q99:field:cc_name" TableId="table:TpcDsSnapshot:tpcds:v_q99">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:varchar</MetaDataTypeId>
       <Name>cc_name</Name>
       <Ordinal>1</Ordinal>
     </Field>

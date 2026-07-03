@@ -281,6 +281,7 @@ public sealed class CliTests
                 CREATE TABLE dbo.ViewSource
                 (
                     SourceId int NOT NULL,
+                    SourceCode varchar(50) NOT NULL,
                     SourceName nvarchar(50) NOT NULL
                 );
                 """);
@@ -289,6 +290,7 @@ public sealed class CliTests
                 AS
                 SELECT
                     SourceId,
+                    SourceCode,
                     SourceName AS AliasName
                 FROM dbo.ViewSource;
                 """);
@@ -310,9 +312,13 @@ public sealed class CliTests
             var fieldsByName = extracted.FieldList
                 .ToDictionary(row => row.Name, StringComparer.Ordinal);
 
-            Assert.Equal(2, fieldsByName.Count);
+            Assert.Equal(3, fieldsByName.Count);
             Assert.Contains("SourceId", fieldsByName.Keys);
+            Assert.Contains("SourceCode", fieldsByName.Keys);
             Assert.Contains("AliasName", fieldsByName.Keys);
+            Assert.Equal("sqlserver:type:int", fieldsByName["SourceId"].MetaDataTypeId);
+            Assert.Equal("sqlserver:type:varchar", fieldsByName["SourceCode"].MetaDataTypeId);
+            Assert.Equal("sqlserver:type:nvarchar", fieldsByName["AliasName"].MetaDataTypeId);
         }
         finally
         {

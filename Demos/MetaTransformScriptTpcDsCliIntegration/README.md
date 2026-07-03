@@ -17,13 +17,10 @@ It includes:
 - TPC-DS source tables used by the corpus.
 - `tpcds.v_q01`..`tpcds.v_q99` target table contracts used by binding.
 
-The target contracts are modeled as tables because transform binding validates
-writable target contracts. This demo does not deploy or extract SQL Server
-objects.
-
-Known limitation: the checked-in target contract uses broad target field types.
-That is sufficient for this parser/binding integration proof, but it is not a
-SQL Server result-type extraction proof.
+The target rows come from the TPC-DS view metadata workflow: deploy the query
+files as views, extract those views with `meta-schema`, then change the extracted
+view rows into table rows so transform binding validates writable targets. This
+demo does not deploy or extract SQL Server objects during the run.
 
 ## Run
 

@@ -53,7 +53,6 @@ public static class MetaDataTypeConversionInstance
         new("MetaDataTypeConversion:mapping:sqlserver:nchar", "sqlserver:type:nchar", "meta:type:StringFixedLength", "MetaDataTypeConversion:implementation:direct"),
         new("MetaDataTypeConversion:mapping:sqlserver:nvarchar", "sqlserver:type:nvarchar", "meta:type:String", "MetaDataTypeConversion:implementation:direct"),
         new("MetaDataTypeConversion:mapping:sqlserver:char-to-nvarchar", "sqlserver:type:char", "sqlserver:type:nvarchar", "MetaDataTypeConversion:implementation:direct", "SQL Server write compatibility for text normalization."),
-        new("MetaDataTypeConversion:mapping:sqlserver:varchar-to-nvarchar", "sqlserver:type:varchar", "sqlserver:type:nvarchar", "MetaDataTypeConversion:implementation:direct", "SQL Server write compatibility for text normalization."),
         new("MetaDataTypeConversion:mapping:sqlserver:smallmoney", "sqlserver:type:smallmoney", "meta:type:Decimal", "MetaDataTypeConversion:implementation:direct"),
         new("MetaDataTypeConversion:mapping:sqlserver:smallmoney-to-decimal", "sqlserver:type:smallmoney", "sqlserver:type:decimal", "MetaDataTypeConversion:implementation:direct", "SQL Server write compatibility for decimal normalization."),
         new("MetaDataTypeConversion:mapping:sqlserver:money", "sqlserver:type:money", "meta:type:Decimal", "MetaDataTypeConversion:implementation:direct"),
