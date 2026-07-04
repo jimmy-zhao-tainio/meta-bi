@@ -30,8 +30,30 @@ The modeled pipeline demonstrates:
 Mutation tasks execute directly through the execution connection. The final SELECT task writes the resulting row stream through `InsertRows`; the current SQL Server runtime realizes insert rows with bulk copy.
 The demo leaves target tables and operational evidence in SQL Server for inspection instead of printing verification queries back to the console. Check the target tables for platform defaults and the `MetaPipeline` operational DB for task `AuditId`, task-level timeout setting, row-count evidence, and `RunFingerprint` evidence.
 
-Run:
+The workflow is modeled in:
 
-```cmd
-call run.cmd
+```text
+MetaPipelineSqlServerCliIntegration.MetaMesh
 ```
+
+Run commands from the mesh folder. `--workspace` is omitted because `meta-mesh`
+defaults to the current directory:
+
+```powershell
+$env:META_PIPELINE_DEMO_EXECUTION_SQL = "Server=.;Database=MetaPipelineSqlServerCliIntegration;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:META_PIPELINE_DEMO_TARGET_SQL = "Server=.;Database=MetaPipelineSqlServerCliIntegration;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:META_PIPELINE_DEMO_PIPELINE_DB_ADMIN_SQL = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:META_PIPELINE_DEMO_OPERATIONAL_SQL = "Server=.;Database=MetaPipeline;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+
+cd MetaPipelineSqlServerCliIntegration.MetaMesh
+meta-mesh show
+meta-mesh run --operation cleanup
+meta-mesh run --operation build-and-execute-pipeline
+```
+
+Operations:
+- `cleanup`: drops the demo execution database and removes generated workspaces.
+  It intentionally preserves the `MetaPipeline` operational database.
+- `build-and-execute-pipeline`: creates source SQL objects, extracts schema,
+  imports and binds transform scripts, authors the pipeline, initializes the
+  operational DB, and executes the customer load.

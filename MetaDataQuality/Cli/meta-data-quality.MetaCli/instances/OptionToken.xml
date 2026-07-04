@@ -31,5 +31,8 @@
     <OptionToken Id="token-promote-candidate-id" OptionId="opt-promote-candidate-id">
       <Token>--candidate-id</Token>
     </OptionToken>
+    <OptionToken Id="token-promote-candidate-kind" OptionId="opt-promote-candidate-kind">
+      <Token>--candidate-kind</Token>
+    </OptionToken>
   </OptionTokenList>
 </MetaCli>

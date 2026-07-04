@@ -4,13 +4,26 @@ This is the single multidimensional CLI integration demo. It authors a small `Me
 
 The demo deploys with `--no-process` because the source queries point at illustrative warehouse tables. Normal `meta-multi-dimensional deploy` processes by default and fails if processing fails.
 
-Run:
+The workflow is modeled in:
 
-```cmd
-run.cmd
+```text
+MetaMultiDimensionalDeployCliIntegration.MetaMesh
 ```
 
-Defaults:
+Run commands from the mesh folder. `--workspace` is omitted because `meta-mesh`
+defaults to the current directory:
+
+```powershell
+$env:META_MULTI_DIMENSIONAL_DEMO_SERVER = "localhost\MULTI"
+$env:META_MULTI_DIMENSIONAL_DEMO_DATABASE = "MetaBiMultiDimensionalDeployDemo"
+
+cd MetaMultiDimensionalDeployCliIntegration.MetaMesh
+meta-mesh show
+meta-mesh run --operation cleanup
+meta-mesh run --operation deploy-multi-dimensional-model
+```
+
+Default environment values:
 
 - server: `localhost\MULTI`
 - database: `MetaBiMultiDimensionalDeployDemo`

@@ -7,10 +7,12 @@ public sealed class MetaDataQualityPromotionService
     public MetaDataQualityPromotionResult Promote(
         MetaDataQualityModel model,
         IReadOnlyList<string> candidateIds,
-        bool promoteAll)
+        bool promoteAll,
+        IReadOnlyList<string> candidateKinds)
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentNullException.ThrowIfNull(candidateIds);
+        ArgumentNullException.ThrowIfNull(candidateKinds);
 
         var promotedCount = 0;
         if (promoteAll)
@@ -26,9 +28,14 @@ public sealed class MetaDataQualityPromotionService
         }
         else
         {
+            var selectedCandidateIds = candidateIds
+                .Concat(ResolveCandidateIdsByKind(model, candidateKinds))
+                .Where(static item => !string.IsNullOrWhiteSpace(item))
+                .Distinct(StringComparer.Ordinal)
+                .ToArray();
             var byId = model.DataQualityCandidateList
                 .ToDictionary(item => item.Id, StringComparer.Ordinal);
-            foreach (var candidateId in candidateIds.Distinct(StringComparer.Ordinal))
+            foreach (var candidateId in selectedCandidateIds)
             {
                 if (!byId.TryGetValue(candidateId, out var candidate) || candidate is null)
                 {
@@ -52,7 +59,8 @@ public sealed class MetaDataQualityPromotionService
         MetaDataQualityModel model,
         string workspacePath,
         IReadOnlyList<string> candidateIds,
-        bool promoteAll)
+        bool promoteAll,
+        IReadOnlyList<string> candidateKinds)
     {
         ArgumentNullException.ThrowIfNull(model);
         if (string.IsNullOrWhiteSpace(workspacePath))
@@ -60,9 +68,36 @@ public sealed class MetaDataQualityPromotionService
             throw new ArgumentException("Workspace path is required.", nameof(workspacePath));
         }
 
-        var result = Promote(model, candidateIds, promoteAll);
+        var result = Promote(model, candidateIds, promoteAll, candidateKinds);
         model.SaveToXmlWorkspace(workspacePath);
         return result;
+    }
+
+    private static IEnumerable<string> ResolveCandidateIdsByKind(
+        MetaDataQualityModel model,
+        IReadOnlyList<string> candidateKinds)
+    {
+        var requestedKinds = candidateKinds
+            .Where(static item => !string.IsNullOrWhiteSpace(item))
+            .Distinct(StringComparer.Ordinal)
+            .ToArray();
+        foreach (var candidateKind in requestedKinds)
+        {
+            if (!MetaDataQualityCandidateKindMap.KnownKinds.Contains(candidateKind))
+            {
+                throw new MetaDataQualityCandidateKindNotFoundException(candidateKind);
+            }
+        }
+
+        if (requestedKinds.Length == 0)
+        {
+            return [];
+        }
+
+        var requestedKindSet = requestedKinds.ToHashSet(StringComparer.Ordinal);
+        return MetaDataQualityCandidateKindMap.Resolve(model)
+            .Where(pair => requestedKindSet.Contains(pair.Value))
+            .Select(static pair => pair.Key);
     }
 }
 
@@ -79,4 +114,15 @@ public sealed class MetaDataQualityCandidateNotFoundException : InvalidOperation
     }
 
     public string CandidateId { get; }
+}
+
+public sealed class MetaDataQualityCandidateKindNotFoundException : InvalidOperationException
+{
+    public MetaDataQualityCandidateKindNotFoundException(string candidateKind)
+        : base($"Data quality candidate kind '{candidateKind}' was not recognized.")
+    {
+        CandidateKind = candidateKind;
+    }
+
+    public string CandidateKind { get; }
 }

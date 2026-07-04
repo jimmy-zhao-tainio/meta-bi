@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup:remove-analytics-workspace" OperationId="operation:cleanup">
+      <Arguments>/c if exist AnalyticsWorkspace rmdir /s /q AnalyticsWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-analytics-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-tabular-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-analytics-workspace">
+      <Arguments>/c if exist TabularWorkspace rmdir /s /q TabularWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-tabular-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:new-analytics-workspace" OperationId="operation:deploy-tabular-model">
+      <Arguments>new-workspace "{workspace:analytics.path}"</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>new-analytics-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-model" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:new-analytics-workspace">
+      <Arguments>add-model --workspace "{workspace:analytics.path}" --id Commerce --name Commerce --default-culture en-US</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-model</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-data-source" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-model">
+      <Arguments>add-data-source --workspace "{workspace:analytics.path}" --id Warehouse --model Commerce --name Warehouse --provider SqlServer --connection-reference COMMERCE_DW --source-kind Relational</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-data-source</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-date-table" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-data-source">
+      <Arguments>add-table --workspace "{workspace:analytics.path}" --id Date --model Commerce --name Date --kind Dimension --data-category Time</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-date-table</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-date-key" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-date-table">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id DateKey --table Date --name DateKey --data-type-id meta:type:Int32 --is-key true --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-date-key</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-sales-table" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-date-key">
+      <Arguments>add-table --workspace "{workspace:analytics.path}" --id Sales --model Commerce --name Sales --kind Fact</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-table</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-order-date-key" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-sales-table">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id OrderDateKey --table Sales --name OrderDateKey --data-type-id meta:type:Int32 --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-order-date-key</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-sales-amount-column" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-order-date-key">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id SalesAmountColumn --table Sales --name SalesAmount --data-type-id meta:type:Decimal --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-amount-column</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-relationship" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-sales-amount-column">
+      <Arguments>add-relationship --workspace "{workspace:analytics.path}" --id SalesOrderDate --name OrderDate --role-name OrderDate --relationship-kind Regular --cardinality ManyToOne --from-table Sales --from-attribute OrderDateKey --to-table Date --to-attribute DateKey --is-active true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-relationship</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-measure" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-relationship">
+      <Arguments>add-measure --workspace "{workspace:analytics.path}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00"</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-measure</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-aggregation" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-measure">
+      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.path}" --id SalesAmountAggregation --measure SalesAmount --function Sum</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-aggregation</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-security-role" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-aggregation">
+      <Arguments>add-security-role --workspace "{workspace:analytics.path}" --id Readers --model Commerce --name Readers --permission Read</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-security-role</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:convert-to-tabular" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-security-role">
+      <Arguments>analytics-to-tabular --workspace "{workspace:analytics.path}" --out "{workspace:tabular.path}"</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-to-tabular</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-date-partition" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:convert-to-tabular">
+      <Arguments>add-tabular-partition --workspace "{workspace:tabular.path}" --id DateCurrent --tabular-table Date --tabular-data-source Warehouse --name "Date Current" --mode Import --expression "SELECT * FROM mart.DimDate"</Arguments>
+      <Executable>meta-tabular.exe</Executable>
+      <Name>add-date-partition</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-sales-partition" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-date-partition">
+      <Arguments>add-tabular-partition --workspace "{workspace:tabular.path}" --id SalesCurrent --tabular-table Sales --tabular-data-source Warehouse --name "Sales Current" --mode Import --expression "SELECT * FROM mart.FactSales"</Arguments>
+      <Executable>meta-tabular.exe</Executable>
+      <Name>add-sales-partition</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-calculation-group" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-sales-partition">
+      <Arguments>add-tabular-calculation-group --workspace "{workspace:tabular.path}" --id TimeIntelligence --tabular-model Commerce --name "Time Intelligence" --precedence 10</Arguments>
+      <Executable>meta-tabular.exe</Executable>
+      <Name>add-calculation-group</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-calculation-item" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-calculation-group">
+      <Arguments>add-tabular-calculation-item --workspace "{workspace:tabular.path}" --id TimeYtd --tabular-calculation-group TimeIntelligence --name YTD --expression "CALCULATE(SELECTEDMEASURE(), DATESYTD('Date'[DateKey]))"</Arguments>
+      <Executable>meta-tabular.exe</Executable>
+      <Name>add-calculation-item</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:add-role-filter" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-calculation-item">
+      <Arguments>add-tabular-role-filter --workspace "{workspace:tabular.path}" --id ReaderSalesFilter --tabular-security-role Readers --tabular-table Sales --expression "Sales[SalesAmount] &gt;= 0"</Arguments>
+      <Executable>meta-tabular.exe</Executable>
+      <Name>add-role-filter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-tabular-model:deploy-tabular" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-role-filter">
+      <Arguments>deploy --workspace "{workspace:tabular.path}" --server {env:META_TABULAR_DEMO_SERVER} --database-name {env:META_TABULAR_DEMO_DATABASE} --drop-existing --no-process</Arguments>
+      <Executable>meta-tabular.exe</Executable>
+      <Name>deploy-tabular</Name>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

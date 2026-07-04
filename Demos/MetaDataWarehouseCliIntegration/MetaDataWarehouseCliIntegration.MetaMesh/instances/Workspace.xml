@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:warehouse" MeshId="mesh:default">
+      <Description>Generated MetaDataWarehouse workspace authored by the demo operation.</Description>
+      <ModelName>MetaDataWarehouse</ModelName>
+      <Name>warehouse</Name>
+      <Path>MetaDataWarehouseCliIntegrationWorkspace</Path>
+    </Workspace>
+    <Workspace Id="workspace:warehouse-implementation" MeshId="mesh:default">
+      <Description>Implementation policy used to project the warehouse model to MetaSql.</Description>
+      <ModelName>MetaDataWarehouseImplementation</ModelName>
+      <Name>warehouse-implementation</Name>
+      <Path>..\..\MetaDataWarehouse\Workspaces\MetaDataWarehouseImplementation</Path>
+    </Workspace>
+    <Workspace Id="workspace:sql" MeshId="mesh:default">
+      <Description>Generated MetaSql workspace projected from the warehouse model.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>sql</Name>
+      <Path>CurrentMetaSqlWorkspace</Path>
+    </Workspace>
+    <Workspace Id="workspace:deploy-manifest" MeshId="mesh:default">
+      <Description>Generated deploy manifest for the warehouse SQL database.</Description>
+      <ModelName>MetaSqlDeployManifest</ModelName>
+      <Name>deploy-manifest</Name>
+      <Path>MetaSqlDeployManifest</Path>
+    </Workspace>
+    <Workspace Id="workspace:verify-manifest" MeshId="mesh:default">
+      <Description>Generated verification deploy manifest after deployment.</Description>
+      <ModelName>MetaSqlDeployManifest</ModelName>
+      <Name>verify-manifest</Name>
+      <Path>MetaSqlVerifyManifest</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

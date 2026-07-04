@@ -3,7 +3,7 @@
   <ParameterGroupList>
     <ParameterGroup Id="group-promote-selection" ExecutableCommandId="exec-promote">
       <AllowsMultiple>false</AllowsMultiple>
-      <Description>Choose either all candidates or one or more candidate ids.</Description>
+      <Description>Choose all candidates, explicit candidate ids, or candidate families.</Description>
       <IsRequired>true</IsRequired>
       <Name>selection</Name>
     </ParameterGroup>

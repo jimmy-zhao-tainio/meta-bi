@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:schema" MeshId="mesh:default">
+      <Description>Generated schema workspace extracted from the demo SQL Server database.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>schema</Name>
+      <Path>SchemaWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:transform" MeshId="mesh:default">
+      <Description>Generated transform-script workspace imported from mutation and load scripts.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform</Name>
+      <Path>TransformWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:binding" MeshId="mesh:default">
+      <Description>Generated binding workspace for the transform scripts against the extracted schema.</Description>
+      <ModelName>MetaTransformBinding</ModelName>
+      <Name>binding</Name>
+      <Path>BindingWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:pipeline" MeshId="mesh:default">
+      <Description>Generated MetaPipeline workspace that executes the customer load pipeline.</Description>
+      <ModelName>MetaPipeline</ModelName>
+      <Name>pipeline</Name>
+      <Path>PipelineWS</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

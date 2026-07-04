@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup">
+      <Arguments>/c if exist TransformWS rmdir /s /q TransformWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-data-quality-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
+      <Arguments>/c if exist DataQualityWS rmdir /s /q DataQualityWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-data-quality-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-supported-data-quality-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-data-quality-workspace">
+      <Arguments>/c if exist DataQualityWS_Supported rmdir /s /q DataQualityWS_Supported</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-supported-data-quality-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-before-promote-sql" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-supported-data-quality-workspace">
+      <Arguments>/c if exist BeforePromote.sql del /q BeforePromote.sql</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-before-promote-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-all-promoted-sql" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-before-promote-sql">
+      <Arguments>/c if exist AllPromoted.sql del /q AllPromoted.sql</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-all-promoted-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-supported-sql" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-all-promoted-sql">
+      <Arguments>/c if exist DataQualityViews.sql del /q DataQualityViews.sql</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-supported-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-old-before-promote-output" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-supported-sql">
+      <Arguments>/c if exist before-promote.output del /q before-promote.output</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-old-before-promote-output</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-old-unsupported-output" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-old-before-promote-output">
+      <Arguments>/c if exist unsupported.output del /q unsupported.output</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-old-unsupported-output</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-old-implied-candidate-list" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-old-unsupported-output">
+      <Arguments>/c if exist implied-candidate-ids.txt del /q implied-candidate-ids.txt</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-old-implied-candidate-list</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-composite-01" OperationId="operation:build-phase2ab-data-quality">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite01 --target dq.CustomerOrderComposite01 --new-workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-composite-01</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-composite-02" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-order-composite-01">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite02 --target dq.CustomerOrderComposite02 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-composite-02</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-composite-03" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-order-composite-02">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite03 --target dq.CustomerOrderComposite03 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-composite-03</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-composite-04" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-order-composite-03">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite04 --target dq.CustomerOrderComposite04 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-composite-04</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-composite-05" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-order-composite-04">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite05 --target dq.CustomerOrderComposite05 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-composite-05</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-composite-06" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-order-composite-05">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite06 --target dq.CustomerOrderComposite06 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-composite-06</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-composite-07" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-order-composite-06">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite07 --target dq.CustomerOrderComposite07 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-composite-07</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-composite-08" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-order-composite-07">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite08 --target dq.CustomerOrderComposite08 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-composite-08</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-subset-01" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-order-composite-08">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId" --name dq.CustomerOrderSubset01 --target dq.CustomerOrderSubset01 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-subset-01</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-subset-02" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-order-subset-01">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId" --name dq.CustomerOrderSubset02 --target dq.CustomerOrderSubset02 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-subset-02</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-01" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-order-subset-02">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant01 --target dq.CustomerInvoiceDominant01 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-invoice-dominant-01</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-02" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-01">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant02 --target dq.CustomerInvoiceDominant02 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-invoice-dominant-02</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-03" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-02">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant03 --target dq.CustomerInvoiceDominant03 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-invoice-dominant-03</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-04" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-03">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant04 --target dq.CustomerInvoiceDominant04 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-invoice-dominant-04</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-05" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-04">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant05 --target dq.CustomerInvoiceDominant05 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-invoice-dominant-05</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-06" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-05">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant06 --target dq.CustomerInvoiceDominant06 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-invoice-dominant-06</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-07" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-06">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant07 --target dq.CustomerInvoiceDominant07 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-invoice-dominant-07</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-08" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-07">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant08 --target dq.CustomerInvoiceDominant08 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-invoice-dominant-08</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-invoice-outlier-extra" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-invoice-dominant-08">
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId AND c.RegionId = i.RegionId" --name dq.CustomerInvoiceOutlierExtra01 --target dq.CustomerInvoiceOutlierExtra01 --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-invoice-outlier-extra</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:discover-data-quality" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-invoice-outlier-extra">
+      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.path}" --new-workspace "{workspace:data-quality.path}"</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>discover-data-quality</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:inspect-data-quality" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:discover-data-quality">
+      <Arguments>inspect --workspace "{workspace:data-quality.path}"</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>inspect-data-quality</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:convert-before-promote" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:inspect-data-quality">
+      <Arguments>data-quality-to-sql --workspace "{workspace:data-quality.path}" --out BeforePromote.sql</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-before-promote</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:promote-all-candidates" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:convert-before-promote">
+      <Arguments>promote --workspace "{workspace:data-quality.path}" --all</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>promote-all-candidates</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:convert-all-promoted-candidates" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:promote-all-candidates">
+      <Arguments>data-quality-to-sql --workspace "{workspace:data-quality.path}" --out AllPromoted.sql</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-all-promoted-candidates</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:discover-supported-data-quality" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:convert-all-promoted-candidates">
+      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.path}" --new-workspace "{workspace:data-quality-supported.path}"</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>discover-supported-data-quality</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:promote-supported-implied-candidates" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:discover-supported-data-quality">
+      <Arguments>promote --workspace "{workspace:data-quality-supported.path}" --candidate-kind ImpliedForeignKeyMissingReference --candidate-kind ImpliedUniqueKeyViolation</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>promote-supported-implied-candidates</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:convert-supported-data-quality" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:promote-supported-implied-candidates">
+      <Arguments>data-quality-to-sql --workspace "{workspace:data-quality-supported.path}" --out DataQualityViews.sql</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-supported-data-quality</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-phase2ab-data-quality:inspect-supported-data-quality" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:convert-supported-data-quality">
+      <Arguments>inspect --workspace "{workspace:data-quality-supported.path}"</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>inspect-supported-data-quality</Name>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

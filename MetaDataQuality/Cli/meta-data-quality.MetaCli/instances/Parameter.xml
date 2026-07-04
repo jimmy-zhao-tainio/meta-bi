@@ -45,5 +45,10 @@
       <IsRepeatable>true</IsRepeatable>
       <Name>candidate-id</Name>
     </Parameter>
+    <Parameter Id="param-promote-candidate-kind" ValueShapeId="shape-text">
+      <Description>Promote generated candidates of one candidate family. May be provided more than once.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <Name>candidate-kind</Name>
+    </Parameter>
   </ParameterList>
 </MetaCli>

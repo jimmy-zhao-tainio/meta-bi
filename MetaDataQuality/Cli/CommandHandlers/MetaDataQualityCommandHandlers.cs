@@ -175,11 +175,12 @@ internal sealed class MetaDataQualityCommandHandlers
     {
         var workspacePath = ResolveWorkspacePath(invocation);
         var candidateIds = invocation.Values("candidate-id");
+        var candidateKinds = invocation.Values("candidate-kind");
         var promoteAll = invocation.Flag("all");
 
         try
         {
-            var result = promotionService.PromoteWorkspace(model, workspacePath, candidateIds, promoteAll);
+            var result = promotionService.PromoteWorkspace(model, workspacePath, candidateIds, promoteAll, candidateKinds);
 
             presenter.WriteInfo($"Candidates promoted this run: {result.PromotedThisRunCount}");
             presenter.WriteInfo($"Candidates promoted for SQL: {result.TotalPromotedCount}");
@@ -189,6 +190,14 @@ internal sealed class MetaDataQualityCommandHandlers
             Fail(
                 ex.Message,
                 "run meta-data-quality inspect --workspace <path> and retry.",
+                4,
+                new[] { $"  Workspace: {workspacePath}" });
+        }
+        catch (MetaDataQualityCandidateKindNotFoundException ex)
+        {
+            Fail(
+                ex.Message,
+                "run meta-data-quality help promote and retry.",
                 4,
                 new[] { $"  Workspace: {workspacePath}" });
         }

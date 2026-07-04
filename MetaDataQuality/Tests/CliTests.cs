@@ -101,6 +101,88 @@ public sealed class CliTests
     }
 
     [Fact]
+    public void Promote_ByCandidateKind_PromotesMatchingFamilies()
+    {
+        var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
+        var qualityWorkspacePath = Path.Combine(rootPath, "quality");
+
+        try
+        {
+            var model = MetaDataQualityModel.CreateEmpty();
+            var plainCandidate = AddCandidate(model, "candidate-local", "Local candidate");
+            model.JoinOrphanList.Add(new JoinOrphan
+            {
+                Id = "join-orphan-local",
+                DataQualityCandidate = plainCandidate,
+                EqualityPredicateCount = "1",
+            });
+
+            var relationship = new CorpusRelationship
+            {
+                Id = "relationship-customer-order",
+                CanonicalSideAObjectName = "sales.Customer",
+                CanonicalSideBObjectName = "sales.Order",
+                CanonicalUndirectedSignature = "sales.Customer|sales.Order",
+                OccurrenceCount = "8",
+                TransformCount = "8",
+            };
+            model.CorpusRelationshipList.Add(relationship);
+            var dominantPattern = new CorpusRelationshipPattern
+            {
+                Id = "pattern-customer-order",
+                CorpusRelationship = relationship,
+                CanonicalKeyPartSetSignature = "CustomerId=CustomerId",
+                IsDominant = "true",
+                KeyPartCount = "1",
+                OccurrenceCount = "8",
+                OccurrenceRatio = "1",
+                RepresentativeDirectionalSignature = "sales.Customer -> sales.Order",
+                TransformCount = "8",
+            };
+            model.CorpusRelationshipPatternList.Add(dominantPattern);
+
+            var impliedForeignKeyCandidate = AddCandidate(model, "candidate-implied-fk", "Implied FK candidate");
+            model.ImpliedForeignKeyMissingReferenceList.Add(new ImpliedForeignKeyMissingReference
+            {
+                Id = "implied-fk-candidate",
+                DataQualityCandidate = impliedForeignKeyCandidate,
+                DominantPattern = dominantPattern,
+            });
+            var impliedUniqueCandidate = AddCandidate(model, "candidate-implied-unique", "Implied unique candidate");
+            model.ImpliedUniqueKeyViolationList.Add(new ImpliedUniqueKeyViolation
+            {
+                Id = "implied-unique-candidate",
+                DataQualityCandidate = impliedUniqueCandidate,
+                DominantPattern = dominantPattern,
+            });
+
+            model.SaveToXmlWorkspace(qualityWorkspacePath);
+
+            var promoted = RunCli(
+                "promote --candidate-kind ImpliedForeignKeyMissingReference --candidate-kind ImpliedUniqueKeyViolation",
+                workingDirectory: qualityWorkspacePath);
+
+            Assert.Equal(0, promoted.ExitCode);
+            Assert.Contains("Candidates promoted this run: 2", promoted.Output, StringComparison.Ordinal);
+
+            var reloaded = MetaDataQualityModel.LoadFromXmlWorkspace(qualityWorkspacePath, searchUpward: false);
+            Assert.Equal(
+                CandidateStatuses.Discovered,
+                reloaded.DataQualityCandidateList.Single(row => string.Equals(row.Id, plainCandidate.Id, StringComparison.Ordinal)).Status);
+            Assert.Equal(
+                CandidateStatuses.Promoted,
+                reloaded.DataQualityCandidateList.Single(row => string.Equals(row.Id, impliedForeignKeyCandidate.Id, StringComparison.Ordinal)).Status);
+            Assert.Equal(
+                CandidateStatuses.Promoted,
+                reloaded.DataQualityCandidateList.Single(row => string.Equals(row.Id, impliedUniqueCandidate.Id, StringComparison.Ordinal)).Status);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(rootPath);
+        }
+    }
+
+    [Fact]
     public async Task FromTransformWorkspace_WithBindingWorkspace_ScansOnlyBoundScripts()
     {
         var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
@@ -683,6 +765,24 @@ LEFT OUTER JOIN dbo.[Order] o
         {
             Directory.Delete(path, recursive: true);
         }
+    }
+
+    private static DataQualityCandidate AddCandidate(
+        MetaDataQualityModel model,
+        string id,
+        string name)
+    {
+        var candidate = new DataQualityCandidate
+        {
+            Id = id,
+            Name = name,
+            Status = CandidateStatuses.Discovered,
+            Rationale = "Test candidate.",
+            Assumptions = string.Empty,
+            SqlTemplate = "SELECT 1;",
+        };
+        model.DataQualityCandidateList.Add(candidate);
+        return candidate;
     }
 
     private static void AddJoinPatternForCli(

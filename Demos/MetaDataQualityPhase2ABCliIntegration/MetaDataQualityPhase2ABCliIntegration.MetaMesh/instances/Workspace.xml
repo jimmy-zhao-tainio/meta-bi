@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:transform" MeshId="mesh:default">
+      <Description>Generated transform-script workspace authored from the demo SQL statements.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform</Name>
+      <Path>TransformWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:data-quality" MeshId="mesh:default">
+      <Description>Generated MetaDataQuality workspace with all candidates available for promotion.</Description>
+      <ModelName>MetaDataQuality</ModelName>
+      <Name>data-quality</Name>
+      <Path>DataQualityWS</Path>
+    </Workspace>
+    <Workspace Id="workspace:data-quality-supported" MeshId="mesh:default">
+      <Description>Generated MetaDataQuality workspace with only supported implied candidates promoted.</Description>
+      <ModelName>MetaDataQuality</ModelName>
+      <Name>data-quality-supported</Name>
+      <Path>DataQualityWS_Supported</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

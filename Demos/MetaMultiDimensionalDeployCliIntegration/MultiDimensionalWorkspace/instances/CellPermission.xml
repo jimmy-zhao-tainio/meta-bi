@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaMultiDimensional>
-  <CellPermissionList>
-    <CellPermission Id="ReaderSalesCells" CubeId="Commerce:cube" SecurityRoleId="Readers">
-      <Expression>Measures.CurrentMember IS [Measures].[Sales Amount]</Expression>
-    </CellPermission>
-  </CellPermissionList>
-</MetaMultiDimensional>

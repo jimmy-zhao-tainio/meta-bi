@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Drop the demo execution database and remove generated pipeline demo workspaces while preserving MetaPipeline operational history.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:build-and-execute-pipeline" MeshId="mesh:default">
+      <Description>Create source SQL objects, extract schema, import and bind transforms, author a pipeline, initialize the operational DB, and execute the customer load.</Description>
+      <Name>build-and-execute-pipeline</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

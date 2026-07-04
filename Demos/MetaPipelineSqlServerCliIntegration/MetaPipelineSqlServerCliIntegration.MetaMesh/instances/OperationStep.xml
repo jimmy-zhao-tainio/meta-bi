@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup:drop-execution-database" OperationId="operation:cleanup">
+      <Arguments>execute --connection-env {env:META_PIPELINE_DEMO_PIPELINE_DB_ADMIN_SQL} --quiet --query "IF DB_ID(N'MetaPipelineSqlServerCliIntegration') IS NOT NULL BEGIN ALTER DATABASE [MetaPipelineSqlServerCliIntegration] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [MetaPipelineSqlServerCliIntegration]; END"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>drop-execution-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-schema-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-execution-database">
+      <Arguments>/c if exist SchemaWS rmdir /s /q SchemaWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-schema-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-schema-workspace">
+      <Arguments>/c if exist TransformWS rmdir /s /q TransformWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-binding-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
+      <Arguments>/c if exist BindingWS rmdir /s /q BindingWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-binding-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-pipeline-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-binding-workspace">
+      <Arguments>/c if exist PipelineWS rmdir /s /q PipelineWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-pipeline-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:setup-execution-database" OperationId="operation:build-and-execute-pipeline">
+      <Arguments>execute --connection-env {env:META_PIPELINE_DEMO_PIPELINE_DB_ADMIN_SQL} --file setup.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>setup-execution-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:extract-schema" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:setup-execution-database">
+      <Arguments>extract sqlserver --new-workspace "{workspace:schema.path}" --connection-env {env:META_PIPELINE_DEMO_EXECUTION_SQL} --system MetaPipelineSqlServerCliIntegration --all-schemas --all-tables</Arguments>
+      <Executable>meta-schema.exe</Executable>
+      <Name>extract-schema</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:import-truncate-transform" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:extract-schema">
+      <Arguments>from sql-file --path TransformScripts\truncate_target.sql --new-workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-truncate-transform</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:import-insert-transform" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:import-truncate-transform">
+      <Arguments>from sql-file --path TransformScripts\insert_customers.sql --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-insert-transform</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:import-update-transform" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:import-insert-transform">
+      <Arguments>from sql-file --path TransformScripts\update_customers.sql --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-update-transform</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:import-merge-transform" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:import-update-transform">
+      <Arguments>from sql-file --path TransformScripts\merge_customers.sql --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-merge-transform</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:import-delete-transform" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:import-merge-transform">
+      <Arguments>from sql-file --path TransformScripts\delete_customers.sql --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-delete-transform</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:import-customer-load-transform" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:import-delete-transform">
+      <Arguments>from sql-file --path TransformScripts\customer_load.sql --target dbo.TargetCustomer --workspace "{workspace:transform.path}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-load-transform</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:bind-transforms" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:import-customer-load-transform">
+      <Arguments>bind --transform-workspace "{workspace:transform.path}" --source-schema "{workspace:schema.path}" --target-schema "{workspace:schema.path}" --execute-system MetaPipelineSqlServerCliIntegration --ignore-target-columns AuditId,InsertDateTime2 --new-workspace "{workspace:binding.path}"</Arguments>
+      <Executable>meta-transform-binding.exe</Executable>
+      <Name>bind-transforms</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:new-pipeline-workspace" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:bind-transforms">
+      <Arguments>new-workspace "{workspace:pipeline.path}"</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>new-pipeline-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:add-pipeline" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:new-pipeline-workspace">
+      <Arguments>add-pipeline --workspace "{workspace:pipeline.path}" --name CustomerLoad --description "Load customer totals"</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-pipeline</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:add-truncate-step" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:add-pipeline">
+      <Arguments>add-step --workspace "{workspace:pipeline.path}" --pipeline CustomerLoad --step-name truncate-target --script truncate_target --transform-workspace "{workspace:transform.path}" --binding-workspace "{workspace:binding.path}" --execution-connection-env {env:META_PIPELINE_DEMO_EXECUTION_SQL}</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-truncate-step</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:add-insert-step" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:add-truncate-step">
+      <Arguments>add-step --workspace "{workspace:pipeline.path}" --pipeline CustomerLoad --step-name insert-customers --script insert_customers --transform-workspace "{workspace:transform.path}" --binding-workspace "{workspace:binding.path}" --execution-connection-env {env:META_PIPELINE_DEMO_EXECUTION_SQL}</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-insert-step</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:add-update-step" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:add-insert-step">
+      <Arguments>add-step --workspace "{workspace:pipeline.path}" --pipeline CustomerLoad --step-name update-customers --script update_customers --transform-workspace "{workspace:transform.path}" --binding-workspace "{workspace:binding.path}" --execution-connection-env {env:META_PIPELINE_DEMO_EXECUTION_SQL}</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-update-step</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:add-merge-step" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:add-update-step">
+      <Arguments>add-step --workspace "{workspace:pipeline.path}" --pipeline CustomerLoad --step-name merge-customers --script merge_customers --transform-workspace "{workspace:transform.path}" --binding-workspace "{workspace:binding.path}" --execution-connection-env {env:META_PIPELINE_DEMO_EXECUTION_SQL}</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-merge-step</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:add-delete-step" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:add-merge-step">
+      <Arguments>add-step --workspace "{workspace:pipeline.path}" --pipeline CustomerLoad --step-name delete-customers --script delete_customers --transform-workspace "{workspace:transform.path}" --binding-workspace "{workspace:binding.path}" --execution-connection-env {env:META_PIPELINE_DEMO_EXECUTION_SQL}</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-delete-step</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:add-load-step" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:add-delete-step">
+      <Arguments>add-step --workspace "{workspace:pipeline.path}" --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace "{workspace:transform.path}" --binding-workspace "{workspace:binding.path}" --execution-connection-env {env:META_PIPELINE_DEMO_EXECUTION_SQL} --target-connection-env {env:META_PIPELINE_DEMO_TARGET_SQL} --target dbo.TargetCustomer --batch-size 2</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-load-step</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:inspect-pipeline" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:add-load-step">
+      <Arguments>inspect --workspace "{workspace:pipeline.path}"</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>inspect-pipeline</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:create-pipeline-db" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:inspect-pipeline">
+      <Arguments>create-pipeline-db --pipeline-db-connection-env {env:META_PIPELINE_DEMO_PIPELINE_DB_ADMIN_SQL}</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>create-pipeline-db</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-execute-pipeline:execute-pipeline" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:create-pipeline-db">
+      <Arguments>execute --workspace "{workspace:pipeline.path}" --pipeline CustomerLoad --transform-workspace "{workspace:transform.path}" --binding-workspace "{workspace:binding.path}" --pipeline-db-connection-env {env:META_PIPELINE_DEMO_OPERATIONAL_SQL}</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>execute-pipeline</Name>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

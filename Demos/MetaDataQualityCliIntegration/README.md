@@ -4,11 +4,28 @@ This demo shows the current end-to-end MetaDataQuality workflow against a real l
 
 It creates source tables and data, deploys the original transform views, imports the same scripts into `TransformWS`, discovers generated DQ views into `DataQualityWS`, promotes the full first-run pack, generates SQL views, and deploys them.
 
-Run:
+The workflow is modeled in:
 
-```cmd
-call run.cmd
+```text
+MetaDataQualityCliIntegration.MetaMesh
 ```
+
+Run commands from the mesh folder. `--workspace` is omitted because `meta-mesh`
+defaults to the current directory:
+
+```powershell
+$env:META_DQ_DEMO_MASTER_SQL = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:META_DQ_DEMO_SOURCE_SQL = "Server=.;Database=MetaDataQualityCliIntegration;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+
+cd MetaDataQualityCliIntegration.MetaMesh
+meta-mesh show
+meta-mesh run --operation cleanup
+meta-mesh run --operation build-data-quality
+```
+
+Operations:
+- `cleanup`: drops the source and MetaDQ operational databases and removes generated outputs.
+- `build-data-quality`: creates source SQL objects, imports transforms, discovers DQ candidates, promotes them, generates SQL, and deploys the generated review objects.
 
 Workflow:
 - `setup.sql` creates `sales.Customer`, `sales.Order`, and `sales.Invoice` with seeded data.
@@ -37,10 +54,4 @@ Outputs:
 - `MetaDataQualityCliIntegration` local SQL Server database
 - `dq.v_DataQualityReview` dashboard view
 - `MetaDQ` operational database with plain `dbo` objects
-
-Cleanup:
-
-```cmd
-call cleanup.cmd
-```
 

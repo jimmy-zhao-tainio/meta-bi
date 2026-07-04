@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaMultiDimensional>
-  <DimensionUsageList>
-    <DimensionUsage Id="SalesOrderDate" CubeDimensionId="Date:cube-dimension" GranularityAttributeId="DateKey" MeasureGroupId="Sales:measure-group">
-      <RoleName>OrderDate</RoleName>
-      <UsageKind>Regular</UsageKind>
-    </DimensionUsage>
-  </DimensionUsageList>
-</MetaMultiDimensional>

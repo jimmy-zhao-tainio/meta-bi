@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup:drop-business-data-vault-database" OperationId="operation:cleanup">
+      <Arguments>execute --connection-env {env:META_BI_DEMO_MASTER_SQL} --quiet --query "IF DB_ID(N'BusinessDataVaultCliIntegrationWorkspace') IS NOT NULL BEGIN ALTER DATABASE [BusinessDataVaultCliIntegrationWorkspace] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [BusinessDataVaultCliIntegrationWorkspace]; END"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>drop-business-data-vault-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:drop-old-sample-database" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-business-data-vault-database">
+      <Arguments>execute --connection-env {env:META_BI_DEMO_MASTER_SQL} --quiet --query "IF DB_ID(N'BusinessDataVaultSample') IS NOT NULL BEGIN ALTER DATABASE [BusinessDataVaultSample] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [BusinessDataVaultSample]; END"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>drop-old-sample-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-business-data-vault-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-old-sample-database">
+      <Arguments>/c if exist BusinessDataVaultCliIntegrationWorkspace rmdir /s /q BusinessDataVaultCliIntegrationWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-business-data-vault-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-sql-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-business-data-vault-workspace">
+      <Arguments>/c if exist CurrentMetaSqlWorkspace rmdir /s /q CurrentMetaSqlWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-sql-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-verify-manifest" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-workspace">
+      <Arguments>/c if exist MetaSqlVerifyManifest rmdir /s /q MetaSqlVerifyManifest</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-verify-manifest</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-deploy-manifest" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-verify-manifest">
+      <Arguments>/c if exist MetaSqlDeployManifest rmdir /s /q MetaSqlDeployManifest</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-deploy-manifest</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-old-sql-output" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-deploy-manifest">
+      <Arguments>/c if exist MetaSqlOutput rmdir /s /q MetaSqlOutput</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-old-sql-output</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-old-deploy-manifest-output" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-old-sql-output">
+      <Arguments>/c if exist DeployManifest rmdir /s /q DeployManifest</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-old-deploy-manifest-output</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-old-generated-sql" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-old-deploy-manifest-output">
+      <Arguments>/c if exist GeneratedSql rmdir /s /q GeneratedSql</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-old-generated-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:create-business-data-vault-workspace" OperationId="operation:build-and-deploy-business-data-vault">
+      <Arguments>new-workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>create-business-data-vault-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-customer" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:create-business-data-vault-workspace">
+      <Arguments>add-hub --id Customer --name Customer --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-Customer</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-crmcustomer" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-customer">
+      <Arguments>add-hub --id CrmCustomer --name CrmCustomer --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-CrmCustomer</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-product" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-crmcustomer">
+      <Arguments>add-hub --id Product --name Product --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-Product</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-supplier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-product">
+      <Arguments>add-hub --id Supplier --name Supplier --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-Supplier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-order" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-supplier">
+      <Arguments>add-hub --id Order --name Order --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-Order</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-invoice" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-order">
+      <Arguments>add-hub --id Invoice --name Invoice --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-Invoice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-shipment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-invoice">
+      <Arguments>add-hub --id Shipment --name Shipment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-Shipment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-employee" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-shipment">
+      <Arguments>add-hub --id Employee --name Employee --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-Employee</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-department" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-employee">
+      <Arguments>add-hub --id Department --name Department --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-Department</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-costcenter" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-department">
+      <Arguments>add-hub --id CostCenter --name CostCenter --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-CostCenter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-customeridentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-costcenter">
+      <Arguments>add-hub-key-part --id CustomerIdentifier --hub Customer --name CustomerIdentifier --data-type-id meta:type:String --length 50 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-key-part-CustomerIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-crmcustomeridentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-customeridentifier">
+      <Arguments>add-hub-key-part --id CrmCustomerIdentifier --hub CrmCustomer --name CrmCustomerIdentifier --data-type-id meta:type:String --length 50 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-key-part-CrmCustomerIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-productidentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-crmcustomeridentifier">
+      <Arguments>add-hub-key-part --id ProductIdentifier --hub Product --name ProductIdentifier --data-type-id meta:type:String --length 40 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-key-part-ProductIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-supplieridentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-productidentifier">
+      <Arguments>add-hub-key-part --id SupplierIdentifier --hub Supplier --name SupplierIdentifier --data-type-id meta:type:String --length 40 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-key-part-SupplierIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-orderidentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-supplieridentifier">
+      <Arguments>add-hub-key-part --id OrderIdentifier --hub Order --name OrderIdentifier --data-type-id meta:type:String --length 40 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-key-part-OrderIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-invoiceidentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-orderidentifier">
+      <Arguments>add-hub-key-part --id InvoiceIdentifier --hub Invoice --name InvoiceIdentifier --data-type-id meta:type:String --length 40 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-key-part-InvoiceIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-shipmentidentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-invoiceidentifier">
+      <Arguments>add-hub-key-part --id ShipmentIdentifier --hub Shipment --name ShipmentIdentifier --data-type-id meta:type:String --length 40 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-key-part-ShipmentIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-employeeidentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-shipmentidentifier">
+      <Arguments>add-hub-key-part --id EmployeeIdentifier --hub Employee --name EmployeeIdentifier --data-type-id meta:type:String --length 30 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-key-part-EmployeeIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-departmentidentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-employeeidentifier">
+      <Arguments>add-hub-key-part --id DepartmentIdentifier --hub Department --name DepartmentIdentifier --data-type-id meta:type:String --length 30 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-key-part-DepartmentIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-costcenteridentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-departmentidentifier">
+      <Arguments>add-hub-key-part --id CostCenterIdentifier --hub CostCenter --name CostCenterIdentifier --data-type-id meta:type:String --length 20 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-key-part-CostCenterIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-customerorder" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-key-part-costcenteridentifier">
+      <Arguments>add-link --id CustomerOrder --name CustomerOrder --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-CustomerOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-customerordercustomer" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-customerorder">
+      <Arguments>add-link-hub --id CustomerOrderCustomer --link CustomerOrder --hub Customer --role-name Customer --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-CustomerOrderCustomer</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-customerorderorder" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-customerordercustomer">
+      <Arguments>add-link-hub --id CustomerOrderOrder --link CustomerOrder --hub Order --role-name Order --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-CustomerOrderOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-orderproduct" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-customerorderorder">
+      <Arguments>add-link --id OrderProduct --name OrderProduct --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-OrderProduct</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-orderproductorder" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-orderproduct">
+      <Arguments>add-link-hub --id OrderProductOrder --link OrderProduct --hub Order --role-name Order --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-OrderProductOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-orderproductproduct" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-orderproductorder">
+      <Arguments>add-link-hub --id OrderProductProduct --link OrderProduct --hub Product --role-name Product --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-OrderProductProduct</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-supplierproduct" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-orderproductproduct">
+      <Arguments>add-link --id SupplierProduct --name SupplierProduct --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-SupplierProduct</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-supplierproductsupplier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-supplierproduct">
+      <Arguments>add-link-hub --id SupplierProductSupplier --link SupplierProduct --hub Supplier --role-name Supplier --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-SupplierProductSupplier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-supplierproductproduct" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-supplierproductsupplier">
+      <Arguments>add-link-hub --id SupplierProductProduct --link SupplierProduct --hub Product --role-name Product --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-SupplierProductProduct</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-orderinvoice" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-supplierproductproduct">
+      <Arguments>add-link --id OrderInvoice --name OrderInvoice --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-OrderInvoice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-orderinvoiceorder" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-orderinvoice">
+      <Arguments>add-link-hub --id OrderInvoiceOrder --link OrderInvoice --hub Order --role-name Order --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-OrderInvoiceOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-orderinvoiceinvoice" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-orderinvoiceorder">
+      <Arguments>add-link-hub --id OrderInvoiceInvoice --link OrderInvoice --hub Invoice --role-name Invoice --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-OrderInvoiceInvoice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-shipmentorder" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-orderinvoiceinvoice">
+      <Arguments>add-link --id ShipmentOrder --name ShipmentOrder --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-ShipmentOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-shipmentordershipment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-shipmentorder">
+      <Arguments>add-link-hub --id ShipmentOrderShipment --link ShipmentOrder --hub Shipment --role-name Shipment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-ShipmentOrderShipment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-shipmentorderorder" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-shipmentordershipment">
+      <Arguments>add-link-hub --id ShipmentOrderOrder --link ShipmentOrder --hub Order --role-name Order --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-ShipmentOrderOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-employeedepartment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-shipmentorderorder">
+      <Arguments>add-link --id EmployeeDepartment --name EmployeeDepartment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-EmployeeDepartment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-employeedepartmentemployee" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-employeedepartment">
+      <Arguments>add-link-hub --id EmployeeDepartmentEmployee --link EmployeeDepartment --hub Employee --role-name Employee --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-EmployeeDepartmentEmployee</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-employeedepartmentdepartment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-employeedepartmentemployee">
+      <Arguments>add-link-hub --id EmployeeDepartmentDepartment --link EmployeeDepartment --hub Department --role-name Department --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-EmployeeDepartmentDepartment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-departmentcostcenter" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-employeedepartmentdepartment">
+      <Arguments>add-link --id DepartmentCostCenter --name DepartmentCostCenter --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-DepartmentCostCenter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-departmentcostcenterdepartment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-departmentcostcenter">
+      <Arguments>add-link-hub --id DepartmentCostCenterDepartment --link DepartmentCostCenter --hub Department --role-name Department --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-DepartmentCostCenterDepartment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-departmentcostcentercostcenter" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-departmentcostcenterdepartment">
+      <Arguments>add-link-hub --id DepartmentCostCenterCostCenter --link DepartmentCostCenter --hub CostCenter --role-name CostCenter --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-DepartmentCostCenterCostCenter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-customerinvoice" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-departmentcostcentercostcenter">
+      <Arguments>add-link --id CustomerInvoice --name CustomerInvoice --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-CustomerInvoice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-customerinvoicecustomer" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-customerinvoice">
+      <Arguments>add-link-hub --id CustomerInvoiceCustomer --link CustomerInvoice --hub Customer --role-name Customer --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-CustomerInvoiceCustomer</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-customerinvoiceinvoice" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-customerinvoicecustomer">
+      <Arguments>add-link-hub --id CustomerInvoiceInvoice --link CustomerInvoice --hub Invoice --role-name Invoice --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-CustomerInvoiceInvoice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-supplierinvoice" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-customerinvoiceinvoice">
+      <Arguments>add-link --id SupplierInvoice --name SupplierInvoice --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-SupplierInvoice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-supplierinvoicesupplier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-supplierinvoice">
+      <Arguments>add-link-hub --id SupplierInvoiceSupplier --link SupplierInvoice --hub Supplier --role-name Supplier --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-SupplierInvoiceSupplier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-supplierinvoiceinvoice" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-supplierinvoicesupplier">
+      <Arguments>add-link-hub --id SupplierInvoiceInvoice --link SupplierInvoice --hub Invoice --role-name Invoice --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-SupplierInvoiceInvoice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-invoiceshipment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-supplierinvoiceinvoice">
+      <Arguments>add-link --id InvoiceShipment --name InvoiceShipment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-InvoiceShipment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-invoiceshipmentinvoice" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-invoiceshipment">
+      <Arguments>add-link-hub --id InvoiceShipmentInvoice --link InvoiceShipment --hub Invoice --role-name Invoice --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-InvoiceShipmentInvoice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-invoiceshipmentshipment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-invoiceshipmentinvoice">
+      <Arguments>add-link-hub --id InvoiceShipmentShipment --link InvoiceShipment --hub Shipment --role-name Shipment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-InvoiceShipmentShipment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-employeecostcenter" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-invoiceshipmentshipment">
+      <Arguments>add-link --id EmployeeCostCenter --name EmployeeCostCenter --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-EmployeeCostCenter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-employeecostcenteremployee" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-employeecostcenter">
+      <Arguments>add-link-hub --id EmployeeCostCenterEmployee --link EmployeeCostCenter --hub Employee --role-name Employee --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-EmployeeCostCenterEmployee</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-employeecostcentercostcenter" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-employeecostcenteremployee">
+      <Arguments>add-link-hub --id EmployeeCostCenterCostCenter --link EmployeeCostCenter --hub CostCenter --role-name CostCenter --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-EmployeeCostCenterCostCenter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-departmentmanager" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-employeecostcentercostcenter">
+      <Arguments>add-link --id DepartmentManager --name DepartmentManager --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-DepartmentManager</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-departmentmanagerdepartment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-departmentmanager">
+      <Arguments>add-link-hub --id DepartmentManagerDepartment --link DepartmentManager --hub Department --role-name Department --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-DepartmentManagerDepartment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-hub-departmentmanageremployee" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-departmentmanagerdepartment">
+      <Arguments>add-link-hub --id DepartmentManagerEmployee --link DepartmentManager --hub Employee --role-name ManagerEmployee --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-hub-DepartmentManagerEmployee</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-same-as-link-customersameascrmcustomer" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-hub-departmentmanageremployee">
+      <Arguments>add-same-as-link --id CustomerSameAsCrmCustomer --name CustomerSameAsCrmCustomer --primary-hub Customer --equivalent-hub CrmCustomer --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-same-as-link-CustomerSameAsCrmCustomer</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hierarchical-link-departmenthierarchy" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-same-as-link-customersameascrmcustomer">
+      <Arguments>add-hierarchical-link --id DepartmentHierarchy --name DepartmentHierarchy --parent-hub Department --child-hub Department --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hierarchical-link-DepartmentHierarchy</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-reference-orderstatus" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hierarchical-link-departmenthierarchy">
+      <Arguments>add-reference --id OrderStatus --name OrderStatus --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-reference-OrderStatus</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-reference-key-part-orderstatuscode" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-reference-orderstatus">
+      <Arguments>add-reference-key-part --id OrderStatusCode --reference OrderStatus --name OrderStatusCode --data-type-id meta:type:String --length 20 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-reference-key-part-OrderStatusCode</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-reference-currencycode" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-reference-key-part-orderstatuscode">
+      <Arguments>add-reference --id CurrencyCode --name CurrencyCode --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-reference-CurrencyCode</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-reference-key-part-currencycodevalue" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-reference-currencycode">
+      <Arguments>add-reference-key-part --id CurrencyCodeValue --reference CurrencyCode --name CurrencyCode --data-type-id meta:type:String --length 3 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-reference-key-part-CurrencyCodeValue</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-customerprofile" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-reference-key-part-currencycodevalue">
+      <Arguments>add-hub-satellite --id CustomerProfile --hub Customer --name CustomerProfile --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-CustomerProfile</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customername" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-customerprofile">
+      <Arguments>add-hub-satellite-attribute --id CustomerName --hub-satellite CustomerProfile --name CustomerName --data-type-id meta:type:String --length 200 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-CustomerName</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customertier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customername">
+      <Arguments>add-hub-satellite-attribute --id CustomerTier --hub-satellite CustomerProfile --name CustomerTier --data-type-id meta:type:String --length 30 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-CustomerTier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-productprofile" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customertier">
+      <Arguments>add-hub-satellite --id ProductProfile --hub Product --name ProductProfile --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-ProductProfile</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-productname" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-productprofile">
+      <Arguments>add-hub-satellite-attribute --id ProductName --hub-satellite ProductProfile --name ProductName --data-type-id meta:type:String --length 200 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-ProductName</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-productcategory" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-productname">
+      <Arguments>add-hub-satellite-attribute --id ProductCategory --hub-satellite ProductProfile --name ProductCategory --data-type-id meta:type:String --length 50 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-ProductCategory</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-supplierprofile" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-productcategory">
+      <Arguments>add-hub-satellite --id SupplierProfile --hub Supplier --name SupplierProfile --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-SupplierProfile</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-suppliername" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-supplierprofile">
+      <Arguments>add-hub-satellite-attribute --id SupplierName --hub-satellite SupplierProfile --name SupplierName --data-type-id meta:type:String --length 200 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-SupplierName</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-orderheader" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-suppliername">
+      <Arguments>add-hub-satellite --id OrderHeader --hub Order --name OrderHeader --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-OrderHeader</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-orderdate" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-orderheader">
+      <Arguments>add-hub-satellite-attribute --id OrderDate --hub-satellite OrderHeader --name OrderDate --data-type-id meta:type:DateTime --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-OrderDate</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-orderamount" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-orderdate">
+      <Arguments>add-hub-satellite-attribute --id OrderAmount --hub-satellite OrderHeader --name OrderAmount --data-type-id meta:type:Decimal --precision 18 --scale 2 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-OrderAmount</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-invoiceheader" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-orderamount">
+      <Arguments>add-hub-satellite --id InvoiceHeader --hub Invoice --name InvoiceHeader --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-InvoiceHeader</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-invoicedate" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-invoiceheader">
+      <Arguments>add-hub-satellite-attribute --id InvoiceDate --hub-satellite InvoiceHeader --name InvoiceDate --data-type-id meta:type:DateTime --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-InvoiceDate</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-invoiceamount" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-invoicedate">
+      <Arguments>add-hub-satellite-attribute --id InvoiceAmount --hub-satellite InvoiceHeader --name InvoiceAmount --data-type-id meta:type:Decimal --precision 18 --scale 2 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-InvoiceAmount</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-shipmentheader" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-invoiceamount">
+      <Arguments>add-hub-satellite --id ShipmentHeader --hub Shipment --name ShipmentHeader --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-ShipmentHeader</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-shipmentdate" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-shipmentheader">
+      <Arguments>add-hub-satellite-attribute --id ShipmentDate --hub-satellite ShipmentHeader --name ShipmentDate --data-type-id meta:type:DateTime --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-ShipmentDate</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-carriername" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-shipmentdate">
+      <Arguments>add-hub-satellite-attribute --id CarrierName --hub-satellite ShipmentHeader --name CarrierName --data-type-id meta:type:String --length 100 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-CarrierName</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-employeeprofile" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-carriername">
+      <Arguments>add-hub-satellite --id EmployeeProfile --hub Employee --name EmployeeProfile --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-EmployeeProfile</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-employeename" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-employeeprofile">
+      <Arguments>add-hub-satellite-attribute --id EmployeeName --hub-satellite EmployeeProfile --name EmployeeName --data-type-id meta:type:String --length 150 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-EmployeeName</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-departmentprofile" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-employeename">
+      <Arguments>add-hub-satellite --id DepartmentProfile --hub Department --name DepartmentProfile --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-DepartmentProfile</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-departmentname" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-departmentprofile">
+      <Arguments>add-hub-satellite-attribute --id DepartmentName --hub-satellite DepartmentProfile --name DepartmentName --data-type-id meta:type:String --length 150 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-DepartmentName</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-costcenterprofile" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-departmentname">
+      <Arguments>add-hub-satellite --id CostCenterProfile --hub CostCenter --name CostCenterProfile --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-CostCenterProfile</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-costcentername" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-costcenterprofile">
+      <Arguments>add-hub-satellite-attribute --id CostCenterName --hub-satellite CostCenterProfile --name CostCenterName --data-type-id meta:type:String --length 150 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-CostCenterName</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-customercontact" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-costcentername">
+      <Arguments>add-hub-satellite --id CustomerContact --hub Customer --name CustomerContact --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-CustomerContact</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customeremailaddress" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-customercontact">
+      <Arguments>add-hub-satellite-attribute --id CustomerEmailAddress --hub-satellite CustomerContact --name EmailAddress --data-type-id meta:type:String --length 200 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-CustomerEmailAddress</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customerphonenumber" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customeremailaddress">
+      <Arguments>add-hub-satellite-attribute --id CustomerPhoneNumber --hub-satellite CustomerContact --name PhoneNumber --data-type-id meta:type:String --length 40 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-CustomerPhoneNumber</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-customeraddress" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customerphonenumber">
+      <Arguments>add-hub-satellite --id CustomerAddress --hub Customer --name CustomerAddress --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-CustomerAddress</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customercountrycode" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-customeraddress">
+      <Arguments>add-hub-satellite-attribute --id CustomerCountryCode --hub-satellite CustomerAddress --name CountryCode --data-type-id meta:type:String --length 3 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-CustomerCountryCode</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customercityname" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customercountrycode">
+      <Arguments>add-hub-satellite-attribute --id CustomerCityName --hub-satellite CustomerAddress --name CityName --data-type-id meta:type:String --length 100 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-CustomerCityName</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-productcommercial" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-customercityname">
+      <Arguments>add-hub-satellite --id ProductCommercial --hub Product --name ProductCommercial --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-ProductCommercial</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-productbrand" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-productcommercial">
+      <Arguments>add-hub-satellite-attribute --id ProductBrand --hub-satellite ProductCommercial --name BrandName --data-type-id meta:type:String --length 100 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-ProductBrand</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-productlifecyclestatus" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-productbrand">
+      <Arguments>add-hub-satellite-attribute --id ProductLifecycleStatus --hub-satellite ProductCommercial --name LifecycleStatus --data-type-id meta:type:String --length 40 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-ProductLifecycleStatus</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-suppliercompliance" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-productlifecyclestatus">
+      <Arguments>add-hub-satellite --id SupplierCompliance --hub Supplier --name SupplierCompliance --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-SupplierCompliance</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-supplierriskclass" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-suppliercompliance">
+      <Arguments>add-hub-satellite-attribute --id SupplierRiskClass --hub-satellite SupplierCompliance --name RiskClass --data-type-id meta:type:String --length 30 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-SupplierRiskClass</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-suppliertaxidentifier" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-supplierriskclass">
+      <Arguments>add-hub-satellite-attribute --id SupplierTaxIdentifier --hub-satellite SupplierCompliance --name TaxIdentifier --data-type-id meta:type:String --length 50 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-SupplierTaxIdentifier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-employeeemployment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-suppliertaxidentifier">
+      <Arguments>add-hub-satellite --id EmployeeEmployment --hub Employee --name EmployeeEmployment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-EmployeeEmployment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-employeehiredate" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-employeeemployment">
+      <Arguments>add-hub-satellite-attribute --id EmployeeHireDate --hub-satellite EmployeeEmployment --name HireDate --data-type-id meta:type:DateTime --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-EmployeeHireDate</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-employeeemploymenttype" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-employeehiredate">
+      <Arguments>add-hub-satellite-attribute --id EmployeeEmploymentType --hub-satellite EmployeeEmployment --name EmploymentType --data-type-id meta:type:String --length 30 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-EmployeeEmploymentType</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-departmentoperatingmodel" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-employeeemploymenttype">
+      <Arguments>add-hub-satellite --id DepartmentOperatingModel --hub Department --name DepartmentOperatingModel --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-DepartmentOperatingModel</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-departmenttype" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-departmentoperatingmodel">
+      <Arguments>add-hub-satellite-attribute --id DepartmentType --hub-satellite DepartmentOperatingModel --name DepartmentType --data-type-id meta:type:String --length 40 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-DepartmentType</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-departmentregionname" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-departmenttype">
+      <Arguments>add-hub-satellite-attribute --id DepartmentRegionName --hub-satellite DepartmentOperatingModel --name RegionName --data-type-id meta:type:String --length 50 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-DepartmentRegionName</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-costcenterbudget" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-departmentregionname">
+      <Arguments>add-hub-satellite --id CostCenterBudget --hub CostCenter --name CostCenterBudget --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-CostCenterBudget</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-costcenterbudgetamount" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-costcenterbudget">
+      <Arguments>add-hub-satellite-attribute --id CostCenterBudgetAmount --hub-satellite CostCenterBudget --name BudgetAmount --data-type-id meta:type:Decimal --precision 18 --scale 2 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-CostCenterBudgetAmount</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-costcenterfiscalyear" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-costcenterbudgetamount">
+      <Arguments>add-hub-satellite-attribute --id CostCenterFiscalYear --hub-satellite CostCenterBudget --name FiscalYear --data-type-id meta:type:Int32 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hub-satellite-attribute-CostCenterFiscalYear</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-customerorderstatus" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hub-satellite-attribute-costcenterfiscalyear">
+      <Arguments>add-link-satellite --id CustomerOrderStatus --link CustomerOrder --name CustomerOrderStatus --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-CustomerOrderStatus</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-customerorderstatuscode" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-customerorderstatus">
+      <Arguments>add-link-satellite-attribute --id CustomerOrderStatusCode --link-satellite CustomerOrderStatus --name OrderStatusCode --data-type-id meta:type:String --length 20 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-CustomerOrderStatusCode</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-customerordercurrencycode" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-customerorderstatuscode">
+      <Arguments>add-link-satellite-attribute --id CustomerOrderCurrencyCode --link-satellite CustomerOrderStatus --name CurrencyCode --data-type-id meta:type:String --length 3 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-CustomerOrderCurrencyCode</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-orderproductline" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-customerordercurrencycode">
+      <Arguments>add-link-satellite --id OrderProductLine --link OrderProduct --name OrderProductLine --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-OrderProductLine</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-orderproductquantity" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-orderproductline">
+      <Arguments>add-link-satellite-attribute --id OrderProductQuantity --link-satellite OrderProductLine --name Quantity --data-type-id meta:type:Int32 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-OrderProductQuantity</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-orderproductunitprice" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-orderproductquantity">
+      <Arguments>add-link-satellite-attribute --id OrderProductUnitPrice --link-satellite OrderProductLine --name UnitPrice --data-type-id meta:type:Decimal --precision 18 --scale 2 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-OrderProductUnitPrice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-supplierproductterms" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-orderproductunitprice">
+      <Arguments>add-link-satellite --id SupplierProductTerms --link SupplierProduct --name SupplierProductTerms --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-SupplierProductTerms</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-supplierproductleadtimedays" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-supplierproductterms">
+      <Arguments>add-link-satellite-attribute --id SupplierProductLeadTimeDays --link-satellite SupplierProductTerms --name LeadTimeDays --data-type-id meta:type:Int32 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-SupplierProductLeadTimeDays</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-employeedepartmentassignment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-supplierproductleadtimedays">
+      <Arguments>add-link-satellite --id EmployeeDepartmentAssignment --link EmployeeDepartment --name EmployeeDepartmentAssignment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-EmployeeDepartmentAssignment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-employeedepartmentstartdate" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-employeedepartmentassignment">
+      <Arguments>add-link-satellite-attribute --id EmployeeDepartmentStartDate --link-satellite EmployeeDepartmentAssignment --name StartDate --data-type-id meta:type:DateTime --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-EmployeeDepartmentStartDate</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-departmentcostcenterassignment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-employeedepartmentstartdate">
+      <Arguments>add-link-satellite --id DepartmentCostCenterAssignment --link DepartmentCostCenter --name DepartmentCostCenterAssignment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-DepartmentCostCenterAssignment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-departmentcostcentershare" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-departmentcostcenterassignment">
+      <Arguments>add-link-satellite-attribute --id DepartmentCostCenterShare --link-satellite DepartmentCostCenterAssignment --name AllocationShare --data-type-id meta:type:Decimal --precision 9 --scale 4 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-DepartmentCostCenterShare</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-customerinvoicestatus" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-departmentcostcentershare">
+      <Arguments>add-link-satellite --id CustomerInvoiceStatus --link CustomerInvoice --name CustomerInvoiceStatus --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-CustomerInvoiceStatus</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-customerinvoicebillingstatus" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-customerinvoicestatus">
+      <Arguments>add-link-satellite-attribute --id CustomerInvoiceBillingStatus --link-satellite CustomerInvoiceStatus --name BillingStatus --data-type-id meta:type:String --length 30 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-CustomerInvoiceBillingStatus</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-supplierinvoiceterms" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-customerinvoicebillingstatus">
+      <Arguments>add-link-satellite --id SupplierInvoiceTerms --link SupplierInvoice --name SupplierInvoiceTerms --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-SupplierInvoiceTerms</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-supplierinvoicepaymenttermscode" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-supplierinvoiceterms">
+      <Arguments>add-link-satellite-attribute --id SupplierInvoicePaymentTermsCode --link-satellite SupplierInvoiceTerms --name PaymentTermsCode --data-type-id meta:type:String --length 20 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-SupplierInvoicePaymentTermsCode</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-invoiceshipmenttracking" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-supplierinvoicepaymenttermscode">
+      <Arguments>add-link-satellite --id InvoiceShipmentTracking --link InvoiceShipment --name InvoiceShipmentTracking --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-InvoiceShipmentTracking</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-invoiceshipmentreceiptdate" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-invoiceshipmenttracking">
+      <Arguments>add-link-satellite-attribute --id InvoiceShipmentReceiptDate --link-satellite InvoiceShipmentTracking --name ReceiptDate --data-type-id meta:type:DateTime --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-InvoiceShipmentReceiptDate</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-employeecostcenterassignment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-invoiceshipmentreceiptdate">
+      <Arguments>add-link-satellite --id EmployeeCostCenterAssignment --link EmployeeCostCenter --name EmployeeCostCenterAssignment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-EmployeeCostCenterAssignment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-employeecostcenterallocationpercentage" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-employeecostcenterassignment">
+      <Arguments>add-link-satellite-attribute --id EmployeeCostCenterAllocationPercentage --link-satellite EmployeeCostCenterAssignment --name AllocationPercentage --data-type-id meta:type:Decimal --precision 9 --scale 4 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-EmployeeCostCenterAllocationPercentage</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-departmentmanagerassignment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-employeecostcenterallocationpercentage">
+      <Arguments>add-link-satellite --id DepartmentManagerAssignment --link DepartmentManager --name DepartmentManagerAssignment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-DepartmentManagerAssignment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-departmentmanagerassignmentstartdate" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-departmentmanagerassignment">
+      <Arguments>add-link-satellite-attribute --id DepartmentManagerAssignmentStartDate --link-satellite DepartmentManagerAssignment --name StartDate --data-type-id meta:type:DateTime --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-link-satellite-attribute-DepartmentManagerAssignmentStartDate</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-same-as-link-satellite-customersameascrmcustomeraudit" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-link-satellite-attribute-departmentmanagerassignmentstartdate">
+      <Arguments>add-same-as-link-satellite --id CustomerSameAsCrmCustomerAudit --same-as-link CustomerSameAsCrmCustomer --name CustomerSameAsCrmCustomerAudit --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-same-as-link-satellite-CustomerSameAsCrmCustomerAudit</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-same-as-link-satellite-attribute-customersameascrmconfidence" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-same-as-link-satellite-customersameascrmcustomeraudit">
+      <Arguments>add-same-as-link-satellite-attribute --id CustomerSameAsCrmConfidence --same-as-link-satellite CustomerSameAsCrmCustomerAudit --name MatchConfidence --data-type-id meta:type:Decimal --precision 5 --scale 2 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-same-as-link-satellite-attribute-CustomerSameAsCrmConfidence</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hierarchical-link-satellite-departmenthierarchyinfo" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-same-as-link-satellite-attribute-customersameascrmconfidence">
+      <Arguments>add-hierarchical-link-satellite --id DepartmentHierarchyInfo --hierarchical-link DepartmentHierarchy --name DepartmentHierarchyInfo --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hierarchical-link-satellite-DepartmentHierarchyInfo</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-hierarchical-link-satellite-attribute-departmenthierarchylevel" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hierarchical-link-satellite-departmenthierarchyinfo">
+      <Arguments>add-hierarchical-link-satellite-attribute --id DepartmentHierarchyLevel --hierarchical-link-satellite DepartmentHierarchyInfo --name HierarchyLevel --data-type-id meta:type:Int32 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-hierarchical-link-satellite-attribute-DepartmentHierarchyLevel</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-reference-satellite-orderstatusdescriptionset" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-hierarchical-link-satellite-attribute-departmenthierarchylevel">
+      <Arguments>add-reference-satellite --id OrderStatusDescriptionSet --reference OrderStatus --name OrderStatusDescriptionSet --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-reference-satellite-OrderStatusDescriptionSet</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-reference-satellite-attribute-orderstatusdescription" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-reference-satellite-orderstatusdescriptionset">
+      <Arguments>add-reference-satellite-attribute --id OrderStatusDescription --reference-satellite OrderStatusDescriptionSet --name Description --data-type-id meta:type:String --length 100 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-reference-satellite-attribute-OrderStatusDescription</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-reference-satellite-currencycodedescriptionset" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-reference-satellite-attribute-orderstatusdescription">
+      <Arguments>add-reference-satellite --id CurrencyCodeDescriptionSet --reference CurrencyCode --name CurrencyCodeDescriptionSet --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-reference-satellite-CurrencyCodeDescriptionSet</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-reference-satellite-attribute-currencycodedescription" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-reference-satellite-currencycodedescriptionset">
+      <Arguments>add-reference-satellite-attribute --id CurrencyCodeDescription --reference-satellite CurrencyCodeDescriptionSet --name Description --data-type-id meta:type:String --length 100 --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-reference-satellite-attribute-CurrencyCodeDescription</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-point-in-time-customersnapshot" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-reference-satellite-attribute-currencycodedescription">
+      <Arguments>add-point-in-time --id CustomerSnapshot --hub Customer --name CustomerSnapshot --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-point-in-time-CustomerSnapshot</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-point-in-time-stamp-customersnapshotbusinessdate" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-point-in-time-customersnapshot">
+      <Arguments>add-point-in-time-stamp --id CustomerSnapshotBusinessDate --point-in-time CustomerSnapshot --name BusinessDate --data-type-id meta:type:DateTime --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-point-in-time-stamp-CustomerSnapshotBusinessDate</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-point-in-time-hub-satellite-customersnapshotprofile" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-point-in-time-stamp-customersnapshotbusinessdate">
+      <Arguments>add-point-in-time-hub-satellite --id CustomerSnapshotProfile --point-in-time CustomerSnapshot --hub-satellite CustomerProfile --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-point-in-time-hub-satellite-CustomerSnapshotProfile</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-point-in-time-link-satellite-customersnapshotorderstatus" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-point-in-time-hub-satellite-customersnapshotprofile">
+      <Arguments>add-point-in-time-link-satellite --id CustomerSnapshotOrderStatus --point-in-time CustomerSnapshot --link-satellite CustomerOrderStatus --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-point-in-time-link-satellite-CustomerSnapshotOrderStatus</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-bridge-customerfulfillmenttraversal" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-point-in-time-link-satellite-customersnapshotorderstatus">
+      <Arguments>add-bridge --id CustomerFulfillmentTraversal --hub Customer --name CustomerFulfillmentTraversal --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-bridge-CustomerFulfillmentTraversal</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-bridge-link-customerfulfillmenttraversalcustomerorder" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-bridge-customerfulfillmenttraversal">
+      <Arguments>add-bridge-link --id CustomerFulfillmentTraversalCustomerOrder --bridge CustomerFulfillmentTraversal --link CustomerOrder --role-name CustomerOrder --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-bridge-link-CustomerFulfillmentTraversalCustomerOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-bridge-hub-customerfulfillmenttraversalorder" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-bridge-link-customerfulfillmenttraversalcustomerorder">
+      <Arguments>add-bridge-hub --id CustomerFulfillmentTraversalOrder --bridge CustomerFulfillmentTraversal --hub Order --role-name Order --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-bridge-hub-CustomerFulfillmentTraversalOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-bridge-link-customerfulfillmenttraversalshipmentorder" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-bridge-hub-customerfulfillmenttraversalorder">
+      <Arguments>add-bridge-link --id CustomerFulfillmentTraversalShipmentOrder --bridge CustomerFulfillmentTraversal --link ShipmentOrder --role-name ShipmentOrder --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-bridge-link-CustomerFulfillmentTraversalShipmentOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:add-bridge-hub-customerfulfillmenttraversalshipment" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-bridge-link-customerfulfillmenttraversalshipmentorder">
+      <Arguments>add-bridge-hub --id CustomerFulfillmentTraversalShipment --bridge CustomerFulfillmentTraversal --hub Shipment --role-name Shipment --workspace "{workspace:business-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-business.exe</Executable>
+      <Name>add-bridge-hub-CustomerFulfillmentTraversalShipment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:convert-business-data-vault-to-sql" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-bridge-hub-customerfulfillmenttraversalshipment">
+      <Arguments>business-datavault-to-sql --workspace "{workspace:business-data-vault.path}" --implementation-workspace "{workspace:business-data-vault-implementation.path}" --database-name BusinessDataVaultCliIntegrationWorkspace --out "{workspace:sql.path}"</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-business-data-vault-to-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:create-deploy-manifest" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:convert-business-data-vault-to-sql">
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.path}" --connection-env {env:META_BI_BUSINESS_DV_SQL} --out "{workspace:deploy-manifest.path}"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>create-deploy-manifest</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:deploy-sql" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:create-deploy-manifest">
+      <Arguments>deploy --manifest-workspace "{workspace:deploy-manifest.path}" --source-workspace "{workspace:sql.path}" --connection-env {env:META_BI_BUSINESS_DV_SQL}</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-business-data-vault:create-verify-manifest" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:deploy-sql">
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.path}" --connection-env {env:META_BI_BUSINESS_DV_SQL} --out "{workspace:verify-manifest.path}"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>create-verify-manifest</Name>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

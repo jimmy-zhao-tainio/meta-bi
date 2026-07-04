@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTabular>
-  <TabularSecurityRoleList>
-    <TabularSecurityRole Id="Readers" TabularModelId="Commerce">
-      <Name>Readers</Name>
-      <Permission>Read</Permission>
-    </TabularSecurityRole>
-  </TabularSecurityRoleList>
-</MetaTabular>

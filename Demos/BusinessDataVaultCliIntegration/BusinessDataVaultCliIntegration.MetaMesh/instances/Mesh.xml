@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <MeshList>
+    <Mesh Id="mesh:default">
+      <Description>Business Data Vault CLI integration demo.</Description>
+      <Name>BusinessDataVaultCliIntegration</Name>
+      <RootPath>..</RootPath>
+    </Mesh>
+  </MeshList>
+</MetaMesh>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <MeshList>
+    <Mesh Id="mesh:default">
+      <Description>MetaDataQuality Phase 2A/2B corpus inference integration demo.</Description>
+      <Name>MetaDataQualityPhase2ABCliIntegration</Name>
+      <RootPath>..</RootPath>
+    </Mesh>
+  </MeshList>
+</MetaMesh>

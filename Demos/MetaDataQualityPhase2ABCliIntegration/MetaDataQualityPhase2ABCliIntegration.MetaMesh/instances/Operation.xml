@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove generated Phase 2A/2B data-quality demo outputs.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:build-phase2ab-data-quality" MeshId="mesh:default">
+      <Description>Create transform evidence, infer data-quality candidates, and generate SQL for supported implied candidates.</Description>
+      <Name>build-phase2ab-data-quality</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

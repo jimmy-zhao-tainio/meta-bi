@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaMultiDimensional>
-  <MeasureGroupList>
-    <MeasureGroup Id="Sales:measure-group" CubeId="Commerce:cube">
-      <Name>Sales</Name>
-      <SourceName>Sales</SourceName>
-    </MeasureGroup>
-  </MeasureGroupList>
-</MetaMultiDimensional>

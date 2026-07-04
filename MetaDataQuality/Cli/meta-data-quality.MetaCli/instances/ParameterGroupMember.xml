@@ -5,5 +5,7 @@
     </ParameterGroupMember>
     <ParameterGroupMember Id="member-promote-selection-candidate-id" ParameterGroupId="group-promote-selection" ParameterId="param-promote-candidate-id" PreviousMemberId="member-promote-selection-all">
     </ParameterGroupMember>
+    <ParameterGroupMember Id="member-promote-selection-candidate-kind" ParameterGroupId="group-promote-selection" ParameterId="param-promote-candidate-kind" PreviousMemberId="member-promote-selection-candidate-id">
+    </ParameterGroupMember>
   </ParameterGroupMemberList>
 </MetaCli>

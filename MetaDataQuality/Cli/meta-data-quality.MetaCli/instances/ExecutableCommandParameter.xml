@@ -21,5 +21,7 @@
     </ExecutableCommandParameter>
     <ExecutableCommandParameter Id="exec-promote:parameter:param-promote-candidate-id" ExecutableCommandId="exec-promote" ParameterId="param-promote-candidate-id">
     </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-promote:parameter:param-promote-candidate-kind" ExecutableCommandId="exec-promote" ParameterId="param-promote-candidate-kind">
+    </ExecutableCommandParameter>
   </ExecutableCommandParameterList>
 </MetaCli>

@@ -1,33 +1,32 @@
-# MetaDataQuality Phase 2A/2B CLI Integration Sample
+# MetaDataQuality Phase 2A/2B CLI Integration
 
-This demo exercises the implemented Phase 2A/2B corpus inference scope.
+This demo exercises Phase 2A/2B corpus inference from a generated
+`MetaTransformScript` workspace into a `MetaDataQuality` workspace.
 
-Run:
+Run from the mesh folder:
 
-```cmd
-call run.cmd
+```powershell
+cd Demos\MetaDataQualityPhase2ABCliIntegration\MetaDataQualityPhase2ABCliIntegration.MetaMesh
+meta-mesh run --operation cleanup
+meta-mesh run --operation build-phase2ab-data-quality
 ```
 
-What this demo proves:
+The build operation:
 
-- corpus relationship inference is materialized from a TransformScript workspace.
-- explicit promotion is still required before SQL conversion.
-- conversion fails fast when unsupported promoted families are present.
-- conversion succeeds when promotion is limited to supported implied families:
+- imports repeated transform-script examples that establish dominant and minority relationship evidence;
+- generates a data-quality workspace from the transform workspace;
+- generates a pre-promotion SQL pack with no candidate views;
+- promotes all candidates once and generates the full SQL pack;
+- regenerates a second data-quality workspace and promotes only the supported implied candidate families:
   - `ImpliedForeignKeyMissingReference`
   - `ImpliedUniqueKeyViolation`
+- generates `DataQualityViews.sql` from the supported implied candidates.
 
-Artifacts:
+Generated outputs are ignored:
 
 - `TransformWS`
-- `DataQualityWS` (all promoted path; expected converter fail-fast)
-- `DataQualityWS_Supported` (implied-only promoted path; expected converter success)
+- `DataQualityWS`
+- `DataQualityWS_Supported`
+- `BeforePromote.sql`
+- `AllPromoted.sql`
 - `DataQualityViews.sql`
-- `before-promote.output`
-- `unsupported.output`
-
-Cleanup:
-
-```cmd
-call cleanup.cmd
-```

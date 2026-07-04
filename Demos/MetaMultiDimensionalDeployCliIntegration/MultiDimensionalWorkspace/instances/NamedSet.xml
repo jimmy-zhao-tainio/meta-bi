@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaMultiDimensional>
-  <NamedSetList>
-    <NamedSet Id="TopDates" CubeId="Commerce:cube">
-      <Expression>TOPCOUNT([Date].[DateKey].MEMBERS, 10, [Measures].[Sales Amount])</Expression>
-      <Name>TopDates</Name>
-    </NamedSet>
-  </NamedSetList>
-</MetaMultiDimensional>

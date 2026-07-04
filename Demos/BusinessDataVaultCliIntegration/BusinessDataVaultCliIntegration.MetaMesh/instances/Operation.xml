@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Drop demo databases and remove generated business data vault outputs.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:build-and-deploy-business-data-vault" MeshId="mesh:default">
+      <Description>Author the business data vault, convert it to MetaSql, deploy it, and create a verification manifest.</Description>
+      <Name>build-and-deploy-business-data-vault</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

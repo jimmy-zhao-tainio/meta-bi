@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaMultiDimensional>
-  <SecurityRoleList>
-    <SecurityRole Id="Readers" MultiDimensionalDatabaseId="Commerce">
-      <Name>Readers</Name>
-      <Permission>Read</Permission>
-    </SecurityRole>
-  </SecurityRoleList>
-</MetaMultiDimensional>

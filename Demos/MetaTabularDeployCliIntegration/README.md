@@ -4,13 +4,26 @@ This is the single tabular CLI integration demo. It authors a small `MetaAnalyti
 
 The demo deploys with `--no-process` because the source queries point at illustrative warehouse tables. Normal `meta-tabular deploy` processes by default and fails if processing fails.
 
-Run:
+The workflow is modeled in:
 
-```cmd
-run.cmd
+```text
+MetaTabularDeployCliIntegration.MetaMesh
 ```
 
-Defaults:
+Run commands from the mesh folder. `--workspace` is omitted because `meta-mesh`
+defaults to the current directory:
+
+```powershell
+$env:META_TABULAR_DEMO_SERVER = "localhost\TABULAR"
+$env:META_TABULAR_DEMO_DATABASE = "MetaBiTabularDeployDemo"
+
+cd MetaTabularDeployCliIntegration.MetaMesh
+meta-mesh show
+meta-mesh run --operation cleanup
+meta-mesh run --operation deploy-tabular-model
+```
+
+Default environment values:
 
 - server: `localhost\TABULAR`
 - database: `MetaBiTabularDeployDemo`
