@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup:drop-target-database" OperationId="operation:cleanup">
+      <Arguments>execute --connection-env {env:META_BI_DEMO_MASTER_SQL} --quiet --query "IF DB_ID(N'RawDataVaultFromMetaSchemaCliIntegrationWorkspace') IS NOT NULL BEGIN ALTER DATABASE [RawDataVaultFromMetaSchemaCliIntegrationWorkspace] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [RawDataVaultFromMetaSchemaCliIntegrationWorkspace]; END"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>drop-target-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:drop-old-bootstrap-database" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-target-database">
+      <Arguments>execute --connection-env {env:META_BI_DEMO_MASTER_SQL} --quiet --query "IF DB_ID(N'BusinessDataVaultSample_RawDvBootstrap') IS NOT NULL BEGIN ALTER DATABASE [BusinessDataVaultSample_RawDvBootstrap] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [BusinessDataVaultSample_RawDvBootstrap]; END"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>drop-old-bootstrap-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-schema-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-old-bootstrap-database">
+      <Arguments>/c if exist MetaSchemaWorkspace rmdir /s /q MetaSchemaWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-schema-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-raw-data-vault-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-schema-workspace">
+      <Arguments>/c if exist RawDataVaultFromMetaSchemaCliIntegrationWorkspace rmdir /s /q RawDataVaultFromMetaSchemaCliIntegrationWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-raw-data-vault-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-sql-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-raw-data-vault-workspace">
+      <Arguments>/c if exist CurrentMetaSqlWorkspace rmdir /s /q CurrentMetaSqlWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-sql-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-deploy-manifest" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-workspace">
+      <Arguments>/c if exist MetaSqlDeployManifest rmdir /s /q MetaSqlDeployManifest</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-deploy-manifest</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-verify-manifest" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-deploy-manifest">
+      <Arguments>/c if exist MetaSqlVerifyManifest rmdir /s /q MetaSqlVerifyManifest</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-verify-manifest</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-from-meta-schema:validate-source-cleanup" OperationId="operation:build-from-meta-schema">
+      <Arguments>validate --workspace "{workspace:source-business-data-vault-mesh.path}" --operation cleanup</Arguments>
+      <Executable>meta-mesh.exe</Executable>
+      <Name>validate-source-cleanup</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-from-meta-schema:validate-source-build" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:validate-source-cleanup">
+      <Arguments>validate --workspace "{workspace:source-business-data-vault-mesh.path}" --operation build-and-deploy-business-data-vault</Arguments>
+      <Executable>meta-mesh.exe</Executable>
+      <Name>validate-source-build</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-from-meta-schema:run-source-cleanup" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:validate-source-build">
+      <Arguments>run --workspace "{workspace:source-business-data-vault-mesh.path}" --operation cleanup</Arguments>
+      <Executable>meta-mesh.exe</Executable>
+      <Name>run-source-cleanup</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-from-meta-schema:run-source-build" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:run-source-cleanup">
+      <Arguments>run --workspace "{workspace:source-business-data-vault-mesh.path}" --operation build-and-deploy-business-data-vault</Arguments>
+      <Executable>meta-mesh.exe</Executable>
+      <Name>run-source-build</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-from-meta-schema:extract-source-schema" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:run-source-build">
+      <Arguments>extract sqlserver --new-workspace "{workspace:schema.path}" --connection-env {env:META_BI_BUSINESS_DV_SQL} --system BusinessDataVaultCliIntegrationWorkspace --all-schemas --all-tables</Arguments>
+      <Executable>meta-schema.exe</Executable>
+      <Name>extract-source-schema</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-from-meta-schema:convert-schema-to-raw-data-vault" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:extract-source-schema">
+      <Arguments>schema-to-raw-datavault --source-workspace "{workspace:schema.path}" --new-workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-schema-to-raw-data-vault</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-from-meta-schema:convert-raw-data-vault-to-sql" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:convert-schema-to-raw-data-vault">
+      <Arguments>raw-datavault-to-sql --workspace "{workspace:raw-data-vault.path}" --implementation-workspace "{workspace:data-vault-implementation.path}" --database-name RawDataVaultFromMetaSchemaCliIntegrationWorkspace --out "{workspace:sql.path}"</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-raw-data-vault-to-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-from-meta-schema:create-deploy-manifest" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:convert-raw-data-vault-to-sql">
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.path}" --connection-env {env:META_BI_RAW_DV_FROM_SCHEMA_SQL} --out "{workspace:deploy-manifest.path}"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>create-deploy-manifest</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-from-meta-schema:deploy-sql" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:create-deploy-manifest">
+      <Arguments>deploy --manifest-workspace "{workspace:deploy-manifest.path}" --source-workspace "{workspace:sql.path}" --connection-env {env:META_BI_RAW_DV_FROM_SCHEMA_SQL}</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-from-meta-schema:create-verify-manifest" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:deploy-sql">
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.path}" --connection-env {env:META_BI_RAW_DV_FROM_SCHEMA_SQL} --out "{workspace:verify-manifest.path}"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>create-verify-manifest</Name>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

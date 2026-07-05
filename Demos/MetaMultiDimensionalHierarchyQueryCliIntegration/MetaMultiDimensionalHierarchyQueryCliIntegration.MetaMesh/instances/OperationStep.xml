@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup:remove-analytics-workspace" OperationId="operation:cleanup">
+      <Arguments>/c if exist AnalyticsWorkspace rmdir /s /q AnalyticsWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-analytics-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-multi-dimensional-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-analytics-workspace">
+      <Arguments>/c if exist MultiDimensionalWorkspace rmdir /s /q MultiDimensionalWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-multi-dimensional-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-query-bin" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-multi-dimensional-workspace">
+      <Arguments>/c if exist QueryMdx\bin rmdir /s /q QueryMdx\bin</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-query-bin</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-query-obj" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-query-bin">
+      <Arguments>/c if exist QueryMdx\obj rmdir /s /q QueryMdx\obj</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-query-obj</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:setup-source-database" OperationId="operation:deploy-and-query-hierarchy">
+      <Arguments>execute --connection-env {env:META_MULTI_DIMENSIONAL_HIERARCHY_DEMO_ADMIN_SQL} --file setup-source.sql --var DEMO_DB=MetaBiMultiDimensionalHierarchySource --var "SSAS_LOGIN=NT Service\MSOLAP$MULTI"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>setup-source-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:create-analytics-workspace" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:setup-source-database">
+      <Arguments>new-workspace "{workspace:analytics.path}"</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>create-analytics-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-model" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:create-analytics-workspace">
+      <Arguments>add-model --workspace "{workspace:analytics.path}" --id Commerce --name Commerce --default-culture en-US</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-model</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-data-source" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-model">
+      <Arguments>add-data-source --workspace "{workspace:analytics.path}" --id Warehouse --model Commerce --name Warehouse --provider SqlServer --connection-reference COMMERCE_DW --source-kind Relational</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-data-source</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-date-table" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-data-source">
+      <Arguments>add-table --workspace "{workspace:analytics.path}" --id Date --model Commerce --name Date --kind Dimension --data-category Time</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-date-table</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-date-key" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-date-table">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id DateKey --table Date --name DateKey --data-type-id meta:type:Int32 --is-key true --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-date-key</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-calendar-year" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-date-key">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id CalendarYear --table Date --name CalendarYear --data-type-id meta:type:Int32</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-calendar-year</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-month-number" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-calendar-year">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id MonthNumber --table Date --name MonthNumber --data-type-id meta:type:Int32</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-month-number</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-month-name" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-month-number">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id MonthName --table Date --name MonthName --data-type-id meta:type:String</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-month-name</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-month-to-year-relationship" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-month-name">
+      <Arguments>add-attribute-relationship --workspace "{workspace:analytics.path}" --id MonthToYear --relationship-type Rigid --child-attribute MonthName --parent-attribute CalendarYear</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-month-to-year-relationship</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-calendar-hierarchy" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-month-to-year-relationship">
+      <Arguments>add-hierarchy --workspace "{workspace:analytics.path}" --id Calendar --table Date --name Calendar --kind Natural</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-calendar-hierarchy</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-calendar-year-level" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-calendar-hierarchy">
+      <Arguments>add-hierarchy-level --workspace "{workspace:analytics.path}" --id CalendarYearLevel --hierarchy Calendar --attribute CalendarYear --name Year --ordinal 10</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-calendar-year-level</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-calendar-month-level" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-calendar-year-level">
+      <Arguments>add-hierarchy-level --workspace "{workspace:analytics.path}" --id CalendarMonthLevel --hierarchy Calendar --attribute MonthName --name Month --ordinal 20</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-calendar-month-level</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-sales-table" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-calendar-month-level">
+      <Arguments>add-table --workspace "{workspace:analytics.path}" --id Sales --model Commerce --name Sales --kind Fact</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-table</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-order-date-key" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-sales-table">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id OrderDateKey --table Sales --name DateKey --data-type-id meta:type:Int32 --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-order-date-key</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-sales-amount-column" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-order-date-key">
+      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id SalesAmountColumn --table Sales --name SalesAmount --data-type-id meta:type:Decimal --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-amount-column</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-sales-order-date-relationship" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-sales-amount-column">
+      <Arguments>add-relationship --workspace "{workspace:analytics.path}" --id SalesOrderDate --name OrderDate --role-name OrderDate --relationship-kind Regular --cardinality ManyToOne --from-table Sales --from-attribute OrderDateKey --to-table Date --to-attribute DateKey --granularity-attribute DateKey --is-active true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-order-date-relationship</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-sales-amount-measure" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-sales-order-date-relationship">
+      <Arguments>add-measure --workspace "{workspace:analytics.path}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00"</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-amount-measure</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-sales-amount-aggregation" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-sales-amount-measure">
+      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.path}" --id SalesAmountAggregation --measure SalesAmount --function Sum</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-amount-aggregation</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:convert-analytics-to-multidimensional" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-sales-amount-aggregation">
+      <Arguments>analytics-to-multi-dimensional --workspace "{workspace:analytics.path}" --out "{workspace:multi-dimensional.path}"</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-analytics-to-multidimensional</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-sales-current-partition" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:convert-analytics-to-multidimensional">
+      <Arguments>add-partition --workspace "{workspace:multi-dimensional.path}" --id SalesCurrent --measure-group "Sales:measure-group" --multi-dimensional-data-source Warehouse --name "Sales Current" --source-expression "SELECT DateKey, SalesAmount FROM dbo.Sales"</Arguments>
+      <Executable>meta-multi-dimensional.exe</Executable>
+      <Name>add-sales-current-partition</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:validate-commerce-dw-env" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-sales-current-partition">
+      <Arguments>/c rem {env:COMMERCE_DW}</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>validate-commerce-dw-env</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:deploy-multidimensional-model" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:validate-commerce-dw-env">
+      <Arguments>deploy --workspace "{workspace:multi-dimensional.path}" --server "localhost\MULTI" --database-name MetaBiMultiDimensionalHierarchyDemo --drop-existing</Arguments>
+      <Executable>meta-multi-dimensional.exe</Executable>
+      <Name>deploy-multidimensional-model</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:query-mdx" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:deploy-multidimensional-model">
+      <Arguments>run --project QueryMdx\QueryMdx.csproj -- "localhost\MULTI" MetaBiMultiDimensionalHierarchyDemo</Arguments>
+      <Executable>dotnet.exe</Executable>
+      <Name>query-mdx</Name>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

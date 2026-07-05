@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove generated hierarchy query demo workspaces and local query build output.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:deploy-and-query-hierarchy" MeshId="mesh:default">
+      <Description>Create source data, author analytics hierarchy, deploy multidimensional model, and run an MDX query.</Description>
+      <Name>deploy-and-query-hierarchy</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

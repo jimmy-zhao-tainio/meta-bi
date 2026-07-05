@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:analytics" MeshId="mesh:default">
+      <Description>Generated analytics workspace authored by the demo operation.</Description>
+      <ModelName>MetaAnalytics</ModelName>
+      <Name>analytics</Name>
+      <Path>AnalyticsWorkspace</Path>
+    </Workspace>
+    <Workspace Id="workspace:multi-dimensional" MeshId="mesh:default">
+      <Description>Generated multidimensional workspace converted from analytics.</Description>
+      <ModelName>MetaMultiDimensional</ModelName>
+      <Name>multi-dimensional</Name>
+      <Path>MultiDimensionalWorkspace</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

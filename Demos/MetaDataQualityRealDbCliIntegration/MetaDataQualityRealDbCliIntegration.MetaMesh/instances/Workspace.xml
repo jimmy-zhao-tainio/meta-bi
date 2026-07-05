@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:transform" MeshId="mesh:default">
+      <Description>Generated transform-script workspace imported from source view SQL files.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform</Name>
+      <Path>MetaTransformScript.Workspace</Path>
+    </Workspace>
+    <Workspace Id="workspace:data-quality" MeshId="mesh:default">
+      <Description>Generated data-quality workspace inferred from the transform-script corpus.</Description>
+      <ModelName>MetaDataQuality</ModelName>
+      <Name>data-quality</Name>
+      <Path>MetaDataQuality.Workspace</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

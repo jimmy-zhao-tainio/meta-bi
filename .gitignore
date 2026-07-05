@@ -41,6 +41,9 @@ Metadata.code-workspace
 /Demos/RawDataVaultCliIntegration/GeneratedSql/
 /Demos/RawDataVaultFromMetaSchemaCliIntegration/MetaSchemaWorkspace/
 /Demos/RawDataVaultFromMetaSchemaCliIntegration/RawDataVaultFromMetaSchemaCliIntegrationWorkspace/
+/Demos/RawDataVaultFromMetaSchemaCliIntegration/CurrentMetaSqlWorkspace/
+/Demos/RawDataVaultFromMetaSchemaCliIntegration/MetaSqlDeployManifest/
+/Demos/RawDataVaultFromMetaSchemaCliIntegration/MetaSqlVerifyManifest/
 /Demos/MetaTransformScriptCliIntegration/MetaTransformScriptCliIntegrationWorkspace/
 /Demos/MetaTransformScriptCliIntegration/MetaTransformScriptRoundTripWorkspace/
 /Demos/MetaTransformScriptCliIntegration/MetaTransformScriptRoundTripWorkspace.instance-diff/
@@ -71,6 +74,10 @@ Metadata.code-workspace
 /Demos/MetaDataQualityCliIntegration/DataQualityViews.sql
 /Demos/MetaDataQualityCliIntegration/DataQualityWS/
 /Demos/MetaDataQualityCliIntegration/TransformWS/
+/Demos/MetaDataQualityRealDbCliIntegration/DataQualityViews.sql
+/Demos/MetaDataQualityRealDbCliIntegration/MetaDataQuality.Workspace/
+/Demos/MetaDataQualityRealDbCliIntegration/MetaTransformScript.Workspace/
+/Demos/MetaDataQualityRealDbCliIntegration/SourceViews.import-report.tsv
 /Demos/MetaDataQualityPhase2ABCliIntegration/TransformWS/
 /Demos/MetaDataQualityPhase2ABCliIntegration/DataQualityWS/
 /Demos/MetaDataQualityPhase2ABCliIntegration/DataQualityWS_Supported/
@@ -88,6 +95,8 @@ Metadata.code-workspace
 /Demos/MetaTabularDeployCliIntegration/TabularWorkspace/
 /Demos/MetaMultiDimensionalDeployCliIntegration/AnalyticsWorkspace/
 /Demos/MetaMultiDimensionalDeployCliIntegration/MultiDimensionalWorkspace/
+/Demos/MetaMultiDimensionalHierarchyQueryCliIntegration/AnalyticsWorkspace/
+/Demos/MetaMultiDimensionalHierarchyQueryCliIntegration/MultiDimensionalWorkspace/
 /Demos/MetaDataWarehouseCliIntegration/MetaDataWarehouseCliIntegrationWorkspace/
 /Demos/MetaDataWarehouseCliIntegration/CurrentMetaSqlWorkspace/
 /Demos/MetaDataWarehouseCliIntegration/MetaSqlDeployManifest/

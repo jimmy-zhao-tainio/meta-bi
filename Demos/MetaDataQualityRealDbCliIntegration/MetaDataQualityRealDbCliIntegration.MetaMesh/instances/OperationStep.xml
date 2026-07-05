@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup:drop-demo-databases" OperationId="operation:cleanup">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_MASTER_SQL} --quiet --file cleanup-demo-db.sql --var DEMO_DB=MetaDataQualityRealDbDemo --var METADQ_DB=MetaDQ</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>drop-demo-databases</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-demo-databases">
+      <Arguments>/c if exist MetaTransformScript.Workspace rmdir /s /q MetaTransformScript.Workspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-data-quality-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
+      <Arguments>/c if exist MetaDataQuality.Workspace rmdir /s /q MetaDataQuality.Workspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-data-quality-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-data-quality-sql" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-data-quality-workspace">
+      <Arguments>/c if exist DataQualityViews.sql del /q DataQualityViews.sql</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-data-quality-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-import-report" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-data-quality-sql">
+      <Arguments>/c if exist SourceViews.import-report.tsv del /q SourceViews.import-report.tsv</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-import-report</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:setup-demo-database" OperationId="operation:build-real-db-data-quality">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_MASTER_SQL} --file setup-demo-db.sql --var DEMO_DB=MetaDataQualityRealDbDemo</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>setup-demo-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-001-customer-order-implied-01" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:setup-demo-database">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\001_customer_order_implied_01.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-001_customer_order_implied_01</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-002-customer-order-implied-02" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-001-customer-order-implied-01">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\002_customer_order_implied_02.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-002_customer_order_implied_02</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-003-customer-order-implied-03" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-002-customer-order-implied-02">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\003_customer_order_implied_03.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-003_customer_order_implied_03</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-004-customer-order-implied-04" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-003-customer-order-implied-03">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\004_customer_order_implied_04.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-004_customer_order_implied_04</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-005-customer-order-implied-05" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-004-customer-order-implied-04">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\005_customer_order_implied_05.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-005_customer_order_implied_05</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-006-customer-order-implied-06" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-005-customer-order-implied-05">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\006_customer_order_implied_06.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-006_customer_order_implied_06</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-007-customer-order-implied-07" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-006-customer-order-implied-06">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\007_customer_order_implied_07.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-007_customer_order_implied_07</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-008-customer-order-implied-08" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-007-customer-order-implied-07">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\008_customer_order_implied_08.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-008_customer_order_implied_08</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-009-order-campaign-left-01" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-008-customer-order-implied-08">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\009_order_campaign_left_01.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-009_order_campaign_left_01</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-010-order-campaign-left-02" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-009-order-campaign-left-01">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\010_order_campaign_left_02.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-010_order_campaign_left_02</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-011-order-campaign-left-03" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-010-order-campaign-left-02">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\011_order_campaign_left_03.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-011_order_campaign_left_03</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-012-order-campaign-left-04" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-011-order-campaign-left-03">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\012_order_campaign_left_04.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-012_order_campaign_left_04</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-013-order-campaign-left-05" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-012-order-campaign-left-04">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\013_order_campaign_left_05.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-013_order_campaign_left_05</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-014-order-campaign-left-06" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-013-order-campaign-left-05">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\014_order_campaign_left_06.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-014_order_campaign_left_06</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-015-order-campaign-left-07" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-014-order-campaign-left-06">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\015_order_campaign_left_07.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-015_order_campaign_left_07</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-016-order-campaign-left-08" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-015-order-campaign-left-07">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\016_order_campaign_left_08.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-016_order_campaign_left_08</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-017-order-campaign-inner-outlier-01" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-016-order-campaign-left-08">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\017_order_campaign_inner_outlier_01.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-017_order_campaign_inner_outlier_01</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-018-customer-campaign-consensus-01" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-017-order-campaign-inner-outlier-01">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\018_customer_campaign_consensus_01.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-018_customer_campaign_consensus_01</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-019-customer-campaign-consensus-02" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-018-customer-campaign-consensus-01">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\019_customer_campaign_consensus_02.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-019_customer_campaign_consensus_02</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-020-customer-campaign-consensus-03" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-019-customer-campaign-consensus-02">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\020_customer_campaign_consensus_03.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-020_customer_campaign_consensus_03</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-021-customer-campaign-consensus-04" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-020-customer-campaign-consensus-03">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\021_customer_campaign_consensus_04.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-021_customer_campaign_consensus_04</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-022-customer-campaign-consensus-05" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-021-customer-campaign-consensus-04">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\022_customer_campaign_consensus_05.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-022_customer_campaign_consensus_05</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-023-customer-campaign-consensus-06" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-022-customer-campaign-consensus-05">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\023_customer_campaign_consensus_06.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-023_customer_campaign_consensus_06</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-024-customer-campaign-consensus-07" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-023-customer-campaign-consensus-06">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\024_customer_campaign_consensus_07.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-024_customer_campaign_consensus_07</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-025-customer-campaign-consensus-08" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-024-customer-campaign-consensus-07">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\025_customer_campaign_consensus_08.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-025_customer_campaign_consensus_08</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-026-customer-campaign-subset-outlier-01" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-025-customer-campaign-consensus-08">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\026_customer_campaign_subset_outlier_01.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-026_customer_campaign_subset_outlier_01</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-027-customer-campaign-extra-outlier-01" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-026-customer-campaign-subset-outlier-01">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\027_customer_campaign_extra_outlier_01.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-027_customer_campaign_extra_outlier_01</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:import-source-views" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-027-customer-campaign-extra-outlier-01">
+      <Arguments>from sql-files --manifest SourceViews.manifest.tsv --new-workspace "{workspace:transform.path}" --report SourceViews.import-report.tsv</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-source-views</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:infer-data-quality" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:import-source-views">
+      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.path}" --new-workspace "{workspace:data-quality.path}"</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>infer-data-quality</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:inspect-data-quality" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:infer-data-quality">
+      <Arguments>inspect --workspace "{workspace:data-quality.path}" --show-cases --show-candidate-ids</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>inspect-data-quality</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:promote-sql-capable-candidates" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:inspect-data-quality">
+      <Arguments>promote --workspace "{workspace:data-quality.path}" --candidate-kind ImpliedForeignKeyMissingReference --candidate-kind ImpliedUniqueKeyViolation --candidate-kind MinorityJoinPattern --candidate-kind IncompleteCompositeJoin --candidate-kind SuspiciousExtraJoinPredicate --candidate-kind InnerJoinAgainstUsuallyOptionalRelationship --candidate-kind LeftJoinAgainstUsuallyMandatoryRelationship</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>promote-sql-capable-candidates</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:convert-data-quality-to-sql" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:promote-sql-capable-candidates">
+      <Arguments>data-quality-to-sql --workspace "{workspace:data-quality.path}" --out DataQualityViews.sql</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-data-quality-to-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:deploy-data-quality-sql" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:convert-data-quality-to-sql">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file DataQualityViews.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-data-quality-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:run-metadq" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-data-quality-sql">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_OPERATIONAL_SQL} --quiet --query "SET NOCOUNT ON; DECLARE @RunId bigint; EXEC dbo.Run @SourceDatabaseName = N'MetaDataQualityRealDbDemo', @RunId = @RunId OUTPUT;"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>run-metadq</Name>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

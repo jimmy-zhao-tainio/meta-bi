@@ -2,17 +2,30 @@
 
 This demo proves corpus-scope `MetaDataQuality` end-to-end against a real SQL Server database.
 
-Run:
-
-```cmd
-call run.cmd
-```
-
 Prerequisites:
 
 - `meta-transform-script`, `meta-data-quality`, and `meta-convert` available in `PATH`
 - `meta-sql` available in `PATH`
-- SQL Server reachable at `SQL_SERVER` (default `.` in `run.cmd`)
+- `meta-mesh` available in `PATH`
+- SQL Server reachable at `.`
+
+Set:
+
+```powershell
+$env:META_DQ_REAL_DEMO_MASTER_SQL = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:META_DQ_REAL_DEMO_SOURCE_SQL = "Server=.;Database=MetaDataQualityRealDbDemo;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:META_DQ_REAL_DEMO_OPERATIONAL_SQL = "Server=.;Database=MetaDQ;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+```
+
+Run from the mesh folder:
+
+```powershell
+cd Demos\MetaDataQualityRealDbCliIntegration\MetaDataQualityRealDbCliIntegration.MetaMesh
+meta-mesh validate --operation cleanup
+meta-mesh validate --operation build-real-db-data-quality
+meta-mesh run --operation cleanup
+meta-mesh run --operation build-real-db-data-quality
+```
 
 What this demo proves:
 
@@ -32,9 +45,8 @@ What this demo proves:
 - review-only semantic promotions generate informational SQL findings in `dq.v_DataQualityReview` (not runtime suspect-row checks)
 - generated SQL runs against a real SQL Server database and returns real findings from seeded bad rows
 
-Database defaults (editable at top of `run.cmd`):
+Database names:
 
-- `SQL_SERVER=.` (repo demo convention)
 - `DEMO_DB=MetaDataQualityRealDbDemo`
 - `METADQ_DB=MetaDQ`
 

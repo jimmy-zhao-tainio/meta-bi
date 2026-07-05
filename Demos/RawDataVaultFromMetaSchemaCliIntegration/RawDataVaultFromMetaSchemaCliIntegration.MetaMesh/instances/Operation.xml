@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Drop target demo databases and remove generated schema/raw data vault outputs.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:build-from-meta-schema" MeshId="mesh:default">
+      <Description>Prepare a source Business Data Vault database, extract schema, convert to Raw Data Vault, deploy, and verify.</Description>
+      <Name>build-from-meta-schema</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

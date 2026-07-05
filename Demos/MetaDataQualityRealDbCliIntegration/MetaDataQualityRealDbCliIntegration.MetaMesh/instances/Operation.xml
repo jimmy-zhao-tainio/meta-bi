@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove generated workspaces, SQL output, and demo databases.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:build-real-db-data-quality" MeshId="mesh:default">
+      <Description>Create the source database, import transform views, infer data-quality candidates, deploy generated SQL, and run MetaDQ.</Description>
+      <Name>build-real-db-data-quality</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>
