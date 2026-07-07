@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-datavault-raw">
+      <Description>Author raw Data Vault structures from source schemas, including hubs, links, satellites, and deployable SQL projections.</Description>
       <ExecutableName>meta-datavault-raw</ExecutableName>
       <Name>meta-datavault-raw</Name>
     </Application>

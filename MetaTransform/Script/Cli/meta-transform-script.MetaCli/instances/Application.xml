@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-transform-script">
+      <Description>Import SQL transform scripts into a structured model, export equivalent SQL, and manage transform contracts.</Description>
       <ExecutableName>meta-transform-script</ExecutableName>
       <Name>meta-transform-script</Name>
     </Application>

@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-data-quality">
+      <Description>Promote modeled transform and schema evidence into data quality views, review surfaces, and operational SQL.</Description>
       <ExecutableName>meta-data-quality</ExecutableName>
       <Name>meta-data-quality</Name>
     </Application>

@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-analytics">
+      <Description>Author shared analytics semantics for dimensions, hierarchies, measures, facts, and security across semantic model targets.</Description>
       <ExecutableName>meta-analytics</ExecutableName>
       <Name>meta-analytics</Name>
     </Application>

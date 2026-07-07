@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-multi-dimensional">
+      <Description>Author and deploy multidimensional semantic models with cubes, dimensions, measures, partitions, actions, and MDX query support.</Description>
       <ExecutableName>meta-multi-dimensional</ExecutableName>
       <Name>meta-multi-dimensional</Name>
     </Application>

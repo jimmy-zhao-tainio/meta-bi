@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-transform-binding">
+      <Description>Bind transform scripts to source and target schemas so references, data types, and writable contracts are verified before generation.</Description>
       <ExecutableName>meta-transform-binding</ExecutableName>
       <Name>meta-transform-binding</Name>
     </Application>

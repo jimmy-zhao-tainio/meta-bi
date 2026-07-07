@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-data-type-conversion">
+      <Description>Author conversion rules that map data types across platforms with explicit length, precision, scale, and fallback behavior.</Description>
       <ExecutableName>meta-data-type-conversion</ExecutableName>
       <Name>meta-data-type-conversion</Name>
     </Application>

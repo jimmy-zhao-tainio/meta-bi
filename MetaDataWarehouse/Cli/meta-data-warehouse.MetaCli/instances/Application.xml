@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-data-warehouse">
+      <Description>Author dimensional warehouse models and implementation policies that project to deployable SQL workspaces.</Description>
       <ExecutableName>meta-data-warehouse</ExecutableName>
       <Name>meta-data-warehouse</Name>
     </Application>

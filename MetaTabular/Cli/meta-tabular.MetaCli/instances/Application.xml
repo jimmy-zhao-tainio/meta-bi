@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-tabular">
+      <Description>Author and deploy tabular semantic models with tables, relationships, measures, partitions, roles, and processing commands.</Description>
       <ExecutableName>meta-tabular</ExecutableName>
       <Name>meta-tabular</Name>
     </Application>

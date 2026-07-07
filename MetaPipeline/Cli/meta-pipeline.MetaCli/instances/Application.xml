@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-pipeline">
+      <Description>Author and execute modeled pipelines with task dependencies, workspace fingerprints, SQL execution, and operational run evidence.</Description>
       <ExecutableName>meta-pipeline</ExecutableName>
       <Name>meta-pipeline</Name>
     </Application>

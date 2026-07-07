@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-datavault-business">
+      <Description>Author business Data Vault models that shape raw vault structures into governed business hubs, links, satellites, and deployable SQL.</Description>
       <ExecutableName>meta-datavault-business</ExecutableName>
       <Name>meta-datavault-business</Name>
     </Application>

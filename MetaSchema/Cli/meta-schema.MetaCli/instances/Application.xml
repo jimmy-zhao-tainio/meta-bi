@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-schema">
+      <Description>Extract SQL Server schemas into modeled workspaces that preserve databases, schemas, tables, fields, keys, and relationships.</Description>
       <ExecutableName>meta-schema</ExecutableName>
       <Name>meta-schema</Name>
     </Application>

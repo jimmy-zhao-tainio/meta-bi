@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-convert">
+      <Description>Convert between sanctioned BI workspaces, including schema, vault, warehouse, SQL, transform, analytics, tabular, and multidimensional models.</Description>
       <ExecutableName>meta-convert</ExecutableName>
       <Name>meta-convert</Name>
     </Application>

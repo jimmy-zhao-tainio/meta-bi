@@ -2,6 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-sql">
+      <Description>Extract SQL Server metadata, build deploy plans, apply manifests, and execute SQL against modeled database workspaces.</Description>
       <ExecutableName>meta-sql</ExecutableName>
       <Name>meta-sql</Name>
     </Application>
