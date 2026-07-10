@@ -19,7 +19,7 @@ Work like this:
 1. Read the business requirements.
 2. Read this guide.
 3. Create a clean run folder.
-4. Discover the available CLI surface with `where`, `--help`, `help`, README files, and `docs/commands.md`.
+4. Discover the available CLI surface with `where`, `--help`, `help`, README files, and the MetaDocs reference.
 5. Write `PLAN.md` before running artifact-producing commands.
 6. Extract source schema from the live source before creating product artifacts.
 7. Inspect the extracted source schema enough to choose a bounded analytical slice.
@@ -569,7 +569,7 @@ meta-pipeline help
 meta-orchestration help
 ```
 
-Use `docs/commands.md` and README files as supporting references, but do not rely on stale examples when command help disagrees.
+Use README files and the MetaDocs reference as supporting context, but treat local command help as authoritative when examples disagree.
 
 ## Evidence and summaries
 

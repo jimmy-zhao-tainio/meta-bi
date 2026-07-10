@@ -84,7 +84,7 @@ Do not solve the remaining gap by adding a generic SQL blob or `ParsedNode`-styl
    - short term: use `sqlcmd` in the demos to apply the generated SQL pack;
    - better product path: add a DataQuality-owned deploy/install command or make the converter emit a proper `MetaSql` workspace/manifest path when the output is intended to be model-deployed.
 4. Remove the `execute` CLI route, `Program.Execute.cs`, and the execute help test.
-5. Regenerate `docs/commands.md` from the updated CLI help.
+5. Regenerate the MetaDocs reference from the updated MetaCli workspace.
 6. Refresh affected demo `run.output` files after the script conversion.
 
 ## Non-Goals
@@ -97,7 +97,7 @@ Do not solve the remaining gap by adding a generic SQL blob or `ParsedNode`-styl
 ## Acceptance Criteria For Removal
 
 - `meta-sql --help` lists `deploy-plan` and `deploy`, not `execute`.
-- `docs/commands.md` contains no `meta-sql execute` command section after regeneration.
+- The regenerated MetaDocs reference contains no `meta-sql execute` command after the CLI workspace update.
 - Live demos no longer call `meta-sql execute` for setup, cleanup, verification, or generated SQL application.
 - `rg "meta-sql execute" MetaSql README.md docs Samples` returns only this historical retirement note, active-context handoff notes, or archived run output kept deliberately for history.
 - Any remaining DataQuality deployment gap is tracked as a DataQuality or MetaSql-model conversion decision, not hidden behind a generic SQL runner.
