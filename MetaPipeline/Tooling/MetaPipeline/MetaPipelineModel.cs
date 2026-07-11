@@ -435,11 +435,11 @@ namespace MetaPipeline
         private static byte[] SerializeConnectionReferenceShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <ConnectionReferenceList>\n");
-            foreach (var row in model.ConnectionReferenceList)
+            foreach (var row in model.ConnectionReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ConnectionReference' contains a row with empty Id.");
@@ -561,11 +561,11 @@ namespace MetaPipeline
         private static byte[] SerializeExecutableTaskShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <ExecutableTaskList>\n");
-            foreach (var row in model.ExecutableTaskList)
+            foreach (var row in model.ExecutableTaskList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ExecutableTask' contains a row with empty Id.");
@@ -696,11 +696,11 @@ namespace MetaPipeline
         private static byte[] SerializeInsertRowsTargetWriteTaskShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <InsertRowsTargetWriteTaskList>\n");
-            foreach (var row in model.InsertRowsTargetWriteTaskList)
+            foreach (var row in model.InsertRowsTargetWriteTaskList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InsertRowsTargetWriteTask' contains a row with empty Id.");
@@ -814,11 +814,11 @@ namespace MetaPipeline
         private static byte[] SerializePipelineShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <PipelineList>\n");
-            foreach (var row in model.PipelineList)
+            foreach (var row in model.PipelineList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Pipeline' contains a row with empty Id.");
@@ -921,11 +921,11 @@ namespace MetaPipeline
         private static byte[] SerializePipelineTaskShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <PipelineTaskList>\n");
-            foreach (var row in model.PipelineTaskList)
+            foreach (var row in model.PipelineTaskList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PipelineTask' contains a row with empty Id.");
@@ -1034,11 +1034,11 @@ namespace MetaPipeline
         private static byte[] SerializeRowStreamShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <RowStreamList>\n");
-            foreach (var row in model.RowStreamList)
+            foreach (var row in model.RowStreamList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RowStream' contains a row with empty Id.");
@@ -1150,11 +1150,11 @@ namespace MetaPipeline
         private static byte[] SerializeRowStreamColumnShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <RowStreamColumnList>\n");
-            foreach (var row in model.RowStreamColumnList)
+            foreach (var row in model.RowStreamColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RowStreamColumn' contains a row with empty Id.");
@@ -1264,11 +1264,11 @@ namespace MetaPipeline
         private static byte[] SerializeRowStreamConsumerShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <RowStreamConsumerList>\n");
-            foreach (var row in model.RowStreamConsumerList)
+            foreach (var row in model.RowStreamConsumerList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RowStreamConsumer' contains a row with empty Id.");
@@ -1386,11 +1386,11 @@ namespace MetaPipeline
         private static byte[] SerializeRowStreamProducerShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <RowStreamProducerList>\n");
-            foreach (var row in model.RowStreamProducerList)
+            foreach (var row in model.RowStreamProducerList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RowStreamProducer' contains a row with empty Id.");
@@ -1508,11 +1508,11 @@ namespace MetaPipeline
         private static byte[] SerializeTargetWriteTaskShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <TargetWriteTaskList>\n");
-            foreach (var row in model.TargetWriteTaskList)
+            foreach (var row in model.TargetWriteTaskList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TargetWriteTask' contains a row with empty Id.");
@@ -1633,11 +1633,11 @@ namespace MetaPipeline
         private static byte[] SerializeTaskDependencyShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <TaskDependencyList>\n");
-            foreach (var row in model.TaskDependencyList)
+            foreach (var row in model.TaskDependencyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TaskDependency' contains a row with empty Id.");
@@ -1780,11 +1780,11 @@ namespace MetaPipeline
         private static byte[] SerializeTransformExecutionTaskShard(MetaPipelineModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaPipeline>\n");
             builder.Append("  <TransformExecutionTaskList>\n");
-            foreach (var row in model.TransformExecutionTaskList)
+            foreach (var row in model.TransformExecutionTaskList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TransformExecutionTask' contains a row with empty Id.");
@@ -2126,7 +2126,7 @@ namespace MetaPipeline
             public void AddConnectionReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ConnectionReference' contains a row with empty Id.");
-                connectionReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                connectionReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!connectionReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ConnectionReference' contains duplicate Id '{normalizedId}'.");
@@ -2138,7 +2138,7 @@ namespace MetaPipeline
             public void AddExecutableTaskId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ExecutableTask' contains a row with empty Id.");
-                executableTaskIds ??= new HashSet<string>(StringComparer.Ordinal);
+                executableTaskIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!executableTaskIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ExecutableTask' contains duplicate Id '{normalizedId}'.");
@@ -2150,7 +2150,7 @@ namespace MetaPipeline
             public void AddInsertRowsTargetWriteTaskId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InsertRowsTargetWriteTask' contains a row with empty Id.");
-                insertRowsTargetWriteTaskIds ??= new HashSet<string>(StringComparer.Ordinal);
+                insertRowsTargetWriteTaskIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!insertRowsTargetWriteTaskIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InsertRowsTargetWriteTask' contains duplicate Id '{normalizedId}'.");
@@ -2162,7 +2162,7 @@ namespace MetaPipeline
             public void AddPipelineId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Pipeline' contains a row with empty Id.");
-                pipelineIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pipelineIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pipelineIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Pipeline' contains duplicate Id '{normalizedId}'.");
@@ -2174,7 +2174,7 @@ namespace MetaPipeline
             public void AddPipelineTaskId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PipelineTask' contains a row with empty Id.");
-                pipelineTaskIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pipelineTaskIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pipelineTaskIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PipelineTask' contains duplicate Id '{normalizedId}'.");
@@ -2186,7 +2186,7 @@ namespace MetaPipeline
             public void AddRowStreamId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RowStream' contains a row with empty Id.");
-                rowStreamIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rowStreamIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rowStreamIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RowStream' contains duplicate Id '{normalizedId}'.");
@@ -2198,7 +2198,7 @@ namespace MetaPipeline
             public void AddRowStreamColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RowStreamColumn' contains a row with empty Id.");
-                rowStreamColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rowStreamColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rowStreamColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RowStreamColumn' contains duplicate Id '{normalizedId}'.");
@@ -2210,7 +2210,7 @@ namespace MetaPipeline
             public void AddRowStreamConsumerId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RowStreamConsumer' contains a row with empty Id.");
-                rowStreamConsumerIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rowStreamConsumerIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rowStreamConsumerIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RowStreamConsumer' contains duplicate Id '{normalizedId}'.");
@@ -2222,7 +2222,7 @@ namespace MetaPipeline
             public void AddRowStreamProducerId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RowStreamProducer' contains a row with empty Id.");
-                rowStreamProducerIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rowStreamProducerIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rowStreamProducerIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RowStreamProducer' contains duplicate Id '{normalizedId}'.");
@@ -2234,7 +2234,7 @@ namespace MetaPipeline
             public void AddTargetWriteTaskId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TargetWriteTask' contains a row with empty Id.");
-                targetWriteTaskIds ??= new HashSet<string>(StringComparer.Ordinal);
+                targetWriteTaskIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!targetWriteTaskIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TargetWriteTask' contains duplicate Id '{normalizedId}'.");
@@ -2246,7 +2246,7 @@ namespace MetaPipeline
             public void AddTaskDependencyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TaskDependency' contains a row with empty Id.");
-                taskDependencyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                taskDependencyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!taskDependencyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TaskDependency' contains duplicate Id '{normalizedId}'.");
@@ -2258,7 +2258,7 @@ namespace MetaPipeline
             public void AddTransformExecutionTaskId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TransformExecutionTask' contains a row with empty Id.");
-                transformExecutionTaskIds ??= new HashSet<string>(StringComparer.Ordinal);
+                transformExecutionTaskIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!transformExecutionTaskIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransformExecutionTask' contains duplicate Id '{normalizedId}'.");
@@ -2551,7 +2551,7 @@ namespace MetaPipeline
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

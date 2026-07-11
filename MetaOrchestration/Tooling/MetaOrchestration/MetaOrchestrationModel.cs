@@ -548,11 +548,11 @@ namespace MetaOrchestration
         private static byte[] SerializeDataObjectShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <DataObjectList>\n");
-            foreach (var row in model.DataObjectList)
+            foreach (var row in model.DataObjectList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DataObject' contains a row with empty Id.");
@@ -680,11 +680,11 @@ namespace MetaOrchestration
         private static byte[] SerializeDependencyIssueShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <DependencyIssueList>\n");
-            foreach (var row in model.DependencyIssueList)
+            foreach (var row in model.DependencyIssueList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DependencyIssue' contains a row with empty Id.");
@@ -814,11 +814,11 @@ namespace MetaOrchestration
         private static byte[] SerializeDependencyIssuePipelineShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <DependencyIssuePipelineList>\n");
-            foreach (var row in model.DependencyIssuePipelineList)
+            foreach (var row in model.DependencyIssuePipelineList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DependencyIssuePipeline' contains a row with empty Id.");
@@ -958,11 +958,11 @@ namespace MetaOrchestration
         private static byte[] SerializeLockCompatibilityPolicyShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <LockCompatibilityPolicyList>\n");
-            foreach (var row in model.LockCompatibilityPolicyList)
+            foreach (var row in model.LockCompatibilityPolicyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'LockCompatibilityPolicy' contains a row with empty Id.");
@@ -1117,11 +1117,11 @@ namespace MetaOrchestration
         private static byte[] SerializeObjectAccessShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <ObjectAccessList>\n");
-            foreach (var row in model.ObjectAccessList)
+            foreach (var row in model.ObjectAccessList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ObjectAccess' contains a row with empty Id.");
@@ -1256,11 +1256,11 @@ namespace MetaOrchestration
         private static byte[] SerializeOrchestrationPlanShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <OrchestrationPlanList>\n");
-            foreach (var row in model.OrchestrationPlanList)
+            foreach (var row in model.OrchestrationPlanList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OrchestrationPlan' contains a row with empty Id.");
@@ -1375,11 +1375,11 @@ namespace MetaOrchestration
         private static byte[] SerializePipelineDependencyShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <PipelineDependencyList>\n");
-            foreach (var row in model.PipelineDependencyList)
+            foreach (var row in model.PipelineDependencyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PipelineDependency' contains a row with empty Id.");
@@ -1518,11 +1518,11 @@ namespace MetaOrchestration
         private static byte[] SerializePipelineObjectAccessShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <PipelineObjectAccessList>\n");
-            foreach (var row in model.PipelineObjectAccessList)
+            foreach (var row in model.PipelineObjectAccessList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PipelineObjectAccess' contains a row with empty Id.");
@@ -1651,11 +1651,11 @@ namespace MetaOrchestration
         private static byte[] SerializePipelineReferenceShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <PipelineReferenceList>\n");
-            foreach (var row in model.PipelineReferenceList)
+            foreach (var row in model.PipelineReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PipelineReference' contains a row with empty Id.");
@@ -1778,11 +1778,11 @@ namespace MetaOrchestration
         private static byte[] SerializePlannedTaskShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <PlannedTaskList>\n");
-            foreach (var row in model.PlannedTaskList)
+            foreach (var row in model.PlannedTaskList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PlannedTask' contains a row with empty Id.");
@@ -1927,11 +1927,11 @@ namespace MetaOrchestration
         private static byte[] SerializePlannedTaskLockShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <PlannedTaskLockList>\n");
-            foreach (var row in model.PlannedTaskLockList)
+            foreach (var row in model.PlannedTaskLockList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PlannedTaskLock' contains a row with empty Id.");
@@ -2104,11 +2104,11 @@ namespace MetaOrchestration
         private static byte[] SerializeRetryPolicyShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <RetryPolicyList>\n");
-            foreach (var row in model.RetryPolicyList)
+            foreach (var row in model.RetryPolicyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RetryPolicy' contains a row with empty Id.");
@@ -2235,11 +2235,11 @@ namespace MetaOrchestration
         private static byte[] SerializeRetryPolicyFailureClassShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <RetryPolicyFailureClassList>\n");
-            foreach (var row in model.RetryPolicyFailureClassList)
+            foreach (var row in model.RetryPolicyFailureClassList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RetryPolicyFailureClass' contains a row with empty Id.");
@@ -2359,11 +2359,11 @@ namespace MetaOrchestration
         private static byte[] SerializeRunPlanShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <RunPlanList>\n");
-            foreach (var row in model.RunPlanList)
+            foreach (var row in model.RunPlanList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RunPlan' contains a row with empty Id.");
@@ -2483,11 +2483,11 @@ namespace MetaOrchestration
         private static byte[] SerializeRunPlanRetryPolicyShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <RunPlanRetryPolicyList>\n");
-            foreach (var row in model.RunPlanRetryPolicyList)
+            foreach (var row in model.RunPlanRetryPolicyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RunPlanRetryPolicy' contains a row with empty Id.");
@@ -2637,11 +2637,11 @@ namespace MetaOrchestration
         private static byte[] SerializeTaskAccessProfileShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <TaskAccessProfileList>\n");
-            foreach (var row in model.TaskAccessProfileList)
+            foreach (var row in model.TaskAccessProfileList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TaskAccessProfile' contains a row with empty Id.");
@@ -2789,11 +2789,11 @@ namespace MetaOrchestration
         private static byte[] SerializeTaskDependencyShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <TaskDependencyList>\n");
-            foreach (var row in model.TaskDependencyList)
+            foreach (var row in model.TaskDependencyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TaskDependency' contains a row with empty Id.");
@@ -2964,11 +2964,11 @@ namespace MetaOrchestration
         private static byte[] SerializeTaskObjectEffectShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <TaskObjectEffectList>\n");
-            foreach (var row in model.TaskObjectEffectList)
+            foreach (var row in model.TaskObjectEffectList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TaskObjectEffect' contains a row with empty Id.");
@@ -3121,11 +3121,11 @@ namespace MetaOrchestration
         private static byte[] SerializeTaskOrderingResolutionShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaOrchestration>\n");
             builder.Append("  <TaskOrderingResolutionList>\n");
-            foreach (var row in model.TaskOrderingResolutionList)
+            foreach (var row in model.TaskOrderingResolutionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TaskOrderingResolution' contains a row with empty Id.");
@@ -3821,7 +3821,7 @@ namespace MetaOrchestration
             public void AddDataObjectId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DataObject' contains a row with empty Id.");
-                dataObjectIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dataObjectIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dataObjectIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DataObject' contains duplicate Id '{normalizedId}'.");
@@ -3833,7 +3833,7 @@ namespace MetaOrchestration
             public void AddDependencyIssueId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DependencyIssue' contains a row with empty Id.");
-                dependencyIssueIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dependencyIssueIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dependencyIssueIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DependencyIssue' contains duplicate Id '{normalizedId}'.");
@@ -3845,7 +3845,7 @@ namespace MetaOrchestration
             public void AddDependencyIssuePipelineId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DependencyIssuePipeline' contains a row with empty Id.");
-                dependencyIssuePipelineIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dependencyIssuePipelineIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dependencyIssuePipelineIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DependencyIssuePipeline' contains duplicate Id '{normalizedId}'.");
@@ -3857,7 +3857,7 @@ namespace MetaOrchestration
             public void AddLockCompatibilityPolicyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'LockCompatibilityPolicy' contains a row with empty Id.");
-                lockCompatibilityPolicyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                lockCompatibilityPolicyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!lockCompatibilityPolicyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'LockCompatibilityPolicy' contains duplicate Id '{normalizedId}'.");
@@ -3869,7 +3869,7 @@ namespace MetaOrchestration
             public void AddObjectAccessId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ObjectAccess' contains a row with empty Id.");
-                objectAccessIds ??= new HashSet<string>(StringComparer.Ordinal);
+                objectAccessIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!objectAccessIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ObjectAccess' contains duplicate Id '{normalizedId}'.");
@@ -3881,7 +3881,7 @@ namespace MetaOrchestration
             public void AddOrchestrationPlanId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OrchestrationPlan' contains a row with empty Id.");
-                orchestrationPlanIds ??= new HashSet<string>(StringComparer.Ordinal);
+                orchestrationPlanIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!orchestrationPlanIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OrchestrationPlan' contains duplicate Id '{normalizedId}'.");
@@ -3893,7 +3893,7 @@ namespace MetaOrchestration
             public void AddPipelineDependencyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PipelineDependency' contains a row with empty Id.");
-                pipelineDependencyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pipelineDependencyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pipelineDependencyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PipelineDependency' contains duplicate Id '{normalizedId}'.");
@@ -3905,7 +3905,7 @@ namespace MetaOrchestration
             public void AddPipelineObjectAccessId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PipelineObjectAccess' contains a row with empty Id.");
-                pipelineObjectAccessIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pipelineObjectAccessIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pipelineObjectAccessIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PipelineObjectAccess' contains duplicate Id '{normalizedId}'.");
@@ -3917,7 +3917,7 @@ namespace MetaOrchestration
             public void AddPipelineReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PipelineReference' contains a row with empty Id.");
-                pipelineReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pipelineReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pipelineReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PipelineReference' contains duplicate Id '{normalizedId}'.");
@@ -3929,7 +3929,7 @@ namespace MetaOrchestration
             public void AddPlannedTaskId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PlannedTask' contains a row with empty Id.");
-                plannedTaskIds ??= new HashSet<string>(StringComparer.Ordinal);
+                plannedTaskIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!plannedTaskIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PlannedTask' contains duplicate Id '{normalizedId}'.");
@@ -3941,7 +3941,7 @@ namespace MetaOrchestration
             public void AddPlannedTaskLockId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PlannedTaskLock' contains a row with empty Id.");
-                plannedTaskLockIds ??= new HashSet<string>(StringComparer.Ordinal);
+                plannedTaskLockIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!plannedTaskLockIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PlannedTaskLock' contains duplicate Id '{normalizedId}'.");
@@ -3953,7 +3953,7 @@ namespace MetaOrchestration
             public void AddRetryPolicyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RetryPolicy' contains a row with empty Id.");
-                retryPolicyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                retryPolicyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!retryPolicyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RetryPolicy' contains duplicate Id '{normalizedId}'.");
@@ -3965,7 +3965,7 @@ namespace MetaOrchestration
             public void AddRetryPolicyFailureClassId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RetryPolicyFailureClass' contains a row with empty Id.");
-                retryPolicyFailureClassIds ??= new HashSet<string>(StringComparer.Ordinal);
+                retryPolicyFailureClassIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!retryPolicyFailureClassIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RetryPolicyFailureClass' contains duplicate Id '{normalizedId}'.");
@@ -3977,7 +3977,7 @@ namespace MetaOrchestration
             public void AddRunPlanId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RunPlan' contains a row with empty Id.");
-                runPlanIds ??= new HashSet<string>(StringComparer.Ordinal);
+                runPlanIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!runPlanIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RunPlan' contains duplicate Id '{normalizedId}'.");
@@ -3989,7 +3989,7 @@ namespace MetaOrchestration
             public void AddRunPlanRetryPolicyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RunPlanRetryPolicy' contains a row with empty Id.");
-                runPlanRetryPolicyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                runPlanRetryPolicyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!runPlanRetryPolicyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RunPlanRetryPolicy' contains duplicate Id '{normalizedId}'.");
@@ -4001,7 +4001,7 @@ namespace MetaOrchestration
             public void AddTaskAccessProfileId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TaskAccessProfile' contains a row with empty Id.");
-                taskAccessProfileIds ??= new HashSet<string>(StringComparer.Ordinal);
+                taskAccessProfileIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!taskAccessProfileIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TaskAccessProfile' contains duplicate Id '{normalizedId}'.");
@@ -4013,7 +4013,7 @@ namespace MetaOrchestration
             public void AddTaskDependencyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TaskDependency' contains a row with empty Id.");
-                taskDependencyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                taskDependencyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!taskDependencyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TaskDependency' contains duplicate Id '{normalizedId}'.");
@@ -4025,7 +4025,7 @@ namespace MetaOrchestration
             public void AddTaskObjectEffectId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TaskObjectEffect' contains a row with empty Id.");
-                taskObjectEffectIds ??= new HashSet<string>(StringComparer.Ordinal);
+                taskObjectEffectIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!taskObjectEffectIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TaskObjectEffect' contains duplicate Id '{normalizedId}'.");
@@ -4037,7 +4037,7 @@ namespace MetaOrchestration
             public void AddTaskOrderingResolutionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TaskOrderingResolution' contains a row with empty Id.");
-                taskOrderingResolutionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                taskOrderingResolutionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!taskOrderingResolutionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TaskOrderingResolution' contains duplicate Id '{normalizedId}'.");
@@ -4517,7 +4517,7 @@ namespace MetaOrchestration
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

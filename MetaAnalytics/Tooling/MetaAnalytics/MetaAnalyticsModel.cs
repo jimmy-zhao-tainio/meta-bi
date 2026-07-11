@@ -676,11 +676,11 @@ namespace MetaAnalytics
         private static byte[] SerializeAggregationBehaviorShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <AggregationBehaviorList>\n");
-            foreach (var row in model.AggregationBehaviorList)
+            foreach (var row in model.AggregationBehaviorList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AggregationBehavior' contains a row with empty Id.");
@@ -793,11 +793,11 @@ namespace MetaAnalytics
         private static byte[] SerializeAnalyticsModelShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <AnalyticsModelList>\n");
-            foreach (var row in model.AnalyticsModelList)
+            foreach (var row in model.AnalyticsModelList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AnalyticsModel' contains a row with empty Id.");
@@ -943,11 +943,11 @@ namespace MetaAnalytics
         private static byte[] SerializeAttributeShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <AttributeList>\n");
-            foreach (var row in model.AttributeList)
+            foreach (var row in model.AttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Attribute' contains a row with empty Id.");
@@ -1108,11 +1108,11 @@ namespace MetaAnalytics
         private static byte[] SerializeAttributePermissionShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <AttributePermissionList>\n");
-            foreach (var row in model.AttributePermissionList)
+            foreach (var row in model.AttributePermissionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AttributePermission' contains a row with empty Id.");
@@ -1241,11 +1241,11 @@ namespace MetaAnalytics
         private static byte[] SerializeAttributeRelationshipShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <AttributeRelationshipList>\n");
-            foreach (var row in model.AttributeRelationshipList)
+            foreach (var row in model.AttributeRelationshipList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AttributeRelationship' contains a row with empty Id.");
@@ -1377,11 +1377,11 @@ namespace MetaAnalytics
         private static byte[] SerializeAttributeTranslationShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <AttributeTranslationList>\n");
-            foreach (var row in model.AttributeTranslationList)
+            foreach (var row in model.AttributeTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AttributeTranslation' contains a row with empty Id.");
@@ -1510,11 +1510,11 @@ namespace MetaAnalytics
         private static byte[] SerializeCultureShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <CultureList>\n");
-            foreach (var row in model.CultureList)
+            foreach (var row in model.CultureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Culture' contains a row with empty Id.");
@@ -1639,11 +1639,11 @@ namespace MetaAnalytics
         private static byte[] SerializeDataSourceShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <DataSourceList>\n");
-            foreach (var row in model.DataSourceList)
+            foreach (var row in model.DataSourceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DataSource' contains a row with empty Id.");
@@ -1780,11 +1780,11 @@ namespace MetaAnalytics
         private static byte[] SerializeHierarchyShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <HierarchyList>\n");
-            foreach (var row in model.HierarchyList)
+            foreach (var row in model.HierarchyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Hierarchy' contains a row with empty Id.");
@@ -1915,11 +1915,11 @@ namespace MetaAnalytics
         private static byte[] SerializeHierarchyLevelShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <HierarchyLevelList>\n");
-            foreach (var row in model.HierarchyLevelList)
+            foreach (var row in model.HierarchyLevelList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'HierarchyLevel' contains a row with empty Id.");
@@ -2045,11 +2045,11 @@ namespace MetaAnalytics
         private static byte[] SerializeHierarchyTranslationShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <HierarchyTranslationList>\n");
-            foreach (var row in model.HierarchyTranslationList)
+            foreach (var row in model.HierarchyTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'HierarchyTranslation' contains a row with empty Id.");
@@ -2193,11 +2193,11 @@ namespace MetaAnalytics
         private static byte[] SerializeMeasureShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <MeasureList>\n");
-            foreach (var row in model.MeasureList)
+            foreach (var row in model.MeasureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Measure' contains a row with empty Id.");
@@ -2342,11 +2342,11 @@ namespace MetaAnalytics
         private static byte[] SerializeMeasureTranslationShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <MeasureTranslationList>\n");
-            foreach (var row in model.MeasureTranslationList)
+            foreach (var row in model.MeasureTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MeasureTranslation' contains a row with empty Id.");
@@ -2475,11 +2475,11 @@ namespace MetaAnalytics
         private static byte[] SerializePerspectiveShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <PerspectiveList>\n");
-            foreach (var row in model.PerspectiveList)
+            foreach (var row in model.PerspectiveList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Perspective' contains a row with empty Id.");
@@ -2592,11 +2592,11 @@ namespace MetaAnalytics
         private static byte[] SerializePerspectiveAttributeShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <PerspectiveAttributeList>\n");
-            foreach (var row in model.PerspectiveAttributeList)
+            foreach (var row in model.PerspectiveAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveAttribute' contains a row with empty Id.");
@@ -2714,11 +2714,11 @@ namespace MetaAnalytics
         private static byte[] SerializePerspectiveHierarchyShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <PerspectiveHierarchyList>\n");
-            foreach (var row in model.PerspectiveHierarchyList)
+            foreach (var row in model.PerspectiveHierarchyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveHierarchy' contains a row with empty Id.");
@@ -2836,11 +2836,11 @@ namespace MetaAnalytics
         private static byte[] SerializePerspectiveMeasureShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <PerspectiveMeasureList>\n");
-            foreach (var row in model.PerspectiveMeasureList)
+            foreach (var row in model.PerspectiveMeasureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveMeasure' contains a row with empty Id.");
@@ -2958,11 +2958,11 @@ namespace MetaAnalytics
         private static byte[] SerializePerspectiveTableShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <PerspectiveTableList>\n");
-            foreach (var row in model.PerspectiveTableList)
+            foreach (var row in model.PerspectiveTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveTable' contains a row with empty Id.");
@@ -3086,11 +3086,11 @@ namespace MetaAnalytics
         private static byte[] SerializePerspectiveTranslationShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <PerspectiveTranslationList>\n");
-            foreach (var row in model.PerspectiveTranslationList)
+            foreach (var row in model.PerspectiveTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveTranslation' contains a row with empty Id.");
@@ -3252,11 +3252,11 @@ namespace MetaAnalytics
         private static byte[] SerializeRelationshipShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <RelationshipList>\n");
-            foreach (var row in model.RelationshipList)
+            foreach (var row in model.RelationshipList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Relationship' contains a row with empty Id.");
@@ -3452,11 +3452,11 @@ namespace MetaAnalytics
         private static byte[] SerializeRoleFilterShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <RoleFilterList>\n");
-            foreach (var row in model.RoleFilterList)
+            foreach (var row in model.RoleFilterList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RoleFilter' contains a row with empty Id.");
@@ -3583,11 +3583,11 @@ namespace MetaAnalytics
         private static byte[] SerializeRoleMemberShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <RoleMemberList>\n");
-            foreach (var row in model.RoleMemberList)
+            foreach (var row in model.RoleMemberList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RoleMember' contains a row with empty Id.");
@@ -3706,11 +3706,11 @@ namespace MetaAnalytics
         private static byte[] SerializeSecurityRoleShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <SecurityRoleList>\n");
-            foreach (var row in model.SecurityRoleList)
+            foreach (var row in model.SecurityRoleList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SecurityRole' contains a row with empty Id.");
@@ -3827,11 +3827,11 @@ namespace MetaAnalytics
         private static byte[] SerializeSortByAttributeShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <SortByAttributeList>\n");
-            foreach (var row in model.SortByAttributeList)
+            foreach (var row in model.SortByAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SortByAttribute' contains a row with empty Id.");
@@ -3968,11 +3968,11 @@ namespace MetaAnalytics
         private static byte[] SerializeTableShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <TableList>\n");
-            foreach (var row in model.TableList)
+            foreach (var row in model.TableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Table' contains a row with empty Id.");
@@ -4104,11 +4104,11 @@ namespace MetaAnalytics
         private static byte[] SerializeTablePermissionShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <TablePermissionList>\n");
-            foreach (var row in model.TablePermissionList)
+            foreach (var row in model.TablePermissionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TablePermission' contains a row with empty Id.");
@@ -4237,11 +4237,11 @@ namespace MetaAnalytics
         private static byte[] SerializeTableTranslationShard(MetaAnalyticsModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaAnalytics>\n");
             builder.Append("  <TableTranslationList>\n");
-            foreach (var row in model.TableTranslationList)
+            foreach (var row in model.TableTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableTranslation' contains a row with empty Id.");
@@ -5026,7 +5026,7 @@ namespace MetaAnalytics
             public void AddAggregationBehaviorId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AggregationBehavior' contains a row with empty Id.");
-                aggregationBehaviorIds ??= new HashSet<string>(StringComparer.Ordinal);
+                aggregationBehaviorIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!aggregationBehaviorIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AggregationBehavior' contains duplicate Id '{normalizedId}'.");
@@ -5038,7 +5038,7 @@ namespace MetaAnalytics
             public void AddAnalyticsModelId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AnalyticsModel' contains a row with empty Id.");
-                analyticsModelIds ??= new HashSet<string>(StringComparer.Ordinal);
+                analyticsModelIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!analyticsModelIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AnalyticsModel' contains duplicate Id '{normalizedId}'.");
@@ -5050,7 +5050,7 @@ namespace MetaAnalytics
             public void AddAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Attribute' contains a row with empty Id.");
-                attributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                attributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!attributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Attribute' contains duplicate Id '{normalizedId}'.");
@@ -5062,7 +5062,7 @@ namespace MetaAnalytics
             public void AddAttributePermissionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AttributePermission' contains a row with empty Id.");
-                attributePermissionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                attributePermissionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!attributePermissionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AttributePermission' contains duplicate Id '{normalizedId}'.");
@@ -5074,7 +5074,7 @@ namespace MetaAnalytics
             public void AddAttributeRelationshipId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AttributeRelationship' contains a row with empty Id.");
-                attributeRelationshipIds ??= new HashSet<string>(StringComparer.Ordinal);
+                attributeRelationshipIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!attributeRelationshipIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AttributeRelationship' contains duplicate Id '{normalizedId}'.");
@@ -5086,7 +5086,7 @@ namespace MetaAnalytics
             public void AddAttributeTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AttributeTranslation' contains a row with empty Id.");
-                attributeTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                attributeTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!attributeTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AttributeTranslation' contains duplicate Id '{normalizedId}'.");
@@ -5098,7 +5098,7 @@ namespace MetaAnalytics
             public void AddCultureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Culture' contains a row with empty Id.");
-                cultureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                cultureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!cultureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Culture' contains duplicate Id '{normalizedId}'.");
@@ -5110,7 +5110,7 @@ namespace MetaAnalytics
             public void AddDataSourceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DataSource' contains a row with empty Id.");
-                dataSourceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dataSourceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dataSourceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DataSource' contains duplicate Id '{normalizedId}'.");
@@ -5122,7 +5122,7 @@ namespace MetaAnalytics
             public void AddHierarchyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Hierarchy' contains a row with empty Id.");
-                hierarchyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                hierarchyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!hierarchyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Hierarchy' contains duplicate Id '{normalizedId}'.");
@@ -5134,7 +5134,7 @@ namespace MetaAnalytics
             public void AddHierarchyLevelId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'HierarchyLevel' contains a row with empty Id.");
-                hierarchyLevelIds ??= new HashSet<string>(StringComparer.Ordinal);
+                hierarchyLevelIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!hierarchyLevelIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'HierarchyLevel' contains duplicate Id '{normalizedId}'.");
@@ -5146,7 +5146,7 @@ namespace MetaAnalytics
             public void AddHierarchyTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'HierarchyTranslation' contains a row with empty Id.");
-                hierarchyTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                hierarchyTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!hierarchyTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'HierarchyTranslation' contains duplicate Id '{normalizedId}'.");
@@ -5158,7 +5158,7 @@ namespace MetaAnalytics
             public void AddMeasureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Measure' contains a row with empty Id.");
-                measureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                measureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!measureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Measure' contains duplicate Id '{normalizedId}'.");
@@ -5170,7 +5170,7 @@ namespace MetaAnalytics
             public void AddMeasureTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MeasureTranslation' contains a row with empty Id.");
-                measureTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                measureTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!measureTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MeasureTranslation' contains duplicate Id '{normalizedId}'.");
@@ -5182,7 +5182,7 @@ namespace MetaAnalytics
             public void AddPerspectiveId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Perspective' contains a row with empty Id.");
-                perspectiveIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Perspective' contains duplicate Id '{normalizedId}'.");
@@ -5194,7 +5194,7 @@ namespace MetaAnalytics
             public void AddPerspectiveAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveAttribute' contains a row with empty Id.");
-                perspectiveAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveAttribute' contains duplicate Id '{normalizedId}'.");
@@ -5206,7 +5206,7 @@ namespace MetaAnalytics
             public void AddPerspectiveHierarchyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveHierarchy' contains a row with empty Id.");
-                perspectiveHierarchyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveHierarchyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveHierarchyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveHierarchy' contains duplicate Id '{normalizedId}'.");
@@ -5218,7 +5218,7 @@ namespace MetaAnalytics
             public void AddPerspectiveMeasureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveMeasure' contains a row with empty Id.");
-                perspectiveMeasureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveMeasureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveMeasureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveMeasure' contains duplicate Id '{normalizedId}'.");
@@ -5230,7 +5230,7 @@ namespace MetaAnalytics
             public void AddPerspectiveTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveTable' contains a row with empty Id.");
-                perspectiveTableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveTableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveTable' contains duplicate Id '{normalizedId}'.");
@@ -5242,7 +5242,7 @@ namespace MetaAnalytics
             public void AddPerspectiveTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveTranslation' contains a row with empty Id.");
-                perspectiveTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveTranslation' contains duplicate Id '{normalizedId}'.");
@@ -5254,7 +5254,7 @@ namespace MetaAnalytics
             public void AddRelationshipId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Relationship' contains a row with empty Id.");
-                relationshipIds ??= new HashSet<string>(StringComparer.Ordinal);
+                relationshipIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!relationshipIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Relationship' contains duplicate Id '{normalizedId}'.");
@@ -5266,7 +5266,7 @@ namespace MetaAnalytics
             public void AddRoleFilterId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RoleFilter' contains a row with empty Id.");
-                roleFilterIds ??= new HashSet<string>(StringComparer.Ordinal);
+                roleFilterIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!roleFilterIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RoleFilter' contains duplicate Id '{normalizedId}'.");
@@ -5278,7 +5278,7 @@ namespace MetaAnalytics
             public void AddRoleMemberId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RoleMember' contains a row with empty Id.");
-                roleMemberIds ??= new HashSet<string>(StringComparer.Ordinal);
+                roleMemberIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!roleMemberIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RoleMember' contains duplicate Id '{normalizedId}'.");
@@ -5290,7 +5290,7 @@ namespace MetaAnalytics
             public void AddSecurityRoleId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SecurityRole' contains a row with empty Id.");
-                securityRoleIds ??= new HashSet<string>(StringComparer.Ordinal);
+                securityRoleIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!securityRoleIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SecurityRole' contains duplicate Id '{normalizedId}'.");
@@ -5302,7 +5302,7 @@ namespace MetaAnalytics
             public void AddSortByAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SortByAttribute' contains a row with empty Id.");
-                sortByAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sortByAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sortByAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SortByAttribute' contains duplicate Id '{normalizedId}'.");
@@ -5314,7 +5314,7 @@ namespace MetaAnalytics
             public void AddTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Table' contains a row with empty Id.");
-                tableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Table' contains duplicate Id '{normalizedId}'.");
@@ -5326,7 +5326,7 @@ namespace MetaAnalytics
             public void AddTablePermissionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TablePermission' contains a row with empty Id.");
-                tablePermissionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tablePermissionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tablePermissionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TablePermission' contains duplicate Id '{normalizedId}'.");
@@ -5338,7 +5338,7 @@ namespace MetaAnalytics
             public void AddTableTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableTranslation' contains a row with empty Id.");
-                tableTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableTranslation' contains duplicate Id '{normalizedId}'.");
@@ -5945,7 +5945,7 @@ namespace MetaAnalytics
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

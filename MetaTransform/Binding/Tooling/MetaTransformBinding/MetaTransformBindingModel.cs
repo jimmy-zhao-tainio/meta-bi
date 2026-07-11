@@ -515,11 +515,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeColumnShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ColumnList>\n");
-            foreach (var row in model.ColumnList)
+            foreach (var row in model.ColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Column' contains a row with empty Id.");
@@ -635,11 +635,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeColumnReferenceShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ColumnReferenceList>\n");
-            foreach (var row in model.ColumnReferenceList)
+            foreach (var row in model.ColumnReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ColumnReference' contains a row with empty Id.");
@@ -768,11 +768,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeOutputRowsetShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <OutputRowsetList>\n");
-            foreach (var row in model.OutputRowsetList)
+            foreach (var row in model.OutputRowsetList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OutputRowset' contains a row with empty Id.");
@@ -896,11 +896,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeRowsetShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <RowsetList>\n");
-            foreach (var row in model.RowsetList)
+            foreach (var row in model.RowsetList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Rowset' contains a row with empty Id.");
@@ -1020,11 +1020,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeSourceTargetShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <SourceTargetList>\n");
-            foreach (var row in model.SourceTargetList)
+            foreach (var row in model.SourceTargetList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SourceTarget' contains a row with empty Id.");
@@ -1153,11 +1153,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeTableSourceShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <TableSourceList>\n");
-            foreach (var row in model.TableSourceList)
+            foreach (var row in model.TableSourceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableSource' contains a row with empty Id.");
@@ -1274,11 +1274,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeTransformBindingShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <TransformBindingList>\n");
-            foreach (var row in model.TransformBindingList)
+            foreach (var row in model.TransformBindingList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TransformBinding' contains a row with empty Id.");
@@ -1381,11 +1381,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeTransformBindingTargetShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <TransformBindingTargetList>\n");
-            foreach (var row in model.TransformBindingTargetList)
+            foreach (var row in model.TransformBindingTargetList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TransformBindingTarget' contains a row with empty Id.");
@@ -1491,11 +1491,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeValidationShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ValidationList>\n");
-            foreach (var row in model.ValidationList)
+            foreach (var row in model.ValidationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Validation' contains a row with empty Id.");
@@ -1606,11 +1606,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeValidationSourceColumnLinkShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ValidationSourceColumnLinkList>\n");
-            foreach (var row in model.ValidationSourceColumnLinkList)
+            foreach (var row in model.ValidationSourceColumnLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ValidationSourceColumnLink' contains a row with empty Id.");
@@ -1732,11 +1732,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeValidationSourceRowsetLinkShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ValidationSourceRowsetLinkList>\n");
-            foreach (var row in model.ValidationSourceRowsetLinkList)
+            foreach (var row in model.ValidationSourceRowsetLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ValidationSourceRowsetLink' contains a row with empty Id.");
@@ -1858,11 +1858,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeValidationTargetColumnLinkShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ValidationTargetColumnLinkList>\n");
-            foreach (var row in model.ValidationTargetColumnLinkList)
+            foreach (var row in model.ValidationTargetColumnLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ValidationTargetColumnLink' contains a row with empty Id.");
@@ -1984,11 +1984,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeValidationTargetColumnTypeExactShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ValidationTargetColumnTypeExactList>\n");
-            foreach (var row in model.ValidationTargetColumnTypeExactList)
+            foreach (var row in model.ValidationTargetColumnTypeExactList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ValidationTargetColumnTypeExact' contains a row with empty Id.");
@@ -2098,11 +2098,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeValidationTargetColumnTypeNotClassifiedShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ValidationTargetColumnTypeNotClassifiedList>\n");
-            foreach (var row in model.ValidationTargetColumnTypeNotClassifiedList)
+            foreach (var row in model.ValidationTargetColumnTypeNotClassifiedList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ValidationTargetColumnTypeNotClassified' contains a row with empty Id.");
@@ -2214,11 +2214,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeValidationTargetColumnTypeSanctionedConversionShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ValidationTargetColumnTypeSanctionedConversionList>\n");
-            foreach (var row in model.ValidationTargetColumnTypeSanctionedConversionList)
+            foreach (var row in model.ValidationTargetColumnTypeSanctionedConversionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ValidationTargetColumnTypeSanctionedConversion' contains a row with empty Id.");
@@ -2328,11 +2328,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeValidationTargetIgnoredColumnShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ValidationTargetIgnoredColumnList>\n");
-            foreach (var row in model.ValidationTargetIgnoredColumnList)
+            foreach (var row in model.ValidationTargetIgnoredColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ValidationTargetIgnoredColumn' contains a row with empty Id.");
@@ -2447,11 +2447,11 @@ namespace MetaTransformBinding
         private static byte[] SerializeValidationTargetRowsetLinkShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformBinding>\n");
             builder.Append("  <ValidationTargetRowsetLinkList>\n");
-            foreach (var row in model.ValidationTargetRowsetLinkList)
+            foreach (var row in model.ValidationTargetRowsetLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ValidationTargetRowsetLink' contains a row with empty Id.");
@@ -2930,7 +2930,7 @@ namespace MetaTransformBinding
             public void AddColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Column' contains a row with empty Id.");
-                columnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                columnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!columnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Column' contains duplicate Id '{normalizedId}'.");
@@ -2942,7 +2942,7 @@ namespace MetaTransformBinding
             public void AddColumnReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ColumnReference' contains a row with empty Id.");
-                columnReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                columnReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!columnReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ColumnReference' contains duplicate Id '{normalizedId}'.");
@@ -2954,7 +2954,7 @@ namespace MetaTransformBinding
             public void AddOutputRowsetId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OutputRowset' contains a row with empty Id.");
-                outputRowsetIds ??= new HashSet<string>(StringComparer.Ordinal);
+                outputRowsetIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!outputRowsetIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OutputRowset' contains duplicate Id '{normalizedId}'.");
@@ -2966,7 +2966,7 @@ namespace MetaTransformBinding
             public void AddRowsetId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Rowset' contains a row with empty Id.");
-                rowsetIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rowsetIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rowsetIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Rowset' contains duplicate Id '{normalizedId}'.");
@@ -2978,7 +2978,7 @@ namespace MetaTransformBinding
             public void AddSourceTargetId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SourceTarget' contains a row with empty Id.");
-                sourceTargetIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sourceTargetIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sourceTargetIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SourceTarget' contains duplicate Id '{normalizedId}'.");
@@ -2990,7 +2990,7 @@ namespace MetaTransformBinding
             public void AddTableSourceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableSource' contains a row with empty Id.");
-                tableSourceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableSourceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableSourceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableSource' contains duplicate Id '{normalizedId}'.");
@@ -3002,7 +3002,7 @@ namespace MetaTransformBinding
             public void AddTransformBindingId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TransformBinding' contains a row with empty Id.");
-                transformBindingIds ??= new HashSet<string>(StringComparer.Ordinal);
+                transformBindingIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!transformBindingIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransformBinding' contains duplicate Id '{normalizedId}'.");
@@ -3014,7 +3014,7 @@ namespace MetaTransformBinding
             public void AddTransformBindingTargetId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TransformBindingTarget' contains a row with empty Id.");
-                transformBindingTargetIds ??= new HashSet<string>(StringComparer.Ordinal);
+                transformBindingTargetIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!transformBindingTargetIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransformBindingTarget' contains duplicate Id '{normalizedId}'.");
@@ -3026,7 +3026,7 @@ namespace MetaTransformBinding
             public void AddValidationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Validation' contains a row with empty Id.");
-                validationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                validationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!validationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Validation' contains duplicate Id '{normalizedId}'.");
@@ -3038,7 +3038,7 @@ namespace MetaTransformBinding
             public void AddValidationSourceColumnLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ValidationSourceColumnLink' contains a row with empty Id.");
-                validationSourceColumnLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                validationSourceColumnLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!validationSourceColumnLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ValidationSourceColumnLink' contains duplicate Id '{normalizedId}'.");
@@ -3050,7 +3050,7 @@ namespace MetaTransformBinding
             public void AddValidationSourceRowsetLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ValidationSourceRowsetLink' contains a row with empty Id.");
-                validationSourceRowsetLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                validationSourceRowsetLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!validationSourceRowsetLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ValidationSourceRowsetLink' contains duplicate Id '{normalizedId}'.");
@@ -3062,7 +3062,7 @@ namespace MetaTransformBinding
             public void AddValidationTargetColumnLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ValidationTargetColumnLink' contains a row with empty Id.");
-                validationTargetColumnLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                validationTargetColumnLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!validationTargetColumnLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ValidationTargetColumnLink' contains duplicate Id '{normalizedId}'.");
@@ -3074,7 +3074,7 @@ namespace MetaTransformBinding
             public void AddValidationTargetColumnTypeExactId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ValidationTargetColumnTypeExact' contains a row with empty Id.");
-                validationTargetColumnTypeExactIds ??= new HashSet<string>(StringComparer.Ordinal);
+                validationTargetColumnTypeExactIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!validationTargetColumnTypeExactIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ValidationTargetColumnTypeExact' contains duplicate Id '{normalizedId}'.");
@@ -3086,7 +3086,7 @@ namespace MetaTransformBinding
             public void AddValidationTargetColumnTypeNotClassifiedId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ValidationTargetColumnTypeNotClassified' contains a row with empty Id.");
-                validationTargetColumnTypeNotClassifiedIds ??= new HashSet<string>(StringComparer.Ordinal);
+                validationTargetColumnTypeNotClassifiedIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!validationTargetColumnTypeNotClassifiedIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ValidationTargetColumnTypeNotClassified' contains duplicate Id '{normalizedId}'.");
@@ -3098,7 +3098,7 @@ namespace MetaTransformBinding
             public void AddValidationTargetColumnTypeSanctionedConversionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ValidationTargetColumnTypeSanctionedConversion' contains a row with empty Id.");
-                validationTargetColumnTypeSanctionedConversionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                validationTargetColumnTypeSanctionedConversionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!validationTargetColumnTypeSanctionedConversionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ValidationTargetColumnTypeSanctionedConversion' contains duplicate Id '{normalizedId}'.");
@@ -3110,7 +3110,7 @@ namespace MetaTransformBinding
             public void AddValidationTargetIgnoredColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ValidationTargetIgnoredColumn' contains a row with empty Id.");
-                validationTargetIgnoredColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                validationTargetIgnoredColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!validationTargetIgnoredColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ValidationTargetIgnoredColumn' contains duplicate Id '{normalizedId}'.");
@@ -3122,7 +3122,7 @@ namespace MetaTransformBinding
             public void AddValidationTargetRowsetLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ValidationTargetRowsetLink' contains a row with empty Id.");
-                validationTargetRowsetLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                validationTargetRowsetLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!validationTargetRowsetLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ValidationTargetRowsetLink' contains duplicate Id '{normalizedId}'.");
@@ -3501,7 +3501,7 @@ namespace MetaTransformBinding
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

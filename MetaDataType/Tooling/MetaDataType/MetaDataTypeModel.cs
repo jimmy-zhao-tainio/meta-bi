@@ -281,11 +281,11 @@ namespace MetaDataType
         private static byte[] SerializeDataTypeShard(MetaDataTypeModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataType>\n");
             builder.Append("  <DataTypeList>\n");
-            foreach (var row in model.DataTypeList)
+            foreach (var row in model.DataTypeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DataType' contains a row with empty Id.");
@@ -403,11 +403,11 @@ namespace MetaDataType
         private static byte[] SerializeDataTypeSystemShard(MetaDataTypeModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataType>\n");
             builder.Append("  <DataTypeSystemList>\n");
-            foreach (var row in model.DataTypeSystemList)
+            foreach (var row in model.DataTypeSystemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DataTypeSystem' contains a row with empty Id.");
@@ -480,7 +480,7 @@ namespace MetaDataType
             public void AddDataTypeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DataType' contains a row with empty Id.");
-                dataTypeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dataTypeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dataTypeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DataType' contains duplicate Id '{normalizedId}'.");
@@ -492,7 +492,7 @@ namespace MetaDataType
             public void AddDataTypeSystemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DataTypeSystem' contains a row with empty Id.");
-                dataTypeSystemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dataTypeSystemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dataTypeSystemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DataTypeSystem' contains duplicate Id '{normalizedId}'.");
@@ -604,7 +604,7 @@ namespace MetaDataType
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

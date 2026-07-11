@@ -721,11 +721,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeAccumulatingSnapshotFactShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <AccumulatingSnapshotFactList>\n");
-            foreach (var row in model.AccumulatingSnapshotFactList)
+            foreach (var row in model.AccumulatingSnapshotFactList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AccumulatingSnapshotFact' contains a row with empty Id.");
@@ -846,11 +846,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeAccumulatingSnapshotMilestoneShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <AccumulatingSnapshotMilestoneList>\n");
-            foreach (var row in model.AccumulatingSnapshotMilestoneList)
+            foreach (var row in model.AccumulatingSnapshotMilestoneList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AccumulatingSnapshotMilestone' contains a row with empty Id.");
@@ -968,11 +968,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeAggregateFactShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <AggregateFactList>\n");
-            foreach (var row in model.AggregateFactList)
+            foreach (var row in model.AggregateFactList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AggregateFact' contains a row with empty Id.");
@@ -1103,11 +1103,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeBridgeParticipantShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <BridgeParticipantList>\n");
-            foreach (var row in model.BridgeParticipantList)
+            foreach (var row in model.BridgeParticipantList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BridgeParticipant' contains a row with empty Id.");
@@ -1234,11 +1234,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeBridgeTableShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <BridgeTableList>\n");
-            foreach (var row in model.BridgeTableList)
+            foreach (var row in model.BridgeTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BridgeTable' contains a row with empty Id.");
@@ -1357,11 +1357,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeBridgeWeightShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <BridgeWeightList>\n");
-            foreach (var row in model.BridgeWeightList)
+            foreach (var row in model.BridgeWeightList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BridgeWeight' contains a row with empty Id.");
@@ -1478,11 +1478,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeConformedDimensionShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <ConformedDimensionList>\n");
-            foreach (var row in model.ConformedDimensionList)
+            foreach (var row in model.ConformedDimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ConformedDimension' contains a row with empty Id.");
@@ -1604,11 +1604,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeDegenerateDimensionShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <DegenerateDimensionList>\n");
-            foreach (var row in model.DegenerateDimensionList)
+            foreach (var row in model.DegenerateDimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DegenerateDimension' contains a row with empty Id.");
@@ -1726,11 +1726,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeDimensionShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <DimensionList>\n");
-            foreach (var row in model.DimensionList)
+            foreach (var row in model.DimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Dimension' contains a row with empty Id.");
@@ -1855,11 +1855,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeDimensionAttributeShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <DimensionAttributeList>\n");
-            foreach (var row in model.DimensionAttributeList)
+            foreach (var row in model.DimensionAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionAttribute' contains a row with empty Id.");
@@ -1981,11 +1981,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeDimensionBusinessKeyShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <DimensionBusinessKeyList>\n");
-            foreach (var row in model.DimensionBusinessKeyList)
+            foreach (var row in model.DimensionBusinessKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionBusinessKey' contains a row with empty Id.");
@@ -2101,11 +2101,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeDimensionBusinessKeyPartShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <DimensionBusinessKeyPartList>\n");
-            foreach (var row in model.DimensionBusinessKeyPartList)
+            foreach (var row in model.DimensionBusinessKeyPartList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionBusinessKeyPart' contains a row with empty Id.");
@@ -2227,11 +2227,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeDimensionHierarchyShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <DimensionHierarchyList>\n");
-            foreach (var row in model.DimensionHierarchyList)
+            foreach (var row in model.DimensionHierarchyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionHierarchy' contains a row with empty Id.");
@@ -2350,11 +2350,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeDimensionHierarchyLevelShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <DimensionHierarchyLevelList>\n");
-            foreach (var row in model.DimensionHierarchyLevelList)
+            foreach (var row in model.DimensionHierarchyLevelList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionHierarchyLevel' contains a row with empty Id.");
@@ -2477,11 +2477,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeFactShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <FactList>\n");
-            foreach (var row in model.FactList)
+            foreach (var row in model.FactList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Fact' contains a row with empty Id.");
@@ -2603,11 +2603,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeFactBridgeShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <FactBridgeList>\n");
-            foreach (var row in model.FactBridgeList)
+            foreach (var row in model.FactBridgeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FactBridge' contains a row with empty Id.");
@@ -2743,11 +2743,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeFactDimensionShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <FactDimensionList>\n");
-            foreach (var row in model.FactDimensionList)
+            foreach (var row in model.FactDimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FactDimension' contains a row with empty Id.");
@@ -2878,11 +2878,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeFactGrainShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <FactGrainList>\n");
-            foreach (var row in model.FactGrainList)
+            foreach (var row in model.FactGrainList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FactGrain' contains a row with empty Id.");
@@ -2992,11 +2992,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeFactlessFactShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <FactlessFactList>\n");
-            foreach (var row in model.FactlessFactList)
+            foreach (var row in model.FactlessFactList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FactlessFact' contains a row with empty Id.");
@@ -3120,11 +3120,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeFactMeasureShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <FactMeasureList>\n");
-            foreach (var row in model.FactMeasureList)
+            foreach (var row in model.FactMeasureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FactMeasure' contains a row with empty Id.");
@@ -3243,11 +3243,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeJunkDimensionShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <JunkDimensionList>\n");
-            foreach (var row in model.JunkDimensionList)
+            foreach (var row in model.JunkDimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JunkDimension' contains a row with empty Id.");
@@ -3365,11 +3365,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeJunkDimensionComponentShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <JunkDimensionComponentList>\n");
-            foreach (var row in model.JunkDimensionComponentList)
+            foreach (var row in model.JunkDimensionComponentList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JunkDimensionComponent' contains a row with empty Id.");
@@ -3498,11 +3498,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeMiniDimensionShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <MiniDimensionList>\n");
-            foreach (var row in model.MiniDimensionList)
+            foreach (var row in model.MiniDimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MiniDimension' contains a row with empty Id.");
@@ -3640,11 +3640,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeOutriggerDimensionShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <OutriggerDimensionList>\n");
-            foreach (var row in model.OutriggerDimensionList)
+            foreach (var row in model.OutriggerDimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OutriggerDimension' contains a row with empty Id.");
@@ -3775,11 +3775,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializePeriodicSnapshotFactShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <PeriodicSnapshotFactList>\n");
-            foreach (var row in model.PeriodicSnapshotFactList)
+            foreach (var row in model.PeriodicSnapshotFactList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PeriodicSnapshotFact' contains a row with empty Id.");
@@ -3895,11 +3895,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeSlowlyChangingDimensionShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <SlowlyChangingDimensionList>\n");
-            foreach (var row in model.SlowlyChangingDimensionList)
+            foreach (var row in model.SlowlyChangingDimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SlowlyChangingDimension' contains a row with empty Id.");
@@ -4015,11 +4015,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeTransactionFactShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <TransactionFactList>\n");
-            foreach (var row in model.TransactionFactList)
+            foreach (var row in model.TransactionFactList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TransactionFact' contains a row with empty Id.");
@@ -4134,11 +4134,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeType1DimensionAttributeShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <Type1DimensionAttributeList>\n");
-            foreach (var row in model.Type1DimensionAttributeList)
+            foreach (var row in model.Type1DimensionAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Type1DimensionAttribute' contains a row with empty Id.");
@@ -4263,11 +4263,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeType2DimensionAttributeShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <Type2DimensionAttributeList>\n");
-            foreach (var row in model.Type2DimensionAttributeList)
+            foreach (var row in model.Type2DimensionAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Type2DimensionAttribute' contains a row with empty Id.");
@@ -4386,11 +4386,11 @@ namespace MetaDataWarehouse
         private static byte[] SerializeWarehouseShard(MetaDataWarehouseModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouse>\n");
             builder.Append("  <WarehouseList>\n");
-            foreach (var row in model.WarehouseList)
+            foreach (var row in model.WarehouseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Warehouse' contains a row with empty Id.");
@@ -5092,7 +5092,7 @@ namespace MetaDataWarehouse
             public void AddAccumulatingSnapshotFactId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AccumulatingSnapshotFact' contains a row with empty Id.");
-                accumulatingSnapshotFactIds ??= new HashSet<string>(StringComparer.Ordinal);
+                accumulatingSnapshotFactIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!accumulatingSnapshotFactIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AccumulatingSnapshotFact' contains duplicate Id '{normalizedId}'.");
@@ -5104,7 +5104,7 @@ namespace MetaDataWarehouse
             public void AddAccumulatingSnapshotMilestoneId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AccumulatingSnapshotMilestone' contains a row with empty Id.");
-                accumulatingSnapshotMilestoneIds ??= new HashSet<string>(StringComparer.Ordinal);
+                accumulatingSnapshotMilestoneIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!accumulatingSnapshotMilestoneIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AccumulatingSnapshotMilestone' contains duplicate Id '{normalizedId}'.");
@@ -5116,7 +5116,7 @@ namespace MetaDataWarehouse
             public void AddAggregateFactId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AggregateFact' contains a row with empty Id.");
-                aggregateFactIds ??= new HashSet<string>(StringComparer.Ordinal);
+                aggregateFactIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!aggregateFactIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AggregateFact' contains duplicate Id '{normalizedId}'.");
@@ -5128,7 +5128,7 @@ namespace MetaDataWarehouse
             public void AddBridgeParticipantId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BridgeParticipant' contains a row with empty Id.");
-                bridgeParticipantIds ??= new HashSet<string>(StringComparer.Ordinal);
+                bridgeParticipantIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!bridgeParticipantIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BridgeParticipant' contains duplicate Id '{normalizedId}'.");
@@ -5140,7 +5140,7 @@ namespace MetaDataWarehouse
             public void AddBridgeTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BridgeTable' contains a row with empty Id.");
-                bridgeTableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                bridgeTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!bridgeTableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BridgeTable' contains duplicate Id '{normalizedId}'.");
@@ -5152,7 +5152,7 @@ namespace MetaDataWarehouse
             public void AddBridgeWeightId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BridgeWeight' contains a row with empty Id.");
-                bridgeWeightIds ??= new HashSet<string>(StringComparer.Ordinal);
+                bridgeWeightIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!bridgeWeightIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BridgeWeight' contains duplicate Id '{normalizedId}'.");
@@ -5164,7 +5164,7 @@ namespace MetaDataWarehouse
             public void AddConformedDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ConformedDimension' contains a row with empty Id.");
-                conformedDimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                conformedDimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!conformedDimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ConformedDimension' contains duplicate Id '{normalizedId}'.");
@@ -5176,7 +5176,7 @@ namespace MetaDataWarehouse
             public void AddDegenerateDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DegenerateDimension' contains a row with empty Id.");
-                degenerateDimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                degenerateDimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!degenerateDimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DegenerateDimension' contains duplicate Id '{normalizedId}'.");
@@ -5188,7 +5188,7 @@ namespace MetaDataWarehouse
             public void AddDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Dimension' contains a row with empty Id.");
-                dimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Dimension' contains duplicate Id '{normalizedId}'.");
@@ -5200,7 +5200,7 @@ namespace MetaDataWarehouse
             public void AddDimensionAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionAttribute' contains a row with empty Id.");
-                dimensionAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionAttribute' contains duplicate Id '{normalizedId}'.");
@@ -5212,7 +5212,7 @@ namespace MetaDataWarehouse
             public void AddDimensionBusinessKeyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionBusinessKey' contains a row with empty Id.");
-                dimensionBusinessKeyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionBusinessKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionBusinessKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionBusinessKey' contains duplicate Id '{normalizedId}'.");
@@ -5224,7 +5224,7 @@ namespace MetaDataWarehouse
             public void AddDimensionBusinessKeyPartId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionBusinessKeyPart' contains a row with empty Id.");
-                dimensionBusinessKeyPartIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionBusinessKeyPartIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionBusinessKeyPartIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionBusinessKeyPart' contains duplicate Id '{normalizedId}'.");
@@ -5236,7 +5236,7 @@ namespace MetaDataWarehouse
             public void AddDimensionHierarchyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionHierarchy' contains a row with empty Id.");
-                dimensionHierarchyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionHierarchyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionHierarchyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionHierarchy' contains duplicate Id '{normalizedId}'.");
@@ -5248,7 +5248,7 @@ namespace MetaDataWarehouse
             public void AddDimensionHierarchyLevelId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionHierarchyLevel' contains a row with empty Id.");
-                dimensionHierarchyLevelIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionHierarchyLevelIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionHierarchyLevelIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionHierarchyLevel' contains duplicate Id '{normalizedId}'.");
@@ -5260,7 +5260,7 @@ namespace MetaDataWarehouse
             public void AddFactId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Fact' contains a row with empty Id.");
-                factIds ??= new HashSet<string>(StringComparer.Ordinal);
+                factIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!factIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Fact' contains duplicate Id '{normalizedId}'.");
@@ -5272,7 +5272,7 @@ namespace MetaDataWarehouse
             public void AddFactBridgeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FactBridge' contains a row with empty Id.");
-                factBridgeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                factBridgeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!factBridgeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FactBridge' contains duplicate Id '{normalizedId}'.");
@@ -5284,7 +5284,7 @@ namespace MetaDataWarehouse
             public void AddFactDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FactDimension' contains a row with empty Id.");
-                factDimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                factDimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!factDimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FactDimension' contains duplicate Id '{normalizedId}'.");
@@ -5296,7 +5296,7 @@ namespace MetaDataWarehouse
             public void AddFactGrainId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FactGrain' contains a row with empty Id.");
-                factGrainIds ??= new HashSet<string>(StringComparer.Ordinal);
+                factGrainIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!factGrainIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FactGrain' contains duplicate Id '{normalizedId}'.");
@@ -5308,7 +5308,7 @@ namespace MetaDataWarehouse
             public void AddFactlessFactId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FactlessFact' contains a row with empty Id.");
-                factlessFactIds ??= new HashSet<string>(StringComparer.Ordinal);
+                factlessFactIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!factlessFactIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FactlessFact' contains duplicate Id '{normalizedId}'.");
@@ -5320,7 +5320,7 @@ namespace MetaDataWarehouse
             public void AddFactMeasureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FactMeasure' contains a row with empty Id.");
-                factMeasureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                factMeasureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!factMeasureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FactMeasure' contains duplicate Id '{normalizedId}'.");
@@ -5332,7 +5332,7 @@ namespace MetaDataWarehouse
             public void AddJunkDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JunkDimension' contains a row with empty Id.");
-                junkDimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                junkDimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!junkDimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JunkDimension' contains duplicate Id '{normalizedId}'.");
@@ -5344,7 +5344,7 @@ namespace MetaDataWarehouse
             public void AddJunkDimensionComponentId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JunkDimensionComponent' contains a row with empty Id.");
-                junkDimensionComponentIds ??= new HashSet<string>(StringComparer.Ordinal);
+                junkDimensionComponentIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!junkDimensionComponentIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JunkDimensionComponent' contains duplicate Id '{normalizedId}'.");
@@ -5356,7 +5356,7 @@ namespace MetaDataWarehouse
             public void AddMiniDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MiniDimension' contains a row with empty Id.");
-                miniDimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                miniDimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!miniDimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MiniDimension' contains duplicate Id '{normalizedId}'.");
@@ -5368,7 +5368,7 @@ namespace MetaDataWarehouse
             public void AddOutriggerDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OutriggerDimension' contains a row with empty Id.");
-                outriggerDimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                outriggerDimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!outriggerDimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OutriggerDimension' contains duplicate Id '{normalizedId}'.");
@@ -5380,7 +5380,7 @@ namespace MetaDataWarehouse
             public void AddPeriodicSnapshotFactId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PeriodicSnapshotFact' contains a row with empty Id.");
-                periodicSnapshotFactIds ??= new HashSet<string>(StringComparer.Ordinal);
+                periodicSnapshotFactIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!periodicSnapshotFactIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PeriodicSnapshotFact' contains duplicate Id '{normalizedId}'.");
@@ -5392,7 +5392,7 @@ namespace MetaDataWarehouse
             public void AddSlowlyChangingDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SlowlyChangingDimension' contains a row with empty Id.");
-                slowlyChangingDimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                slowlyChangingDimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!slowlyChangingDimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SlowlyChangingDimension' contains duplicate Id '{normalizedId}'.");
@@ -5404,7 +5404,7 @@ namespace MetaDataWarehouse
             public void AddTransactionFactId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TransactionFact' contains a row with empty Id.");
-                transactionFactIds ??= new HashSet<string>(StringComparer.Ordinal);
+                transactionFactIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!transactionFactIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransactionFact' contains duplicate Id '{normalizedId}'.");
@@ -5416,7 +5416,7 @@ namespace MetaDataWarehouse
             public void AddType1DimensionAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Type1DimensionAttribute' contains a row with empty Id.");
-                type1DimensionAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                type1DimensionAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!type1DimensionAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Type1DimensionAttribute' contains duplicate Id '{normalizedId}'.");
@@ -5428,7 +5428,7 @@ namespace MetaDataWarehouse
             public void AddType2DimensionAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Type2DimensionAttribute' contains a row with empty Id.");
-                type2DimensionAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                type2DimensionAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!type2DimensionAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Type2DimensionAttribute' contains duplicate Id '{normalizedId}'.");
@@ -5440,7 +5440,7 @@ namespace MetaDataWarehouse
             public void AddWarehouseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Warehouse' contains a row with empty Id.");
-                warehouseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                warehouseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!warehouseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Warehouse' contains duplicate Id '{normalizedId}'.");
@@ -6074,7 +6074,7 @@ namespace MetaDataWarehouse
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

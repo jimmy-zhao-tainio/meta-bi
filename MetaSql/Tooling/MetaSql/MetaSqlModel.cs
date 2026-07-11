@@ -461,11 +461,11 @@ namespace MetaSql
         private static byte[] SerializeDatabaseShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <DatabaseList>\n");
-            foreach (var row in model.DatabaseList)
+            foreach (var row in model.DatabaseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Database' contains a row with empty Id.");
@@ -571,11 +571,11 @@ namespace MetaSql
         private static byte[] SerializeForeignKeyShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <ForeignKeyList>\n");
-            foreach (var row in model.ForeignKeyList)
+            foreach (var row in model.ForeignKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ForeignKey' contains a row with empty Id.");
@@ -700,11 +700,11 @@ namespace MetaSql
         private static byte[] SerializeForeignKeyColumnShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <ForeignKeyColumnList>\n");
-            foreach (var row in model.ForeignKeyColumnList)
+            foreach (var row in model.ForeignKeyColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ForeignKeyColumn' contains a row with empty Id.");
@@ -842,11 +842,11 @@ namespace MetaSql
         private static byte[] SerializeFunctionShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <FunctionList>\n");
-            foreach (var row in model.FunctionList)
+            foreach (var row in model.FunctionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Function' contains a row with empty Id.");
@@ -970,11 +970,11 @@ namespace MetaSql
         private static byte[] SerializeIndexShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <IndexList>\n");
-            foreach (var row in model.IndexList)
+            foreach (var row in model.IndexList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Index' contains a row with empty Id.");
@@ -1104,11 +1104,11 @@ namespace MetaSql
         private static byte[] SerializeIndexColumnShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <IndexColumnList>\n");
-            foreach (var row in model.IndexColumnList)
+            foreach (var row in model.IndexColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'IndexColumn' contains a row with empty Id.");
@@ -1238,11 +1238,11 @@ namespace MetaSql
         private static byte[] SerializePrimaryKeyShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <PrimaryKeyList>\n");
-            foreach (var row in model.PrimaryKeyList)
+            foreach (var row in model.PrimaryKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PrimaryKey' contains a row with empty Id.");
@@ -1361,11 +1361,11 @@ namespace MetaSql
         private static byte[] SerializePrimaryKeyColumnShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <PrimaryKeyColumnList>\n");
-            foreach (var row in model.PrimaryKeyColumnList)
+            foreach (var row in model.PrimaryKeyColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PrimaryKeyColumn' contains a row with empty Id.");
@@ -1488,11 +1488,11 @@ namespace MetaSql
         private static byte[] SerializeSchemaShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <SchemaList>\n");
-            foreach (var row in model.SchemaList)
+            foreach (var row in model.SchemaList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Schema' contains a row with empty Id.");
@@ -1607,11 +1607,11 @@ namespace MetaSql
         private static byte[] SerializeStoredProcedureShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <StoredProcedureList>\n");
-            foreach (var row in model.StoredProcedureList)
+            foreach (var row in model.StoredProcedureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'StoredProcedure' contains a row with empty Id.");
@@ -1725,11 +1725,11 @@ namespace MetaSql
         private static byte[] SerializeTableShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <TableList>\n");
-            foreach (var row in model.TableList)
+            foreach (var row in model.TableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Table' contains a row with empty Id.");
@@ -1862,11 +1862,11 @@ namespace MetaSql
         private static byte[] SerializeTableColumnShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <TableColumnList>\n");
-            foreach (var row in model.TableColumnList)
+            foreach (var row in model.TableColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableColumn' contains a row with empty Id.");
@@ -2007,11 +2007,11 @@ namespace MetaSql
         private static byte[] SerializeTableColumnDataTypeDetailShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <TableColumnDataTypeDetailList>\n");
-            foreach (var row in model.TableColumnDataTypeDetailList)
+            foreach (var row in model.TableColumnDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableColumnDataTypeDetail' contains a row with empty Id.");
@@ -2127,11 +2127,11 @@ namespace MetaSql
         private static byte[] SerializeViewShard(MetaSqlModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSql>\n");
             builder.Append("  <ViewList>\n");
-            foreach (var row in model.ViewList)
+            foreach (var row in model.ViewList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'View' contains a row with empty Id.");
@@ -2486,7 +2486,7 @@ namespace MetaSql
             public void AddDatabaseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Database' contains a row with empty Id.");
-                databaseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                databaseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!databaseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Database' contains duplicate Id '{normalizedId}'.");
@@ -2498,7 +2498,7 @@ namespace MetaSql
             public void AddForeignKeyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ForeignKey' contains a row with empty Id.");
-                foreignKeyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                foreignKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!foreignKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ForeignKey' contains duplicate Id '{normalizedId}'.");
@@ -2510,7 +2510,7 @@ namespace MetaSql
             public void AddForeignKeyColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ForeignKeyColumn' contains a row with empty Id.");
-                foreignKeyColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                foreignKeyColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!foreignKeyColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ForeignKeyColumn' contains duplicate Id '{normalizedId}'.");
@@ -2522,7 +2522,7 @@ namespace MetaSql
             public void AddFunctionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Function' contains a row with empty Id.");
-                functionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                functionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!functionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Function' contains duplicate Id '{normalizedId}'.");
@@ -2534,7 +2534,7 @@ namespace MetaSql
             public void AddIndexId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Index' contains a row with empty Id.");
-                indexIds ??= new HashSet<string>(StringComparer.Ordinal);
+                indexIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!indexIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Index' contains duplicate Id '{normalizedId}'.");
@@ -2546,7 +2546,7 @@ namespace MetaSql
             public void AddIndexColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'IndexColumn' contains a row with empty Id.");
-                indexColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                indexColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!indexColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'IndexColumn' contains duplicate Id '{normalizedId}'.");
@@ -2558,7 +2558,7 @@ namespace MetaSql
             public void AddPrimaryKeyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PrimaryKey' contains a row with empty Id.");
-                primaryKeyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                primaryKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!primaryKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PrimaryKey' contains duplicate Id '{normalizedId}'.");
@@ -2570,7 +2570,7 @@ namespace MetaSql
             public void AddPrimaryKeyColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PrimaryKeyColumn' contains a row with empty Id.");
-                primaryKeyColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                primaryKeyColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!primaryKeyColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PrimaryKeyColumn' contains duplicate Id '{normalizedId}'.");
@@ -2582,7 +2582,7 @@ namespace MetaSql
             public void AddSchemaId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Schema' contains a row with empty Id.");
-                schemaIds ??= new HashSet<string>(StringComparer.Ordinal);
+                schemaIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!schemaIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Schema' contains duplicate Id '{normalizedId}'.");
@@ -2594,7 +2594,7 @@ namespace MetaSql
             public void AddStoredProcedureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'StoredProcedure' contains a row with empty Id.");
-                storedProcedureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                storedProcedureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!storedProcedureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'StoredProcedure' contains duplicate Id '{normalizedId}'.");
@@ -2606,7 +2606,7 @@ namespace MetaSql
             public void AddTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Table' contains a row with empty Id.");
-                tableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Table' contains duplicate Id '{normalizedId}'.");
@@ -2618,7 +2618,7 @@ namespace MetaSql
             public void AddTableColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableColumn' contains a row with empty Id.");
-                tableColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableColumn' contains duplicate Id '{normalizedId}'.");
@@ -2630,7 +2630,7 @@ namespace MetaSql
             public void AddTableColumnDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableColumnDataTypeDetail' contains a row with empty Id.");
-                tableColumnDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableColumnDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableColumnDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableColumnDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -2642,7 +2642,7 @@ namespace MetaSql
             public void AddViewId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'View' contains a row with empty Id.");
-                viewIds ??= new HashSet<string>(StringComparer.Ordinal);
+                viewIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!viewIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'View' contains duplicate Id '{normalizedId}'.");
@@ -2983,7 +2983,7 @@ namespace MetaSql
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

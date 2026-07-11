@@ -860,11 +860,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeActionTranslationShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <ActionTranslationList>\n");
-            foreach (var row in model.ActionTranslationList)
+            foreach (var row in model.ActionTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ActionTranslation' contains a row with empty Id.");
@@ -996,11 +996,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeAttributeRelationshipShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <AttributeRelationshipList>\n");
-            foreach (var row in model.AttributeRelationshipList)
+            foreach (var row in model.AttributeRelationshipList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AttributeRelationship' contains a row with empty Id.");
@@ -1132,11 +1132,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeAttributeTranslationShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <AttributeTranslationList>\n");
-            foreach (var row in model.AttributeTranslationList)
+            foreach (var row in model.AttributeTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AttributeTranslation' contains a row with empty Id.");
@@ -1268,11 +1268,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeCellPermissionShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <CellPermissionList>\n");
-            foreach (var row in model.CellPermissionList)
+            foreach (var row in model.CellPermissionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CellPermission' contains a row with empty Id.");
@@ -1407,11 +1407,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeCubeShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <CubeList>\n");
-            foreach (var row in model.CubeList)
+            foreach (var row in model.CubeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Cube' contains a row with empty Id.");
@@ -1554,11 +1554,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeCubeActionShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <CubeActionList>\n");
-            foreach (var row in model.CubeActionList)
+            foreach (var row in model.CubeActionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CubeAction' contains a row with empty Id.");
@@ -1691,11 +1691,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeCubeDimensionShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <CubeDimensionList>\n");
-            foreach (var row in model.CubeDimensionList)
+            foreach (var row in model.CubeDimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CubeDimension' contains a row with empty Id.");
@@ -1828,11 +1828,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeCubeTranslationShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <CubeTranslationList>\n");
-            foreach (var row in model.CubeTranslationList)
+            foreach (var row in model.CubeTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CubeTranslation' contains a row with empty Id.");
@@ -1964,11 +1964,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeCultureShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <CultureList>\n");
-            foreach (var row in model.CultureList)
+            foreach (var row in model.CultureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Culture' contains a row with empty Id.");
@@ -2103,11 +2103,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeDimensionShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <DimensionList>\n");
-            foreach (var row in model.DimensionList)
+            foreach (var row in model.DimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Dimension' contains a row with empty Id.");
@@ -2264,11 +2264,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeDimensionAttributeShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <DimensionAttributeList>\n");
-            foreach (var row in model.DimensionAttributeList)
+            foreach (var row in model.DimensionAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionAttribute' contains a row with empty Id.");
@@ -2409,11 +2409,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeDimensionHierarchyShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <DimensionHierarchyList>\n");
-            foreach (var row in model.DimensionHierarchyList)
+            foreach (var row in model.DimensionHierarchyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionHierarchy' contains a row with empty Id.");
@@ -2536,11 +2536,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeDimensionHierarchyLevelShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <DimensionHierarchyLevelList>\n");
-            foreach (var row in model.DimensionHierarchyLevelList)
+            foreach (var row in model.DimensionHierarchyLevelList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionHierarchyLevel' contains a row with empty Id.");
@@ -2678,11 +2678,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeDimensionPermissionShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <DimensionPermissionList>\n");
-            foreach (var row in model.DimensionPermissionList)
+            foreach (var row in model.DimensionPermissionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionPermission' contains a row with empty Id.");
@@ -2836,11 +2836,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeDimensionTranslationShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <DimensionTranslationList>\n");
-            foreach (var row in model.DimensionTranslationList)
+            foreach (var row in model.DimensionTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionTranslation' contains a row with empty Id.");
@@ -2984,11 +2984,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeDimensionUsageShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <DimensionUsageList>\n");
-            foreach (var row in model.DimensionUsageList)
+            foreach (var row in model.DimensionUsageList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionUsage' contains a row with empty Id.");
@@ -3169,11 +3169,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeKpiShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <KpiList>\n");
-            foreach (var row in model.KpiList)
+            foreach (var row in model.KpiList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Kpi' contains a row with empty Id.");
@@ -3329,11 +3329,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeKpiTranslationShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <KpiTranslationList>\n");
-            foreach (var row in model.KpiTranslationList)
+            foreach (var row in model.KpiTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'KpiTranslation' contains a row with empty Id.");
@@ -3474,11 +3474,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeMdxCalculationShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <MdxCalculationList>\n");
-            foreach (var row in model.MdxCalculationList)
+            foreach (var row in model.MdxCalculationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MdxCalculation' contains a row with empty Id.");
@@ -3619,11 +3619,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeMeasureShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <MeasureList>\n");
-            foreach (var row in model.MeasureList)
+            foreach (var row in model.MeasureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Measure' contains a row with empty Id.");
@@ -3768,11 +3768,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeMeasureGroupShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <MeasureGroupList>\n");
-            foreach (var row in model.MeasureGroupList)
+            foreach (var row in model.MeasureGroupList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MeasureGroup' contains a row with empty Id.");
@@ -3903,11 +3903,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeMeasureTranslationShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <MeasureTranslationList>\n");
-            foreach (var row in model.MeasureTranslationList)
+            foreach (var row in model.MeasureTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MeasureTranslation' contains a row with empty Id.");
@@ -4036,11 +4036,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeMultiDimensionalDatabaseShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <MultiDimensionalDatabaseList>\n");
-            foreach (var row in model.MultiDimensionalDatabaseList)
+            foreach (var row in model.MultiDimensionalDatabaseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MultiDimensionalDatabase' contains a row with empty Id.");
@@ -4163,11 +4163,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeMultiDimensionalDataSourceShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <MultiDimensionalDataSourceList>\n");
-            foreach (var row in model.MultiDimensionalDataSourceList)
+            foreach (var row in model.MultiDimensionalDataSourceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MultiDimensionalDataSource' contains a row with empty Id.");
@@ -4301,11 +4301,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeNamedSetShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <NamedSetList>\n");
-            foreach (var row in model.NamedSetList)
+            foreach (var row in model.NamedSetList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NamedSet' contains a row with empty Id.");
@@ -4429,11 +4429,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeNamedSetTranslationShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <NamedSetTranslationList>\n");
-            foreach (var row in model.NamedSetTranslationList)
+            foreach (var row in model.NamedSetTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NamedSetTranslation' contains a row with empty Id.");
@@ -4580,11 +4580,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializePartitionShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <PartitionList>\n");
-            foreach (var row in model.PartitionList)
+            foreach (var row in model.PartitionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Partition' contains a row with empty Id.");
@@ -4733,11 +4733,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializePerspectiveShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <PerspectiveList>\n");
-            foreach (var row in model.PerspectiveList)
+            foreach (var row in model.PerspectiveList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Perspective' contains a row with empty Id.");
@@ -4854,11 +4854,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializePerspectiveActionShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <PerspectiveActionList>\n");
-            foreach (var row in model.PerspectiveActionList)
+            foreach (var row in model.PerspectiveActionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveAction' contains a row with empty Id.");
@@ -4976,11 +4976,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializePerspectiveCalculationShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <PerspectiveCalculationList>\n");
-            foreach (var row in model.PerspectiveCalculationList)
+            foreach (var row in model.PerspectiveCalculationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveCalculation' contains a row with empty Id.");
@@ -5098,11 +5098,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializePerspectiveDimensionShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <PerspectiveDimensionList>\n");
-            foreach (var row in model.PerspectiveDimensionList)
+            foreach (var row in model.PerspectiveDimensionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveDimension' contains a row with empty Id.");
@@ -5220,11 +5220,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializePerspectiveKpiShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <PerspectiveKpiList>\n");
-            foreach (var row in model.PerspectiveKpiList)
+            foreach (var row in model.PerspectiveKpiList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveKpi' contains a row with empty Id.");
@@ -5342,11 +5342,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializePerspectiveMeasureShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <PerspectiveMeasureList>\n");
-            foreach (var row in model.PerspectiveMeasureList)
+            foreach (var row in model.PerspectiveMeasureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveMeasure' contains a row with empty Id.");
@@ -5464,11 +5464,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializePerspectiveMeasureGroupShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <PerspectiveMeasureGroupList>\n");
-            foreach (var row in model.PerspectiveMeasureGroupList)
+            foreach (var row in model.PerspectiveMeasureGroupList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveMeasureGroup' contains a row with empty Id.");
@@ -5586,11 +5586,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializePerspectiveNamedSetShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <PerspectiveNamedSetList>\n");
-            foreach (var row in model.PerspectiveNamedSetList)
+            foreach (var row in model.PerspectiveNamedSetList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveNamedSet' contains a row with empty Id.");
@@ -5714,11 +5714,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializePerspectiveTranslationShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <PerspectiveTranslationList>\n");
-            foreach (var row in model.PerspectiveTranslationList)
+            foreach (var row in model.PerspectiveTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PerspectiveTranslation' contains a row with empty Id.");
@@ -5847,11 +5847,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeRoleMemberShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <RoleMemberList>\n");
-            foreach (var row in model.RoleMemberList)
+            foreach (var row in model.RoleMemberList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RoleMember' contains a row with empty Id.");
@@ -5970,11 +5970,11 @@ namespace MetaMultiDimensional
         private static byte[] SerializeSecurityRoleShard(MetaMultiDimensionalModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaMultiDimensional>\n");
             builder.Append("  <SecurityRoleList>\n");
-            foreach (var row in model.SecurityRoleList)
+            foreach (var row in model.SecurityRoleList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SecurityRole' contains a row with empty Id.");
@@ -7004,7 +7004,7 @@ namespace MetaMultiDimensional
             public void AddActionTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ActionTranslation' contains a row with empty Id.");
-                actionTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                actionTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!actionTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ActionTranslation' contains duplicate Id '{normalizedId}'.");
@@ -7016,7 +7016,7 @@ namespace MetaMultiDimensional
             public void AddAttributeRelationshipId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AttributeRelationship' contains a row with empty Id.");
-                attributeRelationshipIds ??= new HashSet<string>(StringComparer.Ordinal);
+                attributeRelationshipIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!attributeRelationshipIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AttributeRelationship' contains duplicate Id '{normalizedId}'.");
@@ -7028,7 +7028,7 @@ namespace MetaMultiDimensional
             public void AddAttributeTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AttributeTranslation' contains a row with empty Id.");
-                attributeTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                attributeTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!attributeTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AttributeTranslation' contains duplicate Id '{normalizedId}'.");
@@ -7040,7 +7040,7 @@ namespace MetaMultiDimensional
             public void AddCellPermissionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CellPermission' contains a row with empty Id.");
-                cellPermissionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                cellPermissionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!cellPermissionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CellPermission' contains duplicate Id '{normalizedId}'.");
@@ -7052,7 +7052,7 @@ namespace MetaMultiDimensional
             public void AddCubeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Cube' contains a row with empty Id.");
-                cubeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                cubeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!cubeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Cube' contains duplicate Id '{normalizedId}'.");
@@ -7064,7 +7064,7 @@ namespace MetaMultiDimensional
             public void AddCubeActionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CubeAction' contains a row with empty Id.");
-                cubeActionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                cubeActionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!cubeActionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CubeAction' contains duplicate Id '{normalizedId}'.");
@@ -7076,7 +7076,7 @@ namespace MetaMultiDimensional
             public void AddCubeDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CubeDimension' contains a row with empty Id.");
-                cubeDimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                cubeDimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!cubeDimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CubeDimension' contains duplicate Id '{normalizedId}'.");
@@ -7088,7 +7088,7 @@ namespace MetaMultiDimensional
             public void AddCubeTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CubeTranslation' contains a row with empty Id.");
-                cubeTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                cubeTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!cubeTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CubeTranslation' contains duplicate Id '{normalizedId}'.");
@@ -7100,7 +7100,7 @@ namespace MetaMultiDimensional
             public void AddCultureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Culture' contains a row with empty Id.");
-                cultureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                cultureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!cultureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Culture' contains duplicate Id '{normalizedId}'.");
@@ -7112,7 +7112,7 @@ namespace MetaMultiDimensional
             public void AddDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Dimension' contains a row with empty Id.");
-                dimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Dimension' contains duplicate Id '{normalizedId}'.");
@@ -7124,7 +7124,7 @@ namespace MetaMultiDimensional
             public void AddDimensionAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionAttribute' contains a row with empty Id.");
-                dimensionAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionAttribute' contains duplicate Id '{normalizedId}'.");
@@ -7136,7 +7136,7 @@ namespace MetaMultiDimensional
             public void AddDimensionHierarchyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionHierarchy' contains a row with empty Id.");
-                dimensionHierarchyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionHierarchyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionHierarchyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionHierarchy' contains duplicate Id '{normalizedId}'.");
@@ -7148,7 +7148,7 @@ namespace MetaMultiDimensional
             public void AddDimensionHierarchyLevelId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionHierarchyLevel' contains a row with empty Id.");
-                dimensionHierarchyLevelIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionHierarchyLevelIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionHierarchyLevelIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionHierarchyLevel' contains duplicate Id '{normalizedId}'.");
@@ -7160,7 +7160,7 @@ namespace MetaMultiDimensional
             public void AddDimensionPermissionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionPermission' contains a row with empty Id.");
-                dimensionPermissionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionPermissionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionPermissionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionPermission' contains duplicate Id '{normalizedId}'.");
@@ -7172,7 +7172,7 @@ namespace MetaMultiDimensional
             public void AddDimensionTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionTranslation' contains a row with empty Id.");
-                dimensionTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionTranslation' contains duplicate Id '{normalizedId}'.");
@@ -7184,7 +7184,7 @@ namespace MetaMultiDimensional
             public void AddDimensionUsageId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionUsage' contains a row with empty Id.");
-                dimensionUsageIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionUsageIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionUsageIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionUsage' contains duplicate Id '{normalizedId}'.");
@@ -7196,7 +7196,7 @@ namespace MetaMultiDimensional
             public void AddKpiId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Kpi' contains a row with empty Id.");
-                kpiIds ??= new HashSet<string>(StringComparer.Ordinal);
+                kpiIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!kpiIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Kpi' contains duplicate Id '{normalizedId}'.");
@@ -7208,7 +7208,7 @@ namespace MetaMultiDimensional
             public void AddKpiTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'KpiTranslation' contains a row with empty Id.");
-                kpiTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                kpiTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!kpiTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'KpiTranslation' contains duplicate Id '{normalizedId}'.");
@@ -7220,7 +7220,7 @@ namespace MetaMultiDimensional
             public void AddMdxCalculationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MdxCalculation' contains a row with empty Id.");
-                mdxCalculationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mdxCalculationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mdxCalculationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MdxCalculation' contains duplicate Id '{normalizedId}'.");
@@ -7232,7 +7232,7 @@ namespace MetaMultiDimensional
             public void AddMeasureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Measure' contains a row with empty Id.");
-                measureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                measureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!measureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Measure' contains duplicate Id '{normalizedId}'.");
@@ -7244,7 +7244,7 @@ namespace MetaMultiDimensional
             public void AddMeasureGroupId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MeasureGroup' contains a row with empty Id.");
-                measureGroupIds ??= new HashSet<string>(StringComparer.Ordinal);
+                measureGroupIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!measureGroupIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MeasureGroup' contains duplicate Id '{normalizedId}'.");
@@ -7256,7 +7256,7 @@ namespace MetaMultiDimensional
             public void AddMeasureTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MeasureTranslation' contains a row with empty Id.");
-                measureTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                measureTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!measureTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MeasureTranslation' contains duplicate Id '{normalizedId}'.");
@@ -7268,7 +7268,7 @@ namespace MetaMultiDimensional
             public void AddMultiDimensionalDatabaseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MultiDimensionalDatabase' contains a row with empty Id.");
-                multiDimensionalDatabaseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                multiDimensionalDatabaseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!multiDimensionalDatabaseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MultiDimensionalDatabase' contains duplicate Id '{normalizedId}'.");
@@ -7280,7 +7280,7 @@ namespace MetaMultiDimensional
             public void AddMultiDimensionalDataSourceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MultiDimensionalDataSource' contains a row with empty Id.");
-                multiDimensionalDataSourceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                multiDimensionalDataSourceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!multiDimensionalDataSourceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MultiDimensionalDataSource' contains duplicate Id '{normalizedId}'.");
@@ -7292,7 +7292,7 @@ namespace MetaMultiDimensional
             public void AddNamedSetId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NamedSet' contains a row with empty Id.");
-                namedSetIds ??= new HashSet<string>(StringComparer.Ordinal);
+                namedSetIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!namedSetIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NamedSet' contains duplicate Id '{normalizedId}'.");
@@ -7304,7 +7304,7 @@ namespace MetaMultiDimensional
             public void AddNamedSetTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NamedSetTranslation' contains a row with empty Id.");
-                namedSetTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                namedSetTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!namedSetTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NamedSetTranslation' contains duplicate Id '{normalizedId}'.");
@@ -7316,7 +7316,7 @@ namespace MetaMultiDimensional
             public void AddPartitionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Partition' contains a row with empty Id.");
-                partitionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                partitionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!partitionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Partition' contains duplicate Id '{normalizedId}'.");
@@ -7328,7 +7328,7 @@ namespace MetaMultiDimensional
             public void AddPerspectiveId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Perspective' contains a row with empty Id.");
-                perspectiveIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Perspective' contains duplicate Id '{normalizedId}'.");
@@ -7340,7 +7340,7 @@ namespace MetaMultiDimensional
             public void AddPerspectiveActionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveAction' contains a row with empty Id.");
-                perspectiveActionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveActionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveActionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveAction' contains duplicate Id '{normalizedId}'.");
@@ -7352,7 +7352,7 @@ namespace MetaMultiDimensional
             public void AddPerspectiveCalculationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveCalculation' contains a row with empty Id.");
-                perspectiveCalculationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveCalculationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveCalculationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveCalculation' contains duplicate Id '{normalizedId}'.");
@@ -7364,7 +7364,7 @@ namespace MetaMultiDimensional
             public void AddPerspectiveDimensionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveDimension' contains a row with empty Id.");
-                perspectiveDimensionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveDimensionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveDimensionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveDimension' contains duplicate Id '{normalizedId}'.");
@@ -7376,7 +7376,7 @@ namespace MetaMultiDimensional
             public void AddPerspectiveKpiId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveKpi' contains a row with empty Id.");
-                perspectiveKpiIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveKpiIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveKpiIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveKpi' contains duplicate Id '{normalizedId}'.");
@@ -7388,7 +7388,7 @@ namespace MetaMultiDimensional
             public void AddPerspectiveMeasureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveMeasure' contains a row with empty Id.");
-                perspectiveMeasureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveMeasureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveMeasureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveMeasure' contains duplicate Id '{normalizedId}'.");
@@ -7400,7 +7400,7 @@ namespace MetaMultiDimensional
             public void AddPerspectiveMeasureGroupId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveMeasureGroup' contains a row with empty Id.");
-                perspectiveMeasureGroupIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveMeasureGroupIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveMeasureGroupIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveMeasureGroup' contains duplicate Id '{normalizedId}'.");
@@ -7412,7 +7412,7 @@ namespace MetaMultiDimensional
             public void AddPerspectiveNamedSetId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveNamedSet' contains a row with empty Id.");
-                perspectiveNamedSetIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveNamedSetIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveNamedSetIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveNamedSet' contains duplicate Id '{normalizedId}'.");
@@ -7424,7 +7424,7 @@ namespace MetaMultiDimensional
             public void AddPerspectiveTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PerspectiveTranslation' contains a row with empty Id.");
-                perspectiveTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                perspectiveTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!perspectiveTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PerspectiveTranslation' contains duplicate Id '{normalizedId}'.");
@@ -7436,7 +7436,7 @@ namespace MetaMultiDimensional
             public void AddRoleMemberId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RoleMember' contains a row with empty Id.");
-                roleMemberIds ??= new HashSet<string>(StringComparer.Ordinal);
+                roleMemberIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!roleMemberIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RoleMember' contains duplicate Id '{normalizedId}'.");
@@ -7448,7 +7448,7 @@ namespace MetaMultiDimensional
             public void AddSecurityRoleId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SecurityRole' contains a row with empty Id.");
-                securityRoleIds ??= new HashSet<string>(StringComparer.Ordinal);
+                securityRoleIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!securityRoleIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SecurityRole' contains duplicate Id '{normalizedId}'.");
@@ -8287,7 +8287,7 @@ namespace MetaMultiDimensional
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

@@ -777,11 +777,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessBridgeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessBridgeList>\n");
-            foreach (var row in model.BusinessBridgeList)
+            foreach (var row in model.BusinessBridgeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessBridge' contains a row with empty Id.");
@@ -900,11 +900,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessBridgeHubShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessBridgeHubList>\n");
-            foreach (var row in model.BusinessBridgeHubList)
+            foreach (var row in model.BusinessBridgeHubList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessBridgeHub' contains a row with empty Id.");
@@ -1033,11 +1033,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessBridgeLinkShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessBridgeLinkList>\n");
-            foreach (var row in model.BusinessBridgeLinkList)
+            foreach (var row in model.BusinessBridgeLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessBridgeLink' contains a row with empty Id.");
@@ -1166,11 +1166,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessHierarchicalLinkShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessHierarchicalLinkList>\n");
-            foreach (var row in model.BusinessHierarchicalLinkList)
+            foreach (var row in model.BusinessHierarchicalLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessHierarchicalLink' contains a row with empty Id.");
@@ -1296,11 +1296,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessHierarchicalLinkSatelliteShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessHierarchicalLinkSatelliteList>\n");
-            foreach (var row in model.BusinessHierarchicalLinkSatelliteList)
+            foreach (var row in model.BusinessHierarchicalLinkSatelliteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessHierarchicalLinkSatellite' contains a row with empty Id.");
@@ -1419,11 +1419,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessHierarchicalLinkSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessHierarchicalLinkSatelliteAttributeList>\n");
-            foreach (var row in model.BusinessHierarchicalLinkSatelliteAttributeList)
+            foreach (var row in model.BusinessHierarchicalLinkSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessHierarchicalLinkSatelliteAttribute' contains a row with empty Id.");
@@ -1537,11 +1537,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessHierarchicalLinkSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList>\n");
-            foreach (var row in model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList)
+            foreach (var row in model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
@@ -1648,11 +1648,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessHubShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessHubList>\n");
-            foreach (var row in model.BusinessHubList)
+            foreach (var row in model.BusinessHubList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessHub' contains a row with empty Id.");
@@ -1761,11 +1761,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessHubKeyPartShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessHubKeyPartList>\n");
-            foreach (var row in model.BusinessHubKeyPartList)
+            foreach (var row in model.BusinessHubKeyPartList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessHubKeyPart' contains a row with empty Id.");
@@ -1879,11 +1879,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessHubKeyPartDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessHubKeyPartDataTypeDetailList>\n");
-            foreach (var row in model.BusinessHubKeyPartDataTypeDetailList)
+            foreach (var row in model.BusinessHubKeyPartDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessHubKeyPartDataTypeDetail' contains a row with empty Id.");
@@ -1996,11 +1996,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessHubSatelliteShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessHubSatelliteList>\n");
-            foreach (var row in model.BusinessHubSatelliteList)
+            foreach (var row in model.BusinessHubSatelliteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessHubSatellite' contains a row with empty Id.");
@@ -2119,11 +2119,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessHubSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessHubSatelliteAttributeList>\n");
-            foreach (var row in model.BusinessHubSatelliteAttributeList)
+            foreach (var row in model.BusinessHubSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessHubSatelliteAttribute' contains a row with empty Id.");
@@ -2237,11 +2237,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessHubSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessHubSatelliteAttributeDataTypeDetailList>\n");
-            foreach (var row in model.BusinessHubSatelliteAttributeDataTypeDetailList)
+            foreach (var row in model.BusinessHubSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessHubSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
@@ -2348,11 +2348,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessLinkShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessLinkList>\n");
-            foreach (var row in model.BusinessLinkList)
+            foreach (var row in model.BusinessLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessLink' contains a row with empty Id.");
@@ -2461,11 +2461,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessLinkHubShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessLinkHubList>\n");
-            foreach (var row in model.BusinessLinkHubList)
+            foreach (var row in model.BusinessLinkHubList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessLinkHub' contains a row with empty Id.");
@@ -2591,11 +2591,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessLinkSatelliteShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessLinkSatelliteList>\n");
-            foreach (var row in model.BusinessLinkSatelliteList)
+            foreach (var row in model.BusinessLinkSatelliteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessLinkSatellite' contains a row with empty Id.");
@@ -2714,11 +2714,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessLinkSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessLinkSatelliteAttributeList>\n");
-            foreach (var row in model.BusinessLinkSatelliteAttributeList)
+            foreach (var row in model.BusinessLinkSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessLinkSatelliteAttribute' contains a row with empty Id.");
@@ -2832,11 +2832,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessLinkSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessLinkSatelliteAttributeDataTypeDetailList>\n");
-            foreach (var row in model.BusinessLinkSatelliteAttributeDataTypeDetailList)
+            foreach (var row in model.BusinessLinkSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
@@ -2949,11 +2949,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessPointInTimeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessPointInTimeList>\n");
-            foreach (var row in model.BusinessPointInTimeList)
+            foreach (var row in model.BusinessPointInTimeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessPointInTime' contains a row with empty Id.");
@@ -3069,11 +3069,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessPointInTimeHubSatelliteShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessPointInTimeHubSatelliteList>\n");
-            foreach (var row in model.BusinessPointInTimeHubSatelliteList)
+            foreach (var row in model.BusinessPointInTimeHubSatelliteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessPointInTimeHubSatellite' contains a row with empty Id.");
@@ -3195,11 +3195,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessPointInTimeLinkSatelliteShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessPointInTimeLinkSatelliteList>\n");
-            foreach (var row in model.BusinessPointInTimeLinkSatelliteList)
+            foreach (var row in model.BusinessPointInTimeLinkSatelliteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessPointInTimeLinkSatellite' contains a row with empty Id.");
@@ -3324,11 +3324,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessPointInTimeStampShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessPointInTimeStampList>\n");
-            foreach (var row in model.BusinessPointInTimeStampList)
+            foreach (var row in model.BusinessPointInTimeStampList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessPointInTimeStamp' contains a row with empty Id.");
@@ -3442,11 +3442,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessPointInTimeStampDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessPointInTimeStampDataTypeDetailList>\n");
-            foreach (var row in model.BusinessPointInTimeStampDataTypeDetailList)
+            foreach (var row in model.BusinessPointInTimeStampDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessPointInTimeStampDataTypeDetail' contains a row with empty Id.");
@@ -3553,11 +3553,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessReferenceShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessReferenceList>\n");
-            foreach (var row in model.BusinessReferenceList)
+            foreach (var row in model.BusinessReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessReference' contains a row with empty Id.");
@@ -3666,11 +3666,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessReferenceKeyPartShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessReferenceKeyPartList>\n");
-            foreach (var row in model.BusinessReferenceKeyPartList)
+            foreach (var row in model.BusinessReferenceKeyPartList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessReferenceKeyPart' contains a row with empty Id.");
@@ -3784,11 +3784,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessReferenceKeyPartDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessReferenceKeyPartDataTypeDetailList>\n");
-            foreach (var row in model.BusinessReferenceKeyPartDataTypeDetailList)
+            foreach (var row in model.BusinessReferenceKeyPartDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessReferenceKeyPartDataTypeDetail' contains a row with empty Id.");
@@ -3901,11 +3901,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessReferenceSatelliteShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessReferenceSatelliteList>\n");
-            foreach (var row in model.BusinessReferenceSatelliteList)
+            foreach (var row in model.BusinessReferenceSatelliteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessReferenceSatellite' contains a row with empty Id.");
@@ -4024,11 +4024,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessReferenceSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessReferenceSatelliteAttributeList>\n");
-            foreach (var row in model.BusinessReferenceSatelliteAttributeList)
+            foreach (var row in model.BusinessReferenceSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessReferenceSatelliteAttribute' contains a row with empty Id.");
@@ -4142,11 +4142,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessReferenceSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessReferenceSatelliteAttributeDataTypeDetailList>\n");
-            foreach (var row in model.BusinessReferenceSatelliteAttributeDataTypeDetailList)
+            foreach (var row in model.BusinessReferenceSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessReferenceSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
@@ -4262,11 +4262,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessSameAsLinkShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessSameAsLinkList>\n");
-            foreach (var row in model.BusinessSameAsLinkList)
+            foreach (var row in model.BusinessSameAsLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessSameAsLink' contains a row with empty Id.");
@@ -4392,11 +4392,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessSameAsLinkSatelliteShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessSameAsLinkSatelliteList>\n");
-            foreach (var row in model.BusinessSameAsLinkSatelliteList)
+            foreach (var row in model.BusinessSameAsLinkSatelliteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessSameAsLinkSatellite' contains a row with empty Id.");
@@ -4515,11 +4515,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessSameAsLinkSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessSameAsLinkSatelliteAttributeList>\n");
-            foreach (var row in model.BusinessSameAsLinkSatelliteAttributeList)
+            foreach (var row in model.BusinessSameAsLinkSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessSameAsLinkSatelliteAttribute' contains a row with empty Id.");
@@ -4633,11 +4633,11 @@ namespace MetaBusinessDataVault
         private static byte[] SerializeBusinessSameAsLinkSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
             builder.Append("  <BusinessSameAsLinkSatelliteAttributeDataTypeDetailList>\n");
-            foreach (var row in model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList)
+            foreach (var row in model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
@@ -5322,7 +5322,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessBridgeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessBridge' contains a row with empty Id.");
-                businessBridgeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessBridgeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessBridgeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessBridge' contains duplicate Id '{normalizedId}'.");
@@ -5334,7 +5334,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessBridgeHubId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessBridgeHub' contains a row with empty Id.");
-                businessBridgeHubIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessBridgeHubIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessBridgeHubIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessBridgeHub' contains duplicate Id '{normalizedId}'.");
@@ -5346,7 +5346,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessBridgeLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessBridgeLink' contains a row with empty Id.");
-                businessBridgeLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessBridgeLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessBridgeLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessBridgeLink' contains duplicate Id '{normalizedId}'.");
@@ -5358,7 +5358,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessHierarchicalLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessHierarchicalLink' contains a row with empty Id.");
-                businessHierarchicalLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessHierarchicalLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessHierarchicalLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessHierarchicalLink' contains duplicate Id '{normalizedId}'.");
@@ -5370,7 +5370,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessHierarchicalLinkSatelliteId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessHierarchicalLinkSatellite' contains a row with empty Id.");
-                businessHierarchicalLinkSatelliteIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessHierarchicalLinkSatelliteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessHierarchicalLinkSatelliteIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessHierarchicalLinkSatellite' contains duplicate Id '{normalizedId}'.");
@@ -5382,7 +5382,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessHierarchicalLinkSatelliteAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessHierarchicalLinkSatelliteAttribute' contains a row with empty Id.");
-                businessHierarchicalLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessHierarchicalLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessHierarchicalLinkSatelliteAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessHierarchicalLinkSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
@@ -5394,7 +5394,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessHierarchicalLinkSatelliteAttributeDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                businessHierarchicalLinkSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessHierarchicalLinkSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessHierarchicalLinkSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -5406,7 +5406,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessHubId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessHub' contains a row with empty Id.");
-                businessHubIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessHubIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessHubIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessHub' contains duplicate Id '{normalizedId}'.");
@@ -5418,7 +5418,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessHubKeyPartId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessHubKeyPart' contains a row with empty Id.");
-                businessHubKeyPartIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessHubKeyPartIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessHubKeyPartIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessHubKeyPart' contains duplicate Id '{normalizedId}'.");
@@ -5430,7 +5430,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessHubKeyPartDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessHubKeyPartDataTypeDetail' contains a row with empty Id.");
-                businessHubKeyPartDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessHubKeyPartDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessHubKeyPartDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessHubKeyPartDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -5442,7 +5442,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessHubSatelliteId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessHubSatellite' contains a row with empty Id.");
-                businessHubSatelliteIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessHubSatelliteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessHubSatelliteIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessHubSatellite' contains duplicate Id '{normalizedId}'.");
@@ -5454,7 +5454,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessHubSatelliteAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessHubSatelliteAttribute' contains a row with empty Id.");
-                businessHubSatelliteAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessHubSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessHubSatelliteAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessHubSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
@@ -5466,7 +5466,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessHubSatelliteAttributeDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessHubSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                businessHubSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessHubSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessHubSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessHubSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -5478,7 +5478,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessLink' contains a row with empty Id.");
-                businessLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessLink' contains duplicate Id '{normalizedId}'.");
@@ -5490,7 +5490,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessLinkHubId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessLinkHub' contains a row with empty Id.");
-                businessLinkHubIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessLinkHubIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessLinkHubIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessLinkHub' contains duplicate Id '{normalizedId}'.");
@@ -5502,7 +5502,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessLinkSatelliteId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessLinkSatellite' contains a row with empty Id.");
-                businessLinkSatelliteIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessLinkSatelliteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessLinkSatelliteIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessLinkSatellite' contains duplicate Id '{normalizedId}'.");
@@ -5514,7 +5514,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessLinkSatelliteAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessLinkSatelliteAttribute' contains a row with empty Id.");
-                businessLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessLinkSatelliteAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessLinkSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
@@ -5526,7 +5526,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessLinkSatelliteAttributeDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                businessLinkSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessLinkSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessLinkSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -5538,7 +5538,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessPointInTimeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessPointInTime' contains a row with empty Id.");
-                businessPointInTimeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessPointInTimeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessPointInTimeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessPointInTime' contains duplicate Id '{normalizedId}'.");
@@ -5550,7 +5550,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessPointInTimeHubSatelliteId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessPointInTimeHubSatellite' contains a row with empty Id.");
-                businessPointInTimeHubSatelliteIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessPointInTimeHubSatelliteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessPointInTimeHubSatelliteIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessPointInTimeHubSatellite' contains duplicate Id '{normalizedId}'.");
@@ -5562,7 +5562,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessPointInTimeLinkSatelliteId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessPointInTimeLinkSatellite' contains a row with empty Id.");
-                businessPointInTimeLinkSatelliteIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessPointInTimeLinkSatelliteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessPointInTimeLinkSatelliteIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessPointInTimeLinkSatellite' contains duplicate Id '{normalizedId}'.");
@@ -5574,7 +5574,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessPointInTimeStampId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessPointInTimeStamp' contains a row with empty Id.");
-                businessPointInTimeStampIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessPointInTimeStampIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessPointInTimeStampIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessPointInTimeStamp' contains duplicate Id '{normalizedId}'.");
@@ -5586,7 +5586,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessPointInTimeStampDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessPointInTimeStampDataTypeDetail' contains a row with empty Id.");
-                businessPointInTimeStampDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessPointInTimeStampDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessPointInTimeStampDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessPointInTimeStampDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -5598,7 +5598,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessReference' contains a row with empty Id.");
-                businessReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessReference' contains duplicate Id '{normalizedId}'.");
@@ -5610,7 +5610,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessReferenceKeyPartId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessReferenceKeyPart' contains a row with empty Id.");
-                businessReferenceKeyPartIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessReferenceKeyPartIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessReferenceKeyPartIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessReferenceKeyPart' contains duplicate Id '{normalizedId}'.");
@@ -5622,7 +5622,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessReferenceKeyPartDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessReferenceKeyPartDataTypeDetail' contains a row with empty Id.");
-                businessReferenceKeyPartDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessReferenceKeyPartDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessReferenceKeyPartDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessReferenceKeyPartDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -5634,7 +5634,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessReferenceSatelliteId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessReferenceSatellite' contains a row with empty Id.");
-                businessReferenceSatelliteIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessReferenceSatelliteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessReferenceSatelliteIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessReferenceSatellite' contains duplicate Id '{normalizedId}'.");
@@ -5646,7 +5646,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessReferenceSatelliteAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessReferenceSatelliteAttribute' contains a row with empty Id.");
-                businessReferenceSatelliteAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessReferenceSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessReferenceSatelliteAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessReferenceSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
@@ -5658,7 +5658,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessReferenceSatelliteAttributeDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessReferenceSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                businessReferenceSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessReferenceSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessReferenceSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessReferenceSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -5670,7 +5670,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessSameAsLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessSameAsLink' contains a row with empty Id.");
-                businessSameAsLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessSameAsLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessSameAsLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessSameAsLink' contains duplicate Id '{normalizedId}'.");
@@ -5682,7 +5682,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessSameAsLinkSatelliteId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessSameAsLinkSatellite' contains a row with empty Id.");
-                businessSameAsLinkSatelliteIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessSameAsLinkSatelliteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessSameAsLinkSatelliteIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessSameAsLinkSatellite' contains duplicate Id '{normalizedId}'.");
@@ -5694,7 +5694,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessSameAsLinkSatelliteAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessSameAsLinkSatelliteAttribute' contains a row with empty Id.");
-                businessSameAsLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessSameAsLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessSameAsLinkSatelliteAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessSameAsLinkSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
@@ -5706,7 +5706,7 @@ namespace MetaBusinessDataVault
             public void AddBusinessSameAsLinkSatelliteAttributeDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                businessSameAsLinkSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                businessSameAsLinkSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!businessSameAsLinkSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -6394,7 +6394,7 @@ namespace MetaBusinessDataVault
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

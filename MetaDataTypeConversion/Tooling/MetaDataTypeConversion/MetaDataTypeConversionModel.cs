@@ -269,11 +269,11 @@ namespace MetaDataTypeConversion
         private static byte[] SerializeConversionImplementationShard(MetaDataTypeConversionModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataTypeConversion>\n");
             builder.Append("  <ConversionImplementationList>\n");
-            foreach (var row in model.ConversionImplementationList)
+            foreach (var row in model.ConversionImplementationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ConversionImplementation' contains a row with empty Id.");
@@ -382,11 +382,11 @@ namespace MetaDataTypeConversion
         private static byte[] SerializeDataTypeMappingShard(MetaDataTypeConversionModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataTypeConversion>\n");
             builder.Append("  <DataTypeMappingList>\n");
-            foreach (var row in model.DataTypeMappingList)
+            foreach (var row in model.DataTypeMappingList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DataTypeMapping' contains a row with empty Id.");
@@ -470,7 +470,7 @@ namespace MetaDataTypeConversion
             public void AddConversionImplementationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ConversionImplementation' contains a row with empty Id.");
-                conversionImplementationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                conversionImplementationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!conversionImplementationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ConversionImplementation' contains duplicate Id '{normalizedId}'.");
@@ -482,7 +482,7 @@ namespace MetaDataTypeConversion
             public void AddDataTypeMappingId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DataTypeMapping' contains a row with empty Id.");
-                dataTypeMappingIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dataTypeMappingIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dataTypeMappingIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DataTypeMapping' contains duplicate Id '{normalizedId}'.");
@@ -593,7 +593,7 @@ namespace MetaDataTypeConversion
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

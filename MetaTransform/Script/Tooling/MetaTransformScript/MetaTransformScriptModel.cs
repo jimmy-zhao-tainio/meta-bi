@@ -5790,11 +5790,11 @@ namespace MetaTransformScript
         private static byte[] SerializeAtTimeZoneCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <AtTimeZoneCallList>\n");
-            foreach (var row in model.AtTimeZoneCallList)
+            foreach (var row in model.AtTimeZoneCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AtTimeZoneCall' contains a row with empty Id.");
@@ -5902,11 +5902,11 @@ namespace MetaTransformScript
         private static byte[] SerializeAtTimeZoneCallDateValueLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <AtTimeZoneCallDateValueLinkList>\n");
-            foreach (var row in model.AtTimeZoneCallDateValueLinkList)
+            foreach (var row in model.AtTimeZoneCallDateValueLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AtTimeZoneCallDateValueLink' contains a row with empty Id.");
@@ -6024,11 +6024,11 @@ namespace MetaTransformScript
         private static byte[] SerializeAtTimeZoneCallTimeZoneLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <AtTimeZoneCallTimeZoneLinkList>\n");
-            foreach (var row in model.AtTimeZoneCallTimeZoneLinkList)
+            foreach (var row in model.AtTimeZoneCallTimeZoneLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AtTimeZoneCallTimeZoneLink' contains a row with empty Id.");
@@ -6146,11 +6146,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBinaryExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BinaryExpressionList>\n");
-            foreach (var row in model.BinaryExpressionList)
+            foreach (var row in model.BinaryExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BinaryExpression' contains a row with empty Id.");
@@ -6262,11 +6262,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBinaryExpressionFirstExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BinaryExpressionFirstExpressionLinkList>\n");
-            foreach (var row in model.BinaryExpressionFirstExpressionLinkList)
+            foreach (var row in model.BinaryExpressionFirstExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BinaryExpressionFirstExpressionLink' contains a row with empty Id.");
@@ -6384,11 +6384,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBinaryExpressionSecondExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BinaryExpressionSecondExpressionLinkList>\n");
-            foreach (var row in model.BinaryExpressionSecondExpressionLinkList)
+            foreach (var row in model.BinaryExpressionSecondExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BinaryExpressionSecondExpressionLink' contains a row with empty Id.");
@@ -6509,11 +6509,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBinaryLiteralShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BinaryLiteralList>\n");
-            foreach (var row in model.BinaryLiteralList)
+            foreach (var row in model.BinaryLiteralList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BinaryLiteral' contains a row with empty Id.");
@@ -6632,11 +6632,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBinaryQueryExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BinaryQueryExpressionList>\n");
-            foreach (var row in model.BinaryQueryExpressionList)
+            foreach (var row in model.BinaryQueryExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BinaryQueryExpression' contains a row with empty Id.");
@@ -6752,11 +6752,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBinaryQueryExpressionFirstQueryExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BinaryQueryExpressionFirstQueryExpressionLinkList>\n");
-            foreach (var row in model.BinaryQueryExpressionFirstQueryExpressionLinkList)
+            foreach (var row in model.BinaryQueryExpressionFirstQueryExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BinaryQueryExpressionFirstQueryExpressionLink' contains a row with empty Id.");
@@ -6874,11 +6874,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBinaryQueryExpressionSecondQueryExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BinaryQueryExpressionSecondQueryExpressionLinkList>\n");
-            foreach (var row in model.BinaryQueryExpressionSecondQueryExpressionLinkList)
+            foreach (var row in model.BinaryQueryExpressionSecondQueryExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BinaryQueryExpressionSecondQueryExpressionLink' contains a row with empty Id.");
@@ -6996,11 +6996,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanBinaryExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanBinaryExpressionList>\n");
-            foreach (var row in model.BooleanBinaryExpressionList)
+            foreach (var row in model.BooleanBinaryExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanBinaryExpression' contains a row with empty Id.");
@@ -7112,11 +7112,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanBinaryExpressionFirstExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanBinaryExpressionFirstExpressionLinkList>\n");
-            foreach (var row in model.BooleanBinaryExpressionFirstExpressionLinkList)
+            foreach (var row in model.BooleanBinaryExpressionFirstExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanBinaryExpressionFirstExpressionLink' contains a row with empty Id.");
@@ -7234,11 +7234,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanBinaryExpressionSecondExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanBinaryExpressionSecondExpressionLinkList>\n");
-            foreach (var row in model.BooleanBinaryExpressionSecondExpressionLinkList)
+            foreach (var row in model.BooleanBinaryExpressionSecondExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanBinaryExpressionSecondExpressionLink' contains a row with empty Id.");
@@ -7356,11 +7356,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanComparisonExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanComparisonExpressionList>\n");
-            foreach (var row in model.BooleanComparisonExpressionList)
+            foreach (var row in model.BooleanComparisonExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanComparisonExpression' contains a row with empty Id.");
@@ -7472,11 +7472,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanComparisonExpressionFirstExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanComparisonExpressionFirstExpressionLinkList>\n");
-            foreach (var row in model.BooleanComparisonExpressionFirstExpressionLinkList)
+            foreach (var row in model.BooleanComparisonExpressionFirstExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanComparisonExpressionFirstExpressionLink' contains a row with empty Id.");
@@ -7594,11 +7594,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanComparisonExpressionSecondExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanComparisonExpressionSecondExpressionLinkList>\n");
-            foreach (var row in model.BooleanComparisonExpressionSecondExpressionLinkList)
+            foreach (var row in model.BooleanComparisonExpressionSecondExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanComparisonExpressionSecondExpressionLink' contains a row with empty Id.");
@@ -7707,11 +7707,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanExpressionList>\n");
-            foreach (var row in model.BooleanExpressionList)
+            foreach (var row in model.BooleanExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanExpression' contains a row with empty Id.");
@@ -7809,11 +7809,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanIsNullExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanIsNullExpressionList>\n");
-            foreach (var row in model.BooleanIsNullExpressionList)
+            foreach (var row in model.BooleanIsNullExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanIsNullExpression' contains a row with empty Id.");
@@ -7925,11 +7925,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanIsNullExpressionExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanIsNullExpressionExpressionLinkList>\n");
-            foreach (var row in model.BooleanIsNullExpressionExpressionLinkList)
+            foreach (var row in model.BooleanIsNullExpressionExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanIsNullExpressionExpressionLink' contains a row with empty Id.");
@@ -8044,11 +8044,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanNotExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanNotExpressionList>\n");
-            foreach (var row in model.BooleanNotExpressionList)
+            foreach (var row in model.BooleanNotExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanNotExpression' contains a row with empty Id.");
@@ -8156,11 +8156,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanNotExpressionExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanNotExpressionExpressionLinkList>\n");
-            foreach (var row in model.BooleanNotExpressionExpressionLinkList)
+            foreach (var row in model.BooleanNotExpressionExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanNotExpressionExpressionLink' contains a row with empty Id.");
@@ -8275,11 +8275,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanParenthesisExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanParenthesisExpressionList>\n");
-            foreach (var row in model.BooleanParenthesisExpressionList)
+            foreach (var row in model.BooleanParenthesisExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanParenthesisExpression' contains a row with empty Id.");
@@ -8387,11 +8387,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanParenthesisExpressionExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanParenthesisExpressionExpressionLinkList>\n");
-            foreach (var row in model.BooleanParenthesisExpressionExpressionLinkList)
+            foreach (var row in model.BooleanParenthesisExpressionExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanParenthesisExpressionExpressionLink' contains a row with empty Id.");
@@ -8509,11 +8509,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanTernaryExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanTernaryExpressionList>\n");
-            foreach (var row in model.BooleanTernaryExpressionList)
+            foreach (var row in model.BooleanTernaryExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanTernaryExpression' contains a row with empty Id.");
@@ -8625,11 +8625,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanTernaryExpressionFirstExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanTernaryExpressionFirstExpressionLinkList>\n");
-            foreach (var row in model.BooleanTernaryExpressionFirstExpressionLinkList)
+            foreach (var row in model.BooleanTernaryExpressionFirstExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanTernaryExpressionFirstExpressionLink' contains a row with empty Id.");
@@ -8747,11 +8747,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanTernaryExpressionSecondExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanTernaryExpressionSecondExpressionLinkList>\n");
-            foreach (var row in model.BooleanTernaryExpressionSecondExpressionLinkList)
+            foreach (var row in model.BooleanTernaryExpressionSecondExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanTernaryExpressionSecondExpressionLink' contains a row with empty Id.");
@@ -8869,11 +8869,11 @@ namespace MetaTransformScript
         private static byte[] SerializeBooleanTernaryExpressionThirdExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <BooleanTernaryExpressionThirdExpressionLinkList>\n");
-            foreach (var row in model.BooleanTernaryExpressionThirdExpressionLinkList)
+            foreach (var row in model.BooleanTernaryExpressionThirdExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BooleanTernaryExpressionThirdExpressionLink' contains a row with empty Id.");
@@ -8982,11 +8982,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCallTargetShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CallTargetList>\n");
-            foreach (var row in model.CallTargetList)
+            foreach (var row in model.CallTargetList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CallTarget' contains a row with empty Id.");
@@ -9081,11 +9081,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCaseExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CaseExpressionList>\n");
-            foreach (var row in model.CaseExpressionList)
+            foreach (var row in model.CaseExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CaseExpression' contains a row with empty Id.");
@@ -9193,11 +9193,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCaseExpressionElseExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CaseExpressionElseExpressionLinkList>\n");
-            foreach (var row in model.CaseExpressionElseExpressionLinkList)
+            foreach (var row in model.CaseExpressionElseExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CaseExpressionElseExpressionLink' contains a row with empty Id.");
@@ -9312,11 +9312,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCastCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CastCallList>\n");
-            foreach (var row in model.CastCallList)
+            foreach (var row in model.CastCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CastCall' contains a row with empty Id.");
@@ -9424,11 +9424,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCastCallDataTypeLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CastCallDataTypeLinkList>\n");
-            foreach (var row in model.CastCallDataTypeLinkList)
+            foreach (var row in model.CastCallDataTypeLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CastCallDataTypeLink' contains a row with empty Id.");
@@ -9546,11 +9546,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCastCallParameterLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CastCallParameterLinkList>\n");
-            foreach (var row in model.CastCallParameterLinkList)
+            foreach (var row in model.CastCallParameterLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CastCallParameterLink' contains a row with empty Id.");
@@ -9665,11 +9665,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCoalesceExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CoalesceExpressionList>\n");
-            foreach (var row in model.CoalesceExpressionList)
+            foreach (var row in model.CoalesceExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CoalesceExpression' contains a row with empty Id.");
@@ -9780,11 +9780,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCoalesceExpressionExpressionsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CoalesceExpressionExpressionsItemList>\n");
-            foreach (var row in model.CoalesceExpressionExpressionsItemList)
+            foreach (var row in model.CoalesceExpressionExpressionsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CoalesceExpressionExpressionsItem' contains a row with empty Id.");
@@ -9906,11 +9906,11 @@ namespace MetaTransformScript
         private static byte[] SerializeColumnReferenceExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ColumnReferenceExpressionList>\n");
-            foreach (var row in model.ColumnReferenceExpressionList)
+            foreach (var row in model.ColumnReferenceExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ColumnReferenceExpression' contains a row with empty Id.");
@@ -10022,11 +10022,11 @@ namespace MetaTransformScript
         private static byte[] SerializeColumnReferenceExpressionMultiPartIdentifierLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ColumnReferenceExpressionMultiPartIdentifierLinkList>\n");
-            foreach (var row in model.ColumnReferenceExpressionMultiPartIdentifierLinkList)
+            foreach (var row in model.ColumnReferenceExpressionMultiPartIdentifierLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ColumnReferenceExpressionMultiPartIdentifierLink' contains a row with empty Id.");
@@ -10135,11 +10135,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCommonTableExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CommonTableExpressionList>\n");
-            foreach (var row in model.CommonTableExpressionList)
+            foreach (var row in model.CommonTableExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CommonTableExpression' contains a row with empty Id.");
@@ -10240,11 +10240,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCommonTableExpressionColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CommonTableExpressionColumnsItemList>\n");
-            foreach (var row in model.CommonTableExpressionColumnsItemList)
+            foreach (var row in model.CommonTableExpressionColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CommonTableExpressionColumnsItem' contains a row with empty Id.");
@@ -10366,11 +10366,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCommonTableExpressionExpressionNameLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CommonTableExpressionExpressionNameLinkList>\n");
-            foreach (var row in model.CommonTableExpressionExpressionNameLinkList)
+            foreach (var row in model.CommonTableExpressionExpressionNameLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CommonTableExpressionExpressionNameLink' contains a row with empty Id.");
@@ -10488,11 +10488,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCommonTableExpressionQueryExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CommonTableExpressionQueryExpressionLinkList>\n");
-            foreach (var row in model.CommonTableExpressionQueryExpressionLinkList)
+            foreach (var row in model.CommonTableExpressionQueryExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CommonTableExpressionQueryExpressionLink' contains a row with empty Id.");
@@ -10607,11 +10607,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCompositeGroupingSpecificationShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CompositeGroupingSpecificationList>\n");
-            foreach (var row in model.CompositeGroupingSpecificationList)
+            foreach (var row in model.CompositeGroupingSpecificationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CompositeGroupingSpecification' contains a row with empty Id.");
@@ -10722,11 +10722,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCompositeGroupingSpecificationItemsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CompositeGroupingSpecificationItemsItemList>\n");
-            foreach (var row in model.CompositeGroupingSpecificationItemsItemList)
+            foreach (var row in model.CompositeGroupingSpecificationItemsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CompositeGroupingSpecificationItemsItem' contains a row with empty Id.");
@@ -10845,11 +10845,11 @@ namespace MetaTransformScript
         private static byte[] SerializeConvertCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ConvertCallList>\n");
-            foreach (var row in model.ConvertCallList)
+            foreach (var row in model.ConvertCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ConvertCall' contains a row with empty Id.");
@@ -10957,11 +10957,11 @@ namespace MetaTransformScript
         private static byte[] SerializeConvertCallDataTypeLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ConvertCallDataTypeLinkList>\n");
-            foreach (var row in model.ConvertCallDataTypeLinkList)
+            foreach (var row in model.ConvertCallDataTypeLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ConvertCallDataTypeLink' contains a row with empty Id.");
@@ -11079,11 +11079,11 @@ namespace MetaTransformScript
         private static byte[] SerializeConvertCallParameterLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ConvertCallParameterLinkList>\n");
-            foreach (var row in model.ConvertCallParameterLinkList)
+            foreach (var row in model.ConvertCallParameterLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ConvertCallParameterLink' contains a row with empty Id.");
@@ -11201,11 +11201,11 @@ namespace MetaTransformScript
         private static byte[] SerializeConvertCallStyleLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ConvertCallStyleLinkList>\n");
-            foreach (var row in model.ConvertCallStyleLinkList)
+            foreach (var row in model.ConvertCallStyleLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ConvertCallStyleLink' contains a row with empty Id.");
@@ -11320,11 +11320,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCubeGroupingSpecificationShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CubeGroupingSpecificationList>\n");
-            foreach (var row in model.CubeGroupingSpecificationList)
+            foreach (var row in model.CubeGroupingSpecificationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CubeGroupingSpecification' contains a row with empty Id.");
@@ -11435,11 +11435,11 @@ namespace MetaTransformScript
         private static byte[] SerializeCubeGroupingSpecificationArgumentsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <CubeGroupingSpecificationArgumentsItemList>\n");
-            foreach (var row in model.CubeGroupingSpecificationArgumentsItemList)
+            foreach (var row in model.CubeGroupingSpecificationArgumentsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CubeGroupingSpecificationArgumentsItem' contains a row with empty Id.");
@@ -11552,11 +11552,11 @@ namespace MetaTransformScript
         private static byte[] SerializeDataTypeReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <DataTypeReferenceList>\n");
-            foreach (var row in model.DataTypeReferenceList)
+            foreach (var row in model.DataTypeReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DataTypeReference' contains a row with empty Id.");
@@ -11654,11 +11654,11 @@ namespace MetaTransformScript
         private static byte[] SerializeDataTypeReferenceNameLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <DataTypeReferenceNameLinkList>\n");
-            foreach (var row in model.DataTypeReferenceNameLinkList)
+            foreach (var row in model.DataTypeReferenceNameLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DataTypeReferenceNameLink' contains a row with empty Id.");
@@ -11773,11 +11773,11 @@ namespace MetaTransformScript
         private static byte[] SerializeDeleteStatementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <DeleteStatementList>\n");
-            foreach (var row in model.DeleteStatementList)
+            foreach (var row in model.DeleteStatementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DeleteStatement' contains a row with empty Id.");
@@ -11885,11 +11885,11 @@ namespace MetaTransformScript
         private static byte[] SerializeDeleteStatementFromClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <DeleteStatementFromClauseLinkList>\n");
-            foreach (var row in model.DeleteStatementFromClauseLinkList)
+            foreach (var row in model.DeleteStatementFromClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DeleteStatementFromClauseLink' contains a row with empty Id.");
@@ -12007,11 +12007,11 @@ namespace MetaTransformScript
         private static byte[] SerializeDeleteStatementTargetLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <DeleteStatementTargetLinkList>\n");
-            foreach (var row in model.DeleteStatementTargetLinkList)
+            foreach (var row in model.DeleteStatementTargetLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DeleteStatementTargetLink' contains a row with empty Id.");
@@ -12129,11 +12129,11 @@ namespace MetaTransformScript
         private static byte[] SerializeDeleteStatementWhereClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <DeleteStatementWhereClauseLinkList>\n");
-            foreach (var row in model.DeleteStatementWhereClauseLinkList)
+            foreach (var row in model.DeleteStatementWhereClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DeleteStatementWhereClauseLink' contains a row with empty Id.");
@@ -12251,11 +12251,11 @@ namespace MetaTransformScript
         private static byte[] SerializeDistinctPredicateShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <DistinctPredicateList>\n");
-            foreach (var row in model.DistinctPredicateList)
+            foreach (var row in model.DistinctPredicateList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DistinctPredicate' contains a row with empty Id.");
@@ -12367,11 +12367,11 @@ namespace MetaTransformScript
         private static byte[] SerializeDistinctPredicateFirstExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <DistinctPredicateFirstExpressionLinkList>\n");
-            foreach (var row in model.DistinctPredicateFirstExpressionLinkList)
+            foreach (var row in model.DistinctPredicateFirstExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DistinctPredicateFirstExpressionLink' contains a row with empty Id.");
@@ -12489,11 +12489,11 @@ namespace MetaTransformScript
         private static byte[] SerializeDistinctPredicateSecondExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <DistinctPredicateSecondExpressionLinkList>\n");
-            foreach (var row in model.DistinctPredicateSecondExpressionLinkList)
+            foreach (var row in model.DistinctPredicateSecondExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DistinctPredicateSecondExpressionLink' contains a row with empty Id.");
@@ -12608,11 +12608,11 @@ namespace MetaTransformScript
         private static byte[] SerializeExistsPredicateShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ExistsPredicateList>\n");
-            foreach (var row in model.ExistsPredicateList)
+            foreach (var row in model.ExistsPredicateList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ExistsPredicate' contains a row with empty Id.");
@@ -12720,11 +12720,11 @@ namespace MetaTransformScript
         private static byte[] SerializeExistsPredicateSubqueryLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ExistsPredicateSubqueryLinkList>\n");
-            foreach (var row in model.ExistsPredicateSubqueryLinkList)
+            foreach (var row in model.ExistsPredicateSubqueryLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ExistsPredicateSubqueryLink' contains a row with empty Id.");
@@ -12842,11 +12842,11 @@ namespace MetaTransformScript
         private static byte[] SerializeExpressionGroupingSpecificationShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ExpressionGroupingSpecificationList>\n");
-            foreach (var row in model.ExpressionGroupingSpecificationList)
+            foreach (var row in model.ExpressionGroupingSpecificationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ExpressionGroupingSpecification' contains a row with empty Id.");
@@ -12958,11 +12958,11 @@ namespace MetaTransformScript
         private static byte[] SerializeExpressionGroupingSpecificationExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ExpressionGroupingSpecificationExpressionLinkList>\n");
-            foreach (var row in model.ExpressionGroupingSpecificationExpressionLinkList)
+            foreach (var row in model.ExpressionGroupingSpecificationExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ExpressionGroupingSpecificationExpressionLink' contains a row with empty Id.");
@@ -13074,11 +13074,11 @@ namespace MetaTransformScript
         private static byte[] SerializeExpressionWithSortOrderShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ExpressionWithSortOrderList>\n");
-            foreach (var row in model.ExpressionWithSortOrderList)
+            foreach (var row in model.ExpressionWithSortOrderList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ExpressionWithSortOrder' contains a row with empty Id.");
@@ -13180,11 +13180,11 @@ namespace MetaTransformScript
         private static byte[] SerializeExpressionWithSortOrderExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ExpressionWithSortOrderExpressionLinkList>\n");
-            foreach (var row in model.ExpressionWithSortOrderExpressionLinkList)
+            foreach (var row in model.ExpressionWithSortOrderExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ExpressionWithSortOrderExpressionLink' contains a row with empty Id.");
@@ -13293,11 +13293,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFromClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FromClauseList>\n");
-            foreach (var row in model.FromClauseList)
+            foreach (var row in model.FromClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FromClause' contains a row with empty Id.");
@@ -13398,11 +13398,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFromClauseTableReferencesItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FromClauseTableReferencesItemList>\n");
-            foreach (var row in model.FromClauseTableReferencesItemList)
+            foreach (var row in model.FromClauseTableReferencesItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FromClauseTableReferencesItem' contains a row with empty Id.");
@@ -13524,11 +13524,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFullTextPredicateShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FullTextPredicateList>\n");
-            foreach (var row in model.FullTextPredicateList)
+            foreach (var row in model.FullTextPredicateList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FullTextPredicate' contains a row with empty Id.");
@@ -13643,11 +13643,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFullTextPredicateColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FullTextPredicateColumnsItemList>\n");
-            foreach (var row in model.FullTextPredicateColumnsItemList)
+            foreach (var row in model.FullTextPredicateColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FullTextPredicateColumnsItem' contains a row with empty Id.");
@@ -13769,11 +13769,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFullTextPredicateValueLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FullTextPredicateValueLinkList>\n");
-            foreach (var row in model.FullTextPredicateValueLinkList)
+            foreach (var row in model.FullTextPredicateValueLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FullTextPredicateValueLink' contains a row with empty Id.");
@@ -13891,11 +13891,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFullTextTableReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FullTextTableReferenceList>\n");
-            foreach (var row in model.FullTextTableReferenceList)
+            foreach (var row in model.FullTextTableReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FullTextTableReference' contains a row with empty Id.");
@@ -14010,11 +14010,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFullTextTableReferenceColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FullTextTableReferenceColumnsItemList>\n");
-            foreach (var row in model.FullTextTableReferenceColumnsItemList)
+            foreach (var row in model.FullTextTableReferenceColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FullTextTableReferenceColumnsItem' contains a row with empty Id.");
@@ -14136,11 +14136,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFullTextTableReferenceSearchConditionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FullTextTableReferenceSearchConditionLinkList>\n");
-            foreach (var row in model.FullTextTableReferenceSearchConditionLinkList)
+            foreach (var row in model.FullTextTableReferenceSearchConditionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FullTextTableReferenceSearchConditionLink' contains a row with empty Id.");
@@ -14258,11 +14258,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFullTextTableReferenceTableNameLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FullTextTableReferenceTableNameLinkList>\n");
-            foreach (var row in model.FullTextTableReferenceTableNameLinkList)
+            foreach (var row in model.FullTextTableReferenceTableNameLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FullTextTableReferenceTableNameLink' contains a row with empty Id.");
@@ -14383,11 +14383,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFunctionCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FunctionCallList>\n");
-            foreach (var row in model.FunctionCallList)
+            foreach (var row in model.FunctionCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FunctionCall' contains a row with empty Id.");
@@ -14503,11 +14503,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFunctionCallCallTargetLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FunctionCallCallTargetLinkList>\n");
-            foreach (var row in model.FunctionCallCallTargetLinkList)
+            foreach (var row in model.FunctionCallCallTargetLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FunctionCallCallTargetLink' contains a row with empty Id.");
@@ -14625,11 +14625,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFunctionCallFunctionNameLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FunctionCallFunctionNameLinkList>\n");
-            foreach (var row in model.FunctionCallFunctionNameLinkList)
+            foreach (var row in model.FunctionCallFunctionNameLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FunctionCallFunctionNameLink' contains a row with empty Id.");
@@ -14747,11 +14747,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFunctionCallOverClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FunctionCallOverClauseLinkList>\n");
-            foreach (var row in model.FunctionCallOverClauseLinkList)
+            foreach (var row in model.FunctionCallOverClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FunctionCallOverClauseLink' contains a row with empty Id.");
@@ -14872,11 +14872,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFunctionCallParametersItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FunctionCallParametersItemList>\n");
-            foreach (var row in model.FunctionCallParametersItemList)
+            foreach (var row in model.FunctionCallParametersItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FunctionCallParametersItem' contains a row with empty Id.");
@@ -14998,11 +14998,11 @@ namespace MetaTransformScript
         private static byte[] SerializeFunctionCallWithinGroupOrderByClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <FunctionCallWithinGroupOrderByClauseLinkList>\n");
-            foreach (var row in model.FunctionCallWithinGroupOrderByClauseLinkList)
+            foreach (var row in model.FunctionCallWithinGroupOrderByClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FunctionCallWithinGroupOrderByClauseLink' contains a row with empty Id.");
@@ -15117,11 +15117,11 @@ namespace MetaTransformScript
         private static byte[] SerializeGlobalFunctionTableReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <GlobalFunctionTableReferenceList>\n");
-            foreach (var row in model.GlobalFunctionTableReferenceList)
+            foreach (var row in model.GlobalFunctionTableReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'GlobalFunctionTableReference' contains a row with empty Id.");
@@ -15229,11 +15229,11 @@ namespace MetaTransformScript
         private static byte[] SerializeGlobalFunctionTableReferenceNameLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <GlobalFunctionTableReferenceNameLinkList>\n");
-            foreach (var row in model.GlobalFunctionTableReferenceNameLinkList)
+            foreach (var row in model.GlobalFunctionTableReferenceNameLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'GlobalFunctionTableReferenceNameLink' contains a row with empty Id.");
@@ -15354,11 +15354,11 @@ namespace MetaTransformScript
         private static byte[] SerializeGlobalFunctionTableReferenceParametersItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <GlobalFunctionTableReferenceParametersItemList>\n");
-            foreach (var row in model.GlobalFunctionTableReferenceParametersItemList)
+            foreach (var row in model.GlobalFunctionTableReferenceParametersItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'GlobalFunctionTableReferenceParametersItem' contains a row with empty Id.");
@@ -15480,11 +15480,11 @@ namespace MetaTransformScript
         private static byte[] SerializeGlobalVariableExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <GlobalVariableExpressionList>\n");
-            foreach (var row in model.GlobalVariableExpressionList)
+            foreach (var row in model.GlobalVariableExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'GlobalVariableExpression' contains a row with empty Id.");
@@ -15593,11 +15593,11 @@ namespace MetaTransformScript
         private static byte[] SerializeGrandTotalGroupingSpecificationShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <GrandTotalGroupingSpecificationList>\n");
-            foreach (var row in model.GrandTotalGroupingSpecificationList)
+            foreach (var row in model.GrandTotalGroupingSpecificationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'GrandTotalGroupingSpecification' contains a row with empty Id.");
@@ -15702,11 +15702,11 @@ namespace MetaTransformScript
         private static byte[] SerializeGroupByClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <GroupByClauseList>\n");
-            foreach (var row in model.GroupByClauseList)
+            foreach (var row in model.GroupByClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'GroupByClause' contains a row with empty Id.");
@@ -15815,11 +15815,11 @@ namespace MetaTransformScript
         private static byte[] SerializeGroupByClauseGroupingSpecificationsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <GroupByClauseGroupingSpecificationsItemList>\n");
-            foreach (var row in model.GroupByClauseGroupingSpecificationsItemList)
+            foreach (var row in model.GroupByClauseGroupingSpecificationsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'GroupByClauseGroupingSpecificationsItem' contains a row with empty Id.");
@@ -15938,11 +15938,11 @@ namespace MetaTransformScript
         private static byte[] SerializeGroupingSetsGroupingSpecificationShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <GroupingSetsGroupingSpecificationList>\n");
-            foreach (var row in model.GroupingSetsGroupingSpecificationList)
+            foreach (var row in model.GroupingSetsGroupingSpecificationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'GroupingSetsGroupingSpecification' contains a row with empty Id.");
@@ -16053,11 +16053,11 @@ namespace MetaTransformScript
         private static byte[] SerializeGroupingSetsGroupingSpecificationSetsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <GroupingSetsGroupingSpecificationSetsItemList>\n");
-            foreach (var row in model.GroupingSetsGroupingSpecificationSetsItemList)
+            foreach (var row in model.GroupingSetsGroupingSpecificationSetsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'GroupingSetsGroupingSpecificationSetsItem' contains a row with empty Id.");
@@ -16170,11 +16170,11 @@ namespace MetaTransformScript
         private static byte[] SerializeGroupingSpecificationShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <GroupingSpecificationList>\n");
-            foreach (var row in model.GroupingSpecificationList)
+            foreach (var row in model.GroupingSpecificationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'GroupingSpecification' contains a row with empty Id.");
@@ -16263,11 +16263,11 @@ namespace MetaTransformScript
         private static byte[] SerializeHavingClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <HavingClauseList>\n");
-            foreach (var row in model.HavingClauseList)
+            foreach (var row in model.HavingClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'HavingClause' contains a row with empty Id.");
@@ -16365,11 +16365,11 @@ namespace MetaTransformScript
         private static byte[] SerializeHavingClauseSearchConditionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <HavingClauseSearchConditionLinkList>\n");
-            foreach (var row in model.HavingClauseSearchConditionLinkList)
+            foreach (var row in model.HavingClauseSearchConditionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'HavingClauseSearchConditionLink' contains a row with empty Id.");
@@ -16484,11 +16484,11 @@ namespace MetaTransformScript
         private static byte[] SerializeIdentifierShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <IdentifierList>\n");
-            foreach (var row in model.IdentifierList)
+            foreach (var row in model.IdentifierList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Identifier' contains a row with empty Id.");
@@ -16588,11 +16588,11 @@ namespace MetaTransformScript
         private static byte[] SerializeIdentifierOrValueExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <IdentifierOrValueExpressionList>\n");
-            foreach (var row in model.IdentifierOrValueExpressionList)
+            foreach (var row in model.IdentifierOrValueExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'IdentifierOrValueExpression' contains a row with empty Id.");
@@ -16694,11 +16694,11 @@ namespace MetaTransformScript
         private static byte[] SerializeIdentifierOrValueExpressionIdentifierLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <IdentifierOrValueExpressionIdentifierLinkList>\n");
-            foreach (var row in model.IdentifierOrValueExpressionIdentifierLinkList)
+            foreach (var row in model.IdentifierOrValueExpressionIdentifierLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'IdentifierOrValueExpressionIdentifierLink' contains a row with empty Id.");
@@ -16813,11 +16813,11 @@ namespace MetaTransformScript
         private static byte[] SerializeIIfCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <IIfCallList>\n");
-            foreach (var row in model.IIfCallList)
+            foreach (var row in model.IIfCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'IIfCall' contains a row with empty Id.");
@@ -16925,11 +16925,11 @@ namespace MetaTransformScript
         private static byte[] SerializeIIfCallElseExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <IIfCallElseExpressionLinkList>\n");
-            foreach (var row in model.IIfCallElseExpressionLinkList)
+            foreach (var row in model.IIfCallElseExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'IIfCallElseExpressionLink' contains a row with empty Id.");
@@ -17047,11 +17047,11 @@ namespace MetaTransformScript
         private static byte[] SerializeIIfCallPredicateLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <IIfCallPredicateLinkList>\n");
-            foreach (var row in model.IIfCallPredicateLinkList)
+            foreach (var row in model.IIfCallPredicateLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'IIfCallPredicateLink' contains a row with empty Id.");
@@ -17169,11 +17169,11 @@ namespace MetaTransformScript
         private static byte[] SerializeIIfCallThenExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <IIfCallThenExpressionLinkList>\n");
-            foreach (var row in model.IIfCallThenExpressionLinkList)
+            foreach (var row in model.IIfCallThenExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'IIfCallThenExpressionLink' contains a row with empty Id.");
@@ -17288,11 +17288,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInlineDerivedTableShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InlineDerivedTableList>\n");
-            foreach (var row in model.InlineDerivedTableList)
+            foreach (var row in model.InlineDerivedTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InlineDerivedTable' contains a row with empty Id.");
@@ -17403,11 +17403,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInlineDerivedTableRowValuesItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InlineDerivedTableRowValuesItemList>\n");
-            foreach (var row in model.InlineDerivedTableRowValuesItemList)
+            foreach (var row in model.InlineDerivedTableRowValuesItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InlineDerivedTableRowValuesItem' contains a row with empty Id.");
@@ -17529,11 +17529,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInPredicateShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InPredicateList>\n");
-            foreach (var row in model.InPredicateList)
+            foreach (var row in model.InPredicateList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InPredicate' contains a row with empty Id.");
@@ -17645,11 +17645,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInPredicateExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InPredicateExpressionLinkList>\n");
-            foreach (var row in model.InPredicateExpressionLinkList)
+            foreach (var row in model.InPredicateExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InPredicateExpressionLink' contains a row with empty Id.");
@@ -17767,11 +17767,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInPredicateSubqueryLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InPredicateSubqueryLinkList>\n");
-            foreach (var row in model.InPredicateSubqueryLinkList)
+            foreach (var row in model.InPredicateSubqueryLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InPredicateSubqueryLink' contains a row with empty Id.");
@@ -17892,11 +17892,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInPredicateValuesItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InPredicateValuesItemList>\n");
-            foreach (var row in model.InPredicateValuesItemList)
+            foreach (var row in model.InPredicateValuesItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InPredicateValuesItem' contains a row with empty Id.");
@@ -18015,11 +18015,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInsertQuerySourceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InsertQuerySourceList>\n");
-            foreach (var row in model.InsertQuerySourceList)
+            foreach (var row in model.InsertQuerySourceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InsertQuerySource' contains a row with empty Id.");
@@ -18127,11 +18127,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInsertQuerySourceQueryExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InsertQuerySourceQueryExpressionLinkList>\n");
-            foreach (var row in model.InsertQuerySourceQueryExpressionLinkList)
+            foreach (var row in model.InsertQuerySourceQueryExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InsertQuerySourceQueryExpressionLink' contains a row with empty Id.");
@@ -18240,11 +18240,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInsertSourceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InsertSourceList>\n");
-            foreach (var row in model.InsertSourceList)
+            foreach (var row in model.InsertSourceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InsertSource' contains a row with empty Id.");
@@ -18339,11 +18339,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInsertStatementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InsertStatementList>\n");
-            foreach (var row in model.InsertStatementList)
+            foreach (var row in model.InsertStatementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InsertStatement' contains a row with empty Id.");
@@ -18454,11 +18454,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInsertStatementColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InsertStatementColumnsItemList>\n");
-            foreach (var row in model.InsertStatementColumnsItemList)
+            foreach (var row in model.InsertStatementColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InsertStatementColumnsItem' contains a row with empty Id.");
@@ -18580,11 +18580,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInsertStatementSourceLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InsertStatementSourceLinkList>\n");
-            foreach (var row in model.InsertStatementSourceLinkList)
+            foreach (var row in model.InsertStatementSourceLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InsertStatementSourceLink' contains a row with empty Id.");
@@ -18702,11 +18702,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInsertStatementTargetLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InsertStatementTargetLinkList>\n");
-            foreach (var row in model.InsertStatementTargetLinkList)
+            foreach (var row in model.InsertStatementTargetLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InsertStatementTargetLink' contains a row with empty Id.");
@@ -18821,11 +18821,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInsertValuesSourceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InsertValuesSourceList>\n");
-            foreach (var row in model.InsertValuesSourceList)
+            foreach (var row in model.InsertValuesSourceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InsertValuesSource' contains a row with empty Id.");
@@ -18936,11 +18936,11 @@ namespace MetaTransformScript
         private static byte[] SerializeInsertValuesSourceRowValuesItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <InsertValuesSourceRowValuesItemList>\n");
-            foreach (var row in model.InsertValuesSourceRowValuesItemList)
+            foreach (var row in model.InsertValuesSourceRowValuesItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InsertValuesSourceRowValuesItem' contains a row with empty Id.");
@@ -19062,11 +19062,11 @@ namespace MetaTransformScript
         private static byte[] SerializeIntegerLiteralShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <IntegerLiteralList>\n");
-            foreach (var row in model.IntegerLiteralList)
+            foreach (var row in model.IntegerLiteralList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'IntegerLiteral' contains a row with empty Id.");
@@ -19175,11 +19175,11 @@ namespace MetaTransformScript
         private static byte[] SerializeJoinParenthesisTableReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <JoinParenthesisTableReferenceList>\n");
-            foreach (var row in model.JoinParenthesisTableReferenceList)
+            foreach (var row in model.JoinParenthesisTableReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinParenthesisTableReference' contains a row with empty Id.");
@@ -19287,11 +19287,11 @@ namespace MetaTransformScript
         private static byte[] SerializeJoinParenthesisTableReferenceJoinLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <JoinParenthesisTableReferenceJoinLinkList>\n");
-            foreach (var row in model.JoinParenthesisTableReferenceJoinLinkList)
+            foreach (var row in model.JoinParenthesisTableReferenceJoinLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinParenthesisTableReferenceJoinLink' contains a row with empty Id.");
@@ -19406,11 +19406,11 @@ namespace MetaTransformScript
         private static byte[] SerializeJoinTableReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <JoinTableReferenceList>\n");
-            foreach (var row in model.JoinTableReferenceList)
+            foreach (var row in model.JoinTableReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinTableReference' contains a row with empty Id.");
@@ -19518,11 +19518,11 @@ namespace MetaTransformScript
         private static byte[] SerializeJoinTableReferenceFirstTableReferenceLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <JoinTableReferenceFirstTableReferenceLinkList>\n");
-            foreach (var row in model.JoinTableReferenceFirstTableReferenceLinkList)
+            foreach (var row in model.JoinTableReferenceFirstTableReferenceLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinTableReferenceFirstTableReferenceLink' contains a row with empty Id.");
@@ -19640,11 +19640,11 @@ namespace MetaTransformScript
         private static byte[] SerializeJoinTableReferenceSecondTableReferenceLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <JoinTableReferenceSecondTableReferenceLinkList>\n");
-            foreach (var row in model.JoinTableReferenceSecondTableReferenceLinkList)
+            foreach (var row in model.JoinTableReferenceSecondTableReferenceLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinTableReferenceSecondTableReferenceLink' contains a row with empty Id.");
@@ -19759,11 +19759,11 @@ namespace MetaTransformScript
         private static byte[] SerializeLeftFunctionCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <LeftFunctionCallList>\n");
-            foreach (var row in model.LeftFunctionCallList)
+            foreach (var row in model.LeftFunctionCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'LeftFunctionCall' contains a row with empty Id.");
@@ -19874,11 +19874,11 @@ namespace MetaTransformScript
         private static byte[] SerializeLeftFunctionCallParametersItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <LeftFunctionCallParametersItemList>\n");
-            foreach (var row in model.LeftFunctionCallParametersItemList)
+            foreach (var row in model.LeftFunctionCallParametersItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'LeftFunctionCallParametersItem' contains a row with empty Id.");
@@ -20003,11 +20003,11 @@ namespace MetaTransformScript
         private static byte[] SerializeLikePredicateShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <LikePredicateList>\n");
-            foreach (var row in model.LikePredicateList)
+            foreach (var row in model.LikePredicateList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'LikePredicate' contains a row with empty Id.");
@@ -20123,11 +20123,11 @@ namespace MetaTransformScript
         private static byte[] SerializeLikePredicateEscapeExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <LikePredicateEscapeExpressionLinkList>\n");
-            foreach (var row in model.LikePredicateEscapeExpressionLinkList)
+            foreach (var row in model.LikePredicateEscapeExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'LikePredicateEscapeExpressionLink' contains a row with empty Id.");
@@ -20245,11 +20245,11 @@ namespace MetaTransformScript
         private static byte[] SerializeLikePredicateFirstExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <LikePredicateFirstExpressionLinkList>\n");
-            foreach (var row in model.LikePredicateFirstExpressionLinkList)
+            foreach (var row in model.LikePredicateFirstExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'LikePredicateFirstExpressionLink' contains a row with empty Id.");
@@ -20367,11 +20367,11 @@ namespace MetaTransformScript
         private static byte[] SerializeLikePredicateSecondExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <LikePredicateSecondExpressionLinkList>\n");
-            foreach (var row in model.LikePredicateSecondExpressionLinkList)
+            foreach (var row in model.LikePredicateSecondExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'LikePredicateSecondExpressionLink' contains a row with empty Id.");
@@ -20492,11 +20492,11 @@ namespace MetaTransformScript
         private static byte[] SerializeLiteralShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <LiteralList>\n");
-            foreach (var row in model.LiteralList)
+            foreach (var row in model.LiteralList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Literal' contains a row with empty Id.");
@@ -20612,11 +20612,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMaxLiteralShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MaxLiteralList>\n");
-            foreach (var row in model.MaxLiteralList)
+            foreach (var row in model.MaxLiteralList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MaxLiteral' contains a row with empty Id.");
@@ -20719,11 +20719,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeActionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeActionList>\n");
-            foreach (var row in model.MergeActionList)
+            foreach (var row in model.MergeActionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeAction' contains a row with empty Id.");
@@ -20818,11 +20818,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeDeleteActionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeDeleteActionList>\n");
-            foreach (var row in model.MergeDeleteActionList)
+            foreach (var row in model.MergeDeleteActionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeDeleteAction' contains a row with empty Id.");
@@ -20927,11 +20927,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeInsertActionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeInsertActionList>\n");
-            foreach (var row in model.MergeInsertActionList)
+            foreach (var row in model.MergeInsertActionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeInsertAction' contains a row with empty Id.");
@@ -21042,11 +21042,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeInsertActionColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeInsertActionColumnsItemList>\n");
-            foreach (var row in model.MergeInsertActionColumnsItemList)
+            foreach (var row in model.MergeInsertActionColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeInsertActionColumnsItem' contains a row with empty Id.");
@@ -21171,11 +21171,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeInsertActionValuesItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeInsertActionValuesItemList>\n");
-            foreach (var row in model.MergeInsertActionValuesItemList)
+            foreach (var row in model.MergeInsertActionValuesItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeInsertActionValuesItem' contains a row with empty Id.");
@@ -21294,11 +21294,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeStatementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeStatementList>\n");
-            foreach (var row in model.MergeStatementList)
+            foreach (var row in model.MergeStatementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeStatement' contains a row with empty Id.");
@@ -21406,11 +21406,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeStatementOptionClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeStatementOptionClauseLinkList>\n");
-            foreach (var row in model.MergeStatementOptionClauseLinkList)
+            foreach (var row in model.MergeStatementOptionClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeStatementOptionClauseLink' contains a row with empty Id.");
@@ -21528,11 +21528,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeStatementOutputClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeStatementOutputClauseLinkList>\n");
-            foreach (var row in model.MergeStatementOutputClauseLinkList)
+            foreach (var row in model.MergeStatementOutputClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeStatementOutputClauseLink' contains a row with empty Id.");
@@ -21650,11 +21650,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeStatementSearchConditionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeStatementSearchConditionLinkList>\n");
-            foreach (var row in model.MergeStatementSearchConditionLinkList)
+            foreach (var row in model.MergeStatementSearchConditionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeStatementSearchConditionLink' contains a row with empty Id.");
@@ -21772,11 +21772,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeStatementSourceLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeStatementSourceLinkList>\n");
-            foreach (var row in model.MergeStatementSourceLinkList)
+            foreach (var row in model.MergeStatementSourceLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeStatementSourceLink' contains a row with empty Id.");
@@ -21894,11 +21894,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeStatementTargetAliasLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeStatementTargetAliasLinkList>\n");
-            foreach (var row in model.MergeStatementTargetAliasLinkList)
+            foreach (var row in model.MergeStatementTargetAliasLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeStatementTargetAliasLink' contains a row with empty Id.");
@@ -22019,11 +22019,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeStatementTargetHintsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeStatementTargetHintsItemList>\n");
-            foreach (var row in model.MergeStatementTargetHintsItemList)
+            foreach (var row in model.MergeStatementTargetHintsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeStatementTargetHintsItem' contains a row with empty Id.");
@@ -22145,11 +22145,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeStatementTargetLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeStatementTargetLinkList>\n");
-            foreach (var row in model.MergeStatementTargetLinkList)
+            foreach (var row in model.MergeStatementTargetLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeStatementTargetLink' contains a row with empty Id.");
@@ -22267,11 +22267,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeStatementTopRowFilterLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeStatementTopRowFilterLinkList>\n");
-            foreach (var row in model.MergeStatementTopRowFilterLinkList)
+            foreach (var row in model.MergeStatementTopRowFilterLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeStatementTopRowFilterLink' contains a row with empty Id.");
@@ -22392,11 +22392,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeStatementWhenClausesItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeStatementWhenClausesItemList>\n");
-            foreach (var row in model.MergeStatementWhenClausesItemList)
+            foreach (var row in model.MergeStatementWhenClausesItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeStatementWhenClausesItem' contains a row with empty Id.");
@@ -22515,11 +22515,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeUpdateActionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeUpdateActionList>\n");
-            foreach (var row in model.MergeUpdateActionList)
+            foreach (var row in model.MergeUpdateActionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeUpdateAction' contains a row with empty Id.");
@@ -22627,11 +22627,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeUpdateActionSetClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeUpdateActionSetClauseLinkList>\n");
-            foreach (var row in model.MergeUpdateActionSetClauseLinkList)
+            foreach (var row in model.MergeUpdateActionSetClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeUpdateActionSetClauseLink' contains a row with empty Id.");
@@ -22743,11 +22743,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeWhenClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeWhenClauseList>\n");
-            foreach (var row in model.MergeWhenClauseList)
+            foreach (var row in model.MergeWhenClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeWhenClause' contains a row with empty Id.");
@@ -22846,11 +22846,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeWhenClauseActionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeWhenClauseActionLinkList>\n");
-            foreach (var row in model.MergeWhenClauseActionLinkList)
+            foreach (var row in model.MergeWhenClauseActionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeWhenClauseActionLink' contains a row with empty Id.");
@@ -22968,11 +22968,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMergeWhenClauseSearchConditionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MergeWhenClauseSearchConditionLinkList>\n");
-            foreach (var row in model.MergeWhenClauseSearchConditionLinkList)
+            foreach (var row in model.MergeWhenClauseSearchConditionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MergeWhenClauseSearchConditionLink' contains a row with empty Id.");
@@ -23084,11 +23084,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMultiPartIdentifierShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MultiPartIdentifierList>\n");
-            foreach (var row in model.MultiPartIdentifierList)
+            foreach (var row in model.MultiPartIdentifierList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MultiPartIdentifier' contains a row with empty Id.");
@@ -23187,11 +23187,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMultiPartIdentifierCallTargetShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MultiPartIdentifierCallTargetList>\n");
-            foreach (var row in model.MultiPartIdentifierCallTargetList)
+            foreach (var row in model.MultiPartIdentifierCallTargetList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MultiPartIdentifierCallTarget' contains a row with empty Id.");
@@ -23299,11 +23299,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMultiPartIdentifierCallTargetMultiPartIdentifierLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MultiPartIdentifierCallTargetMultiPartIdentifierLinkList>\n");
-            foreach (var row in model.MultiPartIdentifierCallTargetMultiPartIdentifierLinkList)
+            foreach (var row in model.MultiPartIdentifierCallTargetMultiPartIdentifierLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MultiPartIdentifierCallTargetMultiPartIdentifierLink' contains a row with empty Id.");
@@ -23424,11 +23424,11 @@ namespace MetaTransformScript
         private static byte[] SerializeMultiPartIdentifierIdentifiersItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <MultiPartIdentifierIdentifiersItemList>\n");
-            foreach (var row in model.MultiPartIdentifierIdentifiersItemList)
+            foreach (var row in model.MultiPartIdentifierIdentifiersItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MultiPartIdentifierIdentifiersItem' contains a row with empty Id.");
@@ -23547,11 +23547,11 @@ namespace MetaTransformScript
         private static byte[] SerializeNamedTableReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <NamedTableReferenceList>\n");
-            foreach (var row in model.NamedTableReferenceList)
+            foreach (var row in model.NamedTableReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NamedTableReference' contains a row with empty Id.");
@@ -23659,11 +23659,11 @@ namespace MetaTransformScript
         private static byte[] SerializeNamedTableReferenceSchemaObjectLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <NamedTableReferenceSchemaObjectLinkList>\n");
-            foreach (var row in model.NamedTableReferenceSchemaObjectLinkList)
+            foreach (var row in model.NamedTableReferenceSchemaObjectLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NamedTableReferenceSchemaObjectLink' contains a row with empty Id.");
@@ -23781,11 +23781,11 @@ namespace MetaTransformScript
         private static byte[] SerializeNamedTableReferenceTableSampleClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <NamedTableReferenceTableSampleClauseLinkList>\n");
-            foreach (var row in model.NamedTableReferenceTableSampleClauseLinkList)
+            foreach (var row in model.NamedTableReferenceTableSampleClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NamedTableReferenceTableSampleClauseLink' contains a row with empty Id.");
@@ -23900,11 +23900,11 @@ namespace MetaTransformScript
         private static byte[] SerializeNextValueForExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <NextValueForExpressionList>\n");
-            foreach (var row in model.NextValueForExpressionList)
+            foreach (var row in model.NextValueForExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NextValueForExpression' contains a row with empty Id.");
@@ -24012,11 +24012,11 @@ namespace MetaTransformScript
         private static byte[] SerializeNextValueForExpressionSequenceNameLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <NextValueForExpressionSequenceNameLinkList>\n");
-            foreach (var row in model.NextValueForExpressionSequenceNameLinkList)
+            foreach (var row in model.NextValueForExpressionSequenceNameLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NextValueForExpressionSequenceNameLink' contains a row with empty Id.");
@@ -24131,11 +24131,11 @@ namespace MetaTransformScript
         private static byte[] SerializeNullIfExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <NullIfExpressionList>\n");
-            foreach (var row in model.NullIfExpressionList)
+            foreach (var row in model.NullIfExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NullIfExpression' contains a row with empty Id.");
@@ -24243,11 +24243,11 @@ namespace MetaTransformScript
         private static byte[] SerializeNullIfExpressionFirstExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <NullIfExpressionFirstExpressionLinkList>\n");
-            foreach (var row in model.NullIfExpressionFirstExpressionLinkList)
+            foreach (var row in model.NullIfExpressionFirstExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NullIfExpressionFirstExpressionLink' contains a row with empty Id.");
@@ -24365,11 +24365,11 @@ namespace MetaTransformScript
         private static byte[] SerializeNullIfExpressionSecondExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <NullIfExpressionSecondExpressionLinkList>\n");
-            foreach (var row in model.NullIfExpressionSecondExpressionLinkList)
+            foreach (var row in model.NullIfExpressionSecondExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NullIfExpressionSecondExpressionLink' contains a row with empty Id.");
@@ -24487,11 +24487,11 @@ namespace MetaTransformScript
         private static byte[] SerializeNullLiteralShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <NullLiteralList>\n");
-            foreach (var row in model.NullLiteralList)
+            foreach (var row in model.NullLiteralList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NullLiteral' contains a row with empty Id.");
@@ -24603,11 +24603,11 @@ namespace MetaTransformScript
         private static byte[] SerializeNumericLiteralShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <NumericLiteralList>\n");
-            foreach (var row in model.NumericLiteralList)
+            foreach (var row in model.NumericLiteralList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'NumericLiteral' contains a row with empty Id.");
@@ -24713,11 +24713,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOffsetClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OffsetClauseList>\n");
-            foreach (var row in model.OffsetClauseList)
+            foreach (var row in model.OffsetClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OffsetClause' contains a row with empty Id.");
@@ -24819,11 +24819,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOffsetClauseFetchExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OffsetClauseFetchExpressionLinkList>\n");
-            foreach (var row in model.OffsetClauseFetchExpressionLinkList)
+            foreach (var row in model.OffsetClauseFetchExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OffsetClauseFetchExpressionLink' contains a row with empty Id.");
@@ -24941,11 +24941,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOffsetClauseOffsetExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OffsetClauseOffsetExpressionLinkList>\n");
-            foreach (var row in model.OffsetClauseOffsetExpressionLinkList)
+            foreach (var row in model.OffsetClauseOffsetExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OffsetClauseOffsetExpressionLink' contains a row with empty Id.");
@@ -25054,11 +25054,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOptionClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OptionClauseList>\n");
-            foreach (var row in model.OptionClauseList)
+            foreach (var row in model.OptionClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OptionClause' contains a row with empty Id.");
@@ -25159,11 +25159,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOptionClauseQueryHintsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OptionClauseQueryHintsItemList>\n");
-            foreach (var row in model.OptionClauseQueryHintsItemList)
+            foreach (var row in model.OptionClauseQueryHintsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OptionClauseQueryHintsItem' contains a row with empty Id.");
@@ -25276,11 +25276,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOrderByClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OrderByClauseList>\n");
-            foreach (var row in model.OrderByClauseList)
+            foreach (var row in model.OrderByClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OrderByClause' contains a row with empty Id.");
@@ -25381,11 +25381,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOrderByClauseOrderByElementsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OrderByClauseOrderByElementsItemList>\n");
-            foreach (var row in model.OrderByClauseOrderByElementsItemList)
+            foreach (var row in model.OrderByClauseOrderByElementsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OrderByClauseOrderByElementsItem' contains a row with empty Id.");
@@ -25498,11 +25498,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOutputClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OutputClauseList>\n");
-            foreach (var row in model.OutputClauseList)
+            foreach (var row in model.OutputClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OutputClause' contains a row with empty Id.");
@@ -25603,11 +25603,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOutputClauseIntoColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OutputClauseIntoColumnsItemList>\n");
-            foreach (var row in model.OutputClauseIntoColumnsItemList)
+            foreach (var row in model.OutputClauseIntoColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OutputClauseIntoColumnsItem' contains a row with empty Id.");
@@ -25729,11 +25729,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOutputClauseIntoTargetLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OutputClauseIntoTargetLinkList>\n");
-            foreach (var row in model.OutputClauseIntoTargetLinkList)
+            foreach (var row in model.OutputClauseIntoTargetLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OutputClauseIntoTargetLink' contains a row with empty Id.");
@@ -25854,11 +25854,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOutputClauseSelectElementsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OutputClauseSelectElementsItemList>\n");
-            foreach (var row in model.OutputClauseSelectElementsItemList)
+            foreach (var row in model.OutputClauseSelectElementsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OutputClauseSelectElementsItem' contains a row with empty Id.");
@@ -25971,11 +25971,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOverClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OverClauseList>\n");
-            foreach (var row in model.OverClauseList)
+            foreach (var row in model.OverClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OverClause' contains a row with empty Id.");
@@ -26073,11 +26073,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOverClauseOrderByClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OverClauseOrderByClauseLinkList>\n");
-            foreach (var row in model.OverClauseOrderByClauseLinkList)
+            foreach (var row in model.OverClauseOrderByClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OverClauseOrderByClauseLink' contains a row with empty Id.");
@@ -26198,11 +26198,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOverClausePartitionsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OverClausePartitionsItemList>\n");
-            foreach (var row in model.OverClausePartitionsItemList)
+            foreach (var row in model.OverClausePartitionsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OverClausePartitionsItem' contains a row with empty Id.");
@@ -26324,11 +26324,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOverClauseWindowFrameClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OverClauseWindowFrameClauseLinkList>\n");
-            foreach (var row in model.OverClauseWindowFrameClauseLinkList)
+            foreach (var row in model.OverClauseWindowFrameClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OverClauseWindowFrameClauseLink' contains a row with empty Id.");
@@ -26446,11 +26446,11 @@ namespace MetaTransformScript
         private static byte[] SerializeOverClauseWindowNameLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <OverClauseWindowNameLinkList>\n");
-            foreach (var row in model.OverClauseWindowNameLinkList)
+            foreach (var row in model.OverClauseWindowNameLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OverClauseWindowNameLink' contains a row with empty Id.");
@@ -26565,11 +26565,11 @@ namespace MetaTransformScript
         private static byte[] SerializeParameterizedDataTypeReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ParameterizedDataTypeReferenceList>\n");
-            foreach (var row in model.ParameterizedDataTypeReferenceList)
+            foreach (var row in model.ParameterizedDataTypeReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ParameterizedDataTypeReference' contains a row with empty Id.");
@@ -26680,11 +26680,11 @@ namespace MetaTransformScript
         private static byte[] SerializeParameterizedDataTypeReferenceParametersItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ParameterizedDataTypeReferenceParametersItemList>\n");
-            foreach (var row in model.ParameterizedDataTypeReferenceParametersItemList)
+            foreach (var row in model.ParameterizedDataTypeReferenceParametersItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ParameterizedDataTypeReferenceParametersItem' contains a row with empty Id.");
@@ -26806,11 +26806,11 @@ namespace MetaTransformScript
         private static byte[] SerializeParameterlessCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ParameterlessCallList>\n");
-            foreach (var row in model.ParameterlessCallList)
+            foreach (var row in model.ParameterlessCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ParameterlessCall' contains a row with empty Id.");
@@ -26919,11 +26919,11 @@ namespace MetaTransformScript
         private static byte[] SerializeParenthesisExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ParenthesisExpressionList>\n");
-            foreach (var row in model.ParenthesisExpressionList)
+            foreach (var row in model.ParenthesisExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ParenthesisExpression' contains a row with empty Id.");
@@ -27031,11 +27031,11 @@ namespace MetaTransformScript
         private static byte[] SerializeParenthesisExpressionExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ParenthesisExpressionExpressionLinkList>\n");
-            foreach (var row in model.ParenthesisExpressionExpressionLinkList)
+            foreach (var row in model.ParenthesisExpressionExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ParenthesisExpressionExpressionLink' contains a row with empty Id.");
@@ -27150,11 +27150,11 @@ namespace MetaTransformScript
         private static byte[] SerializeParseCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ParseCallList>\n");
-            foreach (var row in model.ParseCallList)
+            foreach (var row in model.ParseCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ParseCall' contains a row with empty Id.");
@@ -27262,11 +27262,11 @@ namespace MetaTransformScript
         private static byte[] SerializeParseCallCultureLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ParseCallCultureLinkList>\n");
-            foreach (var row in model.ParseCallCultureLinkList)
+            foreach (var row in model.ParseCallCultureLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ParseCallCultureLink' contains a row with empty Id.");
@@ -27384,11 +27384,11 @@ namespace MetaTransformScript
         private static byte[] SerializeParseCallDataTypeLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ParseCallDataTypeLinkList>\n");
-            foreach (var row in model.ParseCallDataTypeLinkList)
+            foreach (var row in model.ParseCallDataTypeLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ParseCallDataTypeLink' contains a row with empty Id.");
@@ -27506,11 +27506,11 @@ namespace MetaTransformScript
         private static byte[] SerializeParseCallStringValueLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ParseCallStringValueLinkList>\n");
-            foreach (var row in model.ParseCallStringValueLinkList)
+            foreach (var row in model.ParseCallStringValueLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ParseCallStringValueLink' contains a row with empty Id.");
@@ -27625,11 +27625,11 @@ namespace MetaTransformScript
         private static byte[] SerializePivotedTableReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <PivotedTableReferenceList>\n");
-            foreach (var row in model.PivotedTableReferenceList)
+            foreach (var row in model.PivotedTableReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PivotedTableReference' contains a row with empty Id.");
@@ -27737,11 +27737,11 @@ namespace MetaTransformScript
         private static byte[] SerializePivotedTableReferenceAggregateFunctionIdentifierLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <PivotedTableReferenceAggregateFunctionIdentifierLinkList>\n");
-            foreach (var row in model.PivotedTableReferenceAggregateFunctionIdentifierLinkList)
+            foreach (var row in model.PivotedTableReferenceAggregateFunctionIdentifierLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PivotedTableReferenceAggregateFunctionIdentifierLink' contains a row with empty Id.");
@@ -27862,11 +27862,11 @@ namespace MetaTransformScript
         private static byte[] SerializePivotedTableReferenceInColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <PivotedTableReferenceInColumnsItemList>\n");
-            foreach (var row in model.PivotedTableReferenceInColumnsItemList)
+            foreach (var row in model.PivotedTableReferenceInColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PivotedTableReferenceInColumnsItem' contains a row with empty Id.");
@@ -27988,11 +27988,11 @@ namespace MetaTransformScript
         private static byte[] SerializePivotedTableReferencePivotColumnLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <PivotedTableReferencePivotColumnLinkList>\n");
-            foreach (var row in model.PivotedTableReferencePivotColumnLinkList)
+            foreach (var row in model.PivotedTableReferencePivotColumnLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PivotedTableReferencePivotColumnLink' contains a row with empty Id.");
@@ -28110,11 +28110,11 @@ namespace MetaTransformScript
         private static byte[] SerializePivotedTableReferenceTableReferenceLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <PivotedTableReferenceTableReferenceLinkList>\n");
-            foreach (var row in model.PivotedTableReferenceTableReferenceLinkList)
+            foreach (var row in model.PivotedTableReferenceTableReferenceLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PivotedTableReferenceTableReferenceLink' contains a row with empty Id.");
@@ -28235,11 +28235,11 @@ namespace MetaTransformScript
         private static byte[] SerializePivotedTableReferenceValueColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <PivotedTableReferenceValueColumnsItemList>\n");
-            foreach (var row in model.PivotedTableReferenceValueColumnsItemList)
+            foreach (var row in model.PivotedTableReferenceValueColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PivotedTableReferenceValueColumnsItem' contains a row with empty Id.");
@@ -28358,11 +28358,11 @@ namespace MetaTransformScript
         private static byte[] SerializePrimaryExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <PrimaryExpressionList>\n");
-            foreach (var row in model.PrimaryExpressionList)
+            foreach (var row in model.PrimaryExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PrimaryExpression' contains a row with empty Id.");
@@ -28470,11 +28470,11 @@ namespace MetaTransformScript
         private static byte[] SerializePrimaryExpressionCollationLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <PrimaryExpressionCollationLinkList>\n");
-            foreach (var row in model.PrimaryExpressionCollationLinkList)
+            foreach (var row in model.PrimaryExpressionCollationLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PrimaryExpressionCollationLink' contains a row with empty Id.");
@@ -28595,11 +28595,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQualifiedJoinShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QualifiedJoinList>\n");
-            foreach (var row in model.QualifiedJoinList)
+            foreach (var row in model.QualifiedJoinList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QualifiedJoin' contains a row with empty Id.");
@@ -28715,11 +28715,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQualifiedJoinSearchConditionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QualifiedJoinSearchConditionLinkList>\n");
-            foreach (var row in model.QualifiedJoinSearchConditionLinkList)
+            foreach (var row in model.QualifiedJoinSearchConditionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QualifiedJoinSearchConditionLink' contains a row with empty Id.");
@@ -28834,11 +28834,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQueryDerivedTableShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QueryDerivedTableList>\n");
-            foreach (var row in model.QueryDerivedTableList)
+            foreach (var row in model.QueryDerivedTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QueryDerivedTable' contains a row with empty Id.");
@@ -28946,11 +28946,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQueryDerivedTableQueryExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QueryDerivedTableQueryExpressionLinkList>\n");
-            foreach (var row in model.QueryDerivedTableQueryExpressionLinkList)
+            foreach (var row in model.QueryDerivedTableQueryExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QueryDerivedTableQueryExpressionLink' contains a row with empty Id.");
@@ -29059,11 +29059,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQueryExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QueryExpressionList>\n");
-            foreach (var row in model.QueryExpressionList)
+            foreach (var row in model.QueryExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QueryExpression' contains a row with empty Id.");
@@ -29161,11 +29161,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQueryExpressionOffsetClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QueryExpressionOffsetClauseLinkList>\n");
-            foreach (var row in model.QueryExpressionOffsetClauseLinkList)
+            foreach (var row in model.QueryExpressionOffsetClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QueryExpressionOffsetClauseLink' contains a row with empty Id.");
@@ -29283,11 +29283,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQueryExpressionOrderByClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QueryExpressionOrderByClauseLinkList>\n");
-            foreach (var row in model.QueryExpressionOrderByClauseLinkList)
+            foreach (var row in model.QueryExpressionOrderByClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QueryExpressionOrderByClauseLink' contains a row with empty Id.");
@@ -29402,11 +29402,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQueryParenthesisExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QueryParenthesisExpressionList>\n");
-            foreach (var row in model.QueryParenthesisExpressionList)
+            foreach (var row in model.QueryParenthesisExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QueryParenthesisExpression' contains a row with empty Id.");
@@ -29514,11 +29514,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQueryParenthesisExpressionQueryExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QueryParenthesisExpressionQueryExpressionLinkList>\n");
-            foreach (var row in model.QueryParenthesisExpressionQueryExpressionLinkList)
+            foreach (var row in model.QueryParenthesisExpressionQueryExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QueryParenthesisExpressionQueryExpressionLink' contains a row with empty Id.");
@@ -29636,11 +29636,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQuerySpecificationShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QuerySpecificationList>\n");
-            foreach (var row in model.QuerySpecificationList)
+            foreach (var row in model.QuerySpecificationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QuerySpecification' contains a row with empty Id.");
@@ -29752,11 +29752,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQuerySpecificationFromClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QuerySpecificationFromClauseLinkList>\n");
-            foreach (var row in model.QuerySpecificationFromClauseLinkList)
+            foreach (var row in model.QuerySpecificationFromClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QuerySpecificationFromClauseLink' contains a row with empty Id.");
@@ -29874,11 +29874,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQuerySpecificationGroupByClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QuerySpecificationGroupByClauseLinkList>\n");
-            foreach (var row in model.QuerySpecificationGroupByClauseLinkList)
+            foreach (var row in model.QuerySpecificationGroupByClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QuerySpecificationGroupByClauseLink' contains a row with empty Id.");
@@ -29996,11 +29996,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQuerySpecificationHavingClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QuerySpecificationHavingClauseLinkList>\n");
-            foreach (var row in model.QuerySpecificationHavingClauseLinkList)
+            foreach (var row in model.QuerySpecificationHavingClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QuerySpecificationHavingClauseLink' contains a row with empty Id.");
@@ -30121,11 +30121,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQuerySpecificationSelectElementsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QuerySpecificationSelectElementsItemList>\n");
-            foreach (var row in model.QuerySpecificationSelectElementsItemList)
+            foreach (var row in model.QuerySpecificationSelectElementsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QuerySpecificationSelectElementsItem' contains a row with empty Id.");
@@ -30247,11 +30247,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQuerySpecificationTopRowFilterLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QuerySpecificationTopRowFilterLinkList>\n");
-            foreach (var row in model.QuerySpecificationTopRowFilterLinkList)
+            foreach (var row in model.QuerySpecificationTopRowFilterLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QuerySpecificationTopRowFilterLink' contains a row with empty Id.");
@@ -30369,11 +30369,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQuerySpecificationWhereClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QuerySpecificationWhereClauseLinkList>\n");
-            foreach (var row in model.QuerySpecificationWhereClauseLinkList)
+            foreach (var row in model.QuerySpecificationWhereClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QuerySpecificationWhereClauseLink' contains a row with empty Id.");
@@ -30491,11 +30491,11 @@ namespace MetaTransformScript
         private static byte[] SerializeQuerySpecificationWindowClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <QuerySpecificationWindowClauseLinkList>\n");
-            foreach (var row in model.QuerySpecificationWindowClauseLinkList)
+            foreach (var row in model.QuerySpecificationWindowClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'QuerySpecificationWindowClauseLink' contains a row with empty Id.");
@@ -30613,11 +30613,11 @@ namespace MetaTransformScript
         private static byte[] SerializeRealLiteralShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <RealLiteralList>\n");
-            foreach (var row in model.RealLiteralList)
+            foreach (var row in model.RealLiteralList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RealLiteral' contains a row with empty Id.");
@@ -30726,11 +30726,11 @@ namespace MetaTransformScript
         private static byte[] SerializeRightFunctionCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <RightFunctionCallList>\n");
-            foreach (var row in model.RightFunctionCallList)
+            foreach (var row in model.RightFunctionCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RightFunctionCall' contains a row with empty Id.");
@@ -30841,11 +30841,11 @@ namespace MetaTransformScript
         private static byte[] SerializeRightFunctionCallParametersItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <RightFunctionCallParametersItemList>\n");
-            foreach (var row in model.RightFunctionCallParametersItemList)
+            foreach (var row in model.RightFunctionCallParametersItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RightFunctionCallParametersItem' contains a row with empty Id.");
@@ -30964,11 +30964,11 @@ namespace MetaTransformScript
         private static byte[] SerializeRollupGroupingSpecificationShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <RollupGroupingSpecificationList>\n");
-            foreach (var row in model.RollupGroupingSpecificationList)
+            foreach (var row in model.RollupGroupingSpecificationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RollupGroupingSpecification' contains a row with empty Id.");
@@ -31079,11 +31079,11 @@ namespace MetaTransformScript
         private static byte[] SerializeRollupGroupingSpecificationArgumentsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <RollupGroupingSpecificationArgumentsItemList>\n");
-            foreach (var row in model.RollupGroupingSpecificationArgumentsItemList)
+            foreach (var row in model.RollupGroupingSpecificationArgumentsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RollupGroupingSpecificationArgumentsItem' contains a row with empty Id.");
@@ -31196,11 +31196,11 @@ namespace MetaTransformScript
         private static byte[] SerializeRowValueShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <RowValueList>\n");
-            foreach (var row in model.RowValueList)
+            foreach (var row in model.RowValueList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RowValue' contains a row with empty Id.");
@@ -31301,11 +31301,11 @@ namespace MetaTransformScript
         private static byte[] SerializeRowValueColumnValuesItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <RowValueColumnValuesItemList>\n");
-            foreach (var row in model.RowValueColumnValuesItemList)
+            foreach (var row in model.RowValueColumnValuesItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RowValueColumnValuesItem' contains a row with empty Id.");
@@ -31418,11 +31418,11 @@ namespace MetaTransformScript
         private static byte[] SerializeScalarExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ScalarExpressionList>\n");
-            foreach (var row in model.ScalarExpressionList)
+            foreach (var row in model.ScalarExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ScalarExpression' contains a row with empty Id.");
@@ -31517,11 +31517,11 @@ namespace MetaTransformScript
         private static byte[] SerializeScalarSubqueryShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ScalarSubqueryList>\n");
-            foreach (var row in model.ScalarSubqueryList)
+            foreach (var row in model.ScalarSubqueryList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ScalarSubquery' contains a row with empty Id.");
@@ -31629,11 +31629,11 @@ namespace MetaTransformScript
         private static byte[] SerializeScalarSubqueryQueryExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ScalarSubqueryQueryExpressionLinkList>\n");
-            foreach (var row in model.ScalarSubqueryQueryExpressionLinkList)
+            foreach (var row in model.ScalarSubqueryQueryExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ScalarSubqueryQueryExpressionLink' contains a row with empty Id.");
@@ -31748,11 +31748,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSchemaObjectFunctionTableReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SchemaObjectFunctionTableReferenceList>\n");
-            foreach (var row in model.SchemaObjectFunctionTableReferenceList)
+            foreach (var row in model.SchemaObjectFunctionTableReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SchemaObjectFunctionTableReference' contains a row with empty Id.");
@@ -31863,11 +31863,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSchemaObjectFunctionTableReferenceParametersItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SchemaObjectFunctionTableReferenceParametersItemList>\n");
-            foreach (var row in model.SchemaObjectFunctionTableReferenceParametersItemList)
+            foreach (var row in model.SchemaObjectFunctionTableReferenceParametersItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SchemaObjectFunctionTableReferenceParametersItem' contains a row with empty Id.");
@@ -31989,11 +31989,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSchemaObjectFunctionTableReferenceSchemaObjectLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SchemaObjectFunctionTableReferenceSchemaObjectLinkList>\n");
-            foreach (var row in model.SchemaObjectFunctionTableReferenceSchemaObjectLinkList)
+            foreach (var row in model.SchemaObjectFunctionTableReferenceSchemaObjectLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SchemaObjectFunctionTableReferenceSchemaObjectLink' contains a row with empty Id.");
@@ -32108,11 +32108,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSchemaObjectNameShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SchemaObjectNameList>\n");
-            foreach (var row in model.SchemaObjectNameList)
+            foreach (var row in model.SchemaObjectNameList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SchemaObjectName' contains a row with empty Id.");
@@ -32220,11 +32220,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSchemaObjectNameBaseIdentifierLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SchemaObjectNameBaseIdentifierLinkList>\n");
-            foreach (var row in model.SchemaObjectNameBaseIdentifierLinkList)
+            foreach (var row in model.SchemaObjectNameBaseIdentifierLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SchemaObjectNameBaseIdentifierLink' contains a row with empty Id.");
@@ -32342,11 +32342,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSchemaObjectNameSchemaIdentifierLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SchemaObjectNameSchemaIdentifierLinkList>\n");
-            foreach (var row in model.SchemaObjectNameSchemaIdentifierLinkList)
+            foreach (var row in model.SchemaObjectNameSchemaIdentifierLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SchemaObjectNameSchemaIdentifierLink' contains a row with empty Id.");
@@ -32467,11 +32467,11 @@ namespace MetaTransformScript
         private static byte[] SerializeScriptObjectScalarFunctionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ScriptObjectScalarFunctionList>\n");
-            foreach (var row in model.ScriptObjectScalarFunctionList)
+            foreach (var row in model.ScriptObjectScalarFunctionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ScriptObjectScalarFunction' contains a row with empty Id.");
@@ -32599,11 +32599,11 @@ namespace MetaTransformScript
         private static byte[] SerializeScriptObjectStoredProcedureShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ScriptObjectStoredProcedureList>\n");
-            foreach (var row in model.ScriptObjectStoredProcedureList)
+            foreach (var row in model.ScriptObjectStoredProcedureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ScriptObjectStoredProcedure' contains a row with empty Id.");
@@ -32709,11 +32709,11 @@ namespace MetaTransformScript
         private static byte[] SerializeScriptObjectTVFShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ScriptObjectTVFList>\n");
-            foreach (var row in model.ScriptObjectTVFList)
+            foreach (var row in model.ScriptObjectTVFList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ScriptObjectTVF' contains a row with empty Id.");
@@ -32821,11 +32821,11 @@ namespace MetaTransformScript
         private static byte[] SerializeScriptObjectViewShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ScriptObjectViewList>\n");
-            foreach (var row in model.ScriptObjectViewList)
+            foreach (var row in model.ScriptObjectViewList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ScriptObjectView' contains a row with empty Id.");
@@ -32931,11 +32931,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSearchedCaseExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SearchedCaseExpressionList>\n");
-            foreach (var row in model.SearchedCaseExpressionList)
+            foreach (var row in model.SearchedCaseExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SearchedCaseExpression' contains a row with empty Id.");
@@ -33046,11 +33046,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSearchedCaseExpressionWhenClausesItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SearchedCaseExpressionWhenClausesItemList>\n");
-            foreach (var row in model.SearchedCaseExpressionWhenClausesItemList)
+            foreach (var row in model.SearchedCaseExpressionWhenClausesItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SearchedCaseExpressionWhenClausesItem' contains a row with empty Id.");
@@ -33169,11 +33169,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSearchedWhenClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SearchedWhenClauseList>\n");
-            foreach (var row in model.SearchedWhenClauseList)
+            foreach (var row in model.SearchedWhenClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SearchedWhenClause' contains a row with empty Id.");
@@ -33281,11 +33281,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSearchedWhenClauseWhenExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SearchedWhenClauseWhenExpressionLinkList>\n");
-            foreach (var row in model.SearchedWhenClauseWhenExpressionLinkList)
+            foreach (var row in model.SearchedWhenClauseWhenExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SearchedWhenClauseWhenExpressionLink' contains a row with empty Id.");
@@ -33394,11 +33394,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSelectElementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SelectElementList>\n");
-            foreach (var row in model.SelectElementList)
+            foreach (var row in model.SelectElementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SelectElement' contains a row with empty Id.");
@@ -33493,11 +33493,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSelectScalarExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SelectScalarExpressionList>\n");
-            foreach (var row in model.SelectScalarExpressionList)
+            foreach (var row in model.SelectScalarExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SelectScalarExpression' contains a row with empty Id.");
@@ -33605,11 +33605,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSelectScalarExpressionColumnNameLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SelectScalarExpressionColumnNameLinkList>\n");
-            foreach (var row in model.SelectScalarExpressionColumnNameLinkList)
+            foreach (var row in model.SelectScalarExpressionColumnNameLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SelectScalarExpressionColumnNameLink' contains a row with empty Id.");
@@ -33727,11 +33727,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSelectScalarExpressionExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SelectScalarExpressionExpressionLinkList>\n");
-            foreach (var row in model.SelectScalarExpressionExpressionLinkList)
+            foreach (var row in model.SelectScalarExpressionExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SelectScalarExpressionExpressionLink' contains a row with empty Id.");
@@ -33846,11 +33846,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSelectStarExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SelectStarExpressionList>\n");
-            foreach (var row in model.SelectStarExpressionList)
+            foreach (var row in model.SelectStarExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SelectStarExpression' contains a row with empty Id.");
@@ -33958,11 +33958,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSelectStarExpressionQualifierLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SelectStarExpressionQualifierLinkList>\n");
-            foreach (var row in model.SelectStarExpressionQualifierLinkList)
+            foreach (var row in model.SelectStarExpressionQualifierLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SelectStarExpressionQualifierLink' contains a row with empty Id.");
@@ -34077,11 +34077,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSelectStatementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SelectStatementList>\n");
-            foreach (var row in model.SelectStatementList)
+            foreach (var row in model.SelectStatementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SelectStatement' contains a row with empty Id.");
@@ -34189,11 +34189,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSelectStatementQueryExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SelectStatementQueryExpressionLinkList>\n");
-            foreach (var row in model.SelectStatementQueryExpressionLinkList)
+            foreach (var row in model.SelectStatementQueryExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SelectStatementQueryExpressionLink' contains a row with empty Id.");
@@ -34302,11 +34302,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSetAssignmentShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SetAssignmentList>\n");
-            foreach (var row in model.SetAssignmentList)
+            foreach (var row in model.SetAssignmentList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SetAssignment' contains a row with empty Id.");
@@ -34404,11 +34404,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSetAssignmentTargetLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SetAssignmentTargetLinkList>\n");
-            foreach (var row in model.SetAssignmentTargetLinkList)
+            foreach (var row in model.SetAssignmentTargetLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SetAssignmentTargetLink' contains a row with empty Id.");
@@ -34526,11 +34526,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSetAssignmentValueLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SetAssignmentValueLinkList>\n");
-            foreach (var row in model.SetAssignmentValueLinkList)
+            foreach (var row in model.SetAssignmentValueLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SetAssignmentValueLink' contains a row with empty Id.");
@@ -34639,11 +34639,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSetClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SetClauseList>\n");
-            foreach (var row in model.SetClauseList)
+            foreach (var row in model.SetClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SetClause' contains a row with empty Id.");
@@ -34744,11 +34744,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSetClauseAssignmentsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SetClauseAssignmentsItemList>\n");
-            foreach (var row in model.SetClauseAssignmentsItemList)
+            foreach (var row in model.SetClauseAssignmentsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SetClauseAssignmentsItem' contains a row with empty Id.");
@@ -34867,11 +34867,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSimpleCaseExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SimpleCaseExpressionList>\n");
-            foreach (var row in model.SimpleCaseExpressionList)
+            foreach (var row in model.SimpleCaseExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SimpleCaseExpression' contains a row with empty Id.");
@@ -34979,11 +34979,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSimpleCaseExpressionInputExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SimpleCaseExpressionInputExpressionLinkList>\n");
-            foreach (var row in model.SimpleCaseExpressionInputExpressionLinkList)
+            foreach (var row in model.SimpleCaseExpressionInputExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SimpleCaseExpressionInputExpressionLink' contains a row with empty Id.");
@@ -35104,11 +35104,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSimpleCaseExpressionWhenClausesItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SimpleCaseExpressionWhenClausesItemList>\n");
-            foreach (var row in model.SimpleCaseExpressionWhenClausesItemList)
+            foreach (var row in model.SimpleCaseExpressionWhenClausesItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SimpleCaseExpressionWhenClausesItem' contains a row with empty Id.");
@@ -35227,11 +35227,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSimpleWhenClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SimpleWhenClauseList>\n");
-            foreach (var row in model.SimpleWhenClauseList)
+            foreach (var row in model.SimpleWhenClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SimpleWhenClause' contains a row with empty Id.");
@@ -35339,11 +35339,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSimpleWhenClauseWhenExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SimpleWhenClauseWhenExpressionLinkList>\n");
-            foreach (var row in model.SimpleWhenClauseWhenExpressionLinkList)
+            foreach (var row in model.SimpleWhenClauseWhenExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SimpleWhenClauseWhenExpressionLink' contains a row with empty Id.");
@@ -35461,11 +35461,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSqlDataTypeReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SqlDataTypeReferenceList>\n");
-            foreach (var row in model.SqlDataTypeReferenceList)
+            foreach (var row in model.SqlDataTypeReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SqlDataTypeReference' contains a row with empty Id.");
@@ -35571,11 +35571,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSqlHintShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SqlHintList>\n");
-            foreach (var row in model.SqlHintList)
+            foreach (var row in model.SqlHintList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SqlHint' contains a row with empty Id.");
@@ -35680,11 +35680,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSqlHintArgumentsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SqlHintArgumentsItemList>\n");
-            foreach (var row in model.SqlHintArgumentsItemList)
+            foreach (var row in model.SqlHintArgumentsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SqlHintArgumentsItem' contains a row with empty Id.");
@@ -35809,11 +35809,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSqlHintKeywordsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SqlHintKeywordsItemList>\n");
-            foreach (var row in model.SqlHintKeywordsItemList)
+            foreach (var row in model.SqlHintKeywordsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SqlHintKeywordsItem' contains a row with empty Id.");
@@ -35932,11 +35932,11 @@ namespace MetaTransformScript
         private static byte[] SerializeStatementWithCtesAndXmlNamespacesShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <StatementWithCtesAndXmlNamespacesList>\n");
-            foreach (var row in model.StatementWithCtesAndXmlNamespacesList)
+            foreach (var row in model.StatementWithCtesAndXmlNamespacesList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'StatementWithCtesAndXmlNamespaces' contains a row with empty Id.");
@@ -36044,11 +36044,11 @@ namespace MetaTransformScript
         private static byte[] SerializeStatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList>\n");
-            foreach (var row in model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList)
+            foreach (var row in model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink' contains a row with empty Id.");
@@ -36166,11 +36166,11 @@ namespace MetaTransformScript
         private static byte[] SerializeStoredProcedureContractShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <StoredProcedureContractList>\n");
-            foreach (var row in model.StoredProcedureContractList)
+            foreach (var row in model.StoredProcedureContractList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'StoredProcedureContract' contains a row with empty Id.");
@@ -36294,11 +36294,11 @@ namespace MetaTransformScript
         private static byte[] SerializeStoredProcedureContractOperationShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <StoredProcedureContractOperationList>\n");
-            foreach (var row in model.StoredProcedureContractOperationList)
+            foreach (var row in model.StoredProcedureContractOperationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'StoredProcedureContractOperation' contains a row with empty Id.");
@@ -36426,11 +36426,11 @@ namespace MetaTransformScript
         private static byte[] SerializeStoredProcedureResultColumnItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <StoredProcedureResultColumnItemList>\n");
-            foreach (var row in model.StoredProcedureResultColumnItemList)
+            foreach (var row in model.StoredProcedureResultColumnItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'StoredProcedureResultColumnItem' contains a row with empty Id.");
@@ -36551,11 +36551,11 @@ namespace MetaTransformScript
         private static byte[] SerializeStoredProcedureResultRowsetItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <StoredProcedureResultRowsetItemList>\n");
-            foreach (var row in model.StoredProcedureResultRowsetItemList)
+            foreach (var row in model.StoredProcedureResultRowsetItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'StoredProcedureResultRowsetItem' contains a row with empty Id.");
@@ -36674,11 +36674,11 @@ namespace MetaTransformScript
         private static byte[] SerializeStringLiteralShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <StringLiteralList>\n");
-            foreach (var row in model.StringLiteralList)
+            foreach (var row in model.StringLiteralList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'StringLiteral' contains a row with empty Id.");
@@ -36801,11 +36801,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSubqueryComparisonPredicateShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SubqueryComparisonPredicateList>\n");
-            foreach (var row in model.SubqueryComparisonPredicateList)
+            foreach (var row in model.SubqueryComparisonPredicateList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SubqueryComparisonPredicate' contains a row with empty Id.");
@@ -36921,11 +36921,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSubqueryComparisonPredicateExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SubqueryComparisonPredicateExpressionLinkList>\n");
-            foreach (var row in model.SubqueryComparisonPredicateExpressionLinkList)
+            foreach (var row in model.SubqueryComparisonPredicateExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SubqueryComparisonPredicateExpressionLink' contains a row with empty Id.");
@@ -37043,11 +37043,11 @@ namespace MetaTransformScript
         private static byte[] SerializeSubqueryComparisonPredicateSubqueryLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <SubqueryComparisonPredicateSubqueryLinkList>\n");
-            foreach (var row in model.SubqueryComparisonPredicateSubqueryLinkList)
+            foreach (var row in model.SubqueryComparisonPredicateSubqueryLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SubqueryComparisonPredicateSubqueryLink' contains a row with empty Id.");
@@ -37156,11 +37156,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTableReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TableReferenceList>\n");
-            foreach (var row in model.TableReferenceList)
+            foreach (var row in model.TableReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableReference' contains a row with empty Id.");
@@ -37258,11 +37258,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTableReferenceWithAliasShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TableReferenceWithAliasList>\n");
-            foreach (var row in model.TableReferenceWithAliasList)
+            foreach (var row in model.TableReferenceWithAliasList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableReferenceWithAlias' contains a row with empty Id.");
@@ -37374,11 +37374,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTableReferenceWithAliasAliasLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TableReferenceWithAliasAliasLinkList>\n");
-            foreach (var row in model.TableReferenceWithAliasAliasLinkList)
+            foreach (var row in model.TableReferenceWithAliasAliasLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableReferenceWithAliasAliasLink' contains a row with empty Id.");
@@ -37493,11 +37493,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTableReferenceWithAliasAndColumnsShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TableReferenceWithAliasAndColumnsList>\n");
-            foreach (var row in model.TableReferenceWithAliasAndColumnsList)
+            foreach (var row in model.TableReferenceWithAliasAndColumnsList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableReferenceWithAliasAndColumns' contains a row with empty Id.");
@@ -37608,11 +37608,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTableReferenceWithAliasAndColumnsColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TableReferenceWithAliasAndColumnsColumnsItemList>\n");
-            foreach (var row in model.TableReferenceWithAliasAndColumnsColumnsItemList)
+            foreach (var row in model.TableReferenceWithAliasAndColumnsColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableReferenceWithAliasAndColumnsColumnsItem' contains a row with empty Id.");
@@ -37737,11 +37737,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTableReferenceWithAliasTableHintsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TableReferenceWithAliasTableHintsItemList>\n");
-            foreach (var row in model.TableReferenceWithAliasTableHintsItemList)
+            foreach (var row in model.TableReferenceWithAliasTableHintsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableReferenceWithAliasTableHintsItem' contains a row with empty Id.");
@@ -37860,11 +37860,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTableSampleClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TableSampleClauseList>\n");
-            foreach (var row in model.TableSampleClauseList)
+            foreach (var row in model.TableSampleClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableSampleClause' contains a row with empty Id.");
@@ -37970,11 +37970,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTableSampleClauseRepeatSeedLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TableSampleClauseRepeatSeedLinkList>\n");
-            foreach (var row in model.TableSampleClauseRepeatSeedLinkList)
+            foreach (var row in model.TableSampleClauseRepeatSeedLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableSampleClauseRepeatSeedLink' contains a row with empty Id.");
@@ -38092,11 +38092,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTableSampleClauseSampleNumberLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TableSampleClauseSampleNumberLinkList>\n");
-            foreach (var row in model.TableSampleClauseSampleNumberLinkList)
+            foreach (var row in model.TableSampleClauseSampleNumberLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableSampleClauseSampleNumberLink' contains a row with empty Id.");
@@ -38214,11 +38214,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTopRowFilterShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TopRowFilterList>\n");
-            foreach (var row in model.TopRowFilterList)
+            foreach (var row in model.TopRowFilterList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TopRowFilter' contains a row with empty Id.");
@@ -38328,11 +38328,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTopRowFilterExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TopRowFilterExpressionLinkList>\n");
-            foreach (var row in model.TopRowFilterExpressionLinkList)
+            foreach (var row in model.TopRowFilterExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TopRowFilterExpressionLink' contains a row with empty Id.");
@@ -38447,11 +38447,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTransformScriptShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TransformScriptList>\n");
-            foreach (var row in model.TransformScriptList)
+            foreach (var row in model.TransformScriptList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TransformScript' contains a row with empty Id.");
@@ -38560,11 +38560,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTransformScriptFunctionParametersItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TransformScriptFunctionParametersItemList>\n");
-            foreach (var row in model.TransformScriptFunctionParametersItemList)
+            foreach (var row in model.TransformScriptFunctionParametersItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TransformScriptFunctionParametersItem' contains a row with empty Id.");
@@ -38693,11 +38693,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTransformScriptObjectIdentifierLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TransformScriptObjectIdentifierLinkList>\n");
-            foreach (var row in model.TransformScriptObjectIdentifierLinkList)
+            foreach (var row in model.TransformScriptObjectIdentifierLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TransformScriptObjectIdentifierLink' contains a row with empty Id.");
@@ -38815,11 +38815,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTransformScriptSchemaIdentifierLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TransformScriptSchemaIdentifierLinkList>\n");
-            foreach (var row in model.TransformScriptSchemaIdentifierLinkList)
+            foreach (var row in model.TransformScriptSchemaIdentifierLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TransformScriptSchemaIdentifierLink' contains a row with empty Id.");
@@ -38937,11 +38937,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTransformScriptStatementLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TransformScriptStatementLinkList>\n");
-            foreach (var row in model.TransformScriptStatementLinkList)
+            foreach (var row in model.TransformScriptStatementLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TransformScriptStatementLink' contains a row with empty Id.");
@@ -39062,11 +39062,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTransformScriptViewColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TransformScriptViewColumnsItemList>\n");
-            foreach (var row in model.TransformScriptViewColumnsItemList)
+            foreach (var row in model.TransformScriptViewColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TransformScriptViewColumnsItem' contains a row with empty Id.");
@@ -39182,11 +39182,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTruncateStatementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TruncateStatementList>\n");
-            foreach (var row in model.TruncateStatementList)
+            foreach (var row in model.TruncateStatementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TruncateStatement' contains a row with empty Id.");
@@ -39294,11 +39294,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTruncateStatementTargetLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TruncateStatementTargetLinkList>\n");
-            foreach (var row in model.TruncateStatementTargetLinkList)
+            foreach (var row in model.TruncateStatementTargetLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TruncateStatementTargetLink' contains a row with empty Id.");
@@ -39413,11 +39413,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryCastCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryCastCallList>\n");
-            foreach (var row in model.TryCastCallList)
+            foreach (var row in model.TryCastCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryCastCall' contains a row with empty Id.");
@@ -39525,11 +39525,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryCastCallDataTypeLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryCastCallDataTypeLinkList>\n");
-            foreach (var row in model.TryCastCallDataTypeLinkList)
+            foreach (var row in model.TryCastCallDataTypeLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryCastCallDataTypeLink' contains a row with empty Id.");
@@ -39647,11 +39647,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryCastCallParameterLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryCastCallParameterLinkList>\n");
-            foreach (var row in model.TryCastCallParameterLinkList)
+            foreach (var row in model.TryCastCallParameterLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryCastCallParameterLink' contains a row with empty Id.");
@@ -39766,11 +39766,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryConvertCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryConvertCallList>\n");
-            foreach (var row in model.TryConvertCallList)
+            foreach (var row in model.TryConvertCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryConvertCall' contains a row with empty Id.");
@@ -39878,11 +39878,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryConvertCallDataTypeLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryConvertCallDataTypeLinkList>\n");
-            foreach (var row in model.TryConvertCallDataTypeLinkList)
+            foreach (var row in model.TryConvertCallDataTypeLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryConvertCallDataTypeLink' contains a row with empty Id.");
@@ -40000,11 +40000,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryConvertCallParameterLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryConvertCallParameterLinkList>\n");
-            foreach (var row in model.TryConvertCallParameterLinkList)
+            foreach (var row in model.TryConvertCallParameterLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryConvertCallParameterLink' contains a row with empty Id.");
@@ -40122,11 +40122,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryConvertCallStyleLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryConvertCallStyleLinkList>\n");
-            foreach (var row in model.TryConvertCallStyleLinkList)
+            foreach (var row in model.TryConvertCallStyleLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryConvertCallStyleLink' contains a row with empty Id.");
@@ -40241,11 +40241,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryParseCallShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryParseCallList>\n");
-            foreach (var row in model.TryParseCallList)
+            foreach (var row in model.TryParseCallList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryParseCall' contains a row with empty Id.");
@@ -40353,11 +40353,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryParseCallCultureLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryParseCallCultureLinkList>\n");
-            foreach (var row in model.TryParseCallCultureLinkList)
+            foreach (var row in model.TryParseCallCultureLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryParseCallCultureLink' contains a row with empty Id.");
@@ -40475,11 +40475,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryParseCallDataTypeLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryParseCallDataTypeLinkList>\n");
-            foreach (var row in model.TryParseCallDataTypeLinkList)
+            foreach (var row in model.TryParseCallDataTypeLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryParseCallDataTypeLink' contains a row with empty Id.");
@@ -40597,11 +40597,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTryParseCallStringValueLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TryParseCallStringValueLinkList>\n");
-            foreach (var row in model.TryParseCallStringValueLinkList)
+            foreach (var row in model.TryParseCallStringValueLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TryParseCallStringValueLink' contains a row with empty Id.");
@@ -40710,11 +40710,11 @@ namespace MetaTransformScript
         private static byte[] SerializeTSqlStatementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <TSqlStatementList>\n");
-            foreach (var row in model.TSqlStatementList)
+            foreach (var row in model.TSqlStatementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TSqlStatement' contains a row with empty Id.");
@@ -40812,11 +40812,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUnaryExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UnaryExpressionList>\n");
-            foreach (var row in model.UnaryExpressionList)
+            foreach (var row in model.UnaryExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UnaryExpression' contains a row with empty Id.");
@@ -40928,11 +40928,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUnaryExpressionExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UnaryExpressionExpressionLinkList>\n");
-            foreach (var row in model.UnaryExpressionExpressionLinkList)
+            foreach (var row in model.UnaryExpressionExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UnaryExpressionExpressionLink' contains a row with empty Id.");
@@ -41047,11 +41047,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUnpivotedTableReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UnpivotedTableReferenceList>\n");
-            foreach (var row in model.UnpivotedTableReferenceList)
+            foreach (var row in model.UnpivotedTableReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UnpivotedTableReference' contains a row with empty Id.");
@@ -41162,11 +41162,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUnpivotedTableReferenceInColumnsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UnpivotedTableReferenceInColumnsItemList>\n");
-            foreach (var row in model.UnpivotedTableReferenceInColumnsItemList)
+            foreach (var row in model.UnpivotedTableReferenceInColumnsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UnpivotedTableReferenceInColumnsItem' contains a row with empty Id.");
@@ -41288,11 +41288,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUnpivotedTableReferencePivotColumnLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UnpivotedTableReferencePivotColumnLinkList>\n");
-            foreach (var row in model.UnpivotedTableReferencePivotColumnLinkList)
+            foreach (var row in model.UnpivotedTableReferencePivotColumnLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UnpivotedTableReferencePivotColumnLink' contains a row with empty Id.");
@@ -41410,11 +41410,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUnpivotedTableReferenceTableReferenceLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UnpivotedTableReferenceTableReferenceLinkList>\n");
-            foreach (var row in model.UnpivotedTableReferenceTableReferenceLinkList)
+            foreach (var row in model.UnpivotedTableReferenceTableReferenceLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UnpivotedTableReferenceTableReferenceLink' contains a row with empty Id.");
@@ -41532,11 +41532,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUnpivotedTableReferenceValueColumnLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UnpivotedTableReferenceValueColumnLinkList>\n");
-            foreach (var row in model.UnpivotedTableReferenceValueColumnLinkList)
+            foreach (var row in model.UnpivotedTableReferenceValueColumnLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UnpivotedTableReferenceValueColumnLink' contains a row with empty Id.");
@@ -41654,11 +41654,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUnqualifiedJoinShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UnqualifiedJoinList>\n");
-            foreach (var row in model.UnqualifiedJoinList)
+            foreach (var row in model.UnqualifiedJoinList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UnqualifiedJoin' contains a row with empty Id.");
@@ -41767,11 +41767,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUpdateStatementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UpdateStatementList>\n");
-            foreach (var row in model.UpdateStatementList)
+            foreach (var row in model.UpdateStatementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UpdateStatement' contains a row with empty Id.");
@@ -41879,11 +41879,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUpdateStatementFromClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UpdateStatementFromClauseLinkList>\n");
-            foreach (var row in model.UpdateStatementFromClauseLinkList)
+            foreach (var row in model.UpdateStatementFromClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UpdateStatementFromClauseLink' contains a row with empty Id.");
@@ -42001,11 +42001,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUpdateStatementSetClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UpdateStatementSetClauseLinkList>\n");
-            foreach (var row in model.UpdateStatementSetClauseLinkList)
+            foreach (var row in model.UpdateStatementSetClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UpdateStatementSetClauseLink' contains a row with empty Id.");
@@ -42123,11 +42123,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUpdateStatementTargetAliasLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UpdateStatementTargetAliasLinkList>\n");
-            foreach (var row in model.UpdateStatementTargetAliasLinkList)
+            foreach (var row in model.UpdateStatementTargetAliasLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UpdateStatementTargetAliasLink' contains a row with empty Id.");
@@ -42245,11 +42245,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUpdateStatementTargetLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UpdateStatementTargetLinkList>\n");
-            foreach (var row in model.UpdateStatementTargetLinkList)
+            foreach (var row in model.UpdateStatementTargetLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UpdateStatementTargetLink' contains a row with empty Id.");
@@ -42367,11 +42367,11 @@ namespace MetaTransformScript
         private static byte[] SerializeUpdateStatementWhereClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <UpdateStatementWhereClauseLinkList>\n");
-            foreach (var row in model.UpdateStatementWhereClauseLinkList)
+            foreach (var row in model.UpdateStatementWhereClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'UpdateStatementWhereClauseLink' contains a row with empty Id.");
@@ -42486,11 +42486,11 @@ namespace MetaTransformScript
         private static byte[] SerializeValueExpressionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <ValueExpressionList>\n");
-            foreach (var row in model.ValueExpressionList)
+            foreach (var row in model.ValueExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ValueExpression' contains a row with empty Id.");
@@ -42589,11 +42589,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWhenClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WhenClauseList>\n");
-            foreach (var row in model.WhenClauseList)
+            foreach (var row in model.WhenClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WhenClause' contains a row with empty Id.");
@@ -42691,11 +42691,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWhenClauseThenExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WhenClauseThenExpressionLinkList>\n");
-            foreach (var row in model.WhenClauseThenExpressionLinkList)
+            foreach (var row in model.WhenClauseThenExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WhenClauseThenExpressionLink' contains a row with empty Id.");
@@ -42804,11 +42804,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWhereClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WhereClauseList>\n");
-            foreach (var row in model.WhereClauseList)
+            foreach (var row in model.WhereClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WhereClause' contains a row with empty Id.");
@@ -42906,11 +42906,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWhereClauseSearchConditionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WhereClauseSearchConditionLinkList>\n");
-            foreach (var row in model.WhereClauseSearchConditionLinkList)
+            foreach (var row in model.WhereClauseSearchConditionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WhereClauseSearchConditionLink' contains a row with empty Id.");
@@ -43019,11 +43019,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowClauseList>\n");
-            foreach (var row in model.WindowClauseList)
+            foreach (var row in model.WindowClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowClause' contains a row with empty Id.");
@@ -43124,11 +43124,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowClauseWindowDefinitionItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowClauseWindowDefinitionItemList>\n");
-            foreach (var row in model.WindowClauseWindowDefinitionItemList)
+            foreach (var row in model.WindowClauseWindowDefinitionItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowClauseWindowDefinitionItem' contains a row with empty Id.");
@@ -43241,11 +43241,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowDefinitionShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowDefinitionList>\n");
-            foreach (var row in model.WindowDefinitionList)
+            foreach (var row in model.WindowDefinitionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowDefinition' contains a row with empty Id.");
@@ -43343,11 +43343,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowDefinitionOrderByClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowDefinitionOrderByClauseLinkList>\n");
-            foreach (var row in model.WindowDefinitionOrderByClauseLinkList)
+            foreach (var row in model.WindowDefinitionOrderByClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowDefinitionOrderByClauseLink' contains a row with empty Id.");
@@ -43468,11 +43468,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowDefinitionPartitionsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowDefinitionPartitionsItemList>\n");
-            foreach (var row in model.WindowDefinitionPartitionsItemList)
+            foreach (var row in model.WindowDefinitionPartitionsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowDefinitionPartitionsItem' contains a row with empty Id.");
@@ -43594,11 +43594,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowDefinitionRefWindowNameLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowDefinitionRefWindowNameLinkList>\n");
-            foreach (var row in model.WindowDefinitionRefWindowNameLinkList)
+            foreach (var row in model.WindowDefinitionRefWindowNameLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowDefinitionRefWindowNameLink' contains a row with empty Id.");
@@ -43716,11 +43716,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowDefinitionWindowFrameClauseLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowDefinitionWindowFrameClauseLinkList>\n");
-            foreach (var row in model.WindowDefinitionWindowFrameClauseLinkList)
+            foreach (var row in model.WindowDefinitionWindowFrameClauseLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowDefinitionWindowFrameClauseLink' contains a row with empty Id.");
@@ -43838,11 +43838,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowDefinitionWindowNameLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowDefinitionWindowNameLinkList>\n");
-            foreach (var row in model.WindowDefinitionWindowNameLinkList)
+            foreach (var row in model.WindowDefinitionWindowNameLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowDefinitionWindowNameLink' contains a row with empty Id.");
@@ -43954,11 +43954,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowDelimiterShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowDelimiterList>\n");
-            foreach (var row in model.WindowDelimiterList)
+            foreach (var row in model.WindowDelimiterList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowDelimiter' contains a row with empty Id.");
@@ -44060,11 +44060,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowDelimiterOffsetValueLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowDelimiterOffsetValueLinkList>\n");
-            foreach (var row in model.WindowDelimiterOffsetValueLinkList)
+            foreach (var row in model.WindowDelimiterOffsetValueLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowDelimiterOffsetValueLink' contains a row with empty Id.");
@@ -44176,11 +44176,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowFrameClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowFrameClauseList>\n");
-            foreach (var row in model.WindowFrameClauseList)
+            foreach (var row in model.WindowFrameClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowFrameClause' contains a row with empty Id.");
@@ -44282,11 +44282,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowFrameClauseBottomLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowFrameClauseBottomLinkList>\n");
-            foreach (var row in model.WindowFrameClauseBottomLinkList)
+            foreach (var row in model.WindowFrameClauseBottomLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowFrameClauseBottomLink' contains a row with empty Id.");
@@ -44404,11 +44404,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWindowFrameClauseTopLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WindowFrameClauseTopLinkList>\n");
-            foreach (var row in model.WindowFrameClauseTopLinkList)
+            foreach (var row in model.WindowFrameClauseTopLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WindowFrameClauseTopLink' contains a row with empty Id.");
@@ -44517,11 +44517,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWithCtesAndXmlNamespacesShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WithCtesAndXmlNamespacesList>\n");
-            foreach (var row in model.WithCtesAndXmlNamespacesList)
+            foreach (var row in model.WithCtesAndXmlNamespacesList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WithCtesAndXmlNamespaces' contains a row with empty Id.");
@@ -44622,11 +44622,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWithCtesAndXmlNamespacesCommonTableExpressionsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WithCtesAndXmlNamespacesCommonTableExpressionsItemList>\n");
-            foreach (var row in model.WithCtesAndXmlNamespacesCommonTableExpressionsItemList)
+            foreach (var row in model.WithCtesAndXmlNamespacesCommonTableExpressionsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WithCtesAndXmlNamespacesCommonTableExpressionsItem' contains a row with empty Id.");
@@ -44748,11 +44748,11 @@ namespace MetaTransformScript
         private static byte[] SerializeWithCtesAndXmlNamespacesXmlNamespacesLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <WithCtesAndXmlNamespacesXmlNamespacesLinkList>\n");
-            foreach (var row in model.WithCtesAndXmlNamespacesXmlNamespacesLinkList)
+            foreach (var row in model.WithCtesAndXmlNamespacesXmlNamespacesLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'WithCtesAndXmlNamespacesXmlNamespacesLink' contains a row with empty Id.");
@@ -44861,11 +44861,11 @@ namespace MetaTransformScript
         private static byte[] SerializeXmlNamespacesShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <XmlNamespacesList>\n");
-            foreach (var row in model.XmlNamespacesList)
+            foreach (var row in model.XmlNamespacesList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'XmlNamespaces' contains a row with empty Id.");
@@ -44960,11 +44960,11 @@ namespace MetaTransformScript
         private static byte[] SerializeXmlNamespacesAliasElementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <XmlNamespacesAliasElementList>\n");
-            foreach (var row in model.XmlNamespacesAliasElementList)
+            foreach (var row in model.XmlNamespacesAliasElementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'XmlNamespacesAliasElement' contains a row with empty Id.");
@@ -45072,11 +45072,11 @@ namespace MetaTransformScript
         private static byte[] SerializeXmlNamespacesAliasElementIdentifierLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <XmlNamespacesAliasElementIdentifierLinkList>\n");
-            foreach (var row in model.XmlNamespacesAliasElementIdentifierLinkList)
+            foreach (var row in model.XmlNamespacesAliasElementIdentifierLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'XmlNamespacesAliasElementIdentifierLink' contains a row with empty Id.");
@@ -45191,11 +45191,11 @@ namespace MetaTransformScript
         private static byte[] SerializeXmlNamespacesDefaultElementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <XmlNamespacesDefaultElementList>\n");
-            foreach (var row in model.XmlNamespacesDefaultElementList)
+            foreach (var row in model.XmlNamespacesDefaultElementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'XmlNamespacesDefaultElement' contains a row with empty Id.");
@@ -45294,11 +45294,11 @@ namespace MetaTransformScript
         private static byte[] SerializeXmlNamespacesElementShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <XmlNamespacesElementList>\n");
-            foreach (var row in model.XmlNamespacesElementList)
+            foreach (var row in model.XmlNamespacesElementList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'XmlNamespacesElement' contains a row with empty Id.");
@@ -45396,11 +45396,11 @@ namespace MetaTransformScript
         private static byte[] SerializeXmlNamespacesElementStringLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <XmlNamespacesElementStringLinkList>\n");
-            foreach (var row in model.XmlNamespacesElementStringLinkList)
+            foreach (var row in model.XmlNamespacesElementStringLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'XmlNamespacesElementStringLink' contains a row with empty Id.");
@@ -45521,11 +45521,11 @@ namespace MetaTransformScript
         private static byte[] SerializeXmlNamespacesXmlNamespacesElementsItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <XmlNamespacesXmlNamespacesElementsItemList>\n");
-            foreach (var row in model.XmlNamespacesXmlNamespacesElementsItemList)
+            foreach (var row in model.XmlNamespacesXmlNamespacesElementsItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'XmlNamespacesXmlNamespacesElementsItem' contains a row with empty Id.");
@@ -45644,11 +45644,11 @@ namespace MetaTransformScript
         private static byte[] SerializeXmlNodesTableReferenceShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <XmlNodesTableReferenceList>\n");
-            foreach (var row in model.XmlNodesTableReferenceList)
+            foreach (var row in model.XmlNodesTableReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'XmlNodesTableReference' contains a row with empty Id.");
@@ -45756,11 +45756,11 @@ namespace MetaTransformScript
         private static byte[] SerializeXmlNodesTableReferenceTargetExpressionLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <XmlNodesTableReferenceTargetExpressionLinkList>\n");
-            foreach (var row in model.XmlNodesTableReferenceTargetExpressionLinkList)
+            foreach (var row in model.XmlNodesTableReferenceTargetExpressionLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'XmlNodesTableReferenceTargetExpressionLink' contains a row with empty Id.");
@@ -45878,11 +45878,11 @@ namespace MetaTransformScript
         private static byte[] SerializeXmlNodesTableReferenceXQueryStringLinkShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTransformScript>\n");
             builder.Append("  <XmlNodesTableReferenceXQueryStringLinkList>\n");
-            foreach (var row in model.XmlNodesTableReferenceXQueryStringLinkList)
+            foreach (var row in model.XmlNodesTableReferenceXQueryStringLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'XmlNodesTableReferenceXQueryStringLink' contains a row with empty Id.");
@@ -53743,7 +53743,7 @@ namespace MetaTransformScript
             public void AddAtTimeZoneCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AtTimeZoneCall' contains a row with empty Id.");
-                atTimeZoneCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                atTimeZoneCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!atTimeZoneCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AtTimeZoneCall' contains duplicate Id '{normalizedId}'.");
@@ -53755,7 +53755,7 @@ namespace MetaTransformScript
             public void AddAtTimeZoneCallDateValueLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AtTimeZoneCallDateValueLink' contains a row with empty Id.");
-                atTimeZoneCallDateValueLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                atTimeZoneCallDateValueLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!atTimeZoneCallDateValueLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AtTimeZoneCallDateValueLink' contains duplicate Id '{normalizedId}'.");
@@ -53767,7 +53767,7 @@ namespace MetaTransformScript
             public void AddAtTimeZoneCallTimeZoneLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AtTimeZoneCallTimeZoneLink' contains a row with empty Id.");
-                atTimeZoneCallTimeZoneLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                atTimeZoneCallTimeZoneLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!atTimeZoneCallTimeZoneLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AtTimeZoneCallTimeZoneLink' contains duplicate Id '{normalizedId}'.");
@@ -53779,7 +53779,7 @@ namespace MetaTransformScript
             public void AddBinaryExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BinaryExpression' contains a row with empty Id.");
-                binaryExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                binaryExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!binaryExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BinaryExpression' contains duplicate Id '{normalizedId}'.");
@@ -53791,7 +53791,7 @@ namespace MetaTransformScript
             public void AddBinaryExpressionFirstExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BinaryExpressionFirstExpressionLink' contains a row with empty Id.");
-                binaryExpressionFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                binaryExpressionFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!binaryExpressionFirstExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BinaryExpressionFirstExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -53803,7 +53803,7 @@ namespace MetaTransformScript
             public void AddBinaryExpressionSecondExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BinaryExpressionSecondExpressionLink' contains a row with empty Id.");
-                binaryExpressionSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                binaryExpressionSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!binaryExpressionSecondExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BinaryExpressionSecondExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -53815,7 +53815,7 @@ namespace MetaTransformScript
             public void AddBinaryLiteralId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BinaryLiteral' contains a row with empty Id.");
-                binaryLiteralIds ??= new HashSet<string>(StringComparer.Ordinal);
+                binaryLiteralIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!binaryLiteralIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BinaryLiteral' contains duplicate Id '{normalizedId}'.");
@@ -53827,7 +53827,7 @@ namespace MetaTransformScript
             public void AddBinaryQueryExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BinaryQueryExpression' contains a row with empty Id.");
-                binaryQueryExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                binaryQueryExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!binaryQueryExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BinaryQueryExpression' contains duplicate Id '{normalizedId}'.");
@@ -53839,7 +53839,7 @@ namespace MetaTransformScript
             public void AddBinaryQueryExpressionFirstQueryExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BinaryQueryExpressionFirstQueryExpressionLink' contains a row with empty Id.");
-                binaryQueryExpressionFirstQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                binaryQueryExpressionFirstQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!binaryQueryExpressionFirstQueryExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BinaryQueryExpressionFirstQueryExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -53851,7 +53851,7 @@ namespace MetaTransformScript
             public void AddBinaryQueryExpressionSecondQueryExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BinaryQueryExpressionSecondQueryExpressionLink' contains a row with empty Id.");
-                binaryQueryExpressionSecondQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                binaryQueryExpressionSecondQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!binaryQueryExpressionSecondQueryExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BinaryQueryExpressionSecondQueryExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -53863,7 +53863,7 @@ namespace MetaTransformScript
             public void AddBooleanBinaryExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanBinaryExpression' contains a row with empty Id.");
-                booleanBinaryExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanBinaryExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanBinaryExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanBinaryExpression' contains duplicate Id '{normalizedId}'.");
@@ -53875,7 +53875,7 @@ namespace MetaTransformScript
             public void AddBooleanBinaryExpressionFirstExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanBinaryExpressionFirstExpressionLink' contains a row with empty Id.");
-                booleanBinaryExpressionFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanBinaryExpressionFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanBinaryExpressionFirstExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanBinaryExpressionFirstExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -53887,7 +53887,7 @@ namespace MetaTransformScript
             public void AddBooleanBinaryExpressionSecondExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanBinaryExpressionSecondExpressionLink' contains a row with empty Id.");
-                booleanBinaryExpressionSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanBinaryExpressionSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanBinaryExpressionSecondExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanBinaryExpressionSecondExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -53899,7 +53899,7 @@ namespace MetaTransformScript
             public void AddBooleanComparisonExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanComparisonExpression' contains a row with empty Id.");
-                booleanComparisonExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanComparisonExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanComparisonExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanComparisonExpression' contains duplicate Id '{normalizedId}'.");
@@ -53911,7 +53911,7 @@ namespace MetaTransformScript
             public void AddBooleanComparisonExpressionFirstExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanComparisonExpressionFirstExpressionLink' contains a row with empty Id.");
-                booleanComparisonExpressionFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanComparisonExpressionFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanComparisonExpressionFirstExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanComparisonExpressionFirstExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -53923,7 +53923,7 @@ namespace MetaTransformScript
             public void AddBooleanComparisonExpressionSecondExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanComparisonExpressionSecondExpressionLink' contains a row with empty Id.");
-                booleanComparisonExpressionSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanComparisonExpressionSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanComparisonExpressionSecondExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanComparisonExpressionSecondExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -53935,7 +53935,7 @@ namespace MetaTransformScript
             public void AddBooleanExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanExpression' contains a row with empty Id.");
-                booleanExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanExpression' contains duplicate Id '{normalizedId}'.");
@@ -53947,7 +53947,7 @@ namespace MetaTransformScript
             public void AddBooleanIsNullExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanIsNullExpression' contains a row with empty Id.");
-                booleanIsNullExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanIsNullExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanIsNullExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanIsNullExpression' contains duplicate Id '{normalizedId}'.");
@@ -53959,7 +53959,7 @@ namespace MetaTransformScript
             public void AddBooleanIsNullExpressionExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanIsNullExpressionExpressionLink' contains a row with empty Id.");
-                booleanIsNullExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanIsNullExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanIsNullExpressionExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanIsNullExpressionExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -53971,7 +53971,7 @@ namespace MetaTransformScript
             public void AddBooleanNotExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanNotExpression' contains a row with empty Id.");
-                booleanNotExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanNotExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanNotExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanNotExpression' contains duplicate Id '{normalizedId}'.");
@@ -53983,7 +53983,7 @@ namespace MetaTransformScript
             public void AddBooleanNotExpressionExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanNotExpressionExpressionLink' contains a row with empty Id.");
-                booleanNotExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanNotExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanNotExpressionExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanNotExpressionExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -53995,7 +53995,7 @@ namespace MetaTransformScript
             public void AddBooleanParenthesisExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanParenthesisExpression' contains a row with empty Id.");
-                booleanParenthesisExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanParenthesisExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanParenthesisExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanParenthesisExpression' contains duplicate Id '{normalizedId}'.");
@@ -54007,7 +54007,7 @@ namespace MetaTransformScript
             public void AddBooleanParenthesisExpressionExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanParenthesisExpressionExpressionLink' contains a row with empty Id.");
-                booleanParenthesisExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanParenthesisExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanParenthesisExpressionExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanParenthesisExpressionExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54019,7 +54019,7 @@ namespace MetaTransformScript
             public void AddBooleanTernaryExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanTernaryExpression' contains a row with empty Id.");
-                booleanTernaryExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanTernaryExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanTernaryExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanTernaryExpression' contains duplicate Id '{normalizedId}'.");
@@ -54031,7 +54031,7 @@ namespace MetaTransformScript
             public void AddBooleanTernaryExpressionFirstExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanTernaryExpressionFirstExpressionLink' contains a row with empty Id.");
-                booleanTernaryExpressionFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanTernaryExpressionFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanTernaryExpressionFirstExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanTernaryExpressionFirstExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54043,7 +54043,7 @@ namespace MetaTransformScript
             public void AddBooleanTernaryExpressionSecondExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanTernaryExpressionSecondExpressionLink' contains a row with empty Id.");
-                booleanTernaryExpressionSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanTernaryExpressionSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanTernaryExpressionSecondExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanTernaryExpressionSecondExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54055,7 +54055,7 @@ namespace MetaTransformScript
             public void AddBooleanTernaryExpressionThirdExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BooleanTernaryExpressionThirdExpressionLink' contains a row with empty Id.");
-                booleanTernaryExpressionThirdExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                booleanTernaryExpressionThirdExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!booleanTernaryExpressionThirdExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BooleanTernaryExpressionThirdExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54067,7 +54067,7 @@ namespace MetaTransformScript
             public void AddCallTargetId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CallTarget' contains a row with empty Id.");
-                callTargetIds ??= new HashSet<string>(StringComparer.Ordinal);
+                callTargetIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!callTargetIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CallTarget' contains duplicate Id '{normalizedId}'.");
@@ -54079,7 +54079,7 @@ namespace MetaTransformScript
             public void AddCaseExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CaseExpression' contains a row with empty Id.");
-                caseExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                caseExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!caseExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CaseExpression' contains duplicate Id '{normalizedId}'.");
@@ -54091,7 +54091,7 @@ namespace MetaTransformScript
             public void AddCaseExpressionElseExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CaseExpressionElseExpressionLink' contains a row with empty Id.");
-                caseExpressionElseExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                caseExpressionElseExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!caseExpressionElseExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CaseExpressionElseExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54103,7 +54103,7 @@ namespace MetaTransformScript
             public void AddCastCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CastCall' contains a row with empty Id.");
-                castCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                castCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!castCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CastCall' contains duplicate Id '{normalizedId}'.");
@@ -54115,7 +54115,7 @@ namespace MetaTransformScript
             public void AddCastCallDataTypeLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CastCallDataTypeLink' contains a row with empty Id.");
-                castCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                castCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!castCallDataTypeLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CastCallDataTypeLink' contains duplicate Id '{normalizedId}'.");
@@ -54127,7 +54127,7 @@ namespace MetaTransformScript
             public void AddCastCallParameterLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CastCallParameterLink' contains a row with empty Id.");
-                castCallParameterLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                castCallParameterLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!castCallParameterLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CastCallParameterLink' contains duplicate Id '{normalizedId}'.");
@@ -54139,7 +54139,7 @@ namespace MetaTransformScript
             public void AddCoalesceExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CoalesceExpression' contains a row with empty Id.");
-                coalesceExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                coalesceExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!coalesceExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CoalesceExpression' contains duplicate Id '{normalizedId}'.");
@@ -54151,7 +54151,7 @@ namespace MetaTransformScript
             public void AddCoalesceExpressionExpressionsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CoalesceExpressionExpressionsItem' contains a row with empty Id.");
-                coalesceExpressionExpressionsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                coalesceExpressionExpressionsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!coalesceExpressionExpressionsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CoalesceExpressionExpressionsItem' contains duplicate Id '{normalizedId}'.");
@@ -54163,7 +54163,7 @@ namespace MetaTransformScript
             public void AddColumnReferenceExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ColumnReferenceExpression' contains a row with empty Id.");
-                columnReferenceExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                columnReferenceExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!columnReferenceExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ColumnReferenceExpression' contains duplicate Id '{normalizedId}'.");
@@ -54175,7 +54175,7 @@ namespace MetaTransformScript
             public void AddColumnReferenceExpressionMultiPartIdentifierLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ColumnReferenceExpressionMultiPartIdentifierLink' contains a row with empty Id.");
-                columnReferenceExpressionMultiPartIdentifierLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                columnReferenceExpressionMultiPartIdentifierLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!columnReferenceExpressionMultiPartIdentifierLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ColumnReferenceExpressionMultiPartIdentifierLink' contains duplicate Id '{normalizedId}'.");
@@ -54187,7 +54187,7 @@ namespace MetaTransformScript
             public void AddCommonTableExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CommonTableExpression' contains a row with empty Id.");
-                commonTableExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                commonTableExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!commonTableExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CommonTableExpression' contains duplicate Id '{normalizedId}'.");
@@ -54199,7 +54199,7 @@ namespace MetaTransformScript
             public void AddCommonTableExpressionColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CommonTableExpressionColumnsItem' contains a row with empty Id.");
-                commonTableExpressionColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                commonTableExpressionColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!commonTableExpressionColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CommonTableExpressionColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -54211,7 +54211,7 @@ namespace MetaTransformScript
             public void AddCommonTableExpressionExpressionNameLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CommonTableExpressionExpressionNameLink' contains a row with empty Id.");
-                commonTableExpressionExpressionNameLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                commonTableExpressionExpressionNameLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!commonTableExpressionExpressionNameLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CommonTableExpressionExpressionNameLink' contains duplicate Id '{normalizedId}'.");
@@ -54223,7 +54223,7 @@ namespace MetaTransformScript
             public void AddCommonTableExpressionQueryExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CommonTableExpressionQueryExpressionLink' contains a row with empty Id.");
-                commonTableExpressionQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                commonTableExpressionQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!commonTableExpressionQueryExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CommonTableExpressionQueryExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54235,7 +54235,7 @@ namespace MetaTransformScript
             public void AddCompositeGroupingSpecificationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CompositeGroupingSpecification' contains a row with empty Id.");
-                compositeGroupingSpecificationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                compositeGroupingSpecificationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!compositeGroupingSpecificationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CompositeGroupingSpecification' contains duplicate Id '{normalizedId}'.");
@@ -54247,7 +54247,7 @@ namespace MetaTransformScript
             public void AddCompositeGroupingSpecificationItemsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CompositeGroupingSpecificationItemsItem' contains a row with empty Id.");
-                compositeGroupingSpecificationItemsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                compositeGroupingSpecificationItemsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!compositeGroupingSpecificationItemsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CompositeGroupingSpecificationItemsItem' contains duplicate Id '{normalizedId}'.");
@@ -54259,7 +54259,7 @@ namespace MetaTransformScript
             public void AddConvertCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ConvertCall' contains a row with empty Id.");
-                convertCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                convertCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!convertCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ConvertCall' contains duplicate Id '{normalizedId}'.");
@@ -54271,7 +54271,7 @@ namespace MetaTransformScript
             public void AddConvertCallDataTypeLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ConvertCallDataTypeLink' contains a row with empty Id.");
-                convertCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                convertCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!convertCallDataTypeLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ConvertCallDataTypeLink' contains duplicate Id '{normalizedId}'.");
@@ -54283,7 +54283,7 @@ namespace MetaTransformScript
             public void AddConvertCallParameterLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ConvertCallParameterLink' contains a row with empty Id.");
-                convertCallParameterLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                convertCallParameterLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!convertCallParameterLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ConvertCallParameterLink' contains duplicate Id '{normalizedId}'.");
@@ -54295,7 +54295,7 @@ namespace MetaTransformScript
             public void AddConvertCallStyleLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ConvertCallStyleLink' contains a row with empty Id.");
-                convertCallStyleLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                convertCallStyleLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!convertCallStyleLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ConvertCallStyleLink' contains duplicate Id '{normalizedId}'.");
@@ -54307,7 +54307,7 @@ namespace MetaTransformScript
             public void AddCubeGroupingSpecificationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CubeGroupingSpecification' contains a row with empty Id.");
-                cubeGroupingSpecificationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                cubeGroupingSpecificationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!cubeGroupingSpecificationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CubeGroupingSpecification' contains duplicate Id '{normalizedId}'.");
@@ -54319,7 +54319,7 @@ namespace MetaTransformScript
             public void AddCubeGroupingSpecificationArgumentsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CubeGroupingSpecificationArgumentsItem' contains a row with empty Id.");
-                cubeGroupingSpecificationArgumentsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                cubeGroupingSpecificationArgumentsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!cubeGroupingSpecificationArgumentsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CubeGroupingSpecificationArgumentsItem' contains duplicate Id '{normalizedId}'.");
@@ -54331,7 +54331,7 @@ namespace MetaTransformScript
             public void AddDataTypeReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DataTypeReference' contains a row with empty Id.");
-                dataTypeReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dataTypeReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dataTypeReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DataTypeReference' contains duplicate Id '{normalizedId}'.");
@@ -54343,7 +54343,7 @@ namespace MetaTransformScript
             public void AddDataTypeReferenceNameLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DataTypeReferenceNameLink' contains a row with empty Id.");
-                dataTypeReferenceNameLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dataTypeReferenceNameLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dataTypeReferenceNameLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DataTypeReferenceNameLink' contains duplicate Id '{normalizedId}'.");
@@ -54355,7 +54355,7 @@ namespace MetaTransformScript
             public void AddDeleteStatementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DeleteStatement' contains a row with empty Id.");
-                deleteStatementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                deleteStatementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!deleteStatementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DeleteStatement' contains duplicate Id '{normalizedId}'.");
@@ -54367,7 +54367,7 @@ namespace MetaTransformScript
             public void AddDeleteStatementFromClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DeleteStatementFromClauseLink' contains a row with empty Id.");
-                deleteStatementFromClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                deleteStatementFromClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!deleteStatementFromClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DeleteStatementFromClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -54379,7 +54379,7 @@ namespace MetaTransformScript
             public void AddDeleteStatementTargetLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DeleteStatementTargetLink' contains a row with empty Id.");
-                deleteStatementTargetLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                deleteStatementTargetLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!deleteStatementTargetLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DeleteStatementTargetLink' contains duplicate Id '{normalizedId}'.");
@@ -54391,7 +54391,7 @@ namespace MetaTransformScript
             public void AddDeleteStatementWhereClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DeleteStatementWhereClauseLink' contains a row with empty Id.");
-                deleteStatementWhereClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                deleteStatementWhereClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!deleteStatementWhereClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DeleteStatementWhereClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -54403,7 +54403,7 @@ namespace MetaTransformScript
             public void AddDistinctPredicateId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DistinctPredicate' contains a row with empty Id.");
-                distinctPredicateIds ??= new HashSet<string>(StringComparer.Ordinal);
+                distinctPredicateIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!distinctPredicateIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DistinctPredicate' contains duplicate Id '{normalizedId}'.");
@@ -54415,7 +54415,7 @@ namespace MetaTransformScript
             public void AddDistinctPredicateFirstExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DistinctPredicateFirstExpressionLink' contains a row with empty Id.");
-                distinctPredicateFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                distinctPredicateFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!distinctPredicateFirstExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DistinctPredicateFirstExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54427,7 +54427,7 @@ namespace MetaTransformScript
             public void AddDistinctPredicateSecondExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DistinctPredicateSecondExpressionLink' contains a row with empty Id.");
-                distinctPredicateSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                distinctPredicateSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!distinctPredicateSecondExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DistinctPredicateSecondExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54439,7 +54439,7 @@ namespace MetaTransformScript
             public void AddExistsPredicateId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ExistsPredicate' contains a row with empty Id.");
-                existsPredicateIds ??= new HashSet<string>(StringComparer.Ordinal);
+                existsPredicateIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!existsPredicateIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ExistsPredicate' contains duplicate Id '{normalizedId}'.");
@@ -54451,7 +54451,7 @@ namespace MetaTransformScript
             public void AddExistsPredicateSubqueryLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ExistsPredicateSubqueryLink' contains a row with empty Id.");
-                existsPredicateSubqueryLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                existsPredicateSubqueryLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!existsPredicateSubqueryLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ExistsPredicateSubqueryLink' contains duplicate Id '{normalizedId}'.");
@@ -54463,7 +54463,7 @@ namespace MetaTransformScript
             public void AddExpressionGroupingSpecificationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ExpressionGroupingSpecification' contains a row with empty Id.");
-                expressionGroupingSpecificationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                expressionGroupingSpecificationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!expressionGroupingSpecificationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ExpressionGroupingSpecification' contains duplicate Id '{normalizedId}'.");
@@ -54475,7 +54475,7 @@ namespace MetaTransformScript
             public void AddExpressionGroupingSpecificationExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ExpressionGroupingSpecificationExpressionLink' contains a row with empty Id.");
-                expressionGroupingSpecificationExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                expressionGroupingSpecificationExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!expressionGroupingSpecificationExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ExpressionGroupingSpecificationExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54487,7 +54487,7 @@ namespace MetaTransformScript
             public void AddExpressionWithSortOrderId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ExpressionWithSortOrder' contains a row with empty Id.");
-                expressionWithSortOrderIds ??= new HashSet<string>(StringComparer.Ordinal);
+                expressionWithSortOrderIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!expressionWithSortOrderIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ExpressionWithSortOrder' contains duplicate Id '{normalizedId}'.");
@@ -54499,7 +54499,7 @@ namespace MetaTransformScript
             public void AddExpressionWithSortOrderExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ExpressionWithSortOrderExpressionLink' contains a row with empty Id.");
-                expressionWithSortOrderExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                expressionWithSortOrderExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!expressionWithSortOrderExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ExpressionWithSortOrderExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54511,7 +54511,7 @@ namespace MetaTransformScript
             public void AddFromClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FromClause' contains a row with empty Id.");
-                fromClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fromClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fromClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FromClause' contains duplicate Id '{normalizedId}'.");
@@ -54523,7 +54523,7 @@ namespace MetaTransformScript
             public void AddFromClauseTableReferencesItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FromClauseTableReferencesItem' contains a row with empty Id.");
-                fromClauseTableReferencesItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fromClauseTableReferencesItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fromClauseTableReferencesItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FromClauseTableReferencesItem' contains duplicate Id '{normalizedId}'.");
@@ -54535,7 +54535,7 @@ namespace MetaTransformScript
             public void AddFullTextPredicateId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FullTextPredicate' contains a row with empty Id.");
-                fullTextPredicateIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fullTextPredicateIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fullTextPredicateIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FullTextPredicate' contains duplicate Id '{normalizedId}'.");
@@ -54547,7 +54547,7 @@ namespace MetaTransformScript
             public void AddFullTextPredicateColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FullTextPredicateColumnsItem' contains a row with empty Id.");
-                fullTextPredicateColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fullTextPredicateColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fullTextPredicateColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FullTextPredicateColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -54559,7 +54559,7 @@ namespace MetaTransformScript
             public void AddFullTextPredicateValueLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FullTextPredicateValueLink' contains a row with empty Id.");
-                fullTextPredicateValueLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fullTextPredicateValueLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fullTextPredicateValueLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FullTextPredicateValueLink' contains duplicate Id '{normalizedId}'.");
@@ -54571,7 +54571,7 @@ namespace MetaTransformScript
             public void AddFullTextTableReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FullTextTableReference' contains a row with empty Id.");
-                fullTextTableReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fullTextTableReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fullTextTableReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FullTextTableReference' contains duplicate Id '{normalizedId}'.");
@@ -54583,7 +54583,7 @@ namespace MetaTransformScript
             public void AddFullTextTableReferenceColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FullTextTableReferenceColumnsItem' contains a row with empty Id.");
-                fullTextTableReferenceColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fullTextTableReferenceColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fullTextTableReferenceColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FullTextTableReferenceColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -54595,7 +54595,7 @@ namespace MetaTransformScript
             public void AddFullTextTableReferenceSearchConditionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FullTextTableReferenceSearchConditionLink' contains a row with empty Id.");
-                fullTextTableReferenceSearchConditionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fullTextTableReferenceSearchConditionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fullTextTableReferenceSearchConditionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FullTextTableReferenceSearchConditionLink' contains duplicate Id '{normalizedId}'.");
@@ -54607,7 +54607,7 @@ namespace MetaTransformScript
             public void AddFullTextTableReferenceTableNameLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FullTextTableReferenceTableNameLink' contains a row with empty Id.");
-                fullTextTableReferenceTableNameLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fullTextTableReferenceTableNameLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fullTextTableReferenceTableNameLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FullTextTableReferenceTableNameLink' contains duplicate Id '{normalizedId}'.");
@@ -54619,7 +54619,7 @@ namespace MetaTransformScript
             public void AddFunctionCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FunctionCall' contains a row with empty Id.");
-                functionCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                functionCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!functionCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FunctionCall' contains duplicate Id '{normalizedId}'.");
@@ -54631,7 +54631,7 @@ namespace MetaTransformScript
             public void AddFunctionCallCallTargetLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FunctionCallCallTargetLink' contains a row with empty Id.");
-                functionCallCallTargetLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                functionCallCallTargetLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!functionCallCallTargetLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FunctionCallCallTargetLink' contains duplicate Id '{normalizedId}'.");
@@ -54643,7 +54643,7 @@ namespace MetaTransformScript
             public void AddFunctionCallFunctionNameLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FunctionCallFunctionNameLink' contains a row with empty Id.");
-                functionCallFunctionNameLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                functionCallFunctionNameLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!functionCallFunctionNameLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FunctionCallFunctionNameLink' contains duplicate Id '{normalizedId}'.");
@@ -54655,7 +54655,7 @@ namespace MetaTransformScript
             public void AddFunctionCallOverClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FunctionCallOverClauseLink' contains a row with empty Id.");
-                functionCallOverClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                functionCallOverClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!functionCallOverClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FunctionCallOverClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -54667,7 +54667,7 @@ namespace MetaTransformScript
             public void AddFunctionCallParametersItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FunctionCallParametersItem' contains a row with empty Id.");
-                functionCallParametersItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                functionCallParametersItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!functionCallParametersItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FunctionCallParametersItem' contains duplicate Id '{normalizedId}'.");
@@ -54679,7 +54679,7 @@ namespace MetaTransformScript
             public void AddFunctionCallWithinGroupOrderByClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FunctionCallWithinGroupOrderByClauseLink' contains a row with empty Id.");
-                functionCallWithinGroupOrderByClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                functionCallWithinGroupOrderByClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!functionCallWithinGroupOrderByClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FunctionCallWithinGroupOrderByClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -54691,7 +54691,7 @@ namespace MetaTransformScript
             public void AddGlobalFunctionTableReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'GlobalFunctionTableReference' contains a row with empty Id.");
-                globalFunctionTableReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                globalFunctionTableReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!globalFunctionTableReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'GlobalFunctionTableReference' contains duplicate Id '{normalizedId}'.");
@@ -54703,7 +54703,7 @@ namespace MetaTransformScript
             public void AddGlobalFunctionTableReferenceNameLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'GlobalFunctionTableReferenceNameLink' contains a row with empty Id.");
-                globalFunctionTableReferenceNameLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                globalFunctionTableReferenceNameLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!globalFunctionTableReferenceNameLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'GlobalFunctionTableReferenceNameLink' contains duplicate Id '{normalizedId}'.");
@@ -54715,7 +54715,7 @@ namespace MetaTransformScript
             public void AddGlobalFunctionTableReferenceParametersItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'GlobalFunctionTableReferenceParametersItem' contains a row with empty Id.");
-                globalFunctionTableReferenceParametersItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                globalFunctionTableReferenceParametersItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!globalFunctionTableReferenceParametersItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'GlobalFunctionTableReferenceParametersItem' contains duplicate Id '{normalizedId}'.");
@@ -54727,7 +54727,7 @@ namespace MetaTransformScript
             public void AddGlobalVariableExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'GlobalVariableExpression' contains a row with empty Id.");
-                globalVariableExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                globalVariableExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!globalVariableExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'GlobalVariableExpression' contains duplicate Id '{normalizedId}'.");
@@ -54739,7 +54739,7 @@ namespace MetaTransformScript
             public void AddGrandTotalGroupingSpecificationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'GrandTotalGroupingSpecification' contains a row with empty Id.");
-                grandTotalGroupingSpecificationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                grandTotalGroupingSpecificationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!grandTotalGroupingSpecificationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'GrandTotalGroupingSpecification' contains duplicate Id '{normalizedId}'.");
@@ -54751,7 +54751,7 @@ namespace MetaTransformScript
             public void AddGroupByClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'GroupByClause' contains a row with empty Id.");
-                groupByClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                groupByClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!groupByClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'GroupByClause' contains duplicate Id '{normalizedId}'.");
@@ -54763,7 +54763,7 @@ namespace MetaTransformScript
             public void AddGroupByClauseGroupingSpecificationsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'GroupByClauseGroupingSpecificationsItem' contains a row with empty Id.");
-                groupByClauseGroupingSpecificationsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                groupByClauseGroupingSpecificationsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!groupByClauseGroupingSpecificationsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'GroupByClauseGroupingSpecificationsItem' contains duplicate Id '{normalizedId}'.");
@@ -54775,7 +54775,7 @@ namespace MetaTransformScript
             public void AddGroupingSetsGroupingSpecificationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'GroupingSetsGroupingSpecification' contains a row with empty Id.");
-                groupingSetsGroupingSpecificationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                groupingSetsGroupingSpecificationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!groupingSetsGroupingSpecificationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'GroupingSetsGroupingSpecification' contains duplicate Id '{normalizedId}'.");
@@ -54787,7 +54787,7 @@ namespace MetaTransformScript
             public void AddGroupingSetsGroupingSpecificationSetsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'GroupingSetsGroupingSpecificationSetsItem' contains a row with empty Id.");
-                groupingSetsGroupingSpecificationSetsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                groupingSetsGroupingSpecificationSetsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!groupingSetsGroupingSpecificationSetsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'GroupingSetsGroupingSpecificationSetsItem' contains duplicate Id '{normalizedId}'.");
@@ -54799,7 +54799,7 @@ namespace MetaTransformScript
             public void AddGroupingSpecificationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'GroupingSpecification' contains a row with empty Id.");
-                groupingSpecificationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                groupingSpecificationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!groupingSpecificationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'GroupingSpecification' contains duplicate Id '{normalizedId}'.");
@@ -54811,7 +54811,7 @@ namespace MetaTransformScript
             public void AddHavingClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'HavingClause' contains a row with empty Id.");
-                havingClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                havingClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!havingClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'HavingClause' contains duplicate Id '{normalizedId}'.");
@@ -54823,7 +54823,7 @@ namespace MetaTransformScript
             public void AddHavingClauseSearchConditionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'HavingClauseSearchConditionLink' contains a row with empty Id.");
-                havingClauseSearchConditionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                havingClauseSearchConditionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!havingClauseSearchConditionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'HavingClauseSearchConditionLink' contains duplicate Id '{normalizedId}'.");
@@ -54835,7 +54835,7 @@ namespace MetaTransformScript
             public void AddIdentifierId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Identifier' contains a row with empty Id.");
-                identifierIds ??= new HashSet<string>(StringComparer.Ordinal);
+                identifierIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!identifierIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Identifier' contains duplicate Id '{normalizedId}'.");
@@ -54847,7 +54847,7 @@ namespace MetaTransformScript
             public void AddIdentifierOrValueExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'IdentifierOrValueExpression' contains a row with empty Id.");
-                identifierOrValueExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                identifierOrValueExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!identifierOrValueExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'IdentifierOrValueExpression' contains duplicate Id '{normalizedId}'.");
@@ -54859,7 +54859,7 @@ namespace MetaTransformScript
             public void AddIdentifierOrValueExpressionIdentifierLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'IdentifierOrValueExpressionIdentifierLink' contains a row with empty Id.");
-                identifierOrValueExpressionIdentifierLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                identifierOrValueExpressionIdentifierLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!identifierOrValueExpressionIdentifierLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'IdentifierOrValueExpressionIdentifierLink' contains duplicate Id '{normalizedId}'.");
@@ -54871,7 +54871,7 @@ namespace MetaTransformScript
             public void AddIIfCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'IIfCall' contains a row with empty Id.");
-                iIfCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                iIfCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!iIfCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'IIfCall' contains duplicate Id '{normalizedId}'.");
@@ -54883,7 +54883,7 @@ namespace MetaTransformScript
             public void AddIIfCallElseExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'IIfCallElseExpressionLink' contains a row with empty Id.");
-                iIfCallElseExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                iIfCallElseExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!iIfCallElseExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'IIfCallElseExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54895,7 +54895,7 @@ namespace MetaTransformScript
             public void AddIIfCallPredicateLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'IIfCallPredicateLink' contains a row with empty Id.");
-                iIfCallPredicateLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                iIfCallPredicateLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!iIfCallPredicateLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'IIfCallPredicateLink' contains duplicate Id '{normalizedId}'.");
@@ -54907,7 +54907,7 @@ namespace MetaTransformScript
             public void AddIIfCallThenExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'IIfCallThenExpressionLink' contains a row with empty Id.");
-                iIfCallThenExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                iIfCallThenExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!iIfCallThenExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'IIfCallThenExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54919,7 +54919,7 @@ namespace MetaTransformScript
             public void AddInlineDerivedTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InlineDerivedTable' contains a row with empty Id.");
-                inlineDerivedTableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                inlineDerivedTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!inlineDerivedTableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InlineDerivedTable' contains duplicate Id '{normalizedId}'.");
@@ -54931,7 +54931,7 @@ namespace MetaTransformScript
             public void AddInlineDerivedTableRowValuesItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InlineDerivedTableRowValuesItem' contains a row with empty Id.");
-                inlineDerivedTableRowValuesItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                inlineDerivedTableRowValuesItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!inlineDerivedTableRowValuesItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InlineDerivedTableRowValuesItem' contains duplicate Id '{normalizedId}'.");
@@ -54943,7 +54943,7 @@ namespace MetaTransformScript
             public void AddInPredicateId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InPredicate' contains a row with empty Id.");
-                inPredicateIds ??= new HashSet<string>(StringComparer.Ordinal);
+                inPredicateIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!inPredicateIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InPredicate' contains duplicate Id '{normalizedId}'.");
@@ -54955,7 +54955,7 @@ namespace MetaTransformScript
             public void AddInPredicateExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InPredicateExpressionLink' contains a row with empty Id.");
-                inPredicateExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                inPredicateExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!inPredicateExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InPredicateExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -54967,7 +54967,7 @@ namespace MetaTransformScript
             public void AddInPredicateSubqueryLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InPredicateSubqueryLink' contains a row with empty Id.");
-                inPredicateSubqueryLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                inPredicateSubqueryLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!inPredicateSubqueryLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InPredicateSubqueryLink' contains duplicate Id '{normalizedId}'.");
@@ -54979,7 +54979,7 @@ namespace MetaTransformScript
             public void AddInPredicateValuesItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InPredicateValuesItem' contains a row with empty Id.");
-                inPredicateValuesItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                inPredicateValuesItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!inPredicateValuesItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InPredicateValuesItem' contains duplicate Id '{normalizedId}'.");
@@ -54991,7 +54991,7 @@ namespace MetaTransformScript
             public void AddInsertQuerySourceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InsertQuerySource' contains a row with empty Id.");
-                insertQuerySourceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                insertQuerySourceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!insertQuerySourceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InsertQuerySource' contains duplicate Id '{normalizedId}'.");
@@ -55003,7 +55003,7 @@ namespace MetaTransformScript
             public void AddInsertQuerySourceQueryExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InsertQuerySourceQueryExpressionLink' contains a row with empty Id.");
-                insertQuerySourceQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                insertQuerySourceQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!insertQuerySourceQueryExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InsertQuerySourceQueryExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -55015,7 +55015,7 @@ namespace MetaTransformScript
             public void AddInsertSourceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InsertSource' contains a row with empty Id.");
-                insertSourceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                insertSourceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!insertSourceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InsertSource' contains duplicate Id '{normalizedId}'.");
@@ -55027,7 +55027,7 @@ namespace MetaTransformScript
             public void AddInsertStatementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InsertStatement' contains a row with empty Id.");
-                insertStatementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                insertStatementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!insertStatementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InsertStatement' contains duplicate Id '{normalizedId}'.");
@@ -55039,7 +55039,7 @@ namespace MetaTransformScript
             public void AddInsertStatementColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InsertStatementColumnsItem' contains a row with empty Id.");
-                insertStatementColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                insertStatementColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!insertStatementColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InsertStatementColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -55051,7 +55051,7 @@ namespace MetaTransformScript
             public void AddInsertStatementSourceLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InsertStatementSourceLink' contains a row with empty Id.");
-                insertStatementSourceLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                insertStatementSourceLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!insertStatementSourceLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InsertStatementSourceLink' contains duplicate Id '{normalizedId}'.");
@@ -55063,7 +55063,7 @@ namespace MetaTransformScript
             public void AddInsertStatementTargetLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InsertStatementTargetLink' contains a row with empty Id.");
-                insertStatementTargetLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                insertStatementTargetLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!insertStatementTargetLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InsertStatementTargetLink' contains duplicate Id '{normalizedId}'.");
@@ -55075,7 +55075,7 @@ namespace MetaTransformScript
             public void AddInsertValuesSourceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InsertValuesSource' contains a row with empty Id.");
-                insertValuesSourceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                insertValuesSourceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!insertValuesSourceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InsertValuesSource' contains duplicate Id '{normalizedId}'.");
@@ -55087,7 +55087,7 @@ namespace MetaTransformScript
             public void AddInsertValuesSourceRowValuesItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InsertValuesSourceRowValuesItem' contains a row with empty Id.");
-                insertValuesSourceRowValuesItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                insertValuesSourceRowValuesItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!insertValuesSourceRowValuesItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InsertValuesSourceRowValuesItem' contains duplicate Id '{normalizedId}'.");
@@ -55099,7 +55099,7 @@ namespace MetaTransformScript
             public void AddIntegerLiteralId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'IntegerLiteral' contains a row with empty Id.");
-                integerLiteralIds ??= new HashSet<string>(StringComparer.Ordinal);
+                integerLiteralIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!integerLiteralIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'IntegerLiteral' contains duplicate Id '{normalizedId}'.");
@@ -55111,7 +55111,7 @@ namespace MetaTransformScript
             public void AddJoinParenthesisTableReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinParenthesisTableReference' contains a row with empty Id.");
-                joinParenthesisTableReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinParenthesisTableReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinParenthesisTableReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinParenthesisTableReference' contains duplicate Id '{normalizedId}'.");
@@ -55123,7 +55123,7 @@ namespace MetaTransformScript
             public void AddJoinParenthesisTableReferenceJoinLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinParenthesisTableReferenceJoinLink' contains a row with empty Id.");
-                joinParenthesisTableReferenceJoinLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinParenthesisTableReferenceJoinLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinParenthesisTableReferenceJoinLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinParenthesisTableReferenceJoinLink' contains duplicate Id '{normalizedId}'.");
@@ -55135,7 +55135,7 @@ namespace MetaTransformScript
             public void AddJoinTableReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinTableReference' contains a row with empty Id.");
-                joinTableReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinTableReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinTableReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinTableReference' contains duplicate Id '{normalizedId}'.");
@@ -55147,7 +55147,7 @@ namespace MetaTransformScript
             public void AddJoinTableReferenceFirstTableReferenceLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinTableReferenceFirstTableReferenceLink' contains a row with empty Id.");
-                joinTableReferenceFirstTableReferenceLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinTableReferenceFirstTableReferenceLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinTableReferenceFirstTableReferenceLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinTableReferenceFirstTableReferenceLink' contains duplicate Id '{normalizedId}'.");
@@ -55159,7 +55159,7 @@ namespace MetaTransformScript
             public void AddJoinTableReferenceSecondTableReferenceLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinTableReferenceSecondTableReferenceLink' contains a row with empty Id.");
-                joinTableReferenceSecondTableReferenceLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinTableReferenceSecondTableReferenceLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinTableReferenceSecondTableReferenceLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinTableReferenceSecondTableReferenceLink' contains duplicate Id '{normalizedId}'.");
@@ -55171,7 +55171,7 @@ namespace MetaTransformScript
             public void AddLeftFunctionCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'LeftFunctionCall' contains a row with empty Id.");
-                leftFunctionCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                leftFunctionCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!leftFunctionCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'LeftFunctionCall' contains duplicate Id '{normalizedId}'.");
@@ -55183,7 +55183,7 @@ namespace MetaTransformScript
             public void AddLeftFunctionCallParametersItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'LeftFunctionCallParametersItem' contains a row with empty Id.");
-                leftFunctionCallParametersItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                leftFunctionCallParametersItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!leftFunctionCallParametersItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'LeftFunctionCallParametersItem' contains duplicate Id '{normalizedId}'.");
@@ -55195,7 +55195,7 @@ namespace MetaTransformScript
             public void AddLikePredicateId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'LikePredicate' contains a row with empty Id.");
-                likePredicateIds ??= new HashSet<string>(StringComparer.Ordinal);
+                likePredicateIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!likePredicateIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'LikePredicate' contains duplicate Id '{normalizedId}'.");
@@ -55207,7 +55207,7 @@ namespace MetaTransformScript
             public void AddLikePredicateEscapeExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'LikePredicateEscapeExpressionLink' contains a row with empty Id.");
-                likePredicateEscapeExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                likePredicateEscapeExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!likePredicateEscapeExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'LikePredicateEscapeExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -55219,7 +55219,7 @@ namespace MetaTransformScript
             public void AddLikePredicateFirstExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'LikePredicateFirstExpressionLink' contains a row with empty Id.");
-                likePredicateFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                likePredicateFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!likePredicateFirstExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'LikePredicateFirstExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -55231,7 +55231,7 @@ namespace MetaTransformScript
             public void AddLikePredicateSecondExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'LikePredicateSecondExpressionLink' contains a row with empty Id.");
-                likePredicateSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                likePredicateSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!likePredicateSecondExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'LikePredicateSecondExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -55243,7 +55243,7 @@ namespace MetaTransformScript
             public void AddLiteralId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Literal' contains a row with empty Id.");
-                literalIds ??= new HashSet<string>(StringComparer.Ordinal);
+                literalIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!literalIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Literal' contains duplicate Id '{normalizedId}'.");
@@ -55255,7 +55255,7 @@ namespace MetaTransformScript
             public void AddMaxLiteralId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MaxLiteral' contains a row with empty Id.");
-                maxLiteralIds ??= new HashSet<string>(StringComparer.Ordinal);
+                maxLiteralIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!maxLiteralIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MaxLiteral' contains duplicate Id '{normalizedId}'.");
@@ -55267,7 +55267,7 @@ namespace MetaTransformScript
             public void AddMergeActionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeAction' contains a row with empty Id.");
-                mergeActionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeActionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeActionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeAction' contains duplicate Id '{normalizedId}'.");
@@ -55279,7 +55279,7 @@ namespace MetaTransformScript
             public void AddMergeDeleteActionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeDeleteAction' contains a row with empty Id.");
-                mergeDeleteActionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeDeleteActionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeDeleteActionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeDeleteAction' contains duplicate Id '{normalizedId}'.");
@@ -55291,7 +55291,7 @@ namespace MetaTransformScript
             public void AddMergeInsertActionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeInsertAction' contains a row with empty Id.");
-                mergeInsertActionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeInsertActionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeInsertActionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeInsertAction' contains duplicate Id '{normalizedId}'.");
@@ -55303,7 +55303,7 @@ namespace MetaTransformScript
             public void AddMergeInsertActionColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeInsertActionColumnsItem' contains a row with empty Id.");
-                mergeInsertActionColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeInsertActionColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeInsertActionColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeInsertActionColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -55315,7 +55315,7 @@ namespace MetaTransformScript
             public void AddMergeInsertActionValuesItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeInsertActionValuesItem' contains a row with empty Id.");
-                mergeInsertActionValuesItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeInsertActionValuesItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeInsertActionValuesItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeInsertActionValuesItem' contains duplicate Id '{normalizedId}'.");
@@ -55327,7 +55327,7 @@ namespace MetaTransformScript
             public void AddMergeStatementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeStatement' contains a row with empty Id.");
-                mergeStatementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeStatementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeStatementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeStatement' contains duplicate Id '{normalizedId}'.");
@@ -55339,7 +55339,7 @@ namespace MetaTransformScript
             public void AddMergeStatementOptionClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeStatementOptionClauseLink' contains a row with empty Id.");
-                mergeStatementOptionClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeStatementOptionClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeStatementOptionClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeStatementOptionClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -55351,7 +55351,7 @@ namespace MetaTransformScript
             public void AddMergeStatementOutputClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeStatementOutputClauseLink' contains a row with empty Id.");
-                mergeStatementOutputClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeStatementOutputClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeStatementOutputClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeStatementOutputClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -55363,7 +55363,7 @@ namespace MetaTransformScript
             public void AddMergeStatementSearchConditionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeStatementSearchConditionLink' contains a row with empty Id.");
-                mergeStatementSearchConditionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeStatementSearchConditionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeStatementSearchConditionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeStatementSearchConditionLink' contains duplicate Id '{normalizedId}'.");
@@ -55375,7 +55375,7 @@ namespace MetaTransformScript
             public void AddMergeStatementSourceLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeStatementSourceLink' contains a row with empty Id.");
-                mergeStatementSourceLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeStatementSourceLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeStatementSourceLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeStatementSourceLink' contains duplicate Id '{normalizedId}'.");
@@ -55387,7 +55387,7 @@ namespace MetaTransformScript
             public void AddMergeStatementTargetAliasLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeStatementTargetAliasLink' contains a row with empty Id.");
-                mergeStatementTargetAliasLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeStatementTargetAliasLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeStatementTargetAliasLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeStatementTargetAliasLink' contains duplicate Id '{normalizedId}'.");
@@ -55399,7 +55399,7 @@ namespace MetaTransformScript
             public void AddMergeStatementTargetHintsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeStatementTargetHintsItem' contains a row with empty Id.");
-                mergeStatementTargetHintsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeStatementTargetHintsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeStatementTargetHintsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeStatementTargetHintsItem' contains duplicate Id '{normalizedId}'.");
@@ -55411,7 +55411,7 @@ namespace MetaTransformScript
             public void AddMergeStatementTargetLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeStatementTargetLink' contains a row with empty Id.");
-                mergeStatementTargetLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeStatementTargetLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeStatementTargetLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeStatementTargetLink' contains duplicate Id '{normalizedId}'.");
@@ -55423,7 +55423,7 @@ namespace MetaTransformScript
             public void AddMergeStatementTopRowFilterLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeStatementTopRowFilterLink' contains a row with empty Id.");
-                mergeStatementTopRowFilterLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeStatementTopRowFilterLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeStatementTopRowFilterLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeStatementTopRowFilterLink' contains duplicate Id '{normalizedId}'.");
@@ -55435,7 +55435,7 @@ namespace MetaTransformScript
             public void AddMergeStatementWhenClausesItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeStatementWhenClausesItem' contains a row with empty Id.");
-                mergeStatementWhenClausesItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeStatementWhenClausesItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeStatementWhenClausesItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeStatementWhenClausesItem' contains duplicate Id '{normalizedId}'.");
@@ -55447,7 +55447,7 @@ namespace MetaTransformScript
             public void AddMergeUpdateActionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeUpdateAction' contains a row with empty Id.");
-                mergeUpdateActionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeUpdateActionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeUpdateActionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeUpdateAction' contains duplicate Id '{normalizedId}'.");
@@ -55459,7 +55459,7 @@ namespace MetaTransformScript
             public void AddMergeUpdateActionSetClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeUpdateActionSetClauseLink' contains a row with empty Id.");
-                mergeUpdateActionSetClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeUpdateActionSetClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeUpdateActionSetClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeUpdateActionSetClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -55471,7 +55471,7 @@ namespace MetaTransformScript
             public void AddMergeWhenClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeWhenClause' contains a row with empty Id.");
-                mergeWhenClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeWhenClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeWhenClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeWhenClause' contains duplicate Id '{normalizedId}'.");
@@ -55483,7 +55483,7 @@ namespace MetaTransformScript
             public void AddMergeWhenClauseActionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeWhenClauseActionLink' contains a row with empty Id.");
-                mergeWhenClauseActionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeWhenClauseActionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeWhenClauseActionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeWhenClauseActionLink' contains duplicate Id '{normalizedId}'.");
@@ -55495,7 +55495,7 @@ namespace MetaTransformScript
             public void AddMergeWhenClauseSearchConditionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MergeWhenClauseSearchConditionLink' contains a row with empty Id.");
-                mergeWhenClauseSearchConditionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                mergeWhenClauseSearchConditionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!mergeWhenClauseSearchConditionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeWhenClauseSearchConditionLink' contains duplicate Id '{normalizedId}'.");
@@ -55507,7 +55507,7 @@ namespace MetaTransformScript
             public void AddMultiPartIdentifierId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MultiPartIdentifier' contains a row with empty Id.");
-                multiPartIdentifierIds ??= new HashSet<string>(StringComparer.Ordinal);
+                multiPartIdentifierIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!multiPartIdentifierIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MultiPartIdentifier' contains duplicate Id '{normalizedId}'.");
@@ -55519,7 +55519,7 @@ namespace MetaTransformScript
             public void AddMultiPartIdentifierCallTargetId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MultiPartIdentifierCallTarget' contains a row with empty Id.");
-                multiPartIdentifierCallTargetIds ??= new HashSet<string>(StringComparer.Ordinal);
+                multiPartIdentifierCallTargetIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!multiPartIdentifierCallTargetIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MultiPartIdentifierCallTarget' contains duplicate Id '{normalizedId}'.");
@@ -55531,7 +55531,7 @@ namespace MetaTransformScript
             public void AddMultiPartIdentifierCallTargetMultiPartIdentifierLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MultiPartIdentifierCallTargetMultiPartIdentifierLink' contains a row with empty Id.");
-                multiPartIdentifierCallTargetMultiPartIdentifierLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                multiPartIdentifierCallTargetMultiPartIdentifierLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!multiPartIdentifierCallTargetMultiPartIdentifierLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MultiPartIdentifierCallTargetMultiPartIdentifierLink' contains duplicate Id '{normalizedId}'.");
@@ -55543,7 +55543,7 @@ namespace MetaTransformScript
             public void AddMultiPartIdentifierIdentifiersItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MultiPartIdentifierIdentifiersItem' contains a row with empty Id.");
-                multiPartIdentifierIdentifiersItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                multiPartIdentifierIdentifiersItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!multiPartIdentifierIdentifiersItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MultiPartIdentifierIdentifiersItem' contains duplicate Id '{normalizedId}'.");
@@ -55555,7 +55555,7 @@ namespace MetaTransformScript
             public void AddNamedTableReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NamedTableReference' contains a row with empty Id.");
-                namedTableReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                namedTableReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!namedTableReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NamedTableReference' contains duplicate Id '{normalizedId}'.");
@@ -55567,7 +55567,7 @@ namespace MetaTransformScript
             public void AddNamedTableReferenceSchemaObjectLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NamedTableReferenceSchemaObjectLink' contains a row with empty Id.");
-                namedTableReferenceSchemaObjectLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                namedTableReferenceSchemaObjectLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!namedTableReferenceSchemaObjectLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NamedTableReferenceSchemaObjectLink' contains duplicate Id '{normalizedId}'.");
@@ -55579,7 +55579,7 @@ namespace MetaTransformScript
             public void AddNamedTableReferenceTableSampleClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NamedTableReferenceTableSampleClauseLink' contains a row with empty Id.");
-                namedTableReferenceTableSampleClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                namedTableReferenceTableSampleClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!namedTableReferenceTableSampleClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NamedTableReferenceTableSampleClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -55591,7 +55591,7 @@ namespace MetaTransformScript
             public void AddNextValueForExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NextValueForExpression' contains a row with empty Id.");
-                nextValueForExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                nextValueForExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!nextValueForExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NextValueForExpression' contains duplicate Id '{normalizedId}'.");
@@ -55603,7 +55603,7 @@ namespace MetaTransformScript
             public void AddNextValueForExpressionSequenceNameLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NextValueForExpressionSequenceNameLink' contains a row with empty Id.");
-                nextValueForExpressionSequenceNameLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                nextValueForExpressionSequenceNameLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!nextValueForExpressionSequenceNameLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NextValueForExpressionSequenceNameLink' contains duplicate Id '{normalizedId}'.");
@@ -55615,7 +55615,7 @@ namespace MetaTransformScript
             public void AddNullIfExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NullIfExpression' contains a row with empty Id.");
-                nullIfExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                nullIfExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!nullIfExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NullIfExpression' contains duplicate Id '{normalizedId}'.");
@@ -55627,7 +55627,7 @@ namespace MetaTransformScript
             public void AddNullIfExpressionFirstExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NullIfExpressionFirstExpressionLink' contains a row with empty Id.");
-                nullIfExpressionFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                nullIfExpressionFirstExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!nullIfExpressionFirstExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NullIfExpressionFirstExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -55639,7 +55639,7 @@ namespace MetaTransformScript
             public void AddNullIfExpressionSecondExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NullIfExpressionSecondExpressionLink' contains a row with empty Id.");
-                nullIfExpressionSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                nullIfExpressionSecondExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!nullIfExpressionSecondExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NullIfExpressionSecondExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -55651,7 +55651,7 @@ namespace MetaTransformScript
             public void AddNullLiteralId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NullLiteral' contains a row with empty Id.");
-                nullLiteralIds ??= new HashSet<string>(StringComparer.Ordinal);
+                nullLiteralIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!nullLiteralIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NullLiteral' contains duplicate Id '{normalizedId}'.");
@@ -55663,7 +55663,7 @@ namespace MetaTransformScript
             public void AddNumericLiteralId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'NumericLiteral' contains a row with empty Id.");
-                numericLiteralIds ??= new HashSet<string>(StringComparer.Ordinal);
+                numericLiteralIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!numericLiteralIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'NumericLiteral' contains duplicate Id '{normalizedId}'.");
@@ -55675,7 +55675,7 @@ namespace MetaTransformScript
             public void AddOffsetClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OffsetClause' contains a row with empty Id.");
-                offsetClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                offsetClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!offsetClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OffsetClause' contains duplicate Id '{normalizedId}'.");
@@ -55687,7 +55687,7 @@ namespace MetaTransformScript
             public void AddOffsetClauseFetchExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OffsetClauseFetchExpressionLink' contains a row with empty Id.");
-                offsetClauseFetchExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                offsetClauseFetchExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!offsetClauseFetchExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OffsetClauseFetchExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -55699,7 +55699,7 @@ namespace MetaTransformScript
             public void AddOffsetClauseOffsetExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OffsetClauseOffsetExpressionLink' contains a row with empty Id.");
-                offsetClauseOffsetExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                offsetClauseOffsetExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!offsetClauseOffsetExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OffsetClauseOffsetExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -55711,7 +55711,7 @@ namespace MetaTransformScript
             public void AddOptionClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OptionClause' contains a row with empty Id.");
-                optionClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                optionClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!optionClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OptionClause' contains duplicate Id '{normalizedId}'.");
@@ -55723,7 +55723,7 @@ namespace MetaTransformScript
             public void AddOptionClauseQueryHintsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OptionClauseQueryHintsItem' contains a row with empty Id.");
-                optionClauseQueryHintsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                optionClauseQueryHintsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!optionClauseQueryHintsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OptionClauseQueryHintsItem' contains duplicate Id '{normalizedId}'.");
@@ -55735,7 +55735,7 @@ namespace MetaTransformScript
             public void AddOrderByClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OrderByClause' contains a row with empty Id.");
-                orderByClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                orderByClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!orderByClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OrderByClause' contains duplicate Id '{normalizedId}'.");
@@ -55747,7 +55747,7 @@ namespace MetaTransformScript
             public void AddOrderByClauseOrderByElementsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OrderByClauseOrderByElementsItem' contains a row with empty Id.");
-                orderByClauseOrderByElementsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                orderByClauseOrderByElementsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!orderByClauseOrderByElementsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OrderByClauseOrderByElementsItem' contains duplicate Id '{normalizedId}'.");
@@ -55759,7 +55759,7 @@ namespace MetaTransformScript
             public void AddOutputClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OutputClause' contains a row with empty Id.");
-                outputClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                outputClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!outputClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OutputClause' contains duplicate Id '{normalizedId}'.");
@@ -55771,7 +55771,7 @@ namespace MetaTransformScript
             public void AddOutputClauseIntoColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OutputClauseIntoColumnsItem' contains a row with empty Id.");
-                outputClauseIntoColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                outputClauseIntoColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!outputClauseIntoColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OutputClauseIntoColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -55783,7 +55783,7 @@ namespace MetaTransformScript
             public void AddOutputClauseIntoTargetLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OutputClauseIntoTargetLink' contains a row with empty Id.");
-                outputClauseIntoTargetLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                outputClauseIntoTargetLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!outputClauseIntoTargetLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OutputClauseIntoTargetLink' contains duplicate Id '{normalizedId}'.");
@@ -55795,7 +55795,7 @@ namespace MetaTransformScript
             public void AddOutputClauseSelectElementsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OutputClauseSelectElementsItem' contains a row with empty Id.");
-                outputClauseSelectElementsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                outputClauseSelectElementsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!outputClauseSelectElementsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OutputClauseSelectElementsItem' contains duplicate Id '{normalizedId}'.");
@@ -55807,7 +55807,7 @@ namespace MetaTransformScript
             public void AddOverClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OverClause' contains a row with empty Id.");
-                overClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                overClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!overClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OverClause' contains duplicate Id '{normalizedId}'.");
@@ -55819,7 +55819,7 @@ namespace MetaTransformScript
             public void AddOverClauseOrderByClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OverClauseOrderByClauseLink' contains a row with empty Id.");
-                overClauseOrderByClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                overClauseOrderByClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!overClauseOrderByClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OverClauseOrderByClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -55831,7 +55831,7 @@ namespace MetaTransformScript
             public void AddOverClausePartitionsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OverClausePartitionsItem' contains a row with empty Id.");
-                overClausePartitionsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                overClausePartitionsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!overClausePartitionsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OverClausePartitionsItem' contains duplicate Id '{normalizedId}'.");
@@ -55843,7 +55843,7 @@ namespace MetaTransformScript
             public void AddOverClauseWindowFrameClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OverClauseWindowFrameClauseLink' contains a row with empty Id.");
-                overClauseWindowFrameClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                overClauseWindowFrameClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!overClauseWindowFrameClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OverClauseWindowFrameClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -55855,7 +55855,7 @@ namespace MetaTransformScript
             public void AddOverClauseWindowNameLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OverClauseWindowNameLink' contains a row with empty Id.");
-                overClauseWindowNameLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                overClauseWindowNameLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!overClauseWindowNameLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OverClauseWindowNameLink' contains duplicate Id '{normalizedId}'.");
@@ -55867,7 +55867,7 @@ namespace MetaTransformScript
             public void AddParameterizedDataTypeReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ParameterizedDataTypeReference' contains a row with empty Id.");
-                parameterizedDataTypeReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                parameterizedDataTypeReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!parameterizedDataTypeReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ParameterizedDataTypeReference' contains duplicate Id '{normalizedId}'.");
@@ -55879,7 +55879,7 @@ namespace MetaTransformScript
             public void AddParameterizedDataTypeReferenceParametersItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ParameterizedDataTypeReferenceParametersItem' contains a row with empty Id.");
-                parameterizedDataTypeReferenceParametersItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                parameterizedDataTypeReferenceParametersItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!parameterizedDataTypeReferenceParametersItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ParameterizedDataTypeReferenceParametersItem' contains duplicate Id '{normalizedId}'.");
@@ -55891,7 +55891,7 @@ namespace MetaTransformScript
             public void AddParameterlessCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ParameterlessCall' contains a row with empty Id.");
-                parameterlessCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                parameterlessCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!parameterlessCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ParameterlessCall' contains duplicate Id '{normalizedId}'.");
@@ -55903,7 +55903,7 @@ namespace MetaTransformScript
             public void AddParenthesisExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ParenthesisExpression' contains a row with empty Id.");
-                parenthesisExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                parenthesisExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!parenthesisExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ParenthesisExpression' contains duplicate Id '{normalizedId}'.");
@@ -55915,7 +55915,7 @@ namespace MetaTransformScript
             public void AddParenthesisExpressionExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ParenthesisExpressionExpressionLink' contains a row with empty Id.");
-                parenthesisExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                parenthesisExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!parenthesisExpressionExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ParenthesisExpressionExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -55927,7 +55927,7 @@ namespace MetaTransformScript
             public void AddParseCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ParseCall' contains a row with empty Id.");
-                parseCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                parseCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!parseCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ParseCall' contains duplicate Id '{normalizedId}'.");
@@ -55939,7 +55939,7 @@ namespace MetaTransformScript
             public void AddParseCallCultureLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ParseCallCultureLink' contains a row with empty Id.");
-                parseCallCultureLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                parseCallCultureLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!parseCallCultureLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ParseCallCultureLink' contains duplicate Id '{normalizedId}'.");
@@ -55951,7 +55951,7 @@ namespace MetaTransformScript
             public void AddParseCallDataTypeLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ParseCallDataTypeLink' contains a row with empty Id.");
-                parseCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                parseCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!parseCallDataTypeLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ParseCallDataTypeLink' contains duplicate Id '{normalizedId}'.");
@@ -55963,7 +55963,7 @@ namespace MetaTransformScript
             public void AddParseCallStringValueLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ParseCallStringValueLink' contains a row with empty Id.");
-                parseCallStringValueLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                parseCallStringValueLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!parseCallStringValueLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ParseCallStringValueLink' contains duplicate Id '{normalizedId}'.");
@@ -55975,7 +55975,7 @@ namespace MetaTransformScript
             public void AddPivotedTableReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PivotedTableReference' contains a row with empty Id.");
-                pivotedTableReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pivotedTableReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pivotedTableReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PivotedTableReference' contains duplicate Id '{normalizedId}'.");
@@ -55987,7 +55987,7 @@ namespace MetaTransformScript
             public void AddPivotedTableReferenceAggregateFunctionIdentifierLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PivotedTableReferenceAggregateFunctionIdentifierLink' contains a row with empty Id.");
-                pivotedTableReferenceAggregateFunctionIdentifierLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pivotedTableReferenceAggregateFunctionIdentifierLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pivotedTableReferenceAggregateFunctionIdentifierLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PivotedTableReferenceAggregateFunctionIdentifierLink' contains duplicate Id '{normalizedId}'.");
@@ -55999,7 +55999,7 @@ namespace MetaTransformScript
             public void AddPivotedTableReferenceInColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PivotedTableReferenceInColumnsItem' contains a row with empty Id.");
-                pivotedTableReferenceInColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pivotedTableReferenceInColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pivotedTableReferenceInColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PivotedTableReferenceInColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -56011,7 +56011,7 @@ namespace MetaTransformScript
             public void AddPivotedTableReferencePivotColumnLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PivotedTableReferencePivotColumnLink' contains a row with empty Id.");
-                pivotedTableReferencePivotColumnLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pivotedTableReferencePivotColumnLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pivotedTableReferencePivotColumnLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PivotedTableReferencePivotColumnLink' contains duplicate Id '{normalizedId}'.");
@@ -56023,7 +56023,7 @@ namespace MetaTransformScript
             public void AddPivotedTableReferenceTableReferenceLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PivotedTableReferenceTableReferenceLink' contains a row with empty Id.");
-                pivotedTableReferenceTableReferenceLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pivotedTableReferenceTableReferenceLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pivotedTableReferenceTableReferenceLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PivotedTableReferenceTableReferenceLink' contains duplicate Id '{normalizedId}'.");
@@ -56035,7 +56035,7 @@ namespace MetaTransformScript
             public void AddPivotedTableReferenceValueColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PivotedTableReferenceValueColumnsItem' contains a row with empty Id.");
-                pivotedTableReferenceValueColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                pivotedTableReferenceValueColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!pivotedTableReferenceValueColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PivotedTableReferenceValueColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -56047,7 +56047,7 @@ namespace MetaTransformScript
             public void AddPrimaryExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PrimaryExpression' contains a row with empty Id.");
-                primaryExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                primaryExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!primaryExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PrimaryExpression' contains duplicate Id '{normalizedId}'.");
@@ -56059,7 +56059,7 @@ namespace MetaTransformScript
             public void AddPrimaryExpressionCollationLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PrimaryExpressionCollationLink' contains a row with empty Id.");
-                primaryExpressionCollationLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                primaryExpressionCollationLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!primaryExpressionCollationLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PrimaryExpressionCollationLink' contains duplicate Id '{normalizedId}'.");
@@ -56071,7 +56071,7 @@ namespace MetaTransformScript
             public void AddQualifiedJoinId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QualifiedJoin' contains a row with empty Id.");
-                qualifiedJoinIds ??= new HashSet<string>(StringComparer.Ordinal);
+                qualifiedJoinIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!qualifiedJoinIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QualifiedJoin' contains duplicate Id '{normalizedId}'.");
@@ -56083,7 +56083,7 @@ namespace MetaTransformScript
             public void AddQualifiedJoinSearchConditionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QualifiedJoinSearchConditionLink' contains a row with empty Id.");
-                qualifiedJoinSearchConditionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                qualifiedJoinSearchConditionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!qualifiedJoinSearchConditionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QualifiedJoinSearchConditionLink' contains duplicate Id '{normalizedId}'.");
@@ -56095,7 +56095,7 @@ namespace MetaTransformScript
             public void AddQueryDerivedTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QueryDerivedTable' contains a row with empty Id.");
-                queryDerivedTableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                queryDerivedTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!queryDerivedTableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QueryDerivedTable' contains duplicate Id '{normalizedId}'.");
@@ -56107,7 +56107,7 @@ namespace MetaTransformScript
             public void AddQueryDerivedTableQueryExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QueryDerivedTableQueryExpressionLink' contains a row with empty Id.");
-                queryDerivedTableQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                queryDerivedTableQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!queryDerivedTableQueryExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QueryDerivedTableQueryExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -56119,7 +56119,7 @@ namespace MetaTransformScript
             public void AddQueryExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QueryExpression' contains a row with empty Id.");
-                queryExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                queryExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!queryExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QueryExpression' contains duplicate Id '{normalizedId}'.");
@@ -56131,7 +56131,7 @@ namespace MetaTransformScript
             public void AddQueryExpressionOffsetClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QueryExpressionOffsetClauseLink' contains a row with empty Id.");
-                queryExpressionOffsetClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                queryExpressionOffsetClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!queryExpressionOffsetClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QueryExpressionOffsetClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -56143,7 +56143,7 @@ namespace MetaTransformScript
             public void AddQueryExpressionOrderByClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QueryExpressionOrderByClauseLink' contains a row with empty Id.");
-                queryExpressionOrderByClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                queryExpressionOrderByClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!queryExpressionOrderByClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QueryExpressionOrderByClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -56155,7 +56155,7 @@ namespace MetaTransformScript
             public void AddQueryParenthesisExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QueryParenthesisExpression' contains a row with empty Id.");
-                queryParenthesisExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                queryParenthesisExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!queryParenthesisExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QueryParenthesisExpression' contains duplicate Id '{normalizedId}'.");
@@ -56167,7 +56167,7 @@ namespace MetaTransformScript
             public void AddQueryParenthesisExpressionQueryExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QueryParenthesisExpressionQueryExpressionLink' contains a row with empty Id.");
-                queryParenthesisExpressionQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                queryParenthesisExpressionQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!queryParenthesisExpressionQueryExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QueryParenthesisExpressionQueryExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -56179,7 +56179,7 @@ namespace MetaTransformScript
             public void AddQuerySpecificationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QuerySpecification' contains a row with empty Id.");
-                querySpecificationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                querySpecificationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!querySpecificationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QuerySpecification' contains duplicate Id '{normalizedId}'.");
@@ -56191,7 +56191,7 @@ namespace MetaTransformScript
             public void AddQuerySpecificationFromClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QuerySpecificationFromClauseLink' contains a row with empty Id.");
-                querySpecificationFromClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                querySpecificationFromClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!querySpecificationFromClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QuerySpecificationFromClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -56203,7 +56203,7 @@ namespace MetaTransformScript
             public void AddQuerySpecificationGroupByClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QuerySpecificationGroupByClauseLink' contains a row with empty Id.");
-                querySpecificationGroupByClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                querySpecificationGroupByClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!querySpecificationGroupByClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QuerySpecificationGroupByClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -56215,7 +56215,7 @@ namespace MetaTransformScript
             public void AddQuerySpecificationHavingClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QuerySpecificationHavingClauseLink' contains a row with empty Id.");
-                querySpecificationHavingClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                querySpecificationHavingClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!querySpecificationHavingClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QuerySpecificationHavingClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -56227,7 +56227,7 @@ namespace MetaTransformScript
             public void AddQuerySpecificationSelectElementsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QuerySpecificationSelectElementsItem' contains a row with empty Id.");
-                querySpecificationSelectElementsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                querySpecificationSelectElementsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!querySpecificationSelectElementsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QuerySpecificationSelectElementsItem' contains duplicate Id '{normalizedId}'.");
@@ -56239,7 +56239,7 @@ namespace MetaTransformScript
             public void AddQuerySpecificationTopRowFilterLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QuerySpecificationTopRowFilterLink' contains a row with empty Id.");
-                querySpecificationTopRowFilterLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                querySpecificationTopRowFilterLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!querySpecificationTopRowFilterLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QuerySpecificationTopRowFilterLink' contains duplicate Id '{normalizedId}'.");
@@ -56251,7 +56251,7 @@ namespace MetaTransformScript
             public void AddQuerySpecificationWhereClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QuerySpecificationWhereClauseLink' contains a row with empty Id.");
-                querySpecificationWhereClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                querySpecificationWhereClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!querySpecificationWhereClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QuerySpecificationWhereClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -56263,7 +56263,7 @@ namespace MetaTransformScript
             public void AddQuerySpecificationWindowClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'QuerySpecificationWindowClauseLink' contains a row with empty Id.");
-                querySpecificationWindowClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                querySpecificationWindowClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!querySpecificationWindowClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'QuerySpecificationWindowClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -56275,7 +56275,7 @@ namespace MetaTransformScript
             public void AddRealLiteralId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RealLiteral' contains a row with empty Id.");
-                realLiteralIds ??= new HashSet<string>(StringComparer.Ordinal);
+                realLiteralIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!realLiteralIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RealLiteral' contains duplicate Id '{normalizedId}'.");
@@ -56287,7 +56287,7 @@ namespace MetaTransformScript
             public void AddRightFunctionCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RightFunctionCall' contains a row with empty Id.");
-                rightFunctionCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rightFunctionCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rightFunctionCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RightFunctionCall' contains duplicate Id '{normalizedId}'.");
@@ -56299,7 +56299,7 @@ namespace MetaTransformScript
             public void AddRightFunctionCallParametersItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RightFunctionCallParametersItem' contains a row with empty Id.");
-                rightFunctionCallParametersItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rightFunctionCallParametersItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rightFunctionCallParametersItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RightFunctionCallParametersItem' contains duplicate Id '{normalizedId}'.");
@@ -56311,7 +56311,7 @@ namespace MetaTransformScript
             public void AddRollupGroupingSpecificationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RollupGroupingSpecification' contains a row with empty Id.");
-                rollupGroupingSpecificationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rollupGroupingSpecificationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rollupGroupingSpecificationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RollupGroupingSpecification' contains duplicate Id '{normalizedId}'.");
@@ -56323,7 +56323,7 @@ namespace MetaTransformScript
             public void AddRollupGroupingSpecificationArgumentsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RollupGroupingSpecificationArgumentsItem' contains a row with empty Id.");
-                rollupGroupingSpecificationArgumentsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rollupGroupingSpecificationArgumentsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rollupGroupingSpecificationArgumentsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RollupGroupingSpecificationArgumentsItem' contains duplicate Id '{normalizedId}'.");
@@ -56335,7 +56335,7 @@ namespace MetaTransformScript
             public void AddRowValueId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RowValue' contains a row with empty Id.");
-                rowValueIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rowValueIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rowValueIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RowValue' contains duplicate Id '{normalizedId}'.");
@@ -56347,7 +56347,7 @@ namespace MetaTransformScript
             public void AddRowValueColumnValuesItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RowValueColumnValuesItem' contains a row with empty Id.");
-                rowValueColumnValuesItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rowValueColumnValuesItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rowValueColumnValuesItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RowValueColumnValuesItem' contains duplicate Id '{normalizedId}'.");
@@ -56359,7 +56359,7 @@ namespace MetaTransformScript
             public void AddScalarExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ScalarExpression' contains a row with empty Id.");
-                scalarExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                scalarExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!scalarExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ScalarExpression' contains duplicate Id '{normalizedId}'.");
@@ -56371,7 +56371,7 @@ namespace MetaTransformScript
             public void AddScalarSubqueryId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ScalarSubquery' contains a row with empty Id.");
-                scalarSubqueryIds ??= new HashSet<string>(StringComparer.Ordinal);
+                scalarSubqueryIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!scalarSubqueryIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ScalarSubquery' contains duplicate Id '{normalizedId}'.");
@@ -56383,7 +56383,7 @@ namespace MetaTransformScript
             public void AddScalarSubqueryQueryExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ScalarSubqueryQueryExpressionLink' contains a row with empty Id.");
-                scalarSubqueryQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                scalarSubqueryQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!scalarSubqueryQueryExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ScalarSubqueryQueryExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -56395,7 +56395,7 @@ namespace MetaTransformScript
             public void AddSchemaObjectFunctionTableReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SchemaObjectFunctionTableReference' contains a row with empty Id.");
-                schemaObjectFunctionTableReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                schemaObjectFunctionTableReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!schemaObjectFunctionTableReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SchemaObjectFunctionTableReference' contains duplicate Id '{normalizedId}'.");
@@ -56407,7 +56407,7 @@ namespace MetaTransformScript
             public void AddSchemaObjectFunctionTableReferenceParametersItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SchemaObjectFunctionTableReferenceParametersItem' contains a row with empty Id.");
-                schemaObjectFunctionTableReferenceParametersItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                schemaObjectFunctionTableReferenceParametersItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!schemaObjectFunctionTableReferenceParametersItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SchemaObjectFunctionTableReferenceParametersItem' contains duplicate Id '{normalizedId}'.");
@@ -56419,7 +56419,7 @@ namespace MetaTransformScript
             public void AddSchemaObjectFunctionTableReferenceSchemaObjectLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SchemaObjectFunctionTableReferenceSchemaObjectLink' contains a row with empty Id.");
-                schemaObjectFunctionTableReferenceSchemaObjectLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                schemaObjectFunctionTableReferenceSchemaObjectLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!schemaObjectFunctionTableReferenceSchemaObjectLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SchemaObjectFunctionTableReferenceSchemaObjectLink' contains duplicate Id '{normalizedId}'.");
@@ -56431,7 +56431,7 @@ namespace MetaTransformScript
             public void AddSchemaObjectNameId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SchemaObjectName' contains a row with empty Id.");
-                schemaObjectNameIds ??= new HashSet<string>(StringComparer.Ordinal);
+                schemaObjectNameIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!schemaObjectNameIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SchemaObjectName' contains duplicate Id '{normalizedId}'.");
@@ -56443,7 +56443,7 @@ namespace MetaTransformScript
             public void AddSchemaObjectNameBaseIdentifierLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SchemaObjectNameBaseIdentifierLink' contains a row with empty Id.");
-                schemaObjectNameBaseIdentifierLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                schemaObjectNameBaseIdentifierLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!schemaObjectNameBaseIdentifierLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SchemaObjectNameBaseIdentifierLink' contains duplicate Id '{normalizedId}'.");
@@ -56455,7 +56455,7 @@ namespace MetaTransformScript
             public void AddSchemaObjectNameSchemaIdentifierLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SchemaObjectNameSchemaIdentifierLink' contains a row with empty Id.");
-                schemaObjectNameSchemaIdentifierLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                schemaObjectNameSchemaIdentifierLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!schemaObjectNameSchemaIdentifierLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SchemaObjectNameSchemaIdentifierLink' contains duplicate Id '{normalizedId}'.");
@@ -56467,7 +56467,7 @@ namespace MetaTransformScript
             public void AddScriptObjectScalarFunctionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ScriptObjectScalarFunction' contains a row with empty Id.");
-                scriptObjectScalarFunctionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                scriptObjectScalarFunctionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!scriptObjectScalarFunctionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ScriptObjectScalarFunction' contains duplicate Id '{normalizedId}'.");
@@ -56479,7 +56479,7 @@ namespace MetaTransformScript
             public void AddScriptObjectStoredProcedureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ScriptObjectStoredProcedure' contains a row with empty Id.");
-                scriptObjectStoredProcedureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                scriptObjectStoredProcedureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!scriptObjectStoredProcedureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ScriptObjectStoredProcedure' contains duplicate Id '{normalizedId}'.");
@@ -56491,7 +56491,7 @@ namespace MetaTransformScript
             public void AddScriptObjectTVFId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ScriptObjectTVF' contains a row with empty Id.");
-                scriptObjectTVFIds ??= new HashSet<string>(StringComparer.Ordinal);
+                scriptObjectTVFIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!scriptObjectTVFIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ScriptObjectTVF' contains duplicate Id '{normalizedId}'.");
@@ -56503,7 +56503,7 @@ namespace MetaTransformScript
             public void AddScriptObjectViewId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ScriptObjectView' contains a row with empty Id.");
-                scriptObjectViewIds ??= new HashSet<string>(StringComparer.Ordinal);
+                scriptObjectViewIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!scriptObjectViewIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ScriptObjectView' contains duplicate Id '{normalizedId}'.");
@@ -56515,7 +56515,7 @@ namespace MetaTransformScript
             public void AddSearchedCaseExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SearchedCaseExpression' contains a row with empty Id.");
-                searchedCaseExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                searchedCaseExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!searchedCaseExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SearchedCaseExpression' contains duplicate Id '{normalizedId}'.");
@@ -56527,7 +56527,7 @@ namespace MetaTransformScript
             public void AddSearchedCaseExpressionWhenClausesItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SearchedCaseExpressionWhenClausesItem' contains a row with empty Id.");
-                searchedCaseExpressionWhenClausesItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                searchedCaseExpressionWhenClausesItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!searchedCaseExpressionWhenClausesItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SearchedCaseExpressionWhenClausesItem' contains duplicate Id '{normalizedId}'.");
@@ -56539,7 +56539,7 @@ namespace MetaTransformScript
             public void AddSearchedWhenClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SearchedWhenClause' contains a row with empty Id.");
-                searchedWhenClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                searchedWhenClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!searchedWhenClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SearchedWhenClause' contains duplicate Id '{normalizedId}'.");
@@ -56551,7 +56551,7 @@ namespace MetaTransformScript
             public void AddSearchedWhenClauseWhenExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SearchedWhenClauseWhenExpressionLink' contains a row with empty Id.");
-                searchedWhenClauseWhenExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                searchedWhenClauseWhenExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!searchedWhenClauseWhenExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SearchedWhenClauseWhenExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -56563,7 +56563,7 @@ namespace MetaTransformScript
             public void AddSelectElementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SelectElement' contains a row with empty Id.");
-                selectElementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                selectElementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!selectElementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SelectElement' contains duplicate Id '{normalizedId}'.");
@@ -56575,7 +56575,7 @@ namespace MetaTransformScript
             public void AddSelectScalarExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SelectScalarExpression' contains a row with empty Id.");
-                selectScalarExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                selectScalarExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!selectScalarExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SelectScalarExpression' contains duplicate Id '{normalizedId}'.");
@@ -56587,7 +56587,7 @@ namespace MetaTransformScript
             public void AddSelectScalarExpressionColumnNameLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SelectScalarExpressionColumnNameLink' contains a row with empty Id.");
-                selectScalarExpressionColumnNameLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                selectScalarExpressionColumnNameLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!selectScalarExpressionColumnNameLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SelectScalarExpressionColumnNameLink' contains duplicate Id '{normalizedId}'.");
@@ -56599,7 +56599,7 @@ namespace MetaTransformScript
             public void AddSelectScalarExpressionExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SelectScalarExpressionExpressionLink' contains a row with empty Id.");
-                selectScalarExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                selectScalarExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!selectScalarExpressionExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SelectScalarExpressionExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -56611,7 +56611,7 @@ namespace MetaTransformScript
             public void AddSelectStarExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SelectStarExpression' contains a row with empty Id.");
-                selectStarExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                selectStarExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!selectStarExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SelectStarExpression' contains duplicate Id '{normalizedId}'.");
@@ -56623,7 +56623,7 @@ namespace MetaTransformScript
             public void AddSelectStarExpressionQualifierLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SelectStarExpressionQualifierLink' contains a row with empty Id.");
-                selectStarExpressionQualifierLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                selectStarExpressionQualifierLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!selectStarExpressionQualifierLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SelectStarExpressionQualifierLink' contains duplicate Id '{normalizedId}'.");
@@ -56635,7 +56635,7 @@ namespace MetaTransformScript
             public void AddSelectStatementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SelectStatement' contains a row with empty Id.");
-                selectStatementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                selectStatementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!selectStatementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SelectStatement' contains duplicate Id '{normalizedId}'.");
@@ -56647,7 +56647,7 @@ namespace MetaTransformScript
             public void AddSelectStatementQueryExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SelectStatementQueryExpressionLink' contains a row with empty Id.");
-                selectStatementQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                selectStatementQueryExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!selectStatementQueryExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SelectStatementQueryExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -56659,7 +56659,7 @@ namespace MetaTransformScript
             public void AddSetAssignmentId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SetAssignment' contains a row with empty Id.");
-                setAssignmentIds ??= new HashSet<string>(StringComparer.Ordinal);
+                setAssignmentIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!setAssignmentIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SetAssignment' contains duplicate Id '{normalizedId}'.");
@@ -56671,7 +56671,7 @@ namespace MetaTransformScript
             public void AddSetAssignmentTargetLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SetAssignmentTargetLink' contains a row with empty Id.");
-                setAssignmentTargetLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                setAssignmentTargetLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!setAssignmentTargetLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SetAssignmentTargetLink' contains duplicate Id '{normalizedId}'.");
@@ -56683,7 +56683,7 @@ namespace MetaTransformScript
             public void AddSetAssignmentValueLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SetAssignmentValueLink' contains a row with empty Id.");
-                setAssignmentValueLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                setAssignmentValueLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!setAssignmentValueLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SetAssignmentValueLink' contains duplicate Id '{normalizedId}'.");
@@ -56695,7 +56695,7 @@ namespace MetaTransformScript
             public void AddSetClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SetClause' contains a row with empty Id.");
-                setClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                setClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!setClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SetClause' contains duplicate Id '{normalizedId}'.");
@@ -56707,7 +56707,7 @@ namespace MetaTransformScript
             public void AddSetClauseAssignmentsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SetClauseAssignmentsItem' contains a row with empty Id.");
-                setClauseAssignmentsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                setClauseAssignmentsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!setClauseAssignmentsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SetClauseAssignmentsItem' contains duplicate Id '{normalizedId}'.");
@@ -56719,7 +56719,7 @@ namespace MetaTransformScript
             public void AddSimpleCaseExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SimpleCaseExpression' contains a row with empty Id.");
-                simpleCaseExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                simpleCaseExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!simpleCaseExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SimpleCaseExpression' contains duplicate Id '{normalizedId}'.");
@@ -56731,7 +56731,7 @@ namespace MetaTransformScript
             public void AddSimpleCaseExpressionInputExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SimpleCaseExpressionInputExpressionLink' contains a row with empty Id.");
-                simpleCaseExpressionInputExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                simpleCaseExpressionInputExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!simpleCaseExpressionInputExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SimpleCaseExpressionInputExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -56743,7 +56743,7 @@ namespace MetaTransformScript
             public void AddSimpleCaseExpressionWhenClausesItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SimpleCaseExpressionWhenClausesItem' contains a row with empty Id.");
-                simpleCaseExpressionWhenClausesItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                simpleCaseExpressionWhenClausesItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!simpleCaseExpressionWhenClausesItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SimpleCaseExpressionWhenClausesItem' contains duplicate Id '{normalizedId}'.");
@@ -56755,7 +56755,7 @@ namespace MetaTransformScript
             public void AddSimpleWhenClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SimpleWhenClause' contains a row with empty Id.");
-                simpleWhenClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                simpleWhenClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!simpleWhenClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SimpleWhenClause' contains duplicate Id '{normalizedId}'.");
@@ -56767,7 +56767,7 @@ namespace MetaTransformScript
             public void AddSimpleWhenClauseWhenExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SimpleWhenClauseWhenExpressionLink' contains a row with empty Id.");
-                simpleWhenClauseWhenExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                simpleWhenClauseWhenExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!simpleWhenClauseWhenExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SimpleWhenClauseWhenExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -56779,7 +56779,7 @@ namespace MetaTransformScript
             public void AddSqlDataTypeReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SqlDataTypeReference' contains a row with empty Id.");
-                sqlDataTypeReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sqlDataTypeReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sqlDataTypeReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SqlDataTypeReference' contains duplicate Id '{normalizedId}'.");
@@ -56791,7 +56791,7 @@ namespace MetaTransformScript
             public void AddSqlHintId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SqlHint' contains a row with empty Id.");
-                sqlHintIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sqlHintIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sqlHintIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SqlHint' contains duplicate Id '{normalizedId}'.");
@@ -56803,7 +56803,7 @@ namespace MetaTransformScript
             public void AddSqlHintArgumentsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SqlHintArgumentsItem' contains a row with empty Id.");
-                sqlHintArgumentsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sqlHintArgumentsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sqlHintArgumentsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SqlHintArgumentsItem' contains duplicate Id '{normalizedId}'.");
@@ -56815,7 +56815,7 @@ namespace MetaTransformScript
             public void AddSqlHintKeywordsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SqlHintKeywordsItem' contains a row with empty Id.");
-                sqlHintKeywordsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sqlHintKeywordsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sqlHintKeywordsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SqlHintKeywordsItem' contains duplicate Id '{normalizedId}'.");
@@ -56827,7 +56827,7 @@ namespace MetaTransformScript
             public void AddStatementWithCtesAndXmlNamespacesId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'StatementWithCtesAndXmlNamespaces' contains a row with empty Id.");
-                statementWithCtesAndXmlNamespacesIds ??= new HashSet<string>(StringComparer.Ordinal);
+                statementWithCtesAndXmlNamespacesIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!statementWithCtesAndXmlNamespacesIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'StatementWithCtesAndXmlNamespaces' contains duplicate Id '{normalizedId}'.");
@@ -56839,7 +56839,7 @@ namespace MetaTransformScript
             public void AddStatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink' contains a row with empty Id.");
-                statementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                statementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!statementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink' contains duplicate Id '{normalizedId}'.");
@@ -56851,7 +56851,7 @@ namespace MetaTransformScript
             public void AddStoredProcedureContractId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'StoredProcedureContract' contains a row with empty Id.");
-                storedProcedureContractIds ??= new HashSet<string>(StringComparer.Ordinal);
+                storedProcedureContractIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!storedProcedureContractIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'StoredProcedureContract' contains duplicate Id '{normalizedId}'.");
@@ -56863,7 +56863,7 @@ namespace MetaTransformScript
             public void AddStoredProcedureContractOperationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'StoredProcedureContractOperation' contains a row with empty Id.");
-                storedProcedureContractOperationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                storedProcedureContractOperationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!storedProcedureContractOperationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'StoredProcedureContractOperation' contains duplicate Id '{normalizedId}'.");
@@ -56875,7 +56875,7 @@ namespace MetaTransformScript
             public void AddStoredProcedureResultColumnItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'StoredProcedureResultColumnItem' contains a row with empty Id.");
-                storedProcedureResultColumnItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                storedProcedureResultColumnItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!storedProcedureResultColumnItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'StoredProcedureResultColumnItem' contains duplicate Id '{normalizedId}'.");
@@ -56887,7 +56887,7 @@ namespace MetaTransformScript
             public void AddStoredProcedureResultRowsetItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'StoredProcedureResultRowsetItem' contains a row with empty Id.");
-                storedProcedureResultRowsetItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                storedProcedureResultRowsetItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!storedProcedureResultRowsetItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'StoredProcedureResultRowsetItem' contains duplicate Id '{normalizedId}'.");
@@ -56899,7 +56899,7 @@ namespace MetaTransformScript
             public void AddStringLiteralId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'StringLiteral' contains a row with empty Id.");
-                stringLiteralIds ??= new HashSet<string>(StringComparer.Ordinal);
+                stringLiteralIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!stringLiteralIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'StringLiteral' contains duplicate Id '{normalizedId}'.");
@@ -56911,7 +56911,7 @@ namespace MetaTransformScript
             public void AddSubqueryComparisonPredicateId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SubqueryComparisonPredicate' contains a row with empty Id.");
-                subqueryComparisonPredicateIds ??= new HashSet<string>(StringComparer.Ordinal);
+                subqueryComparisonPredicateIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!subqueryComparisonPredicateIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SubqueryComparisonPredicate' contains duplicate Id '{normalizedId}'.");
@@ -56923,7 +56923,7 @@ namespace MetaTransformScript
             public void AddSubqueryComparisonPredicateExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SubqueryComparisonPredicateExpressionLink' contains a row with empty Id.");
-                subqueryComparisonPredicateExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                subqueryComparisonPredicateExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!subqueryComparisonPredicateExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SubqueryComparisonPredicateExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -56935,7 +56935,7 @@ namespace MetaTransformScript
             public void AddSubqueryComparisonPredicateSubqueryLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SubqueryComparisonPredicateSubqueryLink' contains a row with empty Id.");
-                subqueryComparisonPredicateSubqueryLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                subqueryComparisonPredicateSubqueryLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!subqueryComparisonPredicateSubqueryLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SubqueryComparisonPredicateSubqueryLink' contains duplicate Id '{normalizedId}'.");
@@ -56947,7 +56947,7 @@ namespace MetaTransformScript
             public void AddTableReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableReference' contains a row with empty Id.");
-                tableReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableReference' contains duplicate Id '{normalizedId}'.");
@@ -56959,7 +56959,7 @@ namespace MetaTransformScript
             public void AddTableReferenceWithAliasId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableReferenceWithAlias' contains a row with empty Id.");
-                tableReferenceWithAliasIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableReferenceWithAliasIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableReferenceWithAliasIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableReferenceWithAlias' contains duplicate Id '{normalizedId}'.");
@@ -56971,7 +56971,7 @@ namespace MetaTransformScript
             public void AddTableReferenceWithAliasAliasLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableReferenceWithAliasAliasLink' contains a row with empty Id.");
-                tableReferenceWithAliasAliasLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableReferenceWithAliasAliasLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableReferenceWithAliasAliasLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableReferenceWithAliasAliasLink' contains duplicate Id '{normalizedId}'.");
@@ -56983,7 +56983,7 @@ namespace MetaTransformScript
             public void AddTableReferenceWithAliasAndColumnsId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableReferenceWithAliasAndColumns' contains a row with empty Id.");
-                tableReferenceWithAliasAndColumnsIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableReferenceWithAliasAndColumnsIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableReferenceWithAliasAndColumnsIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableReferenceWithAliasAndColumns' contains duplicate Id '{normalizedId}'.");
@@ -56995,7 +56995,7 @@ namespace MetaTransformScript
             public void AddTableReferenceWithAliasAndColumnsColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableReferenceWithAliasAndColumnsColumnsItem' contains a row with empty Id.");
-                tableReferenceWithAliasAndColumnsColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableReferenceWithAliasAndColumnsColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableReferenceWithAliasAndColumnsColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableReferenceWithAliasAndColumnsColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -57007,7 +57007,7 @@ namespace MetaTransformScript
             public void AddTableReferenceWithAliasTableHintsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableReferenceWithAliasTableHintsItem' contains a row with empty Id.");
-                tableReferenceWithAliasTableHintsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableReferenceWithAliasTableHintsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableReferenceWithAliasTableHintsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableReferenceWithAliasTableHintsItem' contains duplicate Id '{normalizedId}'.");
@@ -57019,7 +57019,7 @@ namespace MetaTransformScript
             public void AddTableSampleClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableSampleClause' contains a row with empty Id.");
-                tableSampleClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableSampleClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableSampleClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableSampleClause' contains duplicate Id '{normalizedId}'.");
@@ -57031,7 +57031,7 @@ namespace MetaTransformScript
             public void AddTableSampleClauseRepeatSeedLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableSampleClauseRepeatSeedLink' contains a row with empty Id.");
-                tableSampleClauseRepeatSeedLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableSampleClauseRepeatSeedLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableSampleClauseRepeatSeedLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableSampleClauseRepeatSeedLink' contains duplicate Id '{normalizedId}'.");
@@ -57043,7 +57043,7 @@ namespace MetaTransformScript
             public void AddTableSampleClauseSampleNumberLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableSampleClauseSampleNumberLink' contains a row with empty Id.");
-                tableSampleClauseSampleNumberLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableSampleClauseSampleNumberLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableSampleClauseSampleNumberLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableSampleClauseSampleNumberLink' contains duplicate Id '{normalizedId}'.");
@@ -57055,7 +57055,7 @@ namespace MetaTransformScript
             public void AddTopRowFilterId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TopRowFilter' contains a row with empty Id.");
-                topRowFilterIds ??= new HashSet<string>(StringComparer.Ordinal);
+                topRowFilterIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!topRowFilterIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TopRowFilter' contains duplicate Id '{normalizedId}'.");
@@ -57067,7 +57067,7 @@ namespace MetaTransformScript
             public void AddTopRowFilterExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TopRowFilterExpressionLink' contains a row with empty Id.");
-                topRowFilterExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                topRowFilterExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!topRowFilterExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TopRowFilterExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -57079,7 +57079,7 @@ namespace MetaTransformScript
             public void AddTransformScriptId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TransformScript' contains a row with empty Id.");
-                transformScriptIds ??= new HashSet<string>(StringComparer.Ordinal);
+                transformScriptIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!transformScriptIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransformScript' contains duplicate Id '{normalizedId}'.");
@@ -57091,7 +57091,7 @@ namespace MetaTransformScript
             public void AddTransformScriptFunctionParametersItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TransformScriptFunctionParametersItem' contains a row with empty Id.");
-                transformScriptFunctionParametersItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                transformScriptFunctionParametersItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!transformScriptFunctionParametersItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransformScriptFunctionParametersItem' contains duplicate Id '{normalizedId}'.");
@@ -57103,7 +57103,7 @@ namespace MetaTransformScript
             public void AddTransformScriptObjectIdentifierLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TransformScriptObjectIdentifierLink' contains a row with empty Id.");
-                transformScriptObjectIdentifierLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                transformScriptObjectIdentifierLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!transformScriptObjectIdentifierLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransformScriptObjectIdentifierLink' contains duplicate Id '{normalizedId}'.");
@@ -57115,7 +57115,7 @@ namespace MetaTransformScript
             public void AddTransformScriptSchemaIdentifierLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TransformScriptSchemaIdentifierLink' contains a row with empty Id.");
-                transformScriptSchemaIdentifierLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                transformScriptSchemaIdentifierLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!transformScriptSchemaIdentifierLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransformScriptSchemaIdentifierLink' contains duplicate Id '{normalizedId}'.");
@@ -57127,7 +57127,7 @@ namespace MetaTransformScript
             public void AddTransformScriptStatementLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TransformScriptStatementLink' contains a row with empty Id.");
-                transformScriptStatementLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                transformScriptStatementLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!transformScriptStatementLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransformScriptStatementLink' contains duplicate Id '{normalizedId}'.");
@@ -57139,7 +57139,7 @@ namespace MetaTransformScript
             public void AddTransformScriptViewColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TransformScriptViewColumnsItem' contains a row with empty Id.");
-                transformScriptViewColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                transformScriptViewColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!transformScriptViewColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransformScriptViewColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -57151,7 +57151,7 @@ namespace MetaTransformScript
             public void AddTruncateStatementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TruncateStatement' contains a row with empty Id.");
-                truncateStatementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                truncateStatementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!truncateStatementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TruncateStatement' contains duplicate Id '{normalizedId}'.");
@@ -57163,7 +57163,7 @@ namespace MetaTransformScript
             public void AddTruncateStatementTargetLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TruncateStatementTargetLink' contains a row with empty Id.");
-                truncateStatementTargetLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                truncateStatementTargetLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!truncateStatementTargetLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TruncateStatementTargetLink' contains duplicate Id '{normalizedId}'.");
@@ -57175,7 +57175,7 @@ namespace MetaTransformScript
             public void AddTryCastCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryCastCall' contains a row with empty Id.");
-                tryCastCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryCastCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryCastCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryCastCall' contains duplicate Id '{normalizedId}'.");
@@ -57187,7 +57187,7 @@ namespace MetaTransformScript
             public void AddTryCastCallDataTypeLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryCastCallDataTypeLink' contains a row with empty Id.");
-                tryCastCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryCastCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryCastCallDataTypeLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryCastCallDataTypeLink' contains duplicate Id '{normalizedId}'.");
@@ -57199,7 +57199,7 @@ namespace MetaTransformScript
             public void AddTryCastCallParameterLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryCastCallParameterLink' contains a row with empty Id.");
-                tryCastCallParameterLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryCastCallParameterLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryCastCallParameterLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryCastCallParameterLink' contains duplicate Id '{normalizedId}'.");
@@ -57211,7 +57211,7 @@ namespace MetaTransformScript
             public void AddTryConvertCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryConvertCall' contains a row with empty Id.");
-                tryConvertCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryConvertCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryConvertCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryConvertCall' contains duplicate Id '{normalizedId}'.");
@@ -57223,7 +57223,7 @@ namespace MetaTransformScript
             public void AddTryConvertCallDataTypeLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryConvertCallDataTypeLink' contains a row with empty Id.");
-                tryConvertCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryConvertCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryConvertCallDataTypeLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryConvertCallDataTypeLink' contains duplicate Id '{normalizedId}'.");
@@ -57235,7 +57235,7 @@ namespace MetaTransformScript
             public void AddTryConvertCallParameterLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryConvertCallParameterLink' contains a row with empty Id.");
-                tryConvertCallParameterLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryConvertCallParameterLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryConvertCallParameterLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryConvertCallParameterLink' contains duplicate Id '{normalizedId}'.");
@@ -57247,7 +57247,7 @@ namespace MetaTransformScript
             public void AddTryConvertCallStyleLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryConvertCallStyleLink' contains a row with empty Id.");
-                tryConvertCallStyleLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryConvertCallStyleLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryConvertCallStyleLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryConvertCallStyleLink' contains duplicate Id '{normalizedId}'.");
@@ -57259,7 +57259,7 @@ namespace MetaTransformScript
             public void AddTryParseCallId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryParseCall' contains a row with empty Id.");
-                tryParseCallIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryParseCallIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryParseCallIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryParseCall' contains duplicate Id '{normalizedId}'.");
@@ -57271,7 +57271,7 @@ namespace MetaTransformScript
             public void AddTryParseCallCultureLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryParseCallCultureLink' contains a row with empty Id.");
-                tryParseCallCultureLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryParseCallCultureLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryParseCallCultureLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryParseCallCultureLink' contains duplicate Id '{normalizedId}'.");
@@ -57283,7 +57283,7 @@ namespace MetaTransformScript
             public void AddTryParseCallDataTypeLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryParseCallDataTypeLink' contains a row with empty Id.");
-                tryParseCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryParseCallDataTypeLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryParseCallDataTypeLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryParseCallDataTypeLink' contains duplicate Id '{normalizedId}'.");
@@ -57295,7 +57295,7 @@ namespace MetaTransformScript
             public void AddTryParseCallStringValueLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TryParseCallStringValueLink' contains a row with empty Id.");
-                tryParseCallStringValueLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tryParseCallStringValueLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tryParseCallStringValueLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TryParseCallStringValueLink' contains duplicate Id '{normalizedId}'.");
@@ -57307,7 +57307,7 @@ namespace MetaTransformScript
             public void AddTSqlStatementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TSqlStatement' contains a row with empty Id.");
-                tSqlStatementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tSqlStatementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tSqlStatementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TSqlStatement' contains duplicate Id '{normalizedId}'.");
@@ -57319,7 +57319,7 @@ namespace MetaTransformScript
             public void AddUnaryExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UnaryExpression' contains a row with empty Id.");
-                unaryExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                unaryExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!unaryExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UnaryExpression' contains duplicate Id '{normalizedId}'.");
@@ -57331,7 +57331,7 @@ namespace MetaTransformScript
             public void AddUnaryExpressionExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UnaryExpressionExpressionLink' contains a row with empty Id.");
-                unaryExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                unaryExpressionExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!unaryExpressionExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UnaryExpressionExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -57343,7 +57343,7 @@ namespace MetaTransformScript
             public void AddUnpivotedTableReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UnpivotedTableReference' contains a row with empty Id.");
-                unpivotedTableReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                unpivotedTableReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!unpivotedTableReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UnpivotedTableReference' contains duplicate Id '{normalizedId}'.");
@@ -57355,7 +57355,7 @@ namespace MetaTransformScript
             public void AddUnpivotedTableReferenceInColumnsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UnpivotedTableReferenceInColumnsItem' contains a row with empty Id.");
-                unpivotedTableReferenceInColumnsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                unpivotedTableReferenceInColumnsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!unpivotedTableReferenceInColumnsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UnpivotedTableReferenceInColumnsItem' contains duplicate Id '{normalizedId}'.");
@@ -57367,7 +57367,7 @@ namespace MetaTransformScript
             public void AddUnpivotedTableReferencePivotColumnLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UnpivotedTableReferencePivotColumnLink' contains a row with empty Id.");
-                unpivotedTableReferencePivotColumnLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                unpivotedTableReferencePivotColumnLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!unpivotedTableReferencePivotColumnLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UnpivotedTableReferencePivotColumnLink' contains duplicate Id '{normalizedId}'.");
@@ -57379,7 +57379,7 @@ namespace MetaTransformScript
             public void AddUnpivotedTableReferenceTableReferenceLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UnpivotedTableReferenceTableReferenceLink' contains a row with empty Id.");
-                unpivotedTableReferenceTableReferenceLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                unpivotedTableReferenceTableReferenceLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!unpivotedTableReferenceTableReferenceLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UnpivotedTableReferenceTableReferenceLink' contains duplicate Id '{normalizedId}'.");
@@ -57391,7 +57391,7 @@ namespace MetaTransformScript
             public void AddUnpivotedTableReferenceValueColumnLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UnpivotedTableReferenceValueColumnLink' contains a row with empty Id.");
-                unpivotedTableReferenceValueColumnLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                unpivotedTableReferenceValueColumnLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!unpivotedTableReferenceValueColumnLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UnpivotedTableReferenceValueColumnLink' contains duplicate Id '{normalizedId}'.");
@@ -57403,7 +57403,7 @@ namespace MetaTransformScript
             public void AddUnqualifiedJoinId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UnqualifiedJoin' contains a row with empty Id.");
-                unqualifiedJoinIds ??= new HashSet<string>(StringComparer.Ordinal);
+                unqualifiedJoinIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!unqualifiedJoinIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UnqualifiedJoin' contains duplicate Id '{normalizedId}'.");
@@ -57415,7 +57415,7 @@ namespace MetaTransformScript
             public void AddUpdateStatementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UpdateStatement' contains a row with empty Id.");
-                updateStatementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                updateStatementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!updateStatementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UpdateStatement' contains duplicate Id '{normalizedId}'.");
@@ -57427,7 +57427,7 @@ namespace MetaTransformScript
             public void AddUpdateStatementFromClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UpdateStatementFromClauseLink' contains a row with empty Id.");
-                updateStatementFromClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                updateStatementFromClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!updateStatementFromClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UpdateStatementFromClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -57439,7 +57439,7 @@ namespace MetaTransformScript
             public void AddUpdateStatementSetClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UpdateStatementSetClauseLink' contains a row with empty Id.");
-                updateStatementSetClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                updateStatementSetClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!updateStatementSetClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UpdateStatementSetClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -57451,7 +57451,7 @@ namespace MetaTransformScript
             public void AddUpdateStatementTargetAliasLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UpdateStatementTargetAliasLink' contains a row with empty Id.");
-                updateStatementTargetAliasLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                updateStatementTargetAliasLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!updateStatementTargetAliasLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UpdateStatementTargetAliasLink' contains duplicate Id '{normalizedId}'.");
@@ -57463,7 +57463,7 @@ namespace MetaTransformScript
             public void AddUpdateStatementTargetLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UpdateStatementTargetLink' contains a row with empty Id.");
-                updateStatementTargetLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                updateStatementTargetLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!updateStatementTargetLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UpdateStatementTargetLink' contains duplicate Id '{normalizedId}'.");
@@ -57475,7 +57475,7 @@ namespace MetaTransformScript
             public void AddUpdateStatementWhereClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'UpdateStatementWhereClauseLink' contains a row with empty Id.");
-                updateStatementWhereClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                updateStatementWhereClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!updateStatementWhereClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'UpdateStatementWhereClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -57487,7 +57487,7 @@ namespace MetaTransformScript
             public void AddValueExpressionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ValueExpression' contains a row with empty Id.");
-                valueExpressionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                valueExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!valueExpressionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ValueExpression' contains duplicate Id '{normalizedId}'.");
@@ -57499,7 +57499,7 @@ namespace MetaTransformScript
             public void AddWhenClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WhenClause' contains a row with empty Id.");
-                whenClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                whenClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!whenClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WhenClause' contains duplicate Id '{normalizedId}'.");
@@ -57511,7 +57511,7 @@ namespace MetaTransformScript
             public void AddWhenClauseThenExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WhenClauseThenExpressionLink' contains a row with empty Id.");
-                whenClauseThenExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                whenClauseThenExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!whenClauseThenExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WhenClauseThenExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -57523,7 +57523,7 @@ namespace MetaTransformScript
             public void AddWhereClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WhereClause' contains a row with empty Id.");
-                whereClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                whereClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!whereClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WhereClause' contains duplicate Id '{normalizedId}'.");
@@ -57535,7 +57535,7 @@ namespace MetaTransformScript
             public void AddWhereClauseSearchConditionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WhereClauseSearchConditionLink' contains a row with empty Id.");
-                whereClauseSearchConditionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                whereClauseSearchConditionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!whereClauseSearchConditionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WhereClauseSearchConditionLink' contains duplicate Id '{normalizedId}'.");
@@ -57547,7 +57547,7 @@ namespace MetaTransformScript
             public void AddWindowClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowClause' contains a row with empty Id.");
-                windowClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowClause' contains duplicate Id '{normalizedId}'.");
@@ -57559,7 +57559,7 @@ namespace MetaTransformScript
             public void AddWindowClauseWindowDefinitionItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowClauseWindowDefinitionItem' contains a row with empty Id.");
-                windowClauseWindowDefinitionItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowClauseWindowDefinitionItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowClauseWindowDefinitionItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowClauseWindowDefinitionItem' contains duplicate Id '{normalizedId}'.");
@@ -57571,7 +57571,7 @@ namespace MetaTransformScript
             public void AddWindowDefinitionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowDefinition' contains a row with empty Id.");
-                windowDefinitionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowDefinitionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowDefinitionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowDefinition' contains duplicate Id '{normalizedId}'.");
@@ -57583,7 +57583,7 @@ namespace MetaTransformScript
             public void AddWindowDefinitionOrderByClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowDefinitionOrderByClauseLink' contains a row with empty Id.");
-                windowDefinitionOrderByClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowDefinitionOrderByClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowDefinitionOrderByClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowDefinitionOrderByClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -57595,7 +57595,7 @@ namespace MetaTransformScript
             public void AddWindowDefinitionPartitionsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowDefinitionPartitionsItem' contains a row with empty Id.");
-                windowDefinitionPartitionsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowDefinitionPartitionsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowDefinitionPartitionsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowDefinitionPartitionsItem' contains duplicate Id '{normalizedId}'.");
@@ -57607,7 +57607,7 @@ namespace MetaTransformScript
             public void AddWindowDefinitionRefWindowNameLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowDefinitionRefWindowNameLink' contains a row with empty Id.");
-                windowDefinitionRefWindowNameLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowDefinitionRefWindowNameLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowDefinitionRefWindowNameLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowDefinitionRefWindowNameLink' contains duplicate Id '{normalizedId}'.");
@@ -57619,7 +57619,7 @@ namespace MetaTransformScript
             public void AddWindowDefinitionWindowFrameClauseLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowDefinitionWindowFrameClauseLink' contains a row with empty Id.");
-                windowDefinitionWindowFrameClauseLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowDefinitionWindowFrameClauseLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowDefinitionWindowFrameClauseLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowDefinitionWindowFrameClauseLink' contains duplicate Id '{normalizedId}'.");
@@ -57631,7 +57631,7 @@ namespace MetaTransformScript
             public void AddWindowDefinitionWindowNameLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowDefinitionWindowNameLink' contains a row with empty Id.");
-                windowDefinitionWindowNameLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowDefinitionWindowNameLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowDefinitionWindowNameLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowDefinitionWindowNameLink' contains duplicate Id '{normalizedId}'.");
@@ -57643,7 +57643,7 @@ namespace MetaTransformScript
             public void AddWindowDelimiterId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowDelimiter' contains a row with empty Id.");
-                windowDelimiterIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowDelimiterIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowDelimiterIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowDelimiter' contains duplicate Id '{normalizedId}'.");
@@ -57655,7 +57655,7 @@ namespace MetaTransformScript
             public void AddWindowDelimiterOffsetValueLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowDelimiterOffsetValueLink' contains a row with empty Id.");
-                windowDelimiterOffsetValueLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowDelimiterOffsetValueLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowDelimiterOffsetValueLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowDelimiterOffsetValueLink' contains duplicate Id '{normalizedId}'.");
@@ -57667,7 +57667,7 @@ namespace MetaTransformScript
             public void AddWindowFrameClauseId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowFrameClause' contains a row with empty Id.");
-                windowFrameClauseIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowFrameClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowFrameClauseIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowFrameClause' contains duplicate Id '{normalizedId}'.");
@@ -57679,7 +57679,7 @@ namespace MetaTransformScript
             public void AddWindowFrameClauseBottomLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowFrameClauseBottomLink' contains a row with empty Id.");
-                windowFrameClauseBottomLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowFrameClauseBottomLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowFrameClauseBottomLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowFrameClauseBottomLink' contains duplicate Id '{normalizedId}'.");
@@ -57691,7 +57691,7 @@ namespace MetaTransformScript
             public void AddWindowFrameClauseTopLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WindowFrameClauseTopLink' contains a row with empty Id.");
-                windowFrameClauseTopLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                windowFrameClauseTopLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!windowFrameClauseTopLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WindowFrameClauseTopLink' contains duplicate Id '{normalizedId}'.");
@@ -57703,7 +57703,7 @@ namespace MetaTransformScript
             public void AddWithCtesAndXmlNamespacesId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WithCtesAndXmlNamespaces' contains a row with empty Id.");
-                withCtesAndXmlNamespacesIds ??= new HashSet<string>(StringComparer.Ordinal);
+                withCtesAndXmlNamespacesIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!withCtesAndXmlNamespacesIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WithCtesAndXmlNamespaces' contains duplicate Id '{normalizedId}'.");
@@ -57715,7 +57715,7 @@ namespace MetaTransformScript
             public void AddWithCtesAndXmlNamespacesCommonTableExpressionsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WithCtesAndXmlNamespacesCommonTableExpressionsItem' contains a row with empty Id.");
-                withCtesAndXmlNamespacesCommonTableExpressionsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                withCtesAndXmlNamespacesCommonTableExpressionsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!withCtesAndXmlNamespacesCommonTableExpressionsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WithCtesAndXmlNamespacesCommonTableExpressionsItem' contains duplicate Id '{normalizedId}'.");
@@ -57727,7 +57727,7 @@ namespace MetaTransformScript
             public void AddWithCtesAndXmlNamespacesXmlNamespacesLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'WithCtesAndXmlNamespacesXmlNamespacesLink' contains a row with empty Id.");
-                withCtesAndXmlNamespacesXmlNamespacesLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                withCtesAndXmlNamespacesXmlNamespacesLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!withCtesAndXmlNamespacesXmlNamespacesLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'WithCtesAndXmlNamespacesXmlNamespacesLink' contains duplicate Id '{normalizedId}'.");
@@ -57739,7 +57739,7 @@ namespace MetaTransformScript
             public void AddXmlNamespacesId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'XmlNamespaces' contains a row with empty Id.");
-                xmlNamespacesIds ??= new HashSet<string>(StringComparer.Ordinal);
+                xmlNamespacesIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!xmlNamespacesIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'XmlNamespaces' contains duplicate Id '{normalizedId}'.");
@@ -57751,7 +57751,7 @@ namespace MetaTransformScript
             public void AddXmlNamespacesAliasElementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'XmlNamespacesAliasElement' contains a row with empty Id.");
-                xmlNamespacesAliasElementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                xmlNamespacesAliasElementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!xmlNamespacesAliasElementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'XmlNamespacesAliasElement' contains duplicate Id '{normalizedId}'.");
@@ -57763,7 +57763,7 @@ namespace MetaTransformScript
             public void AddXmlNamespacesAliasElementIdentifierLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'XmlNamespacesAliasElementIdentifierLink' contains a row with empty Id.");
-                xmlNamespacesAliasElementIdentifierLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                xmlNamespacesAliasElementIdentifierLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!xmlNamespacesAliasElementIdentifierLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'XmlNamespacesAliasElementIdentifierLink' contains duplicate Id '{normalizedId}'.");
@@ -57775,7 +57775,7 @@ namespace MetaTransformScript
             public void AddXmlNamespacesDefaultElementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'XmlNamespacesDefaultElement' contains a row with empty Id.");
-                xmlNamespacesDefaultElementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                xmlNamespacesDefaultElementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!xmlNamespacesDefaultElementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'XmlNamespacesDefaultElement' contains duplicate Id '{normalizedId}'.");
@@ -57787,7 +57787,7 @@ namespace MetaTransformScript
             public void AddXmlNamespacesElementId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'XmlNamespacesElement' contains a row with empty Id.");
-                xmlNamespacesElementIds ??= new HashSet<string>(StringComparer.Ordinal);
+                xmlNamespacesElementIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!xmlNamespacesElementIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'XmlNamespacesElement' contains duplicate Id '{normalizedId}'.");
@@ -57799,7 +57799,7 @@ namespace MetaTransformScript
             public void AddXmlNamespacesElementStringLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'XmlNamespacesElementStringLink' contains a row with empty Id.");
-                xmlNamespacesElementStringLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                xmlNamespacesElementStringLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!xmlNamespacesElementStringLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'XmlNamespacesElementStringLink' contains duplicate Id '{normalizedId}'.");
@@ -57811,7 +57811,7 @@ namespace MetaTransformScript
             public void AddXmlNamespacesXmlNamespacesElementsItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'XmlNamespacesXmlNamespacesElementsItem' contains a row with empty Id.");
-                xmlNamespacesXmlNamespacesElementsItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                xmlNamespacesXmlNamespacesElementsItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!xmlNamespacesXmlNamespacesElementsItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'XmlNamespacesXmlNamespacesElementsItem' contains duplicate Id '{normalizedId}'.");
@@ -57823,7 +57823,7 @@ namespace MetaTransformScript
             public void AddXmlNodesTableReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'XmlNodesTableReference' contains a row with empty Id.");
-                xmlNodesTableReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                xmlNodesTableReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!xmlNodesTableReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'XmlNodesTableReference' contains duplicate Id '{normalizedId}'.");
@@ -57835,7 +57835,7 @@ namespace MetaTransformScript
             public void AddXmlNodesTableReferenceTargetExpressionLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'XmlNodesTableReferenceTargetExpressionLink' contains a row with empty Id.");
-                xmlNodesTableReferenceTargetExpressionLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                xmlNodesTableReferenceTargetExpressionLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!xmlNodesTableReferenceTargetExpressionLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'XmlNodesTableReferenceTargetExpressionLink' contains duplicate Id '{normalizedId}'.");
@@ -57847,7 +57847,7 @@ namespace MetaTransformScript
             public void AddXmlNodesTableReferenceXQueryStringLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'XmlNodesTableReferenceXQueryStringLink' contains a row with empty Id.");
-                xmlNodesTableReferenceXQueryStringLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                xmlNodesTableReferenceXQueryStringLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!xmlNodesTableReferenceXQueryStringLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'XmlNodesTableReferenceXQueryStringLink' contains duplicate Id '{normalizedId}'.");
@@ -63785,7 +63785,7 @@ namespace MetaTransformScript
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

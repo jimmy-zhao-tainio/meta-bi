@@ -380,11 +380,11 @@ namespace MetaDataWarehouseImplementation
         private static byte[] SerializeAccumulatingSnapshotFactTableImplementationShard(MetaDataWarehouseImplementationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouseImplementation>\n");
             builder.Append("  <AccumulatingSnapshotFactTableImplementationList>\n");
-            foreach (var row in model.AccumulatingSnapshotFactTableImplementationList)
+            foreach (var row in model.AccumulatingSnapshotFactTableImplementationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AccumulatingSnapshotFactTableImplementation' contains a row with empty Id.");
@@ -484,11 +484,11 @@ namespace MetaDataWarehouseImplementation
         private static byte[] SerializeAggregateFactTableImplementationShard(MetaDataWarehouseImplementationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouseImplementation>\n");
             builder.Append("  <AggregateFactTableImplementationList>\n");
-            foreach (var row in model.AggregateFactTableImplementationList)
+            foreach (var row in model.AggregateFactTableImplementationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AggregateFactTableImplementation' contains a row with empty Id.");
@@ -604,11 +604,11 @@ namespace MetaDataWarehouseImplementation
         private static byte[] SerializeBridgeTableImplementationShard(MetaDataWarehouseImplementationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouseImplementation>\n");
             builder.Append("  <BridgeTableImplementationList>\n");
-            foreach (var row in model.BridgeTableImplementationList)
+            foreach (var row in model.BridgeTableImplementationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BridgeTableImplementation' contains a row with empty Id.");
@@ -731,11 +731,11 @@ namespace MetaDataWarehouseImplementation
         private static byte[] SerializeDimensionTableImplementationShard(MetaDataWarehouseImplementationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouseImplementation>\n");
             builder.Append("  <DimensionTableImplementationList>\n");
-            foreach (var row in model.DimensionTableImplementationList)
+            foreach (var row in model.DimensionTableImplementationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DimensionTableImplementation' contains a row with empty Id.");
@@ -852,11 +852,11 @@ namespace MetaDataWarehouseImplementation
         private static byte[] SerializeFactTableImplementationShard(MetaDataWarehouseImplementationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouseImplementation>\n");
             builder.Append("  <FactTableImplementationList>\n");
-            foreach (var row in model.FactTableImplementationList)
+            foreach (var row in model.FactTableImplementationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FactTableImplementation' contains a row with empty Id.");
@@ -982,11 +982,11 @@ namespace MetaDataWarehouseImplementation
         private static byte[] SerializeIndexImplementationShard(MetaDataWarehouseImplementationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouseImplementation>\n");
             builder.Append("  <IndexImplementationList>\n");
-            foreach (var row in model.IndexImplementationList)
+            foreach (var row in model.IndexImplementationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'IndexImplementation' contains a row with empty Id.");
@@ -1102,11 +1102,11 @@ namespace MetaDataWarehouseImplementation
         private static byte[] SerializePeriodicSnapshotFactTableImplementationShard(MetaDataWarehouseImplementationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouseImplementation>\n");
             builder.Append("  <PeriodicSnapshotFactTableImplementationList>\n");
-            foreach (var row in model.PeriodicSnapshotFactTableImplementationList)
+            foreach (var row in model.PeriodicSnapshotFactTableImplementationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PeriodicSnapshotFactTableImplementation' contains a row with empty Id.");
@@ -1234,11 +1234,11 @@ namespace MetaDataWarehouseImplementation
         private static byte[] SerializePlatformColumnImplementationShard(MetaDataWarehouseImplementationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouseImplementation>\n");
             builder.Append("  <PlatformColumnImplementationList>\n");
-            foreach (var row in model.PlatformColumnImplementationList)
+            foreach (var row in model.PlatformColumnImplementationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'PlatformColumnImplementation' contains a row with empty Id.");
@@ -1377,11 +1377,11 @@ namespace MetaDataWarehouseImplementation
         private static byte[] SerializeSlowlyChangingDimensionTableImplementationShard(MetaDataWarehouseImplementationModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataWarehouseImplementation>\n");
             builder.Append("  <SlowlyChangingDimensionTableImplementationList>\n");
-            foreach (var row in model.SlowlyChangingDimensionTableImplementationList)
+            foreach (var row in model.SlowlyChangingDimensionTableImplementationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SlowlyChangingDimensionTableImplementation' contains a row with empty Id.");
@@ -1449,7 +1449,7 @@ namespace MetaDataWarehouseImplementation
             public void AddAccumulatingSnapshotFactTableImplementationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AccumulatingSnapshotFactTableImplementation' contains a row with empty Id.");
-                accumulatingSnapshotFactTableImplementationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                accumulatingSnapshotFactTableImplementationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!accumulatingSnapshotFactTableImplementationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AccumulatingSnapshotFactTableImplementation' contains duplicate Id '{normalizedId}'.");
@@ -1461,7 +1461,7 @@ namespace MetaDataWarehouseImplementation
             public void AddAggregateFactTableImplementationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AggregateFactTableImplementation' contains a row with empty Id.");
-                aggregateFactTableImplementationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                aggregateFactTableImplementationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!aggregateFactTableImplementationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AggregateFactTableImplementation' contains duplicate Id '{normalizedId}'.");
@@ -1473,7 +1473,7 @@ namespace MetaDataWarehouseImplementation
             public void AddBridgeTableImplementationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BridgeTableImplementation' contains a row with empty Id.");
-                bridgeTableImplementationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                bridgeTableImplementationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!bridgeTableImplementationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BridgeTableImplementation' contains duplicate Id '{normalizedId}'.");
@@ -1485,7 +1485,7 @@ namespace MetaDataWarehouseImplementation
             public void AddDimensionTableImplementationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DimensionTableImplementation' contains a row with empty Id.");
-                dimensionTableImplementationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dimensionTableImplementationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dimensionTableImplementationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DimensionTableImplementation' contains duplicate Id '{normalizedId}'.");
@@ -1497,7 +1497,7 @@ namespace MetaDataWarehouseImplementation
             public void AddFactTableImplementationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FactTableImplementation' contains a row with empty Id.");
-                factTableImplementationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                factTableImplementationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!factTableImplementationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FactTableImplementation' contains duplicate Id '{normalizedId}'.");
@@ -1509,7 +1509,7 @@ namespace MetaDataWarehouseImplementation
             public void AddIndexImplementationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'IndexImplementation' contains a row with empty Id.");
-                indexImplementationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                indexImplementationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!indexImplementationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'IndexImplementation' contains duplicate Id '{normalizedId}'.");
@@ -1521,7 +1521,7 @@ namespace MetaDataWarehouseImplementation
             public void AddPeriodicSnapshotFactTableImplementationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PeriodicSnapshotFactTableImplementation' contains a row with empty Id.");
-                periodicSnapshotFactTableImplementationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                periodicSnapshotFactTableImplementationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!periodicSnapshotFactTableImplementationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PeriodicSnapshotFactTableImplementation' contains duplicate Id '{normalizedId}'.");
@@ -1533,7 +1533,7 @@ namespace MetaDataWarehouseImplementation
             public void AddPlatformColumnImplementationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'PlatformColumnImplementation' contains a row with empty Id.");
-                platformColumnImplementationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                platformColumnImplementationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!platformColumnImplementationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'PlatformColumnImplementation' contains duplicate Id '{normalizedId}'.");
@@ -1545,7 +1545,7 @@ namespace MetaDataWarehouseImplementation
             public void AddSlowlyChangingDimensionTableImplementationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SlowlyChangingDimensionTableImplementation' contains a row with empty Id.");
-                slowlyChangingDimensionTableImplementationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                slowlyChangingDimensionTableImplementationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!slowlyChangingDimensionTableImplementationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SlowlyChangingDimensionTableImplementation' contains duplicate Id '{normalizedId}'.");
@@ -1812,7 +1812,7 @@ namespace MetaDataWarehouseImplementation
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

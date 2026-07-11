@@ -759,11 +759,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularCalculationGroupShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularCalculationGroupList>\n");
-            foreach (var row in model.TabularCalculationGroupList)
+            foreach (var row in model.TabularCalculationGroupList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularCalculationGroup' contains a row with empty Id.");
@@ -889,11 +889,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularCalculationItemShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularCalculationItemList>\n");
-            foreach (var row in model.TabularCalculationItemList)
+            foreach (var row in model.TabularCalculationItemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularCalculationItem' contains a row with empty Id.");
@@ -1045,11 +1045,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularColumnShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularColumnList>\n");
-            foreach (var row in model.TabularColumnList)
+            foreach (var row in model.TabularColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularColumn' contains a row with empty Id.");
@@ -1199,11 +1199,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularColumnPermissionShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularColumnPermissionList>\n");
-            foreach (var row in model.TabularColumnPermissionList)
+            foreach (var row in model.TabularColumnPermissionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularColumnPermission' contains a row with empty Id.");
@@ -1328,11 +1328,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularColumnTranslationShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularColumnTranslationList>\n");
-            foreach (var row in model.TabularColumnTranslationList)
+            foreach (var row in model.TabularColumnTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularColumnTranslation' contains a row with empty Id.");
@@ -1458,11 +1458,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularCultureShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularCultureList>\n");
-            foreach (var row in model.TabularCultureList)
+            foreach (var row in model.TabularCultureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularCulture' contains a row with empty Id.");
@@ -1580,11 +1580,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularDataSourceShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularDataSourceList>\n");
-            foreach (var row in model.TabularDataSourceList)
+            foreach (var row in model.TabularDataSourceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularDataSource' contains a row with empty Id.");
@@ -1714,11 +1714,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularHierarchyShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularHierarchyList>\n");
-            foreach (var row in model.TabularHierarchyList)
+            foreach (var row in model.TabularHierarchyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularHierarchy' contains a row with empty Id.");
@@ -1845,11 +1845,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularHierarchyLevelShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularHierarchyLevelList>\n");
-            foreach (var row in model.TabularHierarchyLevelList)
+            foreach (var row in model.TabularHierarchyLevelList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularHierarchyLevel' contains a row with empty Id.");
@@ -1975,11 +1975,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularHierarchyTranslationShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularHierarchyTranslationList>\n");
-            foreach (var row in model.TabularHierarchyTranslationList)
+            foreach (var row in model.TabularHierarchyTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularHierarchyTranslation' contains a row with empty Id.");
@@ -2123,11 +2123,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularKpiShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularKpiList>\n");
-            foreach (var row in model.TabularKpiList)
+            foreach (var row in model.TabularKpiList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularKpi' contains a row with empty Id.");
@@ -2275,11 +2275,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularKpiTranslationShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularKpiTranslationList>\n");
-            foreach (var row in model.TabularKpiTranslationList)
+            foreach (var row in model.TabularKpiTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularKpiTranslation' contains a row with empty Id.");
@@ -2416,11 +2416,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularMeasureShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularMeasureList>\n");
-            foreach (var row in model.TabularMeasureList)
+            foreach (var row in model.TabularMeasureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularMeasure' contains a row with empty Id.");
@@ -2555,11 +2555,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularMeasureTranslationShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularMeasureTranslationList>\n");
-            foreach (var row in model.TabularMeasureTranslationList)
+            foreach (var row in model.TabularMeasureTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularMeasureTranslation' contains a row with empty Id.");
@@ -2694,11 +2694,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularModelShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularModelList>\n");
-            foreach (var row in model.TabularModelList)
+            foreach (var row in model.TabularModelList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularModel' contains a row with empty Id.");
@@ -2832,11 +2832,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularPartitionShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularPartitionList>\n");
-            foreach (var row in model.TabularPartitionList)
+            foreach (var row in model.TabularPartitionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularPartition' contains a row with empty Id.");
@@ -2974,11 +2974,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularPerspectiveShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularPerspectiveList>\n");
-            foreach (var row in model.TabularPerspectiveList)
+            foreach (var row in model.TabularPerspectiveList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularPerspective' contains a row with empty Id.");
@@ -3091,11 +3091,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularPerspectiveCalculationGroupShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularPerspectiveCalculationGroupList>\n");
-            foreach (var row in model.TabularPerspectiveCalculationGroupList)
+            foreach (var row in model.TabularPerspectiveCalculationGroupList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularPerspectiveCalculationGroup' contains a row with empty Id.");
@@ -3213,11 +3213,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularPerspectiveColumnShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularPerspectiveColumnList>\n");
-            foreach (var row in model.TabularPerspectiveColumnList)
+            foreach (var row in model.TabularPerspectiveColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularPerspectiveColumn' contains a row with empty Id.");
@@ -3335,11 +3335,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularPerspectiveHierarchyShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularPerspectiveHierarchyList>\n");
-            foreach (var row in model.TabularPerspectiveHierarchyList)
+            foreach (var row in model.TabularPerspectiveHierarchyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularPerspectiveHierarchy' contains a row with empty Id.");
@@ -3457,11 +3457,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularPerspectiveKpiShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularPerspectiveKpiList>\n");
-            foreach (var row in model.TabularPerspectiveKpiList)
+            foreach (var row in model.TabularPerspectiveKpiList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularPerspectiveKpi' contains a row with empty Id.");
@@ -3579,11 +3579,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularPerspectiveMeasureShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularPerspectiveMeasureList>\n");
-            foreach (var row in model.TabularPerspectiveMeasureList)
+            foreach (var row in model.TabularPerspectiveMeasureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularPerspectiveMeasure' contains a row with empty Id.");
@@ -3701,11 +3701,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularPerspectiveTableShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularPerspectiveTableList>\n");
-            foreach (var row in model.TabularPerspectiveTableList)
+            foreach (var row in model.TabularPerspectiveTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularPerspectiveTable' contains a row with empty Id.");
@@ -3829,11 +3829,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularPerspectiveTranslationShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularPerspectiveTranslationList>\n");
-            foreach (var row in model.TabularPerspectiveTranslationList)
+            foreach (var row in model.TabularPerspectiveTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularPerspectiveTranslation' contains a row with empty Id.");
@@ -3980,11 +3980,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularRelationshipShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularRelationshipList>\n");
-            foreach (var row in model.TabularRelationshipList)
+            foreach (var row in model.TabularRelationshipList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularRelationship' contains a row with empty Id.");
@@ -4139,11 +4139,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularRoleFilterShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularRoleFilterList>\n");
-            foreach (var row in model.TabularRoleFilterList)
+            foreach (var row in model.TabularRoleFilterList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularRoleFilter' contains a row with empty Id.");
@@ -4265,11 +4265,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularRoleMemberShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularRoleMemberList>\n");
-            foreach (var row in model.TabularRoleMemberList)
+            foreach (var row in model.TabularRoleMemberList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularRoleMember' contains a row with empty Id.");
@@ -4388,11 +4388,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularSecurityRoleShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularSecurityRoleList>\n");
-            foreach (var row in model.TabularSecurityRoleList)
+            foreach (var row in model.TabularSecurityRoleList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularSecurityRole' contains a row with empty Id.");
@@ -4506,11 +4506,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularSortByColumnShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularSortByColumnList>\n");
-            foreach (var row in model.TabularSortByColumnList)
+            foreach (var row in model.TabularSortByColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularSortByColumn' contains a row with empty Id.");
@@ -4637,11 +4637,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularTableShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularTableList>\n");
-            foreach (var row in model.TabularTableList)
+            foreach (var row in model.TabularTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularTable' contains a row with empty Id.");
@@ -4765,11 +4765,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularTablePermissionShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularTablePermissionList>\n");
-            foreach (var row in model.TabularTablePermissionList)
+            foreach (var row in model.TabularTablePermissionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularTablePermission' contains a row with empty Id.");
@@ -4894,11 +4894,11 @@ namespace MetaTabular
         private static byte[] SerializeTabularTableTranslationShard(MetaTabularModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaTabular>\n");
             builder.Append("  <TabularTableTranslationList>\n");
-            foreach (var row in model.TabularTableTranslationList)
+            foreach (var row in model.TabularTableTranslationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TabularTableTranslation' contains a row with empty Id.");
@@ -5784,7 +5784,7 @@ namespace MetaTabular
             public void AddTabularCalculationGroupId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularCalculationGroup' contains a row with empty Id.");
-                tabularCalculationGroupIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularCalculationGroupIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularCalculationGroupIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularCalculationGroup' contains duplicate Id '{normalizedId}'.");
@@ -5796,7 +5796,7 @@ namespace MetaTabular
             public void AddTabularCalculationItemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularCalculationItem' contains a row with empty Id.");
-                tabularCalculationItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularCalculationItemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularCalculationItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularCalculationItem' contains duplicate Id '{normalizedId}'.");
@@ -5808,7 +5808,7 @@ namespace MetaTabular
             public void AddTabularColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularColumn' contains a row with empty Id.");
-                tabularColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularColumn' contains duplicate Id '{normalizedId}'.");
@@ -5820,7 +5820,7 @@ namespace MetaTabular
             public void AddTabularColumnPermissionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularColumnPermission' contains a row with empty Id.");
-                tabularColumnPermissionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularColumnPermissionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularColumnPermissionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularColumnPermission' contains duplicate Id '{normalizedId}'.");
@@ -5832,7 +5832,7 @@ namespace MetaTabular
             public void AddTabularColumnTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularColumnTranslation' contains a row with empty Id.");
-                tabularColumnTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularColumnTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularColumnTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularColumnTranslation' contains duplicate Id '{normalizedId}'.");
@@ -5844,7 +5844,7 @@ namespace MetaTabular
             public void AddTabularCultureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularCulture' contains a row with empty Id.");
-                tabularCultureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularCultureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularCultureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularCulture' contains duplicate Id '{normalizedId}'.");
@@ -5856,7 +5856,7 @@ namespace MetaTabular
             public void AddTabularDataSourceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularDataSource' contains a row with empty Id.");
-                tabularDataSourceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularDataSourceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularDataSourceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularDataSource' contains duplicate Id '{normalizedId}'.");
@@ -5868,7 +5868,7 @@ namespace MetaTabular
             public void AddTabularHierarchyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularHierarchy' contains a row with empty Id.");
-                tabularHierarchyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularHierarchyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularHierarchyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularHierarchy' contains duplicate Id '{normalizedId}'.");
@@ -5880,7 +5880,7 @@ namespace MetaTabular
             public void AddTabularHierarchyLevelId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularHierarchyLevel' contains a row with empty Id.");
-                tabularHierarchyLevelIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularHierarchyLevelIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularHierarchyLevelIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularHierarchyLevel' contains duplicate Id '{normalizedId}'.");
@@ -5892,7 +5892,7 @@ namespace MetaTabular
             public void AddTabularHierarchyTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularHierarchyTranslation' contains a row with empty Id.");
-                tabularHierarchyTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularHierarchyTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularHierarchyTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularHierarchyTranslation' contains duplicate Id '{normalizedId}'.");
@@ -5904,7 +5904,7 @@ namespace MetaTabular
             public void AddTabularKpiId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularKpi' contains a row with empty Id.");
-                tabularKpiIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularKpiIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularKpiIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularKpi' contains duplicate Id '{normalizedId}'.");
@@ -5916,7 +5916,7 @@ namespace MetaTabular
             public void AddTabularKpiTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularKpiTranslation' contains a row with empty Id.");
-                tabularKpiTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularKpiTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularKpiTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularKpiTranslation' contains duplicate Id '{normalizedId}'.");
@@ -5928,7 +5928,7 @@ namespace MetaTabular
             public void AddTabularMeasureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularMeasure' contains a row with empty Id.");
-                tabularMeasureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularMeasureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularMeasureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularMeasure' contains duplicate Id '{normalizedId}'.");
@@ -5940,7 +5940,7 @@ namespace MetaTabular
             public void AddTabularMeasureTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularMeasureTranslation' contains a row with empty Id.");
-                tabularMeasureTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularMeasureTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularMeasureTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularMeasureTranslation' contains duplicate Id '{normalizedId}'.");
@@ -5952,7 +5952,7 @@ namespace MetaTabular
             public void AddTabularModelId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularModel' contains a row with empty Id.");
-                tabularModelIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularModelIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularModelIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularModel' contains duplicate Id '{normalizedId}'.");
@@ -5964,7 +5964,7 @@ namespace MetaTabular
             public void AddTabularPartitionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularPartition' contains a row with empty Id.");
-                tabularPartitionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularPartitionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularPartitionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularPartition' contains duplicate Id '{normalizedId}'.");
@@ -5976,7 +5976,7 @@ namespace MetaTabular
             public void AddTabularPerspectiveId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularPerspective' contains a row with empty Id.");
-                tabularPerspectiveIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularPerspectiveIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularPerspectiveIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularPerspective' contains duplicate Id '{normalizedId}'.");
@@ -5988,7 +5988,7 @@ namespace MetaTabular
             public void AddTabularPerspectiveCalculationGroupId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularPerspectiveCalculationGroup' contains a row with empty Id.");
-                tabularPerspectiveCalculationGroupIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularPerspectiveCalculationGroupIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularPerspectiveCalculationGroupIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularPerspectiveCalculationGroup' contains duplicate Id '{normalizedId}'.");
@@ -6000,7 +6000,7 @@ namespace MetaTabular
             public void AddTabularPerspectiveColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularPerspectiveColumn' contains a row with empty Id.");
-                tabularPerspectiveColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularPerspectiveColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularPerspectiveColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularPerspectiveColumn' contains duplicate Id '{normalizedId}'.");
@@ -6012,7 +6012,7 @@ namespace MetaTabular
             public void AddTabularPerspectiveHierarchyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularPerspectiveHierarchy' contains a row with empty Id.");
-                tabularPerspectiveHierarchyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularPerspectiveHierarchyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularPerspectiveHierarchyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularPerspectiveHierarchy' contains duplicate Id '{normalizedId}'.");
@@ -6024,7 +6024,7 @@ namespace MetaTabular
             public void AddTabularPerspectiveKpiId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularPerspectiveKpi' contains a row with empty Id.");
-                tabularPerspectiveKpiIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularPerspectiveKpiIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularPerspectiveKpiIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularPerspectiveKpi' contains duplicate Id '{normalizedId}'.");
@@ -6036,7 +6036,7 @@ namespace MetaTabular
             public void AddTabularPerspectiveMeasureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularPerspectiveMeasure' contains a row with empty Id.");
-                tabularPerspectiveMeasureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularPerspectiveMeasureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularPerspectiveMeasureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularPerspectiveMeasure' contains duplicate Id '{normalizedId}'.");
@@ -6048,7 +6048,7 @@ namespace MetaTabular
             public void AddTabularPerspectiveTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularPerspectiveTable' contains a row with empty Id.");
-                tabularPerspectiveTableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularPerspectiveTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularPerspectiveTableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularPerspectiveTable' contains duplicate Id '{normalizedId}'.");
@@ -6060,7 +6060,7 @@ namespace MetaTabular
             public void AddTabularPerspectiveTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularPerspectiveTranslation' contains a row with empty Id.");
-                tabularPerspectiveTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularPerspectiveTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularPerspectiveTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularPerspectiveTranslation' contains duplicate Id '{normalizedId}'.");
@@ -6072,7 +6072,7 @@ namespace MetaTabular
             public void AddTabularRelationshipId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularRelationship' contains a row with empty Id.");
-                tabularRelationshipIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularRelationshipIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularRelationshipIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularRelationship' contains duplicate Id '{normalizedId}'.");
@@ -6084,7 +6084,7 @@ namespace MetaTabular
             public void AddTabularRoleFilterId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularRoleFilter' contains a row with empty Id.");
-                tabularRoleFilterIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularRoleFilterIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularRoleFilterIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularRoleFilter' contains duplicate Id '{normalizedId}'.");
@@ -6096,7 +6096,7 @@ namespace MetaTabular
             public void AddTabularRoleMemberId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularRoleMember' contains a row with empty Id.");
-                tabularRoleMemberIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularRoleMemberIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularRoleMemberIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularRoleMember' contains duplicate Id '{normalizedId}'.");
@@ -6108,7 +6108,7 @@ namespace MetaTabular
             public void AddTabularSecurityRoleId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularSecurityRole' contains a row with empty Id.");
-                tabularSecurityRoleIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularSecurityRoleIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularSecurityRoleIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularSecurityRole' contains duplicate Id '{normalizedId}'.");
@@ -6120,7 +6120,7 @@ namespace MetaTabular
             public void AddTabularSortByColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularSortByColumn' contains a row with empty Id.");
-                tabularSortByColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularSortByColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularSortByColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularSortByColumn' contains duplicate Id '{normalizedId}'.");
@@ -6132,7 +6132,7 @@ namespace MetaTabular
             public void AddTabularTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularTable' contains a row with empty Id.");
-                tabularTableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularTableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularTable' contains duplicate Id '{normalizedId}'.");
@@ -6144,7 +6144,7 @@ namespace MetaTabular
             public void AddTabularTablePermissionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularTablePermission' contains a row with empty Id.");
-                tabularTablePermissionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularTablePermissionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularTablePermissionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularTablePermission' contains duplicate Id '{normalizedId}'.");
@@ -6156,7 +6156,7 @@ namespace MetaTabular
             public void AddTabularTableTranslationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TabularTableTranslation' contains a row with empty Id.");
-                tabularTableTranslationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tabularTableTranslationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tabularTableTranslationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TabularTableTranslation' contains duplicate Id '{normalizedId}'.");
@@ -6848,7 +6848,7 @@ namespace MetaTabular
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

@@ -402,11 +402,11 @@ namespace MetaSchema
         private static byte[] SerializeFieldShard(MetaSchemaModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSchema>\n");
             builder.Append("  <FieldList>\n");
-            foreach (var row in model.FieldList)
+            foreach (var row in model.FieldList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Field' contains a row with empty Id.");
@@ -539,11 +539,11 @@ namespace MetaSchema
         private static byte[] SerializeFieldDataTypeDetailShard(MetaSchemaModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSchema>\n");
             builder.Append("  <FieldDataTypeDetailList>\n");
-            foreach (var row in model.FieldDataTypeDetailList)
+            foreach (var row in model.FieldDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FieldDataTypeDetail' contains a row with empty Id.");
@@ -653,11 +653,11 @@ namespace MetaSchema
         private static byte[] SerializeSchemaShard(MetaSchemaModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSchema>\n");
             builder.Append("  <SchemaList>\n");
-            foreach (var row in model.SchemaList)
+            foreach (var row in model.SchemaList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Schema' contains a row with empty Id.");
@@ -763,11 +763,11 @@ namespace MetaSchema
         private static byte[] SerializeSystemShard(MetaSchemaModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSchema>\n");
             builder.Append("  <SystemList>\n");
-            foreach (var row in model.SystemList)
+            foreach (var row in model.SystemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'System' contains a row with empty Id.");
@@ -873,11 +873,11 @@ namespace MetaSchema
         private static byte[] SerializeTableShard(MetaSchemaModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSchema>\n");
             builder.Append("  <TableList>\n");
-            foreach (var row in model.TableList)
+            foreach (var row in model.TableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'Table' contains a row with empty Id.");
@@ -993,11 +993,11 @@ namespace MetaSchema
         private static byte[] SerializeTableKeyShard(MetaSchemaModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSchema>\n");
             builder.Append("  <TableKeyList>\n");
-            foreach (var row in model.TableKeyList)
+            foreach (var row in model.TableKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableKey' contains a row with empty Id.");
@@ -1113,11 +1113,11 @@ namespace MetaSchema
         private static byte[] SerializeTableKeyFieldShard(MetaSchemaModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSchema>\n");
             builder.Append("  <TableKeyFieldList>\n");
-            foreach (var row in model.TableKeyFieldList)
+            foreach (var row in model.TableKeyFieldList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableKeyField' contains a row with empty Id.");
@@ -1240,11 +1240,11 @@ namespace MetaSchema
         private static byte[] SerializeTableRelationshipShard(MetaSchemaModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSchema>\n");
             builder.Append("  <TableRelationshipList>\n");
-            foreach (var row in model.TableRelationshipList)
+            foreach (var row in model.TableRelationshipList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableRelationship' contains a row with empty Id.");
@@ -1369,11 +1369,11 @@ namespace MetaSchema
         private static byte[] SerializeTableRelationshipFieldShard(MetaSchemaModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSchema>\n");
             builder.Append("  <TableRelationshipFieldList>\n");
-            foreach (var row in model.TableRelationshipFieldList)
+            foreach (var row in model.TableRelationshipFieldList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TableRelationshipField' contains a row with empty Id.");
@@ -1642,7 +1642,7 @@ namespace MetaSchema
             public void AddFieldId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Field' contains a row with empty Id.");
-                fieldIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fieldIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fieldIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Field' contains duplicate Id '{normalizedId}'.");
@@ -1654,7 +1654,7 @@ namespace MetaSchema
             public void AddFieldDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FieldDataTypeDetail' contains a row with empty Id.");
-                fieldDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                fieldDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!fieldDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FieldDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -1666,7 +1666,7 @@ namespace MetaSchema
             public void AddSchemaId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Schema' contains a row with empty Id.");
-                schemaIds ??= new HashSet<string>(StringComparer.Ordinal);
+                schemaIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!schemaIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Schema' contains duplicate Id '{normalizedId}'.");
@@ -1678,7 +1678,7 @@ namespace MetaSchema
             public void AddSystemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'System' contains a row with empty Id.");
-                systemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                systemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!systemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'System' contains duplicate Id '{normalizedId}'.");
@@ -1690,7 +1690,7 @@ namespace MetaSchema
             public void AddTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'Table' contains a row with empty Id.");
-                tableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Table' contains duplicate Id '{normalizedId}'.");
@@ -1702,7 +1702,7 @@ namespace MetaSchema
             public void AddTableKeyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableKey' contains a row with empty Id.");
-                tableKeyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableKey' contains duplicate Id '{normalizedId}'.");
@@ -1714,7 +1714,7 @@ namespace MetaSchema
             public void AddTableKeyFieldId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableKeyField' contains a row with empty Id.");
-                tableKeyFieldIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableKeyFieldIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableKeyFieldIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableKeyField' contains duplicate Id '{normalizedId}'.");
@@ -1726,7 +1726,7 @@ namespace MetaSchema
             public void AddTableRelationshipId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableRelationship' contains a row with empty Id.");
-                tableRelationshipIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableRelationshipIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableRelationshipIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableRelationship' contains duplicate Id '{normalizedId}'.");
@@ -1738,7 +1738,7 @@ namespace MetaSchema
             public void AddTableRelationshipFieldId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TableRelationshipField' contains a row with empty Id.");
-                tableRelationshipFieldIds ??= new HashSet<string>(StringComparer.Ordinal);
+                tableRelationshipFieldIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!tableRelationshipFieldIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TableRelationshipField' contains duplicate Id '{normalizedId}'.");
@@ -1980,7 +1980,7 @@ namespace MetaSchema
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

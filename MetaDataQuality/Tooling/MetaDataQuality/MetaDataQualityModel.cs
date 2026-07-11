@@ -711,11 +711,11 @@ namespace MetaDataQuality
         private static byte[] SerializeCorpusColumnEquivalenceShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <CorpusColumnEquivalenceList>\n");
-            foreach (var row in model.CorpusColumnEquivalenceList)
+            foreach (var row in model.CorpusColumnEquivalenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CorpusColumnEquivalence' contains a row with empty Id.");
@@ -818,11 +818,11 @@ namespace MetaDataQuality
         private static byte[] SerializeCorpusColumnEquivalenceOccurrenceLinkShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <CorpusColumnEquivalenceOccurrenceLinkList>\n");
-            foreach (var row in model.CorpusColumnEquivalenceOccurrenceLinkList)
+            foreach (var row in model.CorpusColumnEquivalenceOccurrenceLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CorpusColumnEquivalenceOccurrenceLink' contains a row with empty Id.");
@@ -946,11 +946,11 @@ namespace MetaDataQuality
         private static byte[] SerializeCorpusRelationshipShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <CorpusRelationshipList>\n");
-            foreach (var row in model.CorpusRelationshipList)
+            foreach (var row in model.CorpusRelationshipList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CorpusRelationship' contains a row with empty Id.");
@@ -1071,11 +1071,11 @@ namespace MetaDataQuality
         private static byte[] SerializeCorpusRelationshipPatternShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <CorpusRelationshipPatternList>\n");
-            foreach (var row in model.CorpusRelationshipPatternList)
+            foreach (var row in model.CorpusRelationshipPatternList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CorpusRelationshipPattern' contains a row with empty Id.");
@@ -1190,11 +1190,11 @@ namespace MetaDataQuality
         private static byte[] SerializeCorpusRelationshipPatternOccurrenceLinkShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <CorpusRelationshipPatternOccurrenceLinkList>\n");
-            foreach (var row in model.CorpusRelationshipPatternOccurrenceLinkList)
+            foreach (var row in model.CorpusRelationshipPatternOccurrenceLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'CorpusRelationshipPatternOccurrenceLink' contains a row with empty Id.");
@@ -1318,11 +1318,11 @@ namespace MetaDataQuality
         private static byte[] SerializeDataQualityCandidateShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <DataQualityCandidateList>\n");
-            foreach (var row in model.DataQualityCandidateList)
+            foreach (var row in model.DataQualityCandidateList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DataQualityCandidate' contains a row with empty Id.");
@@ -1482,11 +1482,11 @@ namespace MetaDataQuality
         private static byte[] SerializeDataQualityCandidateEvidenceShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <DataQualityCandidateEvidenceList>\n");
-            foreach (var row in model.DataQualityCandidateEvidenceList)
+            foreach (var row in model.DataQualityCandidateEvidenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DataQualityCandidateEvidence' contains a row with empty Id.");
@@ -1632,11 +1632,11 @@ namespace MetaDataQuality
         private static byte[] SerializeDataQualityCandidateJoinPatternLinkShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <DataQualityCandidateJoinPatternLinkList>\n");
-            foreach (var row in model.DataQualityCandidateJoinPatternLinkList)
+            foreach (var row in model.DataQualityCandidateJoinPatternLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DataQualityCandidateJoinPatternLink' contains a row with empty Id.");
@@ -1760,11 +1760,11 @@ namespace MetaDataQuality
         private static byte[] SerializeFilterPredicateObservationShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <FilterPredicateObservationList>\n");
-            foreach (var row in model.FilterPredicateObservationList)
+            foreach (var row in model.FilterPredicateObservationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'FilterPredicateObservation' contains a row with empty Id.");
@@ -1875,11 +1875,11 @@ namespace MetaDataQuality
         private static byte[] SerializeImpliedForeignKeyMissingReferenceShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <ImpliedForeignKeyMissingReferenceList>\n");
-            foreach (var row in model.ImpliedForeignKeyMissingReferenceList)
+            foreach (var row in model.ImpliedForeignKeyMissingReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ImpliedForeignKeyMissingReference' contains a row with empty Id.");
@@ -1997,11 +1997,11 @@ namespace MetaDataQuality
         private static byte[] SerializeImpliedJoinFanoutRiskShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <ImpliedJoinFanoutRiskList>\n");
-            foreach (var row in model.ImpliedJoinFanoutRiskList)
+            foreach (var row in model.ImpliedJoinFanoutRiskList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ImpliedJoinFanoutRisk' contains a row with empty Id.");
@@ -2119,11 +2119,11 @@ namespace MetaDataQuality
         private static byte[] SerializeImpliedOutputDuplicateRiskShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <ImpliedOutputDuplicateRiskList>\n");
-            foreach (var row in model.ImpliedOutputDuplicateRiskList)
+            foreach (var row in model.ImpliedOutputDuplicateRiskList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ImpliedOutputDuplicateRisk' contains a row with empty Id.");
@@ -2241,11 +2241,11 @@ namespace MetaDataQuality
         private static byte[] SerializeImpliedUniqueKeyViolationShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <ImpliedUniqueKeyViolationList>\n");
-            foreach (var row in model.ImpliedUniqueKeyViolationList)
+            foreach (var row in model.ImpliedUniqueKeyViolationList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ImpliedUniqueKeyViolation' contains a row with empty Id.");
@@ -2366,11 +2366,11 @@ namespace MetaDataQuality
         private static byte[] SerializeIncompleteCompositeJoinShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <IncompleteCompositeJoinList>\n");
-            foreach (var row in model.IncompleteCompositeJoinList)
+            foreach (var row in model.IncompleteCompositeJoinList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'IncompleteCompositeJoin' contains a row with empty Id.");
@@ -2498,11 +2498,11 @@ namespace MetaDataQuality
         private static byte[] SerializeInnerJoinAgainstUsuallyOptionalRelationshipShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <InnerJoinAgainstUsuallyOptionalRelationshipList>\n");
-            foreach (var row in model.InnerJoinAgainstUsuallyOptionalRelationshipList)
+            foreach (var row in model.InnerJoinAgainstUsuallyOptionalRelationshipList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'InnerJoinAgainstUsuallyOptionalRelationship' contains a row with empty Id.");
@@ -2620,11 +2620,11 @@ namespace MetaDataQuality
         private static byte[] SerializeJoinMultiplicityExplosionShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <JoinMultiplicityExplosionList>\n");
-            foreach (var row in model.JoinMultiplicityExplosionList)
+            foreach (var row in model.JoinMultiplicityExplosionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinMultiplicityExplosion' contains a row with empty Id.");
@@ -2733,11 +2733,11 @@ namespace MetaDataQuality
         private static byte[] SerializeJoinOrphanShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <JoinOrphanList>\n");
-            foreach (var row in model.JoinOrphanList)
+            foreach (var row in model.JoinOrphanList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinOrphan' contains a row with empty Id.");
@@ -2849,11 +2849,11 @@ namespace MetaDataQuality
         private static byte[] SerializeJoinPatternShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <JoinPatternList>\n");
-            foreach (var row in model.JoinPatternList)
+            foreach (var row in model.JoinPatternList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinPattern' contains a row with empty Id.");
@@ -2979,11 +2979,11 @@ namespace MetaDataQuality
         private static byte[] SerializeJoinPatternKeyPartShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <JoinPatternKeyPartList>\n");
-            foreach (var row in model.JoinPatternKeyPartList)
+            foreach (var row in model.JoinPatternKeyPartList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinPatternKeyPart' contains a row with empty Id.");
@@ -3144,11 +3144,11 @@ namespace MetaDataQuality
         private static byte[] SerializeJoinPatternOccurrenceShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <JoinPatternOccurrenceList>\n");
-            foreach (var row in model.JoinPatternOccurrenceList)
+            foreach (var row in model.JoinPatternOccurrenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinPatternOccurrence' contains a row with empty Id.");
@@ -3310,11 +3310,11 @@ namespace MetaDataQuality
         private static byte[] SerializeJoinPatternOccurrenceBaseTableShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <JoinPatternOccurrenceBaseTableList>\n");
-            foreach (var row in model.JoinPatternOccurrenceBaseTableList)
+            foreach (var row in model.JoinPatternOccurrenceBaseTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinPatternOccurrenceBaseTable' contains a row with empty Id.");
@@ -3446,11 +3446,11 @@ namespace MetaDataQuality
         private static byte[] SerializeJoinPatternOccurrenceSignalShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <JoinPatternOccurrenceSignalList>\n");
-            foreach (var row in model.JoinPatternOccurrenceSignalList)
+            foreach (var row in model.JoinPatternOccurrenceSignalList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'JoinPatternOccurrenceSignal' contains a row with empty Id.");
@@ -3564,11 +3564,11 @@ namespace MetaDataQuality
         private static byte[] SerializeLeftJoinAgainstUsuallyMandatoryRelationshipShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <LeftJoinAgainstUsuallyMandatoryRelationshipList>\n");
-            foreach (var row in model.LeftJoinAgainstUsuallyMandatoryRelationshipList)
+            foreach (var row in model.LeftJoinAgainstUsuallyMandatoryRelationshipList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'LeftJoinAgainstUsuallyMandatoryRelationship' contains a row with empty Id.");
@@ -3689,11 +3689,11 @@ namespace MetaDataQuality
         private static byte[] SerializeMinorityColumnEquivalenceShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <MinorityColumnEquivalenceList>\n");
-            foreach (var row in model.MinorityColumnEquivalenceList)
+            foreach (var row in model.MinorityColumnEquivalenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MinorityColumnEquivalence' contains a row with empty Id.");
@@ -3824,11 +3824,11 @@ namespace MetaDataQuality
         private static byte[] SerializeMinorityJoinPatternShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <MinorityJoinPatternList>\n");
-            foreach (var row in model.MinorityJoinPatternList)
+            foreach (var row in model.MinorityJoinPatternList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MinorityJoinPattern' contains a row with empty Id.");
@@ -3968,11 +3968,11 @@ namespace MetaDataQuality
         private static byte[] SerializeMissingCommonFilterShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <MissingCommonFilterList>\n");
-            foreach (var row in model.MissingCommonFilterList)
+            foreach (var row in model.MissingCommonFilterList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'MissingCommonFilter' contains a row with empty Id.");
@@ -4103,11 +4103,11 @@ namespace MetaDataQuality
         private static byte[] SerializeOuterJoinNullExpansionShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <OuterJoinNullExpansionList>\n");
-            foreach (var row in model.OuterJoinNullExpansionList)
+            foreach (var row in model.OuterJoinNullExpansionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OuterJoinNullExpansion' contains a row with empty Id.");
@@ -4222,11 +4222,11 @@ namespace MetaDataQuality
         private static byte[] SerializeOutputDuplicateRiskShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <OutputDuplicateRiskList>\n");
-            foreach (var row in model.OutputDuplicateRiskList)
+            foreach (var row in model.OutputDuplicateRiskList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'OutputDuplicateRisk' contains a row with empty Id.");
@@ -4340,11 +4340,11 @@ namespace MetaDataQuality
         private static byte[] SerializeSuspiciousExtraJoinPredicateShard(MetaDataQualityModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaDataQuality>\n");
             builder.Append("  <SuspiciousExtraJoinPredicateList>\n");
-            foreach (var row in model.SuspiciousExtraJoinPredicateList)
+            foreach (var row in model.SuspiciousExtraJoinPredicateList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SuspiciousExtraJoinPredicate' contains a row with empty Id.");
@@ -5114,7 +5114,7 @@ namespace MetaDataQuality
             public void AddCorpusColumnEquivalenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CorpusColumnEquivalence' contains a row with empty Id.");
-                corpusColumnEquivalenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                corpusColumnEquivalenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!corpusColumnEquivalenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CorpusColumnEquivalence' contains duplicate Id '{normalizedId}'.");
@@ -5126,7 +5126,7 @@ namespace MetaDataQuality
             public void AddCorpusColumnEquivalenceOccurrenceLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CorpusColumnEquivalenceOccurrenceLink' contains a row with empty Id.");
-                corpusColumnEquivalenceOccurrenceLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                corpusColumnEquivalenceOccurrenceLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!corpusColumnEquivalenceOccurrenceLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CorpusColumnEquivalenceOccurrenceLink' contains duplicate Id '{normalizedId}'.");
@@ -5138,7 +5138,7 @@ namespace MetaDataQuality
             public void AddCorpusRelationshipId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CorpusRelationship' contains a row with empty Id.");
-                corpusRelationshipIds ??= new HashSet<string>(StringComparer.Ordinal);
+                corpusRelationshipIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!corpusRelationshipIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CorpusRelationship' contains duplicate Id '{normalizedId}'.");
@@ -5150,7 +5150,7 @@ namespace MetaDataQuality
             public void AddCorpusRelationshipPatternId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CorpusRelationshipPattern' contains a row with empty Id.");
-                corpusRelationshipPatternIds ??= new HashSet<string>(StringComparer.Ordinal);
+                corpusRelationshipPatternIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!corpusRelationshipPatternIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CorpusRelationshipPattern' contains duplicate Id '{normalizedId}'.");
@@ -5162,7 +5162,7 @@ namespace MetaDataQuality
             public void AddCorpusRelationshipPatternOccurrenceLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'CorpusRelationshipPatternOccurrenceLink' contains a row with empty Id.");
-                corpusRelationshipPatternOccurrenceLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                corpusRelationshipPatternOccurrenceLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!corpusRelationshipPatternOccurrenceLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'CorpusRelationshipPatternOccurrenceLink' contains duplicate Id '{normalizedId}'.");
@@ -5174,7 +5174,7 @@ namespace MetaDataQuality
             public void AddDataQualityCandidateId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DataQualityCandidate' contains a row with empty Id.");
-                dataQualityCandidateIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dataQualityCandidateIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dataQualityCandidateIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DataQualityCandidate' contains duplicate Id '{normalizedId}'.");
@@ -5186,7 +5186,7 @@ namespace MetaDataQuality
             public void AddDataQualityCandidateEvidenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DataQualityCandidateEvidence' contains a row with empty Id.");
-                dataQualityCandidateEvidenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dataQualityCandidateEvidenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dataQualityCandidateEvidenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DataQualityCandidateEvidence' contains duplicate Id '{normalizedId}'.");
@@ -5198,7 +5198,7 @@ namespace MetaDataQuality
             public void AddDataQualityCandidateJoinPatternLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DataQualityCandidateJoinPatternLink' contains a row with empty Id.");
-                dataQualityCandidateJoinPatternLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dataQualityCandidateJoinPatternLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dataQualityCandidateJoinPatternLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DataQualityCandidateJoinPatternLink' contains duplicate Id '{normalizedId}'.");
@@ -5210,7 +5210,7 @@ namespace MetaDataQuality
             public void AddFilterPredicateObservationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'FilterPredicateObservation' contains a row with empty Id.");
-                filterPredicateObservationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                filterPredicateObservationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!filterPredicateObservationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'FilterPredicateObservation' contains duplicate Id '{normalizedId}'.");
@@ -5222,7 +5222,7 @@ namespace MetaDataQuality
             public void AddImpliedForeignKeyMissingReferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ImpliedForeignKeyMissingReference' contains a row with empty Id.");
-                impliedForeignKeyMissingReferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                impliedForeignKeyMissingReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!impliedForeignKeyMissingReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ImpliedForeignKeyMissingReference' contains duplicate Id '{normalizedId}'.");
@@ -5234,7 +5234,7 @@ namespace MetaDataQuality
             public void AddImpliedJoinFanoutRiskId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ImpliedJoinFanoutRisk' contains a row with empty Id.");
-                impliedJoinFanoutRiskIds ??= new HashSet<string>(StringComparer.Ordinal);
+                impliedJoinFanoutRiskIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!impliedJoinFanoutRiskIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ImpliedJoinFanoutRisk' contains duplicate Id '{normalizedId}'.");
@@ -5246,7 +5246,7 @@ namespace MetaDataQuality
             public void AddImpliedOutputDuplicateRiskId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ImpliedOutputDuplicateRisk' contains a row with empty Id.");
-                impliedOutputDuplicateRiskIds ??= new HashSet<string>(StringComparer.Ordinal);
+                impliedOutputDuplicateRiskIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!impliedOutputDuplicateRiskIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ImpliedOutputDuplicateRisk' contains duplicate Id '{normalizedId}'.");
@@ -5258,7 +5258,7 @@ namespace MetaDataQuality
             public void AddImpliedUniqueKeyViolationId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ImpliedUniqueKeyViolation' contains a row with empty Id.");
-                impliedUniqueKeyViolationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                impliedUniqueKeyViolationIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!impliedUniqueKeyViolationIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ImpliedUniqueKeyViolation' contains duplicate Id '{normalizedId}'.");
@@ -5270,7 +5270,7 @@ namespace MetaDataQuality
             public void AddIncompleteCompositeJoinId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'IncompleteCompositeJoin' contains a row with empty Id.");
-                incompleteCompositeJoinIds ??= new HashSet<string>(StringComparer.Ordinal);
+                incompleteCompositeJoinIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!incompleteCompositeJoinIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'IncompleteCompositeJoin' contains duplicate Id '{normalizedId}'.");
@@ -5282,7 +5282,7 @@ namespace MetaDataQuality
             public void AddInnerJoinAgainstUsuallyOptionalRelationshipId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'InnerJoinAgainstUsuallyOptionalRelationship' contains a row with empty Id.");
-                innerJoinAgainstUsuallyOptionalRelationshipIds ??= new HashSet<string>(StringComparer.Ordinal);
+                innerJoinAgainstUsuallyOptionalRelationshipIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!innerJoinAgainstUsuallyOptionalRelationshipIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'InnerJoinAgainstUsuallyOptionalRelationship' contains duplicate Id '{normalizedId}'.");
@@ -5294,7 +5294,7 @@ namespace MetaDataQuality
             public void AddJoinMultiplicityExplosionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinMultiplicityExplosion' contains a row with empty Id.");
-                joinMultiplicityExplosionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinMultiplicityExplosionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinMultiplicityExplosionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinMultiplicityExplosion' contains duplicate Id '{normalizedId}'.");
@@ -5306,7 +5306,7 @@ namespace MetaDataQuality
             public void AddJoinOrphanId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinOrphan' contains a row with empty Id.");
-                joinOrphanIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinOrphanIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinOrphanIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinOrphan' contains duplicate Id '{normalizedId}'.");
@@ -5318,7 +5318,7 @@ namespace MetaDataQuality
             public void AddJoinPatternId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinPattern' contains a row with empty Id.");
-                joinPatternIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinPatternIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinPatternIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinPattern' contains duplicate Id '{normalizedId}'.");
@@ -5330,7 +5330,7 @@ namespace MetaDataQuality
             public void AddJoinPatternKeyPartId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinPatternKeyPart' contains a row with empty Id.");
-                joinPatternKeyPartIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinPatternKeyPartIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinPatternKeyPartIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinPatternKeyPart' contains duplicate Id '{normalizedId}'.");
@@ -5342,7 +5342,7 @@ namespace MetaDataQuality
             public void AddJoinPatternOccurrenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinPatternOccurrence' contains a row with empty Id.");
-                joinPatternOccurrenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinPatternOccurrenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinPatternOccurrenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinPatternOccurrence' contains duplicate Id '{normalizedId}'.");
@@ -5354,7 +5354,7 @@ namespace MetaDataQuality
             public void AddJoinPatternOccurrenceBaseTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinPatternOccurrenceBaseTable' contains a row with empty Id.");
-                joinPatternOccurrenceBaseTableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinPatternOccurrenceBaseTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinPatternOccurrenceBaseTableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinPatternOccurrenceBaseTable' contains duplicate Id '{normalizedId}'.");
@@ -5366,7 +5366,7 @@ namespace MetaDataQuality
             public void AddJoinPatternOccurrenceSignalId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'JoinPatternOccurrenceSignal' contains a row with empty Id.");
-                joinPatternOccurrenceSignalIds ??= new HashSet<string>(StringComparer.Ordinal);
+                joinPatternOccurrenceSignalIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!joinPatternOccurrenceSignalIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'JoinPatternOccurrenceSignal' contains duplicate Id '{normalizedId}'.");
@@ -5378,7 +5378,7 @@ namespace MetaDataQuality
             public void AddLeftJoinAgainstUsuallyMandatoryRelationshipId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'LeftJoinAgainstUsuallyMandatoryRelationship' contains a row with empty Id.");
-                leftJoinAgainstUsuallyMandatoryRelationshipIds ??= new HashSet<string>(StringComparer.Ordinal);
+                leftJoinAgainstUsuallyMandatoryRelationshipIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!leftJoinAgainstUsuallyMandatoryRelationshipIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'LeftJoinAgainstUsuallyMandatoryRelationship' contains duplicate Id '{normalizedId}'.");
@@ -5390,7 +5390,7 @@ namespace MetaDataQuality
             public void AddMinorityColumnEquivalenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MinorityColumnEquivalence' contains a row with empty Id.");
-                minorityColumnEquivalenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                minorityColumnEquivalenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!minorityColumnEquivalenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MinorityColumnEquivalence' contains duplicate Id '{normalizedId}'.");
@@ -5402,7 +5402,7 @@ namespace MetaDataQuality
             public void AddMinorityJoinPatternId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MinorityJoinPattern' contains a row with empty Id.");
-                minorityJoinPatternIds ??= new HashSet<string>(StringComparer.Ordinal);
+                minorityJoinPatternIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!minorityJoinPatternIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MinorityJoinPattern' contains duplicate Id '{normalizedId}'.");
@@ -5414,7 +5414,7 @@ namespace MetaDataQuality
             public void AddMissingCommonFilterId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'MissingCommonFilter' contains a row with empty Id.");
-                missingCommonFilterIds ??= new HashSet<string>(StringComparer.Ordinal);
+                missingCommonFilterIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!missingCommonFilterIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MissingCommonFilter' contains duplicate Id '{normalizedId}'.");
@@ -5426,7 +5426,7 @@ namespace MetaDataQuality
             public void AddOuterJoinNullExpansionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OuterJoinNullExpansion' contains a row with empty Id.");
-                outerJoinNullExpansionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                outerJoinNullExpansionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!outerJoinNullExpansionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OuterJoinNullExpansion' contains duplicate Id '{normalizedId}'.");
@@ -5438,7 +5438,7 @@ namespace MetaDataQuality
             public void AddOutputDuplicateRiskId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'OutputDuplicateRisk' contains a row with empty Id.");
-                outputDuplicateRiskIds ??= new HashSet<string>(StringComparer.Ordinal);
+                outputDuplicateRiskIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!outputDuplicateRiskIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'OutputDuplicateRisk' contains duplicate Id '{normalizedId}'.");
@@ -5450,7 +5450,7 @@ namespace MetaDataQuality
             public void AddSuspiciousExtraJoinPredicateId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SuspiciousExtraJoinPredicate' contains a row with empty Id.");
-                suspiciousExtraJoinPredicateIds ??= new HashSet<string>(StringComparer.Ordinal);
+                suspiciousExtraJoinPredicateIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!suspiciousExtraJoinPredicateIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SuspiciousExtraJoinPredicate' contains duplicate Id '{normalizedId}'.");
@@ -6091,7 +6091,7 @@ namespace MetaDataQuality
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

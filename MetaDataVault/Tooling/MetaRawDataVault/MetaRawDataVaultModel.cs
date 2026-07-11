@@ -480,11 +480,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeRawHubShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <RawHubList>\n");
-            foreach (var row in model.RawHubList)
+            foreach (var row in model.RawHubList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RawHub' contains a row with empty Id.");
@@ -599,11 +599,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeRawHubKeyPartShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <RawHubKeyPartList>\n");
-            foreach (var row in model.RawHubKeyPartList)
+            foreach (var row in model.RawHubKeyPartList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RawHubKeyPart' contains a row with empty Id.");
@@ -729,11 +729,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeRawHubSatelliteShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <RawHubSatelliteList>\n");
-            foreach (var row in model.RawHubSatelliteList)
+            foreach (var row in model.RawHubSatelliteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RawHubSatellite' contains a row with empty Id.");
@@ -859,11 +859,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeRawHubSatelliteAttributeShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <RawHubSatelliteAttributeList>\n");
-            foreach (var row in model.RawHubSatelliteAttributeList)
+            foreach (var row in model.RawHubSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RawHubSatelliteAttribute' contains a row with empty Id.");
@@ -986,11 +986,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeRawLinkShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <RawLinkList>\n");
-            foreach (var row in model.RawLinkList)
+            foreach (var row in model.RawLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RawLink' contains a row with empty Id.");
@@ -1106,11 +1106,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeRawLinkHubShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <RawLinkHubList>\n");
-            foreach (var row in model.RawLinkHubList)
+            foreach (var row in model.RawLinkHubList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RawLinkHub' contains a row with empty Id.");
@@ -1239,11 +1239,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeRawLinkSatelliteShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <RawLinkSatelliteList>\n");
-            foreach (var row in model.RawLinkSatelliteList)
+            foreach (var row in model.RawLinkSatelliteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RawLinkSatellite' contains a row with empty Id.");
@@ -1369,11 +1369,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeRawLinkSatelliteAttributeShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <RawLinkSatelliteAttributeList>\n");
-            foreach (var row in model.RawLinkSatelliteAttributeList)
+            foreach (var row in model.RawLinkSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'RawLinkSatelliteAttribute' contains a row with empty Id.");
@@ -1502,11 +1502,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeSourceFieldShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <SourceFieldList>\n");
-            foreach (var row in model.SourceFieldList)
+            foreach (var row in model.SourceFieldList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SourceField' contains a row with empty Id.");
@@ -1627,11 +1627,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeSourceFieldDataTypeDetailShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <SourceFieldDataTypeDetailList>\n");
-            foreach (var row in model.SourceFieldDataTypeDetailList)
+            foreach (var row in model.SourceFieldDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SourceFieldDataTypeDetail' contains a row with empty Id.");
@@ -1741,11 +1741,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeSourceSchemaShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <SourceSchemaList>\n");
-            foreach (var row in model.SourceSchemaList)
+            foreach (var row in model.SourceSchemaList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SourceSchema' contains a row with empty Id.");
@@ -1851,11 +1851,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeSourceSystemShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <SourceSystemList>\n");
-            foreach (var row in model.SourceSystemList)
+            foreach (var row in model.SourceSystemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SourceSystem' contains a row with empty Id.");
@@ -1958,11 +1958,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeSourceTableShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <SourceTableList>\n");
-            foreach (var row in model.SourceTableList)
+            foreach (var row in model.SourceTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SourceTable' contains a row with empty Id.");
@@ -2074,11 +2074,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeSourceTableRelationshipShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <SourceTableRelationshipList>\n");
-            foreach (var row in model.SourceTableRelationshipList)
+            foreach (var row in model.SourceTableRelationshipList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SourceTableRelationship' contains a row with empty Id.");
@@ -2203,11 +2203,11 @@ namespace MetaRawDataVault
         private static byte[] SerializeSourceTableRelationshipFieldShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
             builder.Append("  <SourceTableRelationshipFieldList>\n");
-            foreach (var row in model.SourceTableRelationshipFieldList)
+            foreach (var row in model.SourceTableRelationshipFieldList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'SourceTableRelationshipField' contains a row with empty Id.");
@@ -2639,7 +2639,7 @@ namespace MetaRawDataVault
             public void AddRawHubId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RawHub' contains a row with empty Id.");
-                rawHubIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rawHubIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rawHubIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RawHub' contains duplicate Id '{normalizedId}'.");
@@ -2651,7 +2651,7 @@ namespace MetaRawDataVault
             public void AddRawHubKeyPartId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RawHubKeyPart' contains a row with empty Id.");
-                rawHubKeyPartIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rawHubKeyPartIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rawHubKeyPartIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RawHubKeyPart' contains duplicate Id '{normalizedId}'.");
@@ -2663,7 +2663,7 @@ namespace MetaRawDataVault
             public void AddRawHubSatelliteId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RawHubSatellite' contains a row with empty Id.");
-                rawHubSatelliteIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rawHubSatelliteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rawHubSatelliteIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RawHubSatellite' contains duplicate Id '{normalizedId}'.");
@@ -2675,7 +2675,7 @@ namespace MetaRawDataVault
             public void AddRawHubSatelliteAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RawHubSatelliteAttribute' contains a row with empty Id.");
-                rawHubSatelliteAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rawHubSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rawHubSatelliteAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RawHubSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
@@ -2687,7 +2687,7 @@ namespace MetaRawDataVault
             public void AddRawLinkId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RawLink' contains a row with empty Id.");
-                rawLinkIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rawLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rawLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RawLink' contains duplicate Id '{normalizedId}'.");
@@ -2699,7 +2699,7 @@ namespace MetaRawDataVault
             public void AddRawLinkHubId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RawLinkHub' contains a row with empty Id.");
-                rawLinkHubIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rawLinkHubIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rawLinkHubIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RawLinkHub' contains duplicate Id '{normalizedId}'.");
@@ -2711,7 +2711,7 @@ namespace MetaRawDataVault
             public void AddRawLinkSatelliteId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RawLinkSatellite' contains a row with empty Id.");
-                rawLinkSatelliteIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rawLinkSatelliteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rawLinkSatelliteIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RawLinkSatellite' contains duplicate Id '{normalizedId}'.");
@@ -2723,7 +2723,7 @@ namespace MetaRawDataVault
             public void AddRawLinkSatelliteAttributeId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'RawLinkSatelliteAttribute' contains a row with empty Id.");
-                rawLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.Ordinal);
+                rawLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!rawLinkSatelliteAttributeIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RawLinkSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
@@ -2735,7 +2735,7 @@ namespace MetaRawDataVault
             public void AddSourceFieldId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SourceField' contains a row with empty Id.");
-                sourceFieldIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sourceFieldIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sourceFieldIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SourceField' contains duplicate Id '{normalizedId}'.");
@@ -2747,7 +2747,7 @@ namespace MetaRawDataVault
             public void AddSourceFieldDataTypeDetailId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SourceFieldDataTypeDetail' contains a row with empty Id.");
-                sourceFieldDataTypeDetailIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sourceFieldDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sourceFieldDataTypeDetailIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SourceFieldDataTypeDetail' contains duplicate Id '{normalizedId}'.");
@@ -2759,7 +2759,7 @@ namespace MetaRawDataVault
             public void AddSourceSchemaId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SourceSchema' contains a row with empty Id.");
-                sourceSchemaIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sourceSchemaIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sourceSchemaIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SourceSchema' contains duplicate Id '{normalizedId}'.");
@@ -2771,7 +2771,7 @@ namespace MetaRawDataVault
             public void AddSourceSystemId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SourceSystem' contains a row with empty Id.");
-                sourceSystemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sourceSystemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sourceSystemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SourceSystem' contains duplicate Id '{normalizedId}'.");
@@ -2783,7 +2783,7 @@ namespace MetaRawDataVault
             public void AddSourceTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SourceTable' contains a row with empty Id.");
-                sourceTableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sourceTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sourceTableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SourceTable' contains duplicate Id '{normalizedId}'.");
@@ -2795,7 +2795,7 @@ namespace MetaRawDataVault
             public void AddSourceTableRelationshipId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SourceTableRelationship' contains a row with empty Id.");
-                sourceTableRelationshipIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sourceTableRelationshipIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sourceTableRelationshipIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SourceTableRelationship' contains duplicate Id '{normalizedId}'.");
@@ -2807,7 +2807,7 @@ namespace MetaRawDataVault
             public void AddSourceTableRelationshipFieldId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'SourceTableRelationshipField' contains a row with empty Id.");
-                sourceTableRelationshipFieldIds ??= new HashSet<string>(StringComparer.Ordinal);
+                sourceTableRelationshipFieldIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!sourceTableRelationshipFieldIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'SourceTableRelationshipField' contains duplicate Id '{normalizedId}'.");
@@ -3157,7 +3157,7 @@ namespace MetaRawDataVault
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);

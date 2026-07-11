@@ -790,11 +790,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeAddForeignKeyShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <AddForeignKeyList>\n");
-            foreach (var row in model.AddForeignKeyList)
+            foreach (var row in model.AddForeignKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AddForeignKey' contains a row with empty Id.");
@@ -903,11 +903,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeAddFunctionShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <AddFunctionList>\n");
-            foreach (var row in model.AddFunctionList)
+            foreach (var row in model.AddFunctionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AddFunction' contains a row with empty Id.");
@@ -1016,11 +1016,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeAddIndexShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <AddIndexList>\n");
-            foreach (var row in model.AddIndexList)
+            foreach (var row in model.AddIndexList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AddIndex' contains a row with empty Id.");
@@ -1129,11 +1129,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeAddPrimaryKeyShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <AddPrimaryKeyList>\n");
-            foreach (var row in model.AddPrimaryKeyList)
+            foreach (var row in model.AddPrimaryKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AddPrimaryKey' contains a row with empty Id.");
@@ -1242,11 +1242,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeAddSchemaShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <AddSchemaList>\n");
-            foreach (var row in model.AddSchemaList)
+            foreach (var row in model.AddSchemaList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AddSchema' contains a row with empty Id.");
@@ -1355,11 +1355,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeAddStoredProcedureShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <AddStoredProcedureList>\n");
-            foreach (var row in model.AddStoredProcedureList)
+            foreach (var row in model.AddStoredProcedureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AddStoredProcedure' contains a row with empty Id.");
@@ -1468,11 +1468,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeAddTableShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <AddTableList>\n");
-            foreach (var row in model.AddTableList)
+            foreach (var row in model.AddTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AddTable' contains a row with empty Id.");
@@ -1581,11 +1581,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeAddTableColumnShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <AddTableColumnList>\n");
-            foreach (var row in model.AddTableColumnList)
+            foreach (var row in model.AddTableColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AddTableColumn' contains a row with empty Id.");
@@ -1694,11 +1694,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeAddViewShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <AddViewList>\n");
-            foreach (var row in model.AddViewList)
+            foreach (var row in model.AddViewList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AddView' contains a row with empty Id.");
@@ -1810,11 +1810,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeAlterTableColumnShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <AlterTableColumnList>\n");
-            foreach (var row in model.AlterTableColumnList)
+            foreach (var row in model.AlterTableColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'AlterTableColumn' contains a row with empty Id.");
@@ -1930,11 +1930,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeBlockForeignKeyDifferenceShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <BlockForeignKeyDifferenceList>\n");
-            foreach (var row in model.BlockForeignKeyDifferenceList)
+            foreach (var row in model.BlockForeignKeyDifferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BlockForeignKeyDifference' contains a row with empty Id.");
@@ -2051,11 +2051,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeBlockFunctionDifferenceShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <BlockFunctionDifferenceList>\n");
-            foreach (var row in model.BlockFunctionDifferenceList)
+            foreach (var row in model.BlockFunctionDifferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BlockFunctionDifference' contains a row with empty Id.");
@@ -2172,11 +2172,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeBlockIndexDifferenceShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <BlockIndexDifferenceList>\n");
-            foreach (var row in model.BlockIndexDifferenceList)
+            foreach (var row in model.BlockIndexDifferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BlockIndexDifference' contains a row with empty Id.");
@@ -2293,11 +2293,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeBlockPrimaryKeyDifferenceShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <BlockPrimaryKeyDifferenceList>\n");
-            foreach (var row in model.BlockPrimaryKeyDifferenceList)
+            foreach (var row in model.BlockPrimaryKeyDifferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BlockPrimaryKeyDifference' contains a row with empty Id.");
@@ -2414,11 +2414,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeBlockStoredProcedureDifferenceShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <BlockStoredProcedureDifferenceList>\n");
-            foreach (var row in model.BlockStoredProcedureDifferenceList)
+            foreach (var row in model.BlockStoredProcedureDifferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BlockStoredProcedureDifference' contains a row with empty Id.");
@@ -2535,11 +2535,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeBlockTableColumnDifferenceShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <BlockTableColumnDifferenceList>\n");
-            foreach (var row in model.BlockTableColumnDifferenceList)
+            foreach (var row in model.BlockTableColumnDifferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BlockTableColumnDifference' contains a row with empty Id.");
@@ -2656,11 +2656,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeBlockTableDifferenceShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <BlockTableDifferenceList>\n");
-            foreach (var row in model.BlockTableDifferenceList)
+            foreach (var row in model.BlockTableDifferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BlockTableDifference' contains a row with empty Id.");
@@ -2777,11 +2777,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeBlockViewDifferenceShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <BlockViewDifferenceList>\n");
-            foreach (var row in model.BlockViewDifferenceList)
+            foreach (var row in model.BlockViewDifferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'BlockViewDifference' contains a row with empty Id.");
@@ -2901,11 +2901,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeDeployManifestShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <DeployManifestList>\n");
-            foreach (var row in model.DeployManifestList)
+            foreach (var row in model.DeployManifestList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DeployManifest' contains a row with empty Id.");
@@ -3012,11 +3012,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeDropForeignKeyShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <DropForeignKeyList>\n");
-            foreach (var row in model.DropForeignKeyList)
+            foreach (var row in model.DropForeignKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DropForeignKey' contains a row with empty Id.");
@@ -3125,11 +3125,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeDropFunctionShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <DropFunctionList>\n");
-            foreach (var row in model.DropFunctionList)
+            foreach (var row in model.DropFunctionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DropFunction' contains a row with empty Id.");
@@ -3238,11 +3238,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeDropIndexShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <DropIndexList>\n");
-            foreach (var row in model.DropIndexList)
+            foreach (var row in model.DropIndexList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DropIndex' contains a row with empty Id.");
@@ -3351,11 +3351,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeDropPrimaryKeyShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <DropPrimaryKeyList>\n");
-            foreach (var row in model.DropPrimaryKeyList)
+            foreach (var row in model.DropPrimaryKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DropPrimaryKey' contains a row with empty Id.");
@@ -3464,11 +3464,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeDropStoredProcedureShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <DropStoredProcedureList>\n");
-            foreach (var row in model.DropStoredProcedureList)
+            foreach (var row in model.DropStoredProcedureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DropStoredProcedure' contains a row with empty Id.");
@@ -3577,11 +3577,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeDropTableShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <DropTableList>\n");
-            foreach (var row in model.DropTableList)
+            foreach (var row in model.DropTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DropTable' contains a row with empty Id.");
@@ -3690,11 +3690,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeDropTableColumnShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <DropTableColumnList>\n");
-            foreach (var row in model.DropTableColumnList)
+            foreach (var row in model.DropTableColumnList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DropTableColumn' contains a row with empty Id.");
@@ -3803,11 +3803,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeDropViewShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <DropViewList>\n");
-            foreach (var row in model.DropViewList)
+            foreach (var row in model.DropViewList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'DropView' contains a row with empty Id.");
@@ -3919,11 +3919,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeReplaceForeignKeyShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <ReplaceForeignKeyList>\n");
-            foreach (var row in model.ReplaceForeignKeyList)
+            foreach (var row in model.ReplaceForeignKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ReplaceForeignKey' contains a row with empty Id.");
@@ -4036,11 +4036,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeReplaceFunctionShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <ReplaceFunctionList>\n");
-            foreach (var row in model.ReplaceFunctionList)
+            foreach (var row in model.ReplaceFunctionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ReplaceFunction' contains a row with empty Id.");
@@ -4153,11 +4153,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeReplaceIndexShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <ReplaceIndexList>\n");
-            foreach (var row in model.ReplaceIndexList)
+            foreach (var row in model.ReplaceIndexList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ReplaceIndex' contains a row with empty Id.");
@@ -4270,11 +4270,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeReplacePrimaryKeyShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <ReplacePrimaryKeyList>\n");
-            foreach (var row in model.ReplacePrimaryKeyList)
+            foreach (var row in model.ReplacePrimaryKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ReplacePrimaryKey' contains a row with empty Id.");
@@ -4387,11 +4387,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeReplaceStoredProcedureShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <ReplaceStoredProcedureList>\n");
-            foreach (var row in model.ReplaceStoredProcedureList)
+            foreach (var row in model.ReplaceStoredProcedureList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ReplaceStoredProcedure' contains a row with empty Id.");
@@ -4504,11 +4504,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeReplaceViewShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <ReplaceViewList>\n");
-            foreach (var row in model.ReplaceViewList)
+            foreach (var row in model.ReplaceViewList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'ReplaceView' contains a row with empty Id.");
@@ -4621,11 +4621,11 @@ namespace MetaSqlDeployManifest
         private static byte[] SerializeTruncateTableColumnDataShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaSqlDeployManifest>\n");
             builder.Append("  <TruncateTableColumnDataList>\n");
-            foreach (var row in model.TruncateTableColumnDataList)
+            foreach (var row in model.TruncateTableColumnDataList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
                 var rowId = RequireIdentity(row.Id, "Entity 'TruncateTableColumnData' contains a row with empty Id.");
@@ -5285,7 +5285,7 @@ namespace MetaSqlDeployManifest
             public void AddAddForeignKeyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AddForeignKey' contains a row with empty Id.");
-                addForeignKeyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                addForeignKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!addForeignKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AddForeignKey' contains duplicate Id '{normalizedId}'.");
@@ -5297,7 +5297,7 @@ namespace MetaSqlDeployManifest
             public void AddAddFunctionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AddFunction' contains a row with empty Id.");
-                addFunctionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                addFunctionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!addFunctionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AddFunction' contains duplicate Id '{normalizedId}'.");
@@ -5309,7 +5309,7 @@ namespace MetaSqlDeployManifest
             public void AddAddIndexId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AddIndex' contains a row with empty Id.");
-                addIndexIds ??= new HashSet<string>(StringComparer.Ordinal);
+                addIndexIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!addIndexIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AddIndex' contains duplicate Id '{normalizedId}'.");
@@ -5321,7 +5321,7 @@ namespace MetaSqlDeployManifest
             public void AddAddPrimaryKeyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AddPrimaryKey' contains a row with empty Id.");
-                addPrimaryKeyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                addPrimaryKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!addPrimaryKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AddPrimaryKey' contains duplicate Id '{normalizedId}'.");
@@ -5333,7 +5333,7 @@ namespace MetaSqlDeployManifest
             public void AddAddSchemaId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AddSchema' contains a row with empty Id.");
-                addSchemaIds ??= new HashSet<string>(StringComparer.Ordinal);
+                addSchemaIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!addSchemaIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AddSchema' contains duplicate Id '{normalizedId}'.");
@@ -5345,7 +5345,7 @@ namespace MetaSqlDeployManifest
             public void AddAddStoredProcedureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AddStoredProcedure' contains a row with empty Id.");
-                addStoredProcedureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                addStoredProcedureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!addStoredProcedureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AddStoredProcedure' contains duplicate Id '{normalizedId}'.");
@@ -5357,7 +5357,7 @@ namespace MetaSqlDeployManifest
             public void AddAddTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AddTable' contains a row with empty Id.");
-                addTableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                addTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!addTableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AddTable' contains duplicate Id '{normalizedId}'.");
@@ -5369,7 +5369,7 @@ namespace MetaSqlDeployManifest
             public void AddAddTableColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AddTableColumn' contains a row with empty Id.");
-                addTableColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                addTableColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!addTableColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AddTableColumn' contains duplicate Id '{normalizedId}'.");
@@ -5381,7 +5381,7 @@ namespace MetaSqlDeployManifest
             public void AddAddViewId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AddView' contains a row with empty Id.");
-                addViewIds ??= new HashSet<string>(StringComparer.Ordinal);
+                addViewIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!addViewIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AddView' contains duplicate Id '{normalizedId}'.");
@@ -5393,7 +5393,7 @@ namespace MetaSqlDeployManifest
             public void AddAlterTableColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'AlterTableColumn' contains a row with empty Id.");
-                alterTableColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                alterTableColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!alterTableColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AlterTableColumn' contains duplicate Id '{normalizedId}'.");
@@ -5405,7 +5405,7 @@ namespace MetaSqlDeployManifest
             public void AddBlockForeignKeyDifferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BlockForeignKeyDifference' contains a row with empty Id.");
-                blockForeignKeyDifferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                blockForeignKeyDifferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!blockForeignKeyDifferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BlockForeignKeyDifference' contains duplicate Id '{normalizedId}'.");
@@ -5417,7 +5417,7 @@ namespace MetaSqlDeployManifest
             public void AddBlockFunctionDifferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BlockFunctionDifference' contains a row with empty Id.");
-                blockFunctionDifferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                blockFunctionDifferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!blockFunctionDifferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BlockFunctionDifference' contains duplicate Id '{normalizedId}'.");
@@ -5429,7 +5429,7 @@ namespace MetaSqlDeployManifest
             public void AddBlockIndexDifferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BlockIndexDifference' contains a row with empty Id.");
-                blockIndexDifferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                blockIndexDifferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!blockIndexDifferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BlockIndexDifference' contains duplicate Id '{normalizedId}'.");
@@ -5441,7 +5441,7 @@ namespace MetaSqlDeployManifest
             public void AddBlockPrimaryKeyDifferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BlockPrimaryKeyDifference' contains a row with empty Id.");
-                blockPrimaryKeyDifferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                blockPrimaryKeyDifferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!blockPrimaryKeyDifferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BlockPrimaryKeyDifference' contains duplicate Id '{normalizedId}'.");
@@ -5453,7 +5453,7 @@ namespace MetaSqlDeployManifest
             public void AddBlockStoredProcedureDifferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BlockStoredProcedureDifference' contains a row with empty Id.");
-                blockStoredProcedureDifferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                blockStoredProcedureDifferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!blockStoredProcedureDifferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BlockStoredProcedureDifference' contains duplicate Id '{normalizedId}'.");
@@ -5465,7 +5465,7 @@ namespace MetaSqlDeployManifest
             public void AddBlockTableColumnDifferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BlockTableColumnDifference' contains a row with empty Id.");
-                blockTableColumnDifferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                blockTableColumnDifferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!blockTableColumnDifferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BlockTableColumnDifference' contains duplicate Id '{normalizedId}'.");
@@ -5477,7 +5477,7 @@ namespace MetaSqlDeployManifest
             public void AddBlockTableDifferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BlockTableDifference' contains a row with empty Id.");
-                blockTableDifferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                blockTableDifferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!blockTableDifferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BlockTableDifference' contains duplicate Id '{normalizedId}'.");
@@ -5489,7 +5489,7 @@ namespace MetaSqlDeployManifest
             public void AddBlockViewDifferenceId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'BlockViewDifference' contains a row with empty Id.");
-                blockViewDifferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                blockViewDifferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!blockViewDifferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BlockViewDifference' contains duplicate Id '{normalizedId}'.");
@@ -5501,7 +5501,7 @@ namespace MetaSqlDeployManifest
             public void AddDeployManifestId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DeployManifest' contains a row with empty Id.");
-                deployManifestIds ??= new HashSet<string>(StringComparer.Ordinal);
+                deployManifestIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!deployManifestIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DeployManifest' contains duplicate Id '{normalizedId}'.");
@@ -5513,7 +5513,7 @@ namespace MetaSqlDeployManifest
             public void AddDropForeignKeyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DropForeignKey' contains a row with empty Id.");
-                dropForeignKeyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dropForeignKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dropForeignKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DropForeignKey' contains duplicate Id '{normalizedId}'.");
@@ -5525,7 +5525,7 @@ namespace MetaSqlDeployManifest
             public void AddDropFunctionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DropFunction' contains a row with empty Id.");
-                dropFunctionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dropFunctionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dropFunctionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DropFunction' contains duplicate Id '{normalizedId}'.");
@@ -5537,7 +5537,7 @@ namespace MetaSqlDeployManifest
             public void AddDropIndexId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DropIndex' contains a row with empty Id.");
-                dropIndexIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dropIndexIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dropIndexIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DropIndex' contains duplicate Id '{normalizedId}'.");
@@ -5549,7 +5549,7 @@ namespace MetaSqlDeployManifest
             public void AddDropPrimaryKeyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DropPrimaryKey' contains a row with empty Id.");
-                dropPrimaryKeyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dropPrimaryKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dropPrimaryKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DropPrimaryKey' contains duplicate Id '{normalizedId}'.");
@@ -5561,7 +5561,7 @@ namespace MetaSqlDeployManifest
             public void AddDropStoredProcedureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DropStoredProcedure' contains a row with empty Id.");
-                dropStoredProcedureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dropStoredProcedureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dropStoredProcedureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DropStoredProcedure' contains duplicate Id '{normalizedId}'.");
@@ -5573,7 +5573,7 @@ namespace MetaSqlDeployManifest
             public void AddDropTableId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DropTable' contains a row with empty Id.");
-                dropTableIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dropTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dropTableIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DropTable' contains duplicate Id '{normalizedId}'.");
@@ -5585,7 +5585,7 @@ namespace MetaSqlDeployManifest
             public void AddDropTableColumnId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DropTableColumn' contains a row with empty Id.");
-                dropTableColumnIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dropTableColumnIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dropTableColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DropTableColumn' contains duplicate Id '{normalizedId}'.");
@@ -5597,7 +5597,7 @@ namespace MetaSqlDeployManifest
             public void AddDropViewId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'DropView' contains a row with empty Id.");
-                dropViewIds ??= new HashSet<string>(StringComparer.Ordinal);
+                dropViewIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!dropViewIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'DropView' contains duplicate Id '{normalizedId}'.");
@@ -5609,7 +5609,7 @@ namespace MetaSqlDeployManifest
             public void AddReplaceForeignKeyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ReplaceForeignKey' contains a row with empty Id.");
-                replaceForeignKeyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                replaceForeignKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!replaceForeignKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ReplaceForeignKey' contains duplicate Id '{normalizedId}'.");
@@ -5621,7 +5621,7 @@ namespace MetaSqlDeployManifest
             public void AddReplaceFunctionId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ReplaceFunction' contains a row with empty Id.");
-                replaceFunctionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                replaceFunctionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!replaceFunctionIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ReplaceFunction' contains duplicate Id '{normalizedId}'.");
@@ -5633,7 +5633,7 @@ namespace MetaSqlDeployManifest
             public void AddReplaceIndexId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ReplaceIndex' contains a row with empty Id.");
-                replaceIndexIds ??= new HashSet<string>(StringComparer.Ordinal);
+                replaceIndexIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!replaceIndexIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ReplaceIndex' contains duplicate Id '{normalizedId}'.");
@@ -5645,7 +5645,7 @@ namespace MetaSqlDeployManifest
             public void AddReplacePrimaryKeyId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ReplacePrimaryKey' contains a row with empty Id.");
-                replacePrimaryKeyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                replacePrimaryKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!replacePrimaryKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ReplacePrimaryKey' contains duplicate Id '{normalizedId}'.");
@@ -5657,7 +5657,7 @@ namespace MetaSqlDeployManifest
             public void AddReplaceStoredProcedureId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ReplaceStoredProcedure' contains a row with empty Id.");
-                replaceStoredProcedureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                replaceStoredProcedureIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!replaceStoredProcedureIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ReplaceStoredProcedure' contains duplicate Id '{normalizedId}'.");
@@ -5669,7 +5669,7 @@ namespace MetaSqlDeployManifest
             public void AddReplaceViewId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'ReplaceView' contains a row with empty Id.");
-                replaceViewIds ??= new HashSet<string>(StringComparer.Ordinal);
+                replaceViewIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!replaceViewIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ReplaceView' contains duplicate Id '{normalizedId}'.");
@@ -5681,7 +5681,7 @@ namespace MetaSqlDeployManifest
             public void AddTruncateTableColumnDataId(string? id)
             {
                 var normalizedId = RequireIdentity(id, "Entity 'TruncateTableColumnData' contains a row with empty Id.");
-                truncateTableColumnDataIds ??= new HashSet<string>(StringComparer.Ordinal);
+                truncateTableColumnDataIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!truncateTableColumnDataIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TruncateTableColumnData' contains duplicate Id '{normalizedId}'.");
@@ -6371,7 +6371,7 @@ namespace MetaSqlDeployManifest
         private static Dictionary<string, T> BuildById<T>(IEnumerable<T> rows, Func<T, string> getId, string entityName)
             where T : class
         {
-            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            var rowsById = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             foreach (var row in rows)
             {
                 ArgumentNullException.ThrowIfNull(row);
