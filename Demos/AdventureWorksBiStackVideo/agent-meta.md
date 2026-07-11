@@ -21,10 +21,10 @@ Work like this:
 3. Create a clean run folder.
 4. Discover the available CLI surface with `where`, `--help`, `help`, README files, and the MetaDocs reference.
 5. Write `PLAN.md` before running artifact-producing commands.
-6. Extract source schema from the live source before creating product artifacts.
-7. Inspect the extracted source schema enough to choose a bounded analytical slice.
-8. Decide the stack path and record the decision.
-9. Generate visible `.cmd` stage scripts.
+6. Create the run's MetaMesh workspace and author the source extraction operation.
+7. Extract source schema from the live source before creating BI domain artifacts.
+8. Inspect the extracted source schema enough to choose a bounded analytical slice.
+9. Decide the stack path, record the decision, and extend the mesh with visible, named phase operations.
 10. Execute stages as far as the local tooling and environment allow.
 11. Record outputs, snags, and the next honest step.
 
@@ -42,11 +42,11 @@ Before running the first product command, create `PLAN.md` with:
 - target databases and analytical server/database names
 - layer plan: SourceDBs, RDV, BDV, DW/Mart, Analytics, Tabular or MultiDimensional
 - planned folder names for every layer and database
-- stage scripts to create
+- MetaMesh operations to create
 - expected evidence after each stage
 - known unknowns or CLI surfaces to inspect
 
-Run the work in phases. Each phase should leave scripts, logs, and a short status note before the next phase starts:
+Run the work in phases. Each phase should leave modeled operation steps, logs, and a short status note before the next phase starts:
 
 1. Plan and CLI discovery.
 2. Source readiness and source schema extraction.
@@ -114,29 +114,14 @@ Not every task outside a demo needs every layer. Use the smallest honest slice t
 
 Use a task-specific run folder. Keep generated work out of source-controlled product folders unless the task explicitly asks for committed sample assets.
 
-The accepted recording run should be clean: one plan, one ordered set of stage scripts, one `run.cmd`, and final logs from the successful path. Failed exploratory folders may be deleted once the blocker has been understood and corrected.
+The accepted recording run should be clean: one plan, one MetaMesh workspace with named phase operations, and final logs from the successful path. Failed exploratory folders may be deleted once the blocker has been understood and corrected.
 
 A practical run folder uses layer and database/system names. Avoid flat generic workspace names such as `SourceSchemaWS`, `TransformWS`, `BindingWS`, or `CurrentMetaSqlWS` in a full or multi-database run; those names collapse ownership and become ambiguous as soon as more than one database or layer exists. Also avoid appending `WS` to every folder. A folder with `workspace.xml` inside is already a workspace; name the folder by its role, such as `Schema`, `Transforms`, `Binding`, `Quality`, `Sql`, `Pipeline`, or `Orchestration`.
 
 Use a shape like this:
 
 ```text
-run.cmd
-stages/
-  00-source-readiness.cmd
-  01-extract-source-schema.cmd
-  02-author-rdv.cmd
-  03-author-bdv.cmd
-  04-author-dw-mart.cmd
-  05-bind-layer-transforms.cmd
-  06-data-quality.cmd
-  07-realize-or-deploy-sql.cmd
-  08-author-pipeline.cmd
-  09-author-orchestration.cmd
-  10-execute-orchestration.cmd
-  11-author-analytics.cmd
-  12-deploy-process-tabular.cmd
-  13-final-analytics-proof.cmd
+Stack.MetaMesh/
 SNAG-LOG.md
 PLAN.md
 journal.md
@@ -181,7 +166,7 @@ ops/
 run-artifacts/
 ```
 
-The top-level `run.cmd` should call stage scripts in order and stop on the first failure. Each stage script should echo the command it is about to run and leave normal CLI output visible.
+The MetaMesh workspace should declare every workspace participating in the run and expose one operation per reviewable phase. Inspect operations with `meta-mesh steps --operation <name>`, validate before execution, and run phases in the order recorded in `PLAN.md`.
 
 The exact database folder names should come from the task and environment. For example, if the source is `AdventureWorks2022`, use `source\AdventureWorks2022\Schema`, not a root-level `SourceSchemaWS`.
 
@@ -501,7 +486,7 @@ If no analytical server is available, still produce the analytical workspace and
 
 Use `MetaPipeline` for modeled table-load units of work first. For a full BI stack demo, the accepted operational path is one transform-backed pipeline per table-producing transform unless there is a specific modeled reason that multiple transforms are one atomic table load.
 
-Do not collapse the RDV, BDV, and DW/mart table loads into one generic executable wrapper. Executable pipeline steps can still be useful for auxiliary deployment, processing, smoke checks, or helper scripts after the modeled load DAG exists, but they are not a substitute for transform-backed ETL truth.
+Do not collapse the RDV, BDV, and DW/mart table loads into one generic executable wrapper. Executable pipeline steps can still be useful for auxiliary deployment, processing, smoke checks, or external commands after the modeled load DAG exists, but they are not a substitute for transform-backed ETL truth.
 
 Create a pipeline workspace and a pipeline for the table load:
 
@@ -519,8 +504,8 @@ meta-pipeline add-step --workspace ops\Pipeline --pipeline LoadFactSales --scrip
 Add auxiliary executable steps only for commands such as deploy, analytical process, smoke checks, or helper scripts:
 
 ```cmd
-meta-pipeline add-pipeline --workspace ops\Pipeline --name ProcessAnalytics
-meta-pipeline add-executable-step --workspace ops\Pipeline --pipeline ProcessAnalytics --step-name ProcessTabular --executable cmd.exe --arguments "/c stages\\12-deploy-process-tabular.cmd" --working-directory .
+meta-pipeline add-pipeline --workspace ops\Pipeline --name SmokeCheck
+meta-pipeline add-executable-step --workspace ops\Pipeline --pipeline SmokeCheck --step-name CheckTarget --executable meta-sql.exe --arguments "execute --connection-env AW_DW_SQL --query \"SELECT 1\" --quiet" --working-directory .
 ```
 
 Inspect or execute:

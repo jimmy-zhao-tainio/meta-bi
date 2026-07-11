@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:source-schema" MeshId="mesh:default">
+      <Description>Source schema extracted from the restored AdventureWorks2022 OLTP database.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>source-schema</Name>
+      <Path>Runs\source\AdventureWorks2022\Schema</Path>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

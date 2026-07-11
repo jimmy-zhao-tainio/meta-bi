@@ -5,12 +5,12 @@
 1. Show `BUSINESS-REQUIREMENTS.md`.
 2. Show the source setup is an ordinary restored AdventureWorks OLTP SQL database, not copied SSAS project metadata.
 3. Before recording, run `prepare-adventureworks-db.cmd` if the database is not already restored.
-4. In the recording, run `00-env.cmd` and optionally `01-check-source.cmd` to show the connection settings and source readiness.
+4. In the recording, set the documented connection environment variables and run `meta-mesh run --operation validate-source` from `AdventureWorksBiStackVideo.MetaMesh` to show source readiness.
 5. Show `agent-meta.md` and `AGENT-TASK.md`.
 6. Start a fresh agent run and give it the business brief plus the connection environment variables.
 7. Have the agent write `PLAN.md` first. Review the phase plan before product artifact generation.
 8. Record the agent running the stack in phases: source extraction, RDV, BDV, DW/mart, binding/DQ, SQL deployment, transform-backed pipeline setup, orchestration inference/run planning, and analytics/tabular generation.
-9. Run or let the agent run the generated command scripts in order.
+9. Inspect and run the agent-authored MetaMesh operations in the phase order recorded in `PLAN.md`.
 10. Inspect the generated workspaces at a high level.
 11. Run orchestration execution and show the compact progress output.
 12. After the modeled table-load orchestration succeeds, deploy/process the tabular database. Then connect from Excel or run a DAX-capable proof and display a measure requested by the brief.
@@ -30,7 +30,7 @@
 
 ## Good cuts
 
-- Requirements brief to generated command scripts.
+- Requirements brief to modeled MetaMesh operations.
 - Live SQL source to generated source schema.
 - Source schema to RDV.
 - RDV to BDV.
@@ -52,7 +52,7 @@
 - Do not let the agent one-shot the whole stack without a written plan and phase gates.
 - Do not use flat root-level workspace folders like `SourceSchemaWS`, `TransformWS`, or `BindingWS`; generated folders should be layer/database scoped and role-named.
 - Do not accept one executable pipeline or one monolithic command script as the primary orchestration proof. The table-load DAG should come from transform-backed pipeline tasks.
-- Do not hide the command scripts. The video should show that the system is explainable and repeatable.
+- Do not hide the operation steps. The video should show that the system is explainable and repeatable.
 - Do not fix product gaps silently. Halt the diagnostic run, record the snag, fix the root cause, then record from a clean rerun.
 
 ## Success criteria for the video

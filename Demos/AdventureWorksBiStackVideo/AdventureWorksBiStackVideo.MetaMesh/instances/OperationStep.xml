@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup-source-schema:remove-source-schema" OperationId="operation:cleanup-source-schema">
+      <Arguments>/d /c if exist "Runs\source\AdventureWorks2022\Schema" rmdir /s /q "Runs\source\AdventureWorks2022\Schema"</Arguments>
+      <Description>Delete the generated source schema workspace so extraction can be replayed.</Description>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-source-schema</Name>
+      <WorkingDirectory>{mesh.root}</WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:extract-source-schema:extract-schema" OperationId="operation:extract-source-schema">
+      <Arguments>extract sqlserver --new-workspace "{workspace:source-schema.path}" --connection-env {env:AW_SOURCE_SQL} --system AdventureWorks2022 --all-schemas --all-tables</Arguments>
+      <Description>Create the source MetaSchema workspace from the live AdventureWorks2022 database.</Description>
+      <Executable>meta-schema.exe</Executable>
+      <Name>extract-schema</Name>
+      <WorkingDirectory>{mesh.root}</WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:validate-source:query-source" OperationId="operation:validate-source">
+      <Arguments>execute --connection-env {env:AW_SOURCE_SQL} --query "SET NOCOUNT ON; SELECT 'AdventureWorks OLTP source OK' AS Status; SELECT COUNT_BIG(*) AS SalesOrderHeaderRows FROM Sales.SalesOrderHeader; SELECT COUNT_BIG(*) AS SalesOrderDetailRows FROM Sales.SalesOrderDetail; SELECT COUNT_BIG(*) AS ProductRows FROM Production.Product; SELECT COUNT_BIG(*) AS CustomerRows FROM Sales.Customer; SELECT COUNT_BIG(*) AS StoreRows FROM Sales.Store;"</Arguments>
+      <Description>Connect through AW_SOURCE_SQL and query representative source tables.</Description>
+      <Executable>meta-sql.exe</Executable>
+      <Name>query-source</Name>
+      <WorkingDirectory>{mesh.root}</WorkingDirectory>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

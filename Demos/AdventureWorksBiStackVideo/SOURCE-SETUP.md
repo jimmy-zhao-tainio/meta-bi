@@ -31,21 +31,22 @@ Then run:
 prepare-adventureworks-db.cmd
 ```
 
-Set the source connection variables with `00-env.cmd` or override them before running checks:
+Set the source connection variables before running checks:
 
-```cmd
-set AW_SQL_SERVER=localhost
-set AW_SOURCE_DATABASE=AdventureWorks2022
-set AW_SOURCE_SQL=Server=localhost;Database=AdventureWorks2022;Trusted_Connection=True;TrustServerCertificate=True;
+```powershell
+$env:AW_SQL_SERVER = "localhost"
+$env:AW_SOURCE_DATABASE = "AdventureWorks2022"
+$env:AW_SOURCE_SQL = "Server=localhost;Database=AdventureWorks2022;Trusted_Connection=True;TrustServerCertificate=True;"
 ```
 
 Then run:
 
-```cmd
-01-check-source.cmd
+```powershell
+cd AdventureWorksBiStackVideo.MetaMesh
+meta-mesh run --operation validate-source
 ```
 
-## First product command in the recording
+## First BI workspace operation in the recording
 
 After the readiness check passes, the recorded agent run should begin product work by extracting the source schema from the live SQL database:
 
@@ -53,10 +54,10 @@ After the readiness check passes, the recorded agent run should begin product wo
 meta-schema extract sqlserver --new-workspace source\AdventureWorks2022\Schema --connection-env AW_SOURCE_SQL --system AdventureWorks2022 --all-schemas --all-tables
 ```
 
-The scaffold version writes to `Runs\source\%AW_SOURCE_DATABASE%\Schema` and exists only as a reference/preflight command:
+The scaffold mesh writes to `Runs\source\AdventureWorks2022\Schema` and exposes the extraction only as a reference/preflight operation:
 
-```cmd
-03-extract-source-schema.cmd
+```powershell
+meta-mesh run --operation extract-source-schema
 ```
 
 For the main video, do not pre-create the source schema workspace. Let the recorded agent create the source-database-scoped `Schema` folder inside its generated run folder.

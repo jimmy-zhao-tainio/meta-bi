@@ -16,18 +16,18 @@ The point of the recording is to see what you can create from:
 
 - Do not import `.dwproj`, `.bim`, XMLA, TMSL, or Visual Studio generated project artifacts as product truth.
 - Use the restored AdventureWorks OLTP SQL Server database as input.
-- The first artifact-producing product command must extract source schema from that SQL database with `meta-schema extract sqlserver`.
-- You may inspect CLI help, repo docs, and source readiness before that product command.
+- The first step that creates a BI domain workspace must extract source schema from that SQL database with `meta-schema extract sqlserver`. Planning and authoring the MetaMesh workflow may precede it.
+- You may inspect CLI help, repo docs, and source readiness before running that domain step.
 - Do not start from `.bak`, `.sql`, sample project files, tutorial artifacts, or manually typed source schemas. The backup is only a way to restore the SQL database before the run.
 - Do not assume a human has already extracted source schema metadata; create `source\AdventureWorks2022\Schema` or the equivalent source-database-scoped schema workspace as part of the generated run.
 - Use `meta` / `meta-bi` CLI commands to create sanctioned workspaces and generated assets.
 - Put generated output under `%AW_RUN_ROOT%` in a clear timestamped child folder. If the caller supplies a run folder, use that folder.
-- Write `PLAN.md` before artifact-producing product commands. Do not one-shot the whole demo; run it in reviewed phases with evidence gates.
+- Write `PLAN.md` before authoring the run's MetaMesh operations or creating BI domain workspaces. Do not one-shot the whole demo; run it in reviewed phases with evidence gates.
 - Do not skip RDV or BDV for this recording. A source-to-DW/mart shortcut is not an accepted full ETL stack. If current tooling blocks RDV or BDV, record the blocker and mark the run partial.
 - Include the analytics target in the accepted run. For this recording the target is Tabular unless the environment has no reachable Tabular server; if Tabular deployment or processing is blocked by environment, record that exact blocker and mark the analytics proof partial.
 - Name folders by layer, database, and role. Do not create root-level generic folders such as `SourceSchemaWS`, `TransformWS`, `BindingWS`, or `CurrentMetaSqlWS`, and do not append `WS` to every folder. Use names like `source\AdventureWorks2022\Schema`, `rdv\<database>\RawVault`, `bdv\<database>\BusinessVault`, `dw\<database>\Transforms`, `dw\<database>\Binding`, `analytics\Tabular`, and `ops\Orchestration`.
-- Write plain `.cmd` files for setup, generation, deployment, DQ, pipeline setup, orchestration setup, and orchestration execution.
-- The `.cmd` files must print the command being executed and show normal command output.
+- Create one MetaMesh workspace in the run folder. Declare the workspaces involved and author named operations for source extraction, layer authoring, deployment, DQ, pipeline setup, orchestration, execution, and the analytical proof.
+- Keep each operation inspectable through `meta-mesh steps --operation <name>` and validate it before running it. Use `--arguments-stdin` when a child command contains quoting that should not be flattened into shell syntax.
 - Use environment variables for all connection strings and server names.
 - Model the table-load operations as transform-backed `MetaPipeline` work. Use one pipeline per table-producing RDV, BDV, and DW/mart transform unless a specific modeled reason makes a group atomic. Executable pipeline steps may be auxiliary, but they must not replace the transform-backed ETL DAG.
 - Let `MetaOrchestration` infer the table-load DAG from modeled pipeline transform/binding evidence. Do not use manifest order, manual dependency rows, or a single executable wrapper as the primary orchestration proof.
@@ -55,12 +55,12 @@ Create a run folder containing, as the product supports them:
 - `ops\Pipeline`
 - `ops\Orchestration`
 - `run-artifacts`
-- generated command scripts
+- a MetaMesh workspace containing the replayable operations
 - a short `summary.txt`
 
 ## Recording questions to answer
 
-As you work, make the generated scripts and `summary.txt` answer these questions:
+As you work, make the modeled operations and `summary.txt` answer these questions:
 
 - Did you extract schemas from AdventureWorks?
 - Did you create a plan first and execute the run in staged phases?
@@ -77,30 +77,26 @@ As you work, make the generated scripts and `summary.txt` answer these questions
 - Did the Tabular database deploy and process after the modeled table-load orchestration?
 - If Tabular processing succeeds, what Excel-visible or DAX-queryable measure should be used as the final smoke check?
 
-## Expected command scripts
+## Expected operations
 
-Generate scripts with simple names and visible commands.
+Use short operation names that expose the phases of the run, for example:
 
-Create one top-level `run.cmd` in the run folder. It should call the stage scripts in order and stop on failure. Stage scripts are still encouraged because they make the CLI flow readable, for example:
+- `validate-source`
+- `extract-source-schema`
+- `author-rdv`
+- `author-bdv`
+- `author-dw-mart`
+- `bind-layer-transforms`
+- `derive-data-quality`
+- `deploy-layer-sql`
+- `author-pipeline`
+- `author-orchestration`
+- `execute-orchestration`
+- `author-analytics`
+- `deploy-process-tabular`
+- `prove-analytics`
 
-- `generated-setup-source-check.cmd`
-- `generated-extract-source-schema.cmd`
-- `generated-author-rdv.cmd`
-- `generated-author-bdv.cmd`
-- `generated-author-dw-mart.cmd`
-- `generated-bind-layer-transforms.cmd`
-- `generated-dq.cmd`
-- `generated-deploy-layer-sql.cmd`
-- `generated-author-pipeline.cmd`
-- `generated-author-orchestration.cmd`
-- `generated-execute-orchestration.cmd`
-- `generated-author-analytics.cmd`
-- `generated-deploy-tabular.cmd`
-- `generated-process-tabular.cmd`
-- `generated-tabular-proof.cmd`
-- `generated-open-excel-check-notes.txt`
-
-Use the actual CLI surface available in this repo. Do not invent commands. If you need to execute CLI commands while discovering or authoring the stack, keep doing that; the final `run.cmd` is the replayable command for the live video run.
+Use the actual CLI surface available in this repo. Do not invent commands. The run folder's MetaMesh workspace is the replayable command surface for the live video run; validate and execute one operation at a time so phase gates remain visible.
 
 ## Environment variables
 
@@ -131,7 +127,7 @@ Do not deploy RDV, BDV, and DW/mart into one shared default target database unle
 
 If the full stack is too large for one pass, do the smallest honest vertical slice through the required layers. A narrow sales slice is fine; skipping RDV and BDV is not.
 
-1. Plan first in `PLAN.md`, then source schema extraction from the restored SQL database, for example:
+1. Plan first in `PLAN.md`, create the run's MetaMesh workspace, then make source schema extraction from the restored SQL database its first BI workspace-producing step, for example:
 
    ```cmd
    meta-schema extract sqlserver --new-workspace source\AdventureWorks2022\Schema --connection-env AW_SOURCE_SQL --system AdventureWorks2022 --all-schemas --all-tables
@@ -151,4 +147,4 @@ Use AdventureWorks OLTP source objects where they fit the business request, such
 
 The preferred full ending is: orchestration runs the generated transform-backed table-load pipeline stack, the tabular database is deployed and processed from the mart, then the operator connects from Excel or runs a DAX-capable proof and displays at least one required measure such as sales amount by calendar month or product category.
 
-Stop only for a real blocker. If blocked, leave the diagnostic run folder with the scripts and a clear snag entry, fix the root cause, then create a clean rerun for the accepted demo evidence.
+Stop only for a real blocker. If blocked, leave the diagnostic run folder with its mesh, evidence, and a clear snag entry, fix the root cause, then create a clean rerun for the accepted demo evidence.

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup-source-schema" MeshId="mesh:default">
+      <Description>Remove the generated AdventureWorks source schema workspace.</Description>
+      <Name>cleanup-source-schema</Name>
+    </Operation>
+    <Operation Id="operation:extract-source-schema" MeshId="mesh:default">
+      <Description>Extract the restored AdventureWorks2022 database into a MetaSchema workspace for a preflight run.</Description>
+      <Name>extract-source-schema</Name>
+    </Operation>
+    <Operation Id="operation:validate-source" MeshId="mesh:default">
+      <Description>Verify the restored AdventureWorks OLTP source and the tables used by the recording.</Description>
+      <Name>validate-source</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

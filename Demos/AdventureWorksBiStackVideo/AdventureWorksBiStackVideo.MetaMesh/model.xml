@@ -1,0 +1,45 @@
+<Model name="MetaMesh">
+  <EntityList>
+    <Entity name="Mesh">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="RootPath" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="Operation">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Mesh" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="OperationStep">
+      <PropertyList>
+        <Property name="Arguments" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Executable" />
+        <Property name="ExpectedExitCode" isRequired="false" />
+        <Property name="Name" />
+        <Property name="WorkingDirectory" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Operation" />
+        <Relationship entity="OperationStep" role="PreviousStep" isRequired="false" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Workspace">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="ModelName" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Path" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Mesh" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

@@ -16,7 +16,7 @@ The intended takeaway is that a large middle slice of the BI stack is automatic 
 
 This scaffold intentionally keeps generated workspaces out of source control. A recording run should write generated output under `Runs`.
 
-The generated run should include visible stage `.cmd` files and, when practical, one top-level `run.cmd` that calls them in order for replay or live execution.
+The generated run should include a MetaMesh workspace with named, inspectable operations for each phase. The mesh is the replayable workflow surface for the recording.
 
 ## Files
 
@@ -27,21 +27,33 @@ The generated run should include visible stage `.cmd` files and, when practical,
 - `SOURCE-SETUP.md`: AdventureWorks OLTP source setup notes and official links.
 - `VIDEO-RUNBOOK.md`: recording sequence and cut points.
 - `SNAG-LOG.md`: product snags found while preparing or running the demo.
-- `00-env.cmd`: local default environment variables.
+- `AdventureWorksBiStackVideo.MetaMesh`: source readiness, optional preflight extraction, and source-workspace cleanup operations.
 - `prepare-adventureworks-db.cmd`: downloads/restores `AdventureWorks2022` and verifies source data.
-- `01-check-source.cmd`: checks that the restored AdventureWorks source database is reachable.
-- `02-show-agent-task.cmd`: prints the agent task and business brief for recording.
-- `03-extract-source-schema.cmd`: optional reference/preflight command for the first schema-extraction action the agent should perform during the recorded run.
+- `make-demo-video.ps1`: renders the prepared recording assets; it is a media-production utility rather than a BI workflow.
 
 ## Quick start
 
 Restore AdventureWorks first. Then from this folder:
 
-```cmd
-prepare-adventureworks-db.cmd
-00-env.cmd
-01-check-source.cmd
-02-show-agent-task.cmd
+```powershell
+.\prepare-adventureworks-db.cmd
+
+$env:AW_SQL_SERVER = "localhost"
+$env:AW_SOURCE_DATABASE = "AdventureWorks2022"
+$env:AW_RDV_DATABASE = "AdventureWorksRawVault"
+$env:AW_BDV_DATABASE = "AdventureWorksBusinessVault"
+$env:AW_DW_DATABASE = "AdventureWorksMetaDemo"
+$env:AW_TABULAR_SERVER = ".\TABULAR"
+$env:AW_TABULAR_DATABASE = "AdventureWorksMetaDemoTabular"
+$env:AW_RUN_ROOT = "Runs"
+$env:AW_SOURCE_SQL = "Server=localhost;Database=AdventureWorks2022;Trusted_Connection=True;TrustServerCertificate=True;"
+$env:AW_RDV_SQL = "Server=localhost;Database=AdventureWorksRawVault;Trusted_Connection=True;TrustServerCertificate=True;"
+$env:AW_BDV_SQL = "Server=localhost;Database=AdventureWorksBusinessVault;Trusted_Connection=True;TrustServerCertificate=True;"
+$env:AW_DW_SQL = "Server=localhost;Database=AdventureWorksMetaDemo;Trusted_Connection=True;TrustServerCertificate=True;"
+
+cd AdventureWorksBiStackVideo.MetaMesh
+meta-mesh run --operation validate-source
+cd ..
 ```
 
 Then start a fresh agent context and give it:
@@ -49,13 +61,13 @@ Then start a fresh agent context and give it:
 - `BUSINESS-REQUIREMENTS.md`
 - `agent-meta.md`
 - `AGENT-TASK.md`
-- the connection environment variable names and values from `00-env.cmd`
+- the connection environment variable names and values established for the recording
 
 The supervising agent or human should separately read `supervisor-meta.md` before approving gates.
 
-`00-env.cmd` defines separate SQL targets for the modeled layers: `AW_RDV_SQL`, `AW_BDV_SQL`, and `AW_DW_SQL`. Use those for RDV, BDV, and DW/mart deploy-plan/deploy/extract work respectively. `AW_TARGET_SQL` is only an alias for the DW/mart target and should not be used for RDV or BDV deployment in the full-stack demo.
+Use the separate SQL targets `AW_RDV_SQL`, `AW_BDV_SQL`, and `AW_DW_SQL` for RDV, BDV, and DW/mart deploy-plan/deploy/extract work respectively. Do not collapse the modeled layers into one implicit target connection.
 
-The agent should perform the source schema extraction during the recorded run. The first generated product command should be this kind of command:
+The agent should perform the source schema extraction during the recorded run. The first operation step that creates a BI domain workspace should be this kind of command:
 
 ```cmd
 meta-schema extract sqlserver --new-workspace source\AdventureWorks2022\Schema --connection-env AW_SOURCE_SQL --system AdventureWorks2022 --all-schemas --all-tables
@@ -65,4 +77,4 @@ The recorded run should be planned and executed in phases, not one-shotted. The 
 
 For the final recording, keep only a clean run. Failed attempts are useful diagnostic scratch space: halt at the blocker, fix the product/model/environment issue, then rerun from a fresh timestamped folder so the accepted evidence is a clean replay rather than patched-over history.
 
-`03-extract-source-schema.cmd` exists only as a reference/preflight command. It is not meant to replace the agent-generated extraction step in the main recording.
+The scaffold mesh's `extract-source-schema` operation is only a reference/preflight operation. It is not meant to replace the agent-authored extraction operation in the main recording.
