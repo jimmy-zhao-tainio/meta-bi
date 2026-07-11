@@ -4,7 +4,7 @@
 
 1. Show `BUSINESS-REQUIREMENTS.md`.
 2. Show the source setup is an ordinary restored AdventureWorks OLTP SQL database, not copied SSAS project metadata.
-3. Before recording, run `prepare-adventureworks-db.cmd` if the database is not already restored.
+3. Before recording, run `prepare-adventureworks-db.ps1` if the database is not already restored.
 4. In the recording, set the documented connection environment variables and run `meta-mesh run --operation validate-source` from `AdventureWorksBiStackVideo.MetaMesh` to show source readiness.
 5. Show `agent-meta.md` and `AGENT-TASK.md`.
 6. Start a fresh agent run and give it the business brief plus the connection environment variables.

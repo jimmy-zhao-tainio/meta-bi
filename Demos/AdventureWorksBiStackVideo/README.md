@@ -28,7 +28,7 @@ The generated run should include a MetaMesh workspace with named, inspectable op
 - `VIDEO-RUNBOOK.md`: recording sequence and cut points.
 - `SNAG-LOG.md`: product snags found while preparing or running the demo.
 - `AdventureWorksBiStackVideo.MetaMesh`: source readiness, optional preflight extraction, and source-workspace cleanup operations.
-- `prepare-adventureworks-db.cmd`: downloads/restores `AdventureWorks2022` and verifies source data.
+- `prepare-adventureworks-db.ps1`: downloads/restores `AdventureWorks2022` and verifies source data through the mesh.
 - `make-demo-video.ps1`: renders the prepared recording assets; it is a media-production utility rather than a BI workflow.
 
 ## Quick start
@@ -36,7 +36,7 @@ The generated run should include a MetaMesh workspace with named, inspectable op
 Restore AdventureWorks first. Then from this folder:
 
 ```powershell
-.\prepare-adventureworks-db.cmd
+.\prepare-adventureworks-db.ps1
 
 $env:AW_SQL_SERVER = "localhost"
 $env:AW_SOURCE_DATABASE = "AdventureWorks2022"

@@ -113,6 +113,23 @@ function FirstValue {
     return $lines[0].Trim()
 }
 
+function Invoke-SourceValidation {
+    if ([string]::IsNullOrWhiteSpace($env:AW_SOURCE_SQL)) {
+        $env:AW_SOURCE_SQL = "Server=$server;Database=$database;Trusted_Connection=True;TrustServerCertificate=True;"
+    }
+
+    Push-Location (Join-Path $scriptRoot 'AdventureWorksBiStackVideo.MetaMesh')
+    try {
+        & meta-mesh run --operation validate-source
+        if ($LASTEXITCODE -ne 0) {
+            throw "AdventureWorks source validation failed with exit code $LASTEXITCODE."
+        }
+    }
+    finally {
+        Pop-Location
+    }
+}
+
 Write-Host "AdventureWorks OLTP database preparation"
 Write-Host "  Server:   $server"
 Write-Host "  Database: $database"
@@ -122,10 +139,7 @@ Write-Host "  Cache:    $localBackupPath"
 $dbExists = FirstValue -Query "SET NOCOUNT ON; SELECT CASE WHEN DB_ID(N'$(SqlString $database)') IS NULL THEN 0 ELSE 1 END;"
 if ($dbExists -eq '1' -and -not $replaceDatabase) {
     Write-Host "Database already exists. Verifying data instead of restoring. Set AW_RESTORE_REPLACE=1 to replace it."
-    & "$scriptRoot\01-check-source.cmd"
-    if ($LASTEXITCODE -ne 0) {
-        exit $LASTEXITCODE
-    }
+    Invoke-SourceValidation
 
     exit 0
 }
@@ -242,9 +256,6 @@ ALTER DATABASE $(SqlIdentifier $database) SET MULTI_USER;
 Invoke-SqlScript -Script $restoreScript
 
 Write-Host "Verifying restored data..."
-& "$scriptRoot\01-check-source.cmd"
-if ($LASTEXITCODE -ne 0) {
-    exit $LASTEXITCODE
-}
+Invoke-SourceValidation
 
 Write-Host "AdventureWorks is ready."

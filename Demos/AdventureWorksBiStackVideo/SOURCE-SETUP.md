@@ -15,20 +15,20 @@ The demo itself starts from the restored SQL database, not from the backup file,
 
 Restore the `.bak` through SSMS, Azure Data Studio, the MSSQL extension, or `sqlcmd`.
 
-The scaffold includes `prepare-adventureworks-db.cmd`, which downloads the official `AdventureWorks2022.bak`, restores it to the local SQL Server default instance, and verifies source data.
+The scaffold includes `prepare-adventureworks-db.ps1`, which downloads the official `AdventureWorks2022.bak`, restores it to the local SQL Server default instance, and verifies source data through the mesh.
 
 If the local SQL Server differs from the defaults, set the environment variables first:
 
-```cmd
-set AW_SQL_SERVER=localhost
-set AW_SOURCE_DATABASE=AdventureWorks2022
-set AW_RESTORE_REPLACE=1
+```powershell
+$env:AW_SQL_SERVER = "localhost"
+$env:AW_SOURCE_DATABASE = "AdventureWorks2022"
+$env:AW_RESTORE_REPLACE = "1"
 ```
 
 Then run:
 
-```cmd
-prepare-adventureworks-db.cmd
+```powershell
+.\prepare-adventureworks-db.ps1
 ```
 
 Set the source connection variables before running checks:
@@ -44,6 +44,7 @@ Then run:
 ```powershell
 cd AdventureWorksBiStackVideo.MetaMesh
 meta-mesh run --operation validate-source
+cd ..
 ```
 
 ## First BI workspace operation in the recording
