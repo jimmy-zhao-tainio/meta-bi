@@ -85,7 +85,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_ProjectsRawSampleWorkspaceIntoSqlTables()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var workspacePath = Path.Combine(repoRoot, "Samples", "Demos", "RawDataVaultCliIntegration", "Workspace");
+        var workspacePath = Path.Combine(repoRoot, "Demos", "RawDataVaultCliIntegration", "Workspace");
         var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
 
         try

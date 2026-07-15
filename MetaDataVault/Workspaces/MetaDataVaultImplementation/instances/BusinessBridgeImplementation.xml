@@ -19,11 +19,11 @@
       <PathLength>4000</PathLength>
       <RelatedHashKeyColumnName>RelatedHashKey</RelatedHashKeyColumnName>
       <RelatedHashKeyDataTypeId>meta:type:Binary</RelatedHashKeyDataTypeId>
-      <RelatedHashKeyLength>16</RelatedHashKeyLength>
+      <RelatedHashKeyLength>32</RelatedHashKeyLength>
       <RelatedHubForeignKeyNamePattern>FK_{TableName}_{ParentTableName}_Related</RelatedHubForeignKeyNamePattern>
       <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
       <RootHashKeyDataTypeId>meta:type:Binary</RootHashKeyDataTypeId>
-      <RootHashKeyLength>16</RootHashKeyLength>
+      <RootHashKeyLength>32</RootHashKeyLength>
       <SchemaName>dbo</SchemaName>
       <TableNamePattern>BR_{Name}</TableNamePattern>
     </BusinessBridgeImplementation>

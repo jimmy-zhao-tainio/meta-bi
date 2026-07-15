@@ -2,24 +2,24 @@
 <MetaDataVaultImplementation>
   <BusinessLinkImplementationList>
     <BusinessLinkImplementation Id="default-business-link">
-      <SchemaName>dbo</SchemaName>
-      <TableNamePattern>BL_{Name}</TableNamePattern>
-      <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
-      <HubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</HubForeignKeyNamePattern>
-      <HashKeyColumnName>HashKey</HashKeyColumnName>
-      <HashKeyDataTypeId>meta:type:Binary</HashKeyDataTypeId>
-      <HashKeyLength>16</HashKeyLength>
-      <EndHashKeyColumnPattern>{RoleName}HashKey</EndHashKeyColumnPattern>
-      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
-      <LoadTimestampDataTypeId>meta:type:DateTime2</LoadTimestampDataTypeId>
-      <LoadTimestampPrecision>7</LoadTimestampPrecision>
-      <LoadTimestampDefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</LoadTimestampDefaultExpressionSql>
-      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
-      <RecordSourceDataTypeId>meta:type:String</RecordSourceDataTypeId>
-      <RecordSourceLength>256</RecordSourceLength>
       <AuditIdColumnName>AuditId</AuditIdColumnName>
       <AuditIdDataTypeId>meta:type:Int64</AuditIdDataTypeId>
       <AuditIdDefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</AuditIdDefaultExpressionSql>
+      <EndHashKeyColumnPattern>{RoleName}HashKey</EndHashKeyColumnPattern>
+      <HashKeyColumnName>HashKey</HashKeyColumnName>
+      <HashKeyDataTypeId>meta:type:Binary</HashKeyDataTypeId>
+      <HashKeyLength>32</HashKeyLength>
+      <HubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</HubForeignKeyNamePattern>
+      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
+      <LoadTimestampDataTypeId>meta:type:DateTime2</LoadTimestampDataTypeId>
+      <LoadTimestampDefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</LoadTimestampDefaultExpressionSql>
+      <LoadTimestampPrecision>7</LoadTimestampPrecision>
+      <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
+      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
+      <RecordSourceDataTypeId>meta:type:String</RecordSourceDataTypeId>
+      <RecordSourceLength>256</RecordSourceLength>
+      <SchemaName>dbo</SchemaName>
+      <TableNamePattern>BL_{Name}</TableNamePattern>
     </BusinessLinkImplementation>
   </BusinessLinkImplementationList>
 </MetaDataVaultImplementation>

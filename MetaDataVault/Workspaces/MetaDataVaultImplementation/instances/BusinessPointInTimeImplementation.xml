@@ -2,21 +2,21 @@
 <MetaDataVaultImplementation>
   <BusinessPointInTimeImplementationList>
     <BusinessPointInTimeImplementation Id="default-business-pit">
-      <SchemaName>dbo</SchemaName>
-      <TableNamePattern>PIT_{Name}</TableNamePattern>
       <AnchorHubForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</AnchorHubForeignKeyNamePattern>
-      <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
-      <ParentHashKeyDataTypeId>meta:type:Binary</ParentHashKeyDataTypeId>
-      <ParentHashKeyLength>16</ParentHashKeyLength>
-      <SnapshotTimestampColumnName>SnapshotTimestamp</SnapshotTimestampColumnName>
-      <SnapshotTimestampDataTypeId>meta:type:DateTime2</SnapshotTimestampDataTypeId>
-      <SnapshotTimestampPrecision>7</SnapshotTimestampPrecision>
-      <SatelliteReferenceColumnNamePattern>{SatelliteName}LoadTimestamp</SatelliteReferenceColumnNamePattern>
-      <SatelliteReferenceDataTypeId>meta:type:DateTime2</SatelliteReferenceDataTypeId>
-      <SatelliteReferencePrecision>7</SatelliteReferencePrecision>
       <AuditIdColumnName>AuditId</AuditIdColumnName>
       <AuditIdDataTypeId>meta:type:Int64</AuditIdDataTypeId>
       <AuditIdDefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</AuditIdDefaultExpressionSql>
+      <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
+      <ParentHashKeyDataTypeId>meta:type:Binary</ParentHashKeyDataTypeId>
+      <ParentHashKeyLength>32</ParentHashKeyLength>
+      <SatelliteReferenceColumnNamePattern>{SatelliteName}LoadTimestamp</SatelliteReferenceColumnNamePattern>
+      <SatelliteReferenceDataTypeId>meta:type:DateTime2</SatelliteReferenceDataTypeId>
+      <SatelliteReferencePrecision>7</SatelliteReferencePrecision>
+      <SchemaName>dbo</SchemaName>
+      <SnapshotTimestampColumnName>SnapshotTimestamp</SnapshotTimestampColumnName>
+      <SnapshotTimestampDataTypeId>meta:type:DateTime2</SnapshotTimestampDataTypeId>
+      <SnapshotTimestampPrecision>7</SnapshotTimestampPrecision>
+      <TableNamePattern>PIT_{Name}</TableNamePattern>
     </BusinessPointInTimeImplementation>
   </BusinessPointInTimeImplementationList>
 </MetaDataVaultImplementation>
