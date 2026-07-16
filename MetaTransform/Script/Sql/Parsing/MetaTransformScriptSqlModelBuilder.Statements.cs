@@ -383,15 +383,18 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             });
         }
 
+        MergeStatementWhenClausesItem? previousWhenClause = null;
         for (var ordinal = 0; ordinal < whenClauses.Count; ordinal++)
         {
-            model.MergeStatementWhenClausesItemList.Add(new MergeStatementWhenClausesItem
+            var whenClauseItem = new MergeStatementWhenClausesItem
             {
                 Id = NextId(nameof(MergeStatementWhenClausesItem)),
                 MergeStatement = mergeStatement,
                 MergeWhenClause = whenClauses[ordinal].GetRef<MergeWhenClause>(nameof(MergeWhenClause)),
-                Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
-            });
+                PreviousMergeWhenClause = previousWhenClause
+            };
+            model.MergeStatementWhenClausesItemList.Add(whenClauseItem);
+            previousWhenClause = whenClauseItem;
         }
 
         if (outputClause is not null)
@@ -572,14 +575,53 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         return BuiltNode.Create((nameof(SetAssignment), assignment.Id));
     }
 
-    public BuiltNode CreateMergeWhenClause(string matchKind, BuiltNode action, BuiltNode? searchCondition = null)
+    public BuiltNode CreateMergeMatchedWhenClause(BuiltNode action, BuiltNode? searchCondition = null)
+    {
+        return CreateMergeWhenClause(
+            action,
+            searchCondition,
+            whenClause => model.MergeMatchedWhenClauseList.Add(new MergeMatchedWhenClause
+            {
+                Id = NextId(nameof(MergeMatchedWhenClause)),
+                MergeWhenClause = whenClause
+            }));
+    }
+
+    public BuiltNode CreateMergeNotMatchedByTargetWhenClause(BuiltNode action, BuiltNode? searchCondition = null)
+    {
+        return CreateMergeWhenClause(
+            action,
+            searchCondition,
+            whenClause => model.MergeNotMatchedByTargetWhenClauseList.Add(new MergeNotMatchedByTargetWhenClause
+            {
+                Id = NextId(nameof(MergeNotMatchedByTargetWhenClause)),
+                MergeWhenClause = whenClause
+            }));
+    }
+
+    public BuiltNode CreateMergeNotMatchedBySourceWhenClause(BuiltNode action, BuiltNode? searchCondition = null)
+    {
+        return CreateMergeWhenClause(
+            action,
+            searchCondition,
+            whenClause => model.MergeNotMatchedBySourceWhenClauseList.Add(new MergeNotMatchedBySourceWhenClause
+            {
+                Id = NextId(nameof(MergeNotMatchedBySourceWhenClause)),
+                MergeWhenClause = whenClause
+            }));
+    }
+
+    private BuiltNode CreateMergeWhenClause(
+        BuiltNode action,
+        BuiltNode? searchCondition,
+        Action<MergeWhenClause> addClauseForm)
     {
         var whenClause = new MergeWhenClause
         {
-            Id = NextId(nameof(MergeWhenClause)),
-            MatchKind = matchKind
+            Id = NextId(nameof(MergeWhenClause))
         };
         model.MergeWhenClauseList.Add(whenClause);
+        addClauseForm(whenClause);
         model.MergeWhenClauseActionLinkList.Add(new MergeWhenClauseActionLink
         {
             Id = NextId(nameof(MergeWhenClauseActionLink)),

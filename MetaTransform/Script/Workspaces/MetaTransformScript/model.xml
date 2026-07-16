@@ -1,117 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Model name="MetaTransformScript">
   <EntityList>
-    <Entity name="TransformScript">
-      <PropertyList>
-        <Property name="Name" />
-        <Property name="SourcePath" isRequired="false" />
-      </PropertyList>
-    </Entity>
-    <Entity name="ScriptObjectView">
-      <PropertyList>
-        <Property name="TargetSqlIdentifier" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="TransformScript" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="ScriptObjectTVF">
-      <RelationshipList>
-        <Relationship entity="TransformScript" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="ScriptObjectScalarFunction">
-      <RelationshipList>
-        <Relationship entity="TransformScript" />
-        <Relationship entity="DataTypeReference" />
-        <Relationship entity="ScalarExpression" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="ScriptObjectStoredProcedure">
-      <PropertyList>
-        <Property name="DefinitionSql" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="TransformScript" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="StoredProcedureContract">
-      <PropertyList>
-        <Property name="Notes" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="ScriptObjectStoredProcedure" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="StoredProcedureContractOperation">
-      <PropertyList>
-        <Property name="Ordinal" />
-        <Property name="OperationKind" />
-        <Property name="SqlIdentifier" />
-        <Property name="AccessRole" isRequired="false" />
-        <Property name="Notes" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="StoredProcedureContract" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="StoredProcedureResultRowsetItem">
-      <PropertyList>
-        <Property name="Ordinal" />
-        <Property name="Name" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="StoredProcedureContract" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="StoredProcedureResultColumnItem">
-      <PropertyList>
-        <Property name="Ordinal" />
-        <Property name="Name" />
-        <Property name="MetaDataTypeId" isRequired="false" />
-        <Property name="IsNullable" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="StoredProcedureResultRowsetItem" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="TransformScriptSchemaIdentifierLink">
-      <RelationshipList>
-        <Relationship entity="TransformScript" />
-        <Relationship entity="Identifier" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="TransformScriptObjectIdentifierLink">
-      <RelationshipList>
-        <Relationship entity="TransformScript" />
-        <Relationship entity="Identifier" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="TransformScriptViewColumnsItem">
-      <PropertyList>
-        <Property name="Ordinal" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="TransformScript" />
-        <Relationship entity="Identifier" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="TransformScriptFunctionParametersItem">
-      <PropertyList>
-        <Property name="Ordinal" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="TransformScript" />
-        <Relationship entity="Identifier" />
-        <Relationship entity="DataTypeReference" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="TransformScriptStatementLink">
-      <RelationshipList>
-        <Relationship entity="TransformScript" />
-        <Relationship entity="TSqlStatement" />
-      </RelationshipList>
-    </Entity>
     <Entity name="AtTimeZoneCall">
       <RelationshipList>
         <Relationship entity="PrimaryExpression" />
@@ -340,6 +229,15 @@
       </RelationshipList>
     </Entity>
     <Entity name="CommonTableExpression" />
+    <Entity name="CommonTableExpressionColumnsItem">
+      <PropertyList>
+        <Property name="Ordinal" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="CommonTableExpression" />
+        <Relationship entity="Identifier" />
+      </RelationshipList>
+    </Entity>
     <Entity name="CommonTableExpressionExpressionNameLink">
       <RelationshipList>
         <Relationship entity="CommonTableExpression" />
@@ -350,15 +248,6 @@
       <RelationshipList>
         <Relationship entity="CommonTableExpression" />
         <Relationship entity="QueryExpression" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="CommonTableExpressionColumnsItem">
-      <PropertyList>
-        <Property name="Ordinal" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="CommonTableExpression" />
-        <Relationship entity="Identifier" />
       </RelationshipList>
     </Entity>
     <Entity name="CompositeGroupingSpecification">
@@ -587,12 +476,6 @@
         <Relationship entity="OverClause" />
       </RelationshipList>
     </Entity>
-    <Entity name="FunctionCallWithinGroupOrderByClauseLink">
-      <RelationshipList>
-        <Relationship entity="FunctionCall" />
-        <Relationship entity="OrderByClause" />
-      </RelationshipList>
-    </Entity>
     <Entity name="FunctionCallParametersItem">
       <PropertyList>
         <Property name="Ordinal" isRequired="false" />
@@ -600,6 +483,12 @@
       <RelationshipList>
         <Relationship entity="FunctionCall" />
         <Relationship entity="ScalarExpression" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="FunctionCallWithinGroupOrderByClauseLink">
+      <RelationshipList>
+        <Relationship entity="FunctionCall" />
+        <Relationship entity="OrderByClause" />
       </RelationshipList>
     </Entity>
     <Entity name="GlobalFunctionTableReference">
@@ -672,6 +561,23 @@
         <Relationship entity="HavingClause" />
       </RelationshipList>
     </Entity>
+    <Entity name="Identifier">
+      <PropertyList>
+        <Property name="QuoteType" isRequired="false" />
+        <Property name="Value" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="IdentifierOrValueExpression">
+      <PropertyList>
+        <Property name="Value" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="IdentifierOrValueExpressionIdentifierLink">
+      <RelationshipList>
+        <Relationship entity="Identifier" />
+        <Relationship entity="IdentifierOrValueExpression" />
+      </RelationshipList>
+    </Entity>
     <Entity name="IIfCall">
       <RelationshipList>
         <Relationship entity="PrimaryExpression" />
@@ -695,21 +601,18 @@
         <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
-    <Entity name="Identifier">
-      <PropertyList>
-        <Property name="QuoteType" isRequired="false" />
-        <Property name="Value" isRequired="false" />
-      </PropertyList>
-    </Entity>
-    <Entity name="IdentifierOrValueExpression">
-      <PropertyList>
-        <Property name="Value" isRequired="false" />
-      </PropertyList>
-    </Entity>
-    <Entity name="IdentifierOrValueExpressionIdentifierLink">
+    <Entity name="InlineDerivedTable">
       <RelationshipList>
-        <Relationship entity="Identifier" />
-        <Relationship entity="IdentifierOrValueExpression" />
+        <Relationship entity="TableReferenceWithAliasAndColumns" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="InlineDerivedTableRowValuesItem">
+      <PropertyList>
+        <Property name="Ordinal" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="InlineDerivedTable" />
+        <Relationship entity="RowValue" />
       </RelationshipList>
     </Entity>
     <Entity name="InPredicate">
@@ -739,45 +642,6 @@
       <RelationshipList>
         <Relationship entity="InPredicate" />
         <Relationship entity="ScalarExpression" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="InlineDerivedTable">
-      <RelationshipList>
-        <Relationship entity="TableReferenceWithAliasAndColumns" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="InlineDerivedTableRowValuesItem">
-      <PropertyList>
-        <Property name="Ordinal" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="InlineDerivedTable" />
-        <Relationship entity="RowValue" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="XmlNodesTableReference">
-      <RelationshipList>
-        <Relationship entity="TableReferenceWithAliasAndColumns" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="XmlNodesTableReferenceTargetExpressionLink">
-      <RelationshipList>
-        <Relationship entity="XmlNodesTableReference" />
-        <Relationship entity="ScalarExpression" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="XmlNodesTableReferenceXQueryStringLink">
-      <RelationshipList>
-        <Relationship entity="XmlNodesTableReference" />
-        <Relationship entity="StringLiteral" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="IntegerLiteral">
-      <PropertyList>
-        <Property name="LiteralType" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="Literal" />
       </RelationshipList>
     </Entity>
     <Entity name="InsertQuerySource">
@@ -830,6 +694,14 @@
       <RelationshipList>
         <Relationship entity="InsertValuesSource" />
         <Relationship entity="RowValue" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="IntegerLiteral">
+      <PropertyList>
+        <Property name="LiteralType" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Literal" />
       </RelationshipList>
     </Entity>
     <Entity name="JoinParenthesisTableReference">
@@ -947,6 +819,21 @@
         <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
+    <Entity name="MergeMatchedWhenClause">
+      <RelationshipList>
+        <Relationship entity="MergeWhenClause" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MergeNotMatchedBySourceWhenClause">
+      <RelationshipList>
+        <Relationship entity="MergeWhenClause" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MergeNotMatchedByTargetWhenClause">
+      <RelationshipList>
+        <Relationship entity="MergeWhenClause" />
+      </RelationshipList>
+    </Entity>
     <Entity name="MergeStatement">
       <RelationshipList>
         <Relationship entity="StatementWithCtesAndXmlNamespaces" />
@@ -976,6 +863,12 @@
         <Relationship entity="TableReference" />
       </RelationshipList>
     </Entity>
+    <Entity name="MergeStatementTargetAliasLink">
+      <RelationshipList>
+        <Relationship entity="Identifier" />
+        <Relationship entity="MergeStatement" />
+      </RelationshipList>
+    </Entity>
     <Entity name="MergeStatementTargetHintsItem">
       <PropertyList>
         <Property name="Ordinal" isRequired="false" />
@@ -983,12 +876,6 @@
       <RelationshipList>
         <Relationship entity="MergeStatement" />
         <Relationship entity="SqlHint" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="MergeStatementTargetAliasLink">
-      <RelationshipList>
-        <Relationship entity="Identifier" />
-        <Relationship entity="MergeStatement" />
       </RelationshipList>
     </Entity>
     <Entity name="MergeStatementTargetLink">
@@ -1004,12 +891,10 @@
       </RelationshipList>
     </Entity>
     <Entity name="MergeStatementWhenClausesItem">
-      <PropertyList>
-        <Property name="Ordinal" isRequired="false" />
-      </PropertyList>
       <RelationshipList>
         <Relationship entity="MergeStatement" />
         <Relationship entity="MergeWhenClause" />
+        <Relationship entity="MergeStatementWhenClausesItem" role="PreviousMergeWhenClause" isRequired="false" />
       </RelationshipList>
     </Entity>
     <Entity name="MergeUpdateAction">
@@ -1023,11 +908,7 @@
         <Relationship entity="SetClause" />
       </RelationshipList>
     </Entity>
-    <Entity name="MergeWhenClause">
-      <PropertyList>
-        <Property name="MatchKind" />
-      </PropertyList>
-    </Entity>
+    <Entity name="MergeWhenClause" />
     <Entity name="MergeWhenClauseActionLink">
       <RelationshipList>
         <Relationship entity="MergeAction" />
@@ -1052,8 +933,8 @@
     </Entity>
     <Entity name="MultiPartIdentifierCallTargetMultiPartIdentifierLink">
       <RelationshipList>
-        <Relationship entity="MultiPartIdentifier" />
         <Relationship entity="MultiPartIdentifierCallTarget" />
+        <Relationship entity="MultiPartIdentifier" />
       </RelationshipList>
     </Entity>
     <Entity name="MultiPartIdentifierIdentifiersItem">
@@ -1163,6 +1044,31 @@
         <Relationship entity="OrderByClause" />
       </RelationshipList>
     </Entity>
+    <Entity name="OutputClause" />
+    <Entity name="OutputClauseIntoColumnsItem">
+      <PropertyList>
+        <Property name="Ordinal" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Identifier" />
+        <Relationship entity="OutputClause" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="OutputClauseIntoTargetLink">
+      <RelationshipList>
+        <Relationship entity="OutputClause" />
+        <Relationship entity="SchemaObjectName" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="OutputClauseSelectElementsItem">
+      <PropertyList>
+        <Property name="Ordinal" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="OutputClause" />
+        <Relationship entity="SelectElement" />
+      </RelationshipList>
+    </Entity>
     <Entity name="OverClause" />
     <Entity name="OverClauseOrderByClauseLink">
       <RelationshipList>
@@ -1189,31 +1095,6 @@
       <RelationshipList>
         <Relationship entity="Identifier" />
         <Relationship entity="OverClause" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="OutputClause" />
-    <Entity name="OutputClauseIntoColumnsItem">
-      <PropertyList>
-        <Property name="Ordinal" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="Identifier" />
-        <Relationship entity="OutputClause" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="OutputClauseIntoTargetLink">
-      <RelationshipList>
-        <Relationship entity="OutputClause" />
-        <Relationship entity="SchemaObjectName" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="OutputClauseSelectElementsItem">
-      <PropertyList>
-        <Property name="Ordinal" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="OutputClause" />
-        <Relationship entity="SelectElement" />
       </RelationshipList>
     </Entity>
     <Entity name="ParameterizedDataTypeReference">
@@ -1522,6 +1403,34 @@
         <Relationship entity="SchemaObjectName" />
       </RelationshipList>
     </Entity>
+    <Entity name="ScriptObjectScalarFunction">
+      <RelationshipList>
+        <Relationship entity="DataTypeReference" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="TransformScript" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ScriptObjectStoredProcedure">
+      <PropertyList>
+        <Property name="DefinitionSql" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformScript" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ScriptObjectTVF">
+      <RelationshipList>
+        <Relationship entity="TransformScript" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ScriptObjectView">
+      <PropertyList>
+        <Property name="TargetSqlIdentifier" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformScript" />
+      </RelationshipList>
+    </Entity>
     <Entity name="SearchedCaseExpression">
       <RelationshipList>
         <Relationship entity="CaseExpression" />
@@ -1683,6 +1592,46 @@
         <Relationship entity="WithCtesAndXmlNamespaces" />
       </RelationshipList>
     </Entity>
+    <Entity name="StoredProcedureContract">
+      <PropertyList>
+        <Property name="Notes" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ScriptObjectStoredProcedure" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureContractOperation">
+      <PropertyList>
+        <Property name="AccessRole" isRequired="false" />
+        <Property name="Notes" isRequired="false" />
+        <Property name="OperationKind" />
+        <Property name="Ordinal" />
+        <Property name="SqlIdentifier" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="StoredProcedureContract" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureResultColumnItem">
+      <PropertyList>
+        <Property name="IsNullable" isRequired="false" />
+        <Property name="MetaDataTypeId" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="StoredProcedureResultRowsetItem" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureResultRowsetItem">
+      <PropertyList>
+        <Property name="Name" isRequired="false" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="StoredProcedureContract" />
+      </RelationshipList>
+    </Entity>
     <Entity name="StringLiteral">
       <PropertyList>
         <Property name="IsLargeObject" isRequired="false" />
@@ -1714,7 +1663,6 @@
         <Relationship entity="SubqueryComparisonPredicate" />
       </RelationshipList>
     </Entity>
-    <Entity name="TSqlStatement" />
     <Entity name="TableReference" />
     <Entity name="TableReferenceWithAlias">
       <PropertyList>
@@ -1730,15 +1678,6 @@
         <Relationship entity="TableReferenceWithAlias" />
       </RelationshipList>
     </Entity>
-    <Entity name="TableReferenceWithAliasTableHintsItem">
-      <PropertyList>
-        <Property name="Ordinal" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="SqlHint" />
-        <Relationship entity="TableReferenceWithAlias" />
-      </RelationshipList>
-    </Entity>
     <Entity name="TableReferenceWithAliasAndColumns">
       <RelationshipList>
         <Relationship entity="TableReferenceWithAlias" />
@@ -1751,6 +1690,15 @@
       <RelationshipList>
         <Relationship entity="Identifier" />
         <Relationship entity="TableReferenceWithAliasAndColumns" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TableReferenceWithAliasTableHintsItem">
+      <PropertyList>
+        <Property name="Ordinal" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="SqlHint" />
+        <Relationship entity="TableReferenceWithAlias" />
       </RelationshipList>
     </Entity>
     <Entity name="TableSampleClause">
@@ -1782,6 +1730,49 @@
       <RelationshipList>
         <Relationship entity="ScalarExpression" />
         <Relationship entity="TopRowFilter" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TransformScript">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="SourcePath" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="TransformScriptFunctionParametersItem">
+      <PropertyList>
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataTypeReference" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="TransformScript" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TransformScriptObjectIdentifierLink">
+      <RelationshipList>
+        <Relationship entity="Identifier" />
+        <Relationship entity="TransformScript" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TransformScriptSchemaIdentifierLink">
+      <RelationshipList>
+        <Relationship entity="Identifier" />
+        <Relationship entity="TransformScript" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TransformScriptStatementLink">
+      <RelationshipList>
+        <Relationship entity="TransformScript" />
+        <Relationship entity="TSqlStatement" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TransformScriptViewColumnsItem">
+      <PropertyList>
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Identifier" />
+        <Relationship entity="TransformScript" />
       </RelationshipList>
     </Entity>
     <Entity name="TruncateStatement">
@@ -1858,6 +1849,7 @@
         <Relationship entity="TryParseCall" />
       </RelationshipList>
     </Entity>
+    <Entity name="TSqlStatement" />
     <Entity name="UnaryExpression">
       <PropertyList>
         <Property name="UnaryExpressionType" isRequired="false" />
@@ -2060,15 +2052,15 @@
         <Relationship entity="XmlNamespacesElement" />
       </RelationshipList>
     </Entity>
-    <Entity name="XmlNamespacesDefaultElement">
-      <RelationshipList>
-        <Relationship entity="XmlNamespacesElement" />
-      </RelationshipList>
-    </Entity>
     <Entity name="XmlNamespacesAliasElementIdentifierLink">
       <RelationshipList>
         <Relationship entity="Identifier" />
         <Relationship entity="XmlNamespacesAliasElement" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="XmlNamespacesDefaultElement">
+      <RelationshipList>
+        <Relationship entity="XmlNamespacesElement" />
       </RelationshipList>
     </Entity>
     <Entity name="XmlNamespacesElement" />
@@ -2083,8 +2075,25 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="XmlNamespaces" />
         <Relationship entity="XmlNamespacesElement" />
+        <Relationship entity="XmlNamespaces" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="XmlNodesTableReference">
+      <RelationshipList>
+        <Relationship entity="TableReferenceWithAliasAndColumns" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="XmlNodesTableReferenceTargetExpressionLink">
+      <RelationshipList>
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="XmlNodesTableReference" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="XmlNodesTableReferenceXQueryStringLink">
+      <RelationshipList>
+        <Relationship entity="StringLiteral" />
+        <Relationship entity="XmlNodesTableReference" />
       </RelationshipList>
     </Entity>
   </EntityList>

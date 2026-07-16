@@ -146,7 +146,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             model.MergeStatementSearchConditionLinkList,
             mergeStatement.Id,
             "MergeStatement.SearchCondition").BooleanExpression);
-        var whenClauses = GetOrderedItems(model.MergeStatementWhenClausesItemList, mergeStatement.Id)
+        var whenClauses = GetOrderedMergeWhenClauseItems(mergeStatement)
             .Select(row => RenderMergeWhenClause(row.MergeWhenClause))
             .ToArray();
 
@@ -174,13 +174,19 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     private string RenderMergeWhenClause(MergeWhenClause whenClause)
     {
-        var header = whenClause.MatchKind switch
+        var forms = new[]
         {
-            "Matched" => "WHEN MATCHED",
-            "NotMatchedByTarget" => "WHEN NOT MATCHED BY TARGET",
-            "NotMatchedBySource" => "WHEN NOT MATCHED BY SOURCE",
-            _ => throw new InvalidOperationException($"Unsupported MetaTransformScript MergeWhenClause.MatchKind '{whenClause.MatchKind}'.")
+            (Present: FindByBaseId(model.MergeMatchedWhenClauseList, whenClause.Id) is not null, Header: "WHEN MATCHED"),
+            (Present: FindByBaseId(model.MergeNotMatchedByTargetWhenClauseList, whenClause.Id) is not null, Header: "WHEN NOT MATCHED BY TARGET"),
+            (Present: FindByBaseId(model.MergeNotMatchedBySourceWhenClauseList, whenClause.Id) is not null, Header: "WHEN NOT MATCHED BY SOURCE")
         };
+        var headers = forms.Where(static form => form.Present).Select(static form => form.Header).ToArray();
+        if (headers.Length != 1)
+        {
+            throw new InvalidOperationException($"MetaTransformScript MergeWhenClause '{whenClause.Id}' must have exactly one modeled match form.");
+        }
+
+        var header = headers[0];
 
         var searchConditionLink = FindOwnerLink(model.MergeWhenClauseSearchConditionLinkList, whenClause.Id);
         if (searchConditionLink is not null)
@@ -193,6 +199,69 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             whenClause.Id,
             "MergeWhenClause.Action").MergeAction;
         return header + " THEN " + RenderMergeAction(action);
+    }
+
+    private IReadOnlyList<MergeStatementWhenClausesItem> GetOrderedMergeWhenClauseItems(MergeStatement mergeStatement)
+    {
+        var items = model.MergeStatementWhenClausesItemList
+            .Where(item => string.Equals(item.MergeStatement.Id, mergeStatement.Id, StringComparison.Ordinal))
+            .ToArray();
+        if (items.Length == 0)
+        {
+            throw new InvalidOperationException($"MetaTransformScript MergeStatement '{mergeStatement.Id}' has no WHEN clauses.");
+        }
+
+        var itemIds = items.Select(item => item.Id).ToHashSet(StringComparer.Ordinal);
+        var successors = new Dictionary<string, MergeStatementWhenClausesItem>(StringComparer.Ordinal);
+        MergeStatementWhenClausesItem? head = null;
+        foreach (var item in items)
+        {
+            if (item.PreviousMergeWhenClause is null)
+            {
+                if (head is not null)
+                {
+                    throw new InvalidOperationException($"MetaTransformScript MergeStatement '{mergeStatement.Id}' has more than one first WHEN clause.");
+                }
+
+                head = item;
+                continue;
+            }
+
+            var previous = item.PreviousMergeWhenClause;
+            if (!itemIds.Contains(previous.Id))
+            {
+                throw new InvalidOperationException($"MetaTransformScript MergeStatement '{mergeStatement.Id}' links WHEN clause '{item.Id}' to a clause from another statement.");
+            }
+
+            if (!successors.TryAdd(previous.Id, item))
+            {
+                throw new InvalidOperationException($"MetaTransformScript MergeStatement '{mergeStatement.Id}' branches after WHEN clause '{previous.Id}'.");
+            }
+        }
+
+        if (head is null)
+        {
+            throw new InvalidOperationException($"MetaTransformScript MergeStatement '{mergeStatement.Id}' has no first WHEN clause.");
+        }
+
+        var ordered = new List<MergeStatementWhenClausesItem>(items.Length);
+        var visited = new HashSet<string>(StringComparer.Ordinal);
+        for (var current = head; current is not null; successors.TryGetValue(current.Id, out current!))
+        {
+            if (!visited.Add(current.Id))
+            {
+                throw new InvalidOperationException($"MetaTransformScript MergeStatement '{mergeStatement.Id}' has a cycle in its WHEN clauses.");
+            }
+
+            ordered.Add(current);
+        }
+
+        if (ordered.Count != items.Length)
+        {
+            throw new InvalidOperationException($"MetaTransformScript MergeStatement '{mergeStatement.Id}' has unreachable WHEN clauses.");
+        }
+
+        return ordered;
     }
 
     private string RenderMergeAction(MergeAction action)

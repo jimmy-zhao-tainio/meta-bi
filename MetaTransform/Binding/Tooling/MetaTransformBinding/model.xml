@@ -19,6 +19,54 @@
         <Relationship entity="TransformBinding" />
       </RelationshipList>
     </Entity>
+    <Entity name="Delete">
+      <PropertyList>
+        <Property name="MetaTransformScriptDeleteStatementId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetRowsetLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="InsertQueryWrite">
+      <PropertyList>
+        <Property name="MetaTransformScriptQueryExpressionId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Write" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="InsertValuesWrite">
+      <PropertyList>
+        <Property name="MetaTransformScriptRowValueId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Write" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MergeDelete">
+      <PropertyList>
+        <Property name="MetaTransformScriptMergeDeleteActionId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetRowsetLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MergeInsertWrite">
+      <PropertyList>
+        <Property name="MetaTransformScriptMergeInsertActionId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Write" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MergeUpdateWrite">
+      <PropertyList>
+        <Property name="MetaTransformScriptMergeUpdateActionId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Write" />
+      </RelationshipList>
+    </Entity>
     <Entity name="OutputRowset">
       <RelationshipList>
         <Relationship entity="Rowset" />
@@ -55,6 +103,16 @@
         <Relationship entity="TransformBinding" />
       </RelationshipList>
     </Entity>
+    <Entity name="TargetColumnReference">
+      <PropertyList>
+        <Property name="MetaSchemaFieldId" />
+        <Property name="MetaTransformScriptColumnReferenceId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Column" />
+        <Relationship entity="TransformBindingTarget" />
+      </RelationshipList>
+    </Entity>
     <Entity name="TransformBinding">
       <PropertyList>
         <Property name="MetaTransformScriptTransformScriptId" />
@@ -67,6 +125,22 @@
       </PropertyList>
       <RelationshipList>
         <Relationship entity="TransformBinding" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Truncate">
+      <PropertyList>
+        <Property name="MetaTransformScriptTruncateStatementId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetRowsetLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="UpdateWrite">
+      <PropertyList>
+        <Property name="MetaTransformScriptSetClauseId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Write" />
       </RelationshipList>
     </Entity>
     <Entity name="Validation">
@@ -110,14 +184,6 @@
         <Relationship entity="ValidationTargetColumnLink" />
       </RelationshipList>
     </Entity>
-    <Entity name="ValidationTargetColumnTypeNotClassified">
-      <PropertyList>
-        <Property name="TargetMetaDataTypeId" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="ValidationTargetColumnLink" />
-      </RelationshipList>
-    </Entity>
     <Entity name="ValidationTargetColumnTypeSanctionedConversion">
       <PropertyList>
         <Property name="SourceMetaDataTypeId" />
@@ -143,6 +209,25 @@
         <Relationship entity="Rowset" />
         <Relationship entity="TransformBindingTarget" />
         <Relationship entity="Validation" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Write">
+      <RelationshipList>
+        <Relationship entity="ValidationTargetRowsetLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="WriteValue">
+      <RelationshipList>
+        <Relationship entity="ValidationTargetColumnLink" />
+        <Relationship entity="Write" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="WriteValueScalarExpression">
+      <PropertyList>
+        <Property name="MetaTransformScriptScalarExpressionId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="WriteValue" />
       </RelationshipList>
     </Entity>
   </EntityList>

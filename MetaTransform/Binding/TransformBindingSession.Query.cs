@@ -617,7 +617,8 @@ internal sealed partial class TransformBindingSession
             .Select((column, ordinal) => new RuntimeColumn(
                 $"{querySpecification.Id}:input-column:{ordinal + 1}",
                 column.Name,
-                ordinal))
+                ordinal,
+                column.DataType))
             .ToArray();
 
         var rowset = new RuntimeRowset(
@@ -656,8 +657,28 @@ internal sealed partial class TransformBindingSession
             .Select((pair, ordinal) => new RuntimeColumn(
                 $"{binaryQueryExpression.Id}:column:{ordinal + 1}",
                 pair.First.Name,
-                ordinal))
+                ordinal,
+                ReconcileDataType(pair.First.DataType, pair.Second.DataType)))
             .ToArray();
+    }
+
+    private static RuntimeColumnDataType? ReconcileDataType(
+        RuntimeColumnDataType? first,
+        RuntimeColumnDataType? second)
+    {
+        if (first is null || second is null ||
+            !string.Equals(first.MetaDataTypeId, second.MetaDataTypeId, StringComparison.OrdinalIgnoreCase) ||
+            first.Length != second.Length ||
+            first.Precision != second.Precision ||
+            first.Scale != second.Scale)
+        {
+            return null;
+        }
+
+        return first with
+        {
+            IsNullable = first.IsNullable == true || second.IsNullable == true
+        };
     }
 
     private IReadOnlyList<string>? TryDeriveOutputColumnNamesFromQueryExpression(string queryExpressionId)

@@ -29,8 +29,9 @@ Gap classes:
 Notes:
 - Transform binding validates writable target contracts, so `tpcds.v_qNN`
   target contracts are modeled as `ObjectType=Table`.
-- The transform workspace diff records expected source-path provenance drift
-  caused by re-importing emitted `RoundTrippedViews\view_N.sql` files.
+- The transform workspace diff records expected representation and emitted-file
+  provenance differences after re-importing semantic module paths through
+  `RoundTrippedViews.manifest.tsv`.
 - The MetaSql workspace diff is the semantic round-trip proof and currently
   reports no differences.
 - The checked-in target rows come from extracted TPC-DS view metadata, with

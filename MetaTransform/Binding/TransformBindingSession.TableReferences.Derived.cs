@@ -60,7 +60,8 @@ internal sealed partial class TransformBindingSession
             .Select((column, ordinal) => new RuntimeColumn(
                 $"{tableReference.Id}:column:{ordinal + 1}",
                 columnAliases.Count == 0 ? column.Name : columnAliases[ordinal],
-                ordinal))
+                ordinal,
+                column.DataType))
             .ToArray();
 
         var rowset = new RuntimeRowset(

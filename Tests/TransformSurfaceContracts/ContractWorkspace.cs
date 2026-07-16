@@ -58,7 +58,7 @@ internal sealed class ContractWorkspace : IDisposable
 
     public BindToWorkspaceResult Bind()
     {
-        var result = new TransformBindingWorkspaceService().BindToWorkspace(
+        var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
             TransformWorkspacePath,
             BindingWorkspacePath);
         BindingModel = result.Model;
@@ -97,7 +97,6 @@ internal sealed class ContractWorkspace : IDisposable
                 Id = $"{pipeline.Id}:task:transform",
                 Pipeline = pipeline,
                 Name = "transform",
-                Ordinal = "1",
             };
             model.PipelineTaskList.Add(transformTask);
             model.TransformExecutionTaskList.Add(new TransformExecutionTask
@@ -135,7 +134,6 @@ internal sealed class ContractWorkspace : IDisposable
                 Id = $"{pipeline.Id}:task:target-write",
                 Pipeline = pipeline,
                 Name = "target-write",
-                Ordinal = "2",
             };
             model.PipelineTaskList.Add(targetWriteTask);
             var targetWrite = new TargetWriteTask

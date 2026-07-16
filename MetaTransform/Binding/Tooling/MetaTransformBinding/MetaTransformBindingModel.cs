@@ -30,6 +30,18 @@ namespace MetaTransformBinding
 
         public List<ColumnReference> ColumnReferenceList { get; set; } = new();
 
+        public List<Delete> DeleteList { get; set; } = new();
+
+        public List<InsertQueryWrite> InsertQueryWriteList { get; set; } = new();
+
+        public List<InsertValuesWrite> InsertValuesWriteList { get; set; } = new();
+
+        public List<MergeDelete> MergeDeleteList { get; set; } = new();
+
+        public List<MergeInsertWrite> MergeInsertWriteList { get; set; } = new();
+
+        public List<MergeUpdateWrite> MergeUpdateWriteList { get; set; } = new();
+
         public List<OutputRowset> OutputRowsetList { get; set; } = new();
 
         public List<Rowset> RowsetList { get; set; } = new();
@@ -38,9 +50,15 @@ namespace MetaTransformBinding
 
         public List<TableSource> TableSourceList { get; set; } = new();
 
+        public List<TargetColumnReference> TargetColumnReferenceList { get; set; } = new();
+
         public List<TransformBinding> TransformBindingList { get; set; } = new();
 
         public List<TransformBindingTarget> TransformBindingTargetList { get; set; } = new();
+
+        public List<Truncate> TruncateList { get; set; } = new();
+
+        public List<UpdateWrite> UpdateWriteList { get; set; } = new();
 
         public List<Validation> ValidationList { get; set; } = new();
 
@@ -52,13 +70,17 @@ namespace MetaTransformBinding
 
         public List<ValidationTargetColumnTypeExact> ValidationTargetColumnTypeExactList { get; set; } = new();
 
-        public List<ValidationTargetColumnTypeNotClassified> ValidationTargetColumnTypeNotClassifiedList { get; set; } = new();
-
         public List<ValidationTargetColumnTypeSanctionedConversion> ValidationTargetColumnTypeSanctionedConversionList { get; set; } = new();
 
         public List<ValidationTargetIgnoredColumn> ValidationTargetIgnoredColumnList { get; set; } = new();
 
         public List<ValidationTargetRowsetLink> ValidationTargetRowsetLinkList { get; set; } = new();
+
+        public List<Write> WriteList { get; set; } = new();
+
+        public List<WriteValue> WriteValueList { get; set; } = new();
+
+        public List<WriteValueScalarExpression> WriteValueScalarExpressionList { get; set; } = new();
 
         public static MetaTransformBindingModel LoadFromXmlWorkspace(
             string workspacePath,
@@ -128,6 +150,7 @@ namespace MetaTransformBinding
 
             var loadIndexes = new LoadIndexes(model);
             ResolveRelationshipGroup1(loadIndexes, relationshipBuffers);
+            ResolveRelationshipGroup2(loadIndexes, relationshipBuffers);
             return model;
         }
 
@@ -185,6 +208,72 @@ namespace MetaTransformBinding
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(columnReferenceShardPath, SerializeColumnReferenceShard(model, saveIndexes));
             }
 
+            model.DeleteList ??= new List<Delete>();
+            var deleteShardPath = Path.Combine(instanceDirectoryPath, "Delete.xml");
+            if (model.DeleteList.Count == 0)
+            {
+                DeleteIfExists(deleteShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(deleteShardPath, SerializeDeleteShard(model, saveIndexes));
+            }
+
+            model.InsertQueryWriteList ??= new List<InsertQueryWrite>();
+            var insertQueryWriteShardPath = Path.Combine(instanceDirectoryPath, "InsertQueryWrite.xml");
+            if (model.InsertQueryWriteList.Count == 0)
+            {
+                DeleteIfExists(insertQueryWriteShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(insertQueryWriteShardPath, SerializeInsertQueryWriteShard(model, saveIndexes));
+            }
+
+            model.InsertValuesWriteList ??= new List<InsertValuesWrite>();
+            var insertValuesWriteShardPath = Path.Combine(instanceDirectoryPath, "InsertValuesWrite.xml");
+            if (model.InsertValuesWriteList.Count == 0)
+            {
+                DeleteIfExists(insertValuesWriteShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(insertValuesWriteShardPath, SerializeInsertValuesWriteShard(model, saveIndexes));
+            }
+
+            model.MergeDeleteList ??= new List<MergeDelete>();
+            var mergeDeleteShardPath = Path.Combine(instanceDirectoryPath, "MergeDelete.xml");
+            if (model.MergeDeleteList.Count == 0)
+            {
+                DeleteIfExists(mergeDeleteShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(mergeDeleteShardPath, SerializeMergeDeleteShard(model, saveIndexes));
+            }
+
+            model.MergeInsertWriteList ??= new List<MergeInsertWrite>();
+            var mergeInsertWriteShardPath = Path.Combine(instanceDirectoryPath, "MergeInsertWrite.xml");
+            if (model.MergeInsertWriteList.Count == 0)
+            {
+                DeleteIfExists(mergeInsertWriteShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(mergeInsertWriteShardPath, SerializeMergeInsertWriteShard(model, saveIndexes));
+            }
+
+            model.MergeUpdateWriteList ??= new List<MergeUpdateWrite>();
+            var mergeUpdateWriteShardPath = Path.Combine(instanceDirectoryPath, "MergeUpdateWrite.xml");
+            if (model.MergeUpdateWriteList.Count == 0)
+            {
+                DeleteIfExists(mergeUpdateWriteShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(mergeUpdateWriteShardPath, SerializeMergeUpdateWriteShard(model, saveIndexes));
+            }
+
             model.OutputRowsetList ??= new List<OutputRowset>();
             var outputRowsetShardPath = Path.Combine(instanceDirectoryPath, "OutputRowset.xml");
             if (model.OutputRowsetList.Count == 0)
@@ -229,6 +318,17 @@ namespace MetaTransformBinding
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(tableSourceShardPath, SerializeTableSourceShard(model, saveIndexes));
             }
 
+            model.TargetColumnReferenceList ??= new List<TargetColumnReference>();
+            var targetColumnReferenceShardPath = Path.Combine(instanceDirectoryPath, "TargetColumnReference.xml");
+            if (model.TargetColumnReferenceList.Count == 0)
+            {
+                DeleteIfExists(targetColumnReferenceShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(targetColumnReferenceShardPath, SerializeTargetColumnReferenceShard(model, saveIndexes));
+            }
+
             model.TransformBindingList ??= new List<TransformBinding>();
             var transformBindingShardPath = Path.Combine(instanceDirectoryPath, "TransformBinding.xml");
             if (model.TransformBindingList.Count == 0)
@@ -249,6 +349,28 @@ namespace MetaTransformBinding
             else
             {
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(transformBindingTargetShardPath, SerializeTransformBindingTargetShard(model, saveIndexes));
+            }
+
+            model.TruncateList ??= new List<Truncate>();
+            var truncateShardPath = Path.Combine(instanceDirectoryPath, "Truncate.xml");
+            if (model.TruncateList.Count == 0)
+            {
+                DeleteIfExists(truncateShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(truncateShardPath, SerializeTruncateShard(model, saveIndexes));
+            }
+
+            model.UpdateWriteList ??= new List<UpdateWrite>();
+            var updateWriteShardPath = Path.Combine(instanceDirectoryPath, "UpdateWrite.xml");
+            if (model.UpdateWriteList.Count == 0)
+            {
+                DeleteIfExists(updateWriteShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(updateWriteShardPath, SerializeUpdateWriteShard(model, saveIndexes));
             }
 
             model.ValidationList ??= new List<Validation>();
@@ -306,17 +428,6 @@ namespace MetaTransformBinding
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(validationTargetColumnTypeExactShardPath, SerializeValidationTargetColumnTypeExactShard(model, saveIndexes));
             }
 
-            model.ValidationTargetColumnTypeNotClassifiedList ??= new List<ValidationTargetColumnTypeNotClassified>();
-            var validationTargetColumnTypeNotClassifiedShardPath = Path.Combine(instanceDirectoryPath, "ValidationTargetColumnTypeNotClassified.xml");
-            if (model.ValidationTargetColumnTypeNotClassifiedList.Count == 0)
-            {
-                DeleteIfExists(validationTargetColumnTypeNotClassifiedShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(validationTargetColumnTypeNotClassifiedShardPath, SerializeValidationTargetColumnTypeNotClassifiedShard(model, saveIndexes));
-            }
-
             model.ValidationTargetColumnTypeSanctionedConversionList ??= new List<ValidationTargetColumnTypeSanctionedConversion>();
             var validationTargetColumnTypeSanctionedConversionShardPath = Path.Combine(instanceDirectoryPath, "ValidationTargetColumnTypeSanctionedConversion.xml");
             if (model.ValidationTargetColumnTypeSanctionedConversionList.Count == 0)
@@ -350,6 +461,39 @@ namespace MetaTransformBinding
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(validationTargetRowsetLinkShardPath, SerializeValidationTargetRowsetLinkShard(model, saveIndexes));
             }
 
+            model.WriteList ??= new List<Write>();
+            var writeShardPath = Path.Combine(instanceDirectoryPath, "Write.xml");
+            if (model.WriteList.Count == 0)
+            {
+                DeleteIfExists(writeShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(writeShardPath, SerializeWriteShard(model, saveIndexes));
+            }
+
+            model.WriteValueList ??= new List<WriteValue>();
+            var writeValueShardPath = Path.Combine(instanceDirectoryPath, "WriteValue.xml");
+            if (model.WriteValueList.Count == 0)
+            {
+                DeleteIfExists(writeValueShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(writeValueShardPath, SerializeWriteValueShard(model, saveIndexes));
+            }
+
+            model.WriteValueScalarExpressionList ??= new List<WriteValueScalarExpression>();
+            var writeValueScalarExpressionShardPath = Path.Combine(instanceDirectoryPath, "WriteValueScalarExpression.xml");
+            if (model.WriteValueScalarExpressionList.Count == 0)
+            {
+                DeleteIfExists(writeValueScalarExpressionShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(writeValueScalarExpressionShardPath, SerializeWriteValueScalarExpressionShard(model, saveIndexes));
+            }
+
         }
 
         private static void LoadShard(MetaTransformBindingModel model, string shardPath, LoadState loadState, RelationshipBuffers relationshipBuffers)
@@ -380,6 +524,24 @@ namespace MetaTransformBinding
                     case "ColumnReferenceList":
                         LoadColumnReferenceList(model, reader, loadState, relationshipBuffers);
                         break;
+                    case "DeleteList":
+                        LoadDeleteList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "InsertQueryWriteList":
+                        LoadInsertQueryWriteList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "InsertValuesWriteList":
+                        LoadInsertValuesWriteList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "MergeDeleteList":
+                        LoadMergeDeleteList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "MergeInsertWriteList":
+                        LoadMergeInsertWriteList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "MergeUpdateWriteList":
+                        LoadMergeUpdateWriteList(model, reader, loadState, relationshipBuffers);
+                        break;
                     case "OutputRowsetList":
                         LoadOutputRowsetList(model, reader, loadState, relationshipBuffers);
                         break;
@@ -392,11 +554,20 @@ namespace MetaTransformBinding
                     case "TableSourceList":
                         LoadTableSourceList(model, reader, loadState, relationshipBuffers);
                         break;
+                    case "TargetColumnReferenceList":
+                        LoadTargetColumnReferenceList(model, reader, loadState, relationshipBuffers);
+                        break;
                     case "TransformBindingList":
                         LoadTransformBindingList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "TransformBindingTargetList":
                         LoadTransformBindingTargetList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "TruncateList":
+                        LoadTruncateList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "UpdateWriteList":
+                        LoadUpdateWriteList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "ValidationList":
                         LoadValidationList(model, reader, loadState, relationshipBuffers);
@@ -413,9 +584,6 @@ namespace MetaTransformBinding
                     case "ValidationTargetColumnTypeExactList":
                         LoadValidationTargetColumnTypeExactList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "ValidationTargetColumnTypeNotClassifiedList":
-                        LoadValidationTargetColumnTypeNotClassifiedList(model, reader, loadState, relationshipBuffers);
-                        break;
                     case "ValidationTargetColumnTypeSanctionedConversionList":
                         LoadValidationTargetColumnTypeSanctionedConversionList(model, reader, loadState, relationshipBuffers);
                         break;
@@ -424,6 +592,15 @@ namespace MetaTransformBinding
                         break;
                     case "ValidationTargetRowsetLinkList":
                         LoadValidationTargetRowsetLinkList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "WriteList":
+                        LoadWriteList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "WriteValueList":
+                        LoadWriteValueList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "WriteValueScalarExpressionList":
+                        LoadWriteValueScalarExpressionList(model, reader, loadState, relationshipBuffers);
                         break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in '{shardPath}'.");
@@ -685,6 +862,684 @@ namespace MetaTransformBinding
                 builder.Append("    </ColumnReference>\n");
             }
             builder.Append("  </ColumnReferenceList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadDeleteList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("DeleteList");
+                return;
+            }
+
+            reader.ReadStartElement("DeleteList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "Delete", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'DeleteList'.");
+                }
+                var row = ReadDelete(reader, relationshipBuffers);
+                loadState.AddDeleteId(row.Id);
+                model.DeleteList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static Delete ReadDelete(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new Delete();
+            var relationships = new DeleteRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "ValidationTargetRowsetLinkId":
+                            relationships.ValidationTargetRowsetLinkId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'Delete'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("Delete");
+                (relationshipBuffers.DeleteRelationships ??= new List<DeleteRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("Delete");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "MetaTransformScriptDeleteStatementId":
+                        row.MetaTransformScriptDeleteStatementId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'Delete'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.DeleteRelationships ??= new List<DeleteRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeDeleteShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <DeleteList>\n");
+            foreach (var row in model.DeleteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'Delete' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'Delete' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <Delete Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var validationTargetRowsetLinkId = RequireIdentity(row.ValidationTargetRowsetLink?.Id, $"Relationship 'Delete.ValidationTargetRowsetLinkId' on row 'Delete:{row.Id}' is empty.");
+                if (!saveIndexes.ValidationTargetRowsetLinkListById.TryGetValue(validationTargetRowsetLinkId, out var validationTargetRowsetLinkCanonical) || !ReferenceEquals(validationTargetRowsetLinkCanonical, row.ValidationTargetRowsetLink))
+                {
+                    throw new InvalidOperationException($"Relationship 'Delete.ValidationTargetRowsetLinkId' on row 'Delete:{row.Id}' references an object that is not the canonical row for Id '{validationTargetRowsetLinkId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("ValidationTargetRowsetLinkId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, validationTargetRowsetLinkId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "MetaTransformScriptDeleteStatementId", RequireText(row.MetaTransformScriptDeleteStatementId, $"Entity 'Delete' row '{row.Id}' is missing required property 'MetaTransformScriptDeleteStatementId'."), "      ");
+                builder.Append("    </Delete>\n");
+            }
+            builder.Append("  </DeleteList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadInsertQueryWriteList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("InsertQueryWriteList");
+                return;
+            }
+
+            reader.ReadStartElement("InsertQueryWriteList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "InsertQueryWrite", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'InsertQueryWriteList'.");
+                }
+                var row = ReadInsertQueryWrite(reader, relationshipBuffers);
+                loadState.AddInsertQueryWriteId(row.Id);
+                model.InsertQueryWriteList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static InsertQueryWrite ReadInsertQueryWrite(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new InsertQueryWrite();
+            var relationships = new InsertQueryWriteRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "WriteId":
+                            relationships.WriteId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'InsertQueryWrite'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("InsertQueryWrite");
+                (relationshipBuffers.InsertQueryWriteRelationships ??= new List<InsertQueryWriteRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("InsertQueryWrite");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "MetaTransformScriptQueryExpressionId":
+                        row.MetaTransformScriptQueryExpressionId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'InsertQueryWrite'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.InsertQueryWriteRelationships ??= new List<InsertQueryWriteRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeInsertQueryWriteShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <InsertQueryWriteList>\n");
+            foreach (var row in model.InsertQueryWriteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'InsertQueryWrite' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'InsertQueryWrite' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <InsertQueryWrite Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var writeId = RequireIdentity(row.Write?.Id, $"Relationship 'InsertQueryWrite.WriteId' on row 'InsertQueryWrite:{row.Id}' is empty.");
+                if (!saveIndexes.WriteListById.TryGetValue(writeId, out var writeCanonical) || !ReferenceEquals(writeCanonical, row.Write))
+                {
+                    throw new InvalidOperationException($"Relationship 'InsertQueryWrite.WriteId' on row 'InsertQueryWrite:{row.Id}' references an object that is not the canonical row for Id '{writeId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("WriteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, writeId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "MetaTransformScriptQueryExpressionId", RequireText(row.MetaTransformScriptQueryExpressionId, $"Entity 'InsertQueryWrite' row '{row.Id}' is missing required property 'MetaTransformScriptQueryExpressionId'."), "      ");
+                builder.Append("    </InsertQueryWrite>\n");
+            }
+            builder.Append("  </InsertQueryWriteList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadInsertValuesWriteList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("InsertValuesWriteList");
+                return;
+            }
+
+            reader.ReadStartElement("InsertValuesWriteList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "InsertValuesWrite", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'InsertValuesWriteList'.");
+                }
+                var row = ReadInsertValuesWrite(reader, relationshipBuffers);
+                loadState.AddInsertValuesWriteId(row.Id);
+                model.InsertValuesWriteList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static InsertValuesWrite ReadInsertValuesWrite(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new InsertValuesWrite();
+            var relationships = new InsertValuesWriteRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "WriteId":
+                            relationships.WriteId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'InsertValuesWrite'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("InsertValuesWrite");
+                (relationshipBuffers.InsertValuesWriteRelationships ??= new List<InsertValuesWriteRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("InsertValuesWrite");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "MetaTransformScriptRowValueId":
+                        row.MetaTransformScriptRowValueId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'InsertValuesWrite'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.InsertValuesWriteRelationships ??= new List<InsertValuesWriteRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeInsertValuesWriteShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <InsertValuesWriteList>\n");
+            foreach (var row in model.InsertValuesWriteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'InsertValuesWrite' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'InsertValuesWrite' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <InsertValuesWrite Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var writeId = RequireIdentity(row.Write?.Id, $"Relationship 'InsertValuesWrite.WriteId' on row 'InsertValuesWrite:{row.Id}' is empty.");
+                if (!saveIndexes.WriteListById.TryGetValue(writeId, out var writeCanonical) || !ReferenceEquals(writeCanonical, row.Write))
+                {
+                    throw new InvalidOperationException($"Relationship 'InsertValuesWrite.WriteId' on row 'InsertValuesWrite:{row.Id}' references an object that is not the canonical row for Id '{writeId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("WriteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, writeId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "MetaTransformScriptRowValueId", RequireText(row.MetaTransformScriptRowValueId, $"Entity 'InsertValuesWrite' row '{row.Id}' is missing required property 'MetaTransformScriptRowValueId'."), "      ");
+                builder.Append("    </InsertValuesWrite>\n");
+            }
+            builder.Append("  </InsertValuesWriteList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadMergeDeleteList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeDeleteList");
+                return;
+            }
+
+            reader.ReadStartElement("MergeDeleteList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "MergeDelete", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'MergeDeleteList'.");
+                }
+                var row = ReadMergeDelete(reader, relationshipBuffers);
+                loadState.AddMergeDeleteId(row.Id);
+                model.MergeDeleteList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static MergeDelete ReadMergeDelete(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new MergeDelete();
+            var relationships = new MergeDeleteRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "ValidationTargetRowsetLinkId":
+                            relationships.ValidationTargetRowsetLinkId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'MergeDelete'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeDelete");
+                (relationshipBuffers.MergeDeleteRelationships ??= new List<MergeDeleteRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("MergeDelete");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "MetaTransformScriptMergeDeleteActionId":
+                        row.MetaTransformScriptMergeDeleteActionId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'MergeDelete'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.MergeDeleteRelationships ??= new List<MergeDeleteRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeMergeDeleteShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <MergeDeleteList>\n");
+            foreach (var row in model.MergeDeleteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'MergeDelete' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'MergeDelete' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <MergeDelete Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var validationTargetRowsetLinkId = RequireIdentity(row.ValidationTargetRowsetLink?.Id, $"Relationship 'MergeDelete.ValidationTargetRowsetLinkId' on row 'MergeDelete:{row.Id}' is empty.");
+                if (!saveIndexes.ValidationTargetRowsetLinkListById.TryGetValue(validationTargetRowsetLinkId, out var validationTargetRowsetLinkCanonical) || !ReferenceEquals(validationTargetRowsetLinkCanonical, row.ValidationTargetRowsetLink))
+                {
+                    throw new InvalidOperationException($"Relationship 'MergeDelete.ValidationTargetRowsetLinkId' on row 'MergeDelete:{row.Id}' references an object that is not the canonical row for Id '{validationTargetRowsetLinkId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("ValidationTargetRowsetLinkId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, validationTargetRowsetLinkId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "MetaTransformScriptMergeDeleteActionId", RequireText(row.MetaTransformScriptMergeDeleteActionId, $"Entity 'MergeDelete' row '{row.Id}' is missing required property 'MetaTransformScriptMergeDeleteActionId'."), "      ");
+                builder.Append("    </MergeDelete>\n");
+            }
+            builder.Append("  </MergeDeleteList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadMergeInsertWriteList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeInsertWriteList");
+                return;
+            }
+
+            reader.ReadStartElement("MergeInsertWriteList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "MergeInsertWrite", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'MergeInsertWriteList'.");
+                }
+                var row = ReadMergeInsertWrite(reader, relationshipBuffers);
+                loadState.AddMergeInsertWriteId(row.Id);
+                model.MergeInsertWriteList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static MergeInsertWrite ReadMergeInsertWrite(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new MergeInsertWrite();
+            var relationships = new MergeInsertWriteRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "WriteId":
+                            relationships.WriteId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'MergeInsertWrite'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeInsertWrite");
+                (relationshipBuffers.MergeInsertWriteRelationships ??= new List<MergeInsertWriteRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("MergeInsertWrite");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "MetaTransformScriptMergeInsertActionId":
+                        row.MetaTransformScriptMergeInsertActionId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'MergeInsertWrite'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.MergeInsertWriteRelationships ??= new List<MergeInsertWriteRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeMergeInsertWriteShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <MergeInsertWriteList>\n");
+            foreach (var row in model.MergeInsertWriteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'MergeInsertWrite' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'MergeInsertWrite' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <MergeInsertWrite Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var writeId = RequireIdentity(row.Write?.Id, $"Relationship 'MergeInsertWrite.WriteId' on row 'MergeInsertWrite:{row.Id}' is empty.");
+                if (!saveIndexes.WriteListById.TryGetValue(writeId, out var writeCanonical) || !ReferenceEquals(writeCanonical, row.Write))
+                {
+                    throw new InvalidOperationException($"Relationship 'MergeInsertWrite.WriteId' on row 'MergeInsertWrite:{row.Id}' references an object that is not the canonical row for Id '{writeId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("WriteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, writeId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "MetaTransformScriptMergeInsertActionId", RequireText(row.MetaTransformScriptMergeInsertActionId, $"Entity 'MergeInsertWrite' row '{row.Id}' is missing required property 'MetaTransformScriptMergeInsertActionId'."), "      ");
+                builder.Append("    </MergeInsertWrite>\n");
+            }
+            builder.Append("  </MergeInsertWriteList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadMergeUpdateWriteList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeUpdateWriteList");
+                return;
+            }
+
+            reader.ReadStartElement("MergeUpdateWriteList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "MergeUpdateWrite", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'MergeUpdateWriteList'.");
+                }
+                var row = ReadMergeUpdateWrite(reader, relationshipBuffers);
+                loadState.AddMergeUpdateWriteId(row.Id);
+                model.MergeUpdateWriteList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static MergeUpdateWrite ReadMergeUpdateWrite(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new MergeUpdateWrite();
+            var relationships = new MergeUpdateWriteRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "WriteId":
+                            relationships.WriteId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'MergeUpdateWrite'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeUpdateWrite");
+                (relationshipBuffers.MergeUpdateWriteRelationships ??= new List<MergeUpdateWriteRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("MergeUpdateWrite");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "MetaTransformScriptMergeUpdateActionId":
+                        row.MetaTransformScriptMergeUpdateActionId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'MergeUpdateWrite'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.MergeUpdateWriteRelationships ??= new List<MergeUpdateWriteRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeMergeUpdateWriteShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <MergeUpdateWriteList>\n");
+            foreach (var row in model.MergeUpdateWriteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'MergeUpdateWrite' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'MergeUpdateWrite' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <MergeUpdateWrite Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var writeId = RequireIdentity(row.Write?.Id, $"Relationship 'MergeUpdateWrite.WriteId' on row 'MergeUpdateWrite:{row.Id}' is empty.");
+                if (!saveIndexes.WriteListById.TryGetValue(writeId, out var writeCanonical) || !ReferenceEquals(writeCanonical, row.Write))
+                {
+                    throw new InvalidOperationException($"Relationship 'MergeUpdateWrite.WriteId' on row 'MergeUpdateWrite:{row.Id}' references an object that is not the canonical row for Id '{writeId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("WriteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, writeId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "MetaTransformScriptMergeUpdateActionId", RequireText(row.MetaTransformScriptMergeUpdateActionId, $"Entity 'MergeUpdateWrite' row '{row.Id}' is missing required property 'MetaTransformScriptMergeUpdateActionId'."), "      ");
+                builder.Append("    </MergeUpdateWrite>\n");
+            }
+            builder.Append("  </MergeUpdateWriteList>\n");
             builder.Append("</MetaTransformBinding>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -1198,6 +2053,136 @@ namespace MetaTransformBinding
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
+        private static void LoadTargetColumnReferenceList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("TargetColumnReferenceList");
+                return;
+            }
+
+            reader.ReadStartElement("TargetColumnReferenceList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "TargetColumnReference", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'TargetColumnReferenceList'.");
+                }
+                var row = ReadTargetColumnReference(reader, relationshipBuffers);
+                loadState.AddTargetColumnReferenceId(row.Id);
+                model.TargetColumnReferenceList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static TargetColumnReference ReadTargetColumnReference(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new TargetColumnReference();
+            var relationships = new TargetColumnReferenceRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "ColumnId":
+                            relationships.ColumnId = reader.Value;
+                            break;
+                        case "TransformBindingTargetId":
+                            relationships.TransformBindingTargetId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'TargetColumnReference'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("TargetColumnReference");
+                (relationshipBuffers.TargetColumnReferenceRelationships ??= new List<TargetColumnReferenceRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("TargetColumnReference");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "MetaSchemaFieldId":
+                        row.MetaSchemaFieldId = reader.ReadElementContentAsString();
+                        break;
+                    case "MetaTransformScriptColumnReferenceId":
+                        row.MetaTransformScriptColumnReferenceId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'TargetColumnReference'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.TargetColumnReferenceRelationships ??= new List<TargetColumnReferenceRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeTargetColumnReferenceShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <TargetColumnReferenceList>\n");
+            foreach (var row in model.TargetColumnReferenceList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'TargetColumnReference' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'TargetColumnReference' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <TargetColumnReference Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var columnId = RequireIdentity(row.Column?.Id, $"Relationship 'TargetColumnReference.ColumnId' on row 'TargetColumnReference:{row.Id}' is empty.");
+                if (!saveIndexes.ColumnListById.TryGetValue(columnId, out var columnCanonical) || !ReferenceEquals(columnCanonical, row.Column))
+                {
+                    throw new InvalidOperationException($"Relationship 'TargetColumnReference.ColumnId' on row 'TargetColumnReference:{row.Id}' references an object that is not the canonical row for Id '{columnId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("ColumnId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, columnId);
+                builder.Append('"');
+                var transformBindingTargetId = RequireIdentity(row.TransformBindingTarget?.Id, $"Relationship 'TargetColumnReference.TransformBindingTargetId' on row 'TargetColumnReference:{row.Id}' is empty.");
+                if (!saveIndexes.TransformBindingTargetListById.TryGetValue(transformBindingTargetId, out var transformBindingTargetCanonical) || !ReferenceEquals(transformBindingTargetCanonical, row.TransformBindingTarget))
+                {
+                    throw new InvalidOperationException($"Relationship 'TargetColumnReference.TransformBindingTargetId' on row 'TargetColumnReference:{row.Id}' references an object that is not the canonical row for Id '{transformBindingTargetId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("TransformBindingTargetId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, transformBindingTargetId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "MetaSchemaFieldId", RequireText(row.MetaSchemaFieldId, $"Entity 'TargetColumnReference' row '{row.Id}' is missing required property 'MetaSchemaFieldId'."), "      ");
+                AppendElement(builder, "MetaTransformScriptColumnReferenceId", RequireText(row.MetaTransformScriptColumnReferenceId, $"Entity 'TargetColumnReference' row '{row.Id}' is missing required property 'MetaTransformScriptColumnReferenceId'."), "      ");
+                builder.Append("    </TargetColumnReference>\n");
+            }
+            builder.Append("  </TargetColumnReferenceList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
         private static void LoadTransformBindingList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
@@ -1411,6 +2396,232 @@ namespace MetaTransformBinding
                 builder.Append("    </TransformBindingTarget>\n");
             }
             builder.Append("  </TransformBindingTargetList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadTruncateList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("TruncateList");
+                return;
+            }
+
+            reader.ReadStartElement("TruncateList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "Truncate", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'TruncateList'.");
+                }
+                var row = ReadTruncate(reader, relationshipBuffers);
+                loadState.AddTruncateId(row.Id);
+                model.TruncateList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static Truncate ReadTruncate(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new Truncate();
+            var relationships = new TruncateRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "ValidationTargetRowsetLinkId":
+                            relationships.ValidationTargetRowsetLinkId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'Truncate'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("Truncate");
+                (relationshipBuffers.TruncateRelationships ??= new List<TruncateRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("Truncate");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "MetaTransformScriptTruncateStatementId":
+                        row.MetaTransformScriptTruncateStatementId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'Truncate'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.TruncateRelationships ??= new List<TruncateRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeTruncateShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <TruncateList>\n");
+            foreach (var row in model.TruncateList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'Truncate' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'Truncate' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <Truncate Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var validationTargetRowsetLinkId = RequireIdentity(row.ValidationTargetRowsetLink?.Id, $"Relationship 'Truncate.ValidationTargetRowsetLinkId' on row 'Truncate:{row.Id}' is empty.");
+                if (!saveIndexes.ValidationTargetRowsetLinkListById.TryGetValue(validationTargetRowsetLinkId, out var validationTargetRowsetLinkCanonical) || !ReferenceEquals(validationTargetRowsetLinkCanonical, row.ValidationTargetRowsetLink))
+                {
+                    throw new InvalidOperationException($"Relationship 'Truncate.ValidationTargetRowsetLinkId' on row 'Truncate:{row.Id}' references an object that is not the canonical row for Id '{validationTargetRowsetLinkId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("ValidationTargetRowsetLinkId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, validationTargetRowsetLinkId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "MetaTransformScriptTruncateStatementId", RequireText(row.MetaTransformScriptTruncateStatementId, $"Entity 'Truncate' row '{row.Id}' is missing required property 'MetaTransformScriptTruncateStatementId'."), "      ");
+                builder.Append("    </Truncate>\n");
+            }
+            builder.Append("  </TruncateList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadUpdateWriteList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("UpdateWriteList");
+                return;
+            }
+
+            reader.ReadStartElement("UpdateWriteList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "UpdateWrite", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'UpdateWriteList'.");
+                }
+                var row = ReadUpdateWrite(reader, relationshipBuffers);
+                loadState.AddUpdateWriteId(row.Id);
+                model.UpdateWriteList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static UpdateWrite ReadUpdateWrite(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new UpdateWrite();
+            var relationships = new UpdateWriteRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "WriteId":
+                            relationships.WriteId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'UpdateWrite'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("UpdateWrite");
+                (relationshipBuffers.UpdateWriteRelationships ??= new List<UpdateWriteRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("UpdateWrite");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "MetaTransformScriptSetClauseId":
+                        row.MetaTransformScriptSetClauseId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'UpdateWrite'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.UpdateWriteRelationships ??= new List<UpdateWriteRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeUpdateWriteShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <UpdateWriteList>\n");
+            foreach (var row in model.UpdateWriteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'UpdateWrite' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'UpdateWrite' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <UpdateWrite Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var writeId = RequireIdentity(row.Write?.Id, $"Relationship 'UpdateWrite.WriteId' on row 'UpdateWrite:{row.Id}' is empty.");
+                if (!saveIndexes.WriteListById.TryGetValue(writeId, out var writeCanonical) || !ReferenceEquals(writeCanonical, row.Write))
+                {
+                    throw new InvalidOperationException($"Relationship 'UpdateWrite.WriteId' on row 'UpdateWrite:{row.Id}' references an object that is not the canonical row for Id '{writeId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("WriteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, writeId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "MetaTransformScriptSetClauseId", RequireText(row.MetaTransformScriptSetClauseId, $"Entity 'UpdateWrite' row '{row.Id}' is missing required property 'MetaTransformScriptSetClauseId'."), "      ");
+                builder.Append("    </UpdateWrite>\n");
+            }
+            builder.Append("  </UpdateWriteList>\n");
             builder.Append("</MetaTransformBinding>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -2019,119 +3230,6 @@ namespace MetaTransformBinding
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
-        private static void LoadValidationTargetColumnTypeNotClassifiedList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("ValidationTargetColumnTypeNotClassifiedList");
-                return;
-            }
-
-            reader.ReadStartElement("ValidationTargetColumnTypeNotClassifiedList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "ValidationTargetColumnTypeNotClassified", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'ValidationTargetColumnTypeNotClassifiedList'.");
-                }
-                var row = ReadValidationTargetColumnTypeNotClassified(reader, relationshipBuffers);
-                loadState.AddValidationTargetColumnTypeNotClassifiedId(row.Id);
-                model.ValidationTargetColumnTypeNotClassifiedList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static ValidationTargetColumnTypeNotClassified ReadValidationTargetColumnTypeNotClassified(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new ValidationTargetColumnTypeNotClassified();
-            var relationships = new ValidationTargetColumnTypeNotClassifiedRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "ValidationTargetColumnLinkId":
-                            relationships.ValidationTargetColumnLinkId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'ValidationTargetColumnTypeNotClassified'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("ValidationTargetColumnTypeNotClassified");
-                (relationshipBuffers.ValidationTargetColumnTypeNotClassifiedRelationships ??= new List<ValidationTargetColumnTypeNotClassifiedRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("ValidationTargetColumnTypeNotClassified");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "TargetMetaDataTypeId":
-                        row.TargetMetaDataTypeId = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'ValidationTargetColumnTypeNotClassified'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.ValidationTargetColumnTypeNotClassifiedRelationships ??= new List<ValidationTargetColumnTypeNotClassifiedRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeValidationTargetColumnTypeNotClassifiedShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaTransformBinding>\n");
-            builder.Append("  <ValidationTargetColumnTypeNotClassifiedList>\n");
-            foreach (var row in model.ValidationTargetColumnTypeNotClassifiedList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'ValidationTargetColumnTypeNotClassified' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'ValidationTargetColumnTypeNotClassified' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <ValidationTargetColumnTypeNotClassified Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var validationTargetColumnLinkId = RequireIdentity(row.ValidationTargetColumnLink?.Id, $"Relationship 'ValidationTargetColumnTypeNotClassified.ValidationTargetColumnLinkId' on row 'ValidationTargetColumnTypeNotClassified:{row.Id}' is empty.");
-                if (!saveIndexes.ValidationTargetColumnLinkListById.TryGetValue(validationTargetColumnLinkId, out var validationTargetColumnLinkCanonical) || !ReferenceEquals(validationTargetColumnLinkCanonical, row.ValidationTargetColumnLink))
-                {
-                    throw new InvalidOperationException($"Relationship 'ValidationTargetColumnTypeNotClassified.ValidationTargetColumnLinkId' on row 'ValidationTargetColumnTypeNotClassified:{row.Id}' references an object that is not the canonical row for Id '{validationTargetColumnLinkId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("ValidationTargetColumnLinkId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, validationTargetColumnLinkId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "TargetMetaDataTypeId", RequireText(row.TargetMetaDataTypeId, $"Entity 'ValidationTargetColumnTypeNotClassified' row '{row.Id}' is missing required property 'TargetMetaDataTypeId'."), "      ");
-                builder.Append("    </ValidationTargetColumnTypeNotClassified>\n");
-            }
-            builder.Append("  </ValidationTargetColumnTypeNotClassifiedList>\n");
-            builder.Append("</MetaTransformBinding>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
         private static void LoadValidationTargetColumnTypeSanctionedConversionList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
@@ -2501,6 +3599,350 @@ namespace MetaTransformBinding
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
+        private static void LoadWriteList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("WriteList");
+                return;
+            }
+
+            reader.ReadStartElement("WriteList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "Write", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'WriteList'.");
+                }
+                var row = ReadWrite(reader, relationshipBuffers);
+                loadState.AddWriteId(row.Id);
+                model.WriteList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static Write ReadWrite(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new Write();
+            var relationships = new WriteRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "ValidationTargetRowsetLinkId":
+                            relationships.ValidationTargetRowsetLinkId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'Write'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("Write");
+                (relationshipBuffers.WriteRelationships ??= new List<WriteRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("Write");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'Write'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.WriteRelationships ??= new List<WriteRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeWriteShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <WriteList>\n");
+            foreach (var row in model.WriteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'Write' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'Write' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <Write Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var validationTargetRowsetLinkId = RequireIdentity(row.ValidationTargetRowsetLink?.Id, $"Relationship 'Write.ValidationTargetRowsetLinkId' on row 'Write:{row.Id}' is empty.");
+                if (!saveIndexes.ValidationTargetRowsetLinkListById.TryGetValue(validationTargetRowsetLinkId, out var validationTargetRowsetLinkCanonical) || !ReferenceEquals(validationTargetRowsetLinkCanonical, row.ValidationTargetRowsetLink))
+                {
+                    throw new InvalidOperationException($"Relationship 'Write.ValidationTargetRowsetLinkId' on row 'Write:{row.Id}' references an object that is not the canonical row for Id '{validationTargetRowsetLinkId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("ValidationTargetRowsetLinkId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, validationTargetRowsetLinkId);
+                builder.Append('"');
+                builder.Append(">\n");
+                builder.Append("    </Write>\n");
+            }
+            builder.Append("  </WriteList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadWriteValueList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("WriteValueList");
+                return;
+            }
+
+            reader.ReadStartElement("WriteValueList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "WriteValue", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'WriteValueList'.");
+                }
+                var row = ReadWriteValue(reader, relationshipBuffers);
+                loadState.AddWriteValueId(row.Id);
+                model.WriteValueList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static WriteValue ReadWriteValue(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new WriteValue();
+            var relationships = new WriteValueRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "ValidationTargetColumnLinkId":
+                            relationships.ValidationTargetColumnLinkId = reader.Value;
+                            break;
+                        case "WriteId":
+                            relationships.WriteId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'WriteValue'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("WriteValue");
+                (relationshipBuffers.WriteValueRelationships ??= new List<WriteValueRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("WriteValue");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'WriteValue'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.WriteValueRelationships ??= new List<WriteValueRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeWriteValueShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <WriteValueList>\n");
+            foreach (var row in model.WriteValueList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'WriteValue' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'WriteValue' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <WriteValue Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var validationTargetColumnLinkId = RequireIdentity(row.ValidationTargetColumnLink?.Id, $"Relationship 'WriteValue.ValidationTargetColumnLinkId' on row 'WriteValue:{row.Id}' is empty.");
+                if (!saveIndexes.ValidationTargetColumnLinkListById.TryGetValue(validationTargetColumnLinkId, out var validationTargetColumnLinkCanonical) || !ReferenceEquals(validationTargetColumnLinkCanonical, row.ValidationTargetColumnLink))
+                {
+                    throw new InvalidOperationException($"Relationship 'WriteValue.ValidationTargetColumnLinkId' on row 'WriteValue:{row.Id}' references an object that is not the canonical row for Id '{validationTargetColumnLinkId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("ValidationTargetColumnLinkId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, validationTargetColumnLinkId);
+                builder.Append('"');
+                var writeId = RequireIdentity(row.Write?.Id, $"Relationship 'WriteValue.WriteId' on row 'WriteValue:{row.Id}' is empty.");
+                if (!saveIndexes.WriteListById.TryGetValue(writeId, out var writeCanonical) || !ReferenceEquals(writeCanonical, row.Write))
+                {
+                    throw new InvalidOperationException($"Relationship 'WriteValue.WriteId' on row 'WriteValue:{row.Id}' references an object that is not the canonical row for Id '{writeId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("WriteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, writeId);
+                builder.Append('"');
+                builder.Append(">\n");
+                builder.Append("    </WriteValue>\n");
+            }
+            builder.Append("  </WriteValueList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadWriteValueScalarExpressionList(MetaTransformBindingModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("WriteValueScalarExpressionList");
+                return;
+            }
+
+            reader.ReadStartElement("WriteValueScalarExpressionList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "WriteValueScalarExpression", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'WriteValueScalarExpressionList'.");
+                }
+                var row = ReadWriteValueScalarExpression(reader, relationshipBuffers);
+                loadState.AddWriteValueScalarExpressionId(row.Id);
+                model.WriteValueScalarExpressionList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static WriteValueScalarExpression ReadWriteValueScalarExpression(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new WriteValueScalarExpression();
+            var relationships = new WriteValueScalarExpressionRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "WriteValueId":
+                            relationships.WriteValueId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'WriteValueScalarExpression'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("WriteValueScalarExpression");
+                (relationshipBuffers.WriteValueScalarExpressionRelationships ??= new List<WriteValueScalarExpressionRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("WriteValueScalarExpression");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "MetaTransformScriptScalarExpressionId":
+                        row.MetaTransformScriptScalarExpressionId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'WriteValueScalarExpression'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.WriteValueScalarExpressionRelationships ??= new List<WriteValueScalarExpressionRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeWriteValueScalarExpressionShard(MetaTransformBindingModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformBinding>\n");
+            builder.Append("  <WriteValueScalarExpressionList>\n");
+            foreach (var row in model.WriteValueScalarExpressionList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'WriteValueScalarExpression' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'WriteValueScalarExpression' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <WriteValueScalarExpression Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var writeValueId = RequireIdentity(row.WriteValue?.Id, $"Relationship 'WriteValueScalarExpression.WriteValueId' on row 'WriteValueScalarExpression:{row.Id}' is empty.");
+                if (!saveIndexes.WriteValueListById.TryGetValue(writeValueId, out var writeValueCanonical) || !ReferenceEquals(writeValueCanonical, row.WriteValue))
+                {
+                    throw new InvalidOperationException($"Relationship 'WriteValueScalarExpression.WriteValueId' on row 'WriteValueScalarExpression:{row.Id}' references an object that is not the canonical row for Id '{writeValueId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("WriteValueId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, writeValueId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "MetaTransformScriptScalarExpressionId", RequireText(row.MetaTransformScriptScalarExpressionId, $"Entity 'WriteValueScalarExpression' row '{row.Id}' is missing required property 'MetaTransformScriptScalarExpressionId'."), "      ");
+                builder.Append("    </WriteValueScalarExpression>\n");
+            }
+            builder.Append("  </WriteValueScalarExpressionList>\n");
+            builder.Append("</MetaTransformBinding>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
         private sealed class ColumnRelationships
         {
             public Column Row { get; set; } = null!;
@@ -2513,6 +3955,42 @@ namespace MetaTransformBinding
             public string ColumnId { get; set; } = string.Empty;
             public string TableSourceId { get; set; } = string.Empty;
             public string TransformBindingId { get; set; } = string.Empty;
+        }
+
+        private sealed class DeleteRelationships
+        {
+            public Delete Row { get; set; } = null!;
+            public string ValidationTargetRowsetLinkId { get; set; } = string.Empty;
+        }
+
+        private sealed class InsertQueryWriteRelationships
+        {
+            public InsertQueryWrite Row { get; set; } = null!;
+            public string WriteId { get; set; } = string.Empty;
+        }
+
+        private sealed class InsertValuesWriteRelationships
+        {
+            public InsertValuesWrite Row { get; set; } = null!;
+            public string WriteId { get; set; } = string.Empty;
+        }
+
+        private sealed class MergeDeleteRelationships
+        {
+            public MergeDelete Row { get; set; } = null!;
+            public string ValidationTargetRowsetLinkId { get; set; } = string.Empty;
+        }
+
+        private sealed class MergeInsertWriteRelationships
+        {
+            public MergeInsertWrite Row { get; set; } = null!;
+            public string WriteId { get; set; } = string.Empty;
+        }
+
+        private sealed class MergeUpdateWriteRelationships
+        {
+            public MergeUpdateWrite Row { get; set; } = null!;
+            public string WriteId { get; set; } = string.Empty;
         }
 
         private sealed class OutputRowsetRelationships
@@ -2542,10 +4020,29 @@ namespace MetaTransformBinding
             public string TransformBindingId { get; set; } = string.Empty;
         }
 
+        private sealed class TargetColumnReferenceRelationships
+        {
+            public TargetColumnReference Row { get; set; } = null!;
+            public string ColumnId { get; set; } = string.Empty;
+            public string TransformBindingTargetId { get; set; } = string.Empty;
+        }
+
         private sealed class TransformBindingTargetRelationships
         {
             public TransformBindingTarget Row { get; set; } = null!;
             public string TransformBindingId { get; set; } = string.Empty;
+        }
+
+        private sealed class TruncateRelationships
+        {
+            public Truncate Row { get; set; } = null!;
+            public string ValidationTargetRowsetLinkId { get; set; } = string.Empty;
+        }
+
+        private sealed class UpdateWriteRelationships
+        {
+            public UpdateWrite Row { get; set; } = null!;
+            public string WriteId { get; set; } = string.Empty;
         }
 
         private sealed class ValidationRelationships
@@ -2581,12 +4078,6 @@ namespace MetaTransformBinding
             public string ValidationTargetColumnLinkId { get; set; } = string.Empty;
         }
 
-        private sealed class ValidationTargetColumnTypeNotClassifiedRelationships
-        {
-            public ValidationTargetColumnTypeNotClassified Row { get; set; } = null!;
-            public string ValidationTargetColumnLinkId { get; set; } = string.Empty;
-        }
-
         private sealed class ValidationTargetColumnTypeSanctionedConversionRelationships
         {
             public ValidationTargetColumnTypeSanctionedConversion Row { get; set; } = null!;
@@ -2607,24 +4098,54 @@ namespace MetaTransformBinding
             public string ValidationId { get; set; } = string.Empty;
         }
 
+        private sealed class WriteRelationships
+        {
+            public Write Row { get; set; } = null!;
+            public string ValidationTargetRowsetLinkId { get; set; } = string.Empty;
+        }
+
+        private sealed class WriteValueRelationships
+        {
+            public WriteValue Row { get; set; } = null!;
+            public string ValidationTargetColumnLinkId { get; set; } = string.Empty;
+            public string WriteId { get; set; } = string.Empty;
+        }
+
+        private sealed class WriteValueScalarExpressionRelationships
+        {
+            public WriteValueScalarExpression Row { get; set; } = null!;
+            public string WriteValueId { get; set; } = string.Empty;
+        }
+
         private sealed class RelationshipBuffers
         {
             public List<ColumnRelationships>? ColumnRelationships { get; set; }
             public List<ColumnReferenceRelationships>? ColumnReferenceRelationships { get; set; }
+            public List<DeleteRelationships>? DeleteRelationships { get; set; }
+            public List<InsertQueryWriteRelationships>? InsertQueryWriteRelationships { get; set; }
+            public List<InsertValuesWriteRelationships>? InsertValuesWriteRelationships { get; set; }
+            public List<MergeDeleteRelationships>? MergeDeleteRelationships { get; set; }
+            public List<MergeInsertWriteRelationships>? MergeInsertWriteRelationships { get; set; }
+            public List<MergeUpdateWriteRelationships>? MergeUpdateWriteRelationships { get; set; }
             public List<OutputRowsetRelationships>? OutputRowsetRelationships { get; set; }
             public List<RowsetRelationships>? RowsetRelationships { get; set; }
             public List<SourceTargetRelationships>? SourceTargetRelationships { get; set; }
             public List<TableSourceRelationships>? TableSourceRelationships { get; set; }
+            public List<TargetColumnReferenceRelationships>? TargetColumnReferenceRelationships { get; set; }
             public List<TransformBindingTargetRelationships>? TransformBindingTargetRelationships { get; set; }
+            public List<TruncateRelationships>? TruncateRelationships { get; set; }
+            public List<UpdateWriteRelationships>? UpdateWriteRelationships { get; set; }
             public List<ValidationRelationships>? ValidationRelationships { get; set; }
             public List<ValidationSourceColumnLinkRelationships>? ValidationSourceColumnLinkRelationships { get; set; }
             public List<ValidationSourceRowsetLinkRelationships>? ValidationSourceRowsetLinkRelationships { get; set; }
             public List<ValidationTargetColumnLinkRelationships>? ValidationTargetColumnLinkRelationships { get; set; }
             public List<ValidationTargetColumnTypeExactRelationships>? ValidationTargetColumnTypeExactRelationships { get; set; }
-            public List<ValidationTargetColumnTypeNotClassifiedRelationships>? ValidationTargetColumnTypeNotClassifiedRelationships { get; set; }
             public List<ValidationTargetColumnTypeSanctionedConversionRelationships>? ValidationTargetColumnTypeSanctionedConversionRelationships { get; set; }
             public List<ValidationTargetIgnoredColumnRelationships>? ValidationTargetIgnoredColumnRelationships { get; set; }
             public List<ValidationTargetRowsetLinkRelationships>? ValidationTargetRowsetLinkRelationships { get; set; }
+            public List<WriteRelationships>? WriteRelationships { get; set; }
+            public List<WriteValueRelationships>? WriteValueRelationships { get; set; }
+            public List<WriteValueScalarExpressionRelationships>? WriteValueScalarExpressionRelationships { get; set; }
         }
 
         private static void ResolveRelationshipGroup1(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
@@ -2667,6 +4188,66 @@ namespace MetaTransformBinding
                     "ColumnReference",
                     relationship.Row.Id,
                     "TransformBindingId");
+            }
+
+            foreach (var relationship in relationshipBuffers.DeleteRelationships ?? Enumerable.Empty<DeleteRelationships>())
+            {
+                relationship.Row.ValidationTargetRowsetLink = RequireTarget(
+                    loadIndexes.ValidationTargetRowsetLinkListById,
+                    relationship.ValidationTargetRowsetLinkId,
+                    "Delete",
+                    relationship.Row.Id,
+                    "ValidationTargetRowsetLinkId");
+            }
+
+            foreach (var relationship in relationshipBuffers.InsertQueryWriteRelationships ?? Enumerable.Empty<InsertQueryWriteRelationships>())
+            {
+                relationship.Row.Write = RequireTarget(
+                    loadIndexes.WriteListById,
+                    relationship.WriteId,
+                    "InsertQueryWrite",
+                    relationship.Row.Id,
+                    "WriteId");
+            }
+
+            foreach (var relationship in relationshipBuffers.InsertValuesWriteRelationships ?? Enumerable.Empty<InsertValuesWriteRelationships>())
+            {
+                relationship.Row.Write = RequireTarget(
+                    loadIndexes.WriteListById,
+                    relationship.WriteId,
+                    "InsertValuesWrite",
+                    relationship.Row.Id,
+                    "WriteId");
+            }
+
+            foreach (var relationship in relationshipBuffers.MergeDeleteRelationships ?? Enumerable.Empty<MergeDeleteRelationships>())
+            {
+                relationship.Row.ValidationTargetRowsetLink = RequireTarget(
+                    loadIndexes.ValidationTargetRowsetLinkListById,
+                    relationship.ValidationTargetRowsetLinkId,
+                    "MergeDelete",
+                    relationship.Row.Id,
+                    "ValidationTargetRowsetLinkId");
+            }
+
+            foreach (var relationship in relationshipBuffers.MergeInsertWriteRelationships ?? Enumerable.Empty<MergeInsertWriteRelationships>())
+            {
+                relationship.Row.Write = RequireTarget(
+                    loadIndexes.WriteListById,
+                    relationship.WriteId,
+                    "MergeInsertWrite",
+                    relationship.Row.Id,
+                    "WriteId");
+            }
+
+            foreach (var relationship in relationshipBuffers.MergeUpdateWriteRelationships ?? Enumerable.Empty<MergeUpdateWriteRelationships>())
+            {
+                relationship.Row.Write = RequireTarget(
+                    loadIndexes.WriteListById,
+                    relationship.WriteId,
+                    "MergeUpdateWrite",
+                    relationship.Row.Id,
+                    "WriteId");
             }
 
             foreach (var relationship in relationshipBuffers.OutputRowsetRelationships ?? Enumerable.Empty<OutputRowsetRelationships>())
@@ -2739,6 +4320,26 @@ namespace MetaTransformBinding
                     "TransformBindingId");
             }
 
+            foreach (var relationship in relationshipBuffers.TargetColumnReferenceRelationships ?? Enumerable.Empty<TargetColumnReferenceRelationships>())
+            {
+                relationship.Row.Column = RequireTarget(
+                    loadIndexes.ColumnListById,
+                    relationship.ColumnId,
+                    "TargetColumnReference",
+                    relationship.Row.Id,
+                    "ColumnId");
+            }
+
+            foreach (var relationship in relationshipBuffers.TargetColumnReferenceRelationships ?? Enumerable.Empty<TargetColumnReferenceRelationships>())
+            {
+                relationship.Row.TransformBindingTarget = RequireTarget(
+                    loadIndexes.TransformBindingTargetListById,
+                    relationship.TransformBindingTargetId,
+                    "TargetColumnReference",
+                    relationship.Row.Id,
+                    "TransformBindingTargetId");
+            }
+
             foreach (var relationship in relationshipBuffers.TransformBindingTargetRelationships ?? Enumerable.Empty<TransformBindingTargetRelationships>())
             {
                 relationship.Row.TransformBinding = RequireTarget(
@@ -2747,6 +4348,26 @@ namespace MetaTransformBinding
                     "TransformBindingTarget",
                     relationship.Row.Id,
                     "TransformBindingId");
+            }
+
+            foreach (var relationship in relationshipBuffers.TruncateRelationships ?? Enumerable.Empty<TruncateRelationships>())
+            {
+                relationship.Row.ValidationTargetRowsetLink = RequireTarget(
+                    loadIndexes.ValidationTargetRowsetLinkListById,
+                    relationship.ValidationTargetRowsetLinkId,
+                    "Truncate",
+                    relationship.Row.Id,
+                    "ValidationTargetRowsetLinkId");
+            }
+
+            foreach (var relationship in relationshipBuffers.UpdateWriteRelationships ?? Enumerable.Empty<UpdateWriteRelationships>())
+            {
+                relationship.Row.Write = RequireTarget(
+                    loadIndexes.WriteListById,
+                    relationship.WriteId,
+                    "UpdateWrite",
+                    relationship.Row.Id,
+                    "WriteId");
             }
 
             foreach (var relationship in relationshipBuffers.ValidationRelationships ?? Enumerable.Empty<ValidationRelationships>())
@@ -2829,16 +4450,6 @@ namespace MetaTransformBinding
                     "ValidationTargetColumnLinkId");
             }
 
-            foreach (var relationship in relationshipBuffers.ValidationTargetColumnTypeNotClassifiedRelationships ?? Enumerable.Empty<ValidationTargetColumnTypeNotClassifiedRelationships>())
-            {
-                relationship.Row.ValidationTargetColumnLink = RequireTarget(
-                    loadIndexes.ValidationTargetColumnLinkListById,
-                    relationship.ValidationTargetColumnLinkId,
-                    "ValidationTargetColumnTypeNotClassified",
-                    relationship.Row.Id,
-                    "ValidationTargetColumnLinkId");
-            }
-
             foreach (var relationship in relationshipBuffers.ValidationTargetColumnTypeSanctionedConversionRelationships ?? Enumerable.Empty<ValidationTargetColumnTypeSanctionedConversionRelationships>())
             {
                 relationship.Row.ValidationTargetColumnLink = RequireTarget(
@@ -2859,6 +4470,10 @@ namespace MetaTransformBinding
                     "ValidationTargetRowsetLinkId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup2(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.ValidationTargetRowsetLinkRelationships ?? Enumerable.Empty<ValidationTargetRowsetLinkRelationships>())
             {
                 relationship.Row.Rowset = RequireTarget(
@@ -2889,27 +4504,78 @@ namespace MetaTransformBinding
                     "ValidationId");
             }
 
+            foreach (var relationship in relationshipBuffers.WriteRelationships ?? Enumerable.Empty<WriteRelationships>())
+            {
+                relationship.Row.ValidationTargetRowsetLink = RequireTarget(
+                    loadIndexes.ValidationTargetRowsetLinkListById,
+                    relationship.ValidationTargetRowsetLinkId,
+                    "Write",
+                    relationship.Row.Id,
+                    "ValidationTargetRowsetLinkId");
+            }
+
+            foreach (var relationship in relationshipBuffers.WriteValueRelationships ?? Enumerable.Empty<WriteValueRelationships>())
+            {
+                relationship.Row.ValidationTargetColumnLink = RequireTarget(
+                    loadIndexes.ValidationTargetColumnLinkListById,
+                    relationship.ValidationTargetColumnLinkId,
+                    "WriteValue",
+                    relationship.Row.Id,
+                    "ValidationTargetColumnLinkId");
+            }
+
+            foreach (var relationship in relationshipBuffers.WriteValueRelationships ?? Enumerable.Empty<WriteValueRelationships>())
+            {
+                relationship.Row.Write = RequireTarget(
+                    loadIndexes.WriteListById,
+                    relationship.WriteId,
+                    "WriteValue",
+                    relationship.Row.Id,
+                    "WriteId");
+            }
+
+            foreach (var relationship in relationshipBuffers.WriteValueScalarExpressionRelationships ?? Enumerable.Empty<WriteValueScalarExpressionRelationships>())
+            {
+                relationship.Row.WriteValue = RequireTarget(
+                    loadIndexes.WriteValueListById,
+                    relationship.WriteValueId,
+                    "WriteValueScalarExpression",
+                    relationship.Row.Id,
+                    "WriteValueId");
+            }
+
         }
 
         private static readonly string[] ShardFileNames =
         {
             "Column.xml",
             "ColumnReference.xml",
+            "Delete.xml",
+            "InsertQueryWrite.xml",
+            "InsertValuesWrite.xml",
+            "MergeDelete.xml",
+            "MergeInsertWrite.xml",
+            "MergeUpdateWrite.xml",
             "OutputRowset.xml",
             "Rowset.xml",
             "SourceTarget.xml",
             "TableSource.xml",
+            "TargetColumnReference.xml",
             "TransformBinding.xml",
             "TransformBindingTarget.xml",
+            "Truncate.xml",
+            "UpdateWrite.xml",
             "Validation.xml",
             "ValidationSourceColumnLink.xml",
             "ValidationSourceRowsetLink.xml",
             "ValidationTargetColumnLink.xml",
             "ValidationTargetColumnTypeExact.xml",
-            "ValidationTargetColumnTypeNotClassified.xml",
             "ValidationTargetColumnTypeSanctionedConversion.xml",
             "ValidationTargetIgnoredColumn.xml",
             "ValidationTargetRowsetLink.xml",
+            "Write.xml",
+            "WriteValue.xml",
+            "WriteValueScalarExpression.xml",
         };
 
         private static HashSet<string> BuildExpectedShardPaths(string instanceDirectoryPath)
@@ -2946,6 +4612,78 @@ namespace MetaTransformBinding
                 if (!columnReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ColumnReference' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? deleteIds;
+
+            public void AddDeleteId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'Delete' contains a row with empty Id.");
+                deleteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!deleteIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'Delete' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? insertQueryWriteIds;
+
+            public void AddInsertQueryWriteId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'InsertQueryWrite' contains a row with empty Id.");
+                insertQueryWriteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!insertQueryWriteIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'InsertQueryWrite' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? insertValuesWriteIds;
+
+            public void AddInsertValuesWriteId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'InsertValuesWrite' contains a row with empty Id.");
+                insertValuesWriteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!insertValuesWriteIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'InsertValuesWrite' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? mergeDeleteIds;
+
+            public void AddMergeDeleteId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'MergeDelete' contains a row with empty Id.");
+                mergeDeleteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!mergeDeleteIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'MergeDelete' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? mergeInsertWriteIds;
+
+            public void AddMergeInsertWriteId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'MergeInsertWrite' contains a row with empty Id.");
+                mergeInsertWriteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!mergeInsertWriteIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'MergeInsertWrite' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? mergeUpdateWriteIds;
+
+            public void AddMergeUpdateWriteId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'MergeUpdateWrite' contains a row with empty Id.");
+                mergeUpdateWriteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!mergeUpdateWriteIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'MergeUpdateWrite' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -2997,6 +4735,18 @@ namespace MetaTransformBinding
                 }
             }
 
+            private HashSet<string>? targetColumnReferenceIds;
+
+            public void AddTargetColumnReferenceId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'TargetColumnReference' contains a row with empty Id.");
+                targetColumnReferenceIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!targetColumnReferenceIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'TargetColumnReference' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
             private HashSet<string>? transformBindingIds;
 
             public void AddTransformBindingId(string? id)
@@ -3018,6 +4768,30 @@ namespace MetaTransformBinding
                 if (!transformBindingTargetIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'TransformBindingTarget' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? truncateIds;
+
+            public void AddTruncateId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'Truncate' contains a row with empty Id.");
+                truncateIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!truncateIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'Truncate' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? updateWriteIds;
+
+            public void AddUpdateWriteId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'UpdateWrite' contains a row with empty Id.");
+                updateWriteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!updateWriteIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'UpdateWrite' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -3081,18 +4855,6 @@ namespace MetaTransformBinding
                 }
             }
 
-            private HashSet<string>? validationTargetColumnTypeNotClassifiedIds;
-
-            public void AddValidationTargetColumnTypeNotClassifiedId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'ValidationTargetColumnTypeNotClassified' contains a row with empty Id.");
-                validationTargetColumnTypeNotClassifiedIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!validationTargetColumnTypeNotClassifiedIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'ValidationTargetColumnTypeNotClassified' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
             private HashSet<string>? validationTargetColumnTypeSanctionedConversionIds;
 
             public void AddValidationTargetColumnTypeSanctionedConversionId(string? id)
@@ -3129,6 +4891,42 @@ namespace MetaTransformBinding
                 }
             }
 
+            private HashSet<string>? writeIds;
+
+            public void AddWriteId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'Write' contains a row with empty Id.");
+                writeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!writeIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'Write' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? writeValueIds;
+
+            public void AddWriteValueId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'WriteValue' contains a row with empty Id.");
+                writeValueIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!writeValueIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'WriteValue' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? writeValueScalarExpressionIds;
+
+            public void AddWriteValueScalarExpressionId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'WriteValueScalarExpression' contains a row with empty Id.");
+                writeValueScalarExpressionIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!writeValueScalarExpressionIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'WriteValueScalarExpression' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
         }
 
         private sealed class LoadIndexes
@@ -3148,6 +4946,30 @@ namespace MetaTransformBinding
 
             public Dictionary<string, ColumnReference> ColumnReferenceListById => columnReferenceListById ??= BuildById(model.ColumnReferenceList, row => row.Id, "ColumnReference");
 
+            private Dictionary<string, Delete>? deleteListById;
+
+            public Dictionary<string, Delete> DeleteListById => deleteListById ??= BuildById(model.DeleteList, row => row.Id, "Delete");
+
+            private Dictionary<string, InsertQueryWrite>? insertQueryWriteListById;
+
+            public Dictionary<string, InsertQueryWrite> InsertQueryWriteListById => insertQueryWriteListById ??= BuildById(model.InsertQueryWriteList, row => row.Id, "InsertQueryWrite");
+
+            private Dictionary<string, InsertValuesWrite>? insertValuesWriteListById;
+
+            public Dictionary<string, InsertValuesWrite> InsertValuesWriteListById => insertValuesWriteListById ??= BuildById(model.InsertValuesWriteList, row => row.Id, "InsertValuesWrite");
+
+            private Dictionary<string, MergeDelete>? mergeDeleteListById;
+
+            public Dictionary<string, MergeDelete> MergeDeleteListById => mergeDeleteListById ??= BuildById(model.MergeDeleteList, row => row.Id, "MergeDelete");
+
+            private Dictionary<string, MergeInsertWrite>? mergeInsertWriteListById;
+
+            public Dictionary<string, MergeInsertWrite> MergeInsertWriteListById => mergeInsertWriteListById ??= BuildById(model.MergeInsertWriteList, row => row.Id, "MergeInsertWrite");
+
+            private Dictionary<string, MergeUpdateWrite>? mergeUpdateWriteListById;
+
+            public Dictionary<string, MergeUpdateWrite> MergeUpdateWriteListById => mergeUpdateWriteListById ??= BuildById(model.MergeUpdateWriteList, row => row.Id, "MergeUpdateWrite");
+
             private Dictionary<string, OutputRowset>? outputRowsetListById;
 
             public Dictionary<string, OutputRowset> OutputRowsetListById => outputRowsetListById ??= BuildById(model.OutputRowsetList, row => row.Id, "OutputRowset");
@@ -3164,6 +4986,10 @@ namespace MetaTransformBinding
 
             public Dictionary<string, TableSource> TableSourceListById => tableSourceListById ??= BuildById(model.TableSourceList, row => row.Id, "TableSource");
 
+            private Dictionary<string, TargetColumnReference>? targetColumnReferenceListById;
+
+            public Dictionary<string, TargetColumnReference> TargetColumnReferenceListById => targetColumnReferenceListById ??= BuildById(model.TargetColumnReferenceList, row => row.Id, "TargetColumnReference");
+
             private Dictionary<string, TransformBinding>? transformBindingListById;
 
             public Dictionary<string, TransformBinding> TransformBindingListById => transformBindingListById ??= BuildById(model.TransformBindingList, row => row.Id, "TransformBinding");
@@ -3171,6 +4997,14 @@ namespace MetaTransformBinding
             private Dictionary<string, TransformBindingTarget>? transformBindingTargetListById;
 
             public Dictionary<string, TransformBindingTarget> TransformBindingTargetListById => transformBindingTargetListById ??= BuildById(model.TransformBindingTargetList, row => row.Id, "TransformBindingTarget");
+
+            private Dictionary<string, Truncate>? truncateListById;
+
+            public Dictionary<string, Truncate> TruncateListById => truncateListById ??= BuildById(model.TruncateList, row => row.Id, "Truncate");
+
+            private Dictionary<string, UpdateWrite>? updateWriteListById;
+
+            public Dictionary<string, UpdateWrite> UpdateWriteListById => updateWriteListById ??= BuildById(model.UpdateWriteList, row => row.Id, "UpdateWrite");
 
             private Dictionary<string, Validation>? validationListById;
 
@@ -3192,10 +5026,6 @@ namespace MetaTransformBinding
 
             public Dictionary<string, ValidationTargetColumnTypeExact> ValidationTargetColumnTypeExactListById => validationTargetColumnTypeExactListById ??= BuildById(model.ValidationTargetColumnTypeExactList, row => row.Id, "ValidationTargetColumnTypeExact");
 
-            private Dictionary<string, ValidationTargetColumnTypeNotClassified>? validationTargetColumnTypeNotClassifiedListById;
-
-            public Dictionary<string, ValidationTargetColumnTypeNotClassified> ValidationTargetColumnTypeNotClassifiedListById => validationTargetColumnTypeNotClassifiedListById ??= BuildById(model.ValidationTargetColumnTypeNotClassifiedList, row => row.Id, "ValidationTargetColumnTypeNotClassified");
-
             private Dictionary<string, ValidationTargetColumnTypeSanctionedConversion>? validationTargetColumnTypeSanctionedConversionListById;
 
             public Dictionary<string, ValidationTargetColumnTypeSanctionedConversion> ValidationTargetColumnTypeSanctionedConversionListById => validationTargetColumnTypeSanctionedConversionListById ??= BuildById(model.ValidationTargetColumnTypeSanctionedConversionList, row => row.Id, "ValidationTargetColumnTypeSanctionedConversion");
@@ -3207,6 +5037,18 @@ namespace MetaTransformBinding
             private Dictionary<string, ValidationTargetRowsetLink>? validationTargetRowsetLinkListById;
 
             public Dictionary<string, ValidationTargetRowsetLink> ValidationTargetRowsetLinkListById => validationTargetRowsetLinkListById ??= BuildById(model.ValidationTargetRowsetLinkList, row => row.Id, "ValidationTargetRowsetLink");
+
+            private Dictionary<string, Write>? writeListById;
+
+            public Dictionary<string, Write> WriteListById => writeListById ??= BuildById(model.WriteList, row => row.Id, "Write");
+
+            private Dictionary<string, WriteValue>? writeValueListById;
+
+            public Dictionary<string, WriteValue> WriteValueListById => writeValueListById ??= BuildById(model.WriteValueList, row => row.Id, "WriteValue");
+
+            private Dictionary<string, WriteValueScalarExpression>? writeValueScalarExpressionListById;
+
+            public Dictionary<string, WriteValueScalarExpression> WriteValueScalarExpressionListById => writeValueScalarExpressionListById ??= BuildById(model.WriteValueScalarExpressionList, row => row.Id, "WriteValueScalarExpression");
 
         }
 
@@ -3227,6 +5069,30 @@ namespace MetaTransformBinding
 
             public Dictionary<string, ColumnReference> ColumnReferenceListById => columnReferenceListById ??= BuildById(model.ColumnReferenceList, row => row.Id, "ColumnReference");
 
+            private Dictionary<string, Delete>? deleteListById;
+
+            public Dictionary<string, Delete> DeleteListById => deleteListById ??= BuildById(model.DeleteList, row => row.Id, "Delete");
+
+            private Dictionary<string, InsertQueryWrite>? insertQueryWriteListById;
+
+            public Dictionary<string, InsertQueryWrite> InsertQueryWriteListById => insertQueryWriteListById ??= BuildById(model.InsertQueryWriteList, row => row.Id, "InsertQueryWrite");
+
+            private Dictionary<string, InsertValuesWrite>? insertValuesWriteListById;
+
+            public Dictionary<string, InsertValuesWrite> InsertValuesWriteListById => insertValuesWriteListById ??= BuildById(model.InsertValuesWriteList, row => row.Id, "InsertValuesWrite");
+
+            private Dictionary<string, MergeDelete>? mergeDeleteListById;
+
+            public Dictionary<string, MergeDelete> MergeDeleteListById => mergeDeleteListById ??= BuildById(model.MergeDeleteList, row => row.Id, "MergeDelete");
+
+            private Dictionary<string, MergeInsertWrite>? mergeInsertWriteListById;
+
+            public Dictionary<string, MergeInsertWrite> MergeInsertWriteListById => mergeInsertWriteListById ??= BuildById(model.MergeInsertWriteList, row => row.Id, "MergeInsertWrite");
+
+            private Dictionary<string, MergeUpdateWrite>? mergeUpdateWriteListById;
+
+            public Dictionary<string, MergeUpdateWrite> MergeUpdateWriteListById => mergeUpdateWriteListById ??= BuildById(model.MergeUpdateWriteList, row => row.Id, "MergeUpdateWrite");
+
             private Dictionary<string, OutputRowset>? outputRowsetListById;
 
             public Dictionary<string, OutputRowset> OutputRowsetListById => outputRowsetListById ??= BuildById(model.OutputRowsetList, row => row.Id, "OutputRowset");
@@ -3243,6 +5109,10 @@ namespace MetaTransformBinding
 
             public Dictionary<string, TableSource> TableSourceListById => tableSourceListById ??= BuildById(model.TableSourceList, row => row.Id, "TableSource");
 
+            private Dictionary<string, TargetColumnReference>? targetColumnReferenceListById;
+
+            public Dictionary<string, TargetColumnReference> TargetColumnReferenceListById => targetColumnReferenceListById ??= BuildById(model.TargetColumnReferenceList, row => row.Id, "TargetColumnReference");
+
             private Dictionary<string, TransformBinding>? transformBindingListById;
 
             public Dictionary<string, TransformBinding> TransformBindingListById => transformBindingListById ??= BuildById(model.TransformBindingList, row => row.Id, "TransformBinding");
@@ -3250,6 +5120,14 @@ namespace MetaTransformBinding
             private Dictionary<string, TransformBindingTarget>? transformBindingTargetListById;
 
             public Dictionary<string, TransformBindingTarget> TransformBindingTargetListById => transformBindingTargetListById ??= BuildById(model.TransformBindingTargetList, row => row.Id, "TransformBindingTarget");
+
+            private Dictionary<string, Truncate>? truncateListById;
+
+            public Dictionary<string, Truncate> TruncateListById => truncateListById ??= BuildById(model.TruncateList, row => row.Id, "Truncate");
+
+            private Dictionary<string, UpdateWrite>? updateWriteListById;
+
+            public Dictionary<string, UpdateWrite> UpdateWriteListById => updateWriteListById ??= BuildById(model.UpdateWriteList, row => row.Id, "UpdateWrite");
 
             private Dictionary<string, Validation>? validationListById;
 
@@ -3271,10 +5149,6 @@ namespace MetaTransformBinding
 
             public Dictionary<string, ValidationTargetColumnTypeExact> ValidationTargetColumnTypeExactListById => validationTargetColumnTypeExactListById ??= BuildById(model.ValidationTargetColumnTypeExactList, row => row.Id, "ValidationTargetColumnTypeExact");
 
-            private Dictionary<string, ValidationTargetColumnTypeNotClassified>? validationTargetColumnTypeNotClassifiedListById;
-
-            public Dictionary<string, ValidationTargetColumnTypeNotClassified> ValidationTargetColumnTypeNotClassifiedListById => validationTargetColumnTypeNotClassifiedListById ??= BuildById(model.ValidationTargetColumnTypeNotClassifiedList, row => row.Id, "ValidationTargetColumnTypeNotClassified");
-
             private Dictionary<string, ValidationTargetColumnTypeSanctionedConversion>? validationTargetColumnTypeSanctionedConversionListById;
 
             public Dictionary<string, ValidationTargetColumnTypeSanctionedConversion> ValidationTargetColumnTypeSanctionedConversionListById => validationTargetColumnTypeSanctionedConversionListById ??= BuildById(model.ValidationTargetColumnTypeSanctionedConversionList, row => row.Id, "ValidationTargetColumnTypeSanctionedConversion");
@@ -3286,6 +5160,18 @@ namespace MetaTransformBinding
             private Dictionary<string, ValidationTargetRowsetLink>? validationTargetRowsetLinkListById;
 
             public Dictionary<string, ValidationTargetRowsetLink> ValidationTargetRowsetLinkListById => validationTargetRowsetLinkListById ??= BuildById(model.ValidationTargetRowsetLinkList, row => row.Id, "ValidationTargetRowsetLink");
+
+            private Dictionary<string, Write>? writeListById;
+
+            public Dictionary<string, Write> WriteListById => writeListById ??= BuildById(model.WriteList, row => row.Id, "Write");
+
+            private Dictionary<string, WriteValue>? writeValueListById;
+
+            public Dictionary<string, WriteValue> WriteValueListById => writeValueListById ??= BuildById(model.WriteValueList, row => row.Id, "WriteValue");
+
+            private Dictionary<string, WriteValueScalarExpression>? writeValueScalarExpressionListById;
+
+            public Dictionary<string, WriteValueScalarExpression> WriteValueScalarExpressionListById => writeValueScalarExpressionListById ??= BuildById(model.WriteValueScalarExpressionList, row => row.Id, "WriteValueScalarExpression");
 
         }
 
@@ -3323,6 +5209,54 @@ namespace MetaTransformBinding
                 "Column",
                 "TableSource",
                 "TransformBinding"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(Delete),
+                "Id",
+                "MetaTransformScriptDeleteStatementId",
+                "ValidationTargetRowsetLink"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(InsertQueryWrite),
+                "Id",
+                "MetaTransformScriptQueryExpressionId",
+                "Write"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(InsertValuesWrite),
+                "Id",
+                "MetaTransformScriptRowValueId",
+                "Write"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(MergeDelete),
+                "Id",
+                "MetaTransformScriptMergeDeleteActionId",
+                "ValidationTargetRowsetLink"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(MergeInsertWrite),
+                "Id",
+                "MetaTransformScriptMergeInsertActionId",
+                "Write"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(MergeUpdateWrite),
+                "Id",
+                "MetaTransformScriptMergeUpdateActionId",
+                "Write"))
             {
                 return true;
             }
@@ -3365,6 +5299,16 @@ namespace MetaTransformBinding
                 return true;
             }
 
+            if (HasUnexpectedProperties(typeof(TargetColumnReference),
+                "Id",
+                "MetaSchemaFieldId",
+                "MetaTransformScriptColumnReferenceId",
+                "Column",
+                "TransformBindingTarget"))
+            {
+                return true;
+            }
+
             if (HasUnexpectedProperties(typeof(TransformBinding),
                 "Id",
                 "MetaTransformScriptTransformScriptId",
@@ -3377,6 +5321,22 @@ namespace MetaTransformBinding
                 "Id",
                 "SqlIdentifier",
                 "TransformBinding"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(Truncate),
+                "Id",
+                "MetaTransformScriptTruncateStatementId",
+                "ValidationTargetRowsetLink"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(UpdateWrite),
+                "Id",
+                "MetaTransformScriptSetClauseId",
+                "Write"))
             {
                 return true;
             }
@@ -3424,14 +5384,6 @@ namespace MetaTransformBinding
                 return true;
             }
 
-            if (HasUnexpectedProperties(typeof(ValidationTargetColumnTypeNotClassified),
-                "Id",
-                "TargetMetaDataTypeId",
-                "ValidationTargetColumnLink"))
-            {
-                return true;
-            }
-
             if (HasUnexpectedProperties(typeof(ValidationTargetColumnTypeSanctionedConversion),
                 "Id",
                 "SourceMetaDataTypeId",
@@ -3459,6 +5411,29 @@ namespace MetaTransformBinding
                 return true;
             }
 
+            if (HasUnexpectedProperties(typeof(Write),
+                "Id",
+                "ValidationTargetRowsetLink"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(WriteValue),
+                "Id",
+                "ValidationTargetColumnLink",
+                "Write"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(WriteValueScalarExpression),
+                "Id",
+                "MetaTransformScriptScalarExpressionId",
+                "WriteValue"))
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -3468,21 +5443,32 @@ namespace MetaTransformBinding
             {
                 "ColumnList",
                 "ColumnReferenceList",
+                "DeleteList",
+                "InsertQueryWriteList",
+                "InsertValuesWriteList",
+                "MergeDeleteList",
+                "MergeInsertWriteList",
+                "MergeUpdateWriteList",
                 "OutputRowsetList",
                 "RowsetList",
                 "SourceTargetList",
                 "TableSourceList",
+                "TargetColumnReferenceList",
                 "TransformBindingList",
                 "TransformBindingTargetList",
+                "TruncateList",
+                "UpdateWriteList",
                 "ValidationList",
                 "ValidationSourceColumnLinkList",
                 "ValidationSourceRowsetLinkList",
                 "ValidationTargetColumnLinkList",
                 "ValidationTargetColumnTypeExactList",
-                "ValidationTargetColumnTypeNotClassifiedList",
                 "ValidationTargetColumnTypeSanctionedConversionList",
                 "ValidationTargetIgnoredColumnList",
                 "ValidationTargetRowsetLinkList",
+                "WriteList",
+                "WriteValueList",
+                "WriteValueScalarExpressionList",
             };
             return typeof(MetaTransformBindingModel).GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Any(property =>

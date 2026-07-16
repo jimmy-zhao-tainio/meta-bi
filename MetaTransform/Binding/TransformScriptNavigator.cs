@@ -31,12 +31,15 @@ internal sealed partial class TransformScriptNavigator
     private readonly IReadOnlyDictionary<string, UpdateStatement> updateStatementByStatementWithCtesId;
     private readonly IReadOnlyDictionary<string, UpdateStatementTargetLink> updateStatementTargetLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, UpdateStatementFromClauseLink> updateStatementFromClauseLinkByOwnerId;
+    private readonly IReadOnlyDictionary<string, UpdateStatementWhereClauseLink> updateStatementWhereClauseLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, DeleteStatement> deleteStatementByStatementWithCtesId;
     private readonly IReadOnlyDictionary<string, DeleteStatementTargetLink> deleteStatementTargetLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, DeleteStatementFromClauseLink> deleteStatementFromClauseLinkByOwnerId;
+    private readonly IReadOnlyDictionary<string, DeleteStatementWhereClauseLink> deleteStatementWhereClauseLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, MergeStatement> mergeStatementByStatementWithCtesId;
     private readonly IReadOnlyDictionary<string, MergeStatementTargetLink> mergeStatementTargetLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, MergeStatementSourceLink> mergeStatementSourceLinkByOwnerId;
+    private readonly IReadOnlyDictionary<string, MergeStatementSearchConditionLink> mergeStatementSearchConditionLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, TruncateStatement> truncateStatementBySqlStatementId;
     private readonly IReadOnlyDictionary<string, TruncateStatementTargetLink> truncateStatementTargetLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink> statementWithCtesLinkByOwnerId;
@@ -216,12 +219,15 @@ internal sealed partial class TransformScriptNavigator
         updateStatementByStatementWithCtesId = model.UpdateStatementList.ToDictionary(item => item.StatementWithCtesAndXmlNamespaces.Id, StringComparer.Ordinal);
         updateStatementTargetLinkByOwnerId = model.UpdateStatementTargetLinkList.ToDictionary(item => item.UpdateStatement.Id, StringComparer.Ordinal);
         updateStatementFromClauseLinkByOwnerId = model.UpdateStatementFromClauseLinkList.ToDictionary(item => item.UpdateStatement.Id, StringComparer.Ordinal);
+        updateStatementWhereClauseLinkByOwnerId = model.UpdateStatementWhereClauseLinkList.ToDictionary(item => item.UpdateStatement.Id, StringComparer.Ordinal);
         deleteStatementByStatementWithCtesId = model.DeleteStatementList.ToDictionary(item => item.StatementWithCtesAndXmlNamespaces.Id, StringComparer.Ordinal);
         deleteStatementTargetLinkByOwnerId = model.DeleteStatementTargetLinkList.ToDictionary(item => item.DeleteStatement.Id, StringComparer.Ordinal);
         deleteStatementFromClauseLinkByOwnerId = model.DeleteStatementFromClauseLinkList.ToDictionary(item => item.DeleteStatement.Id, StringComparer.Ordinal);
+        deleteStatementWhereClauseLinkByOwnerId = model.DeleteStatementWhereClauseLinkList.ToDictionary(item => item.DeleteStatement.Id, StringComparer.Ordinal);
         mergeStatementByStatementWithCtesId = model.MergeStatementList.ToDictionary(item => item.StatementWithCtesAndXmlNamespaces.Id, StringComparer.Ordinal);
         mergeStatementTargetLinkByOwnerId = model.MergeStatementTargetLinkList.ToDictionary(item => item.MergeStatement.Id, StringComparer.Ordinal);
         mergeStatementSourceLinkByOwnerId = model.MergeStatementSourceLinkList.ToDictionary(item => item.MergeStatement.Id, StringComparer.Ordinal);
+        mergeStatementSearchConditionLinkByOwnerId = model.MergeStatementSearchConditionLinkList.ToDictionary(item => item.MergeStatement.Id, StringComparer.Ordinal);
         truncateStatementBySqlStatementId = model.TruncateStatementList.ToDictionary(item => item.TSqlStatement.Id, StringComparer.Ordinal);
         truncateStatementTargetLinkByOwnerId = model.TruncateStatementTargetLinkList.ToDictionary(item => item.TruncateStatement.Id, StringComparer.Ordinal);
         statementWithCtesLinkByOwnerId = model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList.ToDictionary(item => item.StatementWithCtesAndXmlNamespaces.Id, StringComparer.Ordinal);
@@ -583,6 +589,17 @@ internal sealed partial class TransformScriptNavigator
                updateStatementByStatementWithCtesId.TryGetValue(statementWithCtes.Id, out var updateStatement) &&
                updateStatementFromClauseLinkByOwnerId.TryGetValue(updateStatement.Id, out var fromLink)
             ? fromClauseById.GetValueOrDefault(fromLink.FromClause.Id)
+             : null;
+    }
+
+    public BooleanExpression? TryGetUpdateStatementSearchCondition(TransformScript script)
+    {
+        var statementWithCtes = TryGetStatementWithCtes(script);
+        return statementWithCtes is not null &&
+               updateStatementByStatementWithCtesId.TryGetValue(statementWithCtes.Id, out var updateStatement) &&
+               updateStatementWhereClauseLinkByOwnerId.TryGetValue(updateStatement.Id, out var whereLink) &&
+               whereClauseSearchConditionLinkByOwnerId.TryGetValue(whereLink.WhereClause.Id, out var searchConditionLink)
+            ? searchConditionLink.BooleanExpression
             : null;
     }
 
@@ -593,6 +610,17 @@ internal sealed partial class TransformScriptNavigator
                deleteStatementByStatementWithCtesId.TryGetValue(statementWithCtes.Id, out var deleteStatement) &&
                deleteStatementFromClauseLinkByOwnerId.TryGetValue(deleteStatement.Id, out var fromLink)
             ? fromClauseById.GetValueOrDefault(fromLink.FromClause.Id)
+             : null;
+    }
+
+    public BooleanExpression? TryGetDeleteStatementSearchCondition(TransformScript script)
+    {
+        var statementWithCtes = TryGetStatementWithCtes(script);
+        return statementWithCtes is not null &&
+               deleteStatementByStatementWithCtesId.TryGetValue(statementWithCtes.Id, out var deleteStatement) &&
+               deleteStatementWhereClauseLinkByOwnerId.TryGetValue(deleteStatement.Id, out var whereLink) &&
+               whereClauseSearchConditionLinkByOwnerId.TryGetValue(whereLink.WhereClause.Id, out var searchConditionLink)
+            ? searchConditionLink.BooleanExpression
             : null;
     }
 
@@ -603,6 +631,16 @@ internal sealed partial class TransformScriptNavigator
                mergeStatementByStatementWithCtesId.TryGetValue(statementWithCtes.Id, out var mergeStatement) &&
                mergeStatementSourceLinkByOwnerId.TryGetValue(mergeStatement.Id, out var sourceLink)
             ? tableReferenceById.GetValueOrDefault(sourceLink.TableReference.Id)
+             : null;
+    }
+
+    public BooleanExpression? TryGetMergeStatementSearchCondition(TransformScript script)
+    {
+        var statementWithCtes = TryGetStatementWithCtes(script);
+        return statementWithCtes is not null &&
+               mergeStatementByStatementWithCtesId.TryGetValue(statementWithCtes.Id, out var mergeStatement) &&
+               mergeStatementSearchConditionLinkByOwnerId.TryGetValue(mergeStatement.Id, out var searchConditionLink)
+            ? searchConditionLink.BooleanExpression
             : null;
     }
 

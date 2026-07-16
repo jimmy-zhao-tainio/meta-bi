@@ -169,40 +169,27 @@ public sealed partial class MetaTransformScriptSqlService
         ArgumentNullException.ThrowIfNull(model);
         EnsureModelIsBound(model);
 
-        var scripts = model.TransformScriptList.ToArray();
-        if (scripts.Length == 0)
-        {
-            throw new InvalidOperationException("MetaTransformScript workspace does not contain any TransformScript rows.");
-        }
-
         var emitter = new MetaTransformScriptSqlEmitter(model);
-        var modules = new List<MetaTransformScriptSqlModuleDefinition>();
-        for (var i = 0; i < scripts.Length; i++)
+        var moduleScripts = GetOrderedModuleScripts(model);
+        var modules = new List<MetaTransformScriptSqlModuleDefinition>(moduleScripts.Count);
+        for (var i = 0; i < moduleScripts.Count; i++)
         {
-            var script = scripts[i];
-            var scriptObjectType = ResolveScriptObjectType(model, script);
-            if (scriptObjectType == ScriptObjectType.RawStatement)
-            {
-                throw new InvalidOperationException(
-                    $"Transform script '{script.Name}' is a raw statement and cannot be lowered to a MetaSql SQL module.");
-            }
-
-            var identity = ResolveSqlModuleIdentity(model, script);
-            var createObjectName = FormatSchemaObjectName(identity.SchemaName, identity.ObjectName);
+            var moduleScript = moduleScripts[i];
+            var createObjectName = FormatSchemaObjectName(moduleScript.Identity.SchemaName, moduleScript.Identity.ObjectName);
             var definitionSql = RenderScriptForExport(
                     model,
-                    script,
+                    moduleScript.Script,
                     emitter,
                     includeBatchSeparator: false,
                     createObjectNameOverride: createObjectName)
                 .Trim();
 
             modules.Add(new MetaTransformScriptSqlModuleDefinition(
-                TransformScriptId: script.Id,
-                ScriptName: script.Name,
-                ModuleKind: ToPublicModuleKind(scriptObjectType),
-                SchemaName: identity.SchemaName,
-                ObjectName: identity.ObjectName,
+                TransformScriptId: moduleScript.Script.Id,
+                ScriptName: moduleScript.Script.Name,
+                ModuleKind: moduleScript.ModuleKind,
+                SchemaName: moduleScript.Identity.SchemaName,
+                ObjectName: moduleScript.Identity.ObjectName,
                 DefinitionSql: definitionSql,
                 DeployOrdinal: i + 1));
         }
@@ -264,14 +251,23 @@ public sealed partial class MetaTransformScriptSqlService
         EnsureTargetDirectoryIsEmpty(fullOutputPath);
         Directory.CreateDirectory(fullOutputPath);
 
-        var usedFileNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        for (var i = 0; i < scripts.Length; i++)
+        var moduleScripts = GetOrderedModuleScripts(model, rejectRawStatements: false)
+            .ToDictionary(item => item.Script.Id, StringComparer.Ordinal);
+        var usedRelativePaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var script in scripts)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var script = scripts[i];
             var sql = RenderScriptForExport(model, script, emitter);
-            var relativePath = BuildUniqueOutputRelativePath(script, usedFileNames, i + 1);
+            var relativePath = moduleScripts.TryGetValue(script.Id, out var moduleScript)
+                ? BuildModuleOutputRelativePath(moduleScript)
+                : BuildRawStatementOutputRelativePath(script);
+            if (!usedRelativePaths.Add(relativePath))
+            {
+                throw new InvalidOperationException(
+                    $"Transform scripts map to the same SQL output path '{relativePath}'. Give each raw statement a distinct name or each SQL module a distinct schema.object identity.");
+            }
+
             var filePath = Path.Combine(fullOutputPath, relativePath);
             var fileDirectory = Path.GetDirectoryName(filePath);
             if (!string.IsNullOrWhiteSpace(fileDirectory))
@@ -1088,26 +1084,83 @@ public sealed partial class MetaTransformScriptSqlService
         }
     }
 
-    private static string BuildUniqueOutputRelativePath(MTS.TransformScript script, ISet<string> usedRelativePaths, int index)
+    private static IReadOnlyList<ModuleScript> GetOrderedModuleScripts(
+        MTS.MetaTransformScriptModel model,
+        bool rejectRawStatements = true)
     {
-        var preferredName = string.IsNullOrWhiteSpace(script.SourcePath)
-            ? script.Name
-            : Path.GetFileName(script.SourcePath.Replace('/', Path.DirectorySeparatorChar).Replace('\\', Path.DirectorySeparatorChar));
-        var baseName = SanitizeFileName(Path.GetFileNameWithoutExtension(preferredName));
+        var moduleScripts = model.TransformScriptList
+            .Select(script => (Script: script, ScriptObjectType: ResolveScriptObjectType(model, script)))
+            .Where(item =>
+            {
+                if (item.ScriptObjectType != ScriptObjectType.RawStatement)
+                {
+                    return true;
+                }
+
+                if (rejectRawStatements)
+                {
+                    throw new InvalidOperationException(
+                        $"Transform script '{item.Script.Name}' is a raw statement and cannot be lowered to a MetaSql SQL module.");
+                }
+
+                return false;
+            })
+            .Select(item =>
+            {
+                return new ModuleScript(
+                    item.Script,
+                    ToPublicModuleKind(item.ScriptObjectType),
+                    ResolveSqlModuleIdentity(model, item.Script));
+            })
+            .OrderBy(item => item.Identity.SchemaName, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(item => item.Identity.ObjectName, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(item => item.ModuleKind)
+            .ToArray();
+        if (moduleScripts.Length == 0 && rejectRawStatements)
+        {
+            throw new InvalidOperationException("MetaTransformScript workspace does not contain any TransformScript rows.");
+        }
+
+        var duplicate = moduleScripts
+            .GroupBy(
+                item => $"{item.Identity.SchemaName}\u001f{item.Identity.ObjectName}",
+                StringComparer.OrdinalIgnoreCase)
+            .FirstOrDefault(group => group.Count() > 1);
+        if (duplicate is not null)
+        {
+            throw new InvalidOperationException(
+                $"SQL module identity '{duplicate.Key.Replace("\u001f", ".", StringComparison.Ordinal)}' is declared by more than one TransformScript.");
+        }
+
+        return moduleScripts;
+    }
+
+    private static string BuildModuleOutputRelativePath(ModuleScript moduleScript)
+    {
+        var directory = moduleScript.ModuleKind switch
+        {
+            MetaTransformScriptSqlModuleKind.View => "views",
+            MetaTransformScriptSqlModuleKind.InlineTableValuedFunction => "inline-table-valued-functions",
+            MetaTransformScriptSqlModuleKind.ScalarFunction => "scalar-functions",
+            MetaTransformScriptSqlModuleKind.StoredProcedure => "stored-procedures",
+            _ => throw new InvalidOperationException($"Unsupported SQL module kind '{moduleScript.ModuleKind}'.")
+        };
+
+        return Path.Combine(
+            directory,
+            SanitizeFileName(moduleScript.Identity.SchemaName),
+            SanitizeFileName(moduleScript.Identity.ObjectName) + ".sql");
+    }
+
+    private static string BuildRawStatementOutputRelativePath(MTS.TransformScript script)
+    {
+        var baseName = SanitizeFileName(script.Name);
         if (string.IsNullOrWhiteSpace(baseName))
         {
-            baseName = $"Script{index}";
+            baseName = SanitizeFileName(script.Id);
         }
 
-        var candidate = baseName + ".sql";
-        var suffix = 2;
-        while (!usedRelativePaths.Add(candidate))
-        {
-            candidate = $"{baseName}_{suffix}.sql";
-            suffix++;
-        }
-
-        return candidate;
+        return Path.Combine("statements", baseName + ".sql");
     }
 
     private static string SanitizeFileName(string value)
@@ -1747,3 +1800,8 @@ public sealed record ExportToPathResult(
 internal sealed record SqlModuleIdentity(
     string SchemaName,
     string ObjectName);
+
+internal sealed record ModuleScript(
+    MTS.TransformScript Script,
+    MetaTransformScriptSqlModuleKind ModuleKind,
+    SqlModuleIdentity Identity);

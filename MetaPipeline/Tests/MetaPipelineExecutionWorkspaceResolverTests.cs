@@ -250,7 +250,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
             AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId", "CustomerName"]);
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -311,7 +311,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
             AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId"]);
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -359,7 +359,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
             AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId", "CustomerName"]);
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
             Assert.Equal(0, bindingResult.ErrorCount);

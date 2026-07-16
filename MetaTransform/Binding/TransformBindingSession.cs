@@ -10,6 +10,7 @@ internal sealed partial class TransformBindingSession
     private readonly List<RuntimeTableSource> boundTableSources = [];
     private readonly List<RuntimeColumnReference> boundColumnReferences = [];
     private readonly List<RuntimeRowset> boundRowsets = [];
+    private readonly List<RuntimeMutationEffect> mutationEffects = [];
     private readonly Stack<IReadOnlySet<string>> orderByOutputAliasScopeStack = [];
     private readonly HashSet<string> activeTransformFunctionParameterNames = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> boundScalarFunctionBodyScriptIds = new(StringComparer.Ordinal);
@@ -58,6 +59,8 @@ internal sealed partial class TransformBindingSession
         TransformScript transformScript)
     {
         ArgumentNullException.ThrowIfNull(transformScript);
+
+        mutationEffects.Clear();
 
         var scriptObjectKind = navigator.GetTransformScriptObjectKind(transformScript);
         if (string.Equals(scriptObjectKind, "ScalarFunction", StringComparison.OrdinalIgnoreCase))
@@ -189,7 +192,59 @@ internal sealed partial class TransformBindingSession
         }
 
         var scope = new BindingScope(visibleSources);
+        if (targetSchemaResolver is not null)
+        {
+            BindMutationSearchCondition(
+                transformScript,
+                statementKind,
+                targetRowset,
+                inputRowset,
+                visibleSources);
+            BuildMutationEffects(
+                transformScript,
+                statementKind,
+                targetRowset,
+                inputRowset,
+                visibleSources);
+        }
+
         return CreateResult(transformScript, scope, inputRowset, targetRowset);
+    }
+
+    private void BindMutationSearchCondition(
+        TransformScript transformScript,
+        BoundStatementKind statementKind,
+        RuntimeRowset targetRowset,
+        RuntimeRowset? inputRowset,
+        IReadOnlyList<RuntimeTableSource> visibleSources)
+    {
+        BooleanExpression? searchCondition = null;
+        string? targetAlias = null;
+
+        switch (statementKind)
+        {
+            case BoundStatementKind.Update:
+                searchCondition = navigator.TryGetUpdateStatementSearchCondition(transformScript);
+                targetAlias = navigator.TryGetUpdateStatementTargetAlias(transformScript);
+                break;
+
+            case BoundStatementKind.Delete:
+                searchCondition = navigator.TryGetDeleteStatementSearchCondition(transformScript);
+                break;
+
+            case BoundStatementKind.Merge:
+                searchCondition = navigator.TryGetMergeStatementSearchCondition(transformScript);
+                targetAlias = navigator.TryGetMergeStatementTargetAlias(transformScript);
+                break;
+        }
+
+        if (searchCondition is null)
+        {
+            return;
+        }
+
+        var scope = CreateMutationValueScope(transformScript, targetRowset, visibleSources, targetAlias);
+        BindBooleanExpression(searchCondition, scope, inputRowset, groupingContext: null);
     }
 
     private RuntimeRowset? BindMutationFromClause(
@@ -230,7 +285,8 @@ internal sealed partial class TransformBindingSession
             .Select((column, ordinal) => new RuntimeColumn(
                 $"{fromClause.Id}:mutation-input-column:{ordinal + 1}",
                 column.Name,
-                ordinal))
+                ordinal,
+                column.DataType))
             .ToArray();
 
         var rowset = new RuntimeRowset(
@@ -274,7 +330,10 @@ internal sealed partial class TransformBindingSession
                     columns.Add(new RuntimeColumn(
                         $"{transformScript.Id}:mutation-target-column:{columns.Count + 1}",
                         field.FieldName,
-                        columns.Count));
+                        columns.Count,
+                        CreateRuntimeColumnDataType(
+                            field,
+                            $"{targetResolution.Table.CanonicalSqlIdentifier}.{field.FieldName}")));
                 }
             }
         }
@@ -523,8 +582,22 @@ internal sealed partial class TransformBindingSession
             .Select((field, ordinal) => new RuntimeColumn(
                 $"{columnScopeId}:column:{ordinal + 1}",
                 field.FieldName,
-                ordinal))
+                ordinal,
+                CreateRuntimeColumnDataType(field, field.FieldName)))
             .ToArray();
+    }
+
+    private static RuntimeColumnDataType CreateRuntimeColumnDataType(
+        ResolvedSchemaField field,
+        string displayName)
+    {
+        return new RuntimeColumnDataType(
+            field.MetaDataTypeId,
+            field.IsNullable,
+            field.Length,
+            field.Precision,
+            field.Scale,
+            displayName);
     }
 
     private void InitializeCommonTableExpressionsForMutation(TransformScript transformScript)
@@ -547,7 +620,10 @@ internal sealed partial class TransformBindingSession
             boundTableSources,
             boundColumnReferences,
             boundRowsets,
-            issues);
+            issues)
+        {
+            MutationEffects = mutationEffects.ToArray()
+        };
     }
 
     private void InitializeCommonTableExpressions(SelectStatement selectStatement)

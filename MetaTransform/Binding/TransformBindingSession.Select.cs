@@ -23,7 +23,8 @@ internal sealed partial class TransformBindingSession
             .Select((column, ordinal) => new RuntimeColumn(
                 $"{fromClause.Id}:column:{ordinal + 1}",
                 column.Name,
-                ordinal))
+                ordinal,
+                column.DataType))
             .ToArray();
 
         var fromRowset = new RuntimeRowset(
@@ -118,6 +119,7 @@ internal sealed partial class TransformBindingSession
         }
 
         RuntimeColumnReference? boundColumnReference = null;
+        RuntimeColumnDataType? outputDataType = null;
         var directColumnReference = navigator.TryGetDirectColumnReference(scalarExpression);
         if (directColumnReference is not null)
         {
@@ -125,11 +127,17 @@ internal sealed partial class TransformBindingSession
             if (boundColumnReference is not null)
             {
                 boundColumnReferences.Add(boundColumnReference);
+                outputDataType = boundColumnReference.ResolvedColumn.DataType;
             }
         }
         else
         {
             BindScalarExpression(scalarExpression, scope, inputRowset, groupingContext, withinAggregate: false);
+            var literal = navigator.TryGetLiteral(scalarExpression);
+            if (literal is not null)
+            {
+                outputDataType = CreateLiteralDataType(literal);
+            }
         }
 
         var outputName = navigator.TryGetSelectScalarExpressionAlias(selectScalarExpression);
@@ -156,7 +164,8 @@ internal sealed partial class TransformBindingSession
         outputColumns.Add(new RuntimeColumn(
             $"{selectElement.Id}:output",
             outputName,
-            outputColumns.Count));
+            outputColumns.Count,
+            outputDataType));
     }
 
     private void BindSelectStarExpression(
@@ -260,7 +269,8 @@ internal sealed partial class TransformBindingSession
                 outputColumns.Add(new RuntimeColumn(
                     $"{selectElement.Id}:output:{outputColumns.Count}",
                     column.Name,
-                    outputColumns.Count));
+                    outputColumns.Count,
+                    column.DataType));
             }
         }
     }

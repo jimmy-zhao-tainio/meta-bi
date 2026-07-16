@@ -818,6 +818,21 @@
         <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
+    <Entity name="MergeMatchedWhenClause">
+      <RelationshipList>
+        <Relationship entity="MergeWhenClause" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MergeNotMatchedBySourceWhenClause">
+      <RelationshipList>
+        <Relationship entity="MergeWhenClause" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MergeNotMatchedByTargetWhenClause">
+      <RelationshipList>
+        <Relationship entity="MergeWhenClause" />
+      </RelationshipList>
+    </Entity>
     <Entity name="MergeStatement">
       <RelationshipList>
         <Relationship entity="StatementWithCtesAndXmlNamespaces" />
@@ -875,12 +890,10 @@
       </RelationshipList>
     </Entity>
     <Entity name="MergeStatementWhenClausesItem">
-      <PropertyList>
-        <Property name="Ordinal" isRequired="false" />
-      </PropertyList>
       <RelationshipList>
         <Relationship entity="MergeStatement" />
         <Relationship entity="MergeWhenClause" />
+        <Relationship entity="MergeStatementWhenClausesItem" role="PreviousMergeWhenClause" isRequired="false" />
       </RelationshipList>
     </Entity>
     <Entity name="MergeUpdateAction">
@@ -894,11 +907,7 @@
         <Relationship entity="SetClause" />
       </RelationshipList>
     </Entity>
-    <Entity name="MergeWhenClause">
-      <PropertyList>
-        <Property name="MatchKind" />
-      </PropertyList>
-    </Entity>
+    <Entity name="MergeWhenClause" />
     <Entity name="MergeWhenClauseActionLink">
       <RelationshipList>
         <Relationship entity="MergeAction" />

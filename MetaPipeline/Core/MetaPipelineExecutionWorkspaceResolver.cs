@@ -473,8 +473,6 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
             .ToDictionary(item => item.ValidationTargetColumnLink.Id, StringComparer.Ordinal);
         var sanctionedByLinkId = bindingModel.ValidationTargetColumnTypeSanctionedConversionList
             .ToDictionary(item => item.ValidationTargetColumnLink.Id, StringComparer.Ordinal);
-        var notClassifiedByLinkId = bindingModel.ValidationTargetColumnTypeNotClassifiedList
-            .ToDictionary(item => item.ValidationTargetColumnLink.Id, StringComparer.Ordinal);
         var result = new Dictionary<string, ResolvedColumnDataTypes>(StringComparer.Ordinal);
 
         foreach (var columnLink in targetColumnLinks)
@@ -495,12 +493,6 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
                 assessmentCount++;
                 sourceMetaDataTypeId = sanctioned.SourceMetaDataTypeId;
                 targetMetaDataTypeId = sanctioned.TargetMetaDataTypeId;
-            }
-
-            if (notClassifiedByLinkId.TryGetValue(columnLink.Id, out var notClassified))
-            {
-                assessmentCount++;
-                targetMetaDataTypeId = notClassified.TargetMetaDataTypeId;
             }
 
             if (assessmentCount > 1)

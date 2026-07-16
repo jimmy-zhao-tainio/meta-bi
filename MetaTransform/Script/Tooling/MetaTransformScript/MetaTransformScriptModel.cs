@@ -290,6 +290,12 @@ namespace MetaTransformScript
 
         public List<MergeInsertActionValuesItem> MergeInsertActionValuesItemList { get; set; } = new();
 
+        public List<MergeMatchedWhenClause> MergeMatchedWhenClauseList { get; set; } = new();
+
+        public List<MergeNotMatchedBySourceWhenClause> MergeNotMatchedBySourceWhenClauseList { get; set; } = new();
+
+        public List<MergeNotMatchedByTargetWhenClause> MergeNotMatchedByTargetWhenClauseList { get; set; } = new();
+
         public List<MergeStatement> MergeStatementList { get; set; } = new();
 
         public List<MergeStatementOptionClauseLink> MergeStatementOptionClauseLinkList { get; set; } = new();
@@ -2308,6 +2314,39 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(mergeInsertActionValuesItemShardPath, SerializeMergeInsertActionValuesItemShard(model, saveIndexes));
             }
 
+            model.MergeMatchedWhenClauseList ??= new List<MergeMatchedWhenClause>();
+            var mergeMatchedWhenClauseShardPath = Path.Combine(instanceDirectoryPath, "MergeMatchedWhenClause.xml");
+            if (model.MergeMatchedWhenClauseList.Count == 0)
+            {
+                DeleteIfExists(mergeMatchedWhenClauseShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(mergeMatchedWhenClauseShardPath, SerializeMergeMatchedWhenClauseShard(model, saveIndexes));
+            }
+
+            model.MergeNotMatchedBySourceWhenClauseList ??= new List<MergeNotMatchedBySourceWhenClause>();
+            var mergeNotMatchedBySourceWhenClauseShardPath = Path.Combine(instanceDirectoryPath, "MergeNotMatchedBySourceWhenClause.xml");
+            if (model.MergeNotMatchedBySourceWhenClauseList.Count == 0)
+            {
+                DeleteIfExists(mergeNotMatchedBySourceWhenClauseShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(mergeNotMatchedBySourceWhenClauseShardPath, SerializeMergeNotMatchedBySourceWhenClauseShard(model, saveIndexes));
+            }
+
+            model.MergeNotMatchedByTargetWhenClauseList ??= new List<MergeNotMatchedByTargetWhenClause>();
+            var mergeNotMatchedByTargetWhenClauseShardPath = Path.Combine(instanceDirectoryPath, "MergeNotMatchedByTargetWhenClause.xml");
+            if (model.MergeNotMatchedByTargetWhenClauseList.Count == 0)
+            {
+                DeleteIfExists(mergeNotMatchedByTargetWhenClauseShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(mergeNotMatchedByTargetWhenClauseShardPath, SerializeMergeNotMatchedByTargetWhenClauseShard(model, saveIndexes));
+            }
+
             model.MergeStatementList ??= new List<MergeStatement>();
             var mergeStatementShardPath = Path.Combine(instanceDirectoryPath, "MergeStatement.xml");
             if (model.MergeStatementList.Count == 0)
@@ -2583,6 +2622,10 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(nullIfExpressionShardPath, SerializeNullIfExpressionShard(model, saveIndexes));
             }
 
+        }
+
+        private static void SaveShardGroup6(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
+        {
             model.NullIfExpressionFirstExpressionLinkList ??= new List<NullIfExpressionFirstExpressionLink>();
             var nullIfExpressionFirstExpressionLinkShardPath = Path.Combine(instanceDirectoryPath, "NullIfExpressionFirstExpressionLink.xml");
             if (model.NullIfExpressionFirstExpressionLinkList.Count == 0)
@@ -2616,10 +2659,6 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(nullLiteralShardPath, SerializeNullLiteralShard(model, saveIndexes));
             }
 
-        }
-
-        private static void SaveShardGroup6(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
-        {
             model.NumericLiteralList ??= new List<NumericLiteral>();
             var numericLiteralShardPath = Path.Combine(instanceDirectoryPath, "NumericLiteral.xml");
             if (model.NumericLiteralList.Count == 0)
@@ -2939,6 +2978,10 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(pivotedTableReferenceInColumnsItemShardPath, SerializePivotedTableReferenceInColumnsItemShard(model, saveIndexes));
             }
 
+        }
+
+        private static void SaveShardGroup7(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
+        {
             model.PivotedTableReferencePivotColumnLinkList ??= new List<PivotedTableReferencePivotColumnLink>();
             var pivotedTableReferencePivotColumnLinkShardPath = Path.Combine(instanceDirectoryPath, "PivotedTableReferencePivotColumnLink.xml");
             if (model.PivotedTableReferencePivotColumnLinkList.Count == 0)
@@ -2972,10 +3015,6 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(pivotedTableReferenceValueColumnsItemShardPath, SerializePivotedTableReferenceValueColumnsItemShard(model, saveIndexes));
             }
 
-        }
-
-        private static void SaveShardGroup7(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
-        {
             model.PrimaryExpressionList ??= new List<PrimaryExpression>();
             var primaryExpressionShardPath = Path.Combine(instanceDirectoryPath, "PrimaryExpression.xml");
             if (model.PrimaryExpressionList.Count == 0)
@@ -3295,6 +3334,10 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(scalarSubqueryQueryExpressionLinkShardPath, SerializeScalarSubqueryQueryExpressionLinkShard(model, saveIndexes));
             }
 
+        }
+
+        private static void SaveShardGroup8(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
+        {
             model.SchemaObjectFunctionTableReferenceList ??= new List<SchemaObjectFunctionTableReference>();
             var schemaObjectFunctionTableReferenceShardPath = Path.Combine(instanceDirectoryPath, "SchemaObjectFunctionTableReference.xml");
             if (model.SchemaObjectFunctionTableReferenceList.Count == 0)
@@ -3328,10 +3371,6 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(schemaObjectFunctionTableReferenceSchemaObjectLinkShardPath, SerializeSchemaObjectFunctionTableReferenceSchemaObjectLinkShard(model, saveIndexes));
             }
 
-        }
-
-        private static void SaveShardGroup8(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
-        {
             model.SchemaObjectNameList ??= new List<SchemaObjectName>();
             var schemaObjectNameShardPath = Path.Combine(instanceDirectoryPath, "SchemaObjectName.xml");
             if (model.SchemaObjectNameList.Count == 0)
@@ -3651,6 +3690,10 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(simpleWhenClauseWhenExpressionLinkShardPath, SerializeSimpleWhenClauseWhenExpressionLinkShard(model, saveIndexes));
             }
 
+        }
+
+        private static void SaveShardGroup9(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
+        {
             model.SqlDataTypeReferenceList ??= new List<SqlDataTypeReference>();
             var sqlDataTypeReferenceShardPath = Path.Combine(instanceDirectoryPath, "SqlDataTypeReference.xml");
             if (model.SqlDataTypeReferenceList.Count == 0)
@@ -3684,10 +3727,6 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(sqlHintArgumentsItemShardPath, SerializeSqlHintArgumentsItemShard(model, saveIndexes));
             }
 
-        }
-
-        private static void SaveShardGroup9(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
-        {
             model.SqlHintKeywordsItemList ??= new List<SqlHintKeywordsItem>();
             var sqlHintKeywordsItemShardPath = Path.Combine(instanceDirectoryPath, "SqlHintKeywordsItem.xml");
             if (model.SqlHintKeywordsItemList.Count == 0)
@@ -4007,6 +4046,10 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(truncateStatementShardPath, SerializeTruncateStatementShard(model, saveIndexes));
             }
 
+        }
+
+        private static void SaveShardGroup10(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
+        {
             model.TruncateStatementTargetLinkList ??= new List<TruncateStatementTargetLink>();
             var truncateStatementTargetLinkShardPath = Path.Combine(instanceDirectoryPath, "TruncateStatementTargetLink.xml");
             if (model.TruncateStatementTargetLinkList.Count == 0)
@@ -4040,10 +4083,6 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(tryCastCallDataTypeLinkShardPath, SerializeTryCastCallDataTypeLinkShard(model, saveIndexes));
             }
 
-        }
-
-        private static void SaveShardGroup10(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
-        {
             model.TryCastCallParameterLinkList ??= new List<TryCastCallParameterLink>();
             var tryCastCallParameterLinkShardPath = Path.Combine(instanceDirectoryPath, "TryCastCallParameterLink.xml");
             if (model.TryCastCallParameterLinkList.Count == 0)
@@ -4363,6 +4402,10 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(whereClauseSearchConditionLinkShardPath, SerializeWhereClauseSearchConditionLinkShard(model, saveIndexes));
             }
 
+        }
+
+        private static void SaveShardGroup11(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
+        {
             model.WindowClauseList ??= new List<WindowClause>();
             var windowClauseShardPath = Path.Combine(instanceDirectoryPath, "WindowClause.xml");
             if (model.WindowClauseList.Count == 0)
@@ -4396,10 +4439,6 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(windowDefinitionShardPath, SerializeWindowDefinitionShard(model, saveIndexes));
             }
 
-        }
-
-        private static void SaveShardGroup11(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
-        {
             model.WindowDefinitionOrderByClauseLinkList ??= new List<WindowDefinitionOrderByClauseLink>();
             var windowDefinitionOrderByClauseLinkShardPath = Path.Combine(instanceDirectoryPath, "WindowDefinitionOrderByClauseLink.xml");
             if (model.WindowDefinitionOrderByClauseLinkList.Count == 0)
@@ -5072,6 +5111,15 @@ namespace MetaTransformScript
                         break;
                     case "MergeInsertActionValuesItemList":
                         LoadMergeInsertActionValuesItemList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "MergeMatchedWhenClauseList":
+                        LoadMergeMatchedWhenClauseList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "MergeNotMatchedBySourceWhenClauseList":
+                        LoadMergeNotMatchedBySourceWhenClauseList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "MergeNotMatchedByTargetWhenClauseList":
+                        LoadMergeNotMatchedByTargetWhenClauseList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "MergeStatementList":
                         LoadMergeStatementList(model, reader, loadState, relationshipBuffers);
@@ -21218,6 +21266,333 @@ namespace MetaTransformScript
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
+        private static void LoadMergeMatchedWhenClauseList(MetaTransformScriptModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeMatchedWhenClauseList");
+                return;
+            }
+
+            reader.ReadStartElement("MergeMatchedWhenClauseList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "MergeMatchedWhenClause", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'MergeMatchedWhenClauseList'.");
+                }
+                var row = ReadMergeMatchedWhenClause(reader, relationshipBuffers);
+                loadState.AddMergeMatchedWhenClauseId(row.Id);
+                model.MergeMatchedWhenClauseList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static MergeMatchedWhenClause ReadMergeMatchedWhenClause(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new MergeMatchedWhenClause();
+            var relationships = new MergeMatchedWhenClauseRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "MergeWhenClauseId":
+                            relationships.MergeWhenClauseId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'MergeMatchedWhenClause'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeMatchedWhenClause");
+                (relationshipBuffers.MergeMatchedWhenClauseRelationships ??= new List<MergeMatchedWhenClauseRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("MergeMatchedWhenClause");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'MergeMatchedWhenClause'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.MergeMatchedWhenClauseRelationships ??= new List<MergeMatchedWhenClauseRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeMergeMatchedWhenClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformScript>\n");
+            builder.Append("  <MergeMatchedWhenClauseList>\n");
+            foreach (var row in model.MergeMatchedWhenClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'MergeMatchedWhenClause' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'MergeMatchedWhenClause' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <MergeMatchedWhenClause Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var mergeWhenClauseId = RequireIdentity(row.MergeWhenClause?.Id, $"Relationship 'MergeMatchedWhenClause.MergeWhenClauseId' on row 'MergeMatchedWhenClause:{row.Id}' is empty.");
+                if (!saveIndexes.MergeWhenClauseListById.TryGetValue(mergeWhenClauseId, out var mergeWhenClauseCanonical) || !ReferenceEquals(mergeWhenClauseCanonical, row.MergeWhenClause))
+                {
+                    throw new InvalidOperationException($"Relationship 'MergeMatchedWhenClause.MergeWhenClauseId' on row 'MergeMatchedWhenClause:{row.Id}' references an object that is not the canonical row for Id '{mergeWhenClauseId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("MergeWhenClauseId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, mergeWhenClauseId);
+                builder.Append('"');
+                builder.Append(">\n");
+                builder.Append("    </MergeMatchedWhenClause>\n");
+            }
+            builder.Append("  </MergeMatchedWhenClauseList>\n");
+            builder.Append("</MetaTransformScript>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadMergeNotMatchedBySourceWhenClauseList(MetaTransformScriptModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeNotMatchedBySourceWhenClauseList");
+                return;
+            }
+
+            reader.ReadStartElement("MergeNotMatchedBySourceWhenClauseList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "MergeNotMatchedBySourceWhenClause", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'MergeNotMatchedBySourceWhenClauseList'.");
+                }
+                var row = ReadMergeNotMatchedBySourceWhenClause(reader, relationshipBuffers);
+                loadState.AddMergeNotMatchedBySourceWhenClauseId(row.Id);
+                model.MergeNotMatchedBySourceWhenClauseList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static MergeNotMatchedBySourceWhenClause ReadMergeNotMatchedBySourceWhenClause(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new MergeNotMatchedBySourceWhenClause();
+            var relationships = new MergeNotMatchedBySourceWhenClauseRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "MergeWhenClauseId":
+                            relationships.MergeWhenClauseId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'MergeNotMatchedBySourceWhenClause'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeNotMatchedBySourceWhenClause");
+                (relationshipBuffers.MergeNotMatchedBySourceWhenClauseRelationships ??= new List<MergeNotMatchedBySourceWhenClauseRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("MergeNotMatchedBySourceWhenClause");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'MergeNotMatchedBySourceWhenClause'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.MergeNotMatchedBySourceWhenClauseRelationships ??= new List<MergeNotMatchedBySourceWhenClauseRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeMergeNotMatchedBySourceWhenClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformScript>\n");
+            builder.Append("  <MergeNotMatchedBySourceWhenClauseList>\n");
+            foreach (var row in model.MergeNotMatchedBySourceWhenClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'MergeNotMatchedBySourceWhenClause' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'MergeNotMatchedBySourceWhenClause' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <MergeNotMatchedBySourceWhenClause Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var mergeWhenClauseId = RequireIdentity(row.MergeWhenClause?.Id, $"Relationship 'MergeNotMatchedBySourceWhenClause.MergeWhenClauseId' on row 'MergeNotMatchedBySourceWhenClause:{row.Id}' is empty.");
+                if (!saveIndexes.MergeWhenClauseListById.TryGetValue(mergeWhenClauseId, out var mergeWhenClauseCanonical) || !ReferenceEquals(mergeWhenClauseCanonical, row.MergeWhenClause))
+                {
+                    throw new InvalidOperationException($"Relationship 'MergeNotMatchedBySourceWhenClause.MergeWhenClauseId' on row 'MergeNotMatchedBySourceWhenClause:{row.Id}' references an object that is not the canonical row for Id '{mergeWhenClauseId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("MergeWhenClauseId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, mergeWhenClauseId);
+                builder.Append('"');
+                builder.Append(">\n");
+                builder.Append("    </MergeNotMatchedBySourceWhenClause>\n");
+            }
+            builder.Append("  </MergeNotMatchedBySourceWhenClauseList>\n");
+            builder.Append("</MetaTransformScript>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadMergeNotMatchedByTargetWhenClauseList(MetaTransformScriptModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeNotMatchedByTargetWhenClauseList");
+                return;
+            }
+
+            reader.ReadStartElement("MergeNotMatchedByTargetWhenClauseList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "MergeNotMatchedByTargetWhenClause", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'MergeNotMatchedByTargetWhenClauseList'.");
+                }
+                var row = ReadMergeNotMatchedByTargetWhenClause(reader, relationshipBuffers);
+                loadState.AddMergeNotMatchedByTargetWhenClauseId(row.Id);
+                model.MergeNotMatchedByTargetWhenClauseList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static MergeNotMatchedByTargetWhenClause ReadMergeNotMatchedByTargetWhenClause(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new MergeNotMatchedByTargetWhenClause();
+            var relationships = new MergeNotMatchedByTargetWhenClauseRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "MergeWhenClauseId":
+                            relationships.MergeWhenClauseId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'MergeNotMatchedByTargetWhenClause'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("MergeNotMatchedByTargetWhenClause");
+                (relationshipBuffers.MergeNotMatchedByTargetWhenClauseRelationships ??= new List<MergeNotMatchedByTargetWhenClauseRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("MergeNotMatchedByTargetWhenClause");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'MergeNotMatchedByTargetWhenClause'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.MergeNotMatchedByTargetWhenClauseRelationships ??= new List<MergeNotMatchedByTargetWhenClauseRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeMergeNotMatchedByTargetWhenClauseShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformScript>\n");
+            builder.Append("  <MergeNotMatchedByTargetWhenClauseList>\n");
+            foreach (var row in model.MergeNotMatchedByTargetWhenClauseList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'MergeNotMatchedByTargetWhenClause' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'MergeNotMatchedByTargetWhenClause' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <MergeNotMatchedByTargetWhenClause Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var mergeWhenClauseId = RequireIdentity(row.MergeWhenClause?.Id, $"Relationship 'MergeNotMatchedByTargetWhenClause.MergeWhenClauseId' on row 'MergeNotMatchedByTargetWhenClause:{row.Id}' is empty.");
+                if (!saveIndexes.MergeWhenClauseListById.TryGetValue(mergeWhenClauseId, out var mergeWhenClauseCanonical) || !ReferenceEquals(mergeWhenClauseCanonical, row.MergeWhenClause))
+                {
+                    throw new InvalidOperationException($"Relationship 'MergeNotMatchedByTargetWhenClause.MergeWhenClauseId' on row 'MergeNotMatchedByTargetWhenClause:{row.Id}' references an object that is not the canonical row for Id '{mergeWhenClauseId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("MergeWhenClauseId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, mergeWhenClauseId);
+                builder.Append('"');
+                builder.Append(">\n");
+                builder.Append("    </MergeNotMatchedByTargetWhenClause>\n");
+            }
+            builder.Append("  </MergeNotMatchedByTargetWhenClauseList>\n");
+            builder.Append("</MetaTransformScript>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
         private static void LoadMergeStatementList(MetaTransformScriptModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
@@ -22357,6 +22732,9 @@ namespace MetaTransformScript
                         case "MergeWhenClauseId":
                             relationships.MergeWhenClauseId = reader.Value;
                             break;
+                        case "PreviousMergeWhenClauseId":
+                            relationships.PreviousMergeWhenClauseId = reader.Value;
+                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'MergeStatementWhenClausesItem'.");
                     }
@@ -22377,9 +22755,6 @@ namespace MetaTransformScript
             {
                 switch (reader.LocalName)
                 {
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'MergeStatementWhenClausesItem'.");
                 }
@@ -22427,11 +22802,20 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeWhenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                if (row.PreviousMergeWhenClause != null)
                 {
-                    AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
+                    var previousMergeWhenClauseId = RequireIdentity(row.PreviousMergeWhenClause?.Id, $"Relationship 'MergeStatementWhenClausesItem.PreviousMergeWhenClauseId' on row 'MergeStatementWhenClausesItem:{row.Id}' is empty.");
+                    if (!saveIndexes.MergeStatementWhenClausesItemListById.TryGetValue(previousMergeWhenClauseId, out var previousMergeWhenClauseCanonical) || !ReferenceEquals(previousMergeWhenClauseCanonical, row.PreviousMergeWhenClause))
+                    {
+                        throw new InvalidOperationException($"Relationship 'MergeStatementWhenClausesItem.PreviousMergeWhenClauseId' on row 'MergeStatementWhenClausesItem:{row.Id}' references an object that is not the canonical row for Id '{previousMergeWhenClauseId}'.");
+                    }
+                    builder.Append(' ');
+                    builder.Append("PreviousMergeWhenClauseId");
+                    builder.Append("=\"");
+                    AppendXmlAttribute(builder, previousMergeWhenClauseId);
+                    builder.Append('"');
                 }
+                builder.Append(">\n");
                 builder.Append("    </MergeStatementWhenClausesItem>\n");
             }
             builder.Append("  </MergeStatementWhenClausesItemList>\n");
@@ -22729,9 +23113,6 @@ namespace MetaTransformScript
             {
                 switch (reader.LocalName)
                 {
-                    case "MatchKind":
-                        row.MatchKind = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'MergeWhenClause'.");
                 }
@@ -22759,7 +23140,6 @@ namespace MetaTransformScript
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
                 builder.Append(">\n");
-                AppendElement(builder, "MatchKind", RequireText(row.MatchKind, $"Entity 'MergeWhenClause' row '{row.Id}' is missing required property 'MatchKind'."), "      ");
                 builder.Append("    </MergeWhenClause>\n");
             }
             builder.Append("  </MergeWhenClauseList>\n");
@@ -46711,6 +47091,24 @@ namespace MetaTransformScript
             public string ScalarExpressionId { get; set; } = string.Empty;
         }
 
+        private sealed class MergeMatchedWhenClauseRelationships
+        {
+            public MergeMatchedWhenClause Row { get; set; } = null!;
+            public string MergeWhenClauseId { get; set; } = string.Empty;
+        }
+
+        private sealed class MergeNotMatchedBySourceWhenClauseRelationships
+        {
+            public MergeNotMatchedBySourceWhenClause Row { get; set; } = null!;
+            public string MergeWhenClauseId { get; set; } = string.Empty;
+        }
+
+        private sealed class MergeNotMatchedByTargetWhenClauseRelationships
+        {
+            public MergeNotMatchedByTargetWhenClause Row { get; set; } = null!;
+            public string MergeWhenClauseId { get; set; } = string.Empty;
+        }
+
         private sealed class MergeStatementRelationships
         {
             public MergeStatement Row { get; set; } = null!;
@@ -46778,6 +47176,7 @@ namespace MetaTransformScript
             public MergeStatementWhenClausesItem Row { get; set; } = null!;
             public string MergeStatementId { get; set; } = string.Empty;
             public string MergeWhenClauseId { get; set; } = string.Empty;
+            public string PreviousMergeWhenClauseId { get; set; } = string.Empty;
         }
 
         private sealed class MergeUpdateActionRelationships
@@ -48059,6 +48458,9 @@ namespace MetaTransformScript
             public List<MergeInsertActionRelationships>? MergeInsertActionRelationships { get; set; }
             public List<MergeInsertActionColumnsItemRelationships>? MergeInsertActionColumnsItemRelationships { get; set; }
             public List<MergeInsertActionValuesItemRelationships>? MergeInsertActionValuesItemRelationships { get; set; }
+            public List<MergeMatchedWhenClauseRelationships>? MergeMatchedWhenClauseRelationships { get; set; }
+            public List<MergeNotMatchedBySourceWhenClauseRelationships>? MergeNotMatchedBySourceWhenClauseRelationships { get; set; }
+            public List<MergeNotMatchedByTargetWhenClauseRelationships>? MergeNotMatchedByTargetWhenClauseRelationships { get; set; }
             public List<MergeStatementRelationships>? MergeStatementRelationships { get; set; }
             public List<MergeStatementOptionClauseLinkRelationships>? MergeStatementOptionClauseLinkRelationships { get; set; }
             public List<MergeStatementOutputClauseLinkRelationships>? MergeStatementOutputClauseLinkRelationships { get; set; }
@@ -50220,6 +50622,36 @@ namespace MetaTransformScript
                     "ScalarExpressionId");
             }
 
+            foreach (var relationship in relationshipBuffers.MergeMatchedWhenClauseRelationships ?? Enumerable.Empty<MergeMatchedWhenClauseRelationships>())
+            {
+                relationship.Row.MergeWhenClause = RequireTarget(
+                    loadIndexes.MergeWhenClauseListById,
+                    relationship.MergeWhenClauseId,
+                    "MergeMatchedWhenClause",
+                    relationship.Row.Id,
+                    "MergeWhenClauseId");
+            }
+
+            foreach (var relationship in relationshipBuffers.MergeNotMatchedBySourceWhenClauseRelationships ?? Enumerable.Empty<MergeNotMatchedBySourceWhenClauseRelationships>())
+            {
+                relationship.Row.MergeWhenClause = RequireTarget(
+                    loadIndexes.MergeWhenClauseListById,
+                    relationship.MergeWhenClauseId,
+                    "MergeNotMatchedBySourceWhenClause",
+                    relationship.Row.Id,
+                    "MergeWhenClauseId");
+            }
+
+            foreach (var relationship in relationshipBuffers.MergeNotMatchedByTargetWhenClauseRelationships ?? Enumerable.Empty<MergeNotMatchedByTargetWhenClauseRelationships>())
+            {
+                relationship.Row.MergeWhenClause = RequireTarget(
+                    loadIndexes.MergeWhenClauseListById,
+                    relationship.MergeWhenClauseId,
+                    "MergeNotMatchedByTargetWhenClause",
+                    relationship.Row.Id,
+                    "MergeWhenClauseId");
+            }
+
             foreach (var relationship in relationshipBuffers.MergeStatementRelationships ?? Enumerable.Empty<MergeStatementRelationships>())
             {
                 relationship.Row.StatementWithCtesAndXmlNamespaces = RequireTarget(
@@ -50410,6 +50842,18 @@ namespace MetaTransformScript
                     "MergeWhenClauseId");
             }
 
+            foreach (var relationship in relationshipBuffers.MergeStatementWhenClausesItemRelationships ?? Enumerable.Empty<MergeStatementWhenClausesItemRelationships>())
+            {
+                relationship.Row.PreviousMergeWhenClause = string.IsNullOrWhiteSpace(relationship.PreviousMergeWhenClauseId)
+                    ? null
+                    : RequireTarget(
+                        loadIndexes.MergeStatementWhenClausesItemListById,
+                        relationship.PreviousMergeWhenClauseId,
+                        "MergeStatementWhenClausesItem",
+                        relationship.Row.Id,
+                        "PreviousMergeWhenClauseId");
+            }
+
             foreach (var relationship in relationshipBuffers.MergeUpdateActionRelationships ?? Enumerable.Empty<MergeUpdateActionRelationships>())
             {
                 relationship.Row.MergeAction = RequireTarget(
@@ -50470,6 +50914,10 @@ namespace MetaTransformScript
                     "BooleanExpressionId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup8(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.MergeWhenClauseSearchConditionLinkRelationships ?? Enumerable.Empty<MergeWhenClauseSearchConditionLinkRelationships>())
             {
                 relationship.Row.MergeWhenClause = RequireTarget(
@@ -50510,10 +50958,6 @@ namespace MetaTransformScript
                     "MultiPartIdentifierId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup8(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.MultiPartIdentifierIdentifiersItemRelationships ?? Enumerable.Empty<MultiPartIdentifierIdentifiersItemRelationships>())
             {
                 relationship.Row.Identifier = RequireTarget(
@@ -50794,6 +51238,10 @@ namespace MetaTransformScript
                     "OutputClauseId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup9(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.OutputClauseIntoTargetLinkRelationships ?? Enumerable.Empty<OutputClauseIntoTargetLinkRelationships>())
             {
                 relationship.Row.SchemaObjectName = RequireTarget(
@@ -50834,10 +51282,6 @@ namespace MetaTransformScript
                     "OrderByClauseId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup9(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.OverClauseOrderByClauseLinkRelationships ?? Enumerable.Empty<OverClauseOrderByClauseLinkRelationships>())
             {
                 relationship.Row.OverClause = RequireTarget(
@@ -51118,6 +51562,10 @@ namespace MetaTransformScript
                     "PivotedTableReferenceId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup10(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.PivotedTableReferenceTableReferenceLinkRelationships ?? Enumerable.Empty<PivotedTableReferenceTableReferenceLinkRelationships>())
             {
                 relationship.Row.PivotedTableReference = RequireTarget(
@@ -51158,10 +51606,6 @@ namespace MetaTransformScript
                     "PivotedTableReferenceId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup10(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.PrimaryExpressionRelationships ?? Enumerable.Empty<PrimaryExpressionRelationships>())
             {
                 relationship.Row.ScalarExpression = RequireTarget(
@@ -51442,6 +51886,10 @@ namespace MetaTransformScript
                     "QuerySpecificationId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup11(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.QuerySpecificationWhereClauseLinkRelationships ?? Enumerable.Empty<QuerySpecificationWhereClauseLinkRelationships>())
             {
                 relationship.Row.WhereClause = RequireTarget(
@@ -51482,10 +51930,6 @@ namespace MetaTransformScript
                     "LiteralId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup11(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.RightFunctionCallRelationships ?? Enumerable.Empty<RightFunctionCallRelationships>())
             {
                 relationship.Row.PrimaryExpression = RequireTarget(
@@ -51766,6 +52210,10 @@ namespace MetaTransformScript
                     "CaseExpressionId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup12(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.SearchedCaseExpressionWhenClausesItemRelationships ?? Enumerable.Empty<SearchedCaseExpressionWhenClausesItemRelationships>())
             {
                 relationship.Row.SearchedCaseExpression = RequireTarget(
@@ -51806,10 +52254,6 @@ namespace MetaTransformScript
                     "BooleanExpressionId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup12(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.SearchedWhenClauseWhenExpressionLinkRelationships ?? Enumerable.Empty<SearchedWhenClauseWhenExpressionLinkRelationships>())
             {
                 relationship.Row.SearchedWhenClause = RequireTarget(
@@ -52090,6 +52534,10 @@ namespace MetaTransformScript
                     "ScalarExpressionId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup13(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.SqlHintArgumentsItemRelationships ?? Enumerable.Empty<SqlHintArgumentsItemRelationships>())
             {
                 relationship.Row.SqlHint = RequireTarget(
@@ -52130,10 +52578,6 @@ namespace MetaTransformScript
                     "TSqlStatementId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup13(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkRelationships ?? Enumerable.Empty<StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkRelationships>())
             {
                 relationship.Row.StatementWithCtesAndXmlNamespaces = RequireTarget(
@@ -52414,6 +52858,10 @@ namespace MetaTransformScript
                     "IdentifierId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup14(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.TransformScriptFunctionParametersItemRelationships ?? Enumerable.Empty<TransformScriptFunctionParametersItemRelationships>())
             {
                 relationship.Row.TransformScript = RequireTarget(
@@ -52454,10 +52902,6 @@ namespace MetaTransformScript
                     "IdentifierId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup14(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.TransformScriptSchemaIdentifierLinkRelationships ?? Enumerable.Empty<TransformScriptSchemaIdentifierLinkRelationships>())
             {
                 relationship.Row.TransformScript = RequireTarget(
@@ -52738,6 +53182,10 @@ namespace MetaTransformScript
                     "ScalarExpressionId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup15(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.UnaryExpressionExpressionLinkRelationships ?? Enumerable.Empty<UnaryExpressionExpressionLinkRelationships>())
             {
                 relationship.Row.ScalarExpression = RequireTarget(
@@ -52778,10 +53226,6 @@ namespace MetaTransformScript
                     "ColumnReferenceExpressionId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup15(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.UnpivotedTableReferenceInColumnsItemRelationships ?? Enumerable.Empty<UnpivotedTableReferenceInColumnsItemRelationships>())
             {
                 relationship.Row.UnpivotedTableReference = RequireTarget(
@@ -53062,6 +53506,10 @@ namespace MetaTransformScript
                     "WindowDefinitionId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup16(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.WindowDefinitionPartitionsItemRelationships ?? Enumerable.Empty<WindowDefinitionPartitionsItemRelationships>())
             {
                 relationship.Row.ScalarExpression = RequireTarget(
@@ -53102,10 +53550,6 @@ namespace MetaTransformScript
                     "WindowDefinitionId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup16(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.WindowDefinitionWindowFrameClauseLinkRelationships ?? Enumerable.Empty<WindowDefinitionWindowFrameClauseLinkRelationships>())
             {
                 relationship.Row.WindowDefinition = RequireTarget(
@@ -53512,6 +53956,9 @@ namespace MetaTransformScript
             "MergeInsertAction.xml",
             "MergeInsertActionColumnsItem.xml",
             "MergeInsertActionValuesItem.xml",
+            "MergeMatchedWhenClause.xml",
+            "MergeNotMatchedBySourceWhenClause.xml",
+            "MergeNotMatchedByTargetWhenClause.xml",
             "MergeStatement.xml",
             "MergeStatementOptionClauseLink.xml",
             "MergeStatementOutputClauseLink.xml",
@@ -55319,6 +55766,42 @@ namespace MetaTransformScript
                 if (!mergeInsertActionValuesItemIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'MergeInsertActionValuesItem' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? mergeMatchedWhenClauseIds;
+
+            public void AddMergeMatchedWhenClauseId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'MergeMatchedWhenClause' contains a row with empty Id.");
+                mergeMatchedWhenClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!mergeMatchedWhenClauseIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'MergeMatchedWhenClause' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? mergeNotMatchedBySourceWhenClauseIds;
+
+            public void AddMergeNotMatchedBySourceWhenClauseId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'MergeNotMatchedBySourceWhenClause' contains a row with empty Id.");
+                mergeNotMatchedBySourceWhenClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!mergeNotMatchedBySourceWhenClauseIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'MergeNotMatchedBySourceWhenClause' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? mergeNotMatchedByTargetWhenClauseIds;
+
+            public void AddMergeNotMatchedByTargetWhenClauseId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'MergeNotMatchedByTargetWhenClause' contains a row with empty Id.");
+                mergeNotMatchedByTargetWhenClauseIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!mergeNotMatchedByTargetWhenClauseIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'MergeNotMatchedByTargetWhenClause' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -58393,6 +58876,18 @@ namespace MetaTransformScript
 
             public Dictionary<string, MergeInsertActionValuesItem> MergeInsertActionValuesItemListById => mergeInsertActionValuesItemListById ??= BuildById(model.MergeInsertActionValuesItemList, row => row.Id, "MergeInsertActionValuesItem");
 
+            private Dictionary<string, MergeMatchedWhenClause>? mergeMatchedWhenClauseListById;
+
+            public Dictionary<string, MergeMatchedWhenClause> MergeMatchedWhenClauseListById => mergeMatchedWhenClauseListById ??= BuildById(model.MergeMatchedWhenClauseList, row => row.Id, "MergeMatchedWhenClause");
+
+            private Dictionary<string, MergeNotMatchedBySourceWhenClause>? mergeNotMatchedBySourceWhenClauseListById;
+
+            public Dictionary<string, MergeNotMatchedBySourceWhenClause> MergeNotMatchedBySourceWhenClauseListById => mergeNotMatchedBySourceWhenClauseListById ??= BuildById(model.MergeNotMatchedBySourceWhenClauseList, row => row.Id, "MergeNotMatchedBySourceWhenClause");
+
+            private Dictionary<string, MergeNotMatchedByTargetWhenClause>? mergeNotMatchedByTargetWhenClauseListById;
+
+            public Dictionary<string, MergeNotMatchedByTargetWhenClause> MergeNotMatchedByTargetWhenClauseListById => mergeNotMatchedByTargetWhenClauseListById ??= BuildById(model.MergeNotMatchedByTargetWhenClauseList, row => row.Id, "MergeNotMatchedByTargetWhenClause");
+
             private Dictionary<string, MergeStatement>? mergeStatementListById;
 
             public Dictionary<string, MergeStatement> MergeStatementListById => mergeStatementListById ??= BuildById(model.MergeStatementList, row => row.Id, "MergeStatement");
@@ -59775,6 +60270,18 @@ namespace MetaTransformScript
             private Dictionary<string, MergeInsertActionValuesItem>? mergeInsertActionValuesItemListById;
 
             public Dictionary<string, MergeInsertActionValuesItem> MergeInsertActionValuesItemListById => mergeInsertActionValuesItemListById ??= BuildById(model.MergeInsertActionValuesItemList, row => row.Id, "MergeInsertActionValuesItem");
+
+            private Dictionary<string, MergeMatchedWhenClause>? mergeMatchedWhenClauseListById;
+
+            public Dictionary<string, MergeMatchedWhenClause> MergeMatchedWhenClauseListById => mergeMatchedWhenClauseListById ??= BuildById(model.MergeMatchedWhenClauseList, row => row.Id, "MergeMatchedWhenClause");
+
+            private Dictionary<string, MergeNotMatchedBySourceWhenClause>? mergeNotMatchedBySourceWhenClauseListById;
+
+            public Dictionary<string, MergeNotMatchedBySourceWhenClause> MergeNotMatchedBySourceWhenClauseListById => mergeNotMatchedBySourceWhenClauseListById ??= BuildById(model.MergeNotMatchedBySourceWhenClauseList, row => row.Id, "MergeNotMatchedBySourceWhenClause");
+
+            private Dictionary<string, MergeNotMatchedByTargetWhenClause>? mergeNotMatchedByTargetWhenClauseListById;
+
+            public Dictionary<string, MergeNotMatchedByTargetWhenClause> MergeNotMatchedByTargetWhenClauseListById => mergeNotMatchedByTargetWhenClauseListById ??= BuildById(model.MergeNotMatchedByTargetWhenClauseList, row => row.Id, "MergeNotMatchedByTargetWhenClause");
 
             private Dictionary<string, MergeStatement>? mergeStatementListById;
 
@@ -61736,6 +62243,27 @@ namespace MetaTransformScript
                 return true;
             }
 
+            if (HasUnexpectedProperties(typeof(MergeMatchedWhenClause),
+                "Id",
+                "MergeWhenClause"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(MergeNotMatchedBySourceWhenClause),
+                "Id",
+                "MergeWhenClause"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(MergeNotMatchedByTargetWhenClause),
+                "Id",
+                "MergeWhenClause"))
+            {
+                return true;
+            }
+
             if (HasUnexpectedProperties(typeof(MergeStatement),
                 "Id",
                 "StatementWithCtesAndXmlNamespaces"))
@@ -61810,9 +62338,9 @@ namespace MetaTransformScript
 
             if (HasUnexpectedProperties(typeof(MergeStatementWhenClausesItem),
                 "Id",
-                "Ordinal",
                 "MergeStatement",
-                "MergeWhenClause"))
+                "MergeWhenClause",
+                "PreviousMergeWhenClause"))
             {
                 return true;
             }
@@ -61833,8 +62361,7 @@ namespace MetaTransformScript
             }
 
             if (HasUnexpectedProperties(typeof(MergeWhenClause),
-                "Id",
-                "MatchKind"))
+                "Id"))
             {
                 return true;
             }
@@ -61931,6 +62458,11 @@ namespace MetaTransformScript
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool HasRuntimeExtendedEntityShapeGroup6()
+        {
             if (HasUnexpectedProperties(typeof(NullIfExpressionFirstExpressionLink),
                 "Id",
                 "NullIfExpression",
@@ -61955,11 +62487,6 @@ namespace MetaTransformScript
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool HasRuntimeExtendedEntityShapeGroup6()
-        {
             if (HasUnexpectedProperties(typeof(NumericLiteral),
                 "Id",
                 "LiteralType",
@@ -62186,6 +62713,11 @@ namespace MetaTransformScript
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool HasRuntimeExtendedEntityShapeGroup7()
+        {
             if (HasUnexpectedProperties(typeof(PivotedTableReferencePivotColumnLink),
                 "Id",
                 "ColumnReferenceExpression",
@@ -62211,11 +62743,6 @@ namespace MetaTransformScript
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool HasRuntimeExtendedEntityShapeGroup7()
-        {
             if (HasUnexpectedProperties(typeof(PrimaryExpression),
                 "Id",
                 "ScalarExpression"))
@@ -62441,6 +62968,11 @@ namespace MetaTransformScript
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool HasRuntimeExtendedEntityShapeGroup8()
+        {
             if (HasUnexpectedProperties(typeof(SchemaObjectFunctionTableReference),
                 "Id",
                 "TableReferenceWithAliasAndColumns"))
@@ -62465,11 +62997,6 @@ namespace MetaTransformScript
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool HasRuntimeExtendedEntityShapeGroup8()
-        {
             if (HasUnexpectedProperties(typeof(SchemaObjectName),
                 "Id",
                 "MultiPartIdentifier"))
@@ -62691,6 +63218,11 @@ namespace MetaTransformScript
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool HasRuntimeExtendedEntityShapeGroup9()
+        {
             if (HasUnexpectedProperties(typeof(SqlDataTypeReference),
                 "Id",
                 "SqlDataTypeOption",
@@ -62715,11 +63247,6 @@ namespace MetaTransformScript
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool HasRuntimeExtendedEntityShapeGroup9()
-        {
             if (HasUnexpectedProperties(typeof(SqlHintKeywordsItem),
                 "Id",
                 "Ordinal",
@@ -62965,6 +63492,11 @@ namespace MetaTransformScript
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool HasRuntimeExtendedEntityShapeGroup10()
+        {
             if (HasUnexpectedProperties(typeof(TruncateStatementTargetLink),
                 "Id",
                 "SchemaObjectName",
@@ -62988,11 +63520,6 @@ namespace MetaTransformScript
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool HasRuntimeExtendedEntityShapeGroup10()
-        {
             if (HasUnexpectedProperties(typeof(TryCastCallParameterLink),
                 "Id",
                 "ScalarExpression",
@@ -63215,6 +63742,11 @@ namespace MetaTransformScript
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool HasRuntimeExtendedEntityShapeGroup11()
+        {
             if (HasUnexpectedProperties(typeof(WindowClause),
                 "Id"))
             {
@@ -63236,11 +63768,6 @@ namespace MetaTransformScript
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool HasRuntimeExtendedEntityShapeGroup11()
-        {
             if (HasUnexpectedProperties(typeof(WindowDefinitionOrderByClauseLink),
                 "Id",
                 "OrderByClause",
@@ -63556,6 +64083,9 @@ namespace MetaTransformScript
                 "MergeInsertActionList",
                 "MergeInsertActionColumnsItemList",
                 "MergeInsertActionValuesItemList",
+                "MergeMatchedWhenClauseList",
+                "MergeNotMatchedBySourceWhenClauseList",
+                "MergeNotMatchedByTargetWhenClauseList",
                 "MergeStatementList",
                 "MergeStatementOptionClauseLinkList",
                 "MergeStatementOutputClauseLinkList",

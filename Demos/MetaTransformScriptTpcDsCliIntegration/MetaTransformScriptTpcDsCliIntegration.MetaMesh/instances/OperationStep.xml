@@ -1,50 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaMesh>
   <OperationStepList>
-    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup">
-      <Arguments>/c if exist TransformWS rmdir /s /q TransformWS</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-transform-workspace</Name>
+    <OperationStep Id="operation-step:build-tpc-ds-snapshot:bind-transforms" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q99">
+      <Arguments>bind --transform-workspace "{workspace:transform.path}" --source-schema "{workspace:schema.path}" --target-schema "{workspace:schema.path}" --execute-system TpcDsSnapshot --execute-system-default-schema-name dbo --new-workspace "{workspace:binding.path}"</Arguments>
+      <Executable>meta-transform-binding.exe</Executable>
+      <Name>bind-transforms</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-transform-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
-      <Arguments>/c if exist TransformRoundTripWS rmdir /s /q TransformRoundTripWS</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-transform-roundtrip-workspace</Name>
+    <OperationStep Id="operation-step:build-tpc-ds-snapshot:convert-roundtrip-transform-to-sql" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:convert-transform-to-sql">
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.path}" --database-name TpcDsSnapshot --out "{workspace:sql-roundtrip.path}"</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-roundtrip-transform-to-sql</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-binding-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-roundtrip-workspace">
-      <Arguments>/c if exist BindingWS rmdir /s /q BindingWS</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-binding-workspace</Name>
+    <OperationStep Id="operation-step:build-tpc-ds-snapshot:convert-transform-to-sql" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:record-transform-roundtrip-diff">
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform.path}" --database-name TpcDsSnapshot --out "{workspace:sql.path}"</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-transform-to-sql</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-sql-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-binding-workspace">
-      <Arguments>/c if exist MetaSqlWS rmdir /s /q MetaSqlWS</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-sql-workspace</Name>
+    <OperationStep Id="operation-step:build-tpc-ds-snapshot:diff-sql-workspaces" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:convert-roundtrip-transform-to-sql">
+      <Arguments>instance diff "{workspace:sql.path}" "{workspace:sql-roundtrip.path}"</Arguments>
+      <Executable>meta.exe</Executable>
+      <Name>diff-sql-workspaces</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-sql-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-workspace">
-      <Arguments>/c if exist MetaSqlRoundTripWS rmdir /s /q MetaSqlRoundTripWS</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-sql-roundtrip-workspace</Name>
+    <OperationStep Id="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-file" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-folder">
+      <Arguments>to sql-path --workspace "{workspace:transform.path}" --out RoundTrippedViews.sql</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>export-roundtripped-views-file</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-transform-roundtrip-diff" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-roundtrip-workspace">
-      <Arguments>/c if exist TransformRoundTripWS.instance-diff rmdir /s /q TransformRoundTripWS.instance-diff</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-transform-roundtrip-diff</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-sql-roundtrip-diff" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-roundtrip-diff">
-      <Arguments>/c if exist MetaSqlRoundTripWS.instance-diff rmdir /s /q MetaSqlRoundTripWS.instance-diff</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-sql-roundtrip-diff</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-roundtripped-views-folder" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-roundtrip-diff">
-      <Arguments>/c if exist RoundTrippedViews rmdir /s /q RoundTrippedViews</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-roundtripped-views-folder</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-roundtripped-views-file" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-roundtripped-views-folder">
-      <Arguments>/c if exist RoundTrippedViews.sql del /q RoundTrippedViews.sql</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-roundtripped-views-file</Name>
+    <OperationStep Id="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-folder" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:bind-transforms">
+      <Arguments>to sql-path --workspace "{workspace:transform.path}" --out RoundTrippedViews</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>export-roundtripped-views-folder</Name>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q01" OperationId="operation:build-tpc-ds-snapshot">
       <Arguments>from sql-file --path SourceViews\001_q01\view.sql --target tpcds.v_q01 --new-workspace "{workspace:transform.path}"</Arguments>
@@ -541,542 +526,68 @@
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q99</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:bind-transforms" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q99">
-      <Arguments>bind --transform-workspace "{workspace:transform.path}" --source-schema "{workspace:schema.path}" --target-schema "{workspace:schema.path}" --execute-system TpcDsSnapshot --execute-system-default-schema-name dbo --new-workspace "{workspace:binding.path}"</Arguments>
-      <Executable>meta-transform-binding.exe</Executable>
-      <Name>bind-transforms</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-folder" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:bind-transforms">
-      <Arguments>to sql-path --workspace "{workspace:transform.path}" --out RoundTrippedViews</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>export-roundtripped-views-folder</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-file" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-folder">
-      <Arguments>to sql-path --workspace "{workspace:transform.path}" --out RoundTrippedViews.sql</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>export-roundtripped-views-file</Name>
-    </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:print-sql-q01" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-file">
       <Arguments>to sql-code --workspace "{workspace:transform.path}" --name tpcds.v_q01</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>print-sql-q01</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q01" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:print-sql-q01">
-      <Arguments>from sql-file --path RoundTrippedViews\view.sql --target tpcds.v_q01 --new-workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q01</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q02" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q01">
-      <Arguments>from sql-file --path RoundTrippedViews\view_2.sql --target tpcds.v_q02 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q02</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q03" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q02">
-      <Arguments>from sql-file --path RoundTrippedViews\view_3.sql --target tpcds.v_q03 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q03</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q04" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q03">
-      <Arguments>from sql-file --path RoundTrippedViews\view_4.sql --target tpcds.v_q04 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q04</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q05" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q04">
-      <Arguments>from sql-file --path RoundTrippedViews\view_5.sql --target tpcds.v_q05 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q05</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q06" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q05">
-      <Arguments>from sql-file --path RoundTrippedViews\view_6.sql --target tpcds.v_q06 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q06</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q07" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q06">
-      <Arguments>from sql-file --path RoundTrippedViews\view_7.sql --target tpcds.v_q07 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q07</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q08" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q07">
-      <Arguments>from sql-file --path RoundTrippedViews\view_8.sql --target tpcds.v_q08 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q08</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q09" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q08">
-      <Arguments>from sql-file --path RoundTrippedViews\view_9.sql --target tpcds.v_q09 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q09</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q10" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q09">
-      <Arguments>from sql-file --path RoundTrippedViews\view_10.sql --target tpcds.v_q10 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q10</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q11" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q10">
-      <Arguments>from sql-file --path RoundTrippedViews\view_11.sql --target tpcds.v_q11 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q11</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q12" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q11">
-      <Arguments>from sql-file --path RoundTrippedViews\view_12.sql --target tpcds.v_q12 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q12</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q13" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q12">
-      <Arguments>from sql-file --path RoundTrippedViews\view_13.sql --target tpcds.v_q13 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q13</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q14" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q13">
-      <Arguments>from sql-file --path RoundTrippedViews\view_14.sql --target tpcds.v_q14 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q14</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q15" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q14">
-      <Arguments>from sql-file --path RoundTrippedViews\view_15.sql --target tpcds.v_q15 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q15</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q16" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q15">
-      <Arguments>from sql-file --path RoundTrippedViews\view_16.sql --target tpcds.v_q16 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q16</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q17" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q16">
-      <Arguments>from sql-file --path RoundTrippedViews\view_17.sql --target tpcds.v_q17 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q17</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q18" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q17">
-      <Arguments>from sql-file --path RoundTrippedViews\view_18.sql --target tpcds.v_q18 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q18</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q19" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q18">
-      <Arguments>from sql-file --path RoundTrippedViews\view_19.sql --target tpcds.v_q19 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q19</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q20" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q19">
-      <Arguments>from sql-file --path RoundTrippedViews\view_20.sql --target tpcds.v_q20 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q20</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q21" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q20">
-      <Arguments>from sql-file --path RoundTrippedViews\view_21.sql --target tpcds.v_q21 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q21</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q22" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q21">
-      <Arguments>from sql-file --path RoundTrippedViews\view_22.sql --target tpcds.v_q22 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q22</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q23" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q22">
-      <Arguments>from sql-file --path RoundTrippedViews\view_23.sql --target tpcds.v_q23 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q23</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q24" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q23">
-      <Arguments>from sql-file --path RoundTrippedViews\view_24.sql --target tpcds.v_q24 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q24</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q25" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q24">
-      <Arguments>from sql-file --path RoundTrippedViews\view_25.sql --target tpcds.v_q25 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q25</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q26" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q25">
-      <Arguments>from sql-file --path RoundTrippedViews\view_26.sql --target tpcds.v_q26 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q26</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q27" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q26">
-      <Arguments>from sql-file --path RoundTrippedViews\view_27.sql --target tpcds.v_q27 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q27</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q28" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q27">
-      <Arguments>from sql-file --path RoundTrippedViews\view_28.sql --target tpcds.v_q28 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q28</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q29" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q28">
-      <Arguments>from sql-file --path RoundTrippedViews\view_29.sql --target tpcds.v_q29 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q29</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q30" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q29">
-      <Arguments>from sql-file --path RoundTrippedViews\view_30.sql --target tpcds.v_q30 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q30</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q31" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q30">
-      <Arguments>from sql-file --path RoundTrippedViews\view_31.sql --target tpcds.v_q31 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q31</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q32" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q31">
-      <Arguments>from sql-file --path RoundTrippedViews\view_32.sql --target tpcds.v_q32 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q32</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q33" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q32">
-      <Arguments>from sql-file --path RoundTrippedViews\view_33.sql --target tpcds.v_q33 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q33</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q34" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q33">
-      <Arguments>from sql-file --path RoundTrippedViews\view_34.sql --target tpcds.v_q34 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q34</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q35" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q34">
-      <Arguments>from sql-file --path RoundTrippedViews\view_35.sql --target tpcds.v_q35 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q35</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q36" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q35">
-      <Arguments>from sql-file --path RoundTrippedViews\view_36.sql --target tpcds.v_q36 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q36</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q37" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q36">
-      <Arguments>from sql-file --path RoundTrippedViews\view_37.sql --target tpcds.v_q37 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q37</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q38" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q37">
-      <Arguments>from sql-file --path RoundTrippedViews\view_38.sql --target tpcds.v_q38 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q38</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q39" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q38">
-      <Arguments>from sql-file --path RoundTrippedViews\view_39.sql --target tpcds.v_q39 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q39</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q40" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q39">
-      <Arguments>from sql-file --path RoundTrippedViews\view_40.sql --target tpcds.v_q40 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q40</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q41" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q40">
-      <Arguments>from sql-file --path RoundTrippedViews\view_41.sql --target tpcds.v_q41 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q41</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q42" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q41">
-      <Arguments>from sql-file --path RoundTrippedViews\view_42.sql --target tpcds.v_q42 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q42</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q43" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q42">
-      <Arguments>from sql-file --path RoundTrippedViews\view_43.sql --target tpcds.v_q43 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q43</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q44" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q43">
-      <Arguments>from sql-file --path RoundTrippedViews\view_44.sql --target tpcds.v_q44 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q44</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q45" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q44">
-      <Arguments>from sql-file --path RoundTrippedViews\view_45.sql --target tpcds.v_q45 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q45</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q46" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q45">
-      <Arguments>from sql-file --path RoundTrippedViews\view_46.sql --target tpcds.v_q46 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q46</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q47" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q46">
-      <Arguments>from sql-file --path RoundTrippedViews\view_47.sql --target tpcds.v_q47 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q47</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q48" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q47">
-      <Arguments>from sql-file --path RoundTrippedViews\view_48.sql --target tpcds.v_q48 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q48</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q49" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q48">
-      <Arguments>from sql-file --path RoundTrippedViews\view_49.sql --target tpcds.v_q49 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q49</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q50" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q49">
-      <Arguments>from sql-file --path RoundTrippedViews\view_50.sql --target tpcds.v_q50 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q50</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q51" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q50">
-      <Arguments>from sql-file --path RoundTrippedViews\view_51.sql --target tpcds.v_q51 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q51</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q52" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q51">
-      <Arguments>from sql-file --path RoundTrippedViews\view_52.sql --target tpcds.v_q52 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q52</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q53" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q52">
-      <Arguments>from sql-file --path RoundTrippedViews\view_53.sql --target tpcds.v_q53 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q53</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q54" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q53">
-      <Arguments>from sql-file --path RoundTrippedViews\view_54.sql --target tpcds.v_q54 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q54</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q55" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q54">
-      <Arguments>from sql-file --path RoundTrippedViews\view_55.sql --target tpcds.v_q55 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q55</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q56" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q55">
-      <Arguments>from sql-file --path RoundTrippedViews\view_56.sql --target tpcds.v_q56 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q56</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q57" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q56">
-      <Arguments>from sql-file --path RoundTrippedViews\view_57.sql --target tpcds.v_q57 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q57</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q58" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q57">
-      <Arguments>from sql-file --path RoundTrippedViews\view_58.sql --target tpcds.v_q58 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q58</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q59" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q58">
-      <Arguments>from sql-file --path RoundTrippedViews\view_59.sql --target tpcds.v_q59 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q59</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q60" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q59">
-      <Arguments>from sql-file --path RoundTrippedViews\view_60.sql --target tpcds.v_q60 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q60</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q61" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q60">
-      <Arguments>from sql-file --path RoundTrippedViews\view_61.sql --target tpcds.v_q61 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q61</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q62" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q61">
-      <Arguments>from sql-file --path RoundTrippedViews\view_62.sql --target tpcds.v_q62 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q62</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q63" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q62">
-      <Arguments>from sql-file --path RoundTrippedViews\view_63.sql --target tpcds.v_q63 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q63</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q64" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q63">
-      <Arguments>from sql-file --path RoundTrippedViews\view_64.sql --target tpcds.v_q64 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q64</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q65" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q64">
-      <Arguments>from sql-file --path RoundTrippedViews\view_65.sql --target tpcds.v_q65 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q65</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q66" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q65">
-      <Arguments>from sql-file --path RoundTrippedViews\view_66.sql --target tpcds.v_q66 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q66</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q67" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q66">
-      <Arguments>from sql-file --path RoundTrippedViews\view_67.sql --target tpcds.v_q67 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q67</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q68" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q67">
-      <Arguments>from sql-file --path RoundTrippedViews\view_68.sql --target tpcds.v_q68 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q68</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q69" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q68">
-      <Arguments>from sql-file --path RoundTrippedViews\view_69.sql --target tpcds.v_q69 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q69</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q70" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q69">
-      <Arguments>from sql-file --path RoundTrippedViews\view_70.sql --target tpcds.v_q70 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q70</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q71" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q70">
-      <Arguments>from sql-file --path RoundTrippedViews\view_71.sql --target tpcds.v_q71 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q71</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q72" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q71">
-      <Arguments>from sql-file --path RoundTrippedViews\view_72.sql --target tpcds.v_q72 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q72</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q73" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q72">
-      <Arguments>from sql-file --path RoundTrippedViews\view_73.sql --target tpcds.v_q73 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q73</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q74" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q73">
-      <Arguments>from sql-file --path RoundTrippedViews\view_74.sql --target tpcds.v_q74 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q74</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q75" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q74">
-      <Arguments>from sql-file --path RoundTrippedViews\view_75.sql --target tpcds.v_q75 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q75</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q76" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q75">
-      <Arguments>from sql-file --path RoundTrippedViews\view_76.sql --target tpcds.v_q76 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q76</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q77" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q76">
-      <Arguments>from sql-file --path RoundTrippedViews\view_77.sql --target tpcds.v_q77 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q77</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q78" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q77">
-      <Arguments>from sql-file --path RoundTrippedViews\view_78.sql --target tpcds.v_q78 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q78</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q79" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q78">
-      <Arguments>from sql-file --path RoundTrippedViews\view_79.sql --target tpcds.v_q79 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q79</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q80" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q79">
-      <Arguments>from sql-file --path RoundTrippedViews\view_80.sql --target tpcds.v_q80 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q80</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q81" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q80">
-      <Arguments>from sql-file --path RoundTrippedViews\view_81.sql --target tpcds.v_q81 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q81</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q82" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q81">
-      <Arguments>from sql-file --path RoundTrippedViews\view_82.sql --target tpcds.v_q82 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q82</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q83" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q82">
-      <Arguments>from sql-file --path RoundTrippedViews\view_83.sql --target tpcds.v_q83 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q83</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q84" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q83">
-      <Arguments>from sql-file --path RoundTrippedViews\view_84.sql --target tpcds.v_q84 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q84</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q85" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q84">
-      <Arguments>from sql-file --path RoundTrippedViews\view_85.sql --target tpcds.v_q85 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q85</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q86" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q85">
-      <Arguments>from sql-file --path RoundTrippedViews\view_86.sql --target tpcds.v_q86 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q86</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q87" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q86">
-      <Arguments>from sql-file --path RoundTrippedViews\view_87.sql --target tpcds.v_q87 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q87</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q88" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q87">
-      <Arguments>from sql-file --path RoundTrippedViews\view_88.sql --target tpcds.v_q88 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q88</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q89" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q88">
-      <Arguments>from sql-file --path RoundTrippedViews\view_89.sql --target tpcds.v_q89 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q89</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q90" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q89">
-      <Arguments>from sql-file --path RoundTrippedViews\view_90.sql --target tpcds.v_q90 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q90</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q91" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q90">
-      <Arguments>from sql-file --path RoundTrippedViews\view_91.sql --target tpcds.v_q91 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q91</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q92" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q91">
-      <Arguments>from sql-file --path RoundTrippedViews\view_92.sql --target tpcds.v_q92 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q92</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q93" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q92">
-      <Arguments>from sql-file --path RoundTrippedViews\view_93.sql --target tpcds.v_q93 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q93</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q94" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q93">
-      <Arguments>from sql-file --path RoundTrippedViews\view_94.sql --target tpcds.v_q94 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q94</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q95" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q94">
-      <Arguments>from sql-file --path RoundTrippedViews\view_95.sql --target tpcds.v_q95 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q95</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q96" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q95">
-      <Arguments>from sql-file --path RoundTrippedViews\view_96.sql --target tpcds.v_q96 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q96</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q97" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q96">
-      <Arguments>from sql-file --path RoundTrippedViews\view_97.sql --target tpcds.v_q97 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q97</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q98" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q97">
-      <Arguments>from sql-file --path RoundTrippedViews\view_98.sql --target tpcds.v_q98 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q98</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-q99" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q98">
-      <Arguments>from sql-file --path RoundTrippedViews\view_99.sql --target tpcds.v_q99 --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>roundtrip-import-q99</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:record-transform-roundtrip-diff" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-q99">
+    <OperationStep Id="operation-step:build-tpc-ds-snapshot:record-transform-roundtrip-diff" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-manifest">
       <Arguments>instance diff "{workspace:transform.path}" "{workspace:transform-roundtrip.path}"</Arguments>
-      <Description>Record the known transform instance diff caused only by source path provenance changing from original view.sql files to emitted view_N.sql files.</Description>
+      <Description>Record the expected transform representation and emitted-file provenance differences after re-importing SQL modules.</Description>
       <Executable>meta.exe</Executable>
       <ExpectedExitCode>1</ExpectedExitCode>
       <Name>record-transform-roundtrip-diff</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:convert-transform-to-sql" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:record-transform-roundtrip-diff">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform.path}" --database-name TpcDsSnapshot --out "{workspace:sql.path}"</Arguments>
-      <Executable>meta-convert.exe</Executable>
-      <Name>convert-transform-to-sql</Name>
+    <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-manifest" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:print-sql-q01">
+      <Arguments>from sql-files --manifest RoundTrippedViews.manifest.tsv --new-workspace "{workspace:transform-roundtrip.path}"</Arguments>
+      <Description>Import emitted SQL modules through the semantic path manifest.</Description>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>roundtrip-import-manifest</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:convert-roundtrip-transform-to-sql" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:convert-transform-to-sql">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.path}" --database-name TpcDsSnapshot --out "{workspace:sql-roundtrip.path}"</Arguments>
-      <Executable>meta-convert.exe</Executable>
-      <Name>convert-roundtrip-transform-to-sql</Name>
+    <OperationStep Id="operation-step:cleanup:remove-binding-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-roundtrip-workspace">
+      <Arguments>/c if exist "{workspace:binding.path}\*" rmdir /s /q "{workspace:binding.path}"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-binding-workspace</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-tpc-ds-snapshot:diff-sql-workspaces" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:convert-roundtrip-transform-to-sql">
-      <Arguments>instance diff "{workspace:sql.path}" "{workspace:sql-roundtrip.path}"</Arguments>
-      <Executable>meta.exe</Executable>
-      <Name>diff-sql-workspaces</Name>
+    <OperationStep Id="operation-step:cleanup:remove-roundtripped-views-file" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-roundtripped-views-folder">
+      <Arguments>/c if exist "{mesh.root}\RoundTrippedViews.sql" del /q "{mesh.root}\RoundTrippedViews.sql"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-roundtripped-views-file</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-roundtripped-views-folder" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-roundtrip-diff">
+      <Arguments>/c if exist "{mesh.root}\RoundTrippedViews\*" rmdir /s /q "{mesh.root}\RoundTrippedViews"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-roundtripped-views-folder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-sql-roundtrip-diff" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-roundtrip-diff">
+      <Arguments>/c if exist "{mesh.root}\MetaSqlRoundTripWS.instance-diff\*" rmdir /s /q "{mesh.root}\MetaSqlRoundTripWS.instance-diff"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-sql-roundtrip-diff</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-sql-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-workspace">
+      <Arguments>/c if exist "{workspace:sql-roundtrip.path}\*" rmdir /s /q "{workspace:sql-roundtrip.path}"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-sql-roundtrip-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-sql-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-binding-workspace">
+      <Arguments>/c if exist "{workspace:sql.path}\*" rmdir /s /q "{workspace:sql.path}"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-sql-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-transform-roundtrip-diff" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-roundtrip-workspace">
+      <Arguments>/c if exist "{mesh.root}\TransformRoundTripWS.instance-diff\*" rmdir /s /q "{mesh.root}\TransformRoundTripWS.instance-diff"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-roundtrip-diff</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-transform-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
+      <Arguments>/c if exist "{workspace:transform-roundtrip.path}\*" rmdir /s /q "{workspace:transform-roundtrip.path}"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-roundtrip-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup">
+      <Arguments>/c if exist "{workspace:transform.path}\*" rmdir /s /q "{workspace:transform.path}"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-workspace</Name>
     </OperationStep>
   </OperationStepList>
 </MetaMesh>

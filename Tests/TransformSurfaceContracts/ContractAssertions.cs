@@ -9,8 +9,12 @@ internal static class ContractAssertions
 {
     public static void AssertBoundWithoutErrors(BindToWorkspaceResult result)
     {
-        Assert.Equal(0, result.ErrorCount);
-        Assert.Equal(0, result.IssueCount);
+        var diagnostics = string.Join(
+            Environment.NewLine,
+            (result.ObjectIssues ?? [])
+                .Select(item => $"{item.Code}: {item.Message}"));
+        Assert.True(result.ErrorCount == 0, diagnostics);
+        Assert.True(result.IssueCount == 0, diagnostics);
     }
 
     public static void AssertStatementKind(

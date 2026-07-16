@@ -1,5 +1,21 @@
 # Product Model Review Queue
 
+## At A Glance
+
+1. Done: SQL Server `decimal`/`numeric` compatibility.
+2. Approved model, audit still open: MetaSchema and Raw Data Vault ownership. The model direction is accepted, but the implementation audit findings must be handled one at a time.
+3. Pending product-model decision: Business Data Vault nullability and roles.
+4. Pending product-model decision: satellite row identity and load metadata.
+5. Done: Data Vault hash-key storage width.
+6. Pending product-model decision: business datatype lowering.
+7. Complete for supported mutation syntax: persisted, validated facts for every supported mutation form, including `MERGE` actions and conditions.
+8. Partly done: mutation CTE binding and mutation-predicate traversal now preserve source and target reads; wildcard and one-part ambiguity reports resolved by coverage. Broader expression output typing remains a separate binder capability.
+9. Separate scope: TPC-DS fixture/corpus strategy. Do not mix it into Data Vault, binding, or AdventureWorks decisions.
+10. Blocked demo work: AdventureWorks full-stack should not continue until the relevant product decisions are settled and reimplemented deliberately.
+11. Complete: `MERGE` match semantics use explicit clause entities and an explicit predecessor chain.
+
+Safest next work: pick one item 2 audit finding or one remaining item 8 proof target. Do not change sanctioned product models without an explicit decision.
+
 ## Purpose
 
 The AdventureWorks full-stack work exposed several real product questions, but implementation continued into sanctioned models before those questions were reviewed. Those changes have been rolled back. This file preserves the problems, the attempted solutions, and the reason each attempt was made so the decisions can be taken one at a time.
@@ -187,32 +203,53 @@ Review this separately from the Data Vault schema changes. Establish which works
 
 ## 7. Strict Mutation Target Binding
 
-Status: Pending discussion
+Status: Complete for the supported mutation syntax on 2026-07-16
 
 Observed problem:
 
 MetaTransformBinding skipped target-column validation when the final rowset was a mutation target. An `INSERT ... SELECT` could therefore pass strict binding without proving target-column mapping, required-column coverage, datatype compatibility, facets, or nullability.
 
-Attempted model change:
+Decision:
 
-- Added optional `MetaDataTypeId` and `IsNullable` to binding `Column`.
-- Added `ColumnDataTypeDetail` for persisted facets.
-- Added `ColumnProjection` to preserve source-to-output column relationships.
-- Removed `ValidationTargetColumnTypeNotClassified` so an unclassified target type could no longer be recorded as a successful result.
+The final mutation target rowset is the table shape, not the values being written. The public bind flow derives every supported mutation effect from syntax, proves it against the target schema, and persists that proof before saving the binding workspace.
 
-Attempted behavior change:
+The binding model now holds the mutation facts explicitly, without a generic kind discriminator:
 
-- Tracked projection lineage through selects, derived tables, CTEs, and mutations.
-- Added expression typing for casts, literals, aggregates, decimal arithmetic, `CASE`, `COALESCE`, `CONCAT`, grouping expressions, and scalar subqueries.
-- Made strict mutation validation fail when source type or mapping could not be established.
+- `Write` relates one validated target rowset to a value-producing mutation effect.
+- `WriteValue` relates each write value to its validated target column link.
+- `WriteValueScalarExpression` records the source scalar expression for values introduced by `VALUES`, `UPDATE`, and `MERGE` actions.
+- `InsertQueryWrite`, `InsertValuesWrite`, `UpdateWrite`, `MergeInsertWrite`, and `MergeUpdateWrite` identify the exact syntax construct that produced each write.
+- `Delete`, `MergeDelete`, and `Truncate` identify effects that change rows without supplying values.
+- Existing `TableSource`, `ColumnReference`, `ValidationSourceRowsetLink`, and `ValidationSourceColumnLink` retain resolved source-object and bound-column evidence.
+- `ValidationTargetColumnTypeExact` or `ValidationTargetColumnTypeSanctionedConversion` records the proven compatibility result for every persisted write value.
 
-Why it was attempted:
+Runtime type propagation and expression resolution remain transient binding work. The resulting source, target, write, delete, truncate, and compatibility facts are persisted as the binding result; the workspace does not depend on generated rowset names or runtime conventions to explain a mutation.
 
-To make strict binding prove the actual write contract rather than only prove that source references resolve.
+Implementation:
 
-Decision required:
+- `INSERT ... SELECT` validates positional values against an explicit target-column list or the writable target-field order.
+- `INSERT ... VALUES` validates one values row, including literal type, length, precision, scale, and nullability checks.
+- `UPDATE` validates only assigned target fields.
+- `MERGE` validates every supported action independently: `UPDATE`, `INSERT`, and `DELETE`. It also binds the `ON` predicate and every optional `WHEN ... AND ...` predicate before saving the facts.
+- `DELETE`, `MERGE ... DELETE`, and `TRUNCATE` validate the writable target contract and persist their exact syntax effect without inventing value-to-target mappings.
+- Mutation `WHERE` predicates, `MERGE ... ON` conditions, and every `MERGE WHEN` condition retain resolved source reads as `ColumnReference` facts and resolved target reads as `TargetColumnReference` facts before a workspace is saved.
+- A mutation value with no proven type now fails the public bind operation. It is not persisted as an unclassified successful result.
+- `ValidationTargetColumnTypeNotClassified` was removed through `meta model drop-entity`, and its generated tooling and MetaPipeline consumer were regenerated/updated.
+- The obsolete post-hoc binding-workspace validation service was removed. Strict mutation validation now runs where the transform syntax and both schema contracts are present.
+- The old public schema-free `BindToWorkspace` API is gone. Its internal `BindStructureToWorkspace` replacement exists only for test fixtures that need rowset/name-resolution structure; without a target schema contract it deliberately does not emit strict mutation facts.
 
-First decide what evidence MetaTransformBinding must persist versus what can remain transient during validation. Then review the proposed entities and relationships before reimplementing any behavior that depends on them.
+Bounded syntax:
+
+Strict type proof currently covers direct column references and supported literals. Complex write expressions whose type is not yet established, and multi-row `INSERT ... VALUES`, fail explicitly rather than weakening the result. Those are clear syntax-support extensions, not hidden successful states.
+
+Verification:
+
+- Focused public-flow coverage proves persisted `INSERT ... SELECT`, `INSERT ... VALUES`, `UPDATE`, all three `MERGE` actions, `DELETE`, and `TRUNCATE` facts; the complete `MERGE` proof covers `MATCHED`, `NOT MATCHED BY TARGET`, `NOT MATCHED BY SOURCE`, and each `WHEN` predicate through save/reload. It also covers a qualified target-predicate read, mismatched source/target types, and an unresolved write expression that fails hard.
+- `dotnet build MetaTransform\\Binding\\Cli\\MetaTransformBinding.Cli.csproj --nologo -m:1 -nr:false` passed with 0 warnings and 0 errors.
+- `dotnet test MetaTransform\\Script\\Tests\\MetaTransformScript.Tests.csproj --nologo -m:1 -nr:false` passed 373/373.
+- `dotnet test MetaPipeline\\Tests\\MetaPipeline.Tests.csproj --nologo -m:1 -nr:false` passed 69/69.
+- `dotnet test MetaOrchestration\\Tests\\MetaOrchestration.Tests.csproj --nologo -m:1 -nr:false` passed 91/91.
+- `dotnet test Tests\\TransformSurfaceContracts\\MetaBi.TransformSurfaceContracts.Tests.csproj --nologo -m:1 -nr:false` passed 14/14.
 
 ## 8. Transform Binding Bugs Independent of the Model Proposal
 
@@ -282,6 +319,8 @@ Observed problems:
 
   Expected behavior: validation fails as ambiguous unless the transform qualifies the table enough to select one source. The alias used inside a query exposes a rowset; it is not treated as evidence that resolves a source-schema table. Existing coverage: `ValidationService_WithAmbiguousOnePartSourceIdentifier_FailsHard`.
 
+- Resolved projection gap: a qualified target reference such as `dbo.Customer.CustomerId` in an `UPDATE` predicate is present in runtime binding, but cannot use the source-table `ColumnReference` entity. `TargetColumnReference` now preserves the exact syntax reference ID, resolved target rowset column, declared binding target, and resolved schema field after validation.
+
 - Unverified report: expression outputs may lack enough known type information for strict target validation.
 
   Reproduction shapes to prove or delete independently:
@@ -350,6 +389,24 @@ The new `Demos/AdventureWorksFullStack` authoring work is retained because it is
 - and datatype compatibility behavior.
 
 Do not continue the demo factory until the relevant product decisions have been reviewed and reimplemented deliberately.
+
+## 11. MERGE Match Semantics
+
+Status: Complete on 2026-07-16
+
+Resolution:
+
+`MergeWhenClause.MatchKind` and `MergeStatementWhenClausesItem.Ordinal` were removed from the sanctioned `MetaTransformScript` model. The three SQL Server match forms are now explicit entities:
+
+- `MergeMatchedWhenClause`
+- `MergeNotMatchedByTargetWhenClause`
+- `MergeNotMatchedBySourceWhenClause`
+
+Each concrete entity relates to the common `MergeWhenClause` action and optional search-condition structure. `MergeStatementWhenClausesItem` now uses `PreviousMergeWhenClause`, so source-order is an explicit relationship rather than a scalar implementation value.
+
+The parser creates the concrete form, the emitter and binding navigator require exactly one form, and both validate the predecessor chain for a single head, no cross-statement link, no branch, no cycle, and no unreachable clause. Focused tests cover all three forms, multiple `WHEN MATCHED` clauses, binding persistence, malformed branching, and workspace save/reload.
+
+The companion SQL export repair orders modules by modeled SQL identity (`schema.object`) and emits semantic paths such as `views/dbo/v_example.sql`; it no longer derives deploy order or file names from physical list insertion. The reference corpus and TPC-DS meshes re-import those paths through checked-in manifests and prove the final `MetaSql` workspaces are identical. `DeployOrdinal` is now a stable projection value only. Module references remain resolved by strict binding against the modeled schema contracts; the lexical export order is not used as a dependency rule.
 
 ## Rollback Scope
 

@@ -9,7 +9,7 @@ This plan is for the first derived semantic layer over that syntax:
 - name resolution
 - rowset-shape derivation
 
-Type inference and full target validation come later. They should build on this layer, not replace it.
+Broad type inference and general target validation remain later work. Bounded mutation-value type proof and strict target validation are now implemented on top of this layer; they do not replace it.
 
 ## Architectural Invariant
 
@@ -344,7 +344,7 @@ The persisted binding artifact is also live now:
 - `TableSource`
 - `ColumnReference`
 - `TransformBindingTarget`
-- validation link entities (`Validation*`) produced by Validate
+- validation link entities (`Validation*`) and concrete mutation-effect entities produced by Validate
 
 ## Honest Remaining Gaps
 
@@ -358,12 +358,12 @@ Important things that are still not truly implemented:
 - `PIVOT` / `UNPIVOT` directly over base source rowsets where full source shape is not derivable from syntax alone
 - deeper recursive semantics beyond rowset-shape stabilization
 - broad nested-subquery support outside the currently implemented predicate/scalar shapes
-- type inference
+- broad expression and output type inference
 - validate currently appends explicit validation result rows inside `MetaTransformBinding` rather than emitting a separate workspace/artifact family
 - source identifier resolution to `MetaSchema.TableId` is implemented in the current Validate slice
 - source column-subset conformance is implemented in the current Validate slice
 - target identifier resolution to `MetaSchema.TableId` is implemented in the current Validate slice
-- target write-contract validation is implemented in the current Validate slice
+- explicit mutation-effect validation is implemented in the current Validate slice
   - SQL identity columns are skipped on the target side
   - final output columns are matched to writable non-identity target fields by name
   - duplicate target field mappings are rejected
@@ -373,9 +373,10 @@ Important things that are still not truly implemented:
   - sanctioned data type compatibility and deterministic name-aligned source/target conformance are implemented through `MetaDataTypeConversionService`
   - deterministic name-aligned nullability conformance is implemented for unique source-to-target column mappings
   - deterministic name-aligned length / precision / scale conformance is implemented for unique source-to-target column mappings when both sides expose type details
-  - sanctioned conversion classification is persisted as explicit target-column type entities: `ValidationTargetColumnTypeExact`, `ValidationTargetColumnTypeSanctionedConversion`, and `ValidationTargetColumnTypeNotClassified`
+  - proven target-column conversion outcomes are persisted as `ValidationTargetColumnTypeExact` or `ValidationTargetColumnTypeSanctionedConversion`; no successful placeholder outcome is recorded when type evidence is absent
   - Validate supports explicit target-column exclusion through `--ignore-target-columns` (strict: ignored names must exist as non-identity target fields) and sparse target-column exclusion through `--ignore-target-columns-if-present`; each applied ignore is persisted as `ValidationTargetIgnoredColumn`
   - strict validated binding remains atomic by default; `--allow-partial` is a corpus/discovery mode that writes only successfully bound/validated objects and can emit skipped-object diagnostics via `--partial-report`
+  - the schema-backed public bind flow persists validated mutation facts as `Write`/`WriteValue`, `TargetColumnReference`, and concrete insert/update/merge-write, delete, merge-delete, and truncate entities; all supported MERGE actions and each `WHEN` condition are covered, and no rowset name or runtime convention identifies an effect
   - source-to-target compatibility outcomes are persisted via explicit target-column type entities
 
 So the binder can now explain a lot of rowset and visibility structure, but it is still intentionally shallow in scalar semantics.
@@ -416,7 +417,7 @@ Set-operation rowset binding is now implemented for query-boundary shape reconci
 Recursive CTE rowset-shape binding is now implemented when the recursive shape can be stabilized from explicit CTE column aliases or anchor-branch output names.
 Deeper recursive semantics still remain outside this phase, but recursive self-reference no longer blocks binding outright.
 Correlated scalar subqueries, `EXISTS`, `IN (subquery)`, and subquery-comparison predicates are now implemented for query-boundary binding and outer-scope name visibility.
-Expression binding still remains intentionally shallow in semantics even though traversal is now broad: direct column references, current scalar shells, supported window/ordered-set clauses, and the current sanctioned subquery/predicate shapes are walked, while type and full function semantics are still deferred.
+Expression binding still remains intentionally shallow in semantics even though traversal is now broad: direct column references, current scalar shells, supported window/ordered-set clauses, and the current sanctioned subquery/predicate shapes are walked. Bounded mutation-value type proof is implemented; broad expression and full function semantics remain deferred.
 Modeled predicate families such as `BETWEEN`, `IN (...)`, `LIKE` (including `ESCAPE`), `IS NULL`, `IS DISTINCT FROM`, and full-text predicates (`CONTAINS` / `FREETEXT`) are now traversed for name resolution.
 
 ## Data Flow
@@ -449,9 +450,9 @@ Concrete flow:
 The next clean slices should stay honest about the current boundary:
 
 1. profile feature classification beyond profile resolution
-2. type inference handoff
+2. broader type inference handoff
 3. broader sanctioned table-source coverage (remaining TVF shapes without script-supplied alias shape; `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` are intentionally out-of-scope)
-4. expand Validate beyond the current structural slice over `TransformBinding + MetaSchema`
+4. expand Validate beyond the current mutation and structural slices over `TransformBinding + MetaSchema`
 
 This keeps rowset and name-resolution truth ahead of type and validation work.
 
@@ -486,15 +487,16 @@ Done enough for the current implemented stage means:
 - binding results are persisted in a separate semantic artifact, not injected into `MetaTransformScript`
 - the persisted artifact is rowset-centric and can represent zero or more source rowsets flowing into one final output rowset
 - the persisted artifact carries source and target SQL identifiers without pretending schema validation already happened
-- validation appends explicit source/target validation rows and fails hard on mismatch without mutating binding facts
+- validation appends explicit source/target validation rows and modeled mutation facts, then fails hard on mismatch without saving partial binding facts
+- the internal schema-free structural projection is test support only; it provides rowset/name-resolution structure but deliberately does not emit strict mutation facts that require a target contract
 - unsupported scalar-expression shapes still fail explicitly rather than silently disappearing
 
 Not done yet:
 
 - real profile feature classification outcomes beyond missing-profile failure
 - broad scalar-expression coverage
-- type inference
-- deeper validate semantics beyond the current structural slice
+- broad expression/output type inference
+- deeper validate semantics beyond the current mutation and structural slices
 
 Representative proof cases:
 
@@ -612,7 +614,7 @@ Do not do these yet:
 - [x] sanctioned conversion classification is implemented
 - [x] platform/system-generated target columns beyond SQL identity can be identified explicitly via `--ignore-target-columns` and sparse platform columns can be identified via `--ignore-target-columns-if-present`
 - [x] dirty corpus binding can be run in explicit partial mode with `--allow-partial`, saving only successfully bound/validated objects for downstream consumers
-- [x] target write-contract semantics beyond structural rowset checks are implemented
+- [x] explicit mutation effects, target-column reads, and value-to-target mapping beyond structural rowset checks are implemented
 - [x] `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` are explicitly tracked as out-of-scope for Binding
 - [x] validation result entities are captured explicitly inside `MetaTransformBinding`
 - [x] source and target identifier resolution against `MetaSchema` is implemented in the current Validate slice

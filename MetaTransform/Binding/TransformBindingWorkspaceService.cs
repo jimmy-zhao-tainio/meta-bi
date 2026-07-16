@@ -95,6 +95,7 @@ public sealed class TransformBindingWorkspaceService
                 bindingModel,
                 sourceSchemaModel: combinedSourceSchemaModel,
                 targetSchemaModel: targetSchema.Model,
+                packages.Select(item => item.Bound).ToArray(),
                 resolvedOptions);
         }
         else
@@ -118,6 +119,7 @@ public sealed class TransformBindingWorkspaceService
                         packageModel,
                         sourceSchemaModel: combinedSourceSchemaModel,
                         targetSchemaModel: targetSchema.Model,
+                        [package.Bound],
                         resolvedOptions);
                     MergeBindingModel(validatedModel, validatedPackageModel, package.TransformScript.Name);
                 }
@@ -148,7 +150,9 @@ public sealed class TransformBindingWorkspaceService
             objectIssues);
     }
 
-    public BindToWorkspaceResult BindToWorkspace(
+    // Test support for consumers that need syntax-derived rowsets without schema contracts.
+    // Strict read/write/delete facts belong to BindValidatedToWorkspace.
+    internal BindToWorkspaceResult BindStructureToWorkspace(
         string transformWorkspacePath,
         string newWorkspacePath)
     {
@@ -165,7 +169,15 @@ public sealed class TransformBindingWorkspaceService
 
         bindingModel.SaveToXmlWorkspace(bindingWorkspaceFullPath);
 
-        var issueCount = packages.Sum(item => item.Bound.Issues.Count);
+        var objectIssues = packages
+            .SelectMany(package => package.Bound.Issues.Select(issue =>
+                CreateObjectIssue(
+                    package.TransformScript,
+                    "Binding",
+                    issue.Code,
+                    issue.Message)))
+            .ToArray();
+        var issueCount = objectIssues.Length;
         var errorCount = issueCount;
 
         return new BindToWorkspaceResult(
@@ -178,7 +190,8 @@ public sealed class TransformBindingWorkspaceService
                 !string.IsNullOrWhiteSpace(item.SqlIdentifier)),
             bindingModel.TransformBindingTargetList.Count,
             issueCount,
-            errorCount);
+            errorCount,
+            ObjectIssues: objectIssues);
     }
 
     private static TransformScript[] ResolveScripts(MetaTransformScriptModel model)
@@ -432,8 +445,19 @@ public sealed class TransformBindingWorkspaceService
         MergeById(destination.ValidationTargetColumnLinkList, source.ValidationTargetColumnLinkList, static item => item.Id, "ValidationTargetColumnLink", transformScriptName);
         MergeById(destination.ValidationTargetColumnTypeExactList, source.ValidationTargetColumnTypeExactList, static item => item.Id, "ValidationTargetColumnTypeExact", transformScriptName);
         MergeById(destination.ValidationTargetColumnTypeSanctionedConversionList, source.ValidationTargetColumnTypeSanctionedConversionList, static item => item.Id, "ValidationTargetColumnTypeSanctionedConversion", transformScriptName);
-        MergeById(destination.ValidationTargetColumnTypeNotClassifiedList, source.ValidationTargetColumnTypeNotClassifiedList, static item => item.Id, "ValidationTargetColumnTypeNotClassified", transformScriptName);
         MergeById(destination.ValidationTargetIgnoredColumnList, source.ValidationTargetIgnoredColumnList, static item => item.Id, "ValidationTargetIgnoredColumn", transformScriptName);
+        MergeById(destination.TargetColumnReferenceList, source.TargetColumnReferenceList, static item => item.Id, "TargetColumnReference", transformScriptName);
+        MergeById(destination.WriteList, source.WriteList, static item => item.Id, "Write", transformScriptName);
+        MergeById(destination.WriteValueList, source.WriteValueList, static item => item.Id, "WriteValue", transformScriptName);
+        MergeById(destination.WriteValueScalarExpressionList, source.WriteValueScalarExpressionList, static item => item.Id, "WriteValueScalarExpression", transformScriptName);
+        MergeById(destination.InsertQueryWriteList, source.InsertQueryWriteList, static item => item.Id, "InsertQueryWrite", transformScriptName);
+        MergeById(destination.InsertValuesWriteList, source.InsertValuesWriteList, static item => item.Id, "InsertValuesWrite", transformScriptName);
+        MergeById(destination.UpdateWriteList, source.UpdateWriteList, static item => item.Id, "UpdateWrite", transformScriptName);
+        MergeById(destination.MergeInsertWriteList, source.MergeInsertWriteList, static item => item.Id, "MergeInsertWrite", transformScriptName);
+        MergeById(destination.MergeUpdateWriteList, source.MergeUpdateWriteList, static item => item.Id, "MergeUpdateWrite", transformScriptName);
+        MergeById(destination.DeleteList, source.DeleteList, static item => item.Id, "Delete", transformScriptName);
+        MergeById(destination.MergeDeleteList, source.MergeDeleteList, static item => item.Id, "MergeDelete", transformScriptName);
+        MergeById(destination.TruncateList, source.TruncateList, static item => item.Id, "Truncate", transformScriptName);
     }
 
     private static void MergeById<T>(
@@ -445,7 +469,7 @@ public sealed class TransformBindingWorkspaceService
     {
         var seen = destination
             .Select(idSelector)
-            .ToHashSet(StringComparer.Ordinal);
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         foreach (var item in source)
         {

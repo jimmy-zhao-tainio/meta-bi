@@ -580,21 +580,21 @@ public sealed partial class MetaTransformScriptSqlParser
         {
             ExpectKeyword("WHEN");
 
-            string matchKind;
+            MergeWhenClauseForm form;
             if (MatchKeyword("MATCHED"))
             {
-                matchKind = "Matched";
+                form = MergeWhenClauseForm.Matched;
             }
             else
             {
                 ExpectKeyword("NOT");
                 ExpectKeyword("MATCHED");
-                matchKind = "NotMatchedByTarget";
+                form = MergeWhenClauseForm.NotMatchedByTarget;
                 if (MatchKeyword("BY"))
                 {
                     if (MatchKeyword("SOURCE"))
                     {
-                        matchKind = "NotMatchedBySource";
+                        form = MergeWhenClauseForm.NotMatchedBySource;
                     }
                     else
                     {
@@ -610,26 +610,33 @@ public sealed partial class MetaTransformScriptSqlParser
             }
 
             ExpectKeyword("THEN");
-            var action = ParseMergeAction(matchKind);
-            var actionKind = ResolveMergeActionKind(action);
+            var action = ParseMergeAction(form);
+            var actionForm = ResolveMergeActionForm(action);
+            var whenClause = form switch
+            {
+                MergeWhenClauseForm.Matched => builder.CreateMergeMatchedWhenClause(action, searchCondition),
+                MergeWhenClauseForm.NotMatchedByTarget => builder.CreateMergeNotMatchedByTargetWhenClause(action, searchCondition),
+                MergeWhenClauseForm.NotMatchedBySource => builder.CreateMergeNotMatchedBySourceWhenClause(action, searchCondition),
+                _ => throw new InvalidOperationException($"Unsupported MERGE WHEN clause form '{form}'.")
+            };
             return new ParsedMergeWhenClause(
-                builder.CreateMergeWhenClause(matchKind, action, searchCondition),
-                matchKind,
-                actionKind,
+                whenClause,
+                form,
+                actionForm,
                 searchCondition is not null);
         }
 
         private void ValidateMergeWhenClauses(IReadOnlyList<ParsedMergeWhenClause> whenClauses)
         {
             ValidateMergeRepeatedActionClauses(
-                whenClauses.Where(static clause => string.Equals(clause.MatchKind, "Matched", StringComparison.Ordinal)).ToArray(),
+                whenClauses.Where(static clause => clause.Form == MergeWhenClauseForm.Matched).ToArray(),
                 "WHEN MATCHED");
             ValidateMergeRepeatedActionClauses(
-                whenClauses.Where(static clause => string.Equals(clause.MatchKind, "NotMatchedBySource", StringComparison.Ordinal)).ToArray(),
+                whenClauses.Where(static clause => clause.Form == MergeWhenClauseForm.NotMatchedBySource).ToArray(),
                 "WHEN NOT MATCHED BY SOURCE");
 
             var notMatchedByTargetCount = whenClauses.Count(static clause =>
-                string.Equals(clause.MatchKind, "NotMatchedByTarget", StringComparison.Ordinal));
+                clause.Form == MergeWhenClauseForm.NotMatchedByTarget);
             if (notMatchedByTargetCount > 1)
             {
                 throw Unsupported("SQL Server MERGE supports at most one WHEN NOT MATCHED BY TARGET clause.");
@@ -653,17 +660,17 @@ public sealed partial class MetaTransformScriptSqlParser
                 throw Unsupported($"When two {clauseName} clauses are present, the first must include an AND search condition.");
             }
 
-            if (string.Equals(clauses[0].ActionKind, clauses[1].ActionKind, StringComparison.Ordinal))
+            if (clauses[0].ActionForm == clauses[1].ActionForm)
             {
                 throw Unsupported($"When two {clauseName} clauses are present, one must UPDATE and one must DELETE.");
             }
         }
 
-        private BuiltNode ParseMergeAction(string matchKind)
+        private BuiltNode ParseMergeAction(MergeWhenClauseForm form)
         {
             if (MatchKeyword("UPDATE"))
             {
-                if (string.Equals(matchKind, "NotMatchedByTarget", StringComparison.Ordinal))
+                if (form == MergeWhenClauseForm.NotMatchedByTarget)
                 {
                     throw Unsupported("WHEN NOT MATCHED BY TARGET supports INSERT actions only.");
                 }
@@ -673,7 +680,7 @@ public sealed partial class MetaTransformScriptSqlParser
 
             if (MatchKeyword("DELETE"))
             {
-                if (string.Equals(matchKind, "NotMatchedByTarget", StringComparison.Ordinal))
+                if (form == MergeWhenClauseForm.NotMatchedByTarget)
                 {
                     throw Unsupported("WHEN NOT MATCHED BY TARGET supports INSERT actions only.");
                 }
@@ -683,7 +690,7 @@ public sealed partial class MetaTransformScriptSqlParser
 
             if (MatchKeyword("INSERT"))
             {
-                if (!string.Equals(matchKind, "NotMatchedByTarget", StringComparison.Ordinal))
+                if (form != MergeWhenClauseForm.NotMatchedByTarget)
                 {
                     throw Unsupported("MERGE INSERT actions are only supported for WHEN NOT MATCHED BY TARGET.");
                 }
@@ -699,21 +706,21 @@ public sealed partial class MetaTransformScriptSqlParser
             throw Unsupported($"Unsupported MERGE action '{Current.Value.ToUpperInvariant()}'.");
         }
 
-        private static string ResolveMergeActionKind(BuiltNode action)
+        private static MergeActionForm ResolveMergeActionForm(BuiltNode action)
         {
             if (action.TryGetId(nameof(MergeUpdateAction), out _))
             {
-                return "Update";
+                return MergeActionForm.Update;
             }
 
             if (action.TryGetId(nameof(MergeDeleteAction), out _))
             {
-                return "Delete";
+                return MergeActionForm.Delete;
             }
 
             if (action.TryGetId(nameof(MergeInsertAction), out _))
             {
-                return "Insert";
+                return MergeActionForm.Insert;
             }
 
             throw new InvalidOperationException("Unsupported MERGE action node.");
@@ -863,9 +870,23 @@ public sealed partial class MetaTransformScriptSqlParser
 
         private sealed record ParsedMergeWhenClause(
             BuiltNode Node,
-            string MatchKind,
-            string ActionKind,
+            MergeWhenClauseForm Form,
+            MergeActionForm ActionForm,
             bool HasSearchCondition);
+
+        private enum MergeWhenClauseForm
+        {
+            Matched,
+            NotMatchedByTarget,
+            NotMatchedBySource
+        }
+
+        private enum MergeActionForm
+        {
+            Update,
+            Delete,
+            Insert
+        }
 
         private BuiltNode ParseSetClause()
         {

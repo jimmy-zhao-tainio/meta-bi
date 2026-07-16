@@ -98,6 +98,407 @@ FROM src;
     }
 
     [Fact]
+    public void BindValidatedInsertSelect_MapsPositionalValuesToTargetFields()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "INSERT INTO dbo.Customer (CustomerId, Name) SELECT s.CustomerId AS SourceCustomerId, s.Name AS SourceName FROM dbo.CustomerStage AS s;",
+            bareSelectName: "insert-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["CustomerId", "Name"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["CustomerId", "Name"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Name", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Name", "sqlserver:type:nvarchar");
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "Name", "Length", 100);
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Name", "Length", 100);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Equal(2, result.TargetColumnValidationCount);
+            var targetLinks = result.Model.ValidationTargetColumnLinkList;
+            Assert.Equal(2, targetLinks.Count);
+            Assert.Equal(
+                ["CustomerId", "Name"],
+                targetLinks
+                    .Select(item => targetSchemaModel.FieldList.Single(field => field.Id == item.MetaSchemaFieldId).Name)
+                    .ToArray());
+            Assert.Equal(2, result.Model.ValidationTargetColumnTypeExactList.Count);
+            Assert.Empty(result.Model.ValidationTargetColumnTypeSanctionedConversionList);
+            var write = Assert.Single(result.Model.WriteList);
+            Assert.Equal(result.Model.ValidationTargetRowsetLinkList.Single().Id, write.ValidationTargetRowsetLink.Id);
+            Assert.Equal(2, result.Model.WriteValueList.Count);
+            var insertWrite = Assert.Single(result.Model.InsertQueryWriteList);
+            Assert.Equal(write.Id, insertWrite.Write.Id);
+            Assert.Equal(transformModel.QueryExpressionList.Single().Id, insertWrite.MetaTransformScriptQueryExpressionId);
+            Assert.Empty(result.Model.WriteValueScalarExpressionList);
+
+            var persisted = MetaTransformBindingModel.LoadFromXmlWorkspace(result.WorkspacePath, searchUpward: false);
+            Assert.Single(persisted.WriteList);
+            Assert.Equal(2, persisted.WriteValueList.Count);
+            Assert.Single(persisted.InsertQueryWriteList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedInsertSelect_WithTypeMismatch_FailsHard()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "INSERT INTO dbo.Customer (CustomerId) SELECT s.CustomerId FROM dbo.CustomerStage AS s;",
+            bareSelectName: "insert-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["CustomerId"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["CustomerId"]));
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "CustomerId", "sqlserver:type:datetime");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                BindValidated(
+                    tempRoot,
+                    transformModel,
+                    sourceSchemaModel,
+                    targetSchemaModel));
+
+            Assert.Equal("TargetColumnTypeConformanceMismatch", ex.Code);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedUpdate_ValidatesOnlyAssignedTargetFields()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET Name = s.Name FROM dbo.CustomerStage AS s WHERE s.CustomerId = dbo.Customer.CustomerId;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["CustomerId", "Name"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["CustomerId", "Name"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Name", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Name", "sqlserver:type:nvarchar");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            var targetLink = Assert.Single(result.Model.ValidationTargetColumnLinkList);
+            Assert.Equal("Name", targetSchemaModel.FieldList.Single(field => field.Id == targetLink.MetaSchemaFieldId).Name);
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+            var write = Assert.Single(result.Model.WriteList);
+            var updateWrite = Assert.Single(result.Model.UpdateWriteList);
+            Assert.Equal(write.Id, updateWrite.Write.Id);
+            Assert.Equal(transformModel.SetClauseList.Single().Id, updateWrite.MetaTransformScriptSetClauseId);
+            var writeValue = Assert.Single(result.Model.WriteValueList);
+            Assert.Equal(targetLink.Id, writeValue.ValidationTargetColumnLink.Id);
+            var scalarExpression = Assert.Single(result.Model.WriteValueScalarExpressionList);
+            Assert.Equal(writeValue.Id, scalarExpression.WriteValue.Id);
+            Assert.Contains(
+                result.Model.ColumnReferenceList,
+                item => string.Equals(item.TableSource.ExposedName, "s", StringComparison.OrdinalIgnoreCase) &&
+                        string.Equals(item.Column.Name, "CustomerId", StringComparison.OrdinalIgnoreCase));
+            var targetRead = Assert.Single(result.Model.TargetColumnReferenceList);
+            Assert.Equal("CustomerId", targetRead.Column.Name);
+            Assert.Equal(
+                "CustomerId",
+                targetSchemaModel.FieldList.Single(field => field.Id == targetRead.MetaSchemaFieldId).Name);
+            Assert.Contains(
+                transformModel.ColumnReferenceExpressionList,
+                item => string.Equals(item.Id, targetRead.MetaTransformScriptColumnReferenceId, StringComparison.Ordinal));
+
+            var persisted = MetaTransformBindingModel.LoadFromXmlWorkspace(result.WorkspacePath, searchUpward: false);
+            var persistedTargetRead = Assert.Single(persisted.TargetColumnReferenceList);
+            Assert.Equal(targetRead.MetaTransformScriptColumnReferenceId, persistedTargetRead.MetaTransformScriptColumnReferenceId);
+            Assert.Equal(targetRead.MetaSchemaFieldId, persistedTargetRead.MetaSchemaFieldId);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedInsertValues_ValidatesLiteralTypes()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "INSERT INTO dbo.Customer (CustomerId, Name) VALUES (1, 'Ada');",
+            bareSelectName: "insert-customer");
+        var schemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["CustomerId", "Name"]));
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "Name", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(schemaModel, "Table:1", "Name", "Length", 3);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                schemaModel,
+                schemaModel);
+
+            Assert.Equal(2, result.TargetColumnValidationCount);
+            Assert.Equal(2, result.Model.ValidationTargetColumnTypeExactList.Count);
+            var write = Assert.Single(result.Model.WriteList);
+            var insertWrite = Assert.Single(result.Model.InsertValuesWriteList);
+            Assert.Equal(write.Id, insertWrite.Write.Id);
+            Assert.Equal(transformModel.RowValueList.Single().Id, insertWrite.MetaTransformScriptRowValueId);
+            Assert.Equal(2, result.Model.WriteValueList.Count);
+            Assert.Equal(2, result.Model.WriteValueScalarExpressionList.Count);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedMerge_ValidatesUpdateAndInsertWrites()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            """
+MERGE dbo.Customer AS target
+USING dbo.CustomerStage AS source
+ON target.CustomerId = source.CustomerId
+WHEN MATCHED THEN
+    UPDATE SET Name = target.Name
+WHEN NOT MATCHED THEN
+    INSERT (CustomerId, Name) VALUES (source.CustomerId, source.Name);
+""",
+            bareSelectName: "merge-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["CustomerId", "Name"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["CustomerId", "Name"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Name", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Name", "sqlserver:type:nvarchar");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Equal(2, result.TargetRowsetValidationCount);
+            Assert.Equal(3, result.TargetColumnValidationCount);
+            Assert.Equal(3, result.Model.ValidationTargetColumnTypeExactList.Count);
+            Assert.Equal(2, result.Model.WriteList.Count);
+            var mergeUpdateWrite = Assert.Single(result.Model.MergeUpdateWriteList);
+            var mergeInsertWrite = Assert.Single(result.Model.MergeInsertWriteList);
+            Assert.Equal(transformModel.MergeUpdateActionList.Single().Id, mergeUpdateWrite.MetaTransformScriptMergeUpdateActionId);
+            Assert.Equal(transformModel.MergeInsertActionList.Single().Id, mergeInsertWrite.MetaTransformScriptMergeInsertActionId);
+            Assert.Equal(3, result.Model.WriteValueList.Count);
+            Assert.Equal(3, result.Model.WriteValueScalarExpressionList.Count);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedMerge_PersistsEverySupportedActionAndWhenConditionRead()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            """
+            MERGE dbo.Customer AS target
+            USING dbo.CustomerStage AS source
+            ON target.CustomerId = source.CustomerId
+            WHEN MATCHED AND target.Name <> source.Name THEN
+                UPDATE SET Name = source.Name
+            WHEN MATCHED AND source.IsDeleted = 1 THEN
+                DELETE
+            WHEN NOT MATCHED BY TARGET AND source.IsDeleted = 0 THEN
+                INSERT (CustomerId, Name, IsActive) VALUES (source.CustomerId, source.Name, 1)
+            WHEN NOT MATCHED BY SOURCE AND target.IsActive = 1 THEN
+                UPDATE SET IsActive = 0;
+            """,
+            bareSelectName: "merge-all-actions");
+        Assert.Equal(2, transformModel.MergeMatchedWhenClauseList.Count);
+        Assert.Single(transformModel.MergeNotMatchedByTargetWhenClauseList);
+        Assert.Single(transformModel.MergeNotMatchedBySourceWhenClauseList);
+        Assert.Equal(
+            4,
+            transformModel.MergeStatementWhenClausesItemList.Count);
+        Assert.Single(transformModel.MergeStatementWhenClausesItemList, item => item.PreviousMergeWhenClause is null);
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["CustomerId", "Name", "IsDeleted"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["CustomerId", "Name", "IsActive"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Equal(3, result.Model.WriteList.Count);
+            Assert.Equal(2, result.Model.MergeUpdateWriteList.Count);
+            Assert.Single(result.Model.MergeInsertWriteList);
+            Assert.Single(result.Model.MergeDeleteList);
+            Assert.Equal(
+                transformModel.MergeUpdateActionList.Select(item => item.Id).OrderBy(item => item, StringComparer.Ordinal),
+                result.Model.MergeUpdateWriteList.Select(item => item.MetaTransformScriptMergeUpdateActionId).OrderBy(item => item, StringComparer.Ordinal));
+            Assert.Equal(
+                transformModel.MergeInsertActionList.Single().Id,
+                result.Model.MergeInsertWriteList.Single().MetaTransformScriptMergeInsertActionId);
+            Assert.Equal(
+                transformModel.MergeDeleteActionList.Single().Id,
+                result.Model.MergeDeleteList.Single().MetaTransformScriptMergeDeleteActionId);
+
+            var sourceReadNames = result.Model.ColumnReferenceList
+                .Where(item => string.Equals(item.TableSource.ExposedName, "source", StringComparison.OrdinalIgnoreCase))
+                .Select(item => item.Column.Name)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("CustomerId", sourceReadNames);
+            Assert.Contains("Name", sourceReadNames);
+            Assert.Contains("IsDeleted", sourceReadNames);
+
+            var targetReadNames = result.Model.TargetColumnReferenceList
+                .Select(item => targetSchemaModel.FieldList.Single(field => field.Id == item.MetaSchemaFieldId).Name)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("CustomerId", targetReadNames);
+            Assert.Contains("Name", targetReadNames);
+            Assert.Contains("IsActive", targetReadNames);
+
+            var persisted = MetaTransformBindingModel.LoadFromXmlWorkspace(result.WorkspacePath, searchUpward: false);
+            Assert.Equal(3, persisted.WriteList.Count);
+            Assert.Equal(2, persisted.MergeUpdateWriteList.Count);
+            Assert.Single(persisted.MergeInsertWriteList);
+            Assert.Single(persisted.MergeDeleteList);
+            Assert.Equal(3, persisted.TargetColumnReferenceList.Count);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindStructureToWorkspace_LeavesStrictMutationFactsToValidatedBinding()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET Name = source.Name FROM dbo.CustomerStage AS source WHERE dbo.Customer.CustomerId = source.CustomerId;",
+            bareSelectName: "update-customer");
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
+                transformWorkspacePath,
+                bindingWorkspacePath);
+
+            Assert.Equal(0, result.ErrorCount);
+            Assert.Empty(result.Model.TargetColumnReferenceList);
+            Assert.Empty(result.Model.WriteList);
+            Assert.Empty(result.Model.UpdateWriteList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedUpdate_WithUnresolvedWriteExpression_FailsHard()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET Name = CONCAT(s.Name, '!') FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["Name"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["Name"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Name", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Name", "sqlserver:type:nvarchar");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                BindValidated(
+                    tempRoot,
+                    transformModel,
+                    sourceSchemaModel,
+                    targetSchemaModel));
+
+            Assert.Equal("BindingFailed", ex.Code);
+            Assert.Contains("MutationWriteValueTypeNotResolved", ex.Message);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
     public void ValidationService_ForMutationTarget_DoesNotTreatTargetShapeAsOutputWriteContract()
     {
         var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
@@ -132,7 +533,92 @@ FROM src;
             var validated = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
             Assert.Single(validated.ValidationTargetRowsetLinkList);
             Assert.Empty(validated.ValidationTargetColumnLinkList);
-            Assert.Equal(2, validated.ValidationTargetIgnoredColumnList.Count);
+            Assert.Empty(validated.ValidationTargetIgnoredColumnList);
+            Assert.Empty(validated.WriteList);
+            var truncate = Assert.Single(validated.TruncateList);
+            Assert.Equal(transformModel.TruncateStatementList.Single().Id, truncate.MetaTransformScriptTruncateStatementId);
+            Assert.Equal(validated.ValidationTargetRowsetLinkList.Single().Id, truncate.ValidationTargetRowsetLink.Id);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedDelete_PersistsDeleteEffect()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "DELETE FROM dbo.Customer FROM dbo.CustomerStage AS s WHERE s.CustomerId = 1;",
+            bareSelectName: "delete-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["CustomerId"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["CustomerId", "Name"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Empty(result.Model.WriteList);
+            var delete = Assert.Single(result.Model.DeleteList);
+            Assert.Equal(transformModel.DeleteStatementList.Single().Id, delete.MetaTransformScriptDeleteStatementId);
+            Assert.Equal(result.Model.ValidationTargetRowsetLinkList.Single().Id, delete.ValidationTargetRowsetLink.Id);
+            Assert.Contains(
+                result.Model.ColumnReferenceList,
+                item => string.Equals(item.TableSource.ExposedName, "s", StringComparison.OrdinalIgnoreCase) &&
+                        string.Equals(item.Column.Name, "CustomerId", StringComparison.OrdinalIgnoreCase));
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedMergeDelete_PersistsMergeDeleteEffect()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            """
+            MERGE dbo.Customer AS target
+            USING dbo.CustomerStage AS source
+            ON target.CustomerId = source.CustomerId
+            WHEN MATCHED THEN DELETE;
+            """,
+            bareSelectName: "merge-delete-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["CustomerId"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["CustomerId", "Name"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Empty(result.Model.WriteList);
+            var mergeDelete = Assert.Single(result.Model.MergeDeleteList);
+            Assert.Equal(transformModel.MergeDeleteActionList.Single().Id, mergeDelete.MetaTransformScriptMergeDeleteActionId);
+            Assert.Equal(result.Model.ValidationTargetRowsetLinkList.Single().Id, mergeDelete.ValidationTargetRowsetLink.Id);
         }
         finally
         {
@@ -1204,7 +1690,7 @@ END
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var result = new TransformBindingWorkspaceService().BindToWorkspace(
+            var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
 
@@ -2026,7 +2512,7 @@ FROM dbo.Source AS s;
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var result = new TransformBindingWorkspaceService().BindToWorkspace(
+            var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
 
@@ -2072,7 +2558,7 @@ FROM dbo.Source AS s;
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var result = new TransformBindingWorkspaceService().BindToWorkspace(
+            var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
 
@@ -2106,7 +2592,7 @@ FROM dbo.Source AS s;
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var result = new TransformBindingWorkspaceService().BindToWorkspace(
+            var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
 
@@ -2159,7 +2645,7 @@ GO
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var result = new TransformBindingWorkspaceService().BindToWorkspace(
+            var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
 
@@ -2196,7 +2682,7 @@ GO
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var ex = Assert.Throws<InvalidOperationException>(() => new TransformBindingWorkspaceService().BindToWorkspace(
+            var ex = Assert.Throws<InvalidOperationException>(() => new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath));
 
@@ -2225,7 +2711,7 @@ GO
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var result = new TransformBindingWorkspaceService().BindToWorkspace(
+            var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
 
@@ -2267,7 +2753,7 @@ GO
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2288,7 +2774,6 @@ GO
             Assert.Equal(4, validated.ValidationTargetColumnLinkList.Count);
             Assert.Equal(2, validated.ValidationTargetColumnTypeExactList.Count);
             Assert.Empty(validated.ValidationTargetColumnTypeSanctionedConversionList);
-            Assert.Equal(2, validated.ValidationTargetColumnTypeNotClassifiedList.Count);
             Assert.Empty(validated.ValidationTargetIgnoredColumnList);
 
         }
@@ -2318,7 +2803,7 @@ GO
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2360,7 +2845,7 @@ FROM dbo.SourceTable AS s;
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2408,7 +2893,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2441,7 +2926,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2492,7 +2977,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2540,7 +3025,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2584,7 +3069,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2621,7 +3106,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2659,7 +3144,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2706,7 +3191,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2744,7 +3229,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2753,7 +3238,6 @@ INNER JOIN dbo.SourceB AS b
             Assert.Equal(4, targetColumnLinks.Count);
             Assert.Single(validated.ValidationTargetColumnTypeExactList);
             Assert.Single(validated.ValidationTargetColumnTypeSanctionedConversionList);
-            Assert.Equal(2, validated.ValidationTargetColumnTypeNotClassifiedList.Count);
 
             var customerIdColumn = Assert.Single(bindingResult.Model.ColumnList, item =>
                 string.Equals(item.Name, "CustomerId", StringComparison.Ordinal) &&
@@ -2794,7 +3278,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2843,7 +3327,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2892,7 +3376,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2932,7 +3416,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -2972,7 +3456,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -3012,7 +3496,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -3049,7 +3533,7 @@ INNER JOIN dbo.SourceB AS b
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -3091,7 +3575,7 @@ FROM SourceTable AS s;
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -3126,7 +3610,7 @@ FROM SourceTable AS s;
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -3144,7 +3628,7 @@ FROM SourceTable AS s;
     }
 
     [Fact]
-    public void ValidationWorkspaceService_CanMaterializeValidatedWorkspaceFromBindingAndSchemaWorkspaces()
+    public void BindingWorkspaceService_CanMaterializeValidatedWorkspaceFromTransformAndSchemaWorkspaces()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
         SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[0], "dbo.CustomerSummary");
@@ -3161,26 +3645,13 @@ FROM SourceTable AS s;
         identityField.IdentityIncrement = "1";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
-        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
-        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
-        var schemaWorkspacePath = Path.Combine(tempRoot, "SchemaWorkspace");
-        var validatedWorkspacePath = Path.Combine(tempRoot, "ValidatedBindingWorkspace");
-
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            schemaModel.SaveToXmlWorkspace(schemaWorkspacePath);
-
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
-                transformWorkspacePath,
-                bindingWorkspacePath);
-            Assert.Equal(0, bindingResult.ErrorCount);
-
-            var result = new TransformBindingValidationWorkspaceService().ValidateWorkspace(
-                bindingWorkspacePath,
-                schemaWorkspacePath,
-                schemaWorkspacePath,
-                validatedWorkspacePath);
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                schemaModel,
+                schemaModel);
 
             Assert.Equal(1, result.TransformBindingCount);
             Assert.Equal(1, result.SourceRowsetValidationCount);
@@ -3188,7 +3659,7 @@ FROM SourceTable AS s;
             Assert.Equal(3, result.SourceColumnValidationCount);
             Assert.Equal(4, result.TargetColumnValidationCount);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(validatedWorkspacePath, searchUpward: false);
+            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(result.WorkspacePath, searchUpward: false);
             Assert.Single(reloaded.ValidationList);
             Assert.Single(reloaded.ValidationSourceRowsetLinkList);
             Assert.Single(reloaded.ValidationTargetRowsetLinkList);
@@ -3222,7 +3693,7 @@ FROM SourceTable AS s;
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
@@ -3793,6 +4264,29 @@ GO
         }
 
         return model;
+    }
+
+    private static BindToWorkspaceResult BindValidated(
+        string tempRoot,
+        MetaTransformScriptModel transformModel,
+        MetaSchemaModel sourceSchemaModel,
+        MetaSchemaModel targetSchemaModel)
+    {
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var sourceSchemaWorkspacePath = Path.Combine(tempRoot, "SourceSchemaWorkspace");
+        var targetSchemaWorkspacePath = Path.Combine(tempRoot, "TargetSchemaWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+        transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+        sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
+        targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+
+        return new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+            transformWorkspacePath,
+            [sourceSchemaWorkspacePath],
+            targetSchemaWorkspacePath,
+            "TestSystem",
+            "dbo",
+            bindingWorkspacePath);
     }
 
     private static void SetFieldMetaDataTypeId(MetaSchemaModel schemaModel, string tableId, string fieldName, string metaDataTypeId)

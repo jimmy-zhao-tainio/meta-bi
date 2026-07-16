@@ -21,7 +21,6 @@ meta-mesh run --operation round-trip-reference-corpus
 ```
 
 `round-trip-reference-corpus` intentionally records one transform-workspace diff:
-`ScriptObjectView.SourcePath` changes from the original source file names to the
-emitted `RoundTrippedViews\view_N.sql` files. The operation expects that
-provenance-only diff, then requires the converted `MetaSql` workspaces to diff
-cleanly.
+re-importing emitted modules produces a fresh syntax representation with emitted-file
+provenance. The operation records those expected differences, then requires the
+converted `MetaSql` workspaces to diff cleanly.

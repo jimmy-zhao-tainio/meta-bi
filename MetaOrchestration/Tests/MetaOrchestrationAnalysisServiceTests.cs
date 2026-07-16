@@ -2276,7 +2276,7 @@ SELECT
 FROM dbo.Source AS s
 """, "dbo.StageCustomer"));
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -2339,7 +2339,7 @@ BEGIN
     RETURN @value + 1;
 END
 """, null));
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -2397,7 +2397,7 @@ END
                 operationOrder.Split(',').Select(ParseOperationSeed).ToArray());
             transformModel.SaveToXmlWorkspace(transformWorkspace);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -2457,7 +2457,7 @@ END
                 ["CustomerId"]);
             transformModel.SaveToXmlWorkspace(transformWorkspace);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -2555,7 +2555,7 @@ INNER JOIN dw.DimCustomer AS d
                 ]);
             transformModel.SaveToXmlWorkspace(transformWorkspace);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);

@@ -15,11 +15,11 @@ namespace MetaTransformScript
     {
         public string Id { get; set; } = string.Empty;
 
-        public string? Ordinal { get; set; }
-
         public MergeStatement MergeStatement { get; set; } = null!;
 
         public MergeWhenClause MergeWhenClause { get; set; } = null!;
+
+        public MergeStatementWhenClausesItem? PreviousMergeWhenClause { get; set; }
 
     }
 }

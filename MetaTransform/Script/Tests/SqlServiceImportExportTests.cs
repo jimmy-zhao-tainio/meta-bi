@@ -997,6 +997,63 @@ INTO audit.MergeLog (MergeAction, InsertedId);
     }
 
     [Fact]
+    public void ImportFromSqlCode_MergeModelsConcreteWhenFormsInClauseSequence()
+    {
+        const string sql = """
+MERGE INTO dbo.Target AS t
+USING dbo.Source AS s
+ON t.Id = s.Id
+WHEN MATCHED AND t.IsDeleted = 0 THEN UPDATE SET t.Name = s.Name
+WHEN MATCHED THEN DELETE
+WHEN NOT MATCHED BY TARGET THEN INSERT (Id, Name) VALUES (s.Id, s.Name)
+WHEN NOT MATCHED BY SOURCE THEN DELETE;
+""";
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "merge-when-forms");
+        model = MetaTransformScriptTestHelper.RoundTripWorkspace(model, "merge-when-forms");
+
+        var items = model.MergeStatementWhenClausesItemList;
+        Assert.Equal(4, items.Count);
+
+        var first = Assert.Single(items, item => item.PreviousMergeWhenClause is null);
+        var second = Assert.Single(items, item => item.PreviousMergeWhenClause?.Id == first.Id);
+        var third = Assert.Single(items, item => item.PreviousMergeWhenClause?.Id == second.Id);
+        var fourth = Assert.Single(items, item => item.PreviousMergeWhenClause?.Id == third.Id);
+
+        Assert.Equal(2, model.MergeMatchedWhenClauseList.Count);
+        Assert.Contains(model.MergeMatchedWhenClauseList, item => item.MergeWhenClause.Id == first.MergeWhenClause.Id);
+        Assert.Contains(model.MergeMatchedWhenClauseList, item => item.MergeWhenClause.Id == second.MergeWhenClause.Id);
+        Assert.Contains(model.MergeNotMatchedByTargetWhenClauseList, item => item.MergeWhenClause.Id == third.MergeWhenClause.Id);
+        Assert.Contains(model.MergeNotMatchedBySourceWhenClauseList, item => item.MergeWhenClause.Id == fourth.MergeWhenClause.Id);
+        Assert.DoesNotContain(model.MergeNotMatchedByTargetWhenClauseList, item => item.MergeWhenClause.Id == first.MergeWhenClause.Id);
+        Assert.DoesNotContain(model.MergeNotMatchedBySourceWhenClauseList, item => item.MergeWhenClause.Id == first.MergeWhenClause.Id);
+    }
+
+    [Fact]
+    public void ExportToSqlCode_RejectsBranchedMergeWhenClauseSequence()
+    {
+        const string sql = """
+MERGE INTO dbo.Target AS t
+USING dbo.Source AS s
+ON t.Id = s.Id
+WHEN MATCHED AND t.IsDeleted = 0 THEN UPDATE SET t.Name = s.Name
+WHEN MATCHED THEN DELETE
+WHEN NOT MATCHED BY TARGET THEN INSERT (Id, Name) VALUES (s.Id, s.Name);
+""";
+
+        var service = new MetaTransformScriptSqlService();
+        var model = service.ImportFromSqlCode(sql, "merge-branched-when-clauses");
+        var items = model.MergeStatementWhenClausesItemList;
+        var first = Assert.Single(items, item => item.PreviousMergeWhenClause is null);
+        var third = Assert.Single(items, item => item.PreviousMergeWhenClause is not null && item.PreviousMergeWhenClause.Id != first.Id);
+        third.PreviousMergeWhenClause = first;
+
+        var exception = Assert.Throws<InvalidOperationException>(() => service.ExportToSqlCode(model));
+
+        Assert.Contains("branches", exception.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
     public void ImportFromSqlCode_MergeRequiresSqlServerTerminatingSemicolon()
     {
         const string sql = """
@@ -1526,6 +1583,52 @@ FROM dbo.Source AS s
             Assert.Contains("@CustomerId int", emitted);
             Assert.Contains("@FromDate date", emitted);
             Assert.DoesNotContain("CREATE VIEW", emitted);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public async Task ExportModuleDefinitionsAndSqlFiles_UseStableModuleIdentities()
+    {
+        const string firstSql = """
+CREATE VIEW dbo.v_zebra
+AS
+SELECT
+    1 AS Id
+""";
+        const string secondSql = """
+CREATE VIEW dbo.v_alpha
+AS
+SELECT
+    2 AS Id
+""";
+
+        var service = new MetaTransformScriptSqlService();
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Script.Tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var outputPath = Path.Combine(tempRoot, "SqlFiles");
+
+        try
+        {
+            await service.ImportFromSqlCodeToWorkspaceAsync(firstSql, targetSqlIdentifier: null, workspacePath);
+            await service.AddSqlCodeToWorkspaceAsync(secondSql, targetSqlIdentifier: null, workspacePath);
+
+            var modules = service.ExportModuleDefinitions(workspacePath);
+
+            Assert.Equal(["v_alpha", "v_zebra"], modules.Select(item => item.ObjectName));
+            Assert.Equal([1, 2], modules.Select(item => item.DeployOrdinal));
+
+            await service.ExportToSqlPathAsync(workspacePath, outputPath);
+
+            Assert.True(File.Exists(Path.Combine(outputPath, "views", "dbo", "v_alpha.sql")));
+            Assert.True(File.Exists(Path.Combine(outputPath, "views", "dbo", "v_zebra.sql")));
+            Assert.Empty(Directory.EnumerateFiles(outputPath, "view_*.sql", SearchOption.AllDirectories));
         }
         finally
         {

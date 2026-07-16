@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaMesh>
   <OperationList>
-    <Operation Id="operation:cleanup" MeshId="mesh:default">
-      <Description>Remove generated TPC-DS transform, binding, SQL, and emitted SQL outputs.</Description>
-      <Name>cleanup</Name>
-    </Operation>
     <Operation Id="operation:build-tpc-ds-snapshot" MeshId="mesh:default">
       <Description>Import q01-q99 SQL views, bind them against the checked-in MetaSchema contract, emit SQL, re-import emitted SQL, convert both transform workspaces to MetaSql, and diff the MetaSql workspaces.</Description>
       <Name>build-tpc-ds-snapshot</Name>
+    </Operation>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove generated TPC-DS transform, binding, SQL, and emitted SQL outputs.</Description>
+      <Name>cleanup</Name>
     </Operation>
   </OperationList>
 </MetaMesh>

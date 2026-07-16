@@ -11,9 +11,11 @@
 
 namespace MetaTransformScript
 {
-    public sealed class MergeWhenClause
+    public sealed class MergeMatchedWhenClause
     {
         public string Id { get; set; } = string.Empty;
+
+        public MergeWhenClause MergeWhenClause { get; set; } = null!;
 
     }
 }

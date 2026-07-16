@@ -64,7 +64,10 @@ internal sealed partial class TransformBindingSession
                     columns.Add(new RuntimeColumn(
                         $"{tableReference.Id}:source-column:{columns.Count + 1}",
                         field.FieldName,
-                        columns.Count));
+                        columns.Count,
+                        CreateRuntimeColumnDataType(
+                            field,
+                            $"{sourceResolution.Table.CanonicalSqlIdentifier}.{field.FieldName}")));
                 }
             }
         }
@@ -187,7 +190,8 @@ internal sealed partial class TransformBindingSession
             .Select((column, ordinal) => new RuntimeColumn(
                 $"{definition.Id}:column:{ordinal + 1}",
                 expectedOutputColumnNames is null || expectedOutputColumnNames.Count == 0 ? column.Name : expectedOutputColumnNames[ordinal],
-                ordinal))
+                ordinal,
+                column.DataType))
             .ToArray();
 
         var rowset = new RuntimeRowset(
