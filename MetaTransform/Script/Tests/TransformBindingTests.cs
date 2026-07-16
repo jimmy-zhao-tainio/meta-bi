@@ -694,6 +694,35 @@ FROM
     }
 
     [Fact]
+    public void BindQualifiedStarFromQueryDerivedTable_DerivesDerivedTableColumns()
+    {
+        var sql = """
+CREATE VIEW dbo.v_dt_star AS
+SELECT
+    d.*
+FROM
+(
+    SELECT
+        c.CustomerId,
+        c.CustomerName
+    FROM dbo.Customers AS c
+) AS d;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Customers", ["CustomerId", "CustomerName"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors, string.Join(Environment.NewLine, bound.Issues.Select(item => $"{item.Code}: {item.Message}")));
+        Assert.NotNull(bound.TopLevelRowset);
+        Assert.Equal(
+            ["CustomerId", "CustomerName"],
+            bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
+    }
+
+    [Fact]
     public void BindInlineDerivedTable_EmitsInlineDerivedRowsetAndFinalProjection()
     {
         var model = ParseCorpus("021_inline_values.sql");
@@ -769,6 +798,36 @@ FROM
         var finalLink = Assert.Single(bindingModel.OutputRowsetList);
         var finalInput = Assert.Single(bindingModel.SourceTargetList, item => item.Target.Id == finalLink.Rowset.Id);
         Assert.Equal(cteRowset.Id, finalInput.Source.Id);
+    }
+
+    [Fact]
+    public void BindQualifiedStarFromCommonTableExpression_DerivesCteColumns()
+    {
+        var sql = """
+CREATE VIEW dbo.v_cte_star AS
+WITH src AS
+(
+    SELECT
+        CustomerId,
+        CustomerName
+    FROM dbo.Customer
+)
+SELECT
+    src.*
+FROM src;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Customer", ["CustomerId", "CustomerName"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors, string.Join(Environment.NewLine, bound.Issues.Select(item => $"{item.Code}: {item.Message}")));
+        Assert.NotNull(bound.TopLevelRowset);
+        Assert.Equal(
+            ["CustomerId", "CustomerName"],
+            bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
     }
 
     [Fact]

@@ -216,12 +216,14 @@ First decide what evidence MetaTransformBinding must persist versus what can rem
 
 ## 8. Transform Binding Bugs Independent of the Model Proposal
 
-Status: Pending review as separate bug fixes; mutation statement CTE binding fixed on 2026-07-16
+Status: Pending review as separate bug fixes; mutation statement CTE binding fixed on 2026-07-16; wildcard and one-part source ambiguity reports resolved by coverage on 2026-07-16
 
 Fixed candidate:
 
 - Mutation statement CTE binding was fixed without changing the product model. `TransformScriptNavigator` now exposes CTEs from the active statement-level `StatementWithCtesAndXmlNamespaces`, and mutation binding initializes from that same statement-level CTE list instead of asking for a SELECT statement.
 - Regression coverage: `BindInsertStatementWithCte_DerivesMutationSourceFromCte` proves `WITH src AS (...) INSERT ... SELECT ... FROM src` initializes `src` as a CTE rowset and uses it as the mutation source.
+- Qualified wildcard projection through CTE and query-derived-table rowsets was verified as already supported by binding. Regression coverage: `BindQualifiedStarFromCommonTableExpression_DerivesCteColumns` and `BindQualifiedStarFromQueryDerivedTable_DerivesDerivedTableColumns`.
+- Name-only source ambiguity is already covered by `ValidationService_WithAmbiguousOnePartSourceIdentifier_FailsHard`, which uses duplicate one-part table names in different schemas and fails with `SourceSchemaTableAmbiguous`.
 
 Observed problems:
 
@@ -242,7 +244,7 @@ Observed problems:
 
   Expected behavior: `src` is initialized as a CTE rowset for the INSERT statement, and the mutation source binds to that rowset. This is now covered by a focused regression test. Follow-up, if needed, should add equivalent UPDATE, DELETE, or MERGE examples only if a concrete failure appears.
 
-- Unverified report: qualified wildcard projection through some CTE or derived-table paths may lose columns.
+- Resolved by coverage: qualified wildcard projection through CTE and query-derived-table paths expands the exposed rowset columns.
 
   Reproduction shapes to prove or delete:
 
@@ -265,9 +267,9 @@ Observed problems:
   ) AS d;
   ```
 
-  Expected behavior: `src.*` and `d.*` expand to the columns exposed by the CTE or derived-table rowset. This item should be removed if current binding already proves that behavior.
+  Expected behavior: `src.*` and `d.*` expand to the columns exposed by the CTE or derived-table rowset. This is covered by focused regression tests and did not require a binding fix.
 
-- Unverified report: name-only source matching may be ambiguous when schemas contain duplicate object names.
+- Resolved by existing coverage: name-only source matching is ambiguous when schemas contain duplicate object names.
 
   Reproduction shape to prove or delete:
 
@@ -278,7 +280,7 @@ Observed problems:
 
   with a source schema workspace containing both `sales.Customer` and `crm.Customer`.
 
-  Expected behavior: validation fails as ambiguous unless the transform qualifies the table enough to select one source. The alias used inside a query should expose a rowset; it should not be treated as evidence that resolves a source-schema table. Current tests already cover some one-part source/target ambiguity, so this item may already be resolved and should not be fixed twice.
+  Expected behavior: validation fails as ambiguous unless the transform qualifies the table enough to select one source. The alias used inside a query exposes a rowset; it is not treated as evidence that resolves a source-schema table. Existing coverage: `ValidationService_WithAmbiguousOnePartSourceIdentifier_FailsHard`.
 
 - Unverified report: expression outputs may lack enough known type information for strict target validation.
 
