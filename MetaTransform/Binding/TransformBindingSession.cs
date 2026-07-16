@@ -529,17 +529,7 @@ internal sealed partial class TransformBindingSession
 
     private void InitializeCommonTableExpressionsForMutation(TransformScript transformScript)
     {
-        var selectStatement = navigator.TryGetSelectStatement(transformScript);
-        if (selectStatement is not null)
-        {
-            InitializeCommonTableExpressions(selectStatement);
-        }
-        else
-        {
-            commonTableExpressionDefinitionsByName.Clear();
-            commonTableExpressionBindingStateByName.Clear();
-            commonTableExpressionRowsetByName.Clear();
-        }
+        InitializeCommonTableExpressions(navigator.GetCommonTableExpressions(transformScript));
     }
 
     private TransformBindingResult CreateResult(
@@ -562,11 +552,16 @@ internal sealed partial class TransformBindingSession
 
     private void InitializeCommonTableExpressions(SelectStatement selectStatement)
     {
+        InitializeCommonTableExpressions(navigator.GetCommonTableExpressions(selectStatement));
+    }
+
+    private void InitializeCommonTableExpressions(IReadOnlyList<CommonTableExpression> commonTableExpressions)
+    {
         commonTableExpressionDefinitionsByName.Clear();
         commonTableExpressionBindingStateByName.Clear();
         commonTableExpressionRowsetByName.Clear();
 
-        foreach (var item in navigator.GetCommonTableExpressions(selectStatement).Select((cte, ordinal) => (Cte: cte, Ordinal: ordinal)))
+        foreach (var item in commonTableExpressions.Select((cte, ordinal) => (Cte: cte, Ordinal: ordinal)))
         {
             var name = navigator.TryGetCommonTableExpressionName(item.Cte);
             var queryExpressionId = navigator.TryGetCommonTableExpressionQueryExpressionId(item.Cte);

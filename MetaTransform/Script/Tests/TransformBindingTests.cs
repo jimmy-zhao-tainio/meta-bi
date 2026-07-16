@@ -48,6 +48,42 @@ public sealed class TransformBindingTests
     }
 
     [Fact]
+    public void BindInsertStatementWithCte_DerivesMutationSourceFromCte()
+    {
+        var sql = """
+WITH src AS
+(
+    SELECT
+        CustomerId,
+        Name
+    FROM dbo.CustomerStage
+)
+INSERT INTO dbo.Customer (CustomerId, Name)
+SELECT
+    CustomerId,
+    Name
+FROM src;
+""";
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql, bareSelectName: "insert-customer");
+        var schema = CreateSourceSchema(
+            ("dbo", "Customer", ["CustomerId", "Name"]),
+            ("dbo", "CustomerStage", ["CustomerId", "Name"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, schema);
+
+        Assert.False(bound.HasErrors, string.Join(Environment.NewLine, bound.Issues.Select(item => $"{item.Code}: {item.Message}")));
+        var cteRowset = Assert.Single(bound.Rowsets, item =>
+            string.Equals(item.DerivationKind, "CommonTableExpression", StringComparison.Ordinal) &&
+            string.Equals(item.Name, "src", StringComparison.OrdinalIgnoreCase));
+        Assert.Equal(["CustomerId", "Name"], cteRowset.Columns.Select(item => item.Name).ToArray());
+
+        Assert.NotNull(bound.TopLevelInputRowset);
+        Assert.Equal(["CustomerId", "Name"], bound.TopLevelInputRowset!.Columns.Select(item => item.Name).ToArray());
+        var sourceInput = Assert.Single(bound.TopLevelInputRowset.Inputs);
+        Assert.Equal(cteRowset.Id, sourceInput.Rowset.Id);
+    }
+
+    [Fact]
     public void BindTruncateStatement_DerivesMutationTargetBinding()
     {
         var model = new MetaTransformScriptSqlParser().ParseSqlCode("TRUNCATE TABLE dbo.Customer", bareSelectName: "truncate-customer");

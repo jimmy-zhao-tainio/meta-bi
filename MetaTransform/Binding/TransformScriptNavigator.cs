@@ -764,7 +764,20 @@ internal sealed partial class TransformScriptNavigator
 
     public IReadOnlyList<CommonTableExpression> GetCommonTableExpressions(SelectStatement selectStatement)
     {
-        if (!statementWithCtesLinkByOwnerId.TryGetValue(selectStatement.StatementWithCtesAndXmlNamespaces.Id, out var withCtesLink))
+        return GetCommonTableExpressions(selectStatement.StatementWithCtesAndXmlNamespaces);
+    }
+
+    public IReadOnlyList<CommonTableExpression> GetCommonTableExpressions(TransformScript script)
+    {
+        var statementWithCtes = TryGetStatementWithCtes(script);
+        return statementWithCtes is null
+            ? []
+            : GetCommonTableExpressions(statementWithCtes);
+    }
+
+    private IReadOnlyList<CommonTableExpression> GetCommonTableExpressions(StatementWithCtesAndXmlNamespaces statementWithCtes)
+    {
+        if (!statementWithCtesLinkByOwnerId.TryGetValue(statementWithCtes.Id, out var withCtesLink))
         {
             return [];
         }

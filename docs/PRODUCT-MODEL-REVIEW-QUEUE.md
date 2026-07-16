@@ -143,7 +143,7 @@ Confirm the intended satellite row identity, including whether `(ParentHashKey, 
 
 ## 5. Data Vault Hash Storage Width
 
-Status: Approved and implemented on 2026-07-15
+Status: Approved and implemented on 2026-07-15 in commit `7dab49d`
 
 Observed problem:
 
@@ -151,9 +151,8 @@ The first demo used MD5 and 16-byte hash storage. That is not an acceptable cont
 
 Attempted change:
 
-- Changed Data Vault implementation instance hash-key and hash-difference lengths from 16 to 32 bytes.
-- Changed demo transform logic to full SHA-256 output.
-- Updated a MetaSql alignment test from `binary(16)` to `binary(32)`.
+- Changed Data Vault implementation instance hash-key lengths from 16 to 32 bytes.
+- Considered changing demo transform hashing and a MetaSql alignment assertion in the abandoned slice, but those changes were not part of the approved final implementation.
 
 Why it was attempted:
 
@@ -161,7 +160,7 @@ To align the physical storage contract with SHA-256. The hash algorithm remained
 
 Decision:
 
-The sanctioned Data Vault implementation workspace should use 32-byte binary storage for hash keys and hash differences. The hash algorithm remains authored transform logic; the implementation model owns the physical storage width only. Updated all default Raw and Business Data Vault hash-key, parent-hash-key, root-hash-key, and related-hash-key implementation lengths from `16` to `32` using `meta instance update --strict`. Existing hash-difference lengths were already `32`. Added an implementation-workspace test that loads the authored workspace through generated tooling and verifies the default hash storage widths.
+The sanctioned Data Vault implementation workspace should use 32-byte binary storage for hash keys. The hash algorithm remains authored transform logic; the implementation model owns the physical storage width only. Updated all default Raw and Business Data Vault hash-key, parent-hash-key, root-hash-key, and related-hash-key implementation lengths from `16` to `32` using `meta instance update --strict`. Existing hash-difference lengths were already `32`. Added an implementation-workspace test that loads the authored workspace through generated tooling and verifies the default hash storage widths.
 
 ## 6. Business Datatype Lowering into SQL Server
 
@@ -217,14 +216,90 @@ First decide what evidence MetaTransformBinding must persist versus what can rem
 
 ## 8. Transform Binding Bugs Independent of the Model Proposal
 
-Status: Pending review as separate bug fixes
+Status: Pending review as separate bug fixes; mutation statement CTE binding fixed on 2026-07-16
+
+Fixed candidate:
+
+- Mutation statement CTE binding was fixed without changing the product model. `TransformScriptNavigator` now exposes CTEs from the active statement-level `StatementWithCtesAndXmlNamespaces`, and mutation binding initializes from that same statement-level CTE list instead of asking for a SELECT statement.
+- Regression coverage: `BindInsertStatementWithCte_DerivesMutationSourceFromCte` proves `WITH src AS (...) INSERT ... SELECT ... FROM src` initializes `src` as a CTE rowset and uses it as the mutation source.
 
 Observed problems:
 
-- Mutation statements lost statement-level CTE definitions because initialization searched only for a top-level select.
-- Qualified wildcard projection through some CTE/derived-table paths lost columns.
-- Name-only source matching was ambiguous for aliases and duplicate names.
-- Several expression forms did not carry enough known type information for validation.
+- Fixed: mutation statements lost statement-level CTE definitions because initialization searched only for a top-level SELECT.
+
+  Example shape:
+
+  ```sql
+  WITH src AS
+  (
+      SELECT CustomerId
+      FROM dbo.Customer
+  )
+  INSERT INTO dbo.CustomerStage (CustomerId)
+  SELECT CustomerId
+  FROM src;
+  ```
+
+  Expected behavior: `src` is initialized as a CTE rowset for the INSERT statement, and the mutation source binds to that rowset. This is now covered by a focused regression test. Follow-up, if needed, should add equivalent UPDATE, DELETE, or MERGE examples only if a concrete failure appears.
+
+- Unverified report: qualified wildcard projection through some CTE or derived-table paths may lose columns.
+
+  Reproduction shapes to prove or delete:
+
+  ```sql
+  WITH src AS
+  (
+      SELECT CustomerId, CustomerName
+      FROM dbo.Customer
+  )
+  SELECT src.*
+  FROM src;
+  ```
+
+  ```sql
+  SELECT d.*
+  FROM
+  (
+      SELECT CustomerId, CustomerName
+      FROM dbo.Customer
+  ) AS d;
+  ```
+
+  Expected behavior: `src.*` and `d.*` expand to the columns exposed by the CTE or derived-table rowset. This item should be removed if current binding already proves that behavior.
+
+- Unverified report: name-only source matching may be ambiguous when schemas contain duplicate object names.
+
+  Reproduction shape to prove or delete:
+
+  ```sql
+  SELECT CustomerId
+  FROM Customer;
+  ```
+
+  with a source schema workspace containing both `sales.Customer` and `crm.Customer`.
+
+  Expected behavior: validation fails as ambiguous unless the transform qualifies the table enough to select one source. The alias used inside a query should expose a rowset; it should not be treated as evidence that resolves a source-schema table. Current tests already cover some one-part source/target ambiguity, so this item may already be resolved and should not be fixed twice.
+
+- Unverified report: expression outputs may lack enough known type information for strict target validation.
+
+  Reproduction shapes to prove or delete independently:
+
+  ```sql
+  SELECT CAST(src.Code AS varchar(25)) AS Code
+  FROM dbo.Source AS src;
+  ```
+
+  ```sql
+  SELECT CONVERT(decimal(18, 2), src.Amount) AS Amount
+  FROM dbo.Source AS src;
+  ```
+
+  ```sql
+  SELECT CASE WHEN src.IsActive = 1 THEN src.ActiveCode ELSE src.InactiveCode END AS StatusCode
+  FROM dbo.Source AS src;
+  ```
+
+  Expected behavior: only expressions whose type is explicit or safely derivable should participate in strict type/length/precision/scale validation. Expressions whose type cannot be known should remain not-classified rather than guessing. This is likely several separate bugs or policy decisions, not one fix.
 
 Attempted change:
 
@@ -284,6 +359,7 @@ The rollback restores the attempted implementations and generated artifacts unde
 - `MetaTransform`
 - affected Business/Raw Data Vault integration workspaces
 - the changed TPC-DS schema fixture
-- the dependent MetaSql 32-byte alignment assertion
 
 The deleted legacy AdventureWorks demo, the new `AdventureWorksFullStack` source files, unrelated documentation work, and unrelated repository changes are not part of this rollback.
+
+The Data Vault hash storage portion was reviewed separately and resolved in item 5.
