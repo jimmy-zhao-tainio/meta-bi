@@ -1,5 +1,6 @@
 using System.Globalization;
 using MetaTransformScript;
+using MetaTransformScript.Sql;
 
 namespace MetaTransform.Binding;
 
@@ -491,10 +492,10 @@ internal sealed partial class TransformBindingSession
         }
 
         BindScalarExpression(value, scope, inputRowset, groupingContext: null, withinAggregate: false);
-        var literal = navigator.TryGetLiteral(value);
-        if (literal is not null)
+        var dataType = TryResolveWriteValueDataType(value);
+        if (dataType is not null)
         {
-            return CreateLiteralDataType(literal);
+            return dataType;
         }
 
         issues.Add(new TransformBindingIssue(
@@ -502,6 +503,170 @@ internal sealed partial class TransformBindingSession
             $"Transform script '{transformScript.Name}' uses expression '{value.Id}' in a mutation write, but strict target validation cannot yet establish its data type.",
             ownerId));
         return null;
+    }
+
+    private RuntimeColumnDataType? TryResolveWriteValueDataType(ScalarExpression value)
+    {
+        var directColumnReference = navigator.TryGetDirectColumnReference(value);
+        if (directColumnReference is not null)
+        {
+            return boundColumnReferences
+                .LastOrDefault(item => string.Equals(
+                    item.SyntaxColumnReferenceId,
+                    directColumnReference.Id,
+                    StringComparison.Ordinal))
+                ?.ResolvedColumn.DataType;
+        }
+
+        var literal = navigator.TryGetLiteral(value);
+        if (literal is not null)
+        {
+            return CreateLiteralDataType(literal);
+        }
+
+        return TryCreateExplicitConversionDataType(value) ??
+               TryCreateCaseDataType(value);
+    }
+
+    private RuntimeColumnDataType? TryCreateCaseDataType(ScalarExpression value)
+    {
+        IReadOnlyList<ScalarExpression?> thenExpressions;
+        ScalarExpression? elseExpression;
+
+        if (navigator.TryGetSearchedCaseExpression(value) is { } searchedCaseExpression)
+        {
+            thenExpressions = navigator.GetSearchedWhenClauses(searchedCaseExpression)
+                .Select(navigator.TryGetWhenClauseThenExpression)
+                .ToArray();
+            elseExpression = navigator.TryGetCaseElseExpression(searchedCaseExpression);
+        }
+        else if (navigator.TryGetSimpleCaseExpression(value) is { } simpleCaseExpression)
+        {
+            thenExpressions = navigator.GetSimpleWhenClauses(simpleCaseExpression)
+                .Select(navigator.TryGetWhenClauseThenExpression)
+                .ToArray();
+            elseExpression = navigator.TryGetCaseElseExpression(simpleCaseExpression);
+        }
+        else
+        {
+            return null;
+        }
+
+        if (thenExpressions.Count == 0 || thenExpressions.Any(item => item is null))
+        {
+            return null;
+        }
+
+        var resultExpressions = thenExpressions.Cast<ScalarExpression>().ToList();
+        if (elseExpression is not null)
+        {
+            resultExpressions.Add(elseExpression);
+        }
+
+        var resultDataTypes = resultExpressions
+            .Select(TryResolveWriteValueDataType)
+            .ToArray();
+        if (resultDataTypes.Any(item => item is null))
+        {
+            return null;
+        }
+
+        var firstDataType = resultDataTypes[0]!;
+        if (resultDataTypes.Skip(1).Any(item => !HasSameDataTypeContract(firstDataType, item!)))
+        {
+            return null;
+        }
+
+        return firstDataType with
+        {
+            IsNullable = elseExpression is null || resultDataTypes.Any(item => item!.IsNullable != false),
+            DisplayName = "CASE expression"
+        };
+    }
+
+    private static bool HasSameDataTypeContract(
+        RuntimeColumnDataType first,
+        RuntimeColumnDataType second)
+    {
+        return string.Equals(first.MetaDataTypeId, second.MetaDataTypeId, StringComparison.OrdinalIgnoreCase) &&
+               first.Length == second.Length &&
+               first.Precision == second.Precision &&
+               first.Scale == second.Scale;
+    }
+
+    private RuntimeColumnDataType? TryCreateExplicitConversionDataType(ScalarExpression value)
+    {
+        if (!navigator.TryGetExplicitConversion(
+                value,
+                out var dataTypeReference,
+                out var inputExpression) ||
+            navigator.TryGetSqlDataTypeReference(dataTypeReference) is not { } sqlDataTypeReference ||
+            !MetaTransformScriptSqlServerDataTypes.TryGetMetaDataTypeId(
+                sqlDataTypeReference.SqlDataTypeOption,
+                out var metaDataTypeId))
+        {
+            return null;
+        }
+
+        var parameters = navigator.GetSqlDataTypeParameters(sqlDataTypeReference);
+        var typeOption = sqlDataTypeReference.SqlDataTypeOption;
+        var typeName = MetaTransformScriptSqlServerDataTypes.RenderSqlName(typeOption);
+        var length = IsLengthParameterizedType(typeOption)
+            ? TryGetDataTypeParameter(parameters, 0)
+            : null;
+        var precision = IsPrecisionParameterizedType(typeOption)
+            ? TryGetDataTypeParameter(parameters, 0)
+            : null;
+        var scale = IsScaleParameterizedType(typeOption)
+            ? TryGetDataTypeParameter(parameters, 1)
+            : null;
+
+        return new RuntimeColumnDataType(
+            metaDataTypeId,
+            TryResolveExpressionNullability(inputExpression) ?? true,
+            length,
+            precision,
+            scale,
+            $"explicit {typeName} conversion");
+    }
+
+    private bool? TryResolveExpressionNullability(ScalarExpression value)
+    {
+        var directColumnReference = navigator.TryGetDirectColumnReference(value);
+        if (directColumnReference is not null)
+        {
+            return boundColumnReferences
+                .LastOrDefault(item => string.Equals(
+                    item.SyntaxColumnReferenceId,
+                    directColumnReference.Id,
+                    StringComparison.Ordinal))
+                ?.ResolvedColumn.DataType
+                ?.IsNullable;
+        }
+
+        var literal = navigator.TryGetLiteral(value);
+        return literal is null ? null : CreateLiteralDataType(literal)?.IsNullable;
+    }
+
+    private static bool IsLengthParameterizedType(string? sqlDataTypeOption) =>
+        sqlDataTypeOption is "Binary" or "Char" or "NChar" or "NVarChar" or "VarBinary" or "VarChar";
+
+    private static bool IsPrecisionParameterizedType(string? sqlDataTypeOption) =>
+        sqlDataTypeOption is "DateTime2" or "DateTimeOffset" or "Decimal" or "Numeric" or "Time";
+
+    private static bool IsScaleParameterizedType(string? sqlDataTypeOption) =>
+        sqlDataTypeOption is "Decimal" or "Numeric";
+
+    private static int? TryGetDataTypeParameter(IReadOnlyList<Literal> parameters, int index)
+    {
+        if (index >= parameters.Count ||
+            !string.Equals(parameters[index].LiteralType, "Integer", StringComparison.OrdinalIgnoreCase) ||
+            !int.TryParse(parameters[index].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value))
+        {
+            return null;
+        }
+
+        return value;
     }
 
     private RuntimeColumnDataType? CreateLiteralDataType(Literal literal)

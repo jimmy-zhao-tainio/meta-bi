@@ -157,8 +157,10 @@ internal sealed partial class TransformScriptNavigator
     private readonly IReadOnlyDictionary<string, SimpleWhenClause> simpleWhenClauseById;
     private readonly IReadOnlyDictionary<string, SimpleWhenClauseWhenExpressionLink> simpleWhenClauseWhenExpressionLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, CastCall> castCallByPrimaryExpressionId;
+    private readonly IReadOnlyDictionary<string, CastCallDataTypeLink> castCallDataTypeLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, CastCallParameterLink> castCallParameterLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, ConvertCall> convertCallByPrimaryExpressionId;
+    private readonly IReadOnlyDictionary<string, ConvertCallDataTypeLink> convertCallDataTypeLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, ConvertCallParameterLink> convertCallParameterLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, ConvertCallStyleLink> convertCallStyleLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, TryCastCall> tryCastCallByPrimaryExpressionId;
@@ -166,6 +168,8 @@ internal sealed partial class TransformScriptNavigator
     private readonly IReadOnlyDictionary<string, TryConvertCall> tryConvertCallByPrimaryExpressionId;
     private readonly IReadOnlyDictionary<string, TryConvertCallParameterLink> tryConvertCallParameterLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, TryConvertCallStyleLink> tryConvertCallStyleLinkByOwnerId;
+    private readonly IReadOnlyDictionary<string, SqlDataTypeReference> sqlDataTypeReferenceByDataTypeReferenceId;
+    private readonly IReadOnlyDictionary<string, List<ParameterizedDataTypeReferenceParametersItem>> dataTypeParametersByOwnerId;
     private readonly IReadOnlyDictionary<string, ParseCall> parseCallByPrimaryExpressionId;
     private readonly IReadOnlyDictionary<string, ParseCallStringValueLink> parseCallStringValueLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, ParseCallCultureLink> parseCallCultureLinkByOwnerId;
@@ -345,8 +349,10 @@ internal sealed partial class TransformScriptNavigator
         simpleWhenClauseById = model.SimpleWhenClauseList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         simpleWhenClauseWhenExpressionLinkByOwnerId = model.SimpleWhenClauseWhenExpressionLinkList.ToDictionary(item => item.SimpleWhenClause.Id, StringComparer.Ordinal);
         castCallByPrimaryExpressionId = model.CastCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
+        castCallDataTypeLinkByOwnerId = model.CastCallDataTypeLinkList.ToDictionary(item => item.CastCall.Id, StringComparer.Ordinal);
         castCallParameterLinkByOwnerId = model.CastCallParameterLinkList.ToDictionary(item => item.CastCall.Id, StringComparer.Ordinal);
         convertCallByPrimaryExpressionId = model.ConvertCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
+        convertCallDataTypeLinkByOwnerId = model.ConvertCallDataTypeLinkList.ToDictionary(item => item.ConvertCall.Id, StringComparer.Ordinal);
         convertCallParameterLinkByOwnerId = model.ConvertCallParameterLinkList.ToDictionary(item => item.ConvertCall.Id, StringComparer.Ordinal);
         convertCallStyleLinkByOwnerId = model.ConvertCallStyleLinkList.ToDictionary(item => item.ConvertCall.Id, StringComparer.Ordinal);
         tryCastCallByPrimaryExpressionId = model.TryCastCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
@@ -354,6 +360,8 @@ internal sealed partial class TransformScriptNavigator
         tryConvertCallByPrimaryExpressionId = model.TryConvertCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
         tryConvertCallParameterLinkByOwnerId = model.TryConvertCallParameterLinkList.ToDictionary(item => item.TryConvertCall.Id, StringComparer.Ordinal);
         tryConvertCallStyleLinkByOwnerId = model.TryConvertCallStyleLinkList.ToDictionary(item => item.TryConvertCall.Id, StringComparer.Ordinal);
+        sqlDataTypeReferenceByDataTypeReferenceId = model.SqlDataTypeReferenceList.ToDictionary(item => item.ParameterizedDataTypeReference.DataTypeReference.Id, StringComparer.Ordinal);
+        dataTypeParametersByOwnerId = GroupByOwner(model.ParameterizedDataTypeReferenceParametersItemList);
         parseCallByPrimaryExpressionId = model.ParseCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
         parseCallStringValueLinkByOwnerId = model.ParseCallStringValueLinkList.ToDictionary(item => item.ParseCall.Id, StringComparer.Ordinal);
         parseCallCultureLinkByOwnerId = model.ParseCallCultureLinkList.ToDictionary(item => item.ParseCall.Id, StringComparer.Ordinal);
@@ -1265,6 +1273,56 @@ internal sealed partial class TransformScriptNavigator
         }
 
         return columnReferenceExpressionByPrimaryExpressionId.GetValueOrDefault(primaryExpression.Id);
+    }
+
+    public bool TryGetExplicitConversion(
+        ScalarExpression scalarExpression,
+        out DataTypeReference dataTypeReference,
+        out ScalarExpression inputExpression)
+    {
+        dataTypeReference = null!;
+        inputExpression = null!;
+
+        if (!primaryExpressionByScalarExpressionId.TryGetValue(scalarExpression.Id, out var primaryExpression))
+        {
+            return false;
+        }
+
+        if (castCallByPrimaryExpressionId.TryGetValue(primaryExpression.Id, out var castCall) &&
+            castCallDataTypeLinkByOwnerId.TryGetValue(castCall.Id, out var castTypeLink) &&
+            castCallParameterLinkByOwnerId.TryGetValue(castCall.Id, out var castParameterLink))
+        {
+            dataTypeReference = castTypeLink.DataTypeReference;
+            inputExpression = castParameterLink.ScalarExpression;
+            return true;
+        }
+
+        if (convertCallByPrimaryExpressionId.TryGetValue(primaryExpression.Id, out var convertCall) &&
+            convertCallDataTypeLinkByOwnerId.TryGetValue(convertCall.Id, out var convertTypeLink) &&
+            convertCallParameterLinkByOwnerId.TryGetValue(convertCall.Id, out var convertParameterLink))
+        {
+            dataTypeReference = convertTypeLink.DataTypeReference;
+            inputExpression = convertParameterLink.ScalarExpression;
+            return true;
+        }
+
+        return false;
+    }
+
+    public SqlDataTypeReference? TryGetSqlDataTypeReference(DataTypeReference dataTypeReference) =>
+        sqlDataTypeReferenceByDataTypeReferenceId.GetValueOrDefault(dataTypeReference.Id);
+
+    public IReadOnlyList<Literal> GetSqlDataTypeParameters(SqlDataTypeReference sqlDataTypeReference)
+    {
+        if (!dataTypeParametersByOwnerId.TryGetValue(sqlDataTypeReference.ParameterizedDataTypeReference.Id, out var items))
+        {
+            return [];
+        }
+
+        return items
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => item.Literal)
+            .ToArray();
     }
 
     public IReadOnlyList<string> GetColumnReferenceParts(ColumnReferenceExpression columnReferenceExpression)

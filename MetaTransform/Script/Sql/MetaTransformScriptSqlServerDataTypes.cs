@@ -2,7 +2,7 @@ using MetaDataType.Instance;
 
 namespace MetaTransformScript.Sql;
 
-internal static class MetaTransformScriptSqlServerDataTypes
+public static class MetaTransformScriptSqlServerDataTypes
 {
     private const string SqlServerDataTypeSystemId = "SqlServer";
 
@@ -62,6 +62,26 @@ internal static class MetaTransformScriptSqlServerDataTypes
         return OptionToSqlName.TryGetValue(option, out var sqlName)
             ? sqlName
             : throw new InvalidOperationException($"Unsupported SqlDataTypeOption '{option}'.");
+    }
+
+    public static bool TryGetMetaDataTypeId(string? option, out string metaDataTypeId)
+    {
+        metaDataTypeId = string.Empty;
+        if (string.IsNullOrWhiteSpace(option) || !OptionToSqlName.TryGetValue(option, out var sqlName))
+        {
+            return false;
+        }
+
+        var dataType = MetaDataTypeInstance.Default.DataTypeList.SingleOrDefault(dataType =>
+            string.Equals(dataType.DataTypeSystem.Id, SqlServerDataTypeSystemId, StringComparison.Ordinal) &&
+            string.Equals(dataType.Name, sqlName, StringComparison.OrdinalIgnoreCase));
+        if (dataType is null || string.IsNullOrWhiteSpace(dataType.Id))
+        {
+            return false;
+        }
+
+        metaDataTypeId = dataType.Id;
+        return true;
     }
 
     public static IReadOnlyList<string> GetDefaultParametersForSqlName(string sqlName)

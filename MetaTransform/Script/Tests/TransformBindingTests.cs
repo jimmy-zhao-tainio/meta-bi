@@ -499,6 +499,360 @@ WHEN NOT MATCHED THEN
     }
 
     [Fact]
+    public void BindValidatedUpdate_WithCastWriteExpression_UsesExplicitTargetTypeAndLength()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET Code = CAST(s.Code AS varchar(25)) FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["Code"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["Code"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Code", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "Code", "Length", 100);
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Code", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Code", "Length", 25);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Single(result.Model.WriteList);
+            Assert.Single(result.Model.WriteValueList);
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedUpdate_WithCastWriteExpressionTooWideForTarget_FailsHard()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET Code = CAST(s.Code AS varchar(26)) FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["Code"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["Code"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Code", "sqlserver:type:varchar");
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Code", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Code", "Length", 25);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                BindValidated(
+                    tempRoot,
+                    transformModel,
+                    sourceSchemaModel,
+                    targetSchemaModel));
+
+            Assert.Equal("TargetColumnLengthConformanceMismatch", ex.Code);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedUpdate_WithCastOfNullableSourceIntoRequiredTarget_FailsHard()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET Code = CAST(s.Code AS varchar(25)) FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["Code"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["Code"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Code", "sqlserver:type:varchar");
+        SetFieldIsNullable(sourceSchemaModel, "Table:1", "Code", true);
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Code", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Code", "Length", 25);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                BindValidated(
+                    tempRoot,
+                    transformModel,
+                    sourceSchemaModel,
+                    targetSchemaModel));
+
+            Assert.Equal("TargetColumnNullabilityConformanceMismatch", ex.Code);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedUpdate_WithConvertWriteExpression_UsesExplicitTargetPrecisionAndScale()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET Amount = CONVERT(decimal(18, 2), s.Amount) FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["Amount"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["Amount"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Amount", "sqlserver:type:decimal");
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "Amount", "Precision", 28);
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "Amount", "Scale", 6);
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Amount", "sqlserver:type:decimal");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Amount", "Precision", 18);
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Amount", "Scale", 2);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Single(result.Model.WriteList);
+            Assert.Single(result.Model.WriteValueList);
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedUpdate_WithConvertWriteExpressionTooPreciseForTarget_FailsHard()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET Amount = CONVERT(decimal(18, 3), s.Amount) FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["Amount"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["Amount"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Amount", "sqlserver:type:decimal");
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Amount", "sqlserver:type:decimal");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Amount", "Precision", 18);
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Amount", "Scale", 2);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                BindValidated(
+                    tempRoot,
+                    transformModel,
+                    sourceSchemaModel,
+                    targetSchemaModel));
+
+            Assert.Equal("TargetColumnScaleConformanceMismatch", ex.Code);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedUpdate_WithSearchedCaseWriteExpression_UsesSharedBranchContract()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET StatusCode = CASE WHEN s.IsActive = 1 THEN s.ActiveCode ELSE s.InactiveCode END FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["IsActive", "ActiveCode", "InactiveCode"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["StatusCode"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "ActiveCode", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "InactiveCode", "sqlserver:type:nvarchar");
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "ActiveCode", "Length", 20);
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "InactiveCode", "Length", 20);
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "StatusCode", "sqlserver:type:nvarchar");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "StatusCode", "Length", 20);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Single(result.Model.WriteList);
+            Assert.Single(result.Model.WriteValueList);
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedUpdate_WithSimpleCaseWriteExpression_UsesSharedBranchContract()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET StatusCode = CASE s.IsActive WHEN 1 THEN s.ActiveCode ELSE s.InactiveCode END FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["IsActive", "ActiveCode", "InactiveCode"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["StatusCode"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "ActiveCode", "sqlserver:type:varchar");
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "InactiveCode", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "ActiveCode", "Length", 20);
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "InactiveCode", "Length", 20);
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "StatusCode", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "StatusCode", "Length", 20);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Single(result.Model.WriteList);
+            Assert.Single(result.Model.WriteValueList);
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedUpdate_WithCaseWithoutElseIntoRequiredTarget_FailsHard()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET StatusCode = CASE WHEN s.IsActive = 1 THEN s.ActiveCode END FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["IsActive", "ActiveCode"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["StatusCode"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "ActiveCode", "sqlserver:type:nvarchar");
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "ActiveCode", "Length", 20);
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "StatusCode", "sqlserver:type:nvarchar");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "StatusCode", "Length", 20);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                BindValidated(
+                    tempRoot,
+                    transformModel,
+                    sourceSchemaModel,
+                    targetSchemaModel));
+
+            Assert.Equal("TargetColumnNullabilityConformanceMismatch", ex.Code);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedUpdate_WithMixedCaseWriteExpression_FailsUntilSqlServerPrecedenceIsModeled()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "UPDATE dbo.Customer SET StatusCode = CASE WHEN s.IsActive = 1 THEN s.ActiveCode ELSE s.InactiveCode END FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["IsActive", "ActiveCode", "InactiveCode"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["StatusCode"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "ActiveCode", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "InactiveCode", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "ActiveCode", "Length", 20);
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "InactiveCode", "Length", 20);
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "StatusCode", "sqlserver:type:nvarchar");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "StatusCode", "Length", 20);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                BindValidated(
+                    tempRoot,
+                    transformModel,
+                    sourceSchemaModel,
+                    targetSchemaModel));
+
+            Assert.Equal("BindingFailed", ex.Code);
+            Assert.Contains("MutationWriteValueTypeNotResolved", ex.Message);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
     public void ValidationService_ForMutationTarget_DoesNotTreatTargetShapeAsOutputWriteContract()
     {
         var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(

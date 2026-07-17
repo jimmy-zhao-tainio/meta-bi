@@ -9,12 +9,12 @@
 5. Done: Data Vault hash-key storage width.
 6. Pending product-model decision: business datatype lowering.
 7. Complete for supported mutation syntax: persisted, validated facts for every supported mutation form, including `MERGE` actions and conditions.
-8. Partly done: mutation CTE binding and mutation-predicate traversal now preserve source and target reads; wildcard and one-part ambiguity reports resolved by coverage. Broader expression output typing remains a separate binder capability.
+8. Done: all reported mutation-binding defects are fixed or disproven by coverage. The supported surface includes CTEs, predicates, wildcards, source ambiguity, `CAST`/`CONVERT`, and conservative homogeneous `CASE` contracts. SQL Server precedence inference is separate future expression-semantics work, not open repair debt.
 9. Separate scope: TPC-DS fixture/corpus strategy. Do not mix it into Data Vault, binding, or AdventureWorks decisions.
 10. Blocked demo work: AdventureWorks full-stack should not continue until the relevant product decisions are settled and reimplemented deliberately.
 11. Complete: `MERGE` match semantics use explicit clause entities and an explicit predecessor chain.
 
-Safest next work: pick one item 2 audit finding or one remaining item 8 proof target. Do not change sanctioned product models without an explicit decision.
+Safest next work: pick one item 2 audit finding. Do not change sanctioned product models without an explicit decision.
 
 ## Purpose
 
@@ -253,7 +253,11 @@ Verification:
 
 ## 8. Transform Binding Bugs Independent of the Model Proposal
 
-Status: Pending review as separate bug fixes; mutation statement CTE binding fixed on 2026-07-16; wildcard and one-part source ambiguity reports resolved by coverage on 2026-07-16
+Status: Done on 2026-07-17
+
+Closure:
+
+All reported defects in this queue item are fixed or were disproven by focused public-flow coverage. There is no remaining item 8 repair work. Full SQL Server expression typing, including type precedence and implicit mixed-branch conversion, is deliberately a separate future feature.
 
 Fixed candidate:
 
@@ -321,26 +325,35 @@ Observed problems:
 
 - Resolved projection gap: a qualified target reference such as `dbo.Customer.CustomerId` in an `UPDATE` predicate is present in runtime binding, but cannot use the source-table `ColumnReference` entity. `TargetColumnReference` now preserves the exact syntax reference ID, resolved target rowset column, declared binding target, and resolved schema field after validation.
 
-- Unverified report: expression outputs may lack enough known type information for strict target validation.
+- Fixed candidate: explicit `CAST` and `CONVERT` mutation write expressions were structurally modeled but were not classified by the binding session. The binder now reads their modeled target `DataTypeReference`, including length, precision, and scale parameters, and derives conservative nullability from the source expression. The resulting type participates in the same strict compatibility proof as a direct source column; no binding product-model change was needed.
 
-  Reproduction shapes to prove or delete independently:
+  Verified examples:
 
   ```sql
-  SELECT CAST(src.Code AS varchar(25)) AS Code
-  FROM dbo.Source AS src;
+  UPDATE dbo.Customer
+  SET Code = CAST(src.Code AS varchar(25))
+  FROM dbo.CustomerStage AS src;
   ```
 
   ```sql
-  SELECT CONVERT(decimal(18, 2), src.Amount) AS Amount
-  FROM dbo.Source AS src;
+  UPDATE dbo.Customer
+  SET Amount = CONVERT(decimal(18, 2), src.Amount)
+  FROM dbo.CustomerStage AS src;
   ```
+
+  Focused public-flow coverage proves successful exact binding, length/scale mismatch rejection, and nullable-source rejection for casts. `MetaTransformScript.Tests` passed 382/382 and the binding CLI build passed with 0 warnings and 0 errors.
+
+- Fixed bounded policy: `CASE` mutation writes now resolve only when every `THEN` branch and any explicit `ELSE` resolve to the same stored datatype contract: the same MetaDataType id and the same length, precision, and scale. The branch expressions still bind normally, so direct column references, literals, explicit `CAST`/`CONVERT`, and nested bounded `CASE` expressions can supply the contract.
+
+  Reproduction shape:
 
   ```sql
-  SELECT CASE WHEN src.IsActive = 1 THEN src.ActiveCode ELSE src.InactiveCode END AS StatusCode
-  FROM dbo.Source AS src;
+  UPDATE dbo.Customer
+  SET StatusCode = CASE WHEN src.IsActive = 1 THEN src.ActiveCode ELSE src.InactiveCode END
+  FROM dbo.CustomerStage AS src;
   ```
 
-  Expected behavior: only expressions whose type is explicit or safely derivable should participate in strict type/length/precision/scale validation. Expressions whose type cannot be known should remain not-classified rather than guessing. This is likely several separate bugs or policy decisions, not one fix.
+  A missing `ELSE` makes the result nullable. Any nullable or unknown-nullability branch is also conservatively treated as nullable. Mixed datatype or facet contracts remain an explicit strict failure (`MutationWriteValueTypeNotResolved`); the binder does not emulate SQL Server implicit conversion or type-precedence rules. Focused public-flow tests cover searched and simple `CASE` success, missing-`ELSE` rejection for a required target, and mixed `nvarchar`/`varchar` rejection.
 
 Attempted change:
 
@@ -350,9 +363,9 @@ Why it was attempted:
 
 The AdventureWorks transforms and the TPC-DS corpus exposed them while strict mutation validation was being hardened.
 
-Decision required:
+Decision:
 
-Reproduce and fix each behavior independently where possible. A parser/binder bug does not automatically justify a product-model change.
+Each behavior was reproduced or proven by focused public-flow coverage and repaired within the existing syntax and binding boundary. No product-model change was required. Future full SQL Server precedence work is a separately scoped expression-semantics feature, not unfinished queue item 8 work.
 
 ## 9. TPC-DS Binding Fixture and Corpus Expansion
 
