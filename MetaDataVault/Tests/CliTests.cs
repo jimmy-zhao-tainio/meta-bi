@@ -223,40 +223,32 @@ public sealed partial class CliTests
             var createResult = RunRawCli($"new-workspace \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
-            RunRawAdd(workspacePath, "add-source-system --id Sales --name Sales");
-            RunRawAdd(workspacePath, "add-source-schema --id dbo --system Sales --name dbo");
-            RunRawAdd(workspacePath, "add-source-table --id CustomerTable --schema dbo --name Customer");
-            RunRawAdd(workspacePath, "add-source-table --id OrderTable --schema dbo --name [Order]");
-            RunRawAdd(workspacePath, "add-source-field --id CustomerIdField --table CustomerTable --name CustomerId --data-type-id sqlserver:type:nvarchar --ordinal 1 --is-nullable false");
-            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id CustomerIdFieldLength --field CustomerIdField --name Length --value 50");
-            RunRawAdd(workspacePath, "add-source-field --id CustomerNameField --table CustomerTable --name CustomerName --data-type-id sqlserver:type:nvarchar --ordinal 2 --is-nullable true");
-            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id CustomerNameFieldLength --field CustomerNameField --name Length --value 200");
-            RunRawAdd(workspacePath, "add-source-field --id OrderIdField --table OrderTable --name OrderId --data-type-id sqlserver:type:nvarchar --ordinal 1 --is-nullable false");
-            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id OrderIdFieldLength --field OrderIdField --name Length --value 50");
-            RunRawAdd(workspacePath, "add-source-field --id OrderCustomerIdField --table OrderTable --name CustomerId --data-type-id sqlserver:type:nvarchar --ordinal 2 --is-nullable false");
-            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id OrderCustomerIdFieldLength --field OrderCustomerIdField --name Length --value 50");
-            RunRawAdd(workspacePath, "add-source-field --id OrderStatusField --table OrderTable --name StatusCode --data-type-id sqlserver:type:nvarchar --ordinal 3 --is-nullable false");
-            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id OrderStatusFieldLength --field OrderStatusField --name Length --value 20");
-            RunRawAdd(workspacePath, "add-source-table-relationship --id OrderCustomerRelationship --source-table OrderTable --target-table CustomerTable --name FK_Order_Customer");
-            RunRawAdd(workspacePath, "add-source-table-relationship-field --id OrderCustomerRelationshipField --relationship OrderCustomerRelationship --source-field OrderCustomerIdField --target-field CustomerIdField --ordinal 1");
-            RunRawAdd(workspacePath, "add-hub --id CustomerHub --source-table CustomerTable --name Customer");
-            RunRawAdd(workspacePath, "add-hub --id OrderHub --source-table OrderTable --name Order");
-            RunRawAdd(workspacePath, "add-hub-key-part --id CustomerHubKey --hub CustomerHub --source-field CustomerIdField --name CustomerId --ordinal 1");
-            RunRawAdd(workspacePath, "add-hub-key-part --id OrderHubKey --hub OrderHub --source-field OrderIdField --name OrderId --ordinal 1");
-            RunRawAdd(workspacePath, "add-hub-satellite --id CustomerProfileSat --hub CustomerHub --source-table CustomerTable --name CustomerProfile --satellite-kind standard");
-            RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --source-field CustomerNameField --name CustomerName --ordinal 1");
-            RunRawAdd(workspacePath, "add-link --id OrderCustomerLink --source-relationship OrderCustomerRelationship --name OrderCustomer --link-kind standard");
+            RunRawAdd(workspacePath, "add-field --id CustomerIdField --name CustomerId --data-type-id sqlserver:type:nvarchar");
+            RunRawAdd(workspacePath, "add-field-data-type-detail --id CustomerIdFieldLength --field CustomerIdField --name Length --value 50");
+            RunRawAdd(workspacePath, "add-field --id CustomerNameField --name CustomerName --data-type-id sqlserver:type:nvarchar");
+            RunRawAdd(workspacePath, "add-field-data-type-detail --id CustomerNameFieldLength --field CustomerNameField --name Length --value 200");
+            RunRawAdd(workspacePath, "add-field --id OrderIdField --name OrderId --data-type-id sqlserver:type:nvarchar");
+            RunRawAdd(workspacePath, "add-field-data-type-detail --id OrderIdFieldLength --field OrderIdField --name Length --value 50");
+            RunRawAdd(workspacePath, "add-field --id OrderStatusField --name StatusCode --data-type-id sqlserver:type:nvarchar");
+            RunRawAdd(workspacePath, "add-field-data-type-detail --id OrderStatusFieldLength --field OrderStatusField --name Length --value 20");
+            RunRawAdd(workspacePath, "add-hub --id CustomerHub --name Customer");
+            RunRawAdd(workspacePath, "add-hub --id OrderHub --name Order");
+            RunRawAdd(workspacePath, "add-hub-key-part --id CustomerHubKey --hub CustomerHub --field CustomerIdField --name CustomerId --ordinal 1");
+            RunRawAdd(workspacePath, "add-hub-key-part --id OrderHubKey --hub OrderHub --field OrderIdField --name OrderId --ordinal 1");
+            RunRawAdd(workspacePath, "add-hub-satellite --id CustomerProfileSat --hub CustomerHub --name CustomerProfile --satellite-kind standard");
+            RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --field CustomerNameField --name CustomerName --ordinal 1");
+            RunRawAdd(workspacePath, "add-link --id OrderCustomerLink --name OrderCustomer --link-kind standard");
             RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --ordinal 1 --role-name Order");
             RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --ordinal 2 --role-name Customer");
-            RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --source-table OrderTable --name OrderCustomerStatus --satellite-kind standard");
-            RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --source-field OrderStatusField --name StatusCode --ordinal 1");
+            RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --name OrderCustomerStatus --satellite-kind standard");
+            RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --field OrderStatusField --name StatusCode --ordinal 1");
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
-            Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("RawLink").Count);
+            Assert.Single(workspace.Instance.GetOrCreateEntityRecords("RawLink"));
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").Count);
-            Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("RawHubSatellite").Count);
-            Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("RawLinkSatellite").Count);
+            Assert.Single(workspace.Instance.GetOrCreateEntityRecords("RawHubSatellite"));
+            Assert.Single(workspace.Instance.GetOrCreateEntityRecords("RawLinkSatellite"));
         }
         finally
         {
@@ -265,7 +257,7 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public async Task RawAuthoringAppendsOrdinalWhenOmitted()
+    public async Task RawAuthoringAppendsRawOrdinalsWhenOmitted()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var workspacePath = Path.Combine(root, "RawDataVault");
@@ -274,41 +266,26 @@ public sealed partial class CliTests
         {
             Assert.Equal(0, RunRawCli($"new-workspace \"{workspacePath}\"").ExitCode);
 
-            RunRawAdd(workspacePath, "add-source-system --id Sales --name Sales");
-            RunRawAdd(workspacePath, "add-source-schema --id dbo --system Sales --name dbo");
-            RunRawAdd(workspacePath, "add-source-table --id CustomerTable --schema dbo --name Customer");
-            RunRawAdd(workspacePath, "add-source-table --id OrderTable --schema dbo --name [Order]");
-            RunRawAdd(workspacePath, "add-source-field --id CustomerIdField --table CustomerTable --name CustomerId --data-type-id sqlserver:type:nvarchar --is-nullable false");
-            RunRawAdd(workspacePath, "add-source-field --id CustomerNameField --table CustomerTable --name CustomerName --data-type-id sqlserver:type:nvarchar --is-nullable true");
-            RunRawAdd(workspacePath, "add-source-field --id OrderIdField --table OrderTable --name OrderId --data-type-id sqlserver:type:nvarchar --is-nullable false");
-            RunRawAdd(workspacePath, "add-source-field --id OrderCustomerIdField --table OrderTable --name CustomerId --data-type-id sqlserver:type:nvarchar --is-nullable false");
-            RunRawAdd(workspacePath, "add-source-field --id OrderStatusField --table OrderTable --name StatusCode --data-type-id sqlserver:type:nvarchar --is-nullable false");
-            RunRawAdd(workspacePath, "add-source-table-relationship --id OrderCustomerRelationship --source-table OrderTable --target-table CustomerTable --name FK_Order_Customer");
-            RunRawAdd(workspacePath, "add-source-table-relationship-field --id OrderCustomerRelationshipField --relationship OrderCustomerRelationship --source-field OrderCustomerIdField --target-field CustomerIdField");
-            RunRawAdd(workspacePath, "add-hub --id CustomerHub --source-table CustomerTable --name Customer");
-            RunRawAdd(workspacePath, "add-hub --id OrderHub --source-table OrderTable --name Order");
-            RunRawAdd(workspacePath, "add-hub-key-part --id CustomerHubKey --hub CustomerHub --source-field CustomerIdField --name CustomerId");
-            RunRawAdd(workspacePath, "add-hub-satellite --id CustomerProfileSat --hub CustomerHub --source-table CustomerTable --name CustomerProfile --satellite-kind standard");
-            RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --source-field CustomerNameField --name CustomerName");
-            RunRawAdd(workspacePath, "add-link --id OrderCustomerLink --source-relationship OrderCustomerRelationship --name OrderCustomer --link-kind standard");
+            RunRawAdd(workspacePath, "add-field --id CustomerIdField --name CustomerId --data-type-id sqlserver:type:nvarchar");
+            RunRawAdd(workspacePath, "add-field --id CustomerNameField --name CustomerName --data-type-id sqlserver:type:nvarchar");
+            RunRawAdd(workspacePath, "add-field --id OrderIdField --name OrderId --data-type-id sqlserver:type:nvarchar");
+            RunRawAdd(workspacePath, "add-field --id OrderStatusField --name StatusCode --data-type-id sqlserver:type:nvarchar");
+            RunRawAdd(workspacePath, "add-hub --id CustomerHub --name Customer");
+            RunRawAdd(workspacePath, "add-hub --id OrderHub --name Order");
+            RunRawAdd(workspacePath, "add-hub-key-part --id CustomerHubKey --hub CustomerHub --field CustomerIdField --name CustomerId");
+            RunRawAdd(workspacePath, "add-hub-satellite --id CustomerProfileSat --hub CustomerHub --name CustomerProfile --satellite-kind standard");
+            RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --field CustomerNameField --name CustomerName");
+            RunRawAdd(workspacePath, "add-link --id OrderCustomerLink --name OrderCustomer --link-kind standard");
             RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --role-name Order");
             RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --role-name Customer");
-            RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --source-table OrderTable --name OrderCustomerStatus --satellite-kind standard");
-            RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --source-field OrderStatusField --name StatusCode");
+            RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --name OrderCustomerStatus --satellite-kind standard");
+            RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --field OrderStatusField --name StatusCode");
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
-            var sourceFields = workspace.Instance.GetOrCreateEntityRecords("SourceField").ToDictionary(row => row.Id, StringComparer.Ordinal);
-            var relationshipFields = workspace.Instance.GetOrCreateEntityRecords("SourceTableRelationshipField").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var hubKeyParts = workspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var linkHubs = workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var linkSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("RawLinkSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
 
-            Assert.Equal("1", sourceFields["CustomerIdField"].Values["Ordinal"]);
-            Assert.Equal("2", sourceFields["CustomerNameField"].Values["Ordinal"]);
-            Assert.Equal("1", sourceFields["OrderIdField"].Values["Ordinal"]);
-            Assert.Equal("2", sourceFields["OrderCustomerIdField"].Values["Ordinal"]);
-            Assert.Equal("3", sourceFields["OrderStatusField"].Values["Ordinal"]);
-            Assert.Equal("1", relationshipFields["OrderCustomerRelationshipField"].Values["Ordinal"]);
             Assert.Equal("1", hubKeyParts["CustomerHubKey"].Values["Ordinal"]);
             Assert.Equal("1", linkHubs["OrderCustomerLinkOrder"].Values["Ordinal"]);
             Assert.Equal("2", linkHubs["OrderCustomerLinkCustomer"].Values["Ordinal"]);

@@ -36,8 +36,6 @@ public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
     private static readonly IReadOnlyDictionary<string, OrdinalScope> OrdinalScopes =
         new Dictionary<string, OrdinalScope>(StringComparer.Ordinal)
         {
-            ["SourceField"] = new("SourceTable", ["SourceField"]),
-            ["SourceTableRelationshipField"] = new("SourceTableRelationship", ["SourceTableRelationshipField"]),
             ["RawHubKeyPart"] = new("RawHub", ["RawHubKeyPart"]),
             ["RawHubSatelliteAttribute"] = new("RawHubSatellite", ["RawHubSatelliteAttribute"]),
             ["RawLinkHub"] = new("RawLink", ["RawLinkHub"]),

@@ -1,409 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-new-workspace-path" ValueShapeId="shape-path">
+    <Parameter Id="param-add-field-data-type-detail-field" ValueShapeId="shape-text">
+      <Description>Field id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>path</Name>
+      <Name>field</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-hub-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-field-data-type-detail-id" ValueShapeId="shape-text">
+      <Description>Field data type detail row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-data-type-detail-name" ValueShapeId="shape-text">
+      <Description>Detail name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-data-type-detail-value" ValueShapeId="shape-text">
+      <Description>Detail value.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>value</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-data-type-detail-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-data-type-id" ValueShapeId="shape-text">
+      <Description>Data type id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>data-type-id</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-id" ValueShapeId="shape-text">
+      <Description>Field row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-name" ValueShapeId="shape-text">
+      <Description>Field name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-add-raw-hub-id" ValueShapeId="shape-text">
-      <Description>RawHub row id.</Description>
+      <Description>Raw hub row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-hub-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
+    <Parameter Id="param-add-raw-hub-key-part-field" ValueShapeId="shape-text">
+      <Description>Field id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>field</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-key-part-hub" ValueShapeId="shape-text">
+      <Description>Raw hub id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hub</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-key-part-id" ValueShapeId="shape-text">
+      <Description>Raw hub key part row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-key-part-name" ValueShapeId="shape-text">
+      <Description>Key part name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-hub-source-table" ValueShapeId="shape-text">
-      <Description>SourceTable id for SourceTableId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-table</Name>
+    <Parameter Id="param-add-raw-hub-key-part-ordinal" ValueShapeId="shape-text">
+      <Description>Key part ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
     </Parameter>
     <Parameter Id="param-add-raw-hub-key-part-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-hub-key-part-id" ValueShapeId="shape-text">
-      <Description>RawHubKeyPart row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-key-part-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
+    <Parameter Id="param-add-raw-hub-name" ValueShapeId="shape-text">
+      <Description>Raw hub name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-hub-key-part-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
+    <Parameter Id="param-add-raw-hub-satellite-attribute-field" ValueShapeId="shape-text">
+      <Description>Field id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>field</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-attribute-hub-satellite" ValueShapeId="shape-text">
+      <Description>Raw hub satellite id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hub-satellite</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-attribute-id" ValueShapeId="shape-text">
+      <Description>Raw hub satellite attribute row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-attribute-name" ValueShapeId="shape-text">
+      <Description>Attribute name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-attribute-ordinal" ValueShapeId="shape-text">
+      <Description>Attribute ordinal.</Description>
       <IsRequired>false</IsRequired>
       <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-key-part-hub" ValueShapeId="shape-text">
-      <Description>RawHub id for RawHubId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>hub</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-key-part-source-field" ValueShapeId="shape-text">
-      <Description>SourceField id for SourceFieldId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-field</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-id" ValueShapeId="shape-text">
-      <Description>RawHubSatellite row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-satellite-kind" ValueShapeId="shape-text">
-      <Description>SatelliteKind.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>satellite-kind</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-hub" ValueShapeId="shape-text">
-      <Description>RawHub id for RawHubId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>hub</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-source-table" ValueShapeId="shape-text">
-      <Description>SourceTable id for SourceTableId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-table</Name>
     </Parameter>
     <Parameter Id="param-add-raw-hub-satellite-attribute-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-attribute-id" ValueShapeId="shape-text">
-      <Description>RawHubSatelliteAttribute row id.</Description>
+    <Parameter Id="param-add-raw-hub-satellite-hub" ValueShapeId="shape-text">
+      <Description>Raw hub id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hub</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-id" ValueShapeId="shape-text">
+      <Description>Raw hub satellite row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-attribute-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
+    <Parameter Id="param-add-raw-hub-satellite-name" ValueShapeId="shape-text">
+      <Description>Raw hub satellite name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-attribute-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-attribute-hub-satellite" ValueShapeId="shape-text">
-      <Description>RawHubSatellite id for RawHubSatelliteId.</Description>
+    <Parameter Id="param-add-raw-hub-satellite-satellite-kind" ValueShapeId="shape-text">
+      <Description>Satellite kind.</Description>
       <IsRequired>true</IsRequired>
-      <Name>hub-satellite</Name>
+      <Name>satellite-kind</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-attribute-source-field" ValueShapeId="shape-text">
-      <Description>SourceField id for SourceFieldId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-field</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-raw-hub-satellite-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-id" ValueShapeId="shape-text">
-      <Description>RawLink row id.</Description>
+    <Parameter Id="param-add-raw-hub-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-hub-hub" ValueShapeId="shape-text">
+      <Description>Raw hub id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hub</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-hub-id" ValueShapeId="shape-text">
+      <Description>Raw link hub row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-link-kind" ValueShapeId="shape-text">
-      <Description>LinkKind.</Description>
+    <Parameter Id="param-add-raw-link-hub-link" ValueShapeId="shape-text">
+      <Description>Raw link id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>link-kind</Name>
+      <Name>link</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
+    <Parameter Id="param-add-raw-link-hub-ordinal" ValueShapeId="shape-text">
+      <Description>Link hub ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-source-relationship" ValueShapeId="shape-text">
-      <Description>SourceTableRelationship id for SourceTableRelationshipId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-relationship</Name>
+    <Parameter Id="param-add-raw-link-hub-role-name" ValueShapeId="shape-text">
+      <Description>Link hub role name.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>role-name</Name>
     </Parameter>
     <Parameter Id="param-add-raw-link-hub-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-hub-id" ValueShapeId="shape-text">
-      <Description>RawLinkHub row id.</Description>
+    <Parameter Id="param-add-raw-link-id" ValueShapeId="shape-text">
+      <Description>Raw link row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-hub-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-hub-role-name" ValueShapeId="shape-text">
-      <Description>RoleName.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>role-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-hub-hub" ValueShapeId="shape-text">
-      <Description>RawHub id for RawHubId.</Description>
+    <Parameter Id="param-add-raw-link-link-kind" ValueShapeId="shape-text">
+      <Description>Link kind.</Description>
       <IsRequired>true</IsRequired>
-      <Name>hub</Name>
+      <Name>link-kind</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-hub-link" ValueShapeId="shape-text">
-      <Description>RawLink id for RawLinkId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>link</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-id" ValueShapeId="shape-text">
-      <Description>RawLinkSatellite row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
+    <Parameter Id="param-add-raw-link-name" ValueShapeId="shape-text">
+      <Description>Raw link name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-satellite-kind" ValueShapeId="shape-text">
-      <Description>SatelliteKind.</Description>
+    <Parameter Id="param-add-raw-link-satellite-attribute-field" ValueShapeId="shape-text">
+      <Description>Field id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>satellite-kind</Name>
+      <Name>field</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-link" ValueShapeId="shape-text">
-      <Description>RawLink id for RawLinkId.</Description>
+    <Parameter Id="param-add-raw-link-satellite-attribute-id" ValueShapeId="shape-text">
+      <Description>Raw link satellite attribute row id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>link</Name>
+      <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-source-table" ValueShapeId="shape-text">
-      <Description>SourceTable id for SourceTableId.</Description>
+    <Parameter Id="param-add-raw-link-satellite-attribute-link-satellite" ValueShapeId="shape-text">
+      <Description>Raw link satellite id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>source-table</Name>
+      <Name>link-satellite</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-attribute-name" ValueShapeId="shape-text">
+      <Description>Attribute name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-attribute-ordinal" ValueShapeId="shape-text">
+      <Description>Attribute ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
     </Parameter>
     <Parameter Id="param-add-raw-link-satellite-attribute-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-attribute-id" ValueShapeId="shape-text">
-      <Description>RawLinkSatelliteAttribute row id.</Description>
+    <Parameter Id="param-add-raw-link-satellite-id" ValueShapeId="shape-text">
+      <Description>Raw link satellite row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-attribute-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
+    <Parameter Id="param-add-raw-link-satellite-link" ValueShapeId="shape-text">
+      <Description>Raw link id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>link</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-name" ValueShapeId="shape-text">
+      <Description>Raw link satellite name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-attribute-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-attribute-link-satellite" ValueShapeId="shape-text">
-      <Description>RawLinkSatellite id for RawLinkSatelliteId.</Description>
+    <Parameter Id="param-add-raw-link-satellite-satellite-kind" ValueShapeId="shape-text">
+      <Description>Satellite kind.</Description>
       <IsRequired>true</IsRequired>
-      <Name>link-satellite</Name>
+      <Name>satellite-kind</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-attribute-source-field" ValueShapeId="shape-text">
-      <Description>SourceField id for SourceFieldId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-field</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-field-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-raw-link-satellite-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-source-field-id" ValueShapeId="shape-text">
-      <Description>SourceField row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-field-data-type-id" ValueShapeId="shape-text">
-      <Description>DataTypeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>data-type-id</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-field-is-nullable" ValueShapeId="shape-bool">
-      <Description>IsNullable.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>is-nullable</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-field-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-field-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-field-table" ValueShapeId="shape-text">
-      <Description>SourceTable id for SourceTableId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>table</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-field-data-type-detail-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-raw-link-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-source-field-data-type-detail-id" ValueShapeId="shape-text">
-      <Description>SourceFieldDataTypeDetail row id.</Description>
+    <Parameter Id="param-new-workspace-path" ValueShapeId="shape-path">
+      <Description>Workspace path.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-field-data-type-detail-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-field-data-type-detail-value" ValueShapeId="shape-text">
-      <Description>Value.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>value</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-field-data-type-detail-field" ValueShapeId="shape-text">
-      <Description>SourceField id for SourceFieldId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>field</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-schema-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-schema-id" ValueShapeId="shape-text">
-      <Description>SourceSchema row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-schema-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-schema-system" ValueShapeId="shape-text">
-      <Description>SourceSystem id for SourceSystemId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>system</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-system-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-system-id" ValueShapeId="shape-text">
-      <Description>SourceSystem row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-system-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-system-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-id" ValueShapeId="shape-text">
-      <Description>SourceTable row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-schema" ValueShapeId="shape-text">
-      <Description>SourceSchema id for SourceSchemaId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>schema</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-id" ValueShapeId="shape-text">
-      <Description>SourceTableRelationship row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-source-table" ValueShapeId="shape-text">
-      <Description>SourceTable id for SourceTableId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-table</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-target-table" ValueShapeId="shape-text">
-      <Description>SourceTable id for TargetTableId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>target-table</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-field-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-field-id" ValueShapeId="shape-text">
-      <Description>SourceTableRelationshipField row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-field-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-field-source-field" ValueShapeId="shape-text">
-      <Description>SourceField id for SourceFieldId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-field</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-field-relationship" ValueShapeId="shape-text">
-      <Description>SourceTableRelationship id for SourceTableRelationshipId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>relationship</Name>
-    </Parameter>
-    <Parameter Id="param-add-source-table-relationship-field-target-field" ValueShapeId="shape-text">
-      <Description>SourceField id for TargetFieldId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>target-field</Name>
+      <Name>path</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

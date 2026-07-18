@@ -188,39 +188,6 @@ internal sealed class MetaRawDataVaultCommandHandlers
             return ToKebabCase(stem[3..]);
         }
 
-        if (string.Equals(sourceEntityName, "SourceTableRelationship", StringComparison.Ordinal) &&
-            (string.Equals(stem, "SourceTable", StringComparison.Ordinal) ||
-             string.Equals(stem, "TargetTable", StringComparison.Ordinal)))
-        {
-            return ToKebabCase(stem);
-        }
-
-        if (string.Equals(sourceEntityName, "SourceTableRelationshipField", StringComparison.Ordinal) &&
-            (string.Equals(stem, "SourceField", StringComparison.Ordinal) ||
-             string.Equals(stem, "TargetField", StringComparison.Ordinal)))
-        {
-            return ToKebabCase(stem);
-        }
-
-        if (sourceEntityName.StartsWith("Source", StringComparison.Ordinal))
-        {
-            if (string.Equals(stem, "SourceTableRelationship", StringComparison.Ordinal))
-            {
-                return "relationship";
-            }
-
-            if (stem.StartsWith("Source", StringComparison.Ordinal))
-            {
-                return ToKebabCase(stem[6..]);
-            }
-        }
-
-        if (sourceEntityName.StartsWith("Raw", StringComparison.Ordinal) &&
-            string.Equals(stem, "SourceTableRelationship", StringComparison.Ordinal))
-        {
-            return "source-relationship";
-        }
-
         return ToKebabCase(stem);
     }
 

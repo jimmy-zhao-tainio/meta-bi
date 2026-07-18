@@ -19,7 +19,5 @@ namespace MetaRawDataVault
 
         public string Name { get; set; } = string.Empty;
 
-        public SourceTableRelationship SourceTableRelationship { get; set; } = null!;
-
     }
 }

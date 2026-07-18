@@ -91,13 +91,8 @@ internal sealed class SourceIndex
 
 internal sealed class FromMetaSchemaDraft
 {
-    public List<MRDV.SourceSystem> SourceSystems { get; } = new();
-    public List<MRDV.SourceSchema> SourceSchemas { get; } = new();
-    public List<MRDV.SourceTable> SourceTables { get; } = new();
-    public List<MRDV.SourceField> SourceFields { get; } = new();
-    public List<MRDV.SourceFieldDataTypeDetail> SourceFieldDetails { get; } = new();
-    public List<MRDV.SourceTableRelationship> SourceRelationships { get; } = new();
-    public List<MRDV.SourceTableRelationshipField> SourceRelationshipFields { get; } = new();
+    public List<MRDV.Field> Fields { get; } = new();
+    public List<MRDV.FieldDataTypeDetail> FieldDetails { get; } = new();
     public List<MRDV.RawHub> RawHubs { get; } = new();
     public List<MRDV.RawHubKeyPart> RawHubKeyParts { get; } = new();
     public List<MRDV.RawHubSatellite> RawHubSatellites { get; } = new();
@@ -107,11 +102,7 @@ internal sealed class FromMetaSchemaDraft
     public List<MRDV.RawLinkSatellite> RawLinkSatellites { get; } = new();
     public List<MRDV.RawLinkSatelliteAttribute> RawLinkSatelliteAttributes { get; } = new();
 
-    public Dictionary<string, MRDV.SourceSystem> SourceSystemsById { get; } = new(StringComparer.Ordinal);
-    public Dictionary<string, MRDV.SourceSchema> SourceSchemasById { get; } = new(StringComparer.Ordinal);
-    public Dictionary<string, MRDV.SourceTable> SourceTablesById { get; } = new(StringComparer.Ordinal);
-    public Dictionary<string, MRDV.SourceField> SourceFieldsById { get; } = new(StringComparer.Ordinal);
-    public Dictionary<string, MRDV.SourceTableRelationship> SourceRelationshipsById { get; } = new(StringComparer.Ordinal);
+    public Dictionary<string, MRDV.Field> FieldsById { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, MRDV.RawHub> RawHubsById { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, string> RawHubIdsBySourceTableId { get; } = new(StringComparer.Ordinal);
 }

@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaRawDataVault>
   <RawHubKeyPartList>
-    <RawHubKeyPart Id="CustomerHubKey" RawHubId="CustomerHub" SourceFieldId="CustomerIdField">
+    <RawHubKeyPart Id="CustomerHubKey" FieldId="CustomerIdField" RawHubId="CustomerHub">
       <Name>CustomerId</Name>
       <Ordinal>1</Ordinal>
     </RawHubKeyPart>
-    <RawHubKeyPart Id="DepartmentHubKey" RawHubId="DepartmentHub" SourceFieldId="DepartmentIdField">
+    <RawHubKeyPart Id="DepartmentHubKey" FieldId="DepartmentIdField" RawHubId="DepartmentHub">
       <Name>DepartmentId</Name>
       <Ordinal>1</Ordinal>
     </RawHubKeyPart>
-    <RawHubKeyPart Id="EmployeeHubKey" RawHubId="EmployeeHub" SourceFieldId="EmployeeIdField">
+    <RawHubKeyPart Id="EmployeeHubKey" FieldId="EmployeeIdField" RawHubId="EmployeeHub">
       <Name>EmployeeId</Name>
       <Ordinal>1</Ordinal>
     </RawHubKeyPart>
-    <RawHubKeyPart Id="InvoiceHubKey" RawHubId="InvoiceHub" SourceFieldId="InvoiceIdField">
+    <RawHubKeyPart Id="InvoiceHubKey" FieldId="InvoiceIdField" RawHubId="InvoiceHub">
       <Name>InvoiceId</Name>
       <Ordinal>1</Ordinal>
     </RawHubKeyPart>
-    <RawHubKeyPart Id="OrderHubKey" RawHubId="OrderHub" SourceFieldId="OrderIdField">
+    <RawHubKeyPart Id="OrderHubKey" FieldId="OrderIdField" RawHubId="OrderHub">
       <Name>OrderId</Name>
       <Ordinal>1</Ordinal>
     </RawHubKeyPart>
-    <RawHubKeyPart Id="ProductHubKey" RawHubId="ProductHub" SourceFieldId="ProductIdField">
+    <RawHubKeyPart Id="ProductHubKey" FieldId="ProductIdField" RawHubId="ProductHub">
       <Name>ProductId</Name>
       <Ordinal>1</Ordinal>
     </RawHubKeyPart>
-    <RawHubKeyPart Id="ShipmentHubKey" RawHubId="ShipmentHub" SourceFieldId="ShipmentIdField">
+    <RawHubKeyPart Id="ShipmentHubKey" FieldId="ShipmentIdField" RawHubId="ShipmentHub">
       <Name>ShipmentId</Name>
       <Ordinal>1</Ordinal>
     </RawHubKeyPart>
-    <RawHubKeyPart Id="SupplierHubKey" RawHubId="SupplierHub" SourceFieldId="SupplierIdField">
+    <RawHubKeyPart Id="SupplierHubKey" FieldId="SupplierIdField" RawHubId="SupplierHub">
       <Name>SupplierId</Name>
       <Ordinal>1</Ordinal>
     </RawHubKeyPart>

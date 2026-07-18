@@ -26,6 +26,10 @@ namespace MetaRawDataVault
     {
         public static MetaRawDataVaultModel CreateEmpty() => new();
 
+        public List<Field> FieldList { get; set; } = new();
+
+        public List<FieldDataTypeDetail> FieldDataTypeDetailList { get; set; } = new();
+
         public List<RawHub> RawHubList { get; set; } = new();
 
         public List<RawHubKeyPart> RawHubKeyPartList { get; set; } = new();
@@ -41,20 +45,6 @@ namespace MetaRawDataVault
         public List<RawLinkSatellite> RawLinkSatelliteList { get; set; } = new();
 
         public List<RawLinkSatelliteAttribute> RawLinkSatelliteAttributeList { get; set; } = new();
-
-        public List<SourceField> SourceFieldList { get; set; } = new();
-
-        public List<SourceFieldDataTypeDetail> SourceFieldDataTypeDetailList { get; set; } = new();
-
-        public List<SourceSchema> SourceSchemaList { get; set; } = new();
-
-        public List<SourceSystem> SourceSystemList { get; set; } = new();
-
-        public List<SourceTable> SourceTableList { get; set; } = new();
-
-        public List<SourceTableRelationship> SourceTableRelationshipList { get; set; } = new();
-
-        public List<SourceTableRelationshipField> SourceTableRelationshipFieldList { get; set; } = new();
 
         public static MetaRawDataVaultModel LoadFromXmlWorkspace(
             string workspacePath,
@@ -159,6 +149,28 @@ namespace MetaRawDataVault
 
         private static void SaveShardGroup1(MetaRawDataVaultModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
         {
+            model.FieldList ??= new List<Field>();
+            var fieldShardPath = Path.Combine(instanceDirectoryPath, "Field.xml");
+            if (model.FieldList.Count == 0)
+            {
+                DeleteIfExists(fieldShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(fieldShardPath, SerializeFieldShard(model, saveIndexes));
+            }
+
+            model.FieldDataTypeDetailList ??= new List<FieldDataTypeDetail>();
+            var fieldDataTypeDetailShardPath = Path.Combine(instanceDirectoryPath, "FieldDataTypeDetail.xml");
+            if (model.FieldDataTypeDetailList.Count == 0)
+            {
+                DeleteIfExists(fieldDataTypeDetailShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(fieldDataTypeDetailShardPath, SerializeFieldDataTypeDetailShard(model, saveIndexes));
+            }
+
             model.RawHubList ??= new List<RawHub>();
             var rawHubShardPath = Path.Combine(instanceDirectoryPath, "RawHub.xml");
             if (model.RawHubList.Count == 0)
@@ -247,83 +259,6 @@ namespace MetaRawDataVault
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(rawLinkSatelliteAttributeShardPath, SerializeRawLinkSatelliteAttributeShard(model, saveIndexes));
             }
 
-            model.SourceFieldList ??= new List<SourceField>();
-            var sourceFieldShardPath = Path.Combine(instanceDirectoryPath, "SourceField.xml");
-            if (model.SourceFieldList.Count == 0)
-            {
-                DeleteIfExists(sourceFieldShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(sourceFieldShardPath, SerializeSourceFieldShard(model, saveIndexes));
-            }
-
-            model.SourceFieldDataTypeDetailList ??= new List<SourceFieldDataTypeDetail>();
-            var sourceFieldDataTypeDetailShardPath = Path.Combine(instanceDirectoryPath, "SourceFieldDataTypeDetail.xml");
-            if (model.SourceFieldDataTypeDetailList.Count == 0)
-            {
-                DeleteIfExists(sourceFieldDataTypeDetailShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(sourceFieldDataTypeDetailShardPath, SerializeSourceFieldDataTypeDetailShard(model, saveIndexes));
-            }
-
-            model.SourceSchemaList ??= new List<SourceSchema>();
-            var sourceSchemaShardPath = Path.Combine(instanceDirectoryPath, "SourceSchema.xml");
-            if (model.SourceSchemaList.Count == 0)
-            {
-                DeleteIfExists(sourceSchemaShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(sourceSchemaShardPath, SerializeSourceSchemaShard(model, saveIndexes));
-            }
-
-            model.SourceSystemList ??= new List<SourceSystem>();
-            var sourceSystemShardPath = Path.Combine(instanceDirectoryPath, "SourceSystem.xml");
-            if (model.SourceSystemList.Count == 0)
-            {
-                DeleteIfExists(sourceSystemShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(sourceSystemShardPath, SerializeSourceSystemShard(model, saveIndexes));
-            }
-
-            model.SourceTableList ??= new List<SourceTable>();
-            var sourceTableShardPath = Path.Combine(instanceDirectoryPath, "SourceTable.xml");
-            if (model.SourceTableList.Count == 0)
-            {
-                DeleteIfExists(sourceTableShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(sourceTableShardPath, SerializeSourceTableShard(model, saveIndexes));
-            }
-
-            model.SourceTableRelationshipList ??= new List<SourceTableRelationship>();
-            var sourceTableRelationshipShardPath = Path.Combine(instanceDirectoryPath, "SourceTableRelationship.xml");
-            if (model.SourceTableRelationshipList.Count == 0)
-            {
-                DeleteIfExists(sourceTableRelationshipShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(sourceTableRelationshipShardPath, SerializeSourceTableRelationshipShard(model, saveIndexes));
-            }
-
-            model.SourceTableRelationshipFieldList ??= new List<SourceTableRelationshipField>();
-            var sourceTableRelationshipFieldShardPath = Path.Combine(instanceDirectoryPath, "SourceTableRelationshipField.xml");
-            if (model.SourceTableRelationshipFieldList.Count == 0)
-            {
-                DeleteIfExists(sourceTableRelationshipFieldShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(sourceTableRelationshipFieldShardPath, SerializeSourceTableRelationshipFieldShard(model, saveIndexes));
-            }
-
         }
 
         private static void LoadShard(MetaRawDataVaultModel model, string shardPath, LoadState loadState, RelationshipBuffers relationshipBuffers)
@@ -348,6 +283,12 @@ namespace MetaRawDataVault
             {
                 switch (reader.LocalName)
                 {
+                    case "FieldList":
+                        LoadFieldList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "FieldDataTypeDetailList":
+                        LoadFieldDataTypeDetailList(model, reader, loadState, relationshipBuffers);
+                        break;
                     case "RawHubList":
                         LoadRawHubList(model, reader, loadState, relationshipBuffers);
                         break;
@@ -372,33 +313,230 @@ namespace MetaRawDataVault
                     case "RawLinkSatelliteAttributeList":
                         LoadRawLinkSatelliteAttributeList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "SourceFieldList":
-                        LoadSourceFieldList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "SourceFieldDataTypeDetailList":
-                        LoadSourceFieldDataTypeDetailList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "SourceSchemaList":
-                        LoadSourceSchemaList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "SourceSystemList":
-                        LoadSourceSystemList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "SourceTableList":
-                        LoadSourceTableList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "SourceTableRelationshipList":
-                        LoadSourceTableRelationshipList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "SourceTableRelationshipFieldList":
-                        LoadSourceTableRelationshipFieldList(model, reader, loadState, relationshipBuffers);
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in '{shardPath}'.");
                 }
                 reader.MoveToContent();
             }
             reader.ReadEndElement();
+        }
+
+        private static void LoadFieldList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("FieldList");
+                return;
+            }
+
+            reader.ReadStartElement("FieldList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "Field", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'FieldList'.");
+                }
+                var row = ReadField(reader, relationshipBuffers);
+                loadState.AddFieldId(row.Id);
+                model.FieldList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static Field ReadField(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new Field();
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'Field'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("Field");
+                return row;
+            }
+
+            reader.ReadStartElement("Field");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "DataTypeId":
+                        row.DataTypeId = reader.ReadElementContentAsString();
+                        break;
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'Field'.");
+                }
+            }
+            reader.ReadEndElement();
+            return row;
+        }
+
+        private static byte[] SerializeFieldShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaRawDataVault>\n");
+            builder.Append("  <FieldList>\n");
+            foreach (var row in model.FieldList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'Field' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'Field' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <Field Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'Field' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'Field' row '{row.Id}' is missing required property 'Name'."), "      ");
+                builder.Append("    </Field>\n");
+            }
+            builder.Append("  </FieldList>\n");
+            builder.Append("</MetaRawDataVault>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadFieldDataTypeDetailList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("FieldDataTypeDetailList");
+                return;
+            }
+
+            reader.ReadStartElement("FieldDataTypeDetailList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "FieldDataTypeDetail", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'FieldDataTypeDetailList'.");
+                }
+                var row = ReadFieldDataTypeDetail(reader, relationshipBuffers);
+                loadState.AddFieldDataTypeDetailId(row.Id);
+                model.FieldDataTypeDetailList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static FieldDataTypeDetail ReadFieldDataTypeDetail(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new FieldDataTypeDetail();
+            var relationships = new FieldDataTypeDetailRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "FieldId":
+                            relationships.FieldId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'FieldDataTypeDetail'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("FieldDataTypeDetail");
+                (relationshipBuffers.FieldDataTypeDetailRelationships ??= new List<FieldDataTypeDetailRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("FieldDataTypeDetail");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
+                        break;
+                    case "Value":
+                        row.Value = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'FieldDataTypeDetail'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.FieldDataTypeDetailRelationships ??= new List<FieldDataTypeDetailRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeFieldDataTypeDetailShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaRawDataVault>\n");
+            builder.Append("  <FieldDataTypeDetailList>\n");
+            foreach (var row in model.FieldDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'FieldDataTypeDetail' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'FieldDataTypeDetail' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <FieldDataTypeDetail Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var fieldId = RequireIdentity(row.Field?.Id, $"Relationship 'FieldDataTypeDetail.FieldId' on row 'FieldDataTypeDetail:{row.Id}' is empty.");
+                if (!saveIndexes.FieldListById.TryGetValue(fieldId, out var fieldCanonical) || !ReferenceEquals(fieldCanonical, row.Field))
+                {
+                    throw new InvalidOperationException($"Relationship 'FieldDataTypeDetail.FieldId' on row 'FieldDataTypeDetail:{row.Id}' references an object that is not the canonical row for Id '{fieldId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("FieldId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, fieldId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'FieldDataTypeDetail' row '{row.Id}' is missing required property 'Name'."), "      ");
+                AppendElement(builder, "Value", RequireText(row.Value, $"Entity 'FieldDataTypeDetail' row '{row.Id}' is missing required property 'Value'."), "      ");
+                builder.Append("    </FieldDataTypeDetail>\n");
+            }
+            builder.Append("  </FieldDataTypeDetailList>\n");
+            builder.Append("</MetaRawDataVault>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
         }
 
         private static void LoadRawHubList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
@@ -427,7 +565,6 @@ namespace MetaRawDataVault
         private static RawHub ReadRawHub(XmlReader reader, RelationshipBuffers relationshipBuffers)
         {
             var row = new RawHub();
-            var relationships = new RawHubRelationships { Row = row };
             if (reader.HasAttributes)
             {
                 while (reader.MoveToNextAttribute())
@@ -442,9 +579,6 @@ namespace MetaRawDataVault
                         case "Id":
                             row.Id = reader.Value;
                             break;
-                        case "SourceTableId":
-                            relationships.SourceTableId = reader.Value;
-                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RawHub'.");
                     }
@@ -456,7 +590,6 @@ namespace MetaRawDataVault
             if (reader.IsEmptyElement)
             {
                 reader.ReadStartElement("RawHub");
-                (relationshipBuffers.RawHubRelationships ??= new List<RawHubRelationships>()).Add(relationships);
                 return row;
             }
 
@@ -473,7 +606,6 @@ namespace MetaRawDataVault
                 }
             }
             reader.ReadEndElement();
-            (relationshipBuffers.RawHubRelationships ??= new List<RawHubRelationships>()).Add(relationships);
             return row;
         }
 
@@ -494,16 +626,6 @@ namespace MetaRawDataVault
                 }
                 builder.Append("    <RawHub Id=\"");
                 AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var sourceTableId = RequireIdentity(row.SourceTable?.Id, $"Relationship 'RawHub.SourceTableId' on row 'RawHub:{row.Id}' is empty.");
-                if (!saveIndexes.SourceTableListById.TryGetValue(sourceTableId, out var sourceTableCanonical) || !ReferenceEquals(sourceTableCanonical, row.SourceTable))
-                {
-                    throw new InvalidOperationException($"Relationship 'RawHub.SourceTableId' on row 'RawHub:{row.Id}' references an object that is not the canonical row for Id '{sourceTableId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceTableId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceTableId);
                 builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RawHub' row '{row.Id}' is missing required property 'Name'."), "      ");
@@ -555,11 +677,11 @@ namespace MetaRawDataVault
                         case "Id":
                             row.Id = reader.Value;
                             break;
+                        case "FieldId":
+                            relationships.FieldId = reader.Value;
+                            break;
                         case "RawHubId":
                             relationships.RawHubId = reader.Value;
-                            break;
-                        case "SourceFieldId":
-                            relationships.SourceFieldId = reader.Value;
                             break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RawHubKeyPart'.");
@@ -614,6 +736,16 @@ namespace MetaRawDataVault
                 builder.Append("    <RawHubKeyPart Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var fieldId = RequireIdentity(row.Field?.Id, $"Relationship 'RawHubKeyPart.FieldId' on row 'RawHubKeyPart:{row.Id}' is empty.");
+                if (!saveIndexes.FieldListById.TryGetValue(fieldId, out var fieldCanonical) || !ReferenceEquals(fieldCanonical, row.Field))
+                {
+                    throw new InvalidOperationException($"Relationship 'RawHubKeyPart.FieldId' on row 'RawHubKeyPart:{row.Id}' references an object that is not the canonical row for Id '{fieldId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("FieldId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, fieldId);
+                builder.Append('"');
                 var rawHubId = RequireIdentity(row.RawHub?.Id, $"Relationship 'RawHubKeyPart.RawHubId' on row 'RawHubKeyPart:{row.Id}' is empty.");
                 if (!saveIndexes.RawHubListById.TryGetValue(rawHubId, out var rawHubCanonical) || !ReferenceEquals(rawHubCanonical, row.RawHub))
                 {
@@ -623,16 +755,6 @@ namespace MetaRawDataVault
                 builder.Append("RawHubId");
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rawHubId);
-                builder.Append('"');
-                var sourceFieldId = RequireIdentity(row.SourceField?.Id, $"Relationship 'RawHubKeyPart.SourceFieldId' on row 'RawHubKeyPart:{row.Id}' is empty.");
-                if (!saveIndexes.SourceFieldListById.TryGetValue(sourceFieldId, out var sourceFieldCanonical) || !ReferenceEquals(sourceFieldCanonical, row.SourceField))
-                {
-                    throw new InvalidOperationException($"Relationship 'RawHubKeyPart.SourceFieldId' on row 'RawHubKeyPart:{row.Id}' references an object that is not the canonical row for Id '{sourceFieldId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceFieldId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceFieldId);
                 builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RawHubKeyPart' row '{row.Id}' is missing required property 'Name'."), "      ");
@@ -687,9 +809,6 @@ namespace MetaRawDataVault
                             break;
                         case "RawHubId":
                             relationships.RawHubId = reader.Value;
-                            break;
-                        case "SourceTableId":
-                            relationships.SourceTableId = reader.Value;
                             break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RawHubSatellite'.");
@@ -754,16 +873,6 @@ namespace MetaRawDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rawHubId);
                 builder.Append('"');
-                var sourceTableId = RequireIdentity(row.SourceTable?.Id, $"Relationship 'RawHubSatellite.SourceTableId' on row 'RawHubSatellite:{row.Id}' is empty.");
-                if (!saveIndexes.SourceTableListById.TryGetValue(sourceTableId, out var sourceTableCanonical) || !ReferenceEquals(sourceTableCanonical, row.SourceTable))
-                {
-                    throw new InvalidOperationException($"Relationship 'RawHubSatellite.SourceTableId' on row 'RawHubSatellite:{row.Id}' references an object that is not the canonical row for Id '{sourceTableId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceTableId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceTableId);
-                builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RawHubSatellite' row '{row.Id}' is missing required property 'Name'."), "      ");
                 AppendElement(builder, "SatelliteKind", RequireText(row.SatelliteKind, $"Entity 'RawHubSatellite' row '{row.Id}' is missing required property 'SatelliteKind'."), "      ");
@@ -815,11 +924,11 @@ namespace MetaRawDataVault
                         case "Id":
                             row.Id = reader.Value;
                             break;
+                        case "FieldId":
+                            relationships.FieldId = reader.Value;
+                            break;
                         case "RawHubSatelliteId":
                             relationships.RawHubSatelliteId = reader.Value;
-                            break;
-                        case "SourceFieldId":
-                            relationships.SourceFieldId = reader.Value;
                             break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RawHubSatelliteAttribute'.");
@@ -874,6 +983,16 @@ namespace MetaRawDataVault
                 builder.Append("    <RawHubSatelliteAttribute Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var fieldId = RequireIdentity(row.Field?.Id, $"Relationship 'RawHubSatelliteAttribute.FieldId' on row 'RawHubSatelliteAttribute:{row.Id}' is empty.");
+                if (!saveIndexes.FieldListById.TryGetValue(fieldId, out var fieldCanonical) || !ReferenceEquals(fieldCanonical, row.Field))
+                {
+                    throw new InvalidOperationException($"Relationship 'RawHubSatelliteAttribute.FieldId' on row 'RawHubSatelliteAttribute:{row.Id}' references an object that is not the canonical row for Id '{fieldId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("FieldId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, fieldId);
+                builder.Append('"');
                 var rawHubSatelliteId = RequireIdentity(row.RawHubSatellite?.Id, $"Relationship 'RawHubSatelliteAttribute.RawHubSatelliteId' on row 'RawHubSatelliteAttribute:{row.Id}' is empty.");
                 if (!saveIndexes.RawHubSatelliteListById.TryGetValue(rawHubSatelliteId, out var rawHubSatelliteCanonical) || !ReferenceEquals(rawHubSatelliteCanonical, row.RawHubSatellite))
                 {
@@ -883,16 +1002,6 @@ namespace MetaRawDataVault
                 builder.Append("RawHubSatelliteId");
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rawHubSatelliteId);
-                builder.Append('"');
-                var sourceFieldId = RequireIdentity(row.SourceField?.Id, $"Relationship 'RawHubSatelliteAttribute.SourceFieldId' on row 'RawHubSatelliteAttribute:{row.Id}' is empty.");
-                if (!saveIndexes.SourceFieldListById.TryGetValue(sourceFieldId, out var sourceFieldCanonical) || !ReferenceEquals(sourceFieldCanonical, row.SourceField))
-                {
-                    throw new InvalidOperationException($"Relationship 'RawHubSatelliteAttribute.SourceFieldId' on row 'RawHubSatelliteAttribute:{row.Id}' references an object that is not the canonical row for Id '{sourceFieldId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceFieldId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceFieldId);
                 builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RawHubSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
@@ -930,7 +1039,6 @@ namespace MetaRawDataVault
         private static RawLink ReadRawLink(XmlReader reader, RelationshipBuffers relationshipBuffers)
         {
             var row = new RawLink();
-            var relationships = new RawLinkRelationships { Row = row };
             if (reader.HasAttributes)
             {
                 while (reader.MoveToNextAttribute())
@@ -945,9 +1053,6 @@ namespace MetaRawDataVault
                         case "Id":
                             row.Id = reader.Value;
                             break;
-                        case "SourceTableRelationshipId":
-                            relationships.SourceTableRelationshipId = reader.Value;
-                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RawLink'.");
                     }
@@ -959,7 +1064,6 @@ namespace MetaRawDataVault
             if (reader.IsEmptyElement)
             {
                 reader.ReadStartElement("RawLink");
-                (relationshipBuffers.RawLinkRelationships ??= new List<RawLinkRelationships>()).Add(relationships);
                 return row;
             }
 
@@ -979,7 +1083,6 @@ namespace MetaRawDataVault
                 }
             }
             reader.ReadEndElement();
-            (relationshipBuffers.RawLinkRelationships ??= new List<RawLinkRelationships>()).Add(relationships);
             return row;
         }
 
@@ -1000,16 +1103,6 @@ namespace MetaRawDataVault
                 }
                 builder.Append("    <RawLink Id=\"");
                 AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var sourceTableRelationshipId = RequireIdentity(row.SourceTableRelationship?.Id, $"Relationship 'RawLink.SourceTableRelationshipId' on row 'RawLink:{row.Id}' is empty.");
-                if (!saveIndexes.SourceTableRelationshipListById.TryGetValue(sourceTableRelationshipId, out var sourceTableRelationshipCanonical) || !ReferenceEquals(sourceTableRelationshipCanonical, row.SourceTableRelationship))
-                {
-                    throw new InvalidOperationException($"Relationship 'RawLink.SourceTableRelationshipId' on row 'RawLink:{row.Id}' references an object that is not the canonical row for Id '{sourceTableRelationshipId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceTableRelationshipId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceTableRelationshipId);
                 builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "LinkKind", RequireText(row.LinkKind, $"Entity 'RawLink' row '{row.Id}' is missing required property 'LinkKind'."), "      ");
@@ -1198,9 +1291,6 @@ namespace MetaRawDataVault
                         case "RawLinkId":
                             relationships.RawLinkId = reader.Value;
                             break;
-                        case "SourceTableId":
-                            relationships.SourceTableId = reader.Value;
-                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RawLinkSatellite'.");
                     }
@@ -1264,16 +1354,6 @@ namespace MetaRawDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rawLinkId);
                 builder.Append('"');
-                var sourceTableId = RequireIdentity(row.SourceTable?.Id, $"Relationship 'RawLinkSatellite.SourceTableId' on row 'RawLinkSatellite:{row.Id}' is empty.");
-                if (!saveIndexes.SourceTableListById.TryGetValue(sourceTableId, out var sourceTableCanonical) || !ReferenceEquals(sourceTableCanonical, row.SourceTable))
-                {
-                    throw new InvalidOperationException($"Relationship 'RawLinkSatellite.SourceTableId' on row 'RawLinkSatellite:{row.Id}' references an object that is not the canonical row for Id '{sourceTableId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceTableId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceTableId);
-                builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RawLinkSatellite' row '{row.Id}' is missing required property 'Name'."), "      ");
                 AppendElement(builder, "SatelliteKind", RequireText(row.SatelliteKind, $"Entity 'RawLinkSatellite' row '{row.Id}' is missing required property 'SatelliteKind'."), "      ");
@@ -1325,11 +1405,11 @@ namespace MetaRawDataVault
                         case "Id":
                             row.Id = reader.Value;
                             break;
+                        case "FieldId":
+                            relationships.FieldId = reader.Value;
+                            break;
                         case "RawLinkSatelliteId":
                             relationships.RawLinkSatelliteId = reader.Value;
-                            break;
-                        case "SourceFieldId":
-                            relationships.SourceFieldId = reader.Value;
                             break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RawLinkSatelliteAttribute'.");
@@ -1384,6 +1464,16 @@ namespace MetaRawDataVault
                 builder.Append("    <RawLinkSatelliteAttribute Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var fieldId = RequireIdentity(row.Field?.Id, $"Relationship 'RawLinkSatelliteAttribute.FieldId' on row 'RawLinkSatelliteAttribute:{row.Id}' is empty.");
+                if (!saveIndexes.FieldListById.TryGetValue(fieldId, out var fieldCanonical) || !ReferenceEquals(fieldCanonical, row.Field))
+                {
+                    throw new InvalidOperationException($"Relationship 'RawLinkSatelliteAttribute.FieldId' on row 'RawLinkSatelliteAttribute:{row.Id}' references an object that is not the canonical row for Id '{fieldId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("FieldId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, fieldId);
+                builder.Append('"');
                 var rawLinkSatelliteId = RequireIdentity(row.RawLinkSatellite?.Id, $"Relationship 'RawLinkSatelliteAttribute.RawLinkSatelliteId' on row 'RawLinkSatelliteAttribute:{row.Id}' is empty.");
                 if (!saveIndexes.RawLinkSatelliteListById.TryGetValue(rawLinkSatelliteId, out var rawLinkSatelliteCanonical) || !ReferenceEquals(rawLinkSatelliteCanonical, row.RawLinkSatellite))
                 {
@@ -1393,16 +1483,6 @@ namespace MetaRawDataVault
                 builder.Append("RawLinkSatelliteId");
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rawLinkSatelliteId);
-                builder.Append('"');
-                var sourceFieldId = RequireIdentity(row.SourceField?.Id, $"Relationship 'RawLinkSatelliteAttribute.SourceFieldId' on row 'RawLinkSatelliteAttribute:{row.Id}' is empty.");
-                if (!saveIndexes.SourceFieldListById.TryGetValue(sourceFieldId, out var sourceFieldCanonical) || !ReferenceEquals(sourceFieldCanonical, row.SourceField))
-                {
-                    throw new InvalidOperationException($"Relationship 'RawLinkSatelliteAttribute.SourceFieldId' on row 'RawLinkSatelliteAttribute:{row.Id}' references an object that is not the canonical row for Id '{sourceFieldId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceFieldId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceFieldId);
                 builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RawLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
@@ -1414,880 +1494,30 @@ namespace MetaRawDataVault
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
-        private static void LoadSourceFieldList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        private sealed class FieldDataTypeDetailRelationships
         {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceFieldList");
-                return;
-            }
-
-            reader.ReadStartElement("SourceFieldList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "SourceField", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'SourceFieldList'.");
-                }
-                var row = ReadSourceField(reader, relationshipBuffers);
-                loadState.AddSourceFieldId(row.Id);
-                model.SourceFieldList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static SourceField ReadSourceField(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new SourceField();
-            var relationships = new SourceFieldRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "SourceTableId":
-                            relationships.SourceTableId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'SourceField'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceField");
-                (relationshipBuffers.SourceFieldRelationships ??= new List<SourceFieldRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("SourceField");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "DataTypeId":
-                        row.DataTypeId = reader.ReadElementContentAsString();
-                        break;
-                    case "IsNullable":
-                        row.IsNullable = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'SourceField'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.SourceFieldRelationships ??= new List<SourceFieldRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeSourceFieldShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaRawDataVault>\n");
-            builder.Append("  <SourceFieldList>\n");
-            foreach (var row in model.SourceFieldList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'SourceField' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'SourceField' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <SourceField Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var sourceTableId = RequireIdentity(row.SourceTable?.Id, $"Relationship 'SourceField.SourceTableId' on row 'SourceField:{row.Id}' is empty.");
-                if (!saveIndexes.SourceTableListById.TryGetValue(sourceTableId, out var sourceTableCanonical) || !ReferenceEquals(sourceTableCanonical, row.SourceTable))
-                {
-                    throw new InvalidOperationException($"Relationship 'SourceField.SourceTableId' on row 'SourceField:{row.Id}' references an object that is not the canonical row for Id '{sourceTableId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceTableId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceTableId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'SourceField' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
-                if (!string.IsNullOrWhiteSpace(row.IsNullable))
-                {
-                    AppendElement(builder, "IsNullable", row.IsNullable!, "      ");
-                }
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'SourceField' row '{row.Id}' is missing required property 'Name'."), "      ");
-                if (!string.IsNullOrWhiteSpace(row.Ordinal))
-                {
-                    AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
-                }
-                builder.Append("    </SourceField>\n");
-            }
-            builder.Append("  </SourceFieldList>\n");
-            builder.Append("</MetaRawDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadSourceFieldDataTypeDetailList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceFieldDataTypeDetailList");
-                return;
-            }
-
-            reader.ReadStartElement("SourceFieldDataTypeDetailList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "SourceFieldDataTypeDetail", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'SourceFieldDataTypeDetailList'.");
-                }
-                var row = ReadSourceFieldDataTypeDetail(reader, relationshipBuffers);
-                loadState.AddSourceFieldDataTypeDetailId(row.Id);
-                model.SourceFieldDataTypeDetailList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static SourceFieldDataTypeDetail ReadSourceFieldDataTypeDetail(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new SourceFieldDataTypeDetail();
-            var relationships = new SourceFieldDataTypeDetailRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "SourceFieldId":
-                            relationships.SourceFieldId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'SourceFieldDataTypeDetail'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceFieldDataTypeDetail");
-                (relationshipBuffers.SourceFieldDataTypeDetailRelationships ??= new List<SourceFieldDataTypeDetailRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("SourceFieldDataTypeDetail");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    case "Value":
-                        row.Value = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'SourceFieldDataTypeDetail'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.SourceFieldDataTypeDetailRelationships ??= new List<SourceFieldDataTypeDetailRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeSourceFieldDataTypeDetailShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaRawDataVault>\n");
-            builder.Append("  <SourceFieldDataTypeDetailList>\n");
-            foreach (var row in model.SourceFieldDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'SourceFieldDataTypeDetail' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'SourceFieldDataTypeDetail' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <SourceFieldDataTypeDetail Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var sourceFieldId = RequireIdentity(row.SourceField?.Id, $"Relationship 'SourceFieldDataTypeDetail.SourceFieldId' on row 'SourceFieldDataTypeDetail:{row.Id}' is empty.");
-                if (!saveIndexes.SourceFieldListById.TryGetValue(sourceFieldId, out var sourceFieldCanonical) || !ReferenceEquals(sourceFieldCanonical, row.SourceField))
-                {
-                    throw new InvalidOperationException($"Relationship 'SourceFieldDataTypeDetail.SourceFieldId' on row 'SourceFieldDataTypeDetail:{row.Id}' references an object that is not the canonical row for Id '{sourceFieldId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceFieldId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceFieldId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'SourceFieldDataTypeDetail' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Value", RequireText(row.Value, $"Entity 'SourceFieldDataTypeDetail' row '{row.Id}' is missing required property 'Value'."), "      ");
-                builder.Append("    </SourceFieldDataTypeDetail>\n");
-            }
-            builder.Append("  </SourceFieldDataTypeDetailList>\n");
-            builder.Append("</MetaRawDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadSourceSchemaList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceSchemaList");
-                return;
-            }
-
-            reader.ReadStartElement("SourceSchemaList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "SourceSchema", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'SourceSchemaList'.");
-                }
-                var row = ReadSourceSchema(reader, relationshipBuffers);
-                loadState.AddSourceSchemaId(row.Id);
-                model.SourceSchemaList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static SourceSchema ReadSourceSchema(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new SourceSchema();
-            var relationships = new SourceSchemaRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "SourceSystemId":
-                            relationships.SourceSystemId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'SourceSchema'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceSchema");
-                (relationshipBuffers.SourceSchemaRelationships ??= new List<SourceSchemaRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("SourceSchema");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'SourceSchema'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.SourceSchemaRelationships ??= new List<SourceSchemaRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeSourceSchemaShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaRawDataVault>\n");
-            builder.Append("  <SourceSchemaList>\n");
-            foreach (var row in model.SourceSchemaList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'SourceSchema' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'SourceSchema' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <SourceSchema Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var sourceSystemId = RequireIdentity(row.SourceSystem?.Id, $"Relationship 'SourceSchema.SourceSystemId' on row 'SourceSchema:{row.Id}' is empty.");
-                if (!saveIndexes.SourceSystemListById.TryGetValue(sourceSystemId, out var sourceSystemCanonical) || !ReferenceEquals(sourceSystemCanonical, row.SourceSystem))
-                {
-                    throw new InvalidOperationException($"Relationship 'SourceSchema.SourceSystemId' on row 'SourceSchema:{row.Id}' references an object that is not the canonical row for Id '{sourceSystemId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceSystemId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceSystemId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'SourceSchema' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </SourceSchema>\n");
-            }
-            builder.Append("  </SourceSchemaList>\n");
-            builder.Append("</MetaRawDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadSourceSystemList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceSystemList");
-                return;
-            }
-
-            reader.ReadStartElement("SourceSystemList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "SourceSystem", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'SourceSystemList'.");
-                }
-                var row = ReadSourceSystem(reader, relationshipBuffers);
-                loadState.AddSourceSystemId(row.Id);
-                model.SourceSystemList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static SourceSystem ReadSourceSystem(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new SourceSystem();
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'SourceSystem'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceSystem");
-                return row;
-            }
-
-            reader.ReadStartElement("SourceSystem");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Description":
-                        row.Description = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'SourceSystem'.");
-                }
-            }
-            reader.ReadEndElement();
-            return row;
-        }
-
-        private static byte[] SerializeSourceSystemShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaRawDataVault>\n");
-            builder.Append("  <SourceSystemList>\n");
-            foreach (var row in model.SourceSystemList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'SourceSystem' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'SourceSystem' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <SourceSystem Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                builder.Append(">\n");
-                if (!string.IsNullOrWhiteSpace(row.Description))
-                {
-                    AppendElement(builder, "Description", row.Description!, "      ");
-                }
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'SourceSystem' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </SourceSystem>\n");
-            }
-            builder.Append("  </SourceSystemList>\n");
-            builder.Append("</MetaRawDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadSourceTableList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceTableList");
-                return;
-            }
-
-            reader.ReadStartElement("SourceTableList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "SourceTable", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'SourceTableList'.");
-                }
-                var row = ReadSourceTable(reader, relationshipBuffers);
-                loadState.AddSourceTableId(row.Id);
-                model.SourceTableList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static SourceTable ReadSourceTable(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new SourceTable();
-            var relationships = new SourceTableRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "SourceSchemaId":
-                            relationships.SourceSchemaId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'SourceTable'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceTable");
-                (relationshipBuffers.SourceTableRelationships ??= new List<SourceTableRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("SourceTable");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'SourceTable'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.SourceTableRelationships ??= new List<SourceTableRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeSourceTableShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaRawDataVault>\n");
-            builder.Append("  <SourceTableList>\n");
-            foreach (var row in model.SourceTableList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'SourceTable' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'SourceTable' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <SourceTable Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var sourceSchemaId = RequireIdentity(row.SourceSchema?.Id, $"Relationship 'SourceTable.SourceSchemaId' on row 'SourceTable:{row.Id}' is empty.");
-                if (!saveIndexes.SourceSchemaListById.TryGetValue(sourceSchemaId, out var sourceSchemaCanonical) || !ReferenceEquals(sourceSchemaCanonical, row.SourceSchema))
-                {
-                    throw new InvalidOperationException($"Relationship 'SourceTable.SourceSchemaId' on row 'SourceTable:{row.Id}' references an object that is not the canonical row for Id '{sourceSchemaId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceSchemaId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceSchemaId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'SourceTable' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </SourceTable>\n");
-            }
-            builder.Append("  </SourceTableList>\n");
-            builder.Append("</MetaRawDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadSourceTableRelationshipList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceTableRelationshipList");
-                return;
-            }
-
-            reader.ReadStartElement("SourceTableRelationshipList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "SourceTableRelationship", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'SourceTableRelationshipList'.");
-                }
-                var row = ReadSourceTableRelationship(reader, relationshipBuffers);
-                loadState.AddSourceTableRelationshipId(row.Id);
-                model.SourceTableRelationshipList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static SourceTableRelationship ReadSourceTableRelationship(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new SourceTableRelationship();
-            var relationships = new SourceTableRelationshipRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "SourceTableId":
-                            relationships.SourceTableId = reader.Value;
-                            break;
-                        case "TargetTableId":
-                            relationships.TargetTableId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'SourceTableRelationship'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceTableRelationship");
-                (relationshipBuffers.SourceTableRelationshipRelationships ??= new List<SourceTableRelationshipRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("SourceTableRelationship");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'SourceTableRelationship'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.SourceTableRelationshipRelationships ??= new List<SourceTableRelationshipRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeSourceTableRelationshipShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaRawDataVault>\n");
-            builder.Append("  <SourceTableRelationshipList>\n");
-            foreach (var row in model.SourceTableRelationshipList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'SourceTableRelationship' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'SourceTableRelationship' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <SourceTableRelationship Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var sourceTableId = RequireIdentity(row.SourceTable?.Id, $"Relationship 'SourceTableRelationship.SourceTableId' on row 'SourceTableRelationship:{row.Id}' is empty.");
-                if (!saveIndexes.SourceTableListById.TryGetValue(sourceTableId, out var sourceTableCanonical) || !ReferenceEquals(sourceTableCanonical, row.SourceTable))
-                {
-                    throw new InvalidOperationException($"Relationship 'SourceTableRelationship.SourceTableId' on row 'SourceTableRelationship:{row.Id}' references an object that is not the canonical row for Id '{sourceTableId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceTableId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceTableId);
-                builder.Append('"');
-                var targetTableId = RequireIdentity(row.TargetTable?.Id, $"Relationship 'SourceTableRelationship.TargetTableId' on row 'SourceTableRelationship:{row.Id}' is empty.");
-                if (!saveIndexes.SourceTableListById.TryGetValue(targetTableId, out var targetTableCanonical) || !ReferenceEquals(targetTableCanonical, row.TargetTable))
-                {
-                    throw new InvalidOperationException($"Relationship 'SourceTableRelationship.TargetTableId' on row 'SourceTableRelationship:{row.Id}' references an object that is not the canonical row for Id '{targetTableId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("TargetTableId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, targetTableId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'SourceTableRelationship' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </SourceTableRelationship>\n");
-            }
-            builder.Append("  </SourceTableRelationshipList>\n");
-            builder.Append("</MetaRawDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadSourceTableRelationshipFieldList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceTableRelationshipFieldList");
-                return;
-            }
-
-            reader.ReadStartElement("SourceTableRelationshipFieldList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "SourceTableRelationshipField", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'SourceTableRelationshipFieldList'.");
-                }
-                var row = ReadSourceTableRelationshipField(reader, relationshipBuffers);
-                loadState.AddSourceTableRelationshipFieldId(row.Id);
-                model.SourceTableRelationshipFieldList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static SourceTableRelationshipField ReadSourceTableRelationshipField(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new SourceTableRelationshipField();
-            var relationships = new SourceTableRelationshipFieldRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "SourceFieldId":
-                            relationships.SourceFieldId = reader.Value;
-                            break;
-                        case "SourceTableRelationshipId":
-                            relationships.SourceTableRelationshipId = reader.Value;
-                            break;
-                        case "TargetFieldId":
-                            relationships.TargetFieldId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'SourceTableRelationshipField'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("SourceTableRelationshipField");
-                (relationshipBuffers.SourceTableRelationshipFieldRelationships ??= new List<SourceTableRelationshipFieldRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("SourceTableRelationshipField");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'SourceTableRelationshipField'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.SourceTableRelationshipFieldRelationships ??= new List<SourceTableRelationshipFieldRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeSourceTableRelationshipFieldShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaRawDataVault>\n");
-            builder.Append("  <SourceTableRelationshipFieldList>\n");
-            foreach (var row in model.SourceTableRelationshipFieldList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'SourceTableRelationshipField' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'SourceTableRelationshipField' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <SourceTableRelationshipField Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var sourceFieldId = RequireIdentity(row.SourceField?.Id, $"Relationship 'SourceTableRelationshipField.SourceFieldId' on row 'SourceTableRelationshipField:{row.Id}' is empty.");
-                if (!saveIndexes.SourceFieldListById.TryGetValue(sourceFieldId, out var sourceFieldCanonical) || !ReferenceEquals(sourceFieldCanonical, row.SourceField))
-                {
-                    throw new InvalidOperationException($"Relationship 'SourceTableRelationshipField.SourceFieldId' on row 'SourceTableRelationshipField:{row.Id}' references an object that is not the canonical row for Id '{sourceFieldId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceFieldId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceFieldId);
-                builder.Append('"');
-                var sourceTableRelationshipId = RequireIdentity(row.SourceTableRelationship?.Id, $"Relationship 'SourceTableRelationshipField.SourceTableRelationshipId' on row 'SourceTableRelationshipField:{row.Id}' is empty.");
-                if (!saveIndexes.SourceTableRelationshipListById.TryGetValue(sourceTableRelationshipId, out var sourceTableRelationshipCanonical) || !ReferenceEquals(sourceTableRelationshipCanonical, row.SourceTableRelationship))
-                {
-                    throw new InvalidOperationException($"Relationship 'SourceTableRelationshipField.SourceTableRelationshipId' on row 'SourceTableRelationshipField:{row.Id}' references an object that is not the canonical row for Id '{sourceTableRelationshipId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("SourceTableRelationshipId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, sourceTableRelationshipId);
-                builder.Append('"');
-                var targetFieldId = RequireIdentity(row.TargetField?.Id, $"Relationship 'SourceTableRelationshipField.TargetFieldId' on row 'SourceTableRelationshipField:{row.Id}' is empty.");
-                if (!saveIndexes.SourceFieldListById.TryGetValue(targetFieldId, out var targetFieldCanonical) || !ReferenceEquals(targetFieldCanonical, row.TargetField))
-                {
-                    throw new InvalidOperationException($"Relationship 'SourceTableRelationshipField.TargetFieldId' on row 'SourceTableRelationshipField:{row.Id}' references an object that is not the canonical row for Id '{targetFieldId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("TargetFieldId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, targetFieldId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'SourceTableRelationshipField' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
-                builder.Append("    </SourceTableRelationshipField>\n");
-            }
-            builder.Append("  </SourceTableRelationshipFieldList>\n");
-            builder.Append("</MetaRawDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private sealed class RawHubRelationships
-        {
-            public RawHub Row { get; set; } = null!;
-            public string SourceTableId { get; set; } = string.Empty;
+            public FieldDataTypeDetail Row { get; set; } = null!;
+            public string FieldId { get; set; } = string.Empty;
         }
 
         private sealed class RawHubKeyPartRelationships
         {
             public RawHubKeyPart Row { get; set; } = null!;
+            public string FieldId { get; set; } = string.Empty;
             public string RawHubId { get; set; } = string.Empty;
-            public string SourceFieldId { get; set; } = string.Empty;
         }
 
         private sealed class RawHubSatelliteRelationships
         {
             public RawHubSatellite Row { get; set; } = null!;
             public string RawHubId { get; set; } = string.Empty;
-            public string SourceTableId { get; set; } = string.Empty;
         }
 
         private sealed class RawHubSatelliteAttributeRelationships
         {
             public RawHubSatelliteAttribute Row { get; set; } = null!;
+            public string FieldId { get; set; } = string.Empty;
             public string RawHubSatelliteId { get; set; } = string.Empty;
-            public string SourceFieldId { get; set; } = string.Empty;
-        }
-
-        private sealed class RawLinkRelationships
-        {
-            public RawLink Row { get; set; } = null!;
-            public string SourceTableRelationshipId { get; set; } = string.Empty;
         }
 
         private sealed class RawLinkHubRelationships
@@ -2301,83 +1531,46 @@ namespace MetaRawDataVault
         {
             public RawLinkSatellite Row { get; set; } = null!;
             public string RawLinkId { get; set; } = string.Empty;
-            public string SourceTableId { get; set; } = string.Empty;
         }
 
         private sealed class RawLinkSatelliteAttributeRelationships
         {
             public RawLinkSatelliteAttribute Row { get; set; } = null!;
+            public string FieldId { get; set; } = string.Empty;
             public string RawLinkSatelliteId { get; set; } = string.Empty;
-            public string SourceFieldId { get; set; } = string.Empty;
-        }
-
-        private sealed class SourceFieldRelationships
-        {
-            public SourceField Row { get; set; } = null!;
-            public string SourceTableId { get; set; } = string.Empty;
-        }
-
-        private sealed class SourceFieldDataTypeDetailRelationships
-        {
-            public SourceFieldDataTypeDetail Row { get; set; } = null!;
-            public string SourceFieldId { get; set; } = string.Empty;
-        }
-
-        private sealed class SourceSchemaRelationships
-        {
-            public SourceSchema Row { get; set; } = null!;
-            public string SourceSystemId { get; set; } = string.Empty;
-        }
-
-        private sealed class SourceTableRelationships
-        {
-            public SourceTable Row { get; set; } = null!;
-            public string SourceSchemaId { get; set; } = string.Empty;
-        }
-
-        private sealed class SourceTableRelationshipRelationships
-        {
-            public SourceTableRelationship Row { get; set; } = null!;
-            public string SourceTableId { get; set; } = string.Empty;
-            public string TargetTableId { get; set; } = string.Empty;
-        }
-
-        private sealed class SourceTableRelationshipFieldRelationships
-        {
-            public SourceTableRelationshipField Row { get; set; } = null!;
-            public string SourceFieldId { get; set; } = string.Empty;
-            public string SourceTableRelationshipId { get; set; } = string.Empty;
-            public string TargetFieldId { get; set; } = string.Empty;
         }
 
         private sealed class RelationshipBuffers
         {
-            public List<RawHubRelationships>? RawHubRelationships { get; set; }
+            public List<FieldDataTypeDetailRelationships>? FieldDataTypeDetailRelationships { get; set; }
             public List<RawHubKeyPartRelationships>? RawHubKeyPartRelationships { get; set; }
             public List<RawHubSatelliteRelationships>? RawHubSatelliteRelationships { get; set; }
             public List<RawHubSatelliteAttributeRelationships>? RawHubSatelliteAttributeRelationships { get; set; }
-            public List<RawLinkRelationships>? RawLinkRelationships { get; set; }
             public List<RawLinkHubRelationships>? RawLinkHubRelationships { get; set; }
             public List<RawLinkSatelliteRelationships>? RawLinkSatelliteRelationships { get; set; }
             public List<RawLinkSatelliteAttributeRelationships>? RawLinkSatelliteAttributeRelationships { get; set; }
-            public List<SourceFieldRelationships>? SourceFieldRelationships { get; set; }
-            public List<SourceFieldDataTypeDetailRelationships>? SourceFieldDataTypeDetailRelationships { get; set; }
-            public List<SourceSchemaRelationships>? SourceSchemaRelationships { get; set; }
-            public List<SourceTableRelationships>? SourceTableRelationships { get; set; }
-            public List<SourceTableRelationshipRelationships>? SourceTableRelationshipRelationships { get; set; }
-            public List<SourceTableRelationshipFieldRelationships>? SourceTableRelationshipFieldRelationships { get; set; }
         }
 
         private static void ResolveRelationshipGroup1(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
         {
-            foreach (var relationship in relationshipBuffers.RawHubRelationships ?? Enumerable.Empty<RawHubRelationships>())
+            foreach (var relationship in relationshipBuffers.FieldDataTypeDetailRelationships ?? Enumerable.Empty<FieldDataTypeDetailRelationships>())
             {
-                relationship.Row.SourceTable = RequireTarget(
-                    loadIndexes.SourceTableListById,
-                    relationship.SourceTableId,
-                    "RawHub",
+                relationship.Row.Field = RequireTarget(
+                    loadIndexes.FieldListById,
+                    relationship.FieldId,
+                    "FieldDataTypeDetail",
                     relationship.Row.Id,
-                    "SourceTableId");
+                    "FieldId");
+            }
+
+            foreach (var relationship in relationshipBuffers.RawHubKeyPartRelationships ?? Enumerable.Empty<RawHubKeyPartRelationships>())
+            {
+                relationship.Row.Field = RequireTarget(
+                    loadIndexes.FieldListById,
+                    relationship.FieldId,
+                    "RawHubKeyPart",
+                    relationship.Row.Id,
+                    "FieldId");
             }
 
             foreach (var relationship in relationshipBuffers.RawHubKeyPartRelationships ?? Enumerable.Empty<RawHubKeyPartRelationships>())
@@ -2390,16 +1583,6 @@ namespace MetaRawDataVault
                     "RawHubId");
             }
 
-            foreach (var relationship in relationshipBuffers.RawHubKeyPartRelationships ?? Enumerable.Empty<RawHubKeyPartRelationships>())
-            {
-                relationship.Row.SourceField = RequireTarget(
-                    loadIndexes.SourceFieldListById,
-                    relationship.SourceFieldId,
-                    "RawHubKeyPart",
-                    relationship.Row.Id,
-                    "SourceFieldId");
-            }
-
             foreach (var relationship in relationshipBuffers.RawHubSatelliteRelationships ?? Enumerable.Empty<RawHubSatelliteRelationships>())
             {
                 relationship.Row.RawHub = RequireTarget(
@@ -2410,14 +1593,14 @@ namespace MetaRawDataVault
                     "RawHubId");
             }
 
-            foreach (var relationship in relationshipBuffers.RawHubSatelliteRelationships ?? Enumerable.Empty<RawHubSatelliteRelationships>())
+            foreach (var relationship in relationshipBuffers.RawHubSatelliteAttributeRelationships ?? Enumerable.Empty<RawHubSatelliteAttributeRelationships>())
             {
-                relationship.Row.SourceTable = RequireTarget(
-                    loadIndexes.SourceTableListById,
-                    relationship.SourceTableId,
-                    "RawHubSatellite",
+                relationship.Row.Field = RequireTarget(
+                    loadIndexes.FieldListById,
+                    relationship.FieldId,
+                    "RawHubSatelliteAttribute",
                     relationship.Row.Id,
-                    "SourceTableId");
+                    "FieldId");
             }
 
             foreach (var relationship in relationshipBuffers.RawHubSatelliteAttributeRelationships ?? Enumerable.Empty<RawHubSatelliteAttributeRelationships>())
@@ -2430,26 +1613,6 @@ namespace MetaRawDataVault
                     "RawHubSatelliteId");
             }
 
-            foreach (var relationship in relationshipBuffers.RawHubSatelliteAttributeRelationships ?? Enumerable.Empty<RawHubSatelliteAttributeRelationships>())
-            {
-                relationship.Row.SourceField = RequireTarget(
-                    loadIndexes.SourceFieldListById,
-                    relationship.SourceFieldId,
-                    "RawHubSatelliteAttribute",
-                    relationship.Row.Id,
-                    "SourceFieldId");
-            }
-
-            foreach (var relationship in relationshipBuffers.RawLinkRelationships ?? Enumerable.Empty<RawLinkRelationships>())
-            {
-                relationship.Row.SourceTableRelationship = RequireTarget(
-                    loadIndexes.SourceTableRelationshipListById,
-                    relationship.SourceTableRelationshipId,
-                    "RawLink",
-                    relationship.Row.Id,
-                    "SourceTableRelationshipId");
-            }
-
             foreach (var relationship in relationshipBuffers.RawLinkHubRelationships ?? Enumerable.Empty<RawLinkHubRelationships>())
             {
                 relationship.Row.RawHub = RequireTarget(
@@ -2480,14 +1643,14 @@ namespace MetaRawDataVault
                     "RawLinkId");
             }
 
-            foreach (var relationship in relationshipBuffers.RawLinkSatelliteRelationships ?? Enumerable.Empty<RawLinkSatelliteRelationships>())
+            foreach (var relationship in relationshipBuffers.RawLinkSatelliteAttributeRelationships ?? Enumerable.Empty<RawLinkSatelliteAttributeRelationships>())
             {
-                relationship.Row.SourceTable = RequireTarget(
-                    loadIndexes.SourceTableListById,
-                    relationship.SourceTableId,
-                    "RawLinkSatellite",
+                relationship.Row.Field = RequireTarget(
+                    loadIndexes.FieldListById,
+                    relationship.FieldId,
+                    "RawLinkSatelliteAttribute",
                     relationship.Row.Id,
-                    "SourceTableId");
+                    "FieldId");
             }
 
             foreach (var relationship in relationshipBuffers.RawLinkSatelliteAttributeRelationships ?? Enumerable.Empty<RawLinkSatelliteAttributeRelationships>())
@@ -2500,110 +1663,12 @@ namespace MetaRawDataVault
                     "RawLinkSatelliteId");
             }
 
-            foreach (var relationship in relationshipBuffers.RawLinkSatelliteAttributeRelationships ?? Enumerable.Empty<RawLinkSatelliteAttributeRelationships>())
-            {
-                relationship.Row.SourceField = RequireTarget(
-                    loadIndexes.SourceFieldListById,
-                    relationship.SourceFieldId,
-                    "RawLinkSatelliteAttribute",
-                    relationship.Row.Id,
-                    "SourceFieldId");
-            }
-
-            foreach (var relationship in relationshipBuffers.SourceFieldRelationships ?? Enumerable.Empty<SourceFieldRelationships>())
-            {
-                relationship.Row.SourceTable = RequireTarget(
-                    loadIndexes.SourceTableListById,
-                    relationship.SourceTableId,
-                    "SourceField",
-                    relationship.Row.Id,
-                    "SourceTableId");
-            }
-
-            foreach (var relationship in relationshipBuffers.SourceFieldDataTypeDetailRelationships ?? Enumerable.Empty<SourceFieldDataTypeDetailRelationships>())
-            {
-                relationship.Row.SourceField = RequireTarget(
-                    loadIndexes.SourceFieldListById,
-                    relationship.SourceFieldId,
-                    "SourceFieldDataTypeDetail",
-                    relationship.Row.Id,
-                    "SourceFieldId");
-            }
-
-            foreach (var relationship in relationshipBuffers.SourceSchemaRelationships ?? Enumerable.Empty<SourceSchemaRelationships>())
-            {
-                relationship.Row.SourceSystem = RequireTarget(
-                    loadIndexes.SourceSystemListById,
-                    relationship.SourceSystemId,
-                    "SourceSchema",
-                    relationship.Row.Id,
-                    "SourceSystemId");
-            }
-
-            foreach (var relationship in relationshipBuffers.SourceTableRelationships ?? Enumerable.Empty<SourceTableRelationships>())
-            {
-                relationship.Row.SourceSchema = RequireTarget(
-                    loadIndexes.SourceSchemaListById,
-                    relationship.SourceSchemaId,
-                    "SourceTable",
-                    relationship.Row.Id,
-                    "SourceSchemaId");
-            }
-
-            foreach (var relationship in relationshipBuffers.SourceTableRelationshipRelationships ?? Enumerable.Empty<SourceTableRelationshipRelationships>())
-            {
-                relationship.Row.SourceTable = RequireTarget(
-                    loadIndexes.SourceTableListById,
-                    relationship.SourceTableId,
-                    "SourceTableRelationship",
-                    relationship.Row.Id,
-                    "SourceTableId");
-            }
-
-            foreach (var relationship in relationshipBuffers.SourceTableRelationshipRelationships ?? Enumerable.Empty<SourceTableRelationshipRelationships>())
-            {
-                relationship.Row.TargetTable = RequireTarget(
-                    loadIndexes.SourceTableListById,
-                    relationship.TargetTableId,
-                    "SourceTableRelationship",
-                    relationship.Row.Id,
-                    "TargetTableId");
-            }
-
-            foreach (var relationship in relationshipBuffers.SourceTableRelationshipFieldRelationships ?? Enumerable.Empty<SourceTableRelationshipFieldRelationships>())
-            {
-                relationship.Row.SourceField = RequireTarget(
-                    loadIndexes.SourceFieldListById,
-                    relationship.SourceFieldId,
-                    "SourceTableRelationshipField",
-                    relationship.Row.Id,
-                    "SourceFieldId");
-            }
-
-            foreach (var relationship in relationshipBuffers.SourceTableRelationshipFieldRelationships ?? Enumerable.Empty<SourceTableRelationshipFieldRelationships>())
-            {
-                relationship.Row.SourceTableRelationship = RequireTarget(
-                    loadIndexes.SourceTableRelationshipListById,
-                    relationship.SourceTableRelationshipId,
-                    "SourceTableRelationshipField",
-                    relationship.Row.Id,
-                    "SourceTableRelationshipId");
-            }
-
-            foreach (var relationship in relationshipBuffers.SourceTableRelationshipFieldRelationships ?? Enumerable.Empty<SourceTableRelationshipFieldRelationships>())
-            {
-                relationship.Row.TargetField = RequireTarget(
-                    loadIndexes.SourceFieldListById,
-                    relationship.TargetFieldId,
-                    "SourceTableRelationshipField",
-                    relationship.Row.Id,
-                    "TargetFieldId");
-            }
-
         }
 
         private static readonly string[] ShardFileNames =
         {
+            "Field.xml",
+            "FieldDataTypeDetail.xml",
             "RawHub.xml",
             "RawHubKeyPart.xml",
             "RawHubSatellite.xml",
@@ -2612,13 +1677,6 @@ namespace MetaRawDataVault
             "RawLinkHub.xml",
             "RawLinkSatellite.xml",
             "RawLinkSatelliteAttribute.xml",
-            "SourceField.xml",
-            "SourceFieldDataTypeDetail.xml",
-            "SourceSchema.xml",
-            "SourceSystem.xml",
-            "SourceTable.xml",
-            "SourceTableRelationship.xml",
-            "SourceTableRelationshipField.xml",
         };
 
         private static HashSet<string> BuildExpectedShardPaths(string instanceDirectoryPath)
@@ -2634,6 +1692,30 @@ namespace MetaRawDataVault
 
         private sealed class LoadState
         {
+            private HashSet<string>? fieldIds;
+
+            public void AddFieldId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'Field' contains a row with empty Id.");
+                fieldIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!fieldIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'Field' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? fieldDataTypeDetailIds;
+
+            public void AddFieldDataTypeDetailId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'FieldDataTypeDetail' contains a row with empty Id.");
+                fieldDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!fieldDataTypeDetailIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'FieldDataTypeDetail' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
             private HashSet<string>? rawHubIds;
 
             public void AddRawHubId(string? id)
@@ -2730,90 +1812,6 @@ namespace MetaRawDataVault
                 }
             }
 
-            private HashSet<string>? sourceFieldIds;
-
-            public void AddSourceFieldId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'SourceField' contains a row with empty Id.");
-                sourceFieldIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!sourceFieldIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'SourceField' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? sourceFieldDataTypeDetailIds;
-
-            public void AddSourceFieldDataTypeDetailId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'SourceFieldDataTypeDetail' contains a row with empty Id.");
-                sourceFieldDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!sourceFieldDataTypeDetailIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'SourceFieldDataTypeDetail' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? sourceSchemaIds;
-
-            public void AddSourceSchemaId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'SourceSchema' contains a row with empty Id.");
-                sourceSchemaIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!sourceSchemaIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'SourceSchema' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? sourceSystemIds;
-
-            public void AddSourceSystemId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'SourceSystem' contains a row with empty Id.");
-                sourceSystemIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!sourceSystemIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'SourceSystem' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? sourceTableIds;
-
-            public void AddSourceTableId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'SourceTable' contains a row with empty Id.");
-                sourceTableIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!sourceTableIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'SourceTable' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? sourceTableRelationshipIds;
-
-            public void AddSourceTableRelationshipId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'SourceTableRelationship' contains a row with empty Id.");
-                sourceTableRelationshipIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!sourceTableRelationshipIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'SourceTableRelationship' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? sourceTableRelationshipFieldIds;
-
-            public void AddSourceTableRelationshipFieldId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'SourceTableRelationshipField' contains a row with empty Id.");
-                sourceTableRelationshipFieldIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!sourceTableRelationshipFieldIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'SourceTableRelationshipField' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
         }
 
         private sealed class LoadIndexes
@@ -2824,6 +1822,14 @@ namespace MetaRawDataVault
             {
                 this.model = model;
             }
+
+            private Dictionary<string, Field>? fieldListById;
+
+            public Dictionary<string, Field> FieldListById => fieldListById ??= BuildById(model.FieldList, row => row.Id, "Field");
+
+            private Dictionary<string, FieldDataTypeDetail>? fieldDataTypeDetailListById;
+
+            public Dictionary<string, FieldDataTypeDetail> FieldDataTypeDetailListById => fieldDataTypeDetailListById ??= BuildById(model.FieldDataTypeDetailList, row => row.Id, "FieldDataTypeDetail");
 
             private Dictionary<string, RawHub>? rawHubListById;
 
@@ -2856,34 +1862,6 @@ namespace MetaRawDataVault
             private Dictionary<string, RawLinkSatelliteAttribute>? rawLinkSatelliteAttributeListById;
 
             public Dictionary<string, RawLinkSatelliteAttribute> RawLinkSatelliteAttributeListById => rawLinkSatelliteAttributeListById ??= BuildById(model.RawLinkSatelliteAttributeList, row => row.Id, "RawLinkSatelliteAttribute");
-
-            private Dictionary<string, SourceField>? sourceFieldListById;
-
-            public Dictionary<string, SourceField> SourceFieldListById => sourceFieldListById ??= BuildById(model.SourceFieldList, row => row.Id, "SourceField");
-
-            private Dictionary<string, SourceFieldDataTypeDetail>? sourceFieldDataTypeDetailListById;
-
-            public Dictionary<string, SourceFieldDataTypeDetail> SourceFieldDataTypeDetailListById => sourceFieldDataTypeDetailListById ??= BuildById(model.SourceFieldDataTypeDetailList, row => row.Id, "SourceFieldDataTypeDetail");
-
-            private Dictionary<string, SourceSchema>? sourceSchemaListById;
-
-            public Dictionary<string, SourceSchema> SourceSchemaListById => sourceSchemaListById ??= BuildById(model.SourceSchemaList, row => row.Id, "SourceSchema");
-
-            private Dictionary<string, SourceSystem>? sourceSystemListById;
-
-            public Dictionary<string, SourceSystem> SourceSystemListById => sourceSystemListById ??= BuildById(model.SourceSystemList, row => row.Id, "SourceSystem");
-
-            private Dictionary<string, SourceTable>? sourceTableListById;
-
-            public Dictionary<string, SourceTable> SourceTableListById => sourceTableListById ??= BuildById(model.SourceTableList, row => row.Id, "SourceTable");
-
-            private Dictionary<string, SourceTableRelationship>? sourceTableRelationshipListById;
-
-            public Dictionary<string, SourceTableRelationship> SourceTableRelationshipListById => sourceTableRelationshipListById ??= BuildById(model.SourceTableRelationshipList, row => row.Id, "SourceTableRelationship");
-
-            private Dictionary<string, SourceTableRelationshipField>? sourceTableRelationshipFieldListById;
-
-            public Dictionary<string, SourceTableRelationshipField> SourceTableRelationshipFieldListById => sourceTableRelationshipFieldListById ??= BuildById(model.SourceTableRelationshipFieldList, row => row.Id, "SourceTableRelationshipField");
 
         }
 
@@ -2896,6 +1874,14 @@ namespace MetaRawDataVault
                 this.model = model;
             }
 
+            private Dictionary<string, Field>? fieldListById;
+
+            public Dictionary<string, Field> FieldListById => fieldListById ??= BuildById(model.FieldList, row => row.Id, "Field");
+
+            private Dictionary<string, FieldDataTypeDetail>? fieldDataTypeDetailListById;
+
+            public Dictionary<string, FieldDataTypeDetail> FieldDataTypeDetailListById => fieldDataTypeDetailListById ??= BuildById(model.FieldDataTypeDetailList, row => row.Id, "FieldDataTypeDetail");
+
             private Dictionary<string, RawHub>? rawHubListById;
 
             public Dictionary<string, RawHub> RawHubListById => rawHubListById ??= BuildById(model.RawHubList, row => row.Id, "RawHub");
@@ -2927,34 +1913,6 @@ namespace MetaRawDataVault
             private Dictionary<string, RawLinkSatelliteAttribute>? rawLinkSatelliteAttributeListById;
 
             public Dictionary<string, RawLinkSatelliteAttribute> RawLinkSatelliteAttributeListById => rawLinkSatelliteAttributeListById ??= BuildById(model.RawLinkSatelliteAttributeList, row => row.Id, "RawLinkSatelliteAttribute");
-
-            private Dictionary<string, SourceField>? sourceFieldListById;
-
-            public Dictionary<string, SourceField> SourceFieldListById => sourceFieldListById ??= BuildById(model.SourceFieldList, row => row.Id, "SourceField");
-
-            private Dictionary<string, SourceFieldDataTypeDetail>? sourceFieldDataTypeDetailListById;
-
-            public Dictionary<string, SourceFieldDataTypeDetail> SourceFieldDataTypeDetailListById => sourceFieldDataTypeDetailListById ??= BuildById(model.SourceFieldDataTypeDetailList, row => row.Id, "SourceFieldDataTypeDetail");
-
-            private Dictionary<string, SourceSchema>? sourceSchemaListById;
-
-            public Dictionary<string, SourceSchema> SourceSchemaListById => sourceSchemaListById ??= BuildById(model.SourceSchemaList, row => row.Id, "SourceSchema");
-
-            private Dictionary<string, SourceSystem>? sourceSystemListById;
-
-            public Dictionary<string, SourceSystem> SourceSystemListById => sourceSystemListById ??= BuildById(model.SourceSystemList, row => row.Id, "SourceSystem");
-
-            private Dictionary<string, SourceTable>? sourceTableListById;
-
-            public Dictionary<string, SourceTable> SourceTableListById => sourceTableListById ??= BuildById(model.SourceTableList, row => row.Id, "SourceTable");
-
-            private Dictionary<string, SourceTableRelationship>? sourceTableRelationshipListById;
-
-            public Dictionary<string, SourceTableRelationship> SourceTableRelationshipListById => sourceTableRelationshipListById ??= BuildById(model.SourceTableRelationshipList, row => row.Id, "SourceTableRelationship");
-
-            private Dictionary<string, SourceTableRelationshipField>? sourceTableRelationshipFieldListById;
-
-            public Dictionary<string, SourceTableRelationshipField> SourceTableRelationshipFieldListById => sourceTableRelationshipFieldListById ??= BuildById(model.SourceTableRelationshipFieldList, row => row.Id, "SourceTableRelationshipField");
 
         }
 
@@ -2977,10 +1935,26 @@ namespace MetaRawDataVault
 
         private static bool HasRuntimeExtendedEntityShapeGroup1()
         {
-            if (HasUnexpectedProperties(typeof(RawHub),
+            if (HasUnexpectedProperties(typeof(Field),
+                "Id",
+                "DataTypeId",
+                "Name"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(FieldDataTypeDetail),
                 "Id",
                 "Name",
-                "SourceTable"))
+                "Value",
+                "Field"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(RawHub),
+                "Id",
+                "Name"))
             {
                 return true;
             }
@@ -2989,8 +1963,8 @@ namespace MetaRawDataVault
                 "Id",
                 "Name",
                 "Ordinal",
-                "RawHub",
-                "SourceField"))
+                "Field",
+                "RawHub"))
             {
                 return true;
             }
@@ -2999,8 +1973,7 @@ namespace MetaRawDataVault
                 "Id",
                 "Name",
                 "SatelliteKind",
-                "RawHub",
-                "SourceTable"))
+                "RawHub"))
             {
                 return true;
             }
@@ -3009,8 +1982,8 @@ namespace MetaRawDataVault
                 "Id",
                 "Name",
                 "Ordinal",
-                "RawHubSatellite",
-                "SourceField"))
+                "Field",
+                "RawHubSatellite"))
             {
                 return true;
             }
@@ -3018,8 +1991,7 @@ namespace MetaRawDataVault
             if (HasUnexpectedProperties(typeof(RawLink),
                 "Id",
                 "LinkKind",
-                "Name",
-                "SourceTableRelationship"))
+                "Name"))
             {
                 return true;
             }
@@ -3038,8 +2010,7 @@ namespace MetaRawDataVault
                 "Id",
                 "Name",
                 "SatelliteKind",
-                "RawLink",
-                "SourceTable"))
+                "RawLink"))
             {
                 return true;
             }
@@ -3048,71 +2019,8 @@ namespace MetaRawDataVault
                 "Id",
                 "Name",
                 "Ordinal",
-                "RawLinkSatellite",
-                "SourceField"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(SourceField),
-                "Id",
-                "DataTypeId",
-                "IsNullable",
-                "Name",
-                "Ordinal",
-                "SourceTable"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(SourceFieldDataTypeDetail),
-                "Id",
-                "Name",
-                "Value",
-                "SourceField"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(SourceSchema),
-                "Id",
-                "Name",
-                "SourceSystem"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(SourceSystem),
-                "Id",
-                "Description",
-                "Name"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(SourceTable),
-                "Id",
-                "Name",
-                "SourceSchema"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(SourceTableRelationship),
-                "Id",
-                "Name",
-                "SourceTable",
-                "TargetTable"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(SourceTableRelationshipField),
-                "Id",
-                "Ordinal",
-                "SourceField",
-                "SourceTableRelationship",
-                "TargetField"))
+                "Field",
+                "RawLinkSatellite"))
             {
                 return true;
             }
@@ -3124,6 +2032,8 @@ namespace MetaRawDataVault
         {
             var knownLists = new HashSet<string>(StringComparer.Ordinal)
             {
+                "FieldList",
+                "FieldDataTypeDetailList",
                 "RawHubList",
                 "RawHubKeyPartList",
                 "RawHubSatelliteList",
@@ -3132,13 +2042,6 @@ namespace MetaRawDataVault
                 "RawLinkHubList",
                 "RawLinkSatelliteList",
                 "RawLinkSatelliteAttributeList",
-                "SourceFieldList",
-                "SourceFieldDataTypeDetailList",
-                "SourceSchemaList",
-                "SourceSystemList",
-                "SourceTableList",
-                "SourceTableRelationshipList",
-                "SourceTableRelationshipFieldList",
             };
             return typeof(MetaRawDataVaultModel).GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Any(property =>

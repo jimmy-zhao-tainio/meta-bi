@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="token-add-raw-hub-workspace" OptionId="option-add-raw-hub-workspace">
+    <OptionToken Id="token-add-field-data-type-detail-field" OptionId="option-add-field-data-type-detail-field">
+      <Token>--field</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-field-data-type-detail-id" OptionId="option-add-field-data-type-detail-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-field-data-type-detail-name" OptionId="option-add-field-data-type-detail-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-field-data-type-detail-value" OptionId="option-add-field-data-type-detail-value">
+      <Token>--value</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-field-data-type-detail-workspace" OptionId="option-add-field-data-type-detail-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-field-data-type-id" OptionId="option-add-field-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-field-id" OptionId="option-add-field-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-field-name" OptionId="option-add-field-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-field-workspace" OptionId="option-add-field-workspace">
       <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="token-add-raw-hub-id" OptionId="option-add-raw-hub-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-hub-name" OptionId="option-add-raw-hub-name">
-      <Token>--name</Token>
+    <OptionToken Id="token-add-raw-hub-key-part-field" OptionId="option-add-raw-hub-key-part-field">
+      <Token>--field</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-hub-source-table" OptionId="option-add-raw-hub-source-table">
-      <Token>--source-table</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-hub-key-part-workspace" OptionId="option-add-raw-hub-key-part-workspace">
-      <Token>--workspace</Token>
+    <OptionToken Id="token-add-raw-hub-key-part-hub" OptionId="option-add-raw-hub-key-part-hub">
+      <Token>--hub</Token>
     </OptionToken>
     <OptionToken Id="token-add-raw-hub-key-part-id" OptionId="option-add-raw-hub-key-part-id">
       <Token>--id</Token>
@@ -25,32 +46,17 @@
     <OptionToken Id="token-add-raw-hub-key-part-ordinal" OptionId="option-add-raw-hub-key-part-ordinal">
       <Token>--ordinal</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-hub-key-part-hub" OptionId="option-add-raw-hub-key-part-hub">
-      <Token>--hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-hub-key-part-source-field" OptionId="option-add-raw-hub-key-part-source-field">
-      <Token>--source-field</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-hub-satellite-workspace" OptionId="option-add-raw-hub-satellite-workspace">
+    <OptionToken Id="token-add-raw-hub-key-part-workspace" OptionId="option-add-raw-hub-key-part-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-hub-satellite-id" OptionId="option-add-raw-hub-satellite-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-hub-satellite-name" OptionId="option-add-raw-hub-satellite-name">
+    <OptionToken Id="token-add-raw-hub-name" OptionId="option-add-raw-hub-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-hub-satellite-satellite-kind" OptionId="option-add-raw-hub-satellite-satellite-kind">
-      <Token>--satellite-kind</Token>
+    <OptionToken Id="token-add-raw-hub-satellite-attribute-field" OptionId="option-add-raw-hub-satellite-attribute-field">
+      <Token>--field</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-hub-satellite-hub" OptionId="option-add-raw-hub-satellite-hub">
-      <Token>--hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-hub-satellite-source-table" OptionId="option-add-raw-hub-satellite-source-table">
-      <Token>--source-table</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-hub-satellite-attribute-workspace" OptionId="option-add-raw-hub-satellite-attribute-workspace">
-      <Token>--workspace</Token>
+    <OptionToken Id="token-add-raw-hub-satellite-attribute-hub-satellite" OptionId="option-add-raw-hub-satellite-attribute-hub-satellite">
+      <Token>--hub-satellite</Token>
     </OptionToken>
     <OptionToken Id="token-add-raw-hub-satellite-attribute-id" OptionId="option-add-raw-hub-satellite-attribute-id">
       <Token>--id</Token>
@@ -61,13 +67,43 @@
     <OptionToken Id="token-add-raw-hub-satellite-attribute-ordinal" OptionId="option-add-raw-hub-satellite-attribute-ordinal">
       <Token>--ordinal</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-hub-satellite-attribute-hub-satellite" OptionId="option-add-raw-hub-satellite-attribute-hub-satellite">
-      <Token>--hub-satellite</Token>
+    <OptionToken Id="token-add-raw-hub-satellite-attribute-workspace" OptionId="option-add-raw-hub-satellite-attribute-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-hub-satellite-attribute-source-field" OptionId="option-add-raw-hub-satellite-attribute-source-field">
-      <Token>--source-field</Token>
+    <OptionToken Id="token-add-raw-hub-satellite-hub" OptionId="option-add-raw-hub-satellite-hub">
+      <Token>--hub</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-link-workspace" OptionId="option-add-raw-link-workspace">
+    <OptionToken Id="token-add-raw-hub-satellite-id" OptionId="option-add-raw-hub-satellite-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-hub-satellite-name" OptionId="option-add-raw-hub-satellite-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-hub-satellite-satellite-kind" OptionId="option-add-raw-hub-satellite-satellite-kind">
+      <Token>--satellite-kind</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-hub-satellite-workspace" OptionId="option-add-raw-hub-satellite-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-hub-workspace" OptionId="option-add-raw-hub-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-hub-hub" OptionId="option-add-raw-link-hub-hub">
+      <Token>--hub</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-hub-id" OptionId="option-add-raw-link-hub-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-hub-link" OptionId="option-add-raw-link-hub-link">
+      <Token>--link</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-hub-ordinal" OptionId="option-add-raw-link-hub-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-hub-role-name" OptionId="option-add-raw-link-hub-role-name">
+      <Token>--role-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-hub-workspace" OptionId="option-add-raw-link-hub-workspace">
       <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="token-add-raw-link-id" OptionId="option-add-raw-link-id">
@@ -79,50 +115,14 @@
     <OptionToken Id="token-add-raw-link-name" OptionId="option-add-raw-link-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-link-source-relationship" OptionId="option-add-raw-link-source-relationship">
-      <Token>--source-relationship</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-workspace" OptionId="option-add-raw-link-hub-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-id" OptionId="option-add-raw-link-hub-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-ordinal" OptionId="option-add-raw-link-hub-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-role-name" OptionId="option-add-raw-link-hub-role-name">
-      <Token>--role-name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-hub" OptionId="option-add-raw-link-hub-hub">
-      <Token>--hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-link" OptionId="option-add-raw-link-hub-link">
-      <Token>--link</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-satellite-workspace" OptionId="option-add-raw-link-satellite-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-satellite-id" OptionId="option-add-raw-link-satellite-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-satellite-name" OptionId="option-add-raw-link-satellite-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-satellite-satellite-kind" OptionId="option-add-raw-link-satellite-satellite-kind">
-      <Token>--satellite-kind</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-satellite-link" OptionId="option-add-raw-link-satellite-link">
-      <Token>--link</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-satellite-source-table" OptionId="option-add-raw-link-satellite-source-table">
-      <Token>--source-table</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-satellite-attribute-workspace" OptionId="option-add-raw-link-satellite-attribute-workspace">
-      <Token>--workspace</Token>
+    <OptionToken Id="token-add-raw-link-satellite-attribute-field" OptionId="option-add-raw-link-satellite-attribute-field">
+      <Token>--field</Token>
     </OptionToken>
     <OptionToken Id="token-add-raw-link-satellite-attribute-id" OptionId="option-add-raw-link-satellite-attribute-id">
       <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-satellite-attribute-link-satellite" OptionId="option-add-raw-link-satellite-attribute-link-satellite">
+      <Token>--link-satellite</Token>
     </OptionToken>
     <OptionToken Id="token-add-raw-link-satellite-attribute-name" OptionId="option-add-raw-link-satellite-attribute-name">
       <Token>--name</Token>
@@ -130,116 +130,26 @@
     <OptionToken Id="token-add-raw-link-satellite-attribute-ordinal" OptionId="option-add-raw-link-satellite-attribute-ordinal">
       <Token>--ordinal</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-link-satellite-attribute-link-satellite" OptionId="option-add-raw-link-satellite-attribute-link-satellite">
-      <Token>--link-satellite</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-satellite-attribute-source-field" OptionId="option-add-raw-link-satellite-attribute-source-field">
-      <Token>--source-field</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-field-workspace" OptionId="option-add-source-field-workspace">
+    <OptionToken Id="token-add-raw-link-satellite-attribute-workspace" OptionId="option-add-raw-link-satellite-attribute-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-add-source-field-id" OptionId="option-add-source-field-id">
+    <OptionToken Id="token-add-raw-link-satellite-id" OptionId="option-add-raw-link-satellite-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="token-add-source-field-data-type-id" OptionId="option-add-source-field-data-type-id">
-      <Token>--data-type-id</Token>
+    <OptionToken Id="token-add-raw-link-satellite-link" OptionId="option-add-raw-link-satellite-link">
+      <Token>--link</Token>
     </OptionToken>
-    <OptionToken Id="token-add-source-field-is-nullable" OptionId="option-add-source-field-is-nullable">
-      <Token>--is-nullable</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-field-name" OptionId="option-add-source-field-name">
+    <OptionToken Id="token-add-raw-link-satellite-name" OptionId="option-add-raw-link-satellite-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-add-source-field-ordinal" OptionId="option-add-source-field-ordinal">
-      <Token>--ordinal</Token>
+    <OptionToken Id="token-add-raw-link-satellite-satellite-kind" OptionId="option-add-raw-link-satellite-satellite-kind">
+      <Token>--satellite-kind</Token>
     </OptionToken>
-    <OptionToken Id="token-add-source-field-table" OptionId="option-add-source-field-table">
-      <Token>--table</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-field-data-type-detail-workspace" OptionId="option-add-source-field-data-type-detail-workspace">
+    <OptionToken Id="token-add-raw-link-satellite-workspace" OptionId="option-add-raw-link-satellite-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-add-source-field-data-type-detail-id" OptionId="option-add-source-field-data-type-detail-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-field-data-type-detail-name" OptionId="option-add-source-field-data-type-detail-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-field-data-type-detail-value" OptionId="option-add-source-field-data-type-detail-value">
-      <Token>--value</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-field-data-type-detail-field" OptionId="option-add-source-field-data-type-detail-field">
-      <Token>--field</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-schema-workspace" OptionId="option-add-source-schema-workspace">
+    <OptionToken Id="token-add-raw-link-workspace" OptionId="option-add-raw-link-workspace">
       <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-schema-id" OptionId="option-add-source-schema-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-schema-name" OptionId="option-add-source-schema-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-schema-system" OptionId="option-add-source-schema-system">
-      <Token>--system</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-system-workspace" OptionId="option-add-source-system-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-system-id" OptionId="option-add-source-system-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-system-description" OptionId="option-add-source-system-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-system-name" OptionId="option-add-source-system-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-workspace" OptionId="option-add-source-table-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-id" OptionId="option-add-source-table-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-name" OptionId="option-add-source-table-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-schema" OptionId="option-add-source-table-schema">
-      <Token>--schema</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-workspace" OptionId="option-add-source-table-relationship-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-id" OptionId="option-add-source-table-relationship-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-name" OptionId="option-add-source-table-relationship-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-source-table" OptionId="option-add-source-table-relationship-source-table">
-      <Token>--source-table</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-target-table" OptionId="option-add-source-table-relationship-target-table">
-      <Token>--target-table</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-field-workspace" OptionId="option-add-source-table-relationship-field-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-field-id" OptionId="option-add-source-table-relationship-field-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-field-ordinal" OptionId="option-add-source-table-relationship-field-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-field-source-field" OptionId="option-add-source-table-relationship-field-source-field">
-      <Token>--source-field</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-field-relationship" OptionId="option-add-source-table-relationship-field-relationship">
-      <Token>--relationship</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-source-table-relationship-field-target-field" OptionId="option-add-source-table-relationship-field-target-field">
-      <Token>--target-field</Token>
     </OptionToken>
   </OptionTokenList>
 </MetaCli>

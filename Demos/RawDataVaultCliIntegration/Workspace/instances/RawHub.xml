@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaRawDataVault>
   <RawHubList>
-    <RawHub Id="CustomerHub" SourceTableId="CustomerTable">
+    <RawHub Id="CustomerHub">
       <Name>Customer</Name>
     </RawHub>
-    <RawHub Id="DepartmentHub" SourceTableId="DepartmentTable">
+    <RawHub Id="DepartmentHub">
       <Name>Department</Name>
     </RawHub>
-    <RawHub Id="EmployeeHub" SourceTableId="EmployeeTable">
+    <RawHub Id="EmployeeHub">
       <Name>Employee</Name>
     </RawHub>
-    <RawHub Id="InvoiceHub" SourceTableId="InvoiceTable">
+    <RawHub Id="InvoiceHub">
       <Name>Invoice</Name>
     </RawHub>
-    <RawHub Id="OrderHub" SourceTableId="OrderTable">
+    <RawHub Id="OrderHub">
       <Name>Order</Name>
     </RawHub>
-    <RawHub Id="ProductHub" SourceTableId="ProductTable">
+    <RawHub Id="ProductHub">
       <Name>Product</Name>
     </RawHub>
-    <RawHub Id="ShipmentHub" SourceTableId="ShipmentTable">
+    <RawHub Id="ShipmentHub">
       <Name>Shipment</Name>
     </RawHub>
-    <RawHub Id="SupplierHub" SourceTableId="SupplierTable">
+    <RawHub Id="SupplierHub">
       <Name>Supplier</Name>
     </RawHub>
   </RawHubList>

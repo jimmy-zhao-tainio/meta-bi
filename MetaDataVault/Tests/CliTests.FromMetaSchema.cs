@@ -28,13 +28,14 @@ public sealed partial class CliTests
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
             Assert.Equal("MetaRawDataVault", workspace.Model.Name);
 
-            Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("SourceSystem").Count);
-            Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("SourceSchema").Count);
-            Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("SourceTable").Count);
-            Assert.Equal(5, workspace.Instance.GetOrCreateEntityRecords("SourceField").Count);
+            Assert.Null(workspace.Model.FindEntity("SourceSystem"));
+            Assert.Null(workspace.Model.FindEntity("SourceSchema"));
+            Assert.Null(workspace.Model.FindEntity("SourceTable"));
+            Assert.Null(workspace.Model.FindEntity("SourceField"));
+            Assert.Equal(5, workspace.Instance.GetOrCreateEntityRecords("Field").Count);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").Count);
-            Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("RawLink").Count);
+            Assert.Single(workspace.Instance.GetOrCreateEntityRecords("RawLink"));
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").Count);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHubSatellite").Count);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").Count);
@@ -95,8 +96,8 @@ public sealed partial class CliTests
             var defaultWorkspace = await new WorkspaceService().LoadAsync(defaultTargetPath, searchUpward: false);
             var includeViewsWorkspace = await new WorkspaceService().LoadAsync(includeViewsTargetPath, searchUpward: false);
 
-            Assert.Equal(2, defaultWorkspace.Instance.GetOrCreateEntityRecords("SourceTable").Count);
-            Assert.Equal(3, includeViewsWorkspace.Instance.GetOrCreateEntityRecords("SourceTable").Count);
+            Assert.Equal(5, defaultWorkspace.Instance.GetOrCreateEntityRecords("Field").Count);
+            Assert.Equal(7, includeViewsWorkspace.Instance.GetOrCreateEntityRecords("Field").Count);
             Assert.Equal(2, defaultWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
             Assert.Equal(2, includeViewsWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
         }
@@ -126,7 +127,7 @@ public sealed partial class CliTests
             Assert.Equal(0, result.ExitCode);
 
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
-            Assert.Equal(6, workspace.Instance.GetOrCreateEntityRecords("SourceField").Count);
+            Assert.Equal(6, workspace.Instance.GetOrCreateEntityRecords("Field").Count);
             Assert.Equal(3, workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").Count);
         }
         finally
@@ -156,7 +157,7 @@ public sealed partial class CliTests
             Assert.DoesNotContain("Error:", result.Output, StringComparison.OrdinalIgnoreCase);
 
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
-            Assert.Equal(6, workspace.Instance.GetOrCreateEntityRecords("SourceField").Count);
+            Assert.Equal(6, workspace.Instance.GetOrCreateEntityRecords("Field").Count);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").Count);
         }
         finally

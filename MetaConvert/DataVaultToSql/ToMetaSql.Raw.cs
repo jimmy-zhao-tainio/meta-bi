@@ -10,7 +10,7 @@ public static partial class Converter
         ArgumentNullException.ThrowIfNull(model);
         ArgumentNullException.ThrowIfNull(context);
 
-        var sourceFieldDetailsByFieldId = GroupById(model.SourceFieldDataTypeDetailList, row => row.SourceField.Id);
+        var fieldDetailsByFieldId = GroupById(model.FieldDataTypeDetailList, row => row.Field.Id);
         var rawHubKeyPartsByHubId = GroupById(model.RawHubKeyPartList, row => row.RawHub.Id);
         var rawHubSatelliteAttributesBySatelliteId = GroupById(model.RawHubSatelliteAttributeList, row => row.RawHubSatellite.Id);
         var rawHubSatellitesByHubId = GroupById(model.RawHubSatelliteList, row => row.RawHub.Id);
@@ -21,7 +21,7 @@ public static partial class Converter
         PopulateRawMetaSqlModel(
             model,
             context,
-            sourceFieldDetailsByFieldId,
+            fieldDetailsByFieldId,
             rawHubKeyPartsByHubId,
             rawHubSatellitesByHubId,
             rawHubSatelliteAttributesBySatelliteId,

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaRawDataVault>
   <RawLinkSatelliteList>
-    <RawLinkSatellite Id="EmployeeDepartmentSat" RawLinkId="EmployeeDepartmentLink" SourceTableId="EmployeeTable">
+    <RawLinkSatellite Id="EmployeeDepartmentSat" RawLinkId="EmployeeDepartmentLink">
       <Name>EmployeeDepartmentAssignment</Name>
       <SatelliteKind>standard</SatelliteKind>
     </RawLinkSatellite>
-    <RawLinkSatellite Id="InvoiceOrderSat" RawLinkId="InvoiceOrderLink" SourceTableId="InvoiceTable">
+    <RawLinkSatellite Id="InvoiceOrderSat" RawLinkId="InvoiceOrderLink">
       <Name>InvoiceOrderAmount</Name>
       <SatelliteKind>standard</SatelliteKind>
     </RawLinkSatellite>
-    <RawLinkSatellite Id="OrderCustomerSat" RawLinkId="OrderCustomerLink" SourceTableId="OrderTable">
+    <RawLinkSatellite Id="OrderCustomerSat" RawLinkId="OrderCustomerLink">
       <Name>OrderCustomerStatus</Name>
       <SatelliteKind>standard</SatelliteKind>
     </RawLinkSatellite>
-    <RawLinkSatellite Id="ProductSupplierSat" RawLinkId="ProductSupplierLink" SourceTableId="ProductTable">
+    <RawLinkSatellite Id="ProductSupplierSat" RawLinkId="ProductSupplierLink">
       <Name>ProductSupplierTerms</Name>
       <SatelliteKind>standard</SatelliteKind>
     </RawLinkSatellite>
-    <RawLinkSatellite Id="ShipmentOrderSat" RawLinkId="ShipmentOrderLink" SourceTableId="ShipmentTable">
+    <RawLinkSatellite Id="ShipmentOrderSat" RawLinkId="ShipmentOrderLink">
       <Name>ShipmentOrderTracking</Name>
       <SatelliteKind>standard</SatelliteKind>
     </RawLinkSatellite>

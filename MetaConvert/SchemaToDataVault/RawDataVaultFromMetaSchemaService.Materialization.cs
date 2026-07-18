@@ -19,7 +19,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         ArgumentNullException.ThrowIfNull(options);
 
         var sourceIndex = BuildSourceIndex(metaSchemaModel, options.IncludeViews);
-        var draft = CopySourceStructure(sourceIndex);
+        var draft = CreateRawDraft(sourceIndex);
         var candidateKeyAssessmentsByTableId = AssessCandidateKeys(metaSchemaModel, sourceIndex, options);
         var tableReportRows = MaterializeHubsAndSatellites(draft, sourceIndex, candidateKeyAssessmentsByTableId, options);
         var relationshipReportRows = MaterializeLinks(draft, sourceIndex);
@@ -220,12 +220,10 @@ public sealed partial class RawDataVaultFromMetaSchemaService
                 continue;
             }
 
-            var sourceTable = draft.SourceTablesById[table.Id];
             var hub = new MRDV.RawHub
             {
                 Id = BuildRawHubId(table.Id),
                 Name = table.Name,
-                SourceTable = sourceTable,
             };
             draft.RawHubs.Add(hub);
             draft.RawHubsById[hub.Id] = hub;
@@ -243,14 +241,14 @@ public sealed partial class RawDataVaultFromMetaSchemaService
 
             for (var index = 0; index < orderedKeyFields.Count; index++)
             {
-                var sourceField = draft.SourceFieldsById[orderedKeyFields[index].Id];
+                var field = draft.FieldsById[orderedKeyFields[index].Id];
                 draft.RawHubKeyParts.Add(new MRDV.RawHubKeyPart
                 {
-                    Id = BuildRawHubKeyPartId(hub.Id, sourceField.Id),
-                    Name = sourceField.Name,
+                    Id = BuildRawHubKeyPartId(hub.Id, field.Id),
+                    Name = field.Name,
                     Ordinal = (index + 1).ToString(CultureInfo.InvariantCulture),
                     RawHub = hub,
-                    SourceField = sourceField,
+                    Field = field,
                 });
             }
 
@@ -278,20 +276,19 @@ public sealed partial class RawDataVaultFromMetaSchemaService
                 Name = table.Name,
                 SatelliteKind = StandardSatelliteKind,
                 RawHub = hub,
-                SourceTable = sourceTable,
             };
             draft.RawHubSatellites.Add(satellite);
 
             for (var index = 0; index < satelliteFields.Count; index++)
             {
-                var sourceField = draft.SourceFieldsById[satelliteFields[index].Id];
+                var field = draft.FieldsById[satelliteFields[index].Id];
                 draft.RawHubSatelliteAttributes.Add(new MRDV.RawHubSatelliteAttribute
                 {
-                    Id = BuildRawHubSatelliteAttributeId(satellite.Id, sourceField.Id),
-                    Name = sourceField.Name,
+                    Id = BuildRawHubSatelliteAttributeId(satellite.Id, field.Id),
+                    Name = field.Name,
                     Ordinal = (index + 1).ToString(CultureInfo.InvariantCulture),
                     RawHubSatellite = satellite,
-                    SourceField = sourceField,
+                    Field = field,
                 });
             }
 
@@ -327,13 +324,11 @@ public sealed partial class RawDataVaultFromMetaSchemaService
                 continue;
             }
 
-            var sourceRelationship = draft.SourceRelationshipsById[relationship.Id];
             var link = new MRDV.RawLink
             {
                 Id = BuildRawLinkId(relationship.Id),
                 Name = rawLinkNamesByRelationshipId[relationship.Id],
                 LinkKind = StandardLinkKind,
-                SourceTableRelationship = sourceRelationship,
             };
             draft.RawLinks.Add(link);
 

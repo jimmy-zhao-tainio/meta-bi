@@ -15,7 +15,7 @@ public static partial class Converter
     private static void PopulateRawMetaSqlModel(
         MetaRawDataVaultModel model,
         ConversionContext context,
-        IReadOnlyDictionary<string, List<SourceFieldDataTypeDetail>> sourceFieldDetailsByFieldId,
+        IReadOnlyDictionary<string, List<FieldDataTypeDetail>> fieldDetailsByFieldId,
         IReadOnlyDictionary<string, List<RawHubKeyPart>> rawHubKeyPartsByHubId,
         IReadOnlyDictionary<string, List<RawHubSatellite>> rawHubSatellitesByHubId,
         IReadOnlyDictionary<string, List<RawHubSatelliteAttribute>> rawHubSatelliteAttributesBySatelliteId,
@@ -57,12 +57,12 @@ public static partial class Converter
 
             foreach (var keyPart in GetGroup(rawHubKeyPartsByHubId, hub.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
             {
-                AddSourceFieldColumn(
+                AddFieldColumn(
                     context,
                     table,
-                    keyPart.SourceField,
+                    keyPart.Field,
                     reservedColumnNames,
-                    sourceFieldDetailsByFieldId,
+                    fieldDetailsByFieldId,
                     protectedColumnNames);
             }
 
@@ -132,12 +132,12 @@ public static partial class Converter
 
             foreach (var attribute in GetGroup(rawHubSatelliteAttributesBySatelliteId, satellite.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
             {
-                AddSourceFieldColumn(
+                AddFieldColumn(
                     context,
                     table,
-                    attribute.SourceField,
+                    attribute.Field,
                     reservedColumnNames,
-                    sourceFieldDetailsByFieldId,
+                    fieldDetailsByFieldId,
                     protectedColumnNames);
             }
 
@@ -303,12 +303,12 @@ public static partial class Converter
 
             foreach (var attribute in GetGroup(rawLinkSatelliteAttributesBySatelliteId, satellite.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
             {
-                AddSourceFieldColumn(
+                AddFieldColumn(
                     context,
                     table,
-                    attribute.SourceField,
+                    attribute.Field,
                     reservedColumnNames,
-                    sourceFieldDetailsByFieldId,
+                    fieldDetailsByFieldId,
                     protectedColumnNames);
             }
 
@@ -398,26 +398,26 @@ public static partial class Converter
         return table;
     }
 
-    private static TableColumn AddSourceFieldColumn(
+    private static TableColumn AddFieldColumn(
         ConversionContext context,
         Table table,
-        SourceField sourceField,
+        Field field,
         HashSet<string> reservedColumnNames,
-        IReadOnlyDictionary<string, List<SourceFieldDataTypeDetail>> sourceFieldDetailsByFieldId,
+        IReadOnlyDictionary<string, List<FieldDataTypeDetail>> fieldDetailsByFieldId,
         IReadOnlySet<string>? protectedColumnNames = null)
     {
-        var loweredType = ResolveSourceFieldMetaDataType(context, sourceField.DataTypeId);
+        var loweredType = ResolveFieldMetaDataType(context, field.DataTypeId);
         var column = AddColumn(
             context,
             table,
-            sourceField.Name,
+            field.Name,
             loweredType.DataTypeId,
-            sourceField.IsNullable,
+            "true",
             reservedColumnNames,
             protectedColumnNames);
 
         var detailNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        foreach (var detail in GetGroup(sourceFieldDetailsByFieldId, sourceField.Id).OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
+        foreach (var detail in GetGroup(fieldDetailsByFieldId, field.Id).OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
         {
             AddDetail(context, column, detail.Name, detail.Value);
             detailNames.Add(detail.Name);
@@ -492,11 +492,11 @@ public static partial class Converter
             : context.BusinessTypeLowering.LowerRequired(metaDataTypeId);
     }
 
-    private static LoweredSqlServerType ResolveSourceFieldMetaDataType(ConversionContext context, string metaDataTypeId)
+    private static LoweredSqlServerType ResolveFieldMetaDataType(ConversionContext context, string metaDataTypeId)
     {
         return context.BusinessTypeLowering is null
             ? new LoweredSqlServerType(metaDataTypeId, [])
-            : context.BusinessTypeLowering.LowerRawSourceRequired(metaDataTypeId);
+            : context.BusinessTypeLowering.LowerRawFieldRequired(metaDataTypeId);
     }
 
     private static TableColumn AddColumn(

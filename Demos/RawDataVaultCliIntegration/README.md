@@ -7,7 +7,7 @@ Set the SQL connection variables in the caller shell:
 
 ```powershell
 $env:META_BI_DEMO_MASTER_SQL = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
-$env:META_BI_RAW_DV_SQL = "Server=.;Database=RawDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:META_BI_RAW_DV_SQL = "Server=.;Database=RawDataVaultCliIntegration;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
 ```
 
 Run from the mesh folder:
@@ -20,7 +20,7 @@ meta-mesh run --operation build-and-deploy-raw-data-vault
 
 The operation authors:
 
-- source systems, schemas, tables, fields, and datatype details;
+- independent typed fields and datatype details;
 - raw hubs and hub key parts;
 - raw links and link hubs;
 - raw hub satellites and link satellites;

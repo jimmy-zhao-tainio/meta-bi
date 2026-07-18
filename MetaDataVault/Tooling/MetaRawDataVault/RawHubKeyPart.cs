@@ -19,9 +19,9 @@ namespace MetaRawDataVault
 
         public string Ordinal { get; set; } = string.Empty;
 
-        public RawHub RawHub { get; set; } = null!;
+        public Field Field { get; set; } = null!;
 
-        public SourceField SourceField { get; set; } = null!;
+        public RawHub RawHub { get; set; } = null!;
 
     }
 }

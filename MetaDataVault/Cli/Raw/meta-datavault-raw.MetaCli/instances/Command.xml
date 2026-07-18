@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <CommandList>
-    <Command Id="cmd-help" ApplicationId="app-meta-datavault-raw">
-      <Description>Show help.</Description>
-      <Name>help</Name>
-      <Token>help</Token>
+    <Command Id="cmd-add-field" ApplicationId="app-meta-datavault-raw">
+      <Description>Add a Field row.</Description>
+      <Name>add-field</Name>
+      <Token>add-field</Token>
     </Command>
-    <Command Id="cmd-new-workspace" ApplicationId="app-meta-datavault-raw">
-      <Description>Create a MetaRawDataVault workspace.</Description>
-      <Name>new-workspace</Name>
-      <Token>new-workspace</Token>
+    <Command Id="cmd-add-field-data-type-detail" ApplicationId="app-meta-datavault-raw">
+      <Description>Add a FieldDataTypeDetail row.</Description>
+      <Name>add-field-data-type-detail</Name>
+      <Token>add-field-data-type-detail</Token>
     </Command>
     <Command Id="cmd-add-raw-hub" ApplicationId="app-meta-datavault-raw">
       <Description>Add a RawHub row.</Description>
@@ -51,40 +51,15 @@
       <Name>add-link-satellite-attribute</Name>
       <Token>add-link-satellite-attribute</Token>
     </Command>
-    <Command Id="cmd-add-source-field" ApplicationId="app-meta-datavault-raw">
-      <Description>Add a SourceField row.</Description>
-      <Name>add-source-field</Name>
-      <Token>add-source-field</Token>
+    <Command Id="cmd-help" ApplicationId="app-meta-datavault-raw">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
     </Command>
-    <Command Id="cmd-add-source-field-data-type-detail" ApplicationId="app-meta-datavault-raw">
-      <Description>Add a SourceFieldDataTypeDetail row.</Description>
-      <Name>add-source-field-data-type-detail</Name>
-      <Token>add-source-field-data-type-detail</Token>
-    </Command>
-    <Command Id="cmd-add-source-schema" ApplicationId="app-meta-datavault-raw">
-      <Description>Add a SourceSchema row.</Description>
-      <Name>add-source-schema</Name>
-      <Token>add-source-schema</Token>
-    </Command>
-    <Command Id="cmd-add-source-system" ApplicationId="app-meta-datavault-raw">
-      <Description>Add a SourceSystem row.</Description>
-      <Name>add-source-system</Name>
-      <Token>add-source-system</Token>
-    </Command>
-    <Command Id="cmd-add-source-table" ApplicationId="app-meta-datavault-raw">
-      <Description>Add a SourceTable row.</Description>
-      <Name>add-source-table</Name>
-      <Token>add-source-table</Token>
-    </Command>
-    <Command Id="cmd-add-source-table-relationship" ApplicationId="app-meta-datavault-raw">
-      <Description>Add a SourceTableRelationship row.</Description>
-      <Name>add-source-table-relationship</Name>
-      <Token>add-source-table-relationship</Token>
-    </Command>
-    <Command Id="cmd-add-source-table-relationship-field" ApplicationId="app-meta-datavault-raw">
-      <Description>Add a SourceTableRelationshipField row.</Description>
-      <Name>add-source-table-relationship-field</Name>
-      <Token>add-source-table-relationship-field</Token>
+    <Command Id="cmd-new-workspace" ApplicationId="app-meta-datavault-raw">
+      <Description>Create a MetaRawDataVault workspace.</Description>
+      <Name>new-workspace</Name>
+      <Token>new-workspace</Token>
     </Command>
   </CommandList>
 </MetaCli>

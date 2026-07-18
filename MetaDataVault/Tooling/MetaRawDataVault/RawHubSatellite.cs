@@ -21,7 +21,5 @@ namespace MetaRawDataVault
 
         public RawHub RawHub { get; set; } = null!;
 
-        public SourceTable SourceTable { get; set; } = null!;
-
     }
 }

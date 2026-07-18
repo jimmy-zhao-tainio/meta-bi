@@ -137,7 +137,7 @@ public sealed class ConvertToMetaSqlTests
     }
 
     [Fact]
-    public async Task ConvertAsync_UsesUnderscorePrefixWhenSourceColumnCollidesWithTechnicalName()
+    public async Task ConvertAsync_UsesUnderscorePrefixWhenFieldCollidesWithTechnicalName()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
@@ -148,44 +148,23 @@ public sealed class ConvertToMetaSqlTests
         {
             var model = MetaRawDataVaultModel.CreateEmpty();
 
-            var sourceSystem = new SourceSystem
+            var field = new Field
             {
-                Id = "SourceSystem:CRM",
-                Name = "CRM",
-            };
-            var sourceSchema = new SourceSchema
-            {
-                Id = "SourceSchema:CRM:dbo",
-                Name = "dbo",
-                SourceSystem = sourceSystem,
-            };
-            var sourceTable = new SourceTable
-            {
-                Id = "SourceTable:Customer",
-                Name = "Customer",
-                SourceSchema = sourceSchema,
-            };
-            var sourceField = new SourceField
-            {
-                Id = "SourceField:Customer:HashKey",
+                Id = "Field:Customer:HashKey",
                 Name = "HashKey",
-                Ordinal = "1",
                 DataTypeId = "sqlserver:type:nvarchar",
-                IsNullable = "false",
-                SourceTable = sourceTable,
             };
-            var sourceFieldDetail = new SourceFieldDataTypeDetail
+            var fieldDetail = new FieldDataTypeDetail
             {
-                Id = "SourceFieldDetail:Customer:HashKey:Length",
+                Id = "FieldDetail:Customer:HashKey:Length",
                 Name = "Length",
                 Value = "50",
-                SourceField = sourceField,
+                Field = field,
             };
             var rawHub = new RawHub
             {
                 Id = "RawHub:Customer",
                 Name = "Customer",
-                SourceTable = sourceTable,
             };
             var rawHubKeyPart = new RawHubKeyPart
             {
@@ -193,14 +172,11 @@ public sealed class ConvertToMetaSqlTests
                 Name = "HashKey",
                 Ordinal = "1",
                 RawHub = rawHub,
-                SourceField = sourceField,
+                Field = field,
             };
 
-            model.SourceSystemList.Add(sourceSystem);
-            model.SourceSchemaList.Add(sourceSchema);
-            model.SourceTableList.Add(sourceTable);
-            model.SourceFieldList.Add(sourceField);
-            model.SourceFieldDataTypeDetailList.Add(sourceFieldDetail);
+            model.FieldList.Add(field);
+            model.FieldDataTypeDetailList.Add(fieldDetail);
             model.RawHubList.Add(rawHub);
             model.RawHubKeyPartList.Add(rawHubKeyPart);
 
@@ -222,6 +198,12 @@ public sealed class ConvertToMetaSqlTests
 
             Assert.Contains("HashKey", customerHubColumnNames);
             Assert.Contains("_HashKey", customerHubColumnNames);
+
+            var businessKeyColumn = columns.Single(row =>
+                row.RelationshipIds.TryGetValue("TableId", out var tableId) &&
+                tableId == customerHub.Id &&
+                string.Equals(row.Values["Name"], "_HashKey", StringComparison.Ordinal));
+            Assert.Equal("true", businessKeyColumn.Values["IsNullable"]);
         }
         finally
         {
@@ -230,7 +212,7 @@ public sealed class ConvertToMetaSqlTests
     }
 
     [Fact]
-    public async Task ConvertAsync_LowersRawSourceSqlAliasesToDeployableSqlServerTypes()
+    public async Task ConvertAsync_LowersRawFieldSqlAliasesToDeployableSqlServerTypes()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
@@ -241,60 +223,36 @@ public sealed class ConvertToMetaSqlTests
         {
             var model = MetaRawDataVaultModel.CreateEmpty();
 
-            var sourceSystem = new SourceSystem
+            var field = new Field
             {
-                Id = "SourceSystem:CRM",
-                Name = "CRM",
-            };
-            var sourceSchema = new SourceSchema
-            {
-                Id = "SourceSchema:CRM:dbo",
-                Name = "dbo",
-                SourceSystem = sourceSystem,
-            };
-            var sourceTable = new SourceTable
-            {
-                Id = "SourceTable:Customer",
-                Name = "Customer",
-                SourceSchema = sourceSchema,
-            };
-            var sourceField = new SourceField
-            {
-                Id = "SourceField:Customer:CustomerName",
+                Id = "Field:Customer:CustomerName",
                 Name = "CustomerName",
-                Ordinal = "1",
                 DataTypeId = "sqlserver:type:Name",
-                IsNullable = "false",
-                SourceTable = sourceTable,
             };
-            var sourceFieldDetail = new SourceFieldDataTypeDetail
+            var fieldDetail = new FieldDataTypeDetail
             {
-                Id = "SourceFieldDetail:Customer:CustomerName:Length",
+                Id = "FieldDetail:Customer:CustomerName:Length",
                 Name = "Length",
                 Value = "50",
-                SourceField = sourceField,
+                Field = field,
             };
-            var sysnameSourceField = new SourceField
+            var systemNameField = new Field
             {
-                Id = "SourceField:Customer:SystemName",
+                Id = "Field:Customer:SystemName",
                 Name = "SystemName",
-                Ordinal = "2",
                 DataTypeId = "sqlserver:type:sysname",
-                IsNullable = "false",
-                SourceTable = sourceTable,
             };
-            var sysnameSourceFieldDetail = new SourceFieldDataTypeDetail
+            var systemNameFieldDetail = new FieldDataTypeDetail
             {
-                Id = "SourceFieldDetail:Customer:SystemName:Length",
+                Id = "FieldDetail:Customer:SystemName:Length",
                 Name = "Length",
                 Value = "128",
-                SourceField = sysnameSourceField,
+                Field = systemNameField,
             };
             var rawHub = new RawHub
             {
                 Id = "RawHub:Customer",
                 Name = "Customer",
-                SourceTable = sourceTable,
             };
             var rawHubKeyPart = new RawHubKeyPart
             {
@@ -302,7 +260,7 @@ public sealed class ConvertToMetaSqlTests
                 Name = "CustomerName",
                 Ordinal = "1",
                 RawHub = rawHub,
-                SourceField = sourceField,
+                Field = field,
             };
             var sysnameRawHubKeyPart = new RawHubKeyPart
             {
@@ -310,16 +268,13 @@ public sealed class ConvertToMetaSqlTests
                 Name = "SystemName",
                 Ordinal = "2",
                 RawHub = rawHub,
-                SourceField = sysnameSourceField,
+                Field = systemNameField,
             };
 
-            model.SourceSystemList.Add(sourceSystem);
-            model.SourceSchemaList.Add(sourceSchema);
-            model.SourceTableList.Add(sourceTable);
-            model.SourceFieldList.Add(sourceField);
-            model.SourceFieldList.Add(sysnameSourceField);
-            model.SourceFieldDataTypeDetailList.Add(sourceFieldDetail);
-            model.SourceFieldDataTypeDetailList.Add(sysnameSourceFieldDetail);
+            model.FieldList.Add(field);
+            model.FieldList.Add(systemNameField);
+            model.FieldDataTypeDetailList.Add(fieldDetail);
+            model.FieldDataTypeDetailList.Add(systemNameFieldDetail);
             model.RawHubList.Add(rawHub);
             model.RawHubKeyPartList.Add(rawHubKeyPart);
             model.RawHubKeyPartList.Add(sysnameRawHubKeyPart);
@@ -366,87 +321,41 @@ public sealed class ConvertToMetaSqlTests
             var longParentName = "ProductModelProductDescriptionCultureLocalizationHistoryReference";
             var longLinkName = longChildName + longParentName;
 
-            var sourceSystem = new SourceSystem
+            var childField = new Field
             {
-                Id = "SourceSystem:AdventureWorks",
-                Name = "AdventureWorks",
-            };
-            var sourceSchema = new SourceSchema
-            {
-                Id = "SourceSchema:AdventureWorks:Production",
-                Name = "Production",
-                SourceSystem = sourceSystem,
-            };
-            var childTable = new SourceTable
-            {
-                Id = "SourceTable:" + longChildName,
-                Name = longChildName,
-                SourceSchema = sourceSchema,
-            };
-            var parentTable = new SourceTable
-            {
-                Id = "SourceTable:" + longParentName,
-                Name = longParentName,
-                SourceSchema = sourceSchema,
-            };
-            var childField = new SourceField
-            {
-                Id = "SourceField:" + longChildName + ":Id",
+                Id = "Field:" + longChildName + ":Id",
                 Name = longChildName + "IdentifierForAuditableRelationshipReplay",
-                Ordinal = "1",
                 DataTypeId = "sqlserver:type:nvarchar",
-                IsNullable = "false",
-                SourceTable = childTable,
             };
-            var parentField = new SourceField
+            var parentField = new Field
             {
-                Id = "SourceField:" + longParentName + ":Id",
+                Id = "Field:" + longParentName + ":Id",
                 Name = longParentName + "IdentifierForAuditableRelationshipReplay",
-                Ordinal = "1",
                 DataTypeId = "sqlserver:type:nvarchar",
-                IsNullable = "false",
-                SourceTable = parentTable,
             };
-            var childFieldDetail = new SourceFieldDataTypeDetail
+            var childFieldDetail = new FieldDataTypeDetail
             {
                 Id = childField.Id + ":Length",
                 Name = "Length",
                 Value = "50",
-                SourceField = childField,
+                Field = childField,
             };
-            var parentFieldDetail = new SourceFieldDataTypeDetail
+            var parentFieldDetail = new FieldDataTypeDetail
             {
                 Id = parentField.Id + ":Length",
                 Name = "Length",
                 Value = "50",
-                SourceField = parentField,
-            };
-            var sourceRelationship = new SourceTableRelationship
-            {
-                Id = "SourceTableRelationship:" + longLinkName,
-                Name = "FK_" + longLinkName,
-                SourceTable = childTable,
-                TargetTable = parentTable,
-            };
-            var sourceRelationshipField = new SourceTableRelationshipField
-            {
-                Id = "SourceTableRelationshipField:" + longLinkName,
-                Ordinal = "1",
-                SourceTableRelationship = sourceRelationship,
-                SourceField = childField,
-                TargetField = parentField,
+                Field = parentField,
             };
             var childHub = new RawHub
             {
                 Id = "RawHub:" + longChildName,
                 Name = longChildName,
-                SourceTable = childTable,
             };
             var parentHub = new RawHub
             {
                 Id = "RawHub:" + longParentName,
                 Name = longParentName,
-                SourceTable = parentTable,
             };
             var childHubKeyPart = new RawHubKeyPart
             {
@@ -454,7 +363,7 @@ public sealed class ConvertToMetaSqlTests
                 Name = "Identifier",
                 Ordinal = "1",
                 RawHub = childHub,
-                SourceField = childField,
+                Field = childField,
             };
             var parentHubKeyPart = new RawHubKeyPart
             {
@@ -462,14 +371,13 @@ public sealed class ConvertToMetaSqlTests
                 Name = "Identifier",
                 Ordinal = "1",
                 RawHub = parentHub,
-                SourceField = parentField,
+                Field = parentField,
             };
             var rawLink = new RawLink
             {
                 Id = "RawLink:" + longLinkName,
                 Name = longLinkName,
                 LinkKind = "standard",
-                SourceTableRelationship = sourceRelationship,
             };
             var childLinkHub = new RawLinkHub
             {
@@ -488,16 +396,10 @@ public sealed class ConvertToMetaSqlTests
                 RawLink = rawLink,
             };
 
-            model.SourceSystemList.Add(sourceSystem);
-            model.SourceSchemaList.Add(sourceSchema);
-            model.SourceTableList.Add(childTable);
-            model.SourceTableList.Add(parentTable);
-            model.SourceFieldList.Add(childField);
-            model.SourceFieldList.Add(parentField);
-            model.SourceFieldDataTypeDetailList.Add(childFieldDetail);
-            model.SourceFieldDataTypeDetailList.Add(parentFieldDetail);
-            model.SourceTableRelationshipList.Add(sourceRelationship);
-            model.SourceTableRelationshipFieldList.Add(sourceRelationshipField);
+            model.FieldList.Add(childField);
+            model.FieldList.Add(parentField);
+            model.FieldDataTypeDetailList.Add(childFieldDetail);
+            model.FieldDataTypeDetailList.Add(parentFieldDetail);
             model.RawHubList.Add(childHub);
             model.RawHubList.Add(parentHub);
             model.RawHubKeyPartList.Add(childHubKeyPart);

@@ -78,44 +78,44 @@ internal sealed class SqlServerBusinessTypeLowering
             $"MetaDataVault logical type '{sourceTypeId}' has no sanctioned direct SqlServer lowering.");
     }
 
-    public LoweredSqlServerType LowerRawSourceRequired(string sourceTypeId)
+    public LoweredSqlServerType LowerRawFieldRequired(string fieldDataTypeId)
     {
-        if (string.IsNullOrWhiteSpace(sourceTypeId))
+        if (string.IsNullOrWhiteSpace(fieldDataTypeId))
         {
-            throw new InvalidOperationException("MetaRawDataVault source field type id is required.");
+            throw new InvalidOperationException("MetaRawDataVault field type id is required.");
         }
 
-        if (!_dataTypesById.TryGetValue(sourceTypeId, out var sourceType))
+        if (!_dataTypesById.TryGetValue(fieldDataTypeId, out var fieldType))
         {
             throw new InvalidOperationException(
-                $"MetaRawDataVault source field type '{sourceTypeId}' is not sanctioned in MetaDataType.");
+                $"MetaRawDataVault field type '{fieldDataTypeId}' is not sanctioned in MetaDataType.");
         }
 
         string sqlServerTypeId;
-        if (_sqlServerTypesByLogicalTypeId.TryGetValue(sourceTypeId, out var mappedSqlServerTypeId))
+        if (_sqlServerTypesByLogicalTypeId.TryGetValue(fieldDataTypeId, out var mappedSqlServerTypeId))
         {
             sqlServerTypeId = mappedSqlServerTypeId;
         }
-        else if (string.Equals(sourceType.DataTypeSystem.Id, SqlServerTypeSystemId, StringComparison.Ordinal))
+        else if (string.Equals(fieldType.DataTypeSystem.Id, SqlServerTypeSystemId, StringComparison.Ordinal))
         {
-            sqlServerTypeId = sourceTypeId;
+            sqlServerTypeId = fieldDataTypeId;
         }
-        else if (string.Equals(sourceType.DataTypeSystem.Id, MetaTypeSystemId, StringComparison.Ordinal))
+        else if (string.Equals(fieldType.DataTypeSystem.Id, MetaTypeSystemId, StringComparison.Ordinal))
         {
             throw new InvalidOperationException(
-                $"MetaRawDataVault source field logical type '{sourceTypeId}' has no sanctioned direct SqlServer lowering.");
+                $"MetaRawDataVault field logical type '{fieldDataTypeId}' has no sanctioned direct SqlServer lowering.");
         }
         else
         {
             throw new InvalidOperationException(
-                $"MetaRawDataVault source field type '{sourceTypeId}' must belong to DataTypeSystem '{MetaTypeSystemId}' or '{SqlServerTypeSystemId}'.");
+                $"MetaRawDataVault field type '{fieldDataTypeId}' must belong to DataTypeSystem '{MetaTypeSystemId}' or '{SqlServerTypeSystemId}'.");
         }
 
         if (!_dataTypesById.TryGetValue(sqlServerTypeId, out var sqlServerType) ||
             !string.Equals(sqlServerType.DataTypeSystem.Id, SqlServerTypeSystemId, StringComparison.Ordinal))
         {
             throw new InvalidOperationException(
-                $"MetaRawDataVault source field type '{sourceTypeId}' lowered to non-SqlServer type '{sqlServerTypeId}'.");
+                $"MetaRawDataVault field type '{fieldDataTypeId}' lowered to non-SqlServer type '{sqlServerTypeId}'.");
         }
 
         return new LoweredSqlServerType(sqlServerTypeId, GetDefaultDetails(sqlServerType.Name));

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaRawDataVault>
   <RawLinkSatelliteAttributeList>
-    <RawLinkSatelliteAttribute Id="EmployeeDepartmentHireDateAttr" RawLinkSatelliteId="EmployeeDepartmentSat" SourceFieldId="EmployeeHireDateField">
+    <RawLinkSatelliteAttribute Id="EmployeeDepartmentHireDateAttr" FieldId="EmployeeHireDateField" RawLinkSatelliteId="EmployeeDepartmentSat">
       <Name>HireDate</Name>
       <Ordinal>1</Ordinal>
     </RawLinkSatelliteAttribute>
-    <RawLinkSatelliteAttribute Id="InvoiceOrderAmountAttr" RawLinkSatelliteId="InvoiceOrderSat" SourceFieldId="InvoiceAmountField">
+    <RawLinkSatelliteAttribute Id="InvoiceOrderAmountAttr" FieldId="InvoiceAmountField" RawLinkSatelliteId="InvoiceOrderSat">
       <Name>InvoiceAmount</Name>
       <Ordinal>1</Ordinal>
     </RawLinkSatelliteAttribute>
-    <RawLinkSatelliteAttribute Id="OrderCustomerStatusAttr" RawLinkSatelliteId="OrderCustomerSat" SourceFieldId="OrderStatusCodeField">
+    <RawLinkSatelliteAttribute Id="OrderCustomerStatusAttr" FieldId="OrderStatusCodeField" RawLinkSatelliteId="OrderCustomerSat">
       <Name>OrderStatusCode</Name>
       <Ordinal>1</Ordinal>
     </RawLinkSatelliteAttribute>
-    <RawLinkSatelliteAttribute Id="ShipmentOrderCarrierAttr" RawLinkSatelliteId="ShipmentOrderSat" SourceFieldId="ShipmentCarrierNameField">
+    <RawLinkSatelliteAttribute Id="ShipmentOrderCarrierAttr" FieldId="ShipmentCarrierNameField" RawLinkSatelliteId="ShipmentOrderSat">
       <Name>CarrierName</Name>
       <Ordinal>1</Ordinal>
     </RawLinkSatelliteAttribute>
-    <RawLinkSatelliteAttribute Id="ShipmentOrderDateAttr" RawLinkSatelliteId="ShipmentOrderSat" SourceFieldId="ShipmentDateField">
+    <RawLinkSatelliteAttribute Id="ShipmentOrderDateAttr" FieldId="ShipmentDateField" RawLinkSatelliteId="ShipmentOrderSat">
       <Name>ShipmentDate</Name>
       <Ordinal>2</Ordinal>
     </RawLinkSatelliteAttribute>
-    <RawLinkSatelliteAttribute Id="SupplierProductCodeAttr" RawLinkSatelliteId="ProductSupplierSat" SourceFieldId="SupplierProductCodeField">
+    <RawLinkSatelliteAttribute Id="SupplierProductCodeAttr" FieldId="SupplierProductCodeField" RawLinkSatelliteId="ProductSupplierSat">
       <Name>SupplierProductCode</Name>
       <Ordinal>1</Ordinal>
     </RawLinkSatelliteAttribute>
