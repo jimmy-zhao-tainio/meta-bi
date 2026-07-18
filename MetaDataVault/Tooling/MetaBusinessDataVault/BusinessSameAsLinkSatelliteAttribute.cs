@@ -19,8 +19,6 @@ namespace MetaBusinessDataVault
 
         public string Name { get; set; } = string.Empty;
 
-        public string Ordinal { get; set; } = string.Empty;
-
         public BusinessSameAsLinkSatellite BusinessSameAsLinkSatellite { get; set; } = null!;
 
     }

@@ -132,14 +132,13 @@ public static partial class Converter
                     row.Id,
                     row.Name,
                     row.DataTypeId,
-                    row.Ordinal,
                     GetDetailPairs(
                         businessLinkSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
                         detail => detail.Value)));
 
-            AddOrderedBusinessMembers(context, table, reservedColumnNames, members);
+            AddBusinessMembers(context, table, reservedColumnNames, members);
 
             AddImplementationColumn(
                 context,

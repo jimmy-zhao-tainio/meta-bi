@@ -93,10 +93,6 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-business-hierarchical-link-satellite-attribute-ordinal" ValueShapeId="shape-text">
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
     <Parameter Id="param-business-hierarchical-link-satellite-attribute-precision" ValueShapeId="shape-text">
       <Description>Optional precision datatype facet authored as metadata.</Description>
       <Name>precision</Name>
@@ -204,10 +200,6 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-business-hub-satellite-attribute-ordinal" ValueShapeId="shape-text">
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
     <Parameter Id="param-business-hub-satellite-attribute-precision" ValueShapeId="shape-text">
       <Description>Optional precision datatype facet authored as metadata.</Description>
       <Name>precision</Name>
@@ -302,10 +294,6 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-business-link-satellite-attribute-ordinal" ValueShapeId="shape-text">
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
     <Parameter Id="param-business-link-satellite-attribute-precision" ValueShapeId="shape-text">
       <Description>Optional precision datatype facet authored as metadata.</Description>
       <Name>precision</Name>
@@ -361,10 +349,6 @@
       <IsRequired>true</IsRequired>
       <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-business-point-in-time-hub-satellite-ordinal" ValueShapeId="shape-text">
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
     <Parameter Id="param-business-point-in-time-hub-satellite-point-in-time" ValueShapeId="shape-text">
       <Description>BusinessPointInTime id.</Description>
       <IsRequired>true</IsRequired>
@@ -386,10 +370,6 @@
       <Description>BusinessLinkSatellite id.</Description>
       <IsRequired>true</IsRequired>
       <Name>link-satellite</Name>
-    </Parameter>
-    <Parameter Id="param-business-point-in-time-link-satellite-ordinal" ValueShapeId="shape-text">
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
     </Parameter>
     <Parameter Id="param-business-point-in-time-link-satellite-point-in-time" ValueShapeId="shape-text">
       <Description>BusinessPointInTime id.</Description>
@@ -419,10 +399,6 @@
     <Parameter Id="param-business-point-in-time-stamp-name" ValueShapeId="shape-text">
       <IsRequired>true</IsRequired>
       <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-business-point-in-time-stamp-ordinal" ValueShapeId="shape-text">
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
     </Parameter>
     <Parameter Id="param-business-point-in-time-stamp-point-in-time" ValueShapeId="shape-text">
       <Description>BusinessPointInTime id.</Description>
@@ -510,10 +486,6 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-business-reference-satellite-attribute-ordinal" ValueShapeId="shape-text">
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
     <Parameter Id="param-business-reference-satellite-attribute-precision" ValueShapeId="shape-text">
       <Description>Optional precision datatype facet authored as metadata.</Description>
       <Name>precision</Name>
@@ -593,10 +565,6 @@
     <Parameter Id="param-business-same-as-link-satellite-attribute-name" ValueShapeId="shape-text">
       <IsRequired>true</IsRequired>
       <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-business-same-as-link-satellite-attribute-ordinal" ValueShapeId="shape-text">
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
     </Parameter>
     <Parameter Id="param-business-same-as-link-satellite-attribute-precision" ValueShapeId="shape-text">
       <Description>Optional precision datatype facet authored as metadata.</Description>

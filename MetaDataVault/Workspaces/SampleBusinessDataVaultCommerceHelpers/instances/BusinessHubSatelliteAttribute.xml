@@ -4,7 +4,6 @@
     <BusinessHubSatelliteAttribute Id="CustomerProfileName" BusinessHubSatelliteId="CustomerProfile">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>CustomerName</Name>
-      <Ordinal>1</Ordinal>
     </BusinessHubSatelliteAttribute>
   </BusinessHubSatelliteAttributeList>
 </MetaBusinessDataVault>

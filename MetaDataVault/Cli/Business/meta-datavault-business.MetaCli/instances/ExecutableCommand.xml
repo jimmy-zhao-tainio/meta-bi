@@ -1,57 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandList>
-    <ExecutableCommand Id="exec-add-business-bridge" CommandId="cmd-add-business-bridge">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-bridge-traversal" CommandId="cmd-add-business-bridge-traversal">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-hierarchical-link" CommandId="cmd-add-business-hierarchical-link">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-hierarchical-link-satellite" CommandId="cmd-add-business-hierarchical-link-satellite">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-hierarchical-link-satellite-attribute" CommandId="cmd-add-business-hierarchical-link-satellite-attribute">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-hub" CommandId="cmd-add-business-hub">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-hub-key-part" CommandId="cmd-add-business-hub-key-part">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-hub-satellite" CommandId="cmd-add-business-hub-satellite">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-hub-satellite-attribute" CommandId="cmd-add-business-hub-satellite-attribute">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-link" CommandId="cmd-add-business-link">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-link-role" CommandId="cmd-add-business-link-role">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-link-satellite" CommandId="cmd-add-business-link-satellite">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-link-satellite-attribute" CommandId="cmd-add-business-link-satellite-attribute">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-point-in-time" CommandId="cmd-add-business-point-in-time">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-point-in-time-hub-satellite" CommandId="cmd-add-business-point-in-time-hub-satellite">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-point-in-time-link-satellite" CommandId="cmd-add-business-point-in-time-link-satellite">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-point-in-time-stamp" CommandId="cmd-add-business-point-in-time-stamp">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-reference" CommandId="cmd-add-business-reference">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-reference-key-part" CommandId="cmd-add-business-reference-key-part">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-reference-satellite" CommandId="cmd-add-business-reference-satellite">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-reference-satellite-attribute" CommandId="cmd-add-business-reference-satellite-attribute">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-same-as-link" CommandId="cmd-add-business-same-as-link">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-same-as-link-satellite" CommandId="cmd-add-business-same-as-link-satellite">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-business-same-as-link-satellite-attribute" CommandId="cmd-add-business-same-as-link-satellite-attribute">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-help" CommandId="cmd-help">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-new-workspace" CommandId="cmd-new-workspace">
-    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-business-bridge" CommandId="cmd-add-business-bridge" />
+    <ExecutableCommand Id="exec-add-business-bridge-traversal" CommandId="cmd-add-business-bridge-traversal" />
+    <ExecutableCommand Id="exec-add-business-hierarchical-link" CommandId="cmd-add-business-hierarchical-link" />
+    <ExecutableCommand Id="exec-add-business-hierarchical-link-satellite" CommandId="cmd-add-business-hierarchical-link-satellite" />
+    <ExecutableCommand Id="exec-add-business-hierarchical-link-satellite-attribute" CommandId="cmd-add-business-hierarchical-link-satellite-attribute" />
+    <ExecutableCommand Id="exec-add-business-hub" CommandId="cmd-add-business-hub" />
+    <ExecutableCommand Id="exec-add-business-hub-key-part" CommandId="cmd-add-business-hub-key-part" />
+    <ExecutableCommand Id="exec-add-business-hub-satellite" CommandId="cmd-add-business-hub-satellite" />
+    <ExecutableCommand Id="exec-add-business-hub-satellite-attribute" CommandId="cmd-add-business-hub-satellite-attribute" />
+    <ExecutableCommand Id="exec-add-business-link" CommandId="cmd-add-business-link" />
+    <ExecutableCommand Id="exec-add-business-link-role" CommandId="cmd-add-business-link-role" />
+    <ExecutableCommand Id="exec-add-business-link-satellite" CommandId="cmd-add-business-link-satellite" />
+    <ExecutableCommand Id="exec-add-business-link-satellite-attribute" CommandId="cmd-add-business-link-satellite-attribute" />
+    <ExecutableCommand Id="exec-add-business-point-in-time" CommandId="cmd-add-business-point-in-time" />
+    <ExecutableCommand Id="exec-add-business-point-in-time-hub-satellite" CommandId="cmd-add-business-point-in-time-hub-satellite" />
+    <ExecutableCommand Id="exec-add-business-point-in-time-link-satellite" CommandId="cmd-add-business-point-in-time-link-satellite" />
+    <ExecutableCommand Id="exec-add-business-point-in-time-stamp" CommandId="cmd-add-business-point-in-time-stamp" />
+    <ExecutableCommand Id="exec-add-business-reference" CommandId="cmd-add-business-reference" />
+    <ExecutableCommand Id="exec-add-business-reference-key-part" CommandId="cmd-add-business-reference-key-part" />
+    <ExecutableCommand Id="exec-add-business-reference-satellite" CommandId="cmd-add-business-reference-satellite" />
+    <ExecutableCommand Id="exec-add-business-reference-satellite-attribute" CommandId="cmd-add-business-reference-satellite-attribute" />
+    <ExecutableCommand Id="exec-add-business-same-as-link" CommandId="cmd-add-business-same-as-link" />
+    <ExecutableCommand Id="exec-add-business-same-as-link-satellite" CommandId="cmd-add-business-same-as-link-satellite" />
+    <ExecutableCommand Id="exec-add-business-same-as-link-satellite-attribute" CommandId="cmd-add-business-same-as-link-satellite-attribute" />
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
+    <ExecutableCommand Id="exec-new-workspace" CommandId="cmd-new-workspace" />
   </ExecutableCommandList>
 </MetaCli>

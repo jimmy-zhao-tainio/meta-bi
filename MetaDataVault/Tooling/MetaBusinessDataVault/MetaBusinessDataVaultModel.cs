@@ -1267,9 +1267,6 @@ namespace MetaBusinessDataVault
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
                         break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessHierarchicalLinkSatelliteAttribute'.");
                 }
@@ -1310,7 +1307,6 @@ namespace MetaBusinessDataVault
                 builder.Append(">\n");
                 AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessHierarchicalLinkSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessHierarchicalLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessHierarchicalLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </BusinessHierarchicalLinkSatelliteAttribute>\n");
             }
             builder.Append("  </BusinessHierarchicalLinkSatelliteAttributeList>\n");
@@ -1979,9 +1975,6 @@ namespace MetaBusinessDataVault
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
                         break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessHubSatelliteAttribute'.");
                 }
@@ -2022,7 +2015,6 @@ namespace MetaBusinessDataVault
                 builder.Append(">\n");
                 AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessHubSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessHubSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessHubSatelliteAttribute' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </BusinessHubSatelliteAttribute>\n");
             }
             builder.Append("  </BusinessHubSatelliteAttributeList>\n");
@@ -2567,9 +2559,6 @@ namespace MetaBusinessDataVault
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
                         break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessLinkSatelliteAttribute'.");
                 }
@@ -2610,7 +2599,6 @@ namespace MetaBusinessDataVault
                 builder.Append(">\n");
                 AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessLinkSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </BusinessLinkSatelliteAttribute>\n");
             }
             builder.Append("  </BusinessLinkSatelliteAttributeList>\n");
@@ -2922,9 +2910,6 @@ namespace MetaBusinessDataVault
             {
                 switch (reader.LocalName)
                 {
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessPointInTimeHubSatellite'.");
                 }
@@ -2972,9 +2957,7 @@ namespace MetaBusinessDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessPointInTimeId);
                 builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessPointInTimeHubSatellite' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
-                builder.Append("    </BusinessPointInTimeHubSatellite>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BusinessPointInTimeHubSatelliteList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
@@ -3048,9 +3031,6 @@ namespace MetaBusinessDataVault
             {
                 switch (reader.LocalName)
                 {
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessPointInTimeLinkSatellite'.");
                 }
@@ -3098,9 +3078,7 @@ namespace MetaBusinessDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessPointInTimeId);
                 builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessPointInTimeLinkSatellite' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
-                builder.Append("    </BusinessPointInTimeLinkSatellite>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BusinessPointInTimeLinkSatelliteList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
@@ -3177,9 +3155,6 @@ namespace MetaBusinessDataVault
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
                         break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessPointInTimeStamp'.");
                 }
@@ -3220,7 +3195,6 @@ namespace MetaBusinessDataVault
                 builder.Append(">\n");
                 AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessPointInTimeStamp' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessPointInTimeStamp' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessPointInTimeStamp' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </BusinessPointInTimeStamp>\n");
             }
             builder.Append("  </BusinessPointInTimeStampList>\n");
@@ -3889,9 +3863,6 @@ namespace MetaBusinessDataVault
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
                         break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessReferenceSatelliteAttribute'.");
                 }
@@ -3932,7 +3903,6 @@ namespace MetaBusinessDataVault
                 builder.Append(">\n");
                 AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessReferenceSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessReferenceSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessReferenceSatelliteAttribute' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </BusinessReferenceSatelliteAttribute>\n");
             }
             builder.Append("  </BusinessReferenceSatelliteAttributeList>\n");
@@ -4380,9 +4350,6 @@ namespace MetaBusinessDataVault
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
                         break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessSameAsLinkSatelliteAttribute'.");
                 }
@@ -4423,7 +4390,6 @@ namespace MetaBusinessDataVault
                 builder.Append(">\n");
                 AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessSameAsLinkSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessSameAsLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessSameAsLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </BusinessSameAsLinkSatelliteAttribute>\n");
             }
             builder.Append("  </BusinessSameAsLinkSatelliteAttributeList>\n");
@@ -5943,7 +5909,6 @@ namespace MetaBusinessDataVault
                 "Id",
                 "DataTypeId",
                 "Name",
-                "Ordinal",
                 "BusinessHierarchicalLinkSatellite"))
             {
                 return true;
@@ -5998,7 +5963,6 @@ namespace MetaBusinessDataVault
                 "Id",
                 "DataTypeId",
                 "Name",
-                "Ordinal",
                 "BusinessHubSatellite"))
             {
                 return true;
@@ -6043,7 +6007,6 @@ namespace MetaBusinessDataVault
                 "Id",
                 "DataTypeId",
                 "Name",
-                "Ordinal",
                 "BusinessLinkSatellite"))
             {
                 return true;
@@ -6069,7 +6032,6 @@ namespace MetaBusinessDataVault
 
             if (HasUnexpectedProperties(typeof(BusinessPointInTimeHubSatellite),
                 "Id",
-                "Ordinal",
                 "BusinessHubSatellite",
                 "BusinessPointInTime"))
             {
@@ -6078,7 +6040,6 @@ namespace MetaBusinessDataVault
 
             if (HasUnexpectedProperties(typeof(BusinessPointInTimeLinkSatellite),
                 "Id",
-                "Ordinal",
                 "BusinessLinkSatellite",
                 "BusinessPointInTime"))
             {
@@ -6089,7 +6050,6 @@ namespace MetaBusinessDataVault
                 "Id",
                 "DataTypeId",
                 "Name",
-                "Ordinal",
                 "BusinessPointInTime"))
             {
                 return true;
@@ -6144,7 +6104,6 @@ namespace MetaBusinessDataVault
                 "Id",
                 "DataTypeId",
                 "Name",
-                "Ordinal",
                 "BusinessReferenceSatellite"))
             {
                 return true;
@@ -6182,7 +6141,6 @@ namespace MetaBusinessDataVault
                 "Id",
                 "DataTypeId",
                 "Name",
-                "Ordinal",
                 "BusinessSameAsLinkSatellite"))
             {
                 return true;

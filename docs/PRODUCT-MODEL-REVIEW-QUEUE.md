@@ -4,7 +4,7 @@
 
 1. Done: SQL Server `decimal`/`numeric` compatibility.
 2. Done: MetaSchema types and Raw Data Vault ownership, roles, and false-ordering cleanup.
-3. In progress: Business Data Vault common satellite/attribute structure and false ordering; roles, traversal, and key precedence are done.
+3. In progress: Business Data Vault common satellite/attribute structure; roles, traversal, key precedence, payload-nullability policy, and false-ordering cleanup are done.
 4. Pending product-model decision: satellite row identity and load metadata.
 5. Done: Data Vault hash-key storage width.
 6. Pending product-model decision: business datatype lowering.
@@ -14,7 +14,7 @@
 10. Blocked demo work: AdventureWorks full-stack should not continue until the relevant product decisions are settled and reimplemented deliberately.
 11. Complete: `MERGE` match semantics use explicit clause entities and an explicit predecessor chain.
 
-Current work: complete the remaining Business Data Vault common-satellite/common-attribute and false-ordering cleanup. Business satellite payload attributes are nullable by design; do not add nullability flags, subtype entities, binding proof, or compatibility shims.
+Current work: review the remaining Business Data Vault common-satellite/common-attribute structure. Business satellite payload attributes are nullable by design; do not add nullability flags, subtype entities, binding proof, or compatibility shims.
 
 ## Purpose
 
@@ -188,7 +188,7 @@ Regenerated Raw tooling no longer exposes the three properties. The Data Vault t
 
 ## 3. Business Data Vault Satellite Structure and Link Roles
 
-Status: Partially implemented on 2026-07-18; roles, traversal, and composite-key precedence are complete; payload attributes are nullable by design
+Status: Partially implemented on 2026-07-18; roles, traversal, composite-key precedence, and false-ordering cleanup are complete; payload attributes are nullable by design
 
 Observed problem:
 
@@ -234,6 +234,13 @@ The satellite/attribute/nullability redesign and the remaining false Business or
 - Verification: the full Data Vault suite passed 50/50; all canonical/tracked Business workspaces passed generic integrity checks; and the 148-step Business integration operation rebuilt and deployed the full stack from scratch before ending with a zero-change verification manifest.
 
 Hygiene finding: the typed `meta-cli` save that authored the new Business CLI options rewrote its existing instance shards into canonical layout. The semantic change is limited to replacing the two retired `--ordinal` option aggregates with `--previous-key-part`; the broad deterministic formatting/order churn is a separate typed-workspace persistence concern and must be addressed through sanctioned save behavior, never by editing XML directly.
+
+### 3.3 Completed: Projection-Only Business Ordering
+
+- Removed scalar `Ordinal` from the five Business satellite-attribute entities, `BusinessPointInTimeStamp`, `BusinessPointInTimeHubSatellite`, and `BusinessPointInTimeLinkSatellite`. The canonical Business model, three tracked sample workspaces, and the tracked Business integration workspace were migrated through `meta model drop-property --strict`, which also removed persisted property values.
+- Removed the eight matching `--ordinal` option aggregates from the authored Business MetaCli workspace through `meta delete --strict`, in relationship-safe token, option, executable-command-parameter, and parameter order. The generic writer canonicalized touched empty MetaCli rows to self-closing form; that broad textual churn has no command-surface semantic change beyond the eight deleted aggregates.
+- Business authoring no longer manufactures sequence numbers. Business SQL conversion orders satellite payload members by case-insensitive `Name`, then `Id`; point-in-time hub and link satellite references are projected as one `Name`, then `Id` sequence rather than two ordinal-driven groups.
+- Verification: regenerated `MetaBusinessDataVault` tooling built with 0 warnings/errors; `MetaDataVault.Tests` passed 52/52, including direct name-over-ID projection coverage and help coverage for all eight commands; a direct executable help check confirms `add-hub-satellite-attribute` exposes no `--ordinal`. With trusted localhost SQL connections, the 148-step `build-and-deploy-business-data-vault` mesh passed end to end: 58 tables, 26 primary keys, and 61 foreign keys were deployed, and the verification deploy manifest reported no changes.
 
 ## 4. Satellite Row Identity and Load Metadata
 

@@ -36,8 +36,8 @@ public sealed class MetaSqlAlignmentTests
                 {
                     ["dbo.H_Customer"] =
                     [
-                        new("dbo", "H_Customer", "HashKey", 1, false, "binary", 16, null, null),
-                        new("dbo", "H_Customer", "CustomerId", 2, false, "nvarchar", 50, null, null),
+                        new("dbo", "H_Customer", "HashKey", 1, false, "binary", 32, null, null),
+                        new("dbo", "H_Customer", "CustomerId", 2, true, "nvarchar", 50, null, null),
                         new("dbo", "H_Customer", "LoadTimestamp", 3, false, "datetime2", null, 7, null, DefaultExpressionSql: "CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))"),
                         new("dbo", "H_Customer", "RecordSource", 4, false, "nvarchar", 256, null, null),
                         new("dbo", "H_Customer", "AuditId", 5, false, "bigint", null, null, null, DefaultExpressionSql: "CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))"),
@@ -74,59 +74,34 @@ public sealed class MetaSqlAlignmentTests
     {
         var model = MetaRawDataVaultModel.CreateEmpty();
 
-        var sourceSystem = new SourceSystem
+        var customerIdField = new Field
         {
-            Id = "SourceSystem:CRM",
-            Name = "CRM",
-        };
-        var sourceSchema = new SourceSchema
-        {
-            Id = "SourceSchema:CRM:dbo",
-            Name = "dbo",
-            SourceSystem = sourceSystem,
-        };
-        var sourceTable = new SourceTable
-        {
-            Id = "SourceTable:Customer",
-            Name = "Customer",
-            SourceSchema = sourceSchema,
-        };
-        var customerIdField = new SourceField
-        {
-            Id = "SourceField:Customer:CustomerId",
+            Id = "Field:Customer:CustomerId",
             Name = "CustomerId",
-            Ordinal = "1",
             DataTypeId = "sqlserver:type:nvarchar",
-            IsNullable = "false",
-            SourceTable = sourceTable,
         };
-        var customerIdLength = new SourceFieldDataTypeDetail
+        var customerIdLength = new FieldDataTypeDetail
         {
-            Id = "SourceFieldDetail:Customer:CustomerId:Length",
+            Id = "FieldDetail:Customer:CustomerId:Length",
             Name = "Length",
             Value = "50",
-            SourceField = customerIdField,
+            Field = customerIdField,
         };
         var rawHub = new RawHub
         {
             Id = "RawHub:Customer",
             Name = "Customer",
-            SourceTable = sourceTable,
         };
         var rawHubKeyPart = new RawHubKeyPart
         {
             Id = "RawHubKeyPart:Customer:CustomerId",
             Name = "CustomerId",
-            Ordinal = "1",
             RawHub = rawHub,
-            SourceField = customerIdField,
+            Field = customerIdField,
         };
 
-        model.SourceSystemList.Add(sourceSystem);
-        model.SourceSchemaList.Add(sourceSchema);
-        model.SourceTableList.Add(sourceTable);
-        model.SourceFieldList.Add(customerIdField);
-        model.SourceFieldDataTypeDetailList.Add(customerIdLength);
+        model.FieldList.Add(customerIdField);
+        model.FieldDataTypeDetailList.Add(customerIdLength);
         model.RawHubList.Add(rawHub);
         model.RawHubKeyPartList.Add(rawHubKeyPart);
 

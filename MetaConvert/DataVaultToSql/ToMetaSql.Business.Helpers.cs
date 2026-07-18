@@ -52,33 +52,27 @@ public static partial class Converter
                     row.Id,
                     row.Name,
                     row.DataTypeId,
-                    row.Ordinal,
                     GetDetailPairs(
                         businessPointInTimeStampDetailsByStampId,
                         row.Id,
                         detail => detail.Name,
                         detail => detail.Value)));
 
-            AddOrderedBusinessMembers(context, table, reservedColumnNames, stampMembers);
+            AddBusinessMembers(context, table, reservedColumnNames, stampMembers);
 
-            foreach (var hubSatellite in GetGroup(businessPointInTimeHubSatellitesByPointInTimeId, pointInTime.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
+            var satelliteReferences = GetGroup(businessPointInTimeHubSatellitesByPointInTimeId, pointInTime.Id)
+                .Select(row => (row.Id, SatelliteName: row.BusinessHubSatellite.Name))
+                .Concat(GetGroup(businessPointInTimeLinkSatellitesByPointInTimeId, pointInTime.Id)
+                    .Select(row => (row.Id, SatelliteName: row.BusinessLinkSatellite.Name)))
+                .OrderBy(row => row.SatelliteName, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(row => row.Id, StringComparer.Ordinal);
+
+            foreach (var satelliteReference in satelliteReferences)
             {
                 AddImplementationColumn(
                     context,
                     table,
-                    ApplyPattern(businessPointInTimeImplementation.SatelliteReferenceColumnNamePattern, ("SatelliteName", hubSatellite.BusinessHubSatellite.Name)),
-                    businessPointInTimeImplementation.SatelliteReferenceDataTypeId,
-                    "false",
-                    reservedColumnNames,
-                    ("Precision", businessPointInTimeImplementation.SatelliteReferencePrecision));
-            }
-
-            foreach (var linkSatellite in GetGroup(businessPointInTimeLinkSatellitesByPointInTimeId, pointInTime.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
-            {
-                AddImplementationColumn(
-                    context,
-                    table,
-                    ApplyPattern(businessPointInTimeImplementation.SatelliteReferenceColumnNamePattern, ("SatelliteName", linkSatellite.BusinessLinkSatellite.Name)),
+                    ApplyPattern(businessPointInTimeImplementation.SatelliteReferenceColumnNamePattern, ("SatelliteName", satelliteReference.SatelliteName)),
                     businessPointInTimeImplementation.SatelliteReferenceDataTypeId,
                     "false",
                     reservedColumnNames,

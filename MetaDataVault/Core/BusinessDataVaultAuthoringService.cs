@@ -34,19 +34,6 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
 
     private static readonly Type ModelType = typeof(MetaBusinessDataVaultModel);
 
-    private static readonly IReadOnlyDictionary<string, OrdinalScope> OrdinalScopes =
-        new Dictionary<string, OrdinalScope>(StringComparer.Ordinal)
-        {
-            ["BusinessHubSatelliteAttribute"] = new("BusinessHubSatellite", ["BusinessHubSatelliteAttribute"]),
-            ["BusinessLinkSatelliteAttribute"] = new("BusinessLinkSatellite", ["BusinessLinkSatelliteAttribute"]),
-            ["BusinessSameAsLinkSatelliteAttribute"] = new("BusinessSameAsLinkSatellite", ["BusinessSameAsLinkSatelliteAttribute"]),
-            ["BusinessHierarchicalLinkSatelliteAttribute"] = new("BusinessHierarchicalLinkSatellite", ["BusinessHierarchicalLinkSatelliteAttribute"]),
-            ["BusinessReferenceSatelliteAttribute"] = new("BusinessReferenceSatellite", ["BusinessReferenceSatelliteAttribute"]),
-            ["BusinessPointInTimeStamp"] = new("BusinessPointInTime", ["BusinessPointInTimeStamp"]),
-            ["BusinessPointInTimeHubSatellite"] = new("BusinessPointInTime", ["BusinessPointInTimeHubSatellite", "BusinessPointInTimeLinkSatellite"]),
-            ["BusinessPointInTimeLinkSatellite"] = new("BusinessPointInTime", ["BusinessPointInTimeHubSatellite", "BusinessPointInTimeLinkSatellite"]),
-        };
-
     public BusinessDataVaultWorkspaceCreationResult CreateWorkspace(string workspacePath)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
@@ -85,7 +72,6 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
             AssignRelationship(model, rowToAdd, request.EntityName, relationship);
         }
 
-        AssignOrdinalIfMissing(model, rowToAdd, request);
         rows.Add(rowToAdd);
         AddDataTypeDetails(model, rowToAdd, request);
         ValidateDomainRules(model, rowToAdd, request);
@@ -193,50 +179,6 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
         return (string?)property.GetValue(row) ?? string.Empty;
     }
 
-    private static void AssignOrdinalIfMissing(
-        MetaBusinessDataVaultModel model,
-        object rowToAdd,
-        BusinessDataVaultAuthoringRequest request)
-    {
-        var ordinalProperty = rowToAdd.GetType().GetProperty("Ordinal", BindingFlags.Instance | BindingFlags.Public);
-        if (ordinalProperty is null ||
-            request.Values.ContainsKey("Ordinal") ||
-            !OrdinalScopes.TryGetValue(request.EntityName, out var scope))
-        {
-            return;
-        }
-
-        var ownerProperty = rowToAdd.GetType().GetProperty(scope.RelationshipPropertyName, BindingFlags.Instance | BindingFlags.Public);
-        if (ownerProperty is null)
-        {
-            return;
-        }
-
-        var owner = ownerProperty.GetValue(rowToAdd);
-        if (owner is null)
-        {
-            return;
-        }
-
-        var nextOrdinal = scope.EntityNames
-            .SelectMany(entityName => GetEntityRows(model, ResolveEntityType(entityName), entityName).Cast<object>())
-            .Where(row => ReferenceEquals(
-                row.GetType().GetProperty(scope.RelationshipPropertyName, BindingFlags.Instance | BindingFlags.Public)?.GetValue(row),
-                owner))
-            .Select(ReadOrdinal)
-            .DefaultIfEmpty(0)
-            .Max() + 1;
-
-        ordinalProperty.SetValue(rowToAdd, nextOrdinal.ToString(System.Globalization.CultureInfo.InvariantCulture));
-    }
-
-    private static int ReadOrdinal(object row)
-    {
-        var property = row.GetType().GetProperty("Ordinal", BindingFlags.Instance | BindingFlags.Public);
-        var value = property?.GetValue(row) as string;
-        return int.TryParse(value, out var parsed) && parsed > 0 ? parsed : 0;
-    }
-
     private static void AddDataTypeDetails(
         MetaBusinessDataVaultModel model,
         object parentRow,
@@ -321,8 +263,4 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
                 model.BusinessBridgeTraversalList.Where(row => ReferenceEquals(row.BusinessBridge, bridge)));
         }
     }
-
-    private sealed record OrdinalScope(
-        string RelationshipPropertyName,
-        IReadOnlyList<string> EntityNames);
 }

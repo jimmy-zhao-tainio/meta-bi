@@ -650,6 +650,71 @@ public sealed class ConvertToMetaSqlTests
     }
 
     [Fact]
+    public async Task ConvertAsync_ProjectsBusinessPayloadAndPointInTimeReferencesInNameOrder()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var model = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(sourceWorkspacePath, searchUpward: false);
+            var customerProfile = model.BusinessHubSatelliteList.Single(row => row.Id == "CustomerProfile");
+            var customerOrderStatus = model.BusinessLinkSatelliteList.Single(row => row.Id == "CustomerOrderStatus");
+
+            customerProfile.Name = "ZuluProfile";
+            customerOrderStatus.Name = "AlphaStatus";
+            model.BusinessHubSatelliteAttributeList.Add(new BusinessHubSatelliteAttribute
+            {
+                Id = "zulu-payload-id",
+                BusinessHubSatellite = customerProfile,
+                DataTypeId = "meta:type:String",
+                Name = "AlphaPayload",
+            });
+            model.BusinessHubSatelliteAttributeList.Add(new BusinessHubSatelliteAttribute
+            {
+                Id = "alpha-payload-id",
+                BusinessHubSatellite = customerProfile,
+                DataTypeId = "meta:type:String",
+                Name = "ZuluPayload",
+            });
+            await model.SaveToXmlWorkspaceAsync(workspacePath);
+
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var profileTable = GetTable(tables, "BHS_Customer_ZuluProfile");
+            var orderedPayloadColumns = columns
+                .Where(row => row.RelationshipIds.GetValueOrDefault("TableId") == profileTable.Id)
+                .Where(row => row.Values["Name"] is "AlphaPayload" or "CustomerName" or "ZuluPayload")
+                .OrderBy(row => int.Parse(row.Values["Ordinal"], CultureInfo.InvariantCulture))
+                .Select(row => row.Values["Name"])
+                .ToArray();
+            var pointInTimeTable = GetTable(tables, "PIT_CustomerSnapshot");
+            var orderedSatelliteReferences = columns
+                .Where(row => row.RelationshipIds.GetValueOrDefault("TableId") == pointInTimeTable.Id)
+                .Where(row => row.Values["Name"] is "AlphaStatusLoadTimestamp" or "ZuluProfileLoadTimestamp")
+                .OrderBy(row => int.Parse(row.Values["Ordinal"], CultureInfo.InvariantCulture))
+                .Select(row => row.Values["Name"])
+                .ToArray();
+
+            Assert.Equal(["AlphaPayload", "CustomerName", "ZuluPayload"], orderedPayloadColumns);
+            Assert.Equal(["AlphaStatusLoadTimestamp", "ZuluProfileLoadTimestamp"], orderedSatelliteReferences);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
     public async Task ConvertAsync_ProjectsBusinessLinkVariantsWorkspaceIntoSqlTables()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();

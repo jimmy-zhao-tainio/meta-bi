@@ -4,7 +4,6 @@
     <BusinessReferenceSatelliteAttribute Id="StatusName" BusinessReferenceSatelliteId="StatusCurrent">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>StatusName</Name>
-      <Ordinal>1</Ordinal>
     </BusinessReferenceSatelliteAttribute>
   </BusinessReferenceSatelliteAttributeList>
 </MetaBusinessDataVault>

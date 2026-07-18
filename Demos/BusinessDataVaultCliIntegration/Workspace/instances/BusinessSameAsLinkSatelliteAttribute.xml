@@ -4,7 +4,6 @@
     <BusinessSameAsLinkSatelliteAttribute Id="CustomerSameAsCrmConfidence" BusinessSameAsLinkSatelliteId="CustomerSameAsCrmCustomerAudit">
       <DataTypeId>meta:type:Decimal</DataTypeId>
       <Name>MatchConfidence</Name>
-      <Ordinal>1</Ordinal>
     </BusinessSameAsLinkSatelliteAttribute>
   </BusinessSameAsLinkSatelliteAttributeList>
 </MetaBusinessDataVault>

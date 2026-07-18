@@ -151,14 +151,13 @@ public static partial class Converter
                     row.Id,
                     row.Name,
                     row.DataTypeId,
-                    row.Ordinal,
                     GetDetailPairs(
                         businessSameAsLinkSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
                         detail => detail.Value)));
 
-            AddOrderedBusinessMembers(context, table, reservedColumnNames, members);
+            AddBusinessMembers(context, table, reservedColumnNames, members);
 
             AddImplementationColumn(
                 context,
@@ -336,14 +335,13 @@ public static partial class Converter
                     row.Id,
                     row.Name,
                     row.DataTypeId,
-                    row.Ordinal,
                     GetDetailPairs(
                         businessHierarchicalLinkSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
                         detail => detail.Value)));
 
-            AddOrderedBusinessMembers(context, table, reservedColumnNames, members);
+            AddBusinessMembers(context, table, reservedColumnNames, members);
 
             AddImplementationColumn(
                 context,

@@ -4,7 +4,6 @@
     <BusinessHierarchicalLinkSatelliteAttribute Id="DepartmentHierarchyLevel" BusinessHierarchicalLinkSatelliteId="DepartmentHierarchyInfo">
       <DataTypeId>meta:type:Int32</DataTypeId>
       <Name>HierarchyLevel</Name>
-      <Ordinal>1</Ordinal>
     </BusinessHierarchicalLinkSatelliteAttribute>
   </BusinessHierarchicalLinkSatelliteAttributeList>
 </MetaBusinessDataVault>

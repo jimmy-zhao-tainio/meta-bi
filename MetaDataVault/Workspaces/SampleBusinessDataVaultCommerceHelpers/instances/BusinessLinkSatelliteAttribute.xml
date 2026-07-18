@@ -4,7 +4,6 @@
     <BusinessLinkSatelliteAttribute Id="CustomerOrderStatusCode" BusinessLinkSatelliteId="CustomerOrderStatus">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>StatusCode</Name>
-      <Ordinal>1</Ordinal>
     </BusinessLinkSatelliteAttribute>
   </BusinessLinkSatelliteAttributeList>
 </MetaBusinessDataVault>

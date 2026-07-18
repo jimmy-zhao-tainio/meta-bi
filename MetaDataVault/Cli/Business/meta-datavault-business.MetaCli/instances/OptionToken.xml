@@ -64,9 +64,6 @@
     <OptionToken Id="token-business-hierarchical-link-satellite-attribute-name" OptionId="option-business-hierarchical-link-satellite-attribute-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-satellite-attribute-ordinal" OptionId="option-business-hierarchical-link-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
     <OptionToken Id="token-business-hierarchical-link-satellite-attribute-precision" OptionId="option-business-hierarchical-link-satellite-attribute-precision">
       <Token>--precision</Token>
     </OptionToken>
@@ -145,9 +142,6 @@
     <OptionToken Id="token-business-hub-satellite-attribute-name" OptionId="option-business-hub-satellite-attribute-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-attribute-ordinal" OptionId="option-business-hub-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
     <OptionToken Id="token-business-hub-satellite-attribute-precision" OptionId="option-business-hub-satellite-attribute-precision">
       <Token>--precision</Token>
     </OptionToken>
@@ -214,9 +208,6 @@
     <OptionToken Id="token-business-link-satellite-attribute-name" OptionId="option-business-link-satellite-attribute-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-business-link-satellite-attribute-ordinal" OptionId="option-business-link-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
     <OptionToken Id="token-business-link-satellite-attribute-precision" OptionId="option-business-link-satellite-attribute-precision">
       <Token>--precision</Token>
     </OptionToken>
@@ -256,9 +247,6 @@
     <OptionToken Id="token-business-point-in-time-hub-satellite-id" OptionId="option-business-point-in-time-hub-satellite-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="token-business-point-in-time-hub-satellite-ordinal" OptionId="option-business-point-in-time-hub-satellite-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
     <OptionToken Id="token-business-point-in-time-hub-satellite-point-in-time" OptionId="option-business-point-in-time-hub-satellite-point-in-time">
       <Token>--point-in-time</Token>
     </OptionToken>
@@ -273,9 +261,6 @@
     </OptionToken>
     <OptionToken Id="token-business-point-in-time-link-satellite-link-satellite" OptionId="option-business-point-in-time-link-satellite-link-satellite">
       <Token>--link-satellite</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-link-satellite-ordinal" OptionId="option-business-point-in-time-link-satellite-ordinal">
-      <Token>--ordinal</Token>
     </OptionToken>
     <OptionToken Id="token-business-point-in-time-link-satellite-point-in-time" OptionId="option-business-point-in-time-link-satellite-point-in-time">
       <Token>--point-in-time</Token>
@@ -297,9 +282,6 @@
     </OptionToken>
     <OptionToken Id="token-business-point-in-time-stamp-name" OptionId="option-business-point-in-time-stamp-name">
       <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-stamp-ordinal" OptionId="option-business-point-in-time-stamp-ordinal">
-      <Token>--ordinal</Token>
     </OptionToken>
     <OptionToken Id="token-business-point-in-time-stamp-point-in-time" OptionId="option-business-point-in-time-stamp-point-in-time">
       <Token>--point-in-time</Token>
@@ -364,9 +346,6 @@
     <OptionToken Id="token-business-reference-satellite-attribute-name" OptionId="option-business-reference-satellite-attribute-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-attribute-ordinal" OptionId="option-business-reference-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
     <OptionToken Id="token-business-reference-satellite-attribute-precision" OptionId="option-business-reference-satellite-attribute-precision">
       <Token>--precision</Token>
     </OptionToken>
@@ -423,9 +402,6 @@
     </OptionToken>
     <OptionToken Id="token-business-same-as-link-satellite-attribute-name" OptionId="option-business-same-as-link-satellite-attribute-name">
       <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-attribute-ordinal" OptionId="option-business-same-as-link-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
     </OptionToken>
     <OptionToken Id="token-business-same-as-link-satellite-attribute-precision" OptionId="option-business-same-as-link-satellite-attribute-precision">
       <Token>--precision</Token>

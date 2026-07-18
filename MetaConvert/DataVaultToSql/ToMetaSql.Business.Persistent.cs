@@ -133,13 +133,15 @@ public static partial class Converter
         return column;
     }
 
-    private static void AddOrderedBusinessMembers(
+    private static void AddBusinessMembers(
         ConversionContext context,
         Table table,
         HashSet<string> reservedColumnNames,
         IEnumerable<BusinessColumnMemberSpec> members)
     {
-        foreach (var member in members.OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
+        foreach (var member in members
+                     .OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase)
+                     .ThenBy(row => row.Id, StringComparer.Ordinal))
         {
             AddBusinessTypedColumn(
                 context,
@@ -155,10 +157,9 @@ public static partial class Converter
         string id,
         string name,
         string dataTypeId,
-        string ordinal,
         IEnumerable<(string Name, string Value)> details)
     {
-        return new BusinessColumnMemberSpec(id, name, dataTypeId, ordinal, details.ToList());
+        return new BusinessColumnMemberSpec(id, name, dataTypeId, details.ToList());
     }
 
     private static IEnumerable<(string Name, string Value)> GetDetailPairs<TDetail>(
@@ -178,6 +179,5 @@ public static partial class Converter
         string Id,
         string Name,
         string DataTypeId,
-        string Ordinal,
         IReadOnlyList<(string Name, string Value)> Details);
 }

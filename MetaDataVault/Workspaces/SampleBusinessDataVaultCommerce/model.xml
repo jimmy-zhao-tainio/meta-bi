@@ -41,7 +41,6 @@
       <PropertyList>
         <Property name="DataTypeId" />
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessHierarchicalLinkSatellite" />
@@ -94,7 +93,6 @@
       <PropertyList>
         <Property name="DataTypeId" />
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessHubSatellite" />
@@ -137,7 +135,6 @@
       <PropertyList>
         <Property name="DataTypeId" />
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessLinkSatellite" />
@@ -162,18 +159,12 @@
       </RelationshipList>
     </Entity>
     <Entity name="BusinessPointInTimeHubSatellite">
-      <PropertyList>
-        <Property name="Ordinal" />
-      </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessHubSatellite" />
         <Relationship entity="BusinessPointInTime" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessPointInTimeLinkSatellite">
-      <PropertyList>
-        <Property name="Ordinal" />
-      </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessLinkSatellite" />
         <Relationship entity="BusinessPointInTime" />
@@ -183,7 +174,6 @@
       <PropertyList>
         <Property name="DataTypeId" />
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessPointInTime" />
@@ -236,7 +226,6 @@
       <PropertyList>
         <Property name="DataTypeId" />
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessReferenceSatellite" />
@@ -274,7 +263,6 @@
       <PropertyList>
         <Property name="DataTypeId" />
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessSameAsLinkSatellite" />
