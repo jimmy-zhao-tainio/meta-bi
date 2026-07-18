@@ -79,51 +79,9 @@ public sealed partial class CliTests
             var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
             SeedMetaSchema(source);
 
-            source.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "view:1",
-                SourceShardFileName = "Table.xml",
-                Values =
-                {
-                    ["Name"] = "CustomerView",
-                    ["ObjectType"] = "View"
-                },
-                RelationshipIds =
-                {
-                    ["SchemaId"] = "1"
-                }
-            });
-            AddMetaSchemaField(source, "view-field:1", "view:1", "CustomerViewId", "sqlserver:type:int", "1", "false");
-            AddMetaSchemaField(source, "view-field:2", "view:1", "CustomerViewName", "sqlserver:type:nvarchar", "2", "true");
-            source.Instance.GetOrCreateEntityRecords("TableKey").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "view-key:1",
-                SourceShardFileName = "TableKey.xml",
-                Values =
-                {
-                    ["Name"] = "PK_CustomerView",
-                    ["KeyType"] = "primary"
-                },
-                RelationshipIds =
-                {
-                    ["TableId"] = "view:1"
-                }
-            });
-            source.Instance.GetOrCreateEntityRecords("TableKeyField").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "view-keyf:1",
-                SourceShardFileName = "TableKeyField.xml",
-                Values =
-                {
-                    ["Ordinal"] = "1",
-                    ["FieldName"] = "CustomerViewId"
-                },
-                RelationshipIds =
-                {
-                    ["TableKeyId"] = "view-key:1",
-                    ["FieldId"] = "view-field:1"
-                }
-            });
+            AddMetaSchemaView(source, "view:1", "CustomerView", "1");
+            AddMetaSchemaField(source, "view-field:1", "view:1", "CustomerViewId", "sqlserver:type:int", "1", null);
+            AddMetaSchemaField(source, "view-field:2", "view:1", "CustomerViewName", "sqlserver:type:nvarchar", "2", null);
 
             await new WorkspaceService().SaveAsync(source);
 
@@ -140,7 +98,7 @@ public sealed partial class CliTests
             Assert.Equal(2, defaultWorkspace.Instance.GetOrCreateEntityRecords("SourceTable").Count);
             Assert.Equal(3, includeViewsWorkspace.Instance.GetOrCreateEntityRecords("SourceTable").Count);
             Assert.Equal(2, defaultWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
-            Assert.Equal(3, includeViewsWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
+            Assert.Equal(2, includeViewsWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
         }
         finally
         {
@@ -220,53 +178,13 @@ public sealed partial class CliTests
             var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
             SeedMetaSchema(source);
 
-            source.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "3",
-                SourceShardFileName = "Table.xml",
-                Values =
-                {
-                    ["Name"] = "HashDriven"
-                },
-                RelationshipIds =
-                {
-                    ["SchemaId"] = "1"
-                }
-            });
+            AddMetaSchemaTable(source, "3", "HashDriven", "1");
 
             AddMetaSchemaField(source, "6", "3", "OrderHashKey", "sqlserver:type:varbinary", "1", "false");
             AddMetaSchemaField(source, "7", "3", "Description", "sqlserver:type:nvarchar", "2", "true");
 
-            source.Instance.GetOrCreateEntityRecords("TableKey").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "key:3",
-                SourceShardFileName = "TableKey.xml",
-                Values =
-                {
-                    ["Name"] = "PK_HashDriven",
-                    ["KeyType"] = "primary"
-                },
-                RelationshipIds =
-                {
-                    ["TableId"] = "3"
-                }
-            });
-
-            source.Instance.GetOrCreateEntityRecords("TableKeyField").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "keyf:3",
-                SourceShardFileName = "TableKeyField.xml",
-                Values =
-                {
-                    ["Ordinal"] = "1",
-                    ["FieldName"] = "OrderHashKey"
-                },
-                RelationshipIds =
-                {
-                    ["TableKeyId"] = "key:3",
-                    ["FieldId"] = "6"
-                }
-            });
+            AddMetaSchemaPrimaryKey(source, "key:3", "PK_HashDriven", "3");
+            AddMetaSchemaKeyField(source, "keyf:3", "key:3", "6", "1");
 
             await new WorkspaceService().SaveAsync(source);
 
@@ -318,20 +236,8 @@ public sealed partial class CliTests
                 RelationshipIds = { ["SystemId"] = "1" }
             });
 
-            source.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "1",
-                SourceShardFileName = "Table.xml",
-                Values = { ["Name"] = "DepartmentHierarchy" },
-                RelationshipIds = { ["SchemaId"] = "1" }
-            });
-            source.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "2",
-                SourceShardFileName = "Table.xml",
-                Values = { ["Name"] = "Department" },
-                RelationshipIds = { ["SchemaId"] = "1" }
-            });
+            AddMetaSchemaTable(source, "1", "DepartmentHierarchy", "1");
+            AddMetaSchemaTable(source, "2", "Department", "1");
 
             AddMetaSchemaField(source, "1", "1", "DepartmentHierarchyId", "sqlserver:type:int", "1", "false");
             AddMetaSchemaField(source, "2", "1", "ParentDepartmentId", "sqlserver:type:int", "2", "false");
@@ -339,59 +245,10 @@ public sealed partial class CliTests
             AddMetaSchemaField(source, "4", "2", "DepartmentId", "sqlserver:type:int", "1", "false");
             AddMetaSchemaField(source, "5", "2", "DepartmentName", "sqlserver:type:nvarchar", "2", "true");
 
-            source.Instance.GetOrCreateEntityRecords("TableKey").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "key:1",
-                SourceShardFileName = "TableKey.xml",
-                Values =
-                {
-                    ["Name"] = "PK_DepartmentHierarchy",
-                    ["KeyType"] = "primary"
-                },
-                RelationshipIds = { ["TableId"] = "1" }
-            });
-            source.Instance.GetOrCreateEntityRecords("TableKey").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "key:2",
-                SourceShardFileName = "TableKey.xml",
-                Values =
-                {
-                    ["Name"] = "PK_Department",
-                    ["KeyType"] = "primary"
-                },
-                RelationshipIds = { ["TableId"] = "2" }
-            });
-
-            source.Instance.GetOrCreateEntityRecords("TableKeyField").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "keyf:1",
-                SourceShardFileName = "TableKeyField.xml",
-                Values =
-                {
-                    ["Ordinal"] = "1",
-                    ["FieldName"] = "DepartmentHierarchyId"
-                },
-                RelationshipIds =
-                {
-                    ["TableKeyId"] = "key:1",
-                    ["FieldId"] = "1"
-                }
-            });
-            source.Instance.GetOrCreateEntityRecords("TableKeyField").Add(new Meta.Core.Domain.GenericRecord
-            {
-                Id = "keyf:2",
-                SourceShardFileName = "TableKeyField.xml",
-                Values =
-                {
-                    ["Ordinal"] = "1",
-                    ["FieldName"] = "DepartmentId"
-                },
-                RelationshipIds =
-                {
-                    ["TableKeyId"] = "key:2",
-                    ["FieldId"] = "4"
-                }
-            });
+            AddMetaSchemaPrimaryKey(source, "key:1", "PK_DepartmentHierarchy", "1");
+            AddMetaSchemaPrimaryKey(source, "key:2", "PK_Department", "2");
+            AddMetaSchemaKeyField(source, "keyf:1", "key:1", "1", "1");
+            AddMetaSchemaKeyField(source, "keyf:2", "key:2", "4", "1");
 
             source.Instance.GetOrCreateEntityRecords("TableRelationship").Add(new Meta.Core.Domain.GenericRecord
             {

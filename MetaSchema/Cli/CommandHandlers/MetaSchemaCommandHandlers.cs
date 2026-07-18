@@ -72,9 +72,11 @@ internal sealed class MetaSchemaCommandHandlers
             presenter.WriteKeyValueBlock("MetaSchema", [
                 ("Systems", result.SystemCount.ToString(CultureInfo.InvariantCulture)),
                 ("Schemas", result.SchemaCount.ToString(CultureInfo.InvariantCulture)),
+                ("Objects", result.SchemaObjectCount.ToString(CultureInfo.InvariantCulture)),
                 ("Tables", result.TableCount.ToString(CultureInfo.InvariantCulture)),
+                ("Views", result.ViewCount.ToString(CultureInfo.InvariantCulture)),
                 ("Fields", result.FieldCount.ToString(CultureInfo.InvariantCulture)),
-                ("Keys", result.TableKeyCount.ToString(CultureInfo.InvariantCulture)),
+                ("Keys", result.KeyCount.ToString(CultureInfo.InvariantCulture)),
                 ("Relationships", result.TableRelationshipCount.ToString(CultureInfo.InvariantCulture)),
                 ("Workspace", result.WorkspacePath)
             ]);

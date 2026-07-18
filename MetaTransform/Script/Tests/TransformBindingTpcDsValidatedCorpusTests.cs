@@ -225,7 +225,7 @@ public sealed class TransformBindingTpcDsValidatedCorpusTests
         var field = new Field
         {
             Id = $"{table.Id}:field:{NormalizeIdPart(fieldName)}",
-            Table = table,
+            SchemaObject = table.SchemaObject,
             Name = fieldName,
             Ordinal = ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture),
             MetaDataTypeId = "sqlserver:type:nvarchar",
@@ -298,14 +298,19 @@ public sealed class TransformBindingTpcDsValidatedCorpusTests
             return existingTable;
         }
 
-        var table = new Table
+        var schemaObject = new SchemaObject
         {
             Id = $"table:{NormalizeIdPart(systemName)}:{NormalizeIdPart(schemaName)}:{NormalizeIdPart(tableName)}",
             Schema = schema,
-            Name = tableName,
-            ObjectType = "Table"
+            Name = tableName
+        };
+        var table = new Table
+        {
+            Id = schemaObject.Id,
+            SchemaObject = schemaObject
         };
 
+        model.SchemaObjectList.Add(schemaObject);
         model.TableList.Add(table);
         tableByKey.Add(tableKey, table);
         return table;

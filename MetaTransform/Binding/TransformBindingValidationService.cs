@@ -1121,16 +1121,14 @@ public sealed class TransformBindingValidationService
 
     private static void EnsureWritableTargetContract(string? targetSqlIdentifier, ResolvedSchemaTable targetTable)
     {
-        var objectType = targetTable.ObjectType?.Trim();
-        if (string.IsNullOrWhiteSpace(objectType) ||
-            string.Equals(objectType, "Table", StringComparison.OrdinalIgnoreCase))
+        if (targetTable.IsWritableTable)
         {
             return;
         }
 
         throw new TransformBindingValidationException(
             "TargetSchemaObjectNotWritable",
-            $"Declared target identifier '{targetSqlIdentifier}' resolves to {objectType} '{targetTable.CanonicalSqlIdentifier}', but transform binding targets must be writable table contracts.");
+            $"Declared target identifier '{targetSqlIdentifier}' resolves to read-only view '{targetTable.CanonicalSqlIdentifier}', but transform binding targets must be writable table contracts.");
     }
 
     private static void ThrowResolutionFailure(

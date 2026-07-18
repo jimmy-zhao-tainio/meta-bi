@@ -594,10 +594,20 @@ public sealed class TransformBindingWorkspaceService
                     item => item.Id,
                     item => $"{idPrefix}schema:{item.Id}",
                     StringComparer.Ordinal);
+            var schemaObjectIdMap = source.Model.SchemaObjectList
+                .ToDictionary(
+                    item => item.Id,
+                    item => $"{idPrefix}schema-object:{item.Id}",
+                    StringComparer.Ordinal);
             var tableIdMap = source.Model.TableList
                 .ToDictionary(
                     item => item.Id,
                     item => $"{idPrefix}table:{item.Id}",
+                    StringComparer.Ordinal);
+            var viewIdMap = source.Model.ViewList
+                .ToDictionary(
+                    item => item.Id,
+                    item => $"{idPrefix}view:{item.Id}",
                     StringComparer.Ordinal);
             var fieldIdMap = source.Model.FieldList
                 .ToDictionary(
@@ -606,7 +616,7 @@ public sealed class TransformBindingWorkspaceService
                     StringComparer.Ordinal);
             var systemsByOriginalId = new Dictionary<string, MetaSchema.System>(StringComparer.Ordinal);
             var schemasByOriginalId = new Dictionary<string, Schema>(StringComparer.Ordinal);
-            var tablesByOriginalId = new Dictionary<string, Table>(StringComparer.Ordinal);
+            var schemaObjectsByOriginalId = new Dictionary<string, SchemaObject>(StringComparer.Ordinal);
             var fieldsByOriginalId = new Dictionary<string, Field>(StringComparer.Ordinal);
 
             foreach (var system in source.Model.SystemList)
@@ -633,17 +643,34 @@ public sealed class TransformBindingWorkspaceService
                 schemasByOriginalId.Add(schema.Id, combinedSchema);
             }
 
+            foreach (var schemaObject in source.Model.SchemaObjectList)
+            {
+                var combinedSchemaObject = new SchemaObject
+                {
+                    Id = schemaObjectIdMap[schemaObject.Id],
+                    Schema = schemasByOriginalId[schemaObject.Schema.Id],
+                    Name = schemaObject.Name
+                };
+                combined.SchemaObjectList.Add(combinedSchemaObject);
+                schemaObjectsByOriginalId.Add(schemaObject.Id, combinedSchemaObject);
+            }
+
             foreach (var table in source.Model.TableList)
             {
-                var combinedTable = new Table
+                combined.TableList.Add(new Table
                 {
                     Id = tableIdMap[table.Id],
-                    Schema = schemasByOriginalId[table.Schema.Id],
-                    Name = table.Name,
-                    ObjectType = table.ObjectType
-                };
-                combined.TableList.Add(combinedTable);
-                tablesByOriginalId.Add(table.Id, combinedTable);
+                    SchemaObject = schemaObjectsByOriginalId[table.SchemaObject.Id]
+                });
+            }
+
+            foreach (var view in source.Model.ViewList)
+            {
+                combined.ViewList.Add(new View
+                {
+                    Id = viewIdMap[view.Id],
+                    SchemaObject = schemaObjectsByOriginalId[view.SchemaObject.Id]
+                });
             }
 
             foreach (var field in source.Model.FieldList)
@@ -651,7 +678,7 @@ public sealed class TransformBindingWorkspaceService
                 var combinedField = new Field
                 {
                     Id = fieldIdMap[field.Id],
-                    Table = tablesByOriginalId[field.Table.Id],
+                    SchemaObject = schemaObjectsByOriginalId[field.SchemaObject.Id],
                     Name = field.Name,
                     Ordinal = field.Ordinal,
                     MetaDataTypeId = field.MetaDataTypeId,

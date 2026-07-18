@@ -37,9 +37,11 @@ public sealed class MetaSchemaSqlServerExtractService
             workspacePath,
             model.SystemList.Count,
             model.SchemaList.Count,
+            model.SchemaObjectList.Count,
             model.TableList.Count,
+            model.ViewList.Count,
             model.FieldList.Count,
-            model.TableKeyList.Count,
+            model.KeyList.Count,
             model.TableRelationshipList.Count);
     }
 }
@@ -48,9 +50,11 @@ public sealed record SqlServerExtractResult(
     string WorkspacePath,
     int SystemCount,
     int SchemaCount,
+    int SchemaObjectCount,
     int TableCount,
+    int ViewCount,
     int FieldCount,
-    int TableKeyCount,
+    int KeyCount,
     int TableRelationshipCount);
 
 public sealed class SqlServerSchemaExtractor
@@ -115,7 +119,7 @@ public sealed class SqlServerSchemaExtractor
                 (not null, not null) => $"table '{schemaFilter}.{tableFilter}'",
             };
             throw new InvalidOperationException(
-                $"No SQL Server tables matched {filterDescription} in database '{connection.Database}'.");
+                $"No SQL Server tables or views matched {filterDescription} in database '{connection.Database}'.");
         }
 
         var columnsByTableKey = tableRows.ToDictionary(
@@ -165,16 +169,37 @@ public sealed class SqlServerSchemaExtractor
             schemasByName.Add(schemaName, schema);
         }
 
+        var schemaObjectsByKey = new Dictionary<string, MS.SchemaObject>(StringComparer.OrdinalIgnoreCase);
         var tablesByKey = new Dictionary<string, MS.Table>(StringComparer.OrdinalIgnoreCase);
         foreach (var tableRow in tableRows)
         {
             var tableKey = BuildScopedObjectKey(tableRow.SchemaName, tableRow.TableName);
+            // Keep the established :table: identity for both specializations. Existing
+            // extracted field and key identities remain stable while the model makes the
+            // object form explicit.
+            var schemaObject = new MS.SchemaObject
+            {
+                Id = BuildSchemaObjectId(databaseName, tableRow.SchemaName, tableRow.TableName),
+                Name = tableRow.TableName,
+                Schema = schemasByName[tableRow.SchemaName]
+            };
+            model.SchemaObjectList.Add(schemaObject);
+            schemaObjectsByKey.Add(tableKey, schemaObject);
+
+            if (tableRow.IsView)
+            {
+                model.ViewList.Add(new MS.View
+                {
+                    Id = schemaObject.Id,
+                    SchemaObject = schemaObject
+                });
+                continue;
+            }
+
             var table = new MS.Table
             {
-                Id = BuildTableId(databaseName, tableRow.SchemaName, tableRow.TableName),
-                Name = tableRow.TableName,
-                ObjectType = string.IsNullOrWhiteSpace(tableRow.ObjectType) ? null : tableRow.ObjectType,
-                Schema = schemasByName[tableRow.SchemaName]
+                Id = schemaObject.Id,
+                SchemaObject = schemaObject
             };
             model.TableList.Add(table);
             tablesByKey.Add(tableKey, table);
@@ -184,7 +209,7 @@ public sealed class SqlServerSchemaExtractor
         foreach (var tableRow in tableRows)
         {
             var tableKey = BuildScopedObjectKey(tableRow.SchemaName, tableRow.TableName);
-            var table = tablesByKey[tableKey];
+            var schemaObject = schemaObjectsByKey[tableKey];
             var fieldsByColumnName = new Dictionary<string, MS.Field>(StringComparer.OrdinalIgnoreCase);
             fieldsByColumnNameByTableKey.Add(tableKey, fieldsByColumnName);
 
@@ -199,11 +224,11 @@ public sealed class SqlServerSchemaExtractor
                     Name = columnRow.ColumnName,
                     MetaDataTypeId = BuildDataTypeId(columnRow.DataTypeName),
                     Ordinal = columnRow.OrdinalPosition.ToString(CultureInfo.InvariantCulture),
-                    IsNullable = columnRow.IsNullable ? "true" : "false",
-                    IsIdentity = columnRow.IsIdentity ? "true" : null,
-                    IdentitySeed = string.IsNullOrWhiteSpace(columnRow.IdentitySeed) ? null : columnRow.IdentitySeed,
-                    IdentityIncrement = string.IsNullOrWhiteSpace(columnRow.IdentityIncrement) ? null : columnRow.IdentityIncrement,
-                    Table = table
+                    IsNullable = tableRow.IsView ? null : columnRow.IsNullable ? "true" : "false",
+                    IsIdentity = tableRow.IsView || !columnRow.IsIdentity ? null : "true",
+                    IdentitySeed = tableRow.IsView || string.IsNullOrWhiteSpace(columnRow.IdentitySeed) ? null : columnRow.IdentitySeed,
+                    IdentityIncrement = tableRow.IsView || string.IsNullOrWhiteSpace(columnRow.IdentityIncrement) ? null : columnRow.IdentityIncrement,
+                    SchemaObject = schemaObject
                 };
 
                 model.FieldList.Add(field);
@@ -212,7 +237,7 @@ public sealed class SqlServerSchemaExtractor
             }
         }
 
-        foreach (var tableRow in tableRows)
+        foreach (var tableRow in tableRows.Where(static row => !row.IsView))
         {
             var tableKey = BuildScopedObjectKey(tableRow.SchemaName, tableRow.TableName);
             var table = tablesByKey[tableKey];
@@ -225,17 +250,32 @@ public sealed class SqlServerSchemaExtractor
                     StringComparer.Ordinal);
 
             foreach (var keyRow in tableKeysByTableKey[tableKey]
-                         .OrderBy(static row => row.KeyType, StringComparer.Ordinal)
+                         .OrderBy(static row => row.IsPrimaryKey ? 0 : 1)
                          .ThenBy(static row => row.Name, StringComparer.Ordinal))
             {
-                var tableKeyRow = new MS.TableKey
+                var key = new MS.Key
                 {
                     Id = BuildTableKeyId(databaseName, tableRow.SchemaName, tableRow.TableName, keyRow.Name),
                     Name = keyRow.Name,
-                    KeyType = keyRow.KeyType,
                     Table = table
                 };
-                model.TableKeyList.Add(tableKeyRow);
+                model.KeyList.Add(key);
+                if (keyRow.IsPrimaryKey)
+                {
+                    model.PrimaryKeyList.Add(new MS.PrimaryKey
+                    {
+                        Id = key.Id,
+                        Key = key
+                    });
+                }
+                else
+                {
+                    model.UniqueKeyList.Add(new MS.UniqueKey
+                    {
+                        Id = key.Id,
+                        Key = key
+                    });
+                }
 
                 if (!keyFieldsByName.TryGetValue(keyRow.Name, out var keyFields))
                 {
@@ -250,7 +290,7 @@ public sealed class SqlServerSchemaExtractor
                             $"SQL Server key '{tableRow.SchemaName}.{tableRow.TableName}.{keyRow.Name}' referenced column '{keyField.ColumnName}' that was not extracted.");
                     }
 
-                    model.TableKeyFieldList.Add(new MS.TableKeyField
+                    model.KeyFieldList.Add(new MS.KeyField
                     {
                         Id = BuildTableKeyFieldId(
                             databaseName,
@@ -259,15 +299,14 @@ public sealed class SqlServerSchemaExtractor
                             keyRow.Name,
                             keyField.Ordinal),
                         Ordinal = keyField.Ordinal.ToString(CultureInfo.InvariantCulture),
-                        FieldName = keyField.ColumnName,
-                        TableKey = tableKeyRow,
+                        Key = key,
                         Field = field
                     });
                 }
             }
         }
 
-        foreach (var tableRow in tableRows)
+        foreach (var tableRow in tableRows.Where(static row => !row.IsView))
         {
             var tableKey = BuildScopedObjectKey(tableRow.SchemaName, tableRow.TableName);
             var sourceTable = tablesByKey[tableKey];
@@ -365,7 +404,7 @@ public sealed class SqlServerSchemaExtractor
             rows.Add(new TableRow(
                 SchemaName: reader.GetString(0),
                 TableName: reader.GetString(1),
-                ObjectType: NormalizeTableType(reader.GetString(2))));
+                IsView: string.Equals(reader.GetString(2), "VIEW", StringComparison.Ordinal)));
         }
 
         return rows;
@@ -462,7 +501,7 @@ public sealed class SqlServerSchemaExtractor
         {
             rows.Add(new TableKeyRow(
                 Name: reader.GetString(0),
-                KeyType: NormalizeKeyType(reader.GetString(1))));
+                IsPrimaryKey: string.Equals(reader.GetString(1), "PK", StringComparison.Ordinal)));
         }
 
         return rows;
@@ -607,29 +646,13 @@ public sealed class SqlServerSchemaExtractor
     private static string? ReadNullableString(SqlDataReader reader, int ordinal) =>
         reader.IsDBNull(ordinal) ? null : reader.GetString(ordinal);
 
-    private static string NormalizeTableType(string tableType) =>
-        tableType switch
-        {
-            "BASE TABLE" => "Table",
-            "VIEW" => "View",
-            _ => tableType,
-        };
-
-    private static string NormalizeKeyType(string keyConstraintType) =>
-        keyConstraintType switch
-        {
-            "PK" => "primary",
-            "UQ" => "unique",
-            _ => keyConstraintType,
-        };
-
     private static string BuildSystemId(string databaseName) =>
         "sqlserver:system:" + databaseName;
 
     private static string BuildSchemaId(string databaseName, string schemaName) =>
         "sqlserver:" + databaseName + ":schema:" + schemaName;
 
-    private static string BuildTableId(string databaseName, string schemaName, string tableName) =>
+    private static string BuildSchemaObjectId(string databaseName, string schemaName, string tableName) =>
         "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName;
 
     private static string BuildDataTypeId(string dataTypeName) =>
@@ -703,7 +726,7 @@ public sealed class SqlServerSchemaExtractor
     private readonly record struct TableRow(
         string SchemaName,
         string TableName,
-        string ObjectType);
+        bool IsView);
 
     private readonly record struct ColumnRow(
         string SchemaName,
@@ -727,7 +750,7 @@ public sealed class SqlServerSchemaExtractor
 
     private readonly record struct TableKeyRow(
         string Name,
-        string KeyType);
+        bool IsPrimaryKey);
 
     private readonly record struct TableKeyFieldRow(
         string KeyName,

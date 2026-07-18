@@ -53,7 +53,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
                 DataTypeId = field.MetaDataTypeId,
                 Ordinal = field.Ordinal,
                 IsNullable = field.IsNullable,
-                SourceTable = draft.SourceTablesById[field.Table.Id],
+                SourceTable = draft.SourceTablesById[field.SchemaObject.Id],
             };
             draft.SourceFields.Add(sourceField);
             draft.SourceFieldsById[sourceField.Id] = sourceField;

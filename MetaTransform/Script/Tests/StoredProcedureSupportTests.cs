@@ -450,21 +450,26 @@ public sealed class StoredProcedureSupportTests
             System = system,
             Name = parts[0]
         };
-        var table = new MS.Table
+        var schemaObject = new MS.SchemaObject
         {
             Id = $"hairball:table:{parts[0]}:{parts[1]}",
             Schema = schema,
-            Name = parts[1],
-            ObjectType = "Table"
+            Name = parts[1]
+        };
+        var table = new MS.Table
+        {
+            Id = schemaObject.Id,
+            SchemaObject = schemaObject
         };
 
         model.SystemList.Add(system);
         model.SchemaList.Add(schema);
+        model.SchemaObjectList.Add(schemaObject);
         model.TableList.Add(table);
         model.FieldList.Add(new MS.Field
         {
             Id = $"hairball:field:{parts[0]}:{parts[1]}:Value",
-            Table = table,
+            SchemaObject = schemaObject,
             MetaDataTypeId = "sqlserver:type:int",
             Name = "Value",
             Ordinal = "0",

@@ -29,7 +29,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             .OrderBy(row => BuildQualifiedTableName(row.Table, sourceIndex.SchemaById), StringComparer.OrdinalIgnoreCase)
             .Select(row => new RawDataVaultFromMetaSchemaTableReport(
                 QualifiedTableName: BuildQualifiedTableName(row.Table, sourceIndex.SchemaById),
-                SelectedKey: BuildSelectedKeyReport(row.KeyAssessment),
+                SelectedKey: BuildSelectedKeyReport(row.KeyAssessment, sourceIndex),
                 HubCreated: row.HubCreated,
                 SatelliteAttributeCount: row.SatelliteAttributeCount,
                 Reason: !row.HubCreated && !string.IsNullOrWhiteSpace(row.KeyAssessment?.SkipReason)
@@ -55,7 +55,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         return new RawDataVaultFromMetaSchemaReport(summary, tables, relationships);
     }
 
-    private static string BuildRelationshipSkipReason(string? sourceHubId, string? targetHubId, MS.Table sourceTable, MS.Table targetTable)
+    private static string BuildRelationshipSkipReason(string? sourceHubId, string? targetHubId, MS.SchemaObject sourceTable, MS.SchemaObject targetTable)
     {
         var reasons = new List<string>();
         if (string.IsNullOrWhiteSpace(sourceHubId))
@@ -73,7 +73,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             : string.Join("; ", reasons);
     }
 
-    private static string BuildQualifiedTableName(MS.Table table, IReadOnlyDictionary<string, MS.Schema> schemaById)
+    private static string BuildQualifiedTableName(MS.SchemaObject table, IReadOnlyDictionary<string, MS.Schema> schemaById)
     {
         if (schemaById.TryGetValue(table.Schema.Id, out var schema) && !string.IsNullOrWhiteSpace(schema.Name))
         {
@@ -83,7 +83,9 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         return table.Name;
     }
 
-    private static RawDataVaultFromMetaSchemaSelectedKeyReport? BuildSelectedKeyReport(TableKeyAssessment? keyAssessment)
+    private static RawDataVaultFromMetaSchemaSelectedKeyReport? BuildSelectedKeyReport(
+        TableKeyAssessment? keyAssessment,
+        SourceIndex sourceIndex)
     {
         if (keyAssessment?.SelectedKey == null)
         {
@@ -92,17 +94,17 @@ public sealed partial class RawDataVaultFromMetaSchemaService
 
         var key = keyAssessment.SelectedKey;
         var fieldNames = key.OrderedKeyFields
-            .Select(record => record.FieldName)
+            .Select(record => record.Field.Name)
             .Where(value => !string.IsNullOrWhiteSpace(value))
             .ToList();
 
         return new RawDataVaultFromMetaSchemaSelectedKeyReport(
-            KeyType: key.TableKey.KeyType,
-            KeyName: string.IsNullOrWhiteSpace(key.TableKey.Name) ? null : key.TableKey.Name,
+            KeyType: sourceIndex.PrimaryKeyIds.Contains(key.Key.Id) ? "primary" : "unique",
+            KeyName: string.IsNullOrWhiteSpace(key.Key.Name) ? null : key.Key.Name,
             FieldNames: fieldNames);
     }
 
-    private static string BuildRelationshipTitle(MS.TableRelationship relationship, MS.Table sourceTable, MS.Table targetTable)
+    private static string BuildRelationshipTitle(MS.TableRelationship relationship, MS.SchemaObject sourceTable, MS.SchemaObject targetTable)
     {
         return $"{BuildStructuralLinkName(sourceTable, targetTable)} ({sourceTable.Name} -> {targetTable.Name})";
     }

@@ -36,7 +36,10 @@ public sealed partial class RawDataVaultFromMetaSchemaService
     private static SourceIndex BuildSourceIndex(MS.MetaSchemaModel metaSchemaModel, bool includeViews)
     {
         var includedTables = metaSchemaModel.TableList
-            .Where(table => IsIncludedTable(table, includeViews))
+            .Select(table => table.SchemaObject)
+            .Concat(includeViews
+                ? metaSchemaModel.ViewList.Select(view => view.SchemaObject)
+                : [])
             .OrderBy(table => table.Name, StringComparer.OrdinalIgnoreCase)
             .ThenBy(table => table.Id, StringComparer.OrdinalIgnoreCase)
             .ThenBy(table => table.Id, StringComparer.Ordinal)
@@ -60,7 +63,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             .ToList();
 
         var includedFields = metaSchemaModel.FieldList
-            .Where(field => includedTableIds.Contains(field.Table.Id))
+            .Where(field => includedTableIds.Contains(field.SchemaObject.Id))
             .OrderBy(field => ParseInt32(field.Ordinal, int.MaxValue))
             .ThenBy(field => field.Name, StringComparer.OrdinalIgnoreCase)
             .ThenBy(field => field.Id, StringComparer.OrdinalIgnoreCase)
@@ -110,13 +113,19 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             TableById = includedTables.ToDictionary(table => table.Id, StringComparer.Ordinal),
             FieldById = includedFields.ToDictionary(field => field.Id, StringComparer.Ordinal),
             FieldsByTableId = includedFields
-                .GroupBy(field => field.Table.Id, StringComparer.Ordinal)
+                .GroupBy(field => field.SchemaObject.Id, StringComparer.Ordinal)
                 .ToDictionary(group => group.Key, group => (IReadOnlyList<MS.Field>)group.ToList(), StringComparer.Ordinal),
             RelationshipFieldsByRelationshipId = includedRelationshipFields
                 .GroupBy(field => field.TableRelationship.Id, StringComparer.Ordinal)
                 .ToDictionary(group => group.Key, group => (IReadOnlyList<MS.TableRelationshipField>)group.ToList(), StringComparer.Ordinal),
             RelationshipSourceFieldIds = includedRelationshipFields
                 .Select(field => field.SourceField.Id)
+                .ToHashSet(StringComparer.Ordinal),
+            PrimaryKeyIds = metaSchemaModel.PrimaryKeyList
+                .Select(primaryKey => primaryKey.Key.Id)
+                .ToHashSet(StringComparer.Ordinal),
+            UniqueKeyIds = metaSchemaModel.UniqueKeyList
+                .Select(uniqueKey => uniqueKey.Key.Id)
                 .ToHashSet(StringComparer.Ordinal),
         };
     }
@@ -129,25 +138,25 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         var includedTableIds = sourceIndex.IncludedTables.Select(table => table.Id).ToHashSet(StringComparer.Ordinal);
         var includedFieldIds = sourceIndex.IncludedFields.Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
 
-        var keyFieldsByKeyId = metaSchemaModel.TableKeyFieldList
+        var keyFieldsByKeyId = metaSchemaModel.KeyFieldList
             .Where(record => includedFieldIds.Contains(record.Field.Id))
-            .GroupBy(record => record.TableKey.Id, StringComparer.Ordinal)
+            .GroupBy(record => record.Key.Id, StringComparer.Ordinal)
             .ToDictionary(
                 group => group.Key,
-                group => (IReadOnlyList<MS.TableKeyField>)group
+                group => (IReadOnlyList<MS.KeyField>)group
                     .OrderBy(record => ParseInt32(record.Ordinal, int.MaxValue))
                     .ThenBy(record => record.Id, StringComparer.OrdinalIgnoreCase)
                     .ThenBy(record => record.Id, StringComparer.Ordinal)
                     .ToList(),
                 StringComparer.Ordinal);
 
-        var keysByTableId = metaSchemaModel.TableKeyList
-            .Where(record => includedTableIds.Contains(record.Table.Id))
-            .GroupBy(record => record.Table.Id, StringComparer.Ordinal)
+        var keysByTableId = metaSchemaModel.KeyList
+            .Where(record => includedTableIds.Contains(record.Table.SchemaObject.Id))
+            .GroupBy(record => record.Table.SchemaObject.Id, StringComparer.Ordinal)
             .ToDictionary(
                 group => group.Key,
-                group => (IReadOnlyList<MS.TableKey>)group
-                    .OrderBy(record => GetKeyPriority(record.KeyType))
+                group => (IReadOnlyList<MS.Key>)group
+                    .OrderBy(record => GetKeyPriority(record, sourceIndex))
                     .ThenBy(record => record.Name, StringComparer.OrdinalIgnoreCase)
                     .ThenBy(record => record.Id, StringComparer.OrdinalIgnoreCase)
                     .ThenBy(record => record.Id, StringComparer.Ordinal)
@@ -159,7 +168,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         {
             var sourceKeys = keysByTableId.TryGetValue(table.Id, out var keysForTable)
                 ? keysForTable
-                : Array.Empty<MS.TableKey>();
+                : Array.Empty<MS.Key>();
 
             var candidateKeys = sourceKeys
                 .Select(record => new CandidateKeySelection(
@@ -170,15 +179,15 @@ public sealed partial class RawDataVaultFromMetaSchemaService
                                 sourceIndex.FieldById.TryGetValue(keyField.Field.Id, out var field) &&
                                 !ShouldIgnoreField(field.Name, options.IgnoredFieldNames, options.IgnoredFieldSuffixes))
                             .ToList()
-                        : Array.Empty<MS.TableKeyField>()))
+                        : Array.Empty<MS.KeyField>()))
                 .ToList();
 
             var selectedKey = candidateKeys
                 .Where(selection => selection.OrderedKeyFields.Count > 0)
-                .OrderBy(selection => GetKeyPriority(selection.TableKey.KeyType))
-                .ThenBy(selection => selection.TableKey.Name, StringComparer.OrdinalIgnoreCase)
-                .ThenBy(selection => selection.TableKey.Id, StringComparer.OrdinalIgnoreCase)
-                .ThenBy(selection => selection.TableKey.Id, StringComparer.Ordinal)
+                .OrderBy(selection => GetKeyPriority(selection.Key, sourceIndex))
+                .ThenBy(selection => selection.Key.Name, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(selection => selection.Key.Id, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(selection => selection.Key.Id, StringComparer.Ordinal)
                 .FirstOrDefault();
 
             var skipReason = selectedKey != null
@@ -301,8 +310,8 @@ public sealed partial class RawDataVaultFromMetaSchemaService
 
         foreach (var relationship in sourceIndex.IncludedRelationships)
         {
-            var sourceTable = relationship.SourceTable;
-            var targetTable = relationship.TargetTable;
+            var sourceTable = relationship.SourceTable.SchemaObject;
+            var targetTable = relationship.TargetTable.SchemaObject;
             var hasSourceHub = draft.RawHubIdsBySourceTableId.TryGetValue(sourceTable.Id, out var sourceHubId);
             var hasTargetHub = draft.RawHubIdsBySourceTableId.TryGetValue(targetTable.Id, out var targetHubId);
 
@@ -358,24 +367,14 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         return relationshipReportRows;
     }
 
-    private static bool IsIncludedTable(MS.Table table, bool includeViews)
+    private static int GetKeyPriority(MS.Key key, SourceIndex sourceIndex)
     {
-        if (includeViews)
+        if (sourceIndex.PrimaryKeyIds.Contains(key.Id))
         {
-            return true;
+            return 0;
         }
 
-        return !string.Equals(table.ObjectType, "View", StringComparison.OrdinalIgnoreCase);
-    }
-
-    private static int GetKeyPriority(string keyType)
-    {
-        return keyType switch
-        {
-            "primary" => 0,
-            "unique" => 1,
-            _ => 2
-        };
+        return sourceIndex.UniqueKeyIds.Contains(key.Id) ? 1 : 2;
     }
 
     private static bool ShouldIgnoreField(string fieldName, ISet<string> ignoredFieldNames, ISet<string> ignoredFieldSuffixes)
@@ -401,7 +400,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         return false;
     }
 
-    private static int ParseInt32(string value, int defaultValue)
+    private static int ParseInt32(string? value, int defaultValue)
     {
         return int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
             ? parsed
@@ -420,7 +419,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
 
     private static string BuildRawLinkHubId(string linkId, string role) => $"{linkId}:{role}";
 
-    private static string BuildStructuralLinkName(MS.Table sourceTable, MS.Table targetTable)
+    private static string BuildStructuralLinkName(MS.SchemaObject sourceTable, MS.SchemaObject targetTable)
     {
         return BuildRoleName(sourceTable, targetTable, isSource: true) +
                BuildRoleName(sourceTable, targetTable, isSource: false);
@@ -431,7 +430,11 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         var namesByRelationshipId = new Dictionary<string, string>(StringComparer.Ordinal);
 
         foreach (var group in sourceIndex.IncludedRelationships
-                     .GroupBy(relationship => BuildStructuralLinkName(relationship.SourceTable, relationship.TargetTable), StringComparer.Ordinal))
+                     .GroupBy(
+                         relationship => BuildStructuralLinkName(
+                             relationship.SourceTable.SchemaObject,
+                             relationship.TargetTable.SchemaObject),
+                         StringComparer.Ordinal))
         {
             var relationships = group.ToList();
             if (relationships.Count == 1)
@@ -521,7 +524,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         return string.IsNullOrWhiteSpace(token) ? fallback : token;
     }
 
-    private static string BuildRoleName(MS.Table sourceTable, MS.Table targetTable, bool isSource)
+    private static string BuildRoleName(MS.SchemaObject sourceTable, MS.SchemaObject targetTable, bool isSource)
     {
         if (!string.Equals(sourceTable.Name, targetTable.Name, StringComparison.OrdinalIgnoreCase))
         {

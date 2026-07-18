@@ -177,9 +177,9 @@ FROM dbo.SourceView AS s
             TargetSqlIdentifier = "dbo.Target"
         });
         var sourceSchema = CreateSchema("ExecDb", ("dbo", "SourceView", ["CustomerId"]));
-        sourceSchema.TableList[0].ObjectType = "View";
+        ReplaceTableWithView(sourceSchema, 0);
         var targetSchema = CreateSchema("WarehouseDb", ("dbo", "Target", ["CustomerId"]));
-        targetSchema.TableList[0].ObjectType = "View";
+        ReplaceTableWithView(targetSchema, 0);
         var tempRoot = Path.Combine(
             Path.GetTempPath(),
             "MetaTransform.Binding.Hardening.Tests",
@@ -260,11 +260,19 @@ FROM dbo.SourceView AS s
                 model.SchemaList.Add(schema);
             }
 
-            var tableRow = new Table
+            var tableId = $"Table:{++tableOrdinal}";
+            var schemaObject = new SchemaObject
             {
-                Id = $"Table:{++tableOrdinal}",
+                Id = tableId,
                 Schema = schema,
                 Name = table.TableName
+            };
+            model.SchemaObjectList.Add(schemaObject);
+
+            var tableRow = new Table
+            {
+                Id = tableId,
+                SchemaObject = schemaObject
             };
             model.TableList.Add(tableRow);
 
@@ -273,7 +281,7 @@ FROM dbo.SourceView AS s
                 model.FieldList.Add(new Field
                 {
                     Id = $"Field:{tableOrdinal}:{i + 1}",
-                    Table = tableRow,
+                    SchemaObject = schemaObject,
                     Name = table.Columns[i],
                     MetaDataTypeId = "sqlserver:type:int",
                     IsNullable = "false",
@@ -283,5 +291,16 @@ FROM dbo.SourceView AS s
         }
 
         return model;
+    }
+
+    private static void ReplaceTableWithView(MetaSchemaModel model, int tableIndex)
+    {
+        var table = model.TableList[tableIndex];
+        model.TableList.RemoveAt(tableIndex);
+        model.ViewList.Add(new View
+        {
+            Id = table.Id,
+            SchemaObject = table.SchemaObject
+        });
     }
 }

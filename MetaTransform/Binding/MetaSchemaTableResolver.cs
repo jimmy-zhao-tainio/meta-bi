@@ -20,8 +20,14 @@ internal sealed class MetaSchemaTableResolver
                 group => group.Key,
                 ResolveDataTypeDetail,
                 StringComparer.Ordinal);
-        var fieldRowsByTableId = model.FieldList
-            .GroupBy(item => item.Table.Id, StringComparer.Ordinal)
+        var tableIds = model.TableList
+            .Select(item => item.SchemaObject.Id)
+            .ToHashSet(StringComparer.Ordinal);
+        var viewIds = model.ViewList
+            .Select(item => item.SchemaObject.Id)
+            .ToHashSet(StringComparer.Ordinal);
+        var fieldRowsBySchemaObjectId = model.FieldList
+            .GroupBy(item => item.SchemaObject.Id, StringComparer.Ordinal)
             .ToDictionary(
                 group => group.Key,
                 group => group
@@ -36,7 +42,7 @@ internal sealed class MetaSchemaTableResolver
                             ParseOrdinal(item.Ordinal),
                             item.MetaDataTypeId,
                             IsTrue(item.IsIdentity),
-                            ParseOptionalBool(item.IsNullable),
+                            viewIds.Contains(item.SchemaObject.Id) ? true : ParseOptionalBool(item.IsNullable),
                             dataTypeDetail.Length,
                             dataTypeDetail.Precision,
                             dataTypeDetail.Scale);
@@ -44,9 +50,17 @@ internal sealed class MetaSchemaTableResolver
                     .ToArray(),
                 StringComparer.Ordinal);
 
-        tables = model.TableList
+        tables = model.SchemaObjectList
             .Select(item =>
             {
+                var isTable = tableIds.Contains(item.Id);
+                var isView = viewIds.Contains(item.Id);
+                if (isTable == isView)
+                {
+                    throw new InvalidOperationException(
+                        $"Schema object '{item.Id}' must have exactly one Table or View specialization.");
+                }
+
                 schemaRowsById.TryGetValue(item.Schema.Id, out var schemaRow);
                 var systemId = schemaRow?.System.Id ?? string.Empty;
                 var systemName = systemNamesById.GetValueOrDefault(systemId) ?? string.Empty;
@@ -60,9 +74,9 @@ internal sealed class MetaSchemaTableResolver
                     systemName,
                     schemaName,
                     item.Name,
-                    item.ObjectType,
+                    isTable,
                     canonicalSqlIdentifier,
-                    fieldRowsByTableId.GetValueOrDefault(item.Id) ?? []);
+                    fieldRowsBySchemaObjectId.GetValueOrDefault(item.Id) ?? []);
             })
             .ToArray();
 
@@ -280,7 +294,7 @@ internal sealed record ResolvedSchemaTable(
     string SystemName,
     string SchemaName,
     string TableName,
-    string? ObjectType,
+    bool IsWritableTable,
     string CanonicalSqlIdentifier,
     IReadOnlyList<ResolvedSchemaField> Fields);
 

@@ -11,15 +11,13 @@
 
 namespace MetaSchema
 {
-    public sealed class TableKey
+    public sealed class SchemaObject
     {
         public string Id { get; set; } = string.Empty;
 
-        public string KeyType { get; set; } = string.Empty;
-
         public string Name { get; set; } = string.Empty;
 
-        public Table Table { get; set; } = null!;
+        public Schema Schema { get; set; } = null!;
 
     }
 }

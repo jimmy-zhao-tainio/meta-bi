@@ -3094,7 +3094,7 @@ GO
             ("dbo", "CustomerSummary", ["CustomerSummaryId", "CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
 
         var identityField = Assert.Single(schemaModel.FieldList, item =>
-            string.Equals(item.Table.Id, "Table:2", StringComparison.Ordinal) &&
+            string.Equals(item.SchemaObject.Id, "Table:2", StringComparison.Ordinal) &&
             string.Equals(item.Name, "CustomerSummaryId", StringComparison.Ordinal));
         identityField.IsIdentity = "true";
         identityField.IdentitySeed = "1";
@@ -3294,7 +3294,7 @@ INNER JOIN dbo.SourceB AS b
             var ignoredTargetColumn = Assert.Single(validated.ValidationTargetIgnoredColumnList);
 
             var loadUtcField = Assert.Single(schemaModel.FieldList, item =>
-                string.Equals(item.Table.Id, "Table:2", StringComparison.Ordinal) &&
+                string.Equals(item.SchemaObject.Id, "Table:2", StringComparison.Ordinal) &&
                 string.Equals(item.Name, "LoadUtc", StringComparison.Ordinal));
             Assert.Equal(loadUtcField.Id, ignoredTargetColumn.MetaSchemaFieldId);
 
@@ -3349,7 +3349,7 @@ INNER JOIN dbo.SourceB AS b
             var ignoredTargetColumn = Assert.Single(validated.ValidationTargetIgnoredColumnList);
 
             var updateAuditField = Assert.Single(schemaModel.FieldList, item =>
-                string.Equals(item.Table.Id, "Table:2", StringComparison.Ordinal) &&
+                string.Equals(item.SchemaObject.Id, "Table:2", StringComparison.Ordinal) &&
                 string.Equals(item.Name, "UpdateAudit_ID", StringComparison.Ordinal));
             Assert.Equal(updateAuditField.Id, ignoredTargetColumn.MetaSchemaFieldId);
         }
@@ -3992,7 +3992,7 @@ FROM SourceTable AS s;
             ("dbo", "CustomerSummary", ["CustomerSummaryId", "CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
 
         var identityField = Assert.Single(schemaModel.FieldList, item =>
-            string.Equals(item.Table.Id, "Table:2", StringComparison.Ordinal) &&
+            string.Equals(item.SchemaObject.Id, "Table:2", StringComparison.Ordinal) &&
             string.Equals(item.Name, "CustomerSummaryId", StringComparison.Ordinal));
         identityField.IsIdentity = "true";
         identityField.IdentitySeed = "1";
@@ -4595,11 +4595,18 @@ GO
             }
 
             var tableId = $"Table:{++tableOrdinal}";
-            var tableRow = new Table
+            var schemaObject = new SchemaObject
             {
                 Id = tableId,
                 Schema = schema,
                 Name = table.TableName
+            };
+            model.SchemaObjectList.Add(schemaObject);
+
+            var tableRow = new Table
+            {
+                Id = tableId,
+                SchemaObject = schemaObject
             };
             model.TableList.Add(tableRow);
 
@@ -4608,7 +4615,7 @@ GO
                 model.FieldList.Add(new Field
                 {
                     Id = $"Field:{tableOrdinal}:{i + 1}",
-                    Table = tableRow,
+                    SchemaObject = schemaObject,
                     Name = table.Columns[i],
                     MetaDataTypeId = "sqlserver:type:int",
                     IsNullable = "false",
@@ -4646,7 +4653,7 @@ GO
     private static void SetFieldMetaDataTypeId(MetaSchemaModel schemaModel, string tableId, string fieldName, string metaDataTypeId)
     {
         var field = Assert.Single(schemaModel.FieldList, item =>
-            string.Equals(item.Table.Id, tableId, StringComparison.Ordinal) &&
+            string.Equals(item.SchemaObject.Id, tableId, StringComparison.Ordinal) &&
             string.Equals(item.Name, fieldName, StringComparison.Ordinal));
         field.MetaDataTypeId = metaDataTypeId;
     }
@@ -4654,7 +4661,7 @@ GO
     private static void SetFieldIsNullable(MetaSchemaModel schemaModel, string tableId, string fieldName, bool isNullable)
     {
         var field = Assert.Single(schemaModel.FieldList, item =>
-            string.Equals(item.Table.Id, tableId, StringComparison.Ordinal) &&
+            string.Equals(item.SchemaObject.Id, tableId, StringComparison.Ordinal) &&
             string.Equals(item.Name, fieldName, StringComparison.Ordinal));
         field.IsNullable = isNullable ? "true" : "false";
     }
@@ -4667,7 +4674,7 @@ GO
         int detailValue)
     {
         var field = Assert.Single(schemaModel.FieldList, item =>
-            string.Equals(item.Table.Id, tableId, StringComparison.Ordinal) &&
+            string.Equals(item.SchemaObject.Id, tableId, StringComparison.Ordinal) &&
             string.Equals(item.Name, fieldName, StringComparison.Ordinal));
 
         var existing = schemaModel.FieldDataTypeDetailList

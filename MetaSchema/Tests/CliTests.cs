@@ -1,3 +1,4 @@
+using System.Globalization;
 using MetaSchema.Core;
 using Microsoft.Data.SqlClient;
 using MetaSchema.Extractors.SqlServer;
@@ -60,17 +61,24 @@ public sealed class CliTests
     }
 
     [Fact]
-    public void MetaSchemaModel_UsesScalarMetaDataTypeId_AndIncludesStrongTableRelationships()
+    public void MetaSchemaModel_ModelsTablesViewsAndKeysWithoutTextDiscriminators()
     {
         var model = MetaSchemaModels.CreateMetaSchemaModel();
 
         var field = Assert.Single(model.Entities, entity => entity.Name == "Field");
         var fieldDataTypeDetail = Assert.Single(model.Entities, entity => entity.Name == "FieldDataTypeDetail");
-        var tableKey = Assert.Single(model.Entities, entity => entity.Name == "TableKey");
-        var tableKeyField = Assert.Single(model.Entities, entity => entity.Name == "TableKeyField");
+        var schemaObject = Assert.Single(model.Entities, entity => entity.Name == "SchemaObject");
+        var table = Assert.Single(model.Entities, entity => entity.Name == "Table");
+        var view = Assert.Single(model.Entities, entity => entity.Name == "View");
+        var key = Assert.Single(model.Entities, entity => entity.Name == "Key");
+        var primaryKey = Assert.Single(model.Entities, entity => entity.Name == "PrimaryKey");
+        var uniqueKey = Assert.Single(model.Entities, entity => entity.Name == "UniqueKey");
+        var keyField = Assert.Single(model.Entities, entity => entity.Name == "KeyField");
         var tableRelationship = Assert.Single(model.Entities, entity => entity.Name == "TableRelationship");
         var tableRelationshipField = Assert.Single(model.Entities, entity => entity.Name == "TableRelationshipField");
         Assert.DoesNotContain(model.Entities, entity => entity.Name == "FieldType");
+        Assert.DoesNotContain(model.Entities, entity => entity.Name == "TableKey");
+        Assert.DoesNotContain(model.Entities, entity => entity.Name == "TableKeyField");
         Assert.Contains(field.Properties, property => property.Name == "MetaDataTypeId");
         Assert.Contains(field.Properties, property => property.Name == "IsIdentity");
         Assert.Contains(field.Properties, property => property.Name == "IdentitySeed");
@@ -79,12 +87,20 @@ public sealed class CliTests
         Assert.DoesNotContain(field.Properties, property => property.Name == "NumericPrecision");
         Assert.DoesNotContain(field.Properties, property => property.Name == "Scale");
         Assert.DoesNotContain(field.Relationships, relationship => relationship.Entity == "FieldType");
+        Assert.Contains(field.Relationships, relationship => relationship.Entity == "SchemaObject");
         Assert.Contains(fieldDataTypeDetail.Relationships, relationship => relationship.Entity == "Field");
-        Assert.Contains(tableKey.Properties, property => property.Name == "KeyType");
-        Assert.Contains(tableKey.Relationships, relationship => relationship.Entity == "Table");
-        Assert.Contains(tableKeyField.Properties, property => property.Name == "FieldName");
-        Assert.Contains(tableKeyField.Relationships, relationship => relationship.Entity == "TableKey");
-        Assert.Contains(tableKeyField.Relationships, relationship => relationship.Entity == "Field");
+        Assert.Contains(schemaObject.Properties, property => property.Name == "Name");
+        Assert.Contains(schemaObject.Relationships, relationship => relationship.Entity == "Schema");
+        Assert.Contains(table.Relationships, relationship => relationship.Entity == "SchemaObject");
+        Assert.Contains(view.Relationships, relationship => relationship.Entity == "SchemaObject");
+        Assert.DoesNotContain(table.Properties, property => property.Name == "ObjectType");
+        Assert.Contains(key.Relationships, relationship => relationship.Entity == "Table");
+        Assert.DoesNotContain(key.Properties, property => property.Name == "KeyType");
+        Assert.Contains(primaryKey.Relationships, relationship => relationship.Entity == "Key");
+        Assert.Contains(uniqueKey.Relationships, relationship => relationship.Entity == "Key");
+        Assert.Contains(keyField.Relationships, relationship => relationship.Entity == "Key");
+        Assert.Contains(keyField.Relationships, relationship => relationship.Entity == "Field");
+        Assert.DoesNotContain(keyField.Properties, property => property.Name == "FieldName");
         Assert.Contains(tableRelationship.Relationships, relationship => relationship.Entity == "Table" && string.Equals(relationship.Role, "SourceTable", StringComparison.Ordinal));
         Assert.Contains(tableRelationship.Relationships, relationship => relationship.Entity == "Table" && string.Equals(relationship.Role, "TargetTable", StringComparison.Ordinal));
         Assert.Contains(tableRelationshipField.Relationships, relationship => relationship.Entity == "TableRelationship");
@@ -248,7 +264,22 @@ public sealed class CliTests
             var fieldsByName = extracted.FieldList
                 .ToDictionary(row => row.Name, StringComparer.Ordinal);
 
+            var schemaObject = Assert.Single(extracted.SchemaObjectList);
+            var table = Assert.Single(extracted.TableList);
+            Assert.Same(schemaObject, table.SchemaObject);
+            Assert.Equal(table.Id, schemaObject.Id);
+            Assert.Contains(":table:IdentityCase", schemaObject.Id, StringComparison.Ordinal);
+
+            var primaryKey = Assert.Single(extracted.PrimaryKeyList);
+            var key = primaryKey.Key;
+            Assert.Equal(key.Id, primaryKey.Id);
+            Assert.Same(table, key.Table);
+
+            var keyField = Assert.Single(extracted.KeyFieldList);
+            Assert.Same(key, keyField.Key);
+
             var identityField = fieldsByName["Id"];
+            Assert.Same(identityField, keyField.Field);
             Assert.Equal("true", identityField.IsIdentity);
             Assert.Equal("100", identityField.IdentitySeed);
             Assert.Equal("5", identityField.IdentityIncrement);
@@ -257,6 +288,66 @@ public sealed class CliTests
             Assert.Null(nonIdentityField.IsIdentity);
             Assert.Null(nonIdentityField.IdentitySeed);
             Assert.Null(nonIdentityField.IdentityIncrement);
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public void SqlServerExtractor_PreservesKeySpecializationAndColumnOrder()
+    {
+        var tempRoot = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(tempRoot, "MetaSchemaWorkspace");
+        var databaseName = $"MetaSchemaKeys_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            CreateDatabase(masterConnectionString, databaseName);
+            ExecuteSql(databaseConnectionString, """
+                CREATE TABLE dbo.KeyCase
+                (
+                    FirstPart int NOT NULL,
+                    SecondPart int NOT NULL,
+                    AlternatePart int NOT NULL,
+                    CONSTRAINT PK_KeyCase PRIMARY KEY (SecondPart, FirstPart),
+                    CONSTRAINT UQ_KeyCase_Alternate UNIQUE (AlternatePart, FirstPart)
+                );
+                """);
+
+            var extracted = new SqlServerSchemaExtractor().ExtractMetaSchemaModel(new SqlServerExtractRequest
+            {
+                NewWorkspacePath = workspacePath,
+                ConnectionString = databaseConnectionString,
+                SystemName = databaseName,
+                SchemaName = "dbo",
+                TableName = "KeyCase",
+            });
+
+            var primaryKey = Assert.Single(extracted.PrimaryKeyList);
+            var uniqueKey = Assert.Single(extracted.UniqueKeyList);
+            Assert.Equal("PK_KeyCase", primaryKey.Key.Name);
+            Assert.Equal("UQ_KeyCase_Alternate", uniqueKey.Key.Name);
+            Assert.Equal(primaryKey.Key.Id, primaryKey.Id);
+            Assert.Equal(uniqueKey.Key.Id, uniqueKey.Id);
+
+            var primaryKeyFields = extracted.KeyFieldList
+                .Where(keyField => string.Equals(keyField.Key.Id, primaryKey.Key.Id, StringComparison.Ordinal))
+                .OrderBy(keyField => int.Parse(keyField.Ordinal, CultureInfo.InvariantCulture))
+                .Select(keyField => keyField.Field.Name)
+                .ToList();
+            var uniqueKeyFields = extracted.KeyFieldList
+                .Where(keyField => string.Equals(keyField.Key.Id, uniqueKey.Key.Id, StringComparison.Ordinal))
+                .OrderBy(keyField => int.Parse(keyField.Ordinal, CultureInfo.InvariantCulture))
+                .Select(keyField => keyField.Field.Name)
+                .ToList();
+
+            Assert.Equal(["SecondPart", "FirstPart"], primaryKeyFields);
+            Assert.Equal(["AlternatePart", "FirstPart"], uniqueKeyFields);
         }
         finally
         {
@@ -305,9 +396,11 @@ public sealed class CliTests
                 TableName = "ViewCase",
             });
 
-            var table = Assert.Single(extracted.TableList);
-            Assert.Equal("ViewCase", table.Name);
-            Assert.Equal("View", table.ObjectType);
+            Assert.Empty(extracted.TableList);
+            var view = Assert.Single(extracted.ViewList);
+            var schemaObject = Assert.Single(extracted.SchemaObjectList);
+            Assert.Same(schemaObject, view.SchemaObject);
+            Assert.Equal("ViewCase", schemaObject.Name);
 
             var fieldsByName = extracted.FieldList
                 .ToDictionary(row => row.Name, StringComparer.Ordinal);
@@ -319,6 +412,16 @@ public sealed class CliTests
             Assert.Equal("sqlserver:type:int", fieldsByName["SourceId"].MetaDataTypeId);
             Assert.Equal("sqlserver:type:varchar", fieldsByName["SourceCode"].MetaDataTypeId);
             Assert.Equal("sqlserver:type:nvarchar", fieldsByName["AliasName"].MetaDataTypeId);
+            Assert.All(fieldsByName.Values, field =>
+            {
+                Assert.Same(schemaObject, field.SchemaObject);
+                Assert.Null(field.IsNullable);
+                Assert.Null(field.IsIdentity);
+                Assert.Null(field.IdentitySeed);
+                Assert.Null(field.IdentityIncrement);
+            });
+            Assert.Empty(extracted.KeyList);
+            Assert.Empty(extracted.TableRelationshipList);
         }
         finally
         {

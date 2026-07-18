@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaSchema>
   <TableList>
-    <Table Id="demo:table:sales:Customer" SchemaId="demo:schema:sales">
-      <Name>Customer</Name>
-      <ObjectType>Table</ObjectType>
-    </Table>
-    <Table Id="demo:table:sales:Order" SchemaId="demo:schema:sales">
-      <Name>Order</Name>
-      <ObjectType>Table</ObjectType>
-    </Table>
-    <Table Id="demo:table:sales:Invoice" SchemaId="demo:schema:sales">
-      <Name>Invoice</Name>
-      <ObjectType>Table</ObjectType>
-    </Table>
-    <Table Id="demo:table:sales:CustomerOrderSummary" SchemaId="demo:schema:sales">
-      <Name>CustomerOrderSummary</Name>
-      <ObjectType>Table</ObjectType>
-    </Table>
-    <Table Id="demo:table:reporting:InvoiceWindow" SchemaId="demo:schema:reporting">
-      <Name>InvoiceWindow</Name>
-      <ObjectType>Table</ObjectType>
-    </Table>
+    <Table Id="demo:table:reporting:InvoiceWindow" SchemaObjectId="demo:table:reporting:InvoiceWindow" />
+    <Table Id="demo:table:sales:Customer" SchemaObjectId="demo:table:sales:Customer" />
+    <Table Id="demo:table:sales:CustomerOrderSummary" SchemaObjectId="demo:table:sales:CustomerOrderSummary" />
+    <Table Id="demo:table:sales:Invoice" SchemaObjectId="demo:table:sales:Invoice" />
+    <Table Id="demo:table:sales:Order" SchemaObjectId="demo:table:sales:Order" />
   </TableList>
 </MetaSchema>

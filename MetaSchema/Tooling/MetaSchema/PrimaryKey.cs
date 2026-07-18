@@ -11,11 +11,11 @@
 
 namespace MetaSchema
 {
-    public sealed class Table
+    public sealed class PrimaryKey
     {
         public string Id { get; set; } = string.Empty;
 
-        public SchemaObject SchemaObject { get; set; } = null!;
+        public Key Key { get; set; } = null!;
 
     }
 }

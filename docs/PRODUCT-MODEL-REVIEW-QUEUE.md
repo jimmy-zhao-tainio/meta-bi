@@ -3,7 +3,7 @@
 ## At A Glance
 
 1. Done: SQL Server `decimal`/`numeric` compatibility.
-2. Approved model, audit still open: MetaSchema and Raw Data Vault ownership. The model direction is accepted, but the implementation audit findings must be handled one at a time.
+2. In progress: MetaSchema 2.1-2.4 are complete; Raw Data Vault ownership begins at reviewed subtask 2.5.
 3. Pending product-model decision: Business Data Vault nullability and roles.
 4. Pending product-model decision: satellite row identity and load metadata.
 5. Done: Data Vault hash-key storage width.
@@ -14,7 +14,7 @@
 10. Blocked demo work: AdventureWorks full-stack should not continue until the relevant product decisions are settled and reimplemented deliberately.
 11. Complete: `MERGE` match semantics use explicit clause entities and an explicit predecessor chain.
 
-Safest next work: pick one item 2 audit finding. Do not change sanctioned product models without an explicit decision.
+Safest next work: review 2.5 before changing the Raw Data Vault model. Do not change sanctioned product models without an explicit decision.
 
 ## Purpose
 
@@ -53,7 +53,7 @@ SQL Server synonym compatibility belongs in the sanctioned conversion workspace,
 
 ## 2. MetaSchema Types and Raw Data Vault Ownership
 
-Status: Model approved on 2026-07-15; implementation audit open
+Status: 2.1-2.4 implemented on 2026-07-17; 2.5-2.8 remain pending
 
 Observed problem:
 
@@ -69,43 +69,114 @@ Why it was attempted:
 
 To make the generated physical contract deterministic, but the attempt preserved the wrong ownership boundary and still encoded modeled concepts as text.
 
-Approved decisions:
+Approved target design:
 
-- MetaSchema now models a common `SchemaObject` specialized by `Table` or `View`.
-- MetaSchema owns observed source nullability through the presence marker `FieldIsNullable`. A row means the related `Field` is nullable; absence means it is not nullable. There is no complementary `NonNullableField` entity and no scalar boolean-like property.
-- A common `TableKey` is specialized by exactly one `PrimaryKey` or `UniqueKey`.
-- MetaRawDataVault models only the Raw Data Vault. The copied `SourceSystem`, `SourceSchema`, `SourceTable`, `SourceField`, and source relationship graph is removed.
-- MetaRawDataVault owns independent `Field` and `FieldDataTypeDetail` entities. Hub key parts and satellite attributes relate to those fields.
-- `RawLinkRole` is a first-class endpoint relationship with a required `Name`; `RawLinkHub` and `RoleName` are removed.
-- Hub key-part order is modeled by `PreviousKeyPart`, not by an ordinal scalar.
-- `Kind`, `Is*`, `ObjectType`, `KeyType`, and equivalent free-text discriminators are not part of the approved MetaSchema or MetaRawDataVault models.
+- MetaSchema should model a common `SchemaObject` specialized by `Table` or `View`.
+- MetaSchema `Field` should retain its cohesive observed scalar facts, including nullability and identity evidence. The MetaSchema extractor and consumers own their concrete interpretation; do not create a marker entity for each scalar field fact.
+- A common `TableKey` should be specialized by exactly one `PrimaryKey` or `UniqueKey`.
+- MetaRawDataVault should model only the Raw Data Vault. The copied `SourceSystem`, `SourceSchema`, `SourceTable`, `SourceField`, and source relationship graph should be removed.
+- MetaRawDataVault should own independent `Field` and `FieldDataTypeDetail` entities. Hub key parts and satellite attributes should relate to those fields.
+- `RawLinkRole` should be a first-class endpoint relationship with a required `Name`; `RawLinkHub` and `RoleName` should be removed.
+- Hub key-part order should be modeled by `PreviousKeyPart`, not by an ordinal scalar.
+- `Kind`, `Is*`, `ObjectType`, `KeyType`, and equivalent free-text discriminators are not part of the approved target MetaSchema or MetaRawDataVault models.
 
-Resolved decision:
+Resolved design decision:
 
-MetaRawDataVault does not model source or physical nullability on `Field`. Schema-to-Raw conversion does not copy MetaSchema nullability into the Raw model. Raw-to-SQL projection derives the physical contract from Raw usage: hub business-key parts are non-nullable, while hub- and link-satellite payload attributes are nullable.
+The target MetaRawDataVault does not model source or physical nullability on `Field`. Schema-to-Raw conversion must not copy MetaSchema nullability into the Raw model. Raw-to-SQL projection should derive the physical contract from Raw usage: hub business-key parts are non-nullable, while hub- and link-satellite payload attributes are nullable.
 
-The Raw authoring surface now has one `add-field` command. It creates the neutral field and optional datatype detail; it does not ask the caller to author a nullability classification that the Raw model does not own.
+The target Raw authoring surface has one `add-field` command. It creates the neutral field and optional datatype detail; it does not ask the caller to author a nullability classification that the Raw model does not own.
 
-Cross-model blast radius:
+Target cross-model boundary:
 
-- `MetaSchema` owns observed source nullability through `FieldIsNullable`. Extraction emits the marker only for nullable source columns, and binding interprets marker presence as nullable.
+- `MetaSchema` should own observed source nullability on `Field`. Extraction and binding should use the sanctioned MetaSchema field-property interpretation.
 - `MetaSql.TableColumn` owns physical SQL nullability but still stores it in the scalar `IsNullable` property. That is a separate product-model review, not a reason to keep nullability on a Raw field.
 - `MetaTransformScript.StoredProcedureResultColumnItem` also stores optional nullability in scalar `IsNullable`; its observed/unknown result-contract semantics require a separate review.
 - `MetaDataWarehouse.DimensionAttribute`, `MetaDataWarehouse.FactMeasure`, `MetaDataWarehouseImplementation.PlatformColumnImplementation`, `MetaAnalytics.Attribute`, and `MetaTabular.TabularColumn` carry the same scalar smell. Review each domain before changing it; do not mechanically propagate the MetaSchema shape.
-- `MetaTransformBinding` does not own a competing nullability model in this slice. It consumes `MetaSchema` source and target contracts, so its adaptation to the approved MetaSchema structure is expected.
+- `MetaTransformBinding` should not own a competing nullability model in this slice. It consumes `MetaSchema` source and target contracts, so its adaptation to the approved MetaSchema structure is expected.
 
-Implementation note:
+Current implementation status:
 
-Nine persisted MetaSchema workspaces and five persisted MetaRawDataVault workspaces were migrated through sanctioned `meta` commands, including each canonical product workspace. Generated tooling, the Raw CLI and service, Schema-to-Raw conversion, Raw-to-SQL projection, binding, fixtures, and tests are aligned with the approved models. The generated tooling copies carry the same model structure; their serialized `model.xml` omits only the canonical workspace's XML declaration.
+The approved MetaSchema portion is now implemented. `SchemaObject` owns the shared name/schema identity and is specialized by exactly one `Table` or `View`; `Table.ObjectType` is gone. `Key` is specialized by `PrimaryKey` or `UniqueKey`; `TableKey.KeyType` and `TableKeyField.FieldName` are gone. `Field` still owns its existing source-column scalar facts.
 
-Implementation audit findings:
+The SQL Server extractor preserves its established `:table:` IDs for the new common object, table/view specialization, fields, keys, and key fields. It emits table-only key and identity evidence, while view outputs carry only name, type, and source position. Binding resolves a `SchemaObject` identity and treats view fields as nullable read-only rowsets. The Schema-to-Raw converter preserves `--include-views`: a requested view is copied as a read-only source rowset but cannot produce a Raw hub because views have no source key.
 
-- SQL Server extraction currently replaces the established `:table:` identity segment with `:object:` for schema objects and every dependent field, key, and relationship Id. An unchanged source sync would therefore create broad identity churn.
-- Identity metadata exposed through a SQL Server view was previously retained on its fields; the new extractor emits `IdentityField` only for tables even though write-target rejection is already handled by binding.
-- The public `schema-to-raw-datavault --include-views` behavior was removed. The current converter always consumes `TableList` and ignores `ViewList`.
-- `ValidationSourceRowsetLink.MetaSchemaTableId` and `ValidationTargetRowsetLink.MetaSchemaTableId` now receive `SchemaObject.Id`. This only appears correct in workspaces that deliberately reuse the same Id for specialization and object rows; combined binding workspaces already give those rows distinct Ids.
-- Raw link roles are represented correctly as named relationship entities, but the removal of endpoint ordinals changed Raw-to-SQL physical column order to lexical role-name order. The checked-in Raw demo changes order for three of six links. Decide whether roles are an unordered named set with canonical lexical projection or whether endpoint order is domain truth.
-- The sanctioned migration path removed final newlines from 39 of the 50 changed XML files. Fix the shared writer rather than hand-editing generated workspaces.
+The canonical MetaSchema workspace and the two tracked persisted demo Schema workspaces were migrated through `meta model`, `meta insert`, and `meta bulk-insert`, not XML edits. Generated MetaSchema tooling, direct fixtures, extraction, binding, conversion, and both integration demos are aligned. The MetaRawDataVault model itself is unchanged; its ownership redesign starts only at 2.5.
+
+Resolved foundation follow-up on 2026-07-18: `meta bulk-insert --stdin` bypassed the shared standard-input normalization, so a UTF-8 BOM made the first header `\uFEFFId` rather than `Id`. It now uses `MetaCliStandardInput`, matching MetaDocs and MetaMesh. An external-process regression test feeds a BOM-prefixed TSV header over UTF-8 redirected stdin and verifies the inserted row. `Meta.Core.Tests` passed 227/227.
+
+### 2.1 MetaSchema Object Identity
+
+Status: Complete on 2026-07-17
+
+Replace the `Table.ObjectType` discriminator with a common `SchemaObject` specialized by `Table` or `View`. Keep an unchanged source sync identity-stable: existing table-derived IDs must not churn merely because the model introduces a common object row.
+
+Implemented through the canonical MetaSchema workspace, regenerated tooling, SQL Server extraction, direct binding consumers, and the two tracked persisted demo Schema workspaces. Existing `:table:` source IDs were deliberately retained as the shared object/specialization IDs, so a source sync does not churn dependent field or relationship identity.
+
+Acceptance: a repeated extraction of the same source produces no identity churn; tables and views are structurally distinct; no `ObjectType` property remains.
+
+### 2.2 MetaSchema Key Specialization
+
+Status: Complete on 2026-07-17; depended on 2.1
+
+Replace `TableKey.KeyType` with exactly one concrete `PrimaryKey` or `UniqueKey` specialization of a common key. Preserve SQL Server key-column sequence as observed source fact; it is not generic UI ordering.
+
+Implemented through the canonical MetaSchema workspace, regenerated tooling, SQL Server extraction, and Schema-to-Raw conversion. SQL Server constraint sequence remains observed source data on `KeyField.Ordinal`; it is not generic UI ordering.
+
+Acceptance: no `KeyType` text remains; extracted primary and unique keys round-trip through the schema workspace with their observed key-column order intact.
+
+### 2.3 MetaSchema Field Property Policy
+
+Status: Complete as approved policy on 2026-07-17; no separate property-model migration
+
+`Field` remains the cohesive representation of an observed source column. Its intrinsic scalar facts remain entity properties: name, datatype reference, source ordinal, nullability, identity evidence, seed, and increment. The MetaSchema extractor, binder, and SQL projection own their concrete types and permitted values. Do not introduce `FieldIsNullable` or equivalent marker entities merely to avoid scalar properties.
+
+`FieldDataTypeDetail` remains a separate future review only if a concrete datatype-facet problem proves its current name/value representation inadequate. Do not combine that question with the approved Field property policy.
+
+Acceptance: no Field model or converter migration is scheduled by this subtask.
+
+### 2.4 Identity Evidence for Tables and Views
+
+Status: Implemented on 2026-07-17; depended on 2.1
+
+Views are consumed as read-only rowsets, not as writable tables. Their output columns carry names and types, are assumed nullable, and do not carry identity, seed, increment, key, default, or other base-table column metadata. Binding must not treat a view output as an identity target.
+
+Base-table fields retain the cohesive Field property policy from 2.3. This resolves the view-evidence question without replacing that policy or creating a view-column property model.
+
+The extractor omits nullability, identity, seed, increment, and keys for views. Binding supplies assumed-nullable runtime contracts for those outputs and rejects a view as a writable target contract.
+
+### 2.5 Raw Data Vault Ownership and Native Fields
+
+Status: Pending implementation; depends on 2.1, 2.2, and 2.4
+
+Remove the copied source graph from MetaRawDataVault. Model only Raw Data Vault structures, with independent `Field` and `FieldDataTypeDetail` entities referenced by hub key parts and satellite attributes. Raw does not own observed source nullability.
+
+This slice includes the model-tooling migration, Raw CLI/service, Schema-to-Raw conversion, Raw fixtures, and canonical Raw workspace migration. It does not change Raw link endpoint semantics.
+
+Acceptance: no `SourceSystem`, `SourceSchema`, `SourceTable`, `SourceField`, source relationship, or copied source nullability remains in MetaRawDataVault; a schema-to-Raw conversion produces a self-contained Raw workspace.
+
+### 2.6 Raw Link Endpoint Semantics and Sequence
+
+Status: Decision required; depends on 2.5
+
+Replace `RawLinkHub.RoleName` with a named `RawLinkRole` entity/relationship. Before removing endpoint order, decide whether endpoint sequence contributes to physical hash-key semantics. If it does, model the sequence explicitly with a predecessor relationship; do not silently replace it with lexical projection order.
+
+The decision must include at least one multi-hub link example and its expected SQL/hash composition.
+
+### 2.7 Raw Link Role Migration
+
+Status: Pending implementation; depends on 2.6
+
+Implement the accepted role and sequence model through tooling, Raw authoring, Schema-to-Raw conversion, Raw-to-SQL projection, fixtures, and canonical Raw workspaces.
+
+Acceptance: no `RawLinkHub`, `RoleName`, or endpoint ordinal remains; generated SQL preserves the accepted endpoint/hash semantics for every existing Raw demo.
+
+### 2.8 Cross-Model Integration Closure
+
+Status: Pending implementation; depends on 2.1 through 2.7
+
+Regenerate all affected typed tooling and migrate persisted MetaSchema and MetaRawDataVault workspaces with sanctioned `meta` commands. Reconcile binding, Schema-to-Raw, Raw-to-SQL, Data Vault implementation workspaces, demos, and tests against the completed models.
+
+Acceptance: all canonical workspaces load through generated tooling; no compatibility shims preserve removed entities/properties; focused schema, Data Vault, conversion, binding, and demo verification pass.
 
 ## 3. Business Data Vault Attribute Nullability and Link Roles
 

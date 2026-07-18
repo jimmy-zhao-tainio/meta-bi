@@ -9,8 +9,8 @@ internal sealed record FromMetaSchemaOptions(
     bool IncludeViews);
 
 internal sealed record CandidateKeySelection(
-    MS.TableKey TableKey,
-    IReadOnlyList<MS.TableKeyField> OrderedKeyFields);
+    MS.Key Key,
+    IReadOnlyList<MS.KeyField> OrderedKeyFields);
 
 internal sealed record TableKeyAssessment(
     IReadOnlyList<CandidateKeySelection> CandidateKeys,
@@ -18,15 +18,15 @@ internal sealed record TableKeyAssessment(
     string SkipReason);
 
 internal sealed record TableMaterializationReportRow(
-    MS.Table Table,
+    MS.SchemaObject Table,
     TableKeyAssessment? KeyAssessment,
     bool HubCreated,
     int SatelliteAttributeCount);
 
 internal sealed record RelationshipMaterializationReportRow(
     MS.TableRelationship Relationship,
-    MS.Table SourceTable,
-    MS.Table TargetTable,
+    MS.SchemaObject SourceTable,
+    MS.SchemaObject TargetTable,
     string? RawLinkName,
     bool LinkCreated,
     string? SkipReason);
@@ -74,17 +74,19 @@ internal sealed class SourceIndex
 {
     public required IReadOnlyList<MS.System> IncludedSystems { get; init; }
     public required IReadOnlyList<MS.Schema> IncludedSchemas { get; init; }
-    public required IReadOnlyList<MS.Table> IncludedTables { get; init; }
+    public required IReadOnlyList<MS.SchemaObject> IncludedTables { get; init; }
     public required IReadOnlyList<MS.Field> IncludedFields { get; init; }
     public required IReadOnlyList<MS.FieldDataTypeDetail> IncludedFieldDetails { get; init; }
     public required IReadOnlyList<MS.TableRelationship> IncludedRelationships { get; init; }
     public required IReadOnlyList<MS.TableRelationshipField> IncludedRelationshipFields { get; init; }
     public required IReadOnlyDictionary<string, MS.Schema> SchemaById { get; init; }
-    public required IReadOnlyDictionary<string, MS.Table> TableById { get; init; }
+    public required IReadOnlyDictionary<string, MS.SchemaObject> TableById { get; init; }
     public required IReadOnlyDictionary<string, MS.Field> FieldById { get; init; }
     public required IReadOnlyDictionary<string, IReadOnlyList<MS.Field>> FieldsByTableId { get; init; }
     public required IReadOnlyDictionary<string, IReadOnlyList<MS.TableRelationshipField>> RelationshipFieldsByRelationshipId { get; init; }
     public required ISet<string> RelationshipSourceFieldIds { get; init; }
+    public required ISet<string> PrimaryKeyIds { get; init; }
+    public required ISet<string> UniqueKeyIds { get; init; }
 }
 
 internal sealed class FromMetaSchemaDraft

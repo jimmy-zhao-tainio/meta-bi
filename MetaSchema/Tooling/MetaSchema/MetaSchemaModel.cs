@@ -30,19 +30,27 @@ namespace MetaSchema
 
         public List<FieldDataTypeDetail> FieldDataTypeDetailList { get; set; } = new();
 
+        public List<Key> KeyList { get; set; } = new();
+
+        public List<KeyField> KeyFieldList { get; set; } = new();
+
+        public List<PrimaryKey> PrimaryKeyList { get; set; } = new();
+
         public List<Schema> SchemaList { get; set; } = new();
+
+        public List<SchemaObject> SchemaObjectList { get; set; } = new();
 
         public List<System> SystemList { get; set; } = new();
 
         public List<Table> TableList { get; set; } = new();
 
-        public List<TableKey> TableKeyList { get; set; } = new();
-
-        public List<TableKeyField> TableKeyFieldList { get; set; } = new();
-
         public List<TableRelationship> TableRelationshipList { get; set; } = new();
 
         public List<TableRelationshipField> TableRelationshipFieldList { get; set; } = new();
+
+        public List<UniqueKey> UniqueKeyList { get; set; } = new();
+
+        public List<View> ViewList { get; set; } = new();
 
         public static MetaSchemaModel LoadFromXmlWorkspace(
             string workspacePath,
@@ -169,6 +177,39 @@ namespace MetaSchema
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(fieldDataTypeDetailShardPath, SerializeFieldDataTypeDetailShard(model, saveIndexes));
             }
 
+            model.KeyList ??= new List<Key>();
+            var keyShardPath = Path.Combine(instanceDirectoryPath, "Key.xml");
+            if (model.KeyList.Count == 0)
+            {
+                DeleteIfExists(keyShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(keyShardPath, SerializeKeyShard(model, saveIndexes));
+            }
+
+            model.KeyFieldList ??= new List<KeyField>();
+            var keyFieldShardPath = Path.Combine(instanceDirectoryPath, "KeyField.xml");
+            if (model.KeyFieldList.Count == 0)
+            {
+                DeleteIfExists(keyFieldShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(keyFieldShardPath, SerializeKeyFieldShard(model, saveIndexes));
+            }
+
+            model.PrimaryKeyList ??= new List<PrimaryKey>();
+            var primaryKeyShardPath = Path.Combine(instanceDirectoryPath, "PrimaryKey.xml");
+            if (model.PrimaryKeyList.Count == 0)
+            {
+                DeleteIfExists(primaryKeyShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(primaryKeyShardPath, SerializePrimaryKeyShard(model, saveIndexes));
+            }
+
             model.SchemaList ??= new List<Schema>();
             var schemaShardPath = Path.Combine(instanceDirectoryPath, "Schema.xml");
             if (model.SchemaList.Count == 0)
@@ -178,6 +219,17 @@ namespace MetaSchema
             else
             {
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(schemaShardPath, SerializeSchemaShard(model, saveIndexes));
+            }
+
+            model.SchemaObjectList ??= new List<SchemaObject>();
+            var schemaObjectShardPath = Path.Combine(instanceDirectoryPath, "SchemaObject.xml");
+            if (model.SchemaObjectList.Count == 0)
+            {
+                DeleteIfExists(schemaObjectShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(schemaObjectShardPath, SerializeSchemaObjectShard(model, saveIndexes));
             }
 
             model.SystemList ??= new List<System>();
@@ -202,28 +254,6 @@ namespace MetaSchema
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(tableShardPath, SerializeTableShard(model, saveIndexes));
             }
 
-            model.TableKeyList ??= new List<TableKey>();
-            var tableKeyShardPath = Path.Combine(instanceDirectoryPath, "TableKey.xml");
-            if (model.TableKeyList.Count == 0)
-            {
-                DeleteIfExists(tableKeyShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(tableKeyShardPath, SerializeTableKeyShard(model, saveIndexes));
-            }
-
-            model.TableKeyFieldList ??= new List<TableKeyField>();
-            var tableKeyFieldShardPath = Path.Combine(instanceDirectoryPath, "TableKeyField.xml");
-            if (model.TableKeyFieldList.Count == 0)
-            {
-                DeleteIfExists(tableKeyFieldShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(tableKeyFieldShardPath, SerializeTableKeyFieldShard(model, saveIndexes));
-            }
-
             model.TableRelationshipList ??= new List<TableRelationship>();
             var tableRelationshipShardPath = Path.Combine(instanceDirectoryPath, "TableRelationship.xml");
             if (model.TableRelationshipList.Count == 0)
@@ -244,6 +274,28 @@ namespace MetaSchema
             else
             {
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(tableRelationshipFieldShardPath, SerializeTableRelationshipFieldShard(model, saveIndexes));
+            }
+
+            model.UniqueKeyList ??= new List<UniqueKey>();
+            var uniqueKeyShardPath = Path.Combine(instanceDirectoryPath, "UniqueKey.xml");
+            if (model.UniqueKeyList.Count == 0)
+            {
+                DeleteIfExists(uniqueKeyShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(uniqueKeyShardPath, SerializeUniqueKeyShard(model, saveIndexes));
+            }
+
+            model.ViewList ??= new List<View>();
+            var viewShardPath = Path.Combine(instanceDirectoryPath, "View.xml");
+            if (model.ViewList.Count == 0)
+            {
+                DeleteIfExists(viewShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(viewShardPath, SerializeViewShard(model, saveIndexes));
             }
 
         }
@@ -276,8 +328,20 @@ namespace MetaSchema
                     case "FieldDataTypeDetailList":
                         LoadFieldDataTypeDetailList(model, reader, loadState, relationshipBuffers);
                         break;
+                    case "KeyList":
+                        LoadKeyList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "KeyFieldList":
+                        LoadKeyFieldList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "PrimaryKeyList":
+                        LoadPrimaryKeyList(model, reader, loadState, relationshipBuffers);
+                        break;
                     case "SchemaList":
                         LoadSchemaList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "SchemaObjectList":
+                        LoadSchemaObjectList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "SystemList":
                         LoadSystemList(model, reader, loadState, relationshipBuffers);
@@ -285,17 +349,17 @@ namespace MetaSchema
                     case "TableList":
                         LoadTableList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "TableKeyList":
-                        LoadTableKeyList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "TableKeyFieldList":
-                        LoadTableKeyFieldList(model, reader, loadState, relationshipBuffers);
-                        break;
                     case "TableRelationshipList":
                         LoadTableRelationshipList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "TableRelationshipFieldList":
                         LoadTableRelationshipFieldList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "UniqueKeyList":
+                        LoadUniqueKeyList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "ViewList":
+                        LoadViewList(model, reader, loadState, relationshipBuffers);
                         break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in '{shardPath}'.");
@@ -346,8 +410,8 @@ namespace MetaSchema
                         case "Id":
                             row.Id = reader.Value;
                             break;
-                        case "TableId":
-                            relationships.TableId = reader.Value;
+                        case "SchemaObjectId":
+                            relationships.SchemaObjectId = reader.Value;
                             break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'Field'.");
@@ -417,15 +481,15 @@ namespace MetaSchema
                 builder.Append("    <Field Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                var tableId = RequireIdentity(row.Table?.Id, $"Relationship 'Field.TableId' on row 'Field:{row.Id}' is empty.");
-                if (!saveIndexes.TableListById.TryGetValue(tableId, out var tableCanonical) || !ReferenceEquals(tableCanonical, row.Table))
+                var schemaObjectId = RequireIdentity(row.SchemaObject?.Id, $"Relationship 'Field.SchemaObjectId' on row 'Field:{row.Id}' is empty.");
+                if (!saveIndexes.SchemaObjectListById.TryGetValue(schemaObjectId, out var schemaObjectCanonical) || !ReferenceEquals(schemaObjectCanonical, row.SchemaObject))
                 {
-                    throw new InvalidOperationException($"Relationship 'Field.TableId' on row 'Field:{row.Id}' references an object that is not the canonical row for Id '{tableId}'.");
+                    throw new InvalidOperationException($"Relationship 'Field.SchemaObjectId' on row 'Field:{row.Id}' references an object that is not the canonical row for Id '{schemaObjectId}'.");
                 }
                 builder.Append(' ');
-                builder.Append("TableId");
+                builder.Append("SchemaObjectId");
                 builder.Append("=\"");
-                AppendXmlAttribute(builder, tableId);
+                AppendXmlAttribute(builder, schemaObjectId);
                 builder.Append('"');
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.IdentityIncrement))
@@ -574,6 +638,354 @@ namespace MetaSchema
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
+        private static void LoadKeyList(MetaSchemaModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("KeyList");
+                return;
+            }
+
+            reader.ReadStartElement("KeyList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "Key", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'KeyList'.");
+                }
+                var row = ReadKey(reader, relationshipBuffers);
+                loadState.AddKeyId(row.Id);
+                model.KeyList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static Key ReadKey(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new Key();
+            var relationships = new KeyRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "TableId":
+                            relationships.TableId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'Key'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("Key");
+                (relationshipBuffers.KeyRelationships ??= new List<KeyRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("Key");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'Key'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.KeyRelationships ??= new List<KeyRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeKeyShard(MetaSchemaModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSchema>\n");
+            builder.Append("  <KeyList>\n");
+            foreach (var row in model.KeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'Key' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'Key' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <Key Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var tableId = RequireIdentity(row.Table?.Id, $"Relationship 'Key.TableId' on row 'Key:{row.Id}' is empty.");
+                if (!saveIndexes.TableListById.TryGetValue(tableId, out var tableCanonical) || !ReferenceEquals(tableCanonical, row.Table))
+                {
+                    throw new InvalidOperationException($"Relationship 'Key.TableId' on row 'Key:{row.Id}' references an object that is not the canonical row for Id '{tableId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("TableId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, tableId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'Key' row '{row.Id}' is missing required property 'Name'."), "      ");
+                builder.Append("    </Key>\n");
+            }
+            builder.Append("  </KeyList>\n");
+            builder.Append("</MetaSchema>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadKeyFieldList(MetaSchemaModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("KeyFieldList");
+                return;
+            }
+
+            reader.ReadStartElement("KeyFieldList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "KeyField", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'KeyFieldList'.");
+                }
+                var row = ReadKeyField(reader, relationshipBuffers);
+                loadState.AddKeyFieldId(row.Id);
+                model.KeyFieldList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static KeyField ReadKeyField(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new KeyField();
+            var relationships = new KeyFieldRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "FieldId":
+                            relationships.FieldId = reader.Value;
+                            break;
+                        case "KeyId":
+                            relationships.KeyId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'KeyField'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("KeyField");
+                (relationshipBuffers.KeyFieldRelationships ??= new List<KeyFieldRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("KeyField");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "Ordinal":
+                        row.Ordinal = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'KeyField'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.KeyFieldRelationships ??= new List<KeyFieldRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeKeyFieldShard(MetaSchemaModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSchema>\n");
+            builder.Append("  <KeyFieldList>\n");
+            foreach (var row in model.KeyFieldList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'KeyField' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'KeyField' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <KeyField Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var fieldId = RequireIdentity(row.Field?.Id, $"Relationship 'KeyField.FieldId' on row 'KeyField:{row.Id}' is empty.");
+                if (!saveIndexes.FieldListById.TryGetValue(fieldId, out var fieldCanonical) || !ReferenceEquals(fieldCanonical, row.Field))
+                {
+                    throw new InvalidOperationException($"Relationship 'KeyField.FieldId' on row 'KeyField:{row.Id}' references an object that is not the canonical row for Id '{fieldId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("FieldId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, fieldId);
+                builder.Append('"');
+                var keyId = RequireIdentity(row.Key?.Id, $"Relationship 'KeyField.KeyId' on row 'KeyField:{row.Id}' is empty.");
+                if (!saveIndexes.KeyListById.TryGetValue(keyId, out var keyCanonical) || !ReferenceEquals(keyCanonical, row.Key))
+                {
+                    throw new InvalidOperationException($"Relationship 'KeyField.KeyId' on row 'KeyField:{row.Id}' references an object that is not the canonical row for Id '{keyId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("KeyId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, keyId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'KeyField' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
+                builder.Append("    </KeyField>\n");
+            }
+            builder.Append("  </KeyFieldList>\n");
+            builder.Append("</MetaSchema>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadPrimaryKeyList(MetaSchemaModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("PrimaryKeyList");
+                return;
+            }
+
+            reader.ReadStartElement("PrimaryKeyList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "PrimaryKey", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'PrimaryKeyList'.");
+                }
+                var row = ReadPrimaryKey(reader, relationshipBuffers);
+                loadState.AddPrimaryKeyId(row.Id);
+                model.PrimaryKeyList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static PrimaryKey ReadPrimaryKey(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new PrimaryKey();
+            var relationships = new PrimaryKeyRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "KeyId":
+                            relationships.KeyId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'PrimaryKey'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("PrimaryKey");
+                (relationshipBuffers.PrimaryKeyRelationships ??= new List<PrimaryKeyRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("PrimaryKey");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'PrimaryKey'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.PrimaryKeyRelationships ??= new List<PrimaryKeyRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializePrimaryKeyShard(MetaSchemaModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSchema>\n");
+            builder.Append("  <PrimaryKeyList>\n");
+            foreach (var row in model.PrimaryKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'PrimaryKey' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'PrimaryKey' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <PrimaryKey Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var keyId = RequireIdentity(row.Key?.Id, $"Relationship 'PrimaryKey.KeyId' on row 'PrimaryKey:{row.Id}' is empty.");
+                if (!saveIndexes.KeyListById.TryGetValue(keyId, out var keyCanonical) || !ReferenceEquals(keyCanonical, row.Key))
+                {
+                    throw new InvalidOperationException($"Relationship 'PrimaryKey.KeyId' on row 'PrimaryKey:{row.Id}' references an object that is not the canonical row for Id '{keyId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("KeyId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, keyId);
+                builder.Append('"');
+                builder.Append(">\n");
+                builder.Append("    </PrimaryKey>\n");
+            }
+            builder.Append("  </PrimaryKeyList>\n");
+            builder.Append("</MetaSchema>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
         private static void LoadSchemaList(MetaSchemaModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
@@ -683,6 +1095,119 @@ namespace MetaSchema
                 builder.Append("    </Schema>\n");
             }
             builder.Append("  </SchemaList>\n");
+            builder.Append("</MetaSchema>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadSchemaObjectList(MetaSchemaModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("SchemaObjectList");
+                return;
+            }
+
+            reader.ReadStartElement("SchemaObjectList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "SchemaObject", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'SchemaObjectList'.");
+                }
+                var row = ReadSchemaObject(reader, relationshipBuffers);
+                loadState.AddSchemaObjectId(row.Id);
+                model.SchemaObjectList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static SchemaObject ReadSchemaObject(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new SchemaObject();
+            var relationships = new SchemaObjectRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "SchemaId":
+                            relationships.SchemaId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'SchemaObject'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("SchemaObject");
+                (relationshipBuffers.SchemaObjectRelationships ??= new List<SchemaObjectRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("SchemaObject");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'SchemaObject'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.SchemaObjectRelationships ??= new List<SchemaObjectRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeSchemaObjectShard(MetaSchemaModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSchema>\n");
+            builder.Append("  <SchemaObjectList>\n");
+            foreach (var row in model.SchemaObjectList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'SchemaObject' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'SchemaObject' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <SchemaObject Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var schemaId = RequireIdentity(row.Schema?.Id, $"Relationship 'SchemaObject.SchemaId' on row 'SchemaObject:{row.Id}' is empty.");
+                if (!saveIndexes.SchemaListById.TryGetValue(schemaId, out var schemaCanonical) || !ReferenceEquals(schemaCanonical, row.Schema))
+                {
+                    throw new InvalidOperationException($"Relationship 'SchemaObject.SchemaId' on row 'SchemaObject:{row.Id}' references an object that is not the canonical row for Id '{schemaId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("SchemaId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, schemaId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'SchemaObject' row '{row.Id}' is missing required property 'Name'."), "      ");
+                builder.Append("    </SchemaObject>\n");
+            }
+            builder.Append("  </SchemaObjectList>\n");
             builder.Append("</MetaSchema>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -832,8 +1357,8 @@ namespace MetaSchema
                         case "Id":
                             row.Id = reader.Value;
                             break;
-                        case "SchemaId":
-                            relationships.SchemaId = reader.Value;
+                        case "SchemaObjectId":
+                            relationships.SchemaObjectId = reader.Value;
                             break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'Table'.");
@@ -855,12 +1380,6 @@ namespace MetaSchema
             {
                 switch (reader.LocalName)
                 {
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    case "ObjectType":
-                        row.ObjectType = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'Table'.");
                 }
@@ -888,272 +1407,20 @@ namespace MetaSchema
                 builder.Append("    <Table Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                var schemaId = RequireIdentity(row.Schema?.Id, $"Relationship 'Table.SchemaId' on row 'Table:{row.Id}' is empty.");
-                if (!saveIndexes.SchemaListById.TryGetValue(schemaId, out var schemaCanonical) || !ReferenceEquals(schemaCanonical, row.Schema))
+                var schemaObjectId = RequireIdentity(row.SchemaObject?.Id, $"Relationship 'Table.SchemaObjectId' on row 'Table:{row.Id}' is empty.");
+                if (!saveIndexes.SchemaObjectListById.TryGetValue(schemaObjectId, out var schemaObjectCanonical) || !ReferenceEquals(schemaObjectCanonical, row.SchemaObject))
                 {
-                    throw new InvalidOperationException($"Relationship 'Table.SchemaId' on row 'Table:{row.Id}' references an object that is not the canonical row for Id '{schemaId}'.");
+                    throw new InvalidOperationException($"Relationship 'Table.SchemaObjectId' on row 'Table:{row.Id}' references an object that is not the canonical row for Id '{schemaObjectId}'.");
                 }
                 builder.Append(' ');
-                builder.Append("SchemaId");
+                builder.Append("SchemaObjectId");
                 builder.Append("=\"");
-                AppendXmlAttribute(builder, schemaId);
+                AppendXmlAttribute(builder, schemaObjectId);
                 builder.Append('"');
                 builder.Append(">\n");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'Table' row '{row.Id}' is missing required property 'Name'."), "      ");
-                if (!string.IsNullOrWhiteSpace(row.ObjectType))
-                {
-                    AppendElement(builder, "ObjectType", row.ObjectType!, "      ");
-                }
                 builder.Append("    </Table>\n");
             }
             builder.Append("  </TableList>\n");
-            builder.Append("</MetaSchema>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadTableKeyList(MetaSchemaModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("TableKeyList");
-                return;
-            }
-
-            reader.ReadStartElement("TableKeyList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "TableKey", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'TableKeyList'.");
-                }
-                var row = ReadTableKey(reader, relationshipBuffers);
-                loadState.AddTableKeyId(row.Id);
-                model.TableKeyList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static TableKey ReadTableKey(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new TableKey();
-            var relationships = new TableKeyRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "TableId":
-                            relationships.TableId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'TableKey'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("TableKey");
-                (relationshipBuffers.TableKeyRelationships ??= new List<TableKeyRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("TableKey");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "KeyType":
-                        row.KeyType = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'TableKey'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.TableKeyRelationships ??= new List<TableKeyRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeTableKeyShard(MetaSchemaModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaSchema>\n");
-            builder.Append("  <TableKeyList>\n");
-            foreach (var row in model.TableKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'TableKey' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'TableKey' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <TableKey Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var tableId = RequireIdentity(row.Table?.Id, $"Relationship 'TableKey.TableId' on row 'TableKey:{row.Id}' is empty.");
-                if (!saveIndexes.TableListById.TryGetValue(tableId, out var tableCanonical) || !ReferenceEquals(tableCanonical, row.Table))
-                {
-                    throw new InvalidOperationException($"Relationship 'TableKey.TableId' on row 'TableKey:{row.Id}' references an object that is not the canonical row for Id '{tableId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("TableId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, tableId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "KeyType", RequireText(row.KeyType, $"Entity 'TableKey' row '{row.Id}' is missing required property 'KeyType'."), "      ");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'TableKey' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </TableKey>\n");
-            }
-            builder.Append("  </TableKeyList>\n");
-            builder.Append("</MetaSchema>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadTableKeyFieldList(MetaSchemaModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("TableKeyFieldList");
-                return;
-            }
-
-            reader.ReadStartElement("TableKeyFieldList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "TableKeyField", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'TableKeyFieldList'.");
-                }
-                var row = ReadTableKeyField(reader, relationshipBuffers);
-                loadState.AddTableKeyFieldId(row.Id);
-                model.TableKeyFieldList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static TableKeyField ReadTableKeyField(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new TableKeyField();
-            var relationships = new TableKeyFieldRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "FieldId":
-                            relationships.FieldId = reader.Value;
-                            break;
-                        case "TableKeyId":
-                            relationships.TableKeyId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'TableKeyField'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("TableKeyField");
-                (relationshipBuffers.TableKeyFieldRelationships ??= new List<TableKeyFieldRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("TableKeyField");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "FieldName":
-                        row.FieldName = reader.ReadElementContentAsString();
-                        break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'TableKeyField'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.TableKeyFieldRelationships ??= new List<TableKeyFieldRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeTableKeyFieldShard(MetaSchemaModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaSchema>\n");
-            builder.Append("  <TableKeyFieldList>\n");
-            foreach (var row in model.TableKeyFieldList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'TableKeyField' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'TableKeyField' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <TableKeyField Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var fieldId = RequireIdentity(row.Field?.Id, $"Relationship 'TableKeyField.FieldId' on row 'TableKeyField:{row.Id}' is empty.");
-                if (!saveIndexes.FieldListById.TryGetValue(fieldId, out var fieldCanonical) || !ReferenceEquals(fieldCanonical, row.Field))
-                {
-                    throw new InvalidOperationException($"Relationship 'TableKeyField.FieldId' on row 'TableKeyField:{row.Id}' references an object that is not the canonical row for Id '{fieldId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("FieldId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, fieldId);
-                builder.Append('"');
-                var tableKeyId = RequireIdentity(row.TableKey?.Id, $"Relationship 'TableKeyField.TableKeyId' on row 'TableKeyField:{row.Id}' is empty.");
-                if (!saveIndexes.TableKeyListById.TryGetValue(tableKeyId, out var tableKeyCanonical) || !ReferenceEquals(tableKeyCanonical, row.TableKey))
-                {
-                    throw new InvalidOperationException($"Relationship 'TableKeyField.TableKeyId' on row 'TableKeyField:{row.Id}' references an object that is not the canonical row for Id '{tableKeyId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("TableKeyId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, tableKeyId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "FieldName", RequireText(row.FieldName, $"Entity 'TableKeyField' row '{row.Id}' is missing required property 'FieldName'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'TableKeyField' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
-                builder.Append("    </TableKeyField>\n");
-            }
-            builder.Append("  </TableKeyFieldList>\n");
             builder.Append("</MetaSchema>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -1423,10 +1690,228 @@ namespace MetaSchema
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
+        private static void LoadUniqueKeyList(MetaSchemaModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("UniqueKeyList");
+                return;
+            }
+
+            reader.ReadStartElement("UniqueKeyList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "UniqueKey", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'UniqueKeyList'.");
+                }
+                var row = ReadUniqueKey(reader, relationshipBuffers);
+                loadState.AddUniqueKeyId(row.Id);
+                model.UniqueKeyList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static UniqueKey ReadUniqueKey(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new UniqueKey();
+            var relationships = new UniqueKeyRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "KeyId":
+                            relationships.KeyId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'UniqueKey'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("UniqueKey");
+                (relationshipBuffers.UniqueKeyRelationships ??= new List<UniqueKeyRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("UniqueKey");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'UniqueKey'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.UniqueKeyRelationships ??= new List<UniqueKeyRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeUniqueKeyShard(MetaSchemaModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSchema>\n");
+            builder.Append("  <UniqueKeyList>\n");
+            foreach (var row in model.UniqueKeyList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'UniqueKey' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'UniqueKey' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <UniqueKey Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var keyId = RequireIdentity(row.Key?.Id, $"Relationship 'UniqueKey.KeyId' on row 'UniqueKey:{row.Id}' is empty.");
+                if (!saveIndexes.KeyListById.TryGetValue(keyId, out var keyCanonical) || !ReferenceEquals(keyCanonical, row.Key))
+                {
+                    throw new InvalidOperationException($"Relationship 'UniqueKey.KeyId' on row 'UniqueKey:{row.Id}' references an object that is not the canonical row for Id '{keyId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("KeyId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, keyId);
+                builder.Append('"');
+                builder.Append(">\n");
+                builder.Append("    </UniqueKey>\n");
+            }
+            builder.Append("  </UniqueKeyList>\n");
+            builder.Append("</MetaSchema>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadViewList(MetaSchemaModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("ViewList");
+                return;
+            }
+
+            reader.ReadStartElement("ViewList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "View", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'ViewList'.");
+                }
+                var row = ReadView(reader, relationshipBuffers);
+                loadState.AddViewId(row.Id);
+                model.ViewList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static View ReadView(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new View();
+            var relationships = new ViewRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "SchemaObjectId":
+                            relationships.SchemaObjectId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'View'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("View");
+                (relationshipBuffers.ViewRelationships ??= new List<ViewRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("View");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'View'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.ViewRelationships ??= new List<ViewRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeViewShard(MetaSchemaModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSchema>\n");
+            builder.Append("  <ViewList>\n");
+            foreach (var row in model.ViewList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'View' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'View' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <View Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var schemaObjectId = RequireIdentity(row.SchemaObject?.Id, $"Relationship 'View.SchemaObjectId' on row 'View:{row.Id}' is empty.");
+                if (!saveIndexes.SchemaObjectListById.TryGetValue(schemaObjectId, out var schemaObjectCanonical) || !ReferenceEquals(schemaObjectCanonical, row.SchemaObject))
+                {
+                    throw new InvalidOperationException($"Relationship 'View.SchemaObjectId' on row 'View:{row.Id}' references an object that is not the canonical row for Id '{schemaObjectId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("SchemaObjectId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, schemaObjectId);
+                builder.Append('"');
+                builder.Append(">\n");
+                builder.Append("    </View>\n");
+            }
+            builder.Append("  </ViewList>\n");
+            builder.Append("</MetaSchema>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
         private sealed class FieldRelationships
         {
             public Field Row { get; set; } = null!;
-            public string TableId { get; set; } = string.Empty;
+            public string SchemaObjectId { get; set; } = string.Empty;
         }
 
         private sealed class FieldDataTypeDetailRelationships
@@ -1435,29 +1920,41 @@ namespace MetaSchema
             public string FieldId { get; set; } = string.Empty;
         }
 
+        private sealed class KeyRelationships
+        {
+            public Key Row { get; set; } = null!;
+            public string TableId { get; set; } = string.Empty;
+        }
+
+        private sealed class KeyFieldRelationships
+        {
+            public KeyField Row { get; set; } = null!;
+            public string FieldId { get; set; } = string.Empty;
+            public string KeyId { get; set; } = string.Empty;
+        }
+
+        private sealed class PrimaryKeyRelationships
+        {
+            public PrimaryKey Row { get; set; } = null!;
+            public string KeyId { get; set; } = string.Empty;
+        }
+
         private sealed class SchemaRelationships
         {
             public Schema Row { get; set; } = null!;
             public string SystemId { get; set; } = string.Empty;
         }
 
-        private sealed class TableRelationships
+        private sealed class SchemaObjectRelationships
         {
-            public Table Row { get; set; } = null!;
+            public SchemaObject Row { get; set; } = null!;
             public string SchemaId { get; set; } = string.Empty;
         }
 
-        private sealed class TableKeyRelationships
+        private sealed class TableRelationships
         {
-            public TableKey Row { get; set; } = null!;
-            public string TableId { get; set; } = string.Empty;
-        }
-
-        private sealed class TableKeyFieldRelationships
-        {
-            public TableKeyField Row { get; set; } = null!;
-            public string FieldId { get; set; } = string.Empty;
-            public string TableKeyId { get; set; } = string.Empty;
+            public Table Row { get; set; } = null!;
+            public string SchemaObjectId { get; set; } = string.Empty;
         }
 
         private sealed class TableRelationshipRelationships
@@ -1475,28 +1972,44 @@ namespace MetaSchema
             public string TargetFieldId { get; set; } = string.Empty;
         }
 
+        private sealed class UniqueKeyRelationships
+        {
+            public UniqueKey Row { get; set; } = null!;
+            public string KeyId { get; set; } = string.Empty;
+        }
+
+        private sealed class ViewRelationships
+        {
+            public View Row { get; set; } = null!;
+            public string SchemaObjectId { get; set; } = string.Empty;
+        }
+
         private sealed class RelationshipBuffers
         {
             public List<FieldRelationships>? FieldRelationships { get; set; }
             public List<FieldDataTypeDetailRelationships>? FieldDataTypeDetailRelationships { get; set; }
+            public List<KeyRelationships>? KeyRelationships { get; set; }
+            public List<KeyFieldRelationships>? KeyFieldRelationships { get; set; }
+            public List<PrimaryKeyRelationships>? PrimaryKeyRelationships { get; set; }
             public List<SchemaRelationships>? SchemaRelationships { get; set; }
+            public List<SchemaObjectRelationships>? SchemaObjectRelationships { get; set; }
             public List<TableRelationships>? TableRelationships { get; set; }
-            public List<TableKeyRelationships>? TableKeyRelationships { get; set; }
-            public List<TableKeyFieldRelationships>? TableKeyFieldRelationships { get; set; }
             public List<TableRelationshipRelationships>? TableRelationshipRelationships { get; set; }
             public List<TableRelationshipFieldRelationships>? TableRelationshipFieldRelationships { get; set; }
+            public List<UniqueKeyRelationships>? UniqueKeyRelationships { get; set; }
+            public List<ViewRelationships>? ViewRelationships { get; set; }
         }
 
         private static void ResolveRelationshipGroup1(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
         {
             foreach (var relationship in relationshipBuffers.FieldRelationships ?? Enumerable.Empty<FieldRelationships>())
             {
-                relationship.Row.Table = RequireTarget(
-                    loadIndexes.TableListById,
-                    relationship.TableId,
+                relationship.Row.SchemaObject = RequireTarget(
+                    loadIndexes.SchemaObjectListById,
+                    relationship.SchemaObjectId,
                     "Field",
                     relationship.Row.Id,
-                    "TableId");
+                    "SchemaObjectId");
             }
 
             foreach (var relationship in relationshipBuffers.FieldDataTypeDetailRelationships ?? Enumerable.Empty<FieldDataTypeDetailRelationships>())
@@ -1509,6 +2022,46 @@ namespace MetaSchema
                     "FieldId");
             }
 
+            foreach (var relationship in relationshipBuffers.KeyRelationships ?? Enumerable.Empty<KeyRelationships>())
+            {
+                relationship.Row.Table = RequireTarget(
+                    loadIndexes.TableListById,
+                    relationship.TableId,
+                    "Key",
+                    relationship.Row.Id,
+                    "TableId");
+            }
+
+            foreach (var relationship in relationshipBuffers.KeyFieldRelationships ?? Enumerable.Empty<KeyFieldRelationships>())
+            {
+                relationship.Row.Field = RequireTarget(
+                    loadIndexes.FieldListById,
+                    relationship.FieldId,
+                    "KeyField",
+                    relationship.Row.Id,
+                    "FieldId");
+            }
+
+            foreach (var relationship in relationshipBuffers.KeyFieldRelationships ?? Enumerable.Empty<KeyFieldRelationships>())
+            {
+                relationship.Row.Key = RequireTarget(
+                    loadIndexes.KeyListById,
+                    relationship.KeyId,
+                    "KeyField",
+                    relationship.Row.Id,
+                    "KeyId");
+            }
+
+            foreach (var relationship in relationshipBuffers.PrimaryKeyRelationships ?? Enumerable.Empty<PrimaryKeyRelationships>())
+            {
+                relationship.Row.Key = RequireTarget(
+                    loadIndexes.KeyListById,
+                    relationship.KeyId,
+                    "PrimaryKey",
+                    relationship.Row.Id,
+                    "KeyId");
+            }
+
             foreach (var relationship in relationshipBuffers.SchemaRelationships ?? Enumerable.Empty<SchemaRelationships>())
             {
                 relationship.Row.System = RequireTarget(
@@ -1519,44 +2072,24 @@ namespace MetaSchema
                     "SystemId");
             }
 
-            foreach (var relationship in relationshipBuffers.TableRelationships ?? Enumerable.Empty<TableRelationships>())
+            foreach (var relationship in relationshipBuffers.SchemaObjectRelationships ?? Enumerable.Empty<SchemaObjectRelationships>())
             {
                 relationship.Row.Schema = RequireTarget(
                     loadIndexes.SchemaListById,
                     relationship.SchemaId,
-                    "Table",
+                    "SchemaObject",
                     relationship.Row.Id,
                     "SchemaId");
             }
 
-            foreach (var relationship in relationshipBuffers.TableKeyRelationships ?? Enumerable.Empty<TableKeyRelationships>())
+            foreach (var relationship in relationshipBuffers.TableRelationships ?? Enumerable.Empty<TableRelationships>())
             {
-                relationship.Row.Table = RequireTarget(
-                    loadIndexes.TableListById,
-                    relationship.TableId,
-                    "TableKey",
+                relationship.Row.SchemaObject = RequireTarget(
+                    loadIndexes.SchemaObjectListById,
+                    relationship.SchemaObjectId,
+                    "Table",
                     relationship.Row.Id,
-                    "TableId");
-            }
-
-            foreach (var relationship in relationshipBuffers.TableKeyFieldRelationships ?? Enumerable.Empty<TableKeyFieldRelationships>())
-            {
-                relationship.Row.Field = RequireTarget(
-                    loadIndexes.FieldListById,
-                    relationship.FieldId,
-                    "TableKeyField",
-                    relationship.Row.Id,
-                    "FieldId");
-            }
-
-            foreach (var relationship in relationshipBuffers.TableKeyFieldRelationships ?? Enumerable.Empty<TableKeyFieldRelationships>())
-            {
-                relationship.Row.TableKey = RequireTarget(
-                    loadIndexes.TableKeyListById,
-                    relationship.TableKeyId,
-                    "TableKeyField",
-                    relationship.Row.Id,
-                    "TableKeyId");
+                    "SchemaObjectId");
             }
 
             foreach (var relationship in relationshipBuffers.TableRelationshipRelationships ?? Enumerable.Empty<TableRelationshipRelationships>())
@@ -1609,19 +2142,43 @@ namespace MetaSchema
                     "TargetFieldId");
             }
 
+            foreach (var relationship in relationshipBuffers.UniqueKeyRelationships ?? Enumerable.Empty<UniqueKeyRelationships>())
+            {
+                relationship.Row.Key = RequireTarget(
+                    loadIndexes.KeyListById,
+                    relationship.KeyId,
+                    "UniqueKey",
+                    relationship.Row.Id,
+                    "KeyId");
+            }
+
+            foreach (var relationship in relationshipBuffers.ViewRelationships ?? Enumerable.Empty<ViewRelationships>())
+            {
+                relationship.Row.SchemaObject = RequireTarget(
+                    loadIndexes.SchemaObjectListById,
+                    relationship.SchemaObjectId,
+                    "View",
+                    relationship.Row.Id,
+                    "SchemaObjectId");
+            }
+
         }
 
         private static readonly string[] ShardFileNames =
         {
             "Field.xml",
             "FieldDataTypeDetail.xml",
+            "Key.xml",
+            "KeyField.xml",
+            "PrimaryKey.xml",
             "Schema.xml",
+            "SchemaObject.xml",
             "System.xml",
             "Table.xml",
-            "TableKey.xml",
-            "TableKeyField.xml",
             "TableRelationship.xml",
             "TableRelationshipField.xml",
+            "UniqueKey.xml",
+            "View.xml",
         };
 
         private static HashSet<string> BuildExpectedShardPaths(string instanceDirectoryPath)
@@ -1661,6 +2218,42 @@ namespace MetaSchema
                 }
             }
 
+            private HashSet<string>? keyIds;
+
+            public void AddKeyId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'Key' contains a row with empty Id.");
+                keyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!keyIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'Key' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? keyFieldIds;
+
+            public void AddKeyFieldId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'KeyField' contains a row with empty Id.");
+                keyFieldIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!keyFieldIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'KeyField' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? primaryKeyIds;
+
+            public void AddPrimaryKeyId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'PrimaryKey' contains a row with empty Id.");
+                primaryKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!primaryKeyIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'PrimaryKey' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
             private HashSet<string>? schemaIds;
 
             public void AddSchemaId(string? id)
@@ -1670,6 +2263,18 @@ namespace MetaSchema
                 if (!schemaIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'Schema' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? schemaObjectIds;
+
+            public void AddSchemaObjectId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'SchemaObject' contains a row with empty Id.");
+                schemaObjectIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!schemaObjectIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'SchemaObject' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -1697,30 +2302,6 @@ namespace MetaSchema
                 }
             }
 
-            private HashSet<string>? tableKeyIds;
-
-            public void AddTableKeyId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'TableKey' contains a row with empty Id.");
-                tableKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!tableKeyIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'TableKey' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? tableKeyFieldIds;
-
-            public void AddTableKeyFieldId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'TableKeyField' contains a row with empty Id.");
-                tableKeyFieldIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!tableKeyFieldIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'TableKeyField' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
             private HashSet<string>? tableRelationshipIds;
 
             public void AddTableRelationshipId(string? id)
@@ -1745,6 +2326,30 @@ namespace MetaSchema
                 }
             }
 
+            private HashSet<string>? uniqueKeyIds;
+
+            public void AddUniqueKeyId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'UniqueKey' contains a row with empty Id.");
+                uniqueKeyIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!uniqueKeyIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'UniqueKey' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? viewIds;
+
+            public void AddViewId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'View' contains a row with empty Id.");
+                viewIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!viewIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'View' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
         }
 
         private sealed class LoadIndexes
@@ -1764,9 +2369,25 @@ namespace MetaSchema
 
             public Dictionary<string, FieldDataTypeDetail> FieldDataTypeDetailListById => fieldDataTypeDetailListById ??= BuildById(model.FieldDataTypeDetailList, row => row.Id, "FieldDataTypeDetail");
 
+            private Dictionary<string, Key>? keyListById;
+
+            public Dictionary<string, Key> KeyListById => keyListById ??= BuildById(model.KeyList, row => row.Id, "Key");
+
+            private Dictionary<string, KeyField>? keyFieldListById;
+
+            public Dictionary<string, KeyField> KeyFieldListById => keyFieldListById ??= BuildById(model.KeyFieldList, row => row.Id, "KeyField");
+
+            private Dictionary<string, PrimaryKey>? primaryKeyListById;
+
+            public Dictionary<string, PrimaryKey> PrimaryKeyListById => primaryKeyListById ??= BuildById(model.PrimaryKeyList, row => row.Id, "PrimaryKey");
+
             private Dictionary<string, Schema>? schemaListById;
 
             public Dictionary<string, Schema> SchemaListById => schemaListById ??= BuildById(model.SchemaList, row => row.Id, "Schema");
+
+            private Dictionary<string, SchemaObject>? schemaObjectListById;
+
+            public Dictionary<string, SchemaObject> SchemaObjectListById => schemaObjectListById ??= BuildById(model.SchemaObjectList, row => row.Id, "SchemaObject");
 
             private Dictionary<string, System>? systemListById;
 
@@ -1776,14 +2397,6 @@ namespace MetaSchema
 
             public Dictionary<string, Table> TableListById => tableListById ??= BuildById(model.TableList, row => row.Id, "Table");
 
-            private Dictionary<string, TableKey>? tableKeyListById;
-
-            public Dictionary<string, TableKey> TableKeyListById => tableKeyListById ??= BuildById(model.TableKeyList, row => row.Id, "TableKey");
-
-            private Dictionary<string, TableKeyField>? tableKeyFieldListById;
-
-            public Dictionary<string, TableKeyField> TableKeyFieldListById => tableKeyFieldListById ??= BuildById(model.TableKeyFieldList, row => row.Id, "TableKeyField");
-
             private Dictionary<string, TableRelationship>? tableRelationshipListById;
 
             public Dictionary<string, TableRelationship> TableRelationshipListById => tableRelationshipListById ??= BuildById(model.TableRelationshipList, row => row.Id, "TableRelationship");
@@ -1791,6 +2404,14 @@ namespace MetaSchema
             private Dictionary<string, TableRelationshipField>? tableRelationshipFieldListById;
 
             public Dictionary<string, TableRelationshipField> TableRelationshipFieldListById => tableRelationshipFieldListById ??= BuildById(model.TableRelationshipFieldList, row => row.Id, "TableRelationshipField");
+
+            private Dictionary<string, UniqueKey>? uniqueKeyListById;
+
+            public Dictionary<string, UniqueKey> UniqueKeyListById => uniqueKeyListById ??= BuildById(model.UniqueKeyList, row => row.Id, "UniqueKey");
+
+            private Dictionary<string, View>? viewListById;
+
+            public Dictionary<string, View> ViewListById => viewListById ??= BuildById(model.ViewList, row => row.Id, "View");
 
         }
 
@@ -1811,9 +2432,25 @@ namespace MetaSchema
 
             public Dictionary<string, FieldDataTypeDetail> FieldDataTypeDetailListById => fieldDataTypeDetailListById ??= BuildById(model.FieldDataTypeDetailList, row => row.Id, "FieldDataTypeDetail");
 
+            private Dictionary<string, Key>? keyListById;
+
+            public Dictionary<string, Key> KeyListById => keyListById ??= BuildById(model.KeyList, row => row.Id, "Key");
+
+            private Dictionary<string, KeyField>? keyFieldListById;
+
+            public Dictionary<string, KeyField> KeyFieldListById => keyFieldListById ??= BuildById(model.KeyFieldList, row => row.Id, "KeyField");
+
+            private Dictionary<string, PrimaryKey>? primaryKeyListById;
+
+            public Dictionary<string, PrimaryKey> PrimaryKeyListById => primaryKeyListById ??= BuildById(model.PrimaryKeyList, row => row.Id, "PrimaryKey");
+
             private Dictionary<string, Schema>? schemaListById;
 
             public Dictionary<string, Schema> SchemaListById => schemaListById ??= BuildById(model.SchemaList, row => row.Id, "Schema");
+
+            private Dictionary<string, SchemaObject>? schemaObjectListById;
+
+            public Dictionary<string, SchemaObject> SchemaObjectListById => schemaObjectListById ??= BuildById(model.SchemaObjectList, row => row.Id, "SchemaObject");
 
             private Dictionary<string, System>? systemListById;
 
@@ -1823,14 +2460,6 @@ namespace MetaSchema
 
             public Dictionary<string, Table> TableListById => tableListById ??= BuildById(model.TableList, row => row.Id, "Table");
 
-            private Dictionary<string, TableKey>? tableKeyListById;
-
-            public Dictionary<string, TableKey> TableKeyListById => tableKeyListById ??= BuildById(model.TableKeyList, row => row.Id, "TableKey");
-
-            private Dictionary<string, TableKeyField>? tableKeyFieldListById;
-
-            public Dictionary<string, TableKeyField> TableKeyFieldListById => tableKeyFieldListById ??= BuildById(model.TableKeyFieldList, row => row.Id, "TableKeyField");
-
             private Dictionary<string, TableRelationship>? tableRelationshipListById;
 
             public Dictionary<string, TableRelationship> TableRelationshipListById => tableRelationshipListById ??= BuildById(model.TableRelationshipList, row => row.Id, "TableRelationship");
@@ -1838,6 +2467,14 @@ namespace MetaSchema
             private Dictionary<string, TableRelationshipField>? tableRelationshipFieldListById;
 
             public Dictionary<string, TableRelationshipField> TableRelationshipFieldListById => tableRelationshipFieldListById ??= BuildById(model.TableRelationshipFieldList, row => row.Id, "TableRelationshipField");
+
+            private Dictionary<string, UniqueKey>? uniqueKeyListById;
+
+            public Dictionary<string, UniqueKey> UniqueKeyListById => uniqueKeyListById ??= BuildById(model.UniqueKeyList, row => row.Id, "UniqueKey");
+
+            private Dictionary<string, View>? viewListById;
+
+            public Dictionary<string, View> ViewListById => viewListById ??= BuildById(model.ViewList, row => row.Id, "View");
 
         }
 
@@ -1869,7 +2506,7 @@ namespace MetaSchema
                 "MetaDataTypeId",
                 "Name",
                 "Ordinal",
-                "Table"))
+                "SchemaObject"))
             {
                 return true;
             }
@@ -1883,10 +2520,42 @@ namespace MetaSchema
                 return true;
             }
 
+            if (HasUnexpectedProperties(typeof(Key),
+                "Id",
+                "Name",
+                "Table"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(KeyField),
+                "Id",
+                "Ordinal",
+                "Field",
+                "Key"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(PrimaryKey),
+                "Id",
+                "Key"))
+            {
+                return true;
+            }
+
             if (HasUnexpectedProperties(typeof(Schema),
                 "Id",
                 "Name",
                 "System"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(SchemaObject),
+                "Id",
+                "Name",
+                "Schema"))
             {
                 return true;
             }
@@ -1901,28 +2570,7 @@ namespace MetaSchema
 
             if (HasUnexpectedProperties(typeof(Table),
                 "Id",
-                "Name",
-                "ObjectType",
-                "Schema"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(TableKey),
-                "Id",
-                "KeyType",
-                "Name",
-                "Table"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(TableKeyField),
-                "Id",
-                "FieldName",
-                "Ordinal",
-                "Field",
-                "TableKey"))
+                "SchemaObject"))
             {
                 return true;
             }
@@ -1946,6 +2594,20 @@ namespace MetaSchema
                 return true;
             }
 
+            if (HasUnexpectedProperties(typeof(UniqueKey),
+                "Id",
+                "Key"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(View),
+                "Id",
+                "SchemaObject"))
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -1955,13 +2617,17 @@ namespace MetaSchema
             {
                 "FieldList",
                 "FieldDataTypeDetailList",
+                "KeyList",
+                "KeyFieldList",
+                "PrimaryKeyList",
                 "SchemaList",
+                "SchemaObjectList",
                 "SystemList",
                 "TableList",
-                "TableKeyList",
-                "TableKeyFieldList",
                 "TableRelationshipList",
                 "TableRelationshipFieldList",
+                "UniqueKeyList",
+                "ViewList",
             };
             return typeof(MetaSchemaModel).GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Any(property =>

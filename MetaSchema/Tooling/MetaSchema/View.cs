@@ -11,17 +11,11 @@
 
 namespace MetaSchema
 {
-    public sealed class TableKeyField
+    public sealed class View
     {
         public string Id { get; set; } = string.Empty;
 
-        public string FieldName { get; set; } = string.Empty;
-
-        public string Ordinal { get; set; } = string.Empty;
-
-        public Field Field { get; set; } = null!;
-
-        public TableKey TableKey { get; set; } = null!;
+        public SchemaObject SchemaObject { get; set; } = null!;
 
     }
 }

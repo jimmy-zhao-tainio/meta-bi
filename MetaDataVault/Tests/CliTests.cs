@@ -348,177 +348,17 @@ public sealed partial class CliTests
             }
         });
 
-        var tables = workspace.Instance.GetOrCreateEntityRecords("Table");
-        tables.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "1",
-            SourceShardFileName = "Table.xml",
-            Values =
-            {
-                ["Name"] = "Order"
-            },
-            RelationshipIds =
-            {
-                ["SchemaId"] = "1"
-            }
-        });
-        tables.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "2",
-            SourceShardFileName = "Table.xml",
-            Values =
-            {
-                ["Name"] = "Customer"
-            },
-            RelationshipIds =
-            {
-                ["SchemaId"] = "1"
-            }
-        });
-
-        var fields = workspace.Instance.GetOrCreateEntityRecords("Field");
-        fields.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "1",
-            SourceShardFileName = "Field.xml",
-            Values =
-            {
-                ["Name"] = "OrderId",
-                ["MetaDataTypeId"] = "sqlserver:type:int",
-                ["Ordinal"] = "1",
-                ["IsNullable"] = "false"
-            },
-            RelationshipIds =
-            {
-                ["TableId"] = "1"
-            }
-        });
-        fields.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "2",
-            SourceShardFileName = "Field.xml",
-            Values =
-            {
-                ["Name"] = "OrderNumber",
-                ["MetaDataTypeId"] = "sqlserver:type:nvarchar",
-                ["Ordinal"] = "2",
-                ["IsNullable"] = "false"
-            },
-            RelationshipIds =
-            {
-                ["TableId"] = "1"
-            }
-        });
-        fields.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "3",
-            SourceShardFileName = "Field.xml",
-            Values =
-            {
-                ["Name"] = "CustomerId",
-                ["MetaDataTypeId"] = "sqlserver:type:int",
-                ["Ordinal"] = "3",
-                ["IsNullable"] = "false"
-            },
-            RelationshipIds =
-            {
-                ["TableId"] = "1"
-            }
-        });
-        fields.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "4",
-            SourceShardFileName = "Field.xml",
-            Values =
-            {
-                ["Name"] = "CustomerId",
-                ["MetaDataTypeId"] = "sqlserver:type:int",
-                ["Ordinal"] = "1",
-                ["IsNullable"] = "false"
-            },
-            RelationshipIds =
-            {
-                ["TableId"] = "2"
-            }
-        });
-        fields.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "5",
-            SourceShardFileName = "Field.xml",
-            Values =
-            {
-                ["Name"] = "CustomerName",
-                ["MetaDataTypeId"] = "sqlserver:type:nvarchar",
-                ["Ordinal"] = "2",
-                ["IsNullable"] = "true"
-            },
-            RelationshipIds =
-            {
-                ["TableId"] = "2"
-            }
-        });
-
-        var tableKeys = workspace.Instance.GetOrCreateEntityRecords("TableKey");
-        tableKeys.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "key:1",
-            SourceShardFileName = "TableKey.xml",
-            Values =
-            {
-                ["Name"] = "PK_Order",
-                ["KeyType"] = "primary"
-            },
-            RelationshipIds =
-            {
-                ["TableId"] = "1"
-            }
-        });
-        tableKeys.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "key:2",
-            SourceShardFileName = "TableKey.xml",
-            Values =
-            {
-                ["Name"] = "PK_Customer",
-                ["KeyType"] = "primary"
-            },
-            RelationshipIds =
-            {
-                ["TableId"] = "2"
-            }
-        });
-
-        var tableKeyFields = workspace.Instance.GetOrCreateEntityRecords("TableKeyField");
-        tableKeyFields.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "keyf:1",
-            SourceShardFileName = "TableKeyField.xml",
-            Values =
-            {
-                ["Ordinal"] = "1",
-                ["FieldName"] = "OrderId"
-            },
-            RelationshipIds =
-            {
-                ["TableKeyId"] = "key:1",
-                ["FieldId"] = "1"
-            }
-        });
-        tableKeyFields.Add(new Meta.Core.Domain.GenericRecord
-        {
-            Id = "keyf:2",
-            SourceShardFileName = "TableKeyField.xml",
-            Values =
-            {
-                ["Ordinal"] = "1",
-                ["FieldName"] = "CustomerId"
-            },
-            RelationshipIds =
-            {
-                ["TableKeyId"] = "key:2",
-                ["FieldId"] = "4"
-            }
-        });
+        AddMetaSchemaTable(workspace, "1", "Order", "1");
+        AddMetaSchemaTable(workspace, "2", "Customer", "1");
+        AddMetaSchemaField(workspace, "1", "1", "OrderId", "sqlserver:type:int", "1", "false");
+        AddMetaSchemaField(workspace, "2", "1", "OrderNumber", "sqlserver:type:nvarchar", "2", "false");
+        AddMetaSchemaField(workspace, "3", "1", "CustomerId", "sqlserver:type:int", "3", "false");
+        AddMetaSchemaField(workspace, "4", "2", "CustomerId", "sqlserver:type:int", "1", "false");
+        AddMetaSchemaField(workspace, "5", "2", "CustomerName", "sqlserver:type:nvarchar", "2", "true");
+        AddMetaSchemaPrimaryKey(workspace, "key:1", "PK_Order", "1");
+        AddMetaSchemaPrimaryKey(workspace, "key:2", "PK_Customer", "2");
+        AddMetaSchemaKeyField(workspace, "keyf:1", "key:1", "1", "1");
+        AddMetaSchemaKeyField(workspace, "keyf:2", "key:2", "4", "1");
 
         var tableRelationships = workspace.Instance.GetOrCreateEntityRecords("TableRelationship");
         tableRelationships.Add(new Meta.Core.Domain.GenericRecord
@@ -554,24 +394,100 @@ public sealed partial class CliTests
         });
     }
 
-    private static void AddMetaSchemaField(Meta.Core.Domain.Workspace workspace, string id, string tableId, string name, string dataTypeId, string ordinal, string isNullable)
+    private static void AddMetaSchemaTable(Meta.Core.Domain.Workspace workspace, string id, string name, string schemaId)
     {
-        workspace.Instance.GetOrCreateEntityRecords("Field").Add(new Meta.Core.Domain.GenericRecord
+        workspace.Instance.GetOrCreateEntityRecords("SchemaObject").Add(new Meta.Core.Domain.GenericRecord
+        {
+            Id = id,
+            SourceShardFileName = "SchemaObject.xml",
+            Values = { ["Name"] = name },
+            RelationshipIds = { ["SchemaId"] = schemaId }
+        });
+        workspace.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
+        {
+            Id = id,
+            SourceShardFileName = "Table.xml",
+            RelationshipIds = { ["SchemaObjectId"] = id }
+        });
+    }
+
+    private static void AddMetaSchemaView(Meta.Core.Domain.Workspace workspace, string id, string name, string schemaId)
+    {
+        workspace.Instance.GetOrCreateEntityRecords("SchemaObject").Add(new Meta.Core.Domain.GenericRecord
+        {
+            Id = id,
+            SourceShardFileName = "SchemaObject.xml",
+            Values = { ["Name"] = name },
+            RelationshipIds = { ["SchemaId"] = schemaId }
+        });
+        workspace.Instance.GetOrCreateEntityRecords("View").Add(new Meta.Core.Domain.GenericRecord
+        {
+            Id = id,
+            SourceShardFileName = "View.xml",
+            RelationshipIds = { ["SchemaObjectId"] = id }
+        });
+    }
+
+    private static void AddMetaSchemaPrimaryKey(Meta.Core.Domain.Workspace workspace, string id, string name, string tableId)
+    {
+        workspace.Instance.GetOrCreateEntityRecords("Key").Add(new Meta.Core.Domain.GenericRecord
+        {
+            Id = id,
+            SourceShardFileName = "Key.xml",
+            Values = { ["Name"] = name },
+            RelationshipIds = { ["TableId"] = tableId }
+        });
+        workspace.Instance.GetOrCreateEntityRecords("PrimaryKey").Add(new Meta.Core.Domain.GenericRecord
+        {
+            Id = id,
+            SourceShardFileName = "PrimaryKey.xml",
+            RelationshipIds = { ["KeyId"] = id }
+        });
+    }
+
+    private static void AddMetaSchemaKeyField(Meta.Core.Domain.Workspace workspace, string id, string keyId, string fieldId, string ordinal)
+    {
+        workspace.Instance.GetOrCreateEntityRecords("KeyField").Add(new Meta.Core.Domain.GenericRecord
+        {
+            Id = id,
+            SourceShardFileName = "KeyField.xml",
+            Values = { ["Ordinal"] = ordinal },
+            RelationshipIds =
+            {
+                ["KeyId"] = keyId,
+                ["FieldId"] = fieldId
+            }
+        });
+    }
+
+    private static void AddMetaSchemaField(Meta.Core.Domain.Workspace workspace, string id, string schemaObjectId, string name, string dataTypeId, string ordinal, string? isNullable)
+    {
+        var values = new Dictionary<string, string>
+        {
+            ["Name"] = name,
+            ["MetaDataTypeId"] = dataTypeId,
+            ["Ordinal"] = ordinal,
+        };
+        if (isNullable != null)
+        {
+            values["IsNullable"] = isNullable;
+        }
+
+        var field = new Meta.Core.Domain.GenericRecord
         {
             Id = id,
             SourceShardFileName = "Field.xml",
-            Values =
-            {
-                ["Name"] = name,
-                ["MetaDataTypeId"] = dataTypeId,
-                ["Ordinal"] = ordinal,
-                ["IsNullable"] = isNullable
-            },
             RelationshipIds =
             {
-                ["TableId"] = tableId
+                ["SchemaObjectId"] = schemaObjectId
             }
-        });
+        };
+        foreach (var value in values)
+        {
+            field.Values[value.Key] = value.Value;
+        }
+
+        workspace.Instance.GetOrCreateEntityRecords("Field").Add(field);
     }
 
     private static (int ExitCode, string Output) RunRawCli(string arguments)
