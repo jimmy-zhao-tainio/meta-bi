@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessLinkSatelliteList>
-    <BusinessLinkSatellite Id="CustomerOrderStatus" BusinessLinkId="CustomerOrder">
-      <Name>Status</Name>
-    </BusinessLinkSatellite>
+    <BusinessLinkSatellite Id="CustomerOrderStatus" BusinessLinkId="CustomerOrder" BusinessSatelliteId="CustomerOrderStatus" />
   </BusinessLinkSatelliteList>
 </MetaBusinessDataVault>

@@ -40,19 +40,19 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-reference-key-part --id StatusCodeSource --reference StatusCode --name Source --data-type-id meta:type:String --previous-key-part StatusCodeValue");
 
             RunBusinessAdd(workspacePath, "add-hub-satellite --id CustomerProfile --hub Customer --name CustomerProfile");
-            RunBusinessAdd(workspacePath, "add-hub-satellite-attribute --id CustomerName --hub-satellite CustomerProfile --name CustomerName --data-type-id meta:type:String --length 200");
+            RunBusinessAdd(workspacePath, "add-satellite-attribute --id CustomerName --satellite CustomerProfile --name CustomerName --data-type-id meta:type:String --length 200");
 
             RunBusinessAdd(workspacePath, "add-link-satellite --id CustomerOrderStatus --link CustomerOrder --name CustomerOrderStatus");
-            RunBusinessAdd(workspacePath, "add-link-satellite-attribute --id CustomerOrderStatusCode --link-satellite CustomerOrderStatus --name StatusCode --data-type-id meta:type:String --length 20");
+            RunBusinessAdd(workspacePath, "add-satellite-attribute --id CustomerOrderStatusCode --satellite CustomerOrderStatus --name StatusCode --data-type-id meta:type:String --length 20");
 
             RunBusinessAdd(workspacePath, "add-same-as-link-satellite --id CustomerSameAsAliasAudit --same-as-link CustomerSameAsAlias --name CustomerSameAsAliasAudit");
-            RunBusinessAdd(workspacePath, "add-same-as-link-satellite-attribute --id CustomerSameAsAliasReason --same-as-link-satellite CustomerSameAsAliasAudit --name ReasonCode --data-type-id meta:type:String --length 20");
+            RunBusinessAdd(workspacePath, "add-satellite-attribute --id CustomerSameAsAliasReason --satellite CustomerSameAsAliasAudit --name ReasonCode --data-type-id meta:type:String --length 20");
 
             RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite --id ParentChildAudit --hierarchical-link ParentChild --name ParentChildAudit");
-            RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite-attribute --id ParentChildRelationshipType --hierarchical-link-satellite ParentChildAudit --name RelationshipType --data-type-id meta:type:String --length 30");
+            RunBusinessAdd(workspacePath, "add-satellite-attribute --id ParentChildRelationshipType --satellite ParentChildAudit --name RelationshipType --data-type-id meta:type:String --length 30");
 
             RunBusinessAdd(workspacePath, "add-reference-satellite --id StatusCodeDescriptionSet --reference StatusCode --name StatusCodeDescriptionSet");
-            RunBusinessAdd(workspacePath, "add-reference-satellite-attribute --id StatusCodeDescription --reference-satellite StatusCodeDescriptionSet --name Description --data-type-id meta:type:String --length 100");
+            RunBusinessAdd(workspacePath, "add-satellite-attribute --id StatusCodeDescription --satellite StatusCodeDescriptionSet --name Description --data-type-id meta:type:String --length 100");
 
             RunBusinessAdd(workspacePath, "add-point-in-time --id CustomerSnapshot --hub Customer --name CustomerSnapshot");
             RunBusinessAdd(workspacePath, "add-point-in-time-stamp --id CustomerSnapshotBusinessDate --point-in-time CustomerSnapshot --name BusinessDate --data-type-id meta:type:DateTime --precision 7");
@@ -67,6 +67,15 @@ public sealed partial class CliTests
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLink"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessReference"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessBridge"));
+
+            var satellites = workspace.Instance.GetOrCreateEntityRecords("BusinessSatellite").ToDictionary(record => record.Id, StringComparer.Ordinal);
+            Assert.Equal(5, satellites.Count);
+            Assert.Equal("CustomerProfile", satellites["CustomerProfile"].Values["Name"]);
+            Assert.Equal("CustomerProfile", workspace.Instance.GetOrCreateEntityRecords("BusinessHubSatellite").Single().RelationshipIds["BusinessSatelliteId"]);
+            Assert.Equal("CustomerOrderStatus", workspace.Instance.GetOrCreateEntityRecords("BusinessLinkSatellite").Single().RelationshipIds["BusinessSatelliteId"]);
+            Assert.Equal("CustomerSameAsAliasAudit", workspace.Instance.GetOrCreateEntityRecords("BusinessSameAsLinkSatellite").Single().RelationshipIds["BusinessSatelliteId"]);
+            Assert.Equal("ParentChildAudit", workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLinkSatellite").Single().RelationshipIds["BusinessSatelliteId"]);
+            Assert.Equal("StatusCodeDescriptionSet", workspace.Instance.GetOrCreateEntityRecords("BusinessReferenceSatellite").Single().RelationshipIds["BusinessSatelliteId"]);
 
             var hubKeyPartDetails = workspace.Instance.GetOrCreateEntityRecords("BusinessHubKeyPartDataTypeDetail");
             Assert.Contains(hubKeyPartDetails, record =>
@@ -88,14 +97,10 @@ public sealed partial class CliTests
 
             foreach (var entityName in new[]
                      {
-                         "BusinessHierarchicalLinkSatelliteAttribute",
-                         "BusinessHubSatelliteAttribute",
-                         "BusinessLinkSatelliteAttribute",
+                         "BusinessSatelliteAttribute",
                          "BusinessPointInTimeHubSatellite",
                          "BusinessPointInTimeLinkSatellite",
                          "BusinessPointInTimeStamp",
-                         "BusinessReferenceSatelliteAttribute",
-                         "BusinessSameAsLinkSatelliteAttribute",
                      })
             {
                 Assert.All(
@@ -225,8 +230,8 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-link-role --id CustomerOrderOrder --link CustomerOrder --hub Order --name Order");
             RunBusinessAdd(workspacePath, "add-hub-satellite --id CustomerProfile --hub Customer --name CustomerProfile");
             RunBusinessAdd(workspacePath, "add-link-satellite --id CustomerOrderStatus --link CustomerOrder --name CustomerOrderStatus");
-            RunBusinessAdd(workspacePath, "add-link-satellite-attribute --id CustomerOrderStatusCode --link-satellite CustomerOrderStatus --name StatusCode --data-type-id meta:type:String");
-            RunBusinessAdd(workspacePath, "add-link-satellite-attribute --id CustomerOrderStatusReason --link-satellite CustomerOrderStatus --name StatusReason --data-type-id meta:type:String");
+            RunBusinessAdd(workspacePath, "add-satellite-attribute --id CustomerOrderStatusCode --satellite CustomerOrderStatus --name StatusCode --data-type-id meta:type:String");
+            RunBusinessAdd(workspacePath, "add-satellite-attribute --id CustomerOrderStatusReason --satellite CustomerOrderStatus --name StatusReason --data-type-id meta:type:String");
             RunBusinessAdd(workspacePath, "add-point-in-time --id CustomerSnapshot --hub Customer --name CustomerSnapshot");
             RunBusinessAdd(workspacePath, "add-point-in-time-hub-satellite --id CustomerSnapshotProfile --point-in-time CustomerSnapshot --hub-satellite CustomerProfile");
             RunBusinessAdd(workspacePath, "add-point-in-time-link-satellite --id CustomerSnapshotOrderStatus --point-in-time CustomerSnapshot --link-satellite CustomerOrderStatus");
@@ -234,7 +239,7 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-bridge-traversal --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --source-role CustomerOrderCustomer --target-role CustomerOrderOrder");
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
-            var linkSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("BusinessLinkSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var linkSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("BusinessSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var pointInTimeHubSatellites = workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeHubSatellite").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var pointInTimeLinkSatellites = workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeLinkSatellite").ToDictionary(row => row.Id, StringComparer.Ordinal);
 

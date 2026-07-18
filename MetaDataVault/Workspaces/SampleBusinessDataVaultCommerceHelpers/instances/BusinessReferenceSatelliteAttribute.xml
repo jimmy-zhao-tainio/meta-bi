@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessReferenceSatelliteAttributeList>
-    <BusinessReferenceSatelliteAttribute Id="StatusName" BusinessReferenceSatelliteId="StatusCurrent">
-      <DataTypeId>meta:type:String</DataTypeId>
-      <Name>StatusName</Name>
-    </BusinessReferenceSatelliteAttribute>
-  </BusinessReferenceSatelliteAttributeList>
-</MetaBusinessDataVault>

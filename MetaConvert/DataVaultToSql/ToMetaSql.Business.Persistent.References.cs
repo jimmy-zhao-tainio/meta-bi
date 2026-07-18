@@ -89,12 +89,12 @@ public static partial class Converter
         MetaBusinessDataVaultModel model,
         ConversionContext context,
         BusinessReferenceSatelliteImplementation businessReferenceSatelliteImplementation,
-        IReadOnlyDictionary<string, List<BusinessReferenceSatelliteAttribute>> businessReferenceSatelliteAttributesBySatelliteId,
-        IReadOnlyDictionary<string, List<BusinessReferenceSatelliteAttributeDataTypeDetail>> businessReferenceSatelliteAttributeDetailsByAttributeId,
+        IReadOnlyDictionary<string, List<BusinessSatelliteAttribute>> businessSatelliteAttributesBySatelliteId,
+        IReadOnlyDictionary<string, List<BusinessSatelliteAttributeDataTypeDetail>> businessSatelliteAttributeDetailsByAttributeId,
         IReadOnlyDictionary<string, Table> referenceTablesByReferenceId,
         IReadOnlyDictionary<string, TableColumn> referenceHashKeyColumnsByReferenceId)
     {
-        foreach (var satellite in model.BusinessReferenceSatelliteList.OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
+        foreach (var satellite in model.BusinessReferenceSatelliteList.OrderBy(row => row.BusinessSatellite.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
         {
             var table = AddTable(
                 context,
@@ -102,7 +102,7 @@ public static partial class Converter
                 ApplyPattern(
                     businessReferenceSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.BusinessReference.Name),
-                    ("Name", satellite.Name)));
+                    ("Name", satellite.BusinessSatellite.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var parentHashKeyColumn = AddImplementationColumn(
@@ -114,13 +114,13 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessReferenceSatelliteImplementation.ParentHashKeyLength));
 
-            var members = GetGroup(businessReferenceSatelliteAttributesBySatelliteId, satellite.Id)
+            var members = GetGroup(businessSatelliteAttributesBySatelliteId, satellite.Id)
                 .Select(row => CreateBusinessColumnMember(
                     row.Id,
                     row.Name,
                     row.DataTypeId,
                     GetDetailPairs(
-                        businessReferenceSatelliteAttributeDetailsByAttributeId,
+                        businessSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
                         detail => detail.Value)));

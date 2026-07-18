@@ -158,14 +158,10 @@ public sealed partial class CliTests
     {
         foreach (var command in new[]
                  {
-                     "add-hierarchical-link-satellite-attribute",
-                     "add-hub-satellite-attribute",
-                     "add-link-satellite-attribute",
+                     "add-satellite-attribute",
                      "add-point-in-time-hub-satellite",
                      "add-point-in-time-link-satellite",
                      "add-point-in-time-stamp",
-                     "add-reference-satellite-attribute",
-                     "add-same-as-link-satellite-attribute",
                  })
         {
             var result = RunBusinessCli($"{command} --help");

@@ -1,35 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessLinkSatelliteList>
-    <BusinessLinkSatellite Id="CustomerInvoiceStatus" BusinessLinkId="CustomerInvoice">
-      <Name>CustomerInvoiceStatus</Name>
-    </BusinessLinkSatellite>
-    <BusinessLinkSatellite Id="CustomerOrderStatus" BusinessLinkId="CustomerOrder">
-      <Name>CustomerOrderStatus</Name>
-    </BusinessLinkSatellite>
-    <BusinessLinkSatellite Id="DepartmentCostCenterAssignment" BusinessLinkId="DepartmentCostCenter">
-      <Name>DepartmentCostCenterAssignment</Name>
-    </BusinessLinkSatellite>
-    <BusinessLinkSatellite Id="DepartmentManagerAssignment" BusinessLinkId="DepartmentManager">
-      <Name>DepartmentManagerAssignment</Name>
-    </BusinessLinkSatellite>
-    <BusinessLinkSatellite Id="EmployeeCostCenterAssignment" BusinessLinkId="EmployeeCostCenter">
-      <Name>EmployeeCostCenterAssignment</Name>
-    </BusinessLinkSatellite>
-    <BusinessLinkSatellite Id="EmployeeDepartmentAssignment" BusinessLinkId="EmployeeDepartment">
-      <Name>EmployeeDepartmentAssignment</Name>
-    </BusinessLinkSatellite>
-    <BusinessLinkSatellite Id="InvoiceShipmentTracking" BusinessLinkId="InvoiceShipment">
-      <Name>InvoiceShipmentTracking</Name>
-    </BusinessLinkSatellite>
-    <BusinessLinkSatellite Id="OrderProductLine" BusinessLinkId="OrderProduct">
-      <Name>OrderProductLine</Name>
-    </BusinessLinkSatellite>
-    <BusinessLinkSatellite Id="SupplierInvoiceTerms" BusinessLinkId="SupplierInvoice">
-      <Name>SupplierInvoiceTerms</Name>
-    </BusinessLinkSatellite>
-    <BusinessLinkSatellite Id="SupplierProductTerms" BusinessLinkId="SupplierProduct">
-      <Name>SupplierProductTerms</Name>
-    </BusinessLinkSatellite>
+    <BusinessLinkSatellite Id="CustomerInvoiceStatus" BusinessLinkId="CustomerInvoice" BusinessSatelliteId="CustomerInvoiceStatus" />
+    <BusinessLinkSatellite Id="CustomerOrderStatus" BusinessLinkId="CustomerOrder" BusinessSatelliteId="CustomerOrderStatus" />
+    <BusinessLinkSatellite Id="DepartmentCostCenterAssignment" BusinessLinkId="DepartmentCostCenter" BusinessSatelliteId="DepartmentCostCenterAssignment" />
+    <BusinessLinkSatellite Id="DepartmentManagerAssignment" BusinessLinkId="DepartmentManager" BusinessSatelliteId="DepartmentManagerAssignment" />
+    <BusinessLinkSatellite Id="EmployeeCostCenterAssignment" BusinessLinkId="EmployeeCostCenter" BusinessSatelliteId="EmployeeCostCenterAssignment" />
+    <BusinessLinkSatellite Id="EmployeeDepartmentAssignment" BusinessLinkId="EmployeeDepartment" BusinessSatelliteId="EmployeeDepartmentAssignment" />
+    <BusinessLinkSatellite Id="InvoiceShipmentTracking" BusinessLinkId="InvoiceShipment" BusinessSatelliteId="InvoiceShipmentTracking" />
+    <BusinessLinkSatellite Id="OrderProductLine" BusinessLinkId="OrderProduct" BusinessSatelliteId="OrderProductLine" />
+    <BusinessLinkSatellite Id="SupplierInvoiceTerms" BusinessLinkId="SupplierInvoice" BusinessSatelliteId="SupplierInvoiceTerms" />
+    <BusinessLinkSatellite Id="SupplierProductTerms" BusinessLinkId="SupplierProduct" BusinessSatelliteId="SupplierProductTerms" />
   </BusinessLinkSatelliteList>
 </MetaBusinessDataVault>

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessHubSatelliteList>
-    <BusinessHubSatellite Id="CustomerProfile" BusinessHubId="Customer">
-      <Name>Profile</Name>
-    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="CustomerProfile" BusinessHubId="Customer" BusinessSatelliteId="CustomerProfile" />
   </BusinessHubSatelliteList>
 </MetaBusinessDataVault>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessHierarchicalLinkSatelliteAttributeList>
-    <BusinessHierarchicalLinkSatelliteAttribute Id="DepartmentHierarchyLevel" BusinessHierarchicalLinkSatelliteId="DepartmentHierarchyInfo">
-      <DataTypeId>meta:type:Int32</DataTypeId>
-      <Name>HierarchyLevel</Name>
-    </BusinessHierarchicalLinkSatelliteAttribute>
-  </BusinessHierarchicalLinkSatelliteAttributeList>
-</MetaBusinessDataVault>

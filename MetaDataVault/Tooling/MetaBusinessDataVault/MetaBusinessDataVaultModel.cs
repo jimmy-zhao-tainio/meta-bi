@@ -34,10 +34,6 @@ namespace MetaBusinessDataVault
 
         public List<BusinessHierarchicalLinkSatellite> BusinessHierarchicalLinkSatelliteList { get; set; } = new();
 
-        public List<BusinessHierarchicalLinkSatelliteAttribute> BusinessHierarchicalLinkSatelliteAttributeList { get; set; } = new();
-
-        public List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail> BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList { get; set; } = new();
-
         public List<BusinessHub> BusinessHubList { get; set; } = new();
 
         public List<BusinessHubKeyPart> BusinessHubKeyPartList { get; set; } = new();
@@ -46,19 +42,11 @@ namespace MetaBusinessDataVault
 
         public List<BusinessHubSatellite> BusinessHubSatelliteList { get; set; } = new();
 
-        public List<BusinessHubSatelliteAttribute> BusinessHubSatelliteAttributeList { get; set; } = new();
-
-        public List<BusinessHubSatelliteAttributeDataTypeDetail> BusinessHubSatelliteAttributeDataTypeDetailList { get; set; } = new();
-
         public List<BusinessLink> BusinessLinkList { get; set; } = new();
 
         public List<BusinessLinkRole> BusinessLinkRoleList { get; set; } = new();
 
         public List<BusinessLinkSatellite> BusinessLinkSatelliteList { get; set; } = new();
-
-        public List<BusinessLinkSatelliteAttribute> BusinessLinkSatelliteAttributeList { get; set; } = new();
-
-        public List<BusinessLinkSatelliteAttributeDataTypeDetail> BusinessLinkSatelliteAttributeDataTypeDetailList { get; set; } = new();
 
         public List<BusinessPointInTime> BusinessPointInTimeList { get; set; } = new();
 
@@ -78,17 +66,15 @@ namespace MetaBusinessDataVault
 
         public List<BusinessReferenceSatellite> BusinessReferenceSatelliteList { get; set; } = new();
 
-        public List<BusinessReferenceSatelliteAttribute> BusinessReferenceSatelliteAttributeList { get; set; } = new();
-
-        public List<BusinessReferenceSatelliteAttributeDataTypeDetail> BusinessReferenceSatelliteAttributeDataTypeDetailList { get; set; } = new();
-
         public List<BusinessSameAsLink> BusinessSameAsLinkList { get; set; } = new();
 
         public List<BusinessSameAsLinkSatellite> BusinessSameAsLinkSatelliteList { get; set; } = new();
 
-        public List<BusinessSameAsLinkSatelliteAttribute> BusinessSameAsLinkSatelliteAttributeList { get; set; } = new();
+        public List<BusinessSatellite> BusinessSatelliteList { get; set; } = new();
 
-        public List<BusinessSameAsLinkSatelliteAttributeDataTypeDetail> BusinessSameAsLinkSatelliteAttributeDataTypeDetailList { get; set; } = new();
+        public List<BusinessSatelliteAttribute> BusinessSatelliteAttributeList { get; set; } = new();
+
+        public List<BusinessSatelliteAttributeDataTypeDetail> BusinessSatelliteAttributeDataTypeDetailList { get; set; } = new();
 
         public static MetaBusinessDataVaultModel LoadFromXmlWorkspace(
             string workspacePath,
@@ -238,28 +224,6 @@ namespace MetaBusinessDataVault
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessHierarchicalLinkSatelliteShardPath, SerializeBusinessHierarchicalLinkSatelliteShard(model, saveIndexes));
             }
 
-            model.BusinessHierarchicalLinkSatelliteAttributeList ??= new List<BusinessHierarchicalLinkSatelliteAttribute>();
-            var businessHierarchicalLinkSatelliteAttributeShardPath = Path.Combine(instanceDirectoryPath, "BusinessHierarchicalLinkSatelliteAttribute.xml");
-            if (model.BusinessHierarchicalLinkSatelliteAttributeList.Count == 0)
-            {
-                DeleteIfExists(businessHierarchicalLinkSatelliteAttributeShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessHierarchicalLinkSatelliteAttributeShardPath, SerializeBusinessHierarchicalLinkSatelliteAttributeShard(model, saveIndexes));
-            }
-
-            model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList ??= new List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>();
-            var businessHierarchicalLinkSatelliteAttributeDataTypeDetailShardPath = Path.Combine(instanceDirectoryPath, "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail.xml");
-            if (model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList.Count == 0)
-            {
-                DeleteIfExists(businessHierarchicalLinkSatelliteAttributeDataTypeDetailShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessHierarchicalLinkSatelliteAttributeDataTypeDetailShardPath, SerializeBusinessHierarchicalLinkSatelliteAttributeDataTypeDetailShard(model, saveIndexes));
-            }
-
             model.BusinessHubList ??= new List<BusinessHub>();
             var businessHubShardPath = Path.Combine(instanceDirectoryPath, "BusinessHub.xml");
             if (model.BusinessHubList.Count == 0)
@@ -304,28 +268,6 @@ namespace MetaBusinessDataVault
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessHubSatelliteShardPath, SerializeBusinessHubSatelliteShard(model, saveIndexes));
             }
 
-            model.BusinessHubSatelliteAttributeList ??= new List<BusinessHubSatelliteAttribute>();
-            var businessHubSatelliteAttributeShardPath = Path.Combine(instanceDirectoryPath, "BusinessHubSatelliteAttribute.xml");
-            if (model.BusinessHubSatelliteAttributeList.Count == 0)
-            {
-                DeleteIfExists(businessHubSatelliteAttributeShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessHubSatelliteAttributeShardPath, SerializeBusinessHubSatelliteAttributeShard(model, saveIndexes));
-            }
-
-            model.BusinessHubSatelliteAttributeDataTypeDetailList ??= new List<BusinessHubSatelliteAttributeDataTypeDetail>();
-            var businessHubSatelliteAttributeDataTypeDetailShardPath = Path.Combine(instanceDirectoryPath, "BusinessHubSatelliteAttributeDataTypeDetail.xml");
-            if (model.BusinessHubSatelliteAttributeDataTypeDetailList.Count == 0)
-            {
-                DeleteIfExists(businessHubSatelliteAttributeDataTypeDetailShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessHubSatelliteAttributeDataTypeDetailShardPath, SerializeBusinessHubSatelliteAttributeDataTypeDetailShard(model, saveIndexes));
-            }
-
             model.BusinessLinkList ??= new List<BusinessLink>();
             var businessLinkShardPath = Path.Combine(instanceDirectoryPath, "BusinessLink.xml");
             if (model.BusinessLinkList.Count == 0)
@@ -357,28 +299,6 @@ namespace MetaBusinessDataVault
             else
             {
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessLinkSatelliteShardPath, SerializeBusinessLinkSatelliteShard(model, saveIndexes));
-            }
-
-            model.BusinessLinkSatelliteAttributeList ??= new List<BusinessLinkSatelliteAttribute>();
-            var businessLinkSatelliteAttributeShardPath = Path.Combine(instanceDirectoryPath, "BusinessLinkSatelliteAttribute.xml");
-            if (model.BusinessLinkSatelliteAttributeList.Count == 0)
-            {
-                DeleteIfExists(businessLinkSatelliteAttributeShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessLinkSatelliteAttributeShardPath, SerializeBusinessLinkSatelliteAttributeShard(model, saveIndexes));
-            }
-
-            model.BusinessLinkSatelliteAttributeDataTypeDetailList ??= new List<BusinessLinkSatelliteAttributeDataTypeDetail>();
-            var businessLinkSatelliteAttributeDataTypeDetailShardPath = Path.Combine(instanceDirectoryPath, "BusinessLinkSatelliteAttributeDataTypeDetail.xml");
-            if (model.BusinessLinkSatelliteAttributeDataTypeDetailList.Count == 0)
-            {
-                DeleteIfExists(businessLinkSatelliteAttributeDataTypeDetailShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessLinkSatelliteAttributeDataTypeDetailShardPath, SerializeBusinessLinkSatelliteAttributeDataTypeDetailShard(model, saveIndexes));
             }
 
             model.BusinessPointInTimeList ??= new List<BusinessPointInTime>();
@@ -480,28 +400,6 @@ namespace MetaBusinessDataVault
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessReferenceSatelliteShardPath, SerializeBusinessReferenceSatelliteShard(model, saveIndexes));
             }
 
-            model.BusinessReferenceSatelliteAttributeList ??= new List<BusinessReferenceSatelliteAttribute>();
-            var businessReferenceSatelliteAttributeShardPath = Path.Combine(instanceDirectoryPath, "BusinessReferenceSatelliteAttribute.xml");
-            if (model.BusinessReferenceSatelliteAttributeList.Count == 0)
-            {
-                DeleteIfExists(businessReferenceSatelliteAttributeShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessReferenceSatelliteAttributeShardPath, SerializeBusinessReferenceSatelliteAttributeShard(model, saveIndexes));
-            }
-
-            model.BusinessReferenceSatelliteAttributeDataTypeDetailList ??= new List<BusinessReferenceSatelliteAttributeDataTypeDetail>();
-            var businessReferenceSatelliteAttributeDataTypeDetailShardPath = Path.Combine(instanceDirectoryPath, "BusinessReferenceSatelliteAttributeDataTypeDetail.xml");
-            if (model.BusinessReferenceSatelliteAttributeDataTypeDetailList.Count == 0)
-            {
-                DeleteIfExists(businessReferenceSatelliteAttributeDataTypeDetailShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessReferenceSatelliteAttributeDataTypeDetailShardPath, SerializeBusinessReferenceSatelliteAttributeDataTypeDetailShard(model, saveIndexes));
-            }
-
             model.BusinessSameAsLinkList ??= new List<BusinessSameAsLink>();
             var businessSameAsLinkShardPath = Path.Combine(instanceDirectoryPath, "BusinessSameAsLink.xml");
             if (model.BusinessSameAsLinkList.Count == 0)
@@ -524,26 +422,37 @@ namespace MetaBusinessDataVault
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessSameAsLinkSatelliteShardPath, SerializeBusinessSameAsLinkSatelliteShard(model, saveIndexes));
             }
 
-            model.BusinessSameAsLinkSatelliteAttributeList ??= new List<BusinessSameAsLinkSatelliteAttribute>();
-            var businessSameAsLinkSatelliteAttributeShardPath = Path.Combine(instanceDirectoryPath, "BusinessSameAsLinkSatelliteAttribute.xml");
-            if (model.BusinessSameAsLinkSatelliteAttributeList.Count == 0)
+            model.BusinessSatelliteList ??= new List<BusinessSatellite>();
+            var businessSatelliteShardPath = Path.Combine(instanceDirectoryPath, "BusinessSatellite.xml");
+            if (model.BusinessSatelliteList.Count == 0)
             {
-                DeleteIfExists(businessSameAsLinkSatelliteAttributeShardPath);
+                DeleteIfExists(businessSatelliteShardPath);
             }
             else
             {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessSameAsLinkSatelliteAttributeShardPath, SerializeBusinessSameAsLinkSatelliteAttributeShard(model, saveIndexes));
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessSatelliteShardPath, SerializeBusinessSatelliteShard(model, saveIndexes));
             }
 
-            model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList ??= new List<BusinessSameAsLinkSatelliteAttributeDataTypeDetail>();
-            var businessSameAsLinkSatelliteAttributeDataTypeDetailShardPath = Path.Combine(instanceDirectoryPath, "BusinessSameAsLinkSatelliteAttributeDataTypeDetail.xml");
-            if (model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList.Count == 0)
+            model.BusinessSatelliteAttributeList ??= new List<BusinessSatelliteAttribute>();
+            var businessSatelliteAttributeShardPath = Path.Combine(instanceDirectoryPath, "BusinessSatelliteAttribute.xml");
+            if (model.BusinessSatelliteAttributeList.Count == 0)
             {
-                DeleteIfExists(businessSameAsLinkSatelliteAttributeDataTypeDetailShardPath);
+                DeleteIfExists(businessSatelliteAttributeShardPath);
             }
             else
             {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessSameAsLinkSatelliteAttributeDataTypeDetailShardPath, SerializeBusinessSameAsLinkSatelliteAttributeDataTypeDetailShard(model, saveIndexes));
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessSatelliteAttributeShardPath, SerializeBusinessSatelliteAttributeShard(model, saveIndexes));
+            }
+
+            model.BusinessSatelliteAttributeDataTypeDetailList ??= new List<BusinessSatelliteAttributeDataTypeDetail>();
+            var businessSatelliteAttributeDataTypeDetailShardPath = Path.Combine(instanceDirectoryPath, "BusinessSatelliteAttributeDataTypeDetail.xml");
+            if (model.BusinessSatelliteAttributeDataTypeDetailList.Count == 0)
+            {
+                DeleteIfExists(businessSatelliteAttributeDataTypeDetailShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessSatelliteAttributeDataTypeDetailShardPath, SerializeBusinessSatelliteAttributeDataTypeDetailShard(model, saveIndexes));
             }
 
         }
@@ -582,12 +491,6 @@ namespace MetaBusinessDataVault
                     case "BusinessHierarchicalLinkSatelliteList":
                         LoadBusinessHierarchicalLinkSatelliteList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "BusinessHierarchicalLinkSatelliteAttributeList":
-                        LoadBusinessHierarchicalLinkSatelliteAttributeList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList":
-                        LoadBusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList(model, reader, loadState, relationshipBuffers);
-                        break;
                     case "BusinessHubList":
                         LoadBusinessHubList(model, reader, loadState, relationshipBuffers);
                         break;
@@ -600,12 +503,6 @@ namespace MetaBusinessDataVault
                     case "BusinessHubSatelliteList":
                         LoadBusinessHubSatelliteList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "BusinessHubSatelliteAttributeList":
-                        LoadBusinessHubSatelliteAttributeList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "BusinessHubSatelliteAttributeDataTypeDetailList":
-                        LoadBusinessHubSatelliteAttributeDataTypeDetailList(model, reader, loadState, relationshipBuffers);
-                        break;
                     case "BusinessLinkList":
                         LoadBusinessLinkList(model, reader, loadState, relationshipBuffers);
                         break;
@@ -614,12 +511,6 @@ namespace MetaBusinessDataVault
                         break;
                     case "BusinessLinkSatelliteList":
                         LoadBusinessLinkSatelliteList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "BusinessLinkSatelliteAttributeList":
-                        LoadBusinessLinkSatelliteAttributeList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "BusinessLinkSatelliteAttributeDataTypeDetailList":
-                        LoadBusinessLinkSatelliteAttributeDataTypeDetailList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "BusinessPointInTimeList":
                         LoadBusinessPointInTimeList(model, reader, loadState, relationshipBuffers);
@@ -648,23 +539,20 @@ namespace MetaBusinessDataVault
                     case "BusinessReferenceSatelliteList":
                         LoadBusinessReferenceSatelliteList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "BusinessReferenceSatelliteAttributeList":
-                        LoadBusinessReferenceSatelliteAttributeList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "BusinessReferenceSatelliteAttributeDataTypeDetailList":
-                        LoadBusinessReferenceSatelliteAttributeDataTypeDetailList(model, reader, loadState, relationshipBuffers);
-                        break;
                     case "BusinessSameAsLinkList":
                         LoadBusinessSameAsLinkList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "BusinessSameAsLinkSatelliteList":
                         LoadBusinessSameAsLinkSatelliteList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "BusinessSameAsLinkSatelliteAttributeList":
-                        LoadBusinessSameAsLinkSatelliteAttributeList(model, reader, loadState, relationshipBuffers);
+                    case "BusinessSatelliteList":
+                        LoadBusinessSatelliteList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "BusinessSameAsLinkSatelliteAttributeDataTypeDetailList":
-                        LoadBusinessSameAsLinkSatelliteAttributeDataTypeDetailList(model, reader, loadState, relationshipBuffers);
+                    case "BusinessSatelliteAttributeList":
+                        LoadBusinessSatelliteAttributeList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "BusinessSatelliteAttributeDataTypeDetailList":
+                        LoadBusinessSatelliteAttributeDataTypeDetailList(model, reader, loadState, relationshipBuffers);
                         break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in '{shardPath}'.");
@@ -1121,6 +1009,9 @@ namespace MetaBusinessDataVault
                         case "BusinessHierarchicalLinkId":
                             relationships.BusinessHierarchicalLinkId = reader.Value;
                             break;
+                        case "BusinessSatelliteId":
+                            relationships.BusinessSatelliteId = reader.Value;
+                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessHierarchicalLinkSatellite'.");
                     }
@@ -1141,12 +1032,6 @@ namespace MetaBusinessDataVault
             {
                 switch (reader.LocalName)
                 {
-                    case "Description":
-                        row.Description = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessHierarchicalLinkSatellite'.");
                 }
@@ -1184,249 +1069,19 @@ namespace MetaBusinessDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessHierarchicalLinkId);
                 builder.Append('"');
-                builder.Append(">\n");
-                if (!string.IsNullOrWhiteSpace(row.Description))
+                var businessSatelliteId = RequireIdentity(row.BusinessSatellite?.Id, $"Relationship 'BusinessHierarchicalLinkSatellite.BusinessSatelliteId' on row 'BusinessHierarchicalLinkSatellite:{row.Id}' is empty.");
+                if (!saveIndexes.BusinessSatelliteListById.TryGetValue(businessSatelliteId, out var businessSatelliteCanonical) || !ReferenceEquals(businessSatelliteCanonical, row.BusinessSatellite))
                 {
-                    AppendElement(builder, "Description", row.Description!, "      ");
+                    throw new InvalidOperationException($"Relationship 'BusinessHierarchicalLinkSatellite.BusinessSatelliteId' on row 'BusinessHierarchicalLinkSatellite:{row.Id}' references an object that is not the canonical row for Id '{businessSatelliteId}'.");
                 }
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessHierarchicalLinkSatellite' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </BusinessHierarchicalLinkSatellite>\n");
+                builder.Append(' ');
+                builder.Append("BusinessSatelliteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, businessSatelliteId);
+                builder.Append('"');
+                builder.Append(" />\n");
             }
             builder.Append("  </BusinessHierarchicalLinkSatelliteList>\n");
-            builder.Append("</MetaBusinessDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadBusinessHierarchicalLinkSatelliteAttributeList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessHierarchicalLinkSatelliteAttributeList");
-                return;
-            }
-
-            reader.ReadStartElement("BusinessHierarchicalLinkSatelliteAttributeList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "BusinessHierarchicalLinkSatelliteAttribute", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessHierarchicalLinkSatelliteAttributeList'.");
-                }
-                var row = ReadBusinessHierarchicalLinkSatelliteAttribute(reader, relationshipBuffers);
-                loadState.AddBusinessHierarchicalLinkSatelliteAttributeId(row.Id);
-                model.BusinessHierarchicalLinkSatelliteAttributeList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static BusinessHierarchicalLinkSatelliteAttribute ReadBusinessHierarchicalLinkSatelliteAttribute(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new BusinessHierarchicalLinkSatelliteAttribute();
-            var relationships = new BusinessHierarchicalLinkSatelliteAttributeRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "BusinessHierarchicalLinkSatelliteId":
-                            relationships.BusinessHierarchicalLinkSatelliteId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessHierarchicalLinkSatelliteAttribute'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessHierarchicalLinkSatelliteAttribute");
-                (relationshipBuffers.BusinessHierarchicalLinkSatelliteAttributeRelationships ??= new List<BusinessHierarchicalLinkSatelliteAttributeRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("BusinessHierarchicalLinkSatelliteAttribute");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "DataTypeId":
-                        row.DataTypeId = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessHierarchicalLinkSatelliteAttribute'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.BusinessHierarchicalLinkSatelliteAttributeRelationships ??= new List<BusinessHierarchicalLinkSatelliteAttributeRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeBusinessHierarchicalLinkSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessHierarchicalLinkSatelliteAttributeList>\n");
-            foreach (var row in model.BusinessHierarchicalLinkSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessHierarchicalLinkSatelliteAttribute' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'BusinessHierarchicalLinkSatelliteAttribute' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <BusinessHierarchicalLinkSatelliteAttribute Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var businessHierarchicalLinkSatelliteId = RequireIdentity(row.BusinessHierarchicalLinkSatellite?.Id, $"Relationship 'BusinessHierarchicalLinkSatelliteAttribute.BusinessHierarchicalLinkSatelliteId' on row 'BusinessHierarchicalLinkSatelliteAttribute:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessHierarchicalLinkSatelliteListById.TryGetValue(businessHierarchicalLinkSatelliteId, out var businessHierarchicalLinkSatelliteCanonical) || !ReferenceEquals(businessHierarchicalLinkSatelliteCanonical, row.BusinessHierarchicalLinkSatellite))
-                {
-                    throw new InvalidOperationException($"Relationship 'BusinessHierarchicalLinkSatelliteAttribute.BusinessHierarchicalLinkSatelliteId' on row 'BusinessHierarchicalLinkSatelliteAttribute:{row.Id}' references an object that is not the canonical row for Id '{businessHierarchicalLinkSatelliteId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("BusinessHierarchicalLinkSatelliteId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, businessHierarchicalLinkSatelliteId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessHierarchicalLinkSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessHierarchicalLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </BusinessHierarchicalLinkSatelliteAttribute>\n");
-            }
-            builder.Append("  </BusinessHierarchicalLinkSatelliteAttributeList>\n");
-            builder.Append("</MetaBusinessDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadBusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList");
-                return;
-            }
-
-            reader.ReadStartElement("BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList'.");
-                }
-                var row = ReadBusinessHierarchicalLinkSatelliteAttributeDataTypeDetail(reader, relationshipBuffers);
-                loadState.AddBusinessHierarchicalLinkSatelliteAttributeDataTypeDetailId(row.Id);
-                model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail ReadBusinessHierarchicalLinkSatelliteAttributeDataTypeDetail(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail();
-            var relationships = new BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "BusinessHierarchicalLinkSatelliteAttributeId":
-                            relationships.BusinessHierarchicalLinkSatelliteAttributeId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail");
-                (relationshipBuffers.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    case "Value":
-                        row.Value = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeBusinessHierarchicalLinkSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList>\n");
-            foreach (var row in model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var businessHierarchicalLinkSatelliteAttributeId = RequireIdentity(row.BusinessHierarchicalLinkSatelliteAttribute?.Id, $"Relationship 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail.BusinessHierarchicalLinkSatelliteAttributeId' on row 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessHierarchicalLinkSatelliteAttributeListById.TryGetValue(businessHierarchicalLinkSatelliteAttributeId, out var businessHierarchicalLinkSatelliteAttributeCanonical) || !ReferenceEquals(businessHierarchicalLinkSatelliteAttributeCanonical, row.BusinessHierarchicalLinkSatelliteAttribute))
-                {
-                    throw new InvalidOperationException($"Relationship 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail.BusinessHierarchicalLinkSatelliteAttributeId' on row 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail:{row.Id}' references an object that is not the canonical row for Id '{businessHierarchicalLinkSatelliteAttributeId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("BusinessHierarchicalLinkSatelliteAttributeId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, businessHierarchicalLinkSatelliteAttributeId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Value", RequireText(row.Value, $"Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Value'."), "      ");
-                builder.Append("    </BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>\n");
-            }
-            builder.Append("  </BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -1829,6 +1484,9 @@ namespace MetaBusinessDataVault
                         case "BusinessHubId":
                             relationships.BusinessHubId = reader.Value;
                             break;
+                        case "BusinessSatelliteId":
+                            relationships.BusinessSatelliteId = reader.Value;
+                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessHubSatellite'.");
                     }
@@ -1849,12 +1507,6 @@ namespace MetaBusinessDataVault
             {
                 switch (reader.LocalName)
                 {
-                    case "Description":
-                        row.Description = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessHubSatellite'.");
                 }
@@ -1892,249 +1544,19 @@ namespace MetaBusinessDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessHubId);
                 builder.Append('"');
-                builder.Append(">\n");
-                if (!string.IsNullOrWhiteSpace(row.Description))
+                var businessSatelliteId = RequireIdentity(row.BusinessSatellite?.Id, $"Relationship 'BusinessHubSatellite.BusinessSatelliteId' on row 'BusinessHubSatellite:{row.Id}' is empty.");
+                if (!saveIndexes.BusinessSatelliteListById.TryGetValue(businessSatelliteId, out var businessSatelliteCanonical) || !ReferenceEquals(businessSatelliteCanonical, row.BusinessSatellite))
                 {
-                    AppendElement(builder, "Description", row.Description!, "      ");
+                    throw new InvalidOperationException($"Relationship 'BusinessHubSatellite.BusinessSatelliteId' on row 'BusinessHubSatellite:{row.Id}' references an object that is not the canonical row for Id '{businessSatelliteId}'.");
                 }
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessHubSatellite' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </BusinessHubSatellite>\n");
+                builder.Append(' ');
+                builder.Append("BusinessSatelliteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, businessSatelliteId);
+                builder.Append('"');
+                builder.Append(" />\n");
             }
             builder.Append("  </BusinessHubSatelliteList>\n");
-            builder.Append("</MetaBusinessDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadBusinessHubSatelliteAttributeList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessHubSatelliteAttributeList");
-                return;
-            }
-
-            reader.ReadStartElement("BusinessHubSatelliteAttributeList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "BusinessHubSatelliteAttribute", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessHubSatelliteAttributeList'.");
-                }
-                var row = ReadBusinessHubSatelliteAttribute(reader, relationshipBuffers);
-                loadState.AddBusinessHubSatelliteAttributeId(row.Id);
-                model.BusinessHubSatelliteAttributeList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static BusinessHubSatelliteAttribute ReadBusinessHubSatelliteAttribute(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new BusinessHubSatelliteAttribute();
-            var relationships = new BusinessHubSatelliteAttributeRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "BusinessHubSatelliteId":
-                            relationships.BusinessHubSatelliteId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessHubSatelliteAttribute'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessHubSatelliteAttribute");
-                (relationshipBuffers.BusinessHubSatelliteAttributeRelationships ??= new List<BusinessHubSatelliteAttributeRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("BusinessHubSatelliteAttribute");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "DataTypeId":
-                        row.DataTypeId = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessHubSatelliteAttribute'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.BusinessHubSatelliteAttributeRelationships ??= new List<BusinessHubSatelliteAttributeRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeBusinessHubSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessHubSatelliteAttributeList>\n");
-            foreach (var row in model.BusinessHubSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessHubSatelliteAttribute' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'BusinessHubSatelliteAttribute' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <BusinessHubSatelliteAttribute Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var businessHubSatelliteId = RequireIdentity(row.BusinessHubSatellite?.Id, $"Relationship 'BusinessHubSatelliteAttribute.BusinessHubSatelliteId' on row 'BusinessHubSatelliteAttribute:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessHubSatelliteListById.TryGetValue(businessHubSatelliteId, out var businessHubSatelliteCanonical) || !ReferenceEquals(businessHubSatelliteCanonical, row.BusinessHubSatellite))
-                {
-                    throw new InvalidOperationException($"Relationship 'BusinessHubSatelliteAttribute.BusinessHubSatelliteId' on row 'BusinessHubSatelliteAttribute:{row.Id}' references an object that is not the canonical row for Id '{businessHubSatelliteId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("BusinessHubSatelliteId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, businessHubSatelliteId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessHubSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessHubSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </BusinessHubSatelliteAttribute>\n");
-            }
-            builder.Append("  </BusinessHubSatelliteAttributeList>\n");
-            builder.Append("</MetaBusinessDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadBusinessHubSatelliteAttributeDataTypeDetailList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessHubSatelliteAttributeDataTypeDetailList");
-                return;
-            }
-
-            reader.ReadStartElement("BusinessHubSatelliteAttributeDataTypeDetailList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "BusinessHubSatelliteAttributeDataTypeDetail", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessHubSatelliteAttributeDataTypeDetailList'.");
-                }
-                var row = ReadBusinessHubSatelliteAttributeDataTypeDetail(reader, relationshipBuffers);
-                loadState.AddBusinessHubSatelliteAttributeDataTypeDetailId(row.Id);
-                model.BusinessHubSatelliteAttributeDataTypeDetailList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static BusinessHubSatelliteAttributeDataTypeDetail ReadBusinessHubSatelliteAttributeDataTypeDetail(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new BusinessHubSatelliteAttributeDataTypeDetail();
-            var relationships = new BusinessHubSatelliteAttributeDataTypeDetailRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "BusinessHubSatelliteAttributeId":
-                            relationships.BusinessHubSatelliteAttributeId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessHubSatelliteAttributeDataTypeDetail'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessHubSatelliteAttributeDataTypeDetail");
-                (relationshipBuffers.BusinessHubSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessHubSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("BusinessHubSatelliteAttributeDataTypeDetail");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    case "Value":
-                        row.Value = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessHubSatelliteAttributeDataTypeDetail'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.BusinessHubSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessHubSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeBusinessHubSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessHubSatelliteAttributeDataTypeDetailList>\n");
-            foreach (var row in model.BusinessHubSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessHubSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'BusinessHubSatelliteAttributeDataTypeDetail' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <BusinessHubSatelliteAttributeDataTypeDetail Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var businessHubSatelliteAttributeId = RequireIdentity(row.BusinessHubSatelliteAttribute?.Id, $"Relationship 'BusinessHubSatelliteAttributeDataTypeDetail.BusinessHubSatelliteAttributeId' on row 'BusinessHubSatelliteAttributeDataTypeDetail:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessHubSatelliteAttributeListById.TryGetValue(businessHubSatelliteAttributeId, out var businessHubSatelliteAttributeCanonical) || !ReferenceEquals(businessHubSatelliteAttributeCanonical, row.BusinessHubSatelliteAttribute))
-                {
-                    throw new InvalidOperationException($"Relationship 'BusinessHubSatelliteAttributeDataTypeDetail.BusinessHubSatelliteAttributeId' on row 'BusinessHubSatelliteAttributeDataTypeDetail:{row.Id}' references an object that is not the canonical row for Id '{businessHubSatelliteAttributeId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("BusinessHubSatelliteAttributeId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, businessHubSatelliteAttributeId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessHubSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Value", RequireText(row.Value, $"Entity 'BusinessHubSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Value'."), "      ");
-                builder.Append("    </BusinessHubSatelliteAttributeDataTypeDetail>\n");
-            }
-            builder.Append("  </BusinessHubSatelliteAttributeDataTypeDetailList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -2413,6 +1835,9 @@ namespace MetaBusinessDataVault
                         case "BusinessLinkId":
                             relationships.BusinessLinkId = reader.Value;
                             break;
+                        case "BusinessSatelliteId":
+                            relationships.BusinessSatelliteId = reader.Value;
+                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessLinkSatellite'.");
                     }
@@ -2433,12 +1858,6 @@ namespace MetaBusinessDataVault
             {
                 switch (reader.LocalName)
                 {
-                    case "Description":
-                        row.Description = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessLinkSatellite'.");
                 }
@@ -2476,249 +1895,19 @@ namespace MetaBusinessDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessLinkId);
                 builder.Append('"');
-                builder.Append(">\n");
-                if (!string.IsNullOrWhiteSpace(row.Description))
+                var businessSatelliteId = RequireIdentity(row.BusinessSatellite?.Id, $"Relationship 'BusinessLinkSatellite.BusinessSatelliteId' on row 'BusinessLinkSatellite:{row.Id}' is empty.");
+                if (!saveIndexes.BusinessSatelliteListById.TryGetValue(businessSatelliteId, out var businessSatelliteCanonical) || !ReferenceEquals(businessSatelliteCanonical, row.BusinessSatellite))
                 {
-                    AppendElement(builder, "Description", row.Description!, "      ");
+                    throw new InvalidOperationException($"Relationship 'BusinessLinkSatellite.BusinessSatelliteId' on row 'BusinessLinkSatellite:{row.Id}' references an object that is not the canonical row for Id '{businessSatelliteId}'.");
                 }
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessLinkSatellite' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </BusinessLinkSatellite>\n");
+                builder.Append(' ');
+                builder.Append("BusinessSatelliteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, businessSatelliteId);
+                builder.Append('"');
+                builder.Append(" />\n");
             }
             builder.Append("  </BusinessLinkSatelliteList>\n");
-            builder.Append("</MetaBusinessDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadBusinessLinkSatelliteAttributeList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessLinkSatelliteAttributeList");
-                return;
-            }
-
-            reader.ReadStartElement("BusinessLinkSatelliteAttributeList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "BusinessLinkSatelliteAttribute", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessLinkSatelliteAttributeList'.");
-                }
-                var row = ReadBusinessLinkSatelliteAttribute(reader, relationshipBuffers);
-                loadState.AddBusinessLinkSatelliteAttributeId(row.Id);
-                model.BusinessLinkSatelliteAttributeList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static BusinessLinkSatelliteAttribute ReadBusinessLinkSatelliteAttribute(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new BusinessLinkSatelliteAttribute();
-            var relationships = new BusinessLinkSatelliteAttributeRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "BusinessLinkSatelliteId":
-                            relationships.BusinessLinkSatelliteId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessLinkSatelliteAttribute'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessLinkSatelliteAttribute");
-                (relationshipBuffers.BusinessLinkSatelliteAttributeRelationships ??= new List<BusinessLinkSatelliteAttributeRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("BusinessLinkSatelliteAttribute");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "DataTypeId":
-                        row.DataTypeId = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessLinkSatelliteAttribute'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.BusinessLinkSatelliteAttributeRelationships ??= new List<BusinessLinkSatelliteAttributeRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeBusinessLinkSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessLinkSatelliteAttributeList>\n");
-            foreach (var row in model.BusinessLinkSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessLinkSatelliteAttribute' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'BusinessLinkSatelliteAttribute' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <BusinessLinkSatelliteAttribute Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var businessLinkSatelliteId = RequireIdentity(row.BusinessLinkSatellite?.Id, $"Relationship 'BusinessLinkSatelliteAttribute.BusinessLinkSatelliteId' on row 'BusinessLinkSatelliteAttribute:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessLinkSatelliteListById.TryGetValue(businessLinkSatelliteId, out var businessLinkSatelliteCanonical) || !ReferenceEquals(businessLinkSatelliteCanonical, row.BusinessLinkSatellite))
-                {
-                    throw new InvalidOperationException($"Relationship 'BusinessLinkSatelliteAttribute.BusinessLinkSatelliteId' on row 'BusinessLinkSatelliteAttribute:{row.Id}' references an object that is not the canonical row for Id '{businessLinkSatelliteId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("BusinessLinkSatelliteId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, businessLinkSatelliteId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessLinkSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </BusinessLinkSatelliteAttribute>\n");
-            }
-            builder.Append("  </BusinessLinkSatelliteAttributeList>\n");
-            builder.Append("</MetaBusinessDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadBusinessLinkSatelliteAttributeDataTypeDetailList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessLinkSatelliteAttributeDataTypeDetailList");
-                return;
-            }
-
-            reader.ReadStartElement("BusinessLinkSatelliteAttributeDataTypeDetailList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "BusinessLinkSatelliteAttributeDataTypeDetail", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessLinkSatelliteAttributeDataTypeDetailList'.");
-                }
-                var row = ReadBusinessLinkSatelliteAttributeDataTypeDetail(reader, relationshipBuffers);
-                loadState.AddBusinessLinkSatelliteAttributeDataTypeDetailId(row.Id);
-                model.BusinessLinkSatelliteAttributeDataTypeDetailList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static BusinessLinkSatelliteAttributeDataTypeDetail ReadBusinessLinkSatelliteAttributeDataTypeDetail(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new BusinessLinkSatelliteAttributeDataTypeDetail();
-            var relationships = new BusinessLinkSatelliteAttributeDataTypeDetailRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "BusinessLinkSatelliteAttributeId":
-                            relationships.BusinessLinkSatelliteAttributeId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessLinkSatelliteAttributeDataTypeDetail'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessLinkSatelliteAttributeDataTypeDetail");
-                (relationshipBuffers.BusinessLinkSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessLinkSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("BusinessLinkSatelliteAttributeDataTypeDetail");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    case "Value":
-                        row.Value = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessLinkSatelliteAttributeDataTypeDetail'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.BusinessLinkSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessLinkSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeBusinessLinkSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessLinkSatelliteAttributeDataTypeDetailList>\n");
-            foreach (var row in model.BusinessLinkSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <BusinessLinkSatelliteAttributeDataTypeDetail Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var businessLinkSatelliteAttributeId = RequireIdentity(row.BusinessLinkSatelliteAttribute?.Id, $"Relationship 'BusinessLinkSatelliteAttributeDataTypeDetail.BusinessLinkSatelliteAttributeId' on row 'BusinessLinkSatelliteAttributeDataTypeDetail:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessLinkSatelliteAttributeListById.TryGetValue(businessLinkSatelliteAttributeId, out var businessLinkSatelliteAttributeCanonical) || !ReferenceEquals(businessLinkSatelliteAttributeCanonical, row.BusinessLinkSatelliteAttribute))
-                {
-                    throw new InvalidOperationException($"Relationship 'BusinessLinkSatelliteAttributeDataTypeDetail.BusinessLinkSatelliteAttributeId' on row 'BusinessLinkSatelliteAttributeDataTypeDetail:{row.Id}' references an object that is not the canonical row for Id '{businessLinkSatelliteAttributeId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("BusinessLinkSatelliteAttributeId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, businessLinkSatelliteAttributeId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Value", RequireText(row.Value, $"Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Value'."), "      ");
-                builder.Append("    </BusinessLinkSatelliteAttributeDataTypeDetail>\n");
-            }
-            builder.Append("  </BusinessLinkSatelliteAttributeDataTypeDetailList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -3717,6 +2906,9 @@ namespace MetaBusinessDataVault
                         case "BusinessReferenceId":
                             relationships.BusinessReferenceId = reader.Value;
                             break;
+                        case "BusinessSatelliteId":
+                            relationships.BusinessSatelliteId = reader.Value;
+                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessReferenceSatellite'.");
                     }
@@ -3737,12 +2929,6 @@ namespace MetaBusinessDataVault
             {
                 switch (reader.LocalName)
                 {
-                    case "Description":
-                        row.Description = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessReferenceSatellite'.");
                 }
@@ -3780,249 +2966,19 @@ namespace MetaBusinessDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                if (!string.IsNullOrWhiteSpace(row.Description))
+                var businessSatelliteId = RequireIdentity(row.BusinessSatellite?.Id, $"Relationship 'BusinessReferenceSatellite.BusinessSatelliteId' on row 'BusinessReferenceSatellite:{row.Id}' is empty.");
+                if (!saveIndexes.BusinessSatelliteListById.TryGetValue(businessSatelliteId, out var businessSatelliteCanonical) || !ReferenceEquals(businessSatelliteCanonical, row.BusinessSatellite))
                 {
-                    AppendElement(builder, "Description", row.Description!, "      ");
+                    throw new InvalidOperationException($"Relationship 'BusinessReferenceSatellite.BusinessSatelliteId' on row 'BusinessReferenceSatellite:{row.Id}' references an object that is not the canonical row for Id '{businessSatelliteId}'.");
                 }
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessReferenceSatellite' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </BusinessReferenceSatellite>\n");
+                builder.Append(' ');
+                builder.Append("BusinessSatelliteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, businessSatelliteId);
+                builder.Append('"');
+                builder.Append(" />\n");
             }
             builder.Append("  </BusinessReferenceSatelliteList>\n");
-            builder.Append("</MetaBusinessDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadBusinessReferenceSatelliteAttributeList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessReferenceSatelliteAttributeList");
-                return;
-            }
-
-            reader.ReadStartElement("BusinessReferenceSatelliteAttributeList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "BusinessReferenceSatelliteAttribute", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessReferenceSatelliteAttributeList'.");
-                }
-                var row = ReadBusinessReferenceSatelliteAttribute(reader, relationshipBuffers);
-                loadState.AddBusinessReferenceSatelliteAttributeId(row.Id);
-                model.BusinessReferenceSatelliteAttributeList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static BusinessReferenceSatelliteAttribute ReadBusinessReferenceSatelliteAttribute(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new BusinessReferenceSatelliteAttribute();
-            var relationships = new BusinessReferenceSatelliteAttributeRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "BusinessReferenceSatelliteId":
-                            relationships.BusinessReferenceSatelliteId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessReferenceSatelliteAttribute'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessReferenceSatelliteAttribute");
-                (relationshipBuffers.BusinessReferenceSatelliteAttributeRelationships ??= new List<BusinessReferenceSatelliteAttributeRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("BusinessReferenceSatelliteAttribute");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "DataTypeId":
-                        row.DataTypeId = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessReferenceSatelliteAttribute'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.BusinessReferenceSatelliteAttributeRelationships ??= new List<BusinessReferenceSatelliteAttributeRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeBusinessReferenceSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessReferenceSatelliteAttributeList>\n");
-            foreach (var row in model.BusinessReferenceSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessReferenceSatelliteAttribute' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'BusinessReferenceSatelliteAttribute' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <BusinessReferenceSatelliteAttribute Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var businessReferenceSatelliteId = RequireIdentity(row.BusinessReferenceSatellite?.Id, $"Relationship 'BusinessReferenceSatelliteAttribute.BusinessReferenceSatelliteId' on row 'BusinessReferenceSatelliteAttribute:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessReferenceSatelliteListById.TryGetValue(businessReferenceSatelliteId, out var businessReferenceSatelliteCanonical) || !ReferenceEquals(businessReferenceSatelliteCanonical, row.BusinessReferenceSatellite))
-                {
-                    throw new InvalidOperationException($"Relationship 'BusinessReferenceSatelliteAttribute.BusinessReferenceSatelliteId' on row 'BusinessReferenceSatelliteAttribute:{row.Id}' references an object that is not the canonical row for Id '{businessReferenceSatelliteId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("BusinessReferenceSatelliteId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, businessReferenceSatelliteId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessReferenceSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessReferenceSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </BusinessReferenceSatelliteAttribute>\n");
-            }
-            builder.Append("  </BusinessReferenceSatelliteAttributeList>\n");
-            builder.Append("</MetaBusinessDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadBusinessReferenceSatelliteAttributeDataTypeDetailList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessReferenceSatelliteAttributeDataTypeDetailList");
-                return;
-            }
-
-            reader.ReadStartElement("BusinessReferenceSatelliteAttributeDataTypeDetailList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "BusinessReferenceSatelliteAttributeDataTypeDetail", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessReferenceSatelliteAttributeDataTypeDetailList'.");
-                }
-                var row = ReadBusinessReferenceSatelliteAttributeDataTypeDetail(reader, relationshipBuffers);
-                loadState.AddBusinessReferenceSatelliteAttributeDataTypeDetailId(row.Id);
-                model.BusinessReferenceSatelliteAttributeDataTypeDetailList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static BusinessReferenceSatelliteAttributeDataTypeDetail ReadBusinessReferenceSatelliteAttributeDataTypeDetail(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new BusinessReferenceSatelliteAttributeDataTypeDetail();
-            var relationships = new BusinessReferenceSatelliteAttributeDataTypeDetailRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "BusinessReferenceSatelliteAttributeId":
-                            relationships.BusinessReferenceSatelliteAttributeId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessReferenceSatelliteAttributeDataTypeDetail'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessReferenceSatelliteAttributeDataTypeDetail");
-                (relationshipBuffers.BusinessReferenceSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessReferenceSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("BusinessReferenceSatelliteAttributeDataTypeDetail");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
-                    case "Value":
-                        row.Value = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessReferenceSatelliteAttributeDataTypeDetail'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.BusinessReferenceSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessReferenceSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeBusinessReferenceSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessReferenceSatelliteAttributeDataTypeDetailList>\n");
-            foreach (var row in model.BusinessReferenceSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessReferenceSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'BusinessReferenceSatelliteAttributeDataTypeDetail' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <BusinessReferenceSatelliteAttributeDataTypeDetail Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var businessReferenceSatelliteAttributeId = RequireIdentity(row.BusinessReferenceSatelliteAttribute?.Id, $"Relationship 'BusinessReferenceSatelliteAttributeDataTypeDetail.BusinessReferenceSatelliteAttributeId' on row 'BusinessReferenceSatelliteAttributeDataTypeDetail:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessReferenceSatelliteAttributeListById.TryGetValue(businessReferenceSatelliteAttributeId, out var businessReferenceSatelliteAttributeCanonical) || !ReferenceEquals(businessReferenceSatelliteAttributeCanonical, row.BusinessReferenceSatelliteAttribute))
-                {
-                    throw new InvalidOperationException($"Relationship 'BusinessReferenceSatelliteAttributeDataTypeDetail.BusinessReferenceSatelliteAttributeId' on row 'BusinessReferenceSatelliteAttributeDataTypeDetail:{row.Id}' references an object that is not the canonical row for Id '{businessReferenceSatelliteAttributeId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("BusinessReferenceSatelliteAttributeId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, businessReferenceSatelliteAttributeId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessReferenceSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Value", RequireText(row.Value, $"Entity 'BusinessReferenceSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Value'."), "      ");
-                builder.Append("    </BusinessReferenceSatelliteAttributeDataTypeDetail>\n");
-            }
-            builder.Append("  </BusinessReferenceSatelliteAttributeDataTypeDetailList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -4204,6 +3160,9 @@ namespace MetaBusinessDataVault
                         case "BusinessSameAsLinkId":
                             relationships.BusinessSameAsLinkId = reader.Value;
                             break;
+                        case "BusinessSatelliteId":
+                            relationships.BusinessSatelliteId = reader.Value;
+                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessSameAsLinkSatellite'.");
                     }
@@ -4224,12 +3183,6 @@ namespace MetaBusinessDataVault
             {
                 switch (reader.LocalName)
                 {
-                    case "Description":
-                        row.Description = reader.ReadElementContentAsString();
-                        break;
-                    case "Name":
-                        row.Name = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessSameAsLinkSatellite'.");
                 }
@@ -4267,46 +3220,49 @@ namespace MetaBusinessDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessSameAsLinkId);
                 builder.Append('"');
-                builder.Append(">\n");
-                if (!string.IsNullOrWhiteSpace(row.Description))
+                var businessSatelliteId = RequireIdentity(row.BusinessSatellite?.Id, $"Relationship 'BusinessSameAsLinkSatellite.BusinessSatelliteId' on row 'BusinessSameAsLinkSatellite:{row.Id}' is empty.");
+                if (!saveIndexes.BusinessSatelliteListById.TryGetValue(businessSatelliteId, out var businessSatelliteCanonical) || !ReferenceEquals(businessSatelliteCanonical, row.BusinessSatellite))
                 {
-                    AppendElement(builder, "Description", row.Description!, "      ");
+                    throw new InvalidOperationException($"Relationship 'BusinessSameAsLinkSatellite.BusinessSatelliteId' on row 'BusinessSameAsLinkSatellite:{row.Id}' references an object that is not the canonical row for Id '{businessSatelliteId}'.");
                 }
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessSameAsLinkSatellite' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </BusinessSameAsLinkSatellite>\n");
+                builder.Append(' ');
+                builder.Append("BusinessSatelliteId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, businessSatelliteId);
+                builder.Append('"');
+                builder.Append(" />\n");
             }
             builder.Append("  </BusinessSameAsLinkSatelliteList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
-        private static void LoadBusinessSameAsLinkSatelliteAttributeList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        private static void LoadBusinessSatelliteList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
             {
-                reader.ReadStartElement("BusinessSameAsLinkSatelliteAttributeList");
+                reader.ReadStartElement("BusinessSatelliteList");
                 return;
             }
 
-            reader.ReadStartElement("BusinessSameAsLinkSatelliteAttributeList");
+            reader.ReadStartElement("BusinessSatelliteList");
             while (reader.NodeType == XmlNodeType.Element)
             {
-                if (!string.Equals(reader.LocalName, "BusinessSameAsLinkSatelliteAttribute", StringComparison.Ordinal))
+                if (!string.Equals(reader.LocalName, "BusinessSatellite", StringComparison.Ordinal))
                 {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessSameAsLinkSatelliteAttributeList'.");
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessSatelliteList'.");
                 }
-                var row = ReadBusinessSameAsLinkSatelliteAttribute(reader, relationshipBuffers);
-                loadState.AddBusinessSameAsLinkSatelliteAttributeId(row.Id);
-                model.BusinessSameAsLinkSatelliteAttributeList.Add(row);
+                var row = ReadBusinessSatellite(reader, relationshipBuffers);
+                loadState.AddBusinessSatelliteId(row.Id);
+                model.BusinessSatelliteList.Add(row);
                 reader.MoveToContent();
             }
             reader.ReadEndElement();
         }
 
-        private static BusinessSameAsLinkSatelliteAttribute ReadBusinessSameAsLinkSatelliteAttribute(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        private static BusinessSatellite ReadBusinessSatellite(XmlReader reader, RelationshipBuffers relationshipBuffers)
         {
-            var row = new BusinessSameAsLinkSatelliteAttribute();
-            var relationships = new BusinessSameAsLinkSatelliteAttributeRelationships { Row = row };
+            var row = new BusinessSatellite();
             if (reader.HasAttributes)
             {
                 while (reader.MoveToNextAttribute())
@@ -4321,11 +3277,8 @@ namespace MetaBusinessDataVault
                         case "Id":
                             row.Id = reader.Value;
                             break;
-                        case "BusinessSameAsLinkSatelliteId":
-                            relationships.BusinessSameAsLinkSatelliteId = reader.Value;
-                            break;
                         default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessSameAsLinkSatelliteAttribute'.");
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessSatellite'.");
                     }
                 }
 
@@ -4334,12 +3287,120 @@ namespace MetaBusinessDataVault
 
             if (reader.IsEmptyElement)
             {
-                reader.ReadStartElement("BusinessSameAsLinkSatelliteAttribute");
-                (relationshipBuffers.BusinessSameAsLinkSatelliteAttributeRelationships ??= new List<BusinessSameAsLinkSatelliteAttributeRelationships>()).Add(relationships);
+                reader.ReadStartElement("BusinessSatellite");
                 return row;
             }
 
-            reader.ReadStartElement("BusinessSameAsLinkSatelliteAttribute");
+            reader.ReadStartElement("BusinessSatellite");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "Description":
+                        row.Description = reader.ReadElementContentAsString();
+                        break;
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessSatellite'.");
+                }
+            }
+            reader.ReadEndElement();
+            return row;
+        }
+
+        private static byte[] SerializeBusinessSatelliteShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaBusinessDataVault>\n");
+            builder.Append("  <BusinessSatelliteList>\n");
+            foreach (var row in model.BusinessSatelliteList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'BusinessSatellite' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'BusinessSatellite' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <BusinessSatellite Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                builder.Append(">\n");
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    AppendElement(builder, "Description", row.Description!, "      ");
+                }
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessSatellite' row '{row.Id}' is missing required property 'Name'."), "      ");
+                builder.Append("    </BusinessSatellite>\n");
+            }
+            builder.Append("  </BusinessSatelliteList>\n");
+            builder.Append("</MetaBusinessDataVault>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadBusinessSatelliteAttributeList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("BusinessSatelliteAttributeList");
+                return;
+            }
+
+            reader.ReadStartElement("BusinessSatelliteAttributeList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "BusinessSatelliteAttribute", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessSatelliteAttributeList'.");
+                }
+                var row = ReadBusinessSatelliteAttribute(reader, relationshipBuffers);
+                loadState.AddBusinessSatelliteAttributeId(row.Id);
+                model.BusinessSatelliteAttributeList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static BusinessSatelliteAttribute ReadBusinessSatelliteAttribute(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new BusinessSatelliteAttribute();
+            var relationships = new BusinessSatelliteAttributeRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "BusinessSatelliteId":
+                            relationships.BusinessSatelliteId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessSatelliteAttribute'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("BusinessSatelliteAttribute");
+                (relationshipBuffers.BusinessSatelliteAttributeRelationships ??= new List<BusinessSatelliteAttributeRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("BusinessSatelliteAttribute");
             while (reader.NodeType == XmlNodeType.Element)
             {
                 switch (reader.LocalName)
@@ -4351,79 +3412,79 @@ namespace MetaBusinessDataVault
                         row.Name = reader.ReadElementContentAsString();
                         break;
                     default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessSameAsLinkSatelliteAttribute'.");
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessSatelliteAttribute'.");
                 }
             }
             reader.ReadEndElement();
-            (relationshipBuffers.BusinessSameAsLinkSatelliteAttributeRelationships ??= new List<BusinessSameAsLinkSatelliteAttributeRelationships>()).Add(relationships);
+            (relationshipBuffers.BusinessSatelliteAttributeRelationships ??= new List<BusinessSatelliteAttributeRelationships>()).Add(relationships);
             return row;
         }
 
-        private static byte[] SerializeBusinessSameAsLinkSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
+        private static byte[] SerializeBusinessSatelliteAttributeShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
             var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessSameAsLinkSatelliteAttributeList>\n");
-            foreach (var row in model.BusinessSameAsLinkSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            builder.Append("  <BusinessSatelliteAttributeList>\n");
+            foreach (var row in model.BusinessSatelliteAttributeList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessSameAsLinkSatelliteAttribute' contains a row with empty Id.");
+                var rowId = RequireIdentity(row.Id, "Entity 'BusinessSatelliteAttribute' contains a row with empty Id.");
                 if (!rowIds.Add(rowId))
                 {
-                    throw new InvalidOperationException($"Entity 'BusinessSameAsLinkSatelliteAttribute' contains duplicate Id '{rowId}'.");
+                    throw new InvalidOperationException($"Entity 'BusinessSatelliteAttribute' contains duplicate Id '{rowId}'.");
                 }
-                builder.Append("    <BusinessSameAsLinkSatelliteAttribute Id=\"");
+                builder.Append("    <BusinessSatelliteAttribute Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                var businessSameAsLinkSatelliteId = RequireIdentity(row.BusinessSameAsLinkSatellite?.Id, $"Relationship 'BusinessSameAsLinkSatelliteAttribute.BusinessSameAsLinkSatelliteId' on row 'BusinessSameAsLinkSatelliteAttribute:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessSameAsLinkSatelliteListById.TryGetValue(businessSameAsLinkSatelliteId, out var businessSameAsLinkSatelliteCanonical) || !ReferenceEquals(businessSameAsLinkSatelliteCanonical, row.BusinessSameAsLinkSatellite))
+                var businessSatelliteId = RequireIdentity(row.BusinessSatellite?.Id, $"Relationship 'BusinessSatelliteAttribute.BusinessSatelliteId' on row 'BusinessSatelliteAttribute:{row.Id}' is empty.");
+                if (!saveIndexes.BusinessSatelliteListById.TryGetValue(businessSatelliteId, out var businessSatelliteCanonical) || !ReferenceEquals(businessSatelliteCanonical, row.BusinessSatellite))
                 {
-                    throw new InvalidOperationException($"Relationship 'BusinessSameAsLinkSatelliteAttribute.BusinessSameAsLinkSatelliteId' on row 'BusinessSameAsLinkSatelliteAttribute:{row.Id}' references an object that is not the canonical row for Id '{businessSameAsLinkSatelliteId}'.");
+                    throw new InvalidOperationException($"Relationship 'BusinessSatelliteAttribute.BusinessSatelliteId' on row 'BusinessSatelliteAttribute:{row.Id}' references an object that is not the canonical row for Id '{businessSatelliteId}'.");
                 }
                 builder.Append(' ');
-                builder.Append("BusinessSameAsLinkSatelliteId");
+                builder.Append("BusinessSatelliteId");
                 builder.Append("=\"");
-                AppendXmlAttribute(builder, businessSameAsLinkSatelliteId);
+                AppendXmlAttribute(builder, businessSatelliteId);
                 builder.Append('"');
                 builder.Append(">\n");
-                AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessSameAsLinkSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessSameAsLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                builder.Append("    </BusinessSameAsLinkSatelliteAttribute>\n");
+                AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessSatelliteAttribute' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
+                builder.Append("    </BusinessSatelliteAttribute>\n");
             }
-            builder.Append("  </BusinessSameAsLinkSatelliteAttributeList>\n");
+            builder.Append("  </BusinessSatelliteAttributeList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
-        private static void LoadBusinessSameAsLinkSatelliteAttributeDataTypeDetailList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        private static void LoadBusinessSatelliteAttributeDataTypeDetailList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
             {
-                reader.ReadStartElement("BusinessSameAsLinkSatelliteAttributeDataTypeDetailList");
+                reader.ReadStartElement("BusinessSatelliteAttributeDataTypeDetailList");
                 return;
             }
 
-            reader.ReadStartElement("BusinessSameAsLinkSatelliteAttributeDataTypeDetailList");
+            reader.ReadStartElement("BusinessSatelliteAttributeDataTypeDetailList");
             while (reader.NodeType == XmlNodeType.Element)
             {
-                if (!string.Equals(reader.LocalName, "BusinessSameAsLinkSatelliteAttributeDataTypeDetail", StringComparison.Ordinal))
+                if (!string.Equals(reader.LocalName, "BusinessSatelliteAttributeDataTypeDetail", StringComparison.Ordinal))
                 {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessSameAsLinkSatelliteAttributeDataTypeDetailList'.");
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessSatelliteAttributeDataTypeDetailList'.");
                 }
-                var row = ReadBusinessSameAsLinkSatelliteAttributeDataTypeDetail(reader, relationshipBuffers);
-                loadState.AddBusinessSameAsLinkSatelliteAttributeDataTypeDetailId(row.Id);
-                model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList.Add(row);
+                var row = ReadBusinessSatelliteAttributeDataTypeDetail(reader, relationshipBuffers);
+                loadState.AddBusinessSatelliteAttributeDataTypeDetailId(row.Id);
+                model.BusinessSatelliteAttributeDataTypeDetailList.Add(row);
                 reader.MoveToContent();
             }
             reader.ReadEndElement();
         }
 
-        private static BusinessSameAsLinkSatelliteAttributeDataTypeDetail ReadBusinessSameAsLinkSatelliteAttributeDataTypeDetail(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        private static BusinessSatelliteAttributeDataTypeDetail ReadBusinessSatelliteAttributeDataTypeDetail(XmlReader reader, RelationshipBuffers relationshipBuffers)
         {
-            var row = new BusinessSameAsLinkSatelliteAttributeDataTypeDetail();
-            var relationships = new BusinessSameAsLinkSatelliteAttributeDataTypeDetailRelationships { Row = row };
+            var row = new BusinessSatelliteAttributeDataTypeDetail();
+            var relationships = new BusinessSatelliteAttributeDataTypeDetailRelationships { Row = row };
             if (reader.HasAttributes)
             {
                 while (reader.MoveToNextAttribute())
@@ -4438,11 +3499,11 @@ namespace MetaBusinessDataVault
                         case "Id":
                             row.Id = reader.Value;
                             break;
-                        case "BusinessSameAsLinkSatelliteAttributeId":
-                            relationships.BusinessSameAsLinkSatelliteAttributeId = reader.Value;
+                        case "BusinessSatelliteAttributeId":
+                            relationships.BusinessSatelliteAttributeId = reader.Value;
                             break;
                         default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail'.");
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessSatelliteAttributeDataTypeDetail'.");
                     }
                 }
 
@@ -4451,12 +3512,12 @@ namespace MetaBusinessDataVault
 
             if (reader.IsEmptyElement)
             {
-                reader.ReadStartElement("BusinessSameAsLinkSatelliteAttributeDataTypeDetail");
-                (relationshipBuffers.BusinessSameAsLinkSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessSameAsLinkSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
+                reader.ReadStartElement("BusinessSatelliteAttributeDataTypeDetail");
+                (relationshipBuffers.BusinessSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
                 return row;
             }
 
-            reader.ReadStartElement("BusinessSameAsLinkSatelliteAttributeDataTypeDetail");
+            reader.ReadStartElement("BusinessSatelliteAttributeDataTypeDetail");
             while (reader.NodeType == XmlNodeType.Element)
             {
                 switch (reader.LocalName)
@@ -4468,48 +3529,48 @@ namespace MetaBusinessDataVault
                         row.Value = reader.ReadElementContentAsString();
                         break;
                     default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail'.");
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessSatelliteAttributeDataTypeDetail'.");
                 }
             }
             reader.ReadEndElement();
-            (relationshipBuffers.BusinessSameAsLinkSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessSameAsLinkSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
+            (relationshipBuffers.BusinessSatelliteAttributeDataTypeDetailRelationships ??= new List<BusinessSatelliteAttributeDataTypeDetailRelationships>()).Add(relationships);
             return row;
         }
 
-        private static byte[] SerializeBusinessSameAsLinkSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
+        private static byte[] SerializeBusinessSatelliteAttributeDataTypeDetailShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
             var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessSameAsLinkSatelliteAttributeDataTypeDetailList>\n");
-            foreach (var row in model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            builder.Append("  <BusinessSatelliteAttributeDataTypeDetailList>\n");
+            foreach (var row in model.BusinessSatelliteAttributeDataTypeDetailList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
+                var rowId = RequireIdentity(row.Id, "Entity 'BusinessSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
                 if (!rowIds.Add(rowId))
                 {
-                    throw new InvalidOperationException($"Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' contains duplicate Id '{rowId}'.");
+                    throw new InvalidOperationException($"Entity 'BusinessSatelliteAttributeDataTypeDetail' contains duplicate Id '{rowId}'.");
                 }
-                builder.Append("    <BusinessSameAsLinkSatelliteAttributeDataTypeDetail Id=\"");
+                builder.Append("    <BusinessSatelliteAttributeDataTypeDetail Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                var businessSameAsLinkSatelliteAttributeId = RequireIdentity(row.BusinessSameAsLinkSatelliteAttribute?.Id, $"Relationship 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail.BusinessSameAsLinkSatelliteAttributeId' on row 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessSameAsLinkSatelliteAttributeListById.TryGetValue(businessSameAsLinkSatelliteAttributeId, out var businessSameAsLinkSatelliteAttributeCanonical) || !ReferenceEquals(businessSameAsLinkSatelliteAttributeCanonical, row.BusinessSameAsLinkSatelliteAttribute))
+                var businessSatelliteAttributeId = RequireIdentity(row.BusinessSatelliteAttribute?.Id, $"Relationship 'BusinessSatelliteAttributeDataTypeDetail.BusinessSatelliteAttributeId' on row 'BusinessSatelliteAttributeDataTypeDetail:{row.Id}' is empty.");
+                if (!saveIndexes.BusinessSatelliteAttributeListById.TryGetValue(businessSatelliteAttributeId, out var businessSatelliteAttributeCanonical) || !ReferenceEquals(businessSatelliteAttributeCanonical, row.BusinessSatelliteAttribute))
                 {
-                    throw new InvalidOperationException($"Relationship 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail.BusinessSameAsLinkSatelliteAttributeId' on row 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail:{row.Id}' references an object that is not the canonical row for Id '{businessSameAsLinkSatelliteAttributeId}'.");
+                    throw new InvalidOperationException($"Relationship 'BusinessSatelliteAttributeDataTypeDetail.BusinessSatelliteAttributeId' on row 'BusinessSatelliteAttributeDataTypeDetail:{row.Id}' references an object that is not the canonical row for Id '{businessSatelliteAttributeId}'.");
                 }
                 builder.Append(' ');
-                builder.Append("BusinessSameAsLinkSatelliteAttributeId");
+                builder.Append("BusinessSatelliteAttributeId");
                 builder.Append("=\"");
-                AppendXmlAttribute(builder, businessSameAsLinkSatelliteAttributeId);
+                AppendXmlAttribute(builder, businessSatelliteAttributeId);
                 builder.Append('"');
                 builder.Append(">\n");
-                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Value", RequireText(row.Value, $"Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Value'."), "      ");
-                builder.Append("    </BusinessSameAsLinkSatelliteAttributeDataTypeDetail>\n");
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Name'."), "      ");
+                AppendElement(builder, "Value", RequireText(row.Value, $"Entity 'BusinessSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Value'."), "      ");
+                builder.Append("    </BusinessSatelliteAttributeDataTypeDetail>\n");
             }
-            builder.Append("  </BusinessSameAsLinkSatelliteAttributeDataTypeDetailList>\n");
+            builder.Append("  </BusinessSatelliteAttributeDataTypeDetailList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -4540,18 +3601,7 @@ namespace MetaBusinessDataVault
         {
             public BusinessHierarchicalLinkSatellite Row { get; set; } = null!;
             public string BusinessHierarchicalLinkId { get; set; } = string.Empty;
-        }
-
-        private sealed class BusinessHierarchicalLinkSatelliteAttributeRelationships
-        {
-            public BusinessHierarchicalLinkSatelliteAttribute Row { get; set; } = null!;
-            public string BusinessHierarchicalLinkSatelliteId { get; set; } = string.Empty;
-        }
-
-        private sealed class BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailRelationships
-        {
-            public BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail Row { get; set; } = null!;
-            public string BusinessHierarchicalLinkSatelliteAttributeId { get; set; } = string.Empty;
+            public string BusinessSatelliteId { get; set; } = string.Empty;
         }
 
         private sealed class BusinessHubKeyPartRelationships
@@ -4571,18 +3621,7 @@ namespace MetaBusinessDataVault
         {
             public BusinessHubSatellite Row { get; set; } = null!;
             public string BusinessHubId { get; set; } = string.Empty;
-        }
-
-        private sealed class BusinessHubSatelliteAttributeRelationships
-        {
-            public BusinessHubSatelliteAttribute Row { get; set; } = null!;
-            public string BusinessHubSatelliteId { get; set; } = string.Empty;
-        }
-
-        private sealed class BusinessHubSatelliteAttributeDataTypeDetailRelationships
-        {
-            public BusinessHubSatelliteAttributeDataTypeDetail Row { get; set; } = null!;
-            public string BusinessHubSatelliteAttributeId { get; set; } = string.Empty;
+            public string BusinessSatelliteId { get; set; } = string.Empty;
         }
 
         private sealed class BusinessLinkRoleRelationships
@@ -4596,18 +3635,7 @@ namespace MetaBusinessDataVault
         {
             public BusinessLinkSatellite Row { get; set; } = null!;
             public string BusinessLinkId { get; set; } = string.Empty;
-        }
-
-        private sealed class BusinessLinkSatelliteAttributeRelationships
-        {
-            public BusinessLinkSatelliteAttribute Row { get; set; } = null!;
-            public string BusinessLinkSatelliteId { get; set; } = string.Empty;
-        }
-
-        private sealed class BusinessLinkSatelliteAttributeDataTypeDetailRelationships
-        {
-            public BusinessLinkSatelliteAttributeDataTypeDetail Row { get; set; } = null!;
-            public string BusinessLinkSatelliteAttributeId { get; set; } = string.Empty;
+            public string BusinessSatelliteId { get; set; } = string.Empty;
         }
 
         private sealed class BusinessPointInTimeRelationships
@@ -4659,18 +3687,7 @@ namespace MetaBusinessDataVault
         {
             public BusinessReferenceSatellite Row { get; set; } = null!;
             public string BusinessReferenceId { get; set; } = string.Empty;
-        }
-
-        private sealed class BusinessReferenceSatelliteAttributeRelationships
-        {
-            public BusinessReferenceSatelliteAttribute Row { get; set; } = null!;
-            public string BusinessReferenceSatelliteId { get; set; } = string.Empty;
-        }
-
-        private sealed class BusinessReferenceSatelliteAttributeDataTypeDetailRelationships
-        {
-            public BusinessReferenceSatelliteAttributeDataTypeDetail Row { get; set; } = null!;
-            public string BusinessReferenceSatelliteAttributeId { get; set; } = string.Empty;
+            public string BusinessSatelliteId { get; set; } = string.Empty;
         }
 
         private sealed class BusinessSameAsLinkRelationships
@@ -4684,18 +3701,19 @@ namespace MetaBusinessDataVault
         {
             public BusinessSameAsLinkSatellite Row { get; set; } = null!;
             public string BusinessSameAsLinkId { get; set; } = string.Empty;
+            public string BusinessSatelliteId { get; set; } = string.Empty;
         }
 
-        private sealed class BusinessSameAsLinkSatelliteAttributeRelationships
+        private sealed class BusinessSatelliteAttributeRelationships
         {
-            public BusinessSameAsLinkSatelliteAttribute Row { get; set; } = null!;
-            public string BusinessSameAsLinkSatelliteId { get; set; } = string.Empty;
+            public BusinessSatelliteAttribute Row { get; set; } = null!;
+            public string BusinessSatelliteId { get; set; } = string.Empty;
         }
 
-        private sealed class BusinessSameAsLinkSatelliteAttributeDataTypeDetailRelationships
+        private sealed class BusinessSatelliteAttributeDataTypeDetailRelationships
         {
-            public BusinessSameAsLinkSatelliteAttributeDataTypeDetail Row { get; set; } = null!;
-            public string BusinessSameAsLinkSatelliteAttributeId { get; set; } = string.Empty;
+            public BusinessSatelliteAttributeDataTypeDetail Row { get; set; } = null!;
+            public string BusinessSatelliteAttributeId { get; set; } = string.Empty;
         }
 
         private sealed class RelationshipBuffers
@@ -4704,17 +3722,11 @@ namespace MetaBusinessDataVault
             public List<BusinessBridgeTraversalRelationships>? BusinessBridgeTraversalRelationships { get; set; }
             public List<BusinessHierarchicalLinkRelationships>? BusinessHierarchicalLinkRelationships { get; set; }
             public List<BusinessHierarchicalLinkSatelliteRelationships>? BusinessHierarchicalLinkSatelliteRelationships { get; set; }
-            public List<BusinessHierarchicalLinkSatelliteAttributeRelationships>? BusinessHierarchicalLinkSatelliteAttributeRelationships { get; set; }
-            public List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailRelationships>? BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailRelationships { get; set; }
             public List<BusinessHubKeyPartRelationships>? BusinessHubKeyPartRelationships { get; set; }
             public List<BusinessHubKeyPartDataTypeDetailRelationships>? BusinessHubKeyPartDataTypeDetailRelationships { get; set; }
             public List<BusinessHubSatelliteRelationships>? BusinessHubSatelliteRelationships { get; set; }
-            public List<BusinessHubSatelliteAttributeRelationships>? BusinessHubSatelliteAttributeRelationships { get; set; }
-            public List<BusinessHubSatelliteAttributeDataTypeDetailRelationships>? BusinessHubSatelliteAttributeDataTypeDetailRelationships { get; set; }
             public List<BusinessLinkRoleRelationships>? BusinessLinkRoleRelationships { get; set; }
             public List<BusinessLinkSatelliteRelationships>? BusinessLinkSatelliteRelationships { get; set; }
-            public List<BusinessLinkSatelliteAttributeRelationships>? BusinessLinkSatelliteAttributeRelationships { get; set; }
-            public List<BusinessLinkSatelliteAttributeDataTypeDetailRelationships>? BusinessLinkSatelliteAttributeDataTypeDetailRelationships { get; set; }
             public List<BusinessPointInTimeRelationships>? BusinessPointInTimeRelationships { get; set; }
             public List<BusinessPointInTimeHubSatelliteRelationships>? BusinessPointInTimeHubSatelliteRelationships { get; set; }
             public List<BusinessPointInTimeLinkSatelliteRelationships>? BusinessPointInTimeLinkSatelliteRelationships { get; set; }
@@ -4723,12 +3735,10 @@ namespace MetaBusinessDataVault
             public List<BusinessReferenceKeyPartRelationships>? BusinessReferenceKeyPartRelationships { get; set; }
             public List<BusinessReferenceKeyPartDataTypeDetailRelationships>? BusinessReferenceKeyPartDataTypeDetailRelationships { get; set; }
             public List<BusinessReferenceSatelliteRelationships>? BusinessReferenceSatelliteRelationships { get; set; }
-            public List<BusinessReferenceSatelliteAttributeRelationships>? BusinessReferenceSatelliteAttributeRelationships { get; set; }
-            public List<BusinessReferenceSatelliteAttributeDataTypeDetailRelationships>? BusinessReferenceSatelliteAttributeDataTypeDetailRelationships { get; set; }
             public List<BusinessSameAsLinkRelationships>? BusinessSameAsLinkRelationships { get; set; }
             public List<BusinessSameAsLinkSatelliteRelationships>? BusinessSameAsLinkSatelliteRelationships { get; set; }
-            public List<BusinessSameAsLinkSatelliteAttributeRelationships>? BusinessSameAsLinkSatelliteAttributeRelationships { get; set; }
-            public List<BusinessSameAsLinkSatelliteAttributeDataTypeDetailRelationships>? BusinessSameAsLinkSatelliteAttributeDataTypeDetailRelationships { get; set; }
+            public List<BusinessSatelliteAttributeRelationships>? BusinessSatelliteAttributeRelationships { get; set; }
+            public List<BusinessSatelliteAttributeDataTypeDetailRelationships>? BusinessSatelliteAttributeDataTypeDetailRelationships { get; set; }
         }
 
         private static void ResolveRelationshipGroup1(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
@@ -4815,24 +3825,14 @@ namespace MetaBusinessDataVault
                     "BusinessHierarchicalLinkId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessHierarchicalLinkSatelliteAttributeRelationships ?? Enumerable.Empty<BusinessHierarchicalLinkSatelliteAttributeRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessHierarchicalLinkSatelliteRelationships ?? Enumerable.Empty<BusinessHierarchicalLinkSatelliteRelationships>())
             {
-                relationship.Row.BusinessHierarchicalLinkSatellite = RequireTarget(
-                    loadIndexes.BusinessHierarchicalLinkSatelliteListById,
-                    relationship.BusinessHierarchicalLinkSatelliteId,
-                    "BusinessHierarchicalLinkSatelliteAttribute",
+                relationship.Row.BusinessSatellite = RequireTarget(
+                    loadIndexes.BusinessSatelliteListById,
+                    relationship.BusinessSatelliteId,
+                    "BusinessHierarchicalLinkSatellite",
                     relationship.Row.Id,
-                    "BusinessHierarchicalLinkSatelliteId");
-            }
-
-            foreach (var relationship in relationshipBuffers.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailRelationships ?? Enumerable.Empty<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailRelationships>())
-            {
-                relationship.Row.BusinessHierarchicalLinkSatelliteAttribute = RequireTarget(
-                    loadIndexes.BusinessHierarchicalLinkSatelliteAttributeListById,
-                    relationship.BusinessHierarchicalLinkSatelliteAttributeId,
-                    "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail",
-                    relationship.Row.Id,
-                    "BusinessHierarchicalLinkSatelliteAttributeId");
+                    "BusinessSatelliteId");
             }
 
             foreach (var relationship in relationshipBuffers.BusinessHubKeyPartRelationships ?? Enumerable.Empty<BusinessHubKeyPartRelationships>())
@@ -4877,24 +3877,14 @@ namespace MetaBusinessDataVault
                     "BusinessHubId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessHubSatelliteAttributeRelationships ?? Enumerable.Empty<BusinessHubSatelliteAttributeRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessHubSatelliteRelationships ?? Enumerable.Empty<BusinessHubSatelliteRelationships>())
             {
-                relationship.Row.BusinessHubSatellite = RequireTarget(
-                    loadIndexes.BusinessHubSatelliteListById,
-                    relationship.BusinessHubSatelliteId,
-                    "BusinessHubSatelliteAttribute",
+                relationship.Row.BusinessSatellite = RequireTarget(
+                    loadIndexes.BusinessSatelliteListById,
+                    relationship.BusinessSatelliteId,
+                    "BusinessHubSatellite",
                     relationship.Row.Id,
-                    "BusinessHubSatelliteId");
-            }
-
-            foreach (var relationship in relationshipBuffers.BusinessHubSatelliteAttributeDataTypeDetailRelationships ?? Enumerable.Empty<BusinessHubSatelliteAttributeDataTypeDetailRelationships>())
-            {
-                relationship.Row.BusinessHubSatelliteAttribute = RequireTarget(
-                    loadIndexes.BusinessHubSatelliteAttributeListById,
-                    relationship.BusinessHubSatelliteAttributeId,
-                    "BusinessHubSatelliteAttributeDataTypeDetail",
-                    relationship.Row.Id,
-                    "BusinessHubSatelliteAttributeId");
+                    "BusinessSatelliteId");
             }
 
             foreach (var relationship in relationshipBuffers.BusinessLinkRoleRelationships ?? Enumerable.Empty<BusinessLinkRoleRelationships>())
@@ -4927,24 +3917,14 @@ namespace MetaBusinessDataVault
                     "BusinessLinkId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessLinkSatelliteAttributeRelationships ?? Enumerable.Empty<BusinessLinkSatelliteAttributeRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessLinkSatelliteRelationships ?? Enumerable.Empty<BusinessLinkSatelliteRelationships>())
             {
-                relationship.Row.BusinessLinkSatellite = RequireTarget(
-                    loadIndexes.BusinessLinkSatelliteListById,
-                    relationship.BusinessLinkSatelliteId,
-                    "BusinessLinkSatelliteAttribute",
+                relationship.Row.BusinessSatellite = RequireTarget(
+                    loadIndexes.BusinessSatelliteListById,
+                    relationship.BusinessSatelliteId,
+                    "BusinessLinkSatellite",
                     relationship.Row.Id,
-                    "BusinessLinkSatelliteId");
-            }
-
-            foreach (var relationship in relationshipBuffers.BusinessLinkSatelliteAttributeDataTypeDetailRelationships ?? Enumerable.Empty<BusinessLinkSatelliteAttributeDataTypeDetailRelationships>())
-            {
-                relationship.Row.BusinessLinkSatelliteAttribute = RequireTarget(
-                    loadIndexes.BusinessLinkSatelliteAttributeListById,
-                    relationship.BusinessLinkSatelliteAttributeId,
-                    "BusinessLinkSatelliteAttributeDataTypeDetail",
-                    relationship.Row.Id,
-                    "BusinessLinkSatelliteAttributeId");
+                    "BusinessSatelliteId");
             }
 
             foreach (var relationship in relationshipBuffers.BusinessPointInTimeRelationships ?? Enumerable.Empty<BusinessPointInTimeRelationships>())
@@ -5059,28 +4039,14 @@ namespace MetaBusinessDataVault
                     "BusinessReferenceId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup2(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
-            foreach (var relationship in relationshipBuffers.BusinessReferenceSatelliteAttributeRelationships ?? Enumerable.Empty<BusinessReferenceSatelliteAttributeRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessReferenceSatelliteRelationships ?? Enumerable.Empty<BusinessReferenceSatelliteRelationships>())
             {
-                relationship.Row.BusinessReferenceSatellite = RequireTarget(
-                    loadIndexes.BusinessReferenceSatelliteListById,
-                    relationship.BusinessReferenceSatelliteId,
-                    "BusinessReferenceSatelliteAttribute",
+                relationship.Row.BusinessSatellite = RequireTarget(
+                    loadIndexes.BusinessSatelliteListById,
+                    relationship.BusinessSatelliteId,
+                    "BusinessReferenceSatellite",
                     relationship.Row.Id,
-                    "BusinessReferenceSatelliteId");
-            }
-
-            foreach (var relationship in relationshipBuffers.BusinessReferenceSatelliteAttributeDataTypeDetailRelationships ?? Enumerable.Empty<BusinessReferenceSatelliteAttributeDataTypeDetailRelationships>())
-            {
-                relationship.Row.BusinessReferenceSatelliteAttribute = RequireTarget(
-                    loadIndexes.BusinessReferenceSatelliteAttributeListById,
-                    relationship.BusinessReferenceSatelliteAttributeId,
-                    "BusinessReferenceSatelliteAttributeDataTypeDetail",
-                    relationship.Row.Id,
-                    "BusinessReferenceSatelliteAttributeId");
+                    "BusinessSatelliteId");
             }
 
             foreach (var relationship in relationshipBuffers.BusinessSameAsLinkRelationships ?? Enumerable.Empty<BusinessSameAsLinkRelationships>())
@@ -5103,6 +4069,10 @@ namespace MetaBusinessDataVault
                     "PrimaryHubId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup2(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.BusinessSameAsLinkSatelliteRelationships ?? Enumerable.Empty<BusinessSameAsLinkSatelliteRelationships>())
             {
                 relationship.Row.BusinessSameAsLink = RequireTarget(
@@ -5113,24 +4083,34 @@ namespace MetaBusinessDataVault
                     "BusinessSameAsLinkId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessSameAsLinkSatelliteAttributeRelationships ?? Enumerable.Empty<BusinessSameAsLinkSatelliteAttributeRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessSameAsLinkSatelliteRelationships ?? Enumerable.Empty<BusinessSameAsLinkSatelliteRelationships>())
             {
-                relationship.Row.BusinessSameAsLinkSatellite = RequireTarget(
-                    loadIndexes.BusinessSameAsLinkSatelliteListById,
-                    relationship.BusinessSameAsLinkSatelliteId,
-                    "BusinessSameAsLinkSatelliteAttribute",
+                relationship.Row.BusinessSatellite = RequireTarget(
+                    loadIndexes.BusinessSatelliteListById,
+                    relationship.BusinessSatelliteId,
+                    "BusinessSameAsLinkSatellite",
                     relationship.Row.Id,
-                    "BusinessSameAsLinkSatelliteId");
+                    "BusinessSatelliteId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessSameAsLinkSatelliteAttributeDataTypeDetailRelationships ?? Enumerable.Empty<BusinessSameAsLinkSatelliteAttributeDataTypeDetailRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessSatelliteAttributeRelationships ?? Enumerable.Empty<BusinessSatelliteAttributeRelationships>())
             {
-                relationship.Row.BusinessSameAsLinkSatelliteAttribute = RequireTarget(
-                    loadIndexes.BusinessSameAsLinkSatelliteAttributeListById,
-                    relationship.BusinessSameAsLinkSatelliteAttributeId,
-                    "BusinessSameAsLinkSatelliteAttributeDataTypeDetail",
+                relationship.Row.BusinessSatellite = RequireTarget(
+                    loadIndexes.BusinessSatelliteListById,
+                    relationship.BusinessSatelliteId,
+                    "BusinessSatelliteAttribute",
                     relationship.Row.Id,
-                    "BusinessSameAsLinkSatelliteAttributeId");
+                    "BusinessSatelliteId");
+            }
+
+            foreach (var relationship in relationshipBuffers.BusinessSatelliteAttributeDataTypeDetailRelationships ?? Enumerable.Empty<BusinessSatelliteAttributeDataTypeDetailRelationships>())
+            {
+                relationship.Row.BusinessSatelliteAttribute = RequireTarget(
+                    loadIndexes.BusinessSatelliteAttributeListById,
+                    relationship.BusinessSatelliteAttributeId,
+                    "BusinessSatelliteAttributeDataTypeDetail",
+                    relationship.Row.Id,
+                    "BusinessSatelliteAttributeId");
             }
 
         }
@@ -5141,19 +4121,13 @@ namespace MetaBusinessDataVault
             "BusinessBridgeTraversal.xml",
             "BusinessHierarchicalLink.xml",
             "BusinessHierarchicalLinkSatellite.xml",
-            "BusinessHierarchicalLinkSatelliteAttribute.xml",
-            "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail.xml",
             "BusinessHub.xml",
             "BusinessHubKeyPart.xml",
             "BusinessHubKeyPartDataTypeDetail.xml",
             "BusinessHubSatellite.xml",
-            "BusinessHubSatelliteAttribute.xml",
-            "BusinessHubSatelliteAttributeDataTypeDetail.xml",
             "BusinessLink.xml",
             "BusinessLinkRole.xml",
             "BusinessLinkSatellite.xml",
-            "BusinessLinkSatelliteAttribute.xml",
-            "BusinessLinkSatelliteAttributeDataTypeDetail.xml",
             "BusinessPointInTime.xml",
             "BusinessPointInTimeHubSatellite.xml",
             "BusinessPointInTimeLinkSatellite.xml",
@@ -5163,12 +4137,11 @@ namespace MetaBusinessDataVault
             "BusinessReferenceKeyPart.xml",
             "BusinessReferenceKeyPartDataTypeDetail.xml",
             "BusinessReferenceSatellite.xml",
-            "BusinessReferenceSatelliteAttribute.xml",
-            "BusinessReferenceSatelliteAttributeDataTypeDetail.xml",
             "BusinessSameAsLink.xml",
             "BusinessSameAsLinkSatellite.xml",
-            "BusinessSameAsLinkSatelliteAttribute.xml",
-            "BusinessSameAsLinkSatelliteAttributeDataTypeDetail.xml",
+            "BusinessSatellite.xml",
+            "BusinessSatelliteAttribute.xml",
+            "BusinessSatelliteAttributeDataTypeDetail.xml",
         };
 
         private static HashSet<string> BuildExpectedShardPaths(string instanceDirectoryPath)
@@ -5232,30 +4205,6 @@ namespace MetaBusinessDataVault
                 }
             }
 
-            private HashSet<string>? businessHierarchicalLinkSatelliteAttributeIds;
-
-            public void AddBusinessHierarchicalLinkSatelliteAttributeId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessHierarchicalLinkSatelliteAttribute' contains a row with empty Id.");
-                businessHierarchicalLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessHierarchicalLinkSatelliteAttributeIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'BusinessHierarchicalLinkSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? businessHierarchicalLinkSatelliteAttributeDataTypeDetailIds;
-
-            public void AddBusinessHierarchicalLinkSatelliteAttributeDataTypeDetailId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                businessHierarchicalLinkSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessHierarchicalLinkSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
             private HashSet<string>? businessHubIds;
 
             public void AddBusinessHubId(string? id)
@@ -5304,30 +4253,6 @@ namespace MetaBusinessDataVault
                 }
             }
 
-            private HashSet<string>? businessHubSatelliteAttributeIds;
-
-            public void AddBusinessHubSatelliteAttributeId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessHubSatelliteAttribute' contains a row with empty Id.");
-                businessHubSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessHubSatelliteAttributeIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'BusinessHubSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? businessHubSatelliteAttributeDataTypeDetailIds;
-
-            public void AddBusinessHubSatelliteAttributeDataTypeDetailId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessHubSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                businessHubSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessHubSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'BusinessHubSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
             private HashSet<string>? businessLinkIds;
 
             public void AddBusinessLinkId(string? id)
@@ -5361,30 +4286,6 @@ namespace MetaBusinessDataVault
                 if (!businessLinkSatelliteIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'BusinessLinkSatellite' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? businessLinkSatelliteAttributeIds;
-
-            public void AddBusinessLinkSatelliteAttributeId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessLinkSatelliteAttribute' contains a row with empty Id.");
-                businessLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessLinkSatelliteAttributeIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'BusinessLinkSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? businessLinkSatelliteAttributeDataTypeDetailIds;
-
-            public void AddBusinessLinkSatelliteAttributeDataTypeDetailId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                businessLinkSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessLinkSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -5496,30 +4397,6 @@ namespace MetaBusinessDataVault
                 }
             }
 
-            private HashSet<string>? businessReferenceSatelliteAttributeIds;
-
-            public void AddBusinessReferenceSatelliteAttributeId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessReferenceSatelliteAttribute' contains a row with empty Id.");
-                businessReferenceSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessReferenceSatelliteAttributeIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'BusinessReferenceSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? businessReferenceSatelliteAttributeDataTypeDetailIds;
-
-            public void AddBusinessReferenceSatelliteAttributeDataTypeDetailId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessReferenceSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                businessReferenceSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessReferenceSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'BusinessReferenceSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
             private HashSet<string>? businessSameAsLinkIds;
 
             public void AddBusinessSameAsLinkId(string? id)
@@ -5544,27 +4421,39 @@ namespace MetaBusinessDataVault
                 }
             }
 
-            private HashSet<string>? businessSameAsLinkSatelliteAttributeIds;
+            private HashSet<string>? businessSatelliteIds;
 
-            public void AddBusinessSameAsLinkSatelliteAttributeId(string? id)
+            public void AddBusinessSatelliteId(string? id)
             {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessSameAsLinkSatelliteAttribute' contains a row with empty Id.");
-                businessSameAsLinkSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessSameAsLinkSatelliteAttributeIds.Add(normalizedId))
+                var normalizedId = RequireIdentity(id, "Entity 'BusinessSatellite' contains a row with empty Id.");
+                businessSatelliteIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!businessSatelliteIds.Add(normalizedId))
                 {
-                    throw new InvalidDataException($"Entity 'BusinessSameAsLinkSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
+                    throw new InvalidDataException($"Entity 'BusinessSatellite' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
-            private HashSet<string>? businessSameAsLinkSatelliteAttributeDataTypeDetailIds;
+            private HashSet<string>? businessSatelliteAttributeIds;
 
-            public void AddBusinessSameAsLinkSatelliteAttributeDataTypeDetailId(string? id)
+            public void AddBusinessSatelliteAttributeId(string? id)
             {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
-                businessSameAsLinkSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessSameAsLinkSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
+                var normalizedId = RequireIdentity(id, "Entity 'BusinessSatelliteAttribute' contains a row with empty Id.");
+                businessSatelliteAttributeIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!businessSatelliteAttributeIds.Add(normalizedId))
                 {
-                    throw new InvalidDataException($"Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
+                    throw new InvalidDataException($"Entity 'BusinessSatelliteAttribute' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? businessSatelliteAttributeDataTypeDetailIds;
+
+            public void AddBusinessSatelliteAttributeDataTypeDetailId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'BusinessSatelliteAttributeDataTypeDetail' contains a row with empty Id.");
+                businessSatelliteAttributeDataTypeDetailIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!businessSatelliteAttributeDataTypeDetailIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'BusinessSatelliteAttributeDataTypeDetail' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -5595,14 +4484,6 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessHierarchicalLinkSatellite> BusinessHierarchicalLinkSatelliteListById => businessHierarchicalLinkSatelliteListById ??= BuildById(model.BusinessHierarchicalLinkSatelliteList, row => row.Id, "BusinessHierarchicalLinkSatellite");
 
-            private Dictionary<string, BusinessHierarchicalLinkSatelliteAttribute>? businessHierarchicalLinkSatelliteAttributeListById;
-
-            public Dictionary<string, BusinessHierarchicalLinkSatelliteAttribute> BusinessHierarchicalLinkSatelliteAttributeListById => businessHierarchicalLinkSatelliteAttributeListById ??= BuildById(model.BusinessHierarchicalLinkSatelliteAttributeList, row => row.Id, "BusinessHierarchicalLinkSatelliteAttribute");
-
-            private Dictionary<string, BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>? businessHierarchicalLinkSatelliteAttributeDataTypeDetailListById;
-
-            public Dictionary<string, BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail> BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailListById => businessHierarchicalLinkSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail");
-
             private Dictionary<string, BusinessHub>? businessHubListById;
 
             public Dictionary<string, BusinessHub> BusinessHubListById => businessHubListById ??= BuildById(model.BusinessHubList, row => row.Id, "BusinessHub");
@@ -5619,14 +4500,6 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessHubSatellite> BusinessHubSatelliteListById => businessHubSatelliteListById ??= BuildById(model.BusinessHubSatelliteList, row => row.Id, "BusinessHubSatellite");
 
-            private Dictionary<string, BusinessHubSatelliteAttribute>? businessHubSatelliteAttributeListById;
-
-            public Dictionary<string, BusinessHubSatelliteAttribute> BusinessHubSatelliteAttributeListById => businessHubSatelliteAttributeListById ??= BuildById(model.BusinessHubSatelliteAttributeList, row => row.Id, "BusinessHubSatelliteAttribute");
-
-            private Dictionary<string, BusinessHubSatelliteAttributeDataTypeDetail>? businessHubSatelliteAttributeDataTypeDetailListById;
-
-            public Dictionary<string, BusinessHubSatelliteAttributeDataTypeDetail> BusinessHubSatelliteAttributeDataTypeDetailListById => businessHubSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessHubSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessHubSatelliteAttributeDataTypeDetail");
-
             private Dictionary<string, BusinessLink>? businessLinkListById;
 
             public Dictionary<string, BusinessLink> BusinessLinkListById => businessLinkListById ??= BuildById(model.BusinessLinkList, row => row.Id, "BusinessLink");
@@ -5638,14 +4511,6 @@ namespace MetaBusinessDataVault
             private Dictionary<string, BusinessLinkSatellite>? businessLinkSatelliteListById;
 
             public Dictionary<string, BusinessLinkSatellite> BusinessLinkSatelliteListById => businessLinkSatelliteListById ??= BuildById(model.BusinessLinkSatelliteList, row => row.Id, "BusinessLinkSatellite");
-
-            private Dictionary<string, BusinessLinkSatelliteAttribute>? businessLinkSatelliteAttributeListById;
-
-            public Dictionary<string, BusinessLinkSatelliteAttribute> BusinessLinkSatelliteAttributeListById => businessLinkSatelliteAttributeListById ??= BuildById(model.BusinessLinkSatelliteAttributeList, row => row.Id, "BusinessLinkSatelliteAttribute");
-
-            private Dictionary<string, BusinessLinkSatelliteAttributeDataTypeDetail>? businessLinkSatelliteAttributeDataTypeDetailListById;
-
-            public Dictionary<string, BusinessLinkSatelliteAttributeDataTypeDetail> BusinessLinkSatelliteAttributeDataTypeDetailListById => businessLinkSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessLinkSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessLinkSatelliteAttributeDataTypeDetail");
 
             private Dictionary<string, BusinessPointInTime>? businessPointInTimeListById;
 
@@ -5683,14 +4548,6 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessReferenceSatellite> BusinessReferenceSatelliteListById => businessReferenceSatelliteListById ??= BuildById(model.BusinessReferenceSatelliteList, row => row.Id, "BusinessReferenceSatellite");
 
-            private Dictionary<string, BusinessReferenceSatelliteAttribute>? businessReferenceSatelliteAttributeListById;
-
-            public Dictionary<string, BusinessReferenceSatelliteAttribute> BusinessReferenceSatelliteAttributeListById => businessReferenceSatelliteAttributeListById ??= BuildById(model.BusinessReferenceSatelliteAttributeList, row => row.Id, "BusinessReferenceSatelliteAttribute");
-
-            private Dictionary<string, BusinessReferenceSatelliteAttributeDataTypeDetail>? businessReferenceSatelliteAttributeDataTypeDetailListById;
-
-            public Dictionary<string, BusinessReferenceSatelliteAttributeDataTypeDetail> BusinessReferenceSatelliteAttributeDataTypeDetailListById => businessReferenceSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessReferenceSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessReferenceSatelliteAttributeDataTypeDetail");
-
             private Dictionary<string, BusinessSameAsLink>? businessSameAsLinkListById;
 
             public Dictionary<string, BusinessSameAsLink> BusinessSameAsLinkListById => businessSameAsLinkListById ??= BuildById(model.BusinessSameAsLinkList, row => row.Id, "BusinessSameAsLink");
@@ -5699,13 +4556,17 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessSameAsLinkSatellite> BusinessSameAsLinkSatelliteListById => businessSameAsLinkSatelliteListById ??= BuildById(model.BusinessSameAsLinkSatelliteList, row => row.Id, "BusinessSameAsLinkSatellite");
 
-            private Dictionary<string, BusinessSameAsLinkSatelliteAttribute>? businessSameAsLinkSatelliteAttributeListById;
+            private Dictionary<string, BusinessSatellite>? businessSatelliteListById;
 
-            public Dictionary<string, BusinessSameAsLinkSatelliteAttribute> BusinessSameAsLinkSatelliteAttributeListById => businessSameAsLinkSatelliteAttributeListById ??= BuildById(model.BusinessSameAsLinkSatelliteAttributeList, row => row.Id, "BusinessSameAsLinkSatelliteAttribute");
+            public Dictionary<string, BusinessSatellite> BusinessSatelliteListById => businessSatelliteListById ??= BuildById(model.BusinessSatelliteList, row => row.Id, "BusinessSatellite");
 
-            private Dictionary<string, BusinessSameAsLinkSatelliteAttributeDataTypeDetail>? businessSameAsLinkSatelliteAttributeDataTypeDetailListById;
+            private Dictionary<string, BusinessSatelliteAttribute>? businessSatelliteAttributeListById;
 
-            public Dictionary<string, BusinessSameAsLinkSatelliteAttributeDataTypeDetail> BusinessSameAsLinkSatelliteAttributeDataTypeDetailListById => businessSameAsLinkSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessSameAsLinkSatelliteAttributeDataTypeDetail");
+            public Dictionary<string, BusinessSatelliteAttribute> BusinessSatelliteAttributeListById => businessSatelliteAttributeListById ??= BuildById(model.BusinessSatelliteAttributeList, row => row.Id, "BusinessSatelliteAttribute");
+
+            private Dictionary<string, BusinessSatelliteAttributeDataTypeDetail>? businessSatelliteAttributeDataTypeDetailListById;
+
+            public Dictionary<string, BusinessSatelliteAttributeDataTypeDetail> BusinessSatelliteAttributeDataTypeDetailListById => businessSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessSatelliteAttributeDataTypeDetail");
 
         }
 
@@ -5734,14 +4595,6 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessHierarchicalLinkSatellite> BusinessHierarchicalLinkSatelliteListById => businessHierarchicalLinkSatelliteListById ??= BuildById(model.BusinessHierarchicalLinkSatelliteList, row => row.Id, "BusinessHierarchicalLinkSatellite");
 
-            private Dictionary<string, BusinessHierarchicalLinkSatelliteAttribute>? businessHierarchicalLinkSatelliteAttributeListById;
-
-            public Dictionary<string, BusinessHierarchicalLinkSatelliteAttribute> BusinessHierarchicalLinkSatelliteAttributeListById => businessHierarchicalLinkSatelliteAttributeListById ??= BuildById(model.BusinessHierarchicalLinkSatelliteAttributeList, row => row.Id, "BusinessHierarchicalLinkSatelliteAttribute");
-
-            private Dictionary<string, BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>? businessHierarchicalLinkSatelliteAttributeDataTypeDetailListById;
-
-            public Dictionary<string, BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail> BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailListById => businessHierarchicalLinkSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail");
-
             private Dictionary<string, BusinessHub>? businessHubListById;
 
             public Dictionary<string, BusinessHub> BusinessHubListById => businessHubListById ??= BuildById(model.BusinessHubList, row => row.Id, "BusinessHub");
@@ -5758,14 +4611,6 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessHubSatellite> BusinessHubSatelliteListById => businessHubSatelliteListById ??= BuildById(model.BusinessHubSatelliteList, row => row.Id, "BusinessHubSatellite");
 
-            private Dictionary<string, BusinessHubSatelliteAttribute>? businessHubSatelliteAttributeListById;
-
-            public Dictionary<string, BusinessHubSatelliteAttribute> BusinessHubSatelliteAttributeListById => businessHubSatelliteAttributeListById ??= BuildById(model.BusinessHubSatelliteAttributeList, row => row.Id, "BusinessHubSatelliteAttribute");
-
-            private Dictionary<string, BusinessHubSatelliteAttributeDataTypeDetail>? businessHubSatelliteAttributeDataTypeDetailListById;
-
-            public Dictionary<string, BusinessHubSatelliteAttributeDataTypeDetail> BusinessHubSatelliteAttributeDataTypeDetailListById => businessHubSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessHubSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessHubSatelliteAttributeDataTypeDetail");
-
             private Dictionary<string, BusinessLink>? businessLinkListById;
 
             public Dictionary<string, BusinessLink> BusinessLinkListById => businessLinkListById ??= BuildById(model.BusinessLinkList, row => row.Id, "BusinessLink");
@@ -5777,14 +4622,6 @@ namespace MetaBusinessDataVault
             private Dictionary<string, BusinessLinkSatellite>? businessLinkSatelliteListById;
 
             public Dictionary<string, BusinessLinkSatellite> BusinessLinkSatelliteListById => businessLinkSatelliteListById ??= BuildById(model.BusinessLinkSatelliteList, row => row.Id, "BusinessLinkSatellite");
-
-            private Dictionary<string, BusinessLinkSatelliteAttribute>? businessLinkSatelliteAttributeListById;
-
-            public Dictionary<string, BusinessLinkSatelliteAttribute> BusinessLinkSatelliteAttributeListById => businessLinkSatelliteAttributeListById ??= BuildById(model.BusinessLinkSatelliteAttributeList, row => row.Id, "BusinessLinkSatelliteAttribute");
-
-            private Dictionary<string, BusinessLinkSatelliteAttributeDataTypeDetail>? businessLinkSatelliteAttributeDataTypeDetailListById;
-
-            public Dictionary<string, BusinessLinkSatelliteAttributeDataTypeDetail> BusinessLinkSatelliteAttributeDataTypeDetailListById => businessLinkSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessLinkSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessLinkSatelliteAttributeDataTypeDetail");
 
             private Dictionary<string, BusinessPointInTime>? businessPointInTimeListById;
 
@@ -5822,14 +4659,6 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessReferenceSatellite> BusinessReferenceSatelliteListById => businessReferenceSatelliteListById ??= BuildById(model.BusinessReferenceSatelliteList, row => row.Id, "BusinessReferenceSatellite");
 
-            private Dictionary<string, BusinessReferenceSatelliteAttribute>? businessReferenceSatelliteAttributeListById;
-
-            public Dictionary<string, BusinessReferenceSatelliteAttribute> BusinessReferenceSatelliteAttributeListById => businessReferenceSatelliteAttributeListById ??= BuildById(model.BusinessReferenceSatelliteAttributeList, row => row.Id, "BusinessReferenceSatelliteAttribute");
-
-            private Dictionary<string, BusinessReferenceSatelliteAttributeDataTypeDetail>? businessReferenceSatelliteAttributeDataTypeDetailListById;
-
-            public Dictionary<string, BusinessReferenceSatelliteAttributeDataTypeDetail> BusinessReferenceSatelliteAttributeDataTypeDetailListById => businessReferenceSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessReferenceSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessReferenceSatelliteAttributeDataTypeDetail");
-
             private Dictionary<string, BusinessSameAsLink>? businessSameAsLinkListById;
 
             public Dictionary<string, BusinessSameAsLink> BusinessSameAsLinkListById => businessSameAsLinkListById ??= BuildById(model.BusinessSameAsLinkList, row => row.Id, "BusinessSameAsLink");
@@ -5838,13 +4667,17 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessSameAsLinkSatellite> BusinessSameAsLinkSatelliteListById => businessSameAsLinkSatelliteListById ??= BuildById(model.BusinessSameAsLinkSatelliteList, row => row.Id, "BusinessSameAsLinkSatellite");
 
-            private Dictionary<string, BusinessSameAsLinkSatelliteAttribute>? businessSameAsLinkSatelliteAttributeListById;
+            private Dictionary<string, BusinessSatellite>? businessSatelliteListById;
 
-            public Dictionary<string, BusinessSameAsLinkSatelliteAttribute> BusinessSameAsLinkSatelliteAttributeListById => businessSameAsLinkSatelliteAttributeListById ??= BuildById(model.BusinessSameAsLinkSatelliteAttributeList, row => row.Id, "BusinessSameAsLinkSatelliteAttribute");
+            public Dictionary<string, BusinessSatellite> BusinessSatelliteListById => businessSatelliteListById ??= BuildById(model.BusinessSatelliteList, row => row.Id, "BusinessSatellite");
 
-            private Dictionary<string, BusinessSameAsLinkSatelliteAttributeDataTypeDetail>? businessSameAsLinkSatelliteAttributeDataTypeDetailListById;
+            private Dictionary<string, BusinessSatelliteAttribute>? businessSatelliteAttributeListById;
 
-            public Dictionary<string, BusinessSameAsLinkSatelliteAttributeDataTypeDetail> BusinessSameAsLinkSatelliteAttributeDataTypeDetailListById => businessSameAsLinkSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessSameAsLinkSatelliteAttributeDataTypeDetail");
+            public Dictionary<string, BusinessSatelliteAttribute> BusinessSatelliteAttributeListById => businessSatelliteAttributeListById ??= BuildById(model.BusinessSatelliteAttributeList, row => row.Id, "BusinessSatelliteAttribute");
+
+            private Dictionary<string, BusinessSatelliteAttributeDataTypeDetail>? businessSatelliteAttributeDataTypeDetailListById;
+
+            public Dictionary<string, BusinessSatelliteAttributeDataTypeDetail> BusinessSatelliteAttributeDataTypeDetailListById => businessSatelliteAttributeDataTypeDetailListById ??= BuildById(model.BusinessSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessSatelliteAttributeDataTypeDetail");
 
         }
 
@@ -5898,27 +4731,8 @@ namespace MetaBusinessDataVault
 
             if (HasUnexpectedProperties(typeof(BusinessHierarchicalLinkSatellite),
                 "Id",
-                "Description",
-                "Name",
-                "BusinessHierarchicalLink"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(BusinessHierarchicalLinkSatelliteAttribute),
-                "Id",
-                "DataTypeId",
-                "Name",
-                "BusinessHierarchicalLinkSatellite"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail),
-                "Id",
-                "Name",
-                "Value",
-                "BusinessHierarchicalLinkSatelliteAttribute"))
+                "BusinessHierarchicalLink",
+                "BusinessSatellite"))
             {
                 return true;
             }
@@ -5952,27 +4766,8 @@ namespace MetaBusinessDataVault
 
             if (HasUnexpectedProperties(typeof(BusinessHubSatellite),
                 "Id",
-                "Description",
-                "Name",
-                "BusinessHub"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(BusinessHubSatelliteAttribute),
-                "Id",
-                "DataTypeId",
-                "Name",
-                "BusinessHubSatellite"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(BusinessHubSatelliteAttributeDataTypeDetail),
-                "Id",
-                "Name",
-                "Value",
-                "BusinessHubSatelliteAttribute"))
+                "BusinessHub",
+                "BusinessSatellite"))
             {
                 return true;
             }
@@ -5996,27 +4791,8 @@ namespace MetaBusinessDataVault
 
             if (HasUnexpectedProperties(typeof(BusinessLinkSatellite),
                 "Id",
-                "Description",
-                "Name",
-                "BusinessLink"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(BusinessLinkSatelliteAttribute),
-                "Id",
-                "DataTypeId",
-                "Name",
-                "BusinessLinkSatellite"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(BusinessLinkSatelliteAttributeDataTypeDetail),
-                "Id",
-                "Name",
-                "Value",
-                "BusinessLinkSatelliteAttribute"))
+                "BusinessLink",
+                "BusinessSatellite"))
             {
                 return true;
             }
@@ -6093,27 +4869,8 @@ namespace MetaBusinessDataVault
 
             if (HasUnexpectedProperties(typeof(BusinessReferenceSatellite),
                 "Id",
-                "Description",
-                "Name",
-                "BusinessReference"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(BusinessReferenceSatelliteAttribute),
-                "Id",
-                "DataTypeId",
-                "Name",
-                "BusinessReferenceSatellite"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(BusinessReferenceSatelliteAttributeDataTypeDetail),
-                "Id",
-                "Name",
-                "Value",
-                "BusinessReferenceSatelliteAttribute"))
+                "BusinessReference",
+                "BusinessSatellite"))
             {
                 return true;
             }
@@ -6130,27 +4887,34 @@ namespace MetaBusinessDataVault
 
             if (HasUnexpectedProperties(typeof(BusinessSameAsLinkSatellite),
                 "Id",
-                "Description",
-                "Name",
-                "BusinessSameAsLink"))
+                "BusinessSameAsLink",
+                "BusinessSatellite"))
             {
                 return true;
             }
 
-            if (HasUnexpectedProperties(typeof(BusinessSameAsLinkSatelliteAttribute),
+            if (HasUnexpectedProperties(typeof(BusinessSatellite),
+                "Id",
+                "Description",
+                "Name"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(BusinessSatelliteAttribute),
                 "Id",
                 "DataTypeId",
                 "Name",
-                "BusinessSameAsLinkSatellite"))
+                "BusinessSatellite"))
             {
                 return true;
             }
 
-            if (HasUnexpectedProperties(typeof(BusinessSameAsLinkSatelliteAttributeDataTypeDetail),
+            if (HasUnexpectedProperties(typeof(BusinessSatelliteAttributeDataTypeDetail),
                 "Id",
                 "Name",
                 "Value",
-                "BusinessSameAsLinkSatelliteAttribute"))
+                "BusinessSatelliteAttribute"))
             {
                 return true;
             }
@@ -6166,19 +4930,13 @@ namespace MetaBusinessDataVault
                 "BusinessBridgeTraversalList",
                 "BusinessHierarchicalLinkList",
                 "BusinessHierarchicalLinkSatelliteList",
-                "BusinessHierarchicalLinkSatelliteAttributeList",
-                "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList",
                 "BusinessHubList",
                 "BusinessHubKeyPartList",
                 "BusinessHubKeyPartDataTypeDetailList",
                 "BusinessHubSatelliteList",
-                "BusinessHubSatelliteAttributeList",
-                "BusinessHubSatelliteAttributeDataTypeDetailList",
                 "BusinessLinkList",
                 "BusinessLinkRoleList",
                 "BusinessLinkSatelliteList",
-                "BusinessLinkSatelliteAttributeList",
-                "BusinessLinkSatelliteAttributeDataTypeDetailList",
                 "BusinessPointInTimeList",
                 "BusinessPointInTimeHubSatelliteList",
                 "BusinessPointInTimeLinkSatelliteList",
@@ -6188,12 +4946,11 @@ namespace MetaBusinessDataVault
                 "BusinessReferenceKeyPartList",
                 "BusinessReferenceKeyPartDataTypeDetailList",
                 "BusinessReferenceSatelliteList",
-                "BusinessReferenceSatelliteAttributeList",
-                "BusinessReferenceSatelliteAttributeDataTypeDetailList",
                 "BusinessSameAsLinkList",
                 "BusinessSameAsLinkSatelliteList",
-                "BusinessSameAsLinkSatelliteAttributeList",
-                "BusinessSameAsLinkSatelliteAttributeDataTypeDetailList",
+                "BusinessSatelliteList",
+                "BusinessSatelliteAttributeList",
+                "BusinessSatelliteAttributeDataTypeDetailList",
             };
             return typeof(MetaBusinessDataVaultModel).GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Any(property =>

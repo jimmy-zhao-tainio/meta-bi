@@ -4,6 +4,38 @@ namespace MetaDataVault.Core;
 
 public static class BusinessDataVaultRules
 {
+    public static void ValidateSatelliteSpecializations(MetaBusinessDataVaultModel model)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+
+        var specializations = model.BusinessHubSatelliteList
+            .Select(row => (row.Id, EntityName: nameof(BusinessHubSatellite), Satellite: row.BusinessSatellite))
+            .Concat(model.BusinessLinkSatelliteList.Select(row => (row.Id, EntityName: nameof(BusinessLinkSatellite), Satellite: row.BusinessSatellite)))
+            .Concat(model.BusinessReferenceSatelliteList.Select(row => (row.Id, EntityName: nameof(BusinessReferenceSatellite), Satellite: row.BusinessSatellite)))
+            .Concat(model.BusinessSameAsLinkSatelliteList.Select(row => (row.Id, EntityName: nameof(BusinessSameAsLinkSatellite), Satellite: row.BusinessSatellite)))
+            .Concat(model.BusinessHierarchicalLinkSatelliteList.Select(row => (row.Id, EntityName: nameof(BusinessHierarchicalLinkSatellite), Satellite: row.BusinessSatellite)))
+            .ToList();
+
+        foreach (var specialization in specializations)
+        {
+            if (!model.BusinessSatelliteList.Any(row => ReferenceEquals(row, specialization.Satellite)))
+            {
+                throw new InvalidOperationException(
+                    $"{specialization.EntityName} '{specialization.Id}' must reference a modeled BusinessSatellite.");
+            }
+        }
+
+        foreach (var satellite in model.BusinessSatelliteList)
+        {
+            var matchCount = specializations.Count(row => ReferenceEquals(row.Satellite, satellite));
+            if (matchCount != 1)
+            {
+                throw new InvalidOperationException(
+                    $"BusinessSatellite '{satellite.Id}' must have exactly one concrete specialization.");
+            }
+        }
+    }
+
     public static IReadOnlyList<BusinessHubKeyPart> GetHubKeyPartChain(
         BusinessHub hub,
         IEnumerable<BusinessHubKeyPart> keyParts)

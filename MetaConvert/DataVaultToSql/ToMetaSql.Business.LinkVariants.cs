@@ -17,10 +17,8 @@ public static partial class Converter
         var businessHierarchicalLinkImplementation = RequireSingleImplementation(context.ImplementationModel.BusinessHierarchicalLinkImplementationList, nameof(context.ImplementationModel.BusinessHierarchicalLinkImplementationList));
         var businessHierarchicalLinkSatelliteImplementation = RequireSingleImplementation(context.ImplementationModel.BusinessHierarchicalLinkSatelliteImplementationList, nameof(context.ImplementationModel.BusinessHierarchicalLinkSatelliteImplementationList));
 
-        var businessSameAsLinkSatelliteAttributesBySatelliteId = GroupById(model.BusinessSameAsLinkSatelliteAttributeList, row => row.BusinessSameAsLinkSatellite.Id);
-        var businessSameAsLinkSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList, row => row.BusinessSameAsLinkSatelliteAttribute.Id);
-        var businessHierarchicalLinkSatelliteAttributesBySatelliteId = GroupById(model.BusinessHierarchicalLinkSatelliteAttributeList, row => row.BusinessHierarchicalLinkSatellite.Id);
-        var businessHierarchicalLinkSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList, row => row.BusinessHierarchicalLinkSatelliteAttribute.Id);
+        var businessSatelliteAttributesBySatelliteId = GroupById(model.BusinessSatelliteAttributeList, row => row.BusinessSatellite.Id);
+        var businessSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessSatelliteAttributeDataTypeDetailList, row => row.BusinessSatelliteAttribute.Id);
 
         var sameAsTablesByLinkId = new Dictionary<string, Table>(StringComparer.Ordinal);
         var sameAsHashKeyColumnsByLinkId = new Dictionary<string, TableColumn>(StringComparer.Ordinal);
@@ -126,7 +124,7 @@ public static partial class Converter
             sameAsHashKeyColumnsByLinkId[link.Id] = hashKeyColumn;
         }
 
-        foreach (var satellite in model.BusinessSameAsLinkSatelliteList.OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
+        foreach (var satellite in model.BusinessSameAsLinkSatelliteList.OrderBy(row => row.BusinessSatellite.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
         {
             var table = AddTable(
                 context,
@@ -134,7 +132,7 @@ public static partial class Converter
                 ApplyPattern(
                     businessSameAsLinkSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.BusinessSameAsLink.Name),
-                    ("Name", satellite.Name)));
+                    ("Name", satellite.BusinessSatellite.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var parentHashKeyColumn = AddImplementationColumn(
@@ -146,13 +144,13 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessSameAsLinkSatelliteImplementation.ParentHashKeyLength));
 
-            var members = GetGroup(businessSameAsLinkSatelliteAttributesBySatelliteId, satellite.Id)
+            var members = GetGroup(businessSatelliteAttributesBySatelliteId, satellite.Id)
                 .Select(row => CreateBusinessColumnMember(
                     row.Id,
                     row.Name,
                     row.DataTypeId,
                     GetDetailPairs(
-                        businessSameAsLinkSatelliteAttributeDetailsByAttributeId,
+                        businessSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
                         detail => detail.Value)));
@@ -310,7 +308,7 @@ public static partial class Converter
             hierarchicalHashKeyColumnsByLinkId[link.Id] = hashKeyColumn;
         }
 
-        foreach (var satellite in model.BusinessHierarchicalLinkSatelliteList.OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
+        foreach (var satellite in model.BusinessHierarchicalLinkSatelliteList.OrderBy(row => row.BusinessSatellite.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
         {
             var table = AddTable(
                 context,
@@ -318,7 +316,7 @@ public static partial class Converter
                 ApplyPattern(
                     businessHierarchicalLinkSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.BusinessHierarchicalLink.Name),
-                    ("Name", satellite.Name)));
+                    ("Name", satellite.BusinessSatellite.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var parentHashKeyColumn = AddImplementationColumn(
@@ -330,13 +328,13 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessHierarchicalLinkSatelliteImplementation.ParentHashKeyLength));
 
-            var members = GetGroup(businessHierarchicalLinkSatelliteAttributesBySatelliteId, satellite.Id)
+            var members = GetGroup(businessSatelliteAttributesBySatelliteId, satellite.Id)
                 .Select(row => CreateBusinessColumnMember(
                     row.Id,
                     row.Name,
                     row.DataTypeId,
                     GetDetailPairs(
-                        businessHierarchicalLinkSatelliteAttributeDetailsByAttributeId,
+                        businessSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
                         detail => detail.Value)));

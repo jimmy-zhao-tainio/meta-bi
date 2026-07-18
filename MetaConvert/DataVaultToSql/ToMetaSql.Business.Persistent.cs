@@ -11,6 +11,8 @@ public static partial class Converter
         MetaBusinessDataVaultModel model,
         ConversionContext context)
     {
+        BusinessDataVaultRules.ValidateSatelliteSpecializations(model);
+
         var businessHubImplementation = RequireSingleImplementation(context.ImplementationModel.BusinessHubImplementationList, nameof(context.ImplementationModel.BusinessHubImplementationList));
         var businessLinkImplementation = RequireSingleImplementation(context.ImplementationModel.BusinessLinkImplementationList, nameof(context.ImplementationModel.BusinessLinkImplementationList));
         var businessReferenceImplementation = RequireSingleImplementation(context.ImplementationModel.BusinessReferenceImplementationList, nameof(context.ImplementationModel.BusinessReferenceImplementationList));
@@ -20,16 +22,12 @@ public static partial class Converter
 
         var businessHubKeyPartsByHubId = GroupById(model.BusinessHubKeyPartList, row => row.BusinessHub.Id);
         var businessHubKeyPartDetailsByKeyPartId = GroupById(model.BusinessHubKeyPartDataTypeDetailList, row => row.BusinessHubKeyPart.Id);
-        var businessHubSatelliteAttributesBySatelliteId = GroupById(model.BusinessHubSatelliteAttributeList, row => row.BusinessHubSatellite.Id);
-        var businessHubSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessHubSatelliteAttributeDataTypeDetailList, row => row.BusinessHubSatelliteAttribute.Id);
+        var businessSatelliteAttributesBySatelliteId = GroupById(model.BusinessSatelliteAttributeList, row => row.BusinessSatellite.Id);
+        var businessSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessSatelliteAttributeDataTypeDetailList, row => row.BusinessSatelliteAttribute.Id);
         BusinessDataVaultRules.ValidateLinkRoleNames(model);
         var businessLinkRolesByLinkId = GroupById(model.BusinessLinkRoleList, row => row.BusinessLink.Id);
-        var businessLinkSatelliteAttributesBySatelliteId = GroupById(model.BusinessLinkSatelliteAttributeList, row => row.BusinessLinkSatellite.Id);
-        var businessLinkSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessLinkSatelliteAttributeDataTypeDetailList, row => row.BusinessLinkSatelliteAttribute.Id);
         var businessReferenceKeyPartsByReferenceId = GroupById(model.BusinessReferenceKeyPartList, row => row.BusinessReference.Id);
         var businessReferenceKeyPartDetailsByKeyPartId = GroupById(model.BusinessReferenceKeyPartDataTypeDetailList, row => row.BusinessReferenceKeyPart.Id);
-        var businessReferenceSatelliteAttributesBySatelliteId = GroupById(model.BusinessReferenceSatelliteAttributeList, row => row.BusinessReferenceSatellite.Id);
-        var businessReferenceSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessReferenceSatelliteAttributeDataTypeDetailList, row => row.BusinessReferenceSatelliteAttribute.Id);
 
         var hubTablesByHubId = new Dictionary<string, Table>(StringComparer.Ordinal);
         var hubHashKeyColumnsByHubId = new Dictionary<string, TableColumn>(StringComparer.Ordinal);
@@ -51,8 +49,8 @@ public static partial class Converter
             model,
             context,
             businessHubSatelliteImplementation,
-            businessHubSatelliteAttributesBySatelliteId,
-            businessHubSatelliteAttributeDetailsByAttributeId,
+            businessSatelliteAttributesBySatelliteId,
+            businessSatelliteAttributeDetailsByAttributeId,
             hubTablesByHubId,
             hubHashKeyColumnsByHubId);
 
@@ -71,8 +69,8 @@ public static partial class Converter
             model,
             context,
             businessLinkSatelliteImplementation,
-            businessLinkSatelliteAttributesBySatelliteId,
-            businessLinkSatelliteAttributeDetailsByAttributeId,
+            businessSatelliteAttributesBySatelliteId,
+            businessSatelliteAttributeDetailsByAttributeId,
             linkTablesByLinkId,
             linkHashKeyColumnsByLinkId);
 
@@ -89,8 +87,8 @@ public static partial class Converter
             model,
             context,
             businessReferenceSatelliteImplementation,
-            businessReferenceSatelliteAttributesBySatelliteId,
-            businessReferenceSatelliteAttributeDetailsByAttributeId,
+            businessSatelliteAttributesBySatelliteId,
+            businessSatelliteAttributeDetailsByAttributeId,
             referenceTablesByReferenceId,
             referenceHashKeyColumnsByReferenceId);
 

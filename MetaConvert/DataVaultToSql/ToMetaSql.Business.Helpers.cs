@@ -61,9 +61,9 @@ public static partial class Converter
             AddBusinessMembers(context, table, reservedColumnNames, stampMembers);
 
             var satelliteReferences = GetGroup(businessPointInTimeHubSatellitesByPointInTimeId, pointInTime.Id)
-                .Select(row => (row.Id, SatelliteName: row.BusinessHubSatellite.Name))
+                .Select(row => (row.Id, SatelliteName: row.BusinessHubSatellite.BusinessSatellite.Name))
                 .Concat(GetGroup(businessPointInTimeLinkSatellitesByPointInTimeId, pointInTime.Id)
-                    .Select(row => (row.Id, SatelliteName: row.BusinessLinkSatellite.Name)))
+                    .Select(row => (row.Id, SatelliteName: row.BusinessLinkSatellite.BusinessSatellite.Name)))
                 .OrderBy(row => row.SatelliteName, StringComparer.OrdinalIgnoreCase)
                 .ThenBy(row => row.Id, StringComparer.Ordinal);
 

@@ -11,15 +11,15 @@
 
 namespace MetaBusinessDataVault
 {
-    public sealed class BusinessHubSatelliteAttribute
+    public sealed class BusinessSatelliteAttributeDataTypeDetail
     {
         public string Id { get; set; } = string.Empty;
 
-        public string DataTypeId { get; set; } = string.Empty;
-
         public string Name { get; set; } = string.Empty;
 
-        public BusinessHubSatellite BusinessHubSatellite { get; set; } = null!;
+        public string Value { get; set; } = string.Empty;
+
+        public BusinessSatelliteAttribute BusinessSatelliteAttribute { get; set; } = null!;
 
     }
 }

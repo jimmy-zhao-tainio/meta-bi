@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessHierarchicalLinkSatelliteAttributeList>
-    <BusinessHierarchicalLinkSatelliteAttribute Id="EmployeeManagerLineType" BusinessHierarchicalLinkSatelliteId="EmployeeManagerLine">
-      <DataTypeId>meta:type:String</DataTypeId>
-      <Name>LineType</Name>
-    </BusinessHierarchicalLinkSatelliteAttribute>
-  </BusinessHierarchicalLinkSatelliteAttributeList>
-</MetaBusinessDataVault>

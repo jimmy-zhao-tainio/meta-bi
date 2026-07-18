@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
+    <Option Id="option-add-business-satellite-attribute-data-type-id" ParameterId="parameter-add-business-satellite-attribute-data-type-id" />
+    <Option Id="option-add-business-satellite-attribute-id" ParameterId="parameter-add-business-satellite-attribute-id" />
+    <Option Id="option-add-business-satellite-attribute-length" ParameterId="parameter-add-business-satellite-attribute-length" />
+    <Option Id="option-add-business-satellite-attribute-name" ParameterId="parameter-add-business-satellite-attribute-name" />
+    <Option Id="option-add-business-satellite-attribute-precision" ParameterId="parameter-add-business-satellite-attribute-precision" />
+    <Option Id="option-add-business-satellite-attribute-satellite" ParameterId="parameter-add-business-satellite-attribute-satellite" />
+    <Option Id="option-add-business-satellite-attribute-scale" ParameterId="parameter-add-business-satellite-attribute-scale" />
+    <Option Id="option-add-business-satellite-attribute-workspace" ParameterId="parameter-add-business-satellite-attribute-workspace" />
     <Option Id="option-business-bridge-description" ParameterId="param-business-bridge-description" />
     <Option Id="option-business-bridge-hub" ParameterId="param-business-bridge-hub" />
     <Option Id="option-business-bridge-id" ParameterId="param-business-bridge-id" />
@@ -17,14 +25,6 @@
     <Option Id="option-business-hierarchical-link-id" ParameterId="param-business-hierarchical-link-id" />
     <Option Id="option-business-hierarchical-link-name" ParameterId="param-business-hierarchical-link-name" />
     <Option Id="option-business-hierarchical-link-parent-hub" ParameterId="param-business-hierarchical-link-parent-hub" />
-    <Option Id="option-business-hierarchical-link-satellite-attribute-data-type-id" ParameterId="param-business-hierarchical-link-satellite-attribute-data-type-id" />
-    <Option Id="option-business-hierarchical-link-satellite-attribute-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-attribute-hierarchical-link-satellite" />
-    <Option Id="option-business-hierarchical-link-satellite-attribute-id" ParameterId="param-business-hierarchical-link-satellite-attribute-id" />
-    <Option Id="option-business-hierarchical-link-satellite-attribute-length" ParameterId="param-business-hierarchical-link-satellite-attribute-length" />
-    <Option Id="option-business-hierarchical-link-satellite-attribute-name" ParameterId="param-business-hierarchical-link-satellite-attribute-name" />
-    <Option Id="option-business-hierarchical-link-satellite-attribute-precision" ParameterId="param-business-hierarchical-link-satellite-attribute-precision" />
-    <Option Id="option-business-hierarchical-link-satellite-attribute-scale" ParameterId="param-business-hierarchical-link-satellite-attribute-scale" />
-    <Option Id="option-business-hierarchical-link-satellite-attribute-workspace" ParameterId="param-business-hierarchical-link-satellite-attribute-workspace" />
     <Option Id="option-business-hierarchical-link-satellite-description" ParameterId="param-business-hierarchical-link-satellite-description" />
     <Option Id="option-business-hierarchical-link-satellite-hierarchical-link" ParameterId="param-business-hierarchical-link-satellite-hierarchical-link" />
     <Option Id="option-business-hierarchical-link-satellite-id" ParameterId="param-business-hierarchical-link-satellite-id" />
@@ -43,14 +43,6 @@
     <Option Id="option-business-hub-key-part-scale" ParameterId="param-business-hub-key-part-scale" />
     <Option Id="option-business-hub-key-part-workspace" ParameterId="param-business-hub-key-part-workspace" />
     <Option Id="option-business-hub-name" ParameterId="param-business-hub-name" />
-    <Option Id="option-business-hub-satellite-attribute-data-type-id" ParameterId="param-business-hub-satellite-attribute-data-type-id" />
-    <Option Id="option-business-hub-satellite-attribute-hub-satellite" ParameterId="param-business-hub-satellite-attribute-hub-satellite" />
-    <Option Id="option-business-hub-satellite-attribute-id" ParameterId="param-business-hub-satellite-attribute-id" />
-    <Option Id="option-business-hub-satellite-attribute-length" ParameterId="param-business-hub-satellite-attribute-length" />
-    <Option Id="option-business-hub-satellite-attribute-name" ParameterId="param-business-hub-satellite-attribute-name" />
-    <Option Id="option-business-hub-satellite-attribute-precision" ParameterId="param-business-hub-satellite-attribute-precision" />
-    <Option Id="option-business-hub-satellite-attribute-scale" ParameterId="param-business-hub-satellite-attribute-scale" />
-    <Option Id="option-business-hub-satellite-attribute-workspace" ParameterId="param-business-hub-satellite-attribute-workspace" />
     <Option Id="option-business-hub-satellite-description" ParameterId="param-business-hub-satellite-description" />
     <Option Id="option-business-hub-satellite-hub" ParameterId="param-business-hub-satellite-hub" />
     <Option Id="option-business-hub-satellite-id" ParameterId="param-business-hub-satellite-id" />
@@ -65,14 +57,6 @@
     <Option Id="option-business-link-role-link" ParameterId="param-business-link-role-link" />
     <Option Id="option-business-link-role-name" ParameterId="param-business-link-role-name" />
     <Option Id="option-business-link-role-workspace" ParameterId="param-business-link-role-workspace" />
-    <Option Id="option-business-link-satellite-attribute-data-type-id" ParameterId="param-business-link-satellite-attribute-data-type-id" />
-    <Option Id="option-business-link-satellite-attribute-id" ParameterId="param-business-link-satellite-attribute-id" />
-    <Option Id="option-business-link-satellite-attribute-length" ParameterId="param-business-link-satellite-attribute-length" />
-    <Option Id="option-business-link-satellite-attribute-link-satellite" ParameterId="param-business-link-satellite-attribute-link-satellite" />
-    <Option Id="option-business-link-satellite-attribute-name" ParameterId="param-business-link-satellite-attribute-name" />
-    <Option Id="option-business-link-satellite-attribute-precision" ParameterId="param-business-link-satellite-attribute-precision" />
-    <Option Id="option-business-link-satellite-attribute-scale" ParameterId="param-business-link-satellite-attribute-scale" />
-    <Option Id="option-business-link-satellite-attribute-workspace" ParameterId="param-business-link-satellite-attribute-workspace" />
     <Option Id="option-business-link-satellite-description" ParameterId="param-business-link-satellite-description" />
     <Option Id="option-business-link-satellite-id" ParameterId="param-business-link-satellite-id" />
     <Option Id="option-business-link-satellite-link" ParameterId="param-business-link-satellite-link" />
@@ -112,14 +96,6 @@
     <Option Id="option-business-reference-key-part-scale" ParameterId="param-business-reference-key-part-scale" />
     <Option Id="option-business-reference-key-part-workspace" ParameterId="param-business-reference-key-part-workspace" />
     <Option Id="option-business-reference-name" ParameterId="param-business-reference-name" />
-    <Option Id="option-business-reference-satellite-attribute-data-type-id" ParameterId="param-business-reference-satellite-attribute-data-type-id" />
-    <Option Id="option-business-reference-satellite-attribute-id" ParameterId="param-business-reference-satellite-attribute-id" />
-    <Option Id="option-business-reference-satellite-attribute-length" ParameterId="param-business-reference-satellite-attribute-length" />
-    <Option Id="option-business-reference-satellite-attribute-name" ParameterId="param-business-reference-satellite-attribute-name" />
-    <Option Id="option-business-reference-satellite-attribute-precision" ParameterId="param-business-reference-satellite-attribute-precision" />
-    <Option Id="option-business-reference-satellite-attribute-reference-satellite" ParameterId="param-business-reference-satellite-attribute-reference-satellite" />
-    <Option Id="option-business-reference-satellite-attribute-scale" ParameterId="param-business-reference-satellite-attribute-scale" />
-    <Option Id="option-business-reference-satellite-attribute-workspace" ParameterId="param-business-reference-satellite-attribute-workspace" />
     <Option Id="option-business-reference-satellite-description" ParameterId="param-business-reference-satellite-description" />
     <Option Id="option-business-reference-satellite-id" ParameterId="param-business-reference-satellite-id" />
     <Option Id="option-business-reference-satellite-name" ParameterId="param-business-reference-satellite-name" />
@@ -131,14 +107,6 @@
     <Option Id="option-business-same-as-link-id" ParameterId="param-business-same-as-link-id" />
     <Option Id="option-business-same-as-link-name" ParameterId="param-business-same-as-link-name" />
     <Option Id="option-business-same-as-link-primary-hub" ParameterId="param-business-same-as-link-primary-hub" />
-    <Option Id="option-business-same-as-link-satellite-attribute-data-type-id" ParameterId="param-business-same-as-link-satellite-attribute-data-type-id" />
-    <Option Id="option-business-same-as-link-satellite-attribute-id" ParameterId="param-business-same-as-link-satellite-attribute-id" />
-    <Option Id="option-business-same-as-link-satellite-attribute-length" ParameterId="param-business-same-as-link-satellite-attribute-length" />
-    <Option Id="option-business-same-as-link-satellite-attribute-name" ParameterId="param-business-same-as-link-satellite-attribute-name" />
-    <Option Id="option-business-same-as-link-satellite-attribute-precision" ParameterId="param-business-same-as-link-satellite-attribute-precision" />
-    <Option Id="option-business-same-as-link-satellite-attribute-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-attribute-same-as-link-satellite" />
-    <Option Id="option-business-same-as-link-satellite-attribute-scale" ParameterId="param-business-same-as-link-satellite-attribute-scale" />
-    <Option Id="option-business-same-as-link-satellite-attribute-workspace" ParameterId="param-business-same-as-link-satellite-attribute-workspace" />
     <Option Id="option-business-same-as-link-satellite-description" ParameterId="param-business-same-as-link-satellite-description" />
     <Option Id="option-business-same-as-link-satellite-id" ParameterId="param-business-same-as-link-satellite-id" />
     <Option Id="option-business-same-as-link-satellite-name" ParameterId="param-business-same-as-link-satellite-name" />

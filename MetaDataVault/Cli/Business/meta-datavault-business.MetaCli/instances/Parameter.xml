@@ -72,39 +72,6 @@
       <IsRequired>true</IsRequired>
       <Name>parent-hub</Name>
     </Parameter>
-    <Parameter Id="param-business-hierarchical-link-satellite-attribute-data-type-id" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>data-type-id</Name>
-    </Parameter>
-    <Parameter Id="param-business-hierarchical-link-satellite-attribute-hierarchical-link-satellite" ValueShapeId="shape-text">
-      <Description>BusinessHierarchicalLinkSatellite id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>hierarchical-link-satellite</Name>
-    </Parameter>
-    <Parameter Id="param-business-hierarchical-link-satellite-attribute-id" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-business-hierarchical-link-satellite-attribute-length" ValueShapeId="shape-text">
-      <Description>Optional length datatype facet authored as metadata.</Description>
-      <Name>length</Name>
-    </Parameter>
-    <Parameter Id="param-business-hierarchical-link-satellite-attribute-name" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-business-hierarchical-link-satellite-attribute-precision" ValueShapeId="shape-text">
-      <Description>Optional precision datatype facet authored as metadata.</Description>
-      <Name>precision</Name>
-    </Parameter>
-    <Parameter Id="param-business-hierarchical-link-satellite-attribute-scale" ValueShapeId="shape-text">
-      <Description>Optional scale datatype facet authored as metadata.</Description>
-      <Name>scale</Name>
-    </Parameter>
-    <Parameter Id="param-business-hierarchical-link-satellite-attribute-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
     <Parameter Id="param-business-hierarchical-link-satellite-description" ValueShapeId="shape-text">
       <IsRequired>false</IsRequired>
       <Name>description</Name>
@@ -179,39 +146,6 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-business-hub-satellite-attribute-data-type-id" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>data-type-id</Name>
-    </Parameter>
-    <Parameter Id="param-business-hub-satellite-attribute-hub-satellite" ValueShapeId="shape-text">
-      <Description>BusinessHubSatellite id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>hub-satellite</Name>
-    </Parameter>
-    <Parameter Id="param-business-hub-satellite-attribute-id" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-business-hub-satellite-attribute-length" ValueShapeId="shape-text">
-      <Description>Optional length datatype facet authored as metadata.</Description>
-      <Name>length</Name>
-    </Parameter>
-    <Parameter Id="param-business-hub-satellite-attribute-name" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-business-hub-satellite-attribute-precision" ValueShapeId="shape-text">
-      <Description>Optional precision datatype facet authored as metadata.</Description>
-      <Name>precision</Name>
-    </Parameter>
-    <Parameter Id="param-business-hub-satellite-attribute-scale" ValueShapeId="shape-text">
-      <Description>Optional scale datatype facet authored as metadata.</Description>
-      <Name>scale</Name>
-    </Parameter>
-    <Parameter Id="param-business-hub-satellite-attribute-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
     <Parameter Id="param-business-hub-satellite-description" ValueShapeId="shape-text">
       <IsRequired>false</IsRequired>
       <Name>description</Name>
@@ -270,39 +204,6 @@
       <Name>name</Name>
     </Parameter>
     <Parameter Id="param-business-link-role-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-business-link-satellite-attribute-data-type-id" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>data-type-id</Name>
-    </Parameter>
-    <Parameter Id="param-business-link-satellite-attribute-id" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-business-link-satellite-attribute-length" ValueShapeId="shape-text">
-      <Description>Optional length datatype facet authored as metadata.</Description>
-      <Name>length</Name>
-    </Parameter>
-    <Parameter Id="param-business-link-satellite-attribute-link-satellite" ValueShapeId="shape-text">
-      <Description>BusinessLinkSatellite id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>link-satellite</Name>
-    </Parameter>
-    <Parameter Id="param-business-link-satellite-attribute-name" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-business-link-satellite-attribute-precision" ValueShapeId="shape-text">
-      <Description>Optional precision datatype facet authored as metadata.</Description>
-      <Name>precision</Name>
-    </Parameter>
-    <Parameter Id="param-business-link-satellite-attribute-scale" ValueShapeId="shape-text">
-      <Description>Optional scale datatype facet authored as metadata.</Description>
-      <Name>scale</Name>
-    </Parameter>
-    <Parameter Id="param-business-link-satellite-attribute-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <Name>workspace</Name>
     </Parameter>
@@ -470,39 +371,6 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-business-reference-satellite-attribute-data-type-id" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>data-type-id</Name>
-    </Parameter>
-    <Parameter Id="param-business-reference-satellite-attribute-id" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-business-reference-satellite-attribute-length" ValueShapeId="shape-text">
-      <Description>Optional length datatype facet authored as metadata.</Description>
-      <Name>length</Name>
-    </Parameter>
-    <Parameter Id="param-business-reference-satellite-attribute-name" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-business-reference-satellite-attribute-precision" ValueShapeId="shape-text">
-      <Description>Optional precision datatype facet authored as metadata.</Description>
-      <Name>precision</Name>
-    </Parameter>
-    <Parameter Id="param-business-reference-satellite-attribute-reference-satellite" ValueShapeId="shape-text">
-      <Description>BusinessReferenceSatellite id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>reference-satellite</Name>
-    </Parameter>
-    <Parameter Id="param-business-reference-satellite-attribute-scale" ValueShapeId="shape-text">
-      <Description>Optional scale datatype facet authored as metadata.</Description>
-      <Name>scale</Name>
-    </Parameter>
-    <Parameter Id="param-business-reference-satellite-attribute-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
     <Parameter Id="param-business-reference-satellite-description" ValueShapeId="shape-text">
       <IsRequired>false</IsRequired>
       <Name>description</Name>
@@ -550,39 +418,6 @@
       <IsRequired>true</IsRequired>
       <Name>primary-hub</Name>
     </Parameter>
-    <Parameter Id="param-business-same-as-link-satellite-attribute-data-type-id" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>data-type-id</Name>
-    </Parameter>
-    <Parameter Id="param-business-same-as-link-satellite-attribute-id" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-business-same-as-link-satellite-attribute-length" ValueShapeId="shape-text">
-      <Description>Optional length datatype facet authored as metadata.</Description>
-      <Name>length</Name>
-    </Parameter>
-    <Parameter Id="param-business-same-as-link-satellite-attribute-name" ValueShapeId="shape-text">
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-business-same-as-link-satellite-attribute-precision" ValueShapeId="shape-text">
-      <Description>Optional precision datatype facet authored as metadata.</Description>
-      <Name>precision</Name>
-    </Parameter>
-    <Parameter Id="param-business-same-as-link-satellite-attribute-same-as-link-satellite" ValueShapeId="shape-text">
-      <Description>BusinessSameAsLinkSatellite id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>same-as-link-satellite</Name>
-    </Parameter>
-    <Parameter Id="param-business-same-as-link-satellite-attribute-scale" ValueShapeId="shape-text">
-      <Description>Optional scale datatype facet authored as metadata.</Description>
-      <Name>scale</Name>
-    </Parameter>
-    <Parameter Id="param-business-same-as-link-satellite-attribute-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
     <Parameter Id="param-business-same-as-link-satellite-description" ValueShapeId="shape-text">
       <IsRequired>false</IsRequired>
       <Name>description</Name>
@@ -611,6 +446,46 @@
     <Parameter Id="param-new-workspace-path" ValueShapeId="shape-path">
       <IsRequired>true</IsRequired>
       <Name>Path</Name>
+    </Parameter>
+    <Parameter Id="parameter-add-business-satellite-attribute-data-type-id" ValueShapeId="shape-text">
+      <Description>Sanctioned business data type.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>data-type-id</Name>
+    </Parameter>
+    <Parameter Id="parameter-add-business-satellite-attribute-id" ValueShapeId="shape-text">
+      <Description>Identifier for the satellite attribute.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="parameter-add-business-satellite-attribute-length" ValueShapeId="shape-text">
+      <Description>Optional type length.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>length</Name>
+    </Parameter>
+    <Parameter Id="parameter-add-business-satellite-attribute-name" ValueShapeId="shape-text">
+      <Description>Attribute name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="parameter-add-business-satellite-attribute-precision" ValueShapeId="shape-text">
+      <Description>Optional type precision.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>precision</Name>
+    </Parameter>
+    <Parameter Id="parameter-add-business-satellite-attribute-satellite" ValueShapeId="shape-text">
+      <Description>Satellite that owns the attribute.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>satellite</Name>
+    </Parameter>
+    <Parameter Id="parameter-add-business-satellite-attribute-scale" ValueShapeId="shape-text">
+      <Description>Optional type scale.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>scale</Name>
+    </Parameter>
+    <Parameter Id="parameter-add-business-satellite-attribute-workspace" ValueShapeId="shape-path">
+      <Description>Workspace to update.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

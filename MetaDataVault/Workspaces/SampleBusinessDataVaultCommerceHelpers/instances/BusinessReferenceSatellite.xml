@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessReferenceSatelliteList>
-    <BusinessReferenceSatellite Id="StatusCurrent" BusinessReferenceId="Status">
-      <Name>Current</Name>
-    </BusinessReferenceSatellite>
+    <BusinessReferenceSatellite Id="StatusCurrent" BusinessReferenceId="Status" BusinessSatelliteId="StatusCurrent" />
   </BusinessReferenceSatelliteList>
 </MetaBusinessDataVault>

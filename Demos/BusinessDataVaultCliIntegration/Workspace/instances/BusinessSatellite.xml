@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSatelliteList>
+    <BusinessSatellite Id="CostCenterBudget">
+      <Description></Description>
+      <Name>CostCenterBudget</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CostCenterProfile">
+      <Description></Description>
+      <Name>CostCenterProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CurrencyCodeDescriptionSet">
+      <Description></Description>
+      <Name>CurrencyCodeDescriptionSet</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CustomerAddress">
+      <Description></Description>
+      <Name>CustomerAddress</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CustomerContact">
+      <Description></Description>
+      <Name>CustomerContact</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CustomerInvoiceStatus">
+      <Description></Description>
+      <Name>CustomerInvoiceStatus</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CustomerOrderStatus">
+      <Description></Description>
+      <Name>CustomerOrderStatus</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CustomerProfile">
+      <Description></Description>
+      <Name>CustomerProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CustomerSameAsCrmCustomerAudit">
+      <Description></Description>
+      <Name>CustomerSameAsCrmCustomerAudit</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="DepartmentCostCenterAssignment">
+      <Description></Description>
+      <Name>DepartmentCostCenterAssignment</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="DepartmentHierarchyInfo">
+      <Description></Description>
+      <Name>DepartmentHierarchyInfo</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="DepartmentManagerAssignment">
+      <Description></Description>
+      <Name>DepartmentManagerAssignment</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="DepartmentOperatingModel">
+      <Description></Description>
+      <Name>DepartmentOperatingModel</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="DepartmentProfile">
+      <Description></Description>
+      <Name>DepartmentProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="EmployeeCostCenterAssignment">
+      <Description></Description>
+      <Name>EmployeeCostCenterAssignment</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="EmployeeDepartmentAssignment">
+      <Description></Description>
+      <Name>EmployeeDepartmentAssignment</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="EmployeeEmployment">
+      <Description></Description>
+      <Name>EmployeeEmployment</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="EmployeeProfile">
+      <Description></Description>
+      <Name>EmployeeProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="InvoiceHeader">
+      <Description></Description>
+      <Name>InvoiceHeader</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="InvoiceShipmentTracking">
+      <Description></Description>
+      <Name>InvoiceShipmentTracking</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="OrderHeader">
+      <Description></Description>
+      <Name>OrderHeader</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="OrderProductLine">
+      <Description></Description>
+      <Name>OrderProductLine</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="OrderStatusDescriptionSet">
+      <Description></Description>
+      <Name>OrderStatusDescriptionSet</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="ProductCommercial">
+      <Description></Description>
+      <Name>ProductCommercial</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="ProductProfile">
+      <Description></Description>
+      <Name>ProductProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="ShipmentHeader">
+      <Description></Description>
+      <Name>ShipmentHeader</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="SupplierCompliance">
+      <Description></Description>
+      <Name>SupplierCompliance</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="SupplierInvoiceTerms">
+      <Description></Description>
+      <Name>SupplierInvoiceTerms</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="SupplierProductTerms">
+      <Description></Description>
+      <Name>SupplierProductTerms</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="SupplierProfile">
+      <Description></Description>
+      <Name>SupplierProfile</Name>
+    </BusinessSatellite>
+  </BusinessSatelliteList>
+</MetaBusinessDataVault>

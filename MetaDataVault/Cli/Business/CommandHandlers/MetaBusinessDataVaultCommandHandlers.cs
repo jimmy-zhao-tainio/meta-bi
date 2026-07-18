@@ -9,6 +9,21 @@ using MetaDataVault.Core;
 
 internal sealed class MetaBusinessDataVaultCommandHandlers
 {
+    private static readonly IReadOnlyDictionary<string, SatelliteCommandSpec> SatelliteCommandsByName =
+        new[]
+        {
+            new SatelliteCommandSpec("add-hub-satellite", "exec-add-business-hub-satellite", "BusinessHubSatellite", "hub", "BusinessHub"),
+            new SatelliteCommandSpec("add-link-satellite", "exec-add-business-link-satellite", "BusinessLinkSatellite", "link", "BusinessLink"),
+            new SatelliteCommandSpec("add-reference-satellite", "exec-add-business-reference-satellite", "BusinessReferenceSatellite", "reference", "BusinessReference"),
+            new SatelliteCommandSpec("add-same-as-link-satellite", "exec-add-business-same-as-link-satellite", "BusinessSameAsLinkSatellite", "same-as-link", "BusinessSameAsLink"),
+            new SatelliteCommandSpec("add-hierarchical-link-satellite", "exec-add-business-hierarchical-link-satellite", "BusinessHierarchicalLinkSatellite", "hierarchical-link", "BusinessHierarchicalLink"),
+        }
+        .ToDictionary(static spec => spec.CommandName, StringComparer.OrdinalIgnoreCase);
+
+    private static readonly IReadOnlySet<string> SatelliteEntityNames = SatelliteCommandsByName.Values
+        .Select(static spec => spec.SatelliteEntityName)
+        .ToHashSet(StringComparer.Ordinal);
+
     private static readonly IReadOnlyDictionary<string, AuthoringCommandSpec> AuthoringCommandsByName =
         BuildAuthoringCommands()
             .ToDictionary(static spec => spec.CommandName, StringComparer.OrdinalIgnoreCase);
@@ -28,9 +43,11 @@ internal sealed class MetaBusinessDataVaultCommandHandlers
     }
 
     public static IReadOnlyList<string> AuthoringExecutableCommandIds =>
-        AuthoringCommandsByName.Values
-            .OrderBy(static spec => spec.CommandName, StringComparer.Ordinal)
+        SatelliteCommandsByName.Values
             .Select(static spec => spec.ExecutableCommandId)
+            .Concat(AuthoringCommandsByName.Values.Select(static spec => spec.ExecutableCommandId))
+            .Distinct(StringComparer.Ordinal)
+            .OrderBy(static id => id, StringComparer.Ordinal)
             .ToArray();
 
     public void RunNewWorkspace(MetaCliInvocation invocation)
@@ -70,6 +87,12 @@ internal sealed class MetaBusinessDataVaultCommandHandlers
 
     public void RunAddRecord(MetaCliInvocation invocation)
     {
+        if (SatelliteCommandsByName.TryGetValue(invocation.Command.Name, out var satelliteSpec))
+        {
+            RunAddSatellite(invocation, satelliteSpec);
+            return;
+        }
+
         if (!AuthoringCommandsByName.TryGetValue(invocation.Command.Name, out var spec))
         {
             Fail(
@@ -128,6 +151,35 @@ internal sealed class MetaBusinessDataVaultCommandHandlers
         }
     }
 
+    private void RunAddSatellite(MetaCliInvocation invocation, SatelliteCommandSpec spec)
+    {
+        var request = new BusinessDataVaultSatelliteRequest
+        {
+            WorkspacePath = Path.GetFullPath(invocation.Optional("workspace") ?? Directory.GetCurrentDirectory()),
+            SatelliteEntityName = spec.SatelliteEntityName,
+            ParentEntityName = spec.ParentEntityName,
+            ParentRecordId = invocation.Required(spec.ParentOptionName),
+            RecordId = invocation.Required("id"),
+            Name = invocation.Required("name"),
+            Description = invocation.Optional("description"),
+        };
+
+        try
+        {
+            authoringService.AddSatellite(request);
+            presenter.WriteOk($"Added {request.RecordId} to {spec.SatelliteEntityName}");
+        }
+        catch (Exception ex) when (ex is not MetaCliExitException and
+                                   (InvalidOperationException or ArgumentException or IOException or UnauthorizedAccessException))
+        {
+            Fail(
+                "Cannot update business DataVault workspace.",
+                $"{appName} help {spec.CommandName}",
+                4,
+                [$"  {ex.Message}"]);
+        }
+    }
+
     private static void AddDataTypeDetail(
         BusinessDataVaultAuthoringRequest request,
         MetaCliInvocation invocation,
@@ -154,7 +206,9 @@ internal sealed class MetaBusinessDataVaultCommandHandlers
         var entityNames = allEntityTypes.Select(static type => type.Name).ToHashSet(StringComparer.Ordinal);
 
         return allEntityTypes
-            .Where(static type => !type.Name.EndsWith("DataTypeDetail", StringComparison.Ordinal))
+            .Where(type => !type.Name.EndsWith("DataTypeDetail", StringComparison.Ordinal) &&
+                           !string.Equals(type.Name, "BusinessSatellite", StringComparison.Ordinal) &&
+                           !SatelliteEntityNames.Contains(type.Name))
             .Select(type => BuildAuthoringCommand(type, entityNames))
             .ToArray();
     }
@@ -274,4 +328,11 @@ internal sealed class MetaBusinessDataVaultCommandHandlers
         string OptionName,
         string ColumnName,
         string TargetEntityName);
+
+    private sealed record SatelliteCommandSpec(
+        string CommandName,
+        string ExecutableCommandId,
+        string SatelliteEntityName,
+        string ParentOptionName,
+        string ParentEntityName);
 }

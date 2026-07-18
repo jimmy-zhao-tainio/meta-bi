@@ -664,19 +664,19 @@ public sealed class ConvertToMetaSqlTests
             var customerProfile = model.BusinessHubSatelliteList.Single(row => row.Id == "CustomerProfile");
             var customerOrderStatus = model.BusinessLinkSatelliteList.Single(row => row.Id == "CustomerOrderStatus");
 
-            customerProfile.Name = "ZuluProfile";
-            customerOrderStatus.Name = "AlphaStatus";
-            model.BusinessHubSatelliteAttributeList.Add(new BusinessHubSatelliteAttribute
+            customerProfile.BusinessSatellite.Name = "ZuluProfile";
+            customerOrderStatus.BusinessSatellite.Name = "AlphaStatus";
+            model.BusinessSatelliteAttributeList.Add(new BusinessSatelliteAttribute
             {
                 Id = "zulu-payload-id",
-                BusinessHubSatellite = customerProfile,
+                BusinessSatellite = customerProfile.BusinessSatellite,
                 DataTypeId = "meta:type:String",
                 Name = "AlphaPayload",
             });
-            model.BusinessHubSatelliteAttributeList.Add(new BusinessHubSatelliteAttribute
+            model.BusinessSatelliteAttributeList.Add(new BusinessSatelliteAttribute
             {
                 Id = "alpha-payload-id",
-                BusinessHubSatellite = customerProfile,
+                BusinessSatellite = customerProfile.BusinessSatellite,
                 DataTypeId = "meta:type:String",
                 Name = "ZuluPayload",
             });
@@ -1026,22 +1026,12 @@ public sealed class ConvertToMetaSqlTests
                 row.DataTypeId = "sqlserver:type:nvarchar";
             }
 
-            foreach (var row in model.BusinessHubSatelliteAttributeList)
-            {
-                row.DataTypeId = "sqlserver:type:nvarchar";
-            }
-
-            foreach (var row in model.BusinessLinkSatelliteAttributeList)
-            {
-                row.DataTypeId = "sqlserver:type:nvarchar";
-            }
-
             foreach (var row in model.BusinessReferenceKeyPartList)
             {
                 row.DataTypeId = "sqlserver:type:nvarchar";
             }
 
-            foreach (var row in model.BusinessReferenceSatelliteAttributeList)
+            foreach (var row in model.BusinessSatelliteAttributeList)
             {
                 row.DataTypeId = "sqlserver:type:nvarchar";
             }

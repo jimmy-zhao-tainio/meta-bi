@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSatelliteAttributeDataTypeDetailList>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CarrierNameLength" BusinessSatelliteAttributeId="CarrierName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CostCenterBudgetAmountPrecision" BusinessSatelliteAttributeId="CostCenterBudgetAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CostCenterBudgetAmountScale" BusinessSatelliteAttributeId="CostCenterBudgetAmount">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CostCenterNameLength" BusinessSatelliteAttributeId="CostCenterName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CurrencyCodeDescriptionLength" BusinessSatelliteAttributeId="CurrencyCodeDescription">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerCityNameLength" BusinessSatelliteAttributeId="CustomerCityName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerCountryCodeLength" BusinessSatelliteAttributeId="CustomerCountryCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerEmailAddressLength" BusinessSatelliteAttributeId="CustomerEmailAddress">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerInvoiceBillingStatusLength" BusinessSatelliteAttributeId="CustomerInvoiceBillingStatus">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerNameLength" BusinessSatelliteAttributeId="CustomerName">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerOrderCurrencyCodeLength" BusinessSatelliteAttributeId="CustomerOrderCurrencyCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerOrderStatusCodeLength" BusinessSatelliteAttributeId="CustomerOrderStatusCode">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerPhoneNumberLength" BusinessSatelliteAttributeId="CustomerPhoneNumber">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerSameAsCrmConfidencePrecision" BusinessSatelliteAttributeId="CustomerSameAsCrmConfidence">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerSameAsCrmConfidenceScale" BusinessSatelliteAttributeId="CustomerSameAsCrmConfidence">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerTierLength" BusinessSatelliteAttributeId="CustomerTier">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="DepartmentCostCenterSharePrecision" BusinessSatelliteAttributeId="DepartmentCostCenterShare">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="DepartmentCostCenterShareScale" BusinessSatelliteAttributeId="DepartmentCostCenterShare">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="DepartmentNameLength" BusinessSatelliteAttributeId="DepartmentName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="DepartmentRegionNameLength" BusinessSatelliteAttributeId="DepartmentRegionName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="DepartmentTypeLength" BusinessSatelliteAttributeId="DepartmentType">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="EmployeeCostCenterAllocationPercentagePrecision" BusinessSatelliteAttributeId="EmployeeCostCenterAllocationPercentage">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="EmployeeCostCenterAllocationPercentageScale" BusinessSatelliteAttributeId="EmployeeCostCenterAllocationPercentage">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="EmployeeEmploymentTypeLength" BusinessSatelliteAttributeId="EmployeeEmploymentType">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="EmployeeNameLength" BusinessSatelliteAttributeId="EmployeeName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="InvoiceAmountPrecision" BusinessSatelliteAttributeId="InvoiceAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="InvoiceAmountScale" BusinessSatelliteAttributeId="InvoiceAmount">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="OrderAmountPrecision" BusinessSatelliteAttributeId="OrderAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="OrderAmountScale" BusinessSatelliteAttributeId="OrderAmount">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="OrderProductUnitPricePrecision" BusinessSatelliteAttributeId="OrderProductUnitPrice">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="OrderProductUnitPriceScale" BusinessSatelliteAttributeId="OrderProductUnitPrice">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="OrderStatusDescriptionLength" BusinessSatelliteAttributeId="OrderStatusDescription">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductBrandLength" BusinessSatelliteAttributeId="ProductBrand">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductCategoryLength" BusinessSatelliteAttributeId="ProductCategory">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductLifecycleStatusLength" BusinessSatelliteAttributeId="ProductLifecycleStatus">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductNameLength" BusinessSatelliteAttributeId="ProductName">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SupplierInvoicePaymentTermsCodeLength" BusinessSatelliteAttributeId="SupplierInvoicePaymentTermsCode">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SupplierNameLength" BusinessSatelliteAttributeId="SupplierName">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SupplierRiskClassLength" BusinessSatelliteAttributeId="SupplierRiskClass">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SupplierTaxIdentifierLength" BusinessSatelliteAttributeId="SupplierTaxIdentifier">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+  </BusinessSatelliteAttributeDataTypeDetailList>
+</MetaBusinessDataVault>

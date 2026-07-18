@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSatelliteList>
+    <BusinessSatellite Id="CustomerOrderStatus">
+      <Description></Description>
+      <Name>Status</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CustomerProfile">
+      <Description></Description>
+      <Name>Profile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="StatusCurrent">
+      <Description></Description>
+      <Name>Current</Name>
+    </BusinessSatellite>
+  </BusinessSatelliteList>
+</MetaBusinessDataVault>

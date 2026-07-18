@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessSameAsLinkSatelliteAttributeList>
-    <BusinessSameAsLinkSatelliteAttribute Id="CustomerMatchScore" BusinessSameAsLinkSatelliteId="CustomerMatchEvidence">
-      <DataTypeId>meta:type:String</DataTypeId>
-      <Name>MatchScore</Name>
-    </BusinessSameAsLinkSatelliteAttribute>
-  </BusinessSameAsLinkSatelliteAttributeList>
-</MetaBusinessDataVault>

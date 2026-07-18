@@ -4,7 +4,7 @@
 
 1. Done: SQL Server `decimal`/`numeric` compatibility.
 2. Done: MetaSchema types and Raw Data Vault ownership, roles, and false-ordering cleanup.
-3. In progress: Business Data Vault common satellite/attribute structure; roles, traversal, key precedence, payload-nullability policy, and false-ordering cleanup are done.
+3. Done: Business Data Vault common satellite/attribute structure; roles, traversal, key precedence, payload-nullability policy, and false-ordering cleanup.
 4. Pending product-model decision: satellite row identity and load metadata.
 5. Done: Data Vault hash-key storage width.
 6. Pending product-model decision: business datatype lowering.
@@ -14,7 +14,7 @@
 10. Blocked demo work: AdventureWorks full-stack should not continue until the relevant product decisions are settled and reimplemented deliberately.
 11. Complete: `MERGE` match semantics use explicit clause entities and an explicit predecessor chain.
 
-Current work: review the remaining Business Data Vault common-satellite/common-attribute structure. Business satellite payload attributes are nullable by design; do not add nullability flags, subtype entities, binding proof, or compatibility shims.
+Current work: item 3 is complete. Business satellite payload attributes are nullable by design; do not add nullability flags, subtype entities, binding proof, or compatibility shims.
 
 ## Purpose
 
@@ -188,7 +188,7 @@ Regenerated Raw tooling no longer exposes the three properties. The Data Vault t
 
 ## 3. Business Data Vault Satellite Structure and Link Roles
 
-Status: Partially implemented on 2026-07-18; roles, traversal, composite-key precedence, and false-ordering cleanup are complete; payload attributes are nullable by design
+Status: Complete on 2026-07-18
 
 Observed problem:
 
@@ -224,7 +224,7 @@ Role direction approved on 2026-07-15: role meaning must be represented by entit
 - The authoring service rejects invalid role names and invalid traversal chains before saving. The converter invokes the same rules before projecting SQL, so malformed externally supplied models fail at the consumption boundary rather than being interpreted heuristically.
 - Verification: the Business Data Vault test suite passed 47/47; the tracked integration mesh validated 148 steps, built/deployed 148/148 to a zero-change final manifest, and its modeled cleanup passed 9/9.
 
-The satellite/attribute/nullability redesign and the remaining false Business ordinals remain pending under this item. They are not implied by this completed sub-slice.
+The satellite/attribute/common-structure redesign and the remaining false Business ordinals were completed later under this item. They were deliberately kept separate from this roles/traversal sub-slice.
 
 ### 3.2 Completed: Composite Business Key Precedence
 
@@ -240,7 +240,15 @@ Hygiene finding: the typed `meta-cli` save that authored the new Business CLI op
 - Removed scalar `Ordinal` from the five Business satellite-attribute entities, `BusinessPointInTimeStamp`, `BusinessPointInTimeHubSatellite`, and `BusinessPointInTimeLinkSatellite`. The canonical Business model, three tracked sample workspaces, and the tracked Business integration workspace were migrated through `meta model drop-property --strict`, which also removed persisted property values.
 - Removed the eight matching `--ordinal` option aggregates from the authored Business MetaCli workspace through `meta delete --strict`, in relationship-safe token, option, executable-command-parameter, and parameter order. The generic writer canonicalized touched empty MetaCli rows to self-closing form; that broad textual churn has no command-surface semantic change beyond the eight deleted aggregates.
 - Business authoring no longer manufactures sequence numbers. Business SQL conversion orders satellite payload members by case-insensitive `Name`, then `Id`; point-in-time hub and link satellite references are projected as one `Name`, then `Id` sequence rather than two ordinal-driven groups.
-- Verification: regenerated `MetaBusinessDataVault` tooling built with 0 warnings/errors; `MetaDataVault.Tests` passed 52/52, including direct name-over-ID projection coverage and help coverage for all eight commands; a direct executable help check confirms `add-hub-satellite-attribute` exposes no `--ordinal`. With trusted localhost SQL connections, the 148-step `build-and-deploy-business-data-vault` mesh passed end to end: 58 tables, 26 primary keys, and 61 foreign keys were deployed, and the verification deploy manifest reported no changes.
+- Verification: regenerated `MetaBusinessDataVault` tooling built with 0 warnings/errors; `MetaDataVault.Tests` passed 53/53, including direct name-over-ID projection coverage and help coverage for `add-satellite-attribute`; a direct executable help check confirms it exposes no `--ordinal`. With trusted localhost SQL connections, the 148-step `build-and-deploy-business-data-vault` mesh passed end to end: 58 tables, 26 primary keys, and 61 foreign keys were deployed, and the verification deploy manifest reported no changes.
+
+### 3.4 Completed: Common Satellite and Attribute Structure
+
+- `BusinessSatellite` now holds the common satellite identity, name, and optional description. Each common row has exactly one typed concrete specialization: hub, link, reference, same-as-link, or hierarchical-link satellite. The existing point-in-time hub/link satellite relationships remain concrete and typed.
+- `BusinessSatelliteAttribute` and `BusinessSatelliteAttributeDataTypeDetail` replace the five repeated satellite-specific attribute/detail families. Existing satellite, attribute, and detail IDs were preserved while canonical and tracked sample/demo workspaces were migrated through generic Meta tooling.
+- The five parent-specific satellite commands create the common base and their specialization atomically. One `add-satellite-attribute --satellite <id>` command authors payload attributes for every satellite type; the retired payload commands and aliases are gone.
+- Domain rules run in both authoring and Business-to-SQL conversion: every concrete satellite must reference a modeled common satellite, and every common satellite must have exactly one concrete specialization.
+- The Business integration mesh's 44 payload steps now use the common attribute command. The migration used generic Meta instance operations because MetaMesh does not yet expose step edit/remove commands; no XML was edited.
 
 ## 4. Satellite Row Identity and Load Metadata
 

@@ -102,12 +102,12 @@ public static partial class Converter
         MetaBusinessDataVaultModel model,
         ConversionContext context,
         BusinessLinkSatelliteImplementation businessLinkSatelliteImplementation,
-        IReadOnlyDictionary<string, List<BusinessLinkSatelliteAttribute>> businessLinkSatelliteAttributesBySatelliteId,
-        IReadOnlyDictionary<string, List<BusinessLinkSatelliteAttributeDataTypeDetail>> businessLinkSatelliteAttributeDetailsByAttributeId,
+        IReadOnlyDictionary<string, List<BusinessSatelliteAttribute>> businessSatelliteAttributesBySatelliteId,
+        IReadOnlyDictionary<string, List<BusinessSatelliteAttributeDataTypeDetail>> businessSatelliteAttributeDetailsByAttributeId,
         IReadOnlyDictionary<string, Table> linkTablesByLinkId,
         IReadOnlyDictionary<string, TableColumn> linkHashKeyColumnsByLinkId)
     {
-        foreach (var satellite in model.BusinessLinkSatelliteList.OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
+        foreach (var satellite in model.BusinessLinkSatelliteList.OrderBy(row => row.BusinessSatellite.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
         {
             var table = AddTable(
                 context,
@@ -115,7 +115,7 @@ public static partial class Converter
                 ApplyPattern(
                     businessLinkSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.BusinessLink.Name),
-                    ("Name", satellite.Name)));
+                    ("Name", satellite.BusinessSatellite.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var parentHashKeyColumn = AddImplementationColumn(
@@ -127,13 +127,13 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessLinkSatelliteImplementation.ParentHashKeyLength));
 
-            var members = GetGroup(businessLinkSatelliteAttributesBySatelliteId, satellite.Id)
+            var members = GetGroup(businessSatelliteAttributesBySatelliteId, satellite.Id)
                 .Select(row => CreateBusinessColumnMember(
                     row.Id,
                     row.Name,
                     row.DataTypeId,
                     GetDetailPairs(
-                        businessLinkSatelliteAttributeDetailsByAttributeId,
+                        businessSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
                         detail => detail.Value)));

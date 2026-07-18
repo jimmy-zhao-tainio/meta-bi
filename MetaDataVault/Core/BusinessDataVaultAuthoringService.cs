@@ -14,6 +14,17 @@ public sealed class BusinessDataVaultAuthoringRequest
     public Dictionary<string, string> DataTypeDetails { get; } = new(StringComparer.OrdinalIgnoreCase);
 }
 
+public sealed class BusinessDataVaultSatelliteRequest
+{
+    public required string WorkspacePath { get; init; }
+    public required string SatelliteEntityName { get; init; }
+    public required string ParentEntityName { get; init; }
+    public required string ParentRecordId { get; init; }
+    public required string RecordId { get; init; }
+    public required string Name { get; init; }
+    public string? Description { get; init; }
+}
+
 public sealed record BusinessDataVaultRelationshipAssignment(string ColumnName, string TargetEntityName, string TargetRecordId);
 
 public sealed record BusinessDataVaultWorkspaceCreationResult(
@@ -26,6 +37,8 @@ public interface IBusinessDataVaultAuthoringService
     BusinessDataVaultWorkspaceCreationResult CreateWorkspace(string workspacePath);
 
     MetaBusinessDataVaultModel AddRecord(BusinessDataVaultAuthoringRequest request);
+
+    MetaBusinessDataVaultModel AddSatellite(BusinessDataVaultSatelliteRequest request);
 }
 
 public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthoringService
@@ -75,6 +88,69 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
         rows.Add(rowToAdd);
         AddDataTypeDetails(model, rowToAdd, request);
         ValidateDomainRules(model, rowToAdd, request);
+        BusinessDataVaultRules.ValidateSatelliteSpecializations(model);
+
+        model.SaveToXmlWorkspace(workspacePath);
+        return model;
+    }
+
+    public MetaBusinessDataVaultModel AddSatellite(BusinessDataVaultSatelliteRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+        ArgumentException.ThrowIfNullOrWhiteSpace(request.WorkspacePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(request.SatelliteEntityName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(request.ParentEntityName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(request.ParentRecordId);
+        ArgumentException.ThrowIfNullOrWhiteSpace(request.RecordId);
+        ArgumentException.ThrowIfNullOrWhiteSpace(request.Name);
+
+        var workspacePath = Path.GetFullPath(request.WorkspacePath);
+        var model = MetaBusinessDataVaultTooling.Load(workspacePath);
+        var baseEntityType = ResolveEntityType("BusinessSatellite");
+        var baseRows = GetEntityRows(model, baseEntityType, "BusinessSatellite");
+        var satelliteEntityType = ResolveEntityType(request.SatelliteEntityName);
+        var satelliteRows = GetEntityRows(model, satelliteEntityType, request.SatelliteEntityName);
+
+        if (baseRows.Cast<object>().Any(row => string.Equals(ReadId(row), request.RecordId, StringComparison.Ordinal)))
+        {
+            throw new InvalidOperationException($"BusinessSatellite '{request.RecordId}' already exists.");
+        }
+
+        if (satelliteRows.Cast<object>().Any(row => string.Equals(ReadId(row), request.RecordId, StringComparison.Ordinal)))
+        {
+            throw new InvalidOperationException($"{request.SatelliteEntityName} '{request.RecordId}' already exists.");
+        }
+
+        var baseRow = Activator.CreateInstance(baseEntityType)
+            ?? throw new InvalidOperationException("Could not create BusinessSatellite row.");
+        SetText(baseRow, "Id", request.RecordId, "BusinessSatellite");
+        SetText(baseRow, "Name", request.Name, "BusinessSatellite");
+        if (!string.IsNullOrWhiteSpace(request.Description))
+        {
+            SetText(baseRow, "Description", request.Description, "BusinessSatellite");
+        }
+
+        baseRows.Add(baseRow);
+
+        var satelliteRow = Activator.CreateInstance(satelliteEntityType)
+            ?? throw new InvalidOperationException($"Could not create {request.SatelliteEntityName} row.");
+        SetText(satelliteRow, "Id", request.RecordId, request.SatelliteEntityName);
+        AssignRelationship(
+            model,
+            satelliteRow,
+            request.SatelliteEntityName,
+            new BusinessDataVaultRelationshipAssignment("BusinessSatelliteId", "BusinessSatellite", request.RecordId));
+        AssignRelationship(
+            model,
+            satelliteRow,
+            request.SatelliteEntityName,
+            new BusinessDataVaultRelationshipAssignment(
+                $"{request.ParentEntityName}Id",
+                request.ParentEntityName,
+                request.ParentRecordId));
+
+        satelliteRows.Add(satelliteRow);
+        BusinessDataVaultRules.ValidateSatelliteSpecializations(model);
 
         model.SaveToXmlWorkspace(workspacePath);
         return model;
