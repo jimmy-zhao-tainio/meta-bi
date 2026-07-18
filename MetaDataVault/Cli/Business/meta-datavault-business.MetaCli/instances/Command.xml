@@ -1,85 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <CommandList>
-    <Command Id="cmd-help" ApplicationId="app-meta-datavault-business">
-      <Description>Show help.</Description>
-      <Name>help</Name>
-      <Token>help</Token>
+    <Command Id="cmd-add-business-bridge" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessBridge row.</Description>
+      <Name>add-bridge</Name>
+      <Token>add-bridge</Token>
     </Command>
-    <Command Id="cmd-new-workspace" ApplicationId="app-meta-datavault-business">
-      <Description>Create a MetaBusinessDataVault workspace.</Description>
-      <Name>new-workspace</Name>
-      <Token>new-workspace</Token>
-    </Command>
-    <Command Id="cmd-add-business-hub" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessHub row.</Description>
-      <Name>add-hub</Name>
-      <Token>add-hub</Token>
-    </Command>
-    <Command Id="cmd-add-business-hub-key-part" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessHubKeyPart row.</Description>
-      <Name>add-hub-key-part</Name>
-      <Token>add-hub-key-part</Token>
-    </Command>
-    <Command Id="cmd-add-business-link" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessLink row.</Description>
-      <Name>add-link</Name>
-      <Token>add-link</Token>
-    </Command>
-    <Command Id="cmd-add-business-link-hub" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessLinkHub row.</Description>
-      <Name>add-link-hub</Name>
-      <Token>add-link-hub</Token>
-    </Command>
-    <Command Id="cmd-add-business-same-as-link" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessSameAsLink row.</Description>
-      <Name>add-same-as-link</Name>
-      <Token>add-same-as-link</Token>
+    <Command Id="cmd-add-business-bridge-traversal" ApplicationId="app-meta-datavault-business">
+      <Description>Add a predecessor-linked BusinessBridgeTraversal row.</Description>
+      <Name>add-bridge-traversal</Name>
+      <Token>add-bridge-traversal</Token>
     </Command>
     <Command Id="cmd-add-business-hierarchical-link" ApplicationId="app-meta-datavault-business">
       <Description>Add a BusinessHierarchicalLink row.</Description>
       <Name>add-hierarchical-link</Name>
       <Token>add-hierarchical-link</Token>
-    </Command>
-    <Command Id="cmd-add-business-reference" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessReference row.</Description>
-      <Name>add-reference</Name>
-      <Token>add-reference</Token>
-    </Command>
-    <Command Id="cmd-add-business-reference-key-part" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessReferenceKeyPart row.</Description>
-      <Name>add-reference-key-part</Name>
-      <Token>add-reference-key-part</Token>
-    </Command>
-    <Command Id="cmd-add-business-hub-satellite" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessHubSatellite row.</Description>
-      <Name>add-hub-satellite</Name>
-      <Token>add-hub-satellite</Token>
-    </Command>
-    <Command Id="cmd-add-business-hub-satellite-attribute" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessHubSatelliteAttribute row.</Description>
-      <Name>add-hub-satellite-attribute</Name>
-      <Token>add-hub-satellite-attribute</Token>
-    </Command>
-    <Command Id="cmd-add-business-link-satellite" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessLinkSatellite row.</Description>
-      <Name>add-link-satellite</Name>
-      <Token>add-link-satellite</Token>
-    </Command>
-    <Command Id="cmd-add-business-link-satellite-attribute" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessLinkSatelliteAttribute row.</Description>
-      <Name>add-link-satellite-attribute</Name>
-      <Token>add-link-satellite-attribute</Token>
-    </Command>
-    <Command Id="cmd-add-business-same-as-link-satellite" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessSameAsLinkSatellite row.</Description>
-      <Name>add-same-as-link-satellite</Name>
-      <Token>add-same-as-link-satellite</Token>
-    </Command>
-    <Command Id="cmd-add-business-same-as-link-satellite-attribute" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessSameAsLinkSatelliteAttribute row.</Description>
-      <Name>add-same-as-link-satellite-attribute</Name>
-      <Token>add-same-as-link-satellite-attribute</Token>
     </Command>
     <Command Id="cmd-add-business-hierarchical-link-satellite" ApplicationId="app-meta-datavault-business">
       <Description>Add a BusinessHierarchicalLinkSatellite row.</Description>
@@ -91,25 +26,50 @@
       <Name>add-hierarchical-link-satellite-attribute</Name>
       <Token>add-hierarchical-link-satellite-attribute</Token>
     </Command>
-    <Command Id="cmd-add-business-reference-satellite" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessReferenceSatellite row.</Description>
-      <Name>add-reference-satellite</Name>
-      <Token>add-reference-satellite</Token>
+    <Command Id="cmd-add-business-hub" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessHub row.</Description>
+      <Name>add-hub</Name>
+      <Token>add-hub</Token>
     </Command>
-    <Command Id="cmd-add-business-reference-satellite-attribute" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessReferenceSatelliteAttribute row.</Description>
-      <Name>add-reference-satellite-attribute</Name>
-      <Token>add-reference-satellite-attribute</Token>
+    <Command Id="cmd-add-business-hub-key-part" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessHubKeyPart row.</Description>
+      <Name>add-hub-key-part</Name>
+      <Token>add-hub-key-part</Token>
+    </Command>
+    <Command Id="cmd-add-business-hub-satellite" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessHubSatellite row.</Description>
+      <Name>add-hub-satellite</Name>
+      <Token>add-hub-satellite</Token>
+    </Command>
+    <Command Id="cmd-add-business-hub-satellite-attribute" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessHubSatelliteAttribute row.</Description>
+      <Name>add-hub-satellite-attribute</Name>
+      <Token>add-hub-satellite-attribute</Token>
+    </Command>
+    <Command Id="cmd-add-business-link" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessLink row.</Description>
+      <Name>add-link</Name>
+      <Token>add-link</Token>
+    </Command>
+    <Command Id="cmd-add-business-link-role" ApplicationId="app-meta-datavault-business">
+      <Description>Add a named BusinessLinkRole row.</Description>
+      <Name>add-link-role</Name>
+      <Token>add-link-role</Token>
+    </Command>
+    <Command Id="cmd-add-business-link-satellite" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessLinkSatellite row.</Description>
+      <Name>add-link-satellite</Name>
+      <Token>add-link-satellite</Token>
+    </Command>
+    <Command Id="cmd-add-business-link-satellite-attribute" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessLinkSatelliteAttribute row.</Description>
+      <Name>add-link-satellite-attribute</Name>
+      <Token>add-link-satellite-attribute</Token>
     </Command>
     <Command Id="cmd-add-business-point-in-time" ApplicationId="app-meta-datavault-business">
       <Description>Add a BusinessPointInTime row.</Description>
       <Name>add-point-in-time</Name>
       <Token>add-point-in-time</Token>
-    </Command>
-    <Command Id="cmd-add-business-point-in-time-stamp" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessPointInTimeStamp row.</Description>
-      <Name>add-point-in-time-stamp</Name>
-      <Token>add-point-in-time-stamp</Token>
     </Command>
     <Command Id="cmd-add-business-point-in-time-hub-satellite" ApplicationId="app-meta-datavault-business">
       <Description>Add a BusinessPointInTimeHubSatellite row.</Description>
@@ -121,20 +81,55 @@
       <Name>add-point-in-time-link-satellite</Name>
       <Token>add-point-in-time-link-satellite</Token>
     </Command>
-    <Command Id="cmd-add-business-bridge" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessBridge row.</Description>
-      <Name>add-bridge</Name>
-      <Token>add-bridge</Token>
+    <Command Id="cmd-add-business-point-in-time-stamp" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessPointInTimeStamp row.</Description>
+      <Name>add-point-in-time-stamp</Name>
+      <Token>add-point-in-time-stamp</Token>
     </Command>
-    <Command Id="cmd-add-business-bridge-link" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessBridgeLink row.</Description>
-      <Name>add-bridge-link</Name>
-      <Token>add-bridge-link</Token>
+    <Command Id="cmd-add-business-reference" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessReference row.</Description>
+      <Name>add-reference</Name>
+      <Token>add-reference</Token>
     </Command>
-    <Command Id="cmd-add-business-bridge-hub" ApplicationId="app-meta-datavault-business">
-      <Description>Add a BusinessBridgeHub row.</Description>
-      <Name>add-bridge-hub</Name>
-      <Token>add-bridge-hub</Token>
+    <Command Id="cmd-add-business-reference-key-part" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessReferenceKeyPart row.</Description>
+      <Name>add-reference-key-part</Name>
+      <Token>add-reference-key-part</Token>
+    </Command>
+    <Command Id="cmd-add-business-reference-satellite" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessReferenceSatellite row.</Description>
+      <Name>add-reference-satellite</Name>
+      <Token>add-reference-satellite</Token>
+    </Command>
+    <Command Id="cmd-add-business-reference-satellite-attribute" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessReferenceSatelliteAttribute row.</Description>
+      <Name>add-reference-satellite-attribute</Name>
+      <Token>add-reference-satellite-attribute</Token>
+    </Command>
+    <Command Id="cmd-add-business-same-as-link" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessSameAsLink row.</Description>
+      <Name>add-same-as-link</Name>
+      <Token>add-same-as-link</Token>
+    </Command>
+    <Command Id="cmd-add-business-same-as-link-satellite" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessSameAsLinkSatellite row.</Description>
+      <Name>add-same-as-link-satellite</Name>
+      <Token>add-same-as-link-satellite</Token>
+    </Command>
+    <Command Id="cmd-add-business-same-as-link-satellite-attribute" ApplicationId="app-meta-datavault-business">
+      <Description>Add a BusinessSameAsLinkSatelliteAttribute row.</Description>
+      <Name>add-same-as-link-satellite-attribute</Name>
+      <Token>add-same-as-link-satellite-attribute</Token>
+    </Command>
+    <Command Id="cmd-help" ApplicationId="app-meta-datavault-business">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-new-workspace" ApplicationId="app-meta-datavault-business">
+      <Description>Create a MetaBusinessDataVault workspace.</Description>
+      <Name>new-workspace</Name>
+      <Token>new-workspace</Token>
     </Command>
   </CommandList>
 </MetaCli>

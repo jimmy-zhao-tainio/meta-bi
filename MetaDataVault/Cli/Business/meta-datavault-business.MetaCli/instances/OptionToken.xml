@@ -1,95 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="token-business-hub-workspace" OptionId="option-business-hub-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-id" OptionId="option-business-hub-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-name" OptionId="option-business-hub-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-description" OptionId="option-business-hub-description">
+    <OptionToken Id="token-business-bridge-description" OptionId="option-business-bridge-description">
       <Token>--description</Token>
     </OptionToken>
-    <OptionToken Id="token-business-hub-key-part-workspace" OptionId="option-business-hub-key-part-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-key-part-id" OptionId="option-business-hub-key-part-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-key-part-name" OptionId="option-business-hub-key-part-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-key-part-data-type-id" OptionId="option-business-hub-key-part-data-type-id">
-      <Token>--data-type-id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-key-part-ordinal" OptionId="option-business-hub-key-part-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-key-part-hub" OptionId="option-business-hub-key-part-hub">
+    <OptionToken Id="token-business-bridge-hub" OptionId="option-business-bridge-hub">
       <Token>--hub</Token>
     </OptionToken>
-    <OptionToken Id="token-business-hub-key-part-length" OptionId="option-business-hub-key-part-length">
-      <Token>--length</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-key-part-precision" OptionId="option-business-hub-key-part-precision">
-      <Token>--precision</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-key-part-scale" OptionId="option-business-hub-key-part-scale">
-      <Token>--scale</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-workspace" OptionId="option-business-link-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-id" OptionId="option-business-link-id">
+    <OptionToken Id="token-business-bridge-id" OptionId="option-business-bridge-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="token-business-link-name" OptionId="option-business-link-name">
+    <OptionToken Id="token-business-bridge-name" OptionId="option-business-bridge-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-business-link-description" OptionId="option-business-link-description">
-      <Token>--description</Token>
+    <OptionToken Id="token-business-bridge-traversal-bridge" OptionId="option-business-bridge-traversal-bridge">
+      <Token>--bridge</Token>
     </OptionToken>
-    <OptionToken Id="token-business-link-hub-workspace" OptionId="option-business-link-hub-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-hub-id" OptionId="option-business-link-hub-id">
+    <OptionToken Id="token-business-bridge-traversal-id" OptionId="option-business-bridge-traversal-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="token-business-link-hub-ordinal" OptionId="option-business-link-hub-ordinal">
-      <Token>--ordinal</Token>
+    <OptionToken Id="token-business-bridge-traversal-previous-traversal" OptionId="option-business-bridge-traversal-previous-traversal">
+      <Token>--previous-traversal</Token>
     </OptionToken>
-    <OptionToken Id="token-business-link-hub-role-name" OptionId="option-business-link-hub-role-name">
-      <Token>--role-name</Token>
+    <OptionToken Id="token-business-bridge-traversal-source-role" OptionId="option-business-bridge-traversal-source-role">
+      <Token>--source-role</Token>
     </OptionToken>
-    <OptionToken Id="token-business-link-hub-link" OptionId="option-business-link-hub-link">
-      <Token>--link</Token>
+    <OptionToken Id="token-business-bridge-traversal-target-role" OptionId="option-business-bridge-traversal-target-role">
+      <Token>--target-role</Token>
     </OptionToken>
-    <OptionToken Id="token-business-link-hub-hub" OptionId="option-business-link-hub-hub">
-      <Token>--hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-workspace" OptionId="option-business-same-as-link-workspace">
+    <OptionToken Id="token-business-bridge-traversal-workspace" OptionId="option-business-bridge-traversal-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-business-same-as-link-id" OptionId="option-business-same-as-link-id">
-      <Token>--id</Token>
+    <OptionToken Id="token-business-bridge-workspace" OptionId="option-business-bridge-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-business-same-as-link-name" OptionId="option-business-same-as-link-name">
-      <Token>--name</Token>
+    <OptionToken Id="token-business-hierarchical-link-child-hub" OptionId="option-business-hierarchical-link-child-hub">
+      <Token>--child-hub</Token>
     </OptionToken>
-    <OptionToken Id="token-business-same-as-link-description" OptionId="option-business-same-as-link-description">
+    <OptionToken Id="token-business-hierarchical-link-description" OptionId="option-business-hierarchical-link-description">
       <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-primary-hub" OptionId="option-business-same-as-link-primary-hub">
-      <Token>--primary-hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-equivalent-hub" OptionId="option-business-same-as-link-equivalent-hub">
-      <Token>--equivalent-hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-workspace" OptionId="option-business-hierarchical-link-workspace">
-      <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="token-business-hierarchical-link-id" OptionId="option-business-hierarchical-link-id">
       <Token>--id</Token>
@@ -97,215 +46,26 @@
     <OptionToken Id="token-business-hierarchical-link-name" OptionId="option-business-hierarchical-link-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-description" OptionId="option-business-hierarchical-link-description">
-      <Token>--description</Token>
-    </OptionToken>
     <OptionToken Id="token-business-hierarchical-link-parent-hub" OptionId="option-business-hierarchical-link-parent-hub">
       <Token>--parent-hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-child-hub" OptionId="option-business-hierarchical-link-child-hub">
-      <Token>--child-hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-workspace" OptionId="option-business-reference-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-id" OptionId="option-business-reference-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-name" OptionId="option-business-reference-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-description" OptionId="option-business-reference-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-key-part-workspace" OptionId="option-business-reference-key-part-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-key-part-id" OptionId="option-business-reference-key-part-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-key-part-name" OptionId="option-business-reference-key-part-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-key-part-data-type-id" OptionId="option-business-reference-key-part-data-type-id">
-      <Token>--data-type-id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-key-part-ordinal" OptionId="option-business-reference-key-part-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-key-part-reference" OptionId="option-business-reference-key-part-reference">
-      <Token>--reference</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-key-part-length" OptionId="option-business-reference-key-part-length">
-      <Token>--length</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-key-part-precision" OptionId="option-business-reference-key-part-precision">
-      <Token>--precision</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-key-part-scale" OptionId="option-business-reference-key-part-scale">
-      <Token>--scale</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-workspace" OptionId="option-business-hub-satellite-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-id" OptionId="option-business-hub-satellite-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-name" OptionId="option-business-hub-satellite-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-description" OptionId="option-business-hub-satellite-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-hub" OptionId="option-business-hub-satellite-hub">
-      <Token>--hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-attribute-workspace" OptionId="option-business-hub-satellite-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-attribute-id" OptionId="option-business-hub-satellite-attribute-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-attribute-name" OptionId="option-business-hub-satellite-attribute-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-attribute-data-type-id" OptionId="option-business-hub-satellite-attribute-data-type-id">
-      <Token>--data-type-id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-attribute-ordinal" OptionId="option-business-hub-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-attribute-hub-satellite" OptionId="option-business-hub-satellite-attribute-hub-satellite">
-      <Token>--hub-satellite</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-attribute-length" OptionId="option-business-hub-satellite-attribute-length">
-      <Token>--length</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-attribute-precision" OptionId="option-business-hub-satellite-attribute-precision">
-      <Token>--precision</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hub-satellite-attribute-scale" OptionId="option-business-hub-satellite-attribute-scale">
-      <Token>--scale</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-workspace" OptionId="option-business-link-satellite-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-id" OptionId="option-business-link-satellite-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-name" OptionId="option-business-link-satellite-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-description" OptionId="option-business-link-satellite-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-link" OptionId="option-business-link-satellite-link">
-      <Token>--link</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-attribute-workspace" OptionId="option-business-link-satellite-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-attribute-id" OptionId="option-business-link-satellite-attribute-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-attribute-name" OptionId="option-business-link-satellite-attribute-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-attribute-data-type-id" OptionId="option-business-link-satellite-attribute-data-type-id">
-      <Token>--data-type-id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-attribute-ordinal" OptionId="option-business-link-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-attribute-link-satellite" OptionId="option-business-link-satellite-attribute-link-satellite">
-      <Token>--link-satellite</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-attribute-length" OptionId="option-business-link-satellite-attribute-length">
-      <Token>--length</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-attribute-precision" OptionId="option-business-link-satellite-attribute-precision">
-      <Token>--precision</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-link-satellite-attribute-scale" OptionId="option-business-link-satellite-attribute-scale">
-      <Token>--scale</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-workspace" OptionId="option-business-same-as-link-satellite-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-id" OptionId="option-business-same-as-link-satellite-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-name" OptionId="option-business-same-as-link-satellite-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-description" OptionId="option-business-same-as-link-satellite-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-same-as-link" OptionId="option-business-same-as-link-satellite-same-as-link">
-      <Token>--same-as-link</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-attribute-workspace" OptionId="option-business-same-as-link-satellite-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-attribute-id" OptionId="option-business-same-as-link-satellite-attribute-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-attribute-name" OptionId="option-business-same-as-link-satellite-attribute-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-attribute-data-type-id" OptionId="option-business-same-as-link-satellite-attribute-data-type-id">
-      <Token>--data-type-id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-attribute-ordinal" OptionId="option-business-same-as-link-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-attribute-same-as-link-satellite" OptionId="option-business-same-as-link-satellite-attribute-same-as-link-satellite">
-      <Token>--same-as-link-satellite</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-attribute-length" OptionId="option-business-same-as-link-satellite-attribute-length">
-      <Token>--length</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-attribute-precision" OptionId="option-business-same-as-link-satellite-attribute-precision">
-      <Token>--precision</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-same-as-link-satellite-attribute-scale" OptionId="option-business-same-as-link-satellite-attribute-scale">
-      <Token>--scale</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-satellite-workspace" OptionId="option-business-hierarchical-link-satellite-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-satellite-id" OptionId="option-business-hierarchical-link-satellite-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-satellite-name" OptionId="option-business-hierarchical-link-satellite-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-satellite-description" OptionId="option-business-hierarchical-link-satellite-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-satellite-hierarchical-link" OptionId="option-business-hierarchical-link-satellite-hierarchical-link">
-      <Token>--hierarchical-link</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-satellite-attribute-workspace" OptionId="option-business-hierarchical-link-satellite-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-satellite-attribute-id" OptionId="option-business-hierarchical-link-satellite-attribute-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-satellite-attribute-name" OptionId="option-business-hierarchical-link-satellite-attribute-name">
-      <Token>--name</Token>
     </OptionToken>
     <OptionToken Id="token-business-hierarchical-link-satellite-attribute-data-type-id" OptionId="option-business-hierarchical-link-satellite-attribute-data-type-id">
       <Token>--data-type-id</Token>
     </OptionToken>
-    <OptionToken Id="token-business-hierarchical-link-satellite-attribute-ordinal" OptionId="option-business-hierarchical-link-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
     <OptionToken Id="token-business-hierarchical-link-satellite-attribute-hierarchical-link-satellite" OptionId="option-business-hierarchical-link-satellite-attribute-hierarchical-link-satellite">
       <Token>--hierarchical-link-satellite</Token>
     </OptionToken>
+    <OptionToken Id="token-business-hierarchical-link-satellite-attribute-id" OptionId="option-business-hierarchical-link-satellite-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
     <OptionToken Id="token-business-hierarchical-link-satellite-attribute-length" OptionId="option-business-hierarchical-link-satellite-attribute-length">
       <Token>--length</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hierarchical-link-satellite-attribute-name" OptionId="option-business-hierarchical-link-satellite-attribute-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hierarchical-link-satellite-attribute-ordinal" OptionId="option-business-hierarchical-link-satellite-attribute-ordinal">
+      <Token>--ordinal</Token>
     </OptionToken>
     <OptionToken Id="token-business-hierarchical-link-satellite-attribute-precision" OptionId="option-business-hierarchical-link-satellite-attribute-precision">
       <Token>--precision</Token>
@@ -313,56 +73,176 @@
     <OptionToken Id="token-business-hierarchical-link-satellite-attribute-scale" OptionId="option-business-hierarchical-link-satellite-attribute-scale">
       <Token>--scale</Token>
     </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-workspace" OptionId="option-business-reference-satellite-workspace">
+    <OptionToken Id="token-business-hierarchical-link-satellite-attribute-workspace" OptionId="option-business-hierarchical-link-satellite-attribute-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-id" OptionId="option-business-reference-satellite-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-name" OptionId="option-business-reference-satellite-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-description" OptionId="option-business-reference-satellite-description">
+    <OptionToken Id="token-business-hierarchical-link-satellite-description" OptionId="option-business-hierarchical-link-satellite-description">
       <Token>--description</Token>
     </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-reference" OptionId="option-business-reference-satellite-reference">
-      <Token>--reference</Token>
+    <OptionToken Id="token-business-hierarchical-link-satellite-hierarchical-link" OptionId="option-business-hierarchical-link-satellite-hierarchical-link">
+      <Token>--hierarchical-link</Token>
     </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-attribute-workspace" OptionId="option-business-reference-satellite-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-attribute-id" OptionId="option-business-reference-satellite-attribute-id">
+    <OptionToken Id="token-business-hierarchical-link-satellite-id" OptionId="option-business-hierarchical-link-satellite-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-attribute-name" OptionId="option-business-reference-satellite-attribute-name">
+    <OptionToken Id="token-business-hierarchical-link-satellite-name" OptionId="option-business-hierarchical-link-satellite-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-attribute-data-type-id" OptionId="option-business-reference-satellite-attribute-data-type-id">
+    <OptionToken Id="token-business-hierarchical-link-satellite-workspace" OptionId="option-business-hierarchical-link-satellite-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hierarchical-link-workspace" OptionId="option-business-hierarchical-link-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-description" OptionId="option-business-hub-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-id" OptionId="option-business-hub-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-key-part-data-type-id" OptionId="option-business-hub-key-part-data-type-id">
       <Token>--data-type-id</Token>
     </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-attribute-ordinal" OptionId="option-business-reference-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
+    <OptionToken Id="token-business-hub-key-part-hub" OptionId="option-business-hub-key-part-hub">
+      <Token>--hub</Token>
     </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-attribute-reference-satellite" OptionId="option-business-reference-satellite-attribute-reference-satellite">
-      <Token>--reference-satellite</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-attribute-length" OptionId="option-business-reference-satellite-attribute-length">
-      <Token>--length</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-attribute-precision" OptionId="option-business-reference-satellite-attribute-precision">
-      <Token>--precision</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-reference-satellite-attribute-scale" OptionId="option-business-reference-satellite-attribute-scale">
-      <Token>--scale</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-workspace" OptionId="option-business-point-in-time-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-id" OptionId="option-business-point-in-time-id">
+    <OptionToken Id="token-business-hub-key-part-id" OptionId="option-business-hub-key-part-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="token-business-point-in-time-name" OptionId="option-business-point-in-time-name">
+    <OptionToken Id="token-business-hub-key-part-length" OptionId="option-business-hub-key-part-length">
+      <Token>--length</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-key-part-name" OptionId="option-business-hub-key-part-name">
       <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-key-part-ordinal" OptionId="option-business-hub-key-part-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-key-part-precision" OptionId="option-business-hub-key-part-precision">
+      <Token>--precision</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-key-part-scale" OptionId="option-business-hub-key-part-scale">
+      <Token>--scale</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-key-part-workspace" OptionId="option-business-hub-key-part-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-name" OptionId="option-business-hub-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-attribute-data-type-id" OptionId="option-business-hub-satellite-attribute-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-attribute-hub-satellite" OptionId="option-business-hub-satellite-attribute-hub-satellite">
+      <Token>--hub-satellite</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-attribute-id" OptionId="option-business-hub-satellite-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-attribute-length" OptionId="option-business-hub-satellite-attribute-length">
+      <Token>--length</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-attribute-name" OptionId="option-business-hub-satellite-attribute-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-attribute-ordinal" OptionId="option-business-hub-satellite-attribute-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-attribute-precision" OptionId="option-business-hub-satellite-attribute-precision">
+      <Token>--precision</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-attribute-scale" OptionId="option-business-hub-satellite-attribute-scale">
+      <Token>--scale</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-attribute-workspace" OptionId="option-business-hub-satellite-attribute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-description" OptionId="option-business-hub-satellite-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-hub" OptionId="option-business-hub-satellite-hub">
+      <Token>--hub</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-id" OptionId="option-business-hub-satellite-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-name" OptionId="option-business-hub-satellite-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-satellite-workspace" OptionId="option-business-hub-satellite-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-workspace" OptionId="option-business-hub-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-description" OptionId="option-business-link-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-id" OptionId="option-business-link-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-name" OptionId="option-business-link-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-role-hub" OptionId="option-business-link-role-hub">
+      <Token>--hub</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-role-id" OptionId="option-business-link-role-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-role-link" OptionId="option-business-link-role-link">
+      <Token>--link</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-role-name" OptionId="option-business-link-role-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-role-workspace" OptionId="option-business-link-role-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-attribute-data-type-id" OptionId="option-business-link-satellite-attribute-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-attribute-id" OptionId="option-business-link-satellite-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-attribute-length" OptionId="option-business-link-satellite-attribute-length">
+      <Token>--length</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-attribute-link-satellite" OptionId="option-business-link-satellite-attribute-link-satellite">
+      <Token>--link-satellite</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-attribute-name" OptionId="option-business-link-satellite-attribute-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-attribute-ordinal" OptionId="option-business-link-satellite-attribute-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-attribute-precision" OptionId="option-business-link-satellite-attribute-precision">
+      <Token>--precision</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-attribute-scale" OptionId="option-business-link-satellite-attribute-scale">
+      <Token>--scale</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-attribute-workspace" OptionId="option-business-link-satellite-attribute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-description" OptionId="option-business-link-satellite-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-id" OptionId="option-business-link-satellite-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-link" OptionId="option-business-link-satellite-link">
+      <Token>--link</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-name" OptionId="option-business-link-satellite-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-satellite-workspace" OptionId="option-business-link-satellite-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-link-workspace" OptionId="option-business-link-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="token-business-point-in-time-description" OptionId="option-business-point-in-time-description">
       <Token>--description</Token>
@@ -370,35 +250,8 @@
     <OptionToken Id="token-business-point-in-time-hub" OptionId="option-business-point-in-time-hub">
       <Token>--hub</Token>
     </OptionToken>
-    <OptionToken Id="token-business-point-in-time-stamp-workspace" OptionId="option-business-point-in-time-stamp-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-stamp-id" OptionId="option-business-point-in-time-stamp-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-stamp-name" OptionId="option-business-point-in-time-stamp-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-stamp-data-type-id" OptionId="option-business-point-in-time-stamp-data-type-id">
-      <Token>--data-type-id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-stamp-ordinal" OptionId="option-business-point-in-time-stamp-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-stamp-point-in-time" OptionId="option-business-point-in-time-stamp-point-in-time">
-      <Token>--point-in-time</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-stamp-length" OptionId="option-business-point-in-time-stamp-length">
-      <Token>--length</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-stamp-precision" OptionId="option-business-point-in-time-stamp-precision">
-      <Token>--precision</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-stamp-scale" OptionId="option-business-point-in-time-stamp-scale">
-      <Token>--scale</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-hub-satellite-workspace" OptionId="option-business-point-in-time-hub-satellite-workspace">
-      <Token>--workspace</Token>
+    <OptionToken Id="token-business-point-in-time-hub-satellite-hub-satellite" OptionId="option-business-point-in-time-hub-satellite-hub-satellite">
+      <Token>--hub-satellite</Token>
     </OptionToken>
     <OptionToken Id="token-business-point-in-time-hub-satellite-id" OptionId="option-business-point-in-time-hub-satellite-id">
       <Token>--id</Token>
@@ -409,14 +262,17 @@
     <OptionToken Id="token-business-point-in-time-hub-satellite-point-in-time" OptionId="option-business-point-in-time-hub-satellite-point-in-time">
       <Token>--point-in-time</Token>
     </OptionToken>
-    <OptionToken Id="token-business-point-in-time-hub-satellite-hub-satellite" OptionId="option-business-point-in-time-hub-satellite-hub-satellite">
-      <Token>--hub-satellite</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-point-in-time-link-satellite-workspace" OptionId="option-business-point-in-time-link-satellite-workspace">
+    <OptionToken Id="token-business-point-in-time-hub-satellite-workspace" OptionId="option-business-point-in-time-hub-satellite-workspace">
       <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-id" OptionId="option-business-point-in-time-id">
+      <Token>--id</Token>
     </OptionToken>
     <OptionToken Id="token-business-point-in-time-link-satellite-id" OptionId="option-business-point-in-time-link-satellite-id">
       <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-link-satellite-link-satellite" OptionId="option-business-point-in-time-link-satellite-link-satellite">
+      <Token>--link-satellite</Token>
     </OptionToken>
     <OptionToken Id="token-business-point-in-time-link-satellite-ordinal" OptionId="option-business-point-in-time-link-satellite-ordinal">
       <Token>--ordinal</Token>
@@ -424,59 +280,182 @@
     <OptionToken Id="token-business-point-in-time-link-satellite-point-in-time" OptionId="option-business-point-in-time-link-satellite-point-in-time">
       <Token>--point-in-time</Token>
     </OptionToken>
-    <OptionToken Id="token-business-point-in-time-link-satellite-link-satellite" OptionId="option-business-point-in-time-link-satellite-link-satellite">
-      <Token>--link-satellite</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-bridge-workspace" OptionId="option-business-bridge-workspace">
+    <OptionToken Id="token-business-point-in-time-link-satellite-workspace" OptionId="option-business-point-in-time-link-satellite-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-business-bridge-id" OptionId="option-business-bridge-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-bridge-name" OptionId="option-business-bridge-name">
+    <OptionToken Id="token-business-point-in-time-name" OptionId="option-business-point-in-time-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-business-bridge-description" OptionId="option-business-bridge-description">
+    <OptionToken Id="token-business-point-in-time-stamp-data-type-id" OptionId="option-business-point-in-time-stamp-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-stamp-id" OptionId="option-business-point-in-time-stamp-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-stamp-length" OptionId="option-business-point-in-time-stamp-length">
+      <Token>--length</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-stamp-name" OptionId="option-business-point-in-time-stamp-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-stamp-ordinal" OptionId="option-business-point-in-time-stamp-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-stamp-point-in-time" OptionId="option-business-point-in-time-stamp-point-in-time">
+      <Token>--point-in-time</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-stamp-precision" OptionId="option-business-point-in-time-stamp-precision">
+      <Token>--precision</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-stamp-scale" OptionId="option-business-point-in-time-stamp-scale">
+      <Token>--scale</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-stamp-workspace" OptionId="option-business-point-in-time-stamp-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-point-in-time-workspace" OptionId="option-business-point-in-time-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-description" OptionId="option-business-reference-description">
       <Token>--description</Token>
     </OptionToken>
-    <OptionToken Id="token-business-bridge-hub" OptionId="option-business-bridge-hub">
-      <Token>--hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-bridge-link-workspace" OptionId="option-business-bridge-link-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-bridge-link-id" OptionId="option-business-bridge-link-id">
+    <OptionToken Id="token-business-reference-id" OptionId="option-business-reference-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="token-business-bridge-link-ordinal" OptionId="option-business-bridge-link-ordinal">
-      <Token>--ordinal</Token>
+    <OptionToken Id="token-business-reference-key-part-data-type-id" OptionId="option-business-reference-key-part-data-type-id">
+      <Token>--data-type-id</Token>
     </OptionToken>
-    <OptionToken Id="token-business-bridge-link-role-name" OptionId="option-business-bridge-link-role-name">
-      <Token>--role-name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-bridge-link-bridge" OptionId="option-business-bridge-link-bridge">
-      <Token>--bridge</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-bridge-link-link" OptionId="option-business-bridge-link-link">
-      <Token>--link</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-bridge-hub-workspace" OptionId="option-business-bridge-hub-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-bridge-hub-id" OptionId="option-business-bridge-hub-id">
+    <OptionToken Id="token-business-reference-key-part-id" OptionId="option-business-reference-key-part-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="token-business-bridge-hub-ordinal" OptionId="option-business-bridge-hub-ordinal">
+    <OptionToken Id="token-business-reference-key-part-length" OptionId="option-business-reference-key-part-length">
+      <Token>--length</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-key-part-name" OptionId="option-business-reference-key-part-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-key-part-ordinal" OptionId="option-business-reference-key-part-ordinal">
       <Token>--ordinal</Token>
     </OptionToken>
-    <OptionToken Id="token-business-bridge-hub-role-name" OptionId="option-business-bridge-hub-role-name">
-      <Token>--role-name</Token>
+    <OptionToken Id="token-business-reference-key-part-precision" OptionId="option-business-reference-key-part-precision">
+      <Token>--precision</Token>
     </OptionToken>
-    <OptionToken Id="token-business-bridge-hub-bridge" OptionId="option-business-bridge-hub-bridge">
-      <Token>--bridge</Token>
+    <OptionToken Id="token-business-reference-key-part-reference" OptionId="option-business-reference-key-part-reference">
+      <Token>--reference</Token>
     </OptionToken>
-    <OptionToken Id="token-business-bridge-hub-hub" OptionId="option-business-bridge-hub-hub">
-      <Token>--hub</Token>
+    <OptionToken Id="token-business-reference-key-part-scale" OptionId="option-business-reference-key-part-scale">
+      <Token>--scale</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-key-part-workspace" OptionId="option-business-reference-key-part-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-name" OptionId="option-business-reference-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-attribute-data-type-id" OptionId="option-business-reference-satellite-attribute-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-attribute-id" OptionId="option-business-reference-satellite-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-attribute-length" OptionId="option-business-reference-satellite-attribute-length">
+      <Token>--length</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-attribute-name" OptionId="option-business-reference-satellite-attribute-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-attribute-ordinal" OptionId="option-business-reference-satellite-attribute-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-attribute-precision" OptionId="option-business-reference-satellite-attribute-precision">
+      <Token>--precision</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-attribute-reference-satellite" OptionId="option-business-reference-satellite-attribute-reference-satellite">
+      <Token>--reference-satellite</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-attribute-scale" OptionId="option-business-reference-satellite-attribute-scale">
+      <Token>--scale</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-attribute-workspace" OptionId="option-business-reference-satellite-attribute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-description" OptionId="option-business-reference-satellite-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-id" OptionId="option-business-reference-satellite-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-name" OptionId="option-business-reference-satellite-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-reference" OptionId="option-business-reference-satellite-reference">
+      <Token>--reference</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-satellite-workspace" OptionId="option-business-reference-satellite-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-workspace" OptionId="option-business-reference-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-description" OptionId="option-business-same-as-link-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-equivalent-hub" OptionId="option-business-same-as-link-equivalent-hub">
+      <Token>--equivalent-hub</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-id" OptionId="option-business-same-as-link-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-name" OptionId="option-business-same-as-link-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-primary-hub" OptionId="option-business-same-as-link-primary-hub">
+      <Token>--primary-hub</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-attribute-data-type-id" OptionId="option-business-same-as-link-satellite-attribute-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-attribute-id" OptionId="option-business-same-as-link-satellite-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-attribute-length" OptionId="option-business-same-as-link-satellite-attribute-length">
+      <Token>--length</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-attribute-name" OptionId="option-business-same-as-link-satellite-attribute-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-attribute-ordinal" OptionId="option-business-same-as-link-satellite-attribute-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-attribute-precision" OptionId="option-business-same-as-link-satellite-attribute-precision">
+      <Token>--precision</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-attribute-same-as-link-satellite" OptionId="option-business-same-as-link-satellite-attribute-same-as-link-satellite">
+      <Token>--same-as-link-satellite</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-attribute-scale" OptionId="option-business-same-as-link-satellite-attribute-scale">
+      <Token>--scale</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-attribute-workspace" OptionId="option-business-same-as-link-satellite-attribute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-description" OptionId="option-business-same-as-link-satellite-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-id" OptionId="option-business-same-as-link-satellite-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-name" OptionId="option-business-same-as-link-satellite-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-same-as-link" OptionId="option-business-same-as-link-satellite-same-as-link">
+      <Token>--same-as-link</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-satellite-workspace" OptionId="option-business-same-as-link-satellite-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-same-as-link-workspace" OptionId="option-business-same-as-link-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
   </OptionTokenList>
 </MetaCli>

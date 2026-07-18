@@ -2,8 +2,8 @@
 <MetaBusinessDataVault>
   <BusinessReferenceKeyPartList>
     <BusinessReferenceKeyPart Id="StatusCode" BusinessReferenceId="Status">
-      <Name>StatusCode</Name>
       <DataTypeId>meta:type:String</DataTypeId>
+      <Name>StatusCode</Name>
       <Ordinal>1</Ordinal>
     </BusinessReferenceKeyPart>
   </BusinessReferenceKeyPartList>

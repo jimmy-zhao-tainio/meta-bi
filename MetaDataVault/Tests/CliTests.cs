@@ -28,8 +28,8 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerAliasIdentifier --hub CustomerAlias --name Identifier --data-type-id meta:type:String --ordinal 1");
 
             RunBusinessAdd(workspacePath, "add-link --id CustomerOrder --name CustomerOrder");
-            RunBusinessAdd(workspacePath, "add-link-hub --id CustomerOrderCustomer --link CustomerOrder --hub Customer --ordinal 1 --role-name Customer");
-            RunBusinessAdd(workspacePath, "add-link-hub --id CustomerOrderOrder --link CustomerOrder --hub Order --ordinal 2 --role-name Order");
+            RunBusinessAdd(workspacePath, "add-link-role --id CustomerOrderCustomer --link CustomerOrder --hub Customer --name Customer");
+            RunBusinessAdd(workspacePath, "add-link-role --id CustomerOrderOrder --link CustomerOrder --hub Order --name Order");
 
             RunBusinessAdd(workspacePath, "add-same-as-link --id CustomerSameAsAlias --name CustomerSameAsAlias --primary-hub Customer --equivalent-hub CustomerAlias");
             RunBusinessAdd(workspacePath, "add-hierarchical-link --id ParentChild --name ParentChild --parent-hub ParentNode --child-hub ChildNode");
@@ -57,8 +57,7 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-point-in-time-hub-satellite --id CustomerSnapshotProfile --point-in-time CustomerSnapshot --hub-satellite CustomerProfile --ordinal 1");
             RunBusinessAdd(workspacePath, "add-point-in-time-link-satellite --id CustomerSnapshotOrderStatus --point-in-time CustomerSnapshot --link-satellite CustomerOrderStatus --ordinal 2");
             RunBusinessAdd(workspacePath, "add-bridge --id CustomerOrderTraversal --hub Customer --name CustomerOrderTraversal");
-            RunBusinessAdd(workspacePath, "add-bridge-link --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --link CustomerOrder --ordinal 1 --role-name CustomerOrder");
-            RunBusinessAdd(workspacePath, "add-bridge-hub --id CustomerOrderTraversalOrder --bridge CustomerOrderTraversal --hub Order --ordinal 2 --role-name Order");
+            RunBusinessAdd(workspacePath, "add-bridge-traversal --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --source-role CustomerOrderCustomer --target-role CustomerOrderOrder");
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTime"));
@@ -109,7 +108,7 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public void BusinessAuthoringRejectsDuplicateBridgeOrdinal()
+    public void BusinessAuthoringRejectsDuplicateLinkRoleName()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var workspacePath = Path.Combine(root, "BusinessDataVault");
@@ -122,14 +121,11 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
             RunBusinessAdd(workspacePath, "add-hub --id Order --name Order");
             RunBusinessAdd(workspacePath, "add-link --id CustomerOrder --name CustomerOrder");
-            RunBusinessAdd(workspacePath, "add-link-hub --id CustomerOrderCustomer --link CustomerOrder --hub Customer --ordinal 1 --role-name Customer");
-            RunBusinessAdd(workspacePath, "add-link-hub --id CustomerOrderOrder --link CustomerOrder --hub Order --ordinal 2 --role-name Order");
-            RunBusinessAdd(workspacePath, "add-bridge --id CustomerOrderTraversal --hub Customer --name CustomerOrderTraversal");
-            RunBusinessAdd(workspacePath, "add-bridge-link --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --link CustomerOrder --ordinal 1 --role-name CustomerOrder");
+            RunBusinessAdd(workspacePath, "add-link-role --id CustomerOrderCustomer --link CustomerOrder --hub Customer --name Customer");
 
-            var result = RunBusinessCli($"add-bridge-hub --workspace \"{workspacePath}\" --id CustomerOrderTraversalOrder --bridge CustomerOrderTraversal --hub Order --ordinal 1 --role-name Order");
+            var result = RunBusinessCli($"add-link-role --workspace \"{workspacePath}\" --id CustomerOrderCustomerAgain --link CustomerOrder --hub Order --name Customer");
             Assert.NotEqual(0, result.ExitCode);
-            Assert.Contains("Bridge 'CustomerOrderTraversal' already contains ordinal '1'", result.Output, StringComparison.Ordinal);
+            Assert.Contains("Business link 'CustomerOrder' already has a role named 'Customer'", result.Output, StringComparison.Ordinal);
         }
         finally
         {
@@ -138,7 +134,7 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public async Task BusinessAuthoringAppendsOrdinalWhenOmitted()
+    public void BusinessAuthoringRejectsBridgeTraversalOutsideAnchor()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var workspacePath = Path.Combine(root, "BusinessDataVault");
@@ -150,8 +146,35 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
             RunBusinessAdd(workspacePath, "add-hub --id Order --name Order");
             RunBusinessAdd(workspacePath, "add-link --id CustomerOrder --name CustomerOrder");
-            RunBusinessAdd(workspacePath, "add-link-hub --id CustomerOrderCustomer --link CustomerOrder --hub Customer --role-name Customer");
-            RunBusinessAdd(workspacePath, "add-link-hub --id CustomerOrderOrder --link CustomerOrder --hub Order --role-name Order");
+            RunBusinessAdd(workspacePath, "add-link-role --id CustomerOrderCustomer --link CustomerOrder --hub Customer --name Customer");
+            RunBusinessAdd(workspacePath, "add-link-role --id CustomerOrderOrder --link CustomerOrder --hub Order --name Order");
+            RunBusinessAdd(workspacePath, "add-bridge --id CustomerOrderTraversal --hub Customer --name CustomerOrderTraversal");
+
+            var result = RunBusinessCli($"add-bridge-traversal --workspace \"{workspacePath}\" --id CustomerOrderTraversalOrderCustomer --bridge CustomerOrderTraversal --source-role CustomerOrderOrder --target-role CustomerOrderCustomer");
+            Assert.NotEqual(0, result.ExitCode);
+            Assert.Contains("must start from its anchor hub 'Customer'", result.Output, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task BusinessAuthoringAppendsExistingOrdinalsWhenOmitted()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+
+        try
+        {
+            Assert.Equal(0, RunBusinessCli($"new-workspace \"{workspacePath}\"").ExitCode);
+
+            RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
+            RunBusinessAdd(workspacePath, "add-hub --id Order --name Order");
+            RunBusinessAdd(workspacePath, "add-link --id CustomerOrder --name CustomerOrder");
+            RunBusinessAdd(workspacePath, "add-link-role --id CustomerOrderCustomer --link CustomerOrder --hub Customer --name Customer");
+            RunBusinessAdd(workspacePath, "add-link-role --id CustomerOrderOrder --link CustomerOrder --hub Order --name Order");
             RunBusinessAdd(workspacePath, "add-hub-satellite --id CustomerProfile --hub Customer --name CustomerProfile");
             RunBusinessAdd(workspacePath, "add-link-satellite --id CustomerOrderStatus --link CustomerOrder --name CustomerOrderStatus");
             RunBusinessAdd(workspacePath, "add-link-satellite-attribute --id CustomerOrderStatusCode --link-satellite CustomerOrderStatus --name StatusCode --data-type-id meta:type:String");
@@ -160,25 +183,22 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-point-in-time-hub-satellite --id CustomerSnapshotProfile --point-in-time CustomerSnapshot --hub-satellite CustomerProfile");
             RunBusinessAdd(workspacePath, "add-point-in-time-link-satellite --id CustomerSnapshotOrderStatus --point-in-time CustomerSnapshot --link-satellite CustomerOrderStatus");
             RunBusinessAdd(workspacePath, "add-bridge --id CustomerOrderTraversal --hub Customer --name CustomerOrderTraversal");
-            RunBusinessAdd(workspacePath, "add-bridge-link --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --link CustomerOrder --role-name CustomerOrder");
-            RunBusinessAdd(workspacePath, "add-bridge-hub --id CustomerOrderTraversalOrder --bridge CustomerOrderTraversal --hub Order --role-name Order");
+            RunBusinessAdd(workspacePath, "add-bridge-traversal --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --source-role CustomerOrderCustomer --target-role CustomerOrderOrder");
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
-            var linkHubs = workspace.Instance.GetOrCreateEntityRecords("BusinessLinkHub").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var linkRoles = workspace.Instance.GetOrCreateEntityRecords("BusinessLinkRole").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var linkSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("BusinessLinkSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var pointInTimeHubSatellites = workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeHubSatellite").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var pointInTimeLinkSatellites = workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeLinkSatellite").ToDictionary(row => row.Id, StringComparer.Ordinal);
-            var bridgeLinks = workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeLink").ToDictionary(row => row.Id, StringComparer.Ordinal);
-            var bridgeHubs = workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeHub").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var bridgeTraversals = workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeTraversal").ToDictionary(row => row.Id, StringComparer.Ordinal);
 
-            Assert.Equal("1", linkHubs["CustomerOrderCustomer"].Values["Ordinal"]);
-            Assert.Equal("2", linkHubs["CustomerOrderOrder"].Values["Ordinal"]);
+            Assert.Equal("Customer", linkRoles["CustomerOrderCustomer"].Values["Name"]);
+            Assert.Equal("CustomerOrderCustomer", bridgeTraversals["CustomerOrderTraversalCustomerOrder"].RelationshipIds["SourceRoleId"]);
+            Assert.Equal("CustomerOrderOrder", bridgeTraversals["CustomerOrderTraversalCustomerOrder"].RelationshipIds["TargetRoleId"]);
             Assert.Equal("1", linkSatelliteAttributes["CustomerOrderStatusCode"].Values["Ordinal"]);
             Assert.Equal("2", linkSatelliteAttributes["CustomerOrderStatusReason"].Values["Ordinal"]);
             Assert.Equal("1", pointInTimeHubSatellites["CustomerSnapshotProfile"].Values["Ordinal"]);
             Assert.Equal("2", pointInTimeLinkSatellites["CustomerSnapshotOrderStatus"].Values["Ordinal"]);
-            Assert.Equal("1", bridgeLinks["CustomerOrderTraversalCustomerOrder"].Values["Ordinal"]);
-            Assert.Equal("2", bridgeHubs["CustomerOrderTraversalOrder"].Values["Ordinal"]);
         }
         finally
         {

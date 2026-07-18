@@ -1,15 +1,11 @@
 using MetaBusinessDataVault;
+using MetaDataVault.Core;
 using MetaSql;
 
 namespace MetaConvert.DataVaultToSql;
 
 public static partial class Converter
 {
-    private sealed record BusinessBridgePathMember(
-        int Ordinal,
-        BusinessBridgeLink? Link,
-        BusinessBridgeHub? Hub);
-
     private static void PopulateBusinessHelperMetaSqlModel(
         MetaBusinessDataVaultModel model,
         ConversionContext context,
@@ -23,9 +19,7 @@ public static partial class Converter
         var businessPointInTimeLinkSatellitesByPointInTimeId = GroupById(model.BusinessPointInTimeLinkSatelliteList, row => row.BusinessPointInTime.Id);
         var businessPointInTimeStampsByPointInTimeId = GroupById(model.BusinessPointInTimeStampList, row => row.BusinessPointInTime.Id);
         var businessPointInTimeStampDetailsByStampId = GroupById(model.BusinessPointInTimeStampDataTypeDetailList, row => row.BusinessPointInTimeStamp.Id);
-        var businessBridgeLinksByBridgeId = GroupById(model.BusinessBridgeLinkList, row => row.BusinessBridge.Id);
-        var businessBridgeHubsByBridgeId = GroupById(model.BusinessBridgeHubList, row => row.BusinessBridge.Id);
-        var businessLinkHubsByLinkId = GroupById(model.BusinessLinkHubList, row => row.BusinessLink.Id);
+        var businessBridgeTraversalsByBridgeId = GroupById(model.BusinessBridgeTraversalList, row => row.BusinessBridge.Id);
 
         foreach (var pointInTime in model.BusinessPointInTimeList.OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
         {
@@ -117,11 +111,10 @@ public static partial class Converter
         
         foreach (var bridge in model.BusinessBridgeList.OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
         {
-            var pathMembers = GetOrderedBridgePathMembers(
+            var traversals = BusinessDataVaultRules.GetBridgeTraversalChain(
                 bridge,
-                GetGroup(businessBridgeLinksByBridgeId, bridge.Id),
-                GetGroup(businessBridgeHubsByBridgeId, bridge.Id));
-            var terminalHubId = ValidateBridgePath(bridge, pathMembers, businessLinkHubsByLinkId);
+                GetGroup(businessBridgeTraversalsByBridgeId, bridge.Id));
+            var terminalHubId = traversals[^1].TargetRole.BusinessHub.Id;
 
             var table = AddTable(
                 context,
@@ -212,93 +205,6 @@ public static partial class Converter
                     new[] { (relatedHashKeyColumn, terminalHubHashKey) });
             }
         }
-    }
-
-    private static IReadOnlyList<BusinessBridgePathMember> GetOrderedBridgePathMembers(
-        BusinessBridge bridge,
-        IReadOnlyList<BusinessBridgeLink> bridgeLinks,
-        IReadOnlyList<BusinessBridgeHub> bridgeHubs)
-    {
-        var members = bridgeLinks
-            .Select(row => new BusinessBridgePathMember(ParseRequiredOrdinal(row.Ordinal, "BusinessBridgeLink", row.Id), row, null))
-            .Concat(bridgeHubs.Select(row => new BusinessBridgePathMember(ParseRequiredOrdinal(row.Ordinal, "BusinessBridgeHub", row.Id), null, row)))
-            .OrderBy(row => row.Ordinal)
-            .ThenBy(row => row.Link?.Id ?? row.Hub!.Id, StringComparer.Ordinal)
-            .ToList();
-
-        if (members.Count == 0)
-        {
-            throw new InvalidOperationException($"Bridge '{bridge.Id}' does not define any ordered path members.");
-        }
-
-        for (var i = 1; i < members.Count; i++)
-        {
-            if (members[i - 1].Ordinal == members[i].Ordinal)
-            {
-                throw new InvalidOperationException($"Bridge '{bridge.Id}' contains duplicate ordinal '{members[i].Ordinal}'.");
-            }
-        }
-
-        return members;
-    }
-
-    private static string ValidateBridgePath(
-        BusinessBridge bridge,
-        IReadOnlyList<BusinessBridgePathMember> pathMembers,
-        IReadOnlyDictionary<string, List<BusinessLinkHub>> businessLinkHubsByLinkId)
-    {
-        if (pathMembers.Count < 2)
-        {
-            throw new InvalidOperationException($"Bridge '{bridge.Id}' must contain at least one link and one hub.");
-        }
-
-        if (pathMembers.Count % 2 != 0)
-        {
-            throw new InvalidOperationException($"Bridge '{bridge.Id}' must alternate links and hubs, ending on a hub.");
-        }
-
-        if (pathMembers[0].Link is null)
-        {
-            throw new InvalidOperationException($"Bridge '{bridge.Id}' must begin with a BusinessBridgeLink.");
-        }
-
-        if (pathMembers[^1].Hub is null)
-        {
-            throw new InvalidOperationException($"Bridge '{bridge.Id}' must end with a BusinessBridgeHub.");
-        }
-
-        var currentHubId = bridge.BusinessHub.Id;
-        for (var i = 0; i < pathMembers.Count; i += 2)
-        {
-            var linkMember = pathMembers[i].Link
-                ?? throw new InvalidOperationException($"Bridge '{bridge.Id}' must alternate link and hub members.");
-            var hubMember = pathMembers[i + 1].Hub
-                ?? throw new InvalidOperationException($"Bridge '{bridge.Id}' must alternate link and hub members.");
-            var targetHubId = hubMember.BusinessHub.Id;
-            var participatingHubIds = GetGroup(businessLinkHubsByLinkId, linkMember.BusinessLink.Id)
-                .Select(row => row.BusinessHub.Id)
-                .ToHashSet(StringComparer.Ordinal);
-
-            if (!participatingHubIds.Contains(currentHubId) || !participatingHubIds.Contains(targetHubId))
-            {
-                throw new InvalidOperationException(
-                    $"Bridge '{bridge.Id}' cannot traverse link '{linkMember.BusinessLink.Id}' from hub '{currentHubId}' to hub '{targetHubId}'.");
-            }
-
-            currentHubId = targetHubId;
-        }
-
-        return currentHubId;
-    }
-
-    private static int ParseRequiredOrdinal(string ordinal, string logicalName, string rowId)
-    {
-        if (!int.TryParse(ordinal, out var parsed) || parsed <= 0)
-        {
-            throw new InvalidOperationException($"{logicalName} '{rowId}' must use a positive integer ordinal.");
-        }
-
-        return parsed;
     }
 
     private static TableColumn? AddOptionalImplementationColumn(

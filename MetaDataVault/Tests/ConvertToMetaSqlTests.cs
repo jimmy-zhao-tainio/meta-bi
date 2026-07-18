@@ -756,7 +756,7 @@ public sealed class ConvertToMetaSqlTests
     }
 
     [Fact]
-    public async Task ConvertAsync_RejectsBusinessBridgeThatDoesNotAlternateLinkAndHub()
+    public async Task ConvertAsync_RejectsBusinessBridgeTraversalOutsideAnchor()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
@@ -770,23 +770,30 @@ public sealed class ConvertToMetaSqlTests
 
             Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Customer --name Customer").ExitCode);
             Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Order --name Order").ExitCode);
-            Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Shipment --name Shipment").ExitCode);
             Assert.Equal(0, RunBusinessCli($"add-link --workspace \"{workspacePath}\" --id CustomerOrder --name CustomerOrder").ExitCode);
-            Assert.Equal(0, RunBusinessCli($"add-link-hub --workspace \"{workspacePath}\" --id CustomerOrderCustomer --link CustomerOrder --hub Customer --ordinal 1 --role-name Customer").ExitCode);
-            Assert.Equal(0, RunBusinessCli($"add-link-hub --workspace \"{workspacePath}\" --id CustomerOrderOrder --link CustomerOrder --hub Order --ordinal 2 --role-name Order").ExitCode);
-            Assert.Equal(0, RunBusinessCli($"add-link --workspace \"{workspacePath}\" --id ShipmentOrder --name ShipmentOrder").ExitCode);
-            Assert.Equal(0, RunBusinessCli($"add-link-hub --workspace \"{workspacePath}\" --id ShipmentOrderShipment --link ShipmentOrder --hub Shipment --ordinal 1 --role-name Shipment").ExitCode);
-            Assert.Equal(0, RunBusinessCli($"add-link-hub --workspace \"{workspacePath}\" --id ShipmentOrderOrder --link ShipmentOrder --hub Order --ordinal 2 --role-name Order").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-link-role --workspace \"{workspacePath}\" --id CustomerOrderCustomer --link CustomerOrder --hub Customer --name Customer").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-link-role --workspace \"{workspacePath}\" --id CustomerOrderOrder --link CustomerOrder --hub Order --name Order").ExitCode);
             Assert.Equal(0, RunBusinessCli($"add-bridge --workspace \"{workspacePath}\" --id CustomerShipmentTraversal --hub Customer --name CustomerShipmentTraversal").ExitCode);
-            Assert.Equal(0, RunBusinessCli($"add-bridge-link --workspace \"{workspacePath}\" --id CustomerShipmentTraversalCustomerOrder --bridge CustomerShipmentTraversal --link CustomerOrder --ordinal 1 --role-name CustomerOrder").ExitCode);
-            Assert.Equal(0, RunBusinessCli($"add-bridge-link --workspace \"{workspacePath}\" --id CustomerShipmentTraversalShipmentOrder --bridge CustomerShipmentTraversal --link ShipmentOrder --ordinal 2 --role-name ShipmentOrder").ExitCode);
+
+            var model = MetaBusinessDataVaultTooling.Load(workspacePath);
+            var bridge = Assert.Single(model.BusinessBridgeList);
+            var customerRole = model.BusinessLinkRoleList.Single(row => row.Id == "CustomerOrderCustomer");
+            var orderRole = model.BusinessLinkRoleList.Single(row => row.Id == "CustomerOrderOrder");
+            model.BusinessBridgeTraversalList.Add(new BusinessBridgeTraversal
+            {
+                Id = "CustomerShipmentTraversalOrderCustomer",
+                BusinessBridge = bridge,
+                SourceRole = orderRole,
+                TargetRole = customerRole,
+            });
+            model.SaveToXmlWorkspace(workspacePath);
 
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
                 targetPath,
                 GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault"));
-            Assert.Contains("must end with a BusinessBridgeHub", exception.Message, StringComparison.Ordinal);
+            Assert.Contains("must start from its anchor hub 'Customer'", exception.Message, StringComparison.Ordinal);
         }
         finally
         {

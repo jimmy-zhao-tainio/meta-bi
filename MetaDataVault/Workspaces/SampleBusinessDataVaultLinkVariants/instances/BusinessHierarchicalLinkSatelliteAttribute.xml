@@ -2,8 +2,8 @@
 <MetaBusinessDataVault>
   <BusinessHierarchicalLinkSatelliteAttributeList>
     <BusinessHierarchicalLinkSatelliteAttribute Id="EmployeeManagerLineType" BusinessHierarchicalLinkSatelliteId="EmployeeManagerLine">
-      <Name>LineType</Name>
       <DataTypeId>meta:type:String</DataTypeId>
+      <Name>LineType</Name>
       <Ordinal>1</Ordinal>
     </BusinessHierarchicalLinkSatelliteAttribute>
   </BusinessHierarchicalLinkSatelliteAttributeList>

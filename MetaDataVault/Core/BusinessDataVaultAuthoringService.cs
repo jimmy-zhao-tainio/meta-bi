@@ -38,7 +38,6 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
         new Dictionary<string, OrdinalScope>(StringComparer.Ordinal)
         {
             ["BusinessHubKeyPart"] = new("BusinessHub", ["BusinessHubKeyPart"]),
-            ["BusinessLinkHub"] = new("BusinessLink", ["BusinessLinkHub"]),
             ["BusinessReferenceKeyPart"] = new("BusinessReference", ["BusinessReferenceKeyPart"]),
             ["BusinessHubSatelliteAttribute"] = new("BusinessHubSatellite", ["BusinessHubSatelliteAttribute"]),
             ["BusinessLinkSatelliteAttribute"] = new("BusinessLinkSatellite", ["BusinessLinkSatelliteAttribute"]),
@@ -48,8 +47,6 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
             ["BusinessPointInTimeStamp"] = new("BusinessPointInTime", ["BusinessPointInTimeStamp"]),
             ["BusinessPointInTimeHubSatellite"] = new("BusinessPointInTime", ["BusinessPointInTimeHubSatellite", "BusinessPointInTimeLinkSatellite"]),
             ["BusinessPointInTimeLinkSatellite"] = new("BusinessPointInTime", ["BusinessPointInTimeHubSatellite", "BusinessPointInTimeLinkSatellite"]),
-            ["BusinessBridgeLink"] = new("BusinessBridge", ["BusinessBridgeLink", "BusinessBridgeHub"]),
-            ["BusinessBridgeHub"] = new("BusinessBridge", ["BusinessBridgeLink", "BusinessBridgeHub"]),
         };
 
     public BusinessDataVaultWorkspaceCreationResult CreateWorkspace(string workspacePath)
@@ -300,37 +297,16 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
             }
         }
 
-        if (string.Equals(request.EntityName, "BusinessBridgeLink", StringComparison.Ordinal) ||
-            string.Equals(request.EntityName, "BusinessBridgeHub", StringComparison.Ordinal))
+        if (string.Equals(request.EntityName, "BusinessLinkRole", StringComparison.Ordinal))
         {
-            ValidateBridgeOrdinalUniqueness(model, rowToAdd);
+            BusinessDataVaultRules.ValidateLinkRoleNames(model);
         }
-    }
-
-    private static void ValidateBridgeOrdinalUniqueness(MetaBusinessDataVaultModel model, object rowToAdd)
-    {
-        var bridge = rowToAdd.GetType().GetProperty("BusinessBridge", BindingFlags.Instance | BindingFlags.Public)?.GetValue(rowToAdd);
-        var ordinal = rowToAdd.GetType().GetProperty("Ordinal", BindingFlags.Instance | BindingFlags.Public)?.GetValue(rowToAdd) as string;
-        if (bridge is null || string.IsNullOrWhiteSpace(ordinal))
+        else if (string.Equals(request.EntityName, "BusinessBridgeTraversal", StringComparison.Ordinal))
         {
-            return;
-        }
-
-        var duplicateExists = new[] { "BusinessBridgeLink", "BusinessBridgeHub" }
-            .SelectMany(entityName => GetEntityRows(model, ResolveEntityType(entityName), entityName).Cast<object>())
-            .Any(row =>
-                !ReferenceEquals(row, rowToAdd) &&
-                ReferenceEquals(
-                    row.GetType().GetProperty("BusinessBridge", BindingFlags.Instance | BindingFlags.Public)?.GetValue(row),
-                    bridge) &&
-                string.Equals(
-                    row.GetType().GetProperty("Ordinal", BindingFlags.Instance | BindingFlags.Public)?.GetValue(row) as string,
-                    ordinal,
-                    StringComparison.Ordinal));
-
-        if (duplicateExists)
-        {
-            throw new InvalidOperationException($"Bridge '{ReadId(bridge)}' already contains ordinal '{ordinal}'. Bridge path ordinals must be unique.");
+            var bridge = ((BusinessBridgeTraversal)rowToAdd).BusinessBridge;
+            BusinessDataVaultRules.GetBridgeTraversalChain(
+                bridge,
+                model.BusinessBridgeTraversalList.Where(row => ReferenceEquals(row.BusinessBridge, bridge)));
         }
     }
 

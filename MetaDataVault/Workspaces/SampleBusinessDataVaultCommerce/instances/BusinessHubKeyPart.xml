@@ -2,18 +2,18 @@
 <MetaBusinessDataVault>
   <BusinessHubKeyPartList>
     <BusinessHubKeyPart Id="CustomerNumber" BusinessHubId="Customer">
-      <Name>CustomerNumber</Name>
       <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CustomerNumber</Name>
       <Ordinal>1</Ordinal>
     </BusinessHubKeyPart>
     <BusinessHubKeyPart Id="InvoiceNumber" BusinessHubId="Invoice">
-      <Name>InvoiceNumber</Name>
       <DataTypeId>meta:type:String</DataTypeId>
+      <Name>InvoiceNumber</Name>
       <Ordinal>1</Ordinal>
     </BusinessHubKeyPart>
     <BusinessHubKeyPart Id="OrderNumber" BusinessHubId="Order">
-      <Name>OrderNumber</Name>
       <DataTypeId>meta:type:String</DataTypeId>
+      <Name>OrderNumber</Name>
       <Ordinal>1</Ordinal>
     </BusinessHubKeyPart>
   </BusinessHubKeyPartList>

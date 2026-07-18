@@ -13,17 +13,17 @@
       <Name>business-data-vault-implementation</Name>
       <Path>..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation</Path>
     </Workspace>
-    <Workspace Id="workspace:sql" MeshId="mesh:default">
-      <Description>Generated MetaSql workspace produced from the business data vault model.</Description>
-      <ModelName>MetaSql</ModelName>
-      <Name>sql</Name>
-      <Path>CurrentMetaSqlWorkspace</Path>
-    </Workspace>
     <Workspace Id="workspace:deploy-manifest" MeshId="mesh:default">
       <Description>Generated deployment manifest for the first SQL deploy.</Description>
       <ModelName>MetaSqlDeployManifest</ModelName>
       <Name>deploy-manifest</Name>
       <Path>MetaSqlDeployManifest</Path>
+    </Workspace>
+    <Workspace Id="workspace:sql" MeshId="mesh:default">
+      <Description>Generated MetaSql workspace produced from the business data vault model.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>sql</Name>
+      <Path>CurrentMetaSqlWorkspace</Path>
     </Workspace>
     <Workspace Id="workspace:verify-manifest" MeshId="mesh:default">
       <Description>Generated verification manifest after deployment.</Description>

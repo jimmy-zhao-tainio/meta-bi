@@ -10,24 +10,12 @@
         <Relationship entity="BusinessHub" />
       </RelationshipList>
     </Entity>
-    <Entity name="BusinessBridgeHub">
-      <PropertyList>
-        <Property name="Ordinal" />
-        <Property name="RoleName" isRequired="false" />
-      </PropertyList>
+    <Entity name="BusinessBridgeTraversal">
       <RelationshipList>
         <Relationship entity="BusinessBridge" />
-        <Relationship entity="BusinessHub" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="BusinessBridgeLink">
-      <PropertyList>
-        <Property name="Ordinal" />
-        <Property name="RoleName" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="BusinessBridge" />
-        <Relationship entity="BusinessLink" />
+        <Relationship entity="BusinessBridgeTraversal" role="PreviousTraversal" isRequired="false" />
+        <Relationship entity="BusinessLinkRole" role="SourceRole" />
+        <Relationship entity="BusinessLinkRole" role="TargetRole" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessHierarchicalLink">
@@ -127,10 +115,9 @@
         <Property name="Name" />
       </PropertyList>
     </Entity>
-    <Entity name="BusinessLinkHub">
+    <Entity name="BusinessLinkRole">
       <PropertyList>
-        <Property name="Ordinal" />
-        <Property name="RoleName" isRequired="false" />
+        <Property name="Name" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessHub" />

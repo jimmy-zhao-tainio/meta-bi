@@ -188,7 +188,7 @@ Regenerated Raw tooling no longer exposes the three properties. The Data Vault t
 
 ## 3. Business Data Vault Attribute Nullability and Link Roles
 
-Status: Target design accepted for implementation on 2026-07-18
+Status: Partially implemented on 2026-07-18; role/traversal sub-slice complete
 
 Observed problem:
 
@@ -216,6 +216,15 @@ Accepted target design:
 - Technical Data Vault columns remain implementation-defined. This decision concerns modeled Business satellite attributes only.
 
 Role direction approved on 2026-07-15: role meaning must be represented by entities and relationships, not a free-text `RoleName` property. The accepted target makes that rule concrete for Business links and bridge traversal.
+
+### 3.1 Completed: Business Link Roles and Bridge Traversal
+
+- `BusinessLinkRole` now replaces `BusinessLinkHub` in the canonical Business workspace, all tracked Business samples, the Business CLI workspace, generated tooling, conversion, tests, and the Business integration mesh. A role has one link, one hub, and a required `Name`; names are unique within a link without regard to case.
+- `BusinessBridgeTraversal` now replaces the interleaved bridge-link and bridge-hub rows. Each traversal has one bridge, distinct source and target roles on the same link, and an optional predecessor. Shared domain rules require one non-branching, acyclic, connected chain starting at the bridge anchor and continuing hub-to-hub.
+- The authoring service rejects invalid role names and invalid traversal chains before saving. The converter invokes the same rules before projecting SQL, so malformed externally supplied models fail at the consumption boundary rather than being interpreted heuristically.
+- Verification: the Business Data Vault test suite passed 47/47; the tracked integration mesh validated 148 steps, built/deployed 148/148 to a zero-change final manifest, and its modeled cleanup passed 9/9.
+
+The satellite/attribute/nullability redesign and the remaining false Business ordinals remain pending under this item. They are not implied by this completed sub-slice.
 
 ## 4. Satellite Row Identity and Load Metadata
 

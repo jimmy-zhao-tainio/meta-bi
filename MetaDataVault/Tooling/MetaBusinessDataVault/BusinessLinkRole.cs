@@ -11,17 +11,15 @@
 
 namespace MetaBusinessDataVault
 {
-    public sealed class BusinessBridgeHub
+    public sealed class BusinessLinkRole
     {
         public string Id { get; set; } = string.Empty;
 
-        public string Ordinal { get; set; } = string.Empty;
-
-        public string? RoleName { get; set; }
-
-        public BusinessBridge BusinessBridge { get; set; } = null!;
+        public string Name { get; set; } = string.Empty;
 
         public BusinessHub BusinessHub { get; set; } = null!;
+
+        public BusinessLink BusinessLink { get; set; } = null!;
 
     }
 }

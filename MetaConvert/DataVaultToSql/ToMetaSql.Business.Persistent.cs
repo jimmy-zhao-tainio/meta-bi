@@ -1,4 +1,5 @@
 using MetaBusinessDataVault;
+using MetaDataVault.Core;
 using MetaDataVaultImplementation;
 using MetaSql;
 
@@ -21,7 +22,8 @@ public static partial class Converter
         var businessHubKeyPartDetailsByKeyPartId = GroupById(model.BusinessHubKeyPartDataTypeDetailList, row => row.BusinessHubKeyPart.Id);
         var businessHubSatelliteAttributesBySatelliteId = GroupById(model.BusinessHubSatelliteAttributeList, row => row.BusinessHubSatellite.Id);
         var businessHubSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessHubSatelliteAttributeDataTypeDetailList, row => row.BusinessHubSatelliteAttribute.Id);
-        var businessLinkHubsByLinkId = GroupById(model.BusinessLinkHubList, row => row.BusinessLink.Id);
+        BusinessDataVaultRules.ValidateLinkRoleNames(model);
+        var businessLinkRolesByLinkId = GroupById(model.BusinessLinkRoleList, row => row.BusinessLink.Id);
         var businessLinkSatelliteAttributesBySatelliteId = GroupById(model.BusinessLinkSatelliteAttributeList, row => row.BusinessLinkSatellite.Id);
         var businessLinkSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessLinkSatelliteAttributeDataTypeDetailList, row => row.BusinessLinkSatelliteAttribute.Id);
         var businessReferenceKeyPartsByReferenceId = GroupById(model.BusinessReferenceKeyPartList, row => row.BusinessReference.Id);
@@ -59,7 +61,7 @@ public static partial class Converter
             context,
             businessHubImplementation,
             businessLinkImplementation,
-            businessLinkHubsByLinkId,
+            businessLinkRolesByLinkId,
             hubTablesByHubId,
             hubHashKeyColumnsByHubId,
             linkTablesByLinkId,

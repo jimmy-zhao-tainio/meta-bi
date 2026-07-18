@@ -2,8 +2,8 @@
 <MetaBusinessDataVault>
   <BusinessReferenceSatelliteAttributeList>
     <BusinessReferenceSatelliteAttribute Id="StatusName" BusinessReferenceSatelliteId="StatusCurrent">
-      <Name>StatusName</Name>
       <DataTypeId>meta:type:String</DataTypeId>
+      <Name>StatusName</Name>
       <Ordinal>1</Ordinal>
     </BusinessReferenceSatelliteAttribute>
   </BusinessReferenceSatelliteAttributeList>

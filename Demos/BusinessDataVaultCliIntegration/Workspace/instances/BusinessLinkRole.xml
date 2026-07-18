@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkRoleList>
+    <BusinessLinkRole Id="CustomerInvoiceCustomer" BusinessHubId="Customer" BusinessLinkId="CustomerInvoice">
+      <Name>Customer</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="CustomerInvoiceInvoice" BusinessHubId="Invoice" BusinessLinkId="CustomerInvoice">
+      <Name>Invoice</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="CustomerOrderCustomer" BusinessHubId="Customer" BusinessLinkId="CustomerOrder">
+      <Name>Customer</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="CustomerOrderOrder" BusinessHubId="Order" BusinessLinkId="CustomerOrder">
+      <Name>Order</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="DepartmentCostCenterCostCenter" BusinessHubId="CostCenter" BusinessLinkId="DepartmentCostCenter">
+      <Name>CostCenter</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="DepartmentCostCenterDepartment" BusinessHubId="Department" BusinessLinkId="DepartmentCostCenter">
+      <Name>Department</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="DepartmentManagerDepartment" BusinessHubId="Department" BusinessLinkId="DepartmentManager">
+      <Name>Department</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="DepartmentManagerEmployee" BusinessHubId="Employee" BusinessLinkId="DepartmentManager">
+      <Name>ManagerEmployee</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="EmployeeCostCenterCostCenter" BusinessHubId="CostCenter" BusinessLinkId="EmployeeCostCenter">
+      <Name>CostCenter</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="EmployeeCostCenterEmployee" BusinessHubId="Employee" BusinessLinkId="EmployeeCostCenter">
+      <Name>Employee</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="EmployeeDepartmentDepartment" BusinessHubId="Department" BusinessLinkId="EmployeeDepartment">
+      <Name>Department</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="EmployeeDepartmentEmployee" BusinessHubId="Employee" BusinessLinkId="EmployeeDepartment">
+      <Name>Employee</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="InvoiceShipmentInvoice" BusinessHubId="Invoice" BusinessLinkId="InvoiceShipment">
+      <Name>Invoice</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="InvoiceShipmentShipment" BusinessHubId="Shipment" BusinessLinkId="InvoiceShipment">
+      <Name>Shipment</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="OrderInvoiceInvoice" BusinessHubId="Invoice" BusinessLinkId="OrderInvoice">
+      <Name>Invoice</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="OrderInvoiceOrder" BusinessHubId="Order" BusinessLinkId="OrderInvoice">
+      <Name>Order</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="OrderProductOrder" BusinessHubId="Order" BusinessLinkId="OrderProduct">
+      <Name>Order</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="OrderProductProduct" BusinessHubId="Product" BusinessLinkId="OrderProduct">
+      <Name>Product</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="ShipmentOrderOrder" BusinessHubId="Order" BusinessLinkId="ShipmentOrder">
+      <Name>Order</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="ShipmentOrderShipment" BusinessHubId="Shipment" BusinessLinkId="ShipmentOrder">
+      <Name>Shipment</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SupplierInvoiceInvoice" BusinessHubId="Invoice" BusinessLinkId="SupplierInvoice">
+      <Name>Invoice</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SupplierInvoiceSupplier" BusinessHubId="Supplier" BusinessLinkId="SupplierInvoice">
+      <Name>Supplier</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SupplierProductProduct" BusinessHubId="Product" BusinessLinkId="SupplierProduct">
+      <Name>Product</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SupplierProductSupplier" BusinessHubId="Supplier" BusinessLinkId="SupplierProduct">
+      <Name>Supplier</Name>
+    </BusinessLinkRole>
+  </BusinessLinkRoleList>
+</MetaBusinessDataVault>

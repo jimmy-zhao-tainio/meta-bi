@@ -11,7 +11,7 @@ public static partial class Converter
         ConversionContext context,
         BusinessHubImplementation businessHubImplementation,
         BusinessLinkImplementation businessLinkImplementation,
-        IReadOnlyDictionary<string, List<BusinessLinkHub>> businessLinkHubsByLinkId,
+        IReadOnlyDictionary<string, List<BusinessLinkRole>> businessLinkRolesByLinkId,
         IReadOnlyDictionary<string, Table> hubTablesByHubId,
         IReadOnlyDictionary<string, TableColumn> hubHashKeyColumnsByHubId,
         Dictionary<string, Table> linkTablesByLinkId,
@@ -34,19 +34,21 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessLinkImplementation.HashKeyLength));
 
-            foreach (var linkHub in GetGroup(businessLinkHubsByLinkId, link.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
+            foreach (var linkRole in GetGroup(businessLinkRolesByLinkId, link.Id)
+                .OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(row => row.Id, StringComparer.Ordinal))
             {
                 var endHashKeyColumn = AddImplementationColumn(
                     context,
                     table,
-                    ApplyPattern(businessLinkImplementation.EndHashKeyColumnPattern, ("RoleName", linkHub.RoleName)),
+                    ApplyPattern(businessLinkImplementation.EndHashKeyColumnPattern, ("RoleName", linkRole.Name)),
                     businessHubImplementation.HashKeyDataTypeId,
                     "false",
                     reservedColumnNames,
                     ("Length", businessHubImplementation.HashKeyLength));
 
-                if (hubTablesByHubId.TryGetValue(linkHub.BusinessHub.Id, out var targetHubTable) &&
-                    hubHashKeyColumnsByHubId.TryGetValue(linkHub.BusinessHub.Id, out var targetHubHashKey))
+                if (hubTablesByHubId.TryGetValue(linkRole.BusinessHub.Id, out var targetHubTable) &&
+                    hubHashKeyColumnsByHubId.TryGetValue(linkRole.BusinessHub.Id, out var targetHubHashKey))
                 {
                     AddForeignKey(
                         context,

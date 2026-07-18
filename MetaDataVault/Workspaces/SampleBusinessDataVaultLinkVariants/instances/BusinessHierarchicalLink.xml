@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessHierarchicalLinkList>
-    <BusinessHierarchicalLink Id="EmployeeManager" ParentHubId="Employee" ChildHubId="Employee">
+    <BusinessHierarchicalLink Id="EmployeeManager" ChildHubId="Employee" ParentHubId="Employee">
       <Name>EmployeeManager</Name>
     </BusinessHierarchicalLink>
   </BusinessHierarchicalLinkList>
 </MetaBusinessDataVault>
-

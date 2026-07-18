@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessSameAsLinkList>
-    <BusinessSameAsLink Id="CustomerMatch" PrimaryHubId="Customer" EquivalentHubId="Customer">
+    <BusinessSameAsLink Id="CustomerMatch" EquivalentHubId="Customer" PrimaryHubId="Customer">
       <Name>CustomerMatch</Name>
     </BusinessSameAsLink>
   </BusinessSameAsLinkList>
 </MetaBusinessDataVault>
-

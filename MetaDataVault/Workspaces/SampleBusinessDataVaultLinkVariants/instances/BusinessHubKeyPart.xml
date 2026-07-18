@@ -2,13 +2,13 @@
 <MetaBusinessDataVault>
   <BusinessHubKeyPartList>
     <BusinessHubKeyPart Id="CustomerIdentifier" BusinessHubId="Customer">
-      <Name>Identifier</Name>
       <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Identifier</Name>
       <Ordinal>1</Ordinal>
     </BusinessHubKeyPart>
     <BusinessHubKeyPart Id="EmployeeIdentifier" BusinessHubId="Employee">
-      <Name>Identifier</Name>
       <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Identifier</Name>
       <Ordinal>1</Ordinal>
     </BusinessHubKeyPart>
   </BusinessHubKeyPartList>

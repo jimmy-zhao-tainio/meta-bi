@@ -28,9 +28,7 @@ namespace MetaBusinessDataVault
 
         public List<BusinessBridge> BusinessBridgeList { get; set; } = new();
 
-        public List<BusinessBridgeHub> BusinessBridgeHubList { get; set; } = new();
-
-        public List<BusinessBridgeLink> BusinessBridgeLinkList { get; set; } = new();
+        public List<BusinessBridgeTraversal> BusinessBridgeTraversalList { get; set; } = new();
 
         public List<BusinessHierarchicalLink> BusinessHierarchicalLinkList { get; set; } = new();
 
@@ -54,7 +52,7 @@ namespace MetaBusinessDataVault
 
         public List<BusinessLink> BusinessLinkList { get; set; } = new();
 
-        public List<BusinessLinkHub> BusinessLinkHubList { get; set; } = new();
+        public List<BusinessLinkRole> BusinessLinkRoleList { get; set; } = new();
 
         public List<BusinessLinkSatellite> BusinessLinkSatelliteList { get; set; } = new();
 
@@ -183,7 +181,6 @@ namespace MetaBusinessDataVault
             Directory.CreateDirectory(instanceDirectoryPath);
             var expectedShardPaths = BuildExpectedShardPaths(instanceDirectoryPath);
             SaveShardGroup1(model, instanceDirectoryPath, saveIndexes);
-            SaveShardGroup2(model, instanceDirectoryPath, saveIndexes);
             foreach (var shardPath in Directory.GetFiles(instanceDirectoryPath, "*.xml")
                          .OrderBy(Path.GetFileName, StringComparer.OrdinalIgnoreCase)
                          .ThenBy(path => path, StringComparer.Ordinal))
@@ -208,26 +205,15 @@ namespace MetaBusinessDataVault
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessBridgeShardPath, SerializeBusinessBridgeShard(model, saveIndexes));
             }
 
-            model.BusinessBridgeHubList ??= new List<BusinessBridgeHub>();
-            var businessBridgeHubShardPath = Path.Combine(instanceDirectoryPath, "BusinessBridgeHub.xml");
-            if (model.BusinessBridgeHubList.Count == 0)
+            model.BusinessBridgeTraversalList ??= new List<BusinessBridgeTraversal>();
+            var businessBridgeTraversalShardPath = Path.Combine(instanceDirectoryPath, "BusinessBridgeTraversal.xml");
+            if (model.BusinessBridgeTraversalList.Count == 0)
             {
-                DeleteIfExists(businessBridgeHubShardPath);
+                DeleteIfExists(businessBridgeTraversalShardPath);
             }
             else
             {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessBridgeHubShardPath, SerializeBusinessBridgeHubShard(model, saveIndexes));
-            }
-
-            model.BusinessBridgeLinkList ??= new List<BusinessBridgeLink>();
-            var businessBridgeLinkShardPath = Path.Combine(instanceDirectoryPath, "BusinessBridgeLink.xml");
-            if (model.BusinessBridgeLinkList.Count == 0)
-            {
-                DeleteIfExists(businessBridgeLinkShardPath);
-            }
-            else
-            {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessBridgeLinkShardPath, SerializeBusinessBridgeLinkShard(model, saveIndexes));
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessBridgeTraversalShardPath, SerializeBusinessBridgeTraversalShard(model, saveIndexes));
             }
 
             model.BusinessHierarchicalLinkList ??= new List<BusinessHierarchicalLink>();
@@ -351,15 +337,15 @@ namespace MetaBusinessDataVault
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessLinkShardPath, SerializeBusinessLinkShard(model, saveIndexes));
             }
 
-            model.BusinessLinkHubList ??= new List<BusinessLinkHub>();
-            var businessLinkHubShardPath = Path.Combine(instanceDirectoryPath, "BusinessLinkHub.xml");
-            if (model.BusinessLinkHubList.Count == 0)
+            model.BusinessLinkRoleList ??= new List<BusinessLinkRole>();
+            var businessLinkRoleShardPath = Path.Combine(instanceDirectoryPath, "BusinessLinkRole.xml");
+            if (model.BusinessLinkRoleList.Count == 0)
             {
-                DeleteIfExists(businessLinkHubShardPath);
+                DeleteIfExists(businessLinkRoleShardPath);
             }
             else
             {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessLinkHubShardPath, SerializeBusinessLinkHubShard(model, saveIndexes));
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessLinkRoleShardPath, SerializeBusinessLinkRoleShard(model, saveIndexes));
             }
 
             model.BusinessLinkSatelliteList ??= new List<BusinessLinkSatellite>();
@@ -549,10 +535,6 @@ namespace MetaBusinessDataVault
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(businessSameAsLinkSatelliteAttributeShardPath, SerializeBusinessSameAsLinkSatelliteAttributeShard(model, saveIndexes));
             }
 
-        }
-
-        private static void SaveShardGroup2(MetaBusinessDataVaultModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
-        {
             model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList ??= new List<BusinessSameAsLinkSatelliteAttributeDataTypeDetail>();
             var businessSameAsLinkSatelliteAttributeDataTypeDetailShardPath = Path.Combine(instanceDirectoryPath, "BusinessSameAsLinkSatelliteAttributeDataTypeDetail.xml");
             if (model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList.Count == 0)
@@ -591,11 +573,8 @@ namespace MetaBusinessDataVault
                     case "BusinessBridgeList":
                         LoadBusinessBridgeList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "BusinessBridgeHubList":
-                        LoadBusinessBridgeHubList(model, reader, loadState, relationshipBuffers);
-                        break;
-                    case "BusinessBridgeLinkList":
-                        LoadBusinessBridgeLinkList(model, reader, loadState, relationshipBuffers);
+                    case "BusinessBridgeTraversalList":
+                        LoadBusinessBridgeTraversalList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "BusinessHierarchicalLinkList":
                         LoadBusinessHierarchicalLinkList(model, reader, loadState, relationshipBuffers);
@@ -630,8 +609,8 @@ namespace MetaBusinessDataVault
                     case "BusinessLinkList":
                         LoadBusinessLinkList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "BusinessLinkHubList":
-                        LoadBusinessLinkHubList(model, reader, loadState, relationshipBuffers);
+                    case "BusinessLinkRoleList":
+                        LoadBusinessLinkRoleList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "BusinessLinkSatelliteList":
                         LoadBusinessLinkSatelliteList(model, reader, loadState, relationshipBuffers);
@@ -815,33 +794,33 @@ namespace MetaBusinessDataVault
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
-        private static void LoadBusinessBridgeHubList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        private static void LoadBusinessBridgeTraversalList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
             {
-                reader.ReadStartElement("BusinessBridgeHubList");
+                reader.ReadStartElement("BusinessBridgeTraversalList");
                 return;
             }
 
-            reader.ReadStartElement("BusinessBridgeHubList");
+            reader.ReadStartElement("BusinessBridgeTraversalList");
             while (reader.NodeType == XmlNodeType.Element)
             {
-                if (!string.Equals(reader.LocalName, "BusinessBridgeHub", StringComparison.Ordinal))
+                if (!string.Equals(reader.LocalName, "BusinessBridgeTraversal", StringComparison.Ordinal))
                 {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessBridgeHubList'.");
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessBridgeTraversalList'.");
                 }
-                var row = ReadBusinessBridgeHub(reader, relationshipBuffers);
-                loadState.AddBusinessBridgeHubId(row.Id);
-                model.BusinessBridgeHubList.Add(row);
+                var row = ReadBusinessBridgeTraversal(reader, relationshipBuffers);
+                loadState.AddBusinessBridgeTraversalId(row.Id);
+                model.BusinessBridgeTraversalList.Add(row);
                 reader.MoveToContent();
             }
             reader.ReadEndElement();
         }
 
-        private static BusinessBridgeHub ReadBusinessBridgeHub(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        private static BusinessBridgeTraversal ReadBusinessBridgeTraversal(XmlReader reader, RelationshipBuffers relationshipBuffers)
         {
-            var row = new BusinessBridgeHub();
-            var relationships = new BusinessBridgeHubRelationships { Row = row };
+            var row = new BusinessBridgeTraversal();
+            var relationships = new BusinessBridgeTraversalRelationships { Row = row };
             if (reader.HasAttributes)
             {
                 while (reader.MoveToNextAttribute())
@@ -859,11 +838,17 @@ namespace MetaBusinessDataVault
                         case "BusinessBridgeId":
                             relationships.BusinessBridgeId = reader.Value;
                             break;
-                        case "BusinessHubId":
-                            relationships.BusinessHubId = reader.Value;
+                        case "PreviousTraversalId":
+                            relationships.PreviousTraversalId = reader.Value;
+                            break;
+                        case "SourceRoleId":
+                            relationships.SourceRoleId = reader.Value;
+                            break;
+                        case "TargetRoleId":
+                            relationships.TargetRoleId = reader.Value;
                             break;
                         default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessBridgeHub'.");
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessBridgeTraversal'.");
                     }
                 }
 
@@ -872,211 +857,90 @@ namespace MetaBusinessDataVault
 
             if (reader.IsEmptyElement)
             {
-                reader.ReadStartElement("BusinessBridgeHub");
-                (relationshipBuffers.BusinessBridgeHubRelationships ??= new List<BusinessBridgeHubRelationships>()).Add(relationships);
+                reader.ReadStartElement("BusinessBridgeTraversal");
+                (relationshipBuffers.BusinessBridgeTraversalRelationships ??= new List<BusinessBridgeTraversalRelationships>()).Add(relationships);
                 return row;
             }
 
-            reader.ReadStartElement("BusinessBridgeHub");
+            reader.ReadStartElement("BusinessBridgeTraversal");
             while (reader.NodeType == XmlNodeType.Element)
             {
                 switch (reader.LocalName)
                 {
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
-                    case "RoleName":
-                        row.RoleName = reader.ReadElementContentAsString();
-                        break;
                     default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessBridgeHub'.");
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessBridgeTraversal'.");
                 }
             }
             reader.ReadEndElement();
-            (relationshipBuffers.BusinessBridgeHubRelationships ??= new List<BusinessBridgeHubRelationships>()).Add(relationships);
+            (relationshipBuffers.BusinessBridgeTraversalRelationships ??= new List<BusinessBridgeTraversalRelationships>()).Add(relationships);
             return row;
         }
 
-        private static byte[] SerializeBusinessBridgeHubShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
+        private static byte[] SerializeBusinessBridgeTraversalShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
             var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessBridgeHubList>\n");
-            foreach (var row in model.BusinessBridgeHubList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            builder.Append("  <BusinessBridgeTraversalList>\n");
+            foreach (var row in model.BusinessBridgeTraversalList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessBridgeHub' contains a row with empty Id.");
+                var rowId = RequireIdentity(row.Id, "Entity 'BusinessBridgeTraversal' contains a row with empty Id.");
                 if (!rowIds.Add(rowId))
                 {
-                    throw new InvalidOperationException($"Entity 'BusinessBridgeHub' contains duplicate Id '{rowId}'.");
+                    throw new InvalidOperationException($"Entity 'BusinessBridgeTraversal' contains duplicate Id '{rowId}'.");
                 }
-                builder.Append("    <BusinessBridgeHub Id=\"");
+                builder.Append("    <BusinessBridgeTraversal Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                var businessBridgeId = RequireIdentity(row.BusinessBridge?.Id, $"Relationship 'BusinessBridgeHub.BusinessBridgeId' on row 'BusinessBridgeHub:{row.Id}' is empty.");
+                var businessBridgeId = RequireIdentity(row.BusinessBridge?.Id, $"Relationship 'BusinessBridgeTraversal.BusinessBridgeId' on row 'BusinessBridgeTraversal:{row.Id}' is empty.");
                 if (!saveIndexes.BusinessBridgeListById.TryGetValue(businessBridgeId, out var businessBridgeCanonical) || !ReferenceEquals(businessBridgeCanonical, row.BusinessBridge))
                 {
-                    throw new InvalidOperationException($"Relationship 'BusinessBridgeHub.BusinessBridgeId' on row 'BusinessBridgeHub:{row.Id}' references an object that is not the canonical row for Id '{businessBridgeId}'.");
+                    throw new InvalidOperationException($"Relationship 'BusinessBridgeTraversal.BusinessBridgeId' on row 'BusinessBridgeTraversal:{row.Id}' references an object that is not the canonical row for Id '{businessBridgeId}'.");
                 }
                 builder.Append(' ');
                 builder.Append("BusinessBridgeId");
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessBridgeId);
                 builder.Append('"');
-                var businessHubId = RequireIdentity(row.BusinessHub?.Id, $"Relationship 'BusinessBridgeHub.BusinessHubId' on row 'BusinessBridgeHub:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessHubListById.TryGetValue(businessHubId, out var businessHubCanonical) || !ReferenceEquals(businessHubCanonical, row.BusinessHub))
+                if (row.PreviousTraversal != null)
                 {
-                    throw new InvalidOperationException($"Relationship 'BusinessBridgeHub.BusinessHubId' on row 'BusinessBridgeHub:{row.Id}' references an object that is not the canonical row for Id '{businessHubId}'.");
+                    var previousTraversalId = RequireIdentity(row.PreviousTraversal?.Id, $"Relationship 'BusinessBridgeTraversal.PreviousTraversalId' on row 'BusinessBridgeTraversal:{row.Id}' is empty.");
+                    if (!saveIndexes.BusinessBridgeTraversalListById.TryGetValue(previousTraversalId, out var previousTraversalCanonical) || !ReferenceEquals(previousTraversalCanonical, row.PreviousTraversal))
+                    {
+                        throw new InvalidOperationException($"Relationship 'BusinessBridgeTraversal.PreviousTraversalId' on row 'BusinessBridgeTraversal:{row.Id}' references an object that is not the canonical row for Id '{previousTraversalId}'.");
+                    }
+                    builder.Append(' ');
+                    builder.Append("PreviousTraversalId");
+                    builder.Append("=\"");
+                    AppendXmlAttribute(builder, previousTraversalId);
+                    builder.Append('"');
+                }
+                var sourceRoleId = RequireIdentity(row.SourceRole?.Id, $"Relationship 'BusinessBridgeTraversal.SourceRoleId' on row 'BusinessBridgeTraversal:{row.Id}' is empty.");
+                if (!saveIndexes.BusinessLinkRoleListById.TryGetValue(sourceRoleId, out var sourceRoleCanonical) || !ReferenceEquals(sourceRoleCanonical, row.SourceRole))
+                {
+                    throw new InvalidOperationException($"Relationship 'BusinessBridgeTraversal.SourceRoleId' on row 'BusinessBridgeTraversal:{row.Id}' references an object that is not the canonical row for Id '{sourceRoleId}'.");
                 }
                 builder.Append(' ');
-                builder.Append("BusinessHubId");
+                builder.Append("SourceRoleId");
                 builder.Append("=\"");
-                AppendXmlAttribute(builder, businessHubId);
+                AppendXmlAttribute(builder, sourceRoleId);
+                builder.Append('"');
+                var targetRoleId = RequireIdentity(row.TargetRole?.Id, $"Relationship 'BusinessBridgeTraversal.TargetRoleId' on row 'BusinessBridgeTraversal:{row.Id}' is empty.");
+                if (!saveIndexes.BusinessLinkRoleListById.TryGetValue(targetRoleId, out var targetRoleCanonical) || !ReferenceEquals(targetRoleCanonical, row.TargetRole))
+                {
+                    throw new InvalidOperationException($"Relationship 'BusinessBridgeTraversal.TargetRoleId' on row 'BusinessBridgeTraversal:{row.Id}' references an object that is not the canonical row for Id '{targetRoleId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("TargetRoleId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, targetRoleId);
                 builder.Append('"');
                 builder.Append(">\n");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessBridgeHub' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
-                if (!string.IsNullOrWhiteSpace(row.RoleName))
-                {
-                    AppendElement(builder, "RoleName", row.RoleName!, "      ");
-                }
-                builder.Append("    </BusinessBridgeHub>\n");
+                builder.Append("    </BusinessBridgeTraversal>\n");
             }
-            builder.Append("  </BusinessBridgeHubList>\n");
-            builder.Append("</MetaBusinessDataVault>\n");
-            return Utf8NoBom.GetBytes(builder.ToString());
-        }
-
-        private static void LoadBusinessBridgeLinkList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
-        {
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessBridgeLinkList");
-                return;
-            }
-
-            reader.ReadStartElement("BusinessBridgeLinkList");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                if (!string.Equals(reader.LocalName, "BusinessBridgeLink", StringComparison.Ordinal))
-                {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessBridgeLinkList'.");
-                }
-                var row = ReadBusinessBridgeLink(reader, relationshipBuffers);
-                loadState.AddBusinessBridgeLinkId(row.Id);
-                model.BusinessBridgeLinkList.Add(row);
-                reader.MoveToContent();
-            }
-            reader.ReadEndElement();
-        }
-
-        private static BusinessBridgeLink ReadBusinessBridgeLink(XmlReader reader, RelationshipBuffers relationshipBuffers)
-        {
-            var row = new BusinessBridgeLink();
-            var relationships = new BusinessBridgeLinkRelationships { Row = row };
-            if (reader.HasAttributes)
-            {
-                while (reader.MoveToNextAttribute())
-                {
-                    if (IsNamespaceDeclaration(reader))
-                    {
-                        continue;
-                    }
-
-                    switch (reader.LocalName)
-                    {
-                        case "Id":
-                            row.Id = reader.Value;
-                            break;
-                        case "BusinessBridgeId":
-                            relationships.BusinessBridgeId = reader.Value;
-                            break;
-                        case "BusinessLinkId":
-                            relationships.BusinessLinkId = reader.Value;
-                            break;
-                        default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessBridgeLink'.");
-                    }
-                }
-
-                reader.MoveToElement();
-            }
-
-            if (reader.IsEmptyElement)
-            {
-                reader.ReadStartElement("BusinessBridgeLink");
-                (relationshipBuffers.BusinessBridgeLinkRelationships ??= new List<BusinessBridgeLinkRelationships>()).Add(relationships);
-                return row;
-            }
-
-            reader.ReadStartElement("BusinessBridgeLink");
-            while (reader.NodeType == XmlNodeType.Element)
-            {
-                switch (reader.LocalName)
-                {
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
-                    case "RoleName":
-                        row.RoleName = reader.ReadElementContentAsString();
-                        break;
-                    default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessBridgeLink'.");
-                }
-            }
-            reader.ReadEndElement();
-            (relationshipBuffers.BusinessBridgeLinkRelationships ??= new List<BusinessBridgeLinkRelationships>()).Add(relationships);
-            return row;
-        }
-
-        private static byte[] SerializeBusinessBridgeLinkShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
-        {
-            var builder = new StringBuilder();
-            var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-            builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessBridgeLinkList>\n");
-            foreach (var row in model.BusinessBridgeLinkList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessBridgeLink' contains a row with empty Id.");
-                if (!rowIds.Add(rowId))
-                {
-                    throw new InvalidOperationException($"Entity 'BusinessBridgeLink' contains duplicate Id '{rowId}'.");
-                }
-                builder.Append("    <BusinessBridgeLink Id=\"");
-                AppendXmlAttribute(builder, rowId);
-                builder.Append('"');
-                var businessBridgeId = RequireIdentity(row.BusinessBridge?.Id, $"Relationship 'BusinessBridgeLink.BusinessBridgeId' on row 'BusinessBridgeLink:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessBridgeListById.TryGetValue(businessBridgeId, out var businessBridgeCanonical) || !ReferenceEquals(businessBridgeCanonical, row.BusinessBridge))
-                {
-                    throw new InvalidOperationException($"Relationship 'BusinessBridgeLink.BusinessBridgeId' on row 'BusinessBridgeLink:{row.Id}' references an object that is not the canonical row for Id '{businessBridgeId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("BusinessBridgeId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, businessBridgeId);
-                builder.Append('"');
-                var businessLinkId = RequireIdentity(row.BusinessLink?.Id, $"Relationship 'BusinessBridgeLink.BusinessLinkId' on row 'BusinessBridgeLink:{row.Id}' is empty.");
-                if (!saveIndexes.BusinessLinkListById.TryGetValue(businessLinkId, out var businessLinkCanonical) || !ReferenceEquals(businessLinkCanonical, row.BusinessLink))
-                {
-                    throw new InvalidOperationException($"Relationship 'BusinessBridgeLink.BusinessLinkId' on row 'BusinessBridgeLink:{row.Id}' references an object that is not the canonical row for Id '{businessLinkId}'.");
-                }
-                builder.Append(' ');
-                builder.Append("BusinessLinkId");
-                builder.Append("=\"");
-                AppendXmlAttribute(builder, businessLinkId);
-                builder.Append('"');
-                builder.Append(">\n");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessBridgeLink' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
-                if (!string.IsNullOrWhiteSpace(row.RoleName))
-                {
-                    AppendElement(builder, "RoleName", row.RoleName!, "      ");
-                }
-                builder.Append("    </BusinessBridgeLink>\n");
-            }
-            builder.Append("  </BusinessBridgeLinkList>\n");
+            builder.Append("  </BusinessBridgeTraversalList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -2376,33 +2240,33 @@ namespace MetaBusinessDataVault
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
-        private static void LoadBusinessLinkHubList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        private static void LoadBusinessLinkRoleList(MetaBusinessDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
             {
-                reader.ReadStartElement("BusinessLinkHubList");
+                reader.ReadStartElement("BusinessLinkRoleList");
                 return;
             }
 
-            reader.ReadStartElement("BusinessLinkHubList");
+            reader.ReadStartElement("BusinessLinkRoleList");
             while (reader.NodeType == XmlNodeType.Element)
             {
-                if (!string.Equals(reader.LocalName, "BusinessLinkHub", StringComparison.Ordinal))
+                if (!string.Equals(reader.LocalName, "BusinessLinkRole", StringComparison.Ordinal))
                 {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessLinkHubList'.");
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BusinessLinkRoleList'.");
                 }
-                var row = ReadBusinessLinkHub(reader, relationshipBuffers);
-                loadState.AddBusinessLinkHubId(row.Id);
-                model.BusinessLinkHubList.Add(row);
+                var row = ReadBusinessLinkRole(reader, relationshipBuffers);
+                loadState.AddBusinessLinkRoleId(row.Id);
+                model.BusinessLinkRoleList.Add(row);
                 reader.MoveToContent();
             }
             reader.ReadEndElement();
         }
 
-        private static BusinessLinkHub ReadBusinessLinkHub(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        private static BusinessLinkRole ReadBusinessLinkRole(XmlReader reader, RelationshipBuffers relationshipBuffers)
         {
-            var row = new BusinessLinkHub();
-            var relationships = new BusinessLinkHubRelationships { Row = row };
+            var row = new BusinessLinkRole();
+            var relationships = new BusinessLinkRoleRelationships { Row = row };
             if (reader.HasAttributes)
             {
                 while (reader.MoveToNextAttribute())
@@ -2424,7 +2288,7 @@ namespace MetaBusinessDataVault
                             relationships.BusinessLinkId = reader.Value;
                             break;
                         default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessLinkHub'.");
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessLinkRole'.");
                     }
                 }
 
@@ -2433,63 +2297,60 @@ namespace MetaBusinessDataVault
 
             if (reader.IsEmptyElement)
             {
-                reader.ReadStartElement("BusinessLinkHub");
-                (relationshipBuffers.BusinessLinkHubRelationships ??= new List<BusinessLinkHubRelationships>()).Add(relationships);
+                reader.ReadStartElement("BusinessLinkRole");
+                (relationshipBuffers.BusinessLinkRoleRelationships ??= new List<BusinessLinkRoleRelationships>()).Add(relationships);
                 return row;
             }
 
-            reader.ReadStartElement("BusinessLinkHub");
+            reader.ReadStartElement("BusinessLinkRole");
             while (reader.NodeType == XmlNodeType.Element)
             {
                 switch (reader.LocalName)
                 {
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
-                    case "RoleName":
-                        row.RoleName = reader.ReadElementContentAsString();
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
                         break;
                     default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessLinkHub'.");
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessLinkRole'.");
                 }
             }
             reader.ReadEndElement();
-            (relationshipBuffers.BusinessLinkHubRelationships ??= new List<BusinessLinkHubRelationships>()).Add(relationships);
+            (relationshipBuffers.BusinessLinkRoleRelationships ??= new List<BusinessLinkRoleRelationships>()).Add(relationships);
             return row;
         }
 
-        private static byte[] SerializeBusinessLinkHubShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
+        private static byte[] SerializeBusinessLinkRoleShard(MetaBusinessDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
             var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaBusinessDataVault>\n");
-            builder.Append("  <BusinessLinkHubList>\n");
-            foreach (var row in model.BusinessLinkHubList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            builder.Append("  <BusinessLinkRoleList>\n");
+            foreach (var row in model.BusinessLinkRoleList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'BusinessLinkHub' contains a row with empty Id.");
+                var rowId = RequireIdentity(row.Id, "Entity 'BusinessLinkRole' contains a row with empty Id.");
                 if (!rowIds.Add(rowId))
                 {
-                    throw new InvalidOperationException($"Entity 'BusinessLinkHub' contains duplicate Id '{rowId}'.");
+                    throw new InvalidOperationException($"Entity 'BusinessLinkRole' contains duplicate Id '{rowId}'.");
                 }
-                builder.Append("    <BusinessLinkHub Id=\"");
+                builder.Append("    <BusinessLinkRole Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                var businessHubId = RequireIdentity(row.BusinessHub?.Id, $"Relationship 'BusinessLinkHub.BusinessHubId' on row 'BusinessLinkHub:{row.Id}' is empty.");
+                var businessHubId = RequireIdentity(row.BusinessHub?.Id, $"Relationship 'BusinessLinkRole.BusinessHubId' on row 'BusinessLinkRole:{row.Id}' is empty.");
                 if (!saveIndexes.BusinessHubListById.TryGetValue(businessHubId, out var businessHubCanonical) || !ReferenceEquals(businessHubCanonical, row.BusinessHub))
                 {
-                    throw new InvalidOperationException($"Relationship 'BusinessLinkHub.BusinessHubId' on row 'BusinessLinkHub:{row.Id}' references an object that is not the canonical row for Id '{businessHubId}'.");
+                    throw new InvalidOperationException($"Relationship 'BusinessLinkRole.BusinessHubId' on row 'BusinessLinkRole:{row.Id}' references an object that is not the canonical row for Id '{businessHubId}'.");
                 }
                 builder.Append(' ');
                 builder.Append("BusinessHubId");
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessHubId);
                 builder.Append('"');
-                var businessLinkId = RequireIdentity(row.BusinessLink?.Id, $"Relationship 'BusinessLinkHub.BusinessLinkId' on row 'BusinessLinkHub:{row.Id}' is empty.");
+                var businessLinkId = RequireIdentity(row.BusinessLink?.Id, $"Relationship 'BusinessLinkRole.BusinessLinkId' on row 'BusinessLinkRole:{row.Id}' is empty.");
                 if (!saveIndexes.BusinessLinkListById.TryGetValue(businessLinkId, out var businessLinkCanonical) || !ReferenceEquals(businessLinkCanonical, row.BusinessLink))
                 {
-                    throw new InvalidOperationException($"Relationship 'BusinessLinkHub.BusinessLinkId' on row 'BusinessLinkHub:{row.Id}' references an object that is not the canonical row for Id '{businessLinkId}'.");
+                    throw new InvalidOperationException($"Relationship 'BusinessLinkRole.BusinessLinkId' on row 'BusinessLinkRole:{row.Id}' references an object that is not the canonical row for Id '{businessLinkId}'.");
                 }
                 builder.Append(' ');
                 builder.Append("BusinessLinkId");
@@ -2497,14 +2358,10 @@ namespace MetaBusinessDataVault
                 AppendXmlAttribute(builder, businessLinkId);
                 builder.Append('"');
                 builder.Append(">\n");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessLinkHub' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
-                if (!string.IsNullOrWhiteSpace(row.RoleName))
-                {
-                    AppendElement(builder, "RoleName", row.RoleName!, "      ");
-                }
-                builder.Append("    </BusinessLinkHub>\n");
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessLinkRole' row '{row.Id}' is missing required property 'Name'."), "      ");
+                builder.Append("    </BusinessLinkRole>\n");
             }
-            builder.Append("  </BusinessLinkHubList>\n");
+            builder.Append("  </BusinessLinkRoleList>\n");
             builder.Append("</MetaBusinessDataVault>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -4674,18 +4531,13 @@ namespace MetaBusinessDataVault
             public string BusinessHubId { get; set; } = string.Empty;
         }
 
-        private sealed class BusinessBridgeHubRelationships
+        private sealed class BusinessBridgeTraversalRelationships
         {
-            public BusinessBridgeHub Row { get; set; } = null!;
+            public BusinessBridgeTraversal Row { get; set; } = null!;
             public string BusinessBridgeId { get; set; } = string.Empty;
-            public string BusinessHubId { get; set; } = string.Empty;
-        }
-
-        private sealed class BusinessBridgeLinkRelationships
-        {
-            public BusinessBridgeLink Row { get; set; } = null!;
-            public string BusinessBridgeId { get; set; } = string.Empty;
-            public string BusinessLinkId { get; set; } = string.Empty;
+            public string PreviousTraversalId { get; set; } = string.Empty;
+            public string SourceRoleId { get; set; } = string.Empty;
+            public string TargetRoleId { get; set; } = string.Empty;
         }
 
         private sealed class BusinessHierarchicalLinkRelationships
@@ -4743,9 +4595,9 @@ namespace MetaBusinessDataVault
             public string BusinessHubSatelliteAttributeId { get; set; } = string.Empty;
         }
 
-        private sealed class BusinessLinkHubRelationships
+        private sealed class BusinessLinkRoleRelationships
         {
-            public BusinessLinkHub Row { get; set; } = null!;
+            public BusinessLinkRole Row { get; set; } = null!;
             public string BusinessHubId { get; set; } = string.Empty;
             public string BusinessLinkId { get; set; } = string.Empty;
         }
@@ -4858,8 +4710,7 @@ namespace MetaBusinessDataVault
         private sealed class RelationshipBuffers
         {
             public List<BusinessBridgeRelationships>? BusinessBridgeRelationships { get; set; }
-            public List<BusinessBridgeHubRelationships>? BusinessBridgeHubRelationships { get; set; }
-            public List<BusinessBridgeLinkRelationships>? BusinessBridgeLinkRelationships { get; set; }
+            public List<BusinessBridgeTraversalRelationships>? BusinessBridgeTraversalRelationships { get; set; }
             public List<BusinessHierarchicalLinkRelationships>? BusinessHierarchicalLinkRelationships { get; set; }
             public List<BusinessHierarchicalLinkSatelliteRelationships>? BusinessHierarchicalLinkSatelliteRelationships { get; set; }
             public List<BusinessHierarchicalLinkSatelliteAttributeRelationships>? BusinessHierarchicalLinkSatelliteAttributeRelationships { get; set; }
@@ -4869,7 +4720,7 @@ namespace MetaBusinessDataVault
             public List<BusinessHubSatelliteRelationships>? BusinessHubSatelliteRelationships { get; set; }
             public List<BusinessHubSatelliteAttributeRelationships>? BusinessHubSatelliteAttributeRelationships { get; set; }
             public List<BusinessHubSatelliteAttributeDataTypeDetailRelationships>? BusinessHubSatelliteAttributeDataTypeDetailRelationships { get; set; }
-            public List<BusinessLinkHubRelationships>? BusinessLinkHubRelationships { get; set; }
+            public List<BusinessLinkRoleRelationships>? BusinessLinkRoleRelationships { get; set; }
             public List<BusinessLinkSatelliteRelationships>? BusinessLinkSatelliteRelationships { get; set; }
             public List<BusinessLinkSatelliteAttributeRelationships>? BusinessLinkSatelliteAttributeRelationships { get; set; }
             public List<BusinessLinkSatelliteAttributeDataTypeDetailRelationships>? BusinessLinkSatelliteAttributeDataTypeDetailRelationships { get; set; }
@@ -4901,44 +4752,46 @@ namespace MetaBusinessDataVault
                     "BusinessHubId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessBridgeHubRelationships ?? Enumerable.Empty<BusinessBridgeHubRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessBridgeTraversalRelationships ?? Enumerable.Empty<BusinessBridgeTraversalRelationships>())
             {
                 relationship.Row.BusinessBridge = RequireTarget(
                     loadIndexes.BusinessBridgeListById,
                     relationship.BusinessBridgeId,
-                    "BusinessBridgeHub",
+                    "BusinessBridgeTraversal",
                     relationship.Row.Id,
                     "BusinessBridgeId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessBridgeHubRelationships ?? Enumerable.Empty<BusinessBridgeHubRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessBridgeTraversalRelationships ?? Enumerable.Empty<BusinessBridgeTraversalRelationships>())
             {
-                relationship.Row.BusinessHub = RequireTarget(
-                    loadIndexes.BusinessHubListById,
-                    relationship.BusinessHubId,
-                    "BusinessBridgeHub",
-                    relationship.Row.Id,
-                    "BusinessHubId");
+                relationship.Row.PreviousTraversal = string.IsNullOrWhiteSpace(relationship.PreviousTraversalId)
+                    ? null
+                    : RequireTarget(
+                        loadIndexes.BusinessBridgeTraversalListById,
+                        relationship.PreviousTraversalId,
+                        "BusinessBridgeTraversal",
+                        relationship.Row.Id,
+                        "PreviousTraversalId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessBridgeLinkRelationships ?? Enumerable.Empty<BusinessBridgeLinkRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessBridgeTraversalRelationships ?? Enumerable.Empty<BusinessBridgeTraversalRelationships>())
             {
-                relationship.Row.BusinessBridge = RequireTarget(
-                    loadIndexes.BusinessBridgeListById,
-                    relationship.BusinessBridgeId,
-                    "BusinessBridgeLink",
+                relationship.Row.SourceRole = RequireTarget(
+                    loadIndexes.BusinessLinkRoleListById,
+                    relationship.SourceRoleId,
+                    "BusinessBridgeTraversal",
                     relationship.Row.Id,
-                    "BusinessBridgeId");
+                    "SourceRoleId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessBridgeLinkRelationships ?? Enumerable.Empty<BusinessBridgeLinkRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessBridgeTraversalRelationships ?? Enumerable.Empty<BusinessBridgeTraversalRelationships>())
             {
-                relationship.Row.BusinessLink = RequireTarget(
-                    loadIndexes.BusinessLinkListById,
-                    relationship.BusinessLinkId,
-                    "BusinessBridgeLink",
+                relationship.Row.TargetRole = RequireTarget(
+                    loadIndexes.BusinessLinkRoleListById,
+                    relationship.TargetRoleId,
+                    "BusinessBridgeTraversal",
                     relationship.Row.Id,
-                    "BusinessLinkId");
+                    "TargetRoleId");
             }
 
             foreach (var relationship in relationshipBuffers.BusinessHierarchicalLinkRelationships ?? Enumerable.Empty<BusinessHierarchicalLinkRelationships>())
@@ -5041,22 +4894,22 @@ namespace MetaBusinessDataVault
                     "BusinessHubSatelliteAttributeId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessLinkHubRelationships ?? Enumerable.Empty<BusinessLinkHubRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessLinkRoleRelationships ?? Enumerable.Empty<BusinessLinkRoleRelationships>())
             {
                 relationship.Row.BusinessHub = RequireTarget(
                     loadIndexes.BusinessHubListById,
                     relationship.BusinessHubId,
-                    "BusinessLinkHub",
+                    "BusinessLinkRole",
                     relationship.Row.Id,
                     "BusinessHubId");
             }
 
-            foreach (var relationship in relationshipBuffers.BusinessLinkHubRelationships ?? Enumerable.Empty<BusinessLinkHubRelationships>())
+            foreach (var relationship in relationshipBuffers.BusinessLinkRoleRelationships ?? Enumerable.Empty<BusinessLinkRoleRelationships>())
             {
                 relationship.Row.BusinessLink = RequireTarget(
                     loadIndexes.BusinessLinkListById,
                     relationship.BusinessLinkId,
-                    "BusinessLinkHub",
+                    "BusinessLinkRole",
                     relationship.Row.Id,
                     "BusinessLinkId");
             }
@@ -5270,8 +5123,7 @@ namespace MetaBusinessDataVault
         private static readonly string[] ShardFileNames =
         {
             "BusinessBridge.xml",
-            "BusinessBridgeHub.xml",
-            "BusinessBridgeLink.xml",
+            "BusinessBridgeTraversal.xml",
             "BusinessHierarchicalLink.xml",
             "BusinessHierarchicalLinkSatellite.xml",
             "BusinessHierarchicalLinkSatelliteAttribute.xml",
@@ -5283,7 +5135,7 @@ namespace MetaBusinessDataVault
             "BusinessHubSatelliteAttribute.xml",
             "BusinessHubSatelliteAttributeDataTypeDetail.xml",
             "BusinessLink.xml",
-            "BusinessLinkHub.xml",
+            "BusinessLinkRole.xml",
             "BusinessLinkSatellite.xml",
             "BusinessLinkSatelliteAttribute.xml",
             "BusinessLinkSatelliteAttributeDataTypeDetail.xml",
@@ -5329,27 +5181,15 @@ namespace MetaBusinessDataVault
                 }
             }
 
-            private HashSet<string>? businessBridgeHubIds;
+            private HashSet<string>? businessBridgeTraversalIds;
 
-            public void AddBusinessBridgeHubId(string? id)
+            public void AddBusinessBridgeTraversalId(string? id)
             {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessBridgeHub' contains a row with empty Id.");
-                businessBridgeHubIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessBridgeHubIds.Add(normalizedId))
+                var normalizedId = RequireIdentity(id, "Entity 'BusinessBridgeTraversal' contains a row with empty Id.");
+                businessBridgeTraversalIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!businessBridgeTraversalIds.Add(normalizedId))
                 {
-                    throw new InvalidDataException($"Entity 'BusinessBridgeHub' contains duplicate Id '{normalizedId}'.");
-                }
-            }
-
-            private HashSet<string>? businessBridgeLinkIds;
-
-            public void AddBusinessBridgeLinkId(string? id)
-            {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessBridgeLink' contains a row with empty Id.");
-                businessBridgeLinkIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessBridgeLinkIds.Add(normalizedId))
-                {
-                    throw new InvalidDataException($"Entity 'BusinessBridgeLink' contains duplicate Id '{normalizedId}'.");
+                    throw new InvalidDataException($"Entity 'BusinessBridgeTraversal' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -5485,15 +5325,15 @@ namespace MetaBusinessDataVault
                 }
             }
 
-            private HashSet<string>? businessLinkHubIds;
+            private HashSet<string>? businessLinkRoleIds;
 
-            public void AddBusinessLinkHubId(string? id)
+            public void AddBusinessLinkRoleId(string? id)
             {
-                var normalizedId = RequireIdentity(id, "Entity 'BusinessLinkHub' contains a row with empty Id.");
-                businessLinkHubIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!businessLinkHubIds.Add(normalizedId))
+                var normalizedId = RequireIdentity(id, "Entity 'BusinessLinkRole' contains a row with empty Id.");
+                businessLinkRoleIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!businessLinkRoleIds.Add(normalizedId))
                 {
-                    throw new InvalidDataException($"Entity 'BusinessLinkHub' contains duplicate Id '{normalizedId}'.");
+                    throw new InvalidDataException($"Entity 'BusinessLinkRole' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -5728,13 +5568,9 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessBridge> BusinessBridgeListById => businessBridgeListById ??= BuildById(model.BusinessBridgeList, row => row.Id, "BusinessBridge");
 
-            private Dictionary<string, BusinessBridgeHub>? businessBridgeHubListById;
+            private Dictionary<string, BusinessBridgeTraversal>? businessBridgeTraversalListById;
 
-            public Dictionary<string, BusinessBridgeHub> BusinessBridgeHubListById => businessBridgeHubListById ??= BuildById(model.BusinessBridgeHubList, row => row.Id, "BusinessBridgeHub");
-
-            private Dictionary<string, BusinessBridgeLink>? businessBridgeLinkListById;
-
-            public Dictionary<string, BusinessBridgeLink> BusinessBridgeLinkListById => businessBridgeLinkListById ??= BuildById(model.BusinessBridgeLinkList, row => row.Id, "BusinessBridgeLink");
+            public Dictionary<string, BusinessBridgeTraversal> BusinessBridgeTraversalListById => businessBridgeTraversalListById ??= BuildById(model.BusinessBridgeTraversalList, row => row.Id, "BusinessBridgeTraversal");
 
             private Dictionary<string, BusinessHierarchicalLink>? businessHierarchicalLinkListById;
 
@@ -5780,9 +5616,9 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessLink> BusinessLinkListById => businessLinkListById ??= BuildById(model.BusinessLinkList, row => row.Id, "BusinessLink");
 
-            private Dictionary<string, BusinessLinkHub>? businessLinkHubListById;
+            private Dictionary<string, BusinessLinkRole>? businessLinkRoleListById;
 
-            public Dictionary<string, BusinessLinkHub> BusinessLinkHubListById => businessLinkHubListById ??= BuildById(model.BusinessLinkHubList, row => row.Id, "BusinessLinkHub");
+            public Dictionary<string, BusinessLinkRole> BusinessLinkRoleListById => businessLinkRoleListById ??= BuildById(model.BusinessLinkRoleList, row => row.Id, "BusinessLinkRole");
 
             private Dictionary<string, BusinessLinkSatellite>? businessLinkSatelliteListById;
 
@@ -5871,13 +5707,9 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessBridge> BusinessBridgeListById => businessBridgeListById ??= BuildById(model.BusinessBridgeList, row => row.Id, "BusinessBridge");
 
-            private Dictionary<string, BusinessBridgeHub>? businessBridgeHubListById;
+            private Dictionary<string, BusinessBridgeTraversal>? businessBridgeTraversalListById;
 
-            public Dictionary<string, BusinessBridgeHub> BusinessBridgeHubListById => businessBridgeHubListById ??= BuildById(model.BusinessBridgeHubList, row => row.Id, "BusinessBridgeHub");
-
-            private Dictionary<string, BusinessBridgeLink>? businessBridgeLinkListById;
-
-            public Dictionary<string, BusinessBridgeLink> BusinessBridgeLinkListById => businessBridgeLinkListById ??= BuildById(model.BusinessBridgeLinkList, row => row.Id, "BusinessBridgeLink");
+            public Dictionary<string, BusinessBridgeTraversal> BusinessBridgeTraversalListById => businessBridgeTraversalListById ??= BuildById(model.BusinessBridgeTraversalList, row => row.Id, "BusinessBridgeTraversal");
 
             private Dictionary<string, BusinessHierarchicalLink>? businessHierarchicalLinkListById;
 
@@ -5923,9 +5755,9 @@ namespace MetaBusinessDataVault
 
             public Dictionary<string, BusinessLink> BusinessLinkListById => businessLinkListById ??= BuildById(model.BusinessLinkList, row => row.Id, "BusinessLink");
 
-            private Dictionary<string, BusinessLinkHub>? businessLinkHubListById;
+            private Dictionary<string, BusinessLinkRole>? businessLinkRoleListById;
 
-            public Dictionary<string, BusinessLinkHub> BusinessLinkHubListById => businessLinkHubListById ??= BuildById(model.BusinessLinkHubList, row => row.Id, "BusinessLinkHub");
+            public Dictionary<string, BusinessLinkRole> BusinessLinkRoleListById => businessLinkRoleListById ??= BuildById(model.BusinessLinkRoleList, row => row.Id, "BusinessLinkRole");
 
             private Dictionary<string, BusinessLinkSatellite>? businessLinkSatelliteListById;
 
@@ -6014,10 +5846,6 @@ namespace MetaBusinessDataVault
             {
                 return true;
             }
-            if (HasRuntimeExtendedEntityShapeGroup2())
-            {
-                return true;
-            }
 
             return HasUnexpectedModelLists();
         }
@@ -6033,22 +5861,12 @@ namespace MetaBusinessDataVault
                 return true;
             }
 
-            if (HasUnexpectedProperties(typeof(BusinessBridgeHub),
+            if (HasUnexpectedProperties(typeof(BusinessBridgeTraversal),
                 "Id",
-                "Ordinal",
-                "RoleName",
                 "BusinessBridge",
-                "BusinessHub"))
-            {
-                return true;
-            }
-
-            if (HasUnexpectedProperties(typeof(BusinessBridgeLink),
-                "Id",
-                "Ordinal",
-                "RoleName",
-                "BusinessBridge",
-                "BusinessLink"))
+                "PreviousTraversal",
+                "SourceRole",
+                "TargetRole"))
             {
                 return true;
             }
@@ -6154,10 +5972,9 @@ namespace MetaBusinessDataVault
                 return true;
             }
 
-            if (HasUnexpectedProperties(typeof(BusinessLinkHub),
+            if (HasUnexpectedProperties(typeof(BusinessLinkRole),
                 "Id",
-                "Ordinal",
-                "RoleName",
+                "Name",
                 "BusinessHub",
                 "BusinessLink"))
             {
@@ -6322,11 +6139,6 @@ namespace MetaBusinessDataVault
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool HasRuntimeExtendedEntityShapeGroup2()
-        {
             if (HasUnexpectedProperties(typeof(BusinessSameAsLinkSatelliteAttributeDataTypeDetail),
                 "Id",
                 "Name",
@@ -6344,8 +6156,7 @@ namespace MetaBusinessDataVault
             var knownLists = new HashSet<string>(StringComparer.Ordinal)
             {
                 "BusinessBridgeList",
-                "BusinessBridgeHubList",
-                "BusinessBridgeLinkList",
+                "BusinessBridgeTraversalList",
                 "BusinessHierarchicalLinkList",
                 "BusinessHierarchicalLinkSatelliteList",
                 "BusinessHierarchicalLinkSatelliteAttributeList",
@@ -6357,7 +6168,7 @@ namespace MetaBusinessDataVault
                 "BusinessHubSatelliteAttributeList",
                 "BusinessHubSatelliteAttributeDataTypeDetailList",
                 "BusinessLinkList",
-                "BusinessLinkHubList",
+                "BusinessLinkRoleList",
                 "BusinessLinkSatelliteList",
                 "BusinessLinkSatelliteAttributeList",
                 "BusinessLinkSatelliteAttributeDataTypeDetailList",

@@ -121,12 +121,14 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public void BusinessAddCommandHelp_ShowsOrdinalAsOptional()
+    public void BusinessAddLinkRoleCommandHelp_ShowsRequiredRoleShape()
     {
-        var result = RunBusinessCli("add-link-hub --help");
+        var result = RunBusinessCli("add-link-role --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("[--ordinal <value>]", result.Output);
+        Assert.Contains("--name <value>", result.Output);
+        Assert.Contains("--link <value>", result.Output);
+        Assert.Contains("--hub <value>", result.Output);
     }
 
     [Fact]

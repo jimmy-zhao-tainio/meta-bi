@@ -2,8 +2,8 @@
 <MetaBusinessDataVault>
   <BusinessSameAsLinkSatelliteAttributeList>
     <BusinessSameAsLinkSatelliteAttribute Id="CustomerMatchScore" BusinessSameAsLinkSatelliteId="CustomerMatchEvidence">
-      <Name>MatchScore</Name>
       <DataTypeId>meta:type:String</DataTypeId>
+      <Name>MatchScore</Name>
       <Ordinal>1</Ordinal>
     </BusinessSameAsLinkSatelliteAttribute>
   </BusinessSameAsLinkSatelliteAttributeList>
