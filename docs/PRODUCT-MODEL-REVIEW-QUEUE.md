@@ -4,7 +4,7 @@
 
 1. Done: SQL Server `decimal`/`numeric` compatibility.
 2. Done: MetaSchema types and Raw Data Vault ownership, roles, and false-ordering cleanup.
-3. In progress: Business Data Vault roles, bridge traversal, attribute nullability, and false ordering.
+3. In progress: Business Data Vault common satellite/attribute structure and false ordering; roles, traversal, and key precedence are done.
 4. Pending product-model decision: satellite row identity and load metadata.
 5. Done: Data Vault hash-key storage width.
 6. Pending product-model decision: business datatype lowering.
@@ -14,7 +14,7 @@
 10. Blocked demo work: AdventureWorks full-stack should not continue until the relevant product decisions are settled and reimplemented deliberately.
 11. Complete: `MERGE` match semantics use explicit clause entities and an explicit predecessor chain.
 
-Current work: implement the accepted Business Data Vault structural-ordering and nullability design. Do not substitute scalar flags, text discriminators, or compatibility shims for the agreed entities and relationships.
+Current work: complete the remaining Business Data Vault common-satellite/common-attribute and false-ordering cleanup. Business satellite payload attributes are nullable by design; do not add nullability flags, subtype entities, binding proof, or compatibility shims.
 
 ## Purpose
 
@@ -186,9 +186,9 @@ The scoped audit found no compatibility shim for the removed Raw endpoint entity
 
 Regenerated Raw tooling no longer exposes the three properties. The Data Vault test project now builds and runs its exact local Raw, Business, and Convert CLI executables instead of invoking PATH, closing a real external-test false-positive/false-negative hazard. Verification passed: generic `meta check` for canonical Raw, tracked Raw demo, and Raw CLI workspaces; `MetaDataVault.Tests` 46/46; Raw CLI help for all three commands; no retired `--ordinal` use in Raw demos or the Raw CLI workspace; and the local `RawDataVaultCliIntegration` mesh validated 137 steps, ran 137/137 to a zero-change verification manifest after deploying 27 tables, 14 primary keys, and 25 foreign keys, then cleaned up 5/5. The remaining `add-link-hub` and `RoleName` usages belong to the Business Data Vault surface in item 3.
 
-## 3. Business Data Vault Attribute Nullability and Link Roles
+## 3. Business Data Vault Satellite Structure and Link Roles
 
-Status: Partially implemented on 2026-07-18; role/traversal and composite-key precedence sub-slices complete
+Status: Partially implemented on 2026-07-18; roles, traversal, and composite-key precedence are complete; payload attributes are nullable by design
 
 Observed problem:
 
@@ -211,7 +211,7 @@ Accepted target design:
 - `BusinessLinkRole` replaces `BusinessLinkHub`. It relates one Business link to one Business hub and has required `Name`; `RoleName` and `Ordinal` are removed. Names must be unique within one link.
 - `BusinessBridgeTraversal` replaces the interleaved `BusinessBridgeLink` and `BusinessBridgeHub` lists. It relates one bridge to `SourceRole` and `TargetRole` relationships to `BusinessLinkRole`, plus optional `PreviousTraversal`. The chain expresses direction, preserves sequence, and disambiguates a link that reaches the same hub type through different roles.
 - `BusinessSatellite` is the common satellite identity, specialized by the five current parent kinds. `BusinessSatelliteAttribute` is the common attribute identity and relates to that base satellite; one shared detail entity relates to the common attribute. The repeated parent-specific attribute and detail entities are removed.
-- `NullableBusinessSatelliteAttribute` and `NonNullableBusinessSatelliteAttribute` specialize the common attribute. Every Business satellite attribute must have exactly one nullability specialization. The converter reads that structural fact; it does not infer or default logical attribute nullability.
+- Business satellite payload attributes are nullable by design. MetaBusinessDataVault does not copy source nullability or assert a non-null business contract, so it has no nullability property, subtype, or marker entity. SQL projection emits nullable payload columns. Transform authoring and data-quality rules own source-specific requiredness handling.
 - Composite Business hub and reference keys retain user-authored sequence through a predecessor relationship on each key part. Satellite attributes, point-in-time stamps, and point-in-time satellite references have no demonstrated domain sequence; their `Ordinal` properties should be removed and physical projection should use deterministic `Name`, then `Id` ordering. The equivalent Raw collections receive the same correction.
 - Technical Data Vault columns remain implementation-defined. This decision concerns modeled Business satellite attributes only.
 
@@ -498,7 +498,7 @@ Status: Blocked by the decisions above
 The new `Demos/AdventureWorksFullStack` authoring work is retained because it is the active demo design, not a sanctioned product-model change. It is not currently valid end-to-end proof after this rollback. Its generated contracts and operations assume some combination of:
 
 - 32-byte Data Vault hashes,
-- source and business attribute nullability,
+- source attribute nullability,
 - satellite primary keys/load metadata,
 - strict mutation target binding,
 - and datatype compatibility behavior.
