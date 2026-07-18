@@ -853,8 +853,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, joinPatternOccurrenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CorpusColumnEquivalenceOccurrenceLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CorpusColumnEquivalenceOccurrenceLinkList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -1225,8 +1224,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, joinPatternOccurrenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CorpusRelationshipPatternOccurrenceLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CorpusRelationshipPatternOccurrenceLinkList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -1667,8 +1665,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, joinPatternId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </DataQualityCandidateJoinPatternLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </DataQualityCandidateJoinPatternLinkList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -1910,8 +1907,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dominantPatternId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ImpliedForeignKeyMissingReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ImpliedForeignKeyMissingReferenceList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -2032,8 +2028,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dominantPatternId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ImpliedJoinFanoutRisk>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ImpliedJoinFanoutRiskList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -2154,8 +2149,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dominantPatternId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ImpliedOutputDuplicateRisk>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ImpliedOutputDuplicateRiskList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -2276,8 +2270,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dominantPatternId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ImpliedUniqueKeyViolation>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ImpliedUniqueKeyViolationList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -2411,8 +2404,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, outlierPatternId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </IncompleteCompositeJoin>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </IncompleteCompositeJoinList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -2533,8 +2525,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dataQualityCandidateId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InnerJoinAgainstUsuallyOptionalRelationship>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InnerJoinAgainstUsuallyOptionalRelationshipList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -3599,8 +3590,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dataQualityCandidateId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </LeftJoinAgainstUsuallyMandatoryRelationship>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </LeftJoinAgainstUsuallyMandatoryRelationshipList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -3734,8 +3724,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, outlierEquivalenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MinorityColumnEquivalence>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MinorityColumnEquivalenceList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -3869,8 +3858,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, outlierPatternId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MinorityJoinPattern>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MinorityJoinPatternList>\n");
             builder.Append("</MetaDataQuality>\n");
@@ -4385,8 +4373,7 @@ namespace MetaDataQuality
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, outlierPatternId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SuspiciousExtraJoinPredicate>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SuspiciousExtraJoinPredicateList>\n");
             builder.Append("</MetaDataQuality>\n");

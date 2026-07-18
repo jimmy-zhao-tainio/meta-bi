@@ -978,8 +978,7 @@ namespace MetaSchema
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, keyId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PrimaryKey>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PrimaryKeyList>\n");
             builder.Append("</MetaSchema>\n");
@@ -1417,8 +1416,7 @@ namespace MetaSchema
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </Table>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TableList>\n");
             builder.Append("</MetaSchema>\n");
@@ -1791,8 +1789,7 @@ namespace MetaSchema
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, keyId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UniqueKey>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UniqueKeyList>\n");
             builder.Append("</MetaSchema>\n");
@@ -1900,8 +1897,7 @@ namespace MetaSchema
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </View>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ViewList>\n");
             builder.Append("</MetaSchema>\n");

@@ -1299,8 +1299,7 @@ namespace MetaPipeline
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rowStreamId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </RowStreamConsumer>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </RowStreamConsumerList>\n");
             builder.Append("</MetaPipeline>\n");
@@ -1421,8 +1420,7 @@ namespace MetaPipeline
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rowStreamId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </RowStreamProducer>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </RowStreamProducerList>\n");
             builder.Append("</MetaPipeline>\n");
@@ -1543,8 +1541,7 @@ namespace MetaPipeline
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, targetConnectionReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TargetWriteTask>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TargetWriteTaskList>\n");
             builder.Append("</MetaPipeline>\n");
@@ -1678,8 +1675,7 @@ namespace MetaPipeline
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, successorId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TaskDependency>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TaskDependencyList>\n");
             builder.Append("</MetaPipeline>\n");

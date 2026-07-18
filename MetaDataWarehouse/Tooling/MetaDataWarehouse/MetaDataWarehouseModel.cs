@@ -746,12 +746,13 @@ namespace MetaDataWarehouse
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, factId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </AccumulatingSnapshotFact>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </AccumulatingSnapshotFact>\n");
             }
             builder.Append("  </AccumulatingSnapshotFactList>\n");
             builder.Append("</MetaDataWarehouse>\n");
@@ -1003,12 +1004,13 @@ namespace MetaDataWarehouse
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, sourceFactId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </AggregateFact>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </AggregateFact>\n");
             }
             builder.Append("  </AggregateFactList>\n");
             builder.Append("</MetaDataWarehouse>\n");
@@ -3017,12 +3019,13 @@ namespace MetaDataWarehouse
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, factId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </FactlessFact>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </FactlessFact>\n");
             }
             builder.Append("  </FactlessFactList>\n");
             builder.Append("</MetaDataWarehouse>\n");
@@ -3268,12 +3271,13 @@ namespace MetaDataWarehouse
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dimensionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </JunkDimension>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </JunkDimension>\n");
             }
             builder.Append("  </JunkDimensionList>\n");
             builder.Append("</MetaDataWarehouse>\n");
@@ -3533,6 +3537,7 @@ namespace MetaDataWarehouse
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, sourceDimensionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
@@ -3542,7 +3547,7 @@ namespace MetaDataWarehouse
                 {
                     AppendElement(builder, "RoleName", row.RoleName!, "      ");
                 }
-                builder.Append("    </MiniDimension>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </MiniDimension>\n");
             }
             builder.Append("  </MiniDimensionList>\n");
             builder.Append("</MetaDataWarehouse>\n");
@@ -3920,6 +3925,7 @@ namespace MetaDataWarehouse
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dimensionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
@@ -3929,7 +3935,7 @@ namespace MetaDataWarehouse
                 {
                     AppendElement(builder, "Name", row.Name!, "      ");
                 }
-                builder.Append("    </SlowlyChangingDimension>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SlowlyChangingDimension>\n");
             }
             builder.Append("  </SlowlyChangingDimensionList>\n");
             builder.Append("</MetaDataWarehouse>\n");
@@ -4040,12 +4046,13 @@ namespace MetaDataWarehouse
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, factId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </TransactionFact>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TransactionFact>\n");
             }
             builder.Append("  </TransactionFactList>\n");
             builder.Append("</MetaDataWarehouse>\n");
@@ -4169,12 +4176,13 @@ namespace MetaDataWarehouse
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, slowlyChangingDimensionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </Type1DimensionAttribute>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </Type1DimensionAttribute>\n");
             }
             builder.Append("  </Type1DimensionAttributeList>\n");
             builder.Append("</MetaDataWarehouse>\n");
@@ -4298,12 +4306,13 @@ namespace MetaDataWarehouse
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, slowlyChangingDimensionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </Type2DimensionAttribute>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </Type2DimensionAttribute>\n");
             }
             builder.Append("  </Type2DimensionAttributeList>\n");
             builder.Append("</MetaDataWarehouse>\n");
@@ -6127,6 +6136,18 @@ namespace MetaDataWarehouse
             builder.Append("</");
             builder.Append(name);
             builder.Append(">\n");
+        }
+
+        private static void AppendClosingElementOrSelfClose(StringBuilder builder, int openingTagEndIndex, string closingElement)
+        {
+            if (builder.Length == openingTagEndIndex + 2)
+            {
+                builder.Length = openingTagEndIndex;
+                builder.Append(" />\n");
+                return;
+            }
+
+            builder.Append(closingElement);
         }
 
         private static void AppendXmlAttribute(StringBuilder builder, string value)

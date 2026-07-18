@@ -1658,8 +1658,7 @@ namespace MetaTransformBinding
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, transformBindingId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OutputRowset>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OutputRowsetList>\n");
             builder.Append("</MetaTransformBinding>\n");
@@ -2727,8 +2726,7 @@ namespace MetaTransformBinding
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, transformBindingId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </Validation>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ValidationList>\n");
             builder.Append("</MetaTransformBinding>\n");
@@ -3700,8 +3698,7 @@ namespace MetaTransformBinding
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, validationTargetRowsetLinkId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </Write>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WriteList>\n");
             builder.Append("</MetaTransformBinding>\n");
@@ -3822,8 +3819,7 @@ namespace MetaTransformBinding
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, writeId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WriteValue>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WriteValueList>\n");
             builder.Append("</MetaTransformBinding>\n");

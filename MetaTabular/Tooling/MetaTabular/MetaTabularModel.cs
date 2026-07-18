@@ -1363,6 +1363,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularCultureId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -1372,7 +1373,7 @@ namespace MetaTabular
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </TabularColumnTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TabularColumnTranslation>\n");
             }
             builder.Append("  </TabularColumnTranslationList>\n");
             builder.Append("</MetaTabular>\n");
@@ -2010,6 +2011,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularHierarchyId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -2019,7 +2021,7 @@ namespace MetaTabular
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </TabularHierarchyTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TabularHierarchyTranslation>\n");
             }
             builder.Append("  </TabularHierarchyTranslationList>\n");
             builder.Append("</MetaTabular>\n");
@@ -2161,6 +2163,7 @@ namespace MetaTabular
                     AppendXmlAttribute(builder, targetMeasureId);
                     builder.Append('"');
                 }
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
@@ -2186,7 +2189,7 @@ namespace MetaTabular
                 {
                     AppendElement(builder, "TrendGraphic", row.TrendGraphic!, "      ");
                 }
-                builder.Append("    </TabularKpi>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TabularKpi>\n");
             }
             builder.Append("  </TabularKpiList>\n");
             builder.Append("</MetaTabular>\n");
@@ -2310,12 +2313,13 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularKpiId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </TabularKpiTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TabularKpiTranslation>\n");
             }
             builder.Append("  </TabularKpiTranslationList>\n");
             builder.Append("</MetaTabular>\n");
@@ -2590,6 +2594,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularMeasureId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -2599,7 +2604,7 @@ namespace MetaTabular
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </TabularMeasureTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TabularMeasureTranslation>\n");
             }
             builder.Append("  </TabularMeasureTranslationList>\n");
             builder.Append("</MetaTabular>\n");
@@ -3126,8 +3131,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularPerspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TabularPerspectiveCalculationGroup>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TabularPerspectiveCalculationGroupList>\n");
             builder.Append("</MetaTabular>\n");
@@ -3248,8 +3252,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularPerspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TabularPerspectiveColumn>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TabularPerspectiveColumnList>\n");
             builder.Append("</MetaTabular>\n");
@@ -3370,8 +3373,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularPerspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TabularPerspectiveHierarchy>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TabularPerspectiveHierarchyList>\n");
             builder.Append("</MetaTabular>\n");
@@ -3492,8 +3494,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularPerspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TabularPerspectiveKpi>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TabularPerspectiveKpiList>\n");
             builder.Append("</MetaTabular>\n");
@@ -3614,8 +3615,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularPerspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TabularPerspectiveMeasure>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TabularPerspectiveMeasureList>\n");
             builder.Append("</MetaTabular>\n");
@@ -3736,8 +3736,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularTableId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TabularPerspectiveTable>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TabularPerspectiveTableList>\n");
             builder.Append("</MetaTabular>\n");
@@ -3864,6 +3863,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularPerspectiveId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -3873,7 +3873,7 @@ namespace MetaTabular
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </TabularPerspectiveTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TabularPerspectiveTranslation>\n");
             }
             builder.Append("  </TabularPerspectiveTranslationList>\n");
             builder.Append("</MetaTabular>\n");
@@ -4541,8 +4541,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, sourceColumnId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TabularSortByColumn>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TabularSortByColumnList>\n");
             builder.Append("</MetaTabular>\n");
@@ -4929,6 +4928,7 @@ namespace MetaTabular
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tabularTableId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -4938,7 +4938,7 @@ namespace MetaTabular
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </TabularTableTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TabularTableTranslation>\n");
             }
             builder.Append("  </TabularTableTranslationList>\n");
             builder.Append("</MetaTabular>\n");
@@ -6901,6 +6901,18 @@ namespace MetaTabular
             builder.Append("</");
             builder.Append(name);
             builder.Append(">\n");
+        }
+
+        private static void AppendClosingElementOrSelfClose(StringBuilder builder, int openingTagEndIndex, string closingElement)
+        {
+            if (builder.Length == openingTagEndIndex + 2)
+            {
+                builder.Length = openingTagEndIndex;
+                builder.Append(" />\n");
+                return;
+            }
+
+            builder.Append(closingElement);
         }
 
         private static void AppendXmlAttribute(StringBuilder builder, string value)

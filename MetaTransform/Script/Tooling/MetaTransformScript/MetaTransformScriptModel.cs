@@ -5863,8 +5863,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </AtTimeZoneCall>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </AtTimeZoneCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -5985,8 +5984,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </AtTimeZoneCallDateValueLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </AtTimeZoneCallDateValueLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -6107,8 +6105,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </AtTimeZoneCallTimeZoneLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </AtTimeZoneCallTimeZoneLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -6219,12 +6216,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.BinaryExpressionType))
                 {
                     AppendElement(builder, "BinaryExpressionType", row.BinaryExpressionType!, "      ");
                 }
-                builder.Append("    </BinaryExpression>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </BinaryExpression>\n");
             }
             builder.Append("  </BinaryExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -6345,8 +6343,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BinaryExpressionFirstExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BinaryExpressionFirstExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -6467,8 +6464,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BinaryExpressionSecondExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BinaryExpressionSecondExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -6582,6 +6578,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, literalId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.IsLargeObject))
                 {
@@ -6591,7 +6588,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "LiteralType", row.LiteralType!, "      ");
                 }
-                builder.Append("    </BinaryLiteral>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </BinaryLiteral>\n");
             }
             builder.Append("  </BinaryLiteralList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -6705,6 +6702,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.All))
                 {
@@ -6714,7 +6712,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "BinaryQueryExpressionType", row.BinaryQueryExpressionType!, "      ");
                 }
-                builder.Append("    </BinaryQueryExpression>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </BinaryQueryExpression>\n");
             }
             builder.Append("  </BinaryQueryExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -6835,8 +6833,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BinaryQueryExpressionFirstQueryExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BinaryQueryExpressionFirstQueryExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -6957,8 +6954,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BinaryQueryExpressionSecondQueryExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BinaryQueryExpressionSecondQueryExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -7069,12 +7065,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.BinaryExpressionType))
                 {
                     AppendElement(builder, "BinaryExpressionType", row.BinaryExpressionType!, "      ");
                 }
-                builder.Append("    </BooleanBinaryExpression>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </BooleanBinaryExpression>\n");
             }
             builder.Append("  </BooleanBinaryExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -7195,8 +7192,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanBinaryExpressionFirstExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanBinaryExpressionFirstExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -7317,8 +7313,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanBinaryExpressionSecondExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanBinaryExpressionSecondExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -7429,12 +7424,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.ComparisonType))
                 {
                     AppendElement(builder, "ComparisonType", row.ComparisonType!, "      ");
                 }
-                builder.Append("    </BooleanComparisonExpression>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </BooleanComparisonExpression>\n");
             }
             builder.Append("  </BooleanComparisonExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -7555,8 +7551,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanComparisonExpressionFirstExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanComparisonExpressionFirstExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -7677,8 +7672,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanComparisonExpressionSecondExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanComparisonExpressionSecondExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -7770,8 +7764,7 @@ namespace MetaTransformScript
                 builder.Append("    <BooleanExpression Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -7882,12 +7875,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.IsNot))
                 {
                     AppendElement(builder, "IsNot", row.IsNot!, "      ");
                 }
-                builder.Append("    </BooleanIsNullExpression>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </BooleanIsNullExpression>\n");
             }
             builder.Append("  </BooleanIsNullExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -8008,8 +8002,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanIsNullExpressionExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanIsNullExpressionExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -8117,8 +8110,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanNotExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanNotExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -8239,8 +8231,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanNotExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanNotExpressionExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanNotExpressionExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -8348,8 +8339,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanParenthesisExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanParenthesisExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -8470,8 +8460,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanParenthesisExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanParenthesisExpressionExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanParenthesisExpressionExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -8582,12 +8571,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.TernaryExpressionType))
                 {
                     AppendElement(builder, "TernaryExpressionType", row.TernaryExpressionType!, "      ");
                 }
-                builder.Append("    </BooleanTernaryExpression>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </BooleanTernaryExpression>\n");
             }
             builder.Append("  </BooleanTernaryExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -8708,8 +8698,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanTernaryExpressionFirstExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanTernaryExpressionFirstExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -8830,8 +8819,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanTernaryExpressionSecondExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanTernaryExpressionSecondExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -8952,8 +8940,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BooleanTernaryExpressionThirdExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BooleanTernaryExpressionThirdExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -9045,8 +9032,7 @@ namespace MetaTransformScript
                 builder.Append("    <CallTarget Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CallTarget>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CallTargetList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -9154,8 +9140,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CaseExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CaseExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -9276,8 +9261,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CaseExpressionElseExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CaseExpressionElseExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -9385,8 +9369,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CastCall>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CastCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -9507,8 +9490,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dataTypeReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CastCallDataTypeLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CastCallDataTypeLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -9629,8 +9611,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CastCallParameterLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CastCallParameterLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -9738,8 +9719,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CoalesceExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CoalesceExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -9863,12 +9843,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </CoalesceExpressionExpressionsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </CoalesceExpressionExpressionsItem>\n");
             }
             builder.Append("  </CoalesceExpressionExpressionsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -9979,12 +9960,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.ColumnType))
                 {
                     AppendElement(builder, "ColumnType", row.ColumnType!, "      ");
                 }
-                builder.Append("    </ColumnReferenceExpression>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </ColumnReferenceExpression>\n");
             }
             builder.Append("  </ColumnReferenceExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -10105,8 +10087,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, multiPartIdentifierId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ColumnReferenceExpressionMultiPartIdentifierLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ColumnReferenceExpressionMultiPartIdentifierLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -10198,8 +10179,7 @@ namespace MetaTransformScript
                 builder.Append("    <CommonTableExpression Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CommonTableExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CommonTableExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -10323,12 +10303,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, identifierId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </CommonTableExpressionColumnsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </CommonTableExpressionColumnsItem>\n");
             }
             builder.Append("  </CommonTableExpressionColumnsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -10449,8 +10430,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, identifierId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CommonTableExpressionExpressionNameLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CommonTableExpressionExpressionNameLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -10571,8 +10551,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CommonTableExpressionQueryExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CommonTableExpressionQueryExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -10680,8 +10659,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, groupingSpecificationId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CompositeGroupingSpecification>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CompositeGroupingSpecificationList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -10805,12 +10783,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, groupingSpecificationId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </CompositeGroupingSpecificationItemsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </CompositeGroupingSpecificationItemsItem>\n");
             }
             builder.Append("  </CompositeGroupingSpecificationItemsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -10918,8 +10897,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ConvertCall>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ConvertCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -11040,8 +11018,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dataTypeReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ConvertCallDataTypeLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ConvertCallDataTypeLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -11162,8 +11139,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ConvertCallParameterLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ConvertCallParameterLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -11284,8 +11260,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ConvertCallStyleLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ConvertCallStyleLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -11393,8 +11368,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, groupingSpecificationId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </CubeGroupingSpecification>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </CubeGroupingSpecificationList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -11518,12 +11492,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, groupingSpecificationId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </CubeGroupingSpecificationArgumentsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </CubeGroupingSpecificationArgumentsItem>\n");
             }
             builder.Append("  </CubeGroupingSpecificationArgumentsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -11615,8 +11590,7 @@ namespace MetaTransformScript
                 builder.Append("    <DataTypeReference Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </DataTypeReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </DataTypeReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -11737,8 +11711,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </DataTypeReferenceNameLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </DataTypeReferenceNameLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -11846,8 +11819,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, statementWithCtesAndXmlNamespacesId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </DeleteStatement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </DeleteStatementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -11968,8 +11940,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, fromClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </DeleteStatementFromClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </DeleteStatementFromClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -12090,8 +12061,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </DeleteStatementTargetLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </DeleteStatementTargetLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -12212,8 +12182,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, whereClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </DeleteStatementWhereClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </DeleteStatementWhereClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -12324,12 +12293,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.IsNot))
                 {
                     AppendElement(builder, "IsNot", row.IsNot!, "      ");
                 }
-                builder.Append("    </DistinctPredicate>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </DistinctPredicate>\n");
             }
             builder.Append("  </DistinctPredicateList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -12450,8 +12420,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </DistinctPredicateFirstExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </DistinctPredicateFirstExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -12572,8 +12541,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </DistinctPredicateSecondExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </DistinctPredicateSecondExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -12681,8 +12649,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ExistsPredicate>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ExistsPredicateList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -12803,8 +12770,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarSubqueryId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ExistsPredicateSubqueryLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ExistsPredicateSubqueryLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -12915,12 +12881,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, groupingSpecificationId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.DistributedAggregation))
                 {
                     AppendElement(builder, "DistributedAggregation", row.DistributedAggregation!, "      ");
                 }
-                builder.Append("    </ExpressionGroupingSpecification>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </ExpressionGroupingSpecification>\n");
             }
             builder.Append("  </ExpressionGroupingSpecificationList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -13041,8 +13008,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ExpressionGroupingSpecificationExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ExpressionGroupingSpecificationExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -13137,12 +13103,13 @@ namespace MetaTransformScript
                 builder.Append("    <ExpressionWithSortOrder Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.SortOrder))
                 {
                     AppendElement(builder, "SortOrder", row.SortOrder!, "      ");
                 }
-                builder.Append("    </ExpressionWithSortOrder>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </ExpressionWithSortOrder>\n");
             }
             builder.Append("  </ExpressionWithSortOrderList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -13263,8 +13230,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ExpressionWithSortOrderExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ExpressionWithSortOrderExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -13356,8 +13322,7 @@ namespace MetaTransformScript
                 builder.Append("    <FromClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </FromClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </FromClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -13481,12 +13446,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </FromClauseTableReferencesItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </FromClauseTableReferencesItem>\n");
             }
             builder.Append("  </FromClauseTableReferencesItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -13597,12 +13563,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.FullTextFunctionType))
                 {
                     AppendElement(builder, "FullTextFunctionType", row.FullTextFunctionType!, "      ");
                 }
-                builder.Append("    </FullTextPredicate>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </FullTextPredicate>\n");
             }
             builder.Append("  </FullTextPredicateList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -13726,12 +13693,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, fullTextPredicateId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </FullTextPredicateColumnsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </FullTextPredicateColumnsItem>\n");
             }
             builder.Append("  </FullTextPredicateColumnsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -13852,8 +13820,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, valueExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </FullTextPredicateValueLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </FullTextPredicateValueLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -13964,12 +13931,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.FullTextFunctionType))
                 {
                     AppendElement(builder, "FullTextFunctionType", row.FullTextFunctionType!, "      ");
                 }
-                builder.Append("    </FullTextTableReference>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </FullTextTableReference>\n");
             }
             builder.Append("  </FullTextTableReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -14093,12 +14061,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, fullTextTableReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </FullTextTableReferenceColumnsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </FullTextTableReferenceColumnsItem>\n");
             }
             builder.Append("  </FullTextTableReferenceColumnsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -14219,8 +14188,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, valueExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </FullTextTableReferenceSearchConditionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </FullTextTableReferenceSearchConditionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -14341,8 +14309,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </FullTextTableReferenceTableNameLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </FullTextTableReferenceTableNameLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -14456,6 +14423,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.UniqueRowFilter))
                 {
@@ -14465,7 +14433,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "WithArrayWrapper", row.WithArrayWrapper!, "      ");
                 }
-                builder.Append("    </FunctionCall>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </FunctionCall>\n");
             }
             builder.Append("  </FunctionCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -14586,8 +14554,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, functionCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </FunctionCallCallTargetLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </FunctionCallCallTargetLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -14708,8 +14675,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, identifierId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </FunctionCallFunctionNameLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </FunctionCallFunctionNameLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -14830,8 +14796,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, overClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </FunctionCallOverClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </FunctionCallOverClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -14955,12 +14920,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </FunctionCallParametersItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </FunctionCallParametersItem>\n");
             }
             builder.Append("  </FunctionCallParametersItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -15081,8 +15047,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, orderByClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </FunctionCallWithinGroupOrderByClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </FunctionCallWithinGroupOrderByClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -15190,8 +15155,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </GlobalFunctionTableReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </GlobalFunctionTableReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -15312,8 +15276,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, identifierId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </GlobalFunctionTableReferenceNameLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </GlobalFunctionTableReferenceNameLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -15437,12 +15400,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </GlobalFunctionTableReferenceParametersItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </GlobalFunctionTableReferenceParametersItem>\n");
             }
             builder.Append("  </GlobalFunctionTableReferenceParametersItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -15553,12 +15517,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, valueExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Name))
                 {
                     AppendElement(builder, "Name", row.Name!, "      ");
                 }
-                builder.Append("    </GlobalVariableExpression>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </GlobalVariableExpression>\n");
             }
             builder.Append("  </GlobalVariableExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -15666,8 +15631,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, groupingSpecificationId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </GrandTotalGroupingSpecification>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </GrandTotalGroupingSpecificationList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -15765,6 +15729,7 @@ namespace MetaTransformScript
                 builder.Append("    <GroupByClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.All))
                 {
@@ -15774,7 +15739,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "GroupByOption", row.GroupByOption!, "      ");
                 }
-                builder.Append("    </GroupByClause>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </GroupByClause>\n");
             }
             builder.Append("  </GroupByClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -15898,12 +15863,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, groupingSpecificationId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </GroupByClauseGroupingSpecificationsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </GroupByClauseGroupingSpecificationsItem>\n");
             }
             builder.Append("  </GroupByClauseGroupingSpecificationsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -16011,8 +15977,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, groupingSpecificationId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </GroupingSetsGroupingSpecification>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </GroupingSetsGroupingSpecificationList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -16136,12 +16101,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, groupingSpecificationId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </GroupingSetsGroupingSpecificationSetsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </GroupingSetsGroupingSpecificationSetsItem>\n");
             }
             builder.Append("  </GroupingSetsGroupingSpecificationSetsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -16233,8 +16199,7 @@ namespace MetaTransformScript
                 builder.Append("    <GroupingSpecification Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </GroupingSpecification>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </GroupingSpecificationList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -16326,8 +16291,7 @@ namespace MetaTransformScript
                 builder.Append("    <HavingClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </HavingClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </HavingClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -16448,8 +16412,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, havingClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </HavingClauseSearchConditionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </HavingClauseSearchConditionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -16547,6 +16510,7 @@ namespace MetaTransformScript
                 builder.Append("    <Identifier Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.QuoteType))
                 {
@@ -16556,7 +16520,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "Value", row.Value!, "      ");
                 }
-                builder.Append("    </Identifier>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </Identifier>\n");
             }
             builder.Append("  </IdentifierList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -16651,12 +16615,13 @@ namespace MetaTransformScript
                 builder.Append("    <IdentifierOrValueExpression Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Value))
                 {
                     AppendElement(builder, "Value", row.Value!, "      ");
                 }
-                builder.Append("    </IdentifierOrValueExpression>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </IdentifierOrValueExpression>\n");
             }
             builder.Append("  </IdentifierOrValueExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -16777,8 +16742,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, identifierOrValueExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </IdentifierOrValueExpressionIdentifierLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </IdentifierOrValueExpressionIdentifierLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -16886,8 +16850,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </IIfCall>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </IIfCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -17008,8 +16971,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </IIfCallElseExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </IIfCallElseExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -17130,8 +17092,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, iIfCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </IIfCallPredicateLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </IIfCallPredicateLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -17252,8 +17213,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </IIfCallThenExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </IIfCallThenExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -17361,8 +17321,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasAndColumnsId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InlineDerivedTable>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InlineDerivedTableList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -17486,12 +17445,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rowValueId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </InlineDerivedTableRowValuesItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </InlineDerivedTableRowValuesItem>\n");
             }
             builder.Append("  </InlineDerivedTableRowValuesItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -17602,12 +17562,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.NotDefined))
                 {
                     AppendElement(builder, "NotDefined", row.NotDefined!, "      ");
                 }
-                builder.Append("    </InPredicate>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </InPredicate>\n");
             }
             builder.Append("  </InPredicateList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -17728,8 +17689,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InPredicateExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InPredicateExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -17850,8 +17810,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarSubqueryId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InPredicateSubqueryLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InPredicateSubqueryLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -17975,12 +17934,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </InPredicateValuesItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </InPredicateValuesItem>\n");
             }
             builder.Append("  </InPredicateValuesItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -18088,8 +18048,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, insertSourceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InsertQuerySource>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InsertQuerySourceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -18210,8 +18169,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InsertQuerySourceQueryExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InsertQuerySourceQueryExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -18303,8 +18261,7 @@ namespace MetaTransformScript
                 builder.Append("    <InsertSource Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InsertSource>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InsertSourceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -18412,8 +18369,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, statementWithCtesAndXmlNamespacesId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InsertStatement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InsertStatementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -18537,12 +18493,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, insertStatementId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </InsertStatementColumnsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </InsertStatementColumnsItem>\n");
             }
             builder.Append("  </InsertStatementColumnsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -18663,8 +18620,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, insertStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InsertStatementSourceLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InsertStatementSourceLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -18785,8 +18741,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InsertStatementTargetLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InsertStatementTargetLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -18894,8 +18849,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, insertSourceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </InsertValuesSource>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </InsertValuesSourceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -19019,12 +18973,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rowValueId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </InsertValuesSourceRowValuesItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </InsertValuesSourceRowValuesItem>\n");
             }
             builder.Append("  </InsertValuesSourceRowValuesItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -19135,12 +19090,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, literalId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.LiteralType))
                 {
                     AppendElement(builder, "LiteralType", row.LiteralType!, "      ");
                 }
-                builder.Append("    </IntegerLiteral>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </IntegerLiteral>\n");
             }
             builder.Append("  </IntegerLiteralList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -19248,8 +19204,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </JoinParenthesisTableReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </JoinParenthesisTableReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -19370,8 +19325,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </JoinParenthesisTableReferenceJoinLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </JoinParenthesisTableReferenceJoinLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -19479,8 +19433,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </JoinTableReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </JoinTableReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -19601,8 +19554,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </JoinTableReferenceFirstTableReferenceLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </JoinTableReferenceFirstTableReferenceLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -19723,8 +19675,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </JoinTableReferenceSecondTableReferenceLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </JoinTableReferenceSecondTableReferenceLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -19832,8 +19783,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </LeftFunctionCall>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </LeftFunctionCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -19957,12 +19907,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </LeftFunctionCallParametersItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </LeftFunctionCallParametersItem>\n");
             }
             builder.Append("  </LeftFunctionCallParametersItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -20076,6 +20027,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.NotDefined))
                 {
@@ -20085,7 +20037,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "OdbcEscape", row.OdbcEscape!, "      ");
                 }
-                builder.Append("    </LikePredicate>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </LikePredicate>\n");
             }
             builder.Append("  </LikePredicateList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -20206,8 +20158,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </LikePredicateEscapeExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </LikePredicateEscapeExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -20328,8 +20279,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </LikePredicateFirstExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </LikePredicateFirstExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -20450,8 +20400,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </LikePredicateSecondExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </LikePredicateSecondExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -20565,6 +20514,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, valueExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.LiteralType))
                 {
@@ -20574,7 +20524,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "Value", row.Value!, "      ");
                 }
-                builder.Append("    </Literal>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </Literal>\n");
             }
             builder.Append("  </LiteralList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -20685,12 +20635,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, literalId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.LiteralType))
                 {
                     AppendElement(builder, "LiteralType", row.LiteralType!, "      ");
                 }
-                builder.Append("    </MaxLiteral>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </MaxLiteral>\n");
             }
             builder.Append("  </MaxLiteralList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -20782,8 +20733,7 @@ namespace MetaTransformScript
                 builder.Append("    <MergeAction Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeAction>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeActionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -20891,8 +20841,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeActionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeDeleteAction>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeDeleteActionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -21000,8 +20949,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeActionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeInsertAction>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeInsertActionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -21125,12 +21073,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeInsertActionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </MergeInsertActionColumnsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </MergeInsertActionColumnsItem>\n");
             }
             builder.Append("  </MergeInsertActionColumnsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -21254,12 +21203,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </MergeInsertActionValuesItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </MergeInsertActionValuesItem>\n");
             }
             builder.Append("  </MergeInsertActionValuesItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -21367,8 +21317,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeWhenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeMatchedWhenClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeMatchedWhenClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -21476,8 +21425,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeWhenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeNotMatchedBySourceWhenClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeNotMatchedBySourceWhenClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -21585,8 +21533,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeWhenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeNotMatchedByTargetWhenClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeNotMatchedByTargetWhenClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -21694,8 +21641,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, statementWithCtesAndXmlNamespacesId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeStatement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeStatementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -21816,8 +21762,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, optionClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeStatementOptionClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeStatementOptionClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -21938,8 +21883,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, outputClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeStatementOutputClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeStatementOutputClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -22060,8 +22004,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeStatementSearchConditionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeStatementSearchConditionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -22182,8 +22125,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeStatementSourceLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeStatementSourceLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -22304,8 +22246,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeStatementTargetAliasLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeStatementTargetAliasLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -22429,12 +22370,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, sqlHintId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </MergeStatementTargetHintsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </MergeStatementTargetHintsItem>\n");
             }
             builder.Append("  </MergeStatementTargetHintsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -22555,8 +22497,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeStatementTargetLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeStatementTargetLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -22677,8 +22618,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, topRowFilterId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeStatementTopRowFilterLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeStatementTopRowFilterLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -22815,8 +22755,7 @@ namespace MetaTransformScript
                     AppendXmlAttribute(builder, previousMergeWhenClauseId);
                     builder.Append('"');
                 }
-                builder.Append(">\n");
-                builder.Append("    </MergeStatementWhenClausesItem>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeStatementWhenClausesItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -22924,8 +22863,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeActionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeUpdateAction>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeUpdateActionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -23046,8 +22984,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, setClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeUpdateActionSetClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeUpdateActionSetClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -23139,8 +23076,7 @@ namespace MetaTransformScript
                 builder.Append("    <MergeWhenClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeWhenClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeWhenClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -23261,8 +23197,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeWhenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeWhenClauseActionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeWhenClauseActionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -23383,8 +23318,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, mergeWhenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MergeWhenClauseSearchConditionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MergeWhenClauseSearchConditionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -23479,12 +23413,13 @@ namespace MetaTransformScript
                 builder.Append("    <MultiPartIdentifier Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Count))
                 {
                     AppendElement(builder, "Count", row.Count!, "      ");
                 }
-                builder.Append("    </MultiPartIdentifier>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </MultiPartIdentifier>\n");
             }
             builder.Append("  </MultiPartIdentifierList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -23592,8 +23527,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, callTargetId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MultiPartIdentifierCallTarget>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MultiPartIdentifierCallTargetList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -23714,8 +23648,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, multiPartIdentifierId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </MultiPartIdentifierCallTargetMultiPartIdentifierLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </MultiPartIdentifierCallTargetMultiPartIdentifierLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -23839,12 +23772,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, multiPartIdentifierId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </MultiPartIdentifierIdentifiersItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </MultiPartIdentifierIdentifiersItem>\n");
             }
             builder.Append("  </MultiPartIdentifierIdentifiersItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -23952,8 +23886,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </NamedTableReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </NamedTableReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -24074,8 +24007,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </NamedTableReferenceSchemaObjectLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </NamedTableReferenceSchemaObjectLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -24196,8 +24128,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableSampleClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </NamedTableReferenceTableSampleClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </NamedTableReferenceTableSampleClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -24305,8 +24236,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </NextValueForExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </NextValueForExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -24427,8 +24357,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </NextValueForExpressionSequenceNameLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </NextValueForExpressionSequenceNameLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -24536,8 +24465,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </NullIfExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </NullIfExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -24658,8 +24586,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </NullIfExpressionFirstExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </NullIfExpressionFirstExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -24780,8 +24707,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </NullIfExpressionSecondExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </NullIfExpressionSecondExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -24892,12 +24818,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, literalId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.LiteralType))
                 {
                     AppendElement(builder, "LiteralType", row.LiteralType!, "      ");
                 }
-                builder.Append("    </NullLiteral>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </NullLiteral>\n");
             }
             builder.Append("  </NullLiteralList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -25008,12 +24935,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, literalId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.LiteralType))
                 {
                     AppendElement(builder, "LiteralType", row.LiteralType!, "      ");
                 }
-                builder.Append("    </NumericLiteral>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </NumericLiteral>\n");
             }
             builder.Append("  </NumericLiteralList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -25108,12 +25036,13 @@ namespace MetaTransformScript
                 builder.Append("    <OffsetClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.WithApproximate))
                 {
                     AppendElement(builder, "WithApproximate", row.WithApproximate!, "      ");
                 }
-                builder.Append("    </OffsetClause>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </OffsetClause>\n");
             }
             builder.Append("  </OffsetClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -25234,8 +25163,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OffsetClauseFetchExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OffsetClauseFetchExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -25356,8 +25284,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OffsetClauseOffsetExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OffsetClauseOffsetExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -25449,8 +25376,7 @@ namespace MetaTransformScript
                 builder.Append("    <OptionClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OptionClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OptionClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -25574,12 +25500,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, sqlHintId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </OptionClauseQueryHintsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </OptionClauseQueryHintsItem>\n");
             }
             builder.Append("  </OptionClauseQueryHintsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -25671,8 +25598,7 @@ namespace MetaTransformScript
                 builder.Append("    <OrderByClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OrderByClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OrderByClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -25796,12 +25722,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, orderByClauseId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </OrderByClauseOrderByElementsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </OrderByClauseOrderByElementsItem>\n");
             }
             builder.Append("  </OrderByClauseOrderByElementsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -25893,8 +25820,7 @@ namespace MetaTransformScript
                 builder.Append("    <OutputClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OutputClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OutputClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -26018,12 +25944,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, outputClauseId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </OutputClauseIntoColumnsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </OutputClauseIntoColumnsItem>\n");
             }
             builder.Append("  </OutputClauseIntoColumnsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -26144,8 +26071,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OutputClauseIntoTargetLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OutputClauseIntoTargetLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -26269,12 +26195,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, selectElementId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </OutputClauseSelectElementsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </OutputClauseSelectElementsItem>\n");
             }
             builder.Append("  </OutputClauseSelectElementsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -26366,8 +26293,7 @@ namespace MetaTransformScript
                 builder.Append("    <OverClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OverClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OverClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -26488,8 +26414,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, overClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OverClauseOrderByClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OverClauseOrderByClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -26613,12 +26538,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </OverClausePartitionsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </OverClausePartitionsItem>\n");
             }
             builder.Append("  </OverClausePartitionsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -26739,8 +26665,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowFrameClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OverClauseWindowFrameClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OverClauseWindowFrameClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -26861,8 +26786,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, overClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </OverClauseWindowNameLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </OverClauseWindowNameLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -26970,8 +26894,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dataTypeReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ParameterizedDataTypeReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ParameterizedDataTypeReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -27095,12 +27018,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, parameterizedDataTypeReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </ParameterizedDataTypeReferenceParametersItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </ParameterizedDataTypeReferenceParametersItem>\n");
             }
             builder.Append("  </ParameterizedDataTypeReferenceParametersItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -27211,12 +27135,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.ParameterlessCallType))
                 {
                     AppendElement(builder, "ParameterlessCallType", row.ParameterlessCallType!, "      ");
                 }
-                builder.Append("    </ParameterlessCall>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </ParameterlessCall>\n");
             }
             builder.Append("  </ParameterlessCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -27324,8 +27249,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ParenthesisExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ParenthesisExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -27446,8 +27370,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ParenthesisExpressionExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ParenthesisExpressionExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -27555,8 +27478,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ParseCall>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ParseCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -27677,8 +27599,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ParseCallCultureLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ParseCallCultureLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -27799,8 +27720,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, parseCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ParseCallDataTypeLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ParseCallDataTypeLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -27921,8 +27841,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ParseCallStringValueLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ParseCallStringValueLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -28030,8 +27949,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PivotedTableReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PivotedTableReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -28152,8 +28070,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, pivotedTableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PivotedTableReferenceAggregateFunctionIdentifierLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PivotedTableReferenceAggregateFunctionIdentifierLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -28277,12 +28194,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, pivotedTableReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </PivotedTableReferenceInColumnsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </PivotedTableReferenceInColumnsItem>\n");
             }
             builder.Append("  </PivotedTableReferenceInColumnsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -28403,8 +28321,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, pivotedTableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PivotedTableReferencePivotColumnLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PivotedTableReferencePivotColumnLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -28525,8 +28442,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PivotedTableReferenceTableReferenceLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PivotedTableReferenceTableReferenceLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -28650,12 +28566,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, pivotedTableReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </PivotedTableReferenceValueColumnsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </PivotedTableReferenceValueColumnsItem>\n");
             }
             builder.Append("  </PivotedTableReferenceValueColumnsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -28763,8 +28680,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PrimaryExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PrimaryExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -28885,8 +28801,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PrimaryExpressionCollationLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PrimaryExpressionCollationLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -29000,6 +28915,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, joinTableReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.JoinHint))
                 {
@@ -29009,7 +28925,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "QualifiedJoinType", row.QualifiedJoinType!, "      ");
                 }
-                builder.Append("    </QualifiedJoin>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </QualifiedJoin>\n");
             }
             builder.Append("  </QualifiedJoinList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -29130,8 +29046,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, qualifiedJoinId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QualifiedJoinSearchConditionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QualifiedJoinSearchConditionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -29239,8 +29154,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasAndColumnsId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QueryDerivedTable>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QueryDerivedTableList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -29361,8 +29275,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QueryDerivedTableQueryExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QueryDerivedTableQueryExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -29454,8 +29367,7 @@ namespace MetaTransformScript
                 builder.Append("    <QueryExpression Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QueryExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QueryExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -29576,8 +29488,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QueryExpressionOffsetClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QueryExpressionOffsetClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -29698,8 +29609,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QueryExpressionOrderByClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QueryExpressionOrderByClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -29807,8 +29717,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QueryParenthesisExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QueryParenthesisExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -29929,8 +29838,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryParenthesisExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QueryParenthesisExpressionQueryExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QueryParenthesisExpressionQueryExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -30041,12 +29949,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, queryExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.UniqueRowFilter))
                 {
                     AppendElement(builder, "UniqueRowFilter", row.UniqueRowFilter!, "      ");
                 }
-                builder.Append("    </QuerySpecification>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </QuerySpecification>\n");
             }
             builder.Append("  </QuerySpecificationList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -30167,8 +30076,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, querySpecificationId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QuerySpecificationFromClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QuerySpecificationFromClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -30289,8 +30197,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, querySpecificationId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QuerySpecificationGroupByClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QuerySpecificationGroupByClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -30411,8 +30318,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, querySpecificationId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QuerySpecificationHavingClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QuerySpecificationHavingClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -30536,12 +30442,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, selectElementId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </QuerySpecificationSelectElementsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </QuerySpecificationSelectElementsItem>\n");
             }
             builder.Append("  </QuerySpecificationSelectElementsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -30662,8 +30569,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, topRowFilterId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QuerySpecificationTopRowFilterLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QuerySpecificationTopRowFilterLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -30784,8 +30690,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, whereClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QuerySpecificationWhereClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QuerySpecificationWhereClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -30906,8 +30811,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </QuerySpecificationWindowClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </QuerySpecificationWindowClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -31018,12 +30922,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, literalId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.LiteralType))
                 {
                     AppendElement(builder, "LiteralType", row.LiteralType!, "      ");
                 }
-                builder.Append("    </RealLiteral>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </RealLiteral>\n");
             }
             builder.Append("  </RealLiteralList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -31131,8 +31036,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </RightFunctionCall>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </RightFunctionCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -31256,12 +31160,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </RightFunctionCallParametersItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </RightFunctionCallParametersItem>\n");
             }
             builder.Append("  </RightFunctionCallParametersItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -31369,8 +31274,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, groupingSpecificationId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </RollupGroupingSpecification>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </RollupGroupingSpecificationList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -31494,12 +31398,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rollupGroupingSpecificationId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </RollupGroupingSpecificationArgumentsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </RollupGroupingSpecificationArgumentsItem>\n");
             }
             builder.Append("  </RollupGroupingSpecificationArgumentsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -31591,8 +31496,7 @@ namespace MetaTransformScript
                 builder.Append("    <RowValue Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </RowValue>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </RowValueList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -31716,12 +31620,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </RowValueColumnValuesItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </RowValueColumnValuesItem>\n");
             }
             builder.Append("  </RowValueColumnValuesItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -31813,8 +31718,7 @@ namespace MetaTransformScript
                 builder.Append("    <ScalarExpression Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ScalarExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ScalarExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -31922,8 +31826,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ScalarSubquery>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ScalarSubqueryList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -32044,8 +31947,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarSubqueryId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ScalarSubqueryQueryExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ScalarSubqueryQueryExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -32153,8 +32055,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasAndColumnsId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SchemaObjectFunctionTableReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SchemaObjectFunctionTableReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -32278,12 +32179,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectFunctionTableReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </SchemaObjectFunctionTableReferenceParametersItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SchemaObjectFunctionTableReferenceParametersItem>\n");
             }
             builder.Append("  </SchemaObjectFunctionTableReferenceParametersItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -32404,8 +32306,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SchemaObjectFunctionTableReferenceSchemaObjectLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SchemaObjectFunctionTableReferenceSchemaObjectLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -32513,8 +32414,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, multiPartIdentifierId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SchemaObjectName>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SchemaObjectNameList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -32635,8 +32535,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SchemaObjectNameBaseIdentifierLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SchemaObjectNameBaseIdentifierLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -32757,8 +32656,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, schemaObjectNameId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SchemaObjectNameSchemaIdentifierLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SchemaObjectNameSchemaIdentifierLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -32892,8 +32790,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, transformScriptId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ScriptObjectScalarFunction>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ScriptObjectScalarFunctionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -33114,8 +33011,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, transformScriptId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ScriptObjectTVF>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ScriptObjectTVFList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -33336,8 +33232,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, caseExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SearchedCaseExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SearchedCaseExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -33461,12 +33356,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, searchedWhenClauseId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </SearchedCaseExpressionWhenClausesItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SearchedCaseExpressionWhenClausesItem>\n");
             }
             builder.Append("  </SearchedCaseExpressionWhenClausesItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -33574,8 +33470,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, whenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SearchedWhenClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SearchedWhenClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -33696,8 +33591,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, searchedWhenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SearchedWhenClauseWhenExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SearchedWhenClauseWhenExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -33789,8 +33683,7 @@ namespace MetaTransformScript
                 builder.Append("    <SelectElement Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SelectElement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SelectElementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -33898,8 +33791,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, selectElementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SelectScalarExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SelectScalarExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -34020,8 +33912,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, selectScalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SelectScalarExpressionColumnNameLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SelectScalarExpressionColumnNameLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -34142,8 +34033,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, selectScalarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SelectScalarExpressionExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SelectScalarExpressionExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -34251,8 +34141,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, selectElementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SelectStarExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SelectStarExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -34373,8 +34262,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, selectStarExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SelectStarExpressionQualifierLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SelectStarExpressionQualifierLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -34482,8 +34370,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, statementWithCtesAndXmlNamespacesId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SelectStatement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SelectStatementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -34604,8 +34491,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, selectStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SelectStatementQueryExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SelectStatementQueryExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -34697,8 +34583,7 @@ namespace MetaTransformScript
                 builder.Append("    <SetAssignment Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SetAssignment>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SetAssignmentList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -34819,8 +34704,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, setAssignmentId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SetAssignmentTargetLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SetAssignmentTargetLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -34941,8 +34825,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, setAssignmentId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SetAssignmentValueLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SetAssignmentValueLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -35034,8 +34917,7 @@ namespace MetaTransformScript
                 builder.Append("    <SetClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SetClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SetClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -35159,12 +35041,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, setClauseId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </SetClauseAssignmentsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SetClauseAssignmentsItem>\n");
             }
             builder.Append("  </SetClauseAssignmentsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -35272,8 +35155,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, caseExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SimpleCaseExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SimpleCaseExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -35394,8 +35276,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, simpleCaseExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SimpleCaseExpressionInputExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SimpleCaseExpressionInputExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -35519,12 +35400,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, simpleWhenClauseId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </SimpleCaseExpressionWhenClausesItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SimpleCaseExpressionWhenClausesItem>\n");
             }
             builder.Append("  </SimpleCaseExpressionWhenClausesItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -35632,8 +35514,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, whenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SimpleWhenClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SimpleWhenClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -35754,8 +35635,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, simpleWhenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SimpleWhenClauseWhenExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SimpleWhenClauseWhenExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -35866,12 +35746,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, parameterizedDataTypeReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.SqlDataTypeOption))
                 {
                     AppendElement(builder, "SqlDataTypeOption", row.SqlDataTypeOption!, "      ");
                 }
-                builder.Append("    </SqlDataTypeReference>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SqlDataTypeReference>\n");
             }
             builder.Append("  </SqlDataTypeReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -35966,12 +35847,13 @@ namespace MetaTransformScript
                 builder.Append("    <SqlHint Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.ArgumentStyle))
                 {
                     AppendElement(builder, "ArgumentStyle", row.ArgumentStyle!, "      ");
                 }
-                builder.Append("    </SqlHint>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SqlHint>\n");
             }
             builder.Append("  </SqlHintList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -36095,12 +35977,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, sqlHintId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </SqlHintArgumentsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SqlHintArgumentsItem>\n");
             }
             builder.Append("  </SqlHintArgumentsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -36224,12 +36107,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, sqlHintId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </SqlHintKeywordsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SqlHintKeywordsItem>\n");
             }
             builder.Append("  </SqlHintKeywordsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -36337,8 +36221,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tSqlStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </StatementWithCtesAndXmlNamespaces>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </StatementWithCtesAndXmlNamespacesList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -36459,8 +36342,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, withCtesAndXmlNamespacesId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -36571,12 +36453,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scriptObjectStoredProcedureId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Notes))
                 {
                     AppendElement(builder, "Notes", row.Notes!, "      ");
                 }
-                builder.Append("    </StoredProcedureContract>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </StoredProcedureContract>\n");
             }
             builder.Append("  </StoredProcedureContractList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -37079,6 +36962,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, literalId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.IsLargeObject))
                 {
@@ -37092,7 +36976,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "LiteralType", row.LiteralType!, "      ");
                 }
-                builder.Append("    </StringLiteral>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </StringLiteral>\n");
             }
             builder.Append("  </StringLiteralList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -37206,6 +37090,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, booleanExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.ComparisonType))
                 {
@@ -37215,7 +37100,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "SubqueryComparisonPredicateType", row.SubqueryComparisonPredicateType!, "      ");
                 }
-                builder.Append("    </SubqueryComparisonPredicate>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SubqueryComparisonPredicate>\n");
             }
             builder.Append("  </SubqueryComparisonPredicateList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -37336,8 +37221,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, subqueryComparisonPredicateId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SubqueryComparisonPredicateExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SubqueryComparisonPredicateExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -37458,8 +37342,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, subqueryComparisonPredicateId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </SubqueryComparisonPredicateSubqueryLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </SubqueryComparisonPredicateSubqueryLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -37551,8 +37434,7 @@ namespace MetaTransformScript
                 builder.Append("    <TableReference Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TableReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TableReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -37663,12 +37545,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.ForPath))
                 {
                     AppendElement(builder, "ForPath", row.ForPath!, "      ");
                 }
-                builder.Append("    </TableReferenceWithAlias>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TableReferenceWithAlias>\n");
             }
             builder.Append("  </TableReferenceWithAliasList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -37789,8 +37672,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TableReferenceWithAliasAliasLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TableReferenceWithAliasAliasLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -37898,8 +37780,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TableReferenceWithAliasAndColumns>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TableReferenceWithAliasAndColumnsList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -38023,12 +37904,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasAndColumnsId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </TableReferenceWithAliasAndColumnsColumnsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TableReferenceWithAliasAndColumnsColumnsItem>\n");
             }
             builder.Append("  </TableReferenceWithAliasAndColumnsColumnsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -38152,12 +38034,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </TableReferenceWithAliasTableHintsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TableReferenceWithAliasTableHintsItem>\n");
             }
             builder.Append("  </TableReferenceWithAliasTableHintsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -38255,6 +38138,7 @@ namespace MetaTransformScript
                 builder.Append("    <TableSampleClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.System))
                 {
@@ -38264,7 +38148,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "TableSampleClauseOption", row.TableSampleClauseOption!, "      ");
                 }
-                builder.Append("    </TableSampleClause>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TableSampleClause>\n");
             }
             builder.Append("  </TableSampleClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -38385,8 +38269,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableSampleClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TableSampleClauseRepeatSeedLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TableSampleClauseRepeatSeedLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -38507,8 +38390,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableSampleClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TableSampleClauseSampleNumberLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TableSampleClauseSampleNumberLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -38609,6 +38491,7 @@ namespace MetaTransformScript
                 builder.Append("    <TopRowFilter Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Percent))
                 {
@@ -38622,7 +38505,7 @@ namespace MetaTransformScript
                 {
                     AppendElement(builder, "WithTies", row.WithTies!, "      ");
                 }
-                builder.Append("    </TopRowFilter>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TopRowFilter>\n");
             }
             builder.Append("  </TopRowFilterList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -38743,8 +38626,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, topRowFilterId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TopRowFilterExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TopRowFilterExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -39108,8 +38990,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, transformScriptId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TransformScriptObjectIdentifierLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TransformScriptObjectIdentifierLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -39230,8 +39111,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, transformScriptId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TransformScriptSchemaIdentifierLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TransformScriptSchemaIdentifierLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -39352,8 +39232,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tSqlStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TransformScriptStatementLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TransformScriptStatementLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -39587,8 +39466,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tSqlStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TruncateStatement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TruncateStatementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -39709,8 +39587,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, truncateStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TruncateStatementTargetLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TruncateStatementTargetLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -39818,8 +39695,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryCastCall>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryCastCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -39940,8 +39816,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tryCastCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryCastCallDataTypeLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryCastCallDataTypeLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -40062,8 +39937,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tryCastCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryCastCallParameterLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryCastCallParameterLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -40171,8 +40045,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryConvertCall>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryConvertCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -40293,8 +40166,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tryConvertCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryConvertCallDataTypeLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryConvertCallDataTypeLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -40415,8 +40287,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tryConvertCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryConvertCallParameterLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryConvertCallParameterLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -40537,8 +40408,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tryConvertCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryConvertCallStyleLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryConvertCallStyleLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -40646,8 +40516,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryParseCall>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryParseCallList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -40768,8 +40637,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tryParseCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryParseCallCultureLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryParseCallCultureLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -40890,8 +40758,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tryParseCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryParseCallDataTypeLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryParseCallDataTypeLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -41012,8 +40879,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tryParseCallId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TryParseCallStringValueLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TryParseCallStringValueLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -41105,8 +40971,7 @@ namespace MetaTransformScript
                 builder.Append("    <TSqlStatement Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </TSqlStatement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </TSqlStatementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -41217,12 +41082,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, scalarExpressionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.UnaryExpressionType))
                 {
                     AppendElement(builder, "UnaryExpressionType", row.UnaryExpressionType!, "      ");
                 }
-                builder.Append("    </UnaryExpression>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </UnaryExpression>\n");
             }
             builder.Append("  </UnaryExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -41343,8 +41209,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, unaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UnaryExpressionExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UnaryExpressionExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -41452,8 +41317,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UnpivotedTableReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UnpivotedTableReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -41577,12 +41441,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, unpivotedTableReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </UnpivotedTableReferenceInColumnsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </UnpivotedTableReferenceInColumnsItem>\n");
             }
             builder.Append("  </UnpivotedTableReferenceInColumnsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -41703,8 +41568,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, unpivotedTableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UnpivotedTableReferencePivotColumnLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UnpivotedTableReferencePivotColumnLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -41825,8 +41689,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, unpivotedTableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UnpivotedTableReferenceTableReferenceLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UnpivotedTableReferenceTableReferenceLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -41947,8 +41810,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, unpivotedTableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UnpivotedTableReferenceValueColumnLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UnpivotedTableReferenceValueColumnLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -42059,12 +41921,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, joinTableReferenceId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.UnqualifiedJoinType))
                 {
                     AppendElement(builder, "UnqualifiedJoinType", row.UnqualifiedJoinType!, "      ");
                 }
-                builder.Append("    </UnqualifiedJoin>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </UnqualifiedJoin>\n");
             }
             builder.Append("  </UnqualifiedJoinList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -42172,8 +42035,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, statementWithCtesAndXmlNamespacesId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UpdateStatement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UpdateStatementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -42294,8 +42156,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, updateStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UpdateStatementFromClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UpdateStatementFromClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -42416,8 +42277,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, updateStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UpdateStatementSetClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UpdateStatementSetClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -42538,8 +42398,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, updateStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UpdateStatementTargetAliasLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UpdateStatementTargetAliasLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -42660,8 +42519,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, updateStatementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UpdateStatementTargetLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UpdateStatementTargetLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -42782,8 +42640,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, whereClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </UpdateStatementWhereClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </UpdateStatementWhereClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -42891,8 +42748,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, primaryExpressionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </ValueExpression>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </ValueExpressionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -42984,8 +42840,7 @@ namespace MetaTransformScript
                 builder.Append("    <WhenClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WhenClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WhenClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -43106,8 +42961,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, whenClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WhenClauseThenExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WhenClauseThenExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -43199,8 +43053,7 @@ namespace MetaTransformScript
                 builder.Append("    <WhereClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WhereClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WhereClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -43321,8 +43174,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, whereClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WhereClauseSearchConditionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WhereClauseSearchConditionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -43414,8 +43266,7 @@ namespace MetaTransformScript
                 builder.Append("    <WindowClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WindowClause>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WindowClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -43539,12 +43390,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowDefinitionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </WindowClauseWindowDefinitionItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </WindowClauseWindowDefinitionItem>\n");
             }
             builder.Append("  </WindowClauseWindowDefinitionItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -43636,8 +43488,7 @@ namespace MetaTransformScript
                 builder.Append("    <WindowDefinition Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WindowDefinition>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WindowDefinitionList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -43758,8 +43609,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowDefinitionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WindowDefinitionOrderByClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WindowDefinitionOrderByClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -43883,12 +43733,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowDefinitionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </WindowDefinitionPartitionsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </WindowDefinitionPartitionsItem>\n");
             }
             builder.Append("  </WindowDefinitionPartitionsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -44009,8 +43860,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowDefinitionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WindowDefinitionRefWindowNameLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WindowDefinitionRefWindowNameLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -44131,8 +43981,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowFrameClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WindowDefinitionWindowFrameClauseLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WindowDefinitionWindowFrameClauseLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -44253,8 +44102,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowDefinitionId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WindowDefinitionWindowNameLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WindowDefinitionWindowNameLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -44349,12 +44197,13 @@ namespace MetaTransformScript
                 builder.Append("    <WindowDelimiter Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.WindowDelimiterType))
                 {
                     AppendElement(builder, "WindowDelimiterType", row.WindowDelimiterType!, "      ");
                 }
-                builder.Append("    </WindowDelimiter>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </WindowDelimiter>\n");
             }
             builder.Append("  </WindowDelimiterList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -44475,8 +44324,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowDelimiterId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WindowDelimiterOffsetValueLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WindowDelimiterOffsetValueLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -44571,12 +44419,13 @@ namespace MetaTransformScript
                 builder.Append("    <WindowFrameClause Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.WindowFrameType))
                 {
                     AppendElement(builder, "WindowFrameType", row.WindowFrameType!, "      ");
                 }
-                builder.Append("    </WindowFrameClause>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </WindowFrameClause>\n");
             }
             builder.Append("  </WindowFrameClauseList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -44697,8 +44546,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowFrameClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WindowFrameClauseBottomLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WindowFrameClauseBottomLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -44819,8 +44667,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, windowFrameClauseId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WindowFrameClauseTopLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WindowFrameClauseTopLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -44912,8 +44759,7 @@ namespace MetaTransformScript
                 builder.Append("    <WithCtesAndXmlNamespaces Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WithCtesAndXmlNamespaces>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WithCtesAndXmlNamespacesList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -45037,12 +44883,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, withCtesAndXmlNamespacesId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </WithCtesAndXmlNamespacesCommonTableExpressionsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </WithCtesAndXmlNamespacesCommonTableExpressionsItem>\n");
             }
             builder.Append("  </WithCtesAndXmlNamespacesCommonTableExpressionsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -45163,8 +45010,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, xmlNamespacesId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </WithCtesAndXmlNamespacesXmlNamespacesLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </WithCtesAndXmlNamespacesXmlNamespacesLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -45256,8 +45102,7 @@ namespace MetaTransformScript
                 builder.Append("    <XmlNamespaces Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </XmlNamespaces>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </XmlNamespacesList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -45365,8 +45210,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, xmlNamespacesElementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </XmlNamespacesAliasElement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </XmlNamespacesAliasElementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -45487,8 +45331,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, xmlNamespacesAliasElementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </XmlNamespacesAliasElementIdentifierLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </XmlNamespacesAliasElementIdentifierLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -45596,8 +45439,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, xmlNamespacesElementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </XmlNamespacesDefaultElement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </XmlNamespacesDefaultElementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -45689,8 +45531,7 @@ namespace MetaTransformScript
                 builder.Append("    <XmlNamespacesElement Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </XmlNamespacesElement>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </XmlNamespacesElementList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -45811,8 +45652,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, xmlNamespacesElementId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </XmlNamespacesElementStringLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </XmlNamespacesElementStringLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -45936,12 +45776,13 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, xmlNamespacesId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Ordinal))
                 {
                     AppendElement(builder, "Ordinal", row.Ordinal!, "      ");
                 }
-                builder.Append("    </XmlNamespacesXmlNamespacesElementsItem>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </XmlNamespacesXmlNamespacesElementsItem>\n");
             }
             builder.Append("  </XmlNamespacesXmlNamespacesElementsItemList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -46049,8 +45890,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableReferenceWithAliasAndColumnsId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </XmlNodesTableReference>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </XmlNodesTableReferenceList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -46171,8 +46011,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, xmlNodesTableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </XmlNodesTableReferenceTargetExpressionLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </XmlNodesTableReferenceTargetExpressionLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -46293,8 +46132,7 @@ namespace MetaTransformScript
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, xmlNodesTableReferenceId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </XmlNodesTableReferenceXQueryStringLink>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </XmlNodesTableReferenceXQueryStringLinkList>\n");
             builder.Append("</MetaTransformScript>\n");
@@ -64368,6 +64206,18 @@ namespace MetaTransformScript
             builder.Append("</");
             builder.Append(name);
             builder.Append(">\n");
+        }
+
+        private static void AppendClosingElementOrSelfClose(StringBuilder builder, int openingTagEndIndex, string closingElement)
+        {
+            if (builder.Length == openingTagEndIndex + 2)
+            {
+                builder.Length = openingTagEndIndex;
+                builder.Append(" />\n");
+                return;
+            }
+
+            builder.Append(closingElement);
         }
 
         private static void AppendXmlAttribute(StringBuilder builder, string value)

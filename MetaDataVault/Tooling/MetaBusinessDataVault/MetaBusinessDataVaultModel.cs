@@ -937,8 +937,7 @@ namespace MetaBusinessDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, targetRoleId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </BusinessBridgeTraversal>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </BusinessBridgeTraversalList>\n");
             builder.Append("</MetaBusinessDataVault>\n");

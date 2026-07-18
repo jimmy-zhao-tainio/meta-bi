@@ -1276,6 +1276,7 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, parentAttributeId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
@@ -1285,7 +1286,7 @@ namespace MetaAnalytics
                 {
                     AppendElement(builder, "RelationshipType", row.RelationshipType!, "      ");
                 }
-                builder.Append("    </AttributeRelationship>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </AttributeRelationship>\n");
             }
             builder.Append("  </AttributeRelationshipList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -1412,6 +1413,7 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, cultureId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -1421,7 +1423,7 @@ namespace MetaAnalytics
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </AttributeTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </AttributeTranslation>\n");
             }
             builder.Append("  </AttributeTranslationList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -2080,6 +2082,7 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, hierarchyId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -2089,7 +2092,7 @@ namespace MetaAnalytics
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </HierarchyTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </HierarchyTranslation>\n");
             }
             builder.Append("  </HierarchyTranslationList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -2377,6 +2380,7 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, measureId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -2386,7 +2390,7 @@ namespace MetaAnalytics
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </MeasureTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </MeasureTranslation>\n");
             }
             builder.Append("  </MeasureTranslationList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -2627,8 +2631,7 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveAttribute>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveAttributeList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -2749,8 +2752,7 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveHierarchy>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveHierarchyList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -2871,8 +2873,7 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveMeasure>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveMeasureList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -2993,8 +2994,7 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveTable>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveTableList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -3121,6 +3121,7 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -3130,7 +3131,7 @@ namespace MetaAnalytics
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </PerspectiveTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </PerspectiveTranslation>\n");
             }
             builder.Append("  </PerspectiveTranslationList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -3862,12 +3863,13 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, sourceAttributeId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </SortByAttribute>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </SortByAttribute>\n");
             }
             builder.Append("  </SortByAttributeList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -4272,6 +4274,7 @@ namespace MetaAnalytics
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, tableId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -4281,7 +4284,7 @@ namespace MetaAnalytics
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </TableTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </TableTranslation>\n");
             }
             builder.Append("  </TableTranslationList>\n");
             builder.Append("</MetaAnalytics>\n");
@@ -5998,6 +6001,18 @@ namespace MetaAnalytics
             builder.Append("</");
             builder.Append(name);
             builder.Append(">\n");
+        }
+
+        private static void AppendClosingElementOrSelfClose(StringBuilder builder, int openingTagEndIndex, string closingElement)
+        {
+            if (builder.Length == openingTagEndIndex + 2)
+            {
+                builder.Length = openingTagEndIndex;
+                builder.Append(" />\n");
+                return;
+            }
+
+            builder.Append(closingElement);
         }
 
         private static void AppendXmlAttribute(StringBuilder builder, string value)

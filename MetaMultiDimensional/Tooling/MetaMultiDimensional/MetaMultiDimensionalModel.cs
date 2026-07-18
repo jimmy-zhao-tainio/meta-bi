@@ -895,6 +895,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, cultureId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -904,7 +905,7 @@ namespace MetaMultiDimensional
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </ActionTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </ActionTranslation>\n");
             }
             builder.Append("  </ActionTranslationList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -1031,6 +1032,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, parentAttributeId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Description))
                 {
@@ -1040,7 +1042,7 @@ namespace MetaMultiDimensional
                 {
                     AppendElement(builder, "RelationshipType", row.RelationshipType!, "      ");
                 }
-                builder.Append("    </AttributeRelationship>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </AttributeRelationship>\n");
             }
             builder.Append("  </AttributeRelationshipList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -1167,6 +1169,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dimensionAttributeId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -1176,7 +1179,7 @@ namespace MetaMultiDimensional
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </AttributeTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </AttributeTranslation>\n");
             }
             builder.Append("  </AttributeTranslationList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -1863,6 +1866,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, cultureId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -1872,7 +1876,7 @@ namespace MetaMultiDimensional
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </CubeTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </CubeTranslation>\n");
             }
             builder.Append("  </CubeTranslationList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -2723,6 +2727,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, securityRoleId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.AllowedSetExpression))
                 {
@@ -2744,7 +2749,7 @@ namespace MetaMultiDimensional
                 {
                     AppendElement(builder, "VisualTotals", row.VisualTotals!, "      ");
                 }
-                builder.Append("    </DimensionPermission>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </DimensionPermission>\n");
             }
             builder.Append("  </DimensionPermissionList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -2871,6 +2876,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, dimensionId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -2880,7 +2886,7 @@ namespace MetaMultiDimensional
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </DimensionTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </DimensionTranslation>\n");
             }
             builder.Append("  </DimensionTranslationList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -3364,6 +3370,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, kpiId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -3373,7 +3380,7 @@ namespace MetaMultiDimensional
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </KpiTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </KpiTranslation>\n");
             }
             builder.Append("  </KpiTranslationList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -3938,6 +3945,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, measureId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -3947,7 +3955,7 @@ namespace MetaMultiDimensional
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </MeasureTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </MeasureTranslation>\n");
             }
             builder.Append("  </MeasureTranslationList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -4464,6 +4472,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, namedSetId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -4473,7 +4482,7 @@ namespace MetaMultiDimensional
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </NamedSetTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </NamedSetTranslation>\n");
             }
             builder.Append("  </NamedSetTranslationList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -4889,8 +4898,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveAction>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveActionList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -5011,8 +5019,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveCalculation>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveCalculationList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -5133,8 +5140,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveDimension>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveDimensionList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -5255,8 +5261,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveKpi>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveKpiList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -5377,8 +5382,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveMeasure>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveMeasureList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -5499,8 +5503,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveMeasureGroup>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveMeasureGroupList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -5621,8 +5624,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
-                builder.Append(">\n");
-                builder.Append("    </PerspectiveNamedSet>\n");
+                builder.Append(" />\n");
             }
             builder.Append("  </PerspectiveNamedSetList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -5749,6 +5751,7 @@ namespace MetaMultiDimensional
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, perspectiveId);
                 builder.Append('"');
+                var openingTagEndIndex = builder.Length;
                 builder.Append(">\n");
                 if (!string.IsNullOrWhiteSpace(row.Caption))
                 {
@@ -5758,7 +5761,7 @@ namespace MetaMultiDimensional
                 {
                     AppendElement(builder, "Description", row.Description!, "      ");
                 }
-                builder.Append("    </PerspectiveTranslation>\n");
+                AppendClosingElementOrSelfClose(builder, openingTagEndIndex, "    </PerspectiveTranslation>\n");
             }
             builder.Append("  </PerspectiveTranslationList>\n");
             builder.Append("</MetaMultiDimensional>\n");
@@ -8340,6 +8343,18 @@ namespace MetaMultiDimensional
             builder.Append("</");
             builder.Append(name);
             builder.Append(">\n");
+        }
+
+        private static void AppendClosingElementOrSelfClose(StringBuilder builder, int openingTagEndIndex, string closingElement)
+        {
+            if (builder.Length == openingTagEndIndex + 2)
+            {
+                builder.Length = openingTagEndIndex;
+                builder.Append(" />\n");
+                return;
+            }
+
+            builder.Append(closingElement);
         }
 
         private static void AppendXmlAttribute(StringBuilder builder, string value)
