@@ -1,158 +1,311 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandParameterList>
-    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-bridge" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-bridge" />
-    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-id" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-id" />
-    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-previous-traversal" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-previous-traversal" />
-    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-source-role" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-source-role" />
-    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-target-role" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-target-role" />
-    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-workspace" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-bridge:parameter:param-business-bridge-description" ExecutableCommandId="exec-add-business-bridge" ParameterId="param-business-bridge-description" />
-    <ExecutableCommandParameter Id="exec-add-business-bridge:parameter:param-business-bridge-hub" ExecutableCommandId="exec-add-business-bridge" ParameterId="param-business-bridge-hub" />
-    <ExecutableCommandParameter Id="exec-add-business-bridge:parameter:param-business-bridge-id" ExecutableCommandId="exec-add-business-bridge" ParameterId="param-business-bridge-id" />
-    <ExecutableCommandParameter Id="exec-add-business-bridge:parameter:param-business-bridge-name" ExecutableCommandId="exec-add-business-bridge" ParameterId="param-business-bridge-name" />
-    <ExecutableCommandParameter Id="exec-add-business-bridge:parameter:param-business-bridge-workspace" ExecutableCommandId="exec-add-business-bridge" ParameterId="param-business-bridge-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-data-type-id" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-data-type-id" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-hierarchical-link-satellite" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-hierarchical-link-satellite" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-id" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-id" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-length" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-length" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-name" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-name" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-ordinal" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-ordinal" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-precision" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-precision" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-scale" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-scale" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite:parameter:param-business-hierarchical-link-satellite-description" ExecutableCommandId="exec-add-business-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-description" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite:parameter:param-business-hierarchical-link-satellite-hierarchical-link" ExecutableCommandId="exec-add-business-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-hierarchical-link" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite:parameter:param-business-hierarchical-link-satellite-id" ExecutableCommandId="exec-add-business-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-id" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite:parameter:param-business-hierarchical-link-satellite-name" ExecutableCommandId="exec-add-business-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-name" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite:parameter:param-business-hierarchical-link-satellite-workspace" ExecutableCommandId="exec-add-business-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-child-hub" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-child-hub" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-description" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-description" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-id" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-id" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-name" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-name" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-parent-hub" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-parent-hub" />
-    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-workspace" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-data-type-id" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-data-type-id" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-hub" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-hub" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-id" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-id" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-length" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-length" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-name" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-name" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-ordinal" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-ordinal" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-precision" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-precision" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-scale" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-scale" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-workspace" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-data-type-id" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-data-type-id" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-hub-satellite" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-hub-satellite" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-id" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-id" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-length" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-length" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-name" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-name" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-ordinal" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-ordinal" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-precision" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-precision" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-scale" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-scale" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite:parameter:param-business-hub-satellite-description" ExecutableCommandId="exec-add-business-hub-satellite" ParameterId="param-business-hub-satellite-description" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite:parameter:param-business-hub-satellite-hub" ExecutableCommandId="exec-add-business-hub-satellite" ParameterId="param-business-hub-satellite-hub" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite:parameter:param-business-hub-satellite-id" ExecutableCommandId="exec-add-business-hub-satellite" ParameterId="param-business-hub-satellite-id" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite:parameter:param-business-hub-satellite-name" ExecutableCommandId="exec-add-business-hub-satellite" ParameterId="param-business-hub-satellite-name" />
-    <ExecutableCommandParameter Id="exec-add-business-hub-satellite:parameter:param-business-hub-satellite-workspace" ExecutableCommandId="exec-add-business-hub-satellite" ParameterId="param-business-hub-satellite-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-hub:parameter:param-business-hub-description" ExecutableCommandId="exec-add-business-hub" ParameterId="param-business-hub-description" />
-    <ExecutableCommandParameter Id="exec-add-business-hub:parameter:param-business-hub-id" ExecutableCommandId="exec-add-business-hub" ParameterId="param-business-hub-id" />
-    <ExecutableCommandParameter Id="exec-add-business-hub:parameter:param-business-hub-name" ExecutableCommandId="exec-add-business-hub" ParameterId="param-business-hub-name" />
-    <ExecutableCommandParameter Id="exec-add-business-hub:parameter:param-business-hub-workspace" ExecutableCommandId="exec-add-business-hub" ParameterId="param-business-hub-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-link-role:parameter:param-business-link-role-hub" ExecutableCommandId="exec-add-business-link-role" ParameterId="param-business-link-role-hub" />
-    <ExecutableCommandParameter Id="exec-add-business-link-role:parameter:param-business-link-role-id" ExecutableCommandId="exec-add-business-link-role" ParameterId="param-business-link-role-id" />
-    <ExecutableCommandParameter Id="exec-add-business-link-role:parameter:param-business-link-role-link" ExecutableCommandId="exec-add-business-link-role" ParameterId="param-business-link-role-link" />
-    <ExecutableCommandParameter Id="exec-add-business-link-role:parameter:param-business-link-role-name" ExecutableCommandId="exec-add-business-link-role" ParameterId="param-business-link-role-name" />
-    <ExecutableCommandParameter Id="exec-add-business-link-role:parameter:param-business-link-role-workspace" ExecutableCommandId="exec-add-business-link-role" ParameterId="param-business-link-role-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-data-type-id" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-data-type-id" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-id" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-id" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-length" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-length" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-link-satellite" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-link-satellite" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-name" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-name" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-ordinal" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-ordinal" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-precision" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-precision" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-scale" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-scale" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite:parameter:param-business-link-satellite-description" ExecutableCommandId="exec-add-business-link-satellite" ParameterId="param-business-link-satellite-description" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite:parameter:param-business-link-satellite-id" ExecutableCommandId="exec-add-business-link-satellite" ParameterId="param-business-link-satellite-id" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite:parameter:param-business-link-satellite-link" ExecutableCommandId="exec-add-business-link-satellite" ParameterId="param-business-link-satellite-link" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite:parameter:param-business-link-satellite-name" ExecutableCommandId="exec-add-business-link-satellite" ParameterId="param-business-link-satellite-name" />
-    <ExecutableCommandParameter Id="exec-add-business-link-satellite:parameter:param-business-link-satellite-workspace" ExecutableCommandId="exec-add-business-link-satellite" ParameterId="param-business-link-satellite-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-link:parameter:param-business-link-description" ExecutableCommandId="exec-add-business-link" ParameterId="param-business-link-description" />
-    <ExecutableCommandParameter Id="exec-add-business-link:parameter:param-business-link-id" ExecutableCommandId="exec-add-business-link" ParameterId="param-business-link-id" />
-    <ExecutableCommandParameter Id="exec-add-business-link:parameter:param-business-link-name" ExecutableCommandId="exec-add-business-link" ParameterId="param-business-link-name" />
-    <ExecutableCommandParameter Id="exec-add-business-link:parameter:param-business-link-workspace" ExecutableCommandId="exec-add-business-link" ParameterId="param-business-link-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-hub-satellite:parameter:param-business-point-in-time-hub-satellite-hub-satellite" ExecutableCommandId="exec-add-business-point-in-time-hub-satellite" ParameterId="param-business-point-in-time-hub-satellite-hub-satellite" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-hub-satellite:parameter:param-business-point-in-time-hub-satellite-id" ExecutableCommandId="exec-add-business-point-in-time-hub-satellite" ParameterId="param-business-point-in-time-hub-satellite-id" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-hub-satellite:parameter:param-business-point-in-time-hub-satellite-ordinal" ExecutableCommandId="exec-add-business-point-in-time-hub-satellite" ParameterId="param-business-point-in-time-hub-satellite-ordinal" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-hub-satellite:parameter:param-business-point-in-time-hub-satellite-point-in-time" ExecutableCommandId="exec-add-business-point-in-time-hub-satellite" ParameterId="param-business-point-in-time-hub-satellite-point-in-time" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-hub-satellite:parameter:param-business-point-in-time-hub-satellite-workspace" ExecutableCommandId="exec-add-business-point-in-time-hub-satellite" ParameterId="param-business-point-in-time-hub-satellite-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-link-satellite:parameter:param-business-point-in-time-link-satellite-id" ExecutableCommandId="exec-add-business-point-in-time-link-satellite" ParameterId="param-business-point-in-time-link-satellite-id" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-link-satellite:parameter:param-business-point-in-time-link-satellite-link-satellite" ExecutableCommandId="exec-add-business-point-in-time-link-satellite" ParameterId="param-business-point-in-time-link-satellite-link-satellite" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-link-satellite:parameter:param-business-point-in-time-link-satellite-ordinal" ExecutableCommandId="exec-add-business-point-in-time-link-satellite" ParameterId="param-business-point-in-time-link-satellite-ordinal" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-link-satellite:parameter:param-business-point-in-time-link-satellite-point-in-time" ExecutableCommandId="exec-add-business-point-in-time-link-satellite" ParameterId="param-business-point-in-time-link-satellite-point-in-time" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-link-satellite:parameter:param-business-point-in-time-link-satellite-workspace" ExecutableCommandId="exec-add-business-point-in-time-link-satellite" ParameterId="param-business-point-in-time-link-satellite-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-data-type-id" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-data-type-id" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-id" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-id" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-length" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-length" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-name" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-name" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-ordinal" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-ordinal" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-point-in-time" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-point-in-time" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-precision" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-precision" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-scale" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-scale" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-workspace" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time:parameter:param-business-point-in-time-description" ExecutableCommandId="exec-add-business-point-in-time" ParameterId="param-business-point-in-time-description" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time:parameter:param-business-point-in-time-hub" ExecutableCommandId="exec-add-business-point-in-time" ParameterId="param-business-point-in-time-hub" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time:parameter:param-business-point-in-time-id" ExecutableCommandId="exec-add-business-point-in-time" ParameterId="param-business-point-in-time-id" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time:parameter:param-business-point-in-time-name" ExecutableCommandId="exec-add-business-point-in-time" ParameterId="param-business-point-in-time-name" />
-    <ExecutableCommandParameter Id="exec-add-business-point-in-time:parameter:param-business-point-in-time-workspace" ExecutableCommandId="exec-add-business-point-in-time" ParameterId="param-business-point-in-time-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-data-type-id" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-data-type-id" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-id" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-id" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-length" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-length" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-name" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-name" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-ordinal" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-ordinal" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-precision" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-precision" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-reference" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-reference" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-scale" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-scale" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-workspace" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-data-type-id" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-data-type-id" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-id" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-id" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-length" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-length" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-name" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-name" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-ordinal" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-ordinal" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-precision" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-precision" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-reference-satellite" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-reference-satellite" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-scale" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-scale" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite:parameter:param-business-reference-satellite-description" ExecutableCommandId="exec-add-business-reference-satellite" ParameterId="param-business-reference-satellite-description" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite:parameter:param-business-reference-satellite-id" ExecutableCommandId="exec-add-business-reference-satellite" ParameterId="param-business-reference-satellite-id" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite:parameter:param-business-reference-satellite-name" ExecutableCommandId="exec-add-business-reference-satellite" ParameterId="param-business-reference-satellite-name" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite:parameter:param-business-reference-satellite-reference" ExecutableCommandId="exec-add-business-reference-satellite" ParameterId="param-business-reference-satellite-reference" />
-    <ExecutableCommandParameter Id="exec-add-business-reference-satellite:parameter:param-business-reference-satellite-workspace" ExecutableCommandId="exec-add-business-reference-satellite" ParameterId="param-business-reference-satellite-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-reference:parameter:param-business-reference-description" ExecutableCommandId="exec-add-business-reference" ParameterId="param-business-reference-description" />
-    <ExecutableCommandParameter Id="exec-add-business-reference:parameter:param-business-reference-id" ExecutableCommandId="exec-add-business-reference" ParameterId="param-business-reference-id" />
-    <ExecutableCommandParameter Id="exec-add-business-reference:parameter:param-business-reference-name" ExecutableCommandId="exec-add-business-reference" ParameterId="param-business-reference-name" />
-    <ExecutableCommandParameter Id="exec-add-business-reference:parameter:param-business-reference-workspace" ExecutableCommandId="exec-add-business-reference" ParameterId="param-business-reference-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-data-type-id" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-data-type-id" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-id" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-id" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-length" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-length" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-name" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-name" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-ordinal" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-ordinal" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-precision" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-precision" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-same-as-link-satellite" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-same-as-link-satellite" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-scale" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-scale" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite:parameter:param-business-same-as-link-satellite-description" ExecutableCommandId="exec-add-business-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-description" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite:parameter:param-business-same-as-link-satellite-id" ExecutableCommandId="exec-add-business-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-id" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite:parameter:param-business-same-as-link-satellite-name" ExecutableCommandId="exec-add-business-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-name" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite:parameter:param-business-same-as-link-satellite-same-as-link" ExecutableCommandId="exec-add-business-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-same-as-link" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite:parameter:param-business-same-as-link-satellite-workspace" ExecutableCommandId="exec-add-business-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-workspace" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-description" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-description" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-equivalent-hub" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-equivalent-hub" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-id" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-id" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-name" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-name" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-primary-hub" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-primary-hub" />
-    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-workspace" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-workspace" />
-    <ExecutableCommandParameter Id="exec-new-workspace:parameter:param-new-workspace-path" ExecutableCommandId="exec-new-workspace" ParameterId="param-new-workspace-path" />
+    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-bridge" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-bridge">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-id" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-previous-traversal" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-previous-traversal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-source-role" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-source-role">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-target-role" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-target-role">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-bridge-traversal:parameter:param-business-bridge-traversal-workspace" ExecutableCommandId="exec-add-business-bridge-traversal" ParameterId="param-business-bridge-traversal-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-bridge:parameter:param-business-bridge-description" ExecutableCommandId="exec-add-business-bridge" ParameterId="param-business-bridge-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-bridge:parameter:param-business-bridge-hub" ExecutableCommandId="exec-add-business-bridge" ParameterId="param-business-bridge-hub">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-bridge:parameter:param-business-bridge-id" ExecutableCommandId="exec-add-business-bridge" ParameterId="param-business-bridge-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-bridge:parameter:param-business-bridge-name" ExecutableCommandId="exec-add-business-bridge" ParameterId="param-business-bridge-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-bridge:parameter:param-business-bridge-workspace" ExecutableCommandId="exec-add-business-bridge" ParameterId="param-business-bridge-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-data-type-id" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-hierarchical-link-satellite" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-hierarchical-link-satellite">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-id" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-length" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-length">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-name" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-ordinal" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-precision" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-precision">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-scale" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-scale">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite-attribute:parameter:param-business-hierarchical-link-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-hierarchical-link-satellite-attribute" ParameterId="param-business-hierarchical-link-satellite-attribute-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite:parameter:param-business-hierarchical-link-satellite-description" ExecutableCommandId="exec-add-business-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite:parameter:param-business-hierarchical-link-satellite-hierarchical-link" ExecutableCommandId="exec-add-business-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-hierarchical-link">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite:parameter:param-business-hierarchical-link-satellite-id" ExecutableCommandId="exec-add-business-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite:parameter:param-business-hierarchical-link-satellite-name" ExecutableCommandId="exec-add-business-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link-satellite:parameter:param-business-hierarchical-link-satellite-workspace" ExecutableCommandId="exec-add-business-hierarchical-link-satellite" ParameterId="param-business-hierarchical-link-satellite-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-child-hub" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-child-hub">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-description" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-id" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-name" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-parent-hub" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-parent-hub">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hierarchical-link:parameter:param-business-hierarchical-link-workspace" ExecutableCommandId="exec-add-business-hierarchical-link" ParameterId="param-business-hierarchical-link-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-data-type-id" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-hub" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-hub">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-id" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-length" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-length">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-name" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-precision" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-precision">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-previous-key-part" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-previous-key-part">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-scale" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-scale">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-key-part:parameter:param-business-hub-key-part-workspace" ExecutableCommandId="exec-add-business-hub-key-part" ParameterId="param-business-hub-key-part-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-data-type-id" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-hub-satellite" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-hub-satellite">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-id" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-length" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-length">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-name" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-ordinal" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-precision" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-precision">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-scale" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-scale">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite-attribute:parameter:param-business-hub-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-hub-satellite-attribute" ParameterId="param-business-hub-satellite-attribute-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite:parameter:param-business-hub-satellite-description" ExecutableCommandId="exec-add-business-hub-satellite" ParameterId="param-business-hub-satellite-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite:parameter:param-business-hub-satellite-hub" ExecutableCommandId="exec-add-business-hub-satellite" ParameterId="param-business-hub-satellite-hub">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite:parameter:param-business-hub-satellite-id" ExecutableCommandId="exec-add-business-hub-satellite" ParameterId="param-business-hub-satellite-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite:parameter:param-business-hub-satellite-name" ExecutableCommandId="exec-add-business-hub-satellite" ParameterId="param-business-hub-satellite-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub-satellite:parameter:param-business-hub-satellite-workspace" ExecutableCommandId="exec-add-business-hub-satellite" ParameterId="param-business-hub-satellite-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub:parameter:param-business-hub-description" ExecutableCommandId="exec-add-business-hub" ParameterId="param-business-hub-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub:parameter:param-business-hub-id" ExecutableCommandId="exec-add-business-hub" ParameterId="param-business-hub-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub:parameter:param-business-hub-name" ExecutableCommandId="exec-add-business-hub" ParameterId="param-business-hub-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-hub:parameter:param-business-hub-workspace" ExecutableCommandId="exec-add-business-hub" ParameterId="param-business-hub-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-role:parameter:param-business-link-role-hub" ExecutableCommandId="exec-add-business-link-role" ParameterId="param-business-link-role-hub">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-role:parameter:param-business-link-role-id" ExecutableCommandId="exec-add-business-link-role" ParameterId="param-business-link-role-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-role:parameter:param-business-link-role-link" ExecutableCommandId="exec-add-business-link-role" ParameterId="param-business-link-role-link">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-role:parameter:param-business-link-role-name" ExecutableCommandId="exec-add-business-link-role" ParameterId="param-business-link-role-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-role:parameter:param-business-link-role-workspace" ExecutableCommandId="exec-add-business-link-role" ParameterId="param-business-link-role-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-data-type-id" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-id" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-length" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-length">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-link-satellite" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-link-satellite">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-name" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-ordinal" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-precision" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-precision">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-scale" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-scale">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite-attribute:parameter:param-business-link-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-link-satellite-attribute" ParameterId="param-business-link-satellite-attribute-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite:parameter:param-business-link-satellite-description" ExecutableCommandId="exec-add-business-link-satellite" ParameterId="param-business-link-satellite-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite:parameter:param-business-link-satellite-id" ExecutableCommandId="exec-add-business-link-satellite" ParameterId="param-business-link-satellite-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite:parameter:param-business-link-satellite-link" ExecutableCommandId="exec-add-business-link-satellite" ParameterId="param-business-link-satellite-link">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite:parameter:param-business-link-satellite-name" ExecutableCommandId="exec-add-business-link-satellite" ParameterId="param-business-link-satellite-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link-satellite:parameter:param-business-link-satellite-workspace" ExecutableCommandId="exec-add-business-link-satellite" ParameterId="param-business-link-satellite-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link:parameter:param-business-link-description" ExecutableCommandId="exec-add-business-link" ParameterId="param-business-link-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link:parameter:param-business-link-id" ExecutableCommandId="exec-add-business-link" ParameterId="param-business-link-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link:parameter:param-business-link-name" ExecutableCommandId="exec-add-business-link" ParameterId="param-business-link-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-link:parameter:param-business-link-workspace" ExecutableCommandId="exec-add-business-link" ParameterId="param-business-link-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-hub-satellite:parameter:param-business-point-in-time-hub-satellite-hub-satellite" ExecutableCommandId="exec-add-business-point-in-time-hub-satellite" ParameterId="param-business-point-in-time-hub-satellite-hub-satellite">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-hub-satellite:parameter:param-business-point-in-time-hub-satellite-id" ExecutableCommandId="exec-add-business-point-in-time-hub-satellite" ParameterId="param-business-point-in-time-hub-satellite-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-hub-satellite:parameter:param-business-point-in-time-hub-satellite-ordinal" ExecutableCommandId="exec-add-business-point-in-time-hub-satellite" ParameterId="param-business-point-in-time-hub-satellite-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-hub-satellite:parameter:param-business-point-in-time-hub-satellite-point-in-time" ExecutableCommandId="exec-add-business-point-in-time-hub-satellite" ParameterId="param-business-point-in-time-hub-satellite-point-in-time">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-hub-satellite:parameter:param-business-point-in-time-hub-satellite-workspace" ExecutableCommandId="exec-add-business-point-in-time-hub-satellite" ParameterId="param-business-point-in-time-hub-satellite-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-link-satellite:parameter:param-business-point-in-time-link-satellite-id" ExecutableCommandId="exec-add-business-point-in-time-link-satellite" ParameterId="param-business-point-in-time-link-satellite-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-link-satellite:parameter:param-business-point-in-time-link-satellite-link-satellite" ExecutableCommandId="exec-add-business-point-in-time-link-satellite" ParameterId="param-business-point-in-time-link-satellite-link-satellite">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-link-satellite:parameter:param-business-point-in-time-link-satellite-ordinal" ExecutableCommandId="exec-add-business-point-in-time-link-satellite" ParameterId="param-business-point-in-time-link-satellite-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-link-satellite:parameter:param-business-point-in-time-link-satellite-point-in-time" ExecutableCommandId="exec-add-business-point-in-time-link-satellite" ParameterId="param-business-point-in-time-link-satellite-point-in-time">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-link-satellite:parameter:param-business-point-in-time-link-satellite-workspace" ExecutableCommandId="exec-add-business-point-in-time-link-satellite" ParameterId="param-business-point-in-time-link-satellite-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-data-type-id" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-id" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-length" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-length">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-name" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-ordinal" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-point-in-time" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-point-in-time">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-precision" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-precision">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-scale" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-scale">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time-stamp:parameter:param-business-point-in-time-stamp-workspace" ExecutableCommandId="exec-add-business-point-in-time-stamp" ParameterId="param-business-point-in-time-stamp-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time:parameter:param-business-point-in-time-description" ExecutableCommandId="exec-add-business-point-in-time" ParameterId="param-business-point-in-time-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time:parameter:param-business-point-in-time-hub" ExecutableCommandId="exec-add-business-point-in-time" ParameterId="param-business-point-in-time-hub">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time:parameter:param-business-point-in-time-id" ExecutableCommandId="exec-add-business-point-in-time" ParameterId="param-business-point-in-time-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time:parameter:param-business-point-in-time-name" ExecutableCommandId="exec-add-business-point-in-time" ParameterId="param-business-point-in-time-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-point-in-time:parameter:param-business-point-in-time-workspace" ExecutableCommandId="exec-add-business-point-in-time" ParameterId="param-business-point-in-time-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-data-type-id" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-id" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-length" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-length">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-name" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-precision" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-precision">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-previous-key-part" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-previous-key-part">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-reference" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-reference">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-scale" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-scale">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-key-part:parameter:param-business-reference-key-part-workspace" ExecutableCommandId="exec-add-business-reference-key-part" ParameterId="param-business-reference-key-part-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-data-type-id" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-id" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-length" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-length">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-name" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-ordinal" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-precision" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-precision">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-reference-satellite" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-reference-satellite">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-scale" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-scale">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite-attribute:parameter:param-business-reference-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-reference-satellite-attribute" ParameterId="param-business-reference-satellite-attribute-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite:parameter:param-business-reference-satellite-description" ExecutableCommandId="exec-add-business-reference-satellite" ParameterId="param-business-reference-satellite-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite:parameter:param-business-reference-satellite-id" ExecutableCommandId="exec-add-business-reference-satellite" ParameterId="param-business-reference-satellite-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite:parameter:param-business-reference-satellite-name" ExecutableCommandId="exec-add-business-reference-satellite" ParameterId="param-business-reference-satellite-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite:parameter:param-business-reference-satellite-reference" ExecutableCommandId="exec-add-business-reference-satellite" ParameterId="param-business-reference-satellite-reference">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference-satellite:parameter:param-business-reference-satellite-workspace" ExecutableCommandId="exec-add-business-reference-satellite" ParameterId="param-business-reference-satellite-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference:parameter:param-business-reference-description" ExecutableCommandId="exec-add-business-reference" ParameterId="param-business-reference-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference:parameter:param-business-reference-id" ExecutableCommandId="exec-add-business-reference" ParameterId="param-business-reference-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference:parameter:param-business-reference-name" ExecutableCommandId="exec-add-business-reference" ParameterId="param-business-reference-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-reference:parameter:param-business-reference-workspace" ExecutableCommandId="exec-add-business-reference" ParameterId="param-business-reference-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-data-type-id" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-data-type-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-id" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-length" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-length">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-name" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-ordinal" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-ordinal">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-precision" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-precision">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-same-as-link-satellite" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-same-as-link-satellite">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-scale" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-scale">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite-attribute:parameter:param-business-same-as-link-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-same-as-link-satellite-attribute" ParameterId="param-business-same-as-link-satellite-attribute-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite:parameter:param-business-same-as-link-satellite-description" ExecutableCommandId="exec-add-business-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite:parameter:param-business-same-as-link-satellite-id" ExecutableCommandId="exec-add-business-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite:parameter:param-business-same-as-link-satellite-name" ExecutableCommandId="exec-add-business-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite:parameter:param-business-same-as-link-satellite-same-as-link" ExecutableCommandId="exec-add-business-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-same-as-link">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link-satellite:parameter:param-business-same-as-link-satellite-workspace" ExecutableCommandId="exec-add-business-same-as-link-satellite" ParameterId="param-business-same-as-link-satellite-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-description" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-equivalent-hub" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-equivalent-hub">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-id" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-id">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-name" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-primary-hub" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-primary-hub">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-business-same-as-link:parameter:param-business-same-as-link-workspace" ExecutableCommandId="exec-add-business-same-as-link" ParameterId="param-business-same-as-link-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-new-workspace:parameter:param-new-workspace-path" ExecutableCommandId="exec-new-workspace" ParameterId="param-new-workspace-path">
+    </ExecutableCommandParameter>
   </ExecutableCommandParameterList>
 </MetaCli>

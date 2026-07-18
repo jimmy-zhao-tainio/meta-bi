@@ -4,6 +4,36 @@ namespace MetaDataVault.Core;
 
 public static class BusinessDataVaultRules
 {
+    public static IReadOnlyList<BusinessHubKeyPart> GetHubKeyPartChain(
+        BusinessHub hub,
+        IEnumerable<BusinessHubKeyPart> keyParts)
+    {
+        ArgumentNullException.ThrowIfNull(hub);
+
+        return GetKeyPartChain(
+            "Business hub",
+            hub,
+            keyParts,
+            row => row.Id,
+            row => row.BusinessHub,
+            row => row.PreviousKeyPart);
+    }
+
+    public static IReadOnlyList<BusinessReferenceKeyPart> GetReferenceKeyPartChain(
+        BusinessReference reference,
+        IEnumerable<BusinessReferenceKeyPart> keyParts)
+    {
+        ArgumentNullException.ThrowIfNull(reference);
+
+        return GetKeyPartChain(
+            "Business reference",
+            reference,
+            keyParts,
+            row => row.Id,
+            row => row.BusinessReference,
+            row => row.PreviousKeyPart);
+    }
+
     public static void ValidateLinkRoleNames(MetaBusinessDataVaultModel model)
     {
         ArgumentNullException.ThrowIfNull(model);
@@ -133,4 +163,91 @@ public static class BusinessDataVaultRules
 
         return ordered;
     }
+
+    private static IReadOnlyList<TPart> GetKeyPartChain<TParent, TPart>(
+        string parentKind,
+        TParent parent,
+        IEnumerable<TPart> keyParts,
+        Func<TParent, string> parentIdSelector,
+        Func<TPart, TParent> parentSelector,
+        Func<TPart, TPart?> previousSelector)
+        where TParent : class
+        where TPart : class
+    {
+        ArgumentNullException.ThrowIfNull(keyParts);
+
+        var rows = keyParts.ToList();
+        if (rows.Count == 0)
+        {
+            return rows;
+        }
+
+        foreach (var keyPart in rows)
+        {
+            if (!ReferenceEquals(parentSelector(keyPart), parent))
+            {
+                throw new InvalidOperationException(
+                    $"{parentKind} '{parentIdSelector(parent)}' contains a key part from a different parent.");
+            }
+        }
+
+        foreach (var previous in rows
+            .Select(previousSelector)
+            .Where(previous => previous is not null)
+            .Cast<TPart>())
+        {
+            if (!rows.Any(row => ReferenceEquals(row, previous)))
+            {
+                throw new InvalidOperationException(
+                    $"{parentKind} '{parentIdSelector(parent)}' references a key-part predecessor outside its key.");
+            }
+        }
+
+        var startingRows = rows.Where(row => previousSelector(row) is null).ToList();
+        if (startingRows.Count != 1)
+        {
+            throw new InvalidOperationException(
+                $"{parentKind} '{parentIdSelector(parent)}' must have exactly one starting key part.");
+        }
+
+        foreach (var predecessor in rows)
+        {
+            var successorCount = rows.Count(row => ReferenceEquals(previousSelector(row), predecessor));
+            if (successorCount > 1)
+            {
+                throw new InvalidOperationException(
+                    $"{parentKind} '{parentIdSelector(parent)}' key-part precedence branches.");
+            }
+        }
+
+        var ordered = new List<TPart>(rows.Count);
+        var current = startingRows[0];
+        while (true)
+        {
+            if (ordered.Any(row => ReferenceEquals(row, current)))
+            {
+                throw new InvalidOperationException(
+                    $"{parentKind} '{parentIdSelector(parent)}' key-part precedence contains a cycle.");
+            }
+
+            ordered.Add(current);
+
+            var successor = rows.SingleOrDefault(row => ReferenceEquals(previousSelector(row), current));
+            if (successor is null)
+            {
+                break;
+            }
+
+            current = successor;
+        }
+
+        if (ordered.Count != rows.Count)
+        {
+            throw new InvalidOperationException(
+                $"{parentKind} '{parentIdSelector(parent)}' contains disconnected key parts.");
+        }
+
+        return ordered;
+    }
+
 }

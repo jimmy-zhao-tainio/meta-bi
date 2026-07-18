@@ -1584,6 +1584,9 @@ namespace MetaBusinessDataVault
                         case "BusinessHubId":
                             relationships.BusinessHubId = reader.Value;
                             break;
+                        case "PreviousKeyPartId":
+                            relationships.PreviousKeyPartId = reader.Value;
+                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessHubKeyPart'.");
                     }
@@ -1609,9 +1612,6 @@ namespace MetaBusinessDataVault
                         break;
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
-                        break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
                         break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessHubKeyPart'.");
@@ -1650,10 +1650,22 @@ namespace MetaBusinessDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessHubId);
                 builder.Append('"');
+                if (row.PreviousKeyPart != null)
+                {
+                    var previousKeyPartId = RequireIdentity(row.PreviousKeyPart?.Id, $"Relationship 'BusinessHubKeyPart.PreviousKeyPartId' on row 'BusinessHubKeyPart:{row.Id}' is empty.");
+                    if (!saveIndexes.BusinessHubKeyPartListById.TryGetValue(previousKeyPartId, out var previousKeyPartCanonical) || !ReferenceEquals(previousKeyPartCanonical, row.PreviousKeyPart))
+                    {
+                        throw new InvalidOperationException($"Relationship 'BusinessHubKeyPart.PreviousKeyPartId' on row 'BusinessHubKeyPart:{row.Id}' references an object that is not the canonical row for Id '{previousKeyPartId}'.");
+                    }
+                    builder.Append(' ');
+                    builder.Append("PreviousKeyPartId");
+                    builder.Append("=\"");
+                    AppendXmlAttribute(builder, previousKeyPartId);
+                    builder.Append('"');
+                }
                 builder.Append(">\n");
                 AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessHubKeyPart' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessHubKeyPart' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessHubKeyPart' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </BusinessHubKeyPart>\n");
             }
             builder.Append("  </BusinessHubKeyPartList>\n");
@@ -3482,6 +3494,9 @@ namespace MetaBusinessDataVault
                         case "BusinessReferenceId":
                             relationships.BusinessReferenceId = reader.Value;
                             break;
+                        case "PreviousKeyPartId":
+                            relationships.PreviousKeyPartId = reader.Value;
+                            break;
                         default:
                             throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BusinessReferenceKeyPart'.");
                     }
@@ -3507,9 +3522,6 @@ namespace MetaBusinessDataVault
                         break;
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
-                        break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
                         break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BusinessReferenceKeyPart'.");
@@ -3548,10 +3560,22 @@ namespace MetaBusinessDataVault
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, businessReferenceId);
                 builder.Append('"');
+                if (row.PreviousKeyPart != null)
+                {
+                    var previousKeyPartId = RequireIdentity(row.PreviousKeyPart?.Id, $"Relationship 'BusinessReferenceKeyPart.PreviousKeyPartId' on row 'BusinessReferenceKeyPart:{row.Id}' is empty.");
+                    if (!saveIndexes.BusinessReferenceKeyPartListById.TryGetValue(previousKeyPartId, out var previousKeyPartCanonical) || !ReferenceEquals(previousKeyPartCanonical, row.PreviousKeyPart))
+                    {
+                        throw new InvalidOperationException($"Relationship 'BusinessReferenceKeyPart.PreviousKeyPartId' on row 'BusinessReferenceKeyPart:{row.Id}' references an object that is not the canonical row for Id '{previousKeyPartId}'.");
+                    }
+                    builder.Append(' ');
+                    builder.Append("PreviousKeyPartId");
+                    builder.Append("=\"");
+                    AppendXmlAttribute(builder, previousKeyPartId);
+                    builder.Append('"');
+                }
                 builder.Append(">\n");
                 AppendElement(builder, "DataTypeId", RequireText(row.DataTypeId, $"Entity 'BusinessReferenceKeyPart' row '{row.Id}' is missing required property 'DataTypeId'."), "      ");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'BusinessReferenceKeyPart' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'BusinessReferenceKeyPart' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </BusinessReferenceKeyPart>\n");
             }
             builder.Append("  </BusinessReferenceKeyPartList>\n");
@@ -4569,6 +4593,7 @@ namespace MetaBusinessDataVault
         {
             public BusinessHubKeyPart Row { get; set; } = null!;
             public string BusinessHubId { get; set; } = string.Empty;
+            public string PreviousKeyPartId { get; set; } = string.Empty;
         }
 
         private sealed class BusinessHubKeyPartDataTypeDetailRelationships
@@ -4656,6 +4681,7 @@ namespace MetaBusinessDataVault
         {
             public BusinessReferenceKeyPart Row { get; set; } = null!;
             public string BusinessReferenceId { get; set; } = string.Empty;
+            public string PreviousKeyPartId { get; set; } = string.Empty;
         }
 
         private sealed class BusinessReferenceKeyPartDataTypeDetailRelationships
@@ -4854,6 +4880,18 @@ namespace MetaBusinessDataVault
                     "BusinessHubId");
             }
 
+            foreach (var relationship in relationshipBuffers.BusinessHubKeyPartRelationships ?? Enumerable.Empty<BusinessHubKeyPartRelationships>())
+            {
+                relationship.Row.PreviousKeyPart = string.IsNullOrWhiteSpace(relationship.PreviousKeyPartId)
+                    ? null
+                    : RequireTarget(
+                        loadIndexes.BusinessHubKeyPartListById,
+                        relationship.PreviousKeyPartId,
+                        "BusinessHubKeyPart",
+                        relationship.Row.Id,
+                        "PreviousKeyPartId");
+            }
+
             foreach (var relationship in relationshipBuffers.BusinessHubKeyPartDataTypeDetailRelationships ?? Enumerable.Empty<BusinessHubKeyPartDataTypeDetailRelationships>())
             {
                 relationship.Row.BusinessHubKeyPart = RequireTarget(
@@ -5024,6 +5062,18 @@ namespace MetaBusinessDataVault
                     "BusinessReferenceId");
             }
 
+            foreach (var relationship in relationshipBuffers.BusinessReferenceKeyPartRelationships ?? Enumerable.Empty<BusinessReferenceKeyPartRelationships>())
+            {
+                relationship.Row.PreviousKeyPart = string.IsNullOrWhiteSpace(relationship.PreviousKeyPartId)
+                    ? null
+                    : RequireTarget(
+                        loadIndexes.BusinessReferenceKeyPartListById,
+                        relationship.PreviousKeyPartId,
+                        "BusinessReferenceKeyPart",
+                        relationship.Row.Id,
+                        "PreviousKeyPartId");
+            }
+
             foreach (var relationship in relationshipBuffers.BusinessReferenceKeyPartDataTypeDetailRelationships ?? Enumerable.Empty<BusinessReferenceKeyPartDataTypeDetailRelationships>())
             {
                 relationship.Row.BusinessReferenceKeyPart = RequireTarget(
@@ -5044,6 +5094,10 @@ namespace MetaBusinessDataVault
                     "BusinessReferenceId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup2(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.BusinessReferenceSatelliteAttributeRelationships ?? Enumerable.Empty<BusinessReferenceSatelliteAttributeRelationships>())
             {
                 relationship.Row.BusinessReferenceSatellite = RequireTarget(
@@ -5064,10 +5118,6 @@ namespace MetaBusinessDataVault
                     "BusinessReferenceSatelliteAttributeId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup2(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.BusinessSameAsLinkRelationships ?? Enumerable.Empty<BusinessSameAsLinkRelationships>())
             {
                 relationship.Row.EquivalentHub = RequireTarget(
@@ -5921,8 +5971,8 @@ namespace MetaBusinessDataVault
                 "Id",
                 "DataTypeId",
                 "Name",
-                "Ordinal",
-                "BusinessHub"))
+                "BusinessHub",
+                "PreviousKeyPart"))
             {
                 return true;
             }
@@ -6067,8 +6117,8 @@ namespace MetaBusinessDataVault
                 "Id",
                 "DataTypeId",
                 "Name",
-                "Ordinal",
-                "BusinessReference"))
+                "BusinessReference",
+                "PreviousKeyPart"))
             {
                 return true;
             }

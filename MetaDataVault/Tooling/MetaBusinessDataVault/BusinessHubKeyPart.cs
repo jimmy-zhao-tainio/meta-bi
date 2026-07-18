@@ -19,9 +19,9 @@ namespace MetaBusinessDataVault
 
         public string Name { get; set; } = string.Empty;
 
-        public string Ordinal { get; set; } = string.Empty;
-
         public BusinessHub BusinessHub { get; set; } = null!;
+
+        public BusinessHubKeyPart? PreviousKeyPart { get; set; }
 
     }
 }

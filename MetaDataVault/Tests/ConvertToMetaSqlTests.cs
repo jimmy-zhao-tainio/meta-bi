@@ -802,6 +802,60 @@ public sealed class ConvertToMetaSqlTests
     }
 
     [Fact]
+    public async Task ConvertAsync_RejectsBusinessHubKeyPartPrecedenceBranch()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            Assert.Equal(0, RunBusinessCli($"new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Customer --name Customer").ExitCode);
+
+            var model = MetaBusinessDataVaultTooling.Load(workspacePath);
+            var customer = Assert.Single(model.BusinessHubList);
+            var countryCode = new BusinessHubKeyPart
+            {
+                Id = "CustomerCountryCode",
+                BusinessHub = customer,
+                DataTypeId = "meta:type:String",
+                Name = "CountryCode",
+            };
+            model.BusinessHubKeyPartList.Add(countryCode);
+            model.BusinessHubKeyPartList.Add(new BusinessHubKeyPart
+            {
+                Id = "CustomerNumber",
+                BusinessHub = customer,
+                DataTypeId = "meta:type:String",
+                Name = "CustomerNumber",
+                PreviousKeyPart = countryCode,
+            });
+            model.BusinessHubKeyPartList.Add(new BusinessHubKeyPart
+            {
+                Id = "CustomerSource",
+                BusinessHub = customer,
+                DataTypeId = "meta:type:String",
+                Name = "SourceSystem",
+                PreviousKeyPart = countryCode,
+            });
+            model.SaveToXmlWorkspace(workspacePath);
+
+            var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault"));
+            Assert.Contains("key-part precedence branches", exception.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
     public async Task ConvertAsync_CanSaveAndReloadProjectedSqlWorkspace()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();

@@ -23,9 +23,10 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-hub --id ParentNode --name ParentNode");
             RunBusinessAdd(workspacePath, "add-hub --id ChildNode --name ChildNode");
 
-            RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerIdentifier --hub Customer --name Identifier --data-type-id meta:type:String --ordinal 1 --length 50");
-            RunBusinessAdd(workspacePath, "add-hub-key-part --id OrderIdentifier --hub Order --name Identifier --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerAliasIdentifier --hub CustomerAlias --name Identifier --data-type-id meta:type:String --ordinal 1");
+            RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerIdentifier --hub Customer --name Identifier --data-type-id meta:type:String --length 50");
+            RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerSource --hub Customer --name Source --data-type-id meta:type:String --previous-key-part CustomerIdentifier");
+            RunBusinessAdd(workspacePath, "add-hub-key-part --id OrderIdentifier --hub Order --name Identifier --data-type-id meta:type:String");
+            RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerAliasIdentifier --hub CustomerAlias --name Identifier --data-type-id meta:type:String");
 
             RunBusinessAdd(workspacePath, "add-link --id CustomerOrder --name CustomerOrder");
             RunBusinessAdd(workspacePath, "add-link-role --id CustomerOrderCustomer --link CustomerOrder --hub Customer --name Customer");
@@ -35,7 +36,8 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-hierarchical-link --id ParentChild --name ParentChild --parent-hub ParentNode --child-hub ChildNode");
 
             RunBusinessAdd(workspacePath, "add-reference --id StatusCode --name StatusCode");
-            RunBusinessAdd(workspacePath, "add-reference-key-part --id StatusCodeValue --reference StatusCode --name Code --data-type-id meta:type:String --ordinal 1 --length 20");
+            RunBusinessAdd(workspacePath, "add-reference-key-part --id StatusCodeValue --reference StatusCode --name Code --data-type-id meta:type:String --length 20");
+            RunBusinessAdd(workspacePath, "add-reference-key-part --id StatusCodeSource --reference StatusCode --name Source --data-type-id meta:type:String --previous-key-part StatusCodeValue");
 
             RunBusinessAdd(workspacePath, "add-hub-satellite --id CustomerProfile --hub Customer --name CustomerProfile");
             RunBusinessAdd(workspacePath, "add-hub-satellite-attribute --id CustomerName --hub-satellite CustomerProfile --name CustomerName --data-type-id meta:type:String --ordinal 1 --length 200");
@@ -71,6 +73,12 @@ public sealed partial class CliTests
                 string.Equals(record.RelationshipIds.GetValueOrDefault("BusinessHubKeyPartId"), "CustomerIdentifier", StringComparison.Ordinal) &&
                 string.Equals(record.Values.GetValueOrDefault("Name"), "Length", StringComparison.Ordinal) &&
                 string.Equals(record.Values.GetValueOrDefault("Value"), "50", StringComparison.Ordinal));
+
+            var hubKeyParts = workspace.Instance.GetOrCreateEntityRecords("BusinessHubKeyPart").ToDictionary(record => record.Id, StringComparer.Ordinal);
+            var referenceKeyParts = workspace.Instance.GetOrCreateEntityRecords("BusinessReferenceKeyPart").ToDictionary(record => record.Id, StringComparer.Ordinal);
+            Assert.False(hubKeyParts["CustomerIdentifier"].Values.ContainsKey("Ordinal"));
+            Assert.Equal("CustomerIdentifier", hubKeyParts["CustomerSource"].RelationshipIds["PreviousKeyPartId"]);
+            Assert.Equal("StatusCodeValue", referenceKeyParts["StatusCodeSource"].RelationshipIds["PreviousKeyPartId"]);
 
             var pointInTimeStampDetails = workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeStampDataTypeDetail");
             Assert.Contains(pointInTimeStampDetails, record =>
@@ -153,6 +161,29 @@ public sealed partial class CliTests
             var result = RunBusinessCli($"add-bridge-traversal --workspace \"{workspacePath}\" --id CustomerOrderTraversalOrderCustomer --bridge CustomerOrderTraversal --source-role CustomerOrderOrder --target-role CustomerOrderCustomer");
             Assert.NotEqual(0, result.ExitCode);
             Assert.Contains("must start from its anchor hub 'Customer'", result.Output, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public void BusinessAuthoringRejectsSecondKeyPartWithoutPrecedence()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+
+        try
+        {
+            Assert.Equal(0, RunBusinessCli($"new-workspace \"{workspacePath}\"").ExitCode);
+            RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
+            RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerCountry --hub Customer --name CountryCode --data-type-id meta:type:String");
+
+            var result = RunBusinessCli($"add-hub-key-part --workspace \"{workspacePath}\" --id CustomerNumber --hub Customer --name CustomerNumber --data-type-id meta:type:String");
+
+            Assert.NotEqual(0, result.ExitCode);
+            Assert.Contains("must have exactly one starting key part", result.Output, StringComparison.Ordinal);
         }
         finally
         {

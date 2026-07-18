@@ -142,4 +142,14 @@ public sealed partial class CliTests
         Assert.DoesNotContain("Raw link hub", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--ordinal", result.Output, StringComparison.OrdinalIgnoreCase);
     }
+
+    [Fact]
+    public void BusinessAddHubKeyPartCommandHelp_UsesPrecedenceInsteadOfOrdinal()
+    {
+        var result = RunBusinessCli("add-hub-key-part --help");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("[--previous-key-part <value>]", result.Output, StringComparison.Ordinal);
+        Assert.DoesNotContain("--ordinal", result.Output, StringComparison.OrdinalIgnoreCase);
+    }
 }

@@ -188,7 +188,7 @@ Regenerated Raw tooling no longer exposes the three properties. The Data Vault t
 
 ## 3. Business Data Vault Attribute Nullability and Link Roles
 
-Status: Partially implemented on 2026-07-18; role/traversal sub-slice complete
+Status: Partially implemented on 2026-07-18; role/traversal and composite-key precedence sub-slices complete
 
 Observed problem:
 
@@ -212,7 +212,7 @@ Accepted target design:
 - `BusinessBridgeTraversal` replaces the interleaved `BusinessBridgeLink` and `BusinessBridgeHub` lists. It relates one bridge to `SourceRole` and `TargetRole` relationships to `BusinessLinkRole`, plus optional `PreviousTraversal`. The chain expresses direction, preserves sequence, and disambiguates a link that reaches the same hub type through different roles.
 - `BusinessSatellite` is the common satellite identity, specialized by the five current parent kinds. `BusinessSatelliteAttribute` is the common attribute identity and relates to that base satellite; one shared detail entity relates to the common attribute. The repeated parent-specific attribute and detail entities are removed.
 - `NullableBusinessSatelliteAttribute` and `NonNullableBusinessSatelliteAttribute` specialize the common attribute. Every Business satellite attribute must have exactly one nullability specialization. The converter reads that structural fact; it does not infer or default logical attribute nullability.
-- Key parts, satellite attributes, point-in-time stamps, and point-in-time satellite references have no demonstrated domain sequence. Their `Ordinal` properties are removed and physical projection uses deterministic `Name`, then `Id` ordering. The equivalent Raw collections receive the same correction.
+- Composite Business hub and reference keys retain user-authored sequence through a predecessor relationship on each key part. Satellite attributes, point-in-time stamps, and point-in-time satellite references have no demonstrated domain sequence; their `Ordinal` properties should be removed and physical projection should use deterministic `Name`, then `Id` ordering. The equivalent Raw collections receive the same correction.
 - Technical Data Vault columns remain implementation-defined. This decision concerns modeled Business satellite attributes only.
 
 Role direction approved on 2026-07-15: role meaning must be represented by entities and relationships, not a free-text `RoleName` property. The accepted target makes that rule concrete for Business links and bridge traversal.
@@ -225,6 +225,15 @@ Role direction approved on 2026-07-15: role meaning must be represented by entit
 - Verification: the Business Data Vault test suite passed 47/47; the tracked integration mesh validated 148 steps, built/deployed 148/148 to a zero-change final manifest, and its modeled cleanup passed 9/9.
 
 The satellite/attribute/nullability redesign and the remaining false Business ordinals remain pending under this item. They are not implied by this completed sub-slice.
+
+### 3.2 Completed: Composite Business Key Precedence
+
+- `BusinessHubKeyPart` and `BusinessReferenceKeyPart` now use optional `PreviousKeyPart` relationships instead of scalar `Ordinal` properties. This preserves an author-defined component sequence where it is genuinely part of a composite business-key contract.
+- The chain is validated within one hub or reference: one start, no cross-parent predecessor, branch, cycle, or disconnected key part. The Business CLI exposes `--previous-key-part` for subsequent components and rejects a second unlinked head before saving.
+- SQL conversion consumes the validated chain, so malformed externally supplied key-part graphs fail at the converter boundary instead of falling back to physical collection order.
+- Verification: the full Data Vault suite passed 50/50; all canonical/tracked Business workspaces passed generic integrity checks; and the 148-step Business integration operation rebuilt and deployed the full stack from scratch before ending with a zero-change verification manifest.
+
+Hygiene finding: the typed `meta-cli` save that authored the new Business CLI options rewrote its existing instance shards into canonical layout. The semantic change is limited to replacing the two retired `--ordinal` option aggregates with `--previous-key-part`; the broad deterministic formatting/order churn is a separate typed-workspace persistence concern and must be addressed through sanctioned save behavior, never by editing XML directly.
 
 ## 4. Satellite Row Identity and Load Metadata
 

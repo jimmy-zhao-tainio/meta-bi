@@ -163,13 +163,13 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-business-hub-key-part-ordinal" ValueShapeId="shape-text">
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
     <Parameter Id="param-business-hub-key-part-precision" ValueShapeId="shape-text">
       <Description>Optional precision datatype facet authored as metadata.</Description>
       <Name>precision</Name>
+    </Parameter>
+    <Parameter Id="param-business-hub-key-part-previous-key-part" ValueShapeId="shape-text">
+      <Description>Key part that immediately precedes this key part.</Description>
+      <Name>previous-key-part</Name>
     </Parameter>
     <Parameter Id="param-business-hub-key-part-scale" ValueShapeId="shape-text">
       <Description>Optional scale datatype facet authored as metadata.</Description>
@@ -469,13 +469,13 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-business-reference-key-part-ordinal" ValueShapeId="shape-text">
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
     <Parameter Id="param-business-reference-key-part-precision" ValueShapeId="shape-text">
       <Description>Optional precision datatype facet authored as metadata.</Description>
       <Name>precision</Name>
+    </Parameter>
+    <Parameter Id="param-business-reference-key-part-previous-key-part" ValueShapeId="shape-text">
+      <Description>Key part that immediately precedes this key part.</Description>
+      <Name>previous-key-part</Name>
     </Parameter>
     <Parameter Id="param-business-reference-key-part-reference" ValueShapeId="shape-text">
       <Description>BusinessReference id.</Description>

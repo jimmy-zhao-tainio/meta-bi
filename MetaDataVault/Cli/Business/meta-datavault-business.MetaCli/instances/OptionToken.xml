@@ -115,11 +115,11 @@
     <OptionToken Id="token-business-hub-key-part-name" OptionId="option-business-hub-key-part-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-business-hub-key-part-ordinal" OptionId="option-business-hub-key-part-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
     <OptionToken Id="token-business-hub-key-part-precision" OptionId="option-business-hub-key-part-precision">
       <Token>--precision</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-hub-key-part-previous-key-part" OptionId="option-business-hub-key-part-previous-key-part">
+      <Token>--previous-key-part</Token>
     </OptionToken>
     <OptionToken Id="token-business-hub-key-part-scale" OptionId="option-business-hub-key-part-scale">
       <Token>--scale</Token>
@@ -334,11 +334,11 @@
     <OptionToken Id="token-business-reference-key-part-name" OptionId="option-business-reference-key-part-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-business-reference-key-part-ordinal" OptionId="option-business-reference-key-part-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
     <OptionToken Id="token-business-reference-key-part-precision" OptionId="option-business-reference-key-part-precision">
       <Token>--precision</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-reference-key-part-previous-key-part" OptionId="option-business-reference-key-part-previous-key-part">
+      <Token>--previous-key-part</Token>
     </OptionToken>
     <OptionToken Id="token-business-reference-key-part-reference" OptionId="option-business-reference-key-part-reference">
       <Token>--reference</Token>

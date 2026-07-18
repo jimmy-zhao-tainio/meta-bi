@@ -37,8 +37,6 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
     private static readonly IReadOnlyDictionary<string, OrdinalScope> OrdinalScopes =
         new Dictionary<string, OrdinalScope>(StringComparer.Ordinal)
         {
-            ["BusinessHubKeyPart"] = new("BusinessHub", ["BusinessHubKeyPart"]),
-            ["BusinessReferenceKeyPart"] = new("BusinessReference", ["BusinessReferenceKeyPart"]),
             ["BusinessHubSatelliteAttribute"] = new("BusinessHubSatellite", ["BusinessHubSatelliteAttribute"]),
             ["BusinessLinkSatelliteAttribute"] = new("BusinessLinkSatellite", ["BusinessLinkSatelliteAttribute"]),
             ["BusinessSameAsLinkSatelliteAttribute"] = new("BusinessSameAsLinkSatellite", ["BusinessSameAsLinkSatelliteAttribute"]),
@@ -297,7 +295,21 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
             }
         }
 
-        if (string.Equals(request.EntityName, "BusinessLinkRole", StringComparison.Ordinal))
+        if (string.Equals(request.EntityName, "BusinessHubKeyPart", StringComparison.Ordinal))
+        {
+            var hub = ((BusinessHubKeyPart)rowToAdd).BusinessHub;
+            BusinessDataVaultRules.GetHubKeyPartChain(
+                hub,
+                model.BusinessHubKeyPartList.Where(row => ReferenceEquals(row.BusinessHub, hub)));
+        }
+        else if (string.Equals(request.EntityName, "BusinessReferenceKeyPart", StringComparison.Ordinal))
+        {
+            var reference = ((BusinessReferenceKeyPart)rowToAdd).BusinessReference;
+            BusinessDataVaultRules.GetReferenceKeyPartChain(
+                reference,
+                model.BusinessReferenceKeyPartList.Where(row => ReferenceEquals(row.BusinessReference, reference)));
+        }
+        else if (string.Equals(request.EntityName, "BusinessLinkRole", StringComparison.Ordinal))
         {
             BusinessDataVaultRules.ValidateLinkRoleNames(model);
         }

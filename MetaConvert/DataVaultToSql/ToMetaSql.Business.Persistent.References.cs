@@ -1,4 +1,5 @@
 using MetaBusinessDataVault;
+using MetaDataVault.Core;
 using MetaDataVaultImplementation;
 using MetaSql;
 
@@ -32,7 +33,9 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessReferenceImplementation.HashKeyLength));
 
-            foreach (var keyPart in GetGroup(businessReferenceKeyPartsByReferenceId, reference.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
+            foreach (var keyPart in BusinessDataVaultRules.GetReferenceKeyPartChain(
+                         reference,
+                         GetGroup(businessReferenceKeyPartsByReferenceId, reference.Id)))
             {
                 AddBusinessTypedColumn(
                     context,

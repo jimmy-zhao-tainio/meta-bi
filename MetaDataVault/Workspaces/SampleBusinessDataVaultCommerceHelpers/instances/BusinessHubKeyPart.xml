@@ -4,17 +4,14 @@
     <BusinessHubKeyPart Id="CustomerIdentifier" BusinessHubId="Customer">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>Identifier</Name>
-      <Ordinal>1</Ordinal>
     </BusinessHubKeyPart>
     <BusinessHubKeyPart Id="InvoiceIdentifier" BusinessHubId="Invoice">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>Identifier</Name>
-      <Ordinal>1</Ordinal>
     </BusinessHubKeyPart>
     <BusinessHubKeyPart Id="OrderIdentifier" BusinessHubId="Order">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>Identifier</Name>
-      <Ordinal>1</Ordinal>
     </BusinessHubKeyPart>
   </BusinessHubKeyPartList>
 </MetaBusinessDataVault>

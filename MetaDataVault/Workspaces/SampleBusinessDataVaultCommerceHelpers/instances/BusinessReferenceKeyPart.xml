@@ -4,7 +4,6 @@
     <BusinessReferenceKeyPart Id="StatusCode" BusinessReferenceId="Status">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>StatusCode</Name>
-      <Ordinal>1</Ordinal>
     </BusinessReferenceKeyPart>
   </BusinessReferenceKeyPartList>
 </MetaBusinessDataVault>

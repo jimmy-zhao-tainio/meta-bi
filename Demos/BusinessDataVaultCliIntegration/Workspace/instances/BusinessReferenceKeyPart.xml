@@ -4,12 +4,10 @@
     <BusinessReferenceKeyPart Id="CurrencyCodeValue" BusinessReferenceId="CurrencyCode">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>CurrencyCode</Name>
-      <Ordinal>1</Ordinal>
     </BusinessReferenceKeyPart>
     <BusinessReferenceKeyPart Id="OrderStatusCode" BusinessReferenceId="OrderStatus">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>OrderStatusCode</Name>
-      <Ordinal>1</Ordinal>
     </BusinessReferenceKeyPart>
   </BusinessReferenceKeyPartList>
 </MetaBusinessDataVault>

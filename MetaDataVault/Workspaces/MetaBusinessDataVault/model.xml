@@ -66,10 +66,10 @@
       <PropertyList>
         <Property name="DataTypeId" />
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessHub" />
+        <Relationship entity="BusinessHubKeyPart" role="PreviousKeyPart" isRequired="false" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessHubKeyPartDataTypeDetail">
@@ -208,10 +208,10 @@
       <PropertyList>
         <Property name="DataTypeId" />
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessReference" />
+        <Relationship entity="BusinessReferenceKeyPart" role="PreviousKeyPart" isRequired="false" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessReferenceKeyPartDataTypeDetail">
