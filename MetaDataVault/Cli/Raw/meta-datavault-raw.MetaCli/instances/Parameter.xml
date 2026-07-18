@@ -146,36 +146,6 @@
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-link-hub-hub" ValueShapeId="shape-text">
-      <Description>Raw hub id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>hub</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-hub-id" ValueShapeId="shape-text">
-      <Description>Raw link hub row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-hub-link" ValueShapeId="shape-text">
-      <Description>Raw link id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>link</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-hub-ordinal" ValueShapeId="shape-text">
-      <Description>Link hub ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-hub-role-name" ValueShapeId="shape-text">
-      <Description>Link hub role name.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>role-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-hub-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
     <Parameter Id="param-add-raw-link-id" ValueShapeId="shape-text">
       <Description>Raw link row id.</Description>
       <IsRequired>true</IsRequired>
@@ -190,6 +160,31 @@
       <Description>Raw link name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-role-hub" ValueShapeId="shape-text">
+      <Description>Raw hub id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hub</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-role-id" ValueShapeId="shape-text">
+      <Description>Raw link role id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-role-link" ValueShapeId="shape-text">
+      <Description>Raw link id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>link</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-role-name" ValueShapeId="shape-text">
+      <Description>Raw link role name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-role-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-add-raw-link-satellite-attribute-field" ValueShapeId="shape-text">
       <Description>Field id.</Description>

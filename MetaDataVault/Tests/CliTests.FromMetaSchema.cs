@@ -36,7 +36,7 @@ public sealed partial class CliTests
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").Count);
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("RawLink"));
-            Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").Count);
+            Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawLinkRole").Count);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHubSatellite").Count);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").Count);
             Assert.Empty(workspace.Instance.GetOrCreateEntityRecords("RawLinkSatellite"));
@@ -44,9 +44,9 @@ public sealed partial class CliTests
             var rawLinks = workspace.Instance.GetOrCreateEntityRecords("RawLink").ToDictionary(record => record.Id, StringComparer.Ordinal);
             Assert.Equal("OrderCustomer", rawLinks["rawlink:rel:1"].Values["Name"]);
 
-            var rawLinkHubs = workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").ToDictionary(record => record.Id, StringComparer.Ordinal);
-            Assert.Equal("Order", rawLinkHubs["rawlink:rel:1:source"].Values["RoleName"]);
-            Assert.Equal("Customer", rawLinkHubs["rawlink:rel:1:target"].Values["RoleName"]);
+            var rawLinkRoles = workspace.Instance.GetOrCreateEntityRecords("RawLinkRole").ToDictionary(record => record.Id, StringComparer.Ordinal);
+            Assert.Equal("Order", rawLinkRoles["rawlink:rel:1:source"].Values["Name"]);
+            Assert.Equal("Customer", rawLinkRoles["rawlink:rel:1:target"].Values["Name"]);
 
             var rawHubSatellites = workspace.Instance.GetOrCreateEntityRecords("RawHubSatellite").ToDictionary(record => record.Id, StringComparer.Ordinal);
             Assert.Equal("Order", rawHubSatellites["rawhub:1:sat"].Values["Name"]);

@@ -56,10 +56,9 @@
         <Property name="Name" />
       </PropertyList>
     </Entity>
-    <Entity name="RawLinkHub">
+    <Entity name="RawLinkRole">
       <PropertyList>
-        <Property name="Ordinal" />
-        <Property name="RoleName" isRequired="false" />
+        <Property name="Name" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="RawHub" />

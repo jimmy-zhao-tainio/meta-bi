@@ -238,15 +238,15 @@ public sealed partial class CliTests
             RunRawAdd(workspacePath, "add-hub-satellite --id CustomerProfileSat --hub CustomerHub --name CustomerProfile --satellite-kind standard");
             RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --field CustomerNameField --name CustomerName --ordinal 1");
             RunRawAdd(workspacePath, "add-link --id OrderCustomerLink --name OrderCustomer --link-kind standard");
-            RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --ordinal 1 --role-name Order");
-            RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --ordinal 2 --role-name Customer");
+            RunRawAdd(workspacePath, "add-link-role --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --name Order");
+            RunRawAdd(workspacePath, "add-link-role --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --name Customer");
             RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --name OrderCustomerStatus --satellite-kind standard");
             RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --field OrderStatusField --name StatusCode --ordinal 1");
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("RawLink"));
-            Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").Count);
+            Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawLinkRole").Count);
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("RawHubSatellite"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("RawLinkSatellite"));
         }
@@ -257,7 +257,7 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public async Task RawAuthoringAppendsRawOrdinalsWhenOmitted()
+    public async Task RawAuthoringAppendsOrdinalsOnlyWhereTheyRemainModeled()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var workspacePath = Path.Combine(root, "RawDataVault");
@@ -276,19 +276,21 @@ public sealed partial class CliTests
             RunRawAdd(workspacePath, "add-hub-satellite --id CustomerProfileSat --hub CustomerHub --name CustomerProfile --satellite-kind standard");
             RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --field CustomerNameField --name CustomerName");
             RunRawAdd(workspacePath, "add-link --id OrderCustomerLink --name OrderCustomer --link-kind standard");
-            RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --role-name Order");
-            RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --role-name Customer");
+            RunRawAdd(workspacePath, "add-link-role --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --name Order");
+            RunRawAdd(workspacePath, "add-link-role --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --name Customer");
             RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --name OrderCustomerStatus --satellite-kind standard");
             RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --field OrderStatusField --name StatusCode");
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
             var hubKeyParts = workspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").ToDictionary(row => row.Id, StringComparer.Ordinal);
-            var linkHubs = workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var linkRoles = workspace.Instance.GetOrCreateEntityRecords("RawLinkRole").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var linkSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("RawLinkSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
 
             Assert.Equal("1", hubKeyParts["CustomerHubKey"].Values["Ordinal"]);
-            Assert.Equal("1", linkHubs["OrderCustomerLinkOrder"].Values["Ordinal"]);
-            Assert.Equal("2", linkHubs["OrderCustomerLinkCustomer"].Values["Ordinal"]);
+            Assert.Equal("Order", linkRoles["OrderCustomerLinkOrder"].Values["Name"]);
+            Assert.Equal("Customer", linkRoles["OrderCustomerLinkCustomer"].Values["Name"]);
+            Assert.DoesNotContain("Ordinal", linkRoles["OrderCustomerLinkOrder"].Values.Keys);
+            Assert.DoesNotContain("Ordinal", linkRoles["OrderCustomerLinkCustomer"].Values.Keys);
             Assert.Equal("1", linkSatelliteAttributes["OrderCustomerStatusCodeAttr"].Values["Ordinal"]);
         }
         finally

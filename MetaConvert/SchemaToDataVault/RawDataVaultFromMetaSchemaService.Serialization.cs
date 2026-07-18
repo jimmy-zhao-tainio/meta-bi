@@ -14,7 +14,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         model.RawHubSatelliteList.AddRange(draft.RawHubSatellites);
         model.RawHubSatelliteAttributeList.AddRange(draft.RawHubSatelliteAttributes);
         model.RawLinkList.AddRange(draft.RawLinks);
-        model.RawLinkHubList.AddRange(draft.RawLinkHubs);
+        model.RawLinkRoleList.AddRange(draft.RawLinkRoles);
         model.RawLinkSatelliteList.AddRange(draft.RawLinkSatellites);
         model.RawLinkSatelliteAttributeList.AddRange(draft.RawLinkSatelliteAttributes);
         return model;

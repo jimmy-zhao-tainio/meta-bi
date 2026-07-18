@@ -38,7 +38,6 @@ public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
         {
             ["RawHubKeyPart"] = new("RawHub", ["RawHubKeyPart"]),
             ["RawHubSatelliteAttribute"] = new("RawHubSatellite", ["RawHubSatelliteAttribute"]),
-            ["RawLinkHub"] = new("RawLink", ["RawLinkHub"]),
             ["RawLinkSatelliteAttribute"] = new("RawLinkSatellite", ["RawLinkSatelliteAttribute"]),
         };
 

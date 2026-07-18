@@ -130,11 +130,14 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public void RawAddCommandHelp_ShowsOrdinalAsOptional()
+    public void RawAddLinkRoleCommandHelp_ShowsRequiredNameWithoutOrdinal()
     {
-        var result = RunRawCli("add-link-hub --help");
+        var result = RunRawCli("add-link-role --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("[--ordinal <value>]", result.Output);
+        Assert.Contains("--name <value>", result.Output);
+        Assert.Contains("Raw link role id.", result.Output);
+        Assert.DoesNotContain("Raw link hub", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("--ordinal", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 }

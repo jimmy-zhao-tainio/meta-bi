@@ -19,7 +19,7 @@ public static partial class Converter
         IReadOnlyDictionary<string, List<RawHubKeyPart>> rawHubKeyPartsByHubId,
         IReadOnlyDictionary<string, List<RawHubSatellite>> rawHubSatellitesByHubId,
         IReadOnlyDictionary<string, List<RawHubSatelliteAttribute>> rawHubSatelliteAttributesBySatelliteId,
-        IReadOnlyDictionary<string, List<RawLinkHub>> rawLinkHubsByLinkId,
+        IReadOnlyDictionary<string, List<RawLinkRole>> rawLinkRolesByLinkId,
         IReadOnlyDictionary<string, List<RawLinkSatellite>> rawLinkSatellitesByLinkId,
         IReadOnlyDictionary<string, List<RawLinkSatelliteAttribute>> rawLinkSatelliteAttributesBySatelliteId)
     {
@@ -210,19 +210,33 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", rawLinkImplementation.HashKeyLength));
 
-            foreach (var linkHub in GetGroup(rawLinkHubsByLinkId, link.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
+            var linkRoles = GetGroup(rawLinkRolesByLinkId, link.Id)
+                .OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(row => row.Id, StringComparer.Ordinal)
+                .ToList();
+
+            var duplicateRole = linkRoles
+                .GroupBy(row => row.Name, StringComparer.OrdinalIgnoreCase)
+                .FirstOrDefault(group => group.Count() > 1);
+            if (duplicateRole is not null)
+            {
+                throw new InvalidOperationException(
+                    $"Raw link '{link.Id}' contains duplicate role name '{duplicateRole.Key}'.");
+            }
+
+            foreach (var linkRole in linkRoles)
             {
                 var endHashKeyColumn = AddImplementationColumn(
                     context,
                     table,
-                    ApplyPattern(rawLinkImplementation.EndHashKeyColumnPattern, ("RoleName", linkHub.RoleName)),
+                    ApplyPattern(rawLinkImplementation.EndHashKeyColumnPattern, ("Role", linkRole.Name)),
                     rawHubImplementation.HashKeyDataTypeId,
                     "false",
                     reservedColumnNames,
                     ("Length", rawHubImplementation.HashKeyLength));
 
-                if (hubTablesByHub.TryGetValue(linkHub.RawHub, out var targetHubTable) &&
-                    hubHashKeyColumnsByHub.TryGetValue(linkHub.RawHub, out var targetHubHashKey))
+                if (hubTablesByHub.TryGetValue(linkRole.RawHub, out var targetHubTable) &&
+                    hubHashKeyColumnsByHub.TryGetValue(linkRole.RawHub, out var targetHubHashKey))
                 {
                     AddForeignKey(
                         context,

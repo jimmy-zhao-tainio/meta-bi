@@ -98,7 +98,7 @@ internal sealed class FromMetaSchemaDraft
     public List<MRDV.RawHubSatellite> RawHubSatellites { get; } = new();
     public List<MRDV.RawHubSatelliteAttribute> RawHubSatelliteAttributes { get; } = new();
     public List<MRDV.RawLink> RawLinks { get; } = new();
-    public List<MRDV.RawLinkHub> RawLinkHubs { get; } = new();
+    public List<MRDV.RawLinkRole> RawLinkRoles { get; } = new();
     public List<MRDV.RawLinkSatellite> RawLinkSatellites { get; } = new();
     public List<MRDV.RawLinkSatelliteAttribute> RawLinkSatelliteAttributes { get; } = new();
 

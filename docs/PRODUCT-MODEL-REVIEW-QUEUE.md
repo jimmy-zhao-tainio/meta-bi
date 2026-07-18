@@ -3,7 +3,7 @@
 ## At A Glance
 
 1. Done: SQL Server `decimal`/`numeric` compatibility.
-2. Done: MetaSchema 2.1-2.4 and Raw Data Vault ownership subtask 2.5.
+2. Done: MetaSchema 2.1-2.4 and Raw Data Vault subtasks 2.5-2.7.
 3. Pending product-model decision: Business Data Vault nullability and roles.
 4. Pending product-model decision: satellite row identity and load metadata.
 5. Done: Data Vault hash-key storage width.
@@ -14,7 +14,7 @@
 10. Blocked demo work: AdventureWorks full-stack should not continue until the relevant product decisions are settled and reimplemented deliberately.
 11. Complete: `MERGE` match semantics use explicit clause entities and an explicit predecessor chain.
 
-Safest next work: review Raw link endpoint semantics in 2.6. Do not change sanctioned product models without an explicit decision.
+Safest next work: complete cross-model integration closure in 2.8. Do not change sanctioned product models without an explicit decision.
 
 ## Purpose
 
@@ -53,7 +53,7 @@ SQL Server synonym compatibility belongs in the sanctioned conversion workspace,
 
 ## 2. MetaSchema Types and Raw Data Vault Ownership
 
-Status: 2.1-2.4 implemented on 2026-07-17; 2.5-2.8 remain pending
+Status: 2.1-2.7 implemented on 2026-07-18; 2.8 remains pending
 
 Observed problem:
 
@@ -158,23 +158,25 @@ Acceptance: no `SourceSystem`, `SourceSchema`, `SourceTable`, `SourceField`, sou
 
 ### 2.6 Raw Link Endpoint Semantics and Sequence
 
-Status: Decision required; depends on 2.5
+Status: Complete on 2026-07-18; depended on 2.5
 
-Replace `RawLinkHub.RoleName` with a named `RawLinkRole` entity/relationship. Before removing endpoint order, decide whether endpoint sequence contributes to physical hash-key semantics. If it does, model the sequence explicitly with a predecessor relationship; do not silently replace it with lexical projection order.
+`RawLinkRole` is the named endpoint relationship from one `RawLink` to one `RawHub`. `Name` is required and must be unique within its Raw link. `RawLinkHub`, optional `RoleName`, and endpoint `Ordinal` are removed.
 
-The decision must include at least one multi-hub link example and its expected SQL/hash composition.
+Endpoint sequence does not contribute Raw link identity or hash semantics. Raw-to-SQL creates a physical link table and its endpoint foreign-key columns, but it does not generate a hash expression or define which input values compose a link hash. That belongs to an explicit transformation pattern when the product supports one.
+
+For example, an `Assignment` link can have `Employee`, `Department`, and `AssignedProject` roles. The SQL projection orders its endpoint columns deterministically by role name as `AssignedProjectHashKey`, `DepartmentHashKey`, and `EmployeeHashKey`. That stable physical order is a projection rule, not an authored link sequence.
 
 ### 2.7 Raw Link Role Migration
 
-Status: Pending implementation; depends on 2.6
+Status: Complete on 2026-07-18; depended on 2.6
 
-Implement the accepted role and sequence model through tooling, Raw authoring, Schema-to-Raw conversion, Raw-to-SQL projection, fixtures, and canonical Raw workspaces.
+Implemented the accepted role model through the canonical Raw workspace, generated tooling, the Raw MetaCli workspace and authoring surface, Schema-to-Raw conversion, Raw-to-SQL projection, the tracked Raw fixture, and the Raw integration mesh. The public command is now `add-link-role --id <id> --link <id> --hub <id> --name <value>`.
 
-Acceptance: no `RawLinkHub`, `RoleName`, or endpoint ordinal remains; generated SQL preserves the accepted endpoint/hash semantics for every existing Raw demo.
+Raw-to-SQL rejects duplicate role names within one link. Focused tests prove three-role physical projection order and duplicate-role diagnostics. The external Raw mesh passed cleanup 5/5 and build/deploy 137/137, then produced a verification manifest with no remaining changes.
 
 ### 2.8 Cross-Model Integration Closure
 
-Status: Pending implementation; depends on 2.1 through 2.7
+Status: Ready for focused verification closure; depends on 2.1 through 2.7
 
 Regenerate all affected typed tooling and migrate persisted MetaSchema and MetaRawDataVault workspaces with sanctioned `meta` commands. Reconcile binding, Schema-to-Raw, Raw-to-SQL, Data Vault implementation workspaces, demos, and tests against the completed models.
 

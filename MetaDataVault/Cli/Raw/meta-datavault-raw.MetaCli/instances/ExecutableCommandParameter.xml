@@ -1,107 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandParameterList>
-    <ExecutableCommandParameter Id="exec-add-field-data-type-detail:parameter:param-add-field-data-type-detail-field" ExecutableCommandId="exec-add-field-data-type-detail" ParameterId="param-add-field-data-type-detail-field">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-field-data-type-detail:parameter:param-add-field-data-type-detail-id" ExecutableCommandId="exec-add-field-data-type-detail" ParameterId="param-add-field-data-type-detail-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-field-data-type-detail:parameter:param-add-field-data-type-detail-name" ExecutableCommandId="exec-add-field-data-type-detail" ParameterId="param-add-field-data-type-detail-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-field-data-type-detail:parameter:param-add-field-data-type-detail-value" ExecutableCommandId="exec-add-field-data-type-detail" ParameterId="param-add-field-data-type-detail-value">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-field-data-type-detail:parameter:param-add-field-data-type-detail-workspace" ExecutableCommandId="exec-add-field-data-type-detail" ParameterId="param-add-field-data-type-detail-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-field:parameter:param-add-field-data-type-id" ExecutableCommandId="exec-add-field" ParameterId="param-add-field-data-type-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-field:parameter:param-add-field-id" ExecutableCommandId="exec-add-field" ParameterId="param-add-field-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-field:parameter:param-add-field-name" ExecutableCommandId="exec-add-field" ParameterId="param-add-field-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-field:parameter:param-add-field-workspace" ExecutableCommandId="exec-add-field" ParameterId="param-add-field-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-field" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-field">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-hub" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-hub">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-id" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-name" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-ordinal" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-ordinal">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-workspace" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-field" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-field">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-hub-satellite" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-hub-satellite">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-id" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-name" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-ordinal" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-ordinal">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-workspace" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite:parameter:param-add-raw-hub-satellite-hub" ExecutableCommandId="exec-add-raw-hub-satellite" ParameterId="param-add-raw-hub-satellite-hub">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite:parameter:param-add-raw-hub-satellite-id" ExecutableCommandId="exec-add-raw-hub-satellite" ParameterId="param-add-raw-hub-satellite-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite:parameter:param-add-raw-hub-satellite-name" ExecutableCommandId="exec-add-raw-hub-satellite" ParameterId="param-add-raw-hub-satellite-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite:parameter:param-add-raw-hub-satellite-satellite-kind" ExecutableCommandId="exec-add-raw-hub-satellite" ParameterId="param-add-raw-hub-satellite-satellite-kind">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite:parameter:param-add-raw-hub-satellite-workspace" ExecutableCommandId="exec-add-raw-hub-satellite" ParameterId="param-add-raw-hub-satellite-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub:parameter:param-add-raw-hub-id" ExecutableCommandId="exec-add-raw-hub" ParameterId="param-add-raw-hub-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub:parameter:param-add-raw-hub-name" ExecutableCommandId="exec-add-raw-hub" ParameterId="param-add-raw-hub-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-hub:parameter:param-add-raw-hub-workspace" ExecutableCommandId="exec-add-raw-hub" ParameterId="param-add-raw-hub-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-hub:parameter:param-add-raw-link-hub-hub" ExecutableCommandId="exec-add-raw-link-hub" ParameterId="param-add-raw-link-hub-hub">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-hub:parameter:param-add-raw-link-hub-id" ExecutableCommandId="exec-add-raw-link-hub" ParameterId="param-add-raw-link-hub-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-hub:parameter:param-add-raw-link-hub-link" ExecutableCommandId="exec-add-raw-link-hub" ParameterId="param-add-raw-link-hub-link">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-hub:parameter:param-add-raw-link-hub-ordinal" ExecutableCommandId="exec-add-raw-link-hub" ParameterId="param-add-raw-link-hub-ordinal">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-hub:parameter:param-add-raw-link-hub-role-name" ExecutableCommandId="exec-add-raw-link-hub" ParameterId="param-add-raw-link-hub-role-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-hub:parameter:param-add-raw-link-hub-workspace" ExecutableCommandId="exec-add-raw-link-hub" ParameterId="param-add-raw-link-hub-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-field" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-field">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-id" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-link-satellite" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-link-satellite">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-name" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-ordinal" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-ordinal">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-workspace" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite:parameter:param-add-raw-link-satellite-id" ExecutableCommandId="exec-add-raw-link-satellite" ParameterId="param-add-raw-link-satellite-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite:parameter:param-add-raw-link-satellite-link" ExecutableCommandId="exec-add-raw-link-satellite" ParameterId="param-add-raw-link-satellite-link">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite:parameter:param-add-raw-link-satellite-name" ExecutableCommandId="exec-add-raw-link-satellite" ParameterId="param-add-raw-link-satellite-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite:parameter:param-add-raw-link-satellite-satellite-kind" ExecutableCommandId="exec-add-raw-link-satellite" ParameterId="param-add-raw-link-satellite-satellite-kind">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link-satellite:parameter:param-add-raw-link-satellite-workspace" ExecutableCommandId="exec-add-raw-link-satellite" ParameterId="param-add-raw-link-satellite-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link:parameter:param-add-raw-link-id" ExecutableCommandId="exec-add-raw-link" ParameterId="param-add-raw-link-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link:parameter:param-add-raw-link-link-kind" ExecutableCommandId="exec-add-raw-link" ParameterId="param-add-raw-link-link-kind">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link:parameter:param-add-raw-link-name" ExecutableCommandId="exec-add-raw-link" ParameterId="param-add-raw-link-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-raw-link:parameter:param-add-raw-link-workspace" ExecutableCommandId="exec-add-raw-link" ParameterId="param-add-raw-link-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-new-workspace:parameter:param-new-workspace-path" ExecutableCommandId="exec-new-workspace" ParameterId="param-new-workspace-path">
-    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-field-data-type-detail:parameter:param-add-field-data-type-detail-field" ExecutableCommandId="exec-add-field-data-type-detail" ParameterId="param-add-field-data-type-detail-field" />
+    <ExecutableCommandParameter Id="exec-add-field-data-type-detail:parameter:param-add-field-data-type-detail-id" ExecutableCommandId="exec-add-field-data-type-detail" ParameterId="param-add-field-data-type-detail-id" />
+    <ExecutableCommandParameter Id="exec-add-field-data-type-detail:parameter:param-add-field-data-type-detail-name" ExecutableCommandId="exec-add-field-data-type-detail" ParameterId="param-add-field-data-type-detail-name" />
+    <ExecutableCommandParameter Id="exec-add-field-data-type-detail:parameter:param-add-field-data-type-detail-value" ExecutableCommandId="exec-add-field-data-type-detail" ParameterId="param-add-field-data-type-detail-value" />
+    <ExecutableCommandParameter Id="exec-add-field-data-type-detail:parameter:param-add-field-data-type-detail-workspace" ExecutableCommandId="exec-add-field-data-type-detail" ParameterId="param-add-field-data-type-detail-workspace" />
+    <ExecutableCommandParameter Id="exec-add-field:parameter:param-add-field-data-type-id" ExecutableCommandId="exec-add-field" ParameterId="param-add-field-data-type-id" />
+    <ExecutableCommandParameter Id="exec-add-field:parameter:param-add-field-id" ExecutableCommandId="exec-add-field" ParameterId="param-add-field-id" />
+    <ExecutableCommandParameter Id="exec-add-field:parameter:param-add-field-name" ExecutableCommandId="exec-add-field" ParameterId="param-add-field-name" />
+    <ExecutableCommandParameter Id="exec-add-field:parameter:param-add-field-workspace" ExecutableCommandId="exec-add-field" ParameterId="param-add-field-workspace" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-field" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-field" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-hub" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-hub" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-id" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-id" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-name" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-name" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-ordinal" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-ordinal" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-key-part:parameter:param-add-raw-hub-key-part-workspace" ExecutableCommandId="exec-add-raw-hub-key-part" ParameterId="param-add-raw-hub-key-part-workspace" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-field" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-field" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-hub-satellite" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-hub-satellite" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-id" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-id" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-name" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-name" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-ordinal" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-ordinal" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite-attribute:parameter:param-add-raw-hub-satellite-attribute-workspace" ExecutableCommandId="exec-add-raw-hub-satellite-attribute" ParameterId="param-add-raw-hub-satellite-attribute-workspace" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite:parameter:param-add-raw-hub-satellite-hub" ExecutableCommandId="exec-add-raw-hub-satellite" ParameterId="param-add-raw-hub-satellite-hub" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite:parameter:param-add-raw-hub-satellite-id" ExecutableCommandId="exec-add-raw-hub-satellite" ParameterId="param-add-raw-hub-satellite-id" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite:parameter:param-add-raw-hub-satellite-name" ExecutableCommandId="exec-add-raw-hub-satellite" ParameterId="param-add-raw-hub-satellite-name" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite:parameter:param-add-raw-hub-satellite-satellite-kind" ExecutableCommandId="exec-add-raw-hub-satellite" ParameterId="param-add-raw-hub-satellite-satellite-kind" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub-satellite:parameter:param-add-raw-hub-satellite-workspace" ExecutableCommandId="exec-add-raw-hub-satellite" ParameterId="param-add-raw-hub-satellite-workspace" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub:parameter:param-add-raw-hub-id" ExecutableCommandId="exec-add-raw-hub" ParameterId="param-add-raw-hub-id" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub:parameter:param-add-raw-hub-name" ExecutableCommandId="exec-add-raw-hub" ParameterId="param-add-raw-hub-name" />
+    <ExecutableCommandParameter Id="exec-add-raw-hub:parameter:param-add-raw-hub-workspace" ExecutableCommandId="exec-add-raw-hub" ParameterId="param-add-raw-hub-workspace" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-role:parameter:param-add-raw-link-role-hub" ExecutableCommandId="exec-add-raw-link-role" ParameterId="param-add-raw-link-role-hub" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-role:parameter:param-add-raw-link-role-id" ExecutableCommandId="exec-add-raw-link-role" ParameterId="param-add-raw-link-role-id" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-role:parameter:param-add-raw-link-role-link" ExecutableCommandId="exec-add-raw-link-role" ParameterId="param-add-raw-link-role-link" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-role:parameter:param-add-raw-link-role-name" ExecutableCommandId="exec-add-raw-link-role" ParameterId="param-add-raw-link-role-name" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-role:parameter:param-add-raw-link-role-workspace" ExecutableCommandId="exec-add-raw-link-role" ParameterId="param-add-raw-link-role-workspace" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-field" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-field" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-id" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-id" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-link-satellite" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-link-satellite" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-name" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-name" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-ordinal" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-ordinal" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite-attribute:parameter:param-add-raw-link-satellite-attribute-workspace" ExecutableCommandId="exec-add-raw-link-satellite-attribute" ParameterId="param-add-raw-link-satellite-attribute-workspace" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite:parameter:param-add-raw-link-satellite-id" ExecutableCommandId="exec-add-raw-link-satellite" ParameterId="param-add-raw-link-satellite-id" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite:parameter:param-add-raw-link-satellite-link" ExecutableCommandId="exec-add-raw-link-satellite" ParameterId="param-add-raw-link-satellite-link" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite:parameter:param-add-raw-link-satellite-name" ExecutableCommandId="exec-add-raw-link-satellite" ParameterId="param-add-raw-link-satellite-name" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite:parameter:param-add-raw-link-satellite-satellite-kind" ExecutableCommandId="exec-add-raw-link-satellite" ParameterId="param-add-raw-link-satellite-satellite-kind" />
+    <ExecutableCommandParameter Id="exec-add-raw-link-satellite:parameter:param-add-raw-link-satellite-workspace" ExecutableCommandId="exec-add-raw-link-satellite" ParameterId="param-add-raw-link-satellite-workspace" />
+    <ExecutableCommandParameter Id="exec-add-raw-link:parameter:param-add-raw-link-id" ExecutableCommandId="exec-add-raw-link" ParameterId="param-add-raw-link-id" />
+    <ExecutableCommandParameter Id="exec-add-raw-link:parameter:param-add-raw-link-link-kind" ExecutableCommandId="exec-add-raw-link" ParameterId="param-add-raw-link-link-kind" />
+    <ExecutableCommandParameter Id="exec-add-raw-link:parameter:param-add-raw-link-name" ExecutableCommandId="exec-add-raw-link" ParameterId="param-add-raw-link-name" />
+    <ExecutableCommandParameter Id="exec-add-raw-link:parameter:param-add-raw-link-workspace" ExecutableCommandId="exec-add-raw-link" ParameterId="param-add-raw-link-workspace" />
+    <ExecutableCommandParameter Id="exec-new-workspace:parameter:param-new-workspace-path" ExecutableCommandId="exec-new-workspace" ParameterId="param-new-workspace-path" />
   </ExecutableCommandParameterList>
 </MetaCli>

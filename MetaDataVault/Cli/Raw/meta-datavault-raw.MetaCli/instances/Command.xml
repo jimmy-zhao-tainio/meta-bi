@@ -36,10 +36,10 @@
       <Name>add-link</Name>
       <Token>add-link</Token>
     </Command>
-    <Command Id="cmd-add-raw-link-hub" ApplicationId="app-meta-datavault-raw">
-      <Description>Add a RawLinkHub row.</Description>
-      <Name>add-link-hub</Name>
-      <Token>add-link-hub</Token>
+    <Command Id="cmd-add-raw-link-role" ApplicationId="app-meta-datavault-raw">
+      <Description>Add a RawLinkRole row.</Description>
+      <Name>add-link-role</Name>
+      <Token>add-link-role</Token>
     </Command>
     <Command Id="cmd-add-raw-link-satellite" ApplicationId="app-meta-datavault-raw">
       <Description>Add a RawLinkSatellite row.</Description>

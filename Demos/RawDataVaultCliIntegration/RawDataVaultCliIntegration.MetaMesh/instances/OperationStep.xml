@@ -521,66 +521,6 @@
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-EmployeeDepartmentLink</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-employeedepartmentlinkdepartment" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-employeedepartmentlinkemployee">
-      <Arguments>add-link-hub --id EmployeeDepartmentLinkDepartment --link EmployeeDepartmentLink --hub DepartmentHub --role-name Department --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-EmployeeDepartmentLinkDepartment</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-employeedepartmentlinkemployee" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-employeedepartmentlink">
-      <Arguments>add-link-hub --id EmployeeDepartmentLinkEmployee --link EmployeeDepartmentLink --hub EmployeeHub --role-name Employee --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-EmployeeDepartmentLinkEmployee</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-invoiceorderlinkinvoice" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-invoiceorderlink">
-      <Arguments>add-link-hub --id InvoiceOrderLinkInvoice --link InvoiceOrderLink --hub InvoiceHub --role-name Invoice --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-InvoiceOrderLinkInvoice</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-invoiceorderlinkorder" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-invoiceorderlinkinvoice">
-      <Arguments>add-link-hub --id InvoiceOrderLinkOrder --link InvoiceOrderLink --hub OrderHub --role-name Order --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-InvoiceOrderLinkOrder</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-invoicesupplierlinkinvoice" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-invoicesupplierlink">
-      <Arguments>add-link-hub --id InvoiceSupplierLinkInvoice --link InvoiceSupplierLink --hub InvoiceHub --role-name Invoice --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-InvoiceSupplierLinkInvoice</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-invoicesupplierlinksupplier" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-invoicesupplierlinkinvoice">
-      <Arguments>add-link-hub --id InvoiceSupplierLinkSupplier --link InvoiceSupplierLink --hub SupplierHub --role-name Supplier --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-InvoiceSupplierLinkSupplier</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-ordercustomerlinkcustomer" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-ordercustomerlinkorder">
-      <Arguments>add-link-hub --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --role-name Customer --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-OrderCustomerLinkCustomer</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-ordercustomerlinkorder" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-ordercustomerlink">
-      <Arguments>add-link-hub --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --role-name Order --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-OrderCustomerLinkOrder</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-productsupplierlinkproduct" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-productsupplierlink">
-      <Arguments>add-link-hub --id ProductSupplierLinkProduct --link ProductSupplierLink --hub ProductHub --role-name Product --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-ProductSupplierLinkProduct</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-productsupplierlinksupplier" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-productsupplierlinkproduct">
-      <Arguments>add-link-hub --id ProductSupplierLinkSupplier --link ProductSupplierLink --hub SupplierHub --role-name Supplier --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-ProductSupplierLinkSupplier</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-shipmentorderlinkorder" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-shipmentorderlinkshipment">
-      <Arguments>add-link-hub --id ShipmentOrderLinkOrder --link ShipmentOrderLink --hub OrderHub --role-name Order --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-ShipmentOrderLinkOrder</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-hub-shipmentorderlinkshipment" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-shipmentorderlink">
-      <Arguments>add-link-hub --id ShipmentOrderLinkShipment --link ShipmentOrderLink --hub ShipmentHub --role-name Shipment --workspace "{workspace:raw-data-vault.path}"</Arguments>
-      <Executable>meta-datavault-raw.exe</Executable>
-      <Name>add-link-hub-ShipmentOrderLinkShipment</Name>
-    </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-invoiceorderlink" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-supplierproductcodeattr">
       <Arguments>add-link --id InvoiceOrderLink --name InvoiceOrder --link-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
@@ -600,6 +540,66 @@
       <Arguments>add-link --id ProductSupplierLink --name ProductSupplier --link-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-ProductSupplierLink</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-employeedepartmentlinkdepartment" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-employeedepartmentlinkemployee">
+      <Arguments>add-link-role --id EmployeeDepartmentLinkDepartment --link EmployeeDepartmentLink --hub DepartmentHub --name Department --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-EmployeeDepartmentLinkDepartment</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-employeedepartmentlinkemployee" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-employeedepartmentlink">
+      <Arguments>add-link-role --id EmployeeDepartmentLinkEmployee --link EmployeeDepartmentLink --hub EmployeeHub --name Employee --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-EmployeeDepartmentLinkEmployee</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoiceorderlinkinvoice" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-invoiceorderlink">
+      <Arguments>add-link-role --id InvoiceOrderLinkInvoice --link InvoiceOrderLink --hub InvoiceHub --name Invoice --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-InvoiceOrderLinkInvoice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoiceorderlinkorder" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoiceorderlinkinvoice">
+      <Arguments>add-link-role --id InvoiceOrderLinkOrder --link InvoiceOrderLink --hub OrderHub --name Order --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-InvoiceOrderLinkOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoicesupplierlinkinvoice" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-invoicesupplierlink">
+      <Arguments>add-link-role --id InvoiceSupplierLinkInvoice --link InvoiceSupplierLink --hub InvoiceHub --name Invoice --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-InvoiceSupplierLinkInvoice</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoicesupplierlinksupplier" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoicesupplierlinkinvoice">
+      <Arguments>add-link-role --id InvoiceSupplierLinkSupplier --link InvoiceSupplierLink --hub SupplierHub --name Supplier --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-InvoiceSupplierLinkSupplier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-ordercustomerlinkcustomer" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-ordercustomerlinkorder">
+      <Arguments>add-link-role --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --name Customer --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-OrderCustomerLinkCustomer</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-ordercustomerlinkorder" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-ordercustomerlink">
+      <Arguments>add-link-role --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --name Order --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-OrderCustomerLinkOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-productsupplierlinkproduct" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-productsupplierlink">
+      <Arguments>add-link-role --id ProductSupplierLinkProduct --link ProductSupplierLink --hub ProductHub --name Product --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-ProductSupplierLinkProduct</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-productsupplierlinksupplier" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-productsupplierlinkproduct">
+      <Arguments>add-link-role --id ProductSupplierLinkSupplier --link ProductSupplierLink --hub SupplierHub --name Supplier --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-ProductSupplierLinkSupplier</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-shipmentorderlinkorder" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-shipmentorderlinkshipment">
+      <Arguments>add-link-role --id ShipmentOrderLinkOrder --link ShipmentOrderLink --hub OrderHub --name Order --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-ShipmentOrderLinkOrder</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-shipmentorderlinkshipment" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-shipmentorderlink">
+      <Arguments>add-link-role --id ShipmentOrderLinkShipment --link ShipmentOrderLink --hub ShipmentHub --name Shipment --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Executable>meta-datavault-raw.exe</Executable>
+      <Name>add-link-role-ShipmentOrderLinkShipment</Name>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-employeedepartmenthiredateattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-employeedepartmentsat">
       <Arguments>add-link-satellite-attribute --id EmployeeDepartmentHireDateAttr --link-satellite EmployeeDepartmentSat --field EmployeeHireDateField --name HireDate --workspace "{workspace:raw-data-vault.path}"</Arguments>
@@ -631,32 +631,32 @@
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-attribute-SupplierProductCodeAttr</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-employeedepartmentsat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-employeedepartmentlinkdepartment">
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-employeedepartmentsat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-employeedepartmentlinkdepartment">
       <Arguments>add-link-satellite --id EmployeeDepartmentSat --link EmployeeDepartmentLink --name EmployeeDepartmentAssignment --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-EmployeeDepartmentSat</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-invoiceordersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-invoiceorderlinkorder">
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-invoiceordersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoiceorderlinkorder">
       <Arguments>add-link-satellite --id InvoiceOrderSat --link InvoiceOrderLink --name InvoiceOrderAmount --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-InvoiceOrderSat</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-ordercustomersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-ordercustomerlinkcustomer">
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-ordercustomersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-ordercustomerlinkcustomer">
       <Arguments>add-link-satellite --id OrderCustomerSat --link OrderCustomerLink --name OrderCustomerStatus --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-OrderCustomerSat</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-productsuppliersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-productsupplierlinksupplier">
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-productsuppliersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-productsupplierlinksupplier">
       <Arguments>add-link-satellite --id ProductSupplierSat --link ProductSupplierLink --name ProductSupplierTerms --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-ProductSupplierSat</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-shipmentordersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-shipmentorderlinkorder">
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-shipmentordersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-shipmentorderlinkorder">
       <Arguments>add-link-satellite --id ShipmentOrderSat --link ShipmentOrderLink --name ShipmentOrderTracking --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-ShipmentOrderSat</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-shipmentorderlink" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-hub-invoicesupplierlinksupplier">
+    <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-shipmentorderlink" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoicesupplierlinksupplier">
       <Arguments>add-link --id ShipmentOrderLink --name ShipmentOrder --link-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-ShipmentOrderLink</Name>

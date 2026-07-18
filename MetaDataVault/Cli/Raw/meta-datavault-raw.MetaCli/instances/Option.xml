@@ -1,105 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
-    <Option Id="option-add-field-data-type-detail-field" ParameterId="param-add-field-data-type-detail-field">
-    </Option>
-    <Option Id="option-add-field-data-type-detail-id" ParameterId="param-add-field-data-type-detail-id">
-    </Option>
-    <Option Id="option-add-field-data-type-detail-name" ParameterId="param-add-field-data-type-detail-name">
-    </Option>
-    <Option Id="option-add-field-data-type-detail-value" ParameterId="param-add-field-data-type-detail-value">
-    </Option>
-    <Option Id="option-add-field-data-type-detail-workspace" ParameterId="param-add-field-data-type-detail-workspace">
-    </Option>
-    <Option Id="option-add-field-data-type-id" ParameterId="param-add-field-data-type-id">
-    </Option>
-    <Option Id="option-add-field-id" ParameterId="param-add-field-id">
-    </Option>
-    <Option Id="option-add-field-name" ParameterId="param-add-field-name">
-    </Option>
-    <Option Id="option-add-field-workspace" ParameterId="param-add-field-workspace">
-    </Option>
-    <Option Id="option-add-raw-hub-id" ParameterId="param-add-raw-hub-id">
-    </Option>
-    <Option Id="option-add-raw-hub-key-part-field" ParameterId="param-add-raw-hub-key-part-field">
-    </Option>
-    <Option Id="option-add-raw-hub-key-part-hub" ParameterId="param-add-raw-hub-key-part-hub">
-    </Option>
-    <Option Id="option-add-raw-hub-key-part-id" ParameterId="param-add-raw-hub-key-part-id">
-    </Option>
-    <Option Id="option-add-raw-hub-key-part-name" ParameterId="param-add-raw-hub-key-part-name">
-    </Option>
-    <Option Id="option-add-raw-hub-key-part-ordinal" ParameterId="param-add-raw-hub-key-part-ordinal">
-    </Option>
-    <Option Id="option-add-raw-hub-key-part-workspace" ParameterId="param-add-raw-hub-key-part-workspace">
-    </Option>
-    <Option Id="option-add-raw-hub-name" ParameterId="param-add-raw-hub-name">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-attribute-field" ParameterId="param-add-raw-hub-satellite-attribute-field">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-attribute-hub-satellite" ParameterId="param-add-raw-hub-satellite-attribute-hub-satellite">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-attribute-id" ParameterId="param-add-raw-hub-satellite-attribute-id">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-attribute-name" ParameterId="param-add-raw-hub-satellite-attribute-name">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-attribute-ordinal" ParameterId="param-add-raw-hub-satellite-attribute-ordinal">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-attribute-workspace" ParameterId="param-add-raw-hub-satellite-attribute-workspace">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-hub" ParameterId="param-add-raw-hub-satellite-hub">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-id" ParameterId="param-add-raw-hub-satellite-id">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-name" ParameterId="param-add-raw-hub-satellite-name">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-satellite-kind" ParameterId="param-add-raw-hub-satellite-satellite-kind">
-    </Option>
-    <Option Id="option-add-raw-hub-satellite-workspace" ParameterId="param-add-raw-hub-satellite-workspace">
-    </Option>
-    <Option Id="option-add-raw-hub-workspace" ParameterId="param-add-raw-hub-workspace">
-    </Option>
-    <Option Id="option-add-raw-link-hub-hub" ParameterId="param-add-raw-link-hub-hub">
-    </Option>
-    <Option Id="option-add-raw-link-hub-id" ParameterId="param-add-raw-link-hub-id">
-    </Option>
-    <Option Id="option-add-raw-link-hub-link" ParameterId="param-add-raw-link-hub-link">
-    </Option>
-    <Option Id="option-add-raw-link-hub-ordinal" ParameterId="param-add-raw-link-hub-ordinal">
-    </Option>
-    <Option Id="option-add-raw-link-hub-role-name" ParameterId="param-add-raw-link-hub-role-name">
-    </Option>
-    <Option Id="option-add-raw-link-hub-workspace" ParameterId="param-add-raw-link-hub-workspace">
-    </Option>
-    <Option Id="option-add-raw-link-id" ParameterId="param-add-raw-link-id">
-    </Option>
-    <Option Id="option-add-raw-link-link-kind" ParameterId="param-add-raw-link-link-kind">
-    </Option>
-    <Option Id="option-add-raw-link-name" ParameterId="param-add-raw-link-name">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-attribute-field" ParameterId="param-add-raw-link-satellite-attribute-field">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-attribute-id" ParameterId="param-add-raw-link-satellite-attribute-id">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-attribute-link-satellite" ParameterId="param-add-raw-link-satellite-attribute-link-satellite">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-attribute-name" ParameterId="param-add-raw-link-satellite-attribute-name">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-attribute-ordinal" ParameterId="param-add-raw-link-satellite-attribute-ordinal">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-attribute-workspace" ParameterId="param-add-raw-link-satellite-attribute-workspace">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-id" ParameterId="param-add-raw-link-satellite-id">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-link" ParameterId="param-add-raw-link-satellite-link">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-name" ParameterId="param-add-raw-link-satellite-name">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-satellite-kind" ParameterId="param-add-raw-link-satellite-satellite-kind">
-    </Option>
-    <Option Id="option-add-raw-link-satellite-workspace" ParameterId="param-add-raw-link-satellite-workspace">
-    </Option>
-    <Option Id="option-add-raw-link-workspace" ParameterId="param-add-raw-link-workspace">
-    </Option>
+    <Option Id="option-add-field-data-type-detail-field" ParameterId="param-add-field-data-type-detail-field" />
+    <Option Id="option-add-field-data-type-detail-id" ParameterId="param-add-field-data-type-detail-id" />
+    <Option Id="option-add-field-data-type-detail-name" ParameterId="param-add-field-data-type-detail-name" />
+    <Option Id="option-add-field-data-type-detail-value" ParameterId="param-add-field-data-type-detail-value" />
+    <Option Id="option-add-field-data-type-detail-workspace" ParameterId="param-add-field-data-type-detail-workspace" />
+    <Option Id="option-add-field-data-type-id" ParameterId="param-add-field-data-type-id" />
+    <Option Id="option-add-field-id" ParameterId="param-add-field-id" />
+    <Option Id="option-add-field-name" ParameterId="param-add-field-name" />
+    <Option Id="option-add-field-workspace" ParameterId="param-add-field-workspace" />
+    <Option Id="option-add-raw-hub-id" ParameterId="param-add-raw-hub-id" />
+    <Option Id="option-add-raw-hub-key-part-field" ParameterId="param-add-raw-hub-key-part-field" />
+    <Option Id="option-add-raw-hub-key-part-hub" ParameterId="param-add-raw-hub-key-part-hub" />
+    <Option Id="option-add-raw-hub-key-part-id" ParameterId="param-add-raw-hub-key-part-id" />
+    <Option Id="option-add-raw-hub-key-part-name" ParameterId="param-add-raw-hub-key-part-name" />
+    <Option Id="option-add-raw-hub-key-part-ordinal" ParameterId="param-add-raw-hub-key-part-ordinal" />
+    <Option Id="option-add-raw-hub-key-part-workspace" ParameterId="param-add-raw-hub-key-part-workspace" />
+    <Option Id="option-add-raw-hub-name" ParameterId="param-add-raw-hub-name" />
+    <Option Id="option-add-raw-hub-satellite-attribute-field" ParameterId="param-add-raw-hub-satellite-attribute-field" />
+    <Option Id="option-add-raw-hub-satellite-attribute-hub-satellite" ParameterId="param-add-raw-hub-satellite-attribute-hub-satellite" />
+    <Option Id="option-add-raw-hub-satellite-attribute-id" ParameterId="param-add-raw-hub-satellite-attribute-id" />
+    <Option Id="option-add-raw-hub-satellite-attribute-name" ParameterId="param-add-raw-hub-satellite-attribute-name" />
+    <Option Id="option-add-raw-hub-satellite-attribute-ordinal" ParameterId="param-add-raw-hub-satellite-attribute-ordinal" />
+    <Option Id="option-add-raw-hub-satellite-attribute-workspace" ParameterId="param-add-raw-hub-satellite-attribute-workspace" />
+    <Option Id="option-add-raw-hub-satellite-hub" ParameterId="param-add-raw-hub-satellite-hub" />
+    <Option Id="option-add-raw-hub-satellite-id" ParameterId="param-add-raw-hub-satellite-id" />
+    <Option Id="option-add-raw-hub-satellite-name" ParameterId="param-add-raw-hub-satellite-name" />
+    <Option Id="option-add-raw-hub-satellite-satellite-kind" ParameterId="param-add-raw-hub-satellite-satellite-kind" />
+    <Option Id="option-add-raw-hub-satellite-workspace" ParameterId="param-add-raw-hub-satellite-workspace" />
+    <Option Id="option-add-raw-hub-workspace" ParameterId="param-add-raw-hub-workspace" />
+    <Option Id="option-add-raw-link-id" ParameterId="param-add-raw-link-id" />
+    <Option Id="option-add-raw-link-link-kind" ParameterId="param-add-raw-link-link-kind" />
+    <Option Id="option-add-raw-link-name" ParameterId="param-add-raw-link-name" />
+    <Option Id="option-add-raw-link-role-hub" ParameterId="param-add-raw-link-role-hub" />
+    <Option Id="option-add-raw-link-role-id" ParameterId="param-add-raw-link-role-id" />
+    <Option Id="option-add-raw-link-role-link" ParameterId="param-add-raw-link-role-link" />
+    <Option Id="option-add-raw-link-role-name" ParameterId="param-add-raw-link-role-name" />
+    <Option Id="option-add-raw-link-role-workspace" ParameterId="param-add-raw-link-role-workspace" />
+    <Option Id="option-add-raw-link-satellite-attribute-field" ParameterId="param-add-raw-link-satellite-attribute-field" />
+    <Option Id="option-add-raw-link-satellite-attribute-id" ParameterId="param-add-raw-link-satellite-attribute-id" />
+    <Option Id="option-add-raw-link-satellite-attribute-link-satellite" ParameterId="param-add-raw-link-satellite-attribute-link-satellite" />
+    <Option Id="option-add-raw-link-satellite-attribute-name" ParameterId="param-add-raw-link-satellite-attribute-name" />
+    <Option Id="option-add-raw-link-satellite-attribute-ordinal" ParameterId="param-add-raw-link-satellite-attribute-ordinal" />
+    <Option Id="option-add-raw-link-satellite-attribute-workspace" ParameterId="param-add-raw-link-satellite-attribute-workspace" />
+    <Option Id="option-add-raw-link-satellite-id" ParameterId="param-add-raw-link-satellite-id" />
+    <Option Id="option-add-raw-link-satellite-link" ParameterId="param-add-raw-link-satellite-link" />
+    <Option Id="option-add-raw-link-satellite-name" ParameterId="param-add-raw-link-satellite-name" />
+    <Option Id="option-add-raw-link-satellite-satellite-kind" ParameterId="param-add-raw-link-satellite-satellite-kind" />
+    <Option Id="option-add-raw-link-satellite-workspace" ParameterId="param-add-raw-link-satellite-workspace" />
+    <Option Id="option-add-raw-link-workspace" ParameterId="param-add-raw-link-workspace" />
   </OptionList>
 </MetaCli>

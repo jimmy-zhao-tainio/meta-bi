@@ -40,7 +40,7 @@ namespace MetaRawDataVault
 
         public List<RawLink> RawLinkList { get; set; } = new();
 
-        public List<RawLinkHub> RawLinkHubList { get; set; } = new();
+        public List<RawLinkRole> RawLinkRoleList { get; set; } = new();
 
         public List<RawLinkSatellite> RawLinkSatelliteList { get; set; } = new();
 
@@ -226,15 +226,15 @@ namespace MetaRawDataVault
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(rawLinkShardPath, SerializeRawLinkShard(model, saveIndexes));
             }
 
-            model.RawLinkHubList ??= new List<RawLinkHub>();
-            var rawLinkHubShardPath = Path.Combine(instanceDirectoryPath, "RawLinkHub.xml");
-            if (model.RawLinkHubList.Count == 0)
+            model.RawLinkRoleList ??= new List<RawLinkRole>();
+            var rawLinkRoleShardPath = Path.Combine(instanceDirectoryPath, "RawLinkRole.xml");
+            if (model.RawLinkRoleList.Count == 0)
             {
-                DeleteIfExists(rawLinkHubShardPath);
+                DeleteIfExists(rawLinkRoleShardPath);
             }
             else
             {
-                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(rawLinkHubShardPath, SerializeRawLinkHubShard(model, saveIndexes));
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(rawLinkRoleShardPath, SerializeRawLinkRoleShard(model, saveIndexes));
             }
 
             model.RawLinkSatelliteList ??= new List<RawLinkSatellite>();
@@ -304,8 +304,8 @@ namespace MetaRawDataVault
                     case "RawLinkList":
                         LoadRawLinkList(model, reader, loadState, relationshipBuffers);
                         break;
-                    case "RawLinkHubList":
-                        LoadRawLinkHubList(model, reader, loadState, relationshipBuffers);
+                    case "RawLinkRoleList":
+                        LoadRawLinkRoleList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "RawLinkSatelliteList":
                         LoadRawLinkSatelliteList(model, reader, loadState, relationshipBuffers);
@@ -1114,33 +1114,33 @@ namespace MetaRawDataVault
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
-        private static void LoadRawLinkHubList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        private static void LoadRawLinkRoleList(MetaRawDataVaultModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
             {
-                reader.ReadStartElement("RawLinkHubList");
+                reader.ReadStartElement("RawLinkRoleList");
                 return;
             }
 
-            reader.ReadStartElement("RawLinkHubList");
+            reader.ReadStartElement("RawLinkRoleList");
             while (reader.NodeType == XmlNodeType.Element)
             {
-                if (!string.Equals(reader.LocalName, "RawLinkHub", StringComparison.Ordinal))
+                if (!string.Equals(reader.LocalName, "RawLinkRole", StringComparison.Ordinal))
                 {
-                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'RawLinkHubList'.");
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'RawLinkRoleList'.");
                 }
-                var row = ReadRawLinkHub(reader, relationshipBuffers);
-                loadState.AddRawLinkHubId(row.Id);
-                model.RawLinkHubList.Add(row);
+                var row = ReadRawLinkRole(reader, relationshipBuffers);
+                loadState.AddRawLinkRoleId(row.Id);
+                model.RawLinkRoleList.Add(row);
                 reader.MoveToContent();
             }
             reader.ReadEndElement();
         }
 
-        private static RawLinkHub ReadRawLinkHub(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        private static RawLinkRole ReadRawLinkRole(XmlReader reader, RelationshipBuffers relationshipBuffers)
         {
-            var row = new RawLinkHub();
-            var relationships = new RawLinkHubRelationships { Row = row };
+            var row = new RawLinkRole();
+            var relationships = new RawLinkRoleRelationships { Row = row };
             if (reader.HasAttributes)
             {
                 while (reader.MoveToNextAttribute())
@@ -1162,7 +1162,7 @@ namespace MetaRawDataVault
                             relationships.RawLinkId = reader.Value;
                             break;
                         default:
-                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RawLinkHub'.");
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RawLinkRole'.");
                     }
                 }
 
@@ -1171,63 +1171,60 @@ namespace MetaRawDataVault
 
             if (reader.IsEmptyElement)
             {
-                reader.ReadStartElement("RawLinkHub");
-                (relationshipBuffers.RawLinkHubRelationships ??= new List<RawLinkHubRelationships>()).Add(relationships);
+                reader.ReadStartElement("RawLinkRole");
+                (relationshipBuffers.RawLinkRoleRelationships ??= new List<RawLinkRoleRelationships>()).Add(relationships);
                 return row;
             }
 
-            reader.ReadStartElement("RawLinkHub");
+            reader.ReadStartElement("RawLinkRole");
             while (reader.NodeType == XmlNodeType.Element)
             {
                 switch (reader.LocalName)
                 {
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
-                    case "RoleName":
-                        row.RoleName = reader.ReadElementContentAsString();
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
                         break;
                     default:
-                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'RawLinkHub'.");
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'RawLinkRole'.");
                 }
             }
             reader.ReadEndElement();
-            (relationshipBuffers.RawLinkHubRelationships ??= new List<RawLinkHubRelationships>()).Add(relationships);
+            (relationshipBuffers.RawLinkRoleRelationships ??= new List<RawLinkRoleRelationships>()).Add(relationships);
             return row;
         }
 
-        private static byte[] SerializeRawLinkHubShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
+        private static byte[] SerializeRawLinkRoleShard(MetaRawDataVaultModel model, SaveIndexes saveIndexes)
         {
             var builder = new StringBuilder();
             var rowIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             builder.Append("<MetaRawDataVault>\n");
-            builder.Append("  <RawLinkHubList>\n");
-            foreach (var row in model.RawLinkHubList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
+            builder.Append("  <RawLinkRoleList>\n");
+            foreach (var row in model.RawLinkRoleList.OrderBy(row => row.Id, StringComparer.OrdinalIgnoreCase))
             {
                 ArgumentNullException.ThrowIfNull(row);
-                var rowId = RequireIdentity(row.Id, "Entity 'RawLinkHub' contains a row with empty Id.");
+                var rowId = RequireIdentity(row.Id, "Entity 'RawLinkRole' contains a row with empty Id.");
                 if (!rowIds.Add(rowId))
                 {
-                    throw new InvalidOperationException($"Entity 'RawLinkHub' contains duplicate Id '{rowId}'.");
+                    throw new InvalidOperationException($"Entity 'RawLinkRole' contains duplicate Id '{rowId}'.");
                 }
-                builder.Append("    <RawLinkHub Id=\"");
+                builder.Append("    <RawLinkRole Id=\"");
                 AppendXmlAttribute(builder, rowId);
                 builder.Append('"');
-                var rawHubId = RequireIdentity(row.RawHub?.Id, $"Relationship 'RawLinkHub.RawHubId' on row 'RawLinkHub:{row.Id}' is empty.");
+                var rawHubId = RequireIdentity(row.RawHub?.Id, $"Relationship 'RawLinkRole.RawHubId' on row 'RawLinkRole:{row.Id}' is empty.");
                 if (!saveIndexes.RawHubListById.TryGetValue(rawHubId, out var rawHubCanonical) || !ReferenceEquals(rawHubCanonical, row.RawHub))
                 {
-                    throw new InvalidOperationException($"Relationship 'RawLinkHub.RawHubId' on row 'RawLinkHub:{row.Id}' references an object that is not the canonical row for Id '{rawHubId}'.");
+                    throw new InvalidOperationException($"Relationship 'RawLinkRole.RawHubId' on row 'RawLinkRole:{row.Id}' references an object that is not the canonical row for Id '{rawHubId}'.");
                 }
                 builder.Append(' ');
                 builder.Append("RawHubId");
                 builder.Append("=\"");
                 AppendXmlAttribute(builder, rawHubId);
                 builder.Append('"');
-                var rawLinkId = RequireIdentity(row.RawLink?.Id, $"Relationship 'RawLinkHub.RawLinkId' on row 'RawLinkHub:{row.Id}' is empty.");
+                var rawLinkId = RequireIdentity(row.RawLink?.Id, $"Relationship 'RawLinkRole.RawLinkId' on row 'RawLinkRole:{row.Id}' is empty.");
                 if (!saveIndexes.RawLinkListById.TryGetValue(rawLinkId, out var rawLinkCanonical) || !ReferenceEquals(rawLinkCanonical, row.RawLink))
                 {
-                    throw new InvalidOperationException($"Relationship 'RawLinkHub.RawLinkId' on row 'RawLinkHub:{row.Id}' references an object that is not the canonical row for Id '{rawLinkId}'.");
+                    throw new InvalidOperationException($"Relationship 'RawLinkRole.RawLinkId' on row 'RawLinkRole:{row.Id}' references an object that is not the canonical row for Id '{rawLinkId}'.");
                 }
                 builder.Append(' ');
                 builder.Append("RawLinkId");
@@ -1235,14 +1232,10 @@ namespace MetaRawDataVault
                 AppendXmlAttribute(builder, rawLinkId);
                 builder.Append('"');
                 builder.Append(">\n");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'RawLinkHub' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
-                if (!string.IsNullOrWhiteSpace(row.RoleName))
-                {
-                    AppendElement(builder, "RoleName", row.RoleName!, "      ");
-                }
-                builder.Append("    </RawLinkHub>\n");
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RawLinkRole' row '{row.Id}' is missing required property 'Name'."), "      ");
+                builder.Append("    </RawLinkRole>\n");
             }
-            builder.Append("  </RawLinkHubList>\n");
+            builder.Append("  </RawLinkRoleList>\n");
             builder.Append("</MetaRawDataVault>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -1520,9 +1513,9 @@ namespace MetaRawDataVault
             public string RawHubSatelliteId { get; set; } = string.Empty;
         }
 
-        private sealed class RawLinkHubRelationships
+        private sealed class RawLinkRoleRelationships
         {
-            public RawLinkHub Row { get; set; } = null!;
+            public RawLinkRole Row { get; set; } = null!;
             public string RawHubId { get; set; } = string.Empty;
             public string RawLinkId { get; set; } = string.Empty;
         }
@@ -1546,7 +1539,7 @@ namespace MetaRawDataVault
             public List<RawHubKeyPartRelationships>? RawHubKeyPartRelationships { get; set; }
             public List<RawHubSatelliteRelationships>? RawHubSatelliteRelationships { get; set; }
             public List<RawHubSatelliteAttributeRelationships>? RawHubSatelliteAttributeRelationships { get; set; }
-            public List<RawLinkHubRelationships>? RawLinkHubRelationships { get; set; }
+            public List<RawLinkRoleRelationships>? RawLinkRoleRelationships { get; set; }
             public List<RawLinkSatelliteRelationships>? RawLinkSatelliteRelationships { get; set; }
             public List<RawLinkSatelliteAttributeRelationships>? RawLinkSatelliteAttributeRelationships { get; set; }
         }
@@ -1613,22 +1606,22 @@ namespace MetaRawDataVault
                     "RawHubSatelliteId");
             }
 
-            foreach (var relationship in relationshipBuffers.RawLinkHubRelationships ?? Enumerable.Empty<RawLinkHubRelationships>())
+            foreach (var relationship in relationshipBuffers.RawLinkRoleRelationships ?? Enumerable.Empty<RawLinkRoleRelationships>())
             {
                 relationship.Row.RawHub = RequireTarget(
                     loadIndexes.RawHubListById,
                     relationship.RawHubId,
-                    "RawLinkHub",
+                    "RawLinkRole",
                     relationship.Row.Id,
                     "RawHubId");
             }
 
-            foreach (var relationship in relationshipBuffers.RawLinkHubRelationships ?? Enumerable.Empty<RawLinkHubRelationships>())
+            foreach (var relationship in relationshipBuffers.RawLinkRoleRelationships ?? Enumerable.Empty<RawLinkRoleRelationships>())
             {
                 relationship.Row.RawLink = RequireTarget(
                     loadIndexes.RawLinkListById,
                     relationship.RawLinkId,
-                    "RawLinkHub",
+                    "RawLinkRole",
                     relationship.Row.Id,
                     "RawLinkId");
             }
@@ -1674,7 +1667,7 @@ namespace MetaRawDataVault
             "RawHubSatellite.xml",
             "RawHubSatelliteAttribute.xml",
             "RawLink.xml",
-            "RawLinkHub.xml",
+            "RawLinkRole.xml",
             "RawLinkSatellite.xml",
             "RawLinkSatelliteAttribute.xml",
         };
@@ -1776,15 +1769,15 @@ namespace MetaRawDataVault
                 }
             }
 
-            private HashSet<string>? rawLinkHubIds;
+            private HashSet<string>? rawLinkRoleIds;
 
-            public void AddRawLinkHubId(string? id)
+            public void AddRawLinkRoleId(string? id)
             {
-                var normalizedId = RequireIdentity(id, "Entity 'RawLinkHub' contains a row with empty Id.");
-                rawLinkHubIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!rawLinkHubIds.Add(normalizedId))
+                var normalizedId = RequireIdentity(id, "Entity 'RawLinkRole' contains a row with empty Id.");
+                rawLinkRoleIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (!rawLinkRoleIds.Add(normalizedId))
                 {
-                    throw new InvalidDataException($"Entity 'RawLinkHub' contains duplicate Id '{normalizedId}'.");
+                    throw new InvalidDataException($"Entity 'RawLinkRole' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -1851,9 +1844,9 @@ namespace MetaRawDataVault
 
             public Dictionary<string, RawLink> RawLinkListById => rawLinkListById ??= BuildById(model.RawLinkList, row => row.Id, "RawLink");
 
-            private Dictionary<string, RawLinkHub>? rawLinkHubListById;
+            private Dictionary<string, RawLinkRole>? rawLinkRoleListById;
 
-            public Dictionary<string, RawLinkHub> RawLinkHubListById => rawLinkHubListById ??= BuildById(model.RawLinkHubList, row => row.Id, "RawLinkHub");
+            public Dictionary<string, RawLinkRole> RawLinkRoleListById => rawLinkRoleListById ??= BuildById(model.RawLinkRoleList, row => row.Id, "RawLinkRole");
 
             private Dictionary<string, RawLinkSatellite>? rawLinkSatelliteListById;
 
@@ -1902,9 +1895,9 @@ namespace MetaRawDataVault
 
             public Dictionary<string, RawLink> RawLinkListById => rawLinkListById ??= BuildById(model.RawLinkList, row => row.Id, "RawLink");
 
-            private Dictionary<string, RawLinkHub>? rawLinkHubListById;
+            private Dictionary<string, RawLinkRole>? rawLinkRoleListById;
 
-            public Dictionary<string, RawLinkHub> RawLinkHubListById => rawLinkHubListById ??= BuildById(model.RawLinkHubList, row => row.Id, "RawLinkHub");
+            public Dictionary<string, RawLinkRole> RawLinkRoleListById => rawLinkRoleListById ??= BuildById(model.RawLinkRoleList, row => row.Id, "RawLinkRole");
 
             private Dictionary<string, RawLinkSatellite>? rawLinkSatelliteListById;
 
@@ -1996,10 +1989,9 @@ namespace MetaRawDataVault
                 return true;
             }
 
-            if (HasUnexpectedProperties(typeof(RawLinkHub),
+            if (HasUnexpectedProperties(typeof(RawLinkRole),
                 "Id",
-                "Ordinal",
-                "RoleName",
+                "Name",
                 "RawHub",
                 "RawLink"))
             {
@@ -2039,7 +2031,7 @@ namespace MetaRawDataVault
                 "RawHubSatelliteList",
                 "RawHubSatelliteAttributeList",
                 "RawLinkList",
-                "RawLinkHubList",
+                "RawLinkRoleList",
                 "RawLinkSatelliteList",
                 "RawLinkSatelliteAttributeList",
             };

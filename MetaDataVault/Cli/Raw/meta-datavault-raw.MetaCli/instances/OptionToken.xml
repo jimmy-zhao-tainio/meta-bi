@@ -88,24 +88,6 @@
     <OptionToken Id="token-add-raw-hub-workspace" OptionId="option-add-raw-hub-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-hub" OptionId="option-add-raw-link-hub-hub">
-      <Token>--hub</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-id" OptionId="option-add-raw-link-hub-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-link" OptionId="option-add-raw-link-hub-link">
-      <Token>--link</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-ordinal" OptionId="option-add-raw-link-hub-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-role-name" OptionId="option-add-raw-link-hub-role-name">
-      <Token>--role-name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-hub-workspace" OptionId="option-add-raw-link-hub-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
     <OptionToken Id="token-add-raw-link-id" OptionId="option-add-raw-link-id">
       <Token>--id</Token>
     </OptionToken>
@@ -114,6 +96,21 @@
     </OptionToken>
     <OptionToken Id="token-add-raw-link-name" OptionId="option-add-raw-link-name">
       <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-role-hub" OptionId="option-add-raw-link-role-hub">
+      <Token>--hub</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-role-id" OptionId="option-add-raw-link-role-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-role-link" OptionId="option-add-raw-link-role-link">
+      <Token>--link</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-role-name" OptionId="option-add-raw-link-role-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-raw-link-role-workspace" OptionId="option-add-raw-link-role-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="token-add-raw-link-satellite-attribute-field" OptionId="option-add-raw-link-satellite-attribute-field">
       <Token>--field</Token>

@@ -11,13 +11,11 @@
 
 namespace MetaRawDataVault
 {
-    public sealed class RawLinkHub
+    public sealed class RawLinkRole
     {
         public string Id { get; set; } = string.Empty;
 
-        public string Ordinal { get; set; } = string.Empty;
-
-        public string? RoleName { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         public RawHub RawHub { get; set; } = null!;
 

@@ -14,7 +14,7 @@ public static partial class Converter
         var rawHubKeyPartsByHubId = GroupById(model.RawHubKeyPartList, row => row.RawHub.Id);
         var rawHubSatelliteAttributesBySatelliteId = GroupById(model.RawHubSatelliteAttributeList, row => row.RawHubSatellite.Id);
         var rawHubSatellitesByHubId = GroupById(model.RawHubSatelliteList, row => row.RawHub.Id);
-        var rawLinkHubsByLinkId = GroupById(model.RawLinkHubList, row => row.RawLink.Id);
+        var rawLinkRolesByLinkId = GroupById(model.RawLinkRoleList, row => row.RawLink.Id);
         var rawLinkSatellitesByLinkId = GroupById(model.RawLinkSatelliteList, row => row.RawLink.Id);
         var rawLinkSatelliteAttributesBySatelliteId = GroupById(model.RawLinkSatelliteAttributeList, row => row.RawLinkSatellite.Id);
 
@@ -25,7 +25,7 @@ public static partial class Converter
             rawHubKeyPartsByHubId,
             rawHubSatellitesByHubId,
             rawHubSatelliteAttributesBySatelliteId,
-            rawLinkHubsByLinkId,
+            rawLinkRolesByLinkId,
             rawLinkSatellitesByLinkId,
             rawLinkSatelliteAttributesBySatelliteId);
 

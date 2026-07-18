@@ -332,20 +332,18 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             };
             draft.RawLinks.Add(link);
 
-            draft.RawLinkHubs.Add(new MRDV.RawLinkHub
+            draft.RawLinkRoles.Add(new MRDV.RawLinkRole
             {
-                Id = BuildRawLinkHubId(link.Id, "source"),
-                Ordinal = "1",
-                RoleName = BuildRoleName(sourceTable, targetTable, isSource: true),
+                Id = BuildRawLinkRoleId(link.Id, "source"),
+                Name = BuildLinkRoleName(sourceTable, targetTable, isSource: true),
                 RawLink = link,
                 RawHub = draft.RawHubsById[sourceHubId!],
             });
 
-            draft.RawLinkHubs.Add(new MRDV.RawLinkHub
+            draft.RawLinkRoles.Add(new MRDV.RawLinkRole
             {
-                Id = BuildRawLinkHubId(link.Id, "target"),
-                Ordinal = "2",
-                RoleName = BuildRoleName(sourceTable, targetTable, isSource: false),
+                Id = BuildRawLinkRoleId(link.Id, "target"),
+                Name = BuildLinkRoleName(sourceTable, targetTable, isSource: false),
                 RawLink = link,
                 RawHub = draft.RawHubsById[targetHubId!],
             });
@@ -412,12 +410,12 @@ public sealed partial class RawDataVaultFromMetaSchemaService
 
     private static string BuildRawLinkId(string relationshipId) => "rawlink:" + relationshipId;
 
-    private static string BuildRawLinkHubId(string linkId, string role) => $"{linkId}:{role}";
+    private static string BuildRawLinkRoleId(string linkId, string role) => $"{linkId}:{role}";
 
     private static string BuildStructuralLinkName(MS.SchemaObject sourceTable, MS.SchemaObject targetTable)
     {
-        return BuildRoleName(sourceTable, targetTable, isSource: true) +
-               BuildRoleName(sourceTable, targetTable, isSource: false);
+        return BuildLinkRoleName(sourceTable, targetTable, isSource: true) +
+               BuildLinkRoleName(sourceTable, targetTable, isSource: false);
     }
 
     private static IReadOnlyDictionary<string, string> BuildRawLinkNames(SourceIndex sourceIndex)
@@ -519,7 +517,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         return string.IsNullOrWhiteSpace(token) ? fallback : token;
     }
 
-    private static string BuildRoleName(MS.SchemaObject sourceTable, MS.SchemaObject targetTable, bool isSource)
+    private static string BuildLinkRoleName(MS.SchemaObject sourceTable, MS.SchemaObject targetTable, bool isSource)
     {
         if (!string.Equals(sourceTable.Name, targetTable.Name, StringComparison.OrdinalIgnoreCase))
         {

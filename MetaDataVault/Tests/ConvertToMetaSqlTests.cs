@@ -1,3 +1,4 @@
+using System.Globalization;
 using MetaConvert.DataVaultToSql;
 using MetaBusinessDataVault;
 using MetaRawDataVault;
@@ -133,6 +134,134 @@ public sealed class ConvertToMetaSqlTests
         finally
         {
             DeleteDirectoryIfExists(Path.GetDirectoryName(targetPath)!);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_ProjectsRawLinkRolesInDeterministicNameOrder()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var model = MetaRawDataVaultModel.CreateEmpty();
+            var employee = new RawHub { Id = "RawHub:Employee", Name = "Employee" };
+            var department = new RawHub { Id = "RawHub:Department", Name = "Department" };
+            var project = new RawHub { Id = "RawHub:Project", Name = "Project" };
+            var assignment = new RawLink { Id = "RawLink:Assignment", Name = "Assignment", LinkKind = "standard" };
+
+            model.RawHubList.Add(employee);
+            model.RawHubList.Add(department);
+            model.RawHubList.Add(project);
+            model.RawLinkList.Add(assignment);
+            model.RawLinkRoleList.Add(new RawLinkRole
+            {
+                Id = "RawLinkRole:Assignment:Employee",
+                Name = "Employee",
+                RawHub = employee,
+                RawLink = assignment,
+            });
+            model.RawLinkRoleList.Add(new RawLinkRole
+            {
+                Id = "RawLinkRole:Assignment:Department",
+                Name = "Department",
+                RawHub = department,
+                RawLink = assignment,
+            });
+            model.RawLinkRoleList.Add(new RawLinkRole
+            {
+                Id = "RawLinkRole:Assignment:AssignedProject",
+                Name = "AssignedProject",
+                RawHub = project,
+                RawLink = assignment,
+            });
+
+            await model.SaveToXmlWorkspaceAsync(workspacePath);
+
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "RawVault");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var assignmentTable = GetTable(tables, "L_Assignment");
+
+            var columnNames = columns
+                .Where(row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == assignmentTable.Id)
+                .OrderBy(row => int.Parse(row.Values["Ordinal"], CultureInfo.InvariantCulture))
+                .Select(row => row.Values["Name"])
+                .ToList();
+
+            Assert.Equal(
+                new[]
+                {
+                    "HashKey",
+                    "AssignedProjectHashKey",
+                    "DepartmentHashKey",
+                    "EmployeeHashKey",
+                    "LoadTimestamp",
+                    "RecordSource",
+                    "AuditId",
+                },
+                columnNames);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_RejectsDuplicateRawLinkRoleNamesWithinOneLink()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var model = MetaRawDataVaultModel.CreateEmpty();
+            var employee = new RawHub { Id = "RawHub:Employee", Name = "Employee" };
+            var manager = new RawHub { Id = "RawHub:Manager", Name = "Manager" };
+            var assignment = new RawLink { Id = "RawLink:Assignment", Name = "Assignment", LinkKind = "standard" };
+
+            model.RawHubList.Add(employee);
+            model.RawHubList.Add(manager);
+            model.RawLinkList.Add(assignment);
+            model.RawLinkRoleList.Add(new RawLinkRole
+            {
+                Id = "RawLinkRole:Assignment:Employee",
+                Name = "Participant",
+                RawHub = employee,
+                RawLink = assignment,
+            });
+            model.RawLinkRoleList.Add(new RawLinkRole
+            {
+                Id = "RawLinkRole:Assignment:Manager",
+                Name = "Participant",
+                RawHub = manager,
+                RawLink = assignment,
+            });
+
+            await model.SaveToXmlWorkspaceAsync(workspacePath);
+
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "RawVault"));
+
+            Assert.Contains("Raw link 'RawLink:Assignment' contains duplicate role name 'Participant'.", error.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
         }
     }
 
@@ -379,19 +508,17 @@ public sealed class ConvertToMetaSqlTests
                 Name = longLinkName,
                 LinkKind = "standard",
             };
-            var childLinkHub = new RawLinkHub
+            var childLinkRole = new RawLinkRole
             {
-                Id = "RawLinkHub:" + longChildName,
-                Ordinal = "1",
-                RoleName = longChildName + "Role",
+                Id = "RawLinkRole:" + longChildName,
+                Name = longChildName + "Role",
                 RawHub = childHub,
                 RawLink = rawLink,
             };
-            var parentLinkHub = new RawLinkHub
+            var parentLinkRole = new RawLinkRole
             {
-                Id = "RawLinkHub:" + longParentName,
-                Ordinal = "2",
-                RoleName = longParentName + "Role",
+                Id = "RawLinkRole:" + longParentName,
+                Name = longParentName + "Role",
                 RawHub = parentHub,
                 RawLink = rawLink,
             };
@@ -405,8 +532,8 @@ public sealed class ConvertToMetaSqlTests
             model.RawHubKeyPartList.Add(childHubKeyPart);
             model.RawHubKeyPartList.Add(parentHubKeyPart);
             model.RawLinkList.Add(rawLink);
-            model.RawLinkHubList.Add(childLinkHub);
-            model.RawLinkHubList.Add(parentLinkHub);
+            model.RawLinkRoleList.Add(childLinkRole);
+            model.RawLinkRoleList.Add(parentLinkRole);
 
             await model.SaveToXmlWorkspaceAsync(workspacePath);
 

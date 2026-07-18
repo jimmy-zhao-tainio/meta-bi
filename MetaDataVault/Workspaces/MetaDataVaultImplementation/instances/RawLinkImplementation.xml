@@ -5,7 +5,7 @@
       <AuditIdColumnName>AuditId</AuditIdColumnName>
       <AuditIdDataTypeId>meta:type:Int64</AuditIdDataTypeId>
       <AuditIdDefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</AuditIdDefaultExpressionSql>
-      <EndHashKeyColumnPattern>{RoleName}HashKey</EndHashKeyColumnPattern>
+      <EndHashKeyColumnPattern>{Role}HashKey</EndHashKeyColumnPattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>meta:type:Binary</HashKeyDataTypeId>
       <HashKeyLength>32</HashKeyLength>
