@@ -299,7 +299,6 @@ public sealed class ConvertToMetaSqlTests
             {
                 Id = "RawHubKeyPart:Customer:HashKey",
                 Name = "HashKey",
-                Ordinal = "1",
                 RawHub = rawHub,
                 Field = field,
             };
@@ -385,17 +384,15 @@ public sealed class ConvertToMetaSqlTests
             };
             var rawHubKeyPart = new RawHubKeyPart
             {
-                Id = "RawHubKeyPart:Customer:CustomerName",
+                Id = "RawHubKeyPart:Customer:ZCustomerName",
                 Name = "CustomerName",
-                Ordinal = "1",
                 RawHub = rawHub,
                 Field = field,
             };
             var sysnameRawHubKeyPart = new RawHubKeyPart
             {
-                Id = "RawHubKeyPart:Customer:SystemName",
+                Id = "RawHubKeyPart:Customer:ASystemName",
                 Name = "SystemName",
-                Ordinal = "2",
                 RawHub = rawHub,
                 Field = systemNameField,
             };
@@ -420,8 +417,15 @@ public sealed class ConvertToMetaSqlTests
             var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
             var details = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumnDataTypeDetail");
             var customerHub = GetTable(tables, "H_Customer");
+            var projectedBusinessKeyColumns = columns
+                .Where(row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id)
+                .Where(row => row.Values["Name"] is "CustomerName" or "SystemName")
+                .OrderBy(row => int.Parse(row.Values["Ordinal"], CultureInfo.InvariantCulture))
+                .Select(row => row.Values["Name"])
+                .ToArray();
             var customerName = GetColumn(columns, customerHub.Id, "CustomerName");
 
+            Assert.Equal(["CustomerName", "SystemName"], projectedBusinessKeyColumns);
             Assert.Equal("sqlserver:type:nvarchar", customerName.Values["MetaDataTypeId"]);
             Assert.Equal("50", GetDetailValue(details, customerName.Id, "Length"));
 
@@ -490,7 +494,6 @@ public sealed class ConvertToMetaSqlTests
             {
                 Id = "RawHubKeyPart:" + longChildName,
                 Name = "Identifier",
-                Ordinal = "1",
                 RawHub = childHub,
                 Field = childField,
             };
@@ -498,7 +501,6 @@ public sealed class ConvertToMetaSqlTests
             {
                 Id = "RawHubKeyPart:" + longParentName,
                 Name = "Identifier",
-                Ordinal = "1",
                 RawHub = parentHub,
                 Field = parentField,
             };
@@ -1010,7 +1012,7 @@ public sealed class ConvertToMetaSqlTests
         var repoRoot = CliTestSupport.FindRepositoryRoot();
         var startInfo = new System.Diagnostics.ProcessStartInfo
         {
-            FileName = "meta-datavault-raw",
+            FileName = CliTestSupport.RequireBuiltCli(repoRoot, "MetaDataVault", "Cli", "Raw", "bin", "Debug", "net8.0", "meta-datavault-raw.exe"),
             Arguments = arguments,
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,
@@ -1025,10 +1027,9 @@ public sealed class ConvertToMetaSqlTests
     private static (int ExitCode, string Output) RunBusinessCli(string arguments)
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var localExePath = Path.Combine(repoRoot, "MetaDataVault", "Cli", "Business", "bin", "Debug", "net8.0", "meta-datavault-business.exe");
         var startInfo = new System.Diagnostics.ProcessStartInfo
         {
-            FileName = File.Exists(localExePath) ? localExePath : "meta-datavault-business",
+            FileName = CliTestSupport.RequireBuiltCli(repoRoot, "MetaDataVault", "Cli", "Business", "bin", "Debug", "net8.0", "meta-datavault-business.exe"),
             Arguments = arguments,
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,

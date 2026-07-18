@@ -3,27 +3,21 @@
   <RawLinkSatelliteAttributeList>
     <RawLinkSatelliteAttribute Id="EmployeeDepartmentHireDateAttr" FieldId="EmployeeHireDateField" RawLinkSatelliteId="EmployeeDepartmentSat">
       <Name>HireDate</Name>
-      <Ordinal>1</Ordinal>
     </RawLinkSatelliteAttribute>
     <RawLinkSatelliteAttribute Id="InvoiceOrderAmountAttr" FieldId="InvoiceAmountField" RawLinkSatelliteId="InvoiceOrderSat">
       <Name>InvoiceAmount</Name>
-      <Ordinal>1</Ordinal>
     </RawLinkSatelliteAttribute>
     <RawLinkSatelliteAttribute Id="OrderCustomerStatusAttr" FieldId="OrderStatusCodeField" RawLinkSatelliteId="OrderCustomerSat">
       <Name>OrderStatusCode</Name>
-      <Ordinal>1</Ordinal>
     </RawLinkSatelliteAttribute>
     <RawLinkSatelliteAttribute Id="ShipmentOrderCarrierAttr" FieldId="ShipmentCarrierNameField" RawLinkSatelliteId="ShipmentOrderSat">
       <Name>CarrierName</Name>
-      <Ordinal>1</Ordinal>
     </RawLinkSatelliteAttribute>
     <RawLinkSatelliteAttribute Id="ShipmentOrderDateAttr" FieldId="ShipmentDateField" RawLinkSatelliteId="ShipmentOrderSat">
       <Name>ShipmentDate</Name>
-      <Ordinal>2</Ordinal>
     </RawLinkSatelliteAttribute>
     <RawLinkSatelliteAttribute Id="SupplierProductCodeAttr" FieldId="SupplierProductCodeField" RawLinkSatelliteId="ProductSupplierSat">
       <Name>SupplierProductCode</Name>
-      <Ordinal>1</Ordinal>
     </RawLinkSatelliteAttribute>
   </RawLinkSatelliteAttributeList>
 </MetaRawDataVault>

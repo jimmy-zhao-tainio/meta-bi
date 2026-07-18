@@ -239,14 +239,13 @@ public sealed partial class RawDataVaultFromMetaSchemaService
                 continue;
             }
 
-            for (var index = 0; index < orderedKeyFields.Count; index++)
+            foreach (var orderedKeyField in orderedKeyFields)
             {
-                var field = draft.FieldsById[orderedKeyFields[index].Id];
+                var field = draft.FieldsById[orderedKeyField.Id];
                 draft.RawHubKeyParts.Add(new MRDV.RawHubKeyPart
                 {
                     Id = BuildRawHubKeyPartId(hub.Id, field.Id),
                     Name = field.Name,
-                    Ordinal = (index + 1).ToString(CultureInfo.InvariantCulture),
                     RawHub = hub,
                     Field = field,
                 });
@@ -279,14 +278,13 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             };
             draft.RawHubSatellites.Add(satellite);
 
-            for (var index = 0; index < satelliteFields.Count; index++)
+            foreach (var satelliteField in satelliteFields)
             {
-                var field = draft.FieldsById[satelliteFields[index].Id];
+                var field = draft.FieldsById[satelliteField.Id];
                 draft.RawHubSatelliteAttributes.Add(new MRDV.RawHubSatelliteAttribute
                 {
                     Id = BuildRawHubSatelliteAttributeId(satellite.Id, field.Id),
                     Name = field.Name,
-                    Ordinal = (index + 1).ToString(CultureInfo.InvariantCulture),
                     RawHubSatellite = satellite,
                     Field = field,
                 });

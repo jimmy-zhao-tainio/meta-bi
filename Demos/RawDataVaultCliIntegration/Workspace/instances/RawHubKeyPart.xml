@@ -3,35 +3,27 @@
   <RawHubKeyPartList>
     <RawHubKeyPart Id="CustomerHubKey" FieldId="CustomerIdField" RawHubId="CustomerHub">
       <Name>CustomerId</Name>
-      <Ordinal>1</Ordinal>
     </RawHubKeyPart>
     <RawHubKeyPart Id="DepartmentHubKey" FieldId="DepartmentIdField" RawHubId="DepartmentHub">
       <Name>DepartmentId</Name>
-      <Ordinal>1</Ordinal>
     </RawHubKeyPart>
     <RawHubKeyPart Id="EmployeeHubKey" FieldId="EmployeeIdField" RawHubId="EmployeeHub">
       <Name>EmployeeId</Name>
-      <Ordinal>1</Ordinal>
     </RawHubKeyPart>
     <RawHubKeyPart Id="InvoiceHubKey" FieldId="InvoiceIdField" RawHubId="InvoiceHub">
       <Name>InvoiceId</Name>
-      <Ordinal>1</Ordinal>
     </RawHubKeyPart>
     <RawHubKeyPart Id="OrderHubKey" FieldId="OrderIdField" RawHubId="OrderHub">
       <Name>OrderId</Name>
-      <Ordinal>1</Ordinal>
     </RawHubKeyPart>
     <RawHubKeyPart Id="ProductHubKey" FieldId="ProductIdField" RawHubId="ProductHub">
       <Name>ProductId</Name>
-      <Ordinal>1</Ordinal>
     </RawHubKeyPart>
     <RawHubKeyPart Id="ShipmentHubKey" FieldId="ShipmentIdField" RawHubId="ShipmentHub">
       <Name>ShipmentId</Name>
-      <Ordinal>1</Ordinal>
     </RawHubKeyPart>
     <RawHubKeyPart Id="SupplierHubKey" FieldId="SupplierIdField" RawHubId="SupplierHub">
       <Name>SupplierId</Name>
-      <Ordinal>1</Ordinal>
     </RawHubKeyPart>
   </RawHubKeyPartList>
 </MetaRawDataVault>

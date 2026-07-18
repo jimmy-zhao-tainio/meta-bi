@@ -43,9 +43,6 @@
     <OptionToken Id="token-add-raw-hub-key-part-name" OptionId="option-add-raw-hub-key-part-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-add-raw-hub-key-part-ordinal" OptionId="option-add-raw-hub-key-part-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
     <OptionToken Id="token-add-raw-hub-key-part-workspace" OptionId="option-add-raw-hub-key-part-workspace">
       <Token>--workspace</Token>
     </OptionToken>
@@ -63,9 +60,6 @@
     </OptionToken>
     <OptionToken Id="token-add-raw-hub-satellite-attribute-name" OptionId="option-add-raw-hub-satellite-attribute-name">
       <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-hub-satellite-attribute-ordinal" OptionId="option-add-raw-hub-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
     </OptionToken>
     <OptionToken Id="token-add-raw-hub-satellite-attribute-workspace" OptionId="option-add-raw-hub-satellite-attribute-workspace">
       <Token>--workspace</Token>
@@ -123,9 +117,6 @@
     </OptionToken>
     <OptionToken Id="token-add-raw-link-satellite-attribute-name" OptionId="option-add-raw-link-satellite-attribute-name">
       <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-raw-link-satellite-attribute-ordinal" OptionId="option-add-raw-link-satellite-attribute-ordinal">
-      <Token>--ordinal</Token>
     </OptionToken>
     <OptionToken Id="token-add-raw-link-satellite-attribute-workspace" OptionId="option-add-raw-link-satellite-attribute-workspace">
       <Token>--workspace</Token>

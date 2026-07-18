@@ -3,63 +3,48 @@
   <RawHubSatelliteAttributeList>
     <RawHubSatelliteAttribute Id="CustomerEmailAttr" FieldId="CustomerEmailField" RawHubSatelliteId="CustomerProfileSat">
       <Name>EmailAddress</Name>
-      <Ordinal>2</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="CustomerNameAttr" FieldId="CustomerNameField" RawHubSatelliteId="CustomerProfileSat">
       <Name>CustomerName</Name>
-      <Ordinal>1</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="DepartmentNameAttr" FieldId="DepartmentNameField" RawHubSatelliteId="DepartmentProfileSat">
       <Name>DepartmentName</Name>
-      <Ordinal>1</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="EmployeeHireDateAttr" FieldId="EmployeeHireDateField" RawHubSatelliteId="EmployeeProfileSat">
       <Name>HireDate</Name>
-      <Ordinal>2</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="EmployeeNameAttr" FieldId="EmployeeNameField" RawHubSatelliteId="EmployeeProfileSat">
       <Name>EmployeeName</Name>
-      <Ordinal>1</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="InvoiceAmountAttr" FieldId="InvoiceAmountField" RawHubSatelliteId="InvoiceHeaderSat">
       <Name>InvoiceAmount</Name>
-      <Ordinal>2</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="InvoiceDateAttr" FieldId="InvoiceDateField" RawHubSatelliteId="InvoiceHeaderSat">
       <Name>InvoiceDate</Name>
-      <Ordinal>1</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="OrderAmountAttr" FieldId="OrderAmountField" RawHubSatelliteId="OrderHeaderSat">
       <Name>OrderAmount</Name>
-      <Ordinal>2</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="OrderDateAttr" FieldId="OrderDateField" RawHubSatelliteId="OrderHeaderSat">
       <Name>OrderDate</Name>
-      <Ordinal>1</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="ProductCategoryAttr" FieldId="ProductCategoryField" RawHubSatelliteId="ProductProfileSat">
       <Name>ProductCategory</Name>
-      <Ordinal>2</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="ProductNameAttr" FieldId="ProductNameField" RawHubSatelliteId="ProductProfileSat">
       <Name>ProductName</Name>
-      <Ordinal>1</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="ShipmentCarrierAttr" FieldId="ShipmentCarrierNameField" RawHubSatelliteId="ShipmentHeaderSat">
       <Name>CarrierName</Name>
-      <Ordinal>1</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="ShipmentDateAttr" FieldId="ShipmentDateField" RawHubSatelliteId="ShipmentHeaderSat">
       <Name>ShipmentDate</Name>
-      <Ordinal>2</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="SupplierNameAttr" FieldId="SupplierNameField" RawHubSatelliteId="SupplierProfileSat">
       <Name>SupplierName</Name>
-      <Ordinal>1</Ordinal>
     </RawHubSatelliteAttribute>
     <RawHubSatelliteAttribute Id="SupplierRiskClassAttr" FieldId="SupplierRiskClassField" RawHubSatelliteId="SupplierProfileSat">
       <Name>RiskClass</Name>
-      <Ordinal>2</Ordinal>
     </RawHubSatelliteAttribute>
   </RawHubSatelliteAttributeList>
 </MetaRawDataVault>

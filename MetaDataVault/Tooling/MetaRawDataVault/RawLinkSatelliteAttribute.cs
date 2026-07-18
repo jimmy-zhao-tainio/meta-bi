@@ -17,8 +17,6 @@ namespace MetaRawDataVault
 
         public string Name { get; set; } = string.Empty;
 
-        public string Ordinal { get; set; } = string.Empty;
-
         public Field Field { get; set; } = null!;
 
         public RawLinkSatellite RawLinkSatellite { get; set; } = null!;

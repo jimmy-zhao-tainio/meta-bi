@@ -24,7 +24,6 @@
     <Entity name="RawHubKeyPart">
       <PropertyList>
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Field" />
@@ -43,7 +42,6 @@
     <Entity name="RawHubSatelliteAttribute">
       <PropertyList>
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Field" />
@@ -77,7 +75,6 @@
     <Entity name="RawLinkSatelliteAttribute">
       <PropertyList>
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Field" />

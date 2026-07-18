@@ -22,7 +22,7 @@ The operation authors:
 
 - independent typed fields and datatype details;
 - raw hubs and hub key parts;
-- raw links and link hubs;
+- raw links and named link roles;
 - raw hub satellites and link satellites;
 - a generated `MetaSql` workspace and SQL deployment manifests.
 

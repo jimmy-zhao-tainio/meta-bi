@@ -3,7 +3,7 @@
 ## At A Glance
 
 1. Done: SQL Server `decimal`/`numeric` compatibility.
-2. In progress: close the residual Raw Data Vault ordering debt after 2.1-2.7.
+2. Done: MetaSchema types and Raw Data Vault ownership, roles, and false-ordering cleanup.
 3. In progress: Business Data Vault roles, bridge traversal, attribute nullability, and false ordering.
 4. Pending product-model decision: satellite row identity and load metadata.
 5. Done: Data Vault hash-key storage width.
@@ -14,7 +14,7 @@
 10. Blocked demo work: AdventureWorks full-stack should not continue until the relevant product decisions are settled and reimplemented deliberately.
 11. Complete: `MERGE` match semantics use explicit clause entities and an explicit predecessor chain.
 
-Current work: implement the accepted Raw and Business Data Vault structural-ordering and nullability design. Do not substitute scalar flags, text discriminators, or compatibility shims for the agreed entities and relationships.
+Current work: implement the accepted Business Data Vault structural-ordering and nullability design. Do not substitute scalar flags, text discriminators, or compatibility shims for the agreed entities and relationships.
 
 ## Purpose
 
@@ -53,7 +53,7 @@ SQL Server synonym compatibility belongs in the sanctioned conversion workspace,
 
 ## 2. MetaSchema Types and Raw Data Vault Ownership
 
-Status: In progress on 2026-07-18; 2.1-2.7 complete, residual ordering correction reopened
+Status: Complete on 2026-07-18
 
 Observed problem:
 
@@ -176,13 +176,15 @@ Raw-to-SQL rejects duplicate role names within one link. Focused tests prove thr
 
 ### 2.8 Cross-Model Integration Closure
 
-Status: Reopened on 2026-07-18 after a modeling audit; depends on 2.1 through 2.7
+Status: Complete on 2026-07-18; depended on 2.1 through 2.7
 
 Regenerated `MetaSchema` and `MetaRawDataVault` tooling through the sanctioned `scripts/regenerate-tooling.ps1` path. Both tooling projects built successfully and regeneration produced no source diff. The canonical MetaSchema, MetaRawDataVault, MetaDataVaultImplementation, and Raw CLI workspaces passed supplemental generic workspace integrity loading.
 
 Focused consumer proof passed: `MetaSchema.Tests` 9/9, `MetaDataVault.Tests` 46/46, and the strict cross-model `MetaTransformScript.Tests` 382/382. The full `RawDataVaultFromMetaSchemaCliIntegration` MetaMesh demo rebuilt its 150-step Business source, extracted 58 tables into MetaSchema, converted to Raw, projected to MetaSql, deployed 80 tables with 54 primary keys and 82 foreign keys, and finished with a no-change verification manifest. Cleanup then removed the generated workspaces and databases.
 
-The scoped audit found no compatibility shim for the removed Raw endpoint entity or command in MetaSchema, Raw, Schema-to-Raw, Raw-to-SQL, or Raw demos. It also exposed a missed target-design inconsistency: `RawHubKeyPart`, `RawHubSatelliteAttribute`, and `RawLinkSatelliteAttribute` still store scalar `Ordinal` values even though their only consumer is deterministic SQL column layout. That residual must be removed before item 2 can be called complete. The remaining `add-link-hub` and `RoleName` usages belong to the Business Data Vault surface in item 3.
+The scoped audit found no compatibility shim for the removed Raw endpoint entity or command in MetaSchema, Raw, Schema-to-Raw, Raw-to-SQL, or Raw demos. It also exposed and then removed a missed target-design inconsistency: `RawHubKeyPart`, `RawHubSatelliteAttribute`, and `RawLinkSatelliteAttribute` had scalar `Ordinal` values even though their only consumer was deterministic SQL column layout. The properties and their persisted values were removed through `meta model drop-property` from the canonical Raw and tracked Raw demo workspaces; the matching Raw CLI option aggregates were removed through generic `meta delete` from its authored MetaCli workspace. Raw authoring and Schema-to-Raw conversion no longer manufacture an order. Raw-to-SQL projects each collection by `Name`, then `Id`.
+
+Regenerated Raw tooling no longer exposes the three properties. The Data Vault test project now builds and runs its exact local Raw, Business, and Convert CLI executables instead of invoking PATH, closing a real external-test false-positive/false-negative hazard. Verification passed: generic `meta check` for canonical Raw, tracked Raw demo, and Raw CLI workspaces; `MetaDataVault.Tests` 46/46; Raw CLI help for all three commands; no retired `--ordinal` use in Raw demos or the Raw CLI workspace; and the local `RawDataVaultCliIntegration` mesh validated 137 steps, ran 137/137 to a zero-change verification manifest after deploying 27 tables, 14 primary keys, and 25 foreign keys, then cleaned up 5/5. The remaining `add-link-hub` and `RoleName` usages belong to the Business Data Vault surface in item 3.
 
 ## 3. Business Data Vault Attribute Nullability and Link Roles
 

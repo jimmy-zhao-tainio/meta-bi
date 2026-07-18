@@ -233,15 +233,15 @@ public sealed partial class CliTests
             RunRawAdd(workspacePath, "add-field-data-type-detail --id OrderStatusFieldLength --field OrderStatusField --name Length --value 20");
             RunRawAdd(workspacePath, "add-hub --id CustomerHub --name Customer");
             RunRawAdd(workspacePath, "add-hub --id OrderHub --name Order");
-            RunRawAdd(workspacePath, "add-hub-key-part --id CustomerHubKey --hub CustomerHub --field CustomerIdField --name CustomerId --ordinal 1");
-            RunRawAdd(workspacePath, "add-hub-key-part --id OrderHubKey --hub OrderHub --field OrderIdField --name OrderId --ordinal 1");
+            RunRawAdd(workspacePath, "add-hub-key-part --id CustomerHubKey --hub CustomerHub --field CustomerIdField --name CustomerId");
+            RunRawAdd(workspacePath, "add-hub-key-part --id OrderHubKey --hub OrderHub --field OrderIdField --name OrderId");
             RunRawAdd(workspacePath, "add-hub-satellite --id CustomerProfileSat --hub CustomerHub --name CustomerProfile --satellite-kind standard");
-            RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --field CustomerNameField --name CustomerName --ordinal 1");
+            RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --field CustomerNameField --name CustomerName");
             RunRawAdd(workspacePath, "add-link --id OrderCustomerLink --name OrderCustomer --link-kind standard");
             RunRawAdd(workspacePath, "add-link-role --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --name Order");
             RunRawAdd(workspacePath, "add-link-role --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --name Customer");
             RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --name OrderCustomerStatus --satellite-kind standard");
-            RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --field OrderStatusField --name StatusCode --ordinal 1");
+            RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --field OrderStatusField --name StatusCode");
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
@@ -257,7 +257,7 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public async Task RawAuthoringAppendsOrdinalsOnlyWhereTheyRemainModeled()
+    public async Task RawAuthoringCreatesUnorderedStructuralMembers()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var workspacePath = Path.Combine(root, "RawDataVault");
@@ -283,15 +283,12 @@ public sealed partial class CliTests
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
             var hubKeyParts = workspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").ToDictionary(row => row.Id, StringComparer.Ordinal);
-            var linkRoles = workspace.Instance.GetOrCreateEntityRecords("RawLinkRole").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var hubSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var linkSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("RawLinkSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
 
-            Assert.Equal("1", hubKeyParts["CustomerHubKey"].Values["Ordinal"]);
-            Assert.Equal("Order", linkRoles["OrderCustomerLinkOrder"].Values["Name"]);
-            Assert.Equal("Customer", linkRoles["OrderCustomerLinkCustomer"].Values["Name"]);
-            Assert.DoesNotContain("Ordinal", linkRoles["OrderCustomerLinkOrder"].Values.Keys);
-            Assert.DoesNotContain("Ordinal", linkRoles["OrderCustomerLinkCustomer"].Values.Keys);
-            Assert.Equal("1", linkSatelliteAttributes["OrderCustomerStatusCodeAttr"].Values["Ordinal"]);
+            Assert.DoesNotContain("Ordinal", hubKeyParts["CustomerHubKey"].Values.Keys);
+            Assert.DoesNotContain("Ordinal", hubSatelliteAttributes["CustomerNameAttr"].Values.Keys);
+            Assert.DoesNotContain("Ordinal", linkSatelliteAttributes["OrderCustomerStatusCodeAttr"].Values.Keys);
         }
         finally
         {
@@ -474,7 +471,7 @@ public sealed partial class CliTests
         var repoRoot = FindRepositoryRoot();
         var startInfo = new ProcessStartInfo
         {
-            FileName = "meta-datavault-raw",
+            FileName = CliTestSupport.RequireBuiltCli(repoRoot, "MetaDataVault", "Cli", "Raw", "bin", "Debug", "net8.0", "meta-datavault-raw.exe"),
             Arguments = arguments,
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,
@@ -536,10 +533,9 @@ public sealed partial class CliTests
     private static (int ExitCode, string Output) RunBusinessCli(string arguments, string? workingDirectory = null)
     {
         var repoRoot = FindRepositoryRoot();
-        var localExePath = Path.Combine(repoRoot, "MetaDataVault", "Cli", "Business", "bin", "Debug", "net8.0", "meta-datavault-business.exe");
         var startInfo = new ProcessStartInfo
         {
-            FileName = File.Exists(localExePath) ? localExePath : "meta-datavault-business",
+            FileName = CliTestSupport.RequireBuiltCli(repoRoot, "MetaDataVault", "Cli", "Business", "bin", "Debug", "net8.0", "meta-datavault-business.exe"),
             Arguments = arguments,
             WorkingDirectory = workingDirectory ?? repoRoot,
             RedirectStandardOutput = true,
@@ -553,11 +549,9 @@ public sealed partial class CliTests
     private static (int ExitCode, string Output) RunMetaConvertCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();
-        var localExePath = Path.Combine(repoRoot, "MetaConvert", "Cli", "bin", "Debug", "net8.0", "meta-convert.exe");
-        var fileName = File.Exists(localExePath) ? localExePath : "meta-convert";
         var startInfo = new ProcessStartInfo
         {
-            FileName = fileName,
+            FileName = CliTestSupport.RequireBuiltCli(repoRoot, "MetaConvert", "Cli", "bin", "Debug", "net8.0", "meta-convert.exe"),
             Arguments = arguments,
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,

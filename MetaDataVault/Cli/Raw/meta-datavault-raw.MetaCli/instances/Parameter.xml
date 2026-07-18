@@ -71,11 +71,6 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-raw-hub-key-part-ordinal" ValueShapeId="shape-text">
-      <Description>Key part ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
     <Parameter Id="param-add-raw-hub-key-part-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
@@ -105,11 +100,6 @@
       <Description>Attribute name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-hub-satellite-attribute-ordinal" ValueShapeId="shape-text">
-      <Description>Attribute ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
     </Parameter>
     <Parameter Id="param-add-raw-hub-satellite-attribute-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
@@ -205,11 +195,6 @@
       <Description>Attribute name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-raw-link-satellite-attribute-ordinal" ValueShapeId="shape-text">
-      <Description>Attribute ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
     </Parameter>
     <Parameter Id="param-add-raw-link-satellite-attribute-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>

@@ -33,14 +33,6 @@ public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
 
     private static readonly Type ModelType = typeof(MetaRawDataVaultModel);
 
-    private static readonly IReadOnlyDictionary<string, OrdinalScope> OrdinalScopes =
-        new Dictionary<string, OrdinalScope>(StringComparer.Ordinal)
-        {
-            ["RawHubKeyPart"] = new("RawHub", ["RawHubKeyPart"]),
-            ["RawHubSatelliteAttribute"] = new("RawHubSatellite", ["RawHubSatelliteAttribute"]),
-            ["RawLinkSatelliteAttribute"] = new("RawLinkSatellite", ["RawLinkSatelliteAttribute"]),
-        };
-
     public RawDataVaultWorkspaceCreationResult CreateWorkspace(string workspacePath)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
@@ -79,7 +71,6 @@ public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
             AssignRelationship(model, rowToAdd, request.EntityName, relationship);
         }
 
-        AssignOrdinalIfMissing(model, rowToAdd, request);
         rows.Add(rowToAdd);
         model.SaveToXmlWorkspace(workspacePath);
         return model;
@@ -184,43 +175,4 @@ public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
         return (string?)property.GetValue(row) ?? string.Empty;
     }
 
-    private static void AssignOrdinalIfMissing(
-        MetaRawDataVaultModel model,
-        object rowToAdd,
-        RawDataVaultAuthoringRequest request)
-    {
-        var ordinalProperty = rowToAdd.GetType().GetProperty("Ordinal", BindingFlags.Instance | BindingFlags.Public);
-        if (ordinalProperty is null ||
-            request.Values.ContainsKey("Ordinal") ||
-            !OrdinalScopes.TryGetValue(request.EntityName, out var scope))
-        {
-            return;
-        }
-
-        var ownerProperty = rowToAdd.GetType().GetProperty(scope.RelationshipPropertyName, BindingFlags.Instance | BindingFlags.Public);
-        if (ownerProperty is null)
-        {
-            return;
-        }
-
-        var owner = ownerProperty.GetValue(rowToAdd);
-        if (owner is null)
-        {
-            return;
-        }
-
-        var nextOrdinal = scope.EntityNames
-            .SelectMany(entityName => GetEntityRows(model, ResolveEntityType(entityName), entityName).Cast<object>())
-            .Where(row => ReferenceEquals(row.GetType().GetProperty(scope.RelationshipPropertyName, BindingFlags.Instance | BindingFlags.Public)?.GetValue(row), owner))
-            .Select(row => (string?)ordinalProperty.GetValue(row))
-            .Select(value => int.TryParse(value, out var parsed) && parsed > 0 ? parsed : 0)
-            .DefaultIfEmpty(0)
-            .Max() + 1;
-
-        ordinalProperty.SetValue(rowToAdd, nextOrdinal.ToString(System.Globalization.CultureInfo.InvariantCulture));
-    }
-
-    private sealed record OrdinalScope(
-        string RelationshipPropertyName,
-        IReadOnlyList<string> EntityNames);
 }

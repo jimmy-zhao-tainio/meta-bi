@@ -15,14 +15,12 @@
     <Option Id="option-add-raw-hub-key-part-hub" ParameterId="param-add-raw-hub-key-part-hub" />
     <Option Id="option-add-raw-hub-key-part-id" ParameterId="param-add-raw-hub-key-part-id" />
     <Option Id="option-add-raw-hub-key-part-name" ParameterId="param-add-raw-hub-key-part-name" />
-    <Option Id="option-add-raw-hub-key-part-ordinal" ParameterId="param-add-raw-hub-key-part-ordinal" />
     <Option Id="option-add-raw-hub-key-part-workspace" ParameterId="param-add-raw-hub-key-part-workspace" />
     <Option Id="option-add-raw-hub-name" ParameterId="param-add-raw-hub-name" />
     <Option Id="option-add-raw-hub-satellite-attribute-field" ParameterId="param-add-raw-hub-satellite-attribute-field" />
     <Option Id="option-add-raw-hub-satellite-attribute-hub-satellite" ParameterId="param-add-raw-hub-satellite-attribute-hub-satellite" />
     <Option Id="option-add-raw-hub-satellite-attribute-id" ParameterId="param-add-raw-hub-satellite-attribute-id" />
     <Option Id="option-add-raw-hub-satellite-attribute-name" ParameterId="param-add-raw-hub-satellite-attribute-name" />
-    <Option Id="option-add-raw-hub-satellite-attribute-ordinal" ParameterId="param-add-raw-hub-satellite-attribute-ordinal" />
     <Option Id="option-add-raw-hub-satellite-attribute-workspace" ParameterId="param-add-raw-hub-satellite-attribute-workspace" />
     <Option Id="option-add-raw-hub-satellite-hub" ParameterId="param-add-raw-hub-satellite-hub" />
     <Option Id="option-add-raw-hub-satellite-id" ParameterId="param-add-raw-hub-satellite-id" />
@@ -42,7 +40,6 @@
     <Option Id="option-add-raw-link-satellite-attribute-id" ParameterId="param-add-raw-link-satellite-attribute-id" />
     <Option Id="option-add-raw-link-satellite-attribute-link-satellite" ParameterId="param-add-raw-link-satellite-attribute-link-satellite" />
     <Option Id="option-add-raw-link-satellite-attribute-name" ParameterId="param-add-raw-link-satellite-attribute-name" />
-    <Option Id="option-add-raw-link-satellite-attribute-ordinal" ParameterId="param-add-raw-link-satellite-attribute-ordinal" />
     <Option Id="option-add-raw-link-satellite-attribute-workspace" ParameterId="param-add-raw-link-satellite-attribute-workspace" />
     <Option Id="option-add-raw-link-satellite-id" ParameterId="param-add-raw-link-satellite-id" />
     <Option Id="option-add-raw-link-satellite-link" ParameterId="param-add-raw-link-satellite-link" />

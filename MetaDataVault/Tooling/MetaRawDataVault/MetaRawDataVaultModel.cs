@@ -706,9 +706,6 @@ namespace MetaRawDataVault
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
                         break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'RawHubKeyPart'.");
                 }
@@ -758,7 +755,6 @@ namespace MetaRawDataVault
                 builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RawHubKeyPart' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'RawHubKeyPart' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </RawHubKeyPart>\n");
             }
             builder.Append("  </RawHubKeyPartList>\n");
@@ -953,9 +949,6 @@ namespace MetaRawDataVault
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
                         break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'RawHubSatelliteAttribute'.");
                 }
@@ -1005,7 +998,6 @@ namespace MetaRawDataVault
                 builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RawHubSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'RawHubSatelliteAttribute' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </RawHubSatelliteAttribute>\n");
             }
             builder.Append("  </RawHubSatelliteAttributeList>\n");
@@ -1427,9 +1419,6 @@ namespace MetaRawDataVault
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
                         break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'RawLinkSatelliteAttribute'.");
                 }
@@ -1479,7 +1468,6 @@ namespace MetaRawDataVault
                 builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RawLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'RawLinkSatelliteAttribute' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </RawLinkSatelliteAttribute>\n");
             }
             builder.Append("  </RawLinkSatelliteAttributeList>\n");
@@ -1955,7 +1943,6 @@ namespace MetaRawDataVault
             if (HasUnexpectedProperties(typeof(RawHubKeyPart),
                 "Id",
                 "Name",
-                "Ordinal",
                 "Field",
                 "RawHub"))
             {
@@ -1974,7 +1961,6 @@ namespace MetaRawDataVault
             if (HasUnexpectedProperties(typeof(RawHubSatelliteAttribute),
                 "Id",
                 "Name",
-                "Ordinal",
                 "Field",
                 "RawHubSatellite"))
             {
@@ -2010,7 +1996,6 @@ namespace MetaRawDataVault
             if (HasUnexpectedProperties(typeof(RawLinkSatelliteAttribute),
                 "Id",
                 "Name",
-                "Ordinal",
                 "Field",
                 "RawLinkSatellite"))
             {

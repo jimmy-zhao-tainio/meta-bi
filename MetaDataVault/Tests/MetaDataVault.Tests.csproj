@@ -20,7 +20,10 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\Cli\Business\MetaDataVault.Business.Cli.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Cli\Raw\MetaDataVault.Raw.Cli.csproj" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\..\MetaConvert\DataVaultToSql\MetaConvert.DataVaultToSql.csproj" />
+    <ProjectReference Include="..\..\MetaConvert\Cli\MetaConvert.Cli.csproj" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\..\MetaSchema\Core\MetaSchema.Core.csproj" />
   </ItemGroup>
 

@@ -34,5 +34,16 @@ internal static class CliTestSupport
 
         return (process.ExitCode, stdOut + stdErr);
     }
+
+    internal static string RequireBuiltCli(string repositoryRoot, params string[] relativePath)
+    {
+        var executablePath = Path.Combine([repositoryRoot, .. relativePath]);
+        if (!File.Exists(executablePath))
+        {
+            throw new InvalidOperationException($"Expected test CLI executable was not built: {executablePath}");
+        }
+
+        return executablePath;
+    }
 }
 

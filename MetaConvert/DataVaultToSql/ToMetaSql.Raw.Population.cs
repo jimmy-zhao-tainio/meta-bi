@@ -55,7 +55,9 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", rawHubImplementation.HashKeyLength));
 
-            foreach (var keyPart in GetGroup(rawHubKeyPartsByHubId, hub.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
+            foreach (var keyPart in GetGroup(rawHubKeyPartsByHubId, hub.Id)
+                .OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(row => row.Id, StringComparer.Ordinal))
             {
                 AddFieldColumn(
                     context,
@@ -130,7 +132,9 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", rawHubSatelliteImplementation.ParentHashKeyLength));
 
-            foreach (var attribute in GetGroup(rawHubSatelliteAttributesBySatelliteId, satellite.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
+            foreach (var attribute in GetGroup(rawHubSatelliteAttributesBySatelliteId, satellite.Id)
+                .OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(row => row.Id, StringComparer.Ordinal))
             {
                 AddFieldColumn(
                     context,
@@ -315,7 +319,9 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", rawLinkSatelliteImplementation.ParentHashKeyLength));
 
-            foreach (var attribute in GetGroup(rawLinkSatelliteAttributesBySatelliteId, satellite.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
+            foreach (var attribute in GetGroup(rawLinkSatelliteAttributesBySatelliteId, satellite.Id)
+                .OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(row => row.Id, StringComparer.Ordinal))
             {
                 AddFieldColumn(
                     context,
