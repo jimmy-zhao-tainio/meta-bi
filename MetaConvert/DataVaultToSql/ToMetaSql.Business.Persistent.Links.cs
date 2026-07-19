@@ -149,7 +149,7 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessLinkSatelliteImplementation.HashDiffLength));
 
-            AddImplementationColumn(
+            var loadTimestampColumn = AddImplementationColumn(
                 context,
                 table,
                 businessLinkSatelliteImplementation.LoadTimestampColumnName,
@@ -158,6 +158,13 @@ public static partial class Converter
                 reservedColumnNames,
                 businessLinkSatelliteImplementation.LoadTimestampDefaultExpressionSql,
                 ("Precision", businessLinkSatelliteImplementation.LoadTimestampPrecision));
+
+            AddPrimaryKey(
+                context,
+                table,
+                ApplyPattern(businessLinkSatelliteImplementation.PrimaryKeyNamePattern, ("TableName", table.Name)),
+                parentHashKeyColumn,
+                loadTimestampColumn);
 
             AddImplementationColumn(
                 context,

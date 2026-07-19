@@ -5,16 +5,16 @@
 1. Done: SQL Server `decimal`/`numeric` compatibility.
 2. Done: MetaSchema types and Raw Data Vault ownership, roles, and false-ordering cleanup.
 3. Done: Business Data Vault common satellite/attribute structure; roles, traversal, key precedence, payload-nullability policy, and false-ordering cleanup.
-4. Pending product-model decision: satellite row identity and load metadata.
+4. Done: satellite row identity and physical key contract belong in the implementation model.
 5. Done: Data Vault hash-key storage width.
-6. Pending product-model decision: business datatype lowering.
+6. Done: Business datatype lowering consumes the sanctioned DataTypeConversion workspace.
 7. Complete for supported mutation syntax: persisted, validated facts for every supported mutation form, including `MERGE` actions and conditions.
 8. Done: all reported mutation-binding defects are fixed or disproven by coverage. The supported surface includes CTEs, predicates, wildcards, source ambiguity, `CAST`/`CONVERT`, and conservative homogeneous `CASE` contracts. SQL Server precedence inference is separate future expression-semantics work, not open repair debt.
-9. Separate scope: TPC-DS fixture/corpus strategy. Do not mix it into Data Vault, binding, or AdventureWorks decisions.
-10. Blocked demo work: AdventureWorks full-stack should not continue until the relevant product decisions are settled and reimplemented deliberately.
+9. Done: TPC-DS is the MetaTransformScript SQL round-trip and strict-binding corpus. Do not mix it into Data Vault, schema-extraction, or AdventureWorks decisions.
+10. Inactive demo work: AdventureWorks full-stack needs a fresh deliberate replay before it can claim end-to-end proof.
 11. Complete: `MERGE` match semantics use explicit clause entities and an explicit predecessor chain.
 
-Current work: item 3 is complete. Business satellite payload attributes are nullable by design; do not add nullability flags, subtype entities, binding proof, or compatibility shims.
+Business satellite payload attributes are nullable by design; do not add nullability flags, subtype entities, binding proof, or compatibility shims.
 
 ## Purpose
 
@@ -252,27 +252,32 @@ Hygiene finding: the typed `meta-cli` save that authored the new Business CLI op
 
 ## 4. Satellite Row Identity and Load Metadata
 
-Status: Pending discussion
+Status: Complete on 2026-07-19
 
 Observed problem:
 
 Generated Raw and Business Satellite tables were heaps. Latest-row lookups over the AdventureWorks data became extremely slow, and the physical model did not declare a row-identity/access contract for satellite history.
 
-Attempted change:
+Decision:
 
-- Added `PrimaryKeyNamePattern` to raw hub/link satellite implementations and all business satellite implementation families.
-- Emitted composite satellite primary keys over parent hash key plus load timestamp.
-- Made the business satellite load-timestamp column, datatype, and precision fields required.
-- Hardened validation for partially configured implementation-column groups.
-- Updated implementation instances and converter tests.
+`LoadTimestamp` and other standard physical satellite columns belong in the Raw/Business Data Vault implementation workspaces, not in the user-authored Raw/Business Data Vault models. Their SQL Server types, facets, constraints, and access structures are implementation concerns.
 
-Why it was attempted:
+Every satellite table has the implementation-level identity `(ParentHashKey, LoadTimestamp)`. The parent hash key identifies the parent Hub, Link, Reference, Same-As Link, or Hierarchical Link row; the load timestamp identifies the historical version. The implementation workspace declares the physical primary-key name policy.
 
-To give satellite history a declared physical key and make replay/latest-row access practical rather than relying on heap scans.
+Implementation:
 
-Decision required:
+- Added required `PrimaryKeyNamePattern` to all seven Raw/Business satellite implementation entities. Default rows use `PK_{TableName}`.
+- Preserved Raw satellite timestamp name/type requirements, which were already present.
+- Made `LoadTimestampColumnName` and `LoadTimestampDataTypeId` required for the five Business satellite implementation entities. `LoadTimestampPrecision` and the default expression remain optional physical refinements.
+- Updated Raw and Business SQL conversion so each satellite emits a composite primary key with `ParentHashKey` first and `LoadTimestamp` second.
+- Left the Raw and Business author-intent models unchanged.
 
-Confirm the intended satellite row identity, including whether `(ParentHashKey, LoadTimestamp)` is sufficient, whether the key is a product requirement or a SQL Server implementation policy, and whether business satellite load metadata must always be present.
+Verification:
+
+- `MetaDataVault.Tests` passed 53/53. The conversion coverage proves all seven satellite families emit `PK_{TableName}` over the expected parent hash-key column and `LoadTimestamp` in that order.
+- `meta check` passed for `MetaDataVaultImplementation`.
+- The Raw mesh validated 137 steps and deployed 27 tables, 27 primary keys, and 25 foreign keys, then reported no verification changes and cleaned up 5/5.
+- The Business mesh validated 148 steps and deployed 58 tables, 56 primary keys, and 61 foreign keys, then reported no verification changes and cleaned up 9/9.
 
 ## 5. Data Vault Hash Storage Width
 
@@ -297,7 +302,7 @@ The sanctioned Data Vault implementation workspace should use 32-byte binary sto
 
 ## 6. Business Datatype Lowering into SQL Server
 
-Status: Pending discussion
+Status: Complete on 2026-07-19; existing implementation and coverage verified
 
 Observed problem:
 
@@ -316,7 +321,9 @@ To make SQL generation reject unsupported or half-configured type mappings inste
 
 Decision required:
 
-Review this separately from the Data Vault schema changes. Establish which workspace owns logical-to-platform lowering and what constitutes a complete implementation mapping before restoring converter behavior.
+The sanctioned `MetaDataTypeConversion` workspace owns logical Business datatype to SQL Server datatype lowering. This is already implemented: `MetaConvert.DataVaultToSql.SqlServerBusinessTypeLowering` builds its mapping from `MetaDataTypeInstance.Default` and `MetaDataTypeConversionInstance.Default`, retaining only direct `Meta` to `SqlServer` mappings. `MetaBusinessDataVault` carries the logical datatype reference; conversion rejects conflicting mappings, unknown/non-Meta logical types, and a missing sanctioned direct SQL Server lowering rather than choosing a plausible physical datatype.
+
+Verification on 2026-07-19: focused converter tests passed 3/3 for successful sanctioned Business lowering, missing direct lowering rejection, and rejection of a SQL Server typed value not sanctioned in `MetaDataType`.
 
 ## 7. Strict Mutation Target Binding
 
@@ -484,33 +491,44 @@ Decision:
 
 Each behavior was reproduced or proven by focused public-flow coverage and repaired within the existing syntax and binding boundary. No product-model change was required. Future full SQL Server precedence work is a separately scoped expression-semantics feature, not unfinished queue item 8 work.
 
-## 9. TPC-DS Binding Fixture and Corpus Expansion
+## 9. TPC-DS MetaTransformScript Round Trip
 
-Status: Pending discussion
+Status: Decided and complete on 2026-07-19
 
-Observed problem:
+Purpose:
 
-The checked-in synthetic TPC-DS schema fixture did not accurately represent the SQL Server view contracts used by the corpus, which complicated strict binding evidence.
+The TPC-DS corpus proves the bounded `SQL -> MetaTransformScript -> semantically equivalent SQL` round trip across a substantial curated set of SQL Server views, and that those modeled transforms bind strictly to their modeled schema contract.
 
-Attempted change:
+Scope:
 
-- Replaced the fixture with a much larger SQL Server-extracted schema snapshot.
-- Expanded corpus validation and related hardening tests.
-- Added datatype synonym handling to make more views pass strict validation.
+- Import the selected views into `MetaTransformScript`.
+- Bind the transforms against the declared TPC-DS `MetaSchema` workspace.
+- Emit SQL from the modeled syntax.
+- Re-import the emitted SQL and require an exact final `MetaSql` workspace diff.
 
-Why it was attempted:
+Schema contract construction:
 
-To use the TPC-DS corpus as broad pressure on TransformBinding while the AdventureWorks issue was being investigated.
+1. Deploy the TPC-DS query files as SQL Server views.
+2. Extract their contracts with `meta-schema`.
+3. Change the extracted `tpcds.v_qNN` schema rows from views to tables, preserving their identifiers and fields, so strict binding can validate them as writable transform targets.
+4. Check in that derived `SchemaWS` alongside the corpus.
 
-Decision required:
+The mesh consumes the checked-in derived contract offline. It does not deploy the views or perform schema extraction at run time.
 
-This was the wrong task scope. Decide separately what the TPC-DS demo is intended to prove, whether its schema should remain synthetic, and which statements belong in a sanctioned SQL Server corpus.
+Out of scope:
+
+- Proving the SQL Server extraction operation itself.
+- Data Vault or AdventureWorks full-stack design.
+
+Verification:
+
+Fresh verification on 2026-07-19: `build-tpc-ds-snapshot` completed 108/108 in 243 seconds, including strict binding of all 99 scripts. The expected syntax-graph/provenance diff contained 5,032 rows on each side; the two projected `MetaSql` workspaces had 101 rows and 399 properties each, with zero differences. Modeled cleanup then completed 9/9. Keep future corpus changes scoped to syntax round-trip fidelity and binding against the declared schema contract; add a separate demo if a different product boundary needs proving.
 
 ## 10. AdventureWorks Full-Stack Consequences
 
-Status: Blocked by the decisions above
+Status: Inactive; no longer blocked by items 4 through 9
 
-The new `Demos/AdventureWorksFullStack` authoring work is retained because it is the active demo design, not a sanctioned product-model change. It is not currently valid end-to-end proof after this rollback. Its generated contracts and operations assume some combination of:
+The `Demos/AdventureWorksFullStack` authoring work is retained as a demo design, not as sanctioned end-to-end proof. Its generated contracts and operations assume:
 
 - 32-byte Data Vault hashes,
 - source attribute nullability,
@@ -518,7 +536,7 @@ The new `Demos/AdventureWorksFullStack` authoring work is retained because it is
 - strict mutation target binding,
 - and datatype compatibility behavior.
 
-Do not continue the demo factory until the relevant product decisions have been reviewed and reimplemented deliberately.
+Those product decisions are now settled. The demo remains inactive until it is replayed from clean workspaces and its current outputs are reviewed as one deliberate full-stack proof.
 
 ## 11. MERGE Match Semantics
 

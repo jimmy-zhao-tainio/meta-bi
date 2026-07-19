@@ -166,7 +166,7 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessSameAsLinkSatelliteImplementation.HashDiffLength));
 
-            AddImplementationColumn(
+            var loadTimestampColumn = AddImplementationColumn(
                 context,
                 table,
                 businessSameAsLinkSatelliteImplementation.LoadTimestampColumnName,
@@ -175,6 +175,13 @@ public static partial class Converter
                 reservedColumnNames,
                 businessSameAsLinkSatelliteImplementation.LoadTimestampDefaultExpressionSql,
                 ("Precision", businessSameAsLinkSatelliteImplementation.LoadTimestampPrecision));
+
+            AddPrimaryKey(
+                context,
+                table,
+                ApplyPattern(businessSameAsLinkSatelliteImplementation.PrimaryKeyNamePattern, ("TableName", table.Name)),
+                parentHashKeyColumn,
+                loadTimestampColumn);
 
             AddImplementationColumn(
                 context,
@@ -350,7 +357,7 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessHierarchicalLinkSatelliteImplementation.HashDiffLength));
 
-            AddImplementationColumn(
+            var loadTimestampColumn = AddImplementationColumn(
                 context,
                 table,
                 businessHierarchicalLinkSatelliteImplementation.LoadTimestampColumnName,
@@ -359,6 +366,13 @@ public static partial class Converter
                 reservedColumnNames,
                 businessHierarchicalLinkSatelliteImplementation.LoadTimestampDefaultExpressionSql,
                 ("Precision", businessHierarchicalLinkSatelliteImplementation.LoadTimestampPrecision));
+
+            AddPrimaryKey(
+                context,
+                table,
+                ApplyPattern(businessHierarchicalLinkSatelliteImplementation.PrimaryKeyNamePattern, ("TableName", table.Name)),
+                parentHashKeyColumn,
+                loadTimestampColumn);
 
             AddImplementationColumn(
                 context,

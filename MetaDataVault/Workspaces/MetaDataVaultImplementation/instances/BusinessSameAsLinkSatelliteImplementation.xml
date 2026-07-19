@@ -16,6 +16,7 @@
       <ParentHashKeyColumnName>LinkHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>meta:type:Binary</ParentHashKeyDataTypeId>
       <ParentHashKeyLength>32</ParentHashKeyLength>
+      <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
       <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
       <RecordSourceDataTypeId>meta:type:String</RecordSourceDataTypeId>
       <RecordSourceLength>256</RecordSourceLength>

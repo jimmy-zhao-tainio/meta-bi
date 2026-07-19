@@ -939,6 +939,9 @@ namespace MetaDataVaultImplementation
                     case "ParentHashKeyLength":
                         row.ParentHashKeyLength = reader.ReadElementContentAsString();
                         break;
+                    case "PrimaryKeyNamePattern":
+                        row.PrimaryKeyNamePattern = reader.ReadElementContentAsString();
+                        break;
                     case "RecordSourceColumnName":
                         row.RecordSourceColumnName = reader.ReadElementContentAsString();
                         break;
@@ -999,14 +1002,8 @@ namespace MetaDataVaultImplementation
                 {
                     AppendElement(builder, "HashDiffLength", row.HashDiffLength!, "      ");
                 }
-                if (!string.IsNullOrWhiteSpace(row.LoadTimestampColumnName))
-                {
-                    AppendElement(builder, "LoadTimestampColumnName", row.LoadTimestampColumnName!, "      ");
-                }
-                if (!string.IsNullOrWhiteSpace(row.LoadTimestampDataTypeId))
-                {
-                    AppendElement(builder, "LoadTimestampDataTypeId", row.LoadTimestampDataTypeId!, "      ");
-                }
+                AppendElement(builder, "LoadTimestampColumnName", RequireText(row.LoadTimestampColumnName, $"Entity 'BusinessHierarchicalLinkSatelliteImplementation' row '{row.Id}' is missing required property 'LoadTimestampColumnName'."), "      ");
+                AppendElement(builder, "LoadTimestampDataTypeId", RequireText(row.LoadTimestampDataTypeId, $"Entity 'BusinessHierarchicalLinkSatelliteImplementation' row '{row.Id}' is missing required property 'LoadTimestampDataTypeId'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampDefaultExpressionSql))
                 {
                     AppendElement(builder, "LoadTimestampDefaultExpressionSql", row.LoadTimestampDefaultExpressionSql!, "      ");
@@ -1019,6 +1016,7 @@ namespace MetaDataVaultImplementation
                 AppendElement(builder, "ParentHashKeyColumnName", RequireText(row.ParentHashKeyColumnName, $"Entity 'BusinessHierarchicalLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyColumnName'."), "      ");
                 AppendElement(builder, "ParentHashKeyDataTypeId", RequireText(row.ParentHashKeyDataTypeId, $"Entity 'BusinessHierarchicalLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyDataTypeId'."), "      ");
                 AppendElement(builder, "ParentHashKeyLength", RequireText(row.ParentHashKeyLength, $"Entity 'BusinessHierarchicalLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyLength'."), "      ");
+                AppendElement(builder, "PrimaryKeyNamePattern", RequireText(row.PrimaryKeyNamePattern, $"Entity 'BusinessHierarchicalLinkSatelliteImplementation' row '{row.Id}' is missing required property 'PrimaryKeyNamePattern'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
                     AppendElement(builder, "RecordSourceColumnName", row.RecordSourceColumnName!, "      ");
@@ -1322,6 +1320,9 @@ namespace MetaDataVaultImplementation
                     case "ParentHashKeyLength":
                         row.ParentHashKeyLength = reader.ReadElementContentAsString();
                         break;
+                    case "PrimaryKeyNamePattern":
+                        row.PrimaryKeyNamePattern = reader.ReadElementContentAsString();
+                        break;
                     case "RecordSourceColumnName":
                         row.RecordSourceColumnName = reader.ReadElementContentAsString();
                         break;
@@ -1382,14 +1383,8 @@ namespace MetaDataVaultImplementation
                 {
                     AppendElement(builder, "HashDiffLength", row.HashDiffLength!, "      ");
                 }
-                if (!string.IsNullOrWhiteSpace(row.LoadTimestampColumnName))
-                {
-                    AppendElement(builder, "LoadTimestampColumnName", row.LoadTimestampColumnName!, "      ");
-                }
-                if (!string.IsNullOrWhiteSpace(row.LoadTimestampDataTypeId))
-                {
-                    AppendElement(builder, "LoadTimestampDataTypeId", row.LoadTimestampDataTypeId!, "      ");
-                }
+                AppendElement(builder, "LoadTimestampColumnName", RequireText(row.LoadTimestampColumnName, $"Entity 'BusinessHubSatelliteImplementation' row '{row.Id}' is missing required property 'LoadTimestampColumnName'."), "      ");
+                AppendElement(builder, "LoadTimestampDataTypeId", RequireText(row.LoadTimestampDataTypeId, $"Entity 'BusinessHubSatelliteImplementation' row '{row.Id}' is missing required property 'LoadTimestampDataTypeId'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampDefaultExpressionSql))
                 {
                     AppendElement(builder, "LoadTimestampDefaultExpressionSql", row.LoadTimestampDefaultExpressionSql!, "      ");
@@ -1402,6 +1397,7 @@ namespace MetaDataVaultImplementation
                 AppendElement(builder, "ParentHashKeyColumnName", RequireText(row.ParentHashKeyColumnName, $"Entity 'BusinessHubSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyColumnName'."), "      ");
                 AppendElement(builder, "ParentHashKeyDataTypeId", RequireText(row.ParentHashKeyDataTypeId, $"Entity 'BusinessHubSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyDataTypeId'."), "      ");
                 AppendElement(builder, "ParentHashKeyLength", RequireText(row.ParentHashKeyLength, $"Entity 'BusinessHubSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyLength'."), "      ");
+                AppendElement(builder, "PrimaryKeyNamePattern", RequireText(row.PrimaryKeyNamePattern, $"Entity 'BusinessHubSatelliteImplementation' row '{row.Id}' is missing required property 'PrimaryKeyNamePattern'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
                     AppendElement(builder, "RecordSourceColumnName", row.RecordSourceColumnName!, "      ");
@@ -1713,6 +1709,9 @@ namespace MetaDataVaultImplementation
                     case "ParentHashKeyLength":
                         row.ParentHashKeyLength = reader.ReadElementContentAsString();
                         break;
+                    case "PrimaryKeyNamePattern":
+                        row.PrimaryKeyNamePattern = reader.ReadElementContentAsString();
+                        break;
                     case "RecordSourceColumnName":
                         row.RecordSourceColumnName = reader.ReadElementContentAsString();
                         break;
@@ -1773,14 +1772,8 @@ namespace MetaDataVaultImplementation
                 {
                     AppendElement(builder, "HashDiffLength", row.HashDiffLength!, "      ");
                 }
-                if (!string.IsNullOrWhiteSpace(row.LoadTimestampColumnName))
-                {
-                    AppendElement(builder, "LoadTimestampColumnName", row.LoadTimestampColumnName!, "      ");
-                }
-                if (!string.IsNullOrWhiteSpace(row.LoadTimestampDataTypeId))
-                {
-                    AppendElement(builder, "LoadTimestampDataTypeId", row.LoadTimestampDataTypeId!, "      ");
-                }
+                AppendElement(builder, "LoadTimestampColumnName", RequireText(row.LoadTimestampColumnName, $"Entity 'BusinessLinkSatelliteImplementation' row '{row.Id}' is missing required property 'LoadTimestampColumnName'."), "      ");
+                AppendElement(builder, "LoadTimestampDataTypeId", RequireText(row.LoadTimestampDataTypeId, $"Entity 'BusinessLinkSatelliteImplementation' row '{row.Id}' is missing required property 'LoadTimestampDataTypeId'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampDefaultExpressionSql))
                 {
                     AppendElement(builder, "LoadTimestampDefaultExpressionSql", row.LoadTimestampDefaultExpressionSql!, "      ");
@@ -1793,6 +1786,7 @@ namespace MetaDataVaultImplementation
                 AppendElement(builder, "ParentHashKeyColumnName", RequireText(row.ParentHashKeyColumnName, $"Entity 'BusinessLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyColumnName'."), "      ");
                 AppendElement(builder, "ParentHashKeyDataTypeId", RequireText(row.ParentHashKeyDataTypeId, $"Entity 'BusinessLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyDataTypeId'."), "      ");
                 AppendElement(builder, "ParentHashKeyLength", RequireText(row.ParentHashKeyLength, $"Entity 'BusinessLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyLength'."), "      ");
+                AppendElement(builder, "PrimaryKeyNamePattern", RequireText(row.PrimaryKeyNamePattern, $"Entity 'BusinessLinkSatelliteImplementation' row '{row.Id}' is missing required property 'PrimaryKeyNamePattern'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
                     AppendElement(builder, "RecordSourceColumnName", row.RecordSourceColumnName!, "      ");
@@ -2252,6 +2246,9 @@ namespace MetaDataVaultImplementation
                     case "ParentHashKeyLength":
                         row.ParentHashKeyLength = reader.ReadElementContentAsString();
                         break;
+                    case "PrimaryKeyNamePattern":
+                        row.PrimaryKeyNamePattern = reader.ReadElementContentAsString();
+                        break;
                     case "RecordSourceColumnName":
                         row.RecordSourceColumnName = reader.ReadElementContentAsString();
                         break;
@@ -2312,14 +2309,8 @@ namespace MetaDataVaultImplementation
                 {
                     AppendElement(builder, "HashDiffLength", row.HashDiffLength!, "      ");
                 }
-                if (!string.IsNullOrWhiteSpace(row.LoadTimestampColumnName))
-                {
-                    AppendElement(builder, "LoadTimestampColumnName", row.LoadTimestampColumnName!, "      ");
-                }
-                if (!string.IsNullOrWhiteSpace(row.LoadTimestampDataTypeId))
-                {
-                    AppendElement(builder, "LoadTimestampDataTypeId", row.LoadTimestampDataTypeId!, "      ");
-                }
+                AppendElement(builder, "LoadTimestampColumnName", RequireText(row.LoadTimestampColumnName, $"Entity 'BusinessReferenceSatelliteImplementation' row '{row.Id}' is missing required property 'LoadTimestampColumnName'."), "      ");
+                AppendElement(builder, "LoadTimestampDataTypeId", RequireText(row.LoadTimestampDataTypeId, $"Entity 'BusinessReferenceSatelliteImplementation' row '{row.Id}' is missing required property 'LoadTimestampDataTypeId'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampDefaultExpressionSql))
                 {
                     AppendElement(builder, "LoadTimestampDefaultExpressionSql", row.LoadTimestampDefaultExpressionSql!, "      ");
@@ -2332,6 +2323,7 @@ namespace MetaDataVaultImplementation
                 AppendElement(builder, "ParentHashKeyColumnName", RequireText(row.ParentHashKeyColumnName, $"Entity 'BusinessReferenceSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyColumnName'."), "      ");
                 AppendElement(builder, "ParentHashKeyDataTypeId", RequireText(row.ParentHashKeyDataTypeId, $"Entity 'BusinessReferenceSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyDataTypeId'."), "      ");
                 AppendElement(builder, "ParentHashKeyLength", RequireText(row.ParentHashKeyLength, $"Entity 'BusinessReferenceSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyLength'."), "      ");
+                AppendElement(builder, "PrimaryKeyNamePattern", RequireText(row.PrimaryKeyNamePattern, $"Entity 'BusinessReferenceSatelliteImplementation' row '{row.Id}' is missing required property 'PrimaryKeyNamePattern'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
                     AppendElement(builder, "RecordSourceColumnName", row.RecordSourceColumnName!, "      ");
@@ -2651,6 +2643,9 @@ namespace MetaDataVaultImplementation
                     case "ParentHashKeyLength":
                         row.ParentHashKeyLength = reader.ReadElementContentAsString();
                         break;
+                    case "PrimaryKeyNamePattern":
+                        row.PrimaryKeyNamePattern = reader.ReadElementContentAsString();
+                        break;
                     case "RecordSourceColumnName":
                         row.RecordSourceColumnName = reader.ReadElementContentAsString();
                         break;
@@ -2711,14 +2706,8 @@ namespace MetaDataVaultImplementation
                 {
                     AppendElement(builder, "HashDiffLength", row.HashDiffLength!, "      ");
                 }
-                if (!string.IsNullOrWhiteSpace(row.LoadTimestampColumnName))
-                {
-                    AppendElement(builder, "LoadTimestampColumnName", row.LoadTimestampColumnName!, "      ");
-                }
-                if (!string.IsNullOrWhiteSpace(row.LoadTimestampDataTypeId))
-                {
-                    AppendElement(builder, "LoadTimestampDataTypeId", row.LoadTimestampDataTypeId!, "      ");
-                }
+                AppendElement(builder, "LoadTimestampColumnName", RequireText(row.LoadTimestampColumnName, $"Entity 'BusinessSameAsLinkSatelliteImplementation' row '{row.Id}' is missing required property 'LoadTimestampColumnName'."), "      ");
+                AppendElement(builder, "LoadTimestampDataTypeId", RequireText(row.LoadTimestampDataTypeId, $"Entity 'BusinessSameAsLinkSatelliteImplementation' row '{row.Id}' is missing required property 'LoadTimestampDataTypeId'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampDefaultExpressionSql))
                 {
                     AppendElement(builder, "LoadTimestampDefaultExpressionSql", row.LoadTimestampDefaultExpressionSql!, "      ");
@@ -2731,6 +2720,7 @@ namespace MetaDataVaultImplementation
                 AppendElement(builder, "ParentHashKeyColumnName", RequireText(row.ParentHashKeyColumnName, $"Entity 'BusinessSameAsLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyColumnName'."), "      ");
                 AppendElement(builder, "ParentHashKeyDataTypeId", RequireText(row.ParentHashKeyDataTypeId, $"Entity 'BusinessSameAsLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyDataTypeId'."), "      ");
                 AppendElement(builder, "ParentHashKeyLength", RequireText(row.ParentHashKeyLength, $"Entity 'BusinessSameAsLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyLength'."), "      ");
+                AppendElement(builder, "PrimaryKeyNamePattern", RequireText(row.PrimaryKeyNamePattern, $"Entity 'BusinessSameAsLinkSatelliteImplementation' row '{row.Id}' is missing required property 'PrimaryKeyNamePattern'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
                     AppendElement(builder, "RecordSourceColumnName", row.RecordSourceColumnName!, "      ");
@@ -3016,6 +3006,9 @@ namespace MetaDataVaultImplementation
                     case "ParentHashKeyLength":
                         row.ParentHashKeyLength = reader.ReadElementContentAsString();
                         break;
+                    case "PrimaryKeyNamePattern":
+                        row.PrimaryKeyNamePattern = reader.ReadElementContentAsString();
+                        break;
                     case "RecordSourceColumnName":
                         row.RecordSourceColumnName = reader.ReadElementContentAsString();
                         break;
@@ -3078,6 +3071,7 @@ namespace MetaDataVaultImplementation
                 AppendElement(builder, "ParentHashKeyColumnName", RequireText(row.ParentHashKeyColumnName, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyColumnName'."), "      ");
                 AppendElement(builder, "ParentHashKeyDataTypeId", RequireText(row.ParentHashKeyDataTypeId, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyDataTypeId'."), "      ");
                 AppendElement(builder, "ParentHashKeyLength", RequireText(row.ParentHashKeyLength, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyLength'."), "      ");
+                AppendElement(builder, "PrimaryKeyNamePattern", RequireText(row.PrimaryKeyNamePattern, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'PrimaryKeyNamePattern'."), "      ");
                 AppendElement(builder, "RecordSourceColumnName", RequireText(row.RecordSourceColumnName, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceColumnName'."), "      ");
                 AppendElement(builder, "RecordSourceDataTypeId", RequireText(row.RecordSourceDataTypeId, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceDataTypeId'."), "      ");
                 AppendElement(builder, "RecordSourceLength", RequireText(row.RecordSourceLength, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceLength'."), "      ");
@@ -3362,6 +3356,9 @@ namespace MetaDataVaultImplementation
                     case "ParentHashKeyLength":
                         row.ParentHashKeyLength = reader.ReadElementContentAsString();
                         break;
+                    case "PrimaryKeyNamePattern":
+                        row.PrimaryKeyNamePattern = reader.ReadElementContentAsString();
+                        break;
                     case "RecordSourceColumnName":
                         row.RecordSourceColumnName = reader.ReadElementContentAsString();
                         break;
@@ -3424,6 +3421,7 @@ namespace MetaDataVaultImplementation
                 AppendElement(builder, "ParentHashKeyColumnName", RequireText(row.ParentHashKeyColumnName, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyColumnName'."), "      ");
                 AppendElement(builder, "ParentHashKeyDataTypeId", RequireText(row.ParentHashKeyDataTypeId, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyDataTypeId'."), "      ");
                 AppendElement(builder, "ParentHashKeyLength", RequireText(row.ParentHashKeyLength, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'ParentHashKeyLength'."), "      ");
+                AppendElement(builder, "PrimaryKeyNamePattern", RequireText(row.PrimaryKeyNamePattern, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'PrimaryKeyNamePattern'."), "      ");
                 AppendElement(builder, "RecordSourceColumnName", RequireText(row.RecordSourceColumnName, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceColumnName'."), "      ");
                 AppendElement(builder, "RecordSourceDataTypeId", RequireText(row.RecordSourceDataTypeId, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceDataTypeId'."), "      ");
                 AppendElement(builder, "RecordSourceLength", RequireText(row.RecordSourceLength, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceLength'."), "      ");
@@ -3908,6 +3906,7 @@ namespace MetaDataVaultImplementation
                 "ParentHashKeyColumnName",
                 "ParentHashKeyDataTypeId",
                 "ParentHashKeyLength",
+                "PrimaryKeyNamePattern",
                 "RecordSourceColumnName",
                 "RecordSourceDataTypeId",
                 "RecordSourceLength",
@@ -3955,6 +3954,7 @@ namespace MetaDataVaultImplementation
                 "ParentHashKeyColumnName",
                 "ParentHashKeyDataTypeId",
                 "ParentHashKeyLength",
+                "PrimaryKeyNamePattern",
                 "RecordSourceColumnName",
                 "RecordSourceDataTypeId",
                 "RecordSourceLength",
@@ -4004,6 +4004,7 @@ namespace MetaDataVaultImplementation
                 "ParentHashKeyColumnName",
                 "ParentHashKeyDataTypeId",
                 "ParentHashKeyLength",
+                "PrimaryKeyNamePattern",
                 "RecordSourceColumnName",
                 "RecordSourceDataTypeId",
                 "RecordSourceLength",
@@ -4072,6 +4073,7 @@ namespace MetaDataVaultImplementation
                 "ParentHashKeyColumnName",
                 "ParentHashKeyDataTypeId",
                 "ParentHashKeyLength",
+                "PrimaryKeyNamePattern",
                 "RecordSourceColumnName",
                 "RecordSourceDataTypeId",
                 "RecordSourceLength",
@@ -4123,6 +4125,7 @@ namespace MetaDataVaultImplementation
                 "ParentHashKeyColumnName",
                 "ParentHashKeyDataTypeId",
                 "ParentHashKeyLength",
+                "PrimaryKeyNamePattern",
                 "RecordSourceColumnName",
                 "RecordSourceDataTypeId",
                 "RecordSourceLength",
@@ -4170,6 +4173,7 @@ namespace MetaDataVaultImplementation
                 "ParentHashKeyColumnName",
                 "ParentHashKeyDataTypeId",
                 "ParentHashKeyLength",
+                "PrimaryKeyNamePattern",
                 "RecordSourceColumnName",
                 "RecordSourceDataTypeId",
                 "RecordSourceLength",
@@ -4219,6 +4223,7 @@ namespace MetaDataVaultImplementation
                 "ParentHashKeyColumnName",
                 "ParentHashKeyDataTypeId",
                 "ParentHashKeyLength",
+                "PrimaryKeyNamePattern",
                 "RecordSourceColumnName",
                 "RecordSourceDataTypeId",
                 "RecordSourceLength",

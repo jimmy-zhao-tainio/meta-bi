@@ -60,14 +60,15 @@
         <Property name="HashDiffColumnName" isRequired="false" />
         <Property name="HashDiffDataTypeId" isRequired="false" />
         <Property name="HashDiffLength" isRequired="false" />
-        <Property name="LoadTimestampColumnName" isRequired="false" />
-        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="LoadTimestampDataTypeId" />
         <Property name="LoadTimestampDefaultExpressionSql" isRequired="false" />
         <Property name="LoadTimestampPrecision" isRequired="false" />
         <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
+        <Property name="PrimaryKeyNamePattern" />
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
@@ -103,14 +104,15 @@
         <Property name="HashDiffColumnName" isRequired="false" />
         <Property name="HashDiffDataTypeId" isRequired="false" />
         <Property name="HashDiffLength" isRequired="false" />
-        <Property name="LoadTimestampColumnName" isRequired="false" />
-        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="LoadTimestampDataTypeId" />
         <Property name="LoadTimestampDefaultExpressionSql" isRequired="false" />
         <Property name="LoadTimestampPrecision" isRequired="false" />
         <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
+        <Property name="PrimaryKeyNamePattern" />
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
@@ -148,14 +150,15 @@
         <Property name="HashDiffColumnName" isRequired="false" />
         <Property name="HashDiffDataTypeId" isRequired="false" />
         <Property name="HashDiffLength" isRequired="false" />
-        <Property name="LoadTimestampColumnName" isRequired="false" />
-        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="LoadTimestampDataTypeId" />
         <Property name="LoadTimestampDefaultExpressionSql" isRequired="false" />
         <Property name="LoadTimestampPrecision" isRequired="false" />
         <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
+        <Property name="PrimaryKeyNamePattern" />
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
@@ -210,14 +213,15 @@
         <Property name="HashDiffColumnName" isRequired="false" />
         <Property name="HashDiffDataTypeId" isRequired="false" />
         <Property name="HashDiffLength" isRequired="false" />
-        <Property name="LoadTimestampColumnName" isRequired="false" />
-        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="LoadTimestampDataTypeId" />
         <Property name="LoadTimestampDefaultExpressionSql" isRequired="false" />
         <Property name="LoadTimestampPrecision" isRequired="false" />
         <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
+        <Property name="PrimaryKeyNamePattern" />
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
@@ -257,14 +261,15 @@
         <Property name="HashDiffColumnName" isRequired="false" />
         <Property name="HashDiffDataTypeId" isRequired="false" />
         <Property name="HashDiffLength" isRequired="false" />
-        <Property name="LoadTimestampColumnName" isRequired="false" />
-        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="LoadTimestampDataTypeId" />
         <Property name="LoadTimestampDefaultExpressionSql" isRequired="false" />
         <Property name="LoadTimestampPrecision" isRequired="false" />
         <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
+        <Property name="PrimaryKeyNamePattern" />
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
@@ -308,6 +313,7 @@
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
+        <Property name="PrimaryKeyNamePattern" />
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
         <Property name="RecordSourceLength" />
@@ -353,6 +359,7 @@
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
+        <Property name="PrimaryKeyNamePattern" />
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
         <Property name="RecordSourceLength" />

@@ -154,7 +154,7 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", rawHubSatelliteImplementation.HashDiffLength));
 
-            AddImplementationColumn(
+            var loadTimestampColumn = AddImplementationColumn(
                 context,
                 table,
                 rawHubSatelliteImplementation.LoadTimestampColumnName,
@@ -163,6 +163,13 @@ public static partial class Converter
                 reservedColumnNames,
                 rawHubSatelliteImplementation.LoadTimestampDefaultExpressionSql,
                 ("Precision", rawHubSatelliteImplementation.LoadTimestampPrecision));
+
+            AddPrimaryKey(
+                context,
+                table,
+                ApplyPattern(rawHubSatelliteImplementation.PrimaryKeyNamePattern, ("TableName", table.Name)),
+                parentHashKeyColumn,
+                loadTimestampColumn);
 
             AddImplementationColumn(
                 context,
@@ -341,7 +348,7 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", rawLinkSatelliteImplementation.HashDiffLength));
 
-            AddImplementationColumn(
+            var loadTimestampColumn = AddImplementationColumn(
                 context,
                 table,
                 rawLinkSatelliteImplementation.LoadTimestampColumnName,
@@ -350,6 +357,13 @@ public static partial class Converter
                 reservedColumnNames,
                 rawLinkSatelliteImplementation.LoadTimestampDefaultExpressionSql,
                 ("Precision", rawLinkSatelliteImplementation.LoadTimestampPrecision));
+
+            AddPrimaryKey(
+                context,
+                table,
+                ApplyPattern(rawLinkSatelliteImplementation.PrimaryKeyNamePattern, ("TableName", table.Name)),
+                parentHashKeyColumn,
+                loadTimestampColumn);
 
             AddImplementationColumn(
                 context,
@@ -567,8 +581,13 @@ public static partial class Converter
         ConversionContext context,
         Table table,
         string name,
-        TableColumn tableColumn)
+        params TableColumn[] tableColumns)
     {
+        if (tableColumns.Length == 0)
+        {
+            throw new InvalidOperationException("A primary key must contain at least one column.");
+        }
+
         var actualName = ShortenSqlServerIdentifier(name);
         var id = $"{table.Id}.pk.{actualName}";
         EnsureUniqueId(context.MetaSql.PrimaryKeyList.Select(row => row.Id), id, "primary key");
@@ -580,13 +599,16 @@ public static partial class Converter
             Table = table,
         };
         context.MetaSql.PrimaryKeyList.Add(primaryKey);
-        context.MetaSql.PrimaryKeyColumnList.Add(new PrimaryKeyColumn
+        for (var index = 0; index < tableColumns.Length; index++)
         {
-            Id = $"{id}.column.1",
-            PrimaryKey = primaryKey,
-            TableColumn = tableColumn,
-            Ordinal = "1",
-        });
+            context.MetaSql.PrimaryKeyColumnList.Add(new PrimaryKeyColumn
+            {
+                Id = $"{id}.column.{index + 1}",
+                PrimaryKey = primaryKey,
+                TableColumn = tableColumns[index],
+                Ordinal = (index + 1).ToString(CultureInfo.InvariantCulture),
+            });
+        }
     }
 
     private static void AddForeignKey(

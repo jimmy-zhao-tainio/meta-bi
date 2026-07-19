@@ -27,9 +27,9 @@ namespace MetaDataVaultImplementation
 
         public string? HashDiffLength { get; set; }
 
-        public string? LoadTimestampColumnName { get; set; }
+        public string LoadTimestampColumnName { get; set; } = string.Empty;
 
-        public string? LoadTimestampDataTypeId { get; set; }
+        public string LoadTimestampDataTypeId { get; set; } = string.Empty;
 
         public string? LoadTimestampDefaultExpressionSql { get; set; }
 
@@ -42,6 +42,8 @@ namespace MetaDataVaultImplementation
         public string ParentHashKeyDataTypeId { get; set; } = string.Empty;
 
         public string ParentHashKeyLength { get; set; } = string.Empty;
+
+        public string PrimaryKeyNamePattern { get; set; } = string.Empty;
 
         public string? RecordSourceColumnName { get; set; }
 

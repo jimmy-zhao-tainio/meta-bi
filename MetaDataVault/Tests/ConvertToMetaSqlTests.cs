@@ -100,10 +100,11 @@ public sealed class ConvertToMetaSqlTests
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
             var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
             var primaryKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("PrimaryKey");
+            var primaryKeyColumns = sqlWorkspace.Instance.GetOrCreateEntityRecords("PrimaryKeyColumn");
             var foreignKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("ForeignKey");
 
             Assert.Equal(27, tables.Count);
-            Assert.Equal(14, primaryKeys.Count);
+            Assert.Equal(27, primaryKeys.Count);
             Assert.Equal(25, foreignKeys.Count);
             Assert.Contains(tables, row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "H_Customer", StringComparison.Ordinal));
             Assert.Contains(tables, row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "HS_Customer_CustomerProfile", StringComparison.Ordinal));
@@ -130,6 +131,18 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == orderCustomerLink.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "OrderHashKey", StringComparison.Ordinal));
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == orderCustomerLink.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "CustomerHashKey", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => row.Id == "RawVault.dbo.L_OrderCustomer.fk.FK_L_OrderCustomer_H_Order_OrderHashKey");
+
+            var satelliteTables = tables
+                .Where(row => row.Values["Name"].StartsWith("HS_", StringComparison.Ordinal) || row.Values["Name"].StartsWith("LS_", StringComparison.Ordinal))
+                .ToArray();
+            Assert.Equal(13, satelliteTables.Length);
+            foreach (var satelliteTable in satelliteTables)
+            {
+                var parentHashKeyName = satelliteTable.Values["Name"].StartsWith("HS_", StringComparison.Ordinal)
+                    ? "HubHashKey"
+                    : "LinkHashKey";
+                AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, satelliteTable, parentHashKeyName, "LoadTimestamp");
+            }
         }
         finally
         {
@@ -592,6 +605,8 @@ public sealed class ConvertToMetaSqlTests
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
             var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var primaryKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("PrimaryKey");
+            var primaryKeyColumns = sqlWorkspace.Instance.GetOrCreateEntityRecords("PrimaryKeyColumn");
             var foreignKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("ForeignKey");
 
             Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BH_Customer", StringComparison.Ordinal));
@@ -642,6 +657,10 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BR_CustomerOrderTraversal_BH_Customer", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BR_CustomerOrderTraversal_BH_Order_Related", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => row.Id == "BusinessVault.dbo.PIT_CustomerSnapshot.fk.FK_PIT_CustomerSnapshot_BH_Customer");
+
+            AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, GetTable(tables, "BHS_Customer_Profile"), "HubHashKey", "LoadTimestamp");
+            AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, GetTable(tables, "BLS_CustomerOrder_Status"), "LinkHashKey", "LoadTimestamp");
+            AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, GetTable(tables, "RSAT_Status_Current"), "ReferenceHashKey", "LoadTimestamp");
         }
         finally
         {
@@ -731,6 +750,8 @@ public sealed class ConvertToMetaSqlTests
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
             var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var primaryKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("PrimaryKey");
+            var primaryKeyColumns = sqlWorkspace.Instance.GetOrCreateEntityRecords("PrimaryKeyColumn");
             var foreignKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("ForeignKey");
 
             Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BSAL_CustomerMatch", StringComparison.Ordinal));
@@ -756,6 +777,9 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BHAL_EmployeeManager_BH_Employee_ParentHashKey", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BHALS_EmployeeManager_Line_BHAL_EmployeeManager", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => row.Id == "BusinessVault.dbo.BSAL_CustomerMatch.fk.FK_BSAL_CustomerMatch_BH_Customer_PrimaryHashKey");
+
+            AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, GetTable(tables, "BSALS_CustomerMatch_Evidence"), "LinkHashKey", "LoadTimestamp");
+            AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, GetTable(tables, "BHALS_EmployeeManager_Line"), "LinkHashKey", "LoadTimestamp");
         }
         finally
         {
@@ -1185,6 +1209,26 @@ public sealed class ConvertToMetaSqlTests
             currentTableId == tableId &&
             row.Values.TryGetValue("Name", out var currentName) &&
             string.Equals(currentName, columnName, StringComparison.Ordinal));
+    }
+
+    private static void AssertSatellitePrimaryKey(
+        IReadOnlyList<Meta.Core.Domain.GenericRecord> primaryKeys,
+        IReadOnlyList<Meta.Core.Domain.GenericRecord> primaryKeyColumns,
+        IReadOnlyList<Meta.Core.Domain.GenericRecord> columns,
+        Meta.Core.Domain.GenericRecord table,
+        params string[] expectedColumnNames)
+    {
+        var primaryKey = primaryKeys.Single(row =>
+            row.RelationshipIds.TryGetValue("TableId", out var tableId) &&
+            tableId == table.Id);
+        Assert.Equal("PK_" + table.Values["Name"], primaryKey.Values["Name"]);
+
+        var actualColumnNames = primaryKeyColumns
+            .Where(row => row.RelationshipIds.TryGetValue("PrimaryKeyId", out var primaryKeyId) && primaryKeyId == primaryKey.Id)
+            .OrderBy(row => int.Parse(row.Values["Ordinal"], CultureInfo.InvariantCulture))
+            .Select(row => columns.Single(column => column.Id == row.RelationshipIds["TableColumnId"]).Values["Name"])
+            .ToArray();
+        Assert.Equal(expectedColumnNames, actualColumnNames);
     }
 
     private static string GetDetailValue(IReadOnlyList<Meta.Core.Domain.GenericRecord> details, string tableColumnId, string detailName)

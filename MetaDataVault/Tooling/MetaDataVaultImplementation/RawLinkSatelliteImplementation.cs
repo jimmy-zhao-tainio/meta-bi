@@ -43,6 +43,8 @@ namespace MetaDataVaultImplementation
 
         public string ParentHashKeyLength { get; set; } = string.Empty;
 
+        public string PrimaryKeyNamePattern { get; set; } = string.Empty;
+
         public string RecordSourceColumnName { get; set; } = string.Empty;
 
         public string RecordSourceDataTypeId { get; set; } = string.Empty;
