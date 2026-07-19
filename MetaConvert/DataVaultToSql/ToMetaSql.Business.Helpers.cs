@@ -58,7 +58,7 @@ public static partial class Converter
                         detail => detail.Name,
                         detail => detail.Value)));
 
-            AddBusinessMembers(context, table, reservedColumnNames, stampMembers);
+            AddBusinessMembers(context, table, reservedColumnNames, stampMembers, "false");
 
             var satelliteReferences = GetGroup(businessPointInTimeHubSatellitesByPointInTimeId, pointInTime.Id)
                 .Select(row => (row.Id, SatelliteName: row.BusinessHubSatellite.BusinessSatellite.Name))

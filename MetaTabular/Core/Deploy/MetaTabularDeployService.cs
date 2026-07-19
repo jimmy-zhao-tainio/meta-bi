@@ -271,8 +271,9 @@ public sealed class MetaTabularDeployService
             }
 
             var ordinals = new HashSet<int>();
-            foreach (var level in levels)
+            for (var levelIndex = 0; levelIndex < levels.Length; levelIndex++)
             {
+                var level = levels[levelIndex];
                 if (!columns.TryGetValue(level.TabularColumn, out var targetColumn))
                 {
                     throw new InvalidOperationException($"TabularHierarchyLevel '{level.Id}' references column '{level.TabularColumn.Id}' that was not emitted to the target model.");
@@ -283,16 +284,16 @@ public sealed class MetaTabularDeployService
                     throw new InvalidOperationException($"TabularHierarchyLevel '{level.Id}' must reference a column in the hierarchy table.");
                 }
 
-                var ordinal = ParseInt(level.Ordinal, 0, "TabularHierarchyLevel.Ordinal");
-                if (!ordinals.Add(ordinal))
+                var modeledOrdinal = ParseInt(level.Ordinal, 0, "TabularHierarchyLevel.Ordinal");
+                if (!ordinals.Add(modeledOrdinal))
                 {
-                    throw new InvalidOperationException($"TabularHierarchy '{row.Id}' has more than one level with ordinal '{ordinal}'.");
+                    throw new InvalidOperationException($"TabularHierarchy '{row.Id}' has more than one level with ordinal '{modeledOrdinal}'.");
                 }
 
                 hierarchy.Levels.Add(new Tom.Level
                 {
                     Name = level.Name,
-                    Ordinal = ordinal,
+                    Ordinal = levelIndex,
                     Column = targetColumn,
                 });
             }

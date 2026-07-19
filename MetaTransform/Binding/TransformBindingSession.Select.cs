@@ -127,18 +127,14 @@ internal sealed partial class TransformBindingSession
             if (boundColumnReference is not null)
             {
                 boundColumnReferences.Add(boundColumnReference);
-                outputDataType = boundColumnReference.ResolvedColumn.DataType;
             }
         }
         else
         {
             BindScalarExpression(scalarExpression, scope, inputRowset, groupingContext, withinAggregate: false);
-            var literal = navigator.TryGetLiteral(scalarExpression);
-            if (literal is not null)
-            {
-                outputDataType = CreateLiteralDataType(literal);
-            }
         }
+
+        outputDataType = TryResolveExpressionDataType(scalarExpression);
 
         var outputName = navigator.TryGetSelectScalarExpressionAlias(selectScalarExpression);
         if (string.IsNullOrWhiteSpace(outputName) && boundColumnReference is not null)

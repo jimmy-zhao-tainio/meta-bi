@@ -1,17 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaMesh>
   <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove the generated AdventureWorks stack databases and disposable Runs workspaces.</Description>
+      <Name>cleanup</Name>
+    </Operation>
     <Operation Id="operation:cleanup-source-schema" MeshId="mesh:default">
       <Description>Remove the generated AdventureWorks source schema workspace.</Description>
       <Name>cleanup-source-schema</Name>
     </Operation>
-    <Operation Id="operation:extract-source-schema" MeshId="mesh:default">
-      <Description>Extract the restored AdventureWorks2022 database into a MetaSchema workspace for a preflight run.</Description>
-      <Name>extract-source-schema</Name>
+    <Operation Id="operation:create-analytics" MeshId="mesh:default">
+      <Description>Author the AdventureWorks sales analytics model over the conformed dimensional warehouse.</Description>
+      <Name>create-analytics</Name>
+    </Operation>
+    <Operation Id="operation:create-business-vault" MeshId="mesh:default">
+      <Description>Author the curated AdventureWorks Business Data Vault.</Description>
+      <Name>create-business-vault</Name>
+    </Operation>
+    <Operation Id="operation:create-business-warehouse-pipeline" MeshId="mesh:default">
+      <Description>Author the Business Data Vault-to-dimensional warehouse pipeline from the strictly bound transform manifest.</Description>
+      <Name>create-business-warehouse-pipeline</Name>
+    </Operation>
+    <Operation Id="operation:create-business-warehouse-transforms" MeshId="mesh:default">
+      <Description>Import and strictly bind the Business Data Vault-to-dimensional warehouse transforms.</Description>
+      <Name>create-business-warehouse-transforms</Name>
+    </Operation>
+    <Operation Id="operation:create-data-quality" MeshId="mesh:default">
+      <Description>Generate, inspect, promote, and render Data Quality checks from the bound Business-to-warehouse transforms.</Description>
+      <Name>create-data-quality</Name>
+    </Operation>
+    <Operation Id="operation:create-dimensional-warehouse" MeshId="mesh:default">
+      <Description>Author the AdventureWorks dimensional warehouse and its three analytical fact grains.</Description>
+      <Name>create-dimensional-warehouse</Name>
+    </Operation>
+    <Operation Id="operation:create-orchestration" MeshId="mesh:default">
+      <Description>Infer and materialize the complete ETL run plan from the three modeled pipelines and strict binding evidence.</Description>
+      <Name>create-orchestration</Name>
+    </Operation>
+    <Operation Id="operation:create-raw-business-pipeline" MeshId="mesh:default">
+      <Description>Author the Raw-to-Business Data Vault pipeline from the strictly bound transform manifest.</Description>
+      <Name>create-raw-business-pipeline</Name>
+    </Operation>
+    <Operation Id="operation:create-raw-business-transforms" MeshId="mesh:default">
+      <Description>Import and strictly bind the Raw-to-Business Data Vault transforms.</Description>
+      <Name>create-raw-business-transforms</Name>
+    </Operation>
+    <Operation Id="operation:create-raw-vault" MeshId="mesh:default">
+      <Description>Generate the source-faithful Raw Data Vault model from the extracted AdventureWorks schema.</Description>
+      <Name>create-raw-vault</Name>
+    </Operation>
+    <Operation Id="operation:create-source-raw-pipeline" MeshId="mesh:default">
+      <Description>Author the Source-to-Raw Data Vault pipeline from the strictly bound transform manifest.</Description>
+      <Name>create-source-raw-pipeline</Name>
+    </Operation>
+    <Operation Id="operation:create-source-raw-transforms" MeshId="mesh:default">
+      <Description>Import and strictly bind the source-to-Raw Data Vault transforms.</Description>
+      <Name>create-source-raw-transforms</Name>
+    </Operation>
+    <Operation Id="operation:create-tabular" MeshId="mesh:default">
+      <Description>Convert the AdventureWorks analytics model to Tabular and add warehouse query partitions.</Description>
+      <Name>create-tabular</Name>
+    </Operation>
+    <Operation Id="operation:deploy-business-vault" MeshId="mesh:default">
+      <Description>Project, deploy, and re-extract the AdventureWorks Business Data Vault.</Description>
+      <Name>deploy-business-vault</Name>
+    </Operation>
+    <Operation Id="operation:deploy-data-quality" MeshId="mesh:default">
+      <Description>Deploy the generated Data Quality views, review dashboard, and operational SQL to the analytical database.</Description>
+      <Name>deploy-data-quality</Name>
+    </Operation>
+    <Operation Id="operation:deploy-dimensional-warehouse" MeshId="mesh:default">
+      <Description>Project, deploy, and re-extract the AdventureWorks dimensional warehouse.</Description>
+      <Name>deploy-dimensional-warehouse</Name>
+    </Operation>
+    <Operation Id="operation:deploy-pipeline-runtime" MeshId="mesh:default">
+      <Description>Create or update the MetaPipeline operational database used for ETL run evidence.</Description>
+      <Name>deploy-pipeline-runtime</Name>
+    </Operation>
+    <Operation Id="operation:deploy-raw-vault" MeshId="mesh:default">
+      <Description>Project, deploy, and re-extract the AdventureWorks Raw Data Vault.</Description>
+      <Name>deploy-raw-vault</Name>
+    </Operation>
+    <Operation Id="operation:deploy-tabular" MeshId="mesh:default">
+      <Description>Deploy the AdventureWorks Tabular model without processing it.</Description>
+      <Name>deploy-tabular</Name>
+    </Operation>
+    <Operation Id="operation:drop-tabular" MeshId="mesh:default">
+      <Description>Drop the optional AdventureWorks Tabular database.</Description>
+      <Name>drop-tabular</Name>
+    </Operation>
+    <Operation Id="operation:load-business-vault" MeshId="mesh:default">
+      <Description>Execute the modeled Raw-to-Business Data Vault pipeline.</Description>
+      <Name>load-business-vault</Name>
+    </Operation>
+    <Operation Id="operation:load-dimensional-warehouse" MeshId="mesh:default">
+      <Description>Execute the modeled Business Data Vault-to-dimensional warehouse pipeline.</Description>
+      <Name>load-dimensional-warehouse</Name>
+    </Operation>
+    <Operation Id="operation:load-raw-vault" MeshId="mesh:default">
+      <Description>Execute the modeled Source-to-Raw Data Vault pipeline.</Description>
+      <Name>load-raw-vault</Name>
+    </Operation>
+    <Operation Id="operation:process-tabular" MeshId="mesh:default">
+      <Description>Process the deployed AdventureWorks Tabular database.</Description>
+      <Name>process-tabular</Name>
+    </Operation>
+    <Operation Id="operation:run-etl" MeshId="mesh:default">
+      <Description>Execute the complete inferred ETL graph across all three modeled pipelines.</Description>
+      <Name>run-etl</Name>
+    </Operation>
+    <Operation Id="operation:sync-source-schema" MeshId="mesh:default">
+      <Description>Synchronize the live AdventureWorks2022 database schema into the modeled source contract.</Description>
+      <Name>sync-source-schema</Name>
     </Operation>
     <Operation Id="operation:validate-source" MeshId="mesh:default">
-      <Description>Verify the restored AdventureWorks OLTP source and the tables used by the recording.</Description>
+      <Description>Verify the restored AdventureWorks OLTP source and the tables required by the stack.</Description>
       <Name>validate-source</Name>
+    </Operation>
+    <Operation Id="operation:verify-stack" MeshId="mesh:default">
+      <Description>Reconcile the loaded Data Vault, warehouse, Data Quality, and pipeline evidence to the AdventureWorks source.</Description>
+      <Name>verify-stack</Name>
     </Operation>
   </OperationList>
 </MetaMesh>

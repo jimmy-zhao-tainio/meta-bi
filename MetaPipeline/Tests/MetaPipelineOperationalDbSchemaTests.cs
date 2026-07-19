@@ -56,7 +56,7 @@ public sealed class MetaPipelineOperationalDbSchemaTests
     {
         var sql = global::MetaPipeline.MetaPipelineOperationalDbSchema.BootstrapSql;
 
-        Assert.Equal(6, global::MetaPipeline.MetaPipelineOperationalDbSchema.CurrentVersion);
+        Assert.Equal(7, global::MetaPipeline.MetaPipelineOperationalDbSchema.CurrentVersion);
         Assert.Contains("INSERT INTO [MetaPipeline].[RunDiagnosticsLog]", sql, StringComparison.Ordinal);
         Assert.Contains("FROM [MetaPipeline].[RunLog]", sql, StringComparison.Ordinal);
         Assert.Contains("[Level]", sql, StringComparison.Ordinal);
@@ -91,5 +91,18 @@ public sealed class MetaPipelineOperationalDbSchemaTests
         Assert.Contains("[Algorithm]", sql, StringComparison.Ordinal);
         Assert.Contains("[Version] = 5", sql, StringComparison.Ordinal);
         Assert.Contains("[Version] = 6", sql, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void BootstrapSql_StoresTransformIdentityOnTaskRuns()
+    {
+        var sql = global::MetaPipeline.MetaPipelineOperationalDbSchema.BootstrapSql;
+
+        Assert.Equal(7, global::MetaPipeline.MetaPipelineOperationalDbSchema.CurrentVersion);
+        Assert.Contains("COL_LENGTH(N'MetaPipeline.TaskRun', N'TransformScriptId')", sql, StringComparison.Ordinal);
+        Assert.Contains("[TransformScriptId] nvarchar(512) NULL", sql, StringComparison.Ordinal);
+        Assert.Contains("COL_LENGTH(N'MetaPipeline.TaskRun', N'TransformScriptName')", sql, StringComparison.Ordinal);
+        Assert.Contains("[TransformScriptName] nvarchar(512) NULL", sql, StringComparison.Ordinal);
+        Assert.Contains("[Version] = 7", sql, StringComparison.Ordinal);
     }
 }

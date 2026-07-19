@@ -369,20 +369,28 @@ internal sealed partial class TransformBindingSession
             BindBooleanExpression(whereSearchCondition, scope, inputRowset, null);
         }
 
-        var groupingContext = BindGrouping(querySpecification, scope, inputRowset);
-        var projectionInputRowset = groupingContext?.GroupedRowset ?? inputRowset;
-
-        var havingSearchCondition = navigator.TryGetHavingSearchCondition(querySpecification);
-        if (havingSearchCondition is not null)
+        nonNullableColumnScopeStack.Push(FindConjunctiveNonNullableColumns(whereSearchCondition));
+        try
         {
-            BindBooleanExpression(havingSearchCondition, scope, inputRowset, groupingContext);
+            var groupingContext = BindGrouping(querySpecification, scope, inputRowset);
+            var projectionInputRowset = groupingContext?.GroupedRowset ?? inputRowset;
+
+            var havingSearchCondition = navigator.TryGetHavingSearchCondition(querySpecification);
+            if (havingSearchCondition is not null)
+            {
+                BindBooleanExpression(havingSearchCondition, scope, inputRowset, groupingContext);
+            }
+
+            BindQueryWindowClause(querySpecification, scope, projectionInputRowset, groupingContext);
+
+            var outputRowset = BindSelectElements(querySpecification, scope, projectionInputRowset, outputRowsetId, outputRowsetName, outputRowsetRole, expectedOutputColumnNames, groupingContext);
+            TrackRowset(outputRowset);
+            return new RuntimeQueryBindingResult(scope, inputRowset, outputRowset);
         }
-
-        BindQueryWindowClause(querySpecification, scope, projectionInputRowset, groupingContext);
-
-        var outputRowset = BindSelectElements(querySpecification, scope, projectionInputRowset, outputRowsetId, outputRowsetName, outputRowsetRole, expectedOutputColumnNames, groupingContext);
-        TrackRowset(outputRowset);
-        return new RuntimeQueryBindingResult(scope, inputRowset, outputRowset);
+        finally
+        {
+            nonNullableColumnScopeStack.Pop();
+        }
     }
 
     private RuntimeGroupingContext? BindGrouping(

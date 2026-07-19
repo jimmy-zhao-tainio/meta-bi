@@ -1,84 +1,35 @@
 # AdventureWorks source setup
 
-Use the official Microsoft AdventureWorks sample database downloads to restore a local SQL Server database.
+The stack starts from the live `AdventureWorks2022` OLTP database. It does not use Microsoft's separate AdventureWorks data warehouse sample or copy an existing analytical model.
 
-Primary references:
+Official sources:
 
-- Microsoft Learn AdventureWorks sample databases: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure
-- Microsoft SQL Server samples releases: https://github.com/microsoft/sql-server-samples/releases/tag/adventureworks
+- [AdventureWorks sample databases](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure)
+- [SQL Server sample releases](https://github.com/microsoft/sql-server-samples/releases/tag/adventureworks)
 
-For this demo, default to the plain OLTP `AdventureWorks2022` database because SQL Server 2022 is the local developer target. This is intentionally not the `AdventureWorksDW` data warehouse sample.
-
-The demo itself starts from the restored SQL database, not from the backup file, not from sample project files, and not from hand-written schema metadata.
-
-## Restore
-
-Restore the `.bak` through SSMS, Azure Data Studio, the MSSQL extension, or `sqlcmd`.
-
-The scaffold includes `prepare-adventureworks-db.ps1`, which downloads the official `AdventureWorks2022.bak`, restores it to the local SQL Server default instance, and verifies source data through the mesh.
-
-If the local SQL Server differs from the defaults, set the environment variables first:
+Restore `AdventureWorks2022.bak` through your normal SQL Server tooling, or run the local setup helper:
 
 ```powershell
-$env:AW_SQL_SERVER = "localhost"
+$env:AW_SQL_SERVER = "."
 $env:AW_SOURCE_DATABASE = "AdventureWorks2022"
-$env:AW_RESTORE_REPLACE = "1"
-```
-
-Then run:
-
-```powershell
 .\prepare-adventureworks-db.ps1
 ```
 
-Set the source connection variables before running checks:
+Set `AW_RESTORE_REPLACE=1` when the helper should replace an existing database. `AW_BACKUP_URL` and `AW_RUN_ROOT` override the download source and local backup cache when needed.
+
+Set the source and administrative connections used by the mesh:
 
 ```powershell
-$env:AW_SQL_SERVER = "localhost"
-$env:AW_SOURCE_DATABASE = "AdventureWorks2022"
-$env:AW_SOURCE_SQL = "Server=localhost;Database=AdventureWorks2022;Trusted_Connection=True;TrustServerCertificate=True;"
+$env:AW_SOURCE_SQL = "Server=.;Database=AdventureWorks2022;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:AW_ADMIN_SQL = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
 ```
 
-Then run:
+Then verify and synchronize the source contract:
 
 ```powershell
 cd AdventureWorksBiStackVideo.MetaMesh
 meta-mesh run --operation validate-source
-cd ..
+meta-mesh run --operation sync-source-schema
 ```
 
-## First BI workspace operation in the recording
-
-After the readiness check passes, the recorded agent run should begin product work by extracting the source schema from the live SQL database:
-
-```cmd
-meta-schema extract sqlserver --new-workspace source\AdventureWorks2022\Schema --connection-env AW_SOURCE_SQL --system AdventureWorks2022 --all-schemas --all-tables
-```
-
-The scaffold mesh writes to `Runs\source\AdventureWorks2022\Schema` and exposes the extraction only as a reference/preflight operation:
-
-```powershell
-meta-mesh run --operation extract-source-schema
-```
-
-For the main video, do not pre-create the source schema workspace. Let the recorded agent create the source-database-scoped `Schema` folder inside its generated run folder.
-
-## Tables expected by the first slice
-
-The first video slice expects these source tables to exist:
-
-- `Sales.SalesOrderHeader`
-- `Sales.SalesOrderDetail`
-- `Sales.Customer`
-- `Sales.Store`
-- `Sales.SalesPerson`
-- `Sales.SalesTerritory`
-- `Sales.SalesPersonQuotaHistory`
-- `Production.Product`
-- `Production.ProductSubcategory`
-- `Production.ProductCategory`
-- `Person.Person`
-- `Person.Address`
-- `Person.StateProvince`
-- `Person.CountryRegion`
-- `HumanResources.Employee`
+The synchronization extracts the complete live database schema into `Runs\source\AdventureWorks2022\Schema`, so source drift remains visible even though the first ETL slice uses only the tables required by the analytical scope.

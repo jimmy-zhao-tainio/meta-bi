@@ -337,9 +337,6 @@ UPDATE [MetaPipeline].[PipelineRun]
 SET
     [CompletedAtUtc] = @CompletedAtUtc,
     [Status] = @Status,
-    [TransformScriptName] = COALESCE(NULLIF(@TransformScriptName, N''), [TransformScriptName]),
-    [TargetSqlIdentifier] = COALESCE(NULLIF(@TargetSqlIdentifier, N''), [TargetSqlIdentifier]),
-    [TargetWriteModelName] = COALESCE(NULLIF(@TargetWriteModelName, N''), [TargetWriteModelName]),
     [FailureStage] = NULLIF(@FailureStage, N'None'),
     [FailureKind] = CASE WHEN @Status = N'Failed' THEN N'Runtime' ELSE NULL END,
     [FailureMessage] = NULLIF(@FailureMessage, N'')
@@ -349,9 +346,6 @@ WHERE [PipelineRunId] = @PipelineRunId;
                 Parameter("@PipelineRunId", runId),
                 Parameter("@CompletedAtUtc", result.CompletedAtUtc),
                 Parameter("@Status", result.Status.ToString()),
-                Parameter("@TransformScriptName", result.TransformScriptName),
-                Parameter("@TargetSqlIdentifier", result.TargetSqlIdentifier),
-                Parameter("@TargetWriteModelName", result.TargetWriteModelName),
                 Parameter("@FailureStage", result.FailureStage.ToString()),
                 Parameter("@FailureMessage", result.FailureMessage));
 
@@ -390,6 +384,8 @@ INSERT INTO [MetaPipeline].[TaskRun]
     [AuditId],
     [TaskName],
     [TaskKind],
+    [TransformScriptId],
+    [TransformScriptName],
     [StartedAtUtc],
     [CompletedAtUtc],
     [Status],
@@ -404,6 +400,8 @@ VALUES
     @AuditId,
     @TaskName,
     @TaskKind,
+    @TransformScriptId,
+    @TransformScriptName,
     @StartedAtUtc,
     @CompletedAtUtc,
     @Status,
@@ -418,6 +416,8 @@ VALUES
                     Parameter("@AuditId", task.AuditId),
                     Parameter("@TaskName", task.TaskName),
                     Parameter("@TaskKind", task.TaskKind),
+                    Parameter("@TransformScriptId", task.TransformScriptId),
+                    Parameter("@TransformScriptName", task.TransformScriptName),
                     Parameter("@StartedAtUtc", task.StartedAtUtc),
                     Parameter("@CompletedAtUtc", task.CompletedAtUtc),
                     Parameter("@Status", task.Status.ToString()),

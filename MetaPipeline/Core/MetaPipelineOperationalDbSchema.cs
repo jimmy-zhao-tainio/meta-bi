@@ -2,7 +2,7 @@ namespace MetaPipeline;
 
 public static class MetaPipelineOperationalDbSchema
 {
-    public const int CurrentVersion = 6;
+    public const int CurrentVersion = 7;
     public const string DefaultDatabaseName = "MetaPipeline";
 
     public static string BootstrapSql { get; } = """
@@ -60,6 +60,8 @@ BEGIN
         [AuditId] bigint NULL,
         [TaskName] nvarchar(512) NOT NULL,
         [TaskKind] nvarchar(128) NOT NULL,
+        [TransformScriptId] nvarchar(512) NULL,
+        [TransformScriptName] nvarchar(512) NULL,
         [StartedAtUtc] datetimeoffset(7) NOT NULL,
         [CompletedAtUtc] datetimeoffset(7) NOT NULL,
         [Status] nvarchar(32) NOT NULL,
@@ -258,6 +260,23 @@ END;
 IF NOT EXISTS (SELECT 1 FROM [MetaPipeline].[SchemaVersion] WHERE [Version] = 6)
 BEGIN
     INSERT INTO [MetaPipeline].[SchemaVersion] ([Version]) VALUES (6);
+END;
+
+IF COL_LENGTH(N'MetaPipeline.TaskRun', N'TransformScriptId') IS NULL
+BEGIN
+    ALTER TABLE [MetaPipeline].[TaskRun]
+        ADD [TransformScriptId] nvarchar(512) NULL;
+END;
+
+IF COL_LENGTH(N'MetaPipeline.TaskRun', N'TransformScriptName') IS NULL
+BEGIN
+    ALTER TABLE [MetaPipeline].[TaskRun]
+        ADD [TransformScriptName] nvarchar(512) NULL;
+END;
+
+IF NOT EXISTS (SELECT 1 FROM [MetaPipeline].[SchemaVersion] WHERE [Version] = 7)
+BEGIN
+    INSERT INTO [MetaPipeline].[SchemaVersion] ([Version]) VALUES (7);
 END;
 
 IF NOT EXISTS (

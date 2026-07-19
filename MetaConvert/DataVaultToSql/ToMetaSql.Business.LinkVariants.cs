@@ -155,7 +155,7 @@ public static partial class Converter
                         detail => detail.Name,
                         detail => detail.Value)));
 
-            AddBusinessMembers(context, table, reservedColumnNames, members);
+            AddBusinessMembers(context, table, reservedColumnNames, members, "true");
 
             AddImplementationColumn(
                 context,
@@ -346,7 +346,7 @@ public static partial class Converter
                         detail => detail.Name,
                         detail => detail.Value)));
 
-            AddBusinessMembers(context, table, reservedColumnNames, members);
+            AddBusinessMembers(context, table, reservedColumnNames, members, "true");
 
             AddImplementationColumn(
                 context,

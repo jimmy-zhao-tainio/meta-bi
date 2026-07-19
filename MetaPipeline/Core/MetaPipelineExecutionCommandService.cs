@@ -142,23 +142,7 @@ public sealed class MetaPipelineExecutionCommandService
                     new MetaPipelineOperationalRunStart(
                         PipelineWorkspacePath: Path.GetFullPath(plan.PipelineWorkspacePath),
                         PipelineId: plan.PipelineId,
-                        PipelineName: plan.PipelineName,
-                        TransformTaskId: plan.TransformTaskId,
-                        TransformTaskName: plan.TransformTaskName,
-                        TargetWriteTaskId: plan.TargetWriteTaskId,
-                        TargetWriteTaskName: plan.TargetWriteTaskName,
-                        TransformWorkspacePath: FullPathOrEmpty(plan.TransformWorkspacePath),
-                        BindingWorkspacePath: FullPathOrEmpty(plan.BindingWorkspacePath),
-                        TransformScriptId: plan.TransformScriptId,
-                        TransformBindingId: plan.TransformBindingId,
-                        TransformScriptName: plan.TransformScriptName,
-                        ExecutionConnectionReferenceName: plan.ExecutionConnectionReferenceName,
-                        ExecutionConnectionEnvironmentVariableName: plan.ExecutionConnectionEnvironmentVariableName,
-                        TargetConnectionReferenceName: plan.TargetConnectionReferenceName,
-                        TargetConnectionEnvironmentVariableName: plan.TargetConnectionEnvironmentVariableName,
-                        TargetSqlIdentifier: plan.TargetSqlIdentifier,
-                        TargetWriteModelName: plan.TargetWriteModelName,
-                        BatchSize: plan.BatchSize))
+                        PipelineName: plan.PipelineName))
                     .ConfigureAwait(false);
             }
 
@@ -526,9 +510,7 @@ public sealed class MetaPipelineExecutionCommandService
                     new MetaPipelineOperationalRunStart(
                         PipelineWorkspacePath: Path.GetFullPath(plan.PipelineWorkspacePath),
                         PipelineId: plan.PipelineId,
-                        PipelineName: plan.PipelineName,
-                        TransformWorkspacePath: FullPathOrEmpty(plan.TransformWorkspacePath),
-                        BindingWorkspacePath: FullPathOrEmpty(plan.BindingWorkspacePath)))
+                        PipelineName: plan.PipelineName))
                     .ConfigureAwait(false);
             }
 
@@ -1333,15 +1315,13 @@ public sealed class MetaPipelineExecutionCommandService
         string failureTaskName,
         IReadOnlyList<MetaPipelineExecutionTaskResult> taskResults)
     {
-        var scriptNames = string.Join(
-            " -> ",
-            plan.Steps.Select(static item => RenderStepSubject(item)));
-        var targets = string.Join(
-            " -> ",
-            plan.Steps
-                .Select(static item => item.TargetSqlIdentifier)
-                .Where(static item => !string.IsNullOrWhiteSpace(item))
-                .Cast<string>());
+        var resultStep = plan.Steps.Count == 1
+            ? plan.Steps[0]
+            : plan.Steps.FirstOrDefault(item =>
+                string.Equals(item.TaskName, failureTaskName, StringComparison.Ordinal) ||
+                string.Equals(item.TargetWriteTaskName, failureTaskName, StringComparison.Ordinal));
+        var scriptName = resultStep is null ? string.Empty : RenderStepSubject(resultStep);
+        var target = resultStep?.TargetSqlIdentifier ?? string.Empty;
         var targetWriteModels = plan.Steps
                 .Select(static item => item.TargetWriteModelName)
                 .Where(static item => !string.IsNullOrWhiteSpace(item) && !string.Equals(item, "None", StringComparison.OrdinalIgnoreCase))
@@ -1353,8 +1333,8 @@ public sealed class MetaPipelineExecutionCommandService
 
         return new MetaPipelineExecutionResult(
             status,
-            scriptNames,
-            targets,
+            scriptName,
+            target,
             ResolveModeledPlanOperationName(plan),
             targetWriteModelName,
             columnCount,
@@ -1394,7 +1374,11 @@ public sealed class MetaPipelineExecutionCommandService
         for (var index = startIndex; index < plan.Steps.Count; index++)
         {
             var step = plan.Steps[index];
-            taskResults.Add(CreateSkippedTaskResult(step.TaskName, ResolveStepTaskKind(step), step.TimeoutSeconds));
+            taskResults.Add(CreateSkippedTaskResult(step.TaskName, ResolveStepTaskKind(step), step.TimeoutSeconds) with
+            {
+                TransformScriptId = step.TransformScriptId,
+                TransformScriptName = step.TransformScriptName,
+            });
             if (step.IsSelect && !string.IsNullOrWhiteSpace(step.TargetWriteTaskName))
             {
                 taskResults.Add(CreateSkippedTaskResult(step.TargetWriteTaskName, "TargetWrite", step.TimeoutSeconds));

@@ -191,6 +191,301 @@ FROM src;
     }
 
     [Fact]
+    public void BindValidatedInsertSelect_WithHashConversion_UsesProjectedBinaryContract()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            """
+INSERT INTO dbo.H_Store (HashKey)
+SELECT
+    CONVERT(binary(32), HASHBYTES(
+        'SHA2_256',
+        CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.BusinessEntityID))) +
+        CONVERT(varbinary(max), source.BusinessEntityID)))
+FROM Sales.Store AS source;
+""",
+            bareSelectName: "insert-store-hub");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("Sales", "Store", ["BusinessEntityID"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "H_Store", ["HashKey"]));
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "HashKey", "sqlserver:type:binary");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "HashKey", "Length", 32);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Single(result.Model.WriteList);
+            Assert.Single(result.Model.WriteValueList);
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedInsertSelect_WithParenthesizedConvert_UsesProjectedPrecisionAndScale()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "INSERT INTO dbo.Customer (Amount) SELECT (CONVERT(decimal(18, 2), source.Amount)) FROM dbo.CustomerStage AS source;",
+            bareSelectName: "insert-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["Amount"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["Amount"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Amount", "sqlserver:type:decimal");
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "Amount", "Precision", 28);
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "Amount", "Scale", 6);
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Amount", "sqlserver:type:decimal");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Amount", "Precision", 18);
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Amount", "Scale", 2);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedInsertSelect_WithCaseConversions_UsesSharedProjectedContract()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "INSERT INTO dbo.Customer (StatusCode) SELECT CASE WHEN source.IsActive = 1 THEN CAST(source.ActiveCode AS varchar(20)) ELSE CONVERT(varchar(20), source.InactiveCode) END FROM dbo.CustomerStage AS source;",
+            bareSelectName: "insert-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["IsActive", "ActiveCode", "InactiveCode"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["StatusCode"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "ActiveCode", "sqlserver:type:varchar");
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "InactiveCode", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "ActiveCode", "Length", 100);
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "InactiveCode", "Length", 100);
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "StatusCode", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "StatusCode", "Length", 20);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedInsertSelect_WithCoalesceFallback_ProducesNonNullableProjectedContract()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "INSERT INTO dbo.Customer (StatusCode) SELECT COALESCE(source.StatusCode, CAST('Unknown' AS varchar(20))) FROM dbo.CustomerStage AS source;",
+            bareSelectName: "insert-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["StatusCode"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["StatusCode"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "StatusCode", "sqlserver:type:varchar");
+        SetFieldIsNullable(sourceSchemaModel, "Table:1", "StatusCode", true);
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "StatusCode", "Length", 20);
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "StatusCode", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "StatusCode", "Length", 20);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedInsertSelect_WithUnguardedSessionContextIntoRequiredTarget_FailsHard()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "INSERT INTO dbo.PipelineRun (AuditId) SELECT CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'));",
+            bareSelectName: "insert-pipeline-run");
+        var sourceSchemaModel = CreateSchema("TestSystem");
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "PipelineRun", ["AuditId"]));
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "AuditId", "sqlserver:type:bigint");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                BindValidated(
+                    tempRoot,
+                    transformModel,
+                    sourceSchemaModel,
+                    targetSchemaModel));
+
+            Assert.Equal("TargetColumnNullabilityConformanceMismatch", ex.Code);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedInsertSelect_WithRequiredSessionContextGuard_IsNonNullable()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "INSERT INTO dbo.PipelineRun (AuditId) SELECT CONVERT(bigint, COALESCE(SESSION_CONTEXT(N'MetaPipeline.AuditId'), N'MetaPipeline.AuditId is required'));",
+            bareSelectName: "insert-pipeline-run");
+        var sourceSchemaModel = CreateSchema("TestSystem");
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "PipelineRun", ["AuditId"]));
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "AuditId", "sqlserver:type:bigint");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedInsertSelect_WithConjunctiveNotNullFilter_RefinesProjectedNullability()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "INSERT INTO dbo.Customer (PersonId) SELECT source.PersonId FROM dbo.CustomerStage AS source WHERE source.IsActive = 1 AND (source.PersonId IS NOT NULL);",
+            bareSelectName: "insert-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["IsActive", "PersonId"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["PersonId"]));
+        SetFieldIsNullable(sourceSchemaModel, "Table:1", "PersonId", true);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindValidatedInsertSelect_WithDisjunctiveNotNullFilter_RemainsNullable()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "INSERT INTO dbo.Customer (PersonId) SELECT source.PersonId FROM dbo.CustomerStage AS source WHERE source.IsActive = 1 OR source.PersonId IS NOT NULL;",
+            bareSelectName: "insert-customer");
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["IsActive", "PersonId"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["PersonId"]));
+        SetFieldIsNullable(sourceSchemaModel, "Table:1", "PersonId", true);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                BindValidated(
+                    tempRoot,
+                    transformModel,
+                    sourceSchemaModel,
+                    targetSchemaModel));
+
+            Assert.Equal("TargetColumnNullabilityConformanceMismatch", ex.Code);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
     public void BindValidatedUpdate_ValidatesOnlyAssignedTargetFields()
     {
         var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(

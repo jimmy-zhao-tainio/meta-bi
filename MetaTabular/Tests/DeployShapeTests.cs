@@ -92,13 +92,13 @@ public sealed class DeployShapeTests
             level =>
             {
                 Assert.Equal("Year", level.Name);
-                Assert.Equal(10, level.Ordinal);
+                Assert.Equal(0, level.Ordinal);
                 Assert.Equal("SalesAmount", level.Column.Name);
             },
             level =>
             {
                 Assert.Equal("Month", level.Name);
-                Assert.Equal(20, level.Ordinal);
+                Assert.Equal(1, level.Ordinal);
                 Assert.Equal("Month Name", level.Column.Name);
             });
     }

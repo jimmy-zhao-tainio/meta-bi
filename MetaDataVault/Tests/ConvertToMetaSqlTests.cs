@@ -661,6 +661,10 @@ public sealed class ConvertToMetaSqlTests
             AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, GetTable(tables, "BHS_Customer_Profile"), "HubHashKey", "LoadTimestamp");
             AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, GetTable(tables, "BLS_CustomerOrder_Status"), "LinkHashKey", "LoadTimestamp");
             AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, GetTable(tables, "RSAT_Status_Current"), "ReferenceHashKey", "LoadTimestamp");
+            Assert.Equal("true", GetColumn(columns, GetTable(tables, "BHS_Customer_Profile").Id, "CustomerName").Values["IsNullable"]);
+            Assert.Equal("true", GetColumn(columns, GetTable(tables, "BLS_CustomerOrder_Status").Id, "StatusCode").Values["IsNullable"]);
+            Assert.Equal("true", GetColumn(columns, GetTable(tables, "RSAT_Status_Current").Id, "StatusName").Values["IsNullable"]);
+            Assert.Equal("false", GetColumn(columns, customerSnapshotPit.Id, "ProfileLoadTimestamp").Values["IsNullable"]);
         }
         finally
         {
@@ -780,6 +784,8 @@ public sealed class ConvertToMetaSqlTests
 
             AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, GetTable(tables, "BSALS_CustomerMatch_Evidence"), "LinkHashKey", "LoadTimestamp");
             AssertSatellitePrimaryKey(primaryKeys, primaryKeyColumns, columns, GetTable(tables, "BHALS_EmployeeManager_Line"), "LinkHashKey", "LoadTimestamp");
+            Assert.Equal("true", GetColumn(columns, GetTable(tables, "BSALS_CustomerMatch_Evidence").Id, "MatchScore").Values["IsNullable"]);
+            Assert.Equal("true", GetColumn(columns, GetTable(tables, "BHALS_EmployeeManager_Line").Id, "LineType").Values["IsNullable"]);
         }
         finally
         {

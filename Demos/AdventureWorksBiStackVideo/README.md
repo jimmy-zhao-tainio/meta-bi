@@ -1,80 +1,108 @@
-# AdventureWorks BI stack video scaffold
+# AdventureWorks full BI stack
 
-This folder is a recording scaffold for the AdventureWorks end-to-end story.
+This demo builds and runs a complete modeled BI stack from the live `AdventureWorks2022` OLTP database:
 
-The intended video is not "copy an existing Microsoft SSAS project." The intended video is:
+```text
+AdventureWorks2022
+  -> Raw Data Vault
+  -> Business Data Vault
+  -> dimensional warehouse
+  -> Data Quality
+  -> MetaAnalytics
+  -> MetaTabular
+```
 
-1. Start with a restored AdventureWorks OLTP SQL Server database as the source.
-2. Give an agent the business-requirements brief and the source connection settings.
-3. Record what the agent does next using `meta` / `meta-bi` CLI commands.
-4. Watch whether it extracts source schema, models the BI stack, writes transforms, creates deployment assets, derives DQ from the modeled transforms, infers the table-load orchestration DAG from transform-backed pipeline/binding evidence where safe, and processes the analytics target.
-5. If the tabular target is processed successfully, connect to it from Excel or run a DAX-capable proof and show a measure requested by the brief.
+Every generated model, transform, binding, pipeline, orchestration plan, deployment manifest, and analytics workspace is produced by its sanctioned CLI. `AdventureWorksBiStackVideo.MetaMesh` records the complete workflow as named operations; generated results live under `Runs` and can be recreated.
 
-The demo claim is a full modeled BI stack, not a pile of generated SQL files. The differentiators to make visible are strict binding, automatic transform-derived DQ candidates, modeled promotion to executable DQ SQL, one transform-backed pipeline per table-producing transform, orchestration/run planning inferred from modeled access profiles within the current safety rules, and a Tabular proof from the generated mart.
+Read [BUSINESS-REQUIREMENTS.md](BUSINESS-REQUIREMENTS.md) for the requested analytical outcome and [FULL-STACK-DESIGN.md](FULL-STACK-DESIGN.md) for the grains, layer ownership, workspace graph, and acceptance contract.
 
-The intended takeaway is that a large middle slice of the BI stack is automatic when the work stays inside the supported modeled surface: ordinary SQL transforms, strict source/target binding, supported DQ candidate families, and modeled pipeline steps.
+## Prerequisites
 
-This scaffold intentionally keeps generated workspaces out of source control. A recording run should write generated output under `Runs`.
+- the `meta` and `meta-bi` CLIs on `PATH`;
+- a local SQL Server instance with `AdventureWorks2022` restored;
+- permission to create the four demo-owned databases;
+- Analysis Services Tabular only when running the optional Tabular deployment and processing operations.
 
-The generated run should include a MetaMesh workspace with named, inspectable operations for each phase. The mesh is the replayable workflow surface for the recording.
+`SOURCE-SETUP.md` covers the source database. `prepare-adventureworks-db.ps1` can download and restore the official backup on a local development machine.
 
-## Files
+## Environment
 
-- `BUSINESS-REQUIREMENTS.md`: business-user analytics request for the agent.
-- `agent-meta.md`: generic agent guide for `meta-bi` CLI workflow and command discipline.
-- `supervisor-meta.md`: supervisor guide for accepting or rejecting worker gates and preventing model-layer shortcuts.
-- `AGENT-TASK.md`: the prompt/task brief for the agent run.
-- `SOURCE-SETUP.md`: AdventureWorks OLTP source setup notes and official links.
-- `VIDEO-RUNBOOK.md`: recording sequence and cut points.
-- `SNAG-LOG.md`: product snags found while preparing or running the demo.
-- `AdventureWorksBiStackVideo.MetaMesh`: source readiness, optional preflight extraction, and source-workspace cleanup operations.
-- `prepare-adventureworks-db.ps1`: downloads/restores `AdventureWorks2022` and verifies source data through the mesh.
-- `make-demo-video.ps1`: renders the prepared recording assets; it is a media-production utility rather than a BI workflow.
-
-## Quick start
-
-Restore AdventureWorks first. Then from this folder:
+The examples below use the local default SQL Server instance:
 
 ```powershell
-.\prepare-adventureworks-db.ps1
+$env:AW_SOURCE_SQL = "Server=.;Database=AdventureWorks2022;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:AW_ADMIN_SQL = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:AW_RDV_SQL = "Server=.;Database=AdventureWorksRawVault;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:AW_BDV_SQL = "Server=.;Database=AdventureWorksBusinessVault;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:AW_DW_SQL = "Server=.;Database=AdventureWorksAnalytics;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+$env:AW_PIPELINE_SQL = "Server=.;Database=AdventureWorksMetaPipeline;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+```
 
-$env:AW_SQL_SERVER = "localhost"
-$env:AW_SOURCE_DATABASE = "AdventureWorks2022"
-$env:AW_RDV_DATABASE = "AdventureWorksRawVault"
-$env:AW_BDV_DATABASE = "AdventureWorksBusinessVault"
-$env:AW_DW_DATABASE = "AdventureWorksMetaDemo"
-$env:AW_TABULAR_SERVER = ".\TABULAR"
-$env:AW_TABULAR_DATABASE = "AdventureWorksMetaDemoTabular"
-$env:AW_RUN_ROOT = "Runs"
-$env:AW_SOURCE_SQL = "Server=localhost;Database=AdventureWorks2022;Trusted_Connection=True;TrustServerCertificate=True;"
-$env:AW_RDV_SQL = "Server=localhost;Database=AdventureWorksRawVault;Trusted_Connection=True;TrustServerCertificate=True;"
-$env:AW_BDV_SQL = "Server=localhost;Database=AdventureWorksBusinessVault;Trusted_Connection=True;TrustServerCertificate=True;"
-$env:AW_DW_SQL = "Server=localhost;Database=AdventureWorksMetaDemo;Trusted_Connection=True;TrustServerCertificate=True;"
+## Build the stack
 
+Run from the mesh workspace:
+
+```powershell
 cd AdventureWorksBiStackVideo.MetaMesh
+
 meta-mesh run --operation validate-source
-cd ..
+meta-mesh run --operation sync-source-schema
+
+meta-mesh run --operation create-raw-vault
+meta-mesh run --operation deploy-raw-vault
+meta-mesh run --operation create-source-raw-transforms
+meta-mesh run --operation create-source-raw-pipeline
+
+meta-mesh run --operation create-business-vault
+meta-mesh run --operation deploy-business-vault
+meta-mesh run --operation create-raw-business-transforms
+meta-mesh run --operation create-raw-business-pipeline
+
+meta-mesh run --operation create-dimensional-warehouse
+meta-mesh run --operation deploy-dimensional-warehouse
+meta-mesh run --operation create-business-warehouse-transforms
+meta-mesh run --operation create-business-warehouse-pipeline
+
+meta-mesh run --operation create-orchestration
+meta-mesh run --operation deploy-pipeline-runtime
+meta-mesh run --operation create-data-quality
+meta-mesh run --operation deploy-data-quality
+meta-mesh run --operation create-analytics
+meta-mesh run --operation create-tabular
 ```
 
-Then start a fresh agent context and give it:
+The three transform boundaries are strictly bound to modeled source and target schemas before their pipelines are authored. Orchestration is inferred from those pipeline tasks and binding effects.
 
-- `BUSINESS-REQUIREMENTS.md`
-- `agent-meta.md`
-- `AGENT-TASK.md`
-- the connection environment variable names and values established for the recording
+## Run and verify
 
-The supervising agent or human should separately read `supervisor-meta.md` before approving gates.
+Execute the inferred graph across all three pipelines, then reconcile the result to the source:
 
-Use the separate SQL targets `AW_RDV_SQL`, `AW_BDV_SQL`, and `AW_DW_SQL` for RDV, BDV, and DW/mart deploy-plan/deploy/extract work respectively. Do not collapse the modeled layers into one implicit target connection.
-
-The agent should perform the source schema extraction during the recorded run. The first operation step that creates a BI domain workspace should be this kind of command:
-
-```cmd
-meta-schema extract sqlserver --new-workspace source\AdventureWorks2022\Schema --connection-env AW_SOURCE_SQL --system AdventureWorks2022 --all-schemas --all-tables
+```powershell
+meta-mesh run --operation run-etl
+meta-mesh run --operation verify-stack
 ```
 
-The recorded run should be planned and executed in phases, not one-shotted. The expected full stack path is `SourceDBs -> RDV -> BDV -> DW/Mart -> Tabular`; a direct source-to-mart shortcut is only a partial run, not the accepted full ETL demo. Generated folders should be layer/database scoped and role-named, such as `source\AdventureWorks2022\Schema`, `rdv\<database>\RawVault`, `bdv\<database>\BusinessVault`, `dw\<database>\Transforms`, and `ops\Orchestration`. The orchestration proof should be transform-backed table loads first; Tabular deploy/process is the downstream analytics proof, not a replacement for the ETL DAG.
+For an inspected layer-by-layer run, use `load-raw-vault`, `load-business-vault`, and `load-dimensional-warehouse` instead of `run-etl`.
 
-For the final recording, keep only a clean run. Failed attempts are useful diagnostic scratch space: halt at the blocker, fix the product/model/environment issue, then rerun from a fresh timestamped folder so the accepted evidence is a clean replay rather than patched-over history.
+The verification operation checks Raw and Business Vault counts, warehouse fact grains, source-to-warehouse measures, deployed Data Quality results, and the latest task-level pipeline evidence. The expected static AdventureWorks result is 31,465 orders, 121,317 lines, 163 quota rows, and 176 promoted Data Quality checks with no findings.
 
-The scaffold mesh's `extract-source-schema` operation is only a reference/preflight operation. It is not meant to replace the agent-authored extraction operation in the main recording.
+## Tabular runtime
+
+The MetaAnalytics and MetaTabular workspaces are complete without Analysis Services. The runtime operations target the local `.\TABULAR` instance and deploy the model as `AdventureWorksSales`:
+
+```powershell
+meta-mesh run --operation deploy-tabular
+meta-mesh run --operation process-tabular
+```
+
+`deploy-tabular` replaces the target database and deploys metadata without processing. `process-tabular` performs the full refresh. `drop-tabular` removes the deployed database.
+
+The deployment operation also grants the local `NT Service\MSOLAP$TABULAR` service account read access to `AdventureWorksAnalytics`. The verified deployment contains 11 tables, 72 columns, 11 measures, and 19 relationships and completes a full refresh on `.\TABULAR`. A direct model query returns Sales Amount `109846381.425`, Total Due `123216786.1159`, and Quota Amount `95714000`, matching the relational verification.
+
+## Cleanup
+
+```powershell
+meta-mesh run --operation cleanup
+```
+
+Cleanup drops `AdventureWorksRawVault`, `AdventureWorksBusinessVault`, `AdventureWorksAnalytics`, and `AdventureWorksMetaPipeline`, then removes `Runs`. It does not remove the source database or an external Tabular database.

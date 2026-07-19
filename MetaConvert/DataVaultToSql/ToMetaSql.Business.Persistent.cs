@@ -135,7 +135,8 @@ public static partial class Converter
         ConversionContext context,
         Table table,
         HashSet<string> reservedColumnNames,
-        IEnumerable<BusinessColumnMemberSpec> members)
+        IEnumerable<BusinessColumnMemberSpec> members,
+        string isNullable)
     {
         foreach (var member in members
                      .OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase)
@@ -147,7 +148,8 @@ public static partial class Converter
                 member.Name,
                 member.DataTypeId,
                 reservedColumnNames,
-                member.Details);
+                member.Details,
+                isNullable);
         }
     }
 

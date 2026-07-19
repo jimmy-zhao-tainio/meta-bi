@@ -12,6 +12,7 @@ internal sealed partial class TransformBindingSession
     private readonly List<RuntimeRowset> boundRowsets = [];
     private readonly List<RuntimeMutationEffect> mutationEffects = [];
     private readonly Stack<IReadOnlySet<string>> orderByOutputAliasScopeStack = [];
+    private readonly Stack<IReadOnlySet<string>> nonNullableColumnScopeStack = [];
     private readonly HashSet<string> activeTransformFunctionParameterNames = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> boundScalarFunctionBodyScriptIds = new(StringComparer.Ordinal);
     private bool isInlineTableValuedFunction;

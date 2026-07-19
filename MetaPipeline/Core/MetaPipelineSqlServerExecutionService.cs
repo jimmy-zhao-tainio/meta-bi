@@ -58,7 +58,11 @@ public sealed class MetaPipelineSqlServerExecutionService
                     rowCount,
                     0,
                     request.TimeoutSeconds,
-                    executionContext: request.ExecutionContext));
+                    executionContext: request.ExecutionContext) with
+                {
+                    TransformScriptId = definition.TransformScriptId,
+                    TransformScriptName = definition.TransformScriptName,
+                });
 
                 return CreateResult(
                     definition,
@@ -87,7 +91,11 @@ public sealed class MetaPipelineSqlServerExecutionService
                     PipelineExecutionFailureStage.TransformExecution,
                     ex.Message,
                     timeoutSeconds: request.TimeoutSeconds,
-                    executionContext: request.ExecutionContext));
+                    executionContext: request.ExecutionContext) with
+                {
+                    TransformScriptId = definition.TransformScriptId,
+                    TransformScriptName = definition.TransformScriptName,
+                });
 
                 return CreateResult(
                     definition,
@@ -149,7 +157,11 @@ public sealed class MetaPipelineSqlServerExecutionService
                     execution.RowCount,
                     execution.BatchCount,
                     request.TimeoutSeconds,
-                    request.ExecutionContext));
+                    request.ExecutionContext) with
+                {
+                    TransformScriptId = definition.TransformScriptId,
+                    TransformScriptName = definition.TransformScriptName,
+                });
                 taskResults.Add(CreateFailedTaskResult(
                     targetWriteTaskName,
                     "TargetWrite",
@@ -185,7 +197,11 @@ public sealed class MetaPipelineSqlServerExecutionService
                 execution.RowCount,
                 execution.BatchCount,
                 request.TimeoutSeconds,
-                request.ExecutionContext));
+                request.ExecutionContext) with
+            {
+                TransformScriptId = definition.TransformScriptId,
+                TransformScriptName = definition.TransformScriptName,
+            });
             taskResults.Add(CreateSkippedTaskResult(targetWriteTaskName, "TargetWrite", request.TimeoutSeconds));
 
             return CreateResult(
@@ -210,7 +226,11 @@ public sealed class MetaPipelineSqlServerExecutionService
             execution.RowCount,
             execution.BatchCount,
             request.TimeoutSeconds,
-            request.ExecutionContext));
+            request.ExecutionContext) with
+        {
+            TransformScriptId = definition.TransformScriptId,
+            TransformScriptName = definition.TransformScriptName,
+        });
         taskResults.Add(CreateSucceededTaskResult(
             targetWriteTaskName,
             "TargetWrite",
