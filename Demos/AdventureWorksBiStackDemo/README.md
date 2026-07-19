@@ -12,7 +12,7 @@ AdventureWorks2022
   -> MetaTabular
 ```
 
-Every generated model, transform, binding, pipeline, orchestration plan, deployment manifest, and analytics workspace is produced by its sanctioned CLI. `AdventureWorksBiStackVideo.MetaMesh` records the complete workflow as named operations; generated results live under `Runs` and can be recreated.
+Every generated model, transform, binding, pipeline, orchestration plan, deployment manifest, and analytics workspace is produced by its sanctioned CLI. `AdventureWorksBiStackDemo.MetaMesh` records the complete workflow as named operations; generated results live under `Runs` and can be recreated.
 
 Read [BUSINESS-REQUIREMENTS.md](BUSINESS-REQUIREMENTS.md) for the requested analytical outcome and [FULL-STACK-DESIGN.md](FULL-STACK-DESIGN.md) for the grains, layer ownership, workspace graph, and acceptance contract.
 
@@ -43,7 +43,7 @@ $env:AW_PIPELINE_SQL = "Server=.;Database=AdventureWorksMetaPipeline;Integrated 
 Run from the mesh workspace:
 
 ```powershell
-cd AdventureWorksBiStackVideo.MetaMesh
+cd AdventureWorksBiStackDemo.MetaMesh
 
 meta-mesh run --operation validate-source
 meta-mesh run --operation sync-source-schema

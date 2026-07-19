@@ -118,7 +118,7 @@ function Invoke-SourceValidation {
         $env:AW_SOURCE_SQL = "Server=$server;Database=$database;Trusted_Connection=True;TrustServerCertificate=True;"
     }
 
-    Push-Location (Join-Path $scriptRoot 'AdventureWorksBiStackVideo.MetaMesh')
+    Push-Location (Join-Path $scriptRoot 'AdventureWorksBiStackDemo.MetaMesh')
     try {
         & meta-mesh run --operation validate-source
         if ($LASTEXITCODE -ne 0) {

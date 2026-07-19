@@ -2,8 +2,8 @@
 <MetaMesh>
   <MeshList>
     <Mesh Id="mesh:default">
-      <Description>Preflight operations for the AdventureWorks model-first BI stack recording.</Description>
-      <Name>adventureworks-bi-stack-video</Name>
+      <Description>Complete AdventureWorks model-first BI stack demo.</Description>
+      <Name>adventureworks-bi-stack-demo</Name>
       <RootPath>..</RootPath>
     </Mesh>
   </MeshList>

@@ -27,7 +27,7 @@ $env:AW_ADMIN_SQL = "Server=.;Database=master;Integrated Security=true;TrustServ
 Then verify and synchronize the source contract:
 
 ```powershell
-cd AdventureWorksBiStackVideo.MetaMesh
+cd AdventureWorksBiStackDemo.MetaMesh
 meta-mesh run --operation validate-source
 meta-mesh run --operation sync-source-schema
 ```
