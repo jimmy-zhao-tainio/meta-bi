@@ -11,7 +11,7 @@
 7. Complete for supported mutation syntax: persisted, validated facts for every supported mutation form, including `MERGE` actions and conditions.
 8. Done: all reported mutation-binding defects are fixed or disproven by coverage. The supported surface includes CTEs, predicates, wildcards, source ambiguity, `CAST`/`CONVERT`, and conservative homogeneous `CASE` contracts. SQL Server precedence inference is separate future expression-semantics work, not open repair debt.
 9. Done: TPC-DS is the MetaTransformScript SQL round-trip and strict-binding corpus. Do not mix it into Data Vault, schema-extraction, or AdventureWorks decisions.
-10. Inactive demo work: AdventureWorks full-stack needs a fresh deliberate replay before it can claim end-to-end proof.
+10. Done: AdventureWorks full-stack completed a deliberate clean replay across the modeled BI stack.
 11. Complete: `MERGE` match semantics use explicit clause entities and an explicit predecessor chain.
 
 Business satellite payload attributes are nullable by design; do not add nullability flags, subtype entities, binding proof, or compatibility shims.
