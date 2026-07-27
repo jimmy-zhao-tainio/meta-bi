@@ -176,7 +176,7 @@
       <Name>name</Name>
     </Parameter>
     <Parameter Id="param-stored-procedure-add-contract-operation" ValueShapeId="shape-operation">
-      <Description>Declare an ordered operation: &lt;ordinal&gt;:&lt;kind&gt;:&lt;sql-id&gt;[=&lt;role&gt;].</Description>
+      <Description>Declare an ordered operation: `&lt;ordinal&gt;:&lt;kind&gt;:&lt;sql-id&gt;[=&lt;role&gt;]`.</Description>
       <IsRepeatable>true</IsRepeatable>
       <IsRequired>false</IsRequired>
       <Name>operation</Name>

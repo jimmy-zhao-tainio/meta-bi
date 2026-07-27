@@ -1,75 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
-    <Option Id="opt-from-sql-file-path" ParameterId="param-from-sql-file-path">
-    </Option>
-    <Option Id="opt-from-sql-file-target" ParameterId="param-from-sql-file-target">
-    </Option>
-    <Option Id="opt-from-sql-file-new-workspace" ParameterId="param-from-sql-file-new-workspace">
-    </Option>
-    <Option Id="opt-from-sql-file-workspace" ParameterId="param-from-sql-file-workspace">
-    </Option>
-    <Option Id="opt-from-sql-files-manifest" ParameterId="param-from-sql-files-manifest">
-    </Option>
-    <Option Id="opt-from-sql-files-new-workspace" ParameterId="param-from-sql-files-new-workspace">
-    </Option>
-    <Option Id="opt-from-sql-files-workspace" ParameterId="param-from-sql-files-workspace">
-    </Option>
-    <Option Id="opt-from-sql-files-report" ParameterId="param-from-sql-files-report">
-    </Option>
-    <Option Id="opt-from-sql-files-verbose" ParameterId="param-from-sql-files-verbose">
-    </Option>
-    <Option Id="opt-from-sql-code-code" ParameterId="param-from-sql-code-code">
-    </Option>
-    <Option Id="opt-from-sql-code-target" ParameterId="param-from-sql-code-target">
-    </Option>
-    <Option Id="opt-from-sql-code-new-workspace" ParameterId="param-from-sql-code-new-workspace">
-    </Option>
-    <Option Id="opt-from-sql-code-workspace" ParameterId="param-from-sql-code-workspace">
-    </Option>
-    <Option Id="opt-from-sql-code-name" ParameterId="param-from-sql-code-name">
-    </Option>
-    <Option Id="opt-to-sql-path-workspace" ParameterId="param-to-sql-path-workspace">
-    </Option>
-    <Option Id="opt-to-sql-path-out" ParameterId="param-to-sql-path-out">
-    </Option>
-    <Option Id="opt-to-sql-code-workspace" ParameterId="param-to-sql-code-workspace">
-    </Option>
-    <Option Id="opt-to-sql-code-name" ParameterId="param-to-sql-code-name">
-    </Option>
-    <Option Id="opt-target-identifiers-from-pattern-workspace" ParameterId="param-target-identifiers-from-pattern-workspace">
-    </Option>
-    <Option Id="opt-target-identifiers-from-pattern-source-pattern" ParameterId="param-target-identifiers-from-pattern-source-pattern">
-    </Option>
-    <Option Id="opt-target-identifiers-from-pattern-target-pattern" ParameterId="param-target-identifiers-from-pattern-target-pattern">
-    </Option>
-    <Option Id="opt-target-identifiers-from-pattern-only-missing" ParameterId="param-target-identifiers-from-pattern-only-missing">
-    </Option>
-    <Option Id="opt-target-identifiers-from-pattern-dry-run" ParameterId="param-target-identifiers-from-pattern-dry-run">
-    </Option>
-    <Option Id="opt-target-identifiers-from-pattern-allow-empty" ParameterId="param-target-identifiers-from-pattern-allow-empty">
-    </Option>
-    <Option Id="opt-target-identifiers-from-pattern-verbose" ParameterId="param-target-identifiers-from-pattern-verbose">
-    </Option>
-    <Option Id="opt-stored-procedure-view-contract-workspace" ParameterId="param-stored-procedure-view-contract-workspace">
-    </Option>
-    <Option Id="opt-stored-procedure-view-contract-name" ParameterId="param-stored-procedure-view-contract-name">
-    </Option>
-    <Option Id="opt-stored-procedure-add-contract-workspace" ParameterId="param-stored-procedure-add-contract-workspace">
-    </Option>
-    <Option Id="opt-stored-procedure-add-contract-name" ParameterId="param-stored-procedure-add-contract-name">
-    </Option>
-    <Option Id="opt-stored-procedure-add-contract-operation" ParameterId="param-stored-procedure-add-contract-operation">
-    </Option>
-    <Option Id="opt-stored-procedure-add-contract-result-rowset" ParameterId="param-stored-procedure-add-contract-result-rowset">
-    </Option>
-    <Option Id="opt-stored-procedure-add-contract-result-column" ParameterId="param-stored-procedure-add-contract-result-column">
-    </Option>
-    <Option Id="opt-stored-procedure-add-contract-notes" ParameterId="param-stored-procedure-add-contract-notes">
-    </Option>
-    <Option Id="opt-stored-procedure-remove-contract-workspace" ParameterId="param-stored-procedure-remove-contract-workspace">
-    </Option>
-    <Option Id="opt-stored-procedure-remove-contract-name" ParameterId="param-stored-procedure-remove-contract-name">
-    </Option>
+    <Option Id="opt-from-sql-code-code" ParameterId="param-from-sql-code-code" />
+    <Option Id="opt-from-sql-code-name" ParameterId="param-from-sql-code-name" />
+    <Option Id="opt-from-sql-code-new-workspace" ParameterId="param-from-sql-code-new-workspace" />
+    <Option Id="opt-from-sql-code-target" ParameterId="param-from-sql-code-target" />
+    <Option Id="opt-from-sql-code-workspace" ParameterId="param-from-sql-code-workspace" />
+    <Option Id="opt-from-sql-file-new-workspace" ParameterId="param-from-sql-file-new-workspace" />
+    <Option Id="opt-from-sql-file-path" ParameterId="param-from-sql-file-path" />
+    <Option Id="opt-from-sql-file-target" ParameterId="param-from-sql-file-target" />
+    <Option Id="opt-from-sql-file-workspace" ParameterId="param-from-sql-file-workspace" />
+    <Option Id="opt-from-sql-files-manifest" ParameterId="param-from-sql-files-manifest" />
+    <Option Id="opt-from-sql-files-new-workspace" ParameterId="param-from-sql-files-new-workspace" />
+    <Option Id="opt-from-sql-files-report" ParameterId="param-from-sql-files-report" />
+    <Option Id="opt-from-sql-files-verbose" ParameterId="param-from-sql-files-verbose" />
+    <Option Id="opt-from-sql-files-workspace" ParameterId="param-from-sql-files-workspace" />
+    <Option Id="opt-stored-procedure-add-contract-name" ParameterId="param-stored-procedure-add-contract-name" />
+    <Option Id="opt-stored-procedure-add-contract-notes" ParameterId="param-stored-procedure-add-contract-notes" />
+    <Option Id="opt-stored-procedure-add-contract-operation" ParameterId="param-stored-procedure-add-contract-operation" />
+    <Option Id="opt-stored-procedure-add-contract-result-column" ParameterId="param-stored-procedure-add-contract-result-column" />
+    <Option Id="opt-stored-procedure-add-contract-result-rowset" ParameterId="param-stored-procedure-add-contract-result-rowset" />
+    <Option Id="opt-stored-procedure-add-contract-workspace" ParameterId="param-stored-procedure-add-contract-workspace" />
+    <Option Id="opt-stored-procedure-remove-contract-name" ParameterId="param-stored-procedure-remove-contract-name" />
+    <Option Id="opt-stored-procedure-remove-contract-workspace" ParameterId="param-stored-procedure-remove-contract-workspace" />
+    <Option Id="opt-stored-procedure-view-contract-name" ParameterId="param-stored-procedure-view-contract-name" />
+    <Option Id="opt-stored-procedure-view-contract-workspace" ParameterId="param-stored-procedure-view-contract-workspace" />
+    <Option Id="opt-target-identifiers-from-pattern-allow-empty" ParameterId="param-target-identifiers-from-pattern-allow-empty" />
+    <Option Id="opt-target-identifiers-from-pattern-dry-run" ParameterId="param-target-identifiers-from-pattern-dry-run" />
+    <Option Id="opt-target-identifiers-from-pattern-only-missing" ParameterId="param-target-identifiers-from-pattern-only-missing" />
+    <Option Id="opt-target-identifiers-from-pattern-source-pattern" ParameterId="param-target-identifiers-from-pattern-source-pattern" />
+    <Option Id="opt-target-identifiers-from-pattern-target-pattern" ParameterId="param-target-identifiers-from-pattern-target-pattern" />
+    <Option Id="opt-target-identifiers-from-pattern-verbose" ParameterId="param-target-identifiers-from-pattern-verbose" />
+    <Option Id="opt-target-identifiers-from-pattern-workspace" ParameterId="param-target-identifiers-from-pattern-workspace" />
+    <Option Id="opt-to-sql-code-name" ParameterId="param-to-sql-code-name" />
+    <Option Id="opt-to-sql-code-workspace" ParameterId="param-to-sql-code-workspace" />
+    <Option Id="opt-to-sql-path-out" ParameterId="param-to-sql-path-out" />
+    <Option Id="opt-to-sql-path-workspace" ParameterId="param-to-sql-path-workspace" />
   </OptionList>
 </MetaCli>

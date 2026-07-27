@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <CommandList>
-    <Command Id="cmd-help" ApplicationId="app-meta-transform-script">
-      <Description>Show help.</Description>
-      <Name>help</Name>
-      <Token>help</Token>
-    </Command>
     <Command Id="cmd-from" ApplicationId="app-meta-transform-script">
       <Description>Import SQL file/code into a new or existing workspace.</Description>
       <Name>from</Name>
       <Token>from</Token>
     </Command>
-    <Command Id="cmd-to" ApplicationId="app-meta-transform-script">
-      <Description>Emit SQL files or SQL code from a MetaTransformScript workspace.</Description>
-      <Name>to</Name>
-      <Token>to</Token>
-    </Command>
-    <Command Id="cmd-stored-procedure" ApplicationId="app-meta-transform-script">
-      <Description>View, add, and remove stored procedure contracts.</Description>
-      <Name>stored-procedure</Name>
-      <Token>stored-procedure</Token>
-    </Command>
-    <Command Id="cmd-target-identifiers" ApplicationId="app-meta-transform-script">
-      <Description>Update TransformScript target identifiers.</Description>
-      <Name>target-identifiers</Name>
-      <Token>target-identifiers</Token>
+    <Command Id="cmd-from-sql-code" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-from">
+      <Description>Import SQL text.</Description>
+      <Name>from sql-code</Name>
+      <Token>sql-code</Token>
     </Command>
     <Command Id="cmd-from-sql-file" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-from">
       <Description>Import one .sql file.</Description>
@@ -36,25 +21,15 @@
       <Name>from sql-files</Name>
       <Token>sql-files</Token>
     </Command>
-    <Command Id="cmd-from-sql-code" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-from">
-      <Description>Import SQL text.</Description>
-      <Name>from sql-code</Name>
-      <Token>sql-code</Token>
+    <Command Id="cmd-help" ApplicationId="app-meta-transform-script">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
     </Command>
-    <Command Id="cmd-to-sql-path" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-to">
-      <Description>Emit SQL scripts to a file or folder.</Description>
-      <Name>to sql-path</Name>
-      <Token>sql-path</Token>
-    </Command>
-    <Command Id="cmd-to-sql-code" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-to">
-      <Description>Emit one transform script as SQL text.</Description>
-      <Name>to sql-code</Name>
-      <Token>sql-code</Token>
-    </Command>
-    <Command Id="cmd-stored-procedure-view-contract" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-stored-procedure">
-      <Description>View stored procedure contracts.</Description>
-      <Name>stored-procedure view-contract</Name>
-      <Token>view-contract</Token>
+    <Command Id="cmd-stored-procedure" ApplicationId="app-meta-transform-script">
+      <Description>View, add, and remove stored procedure contracts.</Description>
+      <Name>stored-procedure</Name>
+      <Token>stored-procedure</Token>
     </Command>
     <Command Id="cmd-stored-procedure-add-contract" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-stored-procedure">
       <Description>Add or replace stored procedure contract metadata.</Description>
@@ -66,10 +41,35 @@
       <Name>stored-procedure remove-contract</Name>
       <Token>remove-contract</Token>
     </Command>
+    <Command Id="cmd-stored-procedure-view-contract" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-stored-procedure">
+      <Description>View stored procedure contracts.</Description>
+      <Name>stored-procedure view-contract</Name>
+      <Token>view-contract</Token>
+    </Command>
+    <Command Id="cmd-target-identifiers" ApplicationId="app-meta-transform-script">
+      <Description>Update TransformScript target identifiers.</Description>
+      <Name>target-identifiers</Name>
+      <Token>target-identifiers</Token>
+    </Command>
     <Command Id="cmd-target-identifiers-from-pattern" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-target-identifiers">
       <Description>Derive view target identifiers from transform script names.</Description>
       <Name>target-identifiers from-pattern</Name>
       <Token>from-pattern</Token>
+    </Command>
+    <Command Id="cmd-to" ApplicationId="app-meta-transform-script">
+      <Description>Emit SQL files or SQL code from a MetaTransformScript workspace.</Description>
+      <Name>to</Name>
+      <Token>to</Token>
+    </Command>
+    <Command Id="cmd-to-sql-code" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-to">
+      <Description>Emit one transform script as SQL text.</Description>
+      <Name>to sql-code</Name>
+      <Token>sql-code</Token>
+    </Command>
+    <Command Id="cmd-to-sql-path" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-to">
+      <Description>Emit SQL scripts to a file or folder.</Description>
+      <Name>to sql-path</Name>
+      <Token>sql-path</Token>
     </Command>
   </CommandList>
 </MetaCli>

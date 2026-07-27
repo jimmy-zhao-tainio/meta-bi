@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandList>
-    <ExecutableCommand Id="exec-help" CommandId="cmd-help">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-from-sql-file" CommandId="cmd-from-sql-file">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-from-sql-files" CommandId="cmd-from-sql-files">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-from-sql-code" CommandId="cmd-from-sql-code">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-to-sql-path" CommandId="cmd-to-sql-path">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-to-sql-code" CommandId="cmd-to-sql-code">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-stored-procedure-view-contract" CommandId="cmd-stored-procedure-view-contract">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-stored-procedure-add-contract" CommandId="cmd-stored-procedure-add-contract">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-stored-procedure-remove-contract" CommandId="cmd-stored-procedure-remove-contract">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-target-identifiers-from-pattern" CommandId="cmd-target-identifiers-from-pattern">
-    </ExecutableCommand>
+    <ExecutableCommand Id="exec-from-sql-code" CommandId="cmd-from-sql-code" />
+    <ExecutableCommand Id="exec-from-sql-file" CommandId="cmd-from-sql-file" />
+    <ExecutableCommand Id="exec-from-sql-files" CommandId="cmd-from-sql-files" />
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
+    <ExecutableCommand Id="exec-stored-procedure-add-contract" CommandId="cmd-stored-procedure-add-contract" />
+    <ExecutableCommand Id="exec-stored-procedure-remove-contract" CommandId="cmd-stored-procedure-remove-contract" />
+    <ExecutableCommand Id="exec-stored-procedure-view-contract" CommandId="cmd-stored-procedure-view-contract" />
+    <ExecutableCommand Id="exec-target-identifiers-from-pattern" CommandId="cmd-target-identifiers-from-pattern" />
+    <ExecutableCommand Id="exec-to-sql-code" CommandId="cmd-to-sql-code" />
+    <ExecutableCommand Id="exec-to-sql-path" CommandId="cmd-to-sql-path" />
   </ExecutableCommandList>
 </MetaCli>

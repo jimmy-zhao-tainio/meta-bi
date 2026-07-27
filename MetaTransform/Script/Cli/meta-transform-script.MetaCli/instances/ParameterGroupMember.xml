@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupMemberList>
-    <ParameterGroupMember Id="member-from-sql-file-new-workspace" ParameterGroupId="group-from-sql-file-workspace-target" ParameterId="param-from-sql-file-new-workspace">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-from-sql-file-workspace" ParameterGroupId="group-from-sql-file-workspace-target" ParameterId="param-from-sql-file-workspace" PreviousMemberId="member-from-sql-file-new-workspace">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-from-sql-files-new-workspace" ParameterGroupId="group-from-sql-files-workspace-target" ParameterId="param-from-sql-files-new-workspace">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-from-sql-files-workspace" ParameterGroupId="group-from-sql-files-workspace-target" ParameterId="param-from-sql-files-workspace" PreviousMemberId="member-from-sql-files-new-workspace">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-from-sql-code-new-workspace" ParameterGroupId="group-from-sql-code-workspace-target" ParameterId="param-from-sql-code-new-workspace">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-from-sql-code-workspace" ParameterGroupId="group-from-sql-code-workspace-target" ParameterId="param-from-sql-code-workspace" PreviousMemberId="member-from-sql-code-new-workspace">
-    </ParameterGroupMember>
+    <ParameterGroupMember Id="member-from-sql-code-new-workspace" ParameterGroupId="group-from-sql-code-workspace-target" ParameterId="param-from-sql-code-new-workspace" />
+    <ParameterGroupMember Id="member-from-sql-code-workspace" ParameterGroupId="group-from-sql-code-workspace-target" ParameterId="param-from-sql-code-workspace" PreviousMemberId="member-from-sql-code-new-workspace" />
+    <ParameterGroupMember Id="member-from-sql-file-new-workspace" ParameterGroupId="group-from-sql-file-workspace-target" ParameterId="param-from-sql-file-new-workspace" />
+    <ParameterGroupMember Id="member-from-sql-file-workspace" ParameterGroupId="group-from-sql-file-workspace-target" ParameterId="param-from-sql-file-workspace" PreviousMemberId="member-from-sql-file-new-workspace" />
+    <ParameterGroupMember Id="member-from-sql-files-new-workspace" ParameterGroupId="group-from-sql-files-workspace-target" ParameterId="param-from-sql-files-new-workspace" />
+    <ParameterGroupMember Id="member-from-sql-files-workspace" ParameterGroupId="group-from-sql-files-workspace-target" ParameterId="param-from-sql-files-workspace" PreviousMemberId="member-from-sql-files-new-workspace" />
   </ParameterGroupMemberList>
 </MetaCli>
