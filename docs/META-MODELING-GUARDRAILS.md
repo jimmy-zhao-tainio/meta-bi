@@ -77,6 +77,7 @@ Do not use role relationships as a generic substitute for missing model structur
 
 - Preserve declared structure once.
 - Model inheritance separately from declaration ownership.
+- Required relationship dependencies must be acyclic. Reject a required cycle before saving or generating artifacts; optional relationships do not create insertion dependencies.
 - Order is a relationship between entities.
 - Keep ordered collections explicit with linked order relationships, ordered relationships, sequence/member entities, or another structural relationship model.
 - Do not encode order by padding text with leading zeros (`001`, `010`, `095`) so lexical sorting pretends to be numeric ordering.
