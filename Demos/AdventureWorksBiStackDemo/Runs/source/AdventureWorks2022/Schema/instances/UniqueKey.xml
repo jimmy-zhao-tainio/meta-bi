@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <UniqueKeyList>
+    <UniqueKey Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:key:UQ__Document__F73921F7C81C642F" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:Document:key:UQ__Document__F73921F7C81C642F">
+    </UniqueKey>
+  </UniqueKeyList>
+</MetaSchema>

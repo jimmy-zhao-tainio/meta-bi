@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptList>
+    <TransformScript Id="TransformScript:1">
+      <Name>H_CountryRegion</Name>
+      <SourcePath>H_CountryRegion.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:10">
+      <Name>H_SalesPersonQuotaHistory</Name>
+      <SourcePath>H_SalesPersonQuotaHistory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:11">
+      <Name>H_SalesTerritory</Name>
+      <SourcePath>H_SalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:12">
+      <Name>H_SpecialOfferProduct</Name>
+      <SourcePath>H_SpecialOfferProduct.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:13">
+      <Name>H_Store</Name>
+      <SourcePath>H_Store.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:14">
+      <Name>H_Address</Name>
+      <SourcePath>H_Address.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:15">
+      <Name>H_StateProvince</Name>
+      <SourcePath>H_StateProvince.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:16">
+      <Name>H_Employee</Name>
+      <SourcePath>H_Employee.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:17">
+      <Name>HS_CountryRegion_CountryRegion</Name>
+      <SourcePath>HS_CountryRegion_CountryRegion.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:18">
+      <Name>HS_Customer_Customer</Name>
+      <SourcePath>HS_Customer_Customer.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:19">
+      <Name>HS_Person_Person</Name>
+      <SourcePath>HS_Person_Person.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:2">
+      <Name>H_Customer</Name>
+      <SourcePath>H_Customer.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:20">
+      <Name>HS_Product_Product</Name>
+      <SourcePath>HS_Product_Product.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:21">
+      <Name>HS_ProductCategory_ProductCategory</Name>
+      <SourcePath>HS_ProductCategory_ProductCategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:22">
+      <Name>HS_ProductSubcategory_ProductSubcategory</Name>
+      <SourcePath>HS_ProductSubcategory_ProductSubcategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:23">
+      <Name>HS_SalesOrderDetail_SalesOrderDetail</Name>
+      <SourcePath>HS_SalesOrderDetail_SalesOrderDetail.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:24">
+      <Name>HS_SalesOrderHeader_SalesOrderHeader</Name>
+      <SourcePath>HS_SalesOrderHeader_SalesOrderHeader.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:25">
+      <Name>HS_SalesPerson_SalesPerson</Name>
+      <SourcePath>HS_SalesPerson_SalesPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:26">
+      <Name>HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory</Name>
+      <SourcePath>HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:27">
+      <Name>HS_SalesTerritory_SalesTerritory</Name>
+      <SourcePath>HS_SalesTerritory_SalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:28">
+      <Name>HS_SpecialOfferProduct_SpecialOfferProduct</Name>
+      <SourcePath>HS_SpecialOfferProduct_SpecialOfferProduct.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:29">
+      <Name>HS_Store_Store</Name>
+      <SourcePath>HS_Store_Store.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:3">
+      <Name>H_Person</Name>
+      <SourcePath>H_Person.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:30">
+      <Name>HS_Address_Address</Name>
+      <SourcePath>HS_Address_Address.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:31">
+      <Name>HS_StateProvince_StateProvince</Name>
+      <SourcePath>HS_StateProvince_StateProvince.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:32">
+      <Name>L_CustomerPerson</Name>
+      <SourcePath>L_CustomerPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:33">
+      <Name>L_CustomerSalesTerritory</Name>
+      <SourcePath>L_CustomerSalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:34">
+      <Name>L_CustomerStore</Name>
+      <SourcePath>L_CustomerStore.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:35">
+      <Name>L_ProductProductSubcategory</Name>
+      <SourcePath>L_ProductProductSubcategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:36">
+      <Name>L_ProductSubcategoryProductCategory</Name>
+      <SourcePath>L_ProductSubcategoryProductCategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:37">
+      <Name>L_SalesOrderDetailSalesOrderHeader</Name>
+      <SourcePath>L_SalesOrderDetailSalesOrderHeader.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:38">
+      <Name>L_SalesOrderDetailSpecialOfferProduct</Name>
+      <SourcePath>L_SalesOrderDetailSpecialOfferProduct.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:39">
+      <Name>L_SalesOrderHeaderCustomer</Name>
+      <SourcePath>L_SalesOrderHeaderCustomer.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:4">
+      <Name>H_Product</Name>
+      <SourcePath>H_Product.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:40">
+      <Name>L_SalesOrderHeaderSalesPerson</Name>
+      <SourcePath>L_SalesOrderHeaderSalesPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:41">
+      <Name>L_SalesOrderHeaderSalesTerritory</Name>
+      <SourcePath>L_SalesOrderHeaderSalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:42">
+      <Name>L_SalesPersonQuotaHistorySalesPerson</Name>
+      <SourcePath>L_SalesPersonQuotaHistorySalesPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:43">
+      <Name>L_SalesPersonSalesTerritory</Name>
+      <SourcePath>L_SalesPersonSalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:44">
+      <Name>L_SalesTerritoryCountryRegion</Name>
+      <SourcePath>L_SalesTerritoryCountryRegion.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:45">
+      <Name>L_SpecialOfferProductProduct</Name>
+      <SourcePath>L_SpecialOfferProductProduct.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:46">
+      <Name>L_StoreSalesPerson</Name>
+      <SourcePath>L_StoreSalesPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:47">
+      <Name>L_AddressStateProvince</Name>
+      <SourcePath>L_AddressStateProvince.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:48">
+      <Name>L_StateProvinceCountryRegion</Name>
+      <SourcePath>L_StateProvinceCountryRegion.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:49">
+      <Name>L_StateProvinceSalesTerritory</Name>
+      <SourcePath>L_StateProvinceSalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:5">
+      <Name>H_ProductCategory</Name>
+      <SourcePath>H_ProductCategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:50">
+      <Name>L_SalesOrderHeaderAddress_BillToAddressID</Name>
+      <SourcePath>L_SalesOrderHeaderAddress_BillToAddressID.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:51">
+      <Name>L_SalesOrderHeaderAddress_ShipToAddressID</Name>
+      <SourcePath>L_SalesOrderHeaderAddress_ShipToAddressID.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:52">
+      <Name>L_EmployeePerson</Name>
+      <SourcePath>L_EmployeePerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:53">
+      <Name>L_SalesPersonEmployee</Name>
+      <SourcePath>L_SalesPersonEmployee.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:6">
+      <Name>H_ProductSubcategory</Name>
+      <SourcePath>H_ProductSubcategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:7">
+      <Name>H_SalesOrderDetail</Name>
+      <SourcePath>H_SalesOrderDetail.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:8">
+      <Name>H_SalesOrderHeader</Name>
+      <SourcePath>H_SalesOrderHeader.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:9">
+      <Name>H_SalesPerson</Name>
+      <SourcePath>H_SalesPerson.sql</SourcePath>
+    </TransformScript>
+  </TransformScriptList>
+</MetaTransformScript>

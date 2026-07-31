@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <SchemaList>
+    <Schema Id="sqlserver:AdventureWorksAnalytics:schema:dw" SystemId="sqlserver:system:AdventureWorksAnalytics">
+      <Name>dw</Name>
+    </Schema>
+  </SchemaList>
+</MetaSchema>

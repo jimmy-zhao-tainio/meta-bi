@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <PrimaryKeyList>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:key:PK_AWBuildVersion_SystemInformationID" KeyId="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:key:PK_AWBuildVersion_SystemInformationID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:key:PK_DatabaseLog_DatabaseLogID" KeyId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:key:PK_DatabaseLog_DatabaseLogID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:key:PK_ErrorLog_ErrorLogID" KeyId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:key:PK_ErrorLog_ErrorLogID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:key:PK_Department_DepartmentID" KeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:key:PK_Department_DepartmentID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:key:PK_Employee_BusinessEntityID" KeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:key:PK_Employee_BusinessEntityID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID" KeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:key:PK_EmployeePayHistory_BusinessEntityID_RateChangeDate" KeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:key:PK_EmployeePayHistory_BusinessEntityID_RateChangeDate">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:key:PK_JobCandidate_JobCandidateID" KeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:key:PK_JobCandidate_JobCandidateID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:key:PK_Shift_ShiftID" KeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:key:PK_Shift_ShiftID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:key:PK_Address_AddressID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:Address:key:PK_Address_AddressID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:key:PK_AddressType_AddressTypeID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:key:PK_AddressType_AddressTypeID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:key:PK_BusinessEntity_BusinessEntityID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:key:PK_BusinessEntity_BusinessEntityID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:PK_BusinessEntityContact_BusinessEntityID_PersonID_ContactTypeID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:PK_BusinessEntityContact_BusinessEntityID_PersonID_ContactTypeID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:key:PK_ContactType_ContactTypeID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:key:PK_ContactType_ContactTypeID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:key:PK_CountryRegion_CountryRegionCode" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:key:PK_CountryRegion_CountryRegionCode">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:key:PK_EmailAddress_BusinessEntityID_EmailAddressID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:key:PK_EmailAddress_BusinessEntityID_EmailAddressID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:Password:key:PK_Password_BusinessEntityID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:Password:key:PK_Password_BusinessEntityID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:key:PK_Person_BusinessEntityID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:Person:key:PK_Person_BusinessEntityID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:key:PK_PhoneNumberType_PhoneNumberTypeID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:key:PK_PhoneNumberType_PhoneNumberTypeID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:key:PK_StateProvince_StateProvinceID" KeyId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:key:PK_StateProvince_StateProvinceID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:key:PK_BillOfMaterials_BillOfMaterialsID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:key:PK_BillOfMaterials_BillOfMaterialsID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:Culture:key:PK_Culture_CultureID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:Culture:key:PK_Culture_CultureID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:key:PK_Document_DocumentNode" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:Document:key:PK_Document_DocumentNode">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:key:PK_Illustration_IllustrationID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:key:PK_Illustration_IllustrationID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:Location:key:PK_Location_LocationID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:Location:key:PK_Location_LocationID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:key:PK_Product_ProductID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:Product:key:PK_Product_ProductID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:key:PK_ProductCategory_ProductCategoryID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:key:PK_ProductCategory_ProductCategoryID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:key:PK_ProductCostHistory_ProductID_StartDate" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:key:PK_ProductCostHistory_ProductID_StartDate">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:key:PK_ProductDescription_ProductDescriptionID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:key:PK_ProductDescription_ProductDescriptionID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:key:PK_ProductDocument_ProductID_DocumentNode" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:key:PK_ProductDocument_ProductID_DocumentNode">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:key:PK_ProductInventory_ProductID_LocationID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:key:PK_ProductInventory_ProductID_LocationID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:key:PK_ProductListPriceHistory_ProductID_StartDate" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:key:PK_ProductListPriceHistory_ProductID_StartDate">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:key:PK_ProductModel_ProductModelID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:key:PK_ProductModel_ProductModelID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:key:PK_ProductModelIllustration_ProductModelID_IllustrationID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:key:PK_ProductModelIllustration_ProductModelID_IllustrationID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:key:PK_ProductPhoto_ProductPhotoID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:key:PK_ProductPhoto_ProductPhotoID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:key:PK_ProductProductPhoto_ProductID_ProductPhotoID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:key:PK_ProductProductPhoto_ProductID_ProductPhotoID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:key:PK_ProductReview_ProductReviewID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:key:PK_ProductReview_ProductReviewID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:key:PK_ProductSubcategory_ProductSubcategoryID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:key:PK_ProductSubcategory_ProductSubcategoryID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:key:PK_ScrapReason_ScrapReasonID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:key:PK_ScrapReason_ScrapReasonID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:key:PK_TransactionHistory_TransactionID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:key:PK_TransactionHistory_TransactionID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:key:PK_TransactionHistoryArchive_TransactionID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:key:PK_TransactionHistoryArchive_TransactionID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:key:PK_UnitMeasure_UnitMeasureCode" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:key:PK_UnitMeasure_UnitMeasureCode">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:key:PK_WorkOrder_WorkOrderID" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:key:PK_WorkOrder_WorkOrderID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence" KeyId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:key:PK_ProductVendor_ProductID_BusinessEntityID" KeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:key:PK_ProductVendor_ProductID_BusinessEntityID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:key:PK_PurchaseOrderDetail_PurchaseOrderID_PurchaseOrderDetailID" KeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:key:PK_PurchaseOrderDetail_PurchaseOrderID_PurchaseOrderDetailID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:key:PK_PurchaseOrderHeader_PurchaseOrderID" KeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:key:PK_PurchaseOrderHeader_PurchaseOrderID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:key:PK_ShipMethod_ShipMethodID" KeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:key:PK_ShipMethod_ShipMethodID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:key:PK_Vendor_BusinessEntityID" KeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:key:PK_Vendor_BusinessEntityID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:key:PK_CountryRegionCurrency_CountryRegionCode_CurrencyCode" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:key:PK_CountryRegionCurrency_CountryRegionCode_CurrencyCode">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:key:PK_CreditCard_CreditCardID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:key:PK_CreditCard_CreditCardID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:key:PK_Currency_CurrencyCode" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:key:PK_Currency_CurrencyCode">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:key:PK_CurrencyRate_CurrencyRateID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:key:PK_CurrencyRate_CurrencyRateID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:key:PK_Customer_CustomerID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:key:PK_Customer_CustomerID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:key:PK_PersonCreditCard_BusinessEntityID_CreditCardID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:key:PK_PersonCreditCard_BusinessEntityID_CreditCardID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:key:PK_SalesOrderDetail_SalesOrderID_SalesOrderDetailID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:key:PK_SalesOrderDetail_SalesOrderID_SalesOrderDetailID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:key:PK_SalesOrderHeader_SalesOrderID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:key:PK_SalesOrderHeader_SalesOrderID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:key:PK_SalesOrderHeaderSalesReason_SalesOrderID_SalesReasonID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:key:PK_SalesOrderHeaderSalesReason_SalesOrderID_SalesReasonID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:key:PK_SalesPerson_BusinessEntityID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:key:PK_SalesPerson_BusinessEntityID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:key:PK_SalesPersonQuotaHistory_BusinessEntityID_QuotaDate" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:key:PK_SalesPersonQuotaHistory_BusinessEntityID_QuotaDate">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:key:PK_SalesReason_SalesReasonID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:key:PK_SalesReason_SalesReasonID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:key:PK_SalesTaxRate_SalesTaxRateID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:key:PK_SalesTaxRate_SalesTaxRateID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:key:PK_SalesTerritory_TerritoryID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:key:PK_SalesTerritory_TerritoryID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:PK_SalesTerritoryHistory_BusinessEntityID_StartDate_TerritoryID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:PK_SalesTerritoryHistory_BusinessEntityID_StartDate_TerritoryID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:key:PK_ShoppingCartItem_ShoppingCartItemID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:key:PK_ShoppingCartItem_ShoppingCartItemID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:key:PK_SpecialOffer_SpecialOfferID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:key:PK_SpecialOffer_SpecialOfferID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:key:PK_SpecialOfferProduct_SpecialOfferID_ProductID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:key:PK_SpecialOfferProduct_SpecialOfferID_ProductID">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:key:PK_Store_BusinessEntityID" KeyId="sqlserver:AdventureWorks2022:schema:Sales:table:Store:key:PK_Store_BusinessEntityID">
+    </PrimaryKey>
+  </PrimaryKeyList>
+</MetaSchema>

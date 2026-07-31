@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <JoinMultiplicityExplosionList>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.1.144.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.1.144">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.10.122.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.10.122">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.12.158.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.12.158">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.14.152.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.14.152">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.16.166.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.16.166">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.19.172.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.19.172">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.2.140.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.2.140">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.21.63.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.21.63">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.22.60.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.22.60">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.23.57.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.23.57">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.24.45.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.24.45">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.25.42.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.25.42">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.26.39.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.26.39">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.28.33.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.28.33">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.29.30.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.29.30">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.3.136.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.3.136">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.31.94.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.31.94">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.32.90.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.32.90">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.34.84.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.34.84">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.35.80.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.35.80">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.37.19.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.37.19">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.38.16.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.38.16">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.42.54.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.42.54">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.43.51.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.43.51">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.44.48.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.44.48">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.46.114.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.46.114">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.47.110.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.47.110">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.49.104.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.49.104">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.50.100.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.50.100">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.52.26.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.52.26">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.53.23.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.53.23">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.55.12.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.55.12">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.56.9.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.56.9">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.63.73.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.63.73">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.64.70.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.64.70">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.65.67.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.65.67">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.8.128.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.8.128">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+  </JoinMultiplicityExplosionList>
+</MetaDataQuality>

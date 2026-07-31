@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubKeyPartList>
+    <BusinessHubKeyPart Id="AddressID" BusinessHubId="Address">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>AddressID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="CountryRegionCode" BusinessHubId="CountryRegion">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CountryRegionCode</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="CustomerID" BusinessHubId="Customer">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>CustomerID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="PersonID" BusinessHubId="Person">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="ProductCategoryID" BusinessHubId="ProductCategory">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>ProductCategoryID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="ProductID" BusinessHubId="Product">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>ProductID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="ProductSubcategoryID" BusinessHubId="ProductSubcategory">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>ProductSubcategoryID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="SalesOrderID" BusinessHubId="SalesOrder">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>SalesOrderID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="SalesOrderLineID" BusinessHubId="SalesOrderLine" PreviousKeyPartId="SalesOrderLineOrderID">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>SalesOrderDetailID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="SalesOrderLineOrderID" BusinessHubId="SalesOrderLine">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>SalesOrderID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="SalesPersonID" BusinessHubId="SalesPerson">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="SalesPersonQuotaDate" BusinessHubId="SalesPersonQuota" PreviousKeyPartId="SalesPersonQuotaPersonID">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>QuotaDate</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="SalesPersonQuotaPersonID" BusinessHubId="SalesPersonQuota">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="SalesTerritoryID" BusinessHubId="SalesTerritory">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>TerritoryID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="StateProvinceID" BusinessHubId="StateProvince">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>StateProvinceID</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="StoreID" BusinessHubId="Store">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </BusinessHubKeyPart>
+  </BusinessHubKeyPartList>
+</MetaBusinessDataVault>

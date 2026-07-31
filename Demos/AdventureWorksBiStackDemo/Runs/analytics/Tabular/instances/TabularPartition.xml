@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularPartitionList>
+    <TabularPartition Id="Customer_Partition" TabularDataSourceId="Warehouse" TabularTableId="Customer">
+      <Expression>SELECT * FROM [dw].[Dim_Customer]</Expression>
+      <Mode>Import</Mode>
+      <Name>Customer Partition</Name>
+      <Ordinal>40</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="Date_Partition" TabularDataSourceId="Warehouse" TabularTableId="Date">
+      <Expression>SELECT * FROM [dw].[Dim_Date]</Expression>
+      <Mode>Import</Mode>
+      <Name>Date Partition</Name>
+      <Ordinal>10</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="Geography_Partition" TabularDataSourceId="Warehouse" TabularTableId="Geography">
+      <Expression>SELECT * FROM [dw].[Dim_Geography]</Expression>
+      <Mode>Import</Mode>
+      <Name>Geography Partition</Name>
+      <Ordinal>30</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="OrderStatus_Partition" TabularDataSourceId="Warehouse" TabularTableId="OrderStatus">
+      <Expression>SELECT * FROM [dw].[Dim_OrderStatus]</Expression>
+      <Mode>Import</Mode>
+      <Name>OrderStatus Partition</Name>
+      <Ordinal>80</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="Product_Partition" TabularDataSourceId="Warehouse" TabularTableId="Product">
+      <Expression>SELECT * FROM [dw].[Dim_Product]</Expression>
+      <Mode>Import</Mode>
+      <Name>Product Partition</Name>
+      <Ordinal>20</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="SalesChannel_Partition" TabularDataSourceId="Warehouse" TabularTableId="SalesChannel">
+      <Expression>SELECT * FROM [dw].[Dim_SalesChannel]</Expression>
+      <Mode>Import</Mode>
+      <Name>SalesChannel Partition</Name>
+      <Ordinal>70</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="SalesLines_Partition" TabularDataSourceId="Warehouse" TabularTableId="SalesLines">
+      <Expression>SELECT * FROM [dw].[Fact_SalesLine]</Expression>
+      <Mode>Import</Mode>
+      <Name>SalesLines Partition</Name>
+      <Ordinal>100</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="SalesOrders_Partition" TabularDataSourceId="Warehouse" TabularTableId="SalesOrders">
+      <Expression>SELECT * FROM [dw].[Fact_SalesOrder]</Expression>
+      <Mode>Import</Mode>
+      <Name>SalesOrders Partition</Name>
+      <Ordinal>90</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="SalespersonQuotas_Partition" TabularDataSourceId="Warehouse" TabularTableId="SalespersonQuotas">
+      <Expression>SELECT * FROM [dw].[Fact_SalespersonQuota]</Expression>
+      <Mode>Import</Mode>
+      <Name>SalespersonQuotas Partition</Name>
+      <Ordinal>110</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="Salesperson_Partition" TabularDataSourceId="Warehouse" TabularTableId="Salesperson">
+      <Expression>SELECT * FROM [dw].[Dim_Salesperson]</Expression>
+      <Mode>Import</Mode>
+      <Name>Salesperson Partition</Name>
+      <Ordinal>50</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="SalesTerritory_Partition" TabularDataSourceId="Warehouse" TabularTableId="SalesTerritory">
+      <Expression>SELECT * FROM [dw].[Dim_SalesTerritory]</Expression>
+      <Mode>Import</Mode>
+      <Name>SalesTerritory Partition</Name>
+      <Ordinal>60</Ordinal>
+    </TabularPartition>
+  </TabularPartitionList>
+</MetaTabular>

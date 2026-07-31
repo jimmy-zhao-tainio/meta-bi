@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <InsertQueryWriteList>
+    <InsertQueryWrite Id="TransformScript:1:binding:validation:target:1:write:insert-query" WriteId="TransformScript:1:binding:validation:target:1:write">
+      <MetaTransformScriptQueryExpressionId>QueryExpression:2</MetaTransformScriptQueryExpressionId>
+    </InsertQueryWrite>
+    <InsertQueryWrite Id="TransformScript:2:binding:validation:target:19:write:insert-query" WriteId="TransformScript:2:binding:validation:target:19:write">
+      <MetaTransformScriptQueryExpressionId>QueryExpression:4</MetaTransformScriptQueryExpressionId>
+    </InsertQueryWrite>
+    <InsertQueryWrite Id="TransformScript:3:binding:validation:target:22:write:insert-query" WriteId="TransformScript:3:binding:validation:target:22:write">
+      <MetaTransformScriptQueryExpressionId>QueryExpression:6</MetaTransformScriptQueryExpressionId>
+    </InsertQueryWrite>
+    <InsertQueryWrite Id="TransformScript:4:binding:validation:target:23:write:insert-query" WriteId="TransformScript:4:binding:validation:target:23:write">
+      <MetaTransformScriptQueryExpressionId>QueryExpression:8</MetaTransformScriptQueryExpressionId>
+    </InsertQueryWrite>
+    <InsertQueryWrite Id="TransformScript:5:binding:validation:target:24:write:insert-query" WriteId="TransformScript:5:binding:validation:target:24:write">
+      <MetaTransformScriptQueryExpressionId>QueryExpression:10</MetaTransformScriptQueryExpressionId>
+    </InsertQueryWrite>
+    <InsertQueryWrite Id="TransformScript:6:binding:validation:target:25:write:insert-query" WriteId="TransformScript:6:binding:validation:target:25:write">
+      <MetaTransformScriptQueryExpressionId>QueryExpression:12</MetaTransformScriptQueryExpressionId>
+    </InsertQueryWrite>
+    <InsertQueryWrite Id="TransformScript:7:binding:validation:target:26:write:insert-query" WriteId="TransformScript:7:binding:validation:target:26:write">
+      <MetaTransformScriptQueryExpressionId>QueryExpression:14</MetaTransformScriptQueryExpressionId>
+    </InsertQueryWrite>
+    <InsertQueryWrite Id="TransformScript:8:binding:validation:target:27:write:insert-query" WriteId="TransformScript:8:binding:validation:target:27:write">
+      <MetaTransformScriptQueryExpressionId>QueryExpression:16</MetaTransformScriptQueryExpressionId>
+    </InsertQueryWrite>
+  </InsertQueryWriteList>
+</MetaTransformBinding>

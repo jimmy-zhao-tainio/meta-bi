@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <PerspectiveMeasureList>
+    <PerspectiveMeasure Id="SalesAnalysis_AverageOrderValue" MeasureId="AverageOrderValue" PerspectiveId="SalesAnalysis" />
+    <PerspectiveMeasure Id="SalesAnalysis_AverageUnitPrice" MeasureId="AverageUnitPrice" PerspectiveId="SalesAnalysis" />
+    <PerspectiveMeasure Id="SalesAnalysis_DiscountAmount" MeasureId="DiscountAmount" PerspectiveId="SalesAnalysis" />
+    <PerspectiveMeasure Id="SalesAnalysis_FreightAmount" MeasureId="FreightAmount" PerspectiveId="SalesAnalysis" />
+    <PerspectiveMeasure Id="SalesAnalysis_OrderCount" MeasureId="OrderCount" PerspectiveId="SalesAnalysis" />
+    <PerspectiveMeasure Id="SalesAnalysis_OrderQuantity" MeasureId="OrderQuantity" PerspectiveId="SalesAnalysis" />
+    <PerspectiveMeasure Id="SalesAnalysis_OrderSubtotal" MeasureId="OrderSubtotal" PerspectiveId="SalesAnalysis" />
+    <PerspectiveMeasure Id="SalesAnalysis_QuotaAmount" MeasureId="QuotaAmount" PerspectiveId="SalesAnalysis" />
+    <PerspectiveMeasure Id="SalesAnalysis_SalesAmount" MeasureId="SalesAmount" PerspectiveId="SalesAnalysis" />
+    <PerspectiveMeasure Id="SalesAnalysis_TaxAmount" MeasureId="TaxAmount" PerspectiveId="SalesAnalysis" />
+    <PerspectiveMeasure Id="SalesAnalysis_TotalDue" MeasureId="TotalDue" PerspectiveId="SalesAnalysis" />
+  </PerspectiveMeasureList>
+</MetaAnalytics>

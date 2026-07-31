@@ -25,6 +25,9 @@ Metadata.code-workspace
 /Demos/**/Runs/
 /Demos/**/Recordings/
 /Demos/**/_downloads/
+!/Demos/AdventureWorksBiStackDemo/Runs/
+!/Demos/AdventureWorksBiStackDemo/Runs/**
+/Demos/AdventureWorksBiStackDemo/Runs/ops/RunArtifacts/
 /Demos/BusinessDataVaultCliIntegration/BusinessDataVaultCliIntegrationWorkspace/
 /Demos/BusinessDataVaultCliIntegration/CurrentMetaSqlWorkspace/
 /Demos/BusinessDataVaultCliIntegration/MetaSqlDeployManifest/
@@ -122,4 +125,3 @@ Metadata.code-workspace
 /Demos/MetaTabularConvertCliIntegration/TabularWorkspace/
 /Demos/MetaMultiDimensionalConvertCliIntegration/AnalyticsWorkspace/
 /Demos/MetaMultiDimensionalConvertCliIntegration/MultiDimensionalWorkspace/
-/Demos/AdventureWorksBiStackDemo/Runs/

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularPerspectiveList>
+    <TabularPerspective Id="SalesAnalysis" TabularModelId="AdventureWorksSales">
+      <Description>Sales orders, sales lines, quotas, and their conformed dimensions.</Description>
+      <Name>Sales Analysis</Name>
+    </TabularPerspective>
+  </TabularPerspectiveList>
+</MetaTabular>

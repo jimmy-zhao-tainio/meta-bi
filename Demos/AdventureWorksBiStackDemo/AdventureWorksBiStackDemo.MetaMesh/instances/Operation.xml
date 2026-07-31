@@ -2,7 +2,7 @@
 <MetaMesh>
   <OperationList>
     <Operation Id="operation:cleanup" MeshId="mesh:default">
-      <Description>Remove the generated AdventureWorks stack databases and disposable Runs workspaces.</Description>
+      <Description>Drop the demo-owned databases and clear transient pipeline execution evidence.</Description>
       <Name>cleanup</Name>
     </Operation>
     <Operation Id="operation:cleanup-source-schema" MeshId="mesh:default">

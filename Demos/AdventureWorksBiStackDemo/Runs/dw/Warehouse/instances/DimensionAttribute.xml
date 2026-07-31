@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <DimensionAttributeList>
+    <DimensionAttribute Id="dimension:customer:attribute:AccountNumber" DimensionId="dimension:customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>AccountNumber</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:customer:attribute:CustomerID" DimensionId="dimension:customer">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>CustomerID</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:customer:attribute:CustomerName" DimensionId="dimension:customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>CustomerName</Name>
+      <Ordinal>30</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:customer:attribute:CustomerType" DimensionId="dimension:customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>CustomerType</Name>
+      <Ordinal>40</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:customer:attribute:StoreName" DimensionId="dimension:customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>StoreName</Name>
+      <Ordinal>50</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:CalendarDate" DimensionId="dimension:date">
+      <DataTypeId>meta:type:Date</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>CalendarDate</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:CalendarQuarter" DimensionId="dimension:date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>CalendarQuarter</Name>
+      <Ordinal>40</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:CalendarYear" DimensionId="dimension:date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>CalendarYear</Name>
+      <Ordinal>30</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:DateKey" DimensionId="dimension:date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>CalendarDateKey</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:DayName" DimensionId="dimension:date">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>DayName</Name>
+      <Ordinal>80</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:DayOfMonth" DimensionId="dimension:date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>DayOfMonth</Name>
+      <Ordinal>70</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:MonthName" DimensionId="dimension:date">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>MonthName</Name>
+      <Ordinal>60</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:MonthNumber" DimensionId="dimension:date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>MonthNumber</Name>
+      <Ordinal>50</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:geography:attribute:AddressID" DimensionId="dimension:geography">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>AddressID</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:geography:attribute:AddressLine1" DimensionId="dimension:geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>AddressLine1</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:geography:attribute:AddressLine2" DimensionId="dimension:geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>AddressLine2</Name>
+      <Ordinal>30</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:geography:attribute:City" DimensionId="dimension:geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>City</Name>
+      <Ordinal>40</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:geography:attribute:CountryRegionCode" DimensionId="dimension:geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>CountryRegionCode</Name>
+      <Ordinal>80</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:geography:attribute:CountryRegionName" DimensionId="dimension:geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>CountryRegionName</Name>
+      <Ordinal>90</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:geography:attribute:PostalCode" DimensionId="dimension:geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>PostalCode</Name>
+      <Ordinal>70</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:geography:attribute:StateProvinceCode" DimensionId="dimension:geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>StateProvinceCode</Name>
+      <Ordinal>50</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:geography:attribute:StateProvinceName" DimensionId="dimension:geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>StateProvinceName</Name>
+      <Ordinal>60</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:order-status:attribute:StatusCode" DimensionId="dimension:order-status">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>StatusCode</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:order-status:attribute:StatusName" DimensionId="dimension:order-status">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>StatusName</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:product:attribute:Color" DimensionId="dimension:product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Color</Name>
+      <Ordinal>40</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:product:attribute:ProductCategoryName" DimensionId="dimension:product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>ProductCategoryName</Name>
+      <Ordinal>60</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:product:attribute:ProductID" DimensionId="dimension:product">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>ProductID</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:product:attribute:ProductName" DimensionId="dimension:product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>ProductName</Name>
+      <Ordinal>30</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:product:attribute:ProductNumber" DimensionId="dimension:product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>ProductNumber</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:product:attribute:ProductSubcategoryName" DimensionId="dimension:product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>ProductSubcategoryName</Name>
+      <Ordinal>50</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:sales-channel:attribute:ChannelCode" DimensionId="dimension:sales-channel">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>ChannelCode</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:sales-channel:attribute:ChannelName" DimensionId="dimension:sales-channel">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>ChannelName</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:sales-territory:attribute:CountryRegionCode" DimensionId="dimension:sales-territory">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>CountryRegionCode</Name>
+      <Ordinal>30</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:sales-territory:attribute:TerritoryGroup" DimensionId="dimension:sales-territory">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>TerritoryGroup</Name>
+      <Ordinal>40</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:sales-territory:attribute:TerritoryID" DimensionId="dimension:sales-territory">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>TerritoryID</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:sales-territory:attribute:TerritoryName" DimensionId="dimension:sales-territory">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>TerritoryName</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:salesperson:attribute:BusinessEntityID" DimensionId="dimension:salesperson">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:salesperson:attribute:FirstName" DimensionId="dimension:salesperson">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>FirstName</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:salesperson:attribute:FullName" DimensionId="dimension:salesperson">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>FullName</Name>
+      <Ordinal>40</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:salesperson:attribute:LastName" DimensionId="dimension:salesperson">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>LastName</Name>
+      <Ordinal>30</Ordinal>
+    </DimensionAttribute>
+  </DimensionAttributeList>
+</MetaDataWarehouse>

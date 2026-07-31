@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <InsertQuerySourceList>
+    <InsertQuerySource Id="InsertQuerySource:1" InsertSourceId="InsertSource:1" />
+    <InsertQuerySource Id="InsertQuerySource:2" InsertSourceId="InsertSource:2" />
+    <InsertQuerySource Id="InsertQuerySource:3" InsertSourceId="InsertSource:3" />
+    <InsertQuerySource Id="InsertQuerySource:4" InsertSourceId="InsertSource:4" />
+    <InsertQuerySource Id="InsertQuerySource:5" InsertSourceId="InsertSource:5" />
+    <InsertQuerySource Id="InsertQuerySource:6" InsertSourceId="InsertSource:6" />
+    <InsertQuerySource Id="InsertQuerySource:7" InsertSourceId="InsertSource:7" />
+    <InsertQuerySource Id="InsertQuerySource:8" InsertSourceId="InsertSource:8" />
+  </InsertQuerySourceList>
+</MetaTransformScript>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <PrimaryKeyColumnList>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Dim_Customer:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Dim_Customer:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Dim_Customer.CustomerKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Dim_Date:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Dim_Date:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Dim_Date.DateKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Dim_Geography:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Dim_Geography:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.GeographyKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Dim_OrderStatus:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Dim_OrderStatus:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Dim_OrderStatus.OrderStatusKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Dim_Product:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Dim_Product:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Dim_Product.ProductKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Dim_SalesChannel:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Dim_SalesChannel:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesChannel.SalesChannelKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Dim_Salesperson:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Dim_Salesperson:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Dim_Salesperson.SalespersonKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Dim_SalesTerritory:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesTerritory.SalesTerritoryKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.OrderDateKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key:column:2" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.ProductKey">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key:column:3" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.CustomerKey">
+      <Ordinal>3</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key:column:4" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.SalesChannelKey">
+      <Ordinal>4</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key:column:5" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.ShipToGeographyKey">
+      <Ordinal>5</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key:column:6" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.SalesOrderID">
+      <Ordinal>6</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key:column:7" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.SalesOrderDetailID">
+      <Ordinal>7</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.OrderDateKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key:column:2" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.DueDateKey">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key:column:3" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.CustomerKey">
+      <Ordinal>3</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key:column:4" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.SalesChannelKey">
+      <Ordinal>4</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key:column:5" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.OrderStatusKey">
+      <Ordinal>5</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key:column:6" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.BillToGeographyKey">
+      <Ordinal>6</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key:column:7" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.ShipToGeographyKey">
+      <Ordinal>7</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key:column:8" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.SalesOrderID">
+      <Ordinal>8</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:primary-key:column:1" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.QuotaPeriodKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:primary-key:column:2" PrimaryKeyId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:primary-key" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.SalespersonKey">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+  </PrimaryKeyColumnList>
+</MetaSql>

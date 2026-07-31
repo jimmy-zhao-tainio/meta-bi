@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawLinkList>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:relationship:FK_Employee_Person_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>EmployeePerson</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:relationship:FK_EmployeeDepartmentHistory_Department_DepartmentID">
+      <LinkKind>standard</LinkKind>
+      <Name>EmployeeDepartmentHistoryDepartment</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:relationship:FK_EmployeeDepartmentHistory_Employee_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>EmployeeDepartmentHistoryEmployee</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:relationship:FK_EmployeeDepartmentHistory_Shift_ShiftID">
+      <LinkKind>standard</LinkKind>
+      <Name>EmployeeDepartmentHistoryShift</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:relationship:FK_EmployeePayHistory_Employee_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>EmployeePayHistoryEmployee</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:relationship:FK_JobCandidate_Employee_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>JobCandidateEmployee</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:Address:relationship:FK_Address_StateProvince_StateProvinceID">
+      <LinkKind>standard</LinkKind>
+      <Name>AddressStateProvince</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:relationship:FK_BusinessEntityAddress_AddressType_AddressTypeID">
+      <LinkKind>standard</LinkKind>
+      <Name>BusinessEntityAddressAddressType</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:relationship:FK_BusinessEntityAddress_Address_AddressID">
+      <LinkKind>standard</LinkKind>
+      <Name>BusinessEntityAddressAddress</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:relationship:FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>BusinessEntityAddressBusinessEntity</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:relationship:FK_BusinessEntityContact_BusinessEntity_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>BusinessEntityContactBusinessEntity</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:relationship:FK_BusinessEntityContact_ContactType_ContactTypeID">
+      <LinkKind>standard</LinkKind>
+      <Name>BusinessEntityContactContactType</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:relationship:FK_BusinessEntityContact_Person_PersonID">
+      <LinkKind>standard</LinkKind>
+      <Name>BusinessEntityContactPerson</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:relationship:FK_EmailAddress_Person_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>EmailAddressPerson</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:Password:relationship:FK_Password_Person_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>PasswordPerson</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:Person:relationship:FK_Person_BusinessEntity_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>PersonBusinessEntity</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:relationship:FK_PersonPhone_Person_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>PersonPhonePerson</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:relationship:FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID">
+      <LinkKind>standard</LinkKind>
+      <Name>PersonPhonePhoneNumberType</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:relationship:FK_StateProvince_CountryRegion_CountryRegionCode">
+      <LinkKind>standard</LinkKind>
+      <Name>StateProvinceCountryRegion</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:relationship:FK_StateProvince_SalesTerritory_TerritoryID">
+      <LinkKind>standard</LinkKind>
+      <Name>StateProvinceSalesTerritory</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:relationship:FK_BillOfMaterials_Product_ComponentID">
+      <LinkKind>standard</LinkKind>
+      <Name>BillOfMaterialsProduct_ComponentID</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:relationship:FK_BillOfMaterials_Product_ProductAssemblyID">
+      <LinkKind>standard</LinkKind>
+      <Name>BillOfMaterialsProduct_ProductAssemblyID</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:relationship:FK_BillOfMaterials_UnitMeasure_UnitMeasureCode">
+      <LinkKind>standard</LinkKind>
+      <Name>BillOfMaterialsUnitMeasure</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:Document:relationship:FK_Document_Employee_Owner">
+      <LinkKind>standard</LinkKind>
+      <Name>DocumentEmployee</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:Product:relationship:FK_Product_ProductModel_ProductModelID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductProductModel</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:Product:relationship:FK_Product_ProductSubcategory_ProductSubcategoryID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductProductSubcategory</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:Product:relationship:FK_Product_UnitMeasure_SizeUnitMeasureCode">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductUnitMeasure_SizeUnitMeasureCode</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:Product:relationship:FK_Product_UnitMeasure_WeightUnitMeasureCode">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductUnitMeasure_WeightUnitMeasureCode</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:relationship:FK_ProductCostHistory_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductCostHistoryProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:relationship:FK_ProductDocument_Document_DocumentNode">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductDocumentDocument</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:relationship:FK_ProductDocument_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductDocumentProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:relationship:FK_ProductInventory_Location_LocationID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductInventoryLocation</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:relationship:FK_ProductInventory_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductInventoryProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:relationship:FK_ProductListPriceHistory_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductListPriceHistoryProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:relationship:FK_ProductModelIllustration_Illustration_IllustrationID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductModelIllustrationIllustration</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:relationship:FK_ProductModelIllustration_ProductModel_ProductModelID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductModelIllustrationProductModel</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:relationship:FK_ProductModelProductDescriptionCulture_Culture_CultureID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductModelProductDescriptionCultureCulture</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:relationship:FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductModelProductDescriptionCultureProductDescription</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:relationship:FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductModelProductDescriptionCultureProductModel</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:relationship:FK_ProductProductPhoto_ProductPhoto_ProductPhotoID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductProductPhotoProductPhoto</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:relationship:FK_ProductProductPhoto_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductProductPhotoProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:relationship:FK_ProductReview_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductReviewProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:relationship:FK_ProductSubcategory_ProductCategory_ProductCategoryID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductSubcategoryProductCategory</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:relationship:FK_TransactionHistory_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>TransactionHistoryProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:relationship:FK_WorkOrder_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>WorkOrderProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:relationship:FK_WorkOrder_ScrapReason_ScrapReasonID">
+      <LinkKind>standard</LinkKind>
+      <Name>WorkOrderScrapReason</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:relationship:FK_WorkOrderRouting_Location_LocationID">
+      <LinkKind>standard</LinkKind>
+      <Name>WorkOrderRoutingLocation</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:relationship:FK_WorkOrderRouting_WorkOrder_WorkOrderID">
+      <LinkKind>standard</LinkKind>
+      <Name>WorkOrderRoutingWorkOrder</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:relationship:FK_ProductVendor_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductVendorProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:relationship:FK_ProductVendor_UnitMeasure_UnitMeasureCode">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductVendorUnitMeasure</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:relationship:FK_ProductVendor_Vendor_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductVendorVendor</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:relationship:FK_PurchaseOrderDetail_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>PurchaseOrderDetailProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:relationship:FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID">
+      <LinkKind>standard</LinkKind>
+      <Name>PurchaseOrderDetailPurchaseOrderHeader</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:relationship:FK_PurchaseOrderHeader_Employee_EmployeeID">
+      <LinkKind>standard</LinkKind>
+      <Name>PurchaseOrderHeaderEmployee</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:relationship:FK_PurchaseOrderHeader_ShipMethod_ShipMethodID">
+      <LinkKind>standard</LinkKind>
+      <Name>PurchaseOrderHeaderShipMethod</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:relationship:FK_PurchaseOrderHeader_Vendor_VendorID">
+      <LinkKind>standard</LinkKind>
+      <Name>PurchaseOrderHeaderVendor</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:relationship:FK_Vendor_BusinessEntity_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>VendorBusinessEntity</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:relationship:FK_CountryRegionCurrency_CountryRegion_CountryRegionCode">
+      <LinkKind>standard</LinkKind>
+      <Name>CountryRegionCurrencyCountryRegion</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:relationship:FK_CountryRegionCurrency_Currency_CurrencyCode">
+      <LinkKind>standard</LinkKind>
+      <Name>CountryRegionCurrencyCurrency</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:relationship:FK_CurrencyRate_Currency_FromCurrencyCode">
+      <LinkKind>standard</LinkKind>
+      <Name>CurrencyRateCurrency_FromCurrencyCode</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:relationship:FK_CurrencyRate_Currency_ToCurrencyCode">
+      <LinkKind>standard</LinkKind>
+      <Name>CurrencyRateCurrency_ToCurrencyCode</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:relationship:FK_Customer_Person_PersonID">
+      <LinkKind>standard</LinkKind>
+      <Name>CustomerPerson</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:relationship:FK_Customer_SalesTerritory_TerritoryID">
+      <LinkKind>standard</LinkKind>
+      <Name>CustomerSalesTerritory</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:relationship:FK_Customer_Store_StoreID">
+      <LinkKind>standard</LinkKind>
+      <Name>CustomerStore</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:relationship:FK_PersonCreditCard_CreditCard_CreditCardID">
+      <LinkKind>standard</LinkKind>
+      <Name>PersonCreditCardCreditCard</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:relationship:FK_PersonCreditCard_Person_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>PersonCreditCardPerson</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:relationship:FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderDetailSalesOrderHeader</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:relationship:FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderDetailSpecialOfferProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_Address_BillToAddressID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderHeaderAddress_BillToAddressID</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_Address_ShipToAddressID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderHeaderAddress_ShipToAddressID</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_CreditCard_CreditCardID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderHeaderCreditCard</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_CurrencyRate_CurrencyRateID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderHeaderCurrencyRate</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_Customer_CustomerID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderHeaderCustomer</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_SalesPerson_SalesPersonID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderHeaderSalesPerson</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_SalesTerritory_TerritoryID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderHeaderSalesTerritory</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_ShipMethod_ShipMethodID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderHeaderShipMethod</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:relationship:FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderHeaderSalesReasonSalesOrderHeader</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:relationship:FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesOrderHeaderSalesReasonSalesReason</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:relationship:FK_SalesPerson_Employee_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesPersonEmployee</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:relationship:FK_SalesPerson_SalesTerritory_TerritoryID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesPersonSalesTerritory</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:relationship:FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesPersonQuotaHistorySalesPerson</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:relationship:FK_SalesTaxRate_StateProvince_StateProvinceID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesTaxRateStateProvince</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:relationship:FK_SalesTerritory_CountryRegion_CountryRegionCode">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesTerritoryCountryRegion</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:relationship:FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesTerritoryHistorySalesPerson</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:relationship:FK_SalesTerritoryHistory_SalesTerritory_TerritoryID">
+      <LinkKind>standard</LinkKind>
+      <Name>SalesTerritoryHistorySalesTerritory</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:relationship:FK_ShoppingCartItem_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>ShoppingCartItemProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:relationship:FK_SpecialOfferProduct_Product_ProductID">
+      <LinkKind>standard</LinkKind>
+      <Name>SpecialOfferProductProduct</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:relationship:FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID">
+      <LinkKind>standard</LinkKind>
+      <Name>SpecialOfferProductSpecialOffer</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:Store:relationship:FK_Store_BusinessEntity_BusinessEntityID">
+      <LinkKind>standard</LinkKind>
+      <Name>StoreBusinessEntity</Name>
+    </RawLink>
+    <RawLink Id="rawlink:sqlserver:AdventureWorks2022:schema:Sales:table:Store:relationship:FK_Store_SalesPerson_SalesPersonID">
+      <LinkKind>standard</LinkKind>
+      <Name>StoreSalesPerson</Name>
+    </RawLink>
+  </RawLinkList>
+</MetaRawDataVault>

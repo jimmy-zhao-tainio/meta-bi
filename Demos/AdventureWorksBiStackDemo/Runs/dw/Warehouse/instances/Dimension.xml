@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <DimensionList>
+    <Dimension Id="dimension:customer" WarehouseId="warehouse:adventureworks">
+      <Name>Customer</Name>
+    </Dimension>
+    <Dimension Id="dimension:date" WarehouseId="warehouse:adventureworks">
+      <Name>Date</Name>
+    </Dimension>
+    <Dimension Id="dimension:geography" WarehouseId="warehouse:adventureworks">
+      <Name>Geography</Name>
+    </Dimension>
+    <Dimension Id="dimension:order-status" WarehouseId="warehouse:adventureworks">
+      <Name>OrderStatus</Name>
+    </Dimension>
+    <Dimension Id="dimension:product" WarehouseId="warehouse:adventureworks">
+      <Name>Product</Name>
+    </Dimension>
+    <Dimension Id="dimension:sales-channel" WarehouseId="warehouse:adventureworks">
+      <Name>SalesChannel</Name>
+    </Dimension>
+    <Dimension Id="dimension:sales-territory" WarehouseId="warehouse:adventureworks">
+      <Name>SalesTerritory</Name>
+    </Dimension>
+    <Dimension Id="dimension:salesperson" WarehouseId="warehouse:adventureworks">
+      <Name>Salesperson</Name>
+    </Dimension>
+  </DimensionList>
+</MetaDataWarehouse>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSatelliteAttributeList>
+    <BusinessSatelliteAttribute Id="AddressCity" BusinessSatelliteId="AddressProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>City</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="AddressLine1" BusinessSatelliteId="AddressProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>AddressLine1</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="AddressLine2" BusinessSatelliteId="AddressProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>AddressLine2</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="AddressPostalCode" BusinessSatelliteId="AddressProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>PostalCode</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CountryRegionName" BusinessSatelliteId="CountryRegionProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Name</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerAccountNumber" BusinessSatelliteId="CustomerProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>AccountNumber</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="PersonFirstName" BusinessSatelliteId="PersonProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>FirstName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="PersonLastName" BusinessSatelliteId="PersonProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>LastName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="PersonMiddleName" BusinessSatelliteId="PersonProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>MiddleName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductCategoryName" BusinessSatelliteId="ProductCategoryProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Name</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductColor" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Color</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductDiscontinuedDate" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>DiscontinuedDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductListPrice" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>ListPrice</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductName" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Name</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductNumber" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ProductNumber</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductSellEndDate" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>SellEndDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductSellStartDate" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>SellStartDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductSize" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Size</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductStandardCost" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>StandardCost</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductSubcategoryName" BusinessSatelliteId="ProductSubcategoryProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Name</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductWeight" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>Weight</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderDate" BusinessSatelliteId="SalesOrderHeader">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>OrderDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderDueDate" BusinessSatelliteId="SalesOrderHeader">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>DueDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderFreightAmount" BusinessSatelliteId="SalesOrderHeader">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>FreightAmount</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderLineDiscount" BusinessSatelliteId="SalesOrderLineDetail">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>UnitPriceDiscount</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderLineQuantity" BusinessSatelliteId="SalesOrderLineDetail">
+      <DataTypeId>meta:type:Int16</DataTypeId>
+      <Name>OrderQuantity</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderLineTotal" BusinessSatelliteId="SalesOrderLineDetail">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>LineTotal</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderLineUnitPrice" BusinessSatelliteId="SalesOrderLineDetail">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>UnitPrice</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderOnlineFlag" BusinessSatelliteId="SalesOrderHeader">
+      <DataTypeId>meta:type:Boolean</DataTypeId>
+      <Name>OnlineOrderFlag</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderShipDate" BusinessSatelliteId="SalesOrderHeader">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>ShipDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderStatus" BusinessSatelliteId="SalesOrderHeader">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>Status</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderSubTotal" BusinessSatelliteId="SalesOrderHeader">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>SubTotal</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderTaxAmount" BusinessSatelliteId="SalesOrderHeader">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>TaxAmount</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesOrderTotalDue" BusinessSatelliteId="SalesOrderHeader">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>TotalDue</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesPersonBonus" BusinessSatelliteId="SalesPersonProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>Bonus</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesPersonCommissionPercent" BusinessSatelliteId="SalesPersonProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>CommissionPercent</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesPersonQuota" BusinessSatelliteId="SalesPersonProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>SalesQuota</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesPersonQuotaAmount" BusinessSatelliteId="SalesPersonQuotaProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>SalesQuota</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesPersonSalesLastYear" BusinessSatelliteId="SalesPersonProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>SalesLastYear</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesPersonSalesYearToDate" BusinessSatelliteId="SalesPersonProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>SalesYearToDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesTerritoryCostLastYear" BusinessSatelliteId="SalesTerritoryProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>CostLastYear</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesTerritoryCostYearToDate" BusinessSatelliteId="SalesTerritoryProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>CostYearToDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesTerritoryGroup" BusinessSatelliteId="SalesTerritoryProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>GroupName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesTerritoryName" BusinessSatelliteId="SalesTerritoryProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Name</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesTerritorySalesLastYear" BusinessSatelliteId="SalesTerritoryProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>SalesLastYear</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SalesTerritorySalesYearToDate" BusinessSatelliteId="SalesTerritoryProfile">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>SalesYearToDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="StateProvinceCode" BusinessSatelliteId="StateProvinceProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>StateProvinceCode</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="StateProvinceName" BusinessSatelliteId="StateProvinceProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Name</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="StoreName" BusinessSatelliteId="StoreProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Name</Name>
+    </BusinessSatelliteAttribute>
+  </BusinessSatelliteAttributeList>
+</MetaBusinessDataVault>

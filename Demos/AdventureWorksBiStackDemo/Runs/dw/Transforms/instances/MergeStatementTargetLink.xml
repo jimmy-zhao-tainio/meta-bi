@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <MergeStatementTargetLinkList>
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:1" MergeStatementId="MergeStatement:1" SchemaObjectNameId="SchemaObjectName:57" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:10" MergeStatementId="MergeStatement:10" SchemaObjectNameId="SchemaObjectName:182" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:11" MergeStatementId="MergeStatement:11" SchemaObjectNameId="SchemaObjectName:217" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:12" MergeStatementId="MergeStatement:12" SchemaObjectNameId="SchemaObjectName:249" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:2" MergeStatementId="MergeStatement:2" SchemaObjectNameId="SchemaObjectName:73" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:3" MergeStatementId="MergeStatement:3" SchemaObjectNameId="SchemaObjectName:89" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:4" MergeStatementId="MergeStatement:4" SchemaObjectNameId="SchemaObjectName:105" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:5" MergeStatementId="MergeStatement:5" SchemaObjectNameId="SchemaObjectName:124" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:6" MergeStatementId="MergeStatement:6" SchemaObjectNameId="SchemaObjectName:137" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:7" MergeStatementId="MergeStatement:7" SchemaObjectNameId="SchemaObjectName:151" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:8" MergeStatementId="MergeStatement:8" SchemaObjectNameId="SchemaObjectName:164" />
+    <MergeStatementTargetLink Id="MergeStatementTargetLink:9" MergeStatementId="MergeStatement:9" SchemaObjectNameId="SchemaObjectName:173" />
+  </MergeStatementTargetLinkList>
+</MetaTransformScript>

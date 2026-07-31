@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest>
+  <DeployManifestList>
+    <DeployManifest Id="DeployManifest:1">
+      <CreatedUtc>2026-07-19T18:27:05.5781179Z</CreatedUtc>
+      <ExpectedLiveDatabasePresence>Missing</ExpectedLiveDatabasePresence>
+      <LiveInstanceFingerprint>980a8a9f9df210baaad2e660424276ebf67a6aaf9cff0ae1fa68bac68ba3e164</LiveInstanceFingerprint>
+      <Name>DeployManifest</Name>
+      <SourceInstanceFingerprint>c94597e1b56963c2fc885518b579d3d0b1afda70c237ed8dd2212fcb6b64367e</SourceInstanceFingerprint>
+      <TargetDescription>Scope=(all)</TargetDescription>
+    </DeployManifest>
+  </DeployManifestList>
+</MetaSqlDeployManifest>

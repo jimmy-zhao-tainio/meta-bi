@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <JoinPatternKeyPartList>
+    <JoinPatternKeyPart Id="JoinPattern.1.KeyPart.1" JoinPatternId="JoinPattern.1">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:34</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>customerPerson.CustomerHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:778</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>customer.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:779</SecondExpressionId>
+      <SecondJoinInputColumnName>CustomerHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.10.KeyPart.1" JoinPatternId="JoinPattern.10">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:27</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>stateProvinceCountryRegion.StateProvinceHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:685</FirstExpressionId>
+      <FirstJoinInputColumnName>StateProvinceHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>addressStateProvince.StateProvinceHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:686</SecondExpressionId>
+      <SecondJoinInputColumnName>StateProvinceHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.11.KeyPart.1" JoinPatternId="JoinPattern.11">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:13</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>profile.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:597</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>hub.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:598</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.11.KeyPart.2" JoinPatternId="JoinPattern.11">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:14</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>profile.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:599</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:600</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:600</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.12.KeyPart.1" JoinPatternId="JoinPattern.12">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:15</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>assignment.ProductHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:601</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>hub.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:602</SecondExpressionId>
+      <SecondJoinInputColumnName>ProductHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.13.KeyPart.1" JoinPatternId="JoinPattern.13">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:16</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>subcategoryProfile.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:603</FirstExpressionId>
+      <FirstJoinInputColumnName>ProductSubcategoryHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>assignment.ProductSubcategoryHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:604</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.13.KeyPart.2" JoinPatternId="JoinPattern.13">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:17</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>subcategoryProfile.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:605</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:606</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:606</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.14.KeyPart.1" JoinPatternId="JoinPattern.14">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:18</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>categoryAssignment.ProductSubcategoryHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:607</FirstExpressionId>
+      <FirstJoinInputColumnName>ProductSubcategoryHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>assignment.ProductSubcategoryHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:608</SecondExpressionId>
+      <SecondJoinInputColumnName>ProductSubcategoryHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.15.KeyPart.1" JoinPatternId="JoinPattern.15">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:19</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>categoryProfile.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:609</FirstExpressionId>
+      <FirstJoinInputColumnName>ProductCategoryHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>categoryAssignment.ProductCategoryHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:610</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.15.KeyPart.2" JoinPatternId="JoinPattern.15">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:20</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>categoryProfile.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:611</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:612</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:612</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.16.KeyPart.1" JoinPatternId="JoinPattern.16">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:41</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salespersonPerson.SalesPersonHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:834</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesperson.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:835</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesPersonHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.17.KeyPart.1" JoinPatternId="JoinPattern.17">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:42</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>person.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:836</FirstExpressionId>
+      <FirstJoinInputColumnName>PersonHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salespersonPerson.PersonHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:837</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.17.KeyPart.2" JoinPatternId="JoinPattern.17">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:43</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>person.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:838</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:839</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:839</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.18.KeyPart.1" JoinPatternId="JoinPattern.18">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:45</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>profile.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:876</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>territory.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:877</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.18.KeyPart.2" JoinPatternId="JoinPattern.18">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:46</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>profile.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:878</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:879</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:879</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.19.KeyPart.1" JoinPatternId="JoinPattern.19">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:47</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>territoryCountryRegion.SalesTerritoryHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:880</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>territory.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:881</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesTerritoryHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.2.KeyPart.1" JoinPatternId="JoinPattern.2">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:35</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>personProfile.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:780</FirstExpressionId>
+      <FirstJoinInputColumnName>PersonHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>customerPerson.PersonHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:781</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.2.KeyPart.2" JoinPatternId="JoinPattern.2">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:36</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>personProfile.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:782</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:783</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:783</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.20.KeyPart.1" JoinPatternId="JoinPattern.20">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:48</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>countryRegion.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:882</FirstExpressionId>
+      <FirstJoinInputColumnName>CountryRegionHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>territoryCountryRegion.CountryRegionHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:883</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.21.KeyPart.1" JoinPatternId="JoinPattern.21">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:74</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>lineDetail.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1116</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesLine.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1117</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.21.KeyPart.2" JoinPatternId="JoinPattern.21">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:75</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>lineDetail.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1118</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:1119</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1119</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.22.KeyPart.1" JoinPatternId="JoinPattern.22">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:76</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesLineOrder.SalesOrderLineHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1120</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesLine.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1121</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderLineHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.23.KeyPart.1" JoinPatternId="JoinPattern.23">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:77</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesOrder.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1122</FirstExpressionId>
+      <FirstJoinInputColumnName>SalesOrderHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesLineOrder.SalesOrderHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1123</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.24.KeyPart.1" JoinPatternId="JoinPattern.24">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:78</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>orderDetail.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1124</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1125</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.24.KeyPart.2" JoinPatternId="JoinPattern.24">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:79</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>orderDetail.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1126</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:1127</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1127</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.25.KeyPart.1" JoinPatternId="JoinPattern.25">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:80</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesLineProduct.SalesOrderLineHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1128</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesLine.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1129</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderLineHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.26.KeyPart.1" JoinPatternId="JoinPattern.26">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:81</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessProduct.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1130</FirstExpressionId>
+      <FirstJoinInputColumnName>ProductHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesLineProduct.ProductHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1131</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.27.KeyPart.1" JoinPatternId="JoinPattern.27">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:82</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>product.ProductID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1132</FirstExpressionId>
+      <FirstJoinInputColumnName>ProductID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessProduct.ProductID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1133</SecondExpressionId>
+      <SecondJoinInputColumnName>ProductID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.28.KeyPart.1" JoinPatternId="JoinPattern.28">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:83</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesOrderCustomer.SalesOrderHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1134</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1135</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.29.KeyPart.1" JoinPatternId="JoinPattern.29">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:84</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessCustomer.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1136</FirstExpressionId>
+      <FirstJoinInputColumnName>CustomerHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrderCustomer.CustomerHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1137</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.3.KeyPart.1" JoinPatternId="JoinPattern.3">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:37</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>customerStore.CustomerHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:784</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>customer.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:785</SecondExpressionId>
+      <SecondJoinInputColumnName>CustomerHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.30.KeyPart.1" JoinPatternId="JoinPattern.30">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:85</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>customer.CustomerID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1138</FirstExpressionId>
+      <FirstJoinInputColumnName>CustomerID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessCustomer.CustomerID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1139</SecondExpressionId>
+      <SecondJoinInputColumnName>CustomerID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.31.KeyPart.1" JoinPatternId="JoinPattern.31">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:86</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesOrderSalesperson.SalesOrderHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1140</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1141</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.32.KeyPart.1" JoinPatternId="JoinPattern.32">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:87</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessSalesperson.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1142</FirstExpressionId>
+      <FirstJoinInputColumnName>SalesPersonHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrderSalesperson.SalesPersonHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1143</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.33.KeyPart.1" JoinPatternId="JoinPattern.33">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:88</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesperson.BusinessEntityID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1144</FirstExpressionId>
+      <FirstJoinInputColumnName>BusinessEntityID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessSalesperson.BusinessEntityID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1145</SecondExpressionId>
+      <SecondJoinInputColumnName>BusinessEntityID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.34.KeyPart.1" JoinPatternId="JoinPattern.34">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:89</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesOrderTerritory.SalesOrderHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1146</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1147</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.35.KeyPart.1" JoinPatternId="JoinPattern.35">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:90</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessTerritory.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1148</FirstExpressionId>
+      <FirstJoinInputColumnName>SalesTerritoryHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrderTerritory.SalesTerritoryHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1149</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.36.KeyPart.1" JoinPatternId="JoinPattern.36">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:91</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>territory.TerritoryID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1150</FirstExpressionId>
+      <FirstJoinInputColumnName>TerritoryID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessTerritory.TerritoryID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1151</SecondExpressionId>
+      <SecondJoinInputColumnName>TerritoryID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.37.KeyPart.1" JoinPatternId="JoinPattern.37">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:92</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesOrderShipToAddress.SalesOrderHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1152</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1153</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.38.KeyPart.1" JoinPatternId="JoinPattern.38">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:93</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessShipToAddress.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1154</FirstExpressionId>
+      <FirstJoinInputColumnName>ShipToAddressHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrderShipToAddress.ShipToAddressHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1155</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.39.KeyPart.1" JoinPatternId="JoinPattern.39">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:94</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>shipToGeography.AddressID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1156</FirstExpressionId>
+      <FirstJoinInputColumnName>AddressID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessShipToAddress.AddressID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1157</SecondExpressionId>
+      <SecondJoinInputColumnName>AddressID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.4.KeyPart.1" JoinPatternId="JoinPattern.4">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:38</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>storeProfile.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:786</FirstExpressionId>
+      <FirstJoinInputColumnName>StoreHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>customerStore.StoreHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:787</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.4.KeyPart.2" JoinPatternId="JoinPattern.4">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:39</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>storeProfile.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:788</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:789</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:789</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.40.KeyPart.1" JoinPatternId="JoinPattern.40">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:95</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>orderDate.CalendarDate</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1158</FirstExpressionId>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:1160</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1160</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.41.KeyPart.1" JoinPatternId="JoinPattern.41">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:97</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>channel.ChannelCode</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1161</FirstExpressionId>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:1166</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1166</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.42.KeyPart.1" JoinPatternId="JoinPattern.42">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:50</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>detail.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:952</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:953</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.42.KeyPart.2" JoinPatternId="JoinPattern.42">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:51</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>detail.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:954</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:955</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:955</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.43.KeyPart.1" JoinPatternId="JoinPattern.43">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:52</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesOrderCustomer.SalesOrderHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:956</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:957</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.44.KeyPart.1" JoinPatternId="JoinPattern.44">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:53</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessCustomer.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:958</FirstExpressionId>
+      <FirstJoinInputColumnName>CustomerHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrderCustomer.CustomerHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:959</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.45.KeyPart.1" JoinPatternId="JoinPattern.45">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:54</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>customer.CustomerID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:960</FirstExpressionId>
+      <FirstJoinInputColumnName>CustomerID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessCustomer.CustomerID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:961</SecondExpressionId>
+      <SecondJoinInputColumnName>CustomerID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.46.KeyPart.1" JoinPatternId="JoinPattern.46">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:55</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesOrderSalesperson.SalesOrderHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:962</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:963</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.47.KeyPart.1" JoinPatternId="JoinPattern.47">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:56</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessSalesperson.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:964</FirstExpressionId>
+      <FirstJoinInputColumnName>SalesPersonHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrderSalesperson.SalesPersonHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:965</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.48.KeyPart.1" JoinPatternId="JoinPattern.48">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:57</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesperson.BusinessEntityID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:966</FirstExpressionId>
+      <FirstJoinInputColumnName>BusinessEntityID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessSalesperson.BusinessEntityID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:967</SecondExpressionId>
+      <SecondJoinInputColumnName>BusinessEntityID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.49.KeyPart.1" JoinPatternId="JoinPattern.49">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:58</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesOrderTerritory.SalesOrderHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:968</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:969</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.5.KeyPart.1" JoinPatternId="JoinPattern.5">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:28</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>countryRegion.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:687</FirstExpressionId>
+      <FirstJoinInputColumnName>CountryRegionHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>stateProvinceCountryRegion.CountryRegionHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:688</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.50.KeyPart.1" JoinPatternId="JoinPattern.50">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:59</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessTerritory.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:970</FirstExpressionId>
+      <FirstJoinInputColumnName>SalesTerritoryHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrderTerritory.SalesTerritoryHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:971</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.51.KeyPart.1" JoinPatternId="JoinPattern.51">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:60</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>territory.TerritoryID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:972</FirstExpressionId>
+      <FirstJoinInputColumnName>TerritoryID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessTerritory.TerritoryID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:973</SecondExpressionId>
+      <SecondJoinInputColumnName>TerritoryID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.52.KeyPart.1" JoinPatternId="JoinPattern.52">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:61</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesOrderBillToAddress.SalesOrderHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:974</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:975</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.53.KeyPart.1" JoinPatternId="JoinPattern.53">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:62</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessBillToAddress.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:976</FirstExpressionId>
+      <FirstJoinInputColumnName>BillToAddressHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrderBillToAddress.BillToAddressHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:977</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.54.KeyPart.1" JoinPatternId="JoinPattern.54">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:63</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>billToGeography.AddressID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:978</FirstExpressionId>
+      <FirstJoinInputColumnName>AddressID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessBillToAddress.AddressID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:979</SecondExpressionId>
+      <SecondJoinInputColumnName>AddressID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.55.KeyPart.1" JoinPatternId="JoinPattern.55">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:64</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesOrderShipToAddress.SalesOrderHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:980</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrder.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:981</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesOrderHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.56.KeyPart.1" JoinPatternId="JoinPattern.56">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:65</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessShipToAddress.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:982</FirstExpressionId>
+      <FirstJoinInputColumnName>ShipToAddressHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>salesOrderShipToAddress.ShipToAddressHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:983</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.57.KeyPart.1" JoinPatternId="JoinPattern.57">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:66</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>shipToGeography.AddressID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:984</FirstExpressionId>
+      <FirstJoinInputColumnName>AddressID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessShipToAddress.AddressID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:985</SecondExpressionId>
+      <SecondJoinInputColumnName>AddressID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.58.KeyPart.1" JoinPatternId="JoinPattern.58">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:67</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>orderDate.CalendarDate</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:986</FirstExpressionId>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:988</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:988</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.59.KeyPart.1" JoinPatternId="JoinPattern.59">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:68</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>dueDate.CalendarDate</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:989</FirstExpressionId>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:991</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:991</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.6.KeyPart.1" JoinPatternId="JoinPattern.6">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:29</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>countryRegionProfile.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:689</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>countryRegion.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:690</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.6.KeyPart.2" JoinPatternId="JoinPattern.6">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:30</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>countryRegionProfile.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:691</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:692</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:692</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.60.KeyPart.1" JoinPatternId="JoinPattern.60">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:69</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>shipDate.CalendarDate</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:992</FirstExpressionId>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:994</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:994</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.61.KeyPart.1" JoinPatternId="JoinPattern.61">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:71</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>channel.ChannelCode</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:995</FirstExpressionId>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:1000</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1000</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.62.KeyPart.1" JoinPatternId="JoinPattern.62">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:72</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>orderStatus.StatusCode</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1001</FirstExpressionId>
+      <FirstJoinInputColumnName>Status</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>detail.Status</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1002</SecondExpressionId>
+      <SecondJoinInputColumnName>StatusCode</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.63.KeyPart.1" JoinPatternId="JoinPattern.63">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:100</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>quotaDetail.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1235</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>quota.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1236</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.63.KeyPart.2" JoinPatternId="JoinPattern.63">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:101</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>quotaDetail.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1237</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:1238</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1238</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.64.KeyPart.1" JoinPatternId="JoinPattern.64">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:102</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>quotaSalesperson.SalesPersonQuotaHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1239</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>quota.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1240</SecondExpressionId>
+      <SecondJoinInputColumnName>SalesPersonQuotaHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.65.KeyPart.1" JoinPatternId="JoinPattern.65">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:103</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>businessSalesperson.HashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1241</FirstExpressionId>
+      <FirstJoinInputColumnName>SalesPersonHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>quotaSalesperson.SalesPersonHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1242</SecondExpressionId>
+      <SecondJoinInputColumnName>HashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.66.KeyPart.1" JoinPatternId="JoinPattern.66">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:104</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>salesperson.BusinessEntityID</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1243</FirstExpressionId>
+      <FirstJoinInputColumnName>BusinessEntityID</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>businessSalesperson.BusinessEntityID</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1244</SecondExpressionId>
+      <SecondJoinInputColumnName>BusinessEntityID</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.67.KeyPart.1" JoinPatternId="JoinPattern.67">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:105</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>quotaPeriod.CalendarDate</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:1245</FirstExpressionId>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:1247</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:1247</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.7.KeyPart.1" JoinPatternId="JoinPattern.7">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:22</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>addressProfile.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:675</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>address.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:676</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.7.KeyPart.2" JoinPatternId="JoinPattern.7">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:23</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>addressProfile.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:677</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:678</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:678</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.8.KeyPart.1" JoinPatternId="JoinPattern.8">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:24</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>addressStateProvince.AddressHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:679</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>address.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:680</SecondExpressionId>
+      <SecondJoinInputColumnName>AddressHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.9.KeyPart.1" JoinPatternId="JoinPattern.9">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:25</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>stateProvinceProfile.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:681</FirstExpressionId>
+      <FirstJoinInputColumnName>StateProvinceHashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>addressStateProvince.StateProvinceHashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:682</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.9.KeyPart.2" JoinPatternId="JoinPattern.9">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:26</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>stateProvinceProfile.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:683</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:684</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:684</SecondExpressionId>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.KeyPart.1" JoinPatternId="JoinPattern">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:32</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>customerProfile.HubHashKey</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:774</FirstExpressionId>
+      <FirstJoinInputColumnName>HashKey</FirstJoinInputColumnName>
+      <Ordinal>1</Ordinal>
+      <SecondExpressionDisplay>customer.HashKey</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:775</SecondExpressionId>
+      <SecondJoinInputColumnName>HubHashKey</SecondJoinInputColumnName>
+    </JoinPatternKeyPart>
+    <JoinPatternKeyPart Id="JoinPattern.KeyPart.2" JoinPatternId="JoinPattern">
+      <BooleanComparisonExpressionId>BooleanComparisonExpression:33</BooleanComparisonExpressionId>
+      <FirstExpressionDisplay>customerProfile.VersionRank</FirstExpressionDisplay>
+      <FirstExpressionId>ScalarExpression:776</FirstExpressionId>
+      <Ordinal>2</Ordinal>
+      <SecondExpressionDisplay>ScalarExpression:777</SecondExpressionDisplay>
+      <SecondExpressionId>ScalarExpression:777</SecondExpressionId>
+    </JoinPatternKeyPart>
+  </JoinPatternKeyPartList>
+</MetaDataQuality>

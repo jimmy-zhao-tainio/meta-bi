@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <MergeUpdateActionSetClauseLinkList>
+    <MergeUpdateActionSetClauseLink Id="MergeUpdateActionSetClauseLink:1" MergeUpdateActionId="MergeUpdateAction:1" SetClauseId="SetClause:1" />
+    <MergeUpdateActionSetClauseLink Id="MergeUpdateActionSetClauseLink:2" MergeUpdateActionId="MergeUpdateAction:2" SetClauseId="SetClause:2" />
+    <MergeUpdateActionSetClauseLink Id="MergeUpdateActionSetClauseLink:3" MergeUpdateActionId="MergeUpdateAction:3" SetClauseId="SetClause:3" />
+    <MergeUpdateActionSetClauseLink Id="MergeUpdateActionSetClauseLink:4" MergeUpdateActionId="MergeUpdateAction:4" SetClauseId="SetClause:4" />
+    <MergeUpdateActionSetClauseLink Id="MergeUpdateActionSetClauseLink:5" MergeUpdateActionId="MergeUpdateAction:5" SetClauseId="SetClause:5" />
+    <MergeUpdateActionSetClauseLink Id="MergeUpdateActionSetClauseLink:6" MergeUpdateActionId="MergeUpdateAction:6" SetClauseId="SetClause:6" />
+    <MergeUpdateActionSetClauseLink Id="MergeUpdateActionSetClauseLink:7" MergeUpdateActionId="MergeUpdateAction:7" SetClauseId="SetClause:7" />
+    <MergeUpdateActionSetClauseLink Id="MergeUpdateActionSetClauseLink:8" MergeUpdateActionId="MergeUpdateAction:8" SetClauseId="SetClause:8" />
+  </MergeUpdateActionSetClauseLinkList>
+</MetaTransformScript>

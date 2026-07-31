@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationSourceRowsetLinkList>
+    <ValidationSourceRowsetLink Id="TransformScript:10:binding:validation:source:3" RowsetId="TableReference:28:rowset" ValidationId="TransformScript:10:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:10:binding:validation:source:4" RowsetId="TableReference:29:rowset" ValidationId="TransformScript:10:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:11:binding:validation:source:5" RowsetId="TableReference:31:rowset" ValidationId="TransformScript:11:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:11:binding:validation:source:6" RowsetId="TableReference:32:rowset" ValidationId="TransformScript:11:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:12:binding:validation:source:7" RowsetId="TableReference:34:rowset" ValidationId="TransformScript:12:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:12:binding:validation:source:8" RowsetId="TableReference:35:rowset" ValidationId="TransformScript:12:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:13:binding:validation:source:10" RowsetId="TableReference:38:rowset" ValidationId="TransformScript:13:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:13:binding:validation:source:9" RowsetId="TableReference:37:rowset" ValidationId="TransformScript:13:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:Store</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:14:binding:validation:source:11" RowsetId="TableReference:40:rowset" ValidationId="TransformScript:14:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:Address</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:14:binding:validation:source:12" RowsetId="TableReference:41:rowset" ValidationId="TransformScript:14:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:15:binding:validation:source:13" RowsetId="TableReference:43:rowset" ValidationId="TransformScript:15:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:15:binding:validation:source:14" RowsetId="TableReference:44:rowset" ValidationId="TransformScript:15:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:16:binding:validation:source:15" RowsetId="TableReference:46:rowset" ValidationId="TransformScript:16:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:16:binding:validation:source:16" RowsetId="TableReference:47:rowset" ValidationId="TransformScript:16:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:17:binding:validation:source:17" RowsetId="TableReference:50:rowset" ValidationId="TransformScript:17:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:17:binding:validation:source:18" RowsetId="TableReference:51:rowset" ValidationId="TransformScript:17:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:17:binding:validation:source:19" RowsetId="TableReference:49:rowset" ValidationId="TransformScript:17:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CountryRegion_CountryRegion</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:18:binding:validation:source:20" RowsetId="TableReference:56:rowset" ValidationId="TransformScript:18:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:18:binding:validation:source:21" RowsetId="TableReference:57:rowset" ValidationId="TransformScript:18:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:18:binding:validation:source:22" RowsetId="TableReference:55:rowset" ValidationId="TransformScript:18:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:19:binding:validation:source:23" RowsetId="TableReference:62:rowset" ValidationId="TransformScript:19:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:Person</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:19:binding:validation:source:24" RowsetId="TableReference:63:rowset" ValidationId="TransformScript:19:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:19:binding:validation:source:25" RowsetId="TableReference:61:rowset" ValidationId="TransformScript:19:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Person_Person</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:1:binding:validation:source:1" RowsetId="TableReference:1:rowset" ValidationId="TransformScript:1:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:1:binding:validation:source:2" RowsetId="TableReference:2:rowset" ValidationId="TransformScript:1:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:20:binding:validation:source:28" RowsetId="TableReference:68:rowset" ValidationId="TransformScript:20:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Production:table:Product</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:20:binding:validation:source:29" RowsetId="TableReference:69:rowset" ValidationId="TransformScript:20:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:20:binding:validation:source:30" RowsetId="TableReference:67:rowset" ValidationId="TransformScript:20:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:21:binding:validation:source:31" RowsetId="TableReference:74:rowset" ValidationId="TransformScript:21:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:21:binding:validation:source:32" RowsetId="TableReference:75:rowset" ValidationId="TransformScript:21:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:21:binding:validation:source:33" RowsetId="TableReference:73:rowset" ValidationId="TransformScript:21:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:22:binding:validation:source:34" RowsetId="TableReference:80:rowset" ValidationId="TransformScript:22:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:22:binding:validation:source:35" RowsetId="TableReference:81:rowset" ValidationId="TransformScript:22:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:22:binding:validation:source:36" RowsetId="TableReference:79:rowset" ValidationId="TransformScript:22:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:23:binding:validation:source:37" RowsetId="TableReference:86:rowset" ValidationId="TransformScript:23:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:23:binding:validation:source:38" RowsetId="TableReference:87:rowset" ValidationId="TransformScript:23:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:23:binding:validation:source:39" RowsetId="TableReference:85:rowset" ValidationId="TransformScript:23:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:24:binding:validation:source:40" RowsetId="TableReference:92:rowset" ValidationId="TransformScript:24:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:24:binding:validation:source:41" RowsetId="TableReference:93:rowset" ValidationId="TransformScript:24:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:24:binding:validation:source:42" RowsetId="TableReference:91:rowset" ValidationId="TransformScript:24:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:25:binding:validation:source:43" RowsetId="TableReference:98:rowset" ValidationId="TransformScript:25:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:25:binding:validation:source:44" RowsetId="TableReference:99:rowset" ValidationId="TransformScript:25:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:25:binding:validation:source:45" RowsetId="TableReference:97:rowset" ValidationId="TransformScript:25:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:26:binding:validation:source:46" RowsetId="TableReference:104:rowset" ValidationId="TransformScript:26:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:26:binding:validation:source:47" RowsetId="TableReference:105:rowset" ValidationId="TransformScript:26:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:26:binding:validation:source:48" RowsetId="TableReference:103:rowset" ValidationId="TransformScript:26:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:27:binding:validation:source:49" RowsetId="TableReference:110:rowset" ValidationId="TransformScript:27:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:27:binding:validation:source:50" RowsetId="TableReference:111:rowset" ValidationId="TransformScript:27:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:27:binding:validation:source:51" RowsetId="TableReference:109:rowset" ValidationId="TransformScript:27:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:28:binding:validation:source:52" RowsetId="TableReference:116:rowset" ValidationId="TransformScript:28:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:28:binding:validation:source:53" RowsetId="TableReference:117:rowset" ValidationId="TransformScript:28:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:28:binding:validation:source:54" RowsetId="TableReference:115:rowset" ValidationId="TransformScript:28:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOfferProduct_SpecialOfferProduct</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:29:binding:validation:source:55" RowsetId="TableReference:122:rowset" ValidationId="TransformScript:29:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:Store</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:29:binding:validation:source:56" RowsetId="TableReference:123:rowset" ValidationId="TransformScript:29:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:29:binding:validation:source:57" RowsetId="TableReference:121:rowset" ValidationId="TransformScript:29:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:2:binding:validation:source:26" RowsetId="TableReference:4:rowset" ValidationId="TransformScript:2:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:2:binding:validation:source:27" RowsetId="TableReference:5:rowset" ValidationId="TransformScript:2:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:30:binding:validation:source:60" RowsetId="TableReference:128:rowset" ValidationId="TransformScript:30:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:Address</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:30:binding:validation:source:61" RowsetId="TableReference:129:rowset" ValidationId="TransformScript:30:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:30:binding:validation:source:62" RowsetId="TableReference:127:rowset" ValidationId="TransformScript:30:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Address_Address</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:31:binding:validation:source:63" RowsetId="TableReference:134:rowset" ValidationId="TransformScript:31:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:31:binding:validation:source:64" RowsetId="TableReference:135:rowset" ValidationId="TransformScript:31:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:31:binding:validation:source:65" RowsetId="TableReference:133:rowset" ValidationId="TransformScript:31:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_StateProvince_StateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:32:binding:validation:source:66" RowsetId="TableReference:139:rowset" ValidationId="TransformScript:32:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:32:binding:validation:source:67" RowsetId="TableReference:140:rowset" ValidationId="TransformScript:32:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:32:binding:validation:source:68" RowsetId="TableReference:142:rowset" ValidationId="TransformScript:32:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:32:binding:validation:source:69" RowsetId="TableReference:144:rowset" ValidationId="TransformScript:32:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:33:binding:validation:source:70" RowsetId="TableReference:146:rowset" ValidationId="TransformScript:33:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:33:binding:validation:source:71" RowsetId="TableReference:147:rowset" ValidationId="TransformScript:33:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:33:binding:validation:source:72" RowsetId="TableReference:149:rowset" ValidationId="TransformScript:33:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:33:binding:validation:source:73" RowsetId="TableReference:151:rowset" ValidationId="TransformScript:33:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:34:binding:validation:source:74" RowsetId="TableReference:153:rowset" ValidationId="TransformScript:34:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:34:binding:validation:source:75" RowsetId="TableReference:154:rowset" ValidationId="TransformScript:34:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:34:binding:validation:source:76" RowsetId="TableReference:156:rowset" ValidationId="TransformScript:34:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:34:binding:validation:source:77" RowsetId="TableReference:158:rowset" ValidationId="TransformScript:34:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:35:binding:validation:source:78" RowsetId="TableReference:160:rowset" ValidationId="TransformScript:35:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Production:table:Product</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:35:binding:validation:source:79" RowsetId="TableReference:161:rowset" ValidationId="TransformScript:35:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:35:binding:validation:source:80" RowsetId="TableReference:163:rowset" ValidationId="TransformScript:35:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:35:binding:validation:source:81" RowsetId="TableReference:165:rowset" ValidationId="TransformScript:35:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:36:binding:validation:source:82" RowsetId="TableReference:167:rowset" ValidationId="TransformScript:36:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:36:binding:validation:source:83" RowsetId="TableReference:168:rowset" ValidationId="TransformScript:36:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:36:binding:validation:source:84" RowsetId="TableReference:170:rowset" ValidationId="TransformScript:36:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:36:binding:validation:source:85" RowsetId="TableReference:172:rowset" ValidationId="TransformScript:36:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:37:binding:validation:source:86" RowsetId="TableReference:174:rowset" ValidationId="TransformScript:37:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:37:binding:validation:source:87" RowsetId="TableReference:175:rowset" ValidationId="TransformScript:37:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:37:binding:validation:source:88" RowsetId="TableReference:177:rowset" ValidationId="TransformScript:37:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:37:binding:validation:source:89" RowsetId="TableReference:179:rowset" ValidationId="TransformScript:37:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:38:binding:validation:source:90" RowsetId="TableReference:181:rowset" ValidationId="TransformScript:38:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:38:binding:validation:source:91" RowsetId="TableReference:182:rowset" ValidationId="TransformScript:38:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:38:binding:validation:source:92" RowsetId="TableReference:184:rowset" ValidationId="TransformScript:38:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:38:binding:validation:source:93" RowsetId="TableReference:186:rowset" ValidationId="TransformScript:38:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:39:binding:validation:source:94" RowsetId="TableReference:188:rowset" ValidationId="TransformScript:39:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:39:binding:validation:source:95" RowsetId="TableReference:189:rowset" ValidationId="TransformScript:39:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:39:binding:validation:source:96" RowsetId="TableReference:191:rowset" ValidationId="TransformScript:39:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:39:binding:validation:source:97" RowsetId="TableReference:193:rowset" ValidationId="TransformScript:39:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:3:binding:validation:source:58" RowsetId="TableReference:7:rowset" ValidationId="TransformScript:3:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:Person</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:3:binding:validation:source:59" RowsetId="TableReference:8:rowset" ValidationId="TransformScript:3:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:40:binding:validation:source:100" RowsetId="TableReference:195:rowset" ValidationId="TransformScript:40:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:40:binding:validation:source:101" RowsetId="TableReference:196:rowset" ValidationId="TransformScript:40:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:40:binding:validation:source:102" RowsetId="TableReference:198:rowset" ValidationId="TransformScript:40:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:40:binding:validation:source:103" RowsetId="TableReference:200:rowset" ValidationId="TransformScript:40:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:41:binding:validation:source:104" RowsetId="TableReference:202:rowset" ValidationId="TransformScript:41:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:41:binding:validation:source:105" RowsetId="TableReference:203:rowset" ValidationId="TransformScript:41:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:41:binding:validation:source:106" RowsetId="TableReference:205:rowset" ValidationId="TransformScript:41:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:41:binding:validation:source:107" RowsetId="TableReference:207:rowset" ValidationId="TransformScript:41:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:42:binding:validation:source:108" RowsetId="TableReference:209:rowset" ValidationId="TransformScript:42:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:42:binding:validation:source:109" RowsetId="TableReference:210:rowset" ValidationId="TransformScript:42:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:42:binding:validation:source:110" RowsetId="TableReference:212:rowset" ValidationId="TransformScript:42:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:42:binding:validation:source:111" RowsetId="TableReference:214:rowset" ValidationId="TransformScript:42:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:43:binding:validation:source:112" RowsetId="TableReference:216:rowset" ValidationId="TransformScript:43:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:43:binding:validation:source:113" RowsetId="TableReference:217:rowset" ValidationId="TransformScript:43:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:43:binding:validation:source:114" RowsetId="TableReference:219:rowset" ValidationId="TransformScript:43:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:43:binding:validation:source:115" RowsetId="TableReference:221:rowset" ValidationId="TransformScript:43:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:44:binding:validation:source:116" RowsetId="TableReference:223:rowset" ValidationId="TransformScript:44:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:44:binding:validation:source:117" RowsetId="TableReference:224:rowset" ValidationId="TransformScript:44:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:44:binding:validation:source:118" RowsetId="TableReference:226:rowset" ValidationId="TransformScript:44:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:44:binding:validation:source:119" RowsetId="TableReference:228:rowset" ValidationId="TransformScript:44:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:45:binding:validation:source:120" RowsetId="TableReference:230:rowset" ValidationId="TransformScript:45:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:45:binding:validation:source:121" RowsetId="TableReference:231:rowset" ValidationId="TransformScript:45:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:45:binding:validation:source:122" RowsetId="TableReference:233:rowset" ValidationId="TransformScript:45:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:45:binding:validation:source:123" RowsetId="TableReference:235:rowset" ValidationId="TransformScript:45:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:46:binding:validation:source:124" RowsetId="TableReference:237:rowset" ValidationId="TransformScript:46:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:Store</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:46:binding:validation:source:125" RowsetId="TableReference:238:rowset" ValidationId="TransformScript:46:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:46:binding:validation:source:126" RowsetId="TableReference:240:rowset" ValidationId="TransformScript:46:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:46:binding:validation:source:127" RowsetId="TableReference:242:rowset" ValidationId="TransformScript:46:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:47:binding:validation:source:128" RowsetId="TableReference:244:rowset" ValidationId="TransformScript:47:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:Address</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:47:binding:validation:source:129" RowsetId="TableReference:245:rowset" ValidationId="TransformScript:47:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:47:binding:validation:source:130" RowsetId="TableReference:247:rowset" ValidationId="TransformScript:47:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:47:binding:validation:source:131" RowsetId="TableReference:249:rowset" ValidationId="TransformScript:47:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:48:binding:validation:source:132" RowsetId="TableReference:251:rowset" ValidationId="TransformScript:48:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:48:binding:validation:source:133" RowsetId="TableReference:252:rowset" ValidationId="TransformScript:48:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:48:binding:validation:source:134" RowsetId="TableReference:254:rowset" ValidationId="TransformScript:48:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:48:binding:validation:source:135" RowsetId="TableReference:256:rowset" ValidationId="TransformScript:48:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:49:binding:validation:source:136" RowsetId="TableReference:258:rowset" ValidationId="TransformScript:49:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:49:binding:validation:source:137" RowsetId="TableReference:259:rowset" ValidationId="TransformScript:49:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:49:binding:validation:source:138" RowsetId="TableReference:261:rowset" ValidationId="TransformScript:49:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:49:binding:validation:source:139" RowsetId="TableReference:263:rowset" ValidationId="TransformScript:49:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:4:binding:validation:source:98" RowsetId="TableReference:10:rowset" ValidationId="TransformScript:4:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Production:table:Product</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:4:binding:validation:source:99" RowsetId="TableReference:11:rowset" ValidationId="TransformScript:4:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:50:binding:validation:source:142" RowsetId="TableReference:265:rowset" ValidationId="TransformScript:50:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:50:binding:validation:source:143" RowsetId="TableReference:266:rowset" ValidationId="TransformScript:50:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:50:binding:validation:source:144" RowsetId="TableReference:268:rowset" ValidationId="TransformScript:50:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:50:binding:validation:source:145" RowsetId="TableReference:270:rowset" ValidationId="TransformScript:50:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:51:binding:validation:source:146" RowsetId="TableReference:272:rowset" ValidationId="TransformScript:51:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:51:binding:validation:source:147" RowsetId="TableReference:273:rowset" ValidationId="TransformScript:51:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:51:binding:validation:source:148" RowsetId="TableReference:275:rowset" ValidationId="TransformScript:51:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:51:binding:validation:source:149" RowsetId="TableReference:277:rowset" ValidationId="TransformScript:51:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:52:binding:validation:source:150" RowsetId="TableReference:279:rowset" ValidationId="TransformScript:52:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:52:binding:validation:source:151" RowsetId="TableReference:280:rowset" ValidationId="TransformScript:52:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:52:binding:validation:source:152" RowsetId="TableReference:282:rowset" ValidationId="TransformScript:52:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:52:binding:validation:source:153" RowsetId="TableReference:284:rowset" ValidationId="TransformScript:52:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:53:binding:validation:source:154" RowsetId="TableReference:286:rowset" ValidationId="TransformScript:53:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:53:binding:validation:source:155" RowsetId="TableReference:287:rowset" ValidationId="TransformScript:53:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:53:binding:validation:source:156" RowsetId="TableReference:289:rowset" ValidationId="TransformScript:53:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:53:binding:validation:source:157" RowsetId="TableReference:291:rowset" ValidationId="TransformScript:53:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:5:binding:validation:source:140" RowsetId="TableReference:13:rowset" ValidationId="TransformScript:5:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:5:binding:validation:source:141" RowsetId="TableReference:14:rowset" ValidationId="TransformScript:5:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:6:binding:validation:source:158" RowsetId="TableReference:16:rowset" ValidationId="TransformScript:6:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:6:binding:validation:source:159" RowsetId="TableReference:17:rowset" ValidationId="TransformScript:6:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:7:binding:validation:source:160" RowsetId="TableReference:19:rowset" ValidationId="TransformScript:7:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:7:binding:validation:source:161" RowsetId="TableReference:20:rowset" ValidationId="TransformScript:7:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:8:binding:validation:source:162" RowsetId="TableReference:22:rowset" ValidationId="TransformScript:8:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:8:binding:validation:source:163" RowsetId="TableReference:23:rowset" ValidationId="TransformScript:8:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:9:binding:validation:source:164" RowsetId="TableReference:25:rowset" ValidationId="TransformScript:9:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorks2022:schema-object:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+    <ValidationSourceRowsetLink Id="TransformScript:9:binding:validation:source:165" RowsetId="TableReference:26:rowset" ValidationId="TransformScript:9:binding:validation">
+      <MetaSchemaTableId>source:AdventureWorksRawVault:schema-object:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson</MetaSchemaTableId>
+    </ValidationSourceRowsetLink>
+  </ValidationSourceRowsetLinkList>
+</MetaTransformBinding>

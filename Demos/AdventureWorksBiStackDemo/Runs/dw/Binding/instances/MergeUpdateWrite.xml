@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <MergeUpdateWriteList>
+    <MergeUpdateWrite Id="TransformScript:13:binding:validation:target:5:write:merge-update" WriteId="TransformScript:13:binding:validation:target:5:write">
+      <MetaTransformScriptMergeUpdateActionId>MergeUpdateAction:1</MetaTransformScriptMergeUpdateActionId>
+    </MergeUpdateWrite>
+    <MergeUpdateWrite Id="TransformScript:14:binding:validation:target:7:write:merge-update" WriteId="TransformScript:14:binding:validation:target:7:write">
+      <MetaTransformScriptMergeUpdateActionId>MergeUpdateAction:2</MetaTransformScriptMergeUpdateActionId>
+    </MergeUpdateWrite>
+    <MergeUpdateWrite Id="TransformScript:15:binding:validation:target:9:write:merge-update" WriteId="TransformScript:15:binding:validation:target:9:write">
+      <MetaTransformScriptMergeUpdateActionId>MergeUpdateAction:3</MetaTransformScriptMergeUpdateActionId>
+    </MergeUpdateWrite>
+    <MergeUpdateWrite Id="TransformScript:16:binding:validation:target:11:write:merge-update" WriteId="TransformScript:16:binding:validation:target:11:write">
+      <MetaTransformScriptMergeUpdateActionId>MergeUpdateAction:4</MetaTransformScriptMergeUpdateActionId>
+    </MergeUpdateWrite>
+    <MergeUpdateWrite Id="TransformScript:17:binding:validation:target:13:write:merge-update" WriteId="TransformScript:17:binding:validation:target:13:write">
+      <MetaTransformScriptMergeUpdateActionId>MergeUpdateAction:5</MetaTransformScriptMergeUpdateActionId>
+    </MergeUpdateWrite>
+    <MergeUpdateWrite Id="TransformScript:18:binding:validation:target:15:write:merge-update" WriteId="TransformScript:18:binding:validation:target:15:write">
+      <MetaTransformScriptMergeUpdateActionId>MergeUpdateAction:6</MetaTransformScriptMergeUpdateActionId>
+    </MergeUpdateWrite>
+    <MergeUpdateWrite Id="TransformScript:19:binding:validation:target:17:write:merge-update" WriteId="TransformScript:19:binding:validation:target:17:write">
+      <MetaTransformScriptMergeUpdateActionId>MergeUpdateAction:7</MetaTransformScriptMergeUpdateActionId>
+    </MergeUpdateWrite>
+    <MergeUpdateWrite Id="TransformScript:20:binding:validation:target:20:write:merge-update" WriteId="TransformScript:20:binding:validation:target:20:write">
+      <MetaTransformScriptMergeUpdateActionId>MergeUpdateAction:8</MetaTransformScriptMergeUpdateActionId>
+    </MergeUpdateWrite>
+  </MergeUpdateWriteList>
+</MetaTransformBinding>

@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <JoinPatternOccurrenceList>
+    <JoinPatternOccurrence Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:1" JoinPatternId="JoinPattern.11">
+      <FirstTableReferenceId>TableReference:20</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:1</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:1</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:24</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:24</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:35</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:21</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:13</TransformScriptId>
+      <TransformScriptName>Dim_Product</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:2" JoinPatternId="JoinPattern.12">
+      <FirstTableReferenceId>TableReference:22</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:2</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:2</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:24</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:24</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:36</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:23</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:13</TransformScriptId>
+      <TransformScriptName>Dim_Product</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:3" JoinPatternId="JoinPattern.13">
+      <FirstTableReferenceId>TableReference:24</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:3</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:3</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:24</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:24</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:39</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:25</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:13</TransformScriptId>
+      <TransformScriptName>Dim_Product</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:4" JoinPatternId="JoinPattern.14">
+      <FirstTableReferenceId>TableReference:26</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:4</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:4</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:24</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:24</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:40</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:27</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:13</TransformScriptId>
+      <TransformScriptName>Dim_Product</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:5" JoinPatternId="JoinPattern.15">
+      <FirstTableReferenceId>TableReference:28</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:5</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:5</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:24</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:24</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:43</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:29</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:13</TransformScriptId>
+      <TransformScriptName>Dim_Product</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:10" JoinPatternId="JoinPattern.5">
+      <FirstTableReferenceId>TableReference:43</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:10</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:10</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:28</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:28</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:53</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:44</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:14</TransformScriptId>
+      <TransformScriptName>Dim_Geography</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:11" JoinPatternId="JoinPattern.6">
+      <FirstTableReferenceId>TableReference:45</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:11</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:11</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:28</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:28</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:56</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:46</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:14</TransformScriptId>
+      <TransformScriptName>Dim_Geography</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:6" JoinPatternId="JoinPattern.7">
+      <FirstTableReferenceId>TableReference:35</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:6</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:6</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:28</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:28</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:47</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:36</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:14</TransformScriptId>
+      <TransformScriptName>Dim_Geography</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:7" JoinPatternId="JoinPattern.8">
+      <FirstTableReferenceId>TableReference:37</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:7</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:7</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:28</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:28</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:48</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:38</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:14</TransformScriptId>
+      <TransformScriptName>Dim_Geography</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:8" JoinPatternId="JoinPattern.9">
+      <FirstTableReferenceId>TableReference:39</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:8</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:8</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:28</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:28</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:51</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:40</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:14</TransformScriptId>
+      <TransformScriptName>Dim_Geography</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:9" JoinPatternId="JoinPattern.10">
+      <FirstTableReferenceId>TableReference:41</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:9</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:9</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:28</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:28</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:52</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:42</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:14</TransformScriptId>
+      <TransformScriptName>Dim_Geography</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:12" JoinPatternId="JoinPattern">
+      <FirstTableReferenceId>TableReference:52</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:12</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:12</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:32</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:32</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:66</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:53</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:15</TransformScriptId>
+      <TransformScriptName>Dim_Customer</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:13" JoinPatternId="JoinPattern.1">
+      <FirstTableReferenceId>TableReference:54</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:13</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:13</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:32</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:32</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:67</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:55</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:15</TransformScriptId>
+      <TransformScriptName>Dim_Customer</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:14" JoinPatternId="JoinPattern.2">
+      <FirstTableReferenceId>TableReference:56</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:14</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:14</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:32</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:32</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:70</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:57</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:15</TransformScriptId>
+      <TransformScriptName>Dim_Customer</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:15" JoinPatternId="JoinPattern.3">
+      <FirstTableReferenceId>TableReference:58</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:15</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:15</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:32</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:32</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:71</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:59</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:15</TransformScriptId>
+      <TransformScriptName>Dim_Customer</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:16" JoinPatternId="JoinPattern.4">
+      <FirstTableReferenceId>TableReference:60</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:16</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:16</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:32</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:32</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:74</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:61</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:15</TransformScriptId>
+      <TransformScriptName>Dim_Customer</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:16.JoinPatternOccurrence.QualifiedJoin:17" JoinPatternId="JoinPattern.16">
+      <FirstTableReferenceId>TableReference:65</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:17</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:17</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:34</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:34</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:76</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:66</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:16</TransformScriptId>
+      <TransformScriptName>Dim_Salesperson</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:16.JoinPatternOccurrence.QualifiedJoin:18" JoinPatternId="JoinPattern.17">
+      <FirstTableReferenceId>TableReference:67</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:18</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:18</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:34</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:34</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:79</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:68</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:16</TransformScriptId>
+      <TransformScriptName>Dim_Salesperson</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:19" JoinPatternId="JoinPattern.18">
+      <FirstTableReferenceId>TableReference:72</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:19</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:19</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:36</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:36</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:83</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:73</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:17</TransformScriptId>
+      <TransformScriptName>Dim_SalesTerritory</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:20" JoinPatternId="JoinPattern.19">
+      <FirstTableReferenceId>TableReference:74</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:20</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:20</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:36</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:36</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:84</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:75</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:17</TransformScriptId>
+      <TransformScriptName>Dim_SalesTerritory</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:21" JoinPatternId="JoinPattern.20">
+      <FirstTableReferenceId>TableReference:76</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:21</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:21</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:36</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:36</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:85</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:77</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:17</TransformScriptId>
+      <TransformScriptName>Dim_SalesTerritory</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22" JoinPatternId="JoinPattern.42">
+      <FirstTableReferenceId>TableReference:81</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:22</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:22</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:89</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:82</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23" JoinPatternId="JoinPattern.43">
+      <FirstTableReferenceId>TableReference:83</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:23</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:23</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:90</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:84</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24" JoinPatternId="JoinPattern.44">
+      <FirstTableReferenceId>TableReference:85</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:24</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:24</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:91</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:86</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25" JoinPatternId="JoinPattern.45">
+      <FirstTableReferenceId>TableReference:87</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:25</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:25</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:92</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:88</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26" JoinPatternId="JoinPattern.46">
+      <FirstTableReferenceId>TableReference:89</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:26</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:26</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:93</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:90</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27" JoinPatternId="JoinPattern.47">
+      <FirstTableReferenceId>TableReference:91</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:27</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:27</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:94</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:92</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28" JoinPatternId="JoinPattern.48">
+      <FirstTableReferenceId>TableReference:93</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:28</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:28</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:95</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:94</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29" JoinPatternId="JoinPattern.49">
+      <FirstTableReferenceId>TableReference:95</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:29</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:29</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:96</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:96</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30" JoinPatternId="JoinPattern.50">
+      <FirstTableReferenceId>TableReference:97</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:30</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:30</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:97</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:98</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31" JoinPatternId="JoinPattern.51">
+      <FirstTableReferenceId>TableReference:99</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:31</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:31</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:98</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:100</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32" JoinPatternId="JoinPattern.52">
+      <FirstTableReferenceId>TableReference:101</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:32</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:32</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:99</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:102</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33" JoinPatternId="JoinPattern.53">
+      <FirstTableReferenceId>TableReference:103</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:33</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:33</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:100</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:104</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34" JoinPatternId="JoinPattern.54">
+      <FirstTableReferenceId>TableReference:105</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:34</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:34</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:101</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:106</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35" JoinPatternId="JoinPattern.55">
+      <FirstTableReferenceId>TableReference:107</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:35</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:35</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:102</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:108</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36" JoinPatternId="JoinPattern.56">
+      <FirstTableReferenceId>TableReference:109</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:36</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:36</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:103</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:110</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37" JoinPatternId="JoinPattern.57">
+      <FirstTableReferenceId>TableReference:111</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:37</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:37</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:104</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:112</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38" JoinPatternId="JoinPattern.58">
+      <FirstTableReferenceId>TableReference:113</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:38</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:38</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:105</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:114</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39" JoinPatternId="JoinPattern.59">
+      <FirstTableReferenceId>TableReference:115</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:39</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:39</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:106</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:116</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40" JoinPatternId="JoinPattern.60">
+      <FirstTableReferenceId>TableReference:117</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:40</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:40</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:107</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:118</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41" JoinPatternId="JoinPattern.61">
+      <FirstTableReferenceId>TableReference:119</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:41</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:41</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:109</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:120</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42" JoinPatternId="JoinPattern.62">
+      <FirstTableReferenceId>TableReference:121</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:42</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:42</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:38</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:38</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:110</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:122</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43" JoinPatternId="JoinPattern.21">
+      <FirstTableReferenceId>TableReference:127</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:43</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:43</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:129</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:128</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44" JoinPatternId="JoinPattern.22">
+      <FirstTableReferenceId>TableReference:129</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:44</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:44</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:130</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:130</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45" JoinPatternId="JoinPattern.23">
+      <FirstTableReferenceId>TableReference:131</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:45</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:45</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:131</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:132</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46" JoinPatternId="JoinPattern.24">
+      <FirstTableReferenceId>TableReference:133</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:46</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:46</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:134</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:134</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47" JoinPatternId="JoinPattern.25">
+      <FirstTableReferenceId>TableReference:135</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:47</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:47</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:135</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:136</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48" JoinPatternId="JoinPattern.26">
+      <FirstTableReferenceId>TableReference:137</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:48</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:48</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:136</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:138</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49" JoinPatternId="JoinPattern.27">
+      <FirstTableReferenceId>TableReference:139</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:49</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:49</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:137</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:140</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50" JoinPatternId="JoinPattern.28">
+      <FirstTableReferenceId>TableReference:141</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:50</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:50</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:138</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:142</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51" JoinPatternId="JoinPattern.29">
+      <FirstTableReferenceId>TableReference:143</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:51</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:51</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:139</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:144</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52" JoinPatternId="JoinPattern.30">
+      <FirstTableReferenceId>TableReference:145</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:52</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:52</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:140</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:146</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53" JoinPatternId="JoinPattern.31">
+      <FirstTableReferenceId>TableReference:147</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:53</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:53</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:141</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:148</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54" JoinPatternId="JoinPattern.32">
+      <FirstTableReferenceId>TableReference:149</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:54</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:54</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:142</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:150</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55" JoinPatternId="JoinPattern.33">
+      <FirstTableReferenceId>TableReference:151</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:55</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:55</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:143</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:152</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56" JoinPatternId="JoinPattern.34">
+      <FirstTableReferenceId>TableReference:153</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:56</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:56</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:144</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:154</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57" JoinPatternId="JoinPattern.35">
+      <FirstTableReferenceId>TableReference:155</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:57</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:57</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:145</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:156</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58" JoinPatternId="JoinPattern.36">
+      <FirstTableReferenceId>TableReference:157</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:58</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:58</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:146</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:158</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59" JoinPatternId="JoinPattern.37">
+      <FirstTableReferenceId>TableReference:159</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:59</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:59</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:147</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:160</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60" JoinPatternId="JoinPattern.38">
+      <FirstTableReferenceId>TableReference:161</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:60</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:60</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:148</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:162</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61" JoinPatternId="JoinPattern.39">
+      <FirstTableReferenceId>TableReference:163</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:61</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:61</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:149</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:164</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62" JoinPatternId="JoinPattern.40">
+      <FirstTableReferenceId>TableReference:165</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:62</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:62</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:150</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:166</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63" JoinPatternId="JoinPattern.41">
+      <FirstTableReferenceId>TableReference:167</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:63</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:63</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:41</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:41</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:152</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:168</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:64" JoinPatternId="JoinPattern.63">
+      <FirstTableReferenceId>TableReference:172</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:64</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:64</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:43</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:43</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:169</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:173</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:20</TransformScriptId>
+      <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:65" JoinPatternId="JoinPattern.64">
+      <FirstTableReferenceId>TableReference:174</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:65</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:65</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:43</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:43</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:170</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:175</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:20</TransformScriptId>
+      <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:66" JoinPatternId="JoinPattern.65">
+      <FirstTableReferenceId>TableReference:176</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:66</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:66</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:43</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:43</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:171</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:177</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:20</TransformScriptId>
+      <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:67" JoinPatternId="JoinPattern.66">
+      <FirstTableReferenceId>TableReference:178</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:67</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:67</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:43</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:43</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:172</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:179</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:20</TransformScriptId>
+      <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:68" JoinPatternId="JoinPattern.67">
+      <FirstTableReferenceId>TableReference:180</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:68</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:68</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:43</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:43</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; MergeSource &gt; DerivedQuery:source &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:173</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:181</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:20</TransformScriptId>
+      <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
+    </JoinPatternOccurrence>
+  </JoinPatternOccurrenceList>
+</MetaDataQuality>

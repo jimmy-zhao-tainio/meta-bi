@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawHubKeyPartList>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:key:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:SystemInformationID" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:SystemInformationID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion">
+      <Name>SystemInformationID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:key:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:DatabaseLogID" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:DatabaseLogID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog">
+      <Name>DatabaseLogID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:key:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorLogID" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorLogID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog">
+      <Name>ErrorLogID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:key:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:DepartmentID" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:DepartmentID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department">
+      <Name>DepartmentID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:key:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:DepartmentID" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:DepartmentID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory">
+      <Name>DepartmentID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:ShiftID" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:ShiftID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory">
+      <Name>ShiftID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:StartDate" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:StartDate" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory">
+      <Name>StartDate</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:key:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:key:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:RateChangeDate" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:RateChangeDate" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory">
+      <Name>RateChangeDate</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:key:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:JobCandidateID" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:JobCandidateID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate">
+      <Name>JobCandidateID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:key:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:ShiftID" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:ShiftID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift">
+      <Name>ShiftID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:key:sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address">
+      <Name>AddressID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:key:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:AddressTypeID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:AddressTypeID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:AddressType">
+      <Name>AddressTypeID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:key:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:AddressID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:AddressID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress">
+      <Name>AddressID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:AddressTypeID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:AddressTypeID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress">
+      <Name>AddressTypeID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:ContactTypeID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:ContactTypeID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact">
+      <Name>ContactTypeID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:PersonID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:PersonID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact">
+      <Name>PersonID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:ContactType:key:sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:ContactTypeID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:ContactTypeID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:ContactType">
+      <Name>ContactTypeID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:key:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:CountryRegionCode" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:CountryRegionCode" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion">
+      <Name>CountryRegionCode</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:key:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:key:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:EmailAddressID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:EmailAddressID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress">
+      <Name>EmailAddressID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password:key:sqlserver:AdventureWorks2022:schema:Person:table:Password:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:key:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:PhoneNumber" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:PhoneNumber" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone">
+      <Name>PhoneNumber</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:PhoneNumberTypeID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:PhoneNumberTypeID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone">
+      <Name>PhoneNumberTypeID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:key:sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:PhoneNumberTypeID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:PhoneNumberTypeID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType">
+      <Name>PhoneNumberTypeID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:key:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:StateProvinceID" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:StateProvinceID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince">
+      <Name>StateProvinceID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:key:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:BillOfMaterialsID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:BillOfMaterialsID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials">
+      <Name>BillOfMaterialsID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Culture:key:sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:CultureID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:CultureID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Culture">
+      <Name>CultureID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:key:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentNode" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentNode" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document">
+      <Name>DocumentNode</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Illustration:key:sqlserver:AdventureWorks2022:schema:Production:table:Illustration:field:IllustrationID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:field:IllustrationID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Illustration">
+      <Name>IllustrationID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location:key:sqlserver:AdventureWorks2022:schema:Production:table:Location:field:LocationID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:LocationID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location">
+      <Name>LocationID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:key:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>ProductID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ProductCategoryID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ProductCategoryID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory">
+      <Name>ProductCategoryID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:ProductID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:ProductID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory">
+      <Name>ProductID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:StartDate" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:StartDate" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory">
+      <Name>StartDate</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:ProductDescriptionID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:ProductDescriptionID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription">
+      <Name>ProductDescriptionID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:DocumentNode" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:DocumentNode" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument">
+      <Name>DocumentNode</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:ProductID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:ProductID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument">
+      <Name>ProductID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:LocationID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:LocationID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory">
+      <Name>LocationID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:ProductID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:ProductID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory">
+      <Name>ProductID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:ProductID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:ProductID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory">
+      <Name>ProductID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:StartDate" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:StartDate" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory">
+      <Name>StartDate</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:ProductModelID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:ProductModelID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel">
+      <Name>ProductModelID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:IllustrationID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:IllustrationID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration">
+      <Name>IllustrationID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:ProductModelID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:ProductModelID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration">
+      <Name>ProductModelID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:CultureID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:CultureID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture">
+      <Name>CultureID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ProductDescriptionID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ProductDescriptionID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture">
+      <Name>ProductDescriptionID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ProductModelID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ProductModelID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture">
+      <Name>ProductModelID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ProductPhotoID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ProductPhotoID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto">
+      <Name>ProductPhotoID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ProductID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ProductID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto">
+      <Name>ProductID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ProductPhotoID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ProductPhotoID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto">
+      <Name>ProductPhotoID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ProductReviewID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ProductReviewID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview">
+      <Name>ProductReviewID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:key:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductSubcategoryID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductSubcategoryID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory">
+      <Name>ProductSubcategoryID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:key:sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:ScrapReasonID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:ScrapReasonID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason">
+      <Name>ScrapReasonID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:key:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory">
+      <Name>TransactionID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:key:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive">
+      <Name>TransactionID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:key:sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:UnitMeasureCode" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:UnitMeasureCode" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure">
+      <Name>UnitMeasureCode</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:key:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:WorkOrderID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:WorkOrderID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder">
+      <Name>WorkOrderID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:OperationSequence" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:OperationSequence" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting">
+      <Name>OperationSequence</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ProductID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ProductID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting">
+      <Name>ProductID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:WorkOrderID" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:WorkOrderID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting">
+      <Name>WorkOrderID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:key:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:key:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:ProductID" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:ProductID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor">
+      <Name>ProductID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:key:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:PurchaseOrderDetailID" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:PurchaseOrderDetailID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail">
+      <Name>PurchaseOrderDetailID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:key:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:PurchaseOrderID" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:PurchaseOrderID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail">
+      <Name>PurchaseOrderID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:key:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:PurchaseOrderID" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:PurchaseOrderID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader">
+      <Name>PurchaseOrderID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:key:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ShipMethodID" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ShipMethodID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod">
+      <Name>ShipMethodID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:key:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:key:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CountryRegionCode" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CountryRegionCode" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency">
+      <Name>CountryRegionCode</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:key:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CurrencyCode" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CurrencyCode" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency">
+      <Name>CurrencyCode</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:key:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CreditCardID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CreditCardID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard">
+      <Name>CreditCardID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Currency:key:sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:CurrencyCode" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:CurrencyCode" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Currency">
+      <Name>CurrencyCode</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:key:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:CurrencyRateID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:CurrencyRateID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate">
+      <Name>CurrencyRateID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:key:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:CustomerID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:CustomerID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Customer">
+      <Name>CustomerID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:key:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:key:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:CreditCardID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:CreditCardID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard">
+      <Name>CreditCardID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:SalesOrderDetailID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:SalesOrderDetailID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail">
+      <Name>SalesOrderDetailID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:SalesOrderID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:SalesOrderID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail">
+      <Name>SalesOrderID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SalesOrderID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SalesOrderID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader">
+      <Name>SalesOrderID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:SalesOrderID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:SalesOrderID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason">
+      <Name>SalesOrderID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:SalesReasonID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:SalesReasonID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason">
+      <Name>SalesReasonID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:QuotaDate" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:QuotaDate" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory">
+      <Name>QuotaDate</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:SalesReasonID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:SalesReasonID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason">
+      <Name>SalesReasonID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:SalesTaxRateID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:SalesTaxRateID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate">
+      <Name>SalesTaxRateID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:TerritoryID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:TerritoryID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory">
+      <Name>TerritoryID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:StartDate" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:StartDate" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory">
+      <Name>StartDate</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:TerritoryID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:TerritoryID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory">
+      <Name>TerritoryID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:key:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ShoppingCartItemID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ShoppingCartItemID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem">
+      <Name>ShoppingCartItemID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:key:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:SpecialOfferID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:SpecialOfferID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer">
+      <Name>SpecialOfferID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:key:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:ProductID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:ProductID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct">
+      <Name>ProductID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:key:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:SpecialOfferID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:SpecialOfferID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct">
+      <Name>SpecialOfferID</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store:key:sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:BusinessEntityID" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:BusinessEntityID" RawHubId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store">
+      <Name>BusinessEntityID</Name>
+    </RawHubKeyPart>
+  </RawHubKeyPartList>
+</MetaRawDataVault>

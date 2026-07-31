@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AggregationBehaviorList>
+    <AggregationBehavior Id="AverageOrderValueAggregation" MeasureId="AverageOrderValue">
+      <Function>Average</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="AverageUnitPriceAggregation" MeasureId="AverageUnitPrice">
+      <Function>Average</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="DiscountAmountAggregation" MeasureId="DiscountAmount">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="FreightAmountAggregation" MeasureId="FreightAmount">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="OrderCountAggregation" MeasureId="OrderCount">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="OrderQuantityAggregation" MeasureId="OrderQuantity">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="OrderSubtotalAggregation" MeasureId="OrderSubtotal">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="QuotaAmountAggregation" MeasureId="QuotaAmount">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="SalesAmountAggregation" MeasureId="SalesAmount">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="TaxAmountAggregation" MeasureId="TaxAmount">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="TotalDueAggregation" MeasureId="TotalDue">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+  </AggregationBehaviorList>
+</MetaAnalytics>

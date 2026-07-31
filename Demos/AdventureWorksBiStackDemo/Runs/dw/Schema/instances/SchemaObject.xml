@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <SchemaObjectList>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Dim_Customer</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Dim_Date</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Dim_Geography</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Dim_OrderStatus</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Dim_Product</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Dim_SalesChannel</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Dim_Salesperson</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Dim_SalesTerritory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Fact_SalesLine</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Fact_SalesOrder</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota" SchemaId="sqlserver:AdventureWorksAnalytics:schema:dw">
+      <Name>Fact_SalespersonQuota</Name>
+    </SchemaObject>
+  </SchemaObjectList>
+</MetaSchema>

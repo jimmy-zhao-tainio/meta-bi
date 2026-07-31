@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularHierarchyList>
+    <TabularHierarchy Id="Calendar" TabularTableId="Date">
+      <Name>Calendar</Name>
+    </TabularHierarchy>
+    <TabularHierarchy Id="Geographies" TabularTableId="Geography">
+      <Name>Geography</Name>
+    </TabularHierarchy>
+    <TabularHierarchy Id="Products" TabularTableId="Product">
+      <Name>Products</Name>
+    </TabularHierarchy>
+  </TabularHierarchyList>
+</MetaTabular>

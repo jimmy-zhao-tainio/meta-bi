@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <ConformedDimensionList>
+    <ConformedDimension Id="dimension:customer:conformed" DimensionId="dimension:customer">
+      <ConformanceName>Customer</ConformanceName>
+    </ConformedDimension>
+    <ConformedDimension Id="dimension:date:conformed" DimensionId="dimension:date">
+      <ConformanceName>Date</ConformanceName>
+    </ConformedDimension>
+    <ConformedDimension Id="dimension:geography:conformed" DimensionId="dimension:geography">
+      <ConformanceName>Geography</ConformanceName>
+    </ConformedDimension>
+    <ConformedDimension Id="dimension:order-status:conformed" DimensionId="dimension:order-status">
+      <ConformanceName>OrderStatus</ConformanceName>
+    </ConformedDimension>
+    <ConformedDimension Id="dimension:product:conformed" DimensionId="dimension:product">
+      <ConformanceName>Product</ConformanceName>
+    </ConformedDimension>
+    <ConformedDimension Id="dimension:sales-channel:conformed" DimensionId="dimension:sales-channel">
+      <ConformanceName>SalesChannel</ConformanceName>
+    </ConformedDimension>
+    <ConformedDimension Id="dimension:sales-territory:conformed" DimensionId="dimension:sales-territory">
+      <ConformanceName>SalesTerritory</ConformanceName>
+    </ConformedDimension>
+    <ConformedDimension Id="dimension:salesperson:conformed" DimensionId="dimension:salesperson">
+      <ConformanceName>Salesperson</ConformanceName>
+    </ConformedDimension>
+  </ConformedDimensionList>
+</MetaDataWarehouse>

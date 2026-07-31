@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <FieldDataTypeDetailList>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:AccountNumber:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:AccountNumber">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerType:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerType">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:StoreName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:StoreName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressLine1:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressLine1">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressLine2:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressLine2">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:City:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:City">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:CountryRegionCode:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:CountryRegionCode">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:CountryRegionName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:CountryRegionName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:PostalCode:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:PostalCode">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:StateProvinceCode:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:StateProvinceCode">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:StateProvinceName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:StateProvinceName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:Color:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:Color">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductCategoryName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductCategoryName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductNumber:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductNumber">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductSubcategoryName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductSubcategoryName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:ChannelCode:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:ChannelCode">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:ChannelName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:ChannelName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:FirstName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:FullName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:FullName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:LastName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:CountryRegionCode:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:CountryRegionCode">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryGroup:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryGroup">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryName:detail:Length" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:DiscountAmount:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:DiscountAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:DiscountAmount:detail:Scale" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:DiscountAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:LineSalesAmount:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:LineSalesAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:LineSalesAmount:detail:Scale" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:LineSalesAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:UnitPrice:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:UnitPrice">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:UnitPrice:detail:Scale" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:UnitPrice">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:FreightAmount:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:FreightAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:FreightAmount:detail:Scale" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:FreightAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SubTotal:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SubTotal">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SubTotal:detail:Scale" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SubTotal">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TaxAmount:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TaxAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TaxAmount:detail:Scale" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TaxAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TotalDue:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TotalDue">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TotalDue:detail:Scale" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TotalDue">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:InsertDateTime2:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaAmount:detail:Precision" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaAmount:detail:Scale" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+  </FieldDataTypeDetailList>
+</MetaSchema>

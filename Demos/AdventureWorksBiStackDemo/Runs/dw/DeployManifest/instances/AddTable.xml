@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest>
+  <AddTableList>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Dim_Customer" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Dim_Customer</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Dim_Date" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Dim_Date</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Dim_Geography" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Dim_Geography</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Dim_OrderStatus" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Dim_OrderStatus</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Dim_Product" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Dim_Product</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Dim_SalesChannel" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Dim_SalesChannel</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Dim_Salesperson" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Dim_Salesperson</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Dim_SalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Dim_SalesTerritory</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Fact_SalesLine" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Fact_SalesLine</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Fact_SalesOrder" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Fact_SalesOrder</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksAnalytics.dw.Fact_SalespersonQuota" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksAnalytics.dw.Fact_SalespersonQuota</SourceTableId>
+    </AddTable>
+  </AddTableList>
+</MetaSqlDeployManifest>

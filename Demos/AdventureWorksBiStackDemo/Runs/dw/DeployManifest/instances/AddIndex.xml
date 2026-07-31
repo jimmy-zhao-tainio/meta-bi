@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest>
+  <AddIndexList>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Dim_Customer:index:IX_Dim_Customer_CustomerKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Dim_Customer:index:IX_Dim_Customer_CustomerKey</SourceIndexId>
+    </AddIndex>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Dim_Date:index:IX_Dim_Date_DateKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Dim_Date:index:IX_Dim_Date_DateKey</SourceIndexId>
+    </AddIndex>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Dim_Geography:index:IX_Dim_Geography_GeographyKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Dim_Geography:index:IX_Dim_Geography_GeographyKey</SourceIndexId>
+    </AddIndex>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Dim_OrderStatus:index:IX_Dim_OrderStatus_OrderStatusKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Dim_OrderStatus:index:IX_Dim_OrderStatus_OrderStatusKey</SourceIndexId>
+    </AddIndex>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Dim_Product:index:IX_Dim_Product_ProductKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Dim_Product:index:IX_Dim_Product_ProductKey</SourceIndexId>
+    </AddIndex>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Dim_SalesChannel:index:IX_Dim_SalesChannel_SalesChannelKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Dim_SalesChannel:index:IX_Dim_SalesChannel_SalesChannelKey</SourceIndexId>
+    </AddIndex>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Dim_Salesperson:index:IX_Dim_Salesperson_SalespersonKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Dim_Salesperson:index:IX_Dim_Salesperson_SalespersonKey</SourceIndexId>
+    </AddIndex>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Dim_SalesTerritory:index:IX_Dim_SalesTerritory_SalesTerritoryKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Dim_SalesTerritory:index:IX_Dim_SalesTerritory_SalesTerritoryKey</SourceIndexId>
+    </AddIndex>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Fact_SalesLine:index:IX_Fact_SalesLine_OrderDateKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Fact_SalesLine:index:IX_Fact_SalesLine_OrderDateKey</SourceIndexId>
+    </AddIndex>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Fact_SalesOrder:index:IX_Fact_SalesOrder_OrderDateKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Fact_SalesOrder:index:IX_Fact_SalesOrder_OrderDateKey</SourceIndexId>
+    </AddIndex>
+    <AddIndex Id="AddIndex:AdventureWorksAnalytics.dw.Fact_SalespersonQuota:index:IX_Fact_SalespersonQuota_QuotaPeriodKey" DeployManifestId="DeployManifest:1">
+      <SourceIndexId>AdventureWorksAnalytics.dw.Fact_SalespersonQuota:index:IX_Fact_SalespersonQuota_QuotaPeriodKey</SourceIndexId>
+    </AddIndex>
+  </AddIndexList>
+</MetaSqlDeployManifest>

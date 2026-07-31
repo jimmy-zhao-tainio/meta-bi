@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest>
+  <AddTableList>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_Address" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_Address</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_CountryRegion" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_CountryRegion</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_Customer" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_Customer</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_Person" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_Person</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_Product" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_Product</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_ProductCategory" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_ProductCategory</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_ProductSubcategory" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_ProductSubcategory</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_SalesOrder" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_SalesOrder</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_SalesOrderLine" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_SalesPerson" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_SalesPerson</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_SalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_SalesTerritory</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_StateProvince" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_StateProvince</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BH_Store" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BH_Store</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_AddressStateProvince" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_AddressStateProvince</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_CustomerPerson" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_CustomerPerson</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_CustomerStore" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_CustomerStore</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson" DeployManifestId="DeployManifest:1">
+      <SourceTableId>AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson</SourceTableId>
+    </AddTable>
+  </AddTableList>
+</MetaSqlDeployManifest>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptList>
+    <TransformScript Id="TransformScript:1">
+      <Name>Dim_SalesChannel_Online</Name>
+      <SourcePath>Dim_SalesChannel_Online.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:10">
+      <Name>Dim_Date_DueDate</Name>
+      <SourcePath>Dim_Date_DueDate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:11">
+      <Name>Dim_Date_ShipDate</Name>
+      <SourcePath>Dim_Date_ShipDate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:12">
+      <Name>Dim_Date_QuotaDate</Name>
+      <SourcePath>Dim_Date_QuotaDate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:13">
+      <Name>Dim_Product</Name>
+      <SourcePath>Dim_Product.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:14">
+      <Name>Dim_Geography</Name>
+      <SourcePath>Dim_Geography.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:15">
+      <Name>Dim_Customer</Name>
+      <SourcePath>Dim_Customer.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:16">
+      <Name>Dim_Salesperson</Name>
+      <SourcePath>Dim_Salesperson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:17">
+      <Name>Dim_SalesTerritory</Name>
+      <SourcePath>Dim_SalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:18">
+      <Name>Fact_SalesOrder</Name>
+      <SourcePath>Fact_SalesOrder.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:19">
+      <Name>Fact_SalesLine</Name>
+      <SourcePath>Fact_SalesLine.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:2">
+      <Name>Dim_SalesChannel_Store</Name>
+      <SourcePath>Dim_SalesChannel_Store.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:20">
+      <Name>Fact_SalespersonQuota</Name>
+      <SourcePath>Fact_SalespersonQuota.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:3">
+      <Name>Dim_OrderStatus_1_InProcess</Name>
+      <SourcePath>Dim_OrderStatus_1_InProcess.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:4">
+      <Name>Dim_OrderStatus_2_Approved</Name>
+      <SourcePath>Dim_OrderStatus_2_Approved.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:5">
+      <Name>Dim_OrderStatus_3_Backordered</Name>
+      <SourcePath>Dim_OrderStatus_3_Backordered.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:6">
+      <Name>Dim_OrderStatus_4_Rejected</Name>
+      <SourcePath>Dim_OrderStatus_4_Rejected.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:7">
+      <Name>Dim_OrderStatus_5_Shipped</Name>
+      <SourcePath>Dim_OrderStatus_5_Shipped.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:8">
+      <Name>Dim_OrderStatus_6_Cancelled</Name>
+      <SourcePath>Dim_OrderStatus_6_Cancelled.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:9">
+      <Name>Dim_Date_OrderDate</Name>
+      <SourcePath>Dim_Date_OrderDate.sql</SourcePath>
+    </TransformScript>
+  </TransformScriptList>
+</MetaTransformScript>

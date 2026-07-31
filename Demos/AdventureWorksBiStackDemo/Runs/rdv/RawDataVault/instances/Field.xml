@@ -1,0 +1,1949 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <FieldList>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:Database Version">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Database Version</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:SystemInformationID">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>SystemInformationID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:VersionDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>VersionDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:DatabaseLogID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>DatabaseLogID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:DatabaseUser">
+      <DataTypeId>sqlserver:type:sysname</DataTypeId>
+      <Name>DatabaseUser</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Event">
+      <DataTypeId>sqlserver:type:sysname</DataTypeId>
+      <Name>Event</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Object">
+      <DataTypeId>sqlserver:type:sysname</DataTypeId>
+      <Name>Object</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:PostTime">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>PostTime</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Schema">
+      <DataTypeId>sqlserver:type:sysname</DataTypeId>
+      <Name>Schema</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:TSQL">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>TSQL</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:XmlEvent">
+      <DataTypeId>sqlserver:type:xml</DataTypeId>
+      <Name>XmlEvent</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorLine">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ErrorLine</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorLogID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ErrorLogID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorMessage">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>ErrorMessage</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorNumber">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ErrorNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorProcedure">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>ErrorProcedure</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorSeverity">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ErrorSeverity</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorState">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ErrorState</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorTime">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ErrorTime</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:UserName">
+      <DataTypeId>sqlserver:type:sysname</DataTypeId>
+      <Name>UserName</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:DepartmentID">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>DepartmentID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:GroupName">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>GroupName</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:BirthDate">
+      <DataTypeId>sqlserver:type:date</DataTypeId>
+      <Name>BirthDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:CurrentFlag">
+      <DataTypeId>sqlserver:type:Flag</DataTypeId>
+      <Name>CurrentFlag</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:Gender">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>Gender</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:HireDate">
+      <DataTypeId>sqlserver:type:date</DataTypeId>
+      <Name>HireDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:JobTitle">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>JobTitle</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:LoginID">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>LoginID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:MaritalStatus">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>MaritalStatus</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:NationalIDNumber">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>NationalIDNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:OrganizationLevel">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>OrganizationLevel</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:OrganizationNode">
+      <DataTypeId>sqlserver:type:hierarchyid</DataTypeId>
+      <Name>OrganizationNode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:SalariedFlag">
+      <DataTypeId>sqlserver:type:Flag</DataTypeId>
+      <Name>SalariedFlag</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:SickLeaveHours">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>SickLeaveHours</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:VacationHours">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>VacationHours</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:DepartmentID">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>DepartmentID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:EndDate">
+      <DataTypeId>sqlserver:type:date</DataTypeId>
+      <Name>EndDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:ShiftID">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>ShiftID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:StartDate">
+      <DataTypeId>sqlserver:type:date</DataTypeId>
+      <Name>StartDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:PayFrequency">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>PayFrequency</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:Rate">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>Rate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:RateChangeDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>RateChangeDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:JobCandidateID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>JobCandidateID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:Resume">
+      <DataTypeId>sqlserver:type:xml</DataTypeId>
+      <Name>Resume</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:EndTime">
+      <DataTypeId>sqlserver:type:time</DataTypeId>
+      <Name>EndTime</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:ShiftID">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>ShiftID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:StartTime">
+      <DataTypeId>sqlserver:type:time</DataTypeId>
+      <Name>StartTime</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>AddressID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressLine1">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>AddressLine1</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressLine2">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>AddressLine2</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:City">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>City</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:PostalCode">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>PostalCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:SpatialLocation">
+      <DataTypeId>sqlserver:type:geography</DataTypeId>
+      <Name>SpatialLocation</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:StateProvinceID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>StateProvinceID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:AddressTypeID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>AddressTypeID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:AddressID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>AddressID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:AddressTypeID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>AddressTypeID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:ContactTypeID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ContactTypeID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:PersonID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>PersonID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:ContactTypeID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ContactTypeID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:CountryRegionCode">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CountryRegionCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:EmailAddress">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>EmailAddress</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:EmailAddressID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>EmailAddressID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:PasswordHash">
+      <DataTypeId>sqlserver:type:varchar</DataTypeId>
+      <Name>PasswordHash</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:PasswordSalt">
+      <DataTypeId>sqlserver:type:varchar</DataTypeId>
+      <Name>PasswordSalt</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:AdditionalContactInfo">
+      <DataTypeId>sqlserver:type:xml</DataTypeId>
+      <Name>AdditionalContactInfo</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Demographics">
+      <DataTypeId>sqlserver:type:xml</DataTypeId>
+      <Name>Demographics</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:EmailPromotion">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>EmailPromotion</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:FirstName">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>FirstName</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:LastName">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>LastName</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:MiddleName">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>MiddleName</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:NameStyle">
+      <DataTypeId>sqlserver:type:NameStyle</DataTypeId>
+      <Name>NameStyle</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:PersonType">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>PersonType</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Suffix">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Suffix</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Title">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Title</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:PhoneNumber">
+      <DataTypeId>sqlserver:type:Phone</DataTypeId>
+      <Name>PhoneNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:PhoneNumberTypeID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>PhoneNumberTypeID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:PhoneNumberTypeID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>PhoneNumberTypeID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:CountryRegionCode">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CountryRegionCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:IsOnlyStateProvinceFlag">
+      <DataTypeId>sqlserver:type:Flag</DataTypeId>
+      <Name>IsOnlyStateProvinceFlag</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:StateProvinceCode">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>StateProvinceCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:StateProvinceID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>StateProvinceID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:TerritoryID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>TerritoryID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:BillOfMaterialsID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BillOfMaterialsID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:BOMLevel">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>BOMLevel</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:ComponentID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ComponentID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:EndDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>EndDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:PerAssemblyQty">
+      <DataTypeId>sqlserver:type:decimal</DataTypeId>
+      <Name>PerAssemblyQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:ProductAssemblyID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductAssemblyID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:StartDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>StartDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:UnitMeasureCode">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>UnitMeasureCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:CultureID">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>CultureID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:ChangeNumber">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ChangeNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Document">
+      <DataTypeId>sqlserver:type:varbinary</DataTypeId>
+      <Name>Document</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentLevel">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>DocumentLevel</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentNode">
+      <DataTypeId>sqlserver:type:hierarchyid</DataTypeId>
+      <Name>DocumentNode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentSummary">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>DocumentSummary</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FileExtension">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>FileExtension</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FileName">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>FileName</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FolderFlag">
+      <DataTypeId>sqlserver:type:bit</DataTypeId>
+      <Name>FolderFlag</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Owner">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>Owner</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Revision">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>Revision</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Status">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>Status</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Title">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Title</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:field:Diagram">
+      <DataTypeId>sqlserver:type:xml</DataTypeId>
+      <Name>Diagram</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:field:IllustrationID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>IllustrationID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Availability">
+      <DataTypeId>sqlserver:type:decimal</DataTypeId>
+      <Name>Availability</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:CostRate">
+      <DataTypeId>sqlserver:type:smallmoney</DataTypeId>
+      <Name>CostRate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:LocationID">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>LocationID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Class">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>Class</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Color">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Color</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DaysToManufacture">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>DaysToManufacture</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DiscontinuedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>DiscontinuedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:FinishedGoodsFlag">
+      <DataTypeId>sqlserver:type:Flag</DataTypeId>
+      <Name>FinishedGoodsFlag</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ListPrice">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>ListPrice</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:MakeFlag">
+      <DataTypeId>sqlserver:type:Flag</DataTypeId>
+      <Name>MakeFlag</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductLine">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>ProductLine</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductModelID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductModelID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductNumber">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>ProductNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductSubcategoryID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductSubcategoryID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ReorderPoint">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>ReorderPoint</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SafetyStockLevel">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>SafetyStockLevel</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellEndDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>SellEndDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellStartDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>SellStartDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Size">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Size</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SizeUnitMeasureCode">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>SizeUnitMeasureCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:StandardCost">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>StandardCost</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Style">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>Style</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Weight">
+      <DataTypeId>sqlserver:type:decimal</DataTypeId>
+      <Name>Weight</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:WeightUnitMeasureCode">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>WeightUnitMeasureCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ProductCategoryID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductCategoryID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:EndDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>EndDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:StandardCost">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>StandardCost</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:StartDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>StartDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:Description">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Description</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:ProductDescriptionID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductDescriptionID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:DocumentNode">
+      <DataTypeId>sqlserver:type:hierarchyid</DataTypeId>
+      <Name>DocumentNode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Bin">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>Bin</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:LocationID">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>LocationID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Quantity">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>Quantity</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Shelf">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Shelf</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:EndDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>EndDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:ListPrice">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>ListPrice</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:StartDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>StartDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:CatalogDescription">
+      <DataTypeId>sqlserver:type:xml</DataTypeId>
+      <Name>CatalogDescription</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:Instructions">
+      <DataTypeId>sqlserver:type:xml</DataTypeId>
+      <Name>Instructions</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:ProductModelID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductModelID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:IllustrationID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>IllustrationID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:ProductModelID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductModelID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:CultureID">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>CultureID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ProductDescriptionID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductDescriptionID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ProductModelID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductModelID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:LargePhoto">
+      <DataTypeId>sqlserver:type:varbinary</DataTypeId>
+      <Name>LargePhoto</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:LargePhotoFileName">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>LargePhotoFileName</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ProductPhotoID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductPhotoID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ThumbNailPhoto">
+      <DataTypeId>sqlserver:type:varbinary</DataTypeId>
+      <Name>ThumbNailPhoto</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ThumbnailPhotoFileName">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>ThumbnailPhotoFileName</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:Primary">
+      <DataTypeId>sqlserver:type:Flag</DataTypeId>
+      <Name>Primary</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ProductPhotoID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductPhotoID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:Comments">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Comments</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:EmailAddress">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>EmailAddress</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ProductReviewID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductReviewID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:Rating">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>Rating</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ReviewDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ReviewDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ReviewerName">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>ReviewerName</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductCategoryID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductCategoryID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductSubcategoryID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductSubcategoryID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:ScrapReasonID">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>ScrapReasonID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ActualCost">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>ActualCost</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:Quantity">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>Quantity</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ReferenceOrderID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ReferenceOrderID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ReferenceOrderLineID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ReferenceOrderLineID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>TransactionDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>TransactionID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionType">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>TransactionType</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ActualCost">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>ActualCost</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:Quantity">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>Quantity</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ReferenceOrderID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ReferenceOrderID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ReferenceOrderLineID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ReferenceOrderLineID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>TransactionDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>TransactionID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionType">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>TransactionType</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:UnitMeasureCode">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>UnitMeasureCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:DueDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>DueDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:EndDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>EndDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:OrderQty">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>OrderQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:ScrappedQty">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>ScrappedQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:ScrapReasonID">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>ScrapReasonID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:StartDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>StartDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:StockedQty">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>StockedQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:WorkOrderID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>WorkOrderID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualCost">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>ActualCost</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualEndDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ActualEndDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualResourceHrs">
+      <DataTypeId>sqlserver:type:decimal</DataTypeId>
+      <Name>ActualResourceHrs</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualStartDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ActualStartDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:LocationID">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>LocationID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:OperationSequence">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>OperationSequence</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:PlannedCost">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>PlannedCost</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ScheduledEndDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ScheduledEndDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ScheduledStartDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ScheduledStartDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:WorkOrderID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>WorkOrderID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:AverageLeadTime">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>AverageLeadTime</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:LastReceiptCost">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>LastReceiptCost</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:LastReceiptDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>LastReceiptDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:MaxOrderQty">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>MaxOrderQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:MinOrderQty">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>MinOrderQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:OnOrderQty">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>OnOrderQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:StandardPrice">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>StandardPrice</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:UnitMeasureCode">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>UnitMeasureCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:DueDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>DueDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:LineTotal">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>LineTotal</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:OrderQty">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>OrderQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:PurchaseOrderDetailID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>PurchaseOrderDetailID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:PurchaseOrderID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>PurchaseOrderID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ReceivedQty">
+      <DataTypeId>sqlserver:type:decimal</DataTypeId>
+      <Name>ReceivedQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:RejectedQty">
+      <DataTypeId>sqlserver:type:decimal</DataTypeId>
+      <Name>RejectedQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:StockedQty">
+      <DataTypeId>sqlserver:type:decimal</DataTypeId>
+      <Name>StockedQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:UnitPrice">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>UnitPrice</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:EmployeeID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>EmployeeID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:Freight">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>Freight</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:OrderDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>OrderDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:PurchaseOrderID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>PurchaseOrderID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:RevisionNumber">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>RevisionNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:ShipDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ShipDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:ShipMethodID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ShipMethodID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:Status">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>Status</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:SubTotal">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>SubTotal</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:TaxAmt">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>TaxAmt</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:TotalDue">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>TotalDue</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:VendorID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>VendorID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ShipBase">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>ShipBase</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ShipMethodID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ShipMethodID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ShipRate">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>ShipRate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:AccountNumber">
+      <DataTypeId>sqlserver:type:AccountNumber</DataTypeId>
+      <Name>AccountNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:ActiveFlag">
+      <DataTypeId>sqlserver:type:Flag</DataTypeId>
+      <Name>ActiveFlag</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:CreditRating">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>CreditRating</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:PreferredVendorStatus">
+      <DataTypeId>sqlserver:type:Flag</DataTypeId>
+      <Name>PreferredVendorStatus</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:PurchasingWebServiceURL">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>PurchasingWebServiceURL</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CountryRegionCode">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CountryRegionCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CurrencyCode">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>CurrencyCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CardNumber">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CardNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CardType">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CardType</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CreditCardID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>CreditCardID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:ExpMonth">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>ExpMonth</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:ExpYear">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>ExpYear</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:CurrencyCode">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>CurrencyCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:AverageRate">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>AverageRate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:CurrencyRateDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>CurrencyRateDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:CurrencyRateID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>CurrencyRateID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:EndOfDayRate">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>EndOfDayRate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:FromCurrencyCode">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>FromCurrencyCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:ToCurrencyCode">
+      <DataTypeId>sqlserver:type:nchar</DataTypeId>
+      <Name>ToCurrencyCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:AccountNumber">
+      <DataTypeId>sqlserver:type:varchar</DataTypeId>
+      <Name>AccountNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:CustomerID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>CustomerID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:PersonID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>PersonID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:StoreID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>StoreID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:TerritoryID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>TerritoryID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:CreditCardID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>CreditCardID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:CarrierTrackingNumber">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CarrierTrackingNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:LineTotal">
+      <DataTypeId>sqlserver:type:numeric</DataTypeId>
+      <Name>LineTotal</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:OrderQty">
+      <DataTypeId>sqlserver:type:smallint</DataTypeId>
+      <Name>OrderQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:SalesOrderDetailID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SalesOrderDetailID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:SalesOrderID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SalesOrderID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:SpecialOfferID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SpecialOfferID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:UnitPrice">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>UnitPrice</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:UnitPriceDiscount">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>UnitPriceDiscount</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:AccountNumber">
+      <DataTypeId>sqlserver:type:AccountNumber</DataTypeId>
+      <Name>AccountNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:BillToAddressID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BillToAddressID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Comment">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Comment</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:CreditCardApprovalCode">
+      <DataTypeId>sqlserver:type:varchar</DataTypeId>
+      <Name>CreditCardApprovalCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:CreditCardID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>CreditCardID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:CurrencyRateID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>CurrencyRateID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:CustomerID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>CustomerID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:DueDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>DueDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Freight">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>Freight</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:OnlineOrderFlag">
+      <DataTypeId>sqlserver:type:Flag</DataTypeId>
+      <Name>OnlineOrderFlag</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:OrderDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>OrderDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:PurchaseOrderNumber">
+      <DataTypeId>sqlserver:type:OrderNumber</DataTypeId>
+      <Name>PurchaseOrderNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:RevisionNumber">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>RevisionNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SalesOrderID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SalesOrderID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SalesOrderNumber">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>SalesOrderNumber</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SalesPersonID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SalesPersonID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:ShipDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ShipDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:ShipMethodID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ShipMethodID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:ShipToAddressID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ShipToAddressID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Status">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>Status</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SubTotal">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>SubTotal</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:TaxAmt">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>TaxAmt</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:TerritoryID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>TerritoryID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:TotalDue">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>TotalDue</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:SalesOrderID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SalesOrderID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:SalesReasonID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SalesReasonID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:Bonus">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>Bonus</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:CommissionPct">
+      <DataTypeId>sqlserver:type:smallmoney</DataTypeId>
+      <Name>CommissionPct</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:SalesLastYear">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>SalesLastYear</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:SalesQuota">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>SalesQuota</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:SalesYTD">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>SalesYTD</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:TerritoryID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>TerritoryID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:QuotaDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>QuotaDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:SalesQuota">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>SalesQuota</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:ReasonType">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>ReasonType</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:SalesReasonID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SalesReasonID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:SalesTaxRateID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SalesTaxRateID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:StateProvinceID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>StateProvinceID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:TaxRate">
+      <DataTypeId>sqlserver:type:smallmoney</DataTypeId>
+      <Name>TaxRate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:TaxType">
+      <DataTypeId>sqlserver:type:tinyint</DataTypeId>
+      <Name>TaxType</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:CostLastYear">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>CostLastYear</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:CostYTD">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>CostYTD</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:CountryRegionCode">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CountryRegionCode</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:Group">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Group</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:SalesLastYear">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>SalesLastYear</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:SalesYTD">
+      <DataTypeId>sqlserver:type:money</DataTypeId>
+      <Name>SalesYTD</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:TerritoryID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>TerritoryID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:EndDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>EndDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:StartDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>StartDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:TerritoryID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>TerritoryID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:DateCreated">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>DateCreated</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:Quantity">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>Quantity</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ShoppingCartID">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>ShoppingCartID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ShoppingCartItemID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ShoppingCartItemID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Category">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Category</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Description">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Description</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:DiscountPct">
+      <DataTypeId>sqlserver:type:smallmoney</DataTypeId>
+      <Name>DiscountPct</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:EndDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>EndDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:MaxQty">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>MaxQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:MinQty">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>MinQty</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:SpecialOfferID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SpecialOfferID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:StartDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>StartDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Type">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>Type</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:ProductID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>ProductID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:SpecialOfferID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SpecialOfferID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:BusinessEntityID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>BusinessEntityID</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:Demographics">
+      <DataTypeId>sqlserver:type:xml</DataTypeId>
+      <Name>Demographics</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:ModifiedDate">
+      <DataTypeId>sqlserver:type:datetime</DataTypeId>
+      <Name>ModifiedDate</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:Name">
+      <DataTypeId>sqlserver:type:Name</DataTypeId>
+      <Name>Name</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:rowguid">
+      <DataTypeId>sqlserver:type:uniqueidentifier</DataTypeId>
+      <Name>rowguid</Name>
+    </Field>
+    <Field Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:SalesPersonID">
+      <DataTypeId>sqlserver:type:int</DataTypeId>
+      <Name>SalesPersonID</Name>
+    </Field>
+  </FieldList>
+</MetaRawDataVault>

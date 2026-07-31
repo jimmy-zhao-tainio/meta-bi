@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <SimpleCaseExpressionList>
+    <SimpleCaseExpression Id="SimpleCaseExpression:1" CaseExpressionId="CaseExpression:1" />
+    <SimpleCaseExpression Id="SimpleCaseExpression:2" CaseExpressionId="CaseExpression:2" />
+    <SimpleCaseExpression Id="SimpleCaseExpression:3" CaseExpressionId="CaseExpression:3" />
+    <SimpleCaseExpression Id="SimpleCaseExpression:4" CaseExpressionId="CaseExpression:4" />
+    <SimpleCaseExpression Id="SimpleCaseExpression:5" CaseExpressionId="CaseExpression:5" />
+    <SimpleCaseExpression Id="SimpleCaseExpression:6" CaseExpressionId="CaseExpression:6" />
+    <SimpleCaseExpression Id="SimpleCaseExpression:7" CaseExpressionId="CaseExpression:7" />
+    <SimpleCaseExpression Id="SimpleCaseExpression:8" CaseExpressionId="CaseExpression:8" />
+  </SimpleCaseExpressionList>
+</MetaTransformScript>

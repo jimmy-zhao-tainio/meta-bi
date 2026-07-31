@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaPipeline>
+  <PipelineTaskList>
+    <PipelineTask Id="BusinessToWarehouse.Dim_Customer" PipelineId="BusinessToWarehouse">
+      <Name>Dim_Customer</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_Date_DueDate" PipelineId="BusinessToWarehouse">
+      <Name>Dim_Date_DueDate</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_Date_OrderDate" PipelineId="BusinessToWarehouse">
+      <Name>Dim_Date_OrderDate</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_Date_QuotaDate" PipelineId="BusinessToWarehouse">
+      <Name>Dim_Date_QuotaDate</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_Date_ShipDate" PipelineId="BusinessToWarehouse">
+      <Name>Dim_Date_ShipDate</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_Geography" PipelineId="BusinessToWarehouse">
+      <Name>Dim_Geography</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_OrderStatus_1_InProcess" PipelineId="BusinessToWarehouse">
+      <Name>Dim_OrderStatus_1_InProcess</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_OrderStatus_2_Approved" PipelineId="BusinessToWarehouse">
+      <Name>Dim_OrderStatus_2_Approved</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_OrderStatus_3_Backordered" PipelineId="BusinessToWarehouse">
+      <Name>Dim_OrderStatus_3_Backordered</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_OrderStatus_4_Rejected" PipelineId="BusinessToWarehouse">
+      <Name>Dim_OrderStatus_4_Rejected</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_OrderStatus_5_Shipped" PipelineId="BusinessToWarehouse">
+      <Name>Dim_OrderStatus_5_Shipped</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_OrderStatus_6_Cancelled" PipelineId="BusinessToWarehouse">
+      <Name>Dim_OrderStatus_6_Cancelled</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_Product" PipelineId="BusinessToWarehouse">
+      <Name>Dim_Product</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_SalesChannel_Online" PipelineId="BusinessToWarehouse">
+      <Name>Dim_SalesChannel_Online</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_SalesChannel_Store" PipelineId="BusinessToWarehouse">
+      <Name>Dim_SalesChannel_Store</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_Salesperson" PipelineId="BusinessToWarehouse">
+      <Name>Dim_Salesperson</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Dim_SalesTerritory" PipelineId="BusinessToWarehouse">
+      <Name>Dim_SalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Fact_SalesLine" PipelineId="BusinessToWarehouse">
+      <Name>Fact_SalesLine</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Fact_SalesOrder" PipelineId="BusinessToWarehouse">
+      <Name>Fact_SalesOrder</Name>
+    </PipelineTask>
+    <PipelineTask Id="BusinessToWarehouse.Fact_SalespersonQuota" PipelineId="BusinessToWarehouse">
+      <Name>Fact_SalespersonQuota</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_Address_AddressProfile" PipelineId="RawToBusiness">
+      <Name>BHS_Address_AddressProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_CountryRegion_CountryRegionProfile" PipelineId="RawToBusiness">
+      <Name>BHS_CountryRegion_CountryRegionProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_Customer_CustomerProfile" PipelineId="RawToBusiness">
+      <Name>BHS_Customer_CustomerProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_Person_PersonProfile" PipelineId="RawToBusiness">
+      <Name>BHS_Person_PersonProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_ProductCategory_ProductCategoryProfile" PipelineId="RawToBusiness">
+      <Name>BHS_ProductCategory_ProductCategoryProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_ProductSubcategory_ProductSubcategoryProfile" PipelineId="RawToBusiness">
+      <Name>BHS_ProductSubcategory_ProductSubcategoryProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_Product_ProductProfile" PipelineId="RawToBusiness">
+      <Name>BHS_Product_ProductProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_SalesOrderLine_SalesOrderLineDetail" PipelineId="RawToBusiness">
+      <Name>BHS_SalesOrderLine_SalesOrderLineDetail</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_SalesOrder_SalesOrderHeader" PipelineId="RawToBusiness">
+      <Name>BHS_SalesOrder_SalesOrderHeader</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_SalesPersonQuota_SalesPersonQuotaProfile" PipelineId="RawToBusiness">
+      <Name>BHS_SalesPersonQuota_SalesPersonQuotaProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_SalesPerson_SalesPersonProfile" PipelineId="RawToBusiness">
+      <Name>BHS_SalesPerson_SalesPersonProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_SalesTerritory_SalesTerritoryProfile" PipelineId="RawToBusiness">
+      <Name>BHS_SalesTerritory_SalesTerritoryProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_StateProvince_StateProvinceProfile" PipelineId="RawToBusiness">
+      <Name>BHS_StateProvince_StateProvinceProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BHS_Store_StoreProfile" PipelineId="RawToBusiness">
+      <Name>BHS_Store_StoreProfile</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_Address" PipelineId="RawToBusiness">
+      <Name>BH_Address</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_CountryRegion" PipelineId="RawToBusiness">
+      <Name>BH_CountryRegion</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_Customer" PipelineId="RawToBusiness">
+      <Name>BH_Customer</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_Person" PipelineId="RawToBusiness">
+      <Name>BH_Person</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_Product" PipelineId="RawToBusiness">
+      <Name>BH_Product</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_ProductCategory" PipelineId="RawToBusiness">
+      <Name>BH_ProductCategory</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_ProductSubcategory" PipelineId="RawToBusiness">
+      <Name>BH_ProductSubcategory</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_SalesOrder" PipelineId="RawToBusiness">
+      <Name>BH_SalesOrder</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_SalesOrderLine" PipelineId="RawToBusiness">
+      <Name>BH_SalesOrderLine</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_SalesPerson" PipelineId="RawToBusiness">
+      <Name>BH_SalesPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_SalesPersonQuota" PipelineId="RawToBusiness">
+      <Name>BH_SalesPersonQuota</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_SalesTerritory" PipelineId="RawToBusiness">
+      <Name>BH_SalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_StateProvince" PipelineId="RawToBusiness">
+      <Name>BH_StateProvince</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BH_Store" PipelineId="RawToBusiness">
+      <Name>BH_Store</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_AddressStateProvince" PipelineId="RawToBusiness">
+      <Name>BL_AddressStateProvince</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_CustomerPerson" PipelineId="RawToBusiness">
+      <Name>BL_CustomerPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_CustomerStore" PipelineId="RawToBusiness">
+      <Name>BL_CustomerStore</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_ProductSubcategoryAssignment" PipelineId="RawToBusiness">
+      <Name>BL_ProductSubcategoryAssignment</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_ProductSubcategoryCategory" PipelineId="RawToBusiness">
+      <Name>BL_ProductSubcategoryCategory</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesOrderBillToAddress" PipelineId="RawToBusiness">
+      <Name>BL_SalesOrderBillToAddress</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesOrderCustomer" PipelineId="RawToBusiness">
+      <Name>BL_SalesOrderCustomer</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesOrderLineProduct" PipelineId="RawToBusiness">
+      <Name>BL_SalesOrderLineProduct</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesOrderLineSalesOrder" PipelineId="RawToBusiness">
+      <Name>BL_SalesOrderLineSalesOrder</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesOrderSalesPerson" PipelineId="RawToBusiness">
+      <Name>BL_SalesOrderSalesPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesOrderSalesTerritory" PipelineId="RawToBusiness">
+      <Name>BL_SalesOrderSalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesOrderShipToAddress" PipelineId="RawToBusiness">
+      <Name>BL_SalesOrderShipToAddress</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesPersonPerson" PipelineId="RawToBusiness">
+      <Name>BL_SalesPersonPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesPersonQuotaSalesPerson" PipelineId="RawToBusiness">
+      <Name>BL_SalesPersonQuotaSalesPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesPersonSalesTerritory" PipelineId="RawToBusiness">
+      <Name>BL_SalesPersonSalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_SalesTerritoryCountryRegion" PipelineId="RawToBusiness">
+      <Name>BL_SalesTerritoryCountryRegion</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_StateProvinceCountryRegion" PipelineId="RawToBusiness">
+      <Name>BL_StateProvinceCountryRegion</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_StateProvinceSalesTerritory" PipelineId="RawToBusiness">
+      <Name>BL_StateProvinceSalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="RawToBusiness.BL_StoreSalesPerson" PipelineId="RawToBusiness">
+      <Name>BL_StoreSalesPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_Address_Address" PipelineId="SourceToRaw">
+      <Name>HS_Address_Address</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_CountryRegion_CountryRegion" PipelineId="SourceToRaw">
+      <Name>HS_CountryRegion_CountryRegion</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_Customer_Customer" PipelineId="SourceToRaw">
+      <Name>HS_Customer_Customer</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_Person_Person" PipelineId="SourceToRaw">
+      <Name>HS_Person_Person</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_ProductCategory_ProductCategory" PipelineId="SourceToRaw">
+      <Name>HS_ProductCategory_ProductCategory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_ProductSubcategory_ProductSubcategory" PipelineId="SourceToRaw">
+      <Name>HS_ProductSubcategory_ProductSubcategory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_Product_Product" PipelineId="SourceToRaw">
+      <Name>HS_Product_Product</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_SalesOrderDetail_SalesOrderDetail" PipelineId="SourceToRaw">
+      <Name>HS_SalesOrderDetail_SalesOrderDetail</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_SalesOrderHeader_SalesOrderHeader" PipelineId="SourceToRaw">
+      <Name>HS_SalesOrderHeader_SalesOrderHeader</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory" PipelineId="SourceToRaw">
+      <Name>HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_SalesPerson_SalesPerson" PipelineId="SourceToRaw">
+      <Name>HS_SalesPerson_SalesPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_SalesTerritory_SalesTerritory" PipelineId="SourceToRaw">
+      <Name>HS_SalesTerritory_SalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_SpecialOfferProduct_SpecialOfferProduct" PipelineId="SourceToRaw">
+      <Name>HS_SpecialOfferProduct_SpecialOfferProduct</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_StateProvince_StateProvince" PipelineId="SourceToRaw">
+      <Name>HS_StateProvince_StateProvince</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.HS_Store_Store" PipelineId="SourceToRaw">
+      <Name>HS_Store_Store</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_Address" PipelineId="SourceToRaw">
+      <Name>H_Address</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_CountryRegion" PipelineId="SourceToRaw">
+      <Name>H_CountryRegion</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_Customer" PipelineId="SourceToRaw">
+      <Name>H_Customer</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_Employee" PipelineId="SourceToRaw">
+      <Name>H_Employee</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_Person" PipelineId="SourceToRaw">
+      <Name>H_Person</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_Product" PipelineId="SourceToRaw">
+      <Name>H_Product</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_ProductCategory" PipelineId="SourceToRaw">
+      <Name>H_ProductCategory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_ProductSubcategory" PipelineId="SourceToRaw">
+      <Name>H_ProductSubcategory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_SalesOrderDetail" PipelineId="SourceToRaw">
+      <Name>H_SalesOrderDetail</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_SalesOrderHeader" PipelineId="SourceToRaw">
+      <Name>H_SalesOrderHeader</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_SalesPerson" PipelineId="SourceToRaw">
+      <Name>H_SalesPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_SalesPersonQuotaHistory" PipelineId="SourceToRaw">
+      <Name>H_SalesPersonQuotaHistory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_SalesTerritory" PipelineId="SourceToRaw">
+      <Name>H_SalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_SpecialOfferProduct" PipelineId="SourceToRaw">
+      <Name>H_SpecialOfferProduct</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_StateProvince" PipelineId="SourceToRaw">
+      <Name>H_StateProvince</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.H_Store" PipelineId="SourceToRaw">
+      <Name>H_Store</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_AddressStateProvince" PipelineId="SourceToRaw">
+      <Name>L_AddressStateProvince</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_CustomerPerson" PipelineId="SourceToRaw">
+      <Name>L_CustomerPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_CustomerSalesTerritory" PipelineId="SourceToRaw">
+      <Name>L_CustomerSalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_CustomerStore" PipelineId="SourceToRaw">
+      <Name>L_CustomerStore</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_EmployeePerson" PipelineId="SourceToRaw">
+      <Name>L_EmployeePerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_ProductProductSubcategory" PipelineId="SourceToRaw">
+      <Name>L_ProductProductSubcategory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_ProductSubcategoryProductCategory" PipelineId="SourceToRaw">
+      <Name>L_ProductSubcategoryProductCategory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesOrderDetailSalesOrderHeader" PipelineId="SourceToRaw">
+      <Name>L_SalesOrderDetailSalesOrderHeader</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesOrderDetailSpecialOfferProduct" PipelineId="SourceToRaw">
+      <Name>L_SalesOrderDetailSpecialOfferProduct</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesOrderHeaderAddress_BillToAddressID" PipelineId="SourceToRaw">
+      <Name>L_SalesOrderHeaderAddress_BillToAddressID</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesOrderHeaderAddress_ShipToAddressID" PipelineId="SourceToRaw">
+      <Name>L_SalesOrderHeaderAddress_ShipToAddressID</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesOrderHeaderCustomer" PipelineId="SourceToRaw">
+      <Name>L_SalesOrderHeaderCustomer</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesOrderHeaderSalesPerson" PipelineId="SourceToRaw">
+      <Name>L_SalesOrderHeaderSalesPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesOrderHeaderSalesTerritory" PipelineId="SourceToRaw">
+      <Name>L_SalesOrderHeaderSalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesPersonEmployee" PipelineId="SourceToRaw">
+      <Name>L_SalesPersonEmployee</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesPersonQuotaHistorySalesPerson" PipelineId="SourceToRaw">
+      <Name>L_SalesPersonQuotaHistorySalesPerson</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesPersonSalesTerritory" PipelineId="SourceToRaw">
+      <Name>L_SalesPersonSalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SalesTerritoryCountryRegion" PipelineId="SourceToRaw">
+      <Name>L_SalesTerritoryCountryRegion</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_SpecialOfferProductProduct" PipelineId="SourceToRaw">
+      <Name>L_SpecialOfferProductProduct</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_StateProvinceCountryRegion" PipelineId="SourceToRaw">
+      <Name>L_StateProvinceCountryRegion</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_StateProvinceSalesTerritory" PipelineId="SourceToRaw">
+      <Name>L_StateProvinceSalesTerritory</Name>
+    </PipelineTask>
+    <PipelineTask Id="SourceToRaw.L_StoreSalesPerson" PipelineId="SourceToRaw">
+      <Name>L_StoreSalesPerson</Name>
+    </PipelineTask>
+  </PipelineTaskList>
+</MetaPipeline>

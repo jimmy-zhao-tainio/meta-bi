@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetColumnLinkList>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:10" ColumnId="MergeInsertAction:2:write-column:5" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarQuarter</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:11" ColumnId="MergeInsertAction:2:write-column:6" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:12" ColumnId="MergeInsertAction:2:write-column:7" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:13" ColumnId="MergeInsertAction:2:write-column:8" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayOfMonth</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:14" ColumnId="MergeInsertAction:2:write-column:9" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:15" ColumnId="MergeInsertAction:2:write-column:10" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:16" ColumnId="MergeInsertAction:2:write-column:11" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:6" ColumnId="MergeInsertAction:2:write-column:1" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:7" ColumnId="MergeInsertAction:2:write-column:2" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:8" ColumnId="MergeInsertAction:2:write-column:3" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:2:column:9" ColumnId="MergeInsertAction:2:write-column:4" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarYear</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:17" ColumnId="MergeInsertAction:3:write-column:1" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:18" ColumnId="MergeInsertAction:3:write-column:2" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:19" ColumnId="MergeInsertAction:3:write-column:3" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:20" ColumnId="MergeInsertAction:3:write-column:4" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarYear</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:21" ColumnId="MergeInsertAction:3:write-column:5" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarQuarter</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:22" ColumnId="MergeInsertAction:3:write-column:6" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:23" ColumnId="MergeInsertAction:3:write-column:7" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:24" ColumnId="MergeInsertAction:3:write-column:8" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayOfMonth</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:25" ColumnId="MergeInsertAction:3:write-column:9" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:26" ColumnId="MergeInsertAction:3:write-column:10" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:3:column:27" ColumnId="MergeInsertAction:3:write-column:11" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:28" ColumnId="MergeInsertAction:4:write-column:1" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:29" ColumnId="MergeInsertAction:4:write-column:2" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:30" ColumnId="MergeInsertAction:4:write-column:3" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:31" ColumnId="MergeInsertAction:4:write-column:4" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarYear</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:32" ColumnId="MergeInsertAction:4:write-column:5" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarQuarter</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:33" ColumnId="MergeInsertAction:4:write-column:6" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:34" ColumnId="MergeInsertAction:4:write-column:7" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:35" ColumnId="MergeInsertAction:4:write-column:8" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayOfMonth</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:36" ColumnId="MergeInsertAction:4:write-column:9" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:37" ColumnId="MergeInsertAction:4:write-column:10" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:4:column:38" ColumnId="MergeInsertAction:4:write-column:11" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:5:column:39" ColumnId="MergeUpdateAction:1:write-column:1" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:5:column:40" ColumnId="MergeUpdateAction:1:write-column:2" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:5:column:41" ColumnId="MergeUpdateAction:1:write-column:3" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:Color</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:5:column:42" ColumnId="MergeUpdateAction:1:write-column:4" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductSubcategoryName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:5:column:43" ColumnId="MergeUpdateAction:1:write-column:5" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductCategoryName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:6:column:44" ColumnId="MergeInsertAction:5:write-column:1" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:6:column:45" ColumnId="MergeInsertAction:5:write-column:2" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:6:column:46" ColumnId="MergeInsertAction:5:write-column:3" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:6:column:47" ColumnId="MergeInsertAction:5:write-column:4" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:6:column:48" ColumnId="MergeInsertAction:5:write-column:5" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:Color</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:6:column:49" ColumnId="MergeInsertAction:5:write-column:6" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductSubcategoryName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:6:column:50" ColumnId="MergeInsertAction:5:write-column:7" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductCategoryName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:6:column:51" ColumnId="MergeInsertAction:5:write-column:8" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:6:column:52" ColumnId="MergeInsertAction:5:write-column:9" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:7:column:53" ColumnId="MergeUpdateAction:2:write-column:1" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressLine1</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:7:column:54" ColumnId="MergeUpdateAction:2:write-column:2" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressLine2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:7:column:55" ColumnId="MergeUpdateAction:2:write-column:3" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:City</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:7:column:56" ColumnId="MergeUpdateAction:2:write-column:4" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:StateProvinceCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:7:column:57" ColumnId="MergeUpdateAction:2:write-column:5" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:StateProvinceName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:7:column:58" ColumnId="MergeUpdateAction:2:write-column:6" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:PostalCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:7:column:59" ColumnId="MergeUpdateAction:2:write-column:7" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:CountryRegionCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:7:column:60" ColumnId="MergeUpdateAction:2:write-column:8" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:CountryRegionName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:61" ColumnId="MergeInsertAction:6:write-column:1" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:GeographyKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:62" ColumnId="MergeInsertAction:6:write-column:2" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:63" ColumnId="MergeInsertAction:6:write-column:3" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressLine1</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:64" ColumnId="MergeInsertAction:6:write-column:4" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressLine2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:65" ColumnId="MergeInsertAction:6:write-column:5" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:City</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:66" ColumnId="MergeInsertAction:6:write-column:6" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:StateProvinceCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:67" ColumnId="MergeInsertAction:6:write-column:7" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:StateProvinceName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:68" ColumnId="MergeInsertAction:6:write-column:8" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:PostalCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:69" ColumnId="MergeInsertAction:6:write-column:9" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:CountryRegionCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:70" ColumnId="MergeInsertAction:6:write-column:10" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:CountryRegionName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:71" ColumnId="MergeInsertAction:6:write-column:11" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:8:column:72" ColumnId="MergeInsertAction:6:write-column:12" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:10:column:77" ColumnId="MergeInsertAction:7:write-column:1" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:10:column:78" ColumnId="MergeInsertAction:7:write-column:2" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:10:column:79" ColumnId="MergeInsertAction:7:write-column:3" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:AccountNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:10:column:80" ColumnId="MergeInsertAction:7:write-column:4" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:10:column:81" ColumnId="MergeInsertAction:7:write-column:5" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerType</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:10:column:82" ColumnId="MergeInsertAction:7:write-column:6" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:StoreName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:10:column:83" ColumnId="MergeInsertAction:7:write-column:7" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:10:column:84" ColumnId="MergeInsertAction:7:write-column:8" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:9:column:73" ColumnId="MergeUpdateAction:3:write-column:1" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:9">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:AccountNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:9:column:74" ColumnId="MergeUpdateAction:3:write-column:2" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:9">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:9:column:75" ColumnId="MergeUpdateAction:3:write-column:3" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:9">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerType</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:9:column:76" ColumnId="MergeUpdateAction:3:write-column:4" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:9">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:StoreName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:11:column:85" ColumnId="MergeUpdateAction:4:write-column:1" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:11">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:FirstName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:11:column:86" ColumnId="MergeUpdateAction:4:write-column:2" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:11">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:LastName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:11:column:87" ColumnId="MergeUpdateAction:4:write-column:3" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:11">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:FullName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:12:column:88" ColumnId="MergeInsertAction:8:write-column:1" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:SalespersonKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:12:column:89" ColumnId="MergeInsertAction:8:write-column:2" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:BusinessEntityID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:12:column:90" ColumnId="MergeInsertAction:8:write-column:3" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:FirstName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:12:column:91" ColumnId="MergeInsertAction:8:write-column:4" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:LastName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:12:column:92" ColumnId="MergeInsertAction:8:write-column:5" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:FullName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:12:column:93" ColumnId="MergeInsertAction:8:write-column:6" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:12:column:94" ColumnId="MergeInsertAction:8:write-column:7" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:13:column:95" ColumnId="MergeUpdateAction:5:write-column:1" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:13">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:13:column:96" ColumnId="MergeUpdateAction:5:write-column:2" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:13">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:CountryRegionCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:13:column:97" ColumnId="MergeUpdateAction:5:write-column:3" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:13">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryGroup</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:14:column:100" ColumnId="MergeInsertAction:9:write-column:3" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:14:column:101" ColumnId="MergeInsertAction:9:write-column:4" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:CountryRegionCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:14:column:102" ColumnId="MergeInsertAction:9:write-column:5" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryGroup</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:14:column:103" ColumnId="MergeInsertAction:9:write-column:6" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:14:column:104" ColumnId="MergeInsertAction:9:write-column:7" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:14:column:98" ColumnId="MergeInsertAction:9:write-column:1" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:SalesTerritoryKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:14:column:99" ColumnId="MergeInsertAction:9:write-column:2" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:105" ColumnId="MergeUpdateAction:6:write-column:1" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:106" ColumnId="MergeUpdateAction:6:write-column:2" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:DueDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:107" ColumnId="MergeUpdateAction:6:write-column:3" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:ShipDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:108" ColumnId="MergeUpdateAction:6:write-column:4" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:CustomerKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:109" ColumnId="MergeUpdateAction:6:write-column:5" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalespersonKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:110" ColumnId="MergeUpdateAction:6:write-column:6" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesTerritoryKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:111" ColumnId="MergeUpdateAction:6:write-column:7" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesChannelKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:112" ColumnId="MergeUpdateAction:6:write-column:8" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderStatusKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:113" ColumnId="MergeUpdateAction:6:write-column:9" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:BillToGeographyKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:114" ColumnId="MergeUpdateAction:6:write-column:10" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:ShipToGeographyKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:115" ColumnId="MergeUpdateAction:6:write-column:11" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderCount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:116" ColumnId="MergeUpdateAction:6:write-column:12" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SubTotal</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:117" ColumnId="MergeUpdateAction:6:write-column:13" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TaxAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:118" ColumnId="MergeUpdateAction:6:write-column:14" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:FreightAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:15:column:119" ColumnId="MergeUpdateAction:6:write-column:15" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TotalDue</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:120" ColumnId="MergeInsertAction:10:write-column:1" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:121" ColumnId="MergeInsertAction:10:write-column:2" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:DueDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:122" ColumnId="MergeInsertAction:10:write-column:3" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:ShipDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:123" ColumnId="MergeInsertAction:10:write-column:4" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:CustomerKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:124" ColumnId="MergeInsertAction:10:write-column:5" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalespersonKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:125" ColumnId="MergeInsertAction:10:write-column:6" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesTerritoryKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:126" ColumnId="MergeInsertAction:10:write-column:7" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesChannelKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:127" ColumnId="MergeInsertAction:10:write-column:8" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderStatusKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:128" ColumnId="MergeInsertAction:10:write-column:9" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:BillToGeographyKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:129" ColumnId="MergeInsertAction:10:write-column:10" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:ShipToGeographyKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:130" ColumnId="MergeInsertAction:10:write-column:11" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesOrderID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:131" ColumnId="MergeInsertAction:10:write-column:12" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderCount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:132" ColumnId="MergeInsertAction:10:write-column:13" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SubTotal</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:133" ColumnId="MergeInsertAction:10:write-column:14" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TaxAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:134" ColumnId="MergeInsertAction:10:write-column:15" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:FreightAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:135" ColumnId="MergeInsertAction:10:write-column:16" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TotalDue</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:136" ColumnId="MergeInsertAction:10:write-column:17" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:16:column:137" ColumnId="MergeInsertAction:10:write-column:18" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:138" ColumnId="MergeUpdateAction:7:write-column:1" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:OrderDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:139" ColumnId="MergeUpdateAction:7:write-column:2" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:ProductKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:140" ColumnId="MergeUpdateAction:7:write-column:3" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:CustomerKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:141" ColumnId="MergeUpdateAction:7:write-column:4" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalespersonKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:142" ColumnId="MergeUpdateAction:7:write-column:5" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesTerritoryKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:143" ColumnId="MergeUpdateAction:7:write-column:6" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesChannelKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:144" ColumnId="MergeUpdateAction:7:write-column:7" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:ShipToGeographyKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:145" ColumnId="MergeUpdateAction:7:write-column:8" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:OrderQuantity</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:146" ColumnId="MergeUpdateAction:7:write-column:9" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:UnitPrice</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:147" ColumnId="MergeUpdateAction:7:write-column:10" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:DiscountAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:17:column:148" ColumnId="MergeUpdateAction:7:write-column:11" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:LineSalesAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:149" ColumnId="MergeInsertAction:11:write-column:1" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:OrderDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:150" ColumnId="MergeInsertAction:11:write-column:2" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:ProductKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:151" ColumnId="MergeInsertAction:11:write-column:3" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:CustomerKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:152" ColumnId="MergeInsertAction:11:write-column:4" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalespersonKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:153" ColumnId="MergeInsertAction:11:write-column:5" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesTerritoryKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:154" ColumnId="MergeInsertAction:11:write-column:6" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesChannelKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:155" ColumnId="MergeInsertAction:11:write-column:7" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:ShipToGeographyKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:156" ColumnId="MergeInsertAction:11:write-column:8" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesOrderID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:157" ColumnId="MergeInsertAction:11:write-column:9" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesOrderDetailID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:158" ColumnId="MergeInsertAction:11:write-column:10" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:OrderQuantity</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:159" ColumnId="MergeInsertAction:11:write-column:11" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:UnitPrice</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:160" ColumnId="MergeInsertAction:11:write-column:12" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:DiscountAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:161" ColumnId="MergeInsertAction:11:write-column:13" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:LineSalesAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:162" ColumnId="MergeInsertAction:11:write-column:14" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:18:column:163" ColumnId="MergeInsertAction:11:write-column:15" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:1" ColumnId="SelectElement:1:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:SalesChannelKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:2" ColumnId="SelectElement:2:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:ChannelCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:3" ColumnId="SelectElement:3:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:ChannelName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:4" ColumnId="SelectElement:4:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:5" ColumnId="SelectElement:5:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:20:column:169" ColumnId="MergeUpdateAction:8:write-column:1" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:20">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:21:column:170" ColumnId="MergeInsertAction:12:write-column:1" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaPeriodKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:21:column:171" ColumnId="MergeInsertAction:12:write-column:2" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:SalespersonKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:21:column:172" ColumnId="MergeInsertAction:12:write-column:3" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:21:column:173" ColumnId="MergeInsertAction:12:write-column:4" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:21:column:174" ColumnId="MergeInsertAction:12:write-column:5" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:19:column:164" ColumnId="SelectElement:7:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:SalesChannelKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:19:column:165" ColumnId="SelectElement:8:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:ChannelCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:19:column:166" ColumnId="SelectElement:9:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:ChannelName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:19:column:167" ColumnId="SelectElement:10:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:19:column:168" ColumnId="SelectElement:11:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:22:column:175" ColumnId="SelectElement:13:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:22">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:OrderStatusKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:22:column:176" ColumnId="SelectElement:14:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:22">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:22:column:177" ColumnId="SelectElement:15:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:22">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:22:column:178" ColumnId="SelectElement:16:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:22">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:22:column:179" ColumnId="SelectElement:17:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:22">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:23:column:180" ColumnId="SelectElement:19:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:23">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:OrderStatusKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:23:column:181" ColumnId="SelectElement:20:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:23">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:23:column:182" ColumnId="SelectElement:21:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:23">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:23:column:183" ColumnId="SelectElement:22:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:23">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:23:column:184" ColumnId="SelectElement:23:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:23">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:24:column:185" ColumnId="SelectElement:25:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:24">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:OrderStatusKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:24:column:186" ColumnId="SelectElement:26:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:24">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:24:column:187" ColumnId="SelectElement:27:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:24">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:24:column:188" ColumnId="SelectElement:28:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:24">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:24:column:189" ColumnId="SelectElement:29:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:24">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:25:column:190" ColumnId="SelectElement:31:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:25">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:OrderStatusKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:25:column:191" ColumnId="SelectElement:32:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:25">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:25:column:192" ColumnId="SelectElement:33:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:25">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:25:column:193" ColumnId="SelectElement:34:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:25">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:25:column:194" ColumnId="SelectElement:35:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:25">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:7:binding:validation:target:26:column:195" ColumnId="SelectElement:37:output" ValidationTargetRowsetLinkId="TransformScript:7:binding:validation:target:26">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:OrderStatusKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:7:binding:validation:target:26:column:196" ColumnId="SelectElement:38:output" ValidationTargetRowsetLinkId="TransformScript:7:binding:validation:target:26">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:7:binding:validation:target:26:column:197" ColumnId="SelectElement:39:output" ValidationTargetRowsetLinkId="TransformScript:7:binding:validation:target:26">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:7:binding:validation:target:26:column:198" ColumnId="SelectElement:40:output" ValidationTargetRowsetLinkId="TransformScript:7:binding:validation:target:26">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:7:binding:validation:target:26:column:199" ColumnId="SelectElement:41:output" ValidationTargetRowsetLinkId="TransformScript:7:binding:validation:target:26">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:27:column:200" ColumnId="SelectElement:43:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:27">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:OrderStatusKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:27:column:201" ColumnId="SelectElement:44:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:27">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:27:column:202" ColumnId="SelectElement:45:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:27">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:27:column:203" ColumnId="SelectElement:46:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:27">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:27:column:204" ColumnId="SelectElement:47:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:27">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:205" ColumnId="MergeInsertAction:1:write-column:1" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:206" ColumnId="MergeInsertAction:1:write-column:2" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDateKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:207" ColumnId="MergeInsertAction:1:write-column:3" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:208" ColumnId="MergeInsertAction:1:write-column:4" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarYear</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:209" ColumnId="MergeInsertAction:1:write-column:5" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarQuarter</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:210" ColumnId="MergeInsertAction:1:write-column:6" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:211" ColumnId="MergeInsertAction:1:write-column:7" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:212" ColumnId="MergeInsertAction:1:write-column:8" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayOfMonth</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:213" ColumnId="MergeInsertAction:1:write-column:9" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:214" ColumnId="MergeInsertAction:1:write-column:10" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:28:column:215" ColumnId="MergeInsertAction:1:write-column:11" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:28">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:InsertDateTime2</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+  </ValidationTargetColumnLinkList>
+</MetaTransformBinding>

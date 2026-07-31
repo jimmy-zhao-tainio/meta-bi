@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <KeyFieldList>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:key:PK_BHS_Address_AddressProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:key:PK_BHS_Address_AddressProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:key:PK_BHS_Address_AddressProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:key:PK_BHS_Address_AddressProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:key:PK_BHS_CountryRegion_CountryRegionProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:key:PK_BHS_CountryRegion_CountryRegionProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:key:PK_BHS_CountryRegion_CountryRegionProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:key:PK_BHS_CountryRegion_CountryRegionProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:key:PK_BHS_Customer_CustomerProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:key:PK_BHS_Customer_CustomerProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:key:PK_BHS_Customer_CustomerProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:key:PK_BHS_Customer_CustomerProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:key:PK_BHS_Person_PersonProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:key:PK_BHS_Person_PersonProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:key:PK_BHS_Person_PersonProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:key:PK_BHS_Person_PersonProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:key:PK_BHS_ProductCategory_ProductCategoryProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:key:PK_BHS_ProductCategory_ProductCategoryProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:key:PK_BHS_ProductCategory_ProductCategoryProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:key:PK_BHS_ProductCategory_ProductCategoryProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:key:PK_BHS_ProductSubcategory_ProductSubcategoryProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:key:PK_BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:key:PK_BHS_ProductSubcategory_ProductSubcategoryProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:key:PK_BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:key:PK_BHS_Product_ProductProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:key:PK_BHS_Product_ProductProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:key:PK_BHS_Product_ProductProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:key:PK_BHS_Product_ProductProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:key:PK_BHS_SalesOrderLine_SalesOrderLineDetail:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:key:PK_BHS_SalesOrderLine_SalesOrderLineDetail">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:key:PK_BHS_SalesOrderLine_SalesOrderLineDetail:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:key:PK_BHS_SalesOrderLine_SalesOrderLineDetail">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:key:PK_BHS_SalesOrder_SalesOrderHeader:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:key:PK_BHS_SalesOrder_SalesOrderHeader">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:key:PK_BHS_SalesOrder_SalesOrderHeader:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:key:PK_BHS_SalesOrder_SalesOrderHeader">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:key:PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:key:PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:key:PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:key:PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:key:PK_BHS_SalesPerson_SalesPersonProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:key:PK_BHS_SalesPerson_SalesPersonProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:key:PK_BHS_SalesPerson_SalesPersonProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:key:PK_BHS_SalesPerson_SalesPersonProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:key:PK_BHS_SalesTerritory_SalesTerritoryProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:key:PK_BHS_SalesTerritory_SalesTerritoryProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:key:PK_BHS_SalesTerritory_SalesTerritoryProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:key:PK_BHS_SalesTerritory_SalesTerritoryProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:key:PK_BHS_StateProvince_StateProvinceProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:key:PK_BHS_StateProvince_StateProvinceProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:key:PK_BHS_StateProvince_StateProvinceProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:key:PK_BHS_StateProvince_StateProvinceProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:key:PK_BHS_Store_StoreProfile:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:HubHashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:key:PK_BHS_Store_StoreProfile">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:key:PK_BHS_Store_StoreProfile:field:2" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:LoadTimestamp" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:key:PK_BHS_Store_StoreProfile">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:key:PK_BH_Address:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:key:PK_BH_Address">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:key:PK_BH_CountryRegion:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:key:PK_BH_CountryRegion">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:key:PK_BH_Customer:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:key:PK_BH_Customer">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:key:PK_BH_Person:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:key:PK_BH_Person">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:key:PK_BH_Product:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:key:PK_BH_Product">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:key:PK_BH_ProductCategory:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:key:PK_BH_ProductCategory">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:key:PK_BH_ProductSubcategory:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:key:PK_BH_ProductSubcategory">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:key:PK_BH_SalesOrder:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:key:PK_BH_SalesOrder">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:key:PK_BH_SalesOrderLine:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:key:PK_BH_SalesOrderLine">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:key:PK_BH_SalesPerson:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:key:PK_BH_SalesPerson">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:key:PK_BH_SalesPersonQuota:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:key:PK_BH_SalesPersonQuota">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:key:PK_BH_SalesTerritory:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:key:PK_BH_SalesTerritory">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:key:PK_BH_StateProvince:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:key:PK_BH_StateProvince">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:key:PK_BH_Store:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:key:PK_BH_Store">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:key:PK_BL_AddressStateProvince:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:key:PK_BL_AddressStateProvince">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:key:PK_BL_CustomerPerson:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:key:PK_BL_CustomerPerson">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:key:PK_BL_CustomerStore:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:key:PK_BL_CustomerStore">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:key:PK_BL_ProductSubcategoryAssignment:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:key:PK_BL_ProductSubcategoryAssignment">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:key:PK_BL_ProductSubcategoryCategory:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:key:PK_BL_ProductSubcategoryCategory">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:key:PK_BL_SalesOrderBillToAddress:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:key:PK_BL_SalesOrderBillToAddress">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:key:PK_BL_SalesOrderCustomer:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:key:PK_BL_SalesOrderCustomer">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:key:PK_BL_SalesOrderLineProduct:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:key:PK_BL_SalesOrderLineProduct">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:key:PK_BL_SalesOrderLineSalesOrder:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:key:PK_BL_SalesOrderLineSalesOrder">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:key:PK_BL_SalesOrderSalesPerson:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:key:PK_BL_SalesOrderSalesPerson">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:key:PK_BL_SalesOrderSalesTerritory:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:key:PK_BL_SalesOrderSalesTerritory">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:key:PK_BL_SalesOrderShipToAddress:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:key:PK_BL_SalesOrderShipToAddress">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:key:PK_BL_SalesPersonPerson:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:key:PK_BL_SalesPersonPerson">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:key:PK_BL_SalesPersonQuotaSalesPerson:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:key:PK_BL_SalesPersonQuotaSalesPerson">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:key:PK_BL_SalesPersonSalesTerritory:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:key:PK_BL_SalesPersonSalesTerritory">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:key:PK_BL_SalesTerritoryCountryRegion:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:key:PK_BL_SalesTerritoryCountryRegion">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:key:PK_BL_StateProvinceCountryRegion:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:key:PK_BL_StateProvinceCountryRegion">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:key:PK_BL_StateProvinceSalesTerritory:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:key:PK_BL_StateProvinceSalesTerritory">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:key:PK_BL_StoreSalesPerson:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:HashKey" KeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:key:PK_BL_StoreSalesPerson">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+  </KeyFieldList>
+</MetaSchema>

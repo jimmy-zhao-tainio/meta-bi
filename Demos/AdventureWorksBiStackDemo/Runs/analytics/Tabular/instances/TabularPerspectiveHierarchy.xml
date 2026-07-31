@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularPerspectiveHierarchyList>
+    <TabularPerspectiveHierarchy Id="SalesAnalysis_Calendar" TabularHierarchyId="Calendar" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveHierarchy Id="SalesAnalysis_Geographies" TabularHierarchyId="Geographies" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveHierarchy Id="SalesAnalysis_Products" TabularHierarchyId="Products" TabularPerspectiveId="SalesAnalysis" />
+  </TabularPerspectiveHierarchyList>
+</MetaTabular>

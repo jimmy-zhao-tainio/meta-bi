@@ -12,7 +12,7 @@ AdventureWorks2022
   -> MetaTabular
 ```
 
-Every generated model, transform, binding, pipeline, orchestration plan, deployment manifest, and analytics workspace is produced by its sanctioned CLI. `AdventureWorksBiStackDemo.MetaMesh` records the complete workflow as named operations; generated results live under `Runs` and can be recreated.
+Every generated model, transform, binding, pipeline, orchestration plan, deployment manifest, and analytics workspace is produced by its sanctioned CLI. `AdventureWorksBiStackDemo.MetaMesh` records the complete workflow as named operations. The resulting workspaces under `Runs` are checked in so the complete modeled stack can be inspected without rebuilding it.
 
 Read [BUSINESS-REQUIREMENTS.md](BUSINESS-REQUIREMENTS.md) for the requested analytical outcome and [FULL-STACK-DESIGN.md](FULL-STACK-DESIGN.md) for the grains, layer ownership, workspace graph, and acceptance contract.
 
@@ -105,4 +105,4 @@ The deployment operation also grants the local `NT Service\MSOLAP$TABULAR` servi
 meta-mesh run --operation cleanup
 ```
 
-Cleanup drops `AdventureWorksRawVault`, `AdventureWorksBusinessVault`, `AdventureWorksAnalytics`, and `AdventureWorksMetaPipeline`, then removes `Runs`. It does not remove the source database or an external Tabular database.
+Cleanup drops `AdventureWorksRawVault`, `AdventureWorksBusinessVault`, `AdventureWorksAnalytics`, and `AdventureWorksMetaPipeline`, then removes transient pipeline execution evidence under `Runs\ops\RunArtifacts`. It keeps the checked-in modeled workspaces. It does not remove the source database or an external Tabular database.

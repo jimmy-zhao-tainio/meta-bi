@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularTableList>
+    <TabularTable Id="Customer" TabularModelId="AdventureWorksSales">
+      <DataCategory>Customers</DataCategory>
+      <Description>Conformed individual and store customer dimension.</Description>
+      <Name>Customer</Name>
+    </TabularTable>
+    <TabularTable Id="Date" TabularModelId="AdventureWorksSales">
+      <DataCategory>Time</DataCategory>
+      <Description>Conformed calendar date dimension.</Description>
+      <Name>Date</Name>
+    </TabularTable>
+    <TabularTable Id="Geography" TabularModelId="AdventureWorksSales">
+      <DataCategory>Geography</DataCategory>
+      <Description>Conformed address geography dimension.</Description>
+      <Name>Geography</Name>
+    </TabularTable>
+    <TabularTable Id="OrderStatus" TabularModelId="AdventureWorksSales">
+      <Description>AdventureWorks sales order status.</Description>
+      <Name>Order Status</Name>
+    </TabularTable>
+    <TabularTable Id="Product" TabularModelId="AdventureWorksSales">
+      <DataCategory>Products</DataCategory>
+      <Description>Conformed product, subcategory, and category dimension.</Description>
+      <Name>Product</Name>
+    </TabularTable>
+    <TabularTable Id="SalesChannel" TabularModelId="AdventureWorksSales">
+      <Description>Online and store sales channels.</Description>
+      <Name>Sales Channel</Name>
+    </TabularTable>
+    <TabularTable Id="SalesLines" TabularModelId="AdventureWorksSales">
+      <Description>One row per sales order line.</Description>
+      <Name>Sales Lines</Name>
+    </TabularTable>
+    <TabularTable Id="SalesOrders" TabularModelId="AdventureWorksSales">
+      <Description>One row per sales order.</Description>
+      <Name>Sales Orders</Name>
+    </TabularTable>
+    <TabularTable Id="Salesperson" TabularModelId="AdventureWorksSales">
+      <DataCategory>People</DataCategory>
+      <Description>Conformed salesperson dimension.</Description>
+      <Name>Salesperson</Name>
+    </TabularTable>
+    <TabularTable Id="SalespersonQuotas" TabularModelId="AdventureWorksSales">
+      <Description>One row per salesperson and quota period.</Description>
+      <Name>Salesperson Quotas</Name>
+    </TabularTable>
+    <TabularTable Id="SalesTerritory" TabularModelId="AdventureWorksSales">
+      <DataCategory>Geography</DataCategory>
+      <Description>Conformed sales territory dimension.</Description>
+      <Name>Sales Territory</Name>
+    </TabularTable>
+  </TabularTableList>
+</MetaTabular>

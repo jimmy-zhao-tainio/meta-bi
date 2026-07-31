@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <MergeNotMatchedByTargetWhenClauseList>
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:1" MergeWhenClauseId="MergeWhenClause:1" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:10" MergeWhenClauseId="MergeWhenClause:16" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:11" MergeWhenClauseId="MergeWhenClause:18" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:12" MergeWhenClauseId="MergeWhenClause:20" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:2" MergeWhenClauseId="MergeWhenClause:2" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:3" MergeWhenClauseId="MergeWhenClause:3" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:4" MergeWhenClauseId="MergeWhenClause:4" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:5" MergeWhenClauseId="MergeWhenClause:6" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:6" MergeWhenClauseId="MergeWhenClause:8" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:7" MergeWhenClauseId="MergeWhenClause:10" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:8" MergeWhenClauseId="MergeWhenClause:12" />
+    <MergeNotMatchedByTargetWhenClause Id="MergeNotMatchedByTargetWhenClause:9" MergeWhenClauseId="MergeWhenClause:14" />
+  </MergeNotMatchedByTargetWhenClauseList>
+</MetaTransformScript>

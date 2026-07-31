@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <WithCtesAndXmlNamespacesList>
+    <WithCtesAndXmlNamespaces Id="WithCtesAndXmlNamespaces:1" />
+    <WithCtesAndXmlNamespaces Id="WithCtesAndXmlNamespaces:2" />
+    <WithCtesAndXmlNamespaces Id="WithCtesAndXmlNamespaces:3" />
+    <WithCtesAndXmlNamespaces Id="WithCtesAndXmlNamespaces:4" />
+    <WithCtesAndXmlNamespaces Id="WithCtesAndXmlNamespaces:5" />
+    <WithCtesAndXmlNamespaces Id="WithCtesAndXmlNamespaces:6" />
+    <WithCtesAndXmlNamespaces Id="WithCtesAndXmlNamespaces:7" />
+    <WithCtesAndXmlNamespaces Id="WithCtesAndXmlNamespaces:8" />
+  </WithCtesAndXmlNamespacesList>
+</MetaTransformScript>

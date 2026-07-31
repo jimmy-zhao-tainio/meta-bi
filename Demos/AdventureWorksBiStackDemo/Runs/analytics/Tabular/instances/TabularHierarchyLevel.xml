@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularHierarchyLevelList>
+    <TabularHierarchyLevel Id="Calendar_Date" TabularColumnId="Date_CalendarDate" TabularHierarchyId="Calendar">
+      <Name>Date</Name>
+      <Ordinal>4</Ordinal>
+    </TabularHierarchyLevel>
+    <TabularHierarchyLevel Id="Calendar_Month" TabularColumnId="Date_MonthName" TabularHierarchyId="Calendar">
+      <Name>Month</Name>
+      <Ordinal>3</Ordinal>
+    </TabularHierarchyLevel>
+    <TabularHierarchyLevel Id="Calendar_Quarter" TabularColumnId="Date_CalendarQuarter" TabularHierarchyId="Calendar">
+      <Name>Quarter</Name>
+      <Ordinal>2</Ordinal>
+    </TabularHierarchyLevel>
+    <TabularHierarchyLevel Id="Calendar_Year" TabularColumnId="Date_CalendarYear" TabularHierarchyId="Calendar">
+      <Name>Year</Name>
+      <Ordinal>1</Ordinal>
+    </TabularHierarchyLevel>
+    <TabularHierarchyLevel Id="Geographies_City" TabularColumnId="Geography_City" TabularHierarchyId="Geographies">
+      <Name>City</Name>
+      <Ordinal>3</Ordinal>
+    </TabularHierarchyLevel>
+    <TabularHierarchyLevel Id="Geographies_Country" TabularColumnId="Geography_CountryRegionName" TabularHierarchyId="Geographies">
+      <Name>Country</Name>
+      <Ordinal>1</Ordinal>
+    </TabularHierarchyLevel>
+    <TabularHierarchyLevel Id="Geographies_PostalCode" TabularColumnId="Geography_PostalCode" TabularHierarchyId="Geographies">
+      <Name>Postal Code</Name>
+      <Ordinal>4</Ordinal>
+    </TabularHierarchyLevel>
+    <TabularHierarchyLevel Id="Geographies_State" TabularColumnId="Geography_StateProvinceName" TabularHierarchyId="Geographies">
+      <Name>State or Province</Name>
+      <Ordinal>2</Ordinal>
+    </TabularHierarchyLevel>
+    <TabularHierarchyLevel Id="Products_Category" TabularColumnId="Product_Category" TabularHierarchyId="Products">
+      <Name>Category</Name>
+      <Ordinal>1</Ordinal>
+    </TabularHierarchyLevel>
+    <TabularHierarchyLevel Id="Products_Product" TabularColumnId="Product_ProductName" TabularHierarchyId="Products">
+      <Name>Product</Name>
+      <Ordinal>3</Ordinal>
+    </TabularHierarchyLevel>
+    <TabularHierarchyLevel Id="Products_Subcategory" TabularColumnId="Product_Subcategory" TabularHierarchyId="Products">
+      <Name>Subcategory</Name>
+      <Ordinal>2</Ordinal>
+    </TabularHierarchyLevel>
+  </TabularHierarchyLevelList>
+</MetaTabular>

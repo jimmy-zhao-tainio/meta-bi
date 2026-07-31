@@ -1,0 +1,1835 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <FieldList>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:AddressLine1" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AddressLine1</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:AddressLine2" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AddressLine2</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:City" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>City</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:PostalCode" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>PostalCode</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:Name" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:AccountNumber" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AccountNumber</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:FirstName" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>FirstName</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:LastName" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>LastName</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:MiddleName" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>MiddleName</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:Name" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:Name" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>15</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Color" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Color</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:DiscontinuedDate" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>DiscontinuedDate</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>12</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:ListPrice" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>ListPrice</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>13</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Name" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:ProductNumber" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductNumber</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>14</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:SellEndDate" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>SellEndDate</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:SellStartDate" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>SellStartDate</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Size" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Size</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:StandardCost" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>StandardCost</Name>
+      <Ordinal>10</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Weight" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>Weight</Name>
+      <Ordinal>11</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:LineTotal" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>LineTotal</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:OrderQuantity" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:smallint</MetaDataTypeId>
+      <Name>OrderQuantity</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:UnitPrice" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>UnitPrice</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:UnitPriceDiscount" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>UnitPriceDiscount</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>14</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:DueDate" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>DueDate</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:FreightAmount" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>FreightAmount</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>11</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>12</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:OnlineOrderFlag" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bit</MetaDataTypeId>
+      <Name>OnlineOrderFlag</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:OrderDate" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>OrderDate</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>13</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:ShipDate" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>ShipDate</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:Status" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Status</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:SubTotal" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SubTotal</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:TaxAmount" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>TaxAmount</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:TotalDue" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>TotalDue</Name>
+      <Ordinal>10</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:SalesQuota" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesQuota</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>10</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:Bonus" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>Bonus</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:CommissionPercent" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>CommissionPercent</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesLastYear" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesLastYear</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesQuota" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesQuota</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesYearToDate" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesYearToDate</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>11</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:CostLastYear" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>CostLastYear</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:CostYearToDate" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>CostYearToDate</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:GroupName" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>GroupName</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:Name" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>10</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:SalesLastYear" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesLastYear</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:SalesYearToDate" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesYearToDate</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:Name" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:StateProvinceCode" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>StateProvinceCode</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:HashDiff" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:HubHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:Name" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:AddressID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AddressID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:CountryRegionCode" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CountryRegionCode</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:CustomerID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CustomerID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>ProductID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:ProductCategoryID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>ProductCategoryID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:ProductSubcategoryID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>ProductSubcategoryID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:SalesOrderID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:SalesOrderDetailID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderDetailID</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:SalesOrderID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:QuotaDate" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>QuotaDate</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:TerritoryID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>TerritoryID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:StateProvinceID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>StateProvinceID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:AddressHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>AddressHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:StateProvinceHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>StateProvinceHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:CustomerHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CustomerHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:PersonHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>PersonHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:CustomerHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CustomerHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:StoreHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>StoreHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:ProductHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:ProductSubcategoryHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductSubcategoryHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:ProductCategoryHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductCategoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:ProductSubcategoryHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductSubcategoryHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:BillToAddressHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>BillToAddressHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:SalesOrderHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:CustomerHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CustomerHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:SalesOrderHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:ProductHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:SalesOrderLineHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderLineHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:SalesOrderHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:SalesOrderLineHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderLineHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:SalesOrderHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:SalesPersonHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:SalesOrderHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:SalesTerritoryHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:SalesOrderHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:ShipToAddressHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ShipToAddressHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:PersonHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>PersonHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:SalesPersonHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:SalesPersonHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:SalesPersonQuotaHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonQuotaHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:SalesPersonHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:SalesTerritoryHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:CountryRegionHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CountryRegionHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:SalesTerritoryHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:CountryRegionHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CountryRegionHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:StateProvinceHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>StateProvinceHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:SalesTerritoryHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:StateProvinceHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>StateProvinceHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:HashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:LoadTimestamp" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:RecordSource" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:SalesPersonHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:StoreHashKey" SchemaObjectId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>StoreHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+  </FieldList>
+</MetaSchema>

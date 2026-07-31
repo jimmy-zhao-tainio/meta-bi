@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <PerspectiveTableList>
+    <PerspectiveTable Id="SalesAnalysis_Customer" PerspectiveId="SalesAnalysis" TableId="Customer" />
+    <PerspectiveTable Id="SalesAnalysis_Date" PerspectiveId="SalesAnalysis" TableId="Date" />
+    <PerspectiveTable Id="SalesAnalysis_Geography" PerspectiveId="SalesAnalysis" TableId="Geography" />
+    <PerspectiveTable Id="SalesAnalysis_OrderStatus" PerspectiveId="SalesAnalysis" TableId="OrderStatus" />
+    <PerspectiveTable Id="SalesAnalysis_Product" PerspectiveId="SalesAnalysis" TableId="Product" />
+    <PerspectiveTable Id="SalesAnalysis_SalesChannel" PerspectiveId="SalesAnalysis" TableId="SalesChannel" />
+    <PerspectiveTable Id="SalesAnalysis_SalesLines" PerspectiveId="SalesAnalysis" TableId="SalesLines" />
+    <PerspectiveTable Id="SalesAnalysis_SalesOrders" PerspectiveId="SalesAnalysis" TableId="SalesOrders" />
+    <PerspectiveTable Id="SalesAnalysis_Salesperson" PerspectiveId="SalesAnalysis" TableId="Salesperson" />
+    <PerspectiveTable Id="SalesAnalysis_SalespersonQuotas" PerspectiveId="SalesAnalysis" TableId="SalespersonQuotas" />
+    <PerspectiveTable Id="SalesAnalysis_SalesTerritory" PerspectiveId="SalesAnalysis" TableId="SalesTerritory" />
+  </PerspectiveTableList>
+</MetaAnalytics>

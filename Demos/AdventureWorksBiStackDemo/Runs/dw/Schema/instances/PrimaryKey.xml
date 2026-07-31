@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <PrimaryKeyList>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:key:PK_Dim_Customer" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:key:PK_Dim_Customer">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:key:PK_Dim_Date" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:key:PK_Dim_Date">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:key:PK_Dim_Geography" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:key:PK_Dim_Geography">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:key:PK_Dim_OrderStatus" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:key:PK_Dim_OrderStatus">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:key:PK_Dim_Product" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:key:PK_Dim_Product">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:key:PK_Dim_SalesChannel" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:key:PK_Dim_SalesChannel">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:key:PK_Dim_Salesperson" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:key:PK_Dim_Salesperson">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:key:PK_Dim_SalesTerritory" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:key:PK_Dim_SalesTerritory">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder">
+    </PrimaryKey>
+    <PrimaryKey Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:key:PK_Fact_SalespersonQuota" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:key:PK_Fact_SalespersonQuota">
+    </PrimaryKey>
+  </PrimaryKeyList>
+</MetaSchema>

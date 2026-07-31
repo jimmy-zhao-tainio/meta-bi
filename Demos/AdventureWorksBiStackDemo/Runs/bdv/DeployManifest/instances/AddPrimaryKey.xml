@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest>
+  <AddPrimaryKeyList>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.pk.PK_BHS_Address_AddressProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.pk.PK_BHS_Address_AddressProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.pk.PK_BHS_CountryRegion_CountryRegionProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.pk.PK_BHS_CountryRegion_CountryRegionProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.pk.PK_BHS_Customer_CustomerProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.pk.PK_BHS_Customer_CustomerProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.pk.PK_BHS_Person_PersonProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.pk.PK_BHS_Person_PersonProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.pk.PK_BHS_ProductCategory_ProductCategoryProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.pk.PK_BHS_ProductCategory_ProductCategoryProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.pk.PK_BHS_ProductSubcategory_ProductSubcategoryProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.pk.PK_BHS_ProductSubcategory_ProductSubcategoryProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.pk.PK_BHS_Product_ProductProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.pk.PK_BHS_Product_ProductProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.pk.PK_BHS_SalesOrderLine_SalesOrderLineDetail" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.pk.PK_BHS_SalesOrderLine_SalesOrderLineDetail</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.pk.PK_BHS_SalesOrder_SalesOrderHeader" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.pk.PK_BHS_SalesOrder_SalesOrderHeader</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.pk.PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.pk.PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.pk.PK_BHS_SalesPerson_SalesPersonProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.pk.PK_BHS_SalesPerson_SalesPersonProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.pk.PK_BHS_SalesTerritory_SalesTerritoryProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.pk.PK_BHS_SalesTerritory_SalesTerritoryProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.pk.PK_BHS_StateProvince_StateProvinceProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.pk.PK_BHS_StateProvince_StateProvinceProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.pk.PK_BHS_Store_StoreProfile" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.pk.PK_BHS_Store_StoreProfile</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_Address.pk.PK_BH_Address" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_Address.pk.PK_BH_Address</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_CountryRegion.pk.PK_BH_CountryRegion" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_CountryRegion.pk.PK_BH_CountryRegion</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_Customer.pk.PK_BH_Customer" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_Customer.pk.PK_BH_Customer</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_Person.pk.PK_BH_Person" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_Person.pk.PK_BH_Person</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_Product.pk.PK_BH_Product" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_Product.pk.PK_BH_Product</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_ProductCategory.pk.PK_BH_ProductCategory" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_ProductCategory.pk.PK_BH_ProductCategory</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_ProductSubcategory.pk.PK_BH_ProductSubcategory" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_ProductSubcategory.pk.PK_BH_ProductSubcategory</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_SalesOrder.pk.PK_BH_SalesOrder" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_SalesOrder.pk.PK_BH_SalesOrder</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.pk.PK_BH_SalesOrderLine" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.pk.PK_BH_SalesOrderLine</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_SalesPerson.pk.PK_BH_SalesPerson" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_SalesPerson.pk.PK_BH_SalesPerson</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.pk.PK_BH_SalesPersonQuota" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.pk.PK_BH_SalesPersonQuota</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_SalesTerritory.pk.PK_BH_SalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_SalesTerritory.pk.PK_BH_SalesTerritory</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_StateProvince.pk.PK_BH_StateProvince" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_StateProvince.pk.PK_BH_StateProvince</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BH_Store.pk.PK_BH_Store" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BH_Store.pk.PK_BH_Store</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.pk.PK_BL_AddressStateProvince" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.pk.PK_BL_AddressStateProvince</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_CustomerPerson.pk.PK_BL_CustomerPerson" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_CustomerPerson.pk.PK_BL_CustomerPerson</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_CustomerStore.pk.PK_BL_CustomerStore" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_CustomerStore.pk.PK_BL_CustomerStore</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.pk.PK_BL_ProductSubcategoryAssignment" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.pk.PK_BL_ProductSubcategoryAssignment</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.pk.PK_BL_ProductSubcategoryCategory" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.pk.PK_BL_ProductSubcategoryCategory</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.pk.PK_BL_SalesOrderBillToAddress" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.pk.PK_BL_SalesOrderBillToAddress</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.pk.PK_BL_SalesOrderCustomer" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.pk.PK_BL_SalesOrderCustomer</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.pk.PK_BL_SalesOrderLineProduct" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.pk.PK_BL_SalesOrderLineProduct</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.pk.PK_BL_SalesOrderLineSalesOrder" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.pk.PK_BL_SalesOrderLineSalesOrder</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.pk.PK_BL_SalesOrderSalesPerson" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.pk.PK_BL_SalesOrderSalesPerson</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.pk.PK_BL_SalesOrderSalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.pk.PK_BL_SalesOrderSalesTerritory</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.pk.PK_BL_SalesOrderShipToAddress" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.pk.PK_BL_SalesOrderShipToAddress</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.pk.PK_BL_SalesPersonPerson" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.pk.PK_BL_SalesPersonPerson</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.pk.PK_BL_SalesPersonQuotaSalesPerson" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.pk.PK_BL_SalesPersonQuotaSalesPerson</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.pk.PK_BL_SalesPersonSalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.pk.PK_BL_SalesPersonSalesTerritory</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.pk.PK_BL_SalesTerritoryCountryRegion" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.pk.PK_BL_SalesTerritoryCountryRegion</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.pk.PK_BL_StateProvinceCountryRegion" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.pk.PK_BL_StateProvinceCountryRegion</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.pk.PK_BL_StateProvinceSalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.pk.PK_BL_StateProvinceSalesTerritory</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.pk.PK_BL_StoreSalesPerson" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.pk.PK_BL_StoreSalesPerson</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+  </AddPrimaryKeyList>
+</MetaSqlDeployManifest>

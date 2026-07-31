@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <PipelineReferenceList>
+    <PipelineReference Id="plan-default:pipeline:businesstowarehouse" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>BusinessToWarehouse</MetaPipelinePipelineId>
+      <Name>BusinessToWarehouse</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\ops\Pipelines</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:rawtobusiness" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>RawToBusiness</MetaPipelinePipelineId>
+      <Name>RawToBusiness</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\ops\Pipelines</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:sourcetoraw" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>SourceToRaw</MetaPipelinePipelineId>
+      <Name>SourceToRaw</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\ops\Pipelines</PipelineWorkspacePath>
+    </PipelineReference>
+  </PipelineReferenceList>
+</MetaOrchestration>

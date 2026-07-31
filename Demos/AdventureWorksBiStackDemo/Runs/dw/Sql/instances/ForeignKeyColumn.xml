@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <ForeignKeyColumnList>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Customer:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Customer" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.CustomerKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Customer.CustomerKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_OrderDate:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_OrderDate" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.OrderDateKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Date.DateKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Product:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Product" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.ProductKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Product.ProductKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_SalesChannel:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_SalesChannel" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.SalesChannelKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_SalesChannel.SalesChannelKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Salesperson:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Salesperson" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.SalespersonKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Salesperson.SalespersonKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_SalesTerritory:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_SalesTerritory" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.SalesTerritoryKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_SalesTerritory.SalesTerritoryKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_ShipToGeography:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_ShipToGeography" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.ShipToGeographyKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Geography.GeographyKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_BillToGeography:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_BillToGeography" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.BillToGeographyKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Geography.GeographyKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_Customer:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_Customer" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.CustomerKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Customer.CustomerKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_DueDate:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_DueDate" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.DueDateKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Date.DateKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_OrderDate:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_OrderDate" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.OrderDateKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Date.DateKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_OrderStatus:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_OrderStatus" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.OrderStatusKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_OrderStatus.OrderStatusKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_SalesChannel:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_SalesChannel" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.SalesChannelKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_SalesChannel.SalesChannelKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_Salesperson:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_Salesperson" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.SalespersonKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Salesperson.SalespersonKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_SalesTerritory:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_SalesTerritory" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.SalesTerritoryKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_SalesTerritory.SalesTerritoryKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_ShipDate:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_ShipDate" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.ShipDateKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Date.DateKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_ShipToGeography:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_ShipToGeography" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.ShipToGeographyKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Geography.GeographyKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:foreign-key:FK_Fact_SalespersonQuota_QuotaPeriod:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:foreign-key:FK_Fact_SalespersonQuota_QuotaPeriod" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.QuotaPeriodKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Date.DateKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:foreign-key:FK_Fact_SalespersonQuota_Salesperson:column:1" ForeignKeyId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:foreign-key:FK_Fact_SalespersonQuota_Salesperson" SourceColumnId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.SalespersonKey" TargetColumnId="AdventureWorksAnalytics.dw.Dim_Salesperson.SalespersonKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+  </ForeignKeyColumnList>
+</MetaSql>

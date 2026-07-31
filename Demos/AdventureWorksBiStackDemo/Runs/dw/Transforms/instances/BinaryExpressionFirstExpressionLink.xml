@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <BinaryExpressionFirstExpressionLinkList>
+    <BinaryExpressionFirstExpressionLink Id="BinaryExpressionFirstExpressionLink:1" BinaryExpressionId="BinaryExpression:1" ScalarExpressionId="ScalarExpression:247" />
+    <BinaryExpressionFirstExpressionLink Id="BinaryExpressionFirstExpressionLink:2" BinaryExpressionId="BinaryExpression:2" ScalarExpressionId="ScalarExpression:345" />
+    <BinaryExpressionFirstExpressionLink Id="BinaryExpressionFirstExpressionLink:3" BinaryExpressionId="BinaryExpression:3" ScalarExpressionId="ScalarExpression:443" />
+    <BinaryExpressionFirstExpressionLink Id="BinaryExpressionFirstExpressionLink:4" BinaryExpressionId="BinaryExpression:4" ScalarExpressionId="ScalarExpression:541" />
+    <BinaryExpressionFirstExpressionLink Id="BinaryExpressionFirstExpressionLink:5" BinaryExpressionId="BinaryExpression:5" ScalarExpressionId="ScalarExpression:1103" />
+    <BinaryExpressionFirstExpressionLink Id="BinaryExpressionFirstExpressionLink:6" BinaryExpressionId="BinaryExpression:6" ScalarExpressionId="ScalarExpression:1108" />
+  </BinaryExpressionFirstExpressionLinkList>
+</MetaTransformScript>

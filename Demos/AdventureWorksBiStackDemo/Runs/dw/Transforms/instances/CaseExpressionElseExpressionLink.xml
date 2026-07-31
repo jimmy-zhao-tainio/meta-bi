@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <CaseExpressionElseExpressionLinkList>
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:1" CaseExpressionId="CaseExpression:11" ScalarExpressionId="ScalarExpression:999" />
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:2" CaseExpressionId="CaseExpression:12" ScalarExpressionId="ScalarExpression:1165" />
+  </CaseExpressionElseExpressionLinkList>
+</MetaTransformScript>

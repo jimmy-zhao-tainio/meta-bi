@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <MergeUpdateActionList>
+    <MergeUpdateAction Id="MergeUpdateAction:1" MergeActionId="MergeAction:5" />
+    <MergeUpdateAction Id="MergeUpdateAction:2" MergeActionId="MergeAction:7" />
+    <MergeUpdateAction Id="MergeUpdateAction:3" MergeActionId="MergeAction:9" />
+    <MergeUpdateAction Id="MergeUpdateAction:4" MergeActionId="MergeAction:11" />
+    <MergeUpdateAction Id="MergeUpdateAction:5" MergeActionId="MergeAction:13" />
+    <MergeUpdateAction Id="MergeUpdateAction:6" MergeActionId="MergeAction:15" />
+    <MergeUpdateAction Id="MergeUpdateAction:7" MergeActionId="MergeAction:17" />
+    <MergeUpdateAction Id="MergeUpdateAction:8" MergeActionId="MergeAction:19" />
+  </MergeUpdateActionList>
+</MetaTransformScript>

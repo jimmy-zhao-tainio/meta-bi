@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <SetClauseAssignmentsItemList>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:1" SetAssignmentId="SetAssignment:1" SetClauseId="SetClause:1">
+      <Ordinal>0</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:10" SetAssignmentId="SetAssignment:10" SetClauseId="SetClause:2">
+      <Ordinal>4</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:11" SetAssignmentId="SetAssignment:11" SetClauseId="SetClause:2">
+      <Ordinal>5</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:12" SetAssignmentId="SetAssignment:12" SetClauseId="SetClause:2">
+      <Ordinal>6</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:13" SetAssignmentId="SetAssignment:13" SetClauseId="SetClause:2">
+      <Ordinal>7</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:14" SetAssignmentId="SetAssignment:14" SetClauseId="SetClause:3">
+      <Ordinal>0</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:15" SetAssignmentId="SetAssignment:15" SetClauseId="SetClause:3">
+      <Ordinal>1</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:16" SetAssignmentId="SetAssignment:16" SetClauseId="SetClause:3">
+      <Ordinal>2</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:17" SetAssignmentId="SetAssignment:17" SetClauseId="SetClause:3">
+      <Ordinal>3</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:18" SetAssignmentId="SetAssignment:18" SetClauseId="SetClause:4">
+      <Ordinal>0</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:19" SetAssignmentId="SetAssignment:19" SetClauseId="SetClause:4">
+      <Ordinal>1</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:2" SetAssignmentId="SetAssignment:2" SetClauseId="SetClause:1">
+      <Ordinal>1</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:20" SetAssignmentId="SetAssignment:20" SetClauseId="SetClause:4">
+      <Ordinal>2</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:21" SetAssignmentId="SetAssignment:21" SetClauseId="SetClause:5">
+      <Ordinal>0</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:22" SetAssignmentId="SetAssignment:22" SetClauseId="SetClause:5">
+      <Ordinal>1</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:23" SetAssignmentId="SetAssignment:23" SetClauseId="SetClause:5">
+      <Ordinal>2</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:24" SetAssignmentId="SetAssignment:24" SetClauseId="SetClause:6">
+      <Ordinal>0</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:25" SetAssignmentId="SetAssignment:25" SetClauseId="SetClause:6">
+      <Ordinal>1</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:26" SetAssignmentId="SetAssignment:26" SetClauseId="SetClause:6">
+      <Ordinal>2</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:27" SetAssignmentId="SetAssignment:27" SetClauseId="SetClause:6">
+      <Ordinal>3</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:28" SetAssignmentId="SetAssignment:28" SetClauseId="SetClause:6">
+      <Ordinal>4</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:29" SetAssignmentId="SetAssignment:29" SetClauseId="SetClause:6">
+      <Ordinal>5</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:3" SetAssignmentId="SetAssignment:3" SetClauseId="SetClause:1">
+      <Ordinal>2</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:30" SetAssignmentId="SetAssignment:30" SetClauseId="SetClause:6">
+      <Ordinal>6</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:31" SetAssignmentId="SetAssignment:31" SetClauseId="SetClause:6">
+      <Ordinal>7</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:32" SetAssignmentId="SetAssignment:32" SetClauseId="SetClause:6">
+      <Ordinal>8</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:33" SetAssignmentId="SetAssignment:33" SetClauseId="SetClause:6">
+      <Ordinal>9</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:34" SetAssignmentId="SetAssignment:34" SetClauseId="SetClause:6">
+      <Ordinal>10</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:35" SetAssignmentId="SetAssignment:35" SetClauseId="SetClause:6">
+      <Ordinal>11</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:36" SetAssignmentId="SetAssignment:36" SetClauseId="SetClause:6">
+      <Ordinal>12</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:37" SetAssignmentId="SetAssignment:37" SetClauseId="SetClause:6">
+      <Ordinal>13</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:38" SetAssignmentId="SetAssignment:38" SetClauseId="SetClause:6">
+      <Ordinal>14</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:39" SetAssignmentId="SetAssignment:39" SetClauseId="SetClause:7">
+      <Ordinal>0</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:4" SetAssignmentId="SetAssignment:4" SetClauseId="SetClause:1">
+      <Ordinal>3</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:40" SetAssignmentId="SetAssignment:40" SetClauseId="SetClause:7">
+      <Ordinal>1</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:41" SetAssignmentId="SetAssignment:41" SetClauseId="SetClause:7">
+      <Ordinal>2</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:42" SetAssignmentId="SetAssignment:42" SetClauseId="SetClause:7">
+      <Ordinal>3</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:43" SetAssignmentId="SetAssignment:43" SetClauseId="SetClause:7">
+      <Ordinal>4</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:44" SetAssignmentId="SetAssignment:44" SetClauseId="SetClause:7">
+      <Ordinal>5</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:45" SetAssignmentId="SetAssignment:45" SetClauseId="SetClause:7">
+      <Ordinal>6</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:46" SetAssignmentId="SetAssignment:46" SetClauseId="SetClause:7">
+      <Ordinal>7</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:47" SetAssignmentId="SetAssignment:47" SetClauseId="SetClause:7">
+      <Ordinal>8</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:48" SetAssignmentId="SetAssignment:48" SetClauseId="SetClause:7">
+      <Ordinal>9</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:49" SetAssignmentId="SetAssignment:49" SetClauseId="SetClause:7">
+      <Ordinal>10</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:5" SetAssignmentId="SetAssignment:5" SetClauseId="SetClause:1">
+      <Ordinal>4</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:50" SetAssignmentId="SetAssignment:50" SetClauseId="SetClause:8">
+      <Ordinal>0</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:6" SetAssignmentId="SetAssignment:6" SetClauseId="SetClause:2">
+      <Ordinal>0</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:7" SetAssignmentId="SetAssignment:7" SetClauseId="SetClause:2">
+      <Ordinal>1</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:8" SetAssignmentId="SetAssignment:8" SetClauseId="SetClause:2">
+      <Ordinal>2</Ordinal>
+    </SetClauseAssignmentsItem>
+    <SetClauseAssignmentsItem Id="SetClauseAssignmentsItem:9" SetAssignmentId="SetAssignment:9" SetClauseId="SetClause:2">
+      <Ordinal>3</Ordinal>
+    </SetClauseAssignmentsItem>
+  </SetClauseAssignmentsItemList>
+</MetaTransformScript>

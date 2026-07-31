@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <MeasureList>
+    <Measure Id="AverageOrderValue" SourceAttributeId="SalesOrders_TotalDue" TableId="SalesOrders">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Orders</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Average Order Value</Name>
+    </Measure>
+    <Measure Id="AverageUnitPrice" SourceAttributeId="SalesLines_UnitPrice" TableId="SalesLines">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Sales</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Average Unit Price</Name>
+    </Measure>
+    <Measure Id="DiscountAmount" SourceAttributeId="SalesLines_DiscountAmount" TableId="SalesLines">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Sales</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Discount Amount</Name>
+    </Measure>
+    <Measure Id="FreightAmount" SourceAttributeId="SalesOrders_FreightAmount" TableId="SalesOrders">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Orders</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Freight Amount</Name>
+    </Measure>
+    <Measure Id="OrderCount" SourceAttributeId="SalesOrders_OrderCount" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <DisplayFolder>Orders</DisplayFolder>
+      <FormatString>#,0</FormatString>
+      <Name>Order Count</Name>
+    </Measure>
+    <Measure Id="OrderQuantity" SourceAttributeId="SalesLines_OrderQuantity" TableId="SalesLines">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <DisplayFolder>Sales</DisplayFolder>
+      <FormatString>#,0</FormatString>
+      <Name>Order Quantity</Name>
+    </Measure>
+    <Measure Id="OrderSubtotal" SourceAttributeId="SalesOrders_SubTotal" TableId="SalesOrders">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Orders</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Order Subtotal</Name>
+    </Measure>
+    <Measure Id="QuotaAmount" SourceAttributeId="SalespersonQuotas_QuotaAmount" TableId="SalespersonQuotas">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Quota</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Quota Amount</Name>
+    </Measure>
+    <Measure Id="SalesAmount" SourceAttributeId="SalesLines_LineSalesAmount" TableId="SalesLines">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Sales</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Sales Amount</Name>
+    </Measure>
+    <Measure Id="TaxAmount" SourceAttributeId="SalesOrders_TaxAmount" TableId="SalesOrders">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Orders</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Tax Amount</Name>
+    </Measure>
+    <Measure Id="TotalDue" SourceAttributeId="SalesOrders_TotalDue" TableId="SalesOrders">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Orders</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Total Due</Name>
+    </Measure>
+  </MeasureList>
+</MetaAnalytics>

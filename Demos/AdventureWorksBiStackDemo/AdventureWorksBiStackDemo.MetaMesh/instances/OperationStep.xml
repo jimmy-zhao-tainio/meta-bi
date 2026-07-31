@@ -15,9 +15,9 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-generated-workspaces" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-demo-databases">
-      <Arguments>/d /c if exist "Runs" rmdir /s /q "Runs"</Arguments>
+      <Arguments>/d /c if exist Runs\ops\RunArtifacts rmdir /s /q Runs\ops\RunArtifacts</Arguments>
       <Executable>cmd.exe</Executable>
-      <Name>remove-generated-workspaces</Name>
+      <Name>remove-run-artifacts</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-averageordervalueaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-totaldue">

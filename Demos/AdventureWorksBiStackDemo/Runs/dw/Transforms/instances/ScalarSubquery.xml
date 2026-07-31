@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ScalarSubqueryList>
+    <ScalarSubquery Id="ScalarSubquery:1" PrimaryExpressionId="PrimaryExpression:23" />
+    <ScalarSubquery Id="ScalarSubquery:2" PrimaryExpressionId="PrimaryExpression:46" />
+    <ScalarSubquery Id="ScalarSubquery:3" PrimaryExpressionId="PrimaryExpression:68" />
+    <ScalarSubquery Id="ScalarSubquery:4" PrimaryExpressionId="PrimaryExpression:90" />
+    <ScalarSubquery Id="ScalarSubquery:5" PrimaryExpressionId="PrimaryExpression:112" />
+    <ScalarSubquery Id="ScalarSubquery:6" PrimaryExpressionId="PrimaryExpression:134" />
+    <ScalarSubquery Id="ScalarSubquery:7" PrimaryExpressionId="PrimaryExpression:156" />
+    <ScalarSubquery Id="ScalarSubquery:8" PrimaryExpressionId="PrimaryExpression:178" />
+  </ScalarSubqueryList>
+</MetaTransformScript>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <FactList>
+    <Fact Id="fact:sales-line" WarehouseId="warehouse:adventureworks">
+      <Name>SalesLine</Name>
+    </Fact>
+    <Fact Id="fact:sales-order" WarehouseId="warehouse:adventureworks">
+      <Name>SalesOrder</Name>
+    </Fact>
+    <Fact Id="fact:salesperson-quota" WarehouseId="warehouse:adventureworks">
+      <Name>SalespersonQuota</Name>
+    </Fact>
+  </FactList>
+</MetaDataWarehouse>

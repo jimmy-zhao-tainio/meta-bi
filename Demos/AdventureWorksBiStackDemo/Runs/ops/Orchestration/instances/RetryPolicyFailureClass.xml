@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <RetryPolicyFailureClassList>
+    <RetryPolicyFailureClass Id="plan-default-retry-policy-defaultretrypolicy:failure-class:heartbeattimeout" RetryPolicyId="plan-default:retry-policy:defaultretrypolicy">
+      <FailureClass>HeartbeatTimeout</FailureClass>
+      <Reason>Default transient retry class.</Reason>
+      <RetryBehavior>Retry</RetryBehavior>
+    </RetryPolicyFailureClass>
+    <RetryPolicyFailureClass Id="plan-default-retry-policy-defaultretrypolicy:failure-class:tasktimeout" RetryPolicyId="plan-default:retry-policy:defaultretrypolicy">
+      <FailureClass>TaskTimeout</FailureClass>
+      <Reason>Default transient retry class.</Reason>
+      <RetryBehavior>Retry</RetryBehavior>
+    </RetryPolicyFailureClass>
+    <RetryPolicyFailureClass Id="plan-default-retry-policy-defaultretrypolicy:failure-class:transientconnectivity" RetryPolicyId="plan-default:retry-policy:defaultretrypolicy">
+      <FailureClass>TransientConnectivity</FailureClass>
+      <Reason>Default transient retry class.</Reason>
+      <RetryBehavior>Retry</RetryBehavior>
+    </RetryPolicyFailureClass>
+    <RetryPolicyFailureClass Id="plan-default-retry-policy-defaultretrypolicy:failure-class:transientsql" RetryPolicyId="plan-default:retry-policy:defaultretrypolicy">
+      <FailureClass>TransientSql</FailureClass>
+      <Reason>Default transient retry class.</Reason>
+      <RetryBehavior>Retry</RetryBehavior>
+    </RetryPolicyFailureClass>
+    <RetryPolicyFailureClass Id="plan-default-retry-policy-defaultretrypolicy:failure-class:workercrashbeforeterminalevent" RetryPolicyId="plan-default:retry-policy:defaultretrypolicy">
+      <FailureClass>WorkerCrashBeforeTerminalEvent</FailureClass>
+      <Reason>Default transient retry class.</Reason>
+      <RetryBehavior>Retry</RetryBehavior>
+    </RetryPolicyFailureClass>
+    <RetryPolicyFailureClass Id="plan-default-retry-policy-defaultretrypolicy:failure-class:workerreportedretryable" RetryPolicyId="plan-default:retry-policy:defaultretrypolicy">
+      <FailureClass>WorkerReportedRetryable</FailureClass>
+      <Reason>Default transient retry class.</Reason>
+      <RetryBehavior>Retry</RetryBehavior>
+    </RetryPolicyFailureClass>
+  </RetryPolicyFailureClassList>
+</MetaOrchestration>

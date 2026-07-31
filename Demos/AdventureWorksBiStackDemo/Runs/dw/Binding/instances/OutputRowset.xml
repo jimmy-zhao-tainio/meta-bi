@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <OutputRowsetList>
+    <OutputRowset Id="TransformScript:10:binding:final-rowset" RowsetId="TransformScript:10:mutation-target-rowset" TransformBindingId="TransformScript:10:binding" />
+    <OutputRowset Id="TransformScript:11:binding:final-rowset" RowsetId="TransformScript:11:mutation-target-rowset" TransformBindingId="TransformScript:11:binding" />
+    <OutputRowset Id="TransformScript:12:binding:final-rowset" RowsetId="TransformScript:12:mutation-target-rowset" TransformBindingId="TransformScript:12:binding" />
+    <OutputRowset Id="TransformScript:13:binding:final-rowset" RowsetId="TransformScript:13:mutation-target-rowset" TransformBindingId="TransformScript:13:binding" />
+    <OutputRowset Id="TransformScript:14:binding:final-rowset" RowsetId="TransformScript:14:mutation-target-rowset" TransformBindingId="TransformScript:14:binding" />
+    <OutputRowset Id="TransformScript:15:binding:final-rowset" RowsetId="TransformScript:15:mutation-target-rowset" TransformBindingId="TransformScript:15:binding" />
+    <OutputRowset Id="TransformScript:16:binding:final-rowset" RowsetId="TransformScript:16:mutation-target-rowset" TransformBindingId="TransformScript:16:binding" />
+    <OutputRowset Id="TransformScript:17:binding:final-rowset" RowsetId="TransformScript:17:mutation-target-rowset" TransformBindingId="TransformScript:17:binding" />
+    <OutputRowset Id="TransformScript:18:binding:final-rowset" RowsetId="TransformScript:18:mutation-target-rowset" TransformBindingId="TransformScript:18:binding" />
+    <OutputRowset Id="TransformScript:19:binding:final-rowset" RowsetId="TransformScript:19:mutation-target-rowset" TransformBindingId="TransformScript:19:binding" />
+    <OutputRowset Id="TransformScript:1:binding:final-rowset" RowsetId="TransformScript:1:mutation-target-rowset" TransformBindingId="TransformScript:1:binding" />
+    <OutputRowset Id="TransformScript:20:binding:final-rowset" RowsetId="TransformScript:20:mutation-target-rowset" TransformBindingId="TransformScript:20:binding" />
+    <OutputRowset Id="TransformScript:2:binding:final-rowset" RowsetId="TransformScript:2:mutation-target-rowset" TransformBindingId="TransformScript:2:binding" />
+    <OutputRowset Id="TransformScript:3:binding:final-rowset" RowsetId="TransformScript:3:mutation-target-rowset" TransformBindingId="TransformScript:3:binding" />
+    <OutputRowset Id="TransformScript:4:binding:final-rowset" RowsetId="TransformScript:4:mutation-target-rowset" TransformBindingId="TransformScript:4:binding" />
+    <OutputRowset Id="TransformScript:5:binding:final-rowset" RowsetId="TransformScript:5:mutation-target-rowset" TransformBindingId="TransformScript:5:binding" />
+    <OutputRowset Id="TransformScript:6:binding:final-rowset" RowsetId="TransformScript:6:mutation-target-rowset" TransformBindingId="TransformScript:6:binding" />
+    <OutputRowset Id="TransformScript:7:binding:final-rowset" RowsetId="TransformScript:7:mutation-target-rowset" TransformBindingId="TransformScript:7:binding" />
+    <OutputRowset Id="TransformScript:8:binding:final-rowset" RowsetId="TransformScript:8:mutation-target-rowset" TransformBindingId="TransformScript:8:binding" />
+    <OutputRowset Id="TransformScript:9:binding:final-rowset" RowsetId="TransformScript:9:mutation-target-rowset" TransformBindingId="TransformScript:9:binding" />
+  </OutputRowsetList>
+</MetaTransformBinding>

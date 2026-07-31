@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetColumnTypeSanctionedConversionList>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:19:binding:validation:target:11:column:65:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:19:binding:validation:target:11:column:65">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:19:binding:validation:target:11:column:66:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:19:binding:validation:target:11:column:66">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:22:binding:validation:target:15:column:100:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:22:binding:validation:target:15:column:100">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:22:binding:validation:target:15:column:101:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:22:binding:validation:target:15:column:101">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:22:binding:validation:target:15:column:102:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:22:binding:validation:target:15:column:102">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:22:binding:validation:target:15:column:99:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:22:binding:validation:target:15:column:99">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:23:binding:validation:target:16:column:109:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:23:binding:validation:target:16:column:109">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:23:binding:validation:target:16:column:110:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:23:binding:validation:target:16:column:110">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:24:binding:validation:target:17:column:117:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:117">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:24:binding:validation:target:17:column:118:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:118">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:24:binding:validation:target:17:column:120:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:120">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:24:binding:validation:target:17:column:121:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:121">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:25:binding:validation:target:18:column:127:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:25:binding:validation:target:18:column:127">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:26:binding:validation:target:19:column:135:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:26:binding:validation:target:19:column:135">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:26:binding:validation:target:19:column:136:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:26:binding:validation:target:19:column:136">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:26:binding:validation:target:19:column:137:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:26:binding:validation:target:19:column:137">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:26:binding:validation:target:19:column:138:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:26:binding:validation:target:19:column:138">
+      <SourceMetaDataTypeId>sqlserver:type:money</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+  </ValidationTargetColumnTypeSanctionedConversionList>
+</MetaTransformBinding>

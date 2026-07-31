@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <OuterJoinNullExpansionList>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.1.145.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.1.145">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.10.123.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.10.123">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.11.162.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.11.162">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.12.159.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.12.159">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.13.156.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.13.156">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.14.153.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.14.153">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.148.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.148">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.15.150.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.15.150">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.16.167.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.16.167">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.17.164.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.17.164">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.18.176.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.18.176">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.19.173.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.19.173">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.2.141.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.2.141">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.20.170.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.20.170">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.3.137.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.3.137">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.31.95.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.31.95">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.32.91.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.32.91">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.33.88.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.33.88">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.34.85.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.34.85">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.35.81.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.35.81">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.36.78.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.36.78">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.4.134.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.4.134">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.46.115.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.46.115">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.47.111.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.47.111">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.48.108.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.48.108">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.49.105.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.49.105">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.5.120.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.5.120">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.50.101.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.50.101">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.51.98.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.51.98">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.6.118.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.6.118">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.60.76.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.60.76">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.7.132.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.7.132">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.8.129.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.8.129">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+    <OuterJoinNullExpansion Id="OuterJoinNullExpansion.JoinPattern.9.126.OuterJoinNullExpansion" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.9.126">
+      <OuterJoinCount>1</OuterJoinCount>
+    </OuterJoinNullExpansion>
+  </OuterJoinNullExpansionList>
+</MetaDataQuality>

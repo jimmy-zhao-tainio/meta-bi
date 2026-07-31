@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <JoinOrphanList>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.1.143.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.1.143">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.10.121.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.10.121">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.11.161.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.11.161">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.12.157.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.12.157">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.13.155.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.13.155">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.14.151.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.14.151">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.147.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.147">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.15.149.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.15.149">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.16.165.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.16.165">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.17.163.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.17.163">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.18.175.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.18.175">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.19.171.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.19.171">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.2.139.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.2.139">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.20.169.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.20.169">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.21.62.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.21.62">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.22.59.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.22.59">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.23.56.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.23.56">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.24.44.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.24.44">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.25.41.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.25.41">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.26.38.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.26.38">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.27.37.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.27.37">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.28.32.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.28.32">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.29.29.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.29.29">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.3.135.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.3.135">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.30.28.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.30.28">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.31.93.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.31.93">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.32.89.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.32.89">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.33.87.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.33.87">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.34.83.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.34.83">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.35.79.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.35.79">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.36.77.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.36.77">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.37.18.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.37.18">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.38.15.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.38.15">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.39.14.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.39.14">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.4.133.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.4.133">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.40.5.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.40.5">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.41.1.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.41.1">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.42.53.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.42.53">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.43.50.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.43.50">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.44.47.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.44.47">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.45.36.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.45.36">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.46.113.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.46.113">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.47.109.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.47.109">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.48.107.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.48.107">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.49.103.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.49.103">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.5.119.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.5.119">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.50.99.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.50.99">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.51.97.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.51.97">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.52.25.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.52.25">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.53.22.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.53.22">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.54.21.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.54.21">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.55.11.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.55.11">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.56.8.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.56.8">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.57.7.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.57.7">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.58.6.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.58.6">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.59.3.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.59.3">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.6.117.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.6.117">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.60.75.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.60.75">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.61.4.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.61.4">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.62.2.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.62.2">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.63.72.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.63.72">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.64.69.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.64.69">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.65.66.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.65.66">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.66.65.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.66.65">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.67.35.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.67.35">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.7.131.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.7.131">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.8.127.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.8.127">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinOrphan>
+    <JoinOrphan Id="JoinOrphan.JoinPattern.9.125.JoinOrphan" DataQualityCandidateId="JoinOrphan.JoinPattern.9.125">
+      <EqualityPredicateCount>2</EqualityPredicateCount>
+    </JoinOrphan>
+  </JoinOrphanList>
+</MetaDataQuality>

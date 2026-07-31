@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <SetAssignmentList>
+    <SetAssignment Id="SetAssignment:1" />
+    <SetAssignment Id="SetAssignment:10" />
+    <SetAssignment Id="SetAssignment:11" />
+    <SetAssignment Id="SetAssignment:12" />
+    <SetAssignment Id="SetAssignment:13" />
+    <SetAssignment Id="SetAssignment:14" />
+    <SetAssignment Id="SetAssignment:15" />
+    <SetAssignment Id="SetAssignment:16" />
+    <SetAssignment Id="SetAssignment:17" />
+    <SetAssignment Id="SetAssignment:18" />
+    <SetAssignment Id="SetAssignment:19" />
+    <SetAssignment Id="SetAssignment:2" />
+    <SetAssignment Id="SetAssignment:20" />
+    <SetAssignment Id="SetAssignment:21" />
+    <SetAssignment Id="SetAssignment:22" />
+    <SetAssignment Id="SetAssignment:23" />
+    <SetAssignment Id="SetAssignment:24" />
+    <SetAssignment Id="SetAssignment:25" />
+    <SetAssignment Id="SetAssignment:26" />
+    <SetAssignment Id="SetAssignment:27" />
+    <SetAssignment Id="SetAssignment:28" />
+    <SetAssignment Id="SetAssignment:29" />
+    <SetAssignment Id="SetAssignment:3" />
+    <SetAssignment Id="SetAssignment:30" />
+    <SetAssignment Id="SetAssignment:31" />
+    <SetAssignment Id="SetAssignment:32" />
+    <SetAssignment Id="SetAssignment:33" />
+    <SetAssignment Id="SetAssignment:34" />
+    <SetAssignment Id="SetAssignment:35" />
+    <SetAssignment Id="SetAssignment:36" />
+    <SetAssignment Id="SetAssignment:37" />
+    <SetAssignment Id="SetAssignment:38" />
+    <SetAssignment Id="SetAssignment:39" />
+    <SetAssignment Id="SetAssignment:4" />
+    <SetAssignment Id="SetAssignment:40" />
+    <SetAssignment Id="SetAssignment:41" />
+    <SetAssignment Id="SetAssignment:42" />
+    <SetAssignment Id="SetAssignment:43" />
+    <SetAssignment Id="SetAssignment:44" />
+    <SetAssignment Id="SetAssignment:45" />
+    <SetAssignment Id="SetAssignment:46" />
+    <SetAssignment Id="SetAssignment:47" />
+    <SetAssignment Id="SetAssignment:48" />
+    <SetAssignment Id="SetAssignment:49" />
+    <SetAssignment Id="SetAssignment:5" />
+    <SetAssignment Id="SetAssignment:50" />
+    <SetAssignment Id="SetAssignment:6" />
+    <SetAssignment Id="SetAssignment:7" />
+    <SetAssignment Id="SetAssignment:8" />
+    <SetAssignment Id="SetAssignment:9" />
+  </SetAssignmentList>
+</MetaTransformScript>

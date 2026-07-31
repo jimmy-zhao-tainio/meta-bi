@@ -1,0 +1,1500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <FilterPredicateObservationList>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42.Filter.latestorder.duedate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.DueDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>duedate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42.Filter.latestorder.freightamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.FreightAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>freightamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42.Filter.latestorder.status is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.Status IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>status is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42.Filter.latestorder.subtotal is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.SubTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>subtotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42.Filter.latestorder.taxamount is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TaxAmount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>taxamount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42.Filter.latestorder.totaldue is not null" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>detail.TotalDue IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>totaldue is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63.Filter.latestline.linetotal is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.LineTotal IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>linetotal is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63.Filter.latestline.orderquantity is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.OrderQuantity IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderquantity is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63.Filter.latestline.unitprice is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPrice IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitprice is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63.Filter.latestline.unitpricediscount is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63">
+      <BaseObjectName>latestLine</BaseObjectName>
+      <PredicateDisplay>lineDetail.UnitPriceDiscount IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>unitpricediscount is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63.Filter.latestorder.onlineorderflag is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OnlineOrderFlag IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>onlineorderflag is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63.Filter.latestorder.orderdate is not null" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63">
+      <BaseObjectName>latestOrder</BaseObjectName>
+      <PredicateDisplay>orderDetail.OrderDate IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>orderdate is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:64.Filter.latestquota.salesquota is not null" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:64">
+      <BaseObjectName>latestQuota</BaseObjectName>
+      <PredicateDisplay>quotaDetail.SalesQuota IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>salesquota is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:65.Filter.latestquota.salesquota is not null" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:65">
+      <BaseObjectName>latestQuota</BaseObjectName>
+      <PredicateDisplay>quotaDetail.SalesQuota IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>salesquota is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:66.Filter.latestquota.salesquota is not null" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:66">
+      <BaseObjectName>latestQuota</BaseObjectName>
+      <PredicateDisplay>quotaDetail.SalesQuota IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>salesquota is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:67.Filter.latestquota.salesquota is not null" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:67">
+      <BaseObjectName>latestQuota</BaseObjectName>
+      <PredicateDisplay>quotaDetail.SalesQuota IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>salesquota is not null</PredicateSignature>
+    </FilterPredicateObservation>
+    <FilterPredicateObservation Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:68.Filter.latestquota.salesquota is not null" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:68">
+      <BaseObjectName>latestQuota</BaseObjectName>
+      <PredicateDisplay>quotaDetail.SalesQuota IS NOT NULL</PredicateDisplay>
+      <PredicateSignature>salesquota is not null</PredicateSignature>
+    </FilterPredicateObservation>
+  </FilterPredicateObservationList>
+</MetaDataQuality>

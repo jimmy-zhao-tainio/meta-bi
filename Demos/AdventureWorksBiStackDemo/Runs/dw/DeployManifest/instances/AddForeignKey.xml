@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest>
+  <AddForeignKeyList>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Customer" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Customer</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_OrderDate" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_OrderDate</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Product" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Product</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_SalesChannel" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_SalesChannel</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Salesperson" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_Salesperson</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_SalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_SalesTerritory</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_ShipToGeography" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesLine:foreign-key:FK_Fact_SalesLine_ShipToGeography</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_BillToGeography" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_BillToGeography</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_Customer" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_Customer</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_DueDate" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_DueDate</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_OrderDate" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_OrderDate</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_OrderStatus" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_OrderStatus</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_SalesChannel" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_SalesChannel</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_Salesperson" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_Salesperson</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_SalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_SalesTerritory</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_ShipDate" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_ShipDate</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_ShipToGeography" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:foreign-key:FK_Fact_SalesOrder_ShipToGeography</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalespersonQuota:foreign-key:FK_Fact_SalespersonQuota_QuotaPeriod" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalespersonQuota:foreign-key:FK_Fact_SalespersonQuota_QuotaPeriod</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksAnalytics.dw.Fact_SalespersonQuota:foreign-key:FK_Fact_SalespersonQuota_Salesperson" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksAnalytics.dw.Fact_SalespersonQuota:foreign-key:FK_Fact_SalespersonQuota_Salesperson</SourceForeignKeyId>
+    </AddForeignKey>
+  </AddForeignKeyList>
+</MetaSqlDeployManifest>

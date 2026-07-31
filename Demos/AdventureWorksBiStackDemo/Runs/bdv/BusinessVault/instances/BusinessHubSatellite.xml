@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubSatelliteList>
+    <BusinessHubSatellite Id="AddressProfile" BusinessHubId="Address" BusinessSatelliteId="AddressProfile" />
+    <BusinessHubSatellite Id="CountryRegionProfile" BusinessHubId="CountryRegion" BusinessSatelliteId="CountryRegionProfile" />
+    <BusinessHubSatellite Id="CustomerProfile" BusinessHubId="Customer" BusinessSatelliteId="CustomerProfile" />
+    <BusinessHubSatellite Id="PersonProfile" BusinessHubId="Person" BusinessSatelliteId="PersonProfile" />
+    <BusinessHubSatellite Id="ProductCategoryProfile" BusinessHubId="ProductCategory" BusinessSatelliteId="ProductCategoryProfile" />
+    <BusinessHubSatellite Id="ProductProfile" BusinessHubId="Product" BusinessSatelliteId="ProductProfile" />
+    <BusinessHubSatellite Id="ProductSubcategoryProfile" BusinessHubId="ProductSubcategory" BusinessSatelliteId="ProductSubcategoryProfile" />
+    <BusinessHubSatellite Id="SalesOrderHeader" BusinessHubId="SalesOrder" BusinessSatelliteId="SalesOrderHeader" />
+    <BusinessHubSatellite Id="SalesOrderLineDetail" BusinessHubId="SalesOrderLine" BusinessSatelliteId="SalesOrderLineDetail" />
+    <BusinessHubSatellite Id="SalesPersonProfile" BusinessHubId="SalesPerson" BusinessSatelliteId="SalesPersonProfile" />
+    <BusinessHubSatellite Id="SalesPersonQuotaProfile" BusinessHubId="SalesPersonQuota" BusinessSatelliteId="SalesPersonQuotaProfile" />
+    <BusinessHubSatellite Id="SalesTerritoryProfile" BusinessHubId="SalesTerritory" BusinessSatelliteId="SalesTerritoryProfile" />
+    <BusinessHubSatellite Id="StateProvinceProfile" BusinessHubId="StateProvince" BusinessSatelliteId="StateProvinceProfile" />
+    <BusinessHubSatellite Id="StoreProfile" BusinessHubId="Store" BusinessSatelliteId="StoreProfile" />
+  </BusinessHubSatelliteList>
+</MetaBusinessDataVault>

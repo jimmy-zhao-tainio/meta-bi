@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <OutputDuplicateRiskList>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.1.146.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.1.146">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.10.124.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.10.124">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.12.160.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.12.160">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.14.154.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.14.154">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.16.168.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.16.168">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.19.174.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.19.174">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.2.142.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.2.142">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.21.64.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.21.64">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.22.61.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.22.61">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.23.58.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.23.58">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.24.46.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.24.46">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.25.43.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.25.43">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.26.40.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.26.40">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.28.34.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.28.34">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.29.31.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.29.31">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.3.138.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.3.138">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.31.96.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.31.96">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.32.92.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.32.92">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.34.86.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.34.86">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.35.82.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.35.82">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.37.20.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.37.20">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.38.17.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.38.17">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.42.55.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.42.55">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.43.52.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.43.52">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.44.49.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.44.49">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.46.116.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.46.116">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.47.112.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.47.112">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.49.106.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.49.106">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.50.102.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.50.102">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.52.27.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.52.27">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.53.24.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.53.24">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.55.13.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.55.13">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.56.10.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.56.10">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.63.74.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.63.74">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.64.71.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.64.71">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.65.68.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.65.68">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+    <OutputDuplicateRisk Id="OutputDuplicateRisk.JoinPattern.8.130.OutputDuplicateRisk" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.8.130">
+      <HasDistinct>false</HasDistinct>
+      <HasGroupBy>false</HasGroupBy>
+      <QualifiedJoinCount>1</QualifiedJoinCount>
+    </OutputDuplicateRisk>
+  </OutputDuplicateRiskList>
+</MetaDataQuality>

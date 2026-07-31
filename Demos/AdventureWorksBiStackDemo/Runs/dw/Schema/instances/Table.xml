@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <TableList>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer">
+    </Table>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+    </Table>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+    </Table>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus">
+    </Table>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product">
+    </Table>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel">
+    </Table>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson">
+    </Table>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory">
+    </Table>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+    </Table>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+    </Table>
+    <Table Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota">
+    </Table>
+  </TableList>
+</MetaSchema>

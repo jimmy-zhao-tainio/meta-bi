@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <PrimaryKeyList>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Dim_Customer:primary-key" TableId="AdventureWorksAnalytics.dw.Dim_Customer">
+      <Name>PK_Dim_Customer</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Dim_Date:primary-key" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <Name>PK_Dim_Date</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Dim_Geography:primary-key" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <Name>PK_Dim_Geography</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Dim_OrderStatus:primary-key" TableId="AdventureWorksAnalytics.dw.Dim_OrderStatus">
+      <Name>PK_Dim_OrderStatus</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Dim_Product:primary-key" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <Name>PK_Dim_Product</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Dim_SalesChannel:primary-key" TableId="AdventureWorksAnalytics.dw.Dim_SalesChannel">
+      <Name>PK_Dim_SalesChannel</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Dim_Salesperson:primary-key" TableId="AdventureWorksAnalytics.dw.Dim_Salesperson">
+      <Name>PK_Dim_Salesperson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory:primary-key" TableId="AdventureWorksAnalytics.dw.Dim_SalesTerritory">
+      <Name>PK_Dim_SalesTerritory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <Name>PK_Fact_SalesLine</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <Name>PK_Fact_SalesOrder</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:primary-key" TableId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota">
+      <Name>PK_Fact_SalespersonQuota</Name>
+    </PrimaryKey>
+  </PrimaryKeyList>
+</MetaSql>

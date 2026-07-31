@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationList>
+    <Validation Id="TransformScript:10:binding:validation" TransformBindingId="TransformScript:10:binding" />
+    <Validation Id="TransformScript:11:binding:validation" TransformBindingId="TransformScript:11:binding" />
+    <Validation Id="TransformScript:12:binding:validation" TransformBindingId="TransformScript:12:binding" />
+    <Validation Id="TransformScript:13:binding:validation" TransformBindingId="TransformScript:13:binding" />
+    <Validation Id="TransformScript:14:binding:validation" TransformBindingId="TransformScript:14:binding" />
+    <Validation Id="TransformScript:15:binding:validation" TransformBindingId="TransformScript:15:binding" />
+    <Validation Id="TransformScript:16:binding:validation" TransformBindingId="TransformScript:16:binding" />
+    <Validation Id="TransformScript:17:binding:validation" TransformBindingId="TransformScript:17:binding" />
+    <Validation Id="TransformScript:18:binding:validation" TransformBindingId="TransformScript:18:binding" />
+    <Validation Id="TransformScript:19:binding:validation" TransformBindingId="TransformScript:19:binding" />
+    <Validation Id="TransformScript:1:binding:validation" TransformBindingId="TransformScript:1:binding" />
+    <Validation Id="TransformScript:20:binding:validation" TransformBindingId="TransformScript:20:binding" />
+    <Validation Id="TransformScript:21:binding:validation" TransformBindingId="TransformScript:21:binding" />
+    <Validation Id="TransformScript:22:binding:validation" TransformBindingId="TransformScript:22:binding" />
+    <Validation Id="TransformScript:23:binding:validation" TransformBindingId="TransformScript:23:binding" />
+    <Validation Id="TransformScript:24:binding:validation" TransformBindingId="TransformScript:24:binding" />
+    <Validation Id="TransformScript:25:binding:validation" TransformBindingId="TransformScript:25:binding" />
+    <Validation Id="TransformScript:26:binding:validation" TransformBindingId="TransformScript:26:binding" />
+    <Validation Id="TransformScript:27:binding:validation" TransformBindingId="TransformScript:27:binding" />
+    <Validation Id="TransformScript:28:binding:validation" TransformBindingId="TransformScript:28:binding" />
+    <Validation Id="TransformScript:29:binding:validation" TransformBindingId="TransformScript:29:binding" />
+    <Validation Id="TransformScript:2:binding:validation" TransformBindingId="TransformScript:2:binding" />
+    <Validation Id="TransformScript:30:binding:validation" TransformBindingId="TransformScript:30:binding" />
+    <Validation Id="TransformScript:31:binding:validation" TransformBindingId="TransformScript:31:binding" />
+    <Validation Id="TransformScript:32:binding:validation" TransformBindingId="TransformScript:32:binding" />
+    <Validation Id="TransformScript:33:binding:validation" TransformBindingId="TransformScript:33:binding" />
+    <Validation Id="TransformScript:34:binding:validation" TransformBindingId="TransformScript:34:binding" />
+    <Validation Id="TransformScript:35:binding:validation" TransformBindingId="TransformScript:35:binding" />
+    <Validation Id="TransformScript:36:binding:validation" TransformBindingId="TransformScript:36:binding" />
+    <Validation Id="TransformScript:37:binding:validation" TransformBindingId="TransformScript:37:binding" />
+    <Validation Id="TransformScript:38:binding:validation" TransformBindingId="TransformScript:38:binding" />
+    <Validation Id="TransformScript:39:binding:validation" TransformBindingId="TransformScript:39:binding" />
+    <Validation Id="TransformScript:3:binding:validation" TransformBindingId="TransformScript:3:binding" />
+    <Validation Id="TransformScript:40:binding:validation" TransformBindingId="TransformScript:40:binding" />
+    <Validation Id="TransformScript:41:binding:validation" TransformBindingId="TransformScript:41:binding" />
+    <Validation Id="TransformScript:42:binding:validation" TransformBindingId="TransformScript:42:binding" />
+    <Validation Id="TransformScript:43:binding:validation" TransformBindingId="TransformScript:43:binding" />
+    <Validation Id="TransformScript:44:binding:validation" TransformBindingId="TransformScript:44:binding" />
+    <Validation Id="TransformScript:45:binding:validation" TransformBindingId="TransformScript:45:binding" />
+    <Validation Id="TransformScript:46:binding:validation" TransformBindingId="TransformScript:46:binding" />
+    <Validation Id="TransformScript:47:binding:validation" TransformBindingId="TransformScript:47:binding" />
+    <Validation Id="TransformScript:48:binding:validation" TransformBindingId="TransformScript:48:binding" />
+    <Validation Id="TransformScript:49:binding:validation" TransformBindingId="TransformScript:49:binding" />
+    <Validation Id="TransformScript:4:binding:validation" TransformBindingId="TransformScript:4:binding" />
+    <Validation Id="TransformScript:50:binding:validation" TransformBindingId="TransformScript:50:binding" />
+    <Validation Id="TransformScript:51:binding:validation" TransformBindingId="TransformScript:51:binding" />
+    <Validation Id="TransformScript:52:binding:validation" TransformBindingId="TransformScript:52:binding" />
+    <Validation Id="TransformScript:53:binding:validation" TransformBindingId="TransformScript:53:binding" />
+    <Validation Id="TransformScript:5:binding:validation" TransformBindingId="TransformScript:5:binding" />
+    <Validation Id="TransformScript:6:binding:validation" TransformBindingId="TransformScript:6:binding" />
+    <Validation Id="TransformScript:7:binding:validation" TransformBindingId="TransformScript:7:binding" />
+    <Validation Id="TransformScript:8:binding:validation" TransformBindingId="TransformScript:8:binding" />
+    <Validation Id="TransformScript:9:binding:validation" TransformBindingId="TransformScript:9:binding" />
+  </ValidationList>
+</MetaTransformBinding>

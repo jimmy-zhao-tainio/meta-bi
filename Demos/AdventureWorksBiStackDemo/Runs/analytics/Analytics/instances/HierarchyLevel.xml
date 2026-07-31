@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <HierarchyLevelList>
+    <HierarchyLevel Id="Calendar_Date" AttributeId="Date_CalendarDate" HierarchyId="Calendar">
+      <Name>Date</Name>
+      <Ordinal>4</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="Calendar_Month" AttributeId="Date_MonthName" HierarchyId="Calendar">
+      <Name>Month</Name>
+      <Ordinal>3</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="Calendar_Quarter" AttributeId="Date_CalendarQuarter" HierarchyId="Calendar">
+      <Name>Quarter</Name>
+      <Ordinal>2</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="Calendar_Year" AttributeId="Date_CalendarYear" HierarchyId="Calendar">
+      <Name>Year</Name>
+      <Ordinal>1</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="Geographies_City" AttributeId="Geography_City" HierarchyId="Geographies">
+      <Name>City</Name>
+      <Ordinal>3</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="Geographies_Country" AttributeId="Geography_CountryRegionName" HierarchyId="Geographies">
+      <Name>Country</Name>
+      <Ordinal>1</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="Geographies_PostalCode" AttributeId="Geography_PostalCode" HierarchyId="Geographies">
+      <Name>Postal Code</Name>
+      <Ordinal>4</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="Geographies_State" AttributeId="Geography_StateProvinceName" HierarchyId="Geographies">
+      <Name>State or Province</Name>
+      <Ordinal>2</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="Products_Category" AttributeId="Product_Category" HierarchyId="Products">
+      <Name>Category</Name>
+      <Ordinal>1</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="Products_Product" AttributeId="Product_ProductName" HierarchyId="Products">
+      <Name>Product</Name>
+      <Ordinal>3</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="Products_Subcategory" AttributeId="Product_Subcategory" HierarchyId="Products">
+      <Name>Subcategory</Name>
+      <Ordinal>2</Ordinal>
+    </HierarchyLevel>
+  </HierarchyLevelList>
+</MetaAnalytics>

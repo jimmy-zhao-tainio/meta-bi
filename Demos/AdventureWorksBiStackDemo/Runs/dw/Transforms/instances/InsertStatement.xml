@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <InsertStatementList>
+    <InsertStatement Id="InsertStatement:1" StatementWithCtesAndXmlNamespacesId="StatementWithCtesAndXmlNamespaces:1" />
+    <InsertStatement Id="InsertStatement:2" StatementWithCtesAndXmlNamespacesId="StatementWithCtesAndXmlNamespaces:2" />
+    <InsertStatement Id="InsertStatement:3" StatementWithCtesAndXmlNamespacesId="StatementWithCtesAndXmlNamespaces:3" />
+    <InsertStatement Id="InsertStatement:4" StatementWithCtesAndXmlNamespacesId="StatementWithCtesAndXmlNamespaces:4" />
+    <InsertStatement Id="InsertStatement:5" StatementWithCtesAndXmlNamespacesId="StatementWithCtesAndXmlNamespaces:5" />
+    <InsertStatement Id="InsertStatement:6" StatementWithCtesAndXmlNamespacesId="StatementWithCtesAndXmlNamespaces:6" />
+    <InsertStatement Id="InsertStatement:7" StatementWithCtesAndXmlNamespacesId="StatementWithCtesAndXmlNamespaces:7" />
+    <InsertStatement Id="InsertStatement:8" StatementWithCtesAndXmlNamespacesId="StatementWithCtesAndXmlNamespaces:8" />
+  </InsertStatementList>
+</MetaTransformScript>

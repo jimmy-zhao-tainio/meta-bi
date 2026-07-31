@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkRoleList>
+    <BusinessLinkRole Id="AddressStateProvinceAddress" BusinessHubId="Address" BusinessLinkId="AddressStateProvince">
+      <Name>Address</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="AddressStateProvinceStateProvince" BusinessHubId="StateProvince" BusinessLinkId="AddressStateProvince">
+      <Name>StateProvince</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="CustomerPersonCustomer" BusinessHubId="Customer" BusinessLinkId="CustomerPerson">
+      <Name>Customer</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="CustomerPersonPerson" BusinessHubId="Person" BusinessLinkId="CustomerPerson">
+      <Name>Person</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="CustomerStoreCustomer" BusinessHubId="Customer" BusinessLinkId="CustomerStore">
+      <Name>Customer</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="CustomerStoreStore" BusinessHubId="Store" BusinessLinkId="CustomerStore">
+      <Name>Store</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="ProductSubcategoryAssignmentProduct" BusinessHubId="Product" BusinessLinkId="ProductSubcategoryAssignment">
+      <Name>Product</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="ProductSubcategoryAssignmentProductSubcategory" BusinessHubId="ProductSubcategory" BusinessLinkId="ProductSubcategoryAssignment">
+      <Name>ProductSubcategory</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="ProductSubcategoryCategoryProductCategory" BusinessHubId="ProductCategory" BusinessLinkId="ProductSubcategoryCategory">
+      <Name>ProductCategory</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="ProductSubcategoryCategoryProductSubcategory" BusinessHubId="ProductSubcategory" BusinessLinkId="ProductSubcategoryCategory">
+      <Name>ProductSubcategory</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderBillToAddressBillToAddress" BusinessHubId="Address" BusinessLinkId="SalesOrderBillToAddress">
+      <Name>BillToAddress</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderBillToAddressSalesOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderBillToAddress">
+      <Name>SalesOrder</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderCustomerCustomer" BusinessHubId="Customer" BusinessLinkId="SalesOrderCustomer">
+      <Name>Customer</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderCustomerSalesOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderCustomer">
+      <Name>SalesOrder</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderLineProductProduct" BusinessHubId="Product" BusinessLinkId="SalesOrderLineProduct">
+      <Name>Product</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderLineProductSalesOrderLine" BusinessHubId="SalesOrderLine" BusinessLinkId="SalesOrderLineProduct">
+      <Name>SalesOrderLine</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderLineSalesOrderSalesOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderLineSalesOrder">
+      <Name>SalesOrder</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderLineSalesOrderSalesOrderLine" BusinessHubId="SalesOrderLine" BusinessLinkId="SalesOrderLineSalesOrder">
+      <Name>SalesOrderLine</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderSalesPersonSalesOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderSalesPerson">
+      <Name>SalesOrder</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderSalesPersonSalesPerson" BusinessHubId="SalesPerson" BusinessLinkId="SalesOrderSalesPerson">
+      <Name>SalesPerson</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderSalesTerritorySalesOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderSalesTerritory">
+      <Name>SalesOrder</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderSalesTerritorySalesTerritory" BusinessHubId="SalesTerritory" BusinessLinkId="SalesOrderSalesTerritory">
+      <Name>SalesTerritory</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderShipToAddressSalesOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderShipToAddress">
+      <Name>SalesOrder</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesOrderShipToAddressShipToAddress" BusinessHubId="Address" BusinessLinkId="SalesOrderShipToAddress">
+      <Name>ShipToAddress</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesPersonPersonPerson" BusinessHubId="Person" BusinessLinkId="SalesPersonPerson">
+      <Name>Person</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesPersonPersonSalesPerson" BusinessHubId="SalesPerson" BusinessLinkId="SalesPersonPerson">
+      <Name>SalesPerson</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesPersonQuotaSalesPersonSalesPerson" BusinessHubId="SalesPerson" BusinessLinkId="SalesPersonQuotaSalesPerson">
+      <Name>SalesPerson</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesPersonQuotaSalesPersonSalesPersonQuota" BusinessHubId="SalesPersonQuota" BusinessLinkId="SalesPersonQuotaSalesPerson">
+      <Name>SalesPersonQuota</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesPersonSalesTerritorySalesPerson" BusinessHubId="SalesPerson" BusinessLinkId="SalesPersonSalesTerritory">
+      <Name>SalesPerson</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesPersonSalesTerritorySalesTerritory" BusinessHubId="SalesTerritory" BusinessLinkId="SalesPersonSalesTerritory">
+      <Name>SalesTerritory</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesTerritoryCountryRegionCountryRegion" BusinessHubId="CountryRegion" BusinessLinkId="SalesTerritoryCountryRegion">
+      <Name>CountryRegion</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="SalesTerritoryCountryRegionSalesTerritory" BusinessHubId="SalesTerritory" BusinessLinkId="SalesTerritoryCountryRegion">
+      <Name>SalesTerritory</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="StateProvinceCountryRegionCountryRegion" BusinessHubId="CountryRegion" BusinessLinkId="StateProvinceCountryRegion">
+      <Name>CountryRegion</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="StateProvinceCountryRegionStateProvince" BusinessHubId="StateProvince" BusinessLinkId="StateProvinceCountryRegion">
+      <Name>StateProvince</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="StateProvinceSalesTerritorySalesTerritory" BusinessHubId="SalesTerritory" BusinessLinkId="StateProvinceSalesTerritory">
+      <Name>SalesTerritory</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="StateProvinceSalesTerritoryStateProvince" BusinessHubId="StateProvince" BusinessLinkId="StateProvinceSalesTerritory">
+      <Name>StateProvince</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="StoreSalesPersonSalesPerson" BusinessHubId="SalesPerson" BusinessLinkId="StoreSalesPerson">
+      <Name>SalesPerson</Name>
+    </BusinessLinkRole>
+    <BusinessLinkRole Id="StoreSalesPersonStore" BusinessHubId="Store" BusinessLinkId="StoreSalesPerson">
+      <Name>Store</Name>
+    </BusinessLinkRole>
+  </BusinessLinkRoleList>
+</MetaBusinessDataVault>
