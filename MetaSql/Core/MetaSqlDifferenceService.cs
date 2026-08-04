@@ -1,5 +1,6 @@
 using Meta.Adapters;
 using Meta.Core.Domain;
+using Meta.Core.Serialization;
 
 namespace MetaSql;
 
@@ -20,25 +21,24 @@ public sealed class MetaSqlDifferenceService
     public async Task<IReadOnlyList<MetaSqlDifference>> BuildDifferencesAsync(
         string sourceWorkspacePath,
         string liveWorkspacePath,
-        bool searchUpward = false,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sourceWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(liveWorkspacePath);
 
-        var sourceWorkspace = await _services.WorkspaceService
-            .LoadAsync(sourceWorkspacePath, searchUpward, cancellationToken)
+        var sourceWorkspace = await XmlWorkspaceReader
+            .OpenAsync(sourceWorkspacePath, cancellationToken)
             .ConfigureAwait(false);
-        var liveWorkspace = await _services.WorkspaceService
-            .LoadAsync(liveWorkspacePath, searchUpward, cancellationToken)
+        var liveWorkspace = await XmlWorkspaceReader
+            .OpenAsync(liveWorkspacePath, cancellationToken)
             .ConfigureAwait(false);
 
-        return BuildDifferences(sourceWorkspace, liveWorkspace);
+        return BuildDifferences(sourceWorkspace.State, liveWorkspace.State);
     }
 
     public IReadOnlyList<MetaSqlDifference> BuildDifferences(
-        Workspace sourceWorkspace,
-        Workspace liveWorkspace)
+        InMemoryWorkspace sourceWorkspace,
+        InMemoryWorkspace liveWorkspace)
     {
         ArgumentNullException.ThrowIfNull(sourceWorkspace);
         ArgumentNullException.ThrowIfNull(liveWorkspace);
@@ -433,8 +433,8 @@ public sealed class MetaSqlDifferenceService
 
     private static void AddSchemaScopedObjectDifferences(
         List<MetaSqlDifference> differences,
-        Workspace sourceWorkspace,
-        Workspace liveWorkspace,
+        InMemoryWorkspace sourceWorkspace,
+        InMemoryWorkspace liveWorkspace,
         IReadOnlyDictionary<string, GenericRecord> sourceSchemasById,
         IReadOnlyDictionary<string, GenericRecord> liveSchemasById,
         string entityName,
@@ -736,12 +736,12 @@ public sealed class MetaSqlDifferenceService
         return new Dictionary<string, GenericRecord>(StringComparer.Ordinal);
     }
 
-    private static Dictionary<string, GenericRecord> GetRecordIndex(Workspace workspace, string entityName)
+    private static Dictionary<string, GenericRecord> GetRecordIndex(InMemoryWorkspace workspace, string entityName)
     {
         return workspace.Instance.GetOrCreateEntityRecords(entityName).ToDictionary(row => row.Id, StringComparer.Ordinal);
     }
 
-    private static Dictionary<string, Dictionary<string, GenericRecord>> GetGroupedRecordIndex(Workspace workspace, string entityName, string relationshipName)
+    private static Dictionary<string, Dictionary<string, GenericRecord>> GetGroupedRecordIndex(InMemoryWorkspace workspace, string entityName, string relationshipName)
     {
         return workspace.Instance.GetOrCreateEntityRecords(entityName)
             .GroupBy(row => row.RelationshipIds[relationshipName], StringComparer.Ordinal)
@@ -751,7 +751,7 @@ public sealed class MetaSqlDifferenceService
                 StringComparer.Ordinal);
     }
 
-    private static Dictionary<string, List<GenericRecord>> GetGroupedRecords(Workspace workspace, string entityName, string relationshipName)
+    private static Dictionary<string, List<GenericRecord>> GetGroupedRecords(InMemoryWorkspace workspace, string entityName, string relationshipName)
     {
         return workspace.Instance.GetOrCreateEntityRecords(entityName)
             .GroupBy(row => row.RelationshipIds[relationshipName], StringComparer.Ordinal)
@@ -761,7 +761,7 @@ public sealed class MetaSqlDifferenceService
                 StringComparer.Ordinal);
     }
 
-    private static Dictionary<string, List<GenericRecord>> GetGroupedOrderedRecords(Workspace workspace, string entityName, string relationshipName)
+    private static Dictionary<string, List<GenericRecord>> GetGroupedOrderedRecords(InMemoryWorkspace workspace, string entityName, string relationshipName)
     {
         return workspace.Instance.GetOrCreateEntityRecords(entityName)
             .GroupBy(row => row.RelationshipIds[relationshipName], StringComparer.Ordinal)

@@ -27,8 +27,8 @@ public sealed class MetaSqlDifferenceFeasibilityService
 
     public async Task<IReadOnlyList<MetaSqlDifferenceBlocker>> BuildBlockersAsync(
         IReadOnlyList<MetaSqlDifference> differences,
-        Workspace sourceWorkspace,
-        Workspace liveWorkspace,
+        InMemoryWorkspace sourceWorkspace,
+        InMemoryWorkspace liveWorkspace,
         string connectionString,
         CancellationToken cancellationToken = default)
     {
@@ -483,12 +483,12 @@ public sealed class MetaSqlDifferenceFeasibilityService
         return record.Values.TryGetValue(propertyName, out var value) ? value : string.Empty;
     }
 
-    private static Dictionary<string, GenericRecord> GetRecordIndex(Workspace workspace, string entityName)
+    private static Dictionary<string, GenericRecord> GetRecordIndex(InMemoryWorkspace workspace, string entityName)
     {
         return workspace.Instance.GetOrCreateEntityRecords(entityName).ToDictionary(row => row.Id, StringComparer.Ordinal);
     }
 
-    private static Dictionary<string, List<GenericRecord>> GetGroupedRecords(Workspace workspace, string entityName, string relationshipName)
+    private static Dictionary<string, List<GenericRecord>> GetGroupedRecords(InMemoryWorkspace workspace, string entityName, string relationshipName)
     {
         return workspace.Instance.GetOrCreateEntityRecords(entityName)
             .GroupBy(row => row.RelationshipIds[relationshipName], StringComparer.Ordinal)

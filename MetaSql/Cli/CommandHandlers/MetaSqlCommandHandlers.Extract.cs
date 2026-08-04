@@ -1,5 +1,6 @@
 using Meta.Core.Connections;
 using Meta.Core.Domain;
+using Meta.Core.Operations;
 using Meta.Core.Services;
 using MetaCli.Core;
 using Meta.Core.Presentation.Cli;
@@ -32,7 +33,7 @@ internal sealed partial class MetaSqlCommandHandlers
         }
 
         request.NewWorkspacePath = targetValidation.FullPath;
-        Workspace workspace;
+        InMemoryWorkspace workspace;
         try
         {
             workspace = new SqlServerMetaSqlExtractor().ExtractMetaSqlWorkspace(request);
@@ -46,7 +47,9 @@ internal sealed partial class MetaSqlCommandHandlers
                 [$"  {exception.Message}"]));
         }
 
-        var validation = new ValidationService().Validate(workspace);
+        var validation = WorkspaceValidator.Validate(
+            workspace.Model,
+            workspace.Instance);
         if (validation.HasErrors)
         {
             return Task.FromResult(Fail(
@@ -109,7 +112,7 @@ internal sealed partial class MetaSqlCommandHandlers
         return request;
     }
 
-    private static int CountRecords(Workspace workspace, string entityName)
+    private static int CountRecords(InMemoryWorkspace workspace, string entityName)
     {
         return workspace.Instance.GetOrCreateEntityRecords(entityName).Count;
     }

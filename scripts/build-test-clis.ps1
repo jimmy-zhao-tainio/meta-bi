@@ -48,6 +48,7 @@ if ([string]::IsNullOrWhiteSpace($MetaRepo)) {
 }
 
 $MetaRepo = Get-FullPath $MetaRepo
+$metaOperationsProject = Join-Path $MetaRepo "Meta\Operations\Meta.Operations.csproj"
 $metaCoreProject = Join-Path $MetaRepo "Meta\Core\Meta.Core.csproj"
 $metaAdaptersProject = Join-Path $MetaRepo "Meta\Adapters\Meta.Adapters.csproj"
 if ([string]::IsNullOrWhiteSpace($LocalPackageSource)) {
@@ -134,6 +135,10 @@ try {
 </configuration>
 "@
         Set-Content -LiteralPath $localNuGetConfig -Value $nugetConfigContents -Encoding UTF8
+
+        Invoke-Checked "Packing local Meta.Operations" {
+            & dotnet pack $metaOperationsProject -c $Configuration --nologo -o $LocalPackageSource @stableBuildArgs
+        }
 
         Invoke-Checked "Packing local Meta.Core" {
             & dotnet pack $metaCoreProject -c $Configuration --nologo -o $LocalPackageSource @stableBuildArgs

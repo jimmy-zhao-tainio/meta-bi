@@ -1,6 +1,6 @@
 using System.Globalization;
 using Meta.Core.Domain;
-using Meta.Core.Services;
+using Meta.Core.Serialization;
 using MetaSql;
 using MetaTransformScript.Sql;
 
@@ -8,7 +8,7 @@ namespace MetaConvert.TransformScriptToSql;
 
 public static class TransformScriptToSqlConverter
 {
-    public static async Task<Workspace> ConvertAsync(
+    public static async Task<InMemoryWorkspace> ConvertAsync(
         string transformScriptWorkspacePath,
         string pathToNewMetaSqlWorkspace,
         string databaseName,
@@ -22,9 +22,10 @@ public static class TransformScriptToSqlConverter
         var metaSql = ConvertToMetaSql(modules, databaseName);
         metaSql.SaveToXmlWorkspace(pathToNewMetaSqlWorkspace);
 
-        return await new WorkspaceService()
-            .LoadAsync(pathToNewMetaSqlWorkspace, searchUpward: false, cancellationToken)
+        var outputWorkspace = await XmlWorkspaceReader
+            .OpenAsync(pathToNewMetaSqlWorkspace, cancellationToken)
             .ConfigureAwait(false);
+        return outputWorkspace.State;
     }
 
     public static MetaSqlModel ConvertToMetaSql(

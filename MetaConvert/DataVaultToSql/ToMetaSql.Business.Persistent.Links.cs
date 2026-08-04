@@ -63,22 +63,20 @@ public static partial class Converter
                 }
             }
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessLinkImplementation.LoadTimestampColumnName,
                 businessLinkImplementation.LoadTimestampDataTypeId,
-                "false",
                 reservedColumnNames,
                 businessLinkImplementation.LoadTimestampDefaultExpressionSql,
                 ("Precision", businessLinkImplementation.LoadTimestampPrecision));
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessLinkImplementation.RecordSourceColumnName,
                 businessLinkImplementation.RecordSourceDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessLinkImplementation.RecordSourceLength));
 
@@ -140,12 +138,11 @@ public static partial class Converter
 
             AddBusinessMembers(context, table, reservedColumnNames, members, "true");
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessLinkSatelliteImplementation.HashDiffColumnName,
                 businessLinkSatelliteImplementation.HashDiffDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessLinkSatelliteImplementation.HashDiffLength));
 
@@ -166,12 +163,11 @@ public static partial class Converter
                 parentHashKeyColumn,
                 loadTimestampColumn);
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessLinkSatelliteImplementation.RecordSourceColumnName,
                 businessLinkSatelliteImplementation.RecordSourceDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessLinkSatelliteImplementation.RecordSourceLength));
 

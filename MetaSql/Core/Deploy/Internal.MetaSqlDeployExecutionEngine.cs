@@ -1,5 +1,5 @@
-using Meta.Core.Services;
 using Meta.Core.Domain;
+using Meta.Core.Serialization;
 using MetaSql.Extractors.SqlServer;
 
 namespace MetaSql;
@@ -27,11 +27,10 @@ internal sealed class MetaSqlDeployExecutionEngine
         Directory.CreateDirectory(tempRootPath);
         try
         {
-            var workspaceService = new WorkspaceService();
-            var manifestWorkspace = await workspaceService
-                .LoadAsync(manifestWorkspacePath, searchUpward: false, cancellationToken)
+            var manifestWorkspace = await XmlWorkspaceReader
+                .OpenAsync(manifestWorkspacePath, cancellationToken)
                 .ConfigureAwait(false);
-            manifestContractValidator.Validate(manifestWorkspace);
+            manifestContractValidator.Validate(manifestWorkspace.State);
 
             var manifestModel = await MetaSqlDeployManifest.MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(
                     manifestWorkspacePath,
@@ -47,11 +46,11 @@ internal sealed class MetaSqlDeployExecutionEngine
                     $"Manifest '{root.Name}' is not deployable because it contains {blockCount} block {(blockCount == 1 ? "entry" : "entries")}.");
             }
 
-            var sourceWorkspace = await workspaceService
-                .LoadAsync(sourceWorkspacePath, searchUpward: false, cancellationToken)
+            var sourceWorkspace = await XmlWorkspaceReader
+                .OpenAsync(sourceWorkspacePath, cancellationToken)
                 .ConfigureAwait(false);
-            MetaSqlDiffService.EnsureMetaSqlWorkspace(sourceWorkspace, nameof(sourceWorkspace));
-            manifestFingerprintValidator.ValidateSourceFingerprint(root, sourceWorkspace);
+            MetaSqlDiffService.EnsureMetaSqlWorkspace(sourceWorkspace.State, nameof(sourceWorkspace));
+            manifestFingerprintValidator.ValidateSourceFingerprint(root, sourceWorkspace.State);
 
             var expectedLiveDatabasePresence = ParseExpectedLiveDatabasePresence(root.ExpectedLiveDatabasePresence);
             var actualLiveDatabasePresence = await SqlServerDatabaseRuntime
@@ -75,7 +74,7 @@ internal sealed class MetaSqlDeployExecutionEngine
                     "Manifest expects an existing live database, but the database does not exist.");
             }
 
-            Workspace liveWorkspace;
+            InMemoryWorkspace liveWorkspace;
             if (expectedLiveDatabasePresence == MetaSqlLiveDatabasePresence.Missing)
             {
                 liveWorkspace = SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(

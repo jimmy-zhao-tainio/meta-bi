@@ -204,23 +204,51 @@ public static partial class Converter
     private static TableColumn? AddOptionalImplementationColumn(
         ConversionContext context,
         Table table,
-        string name,
-        string metaDataTypeId,
+        string? name,
+        string? metaDataTypeId,
         HashSet<string> reservedColumnNames,
-        params (string Name, string Value)[] details)
+        params (string Name, string? Value)[] details)
     {
-        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(metaDataTypeId))
+        return AddOptionalImplementationColumn(
+            context,
+            table,
+            name,
+            metaDataTypeId,
+            reservedColumnNames,
+            defaultExpressionSql: null,
+            details);
+    }
+
+    private static TableColumn? AddOptionalImplementationColumn(
+        ConversionContext context,
+        Table table,
+        string? name,
+        string? metaDataTypeId,
+        HashSet<string> reservedColumnNames,
+        string? defaultExpressionSql,
+        params (string Name, string? Value)[] details)
+    {
+        var hasName = !string.IsNullOrWhiteSpace(name);
+        var hasMetaDataType = !string.IsNullOrWhiteSpace(metaDataTypeId);
+        if (!hasName && !hasMetaDataType)
         {
             return null;
+        }
+
+        if (hasName != hasMetaDataType)
+        {
+            throw new InvalidOperationException(
+                "An optional implementation column must define both its name and metadata type, or neither.");
         }
 
         return AddImplementationColumn(
             context,
             table,
-            name,
-            metaDataTypeId,
+            name!,
+            metaDataTypeId!,
             "false",
             reservedColumnNames,
+            defaultExpressionSql,
             details);
     }
 }

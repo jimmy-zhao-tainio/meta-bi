@@ -60,22 +60,20 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessHubImplementation.HashKeyLength));
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessSameAsLinkImplementation.LoadTimestampColumnName,
                 businessSameAsLinkImplementation.LoadTimestampDataTypeId,
-                "false",
                 reservedColumnNames,
                 businessSameAsLinkImplementation.LoadTimestampDefaultExpressionSql,
                 ("Precision", businessSameAsLinkImplementation.LoadTimestampPrecision));
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessSameAsLinkImplementation.RecordSourceColumnName,
                 businessSameAsLinkImplementation.RecordSourceDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessSameAsLinkImplementation.RecordSourceLength));
 
@@ -157,12 +155,11 @@ public static partial class Converter
 
             AddBusinessMembers(context, table, reservedColumnNames, members, "true");
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessSameAsLinkSatelliteImplementation.HashDiffColumnName,
                 businessSameAsLinkSatelliteImplementation.HashDiffDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessSameAsLinkSatelliteImplementation.HashDiffLength));
 
@@ -183,12 +180,11 @@ public static partial class Converter
                 parentHashKeyColumn,
                 loadTimestampColumn);
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessSameAsLinkSatelliteImplementation.RecordSourceColumnName,
                 businessSameAsLinkSatelliteImplementation.RecordSourceDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessSameAsLinkSatelliteImplementation.RecordSourceLength));
 
@@ -251,22 +247,20 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessHubImplementation.HashKeyLength));
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessHierarchicalLinkImplementation.LoadTimestampColumnName,
                 businessHierarchicalLinkImplementation.LoadTimestampDataTypeId,
-                "false",
                 reservedColumnNames,
                 businessHierarchicalLinkImplementation.LoadTimestampDefaultExpressionSql,
                 ("Precision", businessHierarchicalLinkImplementation.LoadTimestampPrecision));
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessHierarchicalLinkImplementation.RecordSourceColumnName,
                 businessHierarchicalLinkImplementation.RecordSourceDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessHierarchicalLinkImplementation.RecordSourceLength));
 
@@ -348,12 +342,11 @@ public static partial class Converter
 
             AddBusinessMembers(context, table, reservedColumnNames, members, "true");
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessHierarchicalLinkSatelliteImplementation.HashDiffColumnName,
                 businessHierarchicalLinkSatelliteImplementation.HashDiffDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessHierarchicalLinkSatelliteImplementation.HashDiffLength));
 
@@ -374,12 +367,11 @@ public static partial class Converter
                 parentHashKeyColumn,
                 loadTimestampColumn);
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessHierarchicalLinkSatelliteImplementation.RecordSourceColumnName,
                 businessHierarchicalLinkSatelliteImplementation.RecordSourceDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessHierarchicalLinkSatelliteImplementation.RecordSourceLength));
 

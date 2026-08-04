@@ -39,8 +39,8 @@ internal sealed class ManifestPlanningEngine
     }
 
     public MetaSqlDeployManifestBuildResult BuildManifest(
-        Workspace sourceWorkspace,
-        Workspace liveWorkspace,
+        InMemoryWorkspace sourceWorkspace,
+        InMemoryWorkspace liveWorkspace,
         MetaSqlLiveDatabasePresence liveDatabasePresence,
         IReadOnlyList<MetaSqlDifference> differences,
         string manifestName,
@@ -162,13 +162,13 @@ internal sealed class ManifestPlanningEngine
         };
     }
 
-    private static Dictionary<string, GenericRecord> GetRecordIndex(Workspace workspace, string entityName)
+    private static Dictionary<string, GenericRecord> GetRecordIndex(InMemoryWorkspace workspace, string entityName)
     {
         return workspace.Instance.GetOrCreateEntityRecords(entityName)
             .ToDictionary(row => row.Id, StringComparer.Ordinal);
     }
 
-    private static Dictionary<string, List<GenericRecord>> GetGroupedRecords(Workspace workspace, string entityName, string relationshipName)
+    private static Dictionary<string, List<GenericRecord>> GetGroupedRecords(InMemoryWorkspace workspace, string entityName, string relationshipName)
     {
         return workspace.Instance.GetOrCreateEntityRecords(entityName)
             .GroupBy(row => row.RelationshipIds[relationshipName], StringComparer.Ordinal)

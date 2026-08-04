@@ -45,7 +45,7 @@ internal sealed class DeployManifestContractValidator
         "BlockStoredProcedureDifference",
     ];
 
-    public void Validate(Workspace manifestWorkspace)
+    public void Validate(InMemoryWorkspace manifestWorkspace)
     {
         ArgumentNullException.ThrowIfNull(manifestWorkspace);
 

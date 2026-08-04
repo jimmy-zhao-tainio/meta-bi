@@ -119,7 +119,7 @@ public sealed class MetaSqlDifferenceFeasibilityServiceTests
             expectedDependencyKind: "UNIQUE");
     }
 
-    private static Workspace CreateColumnWorkspace(string workspacePath, string typeName, int length, bool sourceNullable)
+    private static InMemoryWorkspace CreateColumnWorkspace(string workspacePath, string typeName, int length, bool sourceNullable)
     {
         return MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.Project(
             newWorkspacePath: workspacePath,
@@ -143,7 +143,7 @@ public sealed class MetaSqlDifferenceFeasibilityServiceTests
             indexColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
     }
 
-    private static Workspace CreateDropColumnWorkspace(string workspacePath, bool includeLegacyCode)
+    private static InMemoryWorkspace CreateDropColumnWorkspace(string workspacePath, bool includeLegacyCode)
     {
         var columns = new List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.ColumnRow>
         {

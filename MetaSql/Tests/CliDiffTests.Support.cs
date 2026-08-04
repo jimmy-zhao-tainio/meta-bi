@@ -2,7 +2,8 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Microsoft.Data.SqlClient;
 using Meta.Core.Domain;
-using Meta.Core.Services;
+using Meta.Core.Operations;
+using Meta.Core.Serialization;
 using MetaSql;
 using MetaSqlDeployManifest;
 using MetaSql.Extractors.SqlServer;
@@ -1245,32 +1246,23 @@ public sealed partial class CliDiffTests
 
     private static void AddUnsupportedActionKindToManifestModel(string manifestWorkspacePath, string unsupportedEntityName)
     {
-        var workspaceService = new WorkspaceService();
-        var workspace = workspaceService
-            .LoadAsync(manifestWorkspacePath, searchUpward: false)
+        var workspace = XmlWorkspaceReader
+            .OpenAsync(manifestWorkspacePath)
             .GetAwaiter()
             .GetResult();
-
-        workspace.Model.Entities.Add(new GenericEntity
-        {
-            Name = unsupportedEntityName,
-            Properties =
-            {
-                new GenericProperty
-                {
-                    Name = "UnsupportedId",
-                },
-            },
-            Relationships =
-            {
-                new GenericRelationship
-                {
-                    Entity = "DeployManifest",
-                },
-            },
-        });
-
-        workspaceService.SaveAsync(workspace).GetAwaiter().GetResult();
+        var candidate = InMemoryOperations.Execute(
+            workspace.State,
+            new Operation.AddEntity(unsupportedEntityName),
+            new Operation.AddProperty(unsupportedEntityName, "UnsupportedId", IsRequired: true),
+            new Operation.AddRelationship(
+                unsupportedEntityName,
+                "DeployManifest",
+                Role: null,
+                IsRequired: true));
+        XmlWorkspaceWriter
+            .WriteAsync(workspace, candidate.Workspace, candidate.Results)
+            .GetAwaiter()
+            .GetResult();
     }
 
     private static string FindRepositoryRoot()

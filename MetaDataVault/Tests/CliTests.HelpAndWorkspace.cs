@@ -1,4 +1,4 @@
-using Meta.Core.Services;
+using Meta.Core.Serialization;
 
 namespace MetaDataVault.Tests;
 
@@ -17,7 +17,7 @@ public sealed partial class CliTests
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("MetaBusinessDataVault workspace created", result.Output, StringComparison.Ordinal);
 
-            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(workspacePath);
             Assert.Equal("MetaBusinessDataVault", workspace.Model.Name);
         }
         finally
@@ -39,7 +39,7 @@ public sealed partial class CliTests
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("MetaRawDataVault workspace created", result.Output, StringComparison.Ordinal);
 
-            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(workspacePath);
             Assert.Equal("MetaRawDataVault", workspace.Model.Name);
         }
         finally

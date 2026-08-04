@@ -477,7 +477,7 @@ public static partial class Converter
         string metaDataTypeId,
         string isNullable,
         HashSet<string> reservedColumnNames,
-        params (string Name, string Value)[] details)
+        params (string Name, string? Value)[] details)
     {
         return AddImplementationColumn(
             context,
@@ -498,7 +498,7 @@ public static partial class Converter
         string isNullable,
         HashSet<string> reservedColumnNames,
         string? defaultExpressionSql,
-        params (string Name, string Value)[] details)
+        params (string Name, string? Value)[] details)
     {
         var column = AddColumn(
             context,
@@ -561,7 +561,7 @@ public static partial class Converter
         return column;
     }
 
-    private static void AddDetail(ConversionContext context, TableColumn tableColumn, string name, string value)
+    private static void AddDetail(ConversionContext context, TableColumn tableColumn, string name, string? value)
     {
         if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(value))
         {

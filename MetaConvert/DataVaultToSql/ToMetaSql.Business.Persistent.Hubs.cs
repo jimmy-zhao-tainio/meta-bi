@@ -50,22 +50,20 @@ public static partial class Converter
                         row => row.Value));
             }
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessHubImplementation.LoadTimestampColumnName,
                 businessHubImplementation.LoadTimestampDataTypeId,
-                "false",
                 reservedColumnNames,
                 businessHubImplementation.LoadTimestampDefaultExpressionSql,
                 ("Precision", businessHubImplementation.LoadTimestampPrecision));
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessHubImplementation.RecordSourceColumnName,
                 businessHubImplementation.RecordSourceDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessHubImplementation.RecordSourceLength));
 
@@ -127,12 +125,11 @@ public static partial class Converter
 
             AddBusinessMembers(context, table, reservedColumnNames, members, "true");
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessHubSatelliteImplementation.HashDiffColumnName,
                 businessHubSatelliteImplementation.HashDiffDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessHubSatelliteImplementation.HashDiffLength));
 
@@ -153,12 +150,11 @@ public static partial class Converter
                 parentHashKeyColumn,
                 loadTimestampColumn);
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessHubSatelliteImplementation.RecordSourceColumnName,
                 businessHubSatelliteImplementation.RecordSourceDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessHubSatelliteImplementation.RecordSourceLength));
 

@@ -1,5 +1,5 @@
 using Meta.Core.Domain;
-using Meta.Core.Services;
+using Meta.Core.Serialization;
 using Dw = MetaDataWarehouse;
 using Dwi = MetaDataWarehouseImplementation;
 using MetaDataType;
@@ -13,7 +13,7 @@ namespace MetaConvert.DataWarehouseToSql;
 
 public static class DataWarehouseToSqlConverter
 {
-    public static async Task<Workspace> ConvertAsync(
+    public static async Task<InMemoryWorkspace> ConvertAsync(
         string dataWarehouseWorkspacePath,
         string pathToNewMetaSqlWorkspace,
         string implementationWorkspacePath,
@@ -36,8 +36,10 @@ public static class DataWarehouseToSqlConverter
 
         var metaSql = ConvertToMetaSql(model, implementation, databaseName);
         metaSql.SaveToXmlWorkspace(pathToNewMetaSqlWorkspace);
-        return await new WorkspaceService().LoadAsync(pathToNewMetaSqlWorkspace, searchUpward: false, cancellationToken)
+        var outputWorkspace = await XmlWorkspaceReader
+            .OpenAsync(pathToNewMetaSqlWorkspace, cancellationToken)
             .ConfigureAwait(false);
+        return outputWorkspace.State;
     }
 
     public static MetaSqlModel ConvertToMetaSql(

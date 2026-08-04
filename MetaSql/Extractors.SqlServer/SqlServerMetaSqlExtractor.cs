@@ -6,7 +6,7 @@ namespace MetaSql.Extractors.SqlServer;
 
 public sealed class SqlServerMetaSqlExtractor
 {
-    public Workspace ExtractMetaSqlWorkspace(SqlServerExtractRequest request)
+    public InMemoryWorkspace ExtractMetaSqlWorkspace(SqlServerExtractRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
         if (string.IsNullOrWhiteSpace(request.NewWorkspacePath))

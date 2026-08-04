@@ -1,5 +1,5 @@
 using Meta.Core.Domain;
-using Meta.Core.Services;
+using Meta.Core.Serialization;
 
 namespace MetaSql.Extractors.SqlServer;
 
@@ -7,7 +7,7 @@ public static class SqlServerMetaSqlWorkspaceFactory
 {
     public const string DefaultSchemaName = "dbo";
 
-    public static Workspace CreateEmptyWorkspace(
+    public static InMemoryWorkspace CreateEmptyWorkspace(
         string newWorkspacePath,
         string databaseName,
         IEnumerable<string>? schemaNames = null)
@@ -48,6 +48,6 @@ public static class SqlServerMetaSqlWorkspaceFactory
         }
 
         model.SaveToXmlWorkspace(newWorkspacePath);
-        return new WorkspaceService().LoadAsync(newWorkspacePath, searchUpward: false).GetAwaiter().GetResult();
+        return XmlWorkspaceReader.OpenAsync(newWorkspacePath).GetAwaiter().GetResult().State;
     }
 }

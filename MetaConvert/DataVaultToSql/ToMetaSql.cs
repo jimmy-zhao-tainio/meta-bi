@@ -1,5 +1,5 @@
 using Meta.Core.Domain;
-using Meta.Core.Services;
+using Meta.Core.Serialization;
 using MetaDataVaultImplementation;
 using MetaDataType.Instance;
 using MetaDataTypeConversion.Instance;
@@ -11,7 +11,7 @@ namespace MetaConvert.DataVaultToSql;
 
 public static partial class Converter
 {
-    public static async Task<Workspace> ConvertAsync(
+    public static async Task<InMemoryWorkspace> ConvertAsync(
         string dataVaultWorkspacePath,
         string pathToNewMetaSqlWorkspace,
         string implementationWorkspacePath,
@@ -38,8 +38,9 @@ public static partial class Converter
             throw new ArgumentException("Database name is required.", nameof(databaseName));
         }
 
-        var workspaceService = new WorkspaceService();
-        var dataVaultWorkspace = await workspaceService.LoadAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
+        var dataVaultWorkspace = await XmlWorkspaceReader
+            .OpenAsync(dataVaultWorkspacePath, cancellationToken)
+            .ConfigureAwait(false);
         var implementationModel = await MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(implementationWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
 
         switch (dataVaultWorkspace.Model.Name)
@@ -54,7 +55,10 @@ public static partial class Converter
                     var rawModel = await MetaRawDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var metaSqlModel = ConvertRaw(rawModel, context);
                     metaSqlModel.SaveToXmlWorkspace(pathToNewMetaSqlWorkspace);
-                    return await workspaceService.LoadAsync(pathToNewMetaSqlWorkspace, searchUpward: false, cancellationToken).ConfigureAwait(false);
+                    var outputWorkspace = await XmlWorkspaceReader
+                        .OpenAsync(pathToNewMetaSqlWorkspace, cancellationToken)
+                        .ConfigureAwait(false);
+                    return outputWorkspace.State;
                 }
 
             case "MetaBusinessDataVault":
@@ -67,7 +71,10 @@ public static partial class Converter
                     var businessModel = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var metaSqlModel = ConvertBusiness(businessModel, context);
                     metaSqlModel.SaveToXmlWorkspace(pathToNewMetaSqlWorkspace);
-                    return await workspaceService.LoadAsync(pathToNewMetaSqlWorkspace, searchUpward: false, cancellationToken).ConfigureAwait(false);
+                    var outputWorkspace = await XmlWorkspaceReader
+                        .OpenAsync(pathToNewMetaSqlWorkspace, cancellationToken)
+                        .ConfigureAwait(false);
+                    return outputWorkspace.State;
                 }
 
             default:

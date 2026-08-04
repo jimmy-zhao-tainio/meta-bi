@@ -4,10 +4,14 @@ namespace MetaSchema.Core;
 
 public static class MetaSchemaWorkspaces
 {
-    public static Workspace CreateEmptyMetaSchemaWorkspace(string workspaceRootPath)
+    public static InMemoryWorkspace CreateEmptyMetaSchemaWorkspace()
     {
-        return MetaSchemaWorkspaceFactory.CreateEmptyWorkspace(
-            workspaceRootPath,
-            MetaSchemaModels.CreateMetaSchemaModel());
+        var model = MetaSchemaModels.CreateMetaSchemaModel();
+        return new InMemoryWorkspace(
+            model,
+            new GenericInstance
+            {
+                ModelName = model.Name,
+            });
     }
 }

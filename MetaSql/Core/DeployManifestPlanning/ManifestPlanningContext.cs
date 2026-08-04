@@ -7,8 +7,8 @@ namespace MetaSql;
 /// </summary>
 public sealed record ManifestPlanningContext
 {
-    public required Workspace SourceWorkspace { get; init; }
-    public required Workspace LiveWorkspace { get; init; }
+    public required InMemoryWorkspace SourceWorkspace { get; init; }
+    public required InMemoryWorkspace LiveWorkspace { get; init; }
     public required MetaSqlLiveDatabasePresence LiveDatabasePresence { get; init; }
     public required IReadOnlyList<MetaSqlDifference> Differences { get; init; }
     public required string ManifestName { get; init; }

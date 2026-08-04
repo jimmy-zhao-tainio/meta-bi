@@ -6,7 +6,7 @@ namespace MetaSql;
 
 internal static class MetaSqlInstanceFingerprint
 {
-    internal static string Compute(Workspace workspace)
+    internal static string Compute(InMemoryWorkspace workspace)
     {
         ArgumentNullException.ThrowIfNull(workspace);
 

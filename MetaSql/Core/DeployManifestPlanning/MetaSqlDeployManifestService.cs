@@ -47,8 +47,8 @@ public sealed class MetaSqlDeployManifestService
     }
 
     public MetaSqlDeployManifestBuildResult BuildManifest(
-        Workspace sourceWorkspace,
-        Workspace liveWorkspace,
+        InMemoryWorkspace sourceWorkspace,
+        InMemoryWorkspace liveWorkspace,
         MetaSqlLiveDatabasePresence liveDatabasePresence,
         IReadOnlyList<MetaSqlDifference> differences,
         string manifestName,

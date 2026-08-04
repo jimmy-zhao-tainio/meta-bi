@@ -1,5 +1,5 @@
 using MetaConvert.TransformScriptToSql;
-using Meta.Core.Services;
+using Meta.Core.Serialization;
 using MetaSql;
 using MetaTransformScript;
 using MetaTransformScript.Sql;
@@ -94,17 +94,12 @@ SELECT
                 "SymmetryDb");
             SaveEmptyMetaSqlWorkspace(liveMetaSqlWorkspacePath, "SymmetryDb");
 
-            var workspaceService = new WorkspaceService();
-            var sourceWorkspace = await workspaceService.LoadAsync(
-                sourceMetaSqlWorkspacePath,
-                searchUpward: false);
-            var liveWorkspace = await workspaceService.LoadAsync(
-                liveMetaSqlWorkspacePath,
-                searchUpward: false);
+            var sourceWorkspace = await XmlWorkspaceReader.OpenAsync(sourceMetaSqlWorkspacePath);
+            var liveWorkspace = await XmlWorkspaceReader.OpenAsync(liveMetaSqlWorkspacePath);
 
             var differences = new MetaSqlDifferenceService().BuildDifferences(
-                sourceWorkspace,
-                liveWorkspace);
+                sourceWorkspace.State,
+                liveWorkspace.State);
             Assert.Contains(differences, row =>
                 row.ObjectKind == MetaSqlObjectKind.Function &&
                 row.DifferenceKind == MetaSqlDifferenceKind.MissingInLive &&
@@ -115,8 +110,8 @@ SELECT
                 string.Equals(row.DisplayName, "deploy.vCustomerOrders", StringComparison.Ordinal));
 
             var manifest = new MetaSqlDeployManifestService().BuildManifest(
-                sourceWorkspace,
-                liveWorkspace,
+                sourceWorkspace.State,
+                liveWorkspace.State,
                 MetaSqlLiveDatabasePresence.Present,
                 differences,
                 manifestName: "TransformScriptToSqlManifest",

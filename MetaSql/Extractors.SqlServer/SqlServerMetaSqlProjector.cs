@@ -1,13 +1,13 @@
 using System.Globalization;
 using Meta.Core.Domain;
-using Meta.Core.Services;
+using Meta.Core.Serialization;
 using MetaDataType.Instance;
 
 namespace MetaSql.Extractors.SqlServer;
 
 internal static class SqlServerMetaSqlProjector
 {
-    internal static Workspace Project(
+    internal static InMemoryWorkspace Project(
         string newWorkspacePath,
         string databaseName,
         IReadOnlyList<TableRow> tableRows,
@@ -223,7 +223,7 @@ internal static class SqlServerMetaSqlProjector
         }
 
         model.SaveToXmlWorkspace(newWorkspacePath);
-        return new WorkspaceService().LoadAsync(newWorkspacePath, searchUpward: false).GetAwaiter().GetResult();
+        return XmlWorkspaceReader.OpenAsync(newWorkspacePath).GetAwaiter().GetResult().State;
     }
 
     internal static string BuildScopedObjectKey(string part1, string part2) => part1 + "." + part2;

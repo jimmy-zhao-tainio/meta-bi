@@ -2,7 +2,8 @@ using System.Globalization;
 using MetaConvert.DataVaultToSql;
 using MetaBusinessDataVault;
 using MetaRawDataVault;
-using Meta.Core.Services;
+using Meta.Core.Serialization;
+using MetaDataVaultImplementation;
 
 namespace MetaDataVault.Tests;
 
@@ -27,7 +28,7 @@ public sealed class ConvertToMetaSqlTests
                 GetImplementationWorkspacePath(repoRoot),
                 databaseName: "RawVault");
 
-            Assert.Equal(targetPath, sqlWorkspace.WorkspaceRootPath);
+            Assert.True(Directory.Exists(targetPath));
             Assert.Equal("MetaSql", sqlWorkspace.Model.Name);
             var databases = sqlWorkspace.Instance.GetOrCreateEntityRecords("Database");
             var schemas = sqlWorkspace.Instance.GetOrCreateEntityRecords("Schema");
@@ -64,7 +65,7 @@ public sealed class ConvertToMetaSqlTests
                 GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
-            Assert.Equal(targetPath, sqlWorkspace.WorkspaceRootPath);
+            Assert.True(Directory.Exists(targetPath));
             Assert.Equal("MetaSql", sqlWorkspace.Model.Name);
             var databases = sqlWorkspace.Instance.GetOrCreateEntityRecords("Database");
             var schemas = sqlWorkspace.Instance.GetOrCreateEntityRecords("Schema");
@@ -147,6 +148,80 @@ public sealed class ConvertToMetaSqlTests
         finally
         {
             DeleteDirectoryIfExists(Path.GetDirectoryName(targetPath)!);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_OmitsOptionalBusinessImplementationColumnWhenNameAndTypeAreAbsent()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var implementationPath = Path.Combine(root, "Implementation");
+        var targetPath = Path.Combine(root, "MetaSql");
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+
+        try
+        {
+            var implementation = await MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(
+                GetImplementationWorkspacePath(repoRoot),
+                searchUpward: false);
+            var hubImplementation = Assert.Single(implementation.BusinessHubImplementationList);
+            hubImplementation.LoadTimestampColumnName = null;
+            hubImplementation.LoadTimestampDataTypeId = null;
+            await implementation.SaveToXmlWorkspaceAsync(implementationPath);
+
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                implementationPath,
+                databaseName: "BusinessVault");
+
+            var customerHub = GetTable(sqlWorkspace.Instance.GetOrCreateEntityRecords("Table"), "BH_Customer");
+            Assert.DoesNotContain(
+                sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn"),
+                row => row.RelationshipIds.TryGetValue("TableId", out var tableId) &&
+                       tableId == customerHub.Id &&
+                       row.Values.TryGetValue("Name", out var name) &&
+                       string.Equals(name, "LoadTimestamp", StringComparison.Ordinal));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_RejectsPartiallySpecifiedOptionalBusinessImplementationColumn()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var implementationPath = Path.Combine(root, "Implementation");
+        var targetPath = Path.Combine(root, "MetaSql");
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+
+        try
+        {
+            var implementation = await MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(
+                GetImplementationWorkspacePath(repoRoot),
+                searchUpward: false);
+            var hubImplementation = Assert.Single(implementation.BusinessHubImplementationList);
+            hubImplementation.LoadTimestampDataTypeId = null;
+            await implementation.SaveToXmlWorkspaceAsync(implementationPath);
+
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                implementationPath,
+                databaseName: "BusinessVault"));
+
+            Assert.Contains(
+                "must define both its name and metadata type, or neither",
+                error.Message,
+                StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
         }
     }
 
@@ -966,9 +1041,7 @@ public sealed class ConvertToMetaSqlTests
                 GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
-            var workspaceService = new WorkspaceService();
-            await workspaceService.SaveAsync(sqlWorkspace);
-            var reloaded = await workspaceService.LoadAsync(targetPath, searchUpward: false);
+            var reloaded = await XmlWorkspaceReader.OpenAsync(targetPath);
 
             Assert.Equal("MetaSql", reloaded.Model.Name);
             Assert.NotEmpty(reloaded.Instance.GetOrCreateEntityRecords("Table"));

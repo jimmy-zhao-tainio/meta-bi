@@ -1,6 +1,6 @@
 using System.Globalization;
 using Meta.Core.Domain;
-using Meta.Core.Services;
+using Meta.Core.Serialization;
 using MetaSql;
 using MetaTransformScript.Sql;
 using MTS = global::MetaTransformScript;
@@ -54,11 +54,11 @@ public static class SqlToTransformScriptConverter
                 await emptyModel
                     .SaveToXmlWorkspaceAsync(outputWorkspacePath, cancellationToken)
                     .ConfigureAwait(false);
-                var emptyWorkspace = await new WorkspaceService()
-                    .LoadAsync(outputWorkspacePath, searchUpward: false, cancellationToken)
+                var emptyWorkspace = await XmlWorkspaceReader
+                    .OpenAsync(outputWorkspacePath, cancellationToken)
                     .ConfigureAwait(false);
 
-                return new SqlToTransformScriptConversionResult(emptyWorkspace, outputWorkspacePath, 0, 0, 0);
+                return new SqlToTransformScriptConversionResult(emptyWorkspace.State, outputWorkspacePath, 0, 0, 0);
             }
 
             throw new InvalidOperationException(
@@ -91,12 +91,12 @@ public static class SqlToTransformScriptConverter
             }
         }
 
-        var workspace = await new WorkspaceService()
-            .LoadAsync(outputWorkspacePath, searchUpward: false, cancellationToken)
+        var workspace = await XmlWorkspaceReader
+            .OpenAsync(outputWorkspacePath, cancellationToken)
             .ConfigureAwait(false);
 
         return new SqlToTransformScriptConversionResult(
-            workspace,
+            workspace.State,
             outputWorkspacePath,
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.View),
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.Function),
@@ -168,7 +168,7 @@ public static class SqlToTransformScriptConverter
 }
 
 public sealed record SqlToTransformScriptConversionResult(
-    Workspace Workspace,
+    InMemoryWorkspace Workspace,
     string WorkspacePath,
     int ViewCount,
     int FunctionCount,

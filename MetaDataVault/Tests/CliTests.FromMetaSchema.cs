@@ -1,4 +1,4 @@
-using Meta.Core.Services;
+using Meta.Core.Serialization;
 using MetaSql;
 using MetaSchema.Core;
 
@@ -16,16 +16,16 @@ public sealed partial class CliTests
         try
         {
             Directory.CreateDirectory(sourcePath);
-            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace();
             SeedMetaSchema(source);
-            await new WorkspaceService().SaveAsync(source);
+            await XmlWorkspaceWriter.WriteNewAsync(source, sourcePath);
 
             var result = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\" --verbose");
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
             Assert.Contains("Summary", result.Output, StringComparison.OrdinalIgnoreCase);
 
-            var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(targetPath);
             Assert.Equal("MetaRawDataVault", workspace.Model.Name);
 
             Assert.Null(workspace.Model.FindEntity("SourceSystem"));
@@ -77,14 +77,14 @@ public sealed partial class CliTests
         try
         {
             Directory.CreateDirectory(sourcePath);
-            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace();
             SeedMetaSchema(source);
 
             AddMetaSchemaView(source, "view:1", "CustomerView", "1");
             AddMetaSchemaField(source, "view-field:1", "view:1", "CustomerViewId", "sqlserver:type:int", "1", null);
             AddMetaSchemaField(source, "view-field:2", "view:1", "CustomerViewName", "sqlserver:type:nvarchar", "2", null);
 
-            await new WorkspaceService().SaveAsync(source);
+            await XmlWorkspaceWriter.WriteNewAsync(source, sourcePath);
 
             var defaultResult = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{defaultTargetPath}\"");
             Assert.Equal(0, defaultResult.ExitCode);
@@ -93,8 +93,8 @@ public sealed partial class CliTests
             Assert.Equal(0, includeViewsResult.ExitCode);
             Assert.DoesNotContain("Error:", includeViewsResult.Output, StringComparison.OrdinalIgnoreCase);
 
-            var defaultWorkspace = await new WorkspaceService().LoadAsync(defaultTargetPath, searchUpward: false);
-            var includeViewsWorkspace = await new WorkspaceService().LoadAsync(includeViewsTargetPath, searchUpward: false);
+            var defaultWorkspace = await XmlWorkspaceReader.OpenAsync(defaultTargetPath);
+            var includeViewsWorkspace = await XmlWorkspaceReader.OpenAsync(includeViewsTargetPath);
 
             Assert.Equal(5, defaultWorkspace.Instance.GetOrCreateEntityRecords("Field").Count);
             Assert.Equal(7, includeViewsWorkspace.Instance.GetOrCreateEntityRecords("Field").Count);
@@ -117,16 +117,16 @@ public sealed partial class CliTests
         try
         {
             Directory.CreateDirectory(sourcePath);
-            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace();
             SeedMetaSchema(source);
             AddMetaSchemaField(source, "6", "1", "AuditId", "sqlserver:type:uniqueidentifier", "4", "false");
-            await new WorkspaceService().SaveAsync(source);
+            await XmlWorkspaceWriter.WriteNewAsync(source, sourcePath);
 
             var result = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
 
             Assert.Equal(0, result.ExitCode);
 
-            var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(targetPath);
             Assert.Equal(6, workspace.Instance.GetOrCreateEntityRecords("Field").Count);
             Assert.Equal(3, workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").Count);
         }
@@ -146,17 +146,17 @@ public sealed partial class CliTests
         try
         {
             Directory.CreateDirectory(sourcePath);
-            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace();
             SeedMetaSchema(source);
             AddMetaSchemaField(source, "6", "1", "OrderHashKey", "sqlserver:type:varbinary", "4", "false");
-            await new WorkspaceService().SaveAsync(source);
+            await XmlWorkspaceWriter.WriteNewAsync(source, sourcePath);
 
             var result = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\" --ignore-field-suffix HashKey");
 
             Assert.Equal(0, result.ExitCode);
             Assert.DoesNotContain("Error:", result.Output, StringComparison.OrdinalIgnoreCase);
 
-            var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(targetPath);
             Assert.Equal(6, workspace.Instance.GetOrCreateEntityRecords("Field").Count);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").Count);
         }
@@ -176,7 +176,7 @@ public sealed partial class CliTests
         try
         {
             Directory.CreateDirectory(sourcePath);
-            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace();
             SeedMetaSchema(source);
 
             AddMetaSchemaTable(source, "3", "HashDriven", "1");
@@ -187,13 +187,13 @@ public sealed partial class CliTests
             AddMetaSchemaPrimaryKey(source, "key:3", "PK_HashDriven", "3");
             AddMetaSchemaKeyField(source, "keyf:3", "key:3", "6", "1");
 
-            await new WorkspaceService().SaveAsync(source);
+            await XmlWorkspaceWriter.WriteNewAsync(source, sourcePath);
 
             var result = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
 
             Assert.Equal(0, result.ExitCode);
 
-            var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(targetPath);
             Assert.Equal(3, workspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
 
             var rawHubKeyParts = workspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").ToDictionary(record => record.Id, StringComparer.Ordinal);
@@ -220,19 +220,17 @@ public sealed partial class CliTests
         try
         {
             Directory.CreateDirectory(sourcePath);
-            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace();
 
             source.Instance.GetOrCreateEntityRecords("System").Add(new Meta.Core.Domain.GenericRecord
             {
                 Id = "1",
-                SourceShardFileName = "System.xml",
                 Values = { ["Name"] = "Sales" }
             });
 
             source.Instance.GetOrCreateEntityRecords("Schema").Add(new Meta.Core.Domain.GenericRecord
             {
                 Id = "1",
-                SourceShardFileName = "Schema.xml",
                 Values = { ["Name"] = "dbo" },
                 RelationshipIds = { ["SystemId"] = "1" }
             });
@@ -254,7 +252,6 @@ public sealed partial class CliTests
             source.Instance.GetOrCreateEntityRecords("TableRelationship").Add(new Meta.Core.Domain.GenericRecord
             {
                 Id = "rel:parent",
-                SourceShardFileName = "TableRelationship.xml",
                 Values = { ["Name"] = "FK_DepartmentHierarchy_Department_ParentDepartmentId" },
                 RelationshipIds =
                 {
@@ -265,7 +262,6 @@ public sealed partial class CliTests
             source.Instance.GetOrCreateEntityRecords("TableRelationship").Add(new Meta.Core.Domain.GenericRecord
             {
                 Id = "rel:child",
-                SourceShardFileName = "TableRelationship.xml",
                 Values = { ["Name"] = "FK_DepartmentHierarchy_Department_ChildDepartmentId" },
                 RelationshipIds =
                 {
@@ -277,7 +273,6 @@ public sealed partial class CliTests
             source.Instance.GetOrCreateEntityRecords("TableRelationshipField").Add(new Meta.Core.Domain.GenericRecord
             {
                 Id = "relf:parent",
-                SourceShardFileName = "TableRelationshipField.xml",
                 Values = { ["Ordinal"] = "1" },
                 RelationshipIds =
                 {
@@ -289,7 +284,6 @@ public sealed partial class CliTests
             source.Instance.GetOrCreateEntityRecords("TableRelationshipField").Add(new Meta.Core.Domain.GenericRecord
             {
                 Id = "relf:child",
-                SourceShardFileName = "TableRelationshipField.xml",
                 Values = { ["Ordinal"] = "1" },
                 RelationshipIds =
                 {
@@ -299,12 +293,12 @@ public sealed partial class CliTests
                 }
             });
 
-            await new WorkspaceService().SaveAsync(source);
+            await XmlWorkspaceWriter.WriteNewAsync(source, sourcePath);
 
             var fromMetaSchemaResult = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
             Assert.Equal(0, fromMetaSchemaResult.ExitCode);
 
-            var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(targetPath);
             var rawLinks = workspace.Instance.GetOrCreateEntityRecords("RawLink").ToDictionary(record => record.Id, StringComparer.Ordinal);
 
             Assert.Equal("DepartmentHierarchyDepartment_ParentDepartmentId", rawLinks["rawlink:rel:parent"].Values["Name"]);
@@ -335,11 +329,11 @@ public sealed partial class CliTests
         try
         {
             Directory.CreateDirectory(sourcePath);
-            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace();
             SeedMetaSchema(source);
             AddMetaSchemaField(source, "6", "2", "AuditId", "sqlserver:type:int", "3", "false");
             AddMetaSchemaField(source, "7", "2", "LoadTimestamp", "sqlserver:type:datetime2", "4", "false");
-            await new WorkspaceService().SaveAsync(source);
+            await XmlWorkspaceWriter.WriteNewAsync(source, sourcePath);
 
             var fromMetaSchemaResult = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
             Assert.Equal(0, fromMetaSchemaResult.ExitCode);

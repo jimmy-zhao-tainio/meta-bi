@@ -81,6 +81,7 @@ if ([string]::IsNullOrWhiteSpace($MetaRepo)) {
 $metaRepoRoot = Get-FullPath $MetaRepo
 $metaCliProject = Join-Path $metaRepoRoot "Meta\Cli\Meta.Cli.csproj"
 $metaCliDll = Join-Path $metaRepoRoot "Meta\Cli\bin\$Configuration\net8.0\meta.dll"
+$metaOperationsProject = Join-Path $metaRepoRoot "Meta\Operations\Meta.Operations.csproj"
 $metaCoreProject = Join-Path $metaRepoRoot "Meta\Core\Meta.Core.csproj"
 $metaAdaptersProject = Join-Path $metaRepoRoot "Meta\Adapters\Meta.Adapters.csproj"
 $stableBuildArgs = @("-m:1", "-nr:false")
@@ -219,6 +220,12 @@ if ($usingLocalMetaPackages) {
 </configuration>
 "@
         Set-Content -LiteralPath $localNuGetConfig -Value $nugetConfigContents -Encoding UTF8
+    }
+
+    if ($PSCmdlet.ShouldProcess($metaOperationsProject, "Pack local Meta.Operations")) {
+        Invoke-Checked "Packing local Meta.Operations" {
+            & dotnet pack $metaOperationsProject -c $Configuration --nologo -o $LocalPackageSource @stableBuildArgs
+        }
     }
 
     if ($PSCmdlet.ShouldProcess($metaCoreProject, "Pack local Meta.Core")) {

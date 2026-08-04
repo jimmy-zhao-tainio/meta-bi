@@ -1,8 +1,8 @@
 using MetaSql;
 using MetaSql.Extractors.SqlServer;
 using Meta.Core.Connections;
-using Meta.Core.Services;
 using Meta.Core.Domain;
+using Meta.Core.Serialization;
 using MetaCli.Core;
 
 internal sealed partial class MetaSqlCommandHandlers
@@ -35,13 +35,13 @@ internal sealed partial class MetaSqlCommandHandlers
         {
             Directory.CreateDirectory(tempRootPath);
 
-            var workspaceService = new WorkspaceService();
-            var sourceWorkspace = await workspaceService.LoadAsync(sourceWorkspacePath, searchUpward: false).ConfigureAwait(false);
+            var openedSourceWorkspace = await XmlWorkspaceReader.OpenAsync(sourceWorkspacePath).ConfigureAwait(false);
+            var sourceWorkspace = openedSourceWorkspace.State;
 
             var liveDatabasePresence = await SqlServerDatabaseRuntime
                 .GetPresenceAsync(connectionString)
                 .ConfigureAwait(false);
-            Workspace liveWorkspace;
+            InMemoryWorkspace liveWorkspace;
             if (liveDatabasePresence == MetaSqlLiveDatabasePresence.Missing)
             {
                 liveWorkspace = SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(
@@ -129,8 +129,8 @@ internal sealed partial class MetaSqlCommandHandlers
     private static List<string> RenderManifestIssues(
         MetaSqlDeployManifest.MetaSqlDeployManifestModel manifestModel,
         string outputPath,
-        Workspace sourceWorkspace,
-        Workspace liveWorkspace)
+        InMemoryWorkspace sourceWorkspace,
+        InMemoryWorkspace liveWorkspace)
     {
         var lines = new List<string>
         {
@@ -166,8 +166,8 @@ internal sealed partial class MetaSqlCommandHandlers
     private static void AddTableColumnBlockLines(
         List<string> lines,
         IEnumerable<MetaSqlDeployManifest.BlockTableColumnDifference> rows,
-        Workspace sourceWorkspace,
-        Workspace liveWorkspace)
+        InMemoryWorkspace sourceWorkspace,
+        InMemoryWorkspace liveWorkspace)
     {
         var sourceColumnsById = BuildRecordIndex(sourceWorkspace, "TableColumn");
         var liveColumnsById = BuildRecordIndex(liveWorkspace, "TableColumn");
@@ -231,7 +231,7 @@ internal sealed partial class MetaSqlCommandHandlers
         }
     }
 
-    private static Dictionary<string, GenericRecord> BuildRecordIndex(Workspace workspace, string entityName)
+    private static Dictionary<string, GenericRecord> BuildRecordIndex(InMemoryWorkspace workspace, string entityName)
     {
         return workspace.Instance
             .GetOrCreateEntityRecords(entityName)
@@ -239,7 +239,7 @@ internal sealed partial class MetaSqlCommandHandlers
     }
 
     private static Dictionary<string, List<GenericRecord>> BuildGroupedRecordIndex(
-        Workspace workspace,
+        InMemoryWorkspace workspace,
         string entityName,
         string relationshipName)
     {

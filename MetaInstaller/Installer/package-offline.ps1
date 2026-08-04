@@ -134,8 +134,13 @@ function Invoke-Checked {
 }
 
 function Initialize-ReleaseNuGet {
+    $metaOperationsProject = Join-Path $metaRepoRoot 'Meta\Operations\Meta.Operations.csproj'
     $metaCoreProject = Join-Path $metaRepoRoot 'Meta\Core\Meta.Core.csproj'
     $metaAdaptersProject = Join-Path $metaRepoRoot 'Meta\Adapters\Meta.Adapters.csproj'
+    if (-not (Test-Path -LiteralPath $metaOperationsProject)) {
+        throw "Could not find upstream Meta.Operations project at '$metaOperationsProject'. Use -MetaRepo to point at the core meta repository."
+    }
+
     if (-not (Test-Path -LiteralPath $metaCoreProject)) {
         throw "Could not find upstream Meta.Core project at '$metaCoreProject'. Use -MetaRepo to point at the core meta repository."
     }
@@ -162,6 +167,10 @@ function Initialize-ReleaseNuGet {
 </configuration>
 "@
     Set-Content -LiteralPath $localNuGetConfig -Value $nugetConfigContents -Encoding UTF8
+
+    Invoke-Checked "Packing local Meta.Operations from: $metaOperationsProject" {
+        dotnet pack $metaOperationsProject -c Release --nologo -o $localPackageSource
+    }
 
     Invoke-Checked "Packing local Meta.Core from: $metaCoreProject" {
         dotnet pack $metaCoreProject -c Release --nologo -o $localPackageSource

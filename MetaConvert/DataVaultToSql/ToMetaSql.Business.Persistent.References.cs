@@ -50,22 +50,20 @@ public static partial class Converter
                         row => row.Value));
             }
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessReferenceImplementation.LoadTimestampColumnName,
                 businessReferenceImplementation.LoadTimestampDataTypeId,
-                "false",
                 reservedColumnNames,
                 businessReferenceImplementation.LoadTimestampDefaultExpressionSql,
                 ("Precision", businessReferenceImplementation.LoadTimestampPrecision));
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessReferenceImplementation.RecordSourceColumnName,
                 businessReferenceImplementation.RecordSourceDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessReferenceImplementation.RecordSourceLength));
 
@@ -127,12 +125,11 @@ public static partial class Converter
 
             AddBusinessMembers(context, table, reservedColumnNames, members, "true");
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessReferenceSatelliteImplementation.HashDiffColumnName,
                 businessReferenceSatelliteImplementation.HashDiffDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessReferenceSatelliteImplementation.HashDiffLength));
 
@@ -153,12 +150,11 @@ public static partial class Converter
                 parentHashKeyColumn,
                 loadTimestampColumn);
 
-            AddImplementationColumn(
+            AddOptionalImplementationColumn(
                 context,
                 table,
                 businessReferenceSatelliteImplementation.RecordSourceColumnName,
                 businessReferenceSatelliteImplementation.RecordSourceDataTypeId,
-                "false",
                 reservedColumnNames,
                 ("Length", businessReferenceSatelliteImplementation.RecordSourceLength));
 

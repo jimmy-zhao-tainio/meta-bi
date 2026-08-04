@@ -1,5 +1,6 @@
 using System.Diagnostics;
-using Meta.Core.Services;
+using Meta.Core.Domain;
+using Meta.Core.Serialization;
 using MetaSchema.Core;
 
 namespace MetaDataVault.Tests;
@@ -61,7 +62,7 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-bridge --id CustomerOrderTraversal --hub Customer --name CustomerOrderTraversal");
             RunBusinessAdd(workspacePath, "add-bridge-traversal --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --source-role CustomerOrderCustomer --target-role CustomerOrderOrder");
 
-            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(workspacePath);
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTime"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessSameAsLink"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLink"));
@@ -238,7 +239,7 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-bridge --id CustomerOrderTraversal --hub Customer --name CustomerOrderTraversal");
             RunBusinessAdd(workspacePath, "add-bridge-traversal --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --source-role CustomerOrderCustomer --target-role CustomerOrderOrder");
 
-            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(workspacePath);
             var linkSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("BusinessSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var pointInTimeHubSatellites = workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeHubSatellite").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var pointInTimeLinkSatellites = workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeLinkSatellite").ToDictionary(row => row.Id, StringComparer.Ordinal);
@@ -269,7 +270,7 @@ public sealed partial class CliTests
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
 
-            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(workspacePath);
             var hubs = workspace.Instance.GetOrCreateEntityRecords("BusinessHub");
             Assert.Single(hubs);
             Assert.Equal("Customer", hubs[0].Id);
@@ -311,7 +312,7 @@ public sealed partial class CliTests
             RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --name OrderCustomerStatus --satellite-kind standard");
             RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --field OrderStatusField --name StatusCode");
 
-            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(workspacePath);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("RawLink"));
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawLinkRole").Count);
@@ -349,7 +350,7 @@ public sealed partial class CliTests
             RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --name OrderCustomerStatus --satellite-kind standard");
             RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --field OrderStatusField --name StatusCode");
 
-            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            var workspace = await XmlWorkspaceReader.OpenAsync(workspacePath);
             var hubKeyParts = workspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var hubSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
             var linkSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("RawLinkSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
@@ -364,13 +365,12 @@ public sealed partial class CliTests
         }
     }
 
-    private static void SeedMetaSchema(Meta.Core.Domain.Workspace workspace)
+    private static void SeedMetaSchema(InMemoryWorkspace workspace)
     {
         var systems = workspace.Instance.GetOrCreateEntityRecords("System");
         systems.Add(new Meta.Core.Domain.GenericRecord
         {
             Id = "1",
-            SourceShardFileName = "System.xml",
             Values =
             {
                 ["Name"] = "Sales"
@@ -381,7 +381,6 @@ public sealed partial class CliTests
         schemas.Add(new Meta.Core.Domain.GenericRecord
         {
             Id = "1",
-            SourceShardFileName = "Schema.xml",
             Values =
             {
                 ["Name"] = "dbo"
@@ -408,7 +407,6 @@ public sealed partial class CliTests
         tableRelationships.Add(new Meta.Core.Domain.GenericRecord
         {
             Id = "rel:1",
-            SourceShardFileName = "TableRelationship.xml",
             Values =
             {
                 ["Name"] = "FK_Order_Customer"
@@ -424,7 +422,6 @@ public sealed partial class CliTests
         tableRelationshipFields.Add(new Meta.Core.Domain.GenericRecord
         {
             Id = "relf:1",
-            SourceShardFileName = "TableRelationshipField.xml",
             Values =
             {
                 ["Ordinal"] = "1"
@@ -438,63 +435,56 @@ public sealed partial class CliTests
         });
     }
 
-    private static void AddMetaSchemaTable(Meta.Core.Domain.Workspace workspace, string id, string name, string schemaId)
+    private static void AddMetaSchemaTable(InMemoryWorkspace workspace, string id, string name, string schemaId)
     {
         workspace.Instance.GetOrCreateEntityRecords("SchemaObject").Add(new Meta.Core.Domain.GenericRecord
         {
             Id = id,
-            SourceShardFileName = "SchemaObject.xml",
             Values = { ["Name"] = name },
             RelationshipIds = { ["SchemaId"] = schemaId }
         });
         workspace.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
         {
             Id = id,
-            SourceShardFileName = "Table.xml",
             RelationshipIds = { ["SchemaObjectId"] = id }
         });
     }
 
-    private static void AddMetaSchemaView(Meta.Core.Domain.Workspace workspace, string id, string name, string schemaId)
+    private static void AddMetaSchemaView(InMemoryWorkspace workspace, string id, string name, string schemaId)
     {
         workspace.Instance.GetOrCreateEntityRecords("SchemaObject").Add(new Meta.Core.Domain.GenericRecord
         {
             Id = id,
-            SourceShardFileName = "SchemaObject.xml",
             Values = { ["Name"] = name },
             RelationshipIds = { ["SchemaId"] = schemaId }
         });
         workspace.Instance.GetOrCreateEntityRecords("View").Add(new Meta.Core.Domain.GenericRecord
         {
             Id = id,
-            SourceShardFileName = "View.xml",
             RelationshipIds = { ["SchemaObjectId"] = id }
         });
     }
 
-    private static void AddMetaSchemaPrimaryKey(Meta.Core.Domain.Workspace workspace, string id, string name, string tableId)
+    private static void AddMetaSchemaPrimaryKey(InMemoryWorkspace workspace, string id, string name, string tableId)
     {
         workspace.Instance.GetOrCreateEntityRecords("Key").Add(new Meta.Core.Domain.GenericRecord
         {
             Id = id,
-            SourceShardFileName = "Key.xml",
             Values = { ["Name"] = name },
             RelationshipIds = { ["TableId"] = tableId }
         });
         workspace.Instance.GetOrCreateEntityRecords("PrimaryKey").Add(new Meta.Core.Domain.GenericRecord
         {
             Id = id,
-            SourceShardFileName = "PrimaryKey.xml",
             RelationshipIds = { ["KeyId"] = id }
         });
     }
 
-    private static void AddMetaSchemaKeyField(Meta.Core.Domain.Workspace workspace, string id, string keyId, string fieldId, string ordinal)
+    private static void AddMetaSchemaKeyField(InMemoryWorkspace workspace, string id, string keyId, string fieldId, string ordinal)
     {
         workspace.Instance.GetOrCreateEntityRecords("KeyField").Add(new Meta.Core.Domain.GenericRecord
         {
             Id = id,
-            SourceShardFileName = "KeyField.xml",
             Values = { ["Ordinal"] = ordinal },
             RelationshipIds =
             {
@@ -504,7 +494,7 @@ public sealed partial class CliTests
         });
     }
 
-    private static void AddMetaSchemaField(Meta.Core.Domain.Workspace workspace, string id, string schemaObjectId, string name, string dataTypeId, string ordinal, string? isNullable)
+    private static void AddMetaSchemaField(InMemoryWorkspace workspace, string id, string schemaObjectId, string name, string dataTypeId, string ordinal, string? isNullable)
     {
         var values = new Dictionary<string, string>
         {
@@ -520,7 +510,6 @@ public sealed partial class CliTests
         var field = new Meta.Core.Domain.GenericRecord
         {
             Id = id,
-            SourceShardFileName = "Field.xml",
             RelationshipIds =
             {
                 ["SchemaObjectId"] = schemaObjectId

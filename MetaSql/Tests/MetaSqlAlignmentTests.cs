@@ -59,8 +59,7 @@ public sealed class MetaSqlAlignmentTests
             var diffService = new MetaSqlDiffService();
             var result = diffService.BuildEqualDiffWorkspace(
                 sourceWorkspace,
-                liveWorkspace,
-                liveMetaSqlPath);
+                liveWorkspace);
 
             Assert.False(result.HasDifferences);
         }

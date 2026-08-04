@@ -1,5 +1,5 @@
 using Meta.Core.Domain;
-using Meta.Core.Services;
+using Meta.Core.Serialization;
 
 namespace MetaSql.Tests;
 
@@ -246,10 +246,10 @@ public sealed class MetaSqlDifferenceServiceTests
         });
     }
 
-    private static Workspace CreateWorkspace(MetaSqlModel model, string leafName)
+    private static InMemoryWorkspace CreateWorkspace(MetaSqlModel model, string leafName)
     {
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"), leafName);
         model.SaveToXmlWorkspace(workspacePath);
-        return new WorkspaceService().LoadAsync(workspacePath, searchUpward: false).GetAwaiter().GetResult();
+        return XmlWorkspaceReader.OpenAsync(workspacePath).GetAwaiter().GetResult().State;
     }
 }
