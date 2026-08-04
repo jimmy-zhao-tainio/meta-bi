@@ -1,220 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-new-workspace-path" ValueShapeId="shape-path">
-      <Description>Directory where the MetaPipeline workspace will be created.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>path</Name>
-    </Parameter>
-    <Parameter Id="param-execute-workspace" ValueShapeId="shape-path">
-      <Description>MetaPipeline workspace. Defaults to the current working directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-pipeline" ValueShapeId="shape-text">
-      <Description>Pipeline name to execute.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>pipeline</Name>
-    </Parameter>
-    <Parameter Id="param-execute-transform-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformScript workspace path used for operational run context.</Description>
-      <Name>transform-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-binding-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformBinding workspace path used for operational run context.</Description>
-      <Name>binding-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
-      <Name>data-type-conversion-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-pipeline-db-connection-env" ValueShapeId="shape-text">
-      <Description>Environment variable for an initialized MetaPipeline operational DB.</Description>
-      <Name>pipeline-db-connection-env</Name>
-    </Parameter>
-    <Parameter Id="param-execute-worker-workspace" ValueShapeId="shape-path">
-      <Description>MetaPipeline workspace. Defaults to the current working directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-worker-pipeline" ValueShapeId="shape-text">
-      <Description>Pipeline name to execute as a worker.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>pipeline</Name>
-    </Parameter>
-    <Parameter Id="param-execute-worker-control-pipe" ValueShapeId="shape-text">
-      <Description>Named pipe used for orchestration worker control messages.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>control-pipe</Name>
-    </Parameter>
-    <Parameter Id="param-execute-worker-transform-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformScript workspace path used for operational run context.</Description>
-      <Name>transform-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-worker-binding-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformBinding workspace path used for operational run context.</Description>
-      <Name>binding-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-worker-control-pipe-connect-timeout-seconds" ValueShapeId="shape-count">
-      <Description>Timeout while connecting to the orchestration control pipe. 0 or omitted means no timeout.</Description>
-      <Name>control-pipe-connect-timeout-seconds</Name>
-    </Parameter>
-    <Parameter Id="param-execute-worker-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
-      <Name>data-type-conversion-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-worker-pipeline-db-connection-env" ValueShapeId="shape-text">
-      <Description>Environment variable for an initialized MetaPipeline operational DB.</Description>
-      <Name>pipeline-db-connection-env</Name>
-    </Parameter>
-    <Parameter Id="param-execute-step-workspace" ValueShapeId="shape-path">
-      <Description>MetaPipeline workspace. Defaults to the current working directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-step-pipeline" ValueShapeId="shape-text">
-      <Description>Pipeline name containing the step.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>pipeline</Name>
-    </Parameter>
-    <Parameter Id="param-execute-step-step-name" ValueShapeId="shape-text">
-      <Description>Pipeline task name or id to execute.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>step-name</Name>
-    </Parameter>
-    <Parameter Id="param-execute-step-transform-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformScript workspace path used for operational run context.</Description>
-      <Name>transform-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-step-binding-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformBinding workspace path used for operational run context.</Description>
-      <Name>binding-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-step-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
-      <Name>data-type-conversion-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-step-pipeline-db-connection-env" ValueShapeId="shape-text">
-      <Description>Environment variable for an initialized MetaPipeline operational DB.</Description>
-      <Name>pipeline-db-connection-env</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-transform-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformScript workspace containing the script.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>transform-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-binding-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformBinding workspace containing script binding rows.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>binding-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-script" ValueShapeId="shape-text">
-      <Description>TransformScript.Name or TransformScript.Id to execute.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>script</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-binding" ValueShapeId="shape-text">
-      <Description>Binding id when the selected script has multiple bindings.</Description>
-      <Name>binding</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-execution-connection-env" ValueShapeId="shape-text">
-      <Description>Environment variable for the execution SQL Server connection.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>execution-connection-env</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-target-connection-env" ValueShapeId="shape-text">
-      <Description>Environment variable for the target SQL Server connection.</Description>
-      <Name>target-connection-env</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-target" ValueShapeId="shape-sql-identifier">
-      <Description>Target table identifier when a SELECT binding has multiple targets.</Description>
-      <Name>target</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-batch-size" ValueShapeId="shape-count">
-      <DefaultValue>1000</DefaultValue>
-      <Description>Bounded in-memory row buffer size. Default: 1000.</Description>
-      <Name>batch-size</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-timeout-seconds" ValueShapeId="shape-count">
-      <Description>SQL command and bulk-copy timeout seconds. 0 or omitted means no command timeout.</Description>
-      <Name>timeout-seconds</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-target-data-type-system" ValueShapeId="shape-text">
-      <DefaultValue>SqlServer</DefaultValue>
-      <Description>Runtime target type family for InsertRows. Default: SqlServer.</Description>
-      <Name>target-data-type-system</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
-      <Name>data-type-conversion-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-sqlserver-pipeline-db-connection-env" ValueShapeId="shape-text">
-      <Description>Environment variable for an initialized MetaPipeline operational DB.</Description>
-      <Name>pipeline-db-connection-env</Name>
-    </Parameter>
-    <Parameter Id="param-create-pipeline-db-pipeline-db-connection-env" ValueShapeId="shape-text">
-      <Description>Environment variable with a SQL Server connection string that can create the database.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>pipeline-db-connection-env</Name>
-    </Parameter>
-    <Parameter Id="param-create-pipeline-db-pipeline-db-name" ValueShapeId="shape-text">
-      <DefaultValue>MetaPipeline</DefaultValue>
-      <Description>Operational database name. Default: MetaPipeline.</Description>
-      <Name>pipeline-db-name</Name>
-    </Parameter>
-    <Parameter Id="param-prune-pipeline-db-pipeline-db-connection-env" ValueShapeId="shape-text">
-      <Description>Environment variable for the initialized MetaPipeline operational DB.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>pipeline-db-connection-env</Name>
-    </Parameter>
-    <Parameter Id="param-prune-pipeline-db-retention-days" ValueShapeId="shape-count">
-      <Description>Delete eligible diagnostic rows older than this retention window.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>retention-days</Name>
-    </Parameter>
-    <Parameter Id="param-prune-pipeline-db-dry-run" ValueShapeId="shape-flag">
-      <Description>Report eligible rows without deleting them.</Description>
-      <Name>dry-run</Name>
-    </Parameter>
-    <Parameter Id="param-add-pipeline-workspace" ValueShapeId="shape-path">
-      <Description>Existing MetaPipeline workspace to update. Defaults to the current working directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-pipeline-name" ValueShapeId="shape-text">
-      <Description>Pipeline name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-pipeline-description" ValueShapeId="shape-text">
-      <Description>Pipeline description.</Description>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-inspect-workspace" ValueShapeId="shape-path">
-      <Description>MetaPipeline workspace to inspect. Defaults to the current working directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-executable-step-workspace" ValueShapeId="shape-path">
-      <Description>Existing MetaPipeline workspace to update. Defaults to the current working directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-executable-step-pipeline" ValueShapeId="shape-text">
-      <Description>Pipeline that receives the new serial step.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>pipeline</Name>
+    <Parameter Id="param-add-executable-step-arguments" ValueShapeId="shape-raw-text">
+      <Description>Raw command-line arguments passed to the executable.</Description>
+      <Name>arguments</Name>
     </Parameter>
     <Parameter Id="param-add-executable-step-executable" ValueShapeId="shape-path">
       <Description>Executable path or executable name resolvable by the operating system.</Description>
       <IsRequired>true</IsRequired>
       <Name>executable</Name>
     </Parameter>
+    <Parameter Id="param-add-executable-step-pipeline" ValueShapeId="shape-text">
+      <Description>Pipeline that receives the new serial step.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pipeline</Name>
+    </Parameter>
     <Parameter Id="param-add-executable-step-step-name" ValueShapeId="shape-text">
       <Description>Step name; omitted derives a deterministic name from the executable file name.</Description>
       <Name>step-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-executable-step-arguments" ValueShapeId="shape-raw-text">
-      <Description>Raw command-line arguments passed to the executable.</Description>
-      <Name>arguments</Name>
-    </Parameter>
-    <Parameter Id="param-add-executable-step-working-directory" ValueShapeId="shape-path">
-      <Description>Process working directory.</Description>
-      <Name>working-directory</Name>
     </Parameter>
     <Parameter Id="param-add-executable-step-success-exit-code" ValueShapeId="shape-count">
       <DefaultValue>0</DefaultValue>
@@ -225,24 +28,35 @@
       <Description>Process timeout seconds. 0 or omitted means no timeout.</Description>
       <Name>timeout-seconds</Name>
     </Parameter>
-    <Parameter Id="param-add-step-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-executable-step-working-directory" ValueShapeId="shape-path">
+      <Description>Process working directory.</Description>
+      <Name>working-directory</Name>
+    </Parameter>
+    <Parameter Id="param-add-executable-step-workspace" ValueShapeId="shape-path">
       <Description>Existing MetaPipeline workspace to update. Defaults to the current working directory.</Description>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-step-pipeline" ValueShapeId="shape-text">
-      <Description>Pipeline that receives the new serial step.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>pipeline</Name>
+    <Parameter Id="param-add-pipeline-description" ValueShapeId="shape-text">
+      <Description>Pipeline description.</Description>
+      <Name>description</Name>
     </Parameter>
-    <Parameter Id="param-add-step-script" ValueShapeId="shape-text">
-      <Description>TransformScript.Name or TransformScript.Id to model.</Description>
+    <Parameter Id="param-add-pipeline-name" ValueShapeId="shape-text">
+      <Description>Pipeline name.</Description>
       <IsRequired>true</IsRequired>
-      <Name>script</Name>
+      <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-step-transform-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformScript workspace used for script selection.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>transform-workspace</Name>
+    <Parameter Id="param-add-pipeline-workspace" ValueShapeId="shape-path">
+      <Description>Existing MetaPipeline workspace to update. Defaults to the current working directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-step-batch-size" ValueShapeId="shape-count">
+      <DefaultValue>1000</DefaultValue>
+      <Description>Bounded in-memory row buffer size for InsertRows. Default: 1000.</Description>
+      <Name>batch-size</Name>
+    </Parameter>
+    <Parameter Id="param-add-step-binding" ValueShapeId="shape-text">
+      <Description>Binding id when the selected script has multiple bindings.</Description>
+      <Name>binding</Name>
     </Parameter>
     <Parameter Id="param-add-step-binding-workspace" ValueShapeId="shape-path">
       <Description>MetaTransformBinding workspace used for binding selection.</Description>
@@ -254,40 +68,237 @@
       <IsRequired>true</IsRequired>
       <Name>execution-connection-env</Name>
     </Parameter>
+    <Parameter Id="param-add-step-pipeline" ValueShapeId="shape-text">
+      <Description>Pipeline that receives the new serial step.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pipeline</Name>
+    </Parameter>
+    <Parameter Id="param-add-step-script" ValueShapeId="shape-text">
+      <Description>TransformScript.Name or TransformScript.Id to model.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>script</Name>
+    </Parameter>
     <Parameter Id="param-add-step-step-name" ValueShapeId="shape-text">
       <Description>Step name; omitted derives a deterministic name from the script name.</Description>
       <Name>step-name</Name>
     </Parameter>
-    <Parameter Id="param-add-step-binding" ValueShapeId="shape-text">
-      <Description>Binding id when the selected script has multiple bindings.</Description>
-      <Name>binding</Name>
+    <Parameter Id="param-add-step-target" ValueShapeId="shape-sql-identifier">
+      <Description>Target table identifier when a SELECT binding has multiple targets.</Description>
+      <Name>target</Name>
     </Parameter>
     <Parameter Id="param-add-step-target-connection-env" ValueShapeId="shape-text">
       <Description>Environment variable named by the modeled target connection.</Description>
       <Name>target-connection-env</Name>
     </Parameter>
-    <Parameter Id="param-add-step-target" ValueShapeId="shape-sql-identifier">
-      <Description>Target table identifier when a SELECT binding has multiple targets.</Description>
-      <Name>target</Name>
+    <Parameter Id="param-add-step-target-data-type-system" ValueShapeId="shape-text">
+      <DefaultValue>SqlServer</DefaultValue>
+      <Description>InsertRows target type family. Default: SqlServer.</Description>
+      <Name>target-data-type-system</Name>
     </Parameter>
     <Parameter Id="param-add-step-target-write" ValueShapeId="shape-text">
       <DefaultValue>InsertRows</DefaultValue>
       <Description>SELECT-kind target write model. The only supported value is insert-rows.</Description>
       <Name>target-write</Name>
     </Parameter>
-    <Parameter Id="param-add-step-batch-size" ValueShapeId="shape-count">
-      <DefaultValue>1000</DefaultValue>
-      <Description>Bounded in-memory row buffer size for InsertRows. Default: 1000.</Description>
-      <Name>batch-size</Name>
-    </Parameter>
     <Parameter Id="param-add-step-timeout-seconds" ValueShapeId="shape-count">
       <Description>SQL command and bulk-copy timeout seconds. 0 or omitted means no timeout.</Description>
       <Name>timeout-seconds</Name>
     </Parameter>
-    <Parameter Id="param-add-step-target-data-type-system" ValueShapeId="shape-text">
+    <Parameter Id="param-add-step-transform-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace used for script selection.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>transform-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-step-workspace" ValueShapeId="shape-path">
+      <Description>Existing MetaPipeline workspace to update. Defaults to the current working directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-create-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL Server connection string.</Description>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-create-csharp" ValueShapeId="shape-path">
+      <Description>Create a C# workspace at this directory.</Description>
+      <Name>csharp</Name>
+    </Parameter>
+    <Parameter Id="param-create-pipeline-db-pipeline-db-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable with a SQL Server connection string that can create the database.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pipeline-db-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-create-pipeline-db-pipeline-db-name" ValueShapeId="shape-text">
+      <DefaultValue>MetaPipeline</DefaultValue>
+      <Description>Operational database name. Default: MetaPipeline.</Description>
+      <Name>pipeline-db-name</Name>
+    </Parameter>
+    <Parameter Id="param-create-sql" ValueShapeId="shape-path">
+      <Description>Create a SQL workspace described by this directory.</Description>
+      <Name>sql</Name>
+    </Parameter>
+    <Parameter Id="param-create-xml" ValueShapeId="shape-path">
+      <Description>Create an XML workspace at this directory.</Description>
+      <Name>xml</Name>
+    </Parameter>
+    <Parameter Id="param-execute-binding-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformBinding workspace path used for operational run context.</Description>
+      <Name>binding-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-data-type-conversion-workspace" ValueShapeId="shape-path">
+      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
+      <Name>data-type-conversion-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-pipeline" ValueShapeId="shape-text">
+      <Description>Pipeline name to execute.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pipeline</Name>
+    </Parameter>
+    <Parameter Id="param-execute-pipeline-db-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable for an initialized MetaPipeline operational DB.</Description>
+      <Name>pipeline-db-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-batch-size" ValueShapeId="shape-count">
+      <DefaultValue>1000</DefaultValue>
+      <Description>Bounded in-memory row buffer size. Default: 1000.</Description>
+      <Name>batch-size</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-binding" ValueShapeId="shape-text">
+      <Description>Binding id when the selected script has multiple bindings.</Description>
+      <Name>binding</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-binding-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformBinding workspace containing script binding rows.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>binding-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-data-type-conversion-workspace" ValueShapeId="shape-path">
+      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
+      <Name>data-type-conversion-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-execution-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable for the execution SQL Server connection.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>execution-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-pipeline-db-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable for an initialized MetaPipeline operational DB.</Description>
+      <Name>pipeline-db-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-script" ValueShapeId="shape-text">
+      <Description>TransformScript.Name or TransformScript.Id to execute.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>script</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-target" ValueShapeId="shape-sql-identifier">
+      <Description>Target table identifier when a SELECT binding has multiple targets.</Description>
+      <Name>target</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-target-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable for the target SQL Server connection.</Description>
+      <Name>target-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-target-data-type-system" ValueShapeId="shape-text">
       <DefaultValue>SqlServer</DefaultValue>
-      <Description>InsertRows target type family. Default: SqlServer.</Description>
+      <Description>Runtime target type family for InsertRows. Default: SqlServer.</Description>
       <Name>target-data-type-system</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-timeout-seconds" ValueShapeId="shape-count">
+      <Description>SQL command and bulk-copy timeout seconds. 0 or omitted means no command timeout.</Description>
+      <Name>timeout-seconds</Name>
+    </Parameter>
+    <Parameter Id="param-execute-sqlserver-transform-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace containing the script.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>transform-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-step-binding-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformBinding workspace path used for operational run context.</Description>
+      <Name>binding-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-step-data-type-conversion-workspace" ValueShapeId="shape-path">
+      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
+      <Name>data-type-conversion-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-step-pipeline" ValueShapeId="shape-text">
+      <Description>Pipeline name containing the step.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pipeline</Name>
+    </Parameter>
+    <Parameter Id="param-execute-step-pipeline-db-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable for an initialized MetaPipeline operational DB.</Description>
+      <Name>pipeline-db-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-execute-step-step-name" ValueShapeId="shape-text">
+      <Description>Pipeline task name or id to execute.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>step-name</Name>
+    </Parameter>
+    <Parameter Id="param-execute-step-transform-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace path used for operational run context.</Description>
+      <Name>transform-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-step-workspace" ValueShapeId="shape-path">
+      <Description>MetaPipeline workspace. Defaults to the current working directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-transform-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace path used for operational run context.</Description>
+      <Name>transform-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-worker-binding-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformBinding workspace path used for operational run context.</Description>
+      <Name>binding-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-worker-control-pipe" ValueShapeId="shape-text">
+      <Description>Named pipe used for orchestration worker control messages.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>control-pipe</Name>
+    </Parameter>
+    <Parameter Id="param-execute-worker-control-pipe-connect-timeout-seconds" ValueShapeId="shape-count">
+      <Description>Timeout while connecting to the orchestration control pipe. 0 or omitted means no timeout.</Description>
+      <Name>control-pipe-connect-timeout-seconds</Name>
+    </Parameter>
+    <Parameter Id="param-execute-worker-data-type-conversion-workspace" ValueShapeId="shape-path">
+      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
+      <Name>data-type-conversion-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-worker-pipeline" ValueShapeId="shape-text">
+      <Description>Pipeline name to execute as a worker.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pipeline</Name>
+    </Parameter>
+    <Parameter Id="param-execute-worker-pipeline-db-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable for an initialized MetaPipeline operational DB.</Description>
+      <Name>pipeline-db-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-execute-worker-transform-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace path used for operational run context.</Description>
+      <Name>transform-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-worker-workspace" ValueShapeId="shape-path">
+      <Description>MetaPipeline workspace. Defaults to the current working directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-execute-workspace" ValueShapeId="shape-path">
+      <Description>MetaPipeline workspace. Defaults to the current working directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-workspace" ValueShapeId="shape-path">
+      <Description>MetaPipeline workspace to inspect. Defaults to the current working directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-prune-pipeline-db-dry-run" ValueShapeId="shape-flag">
+      <Description>Report eligible rows without deleting them.</Description>
+      <Name>dry-run</Name>
+    </Parameter>
+    <Parameter Id="param-prune-pipeline-db-pipeline-db-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable for the initialized MetaPipeline operational DB.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pipeline-db-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-prune-pipeline-db-retention-days" ValueShapeId="shape-count">
+      <Description>Delete eligible diagnostic rows older than this retention window.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>retention-days</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

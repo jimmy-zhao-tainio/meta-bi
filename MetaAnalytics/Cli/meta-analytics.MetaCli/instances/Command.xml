@@ -1,45 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <CommandList>
-    <Command Id="cmd-help" ApplicationId="app-meta-analytics">
-      <Description>Show help.</Description>
-      <Name>help</Name>
-      <Token>help</Token>
-    </Command>
-    <Command Id="cmd-new-workspace" ApplicationId="app-meta-analytics">
-      <Description>Create a MetaAnalytics workspace.</Description>
-      <Name>new-workspace</Name>
-      <Token>new-workspace</Token>
-    </Command>
-    <Command Id="cmd-add-model" ApplicationId="app-meta-analytics">
-      <Description>Add an analytics model.</Description>
-      <Name>add-model</Name>
-      <Token>add-model</Token>
-    </Command>
-    <Command Id="cmd-add-data-source" ApplicationId="app-meta-analytics">
-      <Description>Add an analytics source declaration.</Description>
-      <Name>add-data-source</Name>
-      <Token>add-data-source</Token>
-    </Command>
-    <Command Id="cmd-add-table" ApplicationId="app-meta-analytics">
-      <Description>Add an analytics table.</Description>
-      <Name>add-table</Name>
-      <Token>add-table</Token>
+    <Command Id="cmd-add-aggregation-behavior" ApplicationId="app-meta-analytics">
+      <Description>Declare a base measure aggregate function.</Description>
+      <Name>add-aggregation-behavior</Name>
+      <Token>add-aggregation-behavior</Token>
     </Command>
     <Command Id="cmd-add-attribute" ApplicationId="app-meta-analytics">
       <Description>Add a typed table attribute or calculated attribute.</Description>
       <Name>add-attribute</Name>
       <Token>add-attribute</Token>
     </Command>
-    <Command Id="cmd-add-sort-by-attribute" ApplicationId="app-meta-analytics">
-      <Description>Declare one attribute as the sort key for another.</Description>
-      <Name>add-sort-by-attribute</Name>
-      <Token>add-sort-by-attribute</Token>
+    <Command Id="cmd-add-attribute-permission" ApplicationId="app-meta-analytics">
+      <Description>Add object-level security for an attribute.</Description>
+      <Name>add-attribute-permission</Name>
+      <Token>add-attribute-permission</Token>
     </Command>
     <Command Id="cmd-add-attribute-relationship" ApplicationId="app-meta-analytics">
       <Description>Declare an attribute relationship inside a table.</Description>
       <Name>add-attribute-relationship</Name>
       <Token>add-attribute-relationship</Token>
+    </Command>
+    <Command Id="cmd-add-attribute-translation" ApplicationId="app-meta-analytics">
+      <Description>Translate attribute metadata.</Description>
+      <Name>add-attribute-translation</Name>
+      <Token>add-attribute-translation</Token>
+    </Command>
+    <Command Id="cmd-add-culture" ApplicationId="app-meta-analytics">
+      <Description>Add a model culture.</Description>
+      <Name>add-culture</Name>
+      <Token>add-culture</Token>
+    </Command>
+    <Command Id="cmd-add-data-source" ApplicationId="app-meta-analytics">
+      <Description>Add an analytics source declaration.</Description>
+      <Name>add-data-source</Name>
+      <Token>add-data-source</Token>
     </Command>
     <Command Id="cmd-add-hierarchy" ApplicationId="app-meta-analytics">
       <Description>Add a hierarchy.</Description>
@@ -51,30 +46,30 @@
       <Name>add-hierarchy-level</Name>
       <Token>add-hierarchy-level</Token>
     </Command>
-    <Command Id="cmd-add-relationship" ApplicationId="app-meta-analytics">
-      <Description>Add a relationship between analytics tables.</Description>
-      <Name>add-relationship</Name>
-      <Token>add-relationship</Token>
+    <Command Id="cmd-add-hierarchy-translation" ApplicationId="app-meta-analytics">
+      <Description>Translate hierarchy metadata.</Description>
+      <Name>add-hierarchy-translation</Name>
+      <Token>add-hierarchy-translation</Token>
     </Command>
     <Command Id="cmd-add-measure" ApplicationId="app-meta-analytics">
       <Description>Add a source-backed base measure.</Description>
       <Name>add-measure</Name>
       <Token>add-measure</Token>
     </Command>
-    <Command Id="cmd-add-aggregation-behavior" ApplicationId="app-meta-analytics">
-      <Description>Declare a base measure aggregate function.</Description>
-      <Name>add-aggregation-behavior</Name>
-      <Token>add-aggregation-behavior</Token>
+    <Command Id="cmd-add-measure-translation" ApplicationId="app-meta-analytics">
+      <Description>Translate measure metadata.</Description>
+      <Name>add-measure-translation</Name>
+      <Token>add-measure-translation</Token>
+    </Command>
+    <Command Id="cmd-add-model" ApplicationId="app-meta-analytics">
+      <Description>Add an analytics model.</Description>
+      <Name>add-model</Name>
+      <Token>add-model</Token>
     </Command>
     <Command Id="cmd-add-perspective" ApplicationId="app-meta-analytics">
       <Description>Add a perspective.</Description>
       <Name>add-perspective</Name>
       <Token>add-perspective</Token>
-    </Command>
-    <Command Id="cmd-add-perspective-table" ApplicationId="app-meta-analytics">
-      <Description>Expose a table in a perspective.</Description>
-      <Name>add-perspective-table</Name>
-      <Token>add-perspective-table</Token>
     </Command>
     <Command Id="cmd-add-perspective-attribute" ApplicationId="app-meta-analytics">
       <Description>Expose an attribute in a perspective.</Description>
@@ -91,60 +86,65 @@
       <Name>add-perspective-measure</Name>
       <Token>add-perspective-measure</Token>
     </Command>
-    <Command Id="cmd-add-security-role" ApplicationId="app-meta-analytics">
-      <Description>Add a security role.</Description>
-      <Name>add-security-role</Name>
-      <Token>add-security-role</Token>
+    <Command Id="cmd-add-perspective-table" ApplicationId="app-meta-analytics">
+      <Description>Expose a table in a perspective.</Description>
+      <Name>add-perspective-table</Name>
+      <Token>add-perspective-table</Token>
     </Command>
-    <Command Id="cmd-add-role-member" ApplicationId="app-meta-analytics">
-      <Description>Add a member to a security role.</Description>
-      <Name>add-role-member</Name>
-      <Token>add-role-member</Token>
+    <Command Id="cmd-add-perspective-translation" ApplicationId="app-meta-analytics">
+      <Description>Translate perspective metadata.</Description>
+      <Name>add-perspective-translation</Name>
+      <Token>add-perspective-translation</Token>
+    </Command>
+    <Command Id="cmd-add-relationship" ApplicationId="app-meta-analytics">
+      <Description>Add a relationship between analytics tables.</Description>
+      <Name>add-relationship</Name>
+      <Token>add-relationship</Token>
     </Command>
     <Command Id="cmd-add-role-filter" ApplicationId="app-meta-analytics">
       <Description>Add row-level security over a table.</Description>
       <Name>add-role-filter</Name>
       <Token>add-role-filter</Token>
     </Command>
+    <Command Id="cmd-add-role-member" ApplicationId="app-meta-analytics">
+      <Description>Add a member to a security role.</Description>
+      <Name>add-role-member</Name>
+      <Token>add-role-member</Token>
+    </Command>
+    <Command Id="cmd-add-security-role" ApplicationId="app-meta-analytics">
+      <Description>Add a security role.</Description>
+      <Name>add-security-role</Name>
+      <Token>add-security-role</Token>
+    </Command>
+    <Command Id="cmd-add-sort-by-attribute" ApplicationId="app-meta-analytics">
+      <Description>Declare one attribute as the sort key for another.</Description>
+      <Name>add-sort-by-attribute</Name>
+      <Token>add-sort-by-attribute</Token>
+    </Command>
+    <Command Id="cmd-add-table" ApplicationId="app-meta-analytics">
+      <Description>Add an analytics table.</Description>
+      <Name>add-table</Name>
+      <Token>add-table</Token>
+    </Command>
     <Command Id="cmd-add-table-permission" ApplicationId="app-meta-analytics">
       <Description>Add object-level security for a table.</Description>
       <Name>add-table-permission</Name>
       <Token>add-table-permission</Token>
-    </Command>
-    <Command Id="cmd-add-attribute-permission" ApplicationId="app-meta-analytics">
-      <Description>Add object-level security for an attribute.</Description>
-      <Name>add-attribute-permission</Name>
-      <Token>add-attribute-permission</Token>
-    </Command>
-    <Command Id="cmd-add-culture" ApplicationId="app-meta-analytics">
-      <Description>Add a model culture.</Description>
-      <Name>add-culture</Name>
-      <Token>add-culture</Token>
     </Command>
     <Command Id="cmd-add-table-translation" ApplicationId="app-meta-analytics">
       <Description>Translate table metadata.</Description>
       <Name>add-table-translation</Name>
       <Token>add-table-translation</Token>
     </Command>
-    <Command Id="cmd-add-attribute-translation" ApplicationId="app-meta-analytics">
-      <Description>Translate attribute metadata.</Description>
-      <Name>add-attribute-translation</Name>
-      <Token>add-attribute-translation</Token>
+    <Command Id="cmd-create" ApplicationId="app-meta-analytics">
+      <Description>Create a meta-analytics workspace.</Description>
+      <Name>create</Name>
+      <Token>create</Token>
     </Command>
-    <Command Id="cmd-add-hierarchy-translation" ApplicationId="app-meta-analytics">
-      <Description>Translate hierarchy metadata.</Description>
-      <Name>add-hierarchy-translation</Name>
-      <Token>add-hierarchy-translation</Token>
-    </Command>
-    <Command Id="cmd-add-measure-translation" ApplicationId="app-meta-analytics">
-      <Description>Translate measure metadata.</Description>
-      <Name>add-measure-translation</Name>
-      <Token>add-measure-translation</Token>
-    </Command>
-    <Command Id="cmd-add-perspective-translation" ApplicationId="app-meta-analytics">
-      <Description>Translate perspective metadata.</Description>
-      <Name>add-perspective-translation</Name>
-      <Token>add-perspective-translation</Token>
+    <Command Id="cmd-help" ApplicationId="app-meta-analytics">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
     </Command>
   </CommandList>
 </MetaCli>

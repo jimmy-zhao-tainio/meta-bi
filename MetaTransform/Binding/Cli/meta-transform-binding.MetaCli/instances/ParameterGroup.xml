@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupList>
+    <ParameterGroup Id="group-bind-target" ExecutableCommandId="exec-bind">
+      <Description>Choose one workspace target.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>target</Name>
+    </ParameterGroup>
+  </ParameterGroupList>
+</MetaCli>

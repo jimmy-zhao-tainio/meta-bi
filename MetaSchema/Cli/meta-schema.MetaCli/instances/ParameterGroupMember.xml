@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupMemberList>
-    <ParameterGroupMember Id="member-extract-sqlserver-schema" ParameterGroupId="group-extract-sqlserver-schema-scope" ParameterId="param-extract-sqlserver-schema">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-extract-sqlserver-all-schemas" ParameterGroupId="group-extract-sqlserver-schema-scope" ParameterId="param-extract-sqlserver-all-schemas" PreviousMemberId="member-extract-sqlserver-schema">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-extract-sqlserver-table" ParameterGroupId="group-extract-sqlserver-table-scope" ParameterId="param-extract-sqlserver-table">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-extract-sqlserver-all-tables" ParameterGroupId="group-extract-sqlserver-table-scope" ParameterId="param-extract-sqlserver-all-tables" PreviousMemberId="member-extract-sqlserver-table">
-    </ParameterGroupMember>
+    <ParameterGroupMember Id="member-extract-sqlserver-all-schemas" ParameterGroupId="group-extract-sqlserver-schema-scope" ParameterId="param-extract-sqlserver-all-schemas" PreviousMemberId="member-extract-sqlserver-schema" />
+    <ParameterGroupMember Id="member-extract-sqlserver-all-tables" ParameterGroupId="group-extract-sqlserver-table-scope" ParameterId="param-extract-sqlserver-all-tables" PreviousMemberId="member-extract-sqlserver-table" />
+    <ParameterGroupMember Id="member-extract-sqlserver-schema" ParameterGroupId="group-extract-sqlserver-schema-scope" ParameterId="param-extract-sqlserver-schema" />
+    <ParameterGroupMember Id="member-extract-sqlserver-table" ParameterGroupId="group-extract-sqlserver-table-scope" ParameterId="param-extract-sqlserver-table" />
+    <ParameterGroupMember Id="member-extract-sqlserver-target-first" ParameterGroupId="group-extract-sqlserver-target" ParameterId="param-extract-sqlserver-output-xml" />
+    <ParameterGroupMember Id="member-extract-sqlserver-target-output-csharp" ParameterGroupId="group-extract-sqlserver-target" ParameterId="param-extract-sqlserver-output-csharp" PreviousMemberId="member-extract-sqlserver-target-first" />
+    <ParameterGroupMember Id="member-extract-sqlserver-target-output-sql" ParameterGroupId="group-extract-sqlserver-target" ParameterId="param-extract-sqlserver-output-sql" PreviousMemberId="member-extract-sqlserver-target-output-csharp" />
   </ParameterGroupMemberList>
 </MetaCli>

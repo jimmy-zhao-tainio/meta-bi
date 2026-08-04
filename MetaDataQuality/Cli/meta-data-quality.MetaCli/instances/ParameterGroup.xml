@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupList>
+    <ParameterGroup Id="group-from-transform-workspace-target" ExecutableCommandId="exec-from-transform-workspace">
+      <Description>Choose one workspace target.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>target</Name>
+    </ParameterGroup>
     <ParameterGroup Id="group-promote-selection" ExecutableCommandId="exec-promote">
       <AllowsMultiple>false</AllowsMultiple>
       <Description>Choose all candidates, explicit candidate ids, or candidate families.</Description>

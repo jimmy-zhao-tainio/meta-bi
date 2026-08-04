@@ -1,98 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="tok-add-model-id" OptionId="opt-add-model-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-model-workspace" OptionId="opt-add-model-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-model-name" OptionId="opt-add-model-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-model-default-culture" OptionId="opt-add-model-default-culture">
-      <Token>--default-culture</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-model-description" OptionId="opt-add-model-description">
+    <OptionToken Id="tok-add-aggregation-behavior-description" OptionId="opt-add-aggregation-behavior-description">
       <Token>--description</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-data-source-id" OptionId="opt-add-data-source-id">
+    <OptionToken Id="tok-add-aggregation-behavior-function" OptionId="opt-add-aggregation-behavior-function">
+      <Token>--function</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-aggregation-behavior-id" OptionId="opt-add-aggregation-behavior-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-data-source-workspace" OptionId="opt-add-data-source-workspace">
+    <OptionToken Id="tok-add-aggregation-behavior-measure" OptionId="opt-add-aggregation-behavior-measure">
+      <Token>--measure</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-aggregation-behavior-workspace" OptionId="opt-add-aggregation-behavior-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-data-source-name" OptionId="opt-add-data-source-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-data-source-provider" OptionId="opt-add-data-source-provider">
-      <Token>--provider</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-data-source-connection-reference" OptionId="opt-add-data-source-connection-reference">
-      <Token>--connection-reference</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-data-source-source-kind" OptionId="opt-add-data-source-source-kind">
-      <Token>--source-kind</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-data-source-description" OptionId="opt-add-data-source-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-data-source-model" OptionId="opt-add-data-source-model">
-      <Token>--model</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-id" OptionId="opt-add-table-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-workspace" OptionId="opt-add-table-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-name" OptionId="opt-add-table-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-kind" OptionId="opt-add-table-kind">
-      <Token>--kind</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-data-category" OptionId="opt-add-table-data-category">
+    <OptionToken Id="tok-add-attribute-data-category" OptionId="opt-add-attribute-data-category">
       <Token>--data-category</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-is-hidden" OptionId="opt-add-table-is-hidden">
-      <Token>--is-hidden</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-display-folder" OptionId="opt-add-table-display-folder">
-      <Token>--display-folder</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-description" OptionId="opt-add-table-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-model" OptionId="opt-add-table-model">
-      <Token>--model</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-id" OptionId="opt-add-attribute-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-workspace" OptionId="opt-add-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-name" OptionId="opt-add-attribute-name">
-      <Token>--name</Token>
     </OptionToken>
     <OptionToken Id="tok-add-attribute-data-type-id" OptionId="opt-add-attribute-data-type-id">
       <Token>--data-type-id</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-attribute-ordinal" OptionId="opt-add-attribute-ordinal">
-      <Token>--ordinal</Token>
+    <OptionToken Id="tok-add-attribute-description" OptionId="opt-add-attribute-description">
+      <Token>--description</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-attribute-kind" OptionId="opt-add-attribute-kind">
-      <Token>--kind</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-source-name" OptionId="opt-add-attribute-source-name">
-      <Token>--source-name</Token>
+    <OptionToken Id="tok-add-attribute-expression" OptionId="opt-add-attribute-expression">
+      <Token>--expression</Token>
     </OptionToken>
     <OptionToken Id="tok-add-attribute-expression-language" OptionId="opt-add-attribute-expression-language">
       <Token>--expression-language</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-attribute-expression" OptionId="opt-add-attribute-expression">
-      <Token>--expression</Token>
+    <OptionToken Id="tok-add-attribute-format-string" OptionId="opt-add-attribute-format-string">
+      <Token>--format-string</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-id" OptionId="opt-add-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-is-hidden" OptionId="opt-add-attribute-is-hidden">
+      <Token>--is-hidden</Token>
     </OptionToken>
     <OptionToken Id="tok-add-attribute-is-key" OptionId="opt-add-attribute-is-key">
       <Token>--is-key</Token>
@@ -100,377 +46,71 @@
     <OptionToken Id="tok-add-attribute-is-nullable" OptionId="opt-add-attribute-is-nullable">
       <Token>--is-nullable</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-attribute-is-hidden" OptionId="opt-add-attribute-is-hidden">
-      <Token>--is-hidden</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-format-string" OptionId="opt-add-attribute-format-string">
-      <Token>--format-string</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-summarize-by" OptionId="opt-add-attribute-summarize-by">
-      <Token>--summarize-by</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-data-category" OptionId="opt-add-attribute-data-category">
-      <Token>--data-category</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-description" OptionId="opt-add-attribute-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-table" OptionId="opt-add-attribute-table">
-      <Token>--table</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-sort-by-attribute-id" OptionId="opt-add-sort-by-attribute-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-sort-by-attribute-workspace" OptionId="opt-add-sort-by-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-sort-by-attribute-description" OptionId="opt-add-sort-by-attribute-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-sort-by-attribute-source-attribute" OptionId="opt-add-sort-by-attribute-source-attribute">
-      <Token>--source-attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-sort-by-attribute-sort-attribute" OptionId="opt-add-sort-by-attribute-sort-attribute">
-      <Token>--sort-attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-relationship-id" OptionId="opt-add-attribute-relationship-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-relationship-workspace" OptionId="opt-add-attribute-relationship-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-relationship-relationship-type" OptionId="opt-add-attribute-relationship-relationship-type">
-      <Token>--relationship-type</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-relationship-description" OptionId="opt-add-attribute-relationship-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-relationship-child-attribute" OptionId="opt-add-attribute-relationship-child-attribute">
-      <Token>--child-attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-relationship-parent-attribute" OptionId="opt-add-attribute-relationship-parent-attribute">
-      <Token>--parent-attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-id" OptionId="opt-add-hierarchy-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-workspace" OptionId="opt-add-hierarchy-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-name" OptionId="opt-add-hierarchy-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-kind" OptionId="opt-add-hierarchy-kind">
+    <OptionToken Id="tok-add-attribute-kind" OptionId="opt-add-attribute-kind">
       <Token>--kind</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-is-hidden" OptionId="opt-add-hierarchy-is-hidden">
-      <Token>--is-hidden</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-display-folder" OptionId="opt-add-hierarchy-display-folder">
-      <Token>--display-folder</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-description" OptionId="opt-add-hierarchy-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-table" OptionId="opt-add-hierarchy-table">
-      <Token>--table</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-level-id" OptionId="opt-add-hierarchy-level-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-level-workspace" OptionId="opt-add-hierarchy-level-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-level-name" OptionId="opt-add-hierarchy-level-name">
+    <OptionToken Id="tok-add-attribute-name" OptionId="opt-add-attribute-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-level-ordinal" OptionId="opt-add-hierarchy-level-ordinal">
+    <OptionToken Id="tok-add-attribute-ordinal" OptionId="opt-add-attribute-ordinal">
       <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-level-hierarchy" OptionId="opt-add-hierarchy-level-hierarchy">
-      <Token>--hierarchy</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-level-attribute" OptionId="opt-add-hierarchy-level-attribute">
-      <Token>--attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-id" OptionId="opt-add-relationship-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-workspace" OptionId="opt-add-relationship-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-name" OptionId="opt-add-relationship-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-role-name" OptionId="opt-add-relationship-role-name">
-      <Token>--role-name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-relationship-kind" OptionId="opt-add-relationship-relationship-kind">
-      <Token>--relationship-kind</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-cardinality" OptionId="opt-add-relationship-cardinality">
-      <Token>--cardinality</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-cross-filter-direction" OptionId="opt-add-relationship-cross-filter-direction">
-      <Token>--cross-filter-direction</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-is-active" OptionId="opt-add-relationship-is-active">
-      <Token>--is-active</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-is-required" OptionId="opt-add-relationship-is-required">
-      <Token>--is-required</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-description" OptionId="opt-add-relationship-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-from-table" OptionId="opt-add-relationship-from-table">
-      <Token>--from-table</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-from-attribute" OptionId="opt-add-relationship-from-attribute">
-      <Token>--from-attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-to-table" OptionId="opt-add-relationship-to-table">
-      <Token>--to-table</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-to-attribute" OptionId="opt-add-relationship-to-attribute">
-      <Token>--to-attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-granularity-attribute" OptionId="opt-add-relationship-granularity-attribute">
-      <Token>--granularity-attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-relationship-intermediate-table" OptionId="opt-add-relationship-intermediate-table">
-      <Token>--intermediate-table</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-measure-id" OptionId="opt-add-measure-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-measure-workspace" OptionId="opt-add-measure-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-measure-name" OptionId="opt-add-measure-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-measure-data-type-id" OptionId="opt-add-measure-data-type-id">
-      <Token>--data-type-id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-measure-format-string" OptionId="opt-add-measure-format-string">
-      <Token>--format-string</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-measure-display-folder" OptionId="opt-add-measure-display-folder">
-      <Token>--display-folder</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-measure-is-hidden" OptionId="opt-add-measure-is-hidden">
-      <Token>--is-hidden</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-measure-description" OptionId="opt-add-measure-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-measure-table" OptionId="opt-add-measure-table">
-      <Token>--table</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-measure-source-attribute" OptionId="opt-add-measure-source-attribute">
-      <Token>--source-attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregation-behavior-id" OptionId="opt-add-aggregation-behavior-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregation-behavior-workspace" OptionId="opt-add-aggregation-behavior-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregation-behavior-function" OptionId="opt-add-aggregation-behavior-function">
-      <Token>--function</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregation-behavior-description" OptionId="opt-add-aggregation-behavior-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregation-behavior-measure" OptionId="opt-add-aggregation-behavior-measure">
-      <Token>--measure</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-id" OptionId="opt-add-perspective-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-workspace" OptionId="opt-add-perspective-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-name" OptionId="opt-add-perspective-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-description" OptionId="opt-add-perspective-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-model" OptionId="opt-add-perspective-model">
-      <Token>--model</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-table-id" OptionId="opt-add-perspective-table-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-table-workspace" OptionId="opt-add-perspective-table-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-table-perspective" OptionId="opt-add-perspective-table-perspective">
-      <Token>--perspective</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-table-table" OptionId="opt-add-perspective-table-table">
-      <Token>--table</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-attribute-id" OptionId="opt-add-perspective-attribute-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-attribute-workspace" OptionId="opt-add-perspective-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-attribute-perspective" OptionId="opt-add-perspective-attribute-perspective">
-      <Token>--perspective</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-attribute-attribute" OptionId="opt-add-perspective-attribute-attribute">
-      <Token>--attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-hierarchy-id" OptionId="opt-add-perspective-hierarchy-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-hierarchy-workspace" OptionId="opt-add-perspective-hierarchy-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-hierarchy-perspective" OptionId="opt-add-perspective-hierarchy-perspective">
-      <Token>--perspective</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-hierarchy-hierarchy" OptionId="opt-add-perspective-hierarchy-hierarchy">
-      <Token>--hierarchy</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-measure-id" OptionId="opt-add-perspective-measure-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-measure-workspace" OptionId="opt-add-perspective-measure-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-measure-perspective" OptionId="opt-add-perspective-measure-perspective">
-      <Token>--perspective</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-perspective-measure-measure" OptionId="opt-add-perspective-measure-measure">
-      <Token>--measure</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-security-role-id" OptionId="opt-add-security-role-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-security-role-workspace" OptionId="opt-add-security-role-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-security-role-name" OptionId="opt-add-security-role-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-security-role-permission" OptionId="opt-add-security-role-permission">
-      <Token>--permission</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-security-role-description" OptionId="opt-add-security-role-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-security-role-model" OptionId="opt-add-security-role-model">
-      <Token>--model</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-member-id" OptionId="opt-add-role-member-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-member-workspace" OptionId="opt-add-role-member-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-member-member-name" OptionId="opt-add-role-member-member-name">
-      <Token>--member-name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-member-member-kind" OptionId="opt-add-role-member-member-kind">
-      <Token>--member-kind</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-member-role" OptionId="opt-add-role-member-role">
-      <Token>--role</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-id" OptionId="opt-add-role-filter-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-workspace" OptionId="opt-add-role-filter-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-expression-language" OptionId="opt-add-role-filter-expression-language">
-      <Token>--expression-language</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-expression" OptionId="opt-add-role-filter-expression">
-      <Token>--expression</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-description" OptionId="opt-add-role-filter-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-role" OptionId="opt-add-role-filter-role">
-      <Token>--role</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-table" OptionId="opt-add-role-filter-table">
-      <Token>--table</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-permission-id" OptionId="opt-add-table-permission-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-permission-workspace" OptionId="opt-add-table-permission-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-permission-metadata-permission" OptionId="opt-add-table-permission-metadata-permission">
-      <Token>--metadata-permission</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-permission-description" OptionId="opt-add-table-permission-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-permission-role" OptionId="opt-add-table-permission-role">
-      <Token>--role</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-permission-table" OptionId="opt-add-table-permission-table">
-      <Token>--table</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-permission-id" OptionId="opt-add-attribute-permission-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-permission-workspace" OptionId="opt-add-attribute-permission-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-permission-metadata-permission" OptionId="opt-add-attribute-permission-metadata-permission">
-      <Token>--metadata-permission</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-permission-description" OptionId="opt-add-attribute-permission-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-permission-role" OptionId="opt-add-attribute-permission-role">
-      <Token>--role</Token>
     </OptionToken>
     <OptionToken Id="tok-add-attribute-permission-attribute" OptionId="opt-add-attribute-permission-attribute">
       <Token>--attribute</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-culture-id" OptionId="opt-add-culture-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-culture-workspace" OptionId="opt-add-culture-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-culture-name" OptionId="opt-add-culture-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-culture-description" OptionId="opt-add-culture-description">
+    <OptionToken Id="tok-add-attribute-permission-description" OptionId="opt-add-attribute-permission-description">
       <Token>--description</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-culture-model" OptionId="opt-add-culture-model">
-      <Token>--model</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-translation-id" OptionId="opt-add-table-translation-id">
+    <OptionToken Id="tok-add-attribute-permission-id" OptionId="opt-add-attribute-permission-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-table-translation-workspace" OptionId="opt-add-table-translation-workspace">
+    <OptionToken Id="tok-add-attribute-permission-metadata-permission" OptionId="opt-add-attribute-permission-metadata-permission">
+      <Token>--metadata-permission</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-permission-role" OptionId="opt-add-attribute-permission-role">
+      <Token>--role</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-permission-workspace" OptionId="opt-add-attribute-permission-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-table-translation-caption" OptionId="opt-add-table-translation-caption">
+    <OptionToken Id="tok-add-attribute-relationship-child-attribute" OptionId="opt-add-attribute-relationship-child-attribute">
+      <Token>--child-attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-relationship-description" OptionId="opt-add-attribute-relationship-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-relationship-id" OptionId="opt-add-attribute-relationship-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-relationship-parent-attribute" OptionId="opt-add-attribute-relationship-parent-attribute">
+      <Token>--parent-attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-relationship-relationship-type" OptionId="opt-add-attribute-relationship-relationship-type">
+      <Token>--relationship-type</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-relationship-workspace" OptionId="opt-add-attribute-relationship-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-source-name" OptionId="opt-add-attribute-source-name">
+      <Token>--source-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-summarize-by" OptionId="opt-add-attribute-summarize-by">
+      <Token>--summarize-by</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-table" OptionId="opt-add-attribute-table">
+      <Token>--table</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-translation-attribute" OptionId="opt-add-attribute-translation-attribute">
+      <Token>--attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-attribute-translation-caption" OptionId="opt-add-attribute-translation-caption">
       <Token>--caption</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-table-translation-description" OptionId="opt-add-table-translation-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-table-translation-culture" OptionId="opt-add-table-translation-culture">
+    <OptionToken Id="tok-add-attribute-translation-culture" OptionId="opt-add-attribute-translation-culture">
       <Token>--culture</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-table-translation-table" OptionId="opt-add-table-translation-table">
-      <Token>--table</Token>
+    <OptionToken Id="tok-add-attribute-translation-description" OptionId="opt-add-attribute-translation-description">
+      <Token>--description</Token>
     </OptionToken>
     <OptionToken Id="tok-add-attribute-translation-id" OptionId="opt-add-attribute-translation-id">
       <Token>--id</Token>
@@ -478,17 +118,98 @@
     <OptionToken Id="tok-add-attribute-translation-workspace" OptionId="opt-add-attribute-translation-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-attribute-translation-caption" OptionId="opt-add-attribute-translation-caption">
-      <Token>--caption</Token>
+    <OptionToken Id="tok-add-attribute-workspace" OptionId="opt-add-attribute-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-attribute-translation-description" OptionId="opt-add-attribute-translation-description">
+    <OptionToken Id="tok-add-culture-description" OptionId="opt-add-culture-description">
       <Token>--description</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-attribute-translation-culture" OptionId="opt-add-attribute-translation-culture">
+    <OptionToken Id="tok-add-culture-id" OptionId="opt-add-culture-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-culture-model" OptionId="opt-add-culture-model">
+      <Token>--model</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-culture-name" OptionId="opt-add-culture-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-culture-workspace" OptionId="opt-add-culture-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-data-source-connection-reference" OptionId="opt-add-data-source-connection-reference">
+      <Token>--connection-reference</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-data-source-description" OptionId="opt-add-data-source-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-data-source-id" OptionId="opt-add-data-source-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-data-source-model" OptionId="opt-add-data-source-model">
+      <Token>--model</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-data-source-name" OptionId="opt-add-data-source-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-data-source-provider" OptionId="opt-add-data-source-provider">
+      <Token>--provider</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-data-source-source-kind" OptionId="opt-add-data-source-source-kind">
+      <Token>--source-kind</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-data-source-workspace" OptionId="opt-add-data-source-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-description" OptionId="opt-add-hierarchy-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-display-folder" OptionId="opt-add-hierarchy-display-folder">
+      <Token>--display-folder</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-id" OptionId="opt-add-hierarchy-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-is-hidden" OptionId="opt-add-hierarchy-is-hidden">
+      <Token>--is-hidden</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-kind" OptionId="opt-add-hierarchy-kind">
+      <Token>--kind</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-level-attribute" OptionId="opt-add-hierarchy-level-attribute">
+      <Token>--attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-level-hierarchy" OptionId="opt-add-hierarchy-level-hierarchy">
+      <Token>--hierarchy</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-level-id" OptionId="opt-add-hierarchy-level-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-level-name" OptionId="opt-add-hierarchy-level-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-level-ordinal" OptionId="opt-add-hierarchy-level-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-level-workspace" OptionId="opt-add-hierarchy-level-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-name" OptionId="opt-add-hierarchy-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-table" OptionId="opt-add-hierarchy-table">
+      <Token>--table</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-translation-caption" OptionId="opt-add-hierarchy-translation-caption">
+      <Token>--caption</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-translation-culture" OptionId="opt-add-hierarchy-translation-culture">
       <Token>--culture</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-attribute-translation-attribute" OptionId="opt-add-attribute-translation-attribute">
-      <Token>--attribute</Token>
+    <OptionToken Id="tok-add-hierarchy-translation-description" OptionId="opt-add-hierarchy-translation-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-hierarchy-translation-hierarchy" OptionId="opt-add-hierarchy-translation-hierarchy">
+      <Token>--hierarchy</Token>
     </OptionToken>
     <OptionToken Id="tok-add-hierarchy-translation-id" OptionId="opt-add-hierarchy-translation-id">
       <Token>--id</Token>
@@ -496,53 +217,344 @@
     <OptionToken Id="tok-add-hierarchy-translation-workspace" OptionId="opt-add-hierarchy-translation-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-translation-caption" OptionId="opt-add-hierarchy-translation-caption">
-      <Token>--caption</Token>
+    <OptionToken Id="tok-add-hierarchy-workspace" OptionId="opt-add-hierarchy-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-translation-description" OptionId="opt-add-hierarchy-translation-description">
+    <OptionToken Id="tok-add-measure-data-type-id" OptionId="opt-add-measure-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-measure-description" OptionId="opt-add-measure-description">
       <Token>--description</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-translation-culture" OptionId="opt-add-hierarchy-translation-culture">
-      <Token>--culture</Token>
+    <OptionToken Id="tok-add-measure-display-folder" OptionId="opt-add-measure-display-folder">
+      <Token>--display-folder</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-hierarchy-translation-hierarchy" OptionId="opt-add-hierarchy-translation-hierarchy">
-      <Token>--hierarchy</Token>
+    <OptionToken Id="tok-add-measure-format-string" OptionId="opt-add-measure-format-string">
+      <Token>--format-string</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-measure-translation-id" OptionId="opt-add-measure-translation-id">
+    <OptionToken Id="tok-add-measure-id" OptionId="opt-add-measure-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-measure-translation-workspace" OptionId="opt-add-measure-translation-workspace">
-      <Token>--workspace</Token>
+    <OptionToken Id="tok-add-measure-is-hidden" OptionId="opt-add-measure-is-hidden">
+      <Token>--is-hidden</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-measure-name" OptionId="opt-add-measure-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-measure-source-attribute" OptionId="opt-add-measure-source-attribute">
+      <Token>--source-attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-measure-table" OptionId="opt-add-measure-table">
+      <Token>--table</Token>
     </OptionToken>
     <OptionToken Id="tok-add-measure-translation-caption" OptionId="opt-add-measure-translation-caption">
       <Token>--caption</Token>
     </OptionToken>
+    <OptionToken Id="tok-add-measure-translation-culture" OptionId="opt-add-measure-translation-culture">
+      <Token>--culture</Token>
+    </OptionToken>
     <OptionToken Id="tok-add-measure-translation-description" OptionId="opt-add-measure-translation-description">
       <Token>--description</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-measure-translation-culture" OptionId="opt-add-measure-translation-culture">
-      <Token>--culture</Token>
+    <OptionToken Id="tok-add-measure-translation-id" OptionId="opt-add-measure-translation-id">
+      <Token>--id</Token>
     </OptionToken>
     <OptionToken Id="tok-add-measure-translation-measure" OptionId="opt-add-measure-translation-measure">
       <Token>--measure</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-perspective-translation-id" OptionId="opt-add-perspective-translation-id">
+    <OptionToken Id="tok-add-measure-translation-workspace" OptionId="opt-add-measure-translation-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-measure-workspace" OptionId="opt-add-measure-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-model-default-culture" OptionId="opt-add-model-default-culture">
+      <Token>--default-culture</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-model-description" OptionId="opt-add-model-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-model-id" OptionId="opt-add-model-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-perspective-translation-workspace" OptionId="opt-add-perspective-translation-workspace">
+    <OptionToken Id="tok-add-model-name" OptionId="opt-add-model-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-model-workspace" OptionId="opt-add-model-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-attribute-attribute" OptionId="opt-add-perspective-attribute-attribute">
+      <Token>--attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-attribute-id" OptionId="opt-add-perspective-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-attribute-perspective" OptionId="opt-add-perspective-attribute-perspective">
+      <Token>--perspective</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-attribute-workspace" OptionId="opt-add-perspective-attribute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-description" OptionId="opt-add-perspective-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-hierarchy-hierarchy" OptionId="opt-add-perspective-hierarchy-hierarchy">
+      <Token>--hierarchy</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-hierarchy-id" OptionId="opt-add-perspective-hierarchy-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-hierarchy-perspective" OptionId="opt-add-perspective-hierarchy-perspective">
+      <Token>--perspective</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-hierarchy-workspace" OptionId="opt-add-perspective-hierarchy-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-id" OptionId="opt-add-perspective-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-measure-id" OptionId="opt-add-perspective-measure-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-measure-measure" OptionId="opt-add-perspective-measure-measure">
+      <Token>--measure</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-measure-perspective" OptionId="opt-add-perspective-measure-perspective">
+      <Token>--perspective</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-measure-workspace" OptionId="opt-add-perspective-measure-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-model" OptionId="opt-add-perspective-model">
+      <Token>--model</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-name" OptionId="opt-add-perspective-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-table-id" OptionId="opt-add-perspective-table-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-table-perspective" OptionId="opt-add-perspective-table-perspective">
+      <Token>--perspective</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-table-table" OptionId="opt-add-perspective-table-table">
+      <Token>--table</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-table-workspace" OptionId="opt-add-perspective-table-workspace">
       <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="tok-add-perspective-translation-caption" OptionId="opt-add-perspective-translation-caption">
       <Token>--caption</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-perspective-translation-description" OptionId="opt-add-perspective-translation-description">
-      <Token>--description</Token>
-    </OptionToken>
     <OptionToken Id="tok-add-perspective-translation-culture" OptionId="opt-add-perspective-translation-culture">
       <Token>--culture</Token>
     </OptionToken>
+    <OptionToken Id="tok-add-perspective-translation-description" OptionId="opt-add-perspective-translation-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-translation-id" OptionId="opt-add-perspective-translation-id">
+      <Token>--id</Token>
+    </OptionToken>
     <OptionToken Id="tok-add-perspective-translation-perspective" OptionId="opt-add-perspective-translation-perspective">
       <Token>--perspective</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-translation-workspace" OptionId="opt-add-perspective-translation-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-perspective-workspace" OptionId="opt-add-perspective-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-cardinality" OptionId="opt-add-relationship-cardinality">
+      <Token>--cardinality</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-cross-filter-direction" OptionId="opt-add-relationship-cross-filter-direction">
+      <Token>--cross-filter-direction</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-description" OptionId="opt-add-relationship-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-from-attribute" OptionId="opt-add-relationship-from-attribute">
+      <Token>--from-attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-from-table" OptionId="opt-add-relationship-from-table">
+      <Token>--from-table</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-granularity-attribute" OptionId="opt-add-relationship-granularity-attribute">
+      <Token>--granularity-attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-id" OptionId="opt-add-relationship-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-intermediate-table" OptionId="opt-add-relationship-intermediate-table">
+      <Token>--intermediate-table</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-is-active" OptionId="opt-add-relationship-is-active">
+      <Token>--is-active</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-is-required" OptionId="opt-add-relationship-is-required">
+      <Token>--is-required</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-name" OptionId="opt-add-relationship-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-relationship-kind" OptionId="opt-add-relationship-relationship-kind">
+      <Token>--relationship-kind</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-role-name" OptionId="opt-add-relationship-role-name">
+      <Token>--role-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-to-attribute" OptionId="opt-add-relationship-to-attribute">
+      <Token>--to-attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-to-table" OptionId="opt-add-relationship-to-table">
+      <Token>--to-table</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-relationship-workspace" OptionId="opt-add-relationship-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-filter-description" OptionId="opt-add-role-filter-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-filter-expression" OptionId="opt-add-role-filter-expression">
+      <Token>--expression</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-filter-expression-language" OptionId="opt-add-role-filter-expression-language">
+      <Token>--expression-language</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-filter-id" OptionId="opt-add-role-filter-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-filter-role" OptionId="opt-add-role-filter-role">
+      <Token>--role</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-filter-table" OptionId="opt-add-role-filter-table">
+      <Token>--table</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-filter-workspace" OptionId="opt-add-role-filter-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-member-id" OptionId="opt-add-role-member-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-member-member-kind" OptionId="opt-add-role-member-member-kind">
+      <Token>--member-kind</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-member-member-name" OptionId="opt-add-role-member-member-name">
+      <Token>--member-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-member-role" OptionId="opt-add-role-member-role">
+      <Token>--role</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-role-member-workspace" OptionId="opt-add-role-member-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-security-role-description" OptionId="opt-add-security-role-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-security-role-id" OptionId="opt-add-security-role-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-security-role-model" OptionId="opt-add-security-role-model">
+      <Token>--model</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-security-role-name" OptionId="opt-add-security-role-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-security-role-permission" OptionId="opt-add-security-role-permission">
+      <Token>--permission</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-security-role-workspace" OptionId="opt-add-security-role-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-sort-by-attribute-description" OptionId="opt-add-sort-by-attribute-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-sort-by-attribute-id" OptionId="opt-add-sort-by-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-sort-by-attribute-sort-attribute" OptionId="opt-add-sort-by-attribute-sort-attribute">
+      <Token>--sort-attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-sort-by-attribute-source-attribute" OptionId="opt-add-sort-by-attribute-source-attribute">
+      <Token>--source-attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-sort-by-attribute-workspace" OptionId="opt-add-sort-by-attribute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-data-category" OptionId="opt-add-table-data-category">
+      <Token>--data-category</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-description" OptionId="opt-add-table-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-display-folder" OptionId="opt-add-table-display-folder">
+      <Token>--display-folder</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-id" OptionId="opt-add-table-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-is-hidden" OptionId="opt-add-table-is-hidden">
+      <Token>--is-hidden</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-kind" OptionId="opt-add-table-kind">
+      <Token>--kind</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-model" OptionId="opt-add-table-model">
+      <Token>--model</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-name" OptionId="opt-add-table-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-permission-description" OptionId="opt-add-table-permission-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-permission-id" OptionId="opt-add-table-permission-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-permission-metadata-permission" OptionId="opt-add-table-permission-metadata-permission">
+      <Token>--metadata-permission</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-permission-role" OptionId="opt-add-table-permission-role">
+      <Token>--role</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-permission-table" OptionId="opt-add-table-permission-table">
+      <Token>--table</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-permission-workspace" OptionId="opt-add-table-permission-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-translation-caption" OptionId="opt-add-table-translation-caption">
+      <Token>--caption</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-translation-culture" OptionId="opt-add-table-translation-culture">
+      <Token>--culture</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-translation-description" OptionId="opt-add-table-translation-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-translation-id" OptionId="opt-add-table-translation-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-translation-table" OptionId="opt-add-table-translation-table">
+      <Token>--table</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-translation-workspace" OptionId="opt-add-table-translation-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-table-workspace" OptionId="opt-add-table-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-connection-env" OptionId="option-create-connection-env">
+      <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-csharp" OptionId="option-create-csharp">
+      <Token>--csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-sql" OptionId="option-create-sql">
+      <Token>--sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-xml" OptionId="option-create-xml">
+      <Token>--xml</Token>
     </OptionToken>
   </OptionTokenList>
 </MetaCli>

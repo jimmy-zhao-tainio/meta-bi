@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
-    <Option Id="opt-extract-sqlserver-new-workspace" ParameterId="param-extract-sqlserver-new-workspace">
-    </Option>
-    <Option Id="opt-extract-sqlserver-connection-env" ParameterId="param-extract-sqlserver-connection-env">
-    </Option>
-    <Option Id="opt-extract-sqlserver-system" ParameterId="param-extract-sqlserver-system">
-    </Option>
-    <Option Id="opt-extract-sqlserver-schema" ParameterId="param-extract-sqlserver-schema">
-    </Option>
-    <Option Id="opt-extract-sqlserver-all-schemas" ParameterId="param-extract-sqlserver-all-schemas">
-    </Option>
-    <Option Id="opt-extract-sqlserver-table" ParameterId="param-extract-sqlserver-table">
-    </Option>
-    <Option Id="opt-extract-sqlserver-all-tables" ParameterId="param-extract-sqlserver-all-tables">
-    </Option>
+    <Option Id="opt-extract-sqlserver-all-schemas" ParameterId="param-extract-sqlserver-all-schemas" />
+    <Option Id="opt-extract-sqlserver-all-tables" ParameterId="param-extract-sqlserver-all-tables" />
+    <Option Id="opt-extract-sqlserver-connection-env" ParameterId="param-extract-sqlserver-connection-env" />
+    <Option Id="opt-extract-sqlserver-schema" ParameterId="param-extract-sqlserver-schema" />
+    <Option Id="opt-extract-sqlserver-system" ParameterId="param-extract-sqlserver-system" />
+    <Option Id="opt-extract-sqlserver-table" ParameterId="param-extract-sqlserver-table" />
+    <Option Id="option-extract-sqlserver-output-connection-env" ParameterId="param-extract-sqlserver-output-connection-env" />
+    <Option Id="option-extract-sqlserver-output-csharp" ParameterId="param-extract-sqlserver-output-csharp" />
+    <Option Id="option-extract-sqlserver-output-sql" ParameterId="param-extract-sqlserver-output-sql" />
+    <Option Id="option-extract-sqlserver-output-xml" ParameterId="param-extract-sqlserver-output-xml" />
   </OptionList>
 </MetaCli>

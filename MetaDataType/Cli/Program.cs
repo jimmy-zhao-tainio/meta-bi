@@ -25,7 +25,10 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaDataTypeModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-new-workspace", handlers.RunNewWorkspace);
+            .Bind(
+                "exec-create",
+                [MetaCliWorkspace.Create("output", "xml", "csharp", "sql")],
+                handlers.RunCreate);
 
         runtime.Run(args);
         return Environment.ExitCode;

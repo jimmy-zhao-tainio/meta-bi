@@ -23,7 +23,10 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaSqlModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-extract-sqlserver", invocation => CompleteAsync(() => handlers.RunExtractSqlServerAsync(invocation)))
+            .Bind(
+                "exec-extract-sqlserver",
+                [MetaCliWorkspace.Create("output", "output-xml", "output-csharp", "output-sql", "output-connection-env")],
+                handlers.RunExtractSqlServerAsync)
             .Bind("exec-deploy-plan", invocation => CompleteAsync(() => handlers.RunDeployPlanAsync(invocation)))
             .Bind("exec-deploy", invocation => CompleteAsync(() => handlers.RunDeployAsync(invocation)))
             .Bind("exec-execute", invocation => CompleteAsync(() => handlers.RunExecuteAsync(invocation)));

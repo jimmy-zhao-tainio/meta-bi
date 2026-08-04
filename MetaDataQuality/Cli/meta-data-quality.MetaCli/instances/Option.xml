@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
-    <Option Id="opt-from-transform-workspace-transform-workspace" ParameterId="param-from-transform-workspace-transform-workspace">
-    </Option>
-    <Option Id="opt-from-transform-workspace-new-workspace" ParameterId="param-from-transform-workspace-new-workspace">
-    </Option>
-    <Option Id="opt-from-transform-workspace-binding-workspace" ParameterId="param-from-transform-workspace-binding-workspace">
-    </Option>
-    <Option Id="opt-inspect-workspace" ParameterId="param-inspect-workspace">
-    </Option>
-    <Option Id="opt-inspect-show-cases" ParameterId="param-inspect-show-cases">
-    </Option>
-    <Option Id="opt-inspect-top-cases" ParameterId="param-inspect-top-cases">
-    </Option>
-    <Option Id="opt-inspect-show-candidate-ids" ParameterId="param-inspect-show-candidate-ids">
-    </Option>
-    <Option Id="opt-promote-workspace" ParameterId="param-promote-workspace">
-    </Option>
-    <Option Id="opt-promote-all" ParameterId="param-promote-all">
-    </Option>
-    <Option Id="opt-promote-candidate-id" ParameterId="param-promote-candidate-id">
-    </Option>
-    <Option Id="opt-promote-candidate-kind" ParameterId="param-promote-candidate-kind">
-    </Option>
+    <Option Id="opt-from-transform-workspace-binding-workspace" ParameterId="param-from-transform-workspace-binding-workspace" />
+    <Option Id="opt-from-transform-workspace-transform-workspace" ParameterId="param-from-transform-workspace-transform-workspace" />
+    <Option Id="opt-inspect-show-candidate-ids" ParameterId="param-inspect-show-candidate-ids" />
+    <Option Id="opt-inspect-show-cases" ParameterId="param-inspect-show-cases" />
+    <Option Id="opt-inspect-top-cases" ParameterId="param-inspect-top-cases" />
+    <Option Id="opt-inspect-workspace" ParameterId="param-inspect-workspace" />
+    <Option Id="opt-promote-all" ParameterId="param-promote-all" />
+    <Option Id="opt-promote-candidate-id" ParameterId="param-promote-candidate-id" />
+    <Option Id="opt-promote-candidate-kind" ParameterId="param-promote-candidate-kind" />
+    <Option Id="opt-promote-workspace" ParameterId="param-promote-workspace" />
+    <Option Id="option-from-transform-workspace-output-connection-env" ParameterId="param-from-transform-workspace-output-connection-env" />
+    <Option Id="option-from-transform-workspace-output-csharp" ParameterId="param-from-transform-workspace-output-csharp" />
+    <Option Id="option-from-transform-workspace-output-sql" ParameterId="param-from-transform-workspace-output-sql" />
+    <Option Id="option-from-transform-workspace-output-xml" ParameterId="param-from-transform-workspace-output-xml" />
   </OptionList>
 </MetaCli>

@@ -17,14 +17,9 @@ public sealed record DataWarehouseRelationshipAssignment(
     string TargetEntityName,
     string TargetRecordId);
 
-public sealed record DataWarehouseWorkspaceCreationResult(
-    string WorkspacePath,
-    string ModelName,
-    int RowCount);
-
 public interface IDataWarehouseAuthoringService
 {
-    DataWarehouseWorkspaceCreationResult CreateWorkspace(string workspacePath);
+    MetaDataWarehouseModel CreateWorkspace();
 
     MetaDataWarehouseModel AddRecord(DataWarehouseAuthoringRequest request);
 }
@@ -35,13 +30,7 @@ public sealed class DataWarehouseAuthoringService : IDataWarehouseAuthoringServi
 
     private static readonly Type ModelType = typeof(MetaDataWarehouseModel);
 
-    public DataWarehouseWorkspaceCreationResult CreateWorkspace(string workspacePath)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-
-        var fullPath = MetaDataWarehouseTooling.CreateWorkspace(Path.GetFullPath(workspacePath));
-        return new DataWarehouseWorkspaceCreationResult(fullPath, ModelName, RowCount: 0);
-    }
+    public MetaDataWarehouseModel CreateWorkspace() => MetaDataWarehouseModel.CreateEmpty();
 
     public MetaDataWarehouseModel AddRecord(DataWarehouseAuthoringRequest request)
     {

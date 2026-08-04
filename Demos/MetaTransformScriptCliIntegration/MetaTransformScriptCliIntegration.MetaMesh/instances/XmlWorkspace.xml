@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <XmlWorkspaceList>
+    <XmlWorkspace Id="workspace:sql" WorkspaceId="workspace:sql">
+      <Path>MetaSqlWorkspace</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:sql-roundtrip" WorkspaceId="workspace:sql-roundtrip">
+      <Path>MetaSqlRoundTripWorkspace</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:transform" WorkspaceId="workspace:transform">
+      <Path>MetaTransformScriptCliIntegrationWorkspace</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:transform-roundtrip" WorkspaceId="workspace:transform-roundtrip">
+      <Path>MetaTransformScriptRoundTripWorkspace</Path>
+    </XmlWorkspace>
+  </XmlWorkspaceList>
+</MetaMesh>

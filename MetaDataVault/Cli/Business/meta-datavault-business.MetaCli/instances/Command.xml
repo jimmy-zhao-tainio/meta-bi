@@ -101,15 +101,15 @@
       <Name>add-satellite-attribute</Name>
       <Token>add-satellite-attribute</Token>
     </Command>
+    <Command Id="cmd-create" ApplicationId="app-meta-datavault-business">
+      <Description>Create a meta-datavault-business workspace.</Description>
+      <Name>create</Name>
+      <Token>create</Token>
+    </Command>
     <Command Id="cmd-help" ApplicationId="app-meta-datavault-business">
       <Description>Show help.</Description>
       <Name>help</Name>
       <Token>help</Token>
-    </Command>
-    <Command Id="cmd-new-workspace" ApplicationId="app-meta-datavault-business">
-      <Description>Create a MetaBusinessDataVault workspace.</Description>
-      <Name>new-workspace</Name>
-      <Token>new-workspace</Token>
     </Command>
   </CommandList>
 </MetaCli>

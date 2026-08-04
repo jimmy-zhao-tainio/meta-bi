@@ -24,20 +24,36 @@ internal sealed partial class MetaPipelineCommandHandlers
         this.operationalDbAdminService = operationalDbAdminService;
     }
 
-    public void RunNewWorkspace(MetaCliInvocation invocation) =>
-        Complete(() => RunNewWorkspaceCore(invocation));
+    public async Task RunCreate(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
+    {
+        await workspaces.CreateAsync("output", workspaceService.CreateWorkspace()).ConfigureAwait(false);
+        presenter.WriteOk(
+            "MetaPipeline workspace created",
+            ("Path", MetaCliWorkspace.OutputLocation(invocation)));
+    }
 
-    public void RunAddPipeline(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model) =>
-        Complete(() => RunAddPipelineCore(invocation, model));
+    public void RunAddPipeline(
+        MetaCliInvocation invocation,
+        MetaPipeline.MetaPipelineModel model,
+        MetaCliCommandCompletion completion) =>
+        Complete(() => RunAddPipelineCore(invocation, model, completion));
 
     public void RunInspect(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model) =>
         Complete(() => RunInspectCore(invocation, model));
 
-    public void RunAddStep(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model) =>
-        Complete(() => RunAddStepCore(invocation, model));
+    public void RunAddStep(
+        MetaCliInvocation invocation,
+        MetaPipeline.MetaPipelineModel model,
+        MetaCliCommandCompletion completion) =>
+        Complete(() => RunAddStepCore(invocation, model, completion));
 
-    public void RunAddExecutableStep(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model) =>
-        Complete(() => RunAddExecutableStepCore(invocation, model));
+    public void RunAddExecutableStep(
+        MetaCliInvocation invocation,
+        MetaPipeline.MetaPipelineModel model,
+        MetaCliCommandCompletion completion) =>
+        Complete(() => RunAddExecutableStepCore(invocation, model, completion));
 
     public void RunExecute(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model) =>
         CompleteAsync(() => RunExecuteAsync(invocation, model));

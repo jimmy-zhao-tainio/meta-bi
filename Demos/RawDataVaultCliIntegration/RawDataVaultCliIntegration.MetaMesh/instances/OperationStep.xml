@@ -2,689 +2,826 @@
 <MetaMesh>
   <OperationStepList>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-customeremailfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-customernamelength">
-      <Arguments>add-field --id CustomerEmailField --name EmailAddress --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id CustomerEmailField --name EmailAddress --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-CustomerEmailField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-customeridfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:create-raw-data-vault-workspace">
-      <Arguments>add-field --id CustomerIdField --name CustomerId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id CustomerIdField --name CustomerId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-CustomerIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-customernamefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-customeridlength">
-      <Arguments>add-field --id CustomerNameField --name CustomerName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id CustomerNameField --name CustomerName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-CustomerNameField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-customeremaillength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-customeremailfield">
-      <Arguments>add-field-data-type-detail --id CustomerEmailLength --field CustomerEmailField --name Length --value 200 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id CustomerEmailLength --field CustomerEmailField --name Length --value 200 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-CustomerEmailLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-customeridlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-customeridfield">
-      <Arguments>add-field-data-type-detail --id CustomerIdLength --field CustomerIdField --name Length --value 50 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id CustomerIdLength --field CustomerIdField --name Length --value 50 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-CustomerIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-customernamelength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-customernamefield">
-      <Arguments>add-field-data-type-detail --id CustomerNameLength --field CustomerNameField --name Length --value 200 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id CustomerNameLength --field CustomerNameField --name Length --value 200 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-CustomerNameLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-departmentidlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-departmentidfield">
-      <Arguments>add-field-data-type-detail --id DepartmentIdLength --field DepartmentIdField --name Length --value 30 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id DepartmentIdLength --field DepartmentIdField --name Length --value 30 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-DepartmentIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-departmentnamelength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-departmentnamefield">
-      <Arguments>add-field-data-type-detail --id DepartmentNameLength --field DepartmentNameField --name Length --value 150 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id DepartmentNameLength --field DepartmentNameField --name Length --value 150 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-DepartmentNameLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-employeedepartmentidlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-employeedepartmentidfield">
-      <Arguments>add-field-data-type-detail --id EmployeeDepartmentIdLength --field EmployeeDepartmentIdField --name Length --value 30 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id EmployeeDepartmentIdLength --field EmployeeDepartmentIdField --name Length --value 30 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-EmployeeDepartmentIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-employeehiredateprecision" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-employeehiredatefield">
-      <Arguments>add-field-data-type-detail --id EmployeeHireDatePrecision --field EmployeeHireDateField --name Precision --value 7 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id EmployeeHireDatePrecision --field EmployeeHireDateField --name Precision --value 7 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-EmployeeHireDatePrecision</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-employeeidlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-employeeidfield">
-      <Arguments>add-field-data-type-detail --id EmployeeIdLength --field EmployeeIdField --name Length --value 30 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id EmployeeIdLength --field EmployeeIdField --name Length --value 30 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-EmployeeIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-employeenamelength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-employeenamefield">
-      <Arguments>add-field-data-type-detail --id EmployeeNameLength --field EmployeeNameField --name Length --value 150 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id EmployeeNameLength --field EmployeeNameField --name Length --value 150 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-EmployeeNameLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoiceamountprecision" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-invoiceamountfield">
-      <Arguments>add-field-data-type-detail --id InvoiceAmountPrecision --field InvoiceAmountField --name Precision --value 18 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id InvoiceAmountPrecision --field InvoiceAmountField --name Precision --value 18 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-InvoiceAmountPrecision</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoiceamountscale" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoiceamountprecision">
-      <Arguments>add-field-data-type-detail --id InvoiceAmountScale --field InvoiceAmountField --name Scale --value 2 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id InvoiceAmountScale --field InvoiceAmountField --name Scale --value 2 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-InvoiceAmountScale</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoicedateprecision" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-invoicedatefield">
-      <Arguments>add-field-data-type-detail --id InvoiceDatePrecision --field InvoiceDateField --name Precision --value 7 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id InvoiceDatePrecision --field InvoiceDateField --name Precision --value 7 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-InvoiceDatePrecision</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoiceidlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-invoiceidfield">
-      <Arguments>add-field-data-type-detail --id InvoiceIdLength --field InvoiceIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id InvoiceIdLength --field InvoiceIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-InvoiceIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoiceorderidlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-invoiceorderidfield">
-      <Arguments>add-field-data-type-detail --id InvoiceOrderIdLength --field InvoiceOrderIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id InvoiceOrderIdLength --field InvoiceOrderIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-InvoiceOrderIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoicesupplieridlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-invoicesupplieridfield">
-      <Arguments>add-field-data-type-detail --id InvoiceSupplierIdLength --field InvoiceSupplierIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id InvoiceSupplierIdLength --field InvoiceSupplierIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-InvoiceSupplierIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-orderamountprecision" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-orderamountfield">
-      <Arguments>add-field-data-type-detail --id OrderAmountPrecision --field OrderAmountField --name Precision --value 18 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id OrderAmountPrecision --field OrderAmountField --name Precision --value 18 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-OrderAmountPrecision</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-orderamountscale" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-orderamountprecision">
-      <Arguments>add-field-data-type-detail --id OrderAmountScale --field OrderAmountField --name Scale --value 2 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id OrderAmountScale --field OrderAmountField --name Scale --value 2 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-OrderAmountScale</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-ordercustomeridlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-ordercustomeridfield">
-      <Arguments>add-field-data-type-detail --id OrderCustomerIdLength --field OrderCustomerIdField --name Length --value 50 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id OrderCustomerIdLength --field OrderCustomerIdField --name Length --value 50 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-OrderCustomerIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-orderdateprecision" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-orderdatefield">
-      <Arguments>add-field-data-type-detail --id OrderDatePrecision --field OrderDateField --name Precision --value 7 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id OrderDatePrecision --field OrderDateField --name Precision --value 7 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-OrderDatePrecision</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-orderidlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-orderidfield">
-      <Arguments>add-field-data-type-detail --id OrderIdLength --field OrderIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id OrderIdLength --field OrderIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-OrderIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-orderstatuscodelength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-orderstatuscodefield">
-      <Arguments>add-field-data-type-detail --id OrderStatusCodeLength --field OrderStatusCodeField --name Length --value 20 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id OrderStatusCodeLength --field OrderStatusCodeField --name Length --value 20 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-OrderStatusCodeLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-productcategorylength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-productcategoryfield">
-      <Arguments>add-field-data-type-detail --id ProductCategoryLength --field ProductCategoryField --name Length --value 50 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id ProductCategoryLength --field ProductCategoryField --name Length --value 50 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-ProductCategoryLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-productidlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-productidfield">
-      <Arguments>add-field-data-type-detail --id ProductIdLength --field ProductIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id ProductIdLength --field ProductIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-ProductIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-productnamelength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-productnamefield">
-      <Arguments>add-field-data-type-detail --id ProductNameLength --field ProductNameField --name Length --value 200 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id ProductNameLength --field ProductNameField --name Length --value 200 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-ProductNameLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-productsupplieridlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-productsupplieridfield">
-      <Arguments>add-field-data-type-detail --id ProductSupplierIdLength --field ProductSupplierIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id ProductSupplierIdLength --field ProductSupplierIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-ProductSupplierIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-shipmentcarriernamelength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-shipmentcarriernamefield">
-      <Arguments>add-field-data-type-detail --id ShipmentCarrierNameLength --field ShipmentCarrierNameField --name Length --value 100 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id ShipmentCarrierNameLength --field ShipmentCarrierNameField --name Length --value 100 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-ShipmentCarrierNameLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-shipmentdateprecision" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-shipmentdatefield">
-      <Arguments>add-field-data-type-detail --id ShipmentDatePrecision --field ShipmentDateField --name Precision --value 7 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id ShipmentDatePrecision --field ShipmentDateField --name Precision --value 7 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-ShipmentDatePrecision</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-shipmentidlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-shipmentidfield">
-      <Arguments>add-field-data-type-detail --id ShipmentIdLength --field ShipmentIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id ShipmentIdLength --field ShipmentIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-ShipmentIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-shipmentorderidlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-shipmentorderidfield">
-      <Arguments>add-field-data-type-detail --id ShipmentOrderIdLength --field ShipmentOrderIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id ShipmentOrderIdLength --field ShipmentOrderIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-ShipmentOrderIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-supplieridlength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-supplieridfield">
-      <Arguments>add-field-data-type-detail --id SupplierIdLength --field SupplierIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id SupplierIdLength --field SupplierIdField --name Length --value 40 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-SupplierIdLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-suppliernamelength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-suppliernamefield">
-      <Arguments>add-field-data-type-detail --id SupplierNameLength --field SupplierNameField --name Length --value 200 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id SupplierNameLength --field SupplierNameField --name Length --value 200 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-SupplierNameLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-supplierproductcodelength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-supplierproductcodefield">
-      <Arguments>add-field-data-type-detail --id SupplierProductCodeLength --field SupplierProductCodeField --name Length --value 50 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id SupplierProductCodeLength --field SupplierProductCodeField --name Length --value 50 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-SupplierProductCodeLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-supplierriskclasslength" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-supplierriskclassfield">
-      <Arguments>add-field-data-type-detail --id SupplierRiskClassLength --field SupplierRiskClassField --name Length --value 30 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field-data-type-detail --id SupplierRiskClassLength --field SupplierRiskClassField --name Length --value 30 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-data-type-detail-SupplierRiskClassLength</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-departmentidfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-employeehiredateprecision">
-      <Arguments>add-field --id DepartmentIdField --name DepartmentId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id DepartmentIdField --name DepartmentId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-DepartmentIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-departmentnamefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-departmentidlength">
-      <Arguments>add-field --id DepartmentNameField --name DepartmentName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id DepartmentNameField --name DepartmentName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-DepartmentNameField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-employeedepartmentidfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-employeenamelength">
-      <Arguments>add-field --id EmployeeDepartmentIdField --name DepartmentId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id EmployeeDepartmentIdField --name DepartmentId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-EmployeeDepartmentIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-employeehiredatefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-employeedepartmentidlength">
-      <Arguments>add-field --id EmployeeHireDateField --name HireDate --data-type-id sqlserver:type:datetime2 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id EmployeeHireDateField --name HireDate --data-type-id sqlserver:type:datetime2 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-EmployeeHireDateField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-employeeidfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-shipmentdateprecision">
-      <Arguments>add-field --id EmployeeIdField --name EmployeeId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id EmployeeIdField --name EmployeeId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-EmployeeIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-employeenamefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-employeeidlength">
-      <Arguments>add-field --id EmployeeNameField --name EmployeeName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id EmployeeNameField --name EmployeeName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-EmployeeNameField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-invoiceamountfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoicedateprecision">
-      <Arguments>add-field --id InvoiceAmountField --name InvoiceAmount --data-type-id sqlserver:type:decimal --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id InvoiceAmountField --name InvoiceAmount --data-type-id sqlserver:type:decimal --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-InvoiceAmountField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-invoicedatefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoicesupplieridlength">
-      <Arguments>add-field --id InvoiceDateField --name InvoiceDate --data-type-id sqlserver:type:datetime2 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id InvoiceDateField --name InvoiceDate --data-type-id sqlserver:type:datetime2 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-InvoiceDateField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-invoiceidfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-orderstatuscodelength">
-      <Arguments>add-field --id InvoiceIdField --name InvoiceId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id InvoiceIdField --name InvoiceId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-InvoiceIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-invoiceorderidfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoiceidlength">
-      <Arguments>add-field --id InvoiceOrderIdField --name OrderId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id InvoiceOrderIdField --name OrderId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-InvoiceOrderIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-invoicesupplieridfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoiceorderidlength">
-      <Arguments>add-field --id InvoiceSupplierIdField --name SupplierId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id InvoiceSupplierIdField --name SupplierId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-InvoiceSupplierIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-orderamountfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-orderdateprecision">
-      <Arguments>add-field --id OrderAmountField --name OrderAmount --data-type-id sqlserver:type:decimal --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id OrderAmountField --name OrderAmount --data-type-id sqlserver:type:decimal --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-OrderAmountField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-ordercustomeridfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-orderidlength">
-      <Arguments>add-field --id OrderCustomerIdField --name CustomerId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id OrderCustomerIdField --name CustomerId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-OrderCustomerIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-orderdatefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-ordercustomeridlength">
-      <Arguments>add-field --id OrderDateField --name OrderDate --data-type-id sqlserver:type:datetime2 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id OrderDateField --name OrderDate --data-type-id sqlserver:type:datetime2 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-OrderDateField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-orderidfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-supplierriskclasslength">
-      <Arguments>add-field --id OrderIdField --name OrderId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id OrderIdField --name OrderId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-OrderIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-orderstatuscodefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-orderamountscale">
-      <Arguments>add-field --id OrderStatusCodeField --name OrderStatusCode --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id OrderStatusCodeField --name OrderStatusCode --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-OrderStatusCodeField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-productcategoryfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-productnamelength">
-      <Arguments>add-field --id ProductCategoryField --name ProductCategory --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id ProductCategoryField --name ProductCategory --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-ProductCategoryField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-productidfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-customeremaillength">
-      <Arguments>add-field --id ProductIdField --name ProductId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id ProductIdField --name ProductId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-ProductIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-productnamefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-productidlength">
-      <Arguments>add-field --id ProductNameField --name ProductName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id ProductNameField --name ProductName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-ProductNameField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-productsupplieridfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-productcategorylength">
-      <Arguments>add-field --id ProductSupplierIdField --name SupplierId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id ProductSupplierIdField --name SupplierId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-ProductSupplierIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-shipmentcarriernamefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-shipmentorderidlength">
-      <Arguments>add-field --id ShipmentCarrierNameField --name CarrierName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id ShipmentCarrierNameField --name CarrierName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-ShipmentCarrierNameField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-shipmentdatefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-shipmentcarriernamelength">
-      <Arguments>add-field --id ShipmentDateField --name ShipmentDate --data-type-id sqlserver:type:datetime2 --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id ShipmentDateField --name ShipmentDate --data-type-id sqlserver:type:datetime2 --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-ShipmentDateField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-shipmentidfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-invoiceamountscale">
-      <Arguments>add-field --id ShipmentIdField --name ShipmentId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id ShipmentIdField --name ShipmentId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-ShipmentIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-shipmentorderidfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-shipmentidlength">
-      <Arguments>add-field --id ShipmentOrderIdField --name OrderId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id ShipmentOrderIdField --name OrderId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-ShipmentOrderIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-supplieridfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-supplierproductcodelength">
-      <Arguments>add-field --id SupplierIdField --name SupplierId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id SupplierIdField --name SupplierId --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-SupplierIdField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-suppliernamefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-supplieridlength">
-      <Arguments>add-field --id SupplierNameField --name SupplierName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id SupplierNameField --name SupplierName --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-SupplierNameField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-supplierproductcodefield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-productsupplieridlength">
-      <Arguments>add-field --id SupplierProductCodeField --name SupplierProductCode --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id SupplierProductCodeField --name SupplierProductCode --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-SupplierProductCodeField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-field-supplierriskclassfield" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-suppliernamelength">
-      <Arguments>add-field --id SupplierRiskClassField --name RiskClass --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-field --id SupplierRiskClassField --name RiskClass --data-type-id sqlserver:type:nvarchar --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-field-SupplierRiskClassField</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-customerhub" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-field-data-type-detail-departmentnamelength">
-      <Arguments>add-hub --id CustomerHub --name Customer --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub --id CustomerHub --name Customer --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-CustomerHub</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-departmenthub" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-employeehubkey">
-      <Arguments>add-hub --id DepartmentHub --name Department --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub --id DepartmentHub --name Department --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-DepartmentHub</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-employeehub" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-shipmenthubkey">
-      <Arguments>add-hub --id EmployeeHub --name Employee --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub --id EmployeeHub --name Employee --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-EmployeeHub</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-invoicehub" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-orderhubkey">
-      <Arguments>add-hub --id InvoiceHub --name Invoice --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub --id InvoiceHub --name Invoice --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-InvoiceHub</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-customerhubkey" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-customerhub">
-      <Arguments>add-hub-key-part --id CustomerHubKey --hub CustomerHub --field CustomerIdField --name CustomerId --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-key-part --id CustomerHubKey --hub CustomerHub --field CustomerIdField --name CustomerId --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-key-part-CustomerHubKey</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-departmenthubkey" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-departmenthub">
-      <Arguments>add-hub-key-part --id DepartmentHubKey --hub DepartmentHub --field DepartmentIdField --name DepartmentId --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-key-part --id DepartmentHubKey --hub DepartmentHub --field DepartmentIdField --name DepartmentId --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-key-part-DepartmentHubKey</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-employeehubkey" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-employeehub">
-      <Arguments>add-hub-key-part --id EmployeeHubKey --hub EmployeeHub --field EmployeeIdField --name EmployeeId --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-key-part --id EmployeeHubKey --hub EmployeeHub --field EmployeeIdField --name EmployeeId --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-key-part-EmployeeHubKey</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-invoicehubkey" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-invoicehub">
-      <Arguments>add-hub-key-part --id InvoiceHubKey --hub InvoiceHub --field InvoiceIdField --name InvoiceId --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-key-part --id InvoiceHubKey --hub InvoiceHub --field InvoiceIdField --name InvoiceId --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-key-part-InvoiceHubKey</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-orderhubkey" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-orderhub">
-      <Arguments>add-hub-key-part --id OrderHubKey --hub OrderHub --field OrderIdField --name OrderId --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-key-part --id OrderHubKey --hub OrderHub --field OrderIdField --name OrderId --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-key-part-OrderHubKey</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-producthubkey" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-producthub">
-      <Arguments>add-hub-key-part --id ProductHubKey --hub ProductHub --field ProductIdField --name ProductId --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-key-part --id ProductHubKey --hub ProductHub --field ProductIdField --name ProductId --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-key-part-ProductHubKey</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-shipmenthubkey" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-shipmenthub">
-      <Arguments>add-hub-key-part --id ShipmentHubKey --hub ShipmentHub --field ShipmentIdField --name ShipmentId --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-key-part --id ShipmentHubKey --hub ShipmentHub --field ShipmentIdField --name ShipmentId --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-key-part-ShipmentHubKey</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-supplierhubkey" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-supplierhub">
-      <Arguments>add-hub-key-part --id SupplierHubKey --hub SupplierHub --field SupplierIdField --name SupplierId --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-key-part --id SupplierHubKey --hub SupplierHub --field SupplierIdField --name SupplierId --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-key-part-SupplierHubKey</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-orderhub" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-supplierhubkey">
-      <Arguments>add-hub --id OrderHub --name Order --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub --id OrderHub --name Order --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-OrderHub</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-producthub" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-customerhubkey">
-      <Arguments>add-hub --id ProductHub --name Product --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub --id ProductHub --name Product --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-ProductHub</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-customeremailattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-customernameattr">
-      <Arguments>add-hub-satellite-attribute --id CustomerEmailAttr --hub-satellite CustomerProfileSat --field CustomerEmailField --name EmailAddress --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id CustomerEmailAttr --hub-satellite CustomerProfileSat --field CustomerEmailField --name EmailAddress --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-CustomerEmailAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-customernameattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-customerprofilesat">
-      <Arguments>add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --field CustomerNameField --name CustomerName --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --field CustomerNameField --name CustomerName --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-CustomerNameAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-departmentnameattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-departmentprofilesat">
-      <Arguments>add-hub-satellite-attribute --id DepartmentNameAttr --hub-satellite DepartmentProfileSat --field DepartmentNameField --name DepartmentName --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id DepartmentNameAttr --hub-satellite DepartmentProfileSat --field DepartmentNameField --name DepartmentName --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-DepartmentNameAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-employeehiredateattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-employeenameattr">
-      <Arguments>add-hub-satellite-attribute --id EmployeeHireDateAttr --hub-satellite EmployeeProfileSat --field EmployeeHireDateField --name HireDate --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id EmployeeHireDateAttr --hub-satellite EmployeeProfileSat --field EmployeeHireDateField --name HireDate --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-EmployeeHireDateAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-employeenameattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-employeeprofilesat">
-      <Arguments>add-hub-satellite-attribute --id EmployeeNameAttr --hub-satellite EmployeeProfileSat --field EmployeeNameField --name EmployeeName --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id EmployeeNameAttr --hub-satellite EmployeeProfileSat --field EmployeeNameField --name EmployeeName --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-EmployeeNameAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-invoiceamountattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-invoicedateattr">
-      <Arguments>add-hub-satellite-attribute --id InvoiceAmountAttr --hub-satellite InvoiceHeaderSat --field InvoiceAmountField --name InvoiceAmount --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id InvoiceAmountAttr --hub-satellite InvoiceHeaderSat --field InvoiceAmountField --name InvoiceAmount --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-InvoiceAmountAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-invoicedateattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-invoiceheadersat">
-      <Arguments>add-hub-satellite-attribute --id InvoiceDateAttr --hub-satellite InvoiceHeaderSat --field InvoiceDateField --name InvoiceDate --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id InvoiceDateAttr --hub-satellite InvoiceHeaderSat --field InvoiceDateField --name InvoiceDate --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-InvoiceDateAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-orderamountattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-orderdateattr">
-      <Arguments>add-hub-satellite-attribute --id OrderAmountAttr --hub-satellite OrderHeaderSat --field OrderAmountField --name OrderAmount --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id OrderAmountAttr --hub-satellite OrderHeaderSat --field OrderAmountField --name OrderAmount --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-OrderAmountAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-orderdateattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-orderheadersat">
-      <Arguments>add-hub-satellite-attribute --id OrderDateAttr --hub-satellite OrderHeaderSat --field OrderDateField --name OrderDate --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id OrderDateAttr --hub-satellite OrderHeaderSat --field OrderDateField --name OrderDate --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-OrderDateAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-productcategoryattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-productnameattr">
-      <Arguments>add-hub-satellite-attribute --id ProductCategoryAttr --hub-satellite ProductProfileSat --field ProductCategoryField --name ProductCategory --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id ProductCategoryAttr --hub-satellite ProductProfileSat --field ProductCategoryField --name ProductCategory --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-ProductCategoryAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-productnameattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-productprofilesat">
-      <Arguments>add-hub-satellite-attribute --id ProductNameAttr --hub-satellite ProductProfileSat --field ProductNameField --name ProductName --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id ProductNameAttr --hub-satellite ProductProfileSat --field ProductNameField --name ProductName --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-ProductNameAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-shipmentcarrierattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-shipmentheadersat">
-      <Arguments>add-hub-satellite-attribute --id ShipmentCarrierAttr --hub-satellite ShipmentHeaderSat --field ShipmentCarrierNameField --name CarrierName --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id ShipmentCarrierAttr --hub-satellite ShipmentHeaderSat --field ShipmentCarrierNameField --name CarrierName --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-ShipmentCarrierAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-shipmentdateattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-shipmentcarrierattr">
-      <Arguments>add-hub-satellite-attribute --id ShipmentDateAttr --hub-satellite ShipmentHeaderSat --field ShipmentDateField --name ShipmentDate --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id ShipmentDateAttr --hub-satellite ShipmentHeaderSat --field ShipmentDateField --name ShipmentDate --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-ShipmentDateAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-suppliernameattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-supplierprofilesat">
-      <Arguments>add-hub-satellite-attribute --id SupplierNameAttr --hub-satellite SupplierProfileSat --field SupplierNameField --name SupplierName --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id SupplierNameAttr --hub-satellite SupplierProfileSat --field SupplierNameField --name SupplierName --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-SupplierNameAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-supplierriskclassattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-suppliernameattr">
-      <Arguments>add-hub-satellite-attribute --id SupplierRiskClassAttr --hub-satellite SupplierProfileSat --field SupplierRiskClassField --name RiskClass --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite-attribute --id SupplierRiskClassAttr --hub-satellite SupplierProfileSat --field SupplierRiskClassField --name RiskClass --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-attribute-SupplierRiskClassAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-customerprofilesat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-departmenthubkey">
-      <Arguments>add-hub-satellite --id CustomerProfileSat --hub CustomerHub --name CustomerProfile --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite --id CustomerProfileSat --hub CustomerHub --name CustomerProfile --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-CustomerProfileSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-departmentprofilesat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-employeehiredateattr">
-      <Arguments>add-hub-satellite --id DepartmentProfileSat --hub DepartmentHub --name DepartmentProfile --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite --id DepartmentProfileSat --hub DepartmentHub --name DepartmentProfile --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-DepartmentProfileSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-employeeprofilesat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-shipmentdateattr">
-      <Arguments>add-hub-satellite --id EmployeeProfileSat --hub EmployeeHub --name EmployeeProfile --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite --id EmployeeProfileSat --hub EmployeeHub --name EmployeeProfile --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-EmployeeProfileSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-invoiceheadersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-orderamountattr">
-      <Arguments>add-hub-satellite --id InvoiceHeaderSat --hub InvoiceHub --name InvoiceHeader --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite --id InvoiceHeaderSat --hub InvoiceHub --name InvoiceHeader --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-InvoiceHeaderSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-orderheadersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-supplierriskclassattr">
-      <Arguments>add-hub-satellite --id OrderHeaderSat --hub OrderHub --name OrderHeader --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite --id OrderHeaderSat --hub OrderHub --name OrderHeader --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-OrderHeaderSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-productprofilesat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-customeremailattr">
-      <Arguments>add-hub-satellite --id ProductProfileSat --hub ProductHub --name ProductProfile --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite --id ProductProfileSat --hub ProductHub --name ProductProfile --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-ProductProfileSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-shipmentheadersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-invoiceamountattr">
-      <Arguments>add-hub-satellite --id ShipmentHeaderSat --hub ShipmentHub --name ShipmentHeader --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite --id ShipmentHeaderSat --hub ShipmentHub --name ShipmentHeader --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-ShipmentHeaderSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-supplierprofilesat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-productcategoryattr">
-      <Arguments>add-hub-satellite --id SupplierProfileSat --hub SupplierHub --name SupplierProfile --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub-satellite --id SupplierProfileSat --hub SupplierHub --name SupplierProfile --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-satellite-SupplierProfileSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-shipmenthub" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-invoicehubkey">
-      <Arguments>add-hub --id ShipmentHub --name Shipment --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub --id ShipmentHub --name Shipment --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-ShipmentHub</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-hub-supplierhub" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-key-part-producthubkey">
-      <Arguments>add-hub --id SupplierHub --name Supplier --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-hub --id SupplierHub --name Supplier --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-hub-SupplierHub</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-employeedepartmentlink" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-shipmentorderdateattr">
-      <Arguments>add-link --id EmployeeDepartmentLink --name EmployeeDepartment --link-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link --id EmployeeDepartmentLink --name EmployeeDepartment --link-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-EmployeeDepartmentLink</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-invoiceorderlink" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-supplierproductcodeattr">
-      <Arguments>add-link --id InvoiceOrderLink --name InvoiceOrder --link-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link --id InvoiceOrderLink --name InvoiceOrder --link-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-InvoiceOrderLink</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-invoicesupplierlink" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-invoiceorderamountattr">
-      <Arguments>add-link --id InvoiceSupplierLink --name InvoiceSupplier --link-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link --id InvoiceSupplierLink --name InvoiceSupplier --link-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-InvoiceSupplierLink</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-ordercustomerlink" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-hub-satellite-attribute-departmentnameattr">
-      <Arguments>add-link --id OrderCustomerLink --name OrderCustomer --link-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link --id OrderCustomerLink --name OrderCustomer --link-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-OrderCustomerLink</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-productsupplierlink" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-ordercustomerstatusattr">
-      <Arguments>add-link --id ProductSupplierLink --name ProductSupplier --link-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link --id ProductSupplierLink --name ProductSupplier --link-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-ProductSupplierLink</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-employeedepartmentlinkdepartment" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-employeedepartmentlinkemployee">
-      <Arguments>add-link-role --id EmployeeDepartmentLinkDepartment --link EmployeeDepartmentLink --hub DepartmentHub --name Department --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id EmployeeDepartmentLinkDepartment --link EmployeeDepartmentLink --hub DepartmentHub --name Department --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-EmployeeDepartmentLinkDepartment</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-employeedepartmentlinkemployee" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-employeedepartmentlink">
-      <Arguments>add-link-role --id EmployeeDepartmentLinkEmployee --link EmployeeDepartmentLink --hub EmployeeHub --name Employee --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id EmployeeDepartmentLinkEmployee --link EmployeeDepartmentLink --hub EmployeeHub --name Employee --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-EmployeeDepartmentLinkEmployee</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoiceorderlinkinvoice" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-invoiceorderlink">
-      <Arguments>add-link-role --id InvoiceOrderLinkInvoice --link InvoiceOrderLink --hub InvoiceHub --name Invoice --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id InvoiceOrderLinkInvoice --link InvoiceOrderLink --hub InvoiceHub --name Invoice --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-InvoiceOrderLinkInvoice</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoiceorderlinkorder" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoiceorderlinkinvoice">
-      <Arguments>add-link-role --id InvoiceOrderLinkOrder --link InvoiceOrderLink --hub OrderHub --name Order --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id InvoiceOrderLinkOrder --link InvoiceOrderLink --hub OrderHub --name Order --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-InvoiceOrderLinkOrder</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoicesupplierlinkinvoice" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-invoicesupplierlink">
-      <Arguments>add-link-role --id InvoiceSupplierLinkInvoice --link InvoiceSupplierLink --hub InvoiceHub --name Invoice --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id InvoiceSupplierLinkInvoice --link InvoiceSupplierLink --hub InvoiceHub --name Invoice --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-InvoiceSupplierLinkInvoice</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoicesupplierlinksupplier" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoicesupplierlinkinvoice">
-      <Arguments>add-link-role --id InvoiceSupplierLinkSupplier --link InvoiceSupplierLink --hub SupplierHub --name Supplier --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id InvoiceSupplierLinkSupplier --link InvoiceSupplierLink --hub SupplierHub --name Supplier --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-InvoiceSupplierLinkSupplier</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-ordercustomerlinkcustomer" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-ordercustomerlinkorder">
-      <Arguments>add-link-role --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --name Customer --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --name Customer --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-OrderCustomerLinkCustomer</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-ordercustomerlinkorder" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-ordercustomerlink">
-      <Arguments>add-link-role --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --name Order --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --name Order --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-OrderCustomerLinkOrder</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-productsupplierlinkproduct" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-productsupplierlink">
-      <Arguments>add-link-role --id ProductSupplierLinkProduct --link ProductSupplierLink --hub ProductHub --name Product --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id ProductSupplierLinkProduct --link ProductSupplierLink --hub ProductHub --name Product --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-ProductSupplierLinkProduct</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-productsupplierlinksupplier" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-productsupplierlinkproduct">
-      <Arguments>add-link-role --id ProductSupplierLinkSupplier --link ProductSupplierLink --hub SupplierHub --name Supplier --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id ProductSupplierLinkSupplier --link ProductSupplierLink --hub SupplierHub --name Supplier --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-ProductSupplierLinkSupplier</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-shipmentorderlinkorder" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-shipmentorderlinkshipment">
-      <Arguments>add-link-role --id ShipmentOrderLinkOrder --link ShipmentOrderLink --hub OrderHub --name Order --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id ShipmentOrderLinkOrder --link ShipmentOrderLink --hub OrderHub --name Order --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-ShipmentOrderLinkOrder</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-role-shipmentorderlinkshipment" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-shipmentorderlink">
-      <Arguments>add-link-role --id ShipmentOrderLinkShipment --link ShipmentOrderLink --hub ShipmentHub --name Shipment --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-role --id ShipmentOrderLinkShipment --link ShipmentOrderLink --hub ShipmentHub --name Shipment --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-role-ShipmentOrderLinkShipment</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-employeedepartmenthiredateattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-employeedepartmentsat">
-      <Arguments>add-link-satellite-attribute --id EmployeeDepartmentHireDateAttr --link-satellite EmployeeDepartmentSat --field EmployeeHireDateField --name HireDate --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite-attribute --id EmployeeDepartmentHireDateAttr --link-satellite EmployeeDepartmentSat --field EmployeeHireDateField --name HireDate --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-attribute-EmployeeDepartmentHireDateAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-invoiceorderamountattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-invoiceordersat">
-      <Arguments>add-link-satellite-attribute --id InvoiceOrderAmountAttr --link-satellite InvoiceOrderSat --field InvoiceAmountField --name InvoiceAmount --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite-attribute --id InvoiceOrderAmountAttr --link-satellite InvoiceOrderSat --field InvoiceAmountField --name InvoiceAmount --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-attribute-InvoiceOrderAmountAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-ordercustomerstatusattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-ordercustomersat">
-      <Arguments>add-link-satellite-attribute --id OrderCustomerStatusAttr --link-satellite OrderCustomerSat --field OrderStatusCodeField --name OrderStatusCode --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite-attribute --id OrderCustomerStatusAttr --link-satellite OrderCustomerSat --field OrderStatusCodeField --name OrderStatusCode --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-attribute-OrderCustomerStatusAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-shipmentordercarrierattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-shipmentordersat">
-      <Arguments>add-link-satellite-attribute --id ShipmentOrderCarrierAttr --link-satellite ShipmentOrderSat --field ShipmentCarrierNameField --name CarrierName --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite-attribute --id ShipmentOrderCarrierAttr --link-satellite ShipmentOrderSat --field ShipmentCarrierNameField --name CarrierName --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-attribute-ShipmentOrderCarrierAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-shipmentorderdateattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-shipmentordercarrierattr">
-      <Arguments>add-link-satellite-attribute --id ShipmentOrderDateAttr --link-satellite ShipmentOrderSat --field ShipmentDateField --name ShipmentDate --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite-attribute --id ShipmentOrderDateAttr --link-satellite ShipmentOrderSat --field ShipmentDateField --name ShipmentDate --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-attribute-ShipmentOrderDateAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-supplierproductcodeattr" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-productsuppliersat">
-      <Arguments>add-link-satellite-attribute --id SupplierProductCodeAttr --link-satellite ProductSupplierSat --field SupplierProductCodeField --name SupplierProductCode --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite-attribute --id SupplierProductCodeAttr --link-satellite ProductSupplierSat --field SupplierProductCodeField --name SupplierProductCode --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-attribute-SupplierProductCodeAttr</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-employeedepartmentsat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-employeedepartmentlinkdepartment">
-      <Arguments>add-link-satellite --id EmployeeDepartmentSat --link EmployeeDepartmentLink --name EmployeeDepartmentAssignment --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite --id EmployeeDepartmentSat --link EmployeeDepartmentLink --name EmployeeDepartmentAssignment --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-EmployeeDepartmentSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-invoiceordersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoiceorderlinkorder">
-      <Arguments>add-link-satellite --id InvoiceOrderSat --link InvoiceOrderLink --name InvoiceOrderAmount --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite --id InvoiceOrderSat --link InvoiceOrderLink --name InvoiceOrderAmount --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-InvoiceOrderSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-ordercustomersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-ordercustomerlinkcustomer">
-      <Arguments>add-link-satellite --id OrderCustomerSat --link OrderCustomerLink --name OrderCustomerStatus --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite --id OrderCustomerSat --link OrderCustomerLink --name OrderCustomerStatus --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-OrderCustomerSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-productsuppliersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-productsupplierlinksupplier">
-      <Arguments>add-link-satellite --id ProductSupplierSat --link ProductSupplierLink --name ProductSupplierTerms --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite --id ProductSupplierSat --link ProductSupplierLink --name ProductSupplierTerms --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-ProductSupplierSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-shipmentordersat" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-shipmentorderlinkorder">
-      <Arguments>add-link-satellite --id ShipmentOrderSat --link ShipmentOrderLink --name ShipmentOrderTracking --satellite-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link-satellite --id ShipmentOrderSat --link ShipmentOrderLink --name ShipmentOrderTracking --satellite-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-satellite-ShipmentOrderSat</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:add-link-shipmentorderlink" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-role-invoicesupplierlinksupplier">
-      <Arguments>add-link --id ShipmentOrderLink --name ShipmentOrder --link-kind standard --workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>add-link --id ShipmentOrderLink --name ShipmentOrder --link-kind standard --workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>add-link-ShipmentOrderLink</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:convert-raw-data-vault-to-sql" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-employeedepartmenthiredateattr">
-      <Arguments>raw-datavault-to-sql --workspace {workspace:raw-data-vault.path} --implementation-workspace {workspace:data-vault-implementation.path} --database-name RawDataVaultCliIntegration --out {workspace:sql.path}</Arguments>
+      <Arguments>raw-datavault-to-sql --workspace {workspace:raw-data-vault.location} --implementation-workspace {workspace:data-vault-implementation.location} --database-name RawDataVaultCliIntegration --out {workspace:sql.location}</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-raw-data-vault-to-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:create-deploy-manifest" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:convert-raw-data-vault-to-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.path}" --connection-env {env:META_BI_RAW_DV_SQL} --out "{workspace:deploy-manifest.path}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_SQL} --out "{workspace:deploy-manifest.location}"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-deploy-manifest</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:create-raw-data-vault-workspace" OperationId="operation:build-and-deploy-raw-data-vault">
-      <Arguments>new-workspace "{workspace:raw-data-vault.path}"</Arguments>
+      <Arguments>new-workspace "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>create-raw-data-vault-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:create-verify-manifest" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:deploy-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.path}" --connection-env {env:META_BI_RAW_DV_SQL} --out "{workspace:verify-manifest.path}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_SQL} --out "{workspace:verify-manifest.location}"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-verify-manifest</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:deploy-sql" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:create-deploy-manifest">
-      <Arguments>deploy --manifest-workspace "{workspace:deploy-manifest.path}" --source-workspace "{workspace:sql.path}" --connection-env {env:META_BI_RAW_DV_SQL}</Arguments>
+      <Arguments>deploy --manifest-workspace "{workspace:deploy-manifest.location}" --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_SQL}</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>deploy-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:drop-raw-data-vault-database" OperationId="operation:cleanup">
       <Arguments>execute --connection-env {env:META_BI_DEMO_MASTER_SQL} --quiet --query "IF DB_ID(N'RawDataVaultCliIntegration') IS NOT NULL BEGIN ALTER DATABASE [RawDataVaultCliIntegration] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [RawDataVaultCliIntegration]; END"</Arguments>

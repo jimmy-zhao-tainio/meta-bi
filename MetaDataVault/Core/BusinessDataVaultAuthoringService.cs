@@ -27,14 +27,9 @@ public sealed class BusinessDataVaultSatelliteRequest
 
 public sealed record BusinessDataVaultRelationshipAssignment(string ColumnName, string TargetEntityName, string TargetRecordId);
 
-public sealed record BusinessDataVaultWorkspaceCreationResult(
-    string WorkspacePath,
-    string ModelName,
-    int RowCount);
-
 public interface IBusinessDataVaultAuthoringService
 {
-    BusinessDataVaultWorkspaceCreationResult CreateWorkspace(string workspacePath);
+    MetaBusinessDataVaultModel CreateWorkspace();
 
     MetaBusinessDataVaultModel AddRecord(BusinessDataVaultAuthoringRequest request);
 
@@ -47,13 +42,7 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
 
     private static readonly Type ModelType = typeof(MetaBusinessDataVaultModel);
 
-    public BusinessDataVaultWorkspaceCreationResult CreateWorkspace(string workspacePath)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-
-        var fullPath = MetaBusinessDataVaultTooling.CreateWorkspace(Path.GetFullPath(workspacePath));
-        return new BusinessDataVaultWorkspaceCreationResult(fullPath, ModelName, RowCount: 0);
-    }
+    public MetaBusinessDataVaultModel CreateWorkspace() => MetaBusinessDataVaultModel.CreateEmpty();
 
     public MetaBusinessDataVaultModel AddRecord(BusinessDataVaultAuthoringRequest request)
     {

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandList>
-    <ExecutableCommand Id="exec-help" CommandId="cmd-help">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-new-workspace" CommandId="cmd-new-workspace">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-check" CommandId="cmd-check">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-resolve" CommandId="cmd-resolve">
-    </ExecutableCommand>
+    <ExecutableCommand Id="exec-check" CommandId="cmd-check" />
+    <ExecutableCommand Id="exec-create" CommandId="cmd-create" />
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
+    <ExecutableCommand Id="exec-resolve" CommandId="cmd-resolve" />
   </ExecutableCommandList>
 </MetaCli>

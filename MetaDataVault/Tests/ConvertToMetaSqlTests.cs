@@ -19,7 +19,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var createResult = RunRawCli($"new-workspace \"{workspacePath}\"");
+            var createResult = RunRawCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             var sqlWorkspace = await Converter.ConvertAsync(
@@ -56,7 +56,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var createResult = RunBusinessCli($"new-workspace \"{workspacePath}\"");
+            var createResult = RunBusinessCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             var sqlWorkspace = await Converter.ConvertAsync(
@@ -935,7 +935,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var createResult = RunBusinessCli($"new-workspace \"{workspacePath}\"");
+            var createResult = RunBusinessCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Customer --name Customer").ExitCode);
@@ -981,7 +981,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            Assert.Equal(0, RunBusinessCli($"new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"create --xml \"{workspacePath}\"").ExitCode);
             Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Customer --name Customer").ExitCode);
 
             var model = MetaBusinessDataVaultTooling.Load(workspacePath);

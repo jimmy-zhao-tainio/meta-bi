@@ -19,9 +19,19 @@ public sealed partial class MetaTransformScriptSqlService
             .LoadFromWorkspaceAsync(workspaceFullPath, searchUpward: false, cancellationToken)
             .ConfigureAwait(false);
 
+        return InspectStoredProcedureContracts(model, transformScriptName, workspaceFullPath);
+    }
+
+    public StoredProcedureContractInspectionResult InspectStoredProcedureContracts(
+        MTS.MetaTransformScriptModel model,
+        string? transformScriptName = null,
+        string workspacePath = "")
+    {
+        ArgumentNullException.ThrowIfNull(model);
+
         var items = BuildStoredProcedureContractInspectionItems(model, transformScriptName);
         return new StoredProcedureContractInspectionResult(
-            workspaceFullPath,
+            workspacePath,
             items.Count,
             items.Count(static item => item.ContractState == StoredProcedureContractState.Present),
             items.Count(static item => item.ContractState == StoredProcedureContractState.Missing),
@@ -46,6 +56,30 @@ public sealed partial class MetaTransformScriptSqlService
             .LoadFromWorkspaceAsync(workspaceFullPath, searchUpward: false, cancellationToken)
             .ConfigureAwait(false);
 
+        var result = AddStoredProcedureContract(
+            model,
+            transformScriptName,
+            declaration,
+            workspaceFullPath);
+
+        await MetaTransformScriptInstance
+            .SaveToWorkspaceAsync(model, workspaceFullPath, cancellationToken)
+            .ConfigureAwait(false);
+
+        return result;
+    }
+
+    public StoredProcedureContractDeclarationResult AddStoredProcedureContract(
+        MTS.MetaTransformScriptModel model,
+        string transformScriptName,
+        StoredProcedureContractDeclaration declaration,
+        string workspacePath = "")
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentException.ThrowIfNullOrWhiteSpace(transformScriptName);
+        ArgumentNullException.ThrowIfNull(declaration);
+        ValidateStoredProcedureContractDeclaration(declaration);
+
         var (script, storedProcedure) = ResolveStoredProcedure(model, transformScriptName);
         var storedProcedureId = storedProcedure.Id;
         var removedContractIds = model.StoredProcedureContractList
@@ -67,12 +101,8 @@ public sealed partial class MetaTransformScriptSqlService
         AddOperations(model, contract, declaration.Operations);
         AddResultRowsets(model, contract, declaration.ResultRowsets);
 
-        await MetaTransformScriptInstance
-            .SaveToWorkspaceAsync(model, workspaceFullPath, cancellationToken)
-            .ConfigureAwait(false);
-
         var item = BuildStoredProcedureContractInspectionItem(model, script, storedProcedure);
-        return new StoredProcedureContractDeclarationResult(workspaceFullPath, item);
+        return new StoredProcedureContractDeclarationResult(workspacePath, item);
     }
 
     public async Task<StoredProcedureContractRemovalResult> RemoveStoredProcedureContractAsync(
@@ -88,6 +118,26 @@ public sealed partial class MetaTransformScriptSqlService
         var model = await MetaTransformScriptInstance
             .LoadFromWorkspaceAsync(workspaceFullPath, searchUpward: false, cancellationToken)
             .ConfigureAwait(false);
+
+        var result = RemoveStoredProcedureContract(
+            model,
+            transformScriptName,
+            workspaceFullPath);
+
+        await MetaTransformScriptInstance
+            .SaveToWorkspaceAsync(model, workspaceFullPath, cancellationToken)
+            .ConfigureAwait(false);
+
+        return result;
+    }
+
+    public StoredProcedureContractRemovalResult RemoveStoredProcedureContract(
+        MTS.MetaTransformScriptModel model,
+        string transformScriptName,
+        string workspacePath = "")
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentException.ThrowIfNullOrWhiteSpace(transformScriptName);
 
         var (script, storedProcedure) = ResolveStoredProcedure(model, transformScriptName);
         var storedProcedureId = storedProcedure.Id;
@@ -109,12 +159,8 @@ public sealed partial class MetaTransformScriptSqlService
         var resultRowsetCount = model.StoredProcedureResultRowsetItemList.RemoveAll(item =>
             removedContractIds.Contains(item.StoredProcedureContract.Id));
 
-        await MetaTransformScriptInstance
-            .SaveToWorkspaceAsync(model, workspaceFullPath, cancellationToken)
-            .ConfigureAwait(false);
-
         return new StoredProcedureContractRemovalResult(
-            workspaceFullPath,
+            workspacePath,
             script.Id,
             script.Name,
             storedProcedureId,

@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <CommandList>
-    <Command Id="cmd-help" ApplicationId="app-meta-sql">
-      <Description>Show help.</Description>
-      <Name>help</Name>
-      <Token>help</Token>
+    <Command Id="cmd-deploy" ApplicationId="app-meta-sql">
+      <Description>Apply a deploy manifest after source and live fingerprint validation.</Description>
+      <Name>deploy</Name>
+      <Token>deploy</Token>
+    </Command>
+    <Command Id="cmd-deploy-plan" ApplicationId="app-meta-sql">
+      <Description>Create a deploy manifest from a source MetaSql workspace and a live SQL Server database.</Description>
+      <Name>deploy-plan</Name>
+      <Token>deploy-plan</Token>
+    </Command>
+    <Command Id="cmd-execute" ApplicationId="app-meta-sql">
+      <Description>Execute a SQL Server file or query for demo, bootstrap, and verification scripts.</Description>
+      <Name>execute</Name>
+      <Token>execute</Token>
     </Command>
     <Command Id="cmd-extract" ApplicationId="app-meta-sql">
       <Description>Materialize sanctioned MetaSql workspaces from external sources.</Description>
@@ -16,20 +26,10 @@
       <Name>extract sqlserver</Name>
       <Token>sqlserver</Token>
     </Command>
-    <Command Id="cmd-deploy-plan" ApplicationId="app-meta-sql">
-      <Description>Create a deploy manifest from a source MetaSql workspace and a live SQL Server database.</Description>
-      <Name>deploy-plan</Name>
-      <Token>deploy-plan</Token>
-    </Command>
-    <Command Id="cmd-deploy" ApplicationId="app-meta-sql">
-      <Description>Apply a deploy manifest after source and live fingerprint validation.</Description>
-      <Name>deploy</Name>
-      <Token>deploy</Token>
-    </Command>
-    <Command Id="cmd-execute" ApplicationId="app-meta-sql">
-      <Description>Execute a SQL Server file or query for demo, bootstrap, and verification scripts.</Description>
-      <Name>execute</Name>
-      <Token>execute</Token>
+    <Command Id="cmd-help" ApplicationId="app-meta-sql">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
     </Command>
   </CommandList>
 </MetaCli>

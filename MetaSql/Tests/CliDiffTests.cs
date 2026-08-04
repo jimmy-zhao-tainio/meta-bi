@@ -113,7 +113,7 @@ public sealed partial class CliDiffTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Usage:", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql extract sqlserver --new-workspace <path> --connection-env <value>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql extract sqlserver --output-xml <path> --connection-env <value>", result.Output, StringComparison.Ordinal);
         Assert.Contains("--include-tables", result.Output, StringComparison.Ordinal);
         Assert.Contains("--include-views", result.Output, StringComparison.Ordinal);
         Assert.Contains("--include-functions", result.Output, StringComparison.Ordinal);

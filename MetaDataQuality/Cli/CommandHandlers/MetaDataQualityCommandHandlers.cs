@@ -23,30 +23,26 @@ internal sealed class MetaDataQualityCommandHandlers
         this.promotionService = promotionService;
     }
 
-    public void RunFromTransformWorkspace(MetaCliInvocation invocation)
+    public async Task RunFromTransformWorkspaceAsync(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
         var transformWorkspacePathValue = invocation.Required("transform-workspace");
-        var newWorkspacePathValue = invocation.Required("new-workspace");
         var bindingWorkspacePathValue = invocation.Optional("binding-workspace");
-
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(newWorkspacePathValue);
-        if (!targetValidation.Ok)
-        {
-            Fail(
-                targetValidation.ErrorMessage,
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                targetValidation.Details);
-        }
+        var output = MetaCliWorkspace.OutputLocation(
+            invocation,
+            "output-xml",
+            "output-csharp",
+            "output-sql");
 
         try
         {
             var result = workspaceService.CreateFromTransformWorkspace(
                 transformWorkspacePathValue,
-                bindingWorkspacePathValue,
-                targetValidation.FullPath);
+                bindingWorkspacePathValue);
+            await workspaces.CreateAsync("output", result.Model).ConfigureAwait(false);
 
-            presenter.WriteInfo($"Workspace: {result.WorkspacePath}");
+            presenter.WriteInfo($"Workspace: {output}");
             presenter.WriteInfo($"Views ready to create: {result.DataQualityCandidateCount}");
             presenter.WriteInfo($"Relationships captured: {result.JoinPatternOccurrenceCount}");
             if (result.BindingWorkspaceProvided)
@@ -180,7 +176,7 @@ internal sealed class MetaDataQualityCommandHandlers
 
         try
         {
-            var result = promotionService.PromoteWorkspace(model, workspacePath, candidateIds, promoteAll, candidateKinds);
+            var result = promotionService.Promote(model, candidateIds, promoteAll, candidateKinds);
 
             presenter.WriteInfo($"Candidates promoted this run: {result.PromotedThisRunCount}");
             presenter.WriteInfo($"Candidates promoted for SQL: {result.TotalPromotedCount}");

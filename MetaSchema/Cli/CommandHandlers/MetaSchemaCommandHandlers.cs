@@ -21,18 +21,11 @@ internal sealed class MetaSchemaCommandHandlers
         this.appName = appName;
     }
 
-    public async Task RunExtractSqlServerAsync(MetaCliInvocation invocation)
+    public async Task RunExtractSqlServerAsync(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
-        var newWorkspacePath = invocation.Required("new-workspace");
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(newWorkspacePath);
-        if (!targetValidation.Ok)
-        {
-            Fail(
-                targetValidation.ErrorMessage,
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                targetValidation.Details);
-        }
+        var output = MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql");
 
         string connectionString;
         var connectionEnvironmentVariableName = invocation.Required("connection-env");
@@ -53,7 +46,7 @@ internal sealed class MetaSchemaCommandHandlers
 
         var request = new SqlServerExtractRequest
         {
-            NewWorkspacePath = targetValidation.FullPath,
+            NewWorkspacePath = output,
             ConnectionString = connectionString,
             SystemName = invocation.Required("system"),
             SchemaName = invocation.Optional("schema") ?? string.Empty,
@@ -65,8 +58,8 @@ internal sealed class MetaSchemaCommandHandlers
         try
         {
             using var activity = CliActivityLine.Start("Extracting");
-            var result = await sqlServerExtractService.ExtractToNewWorkspaceAsync(request)
-                .ConfigureAwait(false);
+            var result = sqlServerExtractService.Extract(request);
+            await workspaces.CreateAsync("output", result.Model).ConfigureAwait(false);
             activity.Succeed();
 
             presenter.WriteKeyValueBlock("MetaSchema", [
@@ -78,7 +71,7 @@ internal sealed class MetaSchemaCommandHandlers
                 ("Fields", result.FieldCount.ToString(CultureInfo.InvariantCulture)),
                 ("Keys", result.KeyCount.ToString(CultureInfo.InvariantCulture)),
                 ("Relationships", result.TableRelationshipCount.ToString(CultureInfo.InvariantCulture)),
-                ("Workspace", result.WorkspacePath)
+                ("Workspace", output)
             ]);
         }
         catch (InvalidOperationException exception)

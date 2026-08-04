@@ -113,6 +113,9 @@
     <ExecutableCommandParameter Id="exec-add-business-satellite-attribute:parameter:parameter-add-business-satellite-attribute-satellite" ExecutableCommandId="exec-add-business-satellite-attribute" ParameterId="parameter-add-business-satellite-attribute-satellite" />
     <ExecutableCommandParameter Id="exec-add-business-satellite-attribute:parameter:parameter-add-business-satellite-attribute-scale" ExecutableCommandId="exec-add-business-satellite-attribute" ParameterId="parameter-add-business-satellite-attribute-scale" />
     <ExecutableCommandParameter Id="exec-add-business-satellite-attribute:parameter:parameter-add-business-satellite-attribute-workspace" ExecutableCommandId="exec-add-business-satellite-attribute" ParameterId="parameter-add-business-satellite-attribute-workspace" />
-    <ExecutableCommandParameter Id="exec-new-workspace:parameter:param-new-workspace-path" ExecutableCommandId="exec-new-workspace" ParameterId="param-new-workspace-path" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-connection-env" ExecutableCommandId="exec-create" ParameterId="param-create-connection-env" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-csharp" ExecutableCommandId="exec-create" ParameterId="param-create-csharp" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-sql" ExecutableCommandId="exec-create" ParameterId="param-create-sql" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-xml" ExecutableCommandId="exec-create" ParameterId="param-create-xml" />
   </ExecutableCommandParameterList>
 </MetaCli>

@@ -1,640 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-new-workspace-path" ValueShapeId="shape-path">
-      <IsRequired>true</IsRequired>
-      <Name>path</Name>
-    </Parameter>
-    <Parameter Id="param-add-warehouse-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-warehouse-id" ValueShapeId="shape-text">
-      <Description>Warehouse row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-warehouse-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-warehouse-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-id" ValueShapeId="shape-text">
-      <Description>Dimension row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-warehouse" ValueShapeId="shape-text">
-      <Description>Warehouse id for WarehouseId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>warehouse</Name>
-    </Parameter>
-    <Parameter Id="param-add-conformed-dimension-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-conformed-dimension-id" ValueShapeId="shape-text">
-      <Description>ConformedDimension row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-conformed-dimension-conformance-name" ValueShapeId="shape-text">
-      <Description>ConformanceName.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>conformance-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-conformed-dimension-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-conformed-dimension-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for DimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-attribute-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-attribute-id" ValueShapeId="shape-text">
-      <Description>DimensionAttribute row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-attribute-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-attribute-data-type-id" ValueShapeId="shape-text">
-      <Description>DataTypeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>data-type-id</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-attribute-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-attribute-is-nullable" ValueShapeId="shape-bool">
-      <Description>IsNullable.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>is-nullable</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-attribute-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-attribute-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for DimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-business-key-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-business-key-id" ValueShapeId="shape-text">
-      <Description>DimensionBusinessKey row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-business-key-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-business-key-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-business-key-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for DimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-business-key-part-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-business-key-part-id" ValueShapeId="shape-text">
-      <Description>DimensionBusinessKeyPart row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-business-key-part-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-business-key-part-business-key" ValueShapeId="shape-text">
-      <Description>DimensionBusinessKey id for DimensionBusinessKeyId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>business-key</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-business-key-part-attribute" ValueShapeId="shape-text">
-      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>attribute</Name>
-    </Parameter>
-    <Parameter Id="param-add-slowly-changing-dimension-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-slowly-changing-dimension-id" ValueShapeId="shape-text">
-      <Description>SlowlyChangingDimension row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-slowly-changing-dimension-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-slowly-changing-dimension-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-slowly-changing-dimension-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for DimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-type1-dimension-attribute-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-type1-dimension-attribute-id" ValueShapeId="shape-text">
-      <Description>Type1DimensionAttribute row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-type1-dimension-attribute-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-type1-dimension-attribute-slowly-changing-dimension" ValueShapeId="shape-text">
-      <Description>SlowlyChangingDimension id for SlowlyChangingDimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>slowly-changing-dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-type1-dimension-attribute-attribute" ValueShapeId="shape-text">
-      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>attribute</Name>
-    </Parameter>
-    <Parameter Id="param-add-type2-dimension-attribute-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-type2-dimension-attribute-id" ValueShapeId="shape-text">
-      <Description>Type2DimensionAttribute row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-type2-dimension-attribute-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-type2-dimension-attribute-slowly-changing-dimension" ValueShapeId="shape-text">
-      <Description>SlowlyChangingDimension id for SlowlyChangingDimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>slowly-changing-dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-type2-dimension-attribute-attribute" ValueShapeId="shape-text">
-      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>attribute</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-id" ValueShapeId="shape-text">
-      <Description>DimensionHierarchy row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for DimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-level-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-level-id" ValueShapeId="shape-text">
-      <Description>DimensionHierarchyLevel row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-level-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-level-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-level-hierarchy" ValueShapeId="shape-text">
-      <Description>DimensionHierarchy id for DimensionHierarchyId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>hierarchy</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-level-attribute" ValueShapeId="shape-text">
-      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>attribute</Name>
-    </Parameter>
-    <Parameter Id="param-add-junk-dimension-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-junk-dimension-id" ValueShapeId="shape-text">
-      <Description>JunkDimension row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-junk-dimension-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-junk-dimension-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for DimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-junk-dimension-component-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-junk-dimension-component-id" ValueShapeId="shape-text">
-      <Description>JunkDimensionComponent row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-junk-dimension-component-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-junk-dimension-component-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-junk-dimension-component-junk-dimension" ValueShapeId="shape-text">
-      <Description>JunkDimension id for JunkDimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>junk-dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-junk-dimension-component-attribute" ValueShapeId="shape-text">
-      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>attribute</Name>
-    </Parameter>
-    <Parameter Id="param-add-mini-dimension-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-mini-dimension-id" ValueShapeId="shape-text">
-      <Description>MiniDimension row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-mini-dimension-role-name" ValueShapeId="shape-text">
-      <Description>RoleName.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>role-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-mini-dimension-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-mini-dimension-source-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for SourceDimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-mini-dimension-profile-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for ProfileDimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>profile-dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-outrigger-dimension-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-outrigger-dimension-id" ValueShapeId="shape-text">
-      <Description>OutriggerDimension row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-outrigger-dimension-role-name" ValueShapeId="shape-text">
-      <Description>RoleName.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>role-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-outrigger-dimension-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-outrigger-dimension-is-required" ValueShapeId="shape-bool">
-      <Description>IsRequired.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>is-required</Name>
-    </Parameter>
-    <Parameter Id="param-add-outrigger-dimension-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-outrigger-dimension-parent-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for ParentDimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>parent-dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-outrigger-dimension-child-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for ChildDimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>child-dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-id" ValueShapeId="shape-text">
-      <Description>Fact row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-warehouse" ValueShapeId="shape-text">
-      <Description>Warehouse id for WarehouseId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>warehouse</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-grain-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-grain-id" ValueShapeId="shape-text">
-      <Description>FactGrain row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-grain-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-grain-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-grain-fact" ValueShapeId="shape-text">
-      <Description>Fact id for FactId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>fact</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-dimension-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-dimension-id" ValueShapeId="shape-text">
-      <Description>FactDimension row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-dimension-role-name" ValueShapeId="shape-text">
-      <Description>RoleName.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>role-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-dimension-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-dimension-is-required" ValueShapeId="shape-bool">
-      <Description>IsRequired.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>is-required</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-dimension-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-dimension-fact" ValueShapeId="shape-text">
-      <Description>Fact id for FactId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>fact</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-dimension-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for DimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-measure-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-measure-id" ValueShapeId="shape-text">
-      <Description>FactMeasure row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-measure-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-measure-data-type-id" ValueShapeId="shape-text">
-      <Description>DataTypeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>data-type-id</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-measure-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-measure-is-nullable" ValueShapeId="shape-bool">
-      <Description>IsNullable.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>is-nullable</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-measure-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-fact-measure-fact" ValueShapeId="shape-text">
-      <Description>Fact id for FactId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>fact</Name>
-    </Parameter>
-    <Parameter Id="param-add-degenerate-dimension-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-degenerate-dimension-id" ValueShapeId="shape-text">
-      <Description>DegenerateDimension row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-degenerate-dimension-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-degenerate-dimension-data-type-id" ValueShapeId="shape-text">
-      <Description>DataTypeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>data-type-id</Name>
-    </Parameter>
-    <Parameter Id="param-add-degenerate-dimension-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-degenerate-dimension-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-degenerate-dimension-fact" ValueShapeId="shape-text">
-      <Description>Fact id for FactId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>fact</Name>
-    </Parameter>
-    <Parameter Id="param-add-transaction-fact-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-transaction-fact-id" ValueShapeId="shape-text">
-      <Description>TransactionFact row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-transaction-fact-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-transaction-fact-fact" ValueShapeId="shape-text">
-      <Description>Fact id for FactId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>fact</Name>
-    </Parameter>
-    <Parameter Id="param-add-periodic-snapshot-fact-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-periodic-snapshot-fact-id" ValueShapeId="shape-text">
-      <Description>PeriodicSnapshotFact row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-periodic-snapshot-fact-period-name" ValueShapeId="shape-text">
-      <Description>PeriodName.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>period-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-periodic-snapshot-fact-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-periodic-snapshot-fact-fact" ValueShapeId="shape-text">
-      <Description>Fact id for FactId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>fact</Name>
-    </Parameter>
-    <Parameter Id="param-add-accumulating-snapshot-fact-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-accumulating-snapshot-fact-id" ValueShapeId="shape-text">
-      <Description>AccumulatingSnapshotFact row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
     <Parameter Id="param-add-accumulating-snapshot-fact-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
@@ -645,10 +11,30 @@
       <IsRequired>true</IsRequired>
       <Name>fact</Name>
     </Parameter>
-    <Parameter Id="param-add-accumulating-snapshot-milestone-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-accumulating-snapshot-fact-id" ValueShapeId="shape-text">
+      <Description>AccumulatingSnapshotFact row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-accumulating-snapshot-fact-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-accumulating-snapshot-milestone-accumulating-snapshot" ValueShapeId="shape-text">
+      <Description>AccumulatingSnapshotFact id for AccumulatingSnapshotFactId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>accumulating-snapshot</Name>
+    </Parameter>
+    <Parameter Id="param-add-accumulating-snapshot-milestone-date-role-name" ValueShapeId="shape-text">
+      <Description>DateRoleName.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>date-role-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-accumulating-snapshot-milestone-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-accumulating-snapshot-milestone-id" ValueShapeId="shape-text">
       <Description>AccumulatingSnapshotMilestone row id.</Description>
@@ -665,70 +51,40 @@
       <IsRequired>false</IsRequired>
       <Name>ordinal</Name>
     </Parameter>
-    <Parameter Id="param-add-accumulating-snapshot-milestone-date-role-name" ValueShapeId="shape-text">
-      <Description>DateRoleName.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>date-role-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-accumulating-snapshot-milestone-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-accumulating-snapshot-milestone-accumulating-snapshot" ValueShapeId="shape-text">
-      <Description>AccumulatingSnapshotFact id for AccumulatingSnapshotFactId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>accumulating-snapshot</Name>
-    </Parameter>
-    <Parameter Id="param-add-factless-fact-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-accumulating-snapshot-milestone-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-factless-fact-id" ValueShapeId="shape-text">
-      <Description>FactlessFact row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-factless-fact-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-factless-fact-fact" ValueShapeId="shape-text">
-      <Description>Fact id for FactId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>fact</Name>
-    </Parameter>
-    <Parameter Id="param-add-aggregate-fact-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-aggregate-fact-id" ValueShapeId="shape-text">
-      <Description>AggregateFact row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-aggregate-fact-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-aggregate-fact-aggregated-fact" ValueShapeId="shape-text">
       <Description>Fact id for AggregatedFactId.</Description>
       <IsRequired>true</IsRequired>
       <Name>aggregated-fact</Name>
     </Parameter>
+    <Parameter Id="param-add-aggregate-fact-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-aggregate-fact-id" ValueShapeId="shape-text">
+      <Description>AggregateFact row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-aggregate-fact-source-fact" ValueShapeId="shape-text">
       <Description>Fact id for SourceFactId.</Description>
       <IsRequired>true</IsRequired>
       <Name>source-fact</Name>
     </Parameter>
-    <Parameter Id="param-add-bridge-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-aggregate-fact-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-bridge-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-bridge-id" ValueShapeId="shape-text">
       <Description>BridgeTable row id.</Description>
@@ -740,41 +96,6 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-bridge-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-bridge-warehouse" ValueShapeId="shape-text">
-      <Description>Warehouse id for WarehouseId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>warehouse</Name>
-    </Parameter>
-    <Parameter Id="param-add-bridge-participant-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-bridge-participant-id" ValueShapeId="shape-text">
-      <Description>BridgeParticipant row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-bridge-participant-role-name" ValueShapeId="shape-text">
-      <Description>RoleName.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>role-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-bridge-participant-ordinal" ValueShapeId="shape-text">
-      <Description>Ordinal.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>ordinal</Name>
-    </Parameter>
-    <Parameter Id="param-add-bridge-participant-is-required" ValueShapeId="shape-bool">
-      <Description>IsRequired.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>is-required</Name>
-    </Parameter>
     <Parameter Id="param-add-bridge-participant-bridge" ValueShapeId="shape-text">
       <Description>BridgeTable id for BridgeTableId.</Description>
       <IsRequired>true</IsRequired>
@@ -785,20 +106,40 @@
       <IsRequired>true</IsRequired>
       <Name>dimension</Name>
     </Parameter>
-    <Parameter Id="param-add-bridge-weight-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-bridge-participant-id" ValueShapeId="shape-text">
+      <Description>BridgeParticipant row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-bridge-participant-is-required" ValueShapeId="shape-bool">
+      <Description>IsRequired.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>is-required</Name>
+    </Parameter>
+    <Parameter Id="param-add-bridge-participant-ordinal" ValueShapeId="shape-text">
+      <Description>Ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-bridge-participant-role-name" ValueShapeId="shape-text">
+      <Description>RoleName.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>role-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-bridge-participant-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-bridge-weight-id" ValueShapeId="shape-text">
-      <Description>BridgeWeight row id.</Description>
+    <Parameter Id="param-add-bridge-warehouse" ValueShapeId="shape-text">
+      <Description>Warehouse id for WarehouseId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>warehouse</Name>
     </Parameter>
-    <Parameter Id="param-add-bridge-weight-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
+    <Parameter Id="param-add-bridge-weight-bridge" ValueShapeId="shape-text">
+      <Description>BridgeTable id for BridgeTableId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>name</Name>
+      <Name>bridge</Name>
     </Parameter>
     <Parameter Id="param-add-bridge-weight-data-type-id" ValueShapeId="shape-text">
       <Description>DataTypeId.</Description>
@@ -810,30 +151,260 @@
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
-    <Parameter Id="param-add-bridge-weight-bridge" ValueShapeId="shape-text">
-      <Description>BridgeTable id for BridgeTableId.</Description>
+    <Parameter Id="param-add-bridge-weight-id" ValueShapeId="shape-text">
+      <Description>BridgeWeight row id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>bridge</Name>
+      <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-add-fact-bridge-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-bridge-weight-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-bridge-weight-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-fact-bridge-id" ValueShapeId="shape-text">
-      <Description>FactBridge row id.</Description>
+    <Parameter Id="param-add-bridge-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-conformed-dimension-conformance-name" ValueShapeId="shape-text">
+      <Description>ConformanceName.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>conformance-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-conformed-dimension-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-conformed-dimension-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for DimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-conformed-dimension-id" ValueShapeId="shape-text">
+      <Description>ConformedDimension row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-add-fact-bridge-role-name" ValueShapeId="shape-text">
-      <Description>RoleName.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>role-name</Name>
+    <Parameter Id="param-add-conformed-dimension-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-fact-bridge-ordinal" ValueShapeId="shape-text">
+    <Parameter Id="param-add-degenerate-dimension-data-type-id" ValueShapeId="shape-text">
+      <Description>DataTypeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>data-type-id</Name>
+    </Parameter>
+    <Parameter Id="param-add-degenerate-dimension-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-degenerate-dimension-fact" ValueShapeId="shape-text">
+      <Description>Fact id for FactId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>fact</Name>
+    </Parameter>
+    <Parameter Id="param-add-degenerate-dimension-id" ValueShapeId="shape-text">
+      <Description>DegenerateDimension row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-degenerate-dimension-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-degenerate-dimension-ordinal" ValueShapeId="shape-text">
       <Description>Ordinal.</Description>
       <IsRequired>false</IsRequired>
       <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-degenerate-dimension-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-attribute-data-type-id" ValueShapeId="shape-text">
+      <Description>DataTypeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>data-type-id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-attribute-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-attribute-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for DimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-attribute-id" ValueShapeId="shape-text">
+      <Description>DimensionAttribute row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-attribute-is-nullable" ValueShapeId="shape-bool">
+      <Description>IsNullable.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>is-nullable</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-attribute-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-attribute-ordinal" ValueShapeId="shape-text">
+      <Description>Ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-attribute-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-business-key-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-business-key-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for DimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-business-key-id" ValueShapeId="shape-text">
+      <Description>DimensionBusinessKey row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-business-key-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-business-key-part-attribute" ValueShapeId="shape-text">
+      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-business-key-part-business-key" ValueShapeId="shape-text">
+      <Description>DimensionBusinessKey id for DimensionBusinessKeyId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>business-key</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-business-key-part-id" ValueShapeId="shape-text">
+      <Description>DimensionBusinessKeyPart row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-business-key-part-ordinal" ValueShapeId="shape-text">
+      <Description>Ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-business-key-part-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-business-key-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for DimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-id" ValueShapeId="shape-text">
+      <Description>DimensionHierarchy row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-level-attribute" ValueShapeId="shape-text">
+      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-level-hierarchy" ValueShapeId="shape-text">
+      <Description>DimensionHierarchy id for DimensionHierarchyId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hierarchy</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-level-id" ValueShapeId="shape-text">
+      <Description>DimensionHierarchyLevel row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-level-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-level-ordinal" ValueShapeId="shape-text">
+      <Description>Ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-level-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-id" ValueShapeId="shape-text">
+      <Description>Dimension row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-warehouse" ValueShapeId="shape-text">
+      <Description>Warehouse id for WarehouseId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>warehouse</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-bridge-bridge" ValueShapeId="shape-text">
+      <Description>BridgeTable id for BridgeTableId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>bridge</Name>
     </Parameter>
     <Parameter Id="param-add-fact-bridge-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
@@ -845,10 +416,451 @@
       <IsRequired>true</IsRequired>
       <Name>fact</Name>
     </Parameter>
-    <Parameter Id="param-add-fact-bridge-bridge" ValueShapeId="shape-text">
-      <Description>BridgeTable id for BridgeTableId.</Description>
+    <Parameter Id="param-add-fact-bridge-id" ValueShapeId="shape-text">
+      <Description>FactBridge row id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>bridge</Name>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-bridge-ordinal" ValueShapeId="shape-text">
+      <Description>Ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-bridge-role-name" ValueShapeId="shape-text">
+      <Description>RoleName.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>role-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-bridge-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-dimension-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-dimension-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for DimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-dimension-fact" ValueShapeId="shape-text">
+      <Description>Fact id for FactId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>fact</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-dimension-id" ValueShapeId="shape-text">
+      <Description>FactDimension row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-dimension-is-required" ValueShapeId="shape-bool">
+      <Description>IsRequired.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>is-required</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-dimension-ordinal" ValueShapeId="shape-text">
+      <Description>Ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-dimension-role-name" ValueShapeId="shape-text">
+      <Description>RoleName.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>role-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-dimension-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-grain-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-grain-fact" ValueShapeId="shape-text">
+      <Description>Fact id for FactId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>fact</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-grain-id" ValueShapeId="shape-text">
+      <Description>FactGrain row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-grain-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-grain-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-id" ValueShapeId="shape-text">
+      <Description>Fact row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-measure-data-type-id" ValueShapeId="shape-text">
+      <Description>DataTypeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>data-type-id</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-measure-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-measure-fact" ValueShapeId="shape-text">
+      <Description>Fact id for FactId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>fact</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-measure-id" ValueShapeId="shape-text">
+      <Description>FactMeasure row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-measure-is-nullable" ValueShapeId="shape-bool">
+      <Description>IsNullable.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>is-nullable</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-measure-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-measure-ordinal" ValueShapeId="shape-text">
+      <Description>Ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-measure-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-warehouse" ValueShapeId="shape-text">
+      <Description>Warehouse id for WarehouseId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>warehouse</Name>
+    </Parameter>
+    <Parameter Id="param-add-fact-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-factless-fact-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-factless-fact-fact" ValueShapeId="shape-text">
+      <Description>Fact id for FactId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>fact</Name>
+    </Parameter>
+    <Parameter Id="param-add-factless-fact-id" ValueShapeId="shape-text">
+      <Description>FactlessFact row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-factless-fact-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-junk-dimension-component-attribute" ValueShapeId="shape-text">
+      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-junk-dimension-component-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-junk-dimension-component-id" ValueShapeId="shape-text">
+      <Description>JunkDimensionComponent row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-junk-dimension-component-junk-dimension" ValueShapeId="shape-text">
+      <Description>JunkDimension id for JunkDimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>junk-dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-junk-dimension-component-ordinal" ValueShapeId="shape-text">
+      <Description>Ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-junk-dimension-component-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-junk-dimension-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-junk-dimension-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for DimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-junk-dimension-id" ValueShapeId="shape-text">
+      <Description>JunkDimension row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-junk-dimension-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-mini-dimension-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-mini-dimension-id" ValueShapeId="shape-text">
+      <Description>MiniDimension row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-mini-dimension-profile-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for ProfileDimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>profile-dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-mini-dimension-role-name" ValueShapeId="shape-text">
+      <Description>RoleName.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>role-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-mini-dimension-source-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for SourceDimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-mini-dimension-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-outrigger-dimension-child-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for ChildDimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>child-dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-outrigger-dimension-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-outrigger-dimension-id" ValueShapeId="shape-text">
+      <Description>OutriggerDimension row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-outrigger-dimension-is-required" ValueShapeId="shape-bool">
+      <Description>IsRequired.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>is-required</Name>
+    </Parameter>
+    <Parameter Id="param-add-outrigger-dimension-ordinal" ValueShapeId="shape-text">
+      <Description>Ordinal.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>ordinal</Name>
+    </Parameter>
+    <Parameter Id="param-add-outrigger-dimension-parent-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for ParentDimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>parent-dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-outrigger-dimension-role-name" ValueShapeId="shape-text">
+      <Description>RoleName.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>role-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-outrigger-dimension-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-periodic-snapshot-fact-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-periodic-snapshot-fact-fact" ValueShapeId="shape-text">
+      <Description>Fact id for FactId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>fact</Name>
+    </Parameter>
+    <Parameter Id="param-add-periodic-snapshot-fact-id" ValueShapeId="shape-text">
+      <Description>PeriodicSnapshotFact row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-periodic-snapshot-fact-period-name" ValueShapeId="shape-text">
+      <Description>PeriodName.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>period-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-periodic-snapshot-fact-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-slowly-changing-dimension-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-slowly-changing-dimension-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for DimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-slowly-changing-dimension-id" ValueShapeId="shape-text">
+      <Description>SlowlyChangingDimension row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-slowly-changing-dimension-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-slowly-changing-dimension-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-transaction-fact-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-transaction-fact-fact" ValueShapeId="shape-text">
+      <Description>Fact id for FactId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>fact</Name>
+    </Parameter>
+    <Parameter Id="param-add-transaction-fact-id" ValueShapeId="shape-text">
+      <Description>TransactionFact row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-transaction-fact-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-type1-dimension-attribute-attribute" ValueShapeId="shape-text">
+      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-type1-dimension-attribute-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-type1-dimension-attribute-id" ValueShapeId="shape-text">
+      <Description>Type1DimensionAttribute row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-type1-dimension-attribute-slowly-changing-dimension" ValueShapeId="shape-text">
+      <Description>SlowlyChangingDimension id for SlowlyChangingDimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>slowly-changing-dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-type1-dimension-attribute-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-type2-dimension-attribute-attribute" ValueShapeId="shape-text">
+      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-type2-dimension-attribute-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-type2-dimension-attribute-id" ValueShapeId="shape-text">
+      <Description>Type2DimensionAttribute row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-type2-dimension-attribute-slowly-changing-dimension" ValueShapeId="shape-text">
+      <Description>SlowlyChangingDimension id for SlowlyChangingDimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>slowly-changing-dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-type2-dimension-attribute-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-warehouse-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-warehouse-id" ValueShapeId="shape-text">
+      <Description>Warehouse row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-warehouse-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-warehouse-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-create-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL Server connection string.</Description>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-create-csharp" ValueShapeId="shape-path">
+      <Description>Create a C# workspace at this directory.</Description>
+      <Name>csharp</Name>
+    </Parameter>
+    <Parameter Id="param-create-sql" ValueShapeId="shape-path">
+      <Description>Create a SQL workspace described by this directory.</Description>
+      <Name>sql</Name>
+    </Parameter>
+    <Parameter Id="param-create-xml" ValueShapeId="shape-path">
+      <Description>Create an XML workspace at this directory.</Description>
+      <Name>xml</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

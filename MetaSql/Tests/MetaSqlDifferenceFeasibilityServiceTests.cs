@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using Meta.Core.Domain;
+using Meta.Core.Serialization;
 
 namespace MetaSql.Tests;
 
@@ -121,8 +122,8 @@ public sealed class MetaSqlDifferenceFeasibilityServiceTests
 
     private static InMemoryWorkspace CreateColumnWorkspace(string workspacePath, string typeName, int length, bool sourceNullable)
     {
-        return MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: workspacePath,
+        return TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+            MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.Project(
             databaseName: "SalesDb",
             tableRows:
             [
@@ -140,7 +141,7 @@ public sealed class MetaSqlDifferenceFeasibilityServiceTests
             foreignKeysByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.ForeignKeyRow>>(StringComparer.OrdinalIgnoreCase),
             foreignKeyColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
-            indexColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+            indexColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)));
     }
 
     private static InMemoryWorkspace CreateDropColumnWorkspace(string workspacePath, bool includeLegacyCode)
@@ -154,8 +155,8 @@ public sealed class MetaSqlDifferenceFeasibilityServiceTests
             columns.Add(new("dbo", "Customer", "LegacyCode", 2, true, "nvarchar", 50, null, null));
         }
 
-        return MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: workspacePath,
+        return TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+            MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.Project(
             databaseName: "SalesDb",
             tableRows:
             [
@@ -170,7 +171,7 @@ public sealed class MetaSqlDifferenceFeasibilityServiceTests
             foreignKeysByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.ForeignKeyRow>>(StringComparer.OrdinalIgnoreCase),
             foreignKeyColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
-            indexColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+            indexColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)));
     }
 
     private static async Task AssertDropColumnDependencyBlockerAsync(

@@ -1,21 +1,22 @@
 using Meta.Core.Connections;
-using Meta.Core.Domain;
 using Meta.Core.Operations;
 using Meta.Core.Services;
 using MetaCli.Core;
-using Meta.Core.Presentation.Cli;
+using MetaSql;
 using MetaSql.Extractors.SqlServer;
 
 internal sealed partial class MetaSqlCommandHandlers
 {
-    public Task<int> RunExtractSqlServerAsync(MetaCliInvocation invocation)
+    public async Task RunExtractSqlServerAsync(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
+        var output = MetaCliWorkspace.OutputLocation(
+            invocation,
+            "output-xml",
+            "output-csharp",
+            "output-sql");
         var request = BuildSqlServerExtractRequest(invocation);
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(request.NewWorkspacePath);
-        if (!targetValidation.Ok)
-        {
-            return Task.FromResult(Fail(targetValidation.ErrorMessage, "choose a new folder or empty the target directory and retry.", 4, targetValidation.Details));
-        }
 
         var connectionEnvironmentVariableName = invocation.Required("connection-env");
         try
@@ -25,60 +26,45 @@ internal sealed partial class MetaSqlCommandHandlers
         }
         catch (ConnectionEnvironmentVariableException exception)
         {
-            return Task.FromResult(Fail(
+            throw new MetaCliExitException(Fail(
                 "Cannot extract SQL database.",
                 "set the named connection environment variable and retry.",
                 4,
                 [$"  {exception.Message}"]));
         }
 
-        request.NewWorkspacePath = targetValidation.FullPath;
-        InMemoryWorkspace workspace;
+        MetaSqlModel model;
         try
         {
-            workspace = new SqlServerMetaSqlExtractor().ExtractMetaSqlWorkspace(request);
+            model = new SqlServerMetaSqlExtractor().ExtractMetaSqlModel(request);
         }
         catch (InvalidOperationException exception)
         {
-            return Task.FromResult(Fail(
+            throw new MetaCliExitException(Fail(
                 "Cannot extract SQL database.",
                 HelpCommand("extract sqlserver"),
                 4,
                 [$"  {exception.Message}"]));
         }
 
-        var validation = WorkspaceValidator.Validate(
-            workspace.Model,
-            workspace.Instance);
-        if (validation.HasErrors)
-        {
-            return Task.FromResult(Fail(
-                "extracted MetaSql workspace is invalid.",
-                "fix extractor mapping and retry extract.",
-                4,
-                validation.Issues
-                    .Where(item => item.Severity == IssueSeverity.Error)
-                    .Select(item => $"  - {item.Code}: {item.Message}")));
-        }
+        await workspaces.CreateAsync("output", model).ConfigureAwait(false);
 
-        Presenter.WriteInfo($"Extracted {Path.GetFileName(targetValidation.FullPath)}");
+        Presenter.WriteInfo($"Extracted {Path.GetFileName(output)}");
         Presenter.WriteKeyValueBlock("Summary", new[]
         {
-            ("Workspace", targetValidation.FullPath),
-            ("Schemas", CountRecords(workspace, "Schema").ToString()),
-            ("Tables", CountRecords(workspace, "Table").ToString()),
-            ("Views", CountRecords(workspace, "View").ToString()),
-            ("Functions", CountRecords(workspace, "Function").ToString()),
-            ("StoredProcedures", CountRecords(workspace, "StoredProcedure").ToString()),
+            ("Workspace", output),
+            ("Schemas", model.SchemaList.Count.ToString()),
+            ("Tables", model.TableList.Count.ToString()),
+            ("Views", model.ViewList.Count.ToString()),
+            ("Functions", model.FunctionList.Count.ToString()),
+            ("StoredProcedures", model.StoredProcedureList.Count.ToString()),
         });
-        return Task.FromResult(0);
     }
 
     private SqlServerExtractRequest BuildSqlServerExtractRequest(MetaCliInvocation invocation)
     {
         var request = new SqlServerExtractRequest
         {
-            NewWorkspacePath = invocation.Required("new-workspace"),
             SchemaName = invocation.Optional("schema"),
             TableName = invocation.Optional("table"),
             AllowEmpty = invocation.Flag("allow-empty"),
@@ -110,10 +96,5 @@ internal sealed partial class MetaSqlCommandHandlers
         }
 
         return request;
-    }
-
-    private static int CountRecords(InMemoryWorkspace workspace, string entityName)
-    {
-        return workspace.Instance.GetOrCreateEntityRecords(entityName).Count;
     }
 }

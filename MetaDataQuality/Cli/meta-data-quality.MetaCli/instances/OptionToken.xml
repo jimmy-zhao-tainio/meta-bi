@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="token-from-transform-workspace-transform-workspace" OptionId="opt-from-transform-workspace-transform-workspace">
-      <Token>--transform-workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-from-transform-workspace-new-workspace" OptionId="opt-from-transform-workspace-new-workspace">
-      <Token>--new-workspace</Token>
-    </OptionToken>
     <OptionToken Id="token-from-transform-workspace-binding-workspace" OptionId="opt-from-transform-workspace-binding-workspace">
       <Token>--binding-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-inspect-workspace" OptionId="opt-inspect-workspace">
-      <Token>--workspace</Token>
+    <OptionToken Id="token-from-transform-workspace-output-connection-env" OptionId="option-from-transform-workspace-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-transform-workspace-output-csharp" OptionId="option-from-transform-workspace-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-transform-workspace-output-sql" OptionId="option-from-transform-workspace-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-transform-workspace-output-xml" OptionId="option-from-transform-workspace-output-xml">
+      <Token>--output-xml</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-transform-workspace-transform-workspace" OptionId="opt-from-transform-workspace-transform-workspace">
+      <Token>--transform-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-inspect-show-candidate-ids" OptionId="opt-inspect-show-candidate-ids">
+      <Token>--show-candidate-ids</Token>
     </OptionToken>
     <OptionToken Id="token-inspect-show-cases" OptionId="opt-inspect-show-cases">
       <Token>--show-cases</Token>
@@ -19,10 +28,7 @@
     <OptionToken Id="token-inspect-top-cases" OptionId="opt-inspect-top-cases">
       <Token>--top-cases</Token>
     </OptionToken>
-    <OptionToken Id="token-inspect-show-candidate-ids" OptionId="opt-inspect-show-candidate-ids">
-      <Token>--show-candidate-ids</Token>
-    </OptionToken>
-    <OptionToken Id="token-promote-workspace" OptionId="opt-promote-workspace">
+    <OptionToken Id="token-inspect-workspace" OptionId="opt-inspect-workspace">
       <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="token-promote-all" OptionId="opt-promote-all">
@@ -33,6 +39,9 @@
     </OptionToken>
     <OptionToken Id="token-promote-candidate-kind" OptionId="opt-promote-candidate-kind">
       <Token>--candidate-kind</Token>
+    </OptionToken>
+    <OptionToken Id="token-promote-workspace" OptionId="opt-promote-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
   </OptionTokenList>
 </MetaCli>

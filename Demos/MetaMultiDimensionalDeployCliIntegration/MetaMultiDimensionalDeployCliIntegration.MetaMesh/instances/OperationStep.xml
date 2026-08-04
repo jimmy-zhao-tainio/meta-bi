@@ -11,95 +11,113 @@
       <Executable>cmd.exe</Executable>
       <Name>remove-multi-dimensional-workspace</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:new-analytics-workspace" OperationId="operation:deploy-multi-dimensional-model">
-      <Arguments>new-workspace "{workspace:analytics.path}"</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>new-analytics-workspace</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-model" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:new-analytics-workspace">
-      <Arguments>add-model --workspace "{workspace:analytics.path}" --id Commerce --name Commerce --default-culture en-US</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-model</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-data-source" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-model">
-      <Arguments>add-data-source --workspace "{workspace:analytics.path}" --id Warehouse --model Commerce --name Warehouse --provider SqlServer --connection-reference COMMERCE_DW --source-kind Relational</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-data-source</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-date-table" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-data-source">
-      <Arguments>add-table --workspace "{workspace:analytics.path}" --id Date --model Commerce --name Date --kind Dimension --data-category Time</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-date-table</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-date-key" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-date-table">
-      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id DateKey --table Date --name DateKey --data-type-id meta:type:Int32 --is-key true --is-hidden true</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-date-key</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-sales-table" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-date-key">
-      <Arguments>add-table --workspace "{workspace:analytics.path}" --id Sales --model Commerce --name Sales --kind Fact</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-sales-table</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-order-date-key" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-sales-table">
-      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id OrderDateKey --table Sales --name OrderDateKey --data-type-id meta:type:Int32 --is-hidden true</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-order-date-key</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-sales-amount-column" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-order-date-key">
-      <Arguments>add-attribute --workspace "{workspace:analytics.path}" --id SalesAmountColumn --table Sales --name SalesAmount --data-type-id meta:type:Decimal --is-hidden true</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-sales-amount-column</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-relationship" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-sales-amount-column">
-      <Arguments>add-relationship --workspace "{workspace:analytics.path}" --id SalesOrderDate --name OrderDate --role-name OrderDate --relationship-kind Regular --cardinality ManyToOne --from-table Sales --from-attribute OrderDateKey --to-table Date --to-attribute DateKey --is-active true</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-relationship</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-measure" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-relationship">
-      <Arguments>add-measure --workspace "{workspace:analytics.path}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00"</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-measure</Name>
-    </OperationStep>
     <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-aggregation" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-measure">
-      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.path}" --id SalesAmountAggregation --measure SalesAmount --function Sum</Arguments>
+      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.location}" --id SalesAmountAggregation --measure SalesAmount --function Sum</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-aggregation</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-security-role" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-aggregation">
-      <Arguments>add-security-role --workspace "{workspace:analytics.path}" --id Readers --model Commerce --name Readers --permission Read</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-security-role</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:convert-to-multi-dimensional" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-security-role">
-      <Arguments>analytics-to-multi-dimensional --workspace "{workspace:analytics.path}" --out "{workspace:multi-dimensional.path}"</Arguments>
-      <Executable>meta-convert.exe</Executable>
-      <Name>convert-to-multi-dimensional</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-named-set" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:convert-to-multi-dimensional">
-      <Arguments>add-named-set --workspace "{workspace:multi-dimensional.path}" --id TopDates --cube Commerce:cube --name TopDates --expression "TOPCOUNT([Date].[DateKey].MEMBERS, 10, [Measures].[Sales Amount])"</Arguments>
-      <Executable>meta-multi-dimensional.exe</Executable>
-      <Name>add-named-set</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-cube-action" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-named-set">
-      <Arguments>add-cube-action --workspace "{workspace:multi-dimensional.path}" --id SalesDrillthrough --cube Commerce:cube --name "Sales Drillthrough" --action-type DrillThrough --target-kind Cells --expression DRILLTHROUGH</Arguments>
-      <Executable>meta-multi-dimensional.exe</Executable>
-      <Name>add-cube-action</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-cell-permission" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-cube-action">
-      <Arguments>add-cell-permission --workspace "{workspace:multi-dimensional.path}" --id ReaderSalesCells --security-role Readers --cube Commerce:cube --expression "Measures.CurrentMember IS [Measures].[Sales Amount]"</Arguments>
+      <Arguments>add-cell-permission --workspace "{workspace:multi-dimensional.location}" --id ReaderSalesCells --security-role Readers --cube Commerce:cube --expression "Measures.CurrentMember IS [Measures].[Sales Amount]"</Arguments>
       <Executable>meta-multi-dimensional.exe</Executable>
       <Name>add-cell-permission</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-cube-action" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-named-set">
+      <Arguments>add-cube-action --workspace "{workspace:multi-dimensional.location}" --id SalesDrillthrough --cube Commerce:cube --name "Sales Drillthrough" --action-type DrillThrough --target-kind Cells --expression DRILLTHROUGH</Arguments>
+      <Executable>meta-multi-dimensional.exe</Executable>
+      <Name>add-cube-action</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-data-source" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-model">
+      <Arguments>add-data-source --workspace "{workspace:analytics.location}" --id Warehouse --model Commerce --name Warehouse --provider SqlServer --connection-reference COMMERCE_DW --source-kind Relational</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-data-source</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-date-key" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-date-table">
+      <Arguments>add-attribute --workspace "{workspace:analytics.location}" --id DateKey --table Date --name DateKey --data-type-id meta:type:Int32 --is-key true --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-date-key</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-date-table" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-data-source">
+      <Arguments>add-table --workspace "{workspace:analytics.location}" --id Date --model Commerce --name Date --kind Dimension --data-category Time</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-date-table</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-measure" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-relationship">
+      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00"</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-measure</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-model" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:new-analytics-workspace">
+      <Arguments>add-model --workspace "{workspace:analytics.location}" --id Commerce --name Commerce --default-culture en-US</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-model</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-named-set" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:convert-to-multi-dimensional">
+      <Arguments>add-named-set --workspace "{workspace:multi-dimensional.location}" --id TopDates --cube Commerce:cube --name TopDates --expression "TOPCOUNT([Date].[DateKey].MEMBERS, 10, [Measures].[Sales Amount])"</Arguments>
+      <Executable>meta-multi-dimensional.exe</Executable>
+      <Name>add-named-set</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-order-date-key" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-sales-table">
+      <Arguments>add-attribute --workspace "{workspace:analytics.location}" --id OrderDateKey --table Sales --name OrderDateKey --data-type-id meta:type:Int32 --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-order-date-key</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-partition" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-cell-permission">
-      <Arguments>add-partition --workspace "{workspace:multi-dimensional.path}" --id SalesCurrent --measure-group "Sales:measure-group" --multi-dimensional-data-source Warehouse --name "Sales Current" --source-expression "SELECT * FROM mart.FactSales"</Arguments>
+      <Arguments>add-partition --workspace "{workspace:multi-dimensional.location}" --id SalesCurrent --measure-group "Sales:measure-group" --multi-dimensional-data-source Warehouse --name "Sales Current" --source-expression "SELECT * FROM mart.FactSales"</Arguments>
       <Executable>meta-multi-dimensional.exe</Executable>
       <Name>add-partition</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-relationship" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-sales-amount-column">
+      <Arguments>add-relationship --workspace "{workspace:analytics.location}" --id SalesOrderDate --name OrderDate --role-name OrderDate --relationship-kind Regular --cardinality ManyToOne --from-table Sales --from-attribute OrderDateKey --to-table Date --to-attribute DateKey --is-active true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-relationship</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-sales-amount-column" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-order-date-key">
+      <Arguments>add-attribute --workspace "{workspace:analytics.location}" --id SalesAmountColumn --table Sales --name SalesAmount --data-type-id meta:type:Decimal --is-hidden true</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-amount-column</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-sales-table" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-date-key">
+      <Arguments>add-table --workspace "{workspace:analytics.location}" --id Sales --model Commerce --name Sales --kind Fact</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-sales-table</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-security-role" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-aggregation">
+      <Arguments>add-security-role --workspace "{workspace:analytics.location}" --id Readers --model Commerce --name Readers --permission Read</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>add-security-role</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:convert-to-multi-dimensional" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-security-role">
+      <Arguments>analytics-to-multi-dimensional --workspace "{workspace:analytics.location}" --out "{workspace:multi-dimensional.location}"</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-to-multi-dimensional</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-multi-dimensional-model:deploy-multi-dimensional" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-partition">
-      <Arguments>deploy --workspace "{workspace:multi-dimensional.path}" --server {env:META_MULTI_DIMENSIONAL_DEMO_SERVER} --database-name {env:META_MULTI_DIMENSIONAL_DEMO_DATABASE} --drop-existing --no-process</Arguments>
+      <Arguments>deploy --workspace "{workspace:multi-dimensional.location}" --server {env:META_MULTI_DIMENSIONAL_DEMO_SERVER} --database-name {env:META_MULTI_DIMENSIONAL_DEMO_DATABASE} --drop-existing --no-process</Arguments>
       <Executable>meta-multi-dimensional.exe</Executable>
       <Name>deploy-multi-dimensional</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:new-analytics-workspace" OperationId="operation:deploy-multi-dimensional-model">
+      <Arguments>new-workspace "{workspace:analytics.location}"</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>new-analytics-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
   </OperationStepList>
 </MetaMesh>

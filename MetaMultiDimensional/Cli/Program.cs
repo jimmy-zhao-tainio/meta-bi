@@ -31,7 +31,10 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaMultiDimensionalModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-new-workspace", handlers.RunNewWorkspace)
+            .Bind(
+                "exec-create",
+                [MetaCliWorkspace.Create("output", "xml", "csharp", "sql")],
+                handlers.RunCreate)
             .Bind("exec-deploy", handlers.RunDeploy)
             .Bind("exec-restore", handlers.RunRestore)
             .Bind("exec-drop", handlers.RunDrop);

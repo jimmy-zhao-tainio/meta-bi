@@ -3,15 +3,12 @@
   <OptionList>
     <Option Id="opt-from-sql-code-code" ParameterId="param-from-sql-code-code" />
     <Option Id="opt-from-sql-code-name" ParameterId="param-from-sql-code-name" />
-    <Option Id="opt-from-sql-code-new-workspace" ParameterId="param-from-sql-code-new-workspace" />
     <Option Id="opt-from-sql-code-target" ParameterId="param-from-sql-code-target" />
     <Option Id="opt-from-sql-code-workspace" ParameterId="param-from-sql-code-workspace" />
-    <Option Id="opt-from-sql-file-new-workspace" ParameterId="param-from-sql-file-new-workspace" />
     <Option Id="opt-from-sql-file-path" ParameterId="param-from-sql-file-path" />
     <Option Id="opt-from-sql-file-target" ParameterId="param-from-sql-file-target" />
     <Option Id="opt-from-sql-file-workspace" ParameterId="param-from-sql-file-workspace" />
     <Option Id="opt-from-sql-files-manifest" ParameterId="param-from-sql-files-manifest" />
-    <Option Id="opt-from-sql-files-new-workspace" ParameterId="param-from-sql-files-new-workspace" />
     <Option Id="opt-from-sql-files-report" ParameterId="param-from-sql-files-report" />
     <Option Id="opt-from-sql-files-verbose" ParameterId="param-from-sql-files-verbose" />
     <Option Id="opt-from-sql-files-workspace" ParameterId="param-from-sql-files-workspace" />
@@ -36,5 +33,17 @@
     <Option Id="opt-to-sql-code-workspace" ParameterId="param-to-sql-code-workspace" />
     <Option Id="opt-to-sql-path-out" ParameterId="param-to-sql-path-out" />
     <Option Id="opt-to-sql-path-workspace" ParameterId="param-to-sql-path-workspace" />
+    <Option Id="option-from-sql-code-output-connection-env" ParameterId="param-from-sql-code-output-connection-env" />
+    <Option Id="option-from-sql-code-output-csharp" ParameterId="param-from-sql-code-output-csharp" />
+    <Option Id="option-from-sql-code-output-sql" ParameterId="param-from-sql-code-output-sql" />
+    <Option Id="option-from-sql-code-output-xml" ParameterId="param-from-sql-code-output-xml" />
+    <Option Id="option-from-sql-file-output-connection-env" ParameterId="param-from-sql-file-output-connection-env" />
+    <Option Id="option-from-sql-file-output-csharp" ParameterId="param-from-sql-file-output-csharp" />
+    <Option Id="option-from-sql-file-output-sql" ParameterId="param-from-sql-file-output-sql" />
+    <Option Id="option-from-sql-file-output-xml" ParameterId="param-from-sql-file-output-xml" />
+    <Option Id="option-from-sql-files-output-connection-env" ParameterId="param-from-sql-files-output-connection-env" />
+    <Option Id="option-from-sql-files-output-csharp" ParameterId="param-from-sql-files-output-csharp" />
+    <Option Id="option-from-sql-files-output-sql" ParameterId="param-from-sql-files-output-sql" />
+    <Option Id="option-from-sql-files-output-xml" ParameterId="param-from-sql-files-output-xml" />
   </OptionList>
 </MetaCli>

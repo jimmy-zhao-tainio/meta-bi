@@ -5,13 +5,11 @@
       <Description>Generated MetaAnalytics workspace authored by the demo operation.</Description>
       <ModelName>MetaAnalytics</ModelName>
       <Name>analytics</Name>
-      <Path>AnalyticsWorkspace</Path>
     </Workspace>
     <Workspace Id="workspace:multi-dimensional" MeshId="mesh:default">
       <Description>Generated MetaMultiDimensional workspace converted from the analytics model and patched for multidimensional deployment.</Description>
       <ModelName>MetaMultiDimensional</ModelName>
       <Name>multi-dimensional</Name>
-      <Path>MultiDimensionalWorkspace</Path>
     </Workspace>
   </WorkspaceList>
 </MetaMesh>

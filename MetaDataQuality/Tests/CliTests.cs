@@ -1,6 +1,7 @@
 using System.Globalization;
 using MetaConvert.DataQualityToSql;
 using MetaBi.Tests.Common;
+using MetaCli.Core;
 using MetaDataQuality;
 using MetaDataQuality.Core;
 using MetaTransformBinding;
@@ -33,7 +34,7 @@ public sealed class CliTests
         Assert.Contains("meta-data-quality from-transform-workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Options:", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--transform-workspace <path>", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("--new-workspace <path>", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("--output-xml <path>", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--binding-workspace <path>", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -53,7 +54,7 @@ public sealed class CliTests
                 "dbo.v_customer_orders");
 
             var generated = RunCli(
-                $"from-transform-workspace --transform-workspace \"{transformWorkspacePath}\" --new-workspace \"{qualityWorkspacePath}\"");
+                $"from-transform-workspace --transform-workspace \"{transformWorkspacePath}\" --output-xml \"{qualityWorkspacePath}\"");
 
             Assert.Equal(0, generated.ExitCode);
             Assert.Contains("Views ready to create:", generated.Output, StringComparison.Ordinal);
@@ -83,7 +84,7 @@ public sealed class CliTests
 
             var firstCandidate = model.DataQualityCandidateList[0];
             var promoted = RunCli($"promote --candidate-id \"{firstCandidate.Id}\"", workingDirectory: qualityWorkspacePath);
-            Assert.Equal(0, promoted.ExitCode);
+            Assert.True(promoted.ExitCode == 0, promoted.Output);
             Assert.Contains("Candidates promoted this run: 1", promoted.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("Ok", promoted.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("Next:", promoted.Output, StringComparison.Ordinal);
@@ -157,12 +158,13 @@ public sealed class CliTests
             });
 
             model.SaveToXmlWorkspace(qualityWorkspacePath);
+            MetaCliWorkspace.DescribeXml(qualityWorkspacePath);
 
             var promoted = RunCli(
                 "promote --candidate-kind ImpliedForeignKeyMissingReference --candidate-kind ImpliedUniqueKeyViolation",
                 workingDirectory: qualityWorkspacePath);
 
-            Assert.Equal(0, promoted.ExitCode);
+            Assert.True(promoted.ExitCode == 0, promoted.Output);
             Assert.Contains("Candidates promoted this run: 2", promoted.Output, StringComparison.Ordinal);
 
             var reloaded = MetaDataQualityModel.LoadFromXmlWorkspace(qualityWorkspacePath, searchUpward: false);
@@ -223,7 +225,7 @@ public sealed class CliTests
             bindingModel.SaveToXmlWorkspace(bindingWorkspacePath);
 
             var generated = RunCli(
-                $"from-transform-workspace --transform-workspace \"{transformWorkspacePath}\" --binding-workspace \"{bindingWorkspacePath}\" --new-workspace \"{qualityWorkspacePath}\"");
+                $"from-transform-workspace --transform-workspace \"{transformWorkspacePath}\" --binding-workspace \"{bindingWorkspacePath}\" --output-xml \"{qualityWorkspacePath}\"");
 
             Assert.Equal(0, generated.ExitCode);
             Assert.Contains("Transform scripts scanned: 1/2", generated.Output, StringComparison.Ordinal);
@@ -704,9 +706,10 @@ LEFT OUTER JOIN dbo.[Order] o
 
             new MetaDataQualityCorpusInferenceService().Apply(model, BuildOptionalityOnlyThresholdsForCli());
             model.SaveToXmlWorkspace(qualityWorkspacePath);
+            MetaCliWorkspace.DescribeXml(qualityWorkspacePath);
 
             var inspect = RunCli($"inspect --workspace \"{qualityWorkspacePath}\"");
-            Assert.Equal(0, inspect.ExitCode);
+            Assert.True(inspect.ExitCode == 0, inspect.Output);
             Assert.Contains("Optionality-drift (inner vs usually optional):", inspect.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("Diversity:", inspect.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("nullable side is", inspect.Output, StringComparison.OrdinalIgnoreCase);
@@ -743,10 +746,11 @@ LEFT OUTER JOIN dbo.[Order] o
                 rightTable: "sales.CalendarException");
             AddDiscoveredJoinOrphanCandidateForCli(model, "JoinPattern.Scalar.Cli");
             model.SaveToXmlWorkspace(qualityWorkspacePath);
+            MetaCliWorkspace.DescribeXml(qualityWorkspacePath);
 
             var inspect = RunCli($"inspect --workspace \"{qualityWorkspacePath}\" --show-cases --top-cases 1");
 
-            Assert.Equal(0, inspect.ExitCode);
+            Assert.True(inspect.ExitCode == 0, inspect.Output);
             Assert.Contains("Keys: (scalar expression) = (scalar expression)", inspect.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("ScalarExpression:", inspect.Output, StringComparison.Ordinal);
         }

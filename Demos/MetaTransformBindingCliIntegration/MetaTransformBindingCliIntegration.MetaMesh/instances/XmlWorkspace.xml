@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <XmlWorkspaceList>
+    <XmlWorkspace Id="workspace:binding" WorkspaceId="workspace:binding">
+      <Path>BindingWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:schema" WorkspaceId="workspace:schema">
+      <Path>SchemaWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:transform" WorkspaceId="workspace:transform">
+      <Path>TransformWS</Path>
+    </XmlWorkspace>
+  </XmlWorkspaceList>
+</MetaMesh>

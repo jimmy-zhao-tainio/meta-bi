@@ -337,5 +337,17 @@
     <OptionToken Id="token-business-same-as-link-workspace" OptionId="option-business-same-as-link-workspace">
       <Token>--workspace</Token>
     </OptionToken>
+    <OptionToken Id="token-create-connection-env" OptionId="option-create-connection-env">
+      <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-csharp" OptionId="option-create-csharp">
+      <Token>--csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-sql" OptionId="option-create-sql">
+      <Token>--sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-xml" OptionId="option-create-xml">
+      <Token>--xml</Token>
+    </OptionToken>
   </OptionTokenList>
 </MetaCli>

@@ -18,21 +18,12 @@ internal sealed class MetaOrchestrationCommandHandlers
         this.appName = appName;
     }
 
-    public void RunInfer(MetaCliInvocation invocation)
+    public async Task RunInferAsync(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
         var pipelineWorkspacePath = invocation.Required("pipeline-workspace");
-        var outputWorkspacePath = invocation.Required("new-workspace");
         var description = invocation.Optional("description");
-
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(outputWorkspacePath);
-        if (!targetValidation.Ok)
-        {
-            Fail(
-                targetValidation.ErrorMessage,
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                targetValidation.Details);
-        }
 
         try
         {
@@ -45,7 +36,7 @@ internal sealed class MetaOrchestrationCommandHandlers
             var service = new MetaOrchestrationAnalysisService();
             var result = service.Analyze(request);
             var model = service.CreateModel(result, pipelineWorkspacePath);
-            model.SaveToXmlWorkspace(targetValidation.FullPath);
+            await workspaces.CreateAsync("output", model).ConfigureAwait(false);
 
             if (!result.IsCompleteDag)
             {
@@ -111,7 +102,6 @@ internal sealed class MetaOrchestrationCommandHandlers
         MO.MetaOrchestrationModel model,
         string commandName)
     {
-        var workspacePath = ResolveWorkspacePath(invocation);
         var fromTask = invocation.Required("from-task");
         var toTask = invocation.Required("to-task");
         var dependencyCondition = invocation.Optional("condition") ?? "success";
@@ -128,8 +118,6 @@ internal sealed class MetaOrchestrationCommandHandlers
                 objectSelector,
                 reason,
                 dependencyCondition);
-            model.SaveToXmlWorkspace(workspacePath);
-
             presenter.WriteOk();
         }
         catch (Exception ex) when (ex is not MetaCliExitException and
@@ -185,7 +173,6 @@ internal sealed class MetaOrchestrationCommandHandlers
 
     public void RunAllowConcurrentAppend(MetaCliInvocation invocation, MO.MetaOrchestrationModel model)
     {
-        var workspacePath = ResolveWorkspacePath(invocation);
         var objectSelector = invocation.Required("object");
         var reason = invocation.Optional("reason");
 
@@ -193,8 +180,6 @@ internal sealed class MetaOrchestrationCommandHandlers
         {
             var service = new MetaOrchestrationRunPlanningService();
             service.AddConcurrentAppendPolicy(model, objectSelector, reason);
-            model.SaveToXmlWorkspace(workspacePath);
-
             presenter.WriteOk();
         }
         catch (Exception ex) when (ex is not MetaCliExitException and
@@ -210,7 +195,6 @@ internal sealed class MetaOrchestrationCommandHandlers
 
     public void RunSetLockPolicy(MetaCliInvocation invocation, MO.MetaOrchestrationModel model)
     {
-        var workspacePath = ResolveWorkspacePath(invocation);
         var objectSelector = invocation.Required("object");
         var leftEffect = invocation.Required("left-effect");
         var rightEffect = invocation.Required("right-effect");
@@ -227,8 +211,6 @@ internal sealed class MetaOrchestrationCommandHandlers
                 rightEffect,
                 behavior,
                 reason);
-            model.SaveToXmlWorkspace(workspacePath);
-
             presenter.WriteOk();
         }
         catch (Exception ex) when (ex is not MetaCliExitException and
@@ -244,14 +226,11 @@ internal sealed class MetaOrchestrationCommandHandlers
 
     public void RunRefreshRunPlan(MetaCliInvocation invocation, MO.MetaOrchestrationModel model)
     {
-        var workspacePath = ResolveWorkspacePath(invocation);
         try
         {
             using var activity = CliActivityLine.Start("Building");
             var service = new MetaOrchestrationRunPlanningService();
             service.BuildRunPlan(model);
-            model.SaveToXmlWorkspace(workspacePath);
-
             activity.Succeed();
         }
         catch (Exception ex) when (ex is not MetaCliExitException and

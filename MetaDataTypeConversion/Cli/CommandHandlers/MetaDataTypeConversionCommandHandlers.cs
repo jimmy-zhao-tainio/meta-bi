@@ -20,26 +20,19 @@ internal sealed class MetaDataTypeConversionCommandHandlers
         this.appName = appName;
     }
 
-    public void RunNewWorkspace(MetaCliInvocation invocation)
+    public async Task RunCreate(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(invocation.Required("path"));
-        if (!targetValidation.Ok)
-        {
-            Fail(
-                targetValidation.ErrorMessage,
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                targetValidation.Details);
-        }
-
-        var result = service.CreateWorkspace(targetValidation.FullPath);
+        var model = service.CreateWorkspace();
+        await workspaces.CreateAsync("output", model).ConfigureAwait(false);
 
         presenter.WriteOk(
             "MetaDataTypeConversion workspace created",
-            ("Path", result.WorkspacePath),
-            ("Model", result.ModelName),
-            ("ConversionImplementations", result.ConversionImplementationCount.ToString()),
-            ("DataTypeMappings", result.DataTypeMappingCount.ToString()));
+            ("Path", MetaCliWorkspace.OutputLocation(invocation)),
+            ("Model", "MetaDataTypeConversion"),
+            ("ConversionImplementations", model.ConversionImplementationList.Count.ToString()),
+            ("DataTypeMappings", model.DataTypeMappingList.Count.ToString()));
     }
 
     public void RunCheck(MetaCliInvocation invocation, MetaDataTypeConversionModel model)

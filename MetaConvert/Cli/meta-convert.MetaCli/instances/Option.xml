@@ -1,71 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
-    <Option Id="opt-schema-to-raw-datavault-source-workspace" ParameterId="param-schema-to-raw-datavault-source-workspace">
-    </Option>
-    <Option Id="opt-schema-to-raw-datavault-new-workspace" ParameterId="param-schema-to-raw-datavault-new-workspace">
-    </Option>
-    <Option Id="opt-schema-to-raw-datavault-ignore-field-name" ParameterId="param-schema-to-raw-datavault-ignore-field-name">
-    </Option>
-    <Option Id="opt-schema-to-raw-datavault-ignore-field-suffix" ParameterId="param-schema-to-raw-datavault-ignore-field-suffix">
-    </Option>
-    <Option Id="opt-schema-to-raw-datavault-include-views" ParameterId="param-schema-to-raw-datavault-include-views">
-    </Option>
-    <Option Id="opt-schema-to-raw-datavault-verbose" ParameterId="param-schema-to-raw-datavault-verbose">
-    </Option>
-    <Option Id="opt-raw-datavault-to-sql-workspace" ParameterId="param-raw-datavault-to-sql-workspace">
-    </Option>
-    <Option Id="opt-raw-datavault-to-sql-implementation-workspace" ParameterId="param-raw-datavault-to-sql-implementation-workspace">
-    </Option>
-    <Option Id="opt-raw-datavault-to-sql-database-name" ParameterId="param-raw-datavault-to-sql-database-name">
-    </Option>
-    <Option Id="opt-raw-datavault-to-sql-out" ParameterId="param-raw-datavault-to-sql-out">
-    </Option>
-    <Option Id="opt-business-datavault-to-sql-workspace" ParameterId="param-business-datavault-to-sql-workspace">
-    </Option>
-    <Option Id="opt-business-datavault-to-sql-implementation-workspace" ParameterId="param-business-datavault-to-sql-implementation-workspace">
-    </Option>
-    <Option Id="opt-business-datavault-to-sql-database-name" ParameterId="param-business-datavault-to-sql-database-name">
-    </Option>
-    <Option Id="opt-business-datavault-to-sql-out" ParameterId="param-business-datavault-to-sql-out">
-    </Option>
-    <Option Id="opt-data-warehouse-to-sql-workspace" ParameterId="param-data-warehouse-to-sql-workspace">
-    </Option>
-    <Option Id="opt-data-warehouse-to-sql-implementation-workspace" ParameterId="param-data-warehouse-to-sql-implementation-workspace">
-    </Option>
-    <Option Id="opt-data-warehouse-to-sql-database-name" ParameterId="param-data-warehouse-to-sql-database-name">
-    </Option>
-    <Option Id="opt-data-warehouse-to-sql-out" ParameterId="param-data-warehouse-to-sql-out">
-    </Option>
-    <Option Id="opt-data-quality-to-sql-workspace" ParameterId="param-data-quality-to-sql-workspace">
-    </Option>
-    <Option Id="opt-data-quality-to-sql-out" ParameterId="param-data-quality-to-sql-out">
-    </Option>
-    <Option Id="opt-analytics-to-tabular-workspace" ParameterId="param-analytics-to-tabular-workspace">
-    </Option>
-    <Option Id="opt-analytics-to-tabular-out" ParameterId="param-analytics-to-tabular-out">
-    </Option>
-    <Option Id="opt-analytics-to-multi-dimensional-workspace" ParameterId="param-analytics-to-multi-dimensional-workspace">
-    </Option>
-    <Option Id="opt-analytics-to-multi-dimensional-out" ParameterId="param-analytics-to-multi-dimensional-out">
-    </Option>
-    <Option Id="opt-transform-script-to-sql-workspace" ParameterId="param-transform-script-to-sql-workspace">
-    </Option>
-    <Option Id="opt-transform-script-to-sql-database-name" ParameterId="param-transform-script-to-sql-database-name">
-    </Option>
-    <Option Id="opt-transform-script-to-sql-out" ParameterId="param-transform-script-to-sql-out">
-    </Option>
-    <Option Id="opt-sql-to-transform-script-workspace" ParameterId="param-sql-to-transform-script-workspace">
-    </Option>
-    <Option Id="opt-sql-to-transform-script-out" ParameterId="param-sql-to-transform-script-out">
-    </Option>
-    <Option Id="opt-sql-to-transform-script-include-views" ParameterId="param-sql-to-transform-script-include-views">
-    </Option>
-    <Option Id="opt-sql-to-transform-script-include-functions" ParameterId="param-sql-to-transform-script-include-functions">
-    </Option>
-    <Option Id="opt-sql-to-transform-script-include-stored-procedures" ParameterId="param-sql-to-transform-script-include-stored-procedures">
-    </Option>
-    <Option Id="opt-sql-to-transform-script-allow-empty" ParameterId="param-sql-to-transform-script-allow-empty">
-    </Option>
+    <Option Id="opt-analytics-to-multi-dimensional-out" ParameterId="param-analytics-to-multi-dimensional-out" />
+    <Option Id="opt-analytics-to-multi-dimensional-workspace" ParameterId="param-analytics-to-multi-dimensional-workspace" />
+    <Option Id="opt-analytics-to-tabular-out" ParameterId="param-analytics-to-tabular-out" />
+    <Option Id="opt-analytics-to-tabular-workspace" ParameterId="param-analytics-to-tabular-workspace" />
+    <Option Id="opt-business-datavault-to-sql-database-name" ParameterId="param-business-datavault-to-sql-database-name" />
+    <Option Id="opt-business-datavault-to-sql-implementation-workspace" ParameterId="param-business-datavault-to-sql-implementation-workspace" />
+    <Option Id="opt-business-datavault-to-sql-out" ParameterId="param-business-datavault-to-sql-out" />
+    <Option Id="opt-business-datavault-to-sql-workspace" ParameterId="param-business-datavault-to-sql-workspace" />
+    <Option Id="opt-data-quality-to-sql-out" ParameterId="param-data-quality-to-sql-out" />
+    <Option Id="opt-data-quality-to-sql-workspace" ParameterId="param-data-quality-to-sql-workspace" />
+    <Option Id="opt-data-warehouse-to-sql-database-name" ParameterId="param-data-warehouse-to-sql-database-name" />
+    <Option Id="opt-data-warehouse-to-sql-implementation-workspace" ParameterId="param-data-warehouse-to-sql-implementation-workspace" />
+    <Option Id="opt-data-warehouse-to-sql-out" ParameterId="param-data-warehouse-to-sql-out" />
+    <Option Id="opt-data-warehouse-to-sql-workspace" ParameterId="param-data-warehouse-to-sql-workspace" />
+    <Option Id="opt-raw-datavault-to-sql-database-name" ParameterId="param-raw-datavault-to-sql-database-name" />
+    <Option Id="opt-raw-datavault-to-sql-implementation-workspace" ParameterId="param-raw-datavault-to-sql-implementation-workspace" />
+    <Option Id="opt-raw-datavault-to-sql-out" ParameterId="param-raw-datavault-to-sql-out" />
+    <Option Id="opt-raw-datavault-to-sql-workspace" ParameterId="param-raw-datavault-to-sql-workspace" />
+    <Option Id="opt-schema-to-raw-datavault-connection-env" ParameterId="param-schema-to-raw-datavault-connection-env" />
+    <Option Id="opt-schema-to-raw-datavault-ignore-field-name" ParameterId="param-schema-to-raw-datavault-ignore-field-name" />
+    <Option Id="opt-schema-to-raw-datavault-ignore-field-suffix" ParameterId="param-schema-to-raw-datavault-ignore-field-suffix" />
+    <Option Id="opt-schema-to-raw-datavault-include-views" ParameterId="param-schema-to-raw-datavault-include-views" />
+    <Option Id="opt-schema-to-raw-datavault-source-workspace" ParameterId="param-schema-to-raw-datavault-source-workspace" />
+    <Option Id="opt-schema-to-raw-datavault-verbose" ParameterId="param-schema-to-raw-datavault-verbose" />
+    <Option Id="opt-sql-to-transform-script-allow-empty" ParameterId="param-sql-to-transform-script-allow-empty" />
+    <Option Id="opt-sql-to-transform-script-include-functions" ParameterId="param-sql-to-transform-script-include-functions" />
+    <Option Id="opt-sql-to-transform-script-include-stored-procedures" ParameterId="param-sql-to-transform-script-include-stored-procedures" />
+    <Option Id="opt-sql-to-transform-script-include-views" ParameterId="param-sql-to-transform-script-include-views" />
+    <Option Id="opt-sql-to-transform-script-out" ParameterId="param-sql-to-transform-script-out" />
+    <Option Id="opt-sql-to-transform-script-workspace" ParameterId="param-sql-to-transform-script-workspace" />
+    <Option Id="opt-transform-script-to-sql-database-name" ParameterId="param-transform-script-to-sql-database-name" />
+    <Option Id="opt-transform-script-to-sql-out" ParameterId="param-transform-script-to-sql-out" />
+    <Option Id="opt-transform-script-to-sql-workspace" ParameterId="param-transform-script-to-sql-workspace" />
+    <Option Id="option-schema-to-raw-datavault-output-connection-env" ParameterId="param-schema-to-raw-datavault-output-connection-env" />
+    <Option Id="option-schema-to-raw-datavault-output-csharp" ParameterId="param-schema-to-raw-datavault-output-csharp" />
+    <Option Id="option-schema-to-raw-datavault-output-sql" ParameterId="param-schema-to-raw-datavault-output-sql" />
+    <Option Id="option-schema-to-raw-datavault-output-xml" ParameterId="param-schema-to-raw-datavault-output-xml" />
   </OptionList>
 </MetaCli>

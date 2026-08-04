@@ -1,4 +1,5 @@
 using MetaConvert.DataVaultToSql;
+using Meta.Core.Serialization;
 using MetaRawDataVault;
 using MetaSql.Extractors.SqlServer;
 
@@ -25,8 +26,7 @@ public sealed class MetaSqlAlignmentTests
                 Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "MetaDataVaultImplementation"),
                 databaseName: "RawVault");
 
-            var liveWorkspace = SqlServerMetaSqlProjector.Project(
-                newWorkspacePath: liveMetaSqlPath,
+            var liveModel = SqlServerMetaSqlProjector.Project(
                 databaseName: "RawVault",
                 tableRows:
                 [
@@ -55,6 +55,8 @@ public sealed class MetaSqlAlignmentTests
                 foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
                 indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
                 indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+            liveModel.SaveToXmlWorkspace(liveMetaSqlPath);
+            var liveWorkspace = (await XmlWorkspaceReader.OpenAsync(liveMetaSqlPath)).State;
 
             var diffService = new MetaSqlDiffService();
             var result = diffService.BuildEqualDiffWorkspace(

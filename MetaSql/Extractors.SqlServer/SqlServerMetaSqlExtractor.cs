@@ -1,6 +1,7 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 using Meta.Core.Domain;
+using Meta.Core.Serialization;
 
 namespace MetaSql.Extractors.SqlServer;
 
@@ -14,6 +15,14 @@ public sealed class SqlServerMetaSqlExtractor
             throw new InvalidOperationException("extract sqlserver requires a target workspace path.");
         }
 
+        var model = ExtractMetaSqlModel(request);
+        model.SaveToXmlWorkspace(request.NewWorkspacePath);
+        return XmlWorkspaceReader.OpenAsync(request.NewWorkspacePath).GetAwaiter().GetResult().State;
+    }
+
+    public MetaSqlModel ExtractMetaSqlModel(SqlServerExtractRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
         if (string.IsNullOrWhiteSpace(request.ConnectionString))
         {
             throw new InvalidOperationException("extract sqlserver requires a connection string.");
@@ -82,8 +91,7 @@ public sealed class SqlServerMetaSqlExtractor
                     .OrderBy(row => row, StringComparer.OrdinalIgnoreCase)
                     .ThenBy(row => row, StringComparer.Ordinal)
                     .ToList();
-                return SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(
-                    request.NewWorkspacePath,
+                return SqlServerMetaSqlWorkspaceFactory.CreateEmptyModel(
                     databaseName,
                     schemaRows);
             }
@@ -136,7 +144,6 @@ public sealed class SqlServerMetaSqlExtractor
             StringComparer.OrdinalIgnoreCase);
 
         return SqlServerMetaSqlProjector.Project(
-            request.NewWorkspacePath,
             databaseName,
             tableRows,
             columnsByTableKey,

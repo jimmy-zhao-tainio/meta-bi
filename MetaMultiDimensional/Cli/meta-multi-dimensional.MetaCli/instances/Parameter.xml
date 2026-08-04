@@ -1,99 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-new-workspace-path" ValueShapeId="shape-path">
-      <IsRequired>true</IsRequired>
-      <Name>path</Name>
-    </Parameter>
-    <Parameter Id="param-deploy-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-deploy-server" ValueShapeId="shape-text">
-      <Description>Analysis Services multidimensional server.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>server</Name>
-    </Parameter>
-    <Parameter Id="param-deploy-database-name" ValueShapeId="shape-text">
-      <Description>Target database name. Defaults to the modeled database name.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>database-name</Name>
-    </Parameter>
-    <Parameter Id="param-deploy-drop-existing" ValueShapeId="shape-flag">
-      <Description>Drop an existing target database before create/deploy.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>drop-existing</Name>
-    </Parameter>
-    <Parameter Id="param-deploy-no-process" ValueShapeId="shape-flag">
-      <Description>Deploy metadata only and skip full processing.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>no-process</Name>
-    </Parameter>
-    <Parameter Id="param-restore-source-server" ValueShapeId="shape-text">
-      <Description>Source Analysis Services server containing the processed database.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-server</Name>
-    </Parameter>
-    <Parameter Id="param-restore-source-database-name" ValueShapeId="shape-text">
-      <Description>Source processed database name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-database-name</Name>
-    </Parameter>
-    <Parameter Id="param-restore-target-server" ValueShapeId="shape-text">
-      <Description>Target Analysis Services server.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>target-server</Name>
-    </Parameter>
-    <Parameter Id="param-restore-target-database-name" ValueShapeId="shape-text">
-      <Description>Target database name to restore.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>target-database-name</Name>
-    </Parameter>
-    <Parameter Id="param-restore-backup-file" ValueShapeId="shape-path">
-      <Description>Backup file path accessible to the Analysis Services service accounts.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>backup-file</Name>
-    </Parameter>
-    <Parameter Id="param-restore-drop-existing" ValueShapeId="shape-flag">
-      <Description>Drop an existing target database before restore.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>drop-existing</Name>
-    </Parameter>
-    <Parameter Id="param-restore-overwrite-backup-file" ValueShapeId="shape-flag">
-      <Description>Overwrite an existing backup file.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>overwrite-backup-file</Name>
-    </Parameter>
-    <Parameter Id="param-drop-server" ValueShapeId="shape-text">
-      <Description>Analysis Services multidimensional server.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>server</Name>
-    </Parameter>
-    <Parameter Id="param-drop-database-name" ValueShapeId="shape-text">
-      <Description>Database name to drop.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>database-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-action-translation-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-action-translation-id" ValueShapeId="shape-text">
-      <Description>ActionTranslation row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
     <Parameter Id="param-add-action-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
       <IsRequired>false</IsRequired>
       <Name>caption</Name>
-    </Parameter>
-    <Parameter Id="param-add-action-translation-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-action-translation-cube-action" ValueShapeId="shape-text">
       <Description>CubeAction id for CubeActionId.</Description>
@@ -105,75 +16,85 @@
       <IsRequired>true</IsRequired>
       <Name>culture</Name>
     </Parameter>
-    <Parameter Id="param-add-attribute-relationship-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-attribute-relationship-id" ValueShapeId="shape-text">
-      <Description>AttributeRelationship row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-attribute-relationship-description" ValueShapeId="shape-text">
+    <Parameter Id="param-add-action-translation-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
-    <Parameter Id="param-add-attribute-relationship-relationship-type" ValueShapeId="shape-text">
-      <Description>RelationshipType.</Description>
+    <Parameter Id="param-add-action-translation-id" ValueShapeId="shape-text">
+      <Description>ActionTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-action-translation-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
-      <Name>relationship-type</Name>
+      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-add-attribute-relationship-child-attribute" ValueShapeId="shape-text">
       <Description>DimensionAttribute id for ChildAttributeId.</Description>
       <IsRequired>true</IsRequired>
       <Name>child-attribute</Name>
     </Parameter>
+    <Parameter Id="param-add-attribute-relationship-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-relationship-id" ValueShapeId="shape-text">
+      <Description>AttributeRelationship row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-attribute-relationship-parent-attribute" ValueShapeId="shape-text">
       <Description>DimensionAttribute id for ParentAttributeId.</Description>
       <IsRequired>true</IsRequired>
       <Name>parent-attribute</Name>
     </Parameter>
-    <Parameter Id="param-add-attribute-translation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-attribute-relationship-relationship-type" ValueShapeId="shape-text">
+      <Description>RelationshipType.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>relationship-type</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-relationship-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-attribute-translation-id" ValueShapeId="shape-text">
-      <Description>AttributeTranslation row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-attribute-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
       <IsRequired>false</IsRequired>
       <Name>caption</Name>
     </Parameter>
-    <Parameter Id="param-add-attribute-translation-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
     <Parameter Id="param-add-attribute-translation-culture" ValueShapeId="shape-text">
       <Description>Culture id for CultureId.</Description>
       <IsRequired>true</IsRequired>
       <Name>culture</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-translation-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-attribute-translation-dimension-attribute" ValueShapeId="shape-text">
       <Description>DimensionAttribute id for DimensionAttributeId.</Description>
       <IsRequired>true</IsRequired>
       <Name>dimension-attribute</Name>
     </Parameter>
-    <Parameter Id="param-add-cell-permission-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-attribute-translation-id" ValueShapeId="shape-text">
+      <Description>AttributeTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-attribute-translation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-cell-permission-id" ValueShapeId="shape-text">
-      <Description>CellPermission row id.</Description>
+    <Parameter Id="param-add-cell-permission-cube" ValueShapeId="shape-text">
+      <Description>Cube id for CubeId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>cube</Name>
     </Parameter>
     <Parameter Id="param-add-cell-permission-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
@@ -185,65 +106,20 @@
       <IsRequired>true</IsRequired>
       <Name>expression</Name>
     </Parameter>
-    <Parameter Id="param-add-cell-permission-cube" ValueShapeId="shape-text">
-      <Description>Cube id for CubeId.</Description>
+    <Parameter Id="param-add-cell-permission-id" ValueShapeId="shape-text">
+      <Description>CellPermission row id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>cube</Name>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-cell-permission-security-role" ValueShapeId="shape-text">
       <Description>SecurityRole id for SecurityRoleId.</Description>
       <IsRequired>true</IsRequired>
       <Name>security-role</Name>
     </Parameter>
-    <Parameter Id="param-add-cube-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-cell-permission-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-id" ValueShapeId="shape-text">
-      <Description>Cube row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-default-measure-name" ValueShapeId="shape-text">
-      <Description>DefaultMeasureName.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>default-measure-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-processing-mode" ValueShapeId="shape-text">
-      <Description>ProcessingMode. Default: Regular.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>processing-mode</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-storage-mode" ValueShapeId="shape-text">
-      <Description>StorageMode. Default: Molap.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>storage-mode</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-multi-dimensional-database" ValueShapeId="shape-text">
-      <Description>MultiDimensionalDatabase id for MultiDimensionalDatabaseId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>multi-dimensional-database</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-action-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-action-id" ValueShapeId="shape-text">
-      <Description>CubeAction row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-cube-action-action-type" ValueShapeId="shape-text">
       <Description>ActionType.</Description>
@@ -255,6 +131,11 @@
       <IsRequired>false</IsRequired>
       <Name>caption</Name>
     </Parameter>
+    <Parameter Id="param-add-cube-action-cube" ValueShapeId="shape-text">
+      <Description>Cube id for CubeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>cube</Name>
+    </Parameter>
     <Parameter Id="param-add-cube-action-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
@@ -264,6 +145,11 @@
       <Description>Expression.</Description>
       <IsRequired>true</IsRequired>
       <Name>expression</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-action-id" ValueShapeId="shape-text">
+      <Description>CubeAction row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-cube-action-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
@@ -280,25 +166,40 @@
       <IsRequired>true</IsRequired>
       <Name>target-kind</Name>
     </Parameter>
-    <Parameter Id="param-add-cube-action-cube" ValueShapeId="shape-text">
-      <Description>Cube id for CubeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>cube</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-dimension-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-cube-action-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-cube-dimension-id" ValueShapeId="shape-text">
-      <Description>CubeDimension row id.</Description>
+    <Parameter Id="param-add-cube-default-measure-name" ValueShapeId="shape-text">
+      <Description>DefaultMeasureName.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>default-measure-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-dimension-cube" ValueShapeId="shape-text">
+      <Description>Cube id for CubeId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>cube</Name>
     </Parameter>
     <Parameter Id="param-add-cube-dimension-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-dimension-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for DimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-dimension-id" ValueShapeId="shape-text">
+      <Description>CubeDimension row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-cube-dimension-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
@@ -310,35 +211,40 @@
       <IsRequired>false</IsRequired>
       <Name>role-name</Name>
     </Parameter>
-    <Parameter Id="param-add-cube-dimension-cube" ValueShapeId="shape-text">
-      <Description>Cube id for CubeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>cube</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-dimension-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for DimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-translation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-cube-dimension-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-cube-translation-id" ValueShapeId="shape-text">
-      <Description>CubeTranslation row id.</Description>
+    <Parameter Id="param-add-cube-id" ValueShapeId="shape-text">
+      <Description>Cube row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-multi-dimensional-database" ValueShapeId="shape-text">
+      <Description>MultiDimensionalDatabase id for MultiDimensionalDatabaseId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>multi-dimensional-database</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-processing-mode" ValueShapeId="shape-text">
+      <Description>ProcessingMode. Default: Regular.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>processing-mode</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-storage-mode" ValueShapeId="shape-text">
+      <Description>StorageMode. Default: Molap.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>storage-mode</Name>
     </Parameter>
     <Parameter Id="param-add-cube-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
       <IsRequired>false</IsRequired>
       <Name>caption</Name>
-    </Parameter>
-    <Parameter Id="param-add-cube-translation-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-cube-translation-cube" ValueShapeId="shape-text">
       <Description>Cube id for CubeId.</Description>
@@ -350,95 +256,55 @@
       <IsRequired>true</IsRequired>
       <Name>culture</Name>
     </Parameter>
-    <Parameter Id="param-add-culture-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-cube-translation-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-translation-id" ValueShapeId="shape-text">
+      <Description>CubeTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-cube-translation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-culture-id" ValueShapeId="shape-text">
-      <Description>Culture row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
+    <Parameter Id="param-add-cube-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-add-culture-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
+    <Parameter Id="param-add-culture-id" ValueShapeId="shape-text">
+      <Description>Culture row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-culture-language-id" ValueShapeId="shape-text">
       <Description>LanguageId.</Description>
       <IsRequired>false</IsRequired>
       <Name>language-id</Name>
-    </Parameter>
-    <Parameter Id="param-add-culture-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
     </Parameter>
     <Parameter Id="param-add-culture-multi-dimensional-database" ValueShapeId="shape-text">
       <Description>MultiDimensionalDatabase id for MultiDimensionalDatabaseId.</Description>
       <IsRequired>true</IsRequired>
       <Name>multi-dimensional-database</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-id" ValueShapeId="shape-text">
-      <Description>Dimension row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-dimension-type" ValueShapeId="shape-text">
-      <Description>DimensionType.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>dimension-type</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-name" ValueShapeId="shape-text">
+    <Parameter Id="param-add-culture-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-processing-group" ValueShapeId="shape-text">
-      <Description>ProcessingGroup. Default: ByAttribute.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>processing-group</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-processing-mode" ValueShapeId="shape-text">
-      <Description>ProcessingMode. Default: Regular.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>processing-mode</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-source-name" ValueShapeId="shape-text">
-      <Description>SourceName.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>source-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-storage-mode" ValueShapeId="shape-text">
-      <Description>StorageMode. Default: Molap.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>storage-mode</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-multi-dimensional-database" ValueShapeId="shape-text">
-      <Description>MultiDimensionalDatabase id for MultiDimensionalDatabaseId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>multi-dimensional-database</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-attribute-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-culture-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-attribute-id" ValueShapeId="shape-text">
-      <Description>DimensionAttribute row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-attribute-attribute-hierarchy-enabled" ValueShapeId="shape-text">
       <Description>AttributeHierarchyEnabled.</Description>
@@ -459,6 +325,16 @@
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-attribute-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for DimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-attribute-id" ValueShapeId="shape-text">
+      <Description>DimensionAttribute row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-attribute-is-key" ValueShapeId="shape-text">
       <Description>IsKey.</Description>
@@ -485,45 +361,50 @@
       <IsRequired>false</IsRequired>
       <Name>usage</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-attribute-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for DimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-dimension-attribute-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-id" ValueShapeId="shape-text">
-      <Description>DimensionHierarchy row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
+    <Parameter Id="param-add-dimension-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-dimension-type" ValueShapeId="shape-text">
+      <Description>DimensionType.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>dimension-type</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-hierarchy-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-hierarchy-type" ValueShapeId="shape-text">
-      <Description>HierarchyType.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>hierarchy-type</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
     <Parameter Id="param-add-dimension-hierarchy-dimension" ValueShapeId="shape-text">
       <Description>Dimension id for DimensionId.</Description>
       <IsRequired>true</IsRequired>
       <Name>dimension</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-level-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
+    <Parameter Id="param-add-dimension-hierarchy-hierarchy-type" ValueShapeId="shape-text">
+      <Description>HierarchyType.</Description>
       <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
+      <Name>hierarchy-type</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-id" ValueShapeId="shape-text">
+      <Description>DimensionHierarchy row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-level-dimension-attribute" ValueShapeId="shape-text">
+      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension-attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-level-dimension-hierarchy" ValueShapeId="shape-text">
+      <Description>DimensionHierarchy id for DimensionHierarchyId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension-hierarchy</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-hierarchy-level-id" ValueShapeId="shape-text">
       <Description>DimensionHierarchyLevel row id.</Description>
@@ -540,25 +421,35 @@
       <IsRequired>false</IsRequired>
       <Name>ordinal</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-level-dimension-attribute" ValueShapeId="shape-text">
-      <Description>DimensionAttribute id for DimensionAttributeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension-attribute</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-hierarchy-level-dimension-hierarchy" ValueShapeId="shape-text">
-      <Description>DimensionHierarchy id for DimensionHierarchyId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>dimension-hierarchy</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-permission-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-dimension-hierarchy-level-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-permission-id" ValueShapeId="shape-text">
-      <Description>DimensionPermission row id.</Description>
+    <Parameter Id="param-add-dimension-hierarchy-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-hierarchy-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-id" ValueShapeId="shape-text">
+      <Description>Dimension row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-multi-dimensional-database" ValueShapeId="shape-text">
+      <Description>MultiDimensionalDatabase id for MultiDimensionalDatabaseId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>multi-dimensional-database</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-permission-allowed-set-expression" ValueShapeId="shape-text">
       <Description>AllowedSetExpression.</Description>
@@ -580,75 +471,120 @@
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-permission-visual-totals" ValueShapeId="shape-text">
-      <Description>VisualTotals.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>visual-totals</Name>
+    <Parameter Id="param-add-dimension-permission-dimension" ValueShapeId="shape-text">
+      <Description>Dimension id for DimensionId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>dimension</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-permission-dimension-attribute" ValueShapeId="shape-text">
       <Description>DimensionAttribute id for DimensionAttributeId.</Description>
       <IsRequired>true</IsRequired>
       <Name>dimension-attribute</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-permission-dimension" ValueShapeId="shape-text">
-      <Description>Dimension id for DimensionId.</Description>
+    <Parameter Id="param-add-dimension-permission-id" ValueShapeId="shape-text">
+      <Description>DimensionPermission row id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>dimension</Name>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-permission-security-role" ValueShapeId="shape-text">
       <Description>SecurityRole id for SecurityRoleId.</Description>
       <IsRequired>true</IsRequired>
       <Name>security-role</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-translation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-dimension-permission-visual-totals" ValueShapeId="shape-text">
+      <Description>VisualTotals.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>visual-totals</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-permission-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-translation-id" ValueShapeId="shape-text">
-      <Description>DimensionTranslation row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
+    <Parameter Id="param-add-dimension-processing-group" ValueShapeId="shape-text">
+      <Description>ProcessingGroup. Default: ByAttribute.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>processing-group</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-processing-mode" ValueShapeId="shape-text">
+      <Description>ProcessingMode. Default: Regular.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>processing-mode</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-source-name" ValueShapeId="shape-text">
+      <Description>SourceName.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>source-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-storage-mode" ValueShapeId="shape-text">
+      <Description>StorageMode. Default: Molap.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>storage-mode</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
       <IsRequired>false</IsRequired>
       <Name>caption</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-translation-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
     <Parameter Id="param-add-dimension-translation-culture" ValueShapeId="shape-text">
       <Description>Culture id for CultureId.</Description>
       <IsRequired>true</IsRequired>
       <Name>culture</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-translation-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-translation-dimension" ValueShapeId="shape-text">
       <Description>Dimension id for DimensionId.</Description>
       <IsRequired>true</IsRequired>
       <Name>dimension</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-usage-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-dimension-translation-id" ValueShapeId="shape-text">
+      <Description>DimensionTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-translation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-usage-id" ValueShapeId="shape-text">
-      <Description>DimensionUsage row id.</Description>
+    <Parameter Id="param-add-dimension-usage-cube-dimension" ValueShapeId="shape-text">
+      <Description>CubeDimension id for CubeDimensionId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>cube-dimension</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-usage-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
+    <Parameter Id="param-add-dimension-usage-granularity-attribute" ValueShapeId="shape-text">
+      <Description>DimensionAttribute id for GranularityAttributeId.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>granularity-attribute</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-usage-id" ValueShapeId="shape-text">
+      <Description>DimensionUsage row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-usage-intermediate-measure-group" ValueShapeId="shape-text">
+      <Description>MeasureGroup id for IntermediateMeasureGroupId.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>intermediate-measure-group</Name>
+    </Parameter>
     <Parameter Id="param-add-dimension-usage-is-required" ValueShapeId="shape-text">
       <Description>IsRequired.</Description>
       <IsRequired>false</IsRequired>
       <Name>is-required</Name>
+    </Parameter>
+    <Parameter Id="param-add-dimension-usage-measure-group" ValueShapeId="shape-text">
+      <Description>MeasureGroup id for MeasureGroupId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>measure-group</Name>
     </Parameter>
     <Parameter Id="param-add-dimension-usage-role-name" ValueShapeId="shape-text">
       <Description>RoleName.</Description>
@@ -660,35 +596,25 @@
       <IsRequired>true</IsRequired>
       <Name>usage-kind</Name>
     </Parameter>
-    <Parameter Id="param-add-dimension-usage-cube-dimension" ValueShapeId="shape-text">
-      <Description>CubeDimension id for CubeDimensionId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>cube-dimension</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-usage-granularity-attribute" ValueShapeId="shape-text">
-      <Description>DimensionAttribute id for GranularityAttributeId.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>granularity-attribute</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-usage-intermediate-measure-group" ValueShapeId="shape-text">
-      <Description>MeasureGroup id for IntermediateMeasureGroupId.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>intermediate-measure-group</Name>
-    </Parameter>
-    <Parameter Id="param-add-dimension-usage-measure-group" ValueShapeId="shape-text">
-      <Description>MeasureGroup id for MeasureGroupId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>measure-group</Name>
-    </Parameter>
-    <Parameter Id="param-add-kpi-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-dimension-usage-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-kpi-id" ValueShapeId="shape-text">
-      <Description>Kpi row id.</Description>
+    <Parameter Id="param-add-dimension-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-kpi-associated-measure" ValueShapeId="shape-text">
+      <Description>Measure id for AssociatedMeasureId.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>associated-measure</Name>
+    </Parameter>
+    <Parameter Id="param-add-kpi-cube" ValueShapeId="shape-text">
+      <Description>Cube id for CubeId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>cube</Name>
     </Parameter>
     <Parameter Id="param-add-kpi-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
@@ -699,6 +625,11 @@
       <Description>GoalExpression.</Description>
       <IsRequired>false</IsRequired>
       <Name>goal-expression</Name>
+    </Parameter>
+    <Parameter Id="param-add-kpi-id" ValueShapeId="shape-text">
+      <Description>Kpi row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-kpi-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
@@ -715,6 +646,36 @@
       <IsRequired>false</IsRequired>
       <Name>status-graphic</Name>
     </Parameter>
+    <Parameter Id="param-add-kpi-translation-caption" ValueShapeId="shape-text">
+      <Description>Caption.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>caption</Name>
+    </Parameter>
+    <Parameter Id="param-add-kpi-translation-culture" ValueShapeId="shape-text">
+      <Description>Culture id for CultureId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>culture</Name>
+    </Parameter>
+    <Parameter Id="param-add-kpi-translation-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-kpi-translation-id" ValueShapeId="shape-text">
+      <Description>KpiTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-kpi-translation-kpi" ValueShapeId="shape-text">
+      <Description>Kpi id for KpiId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>kpi</Name>
+    </Parameter>
+    <Parameter Id="param-add-kpi-translation-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
     <Parameter Id="param-add-kpi-trend-expression" ValueShapeId="shape-text">
       <Description>TrendExpression.</Description>
       <IsRequired>false</IsRequired>
@@ -730,60 +691,20 @@
       <IsRequired>false</IsRequired>
       <Name>value-expression</Name>
     </Parameter>
-    <Parameter Id="param-add-kpi-associated-measure" ValueShapeId="shape-text">
-      <Description>Measure id for AssociatedMeasureId.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>associated-measure</Name>
-    </Parameter>
-    <Parameter Id="param-add-kpi-cube" ValueShapeId="shape-text">
-      <Description>Cube id for CubeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>cube</Name>
-    </Parameter>
-    <Parameter Id="param-add-kpi-translation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-kpi-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-kpi-translation-id" ValueShapeId="shape-text">
-      <Description>KpiTranslation row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-kpi-translation-caption" ValueShapeId="shape-text">
-      <Description>Caption.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>caption</Name>
-    </Parameter>
-    <Parameter Id="param-add-kpi-translation-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-kpi-translation-culture" ValueShapeId="shape-text">
-      <Description>Culture id for CultureId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>culture</Name>
-    </Parameter>
-    <Parameter Id="param-add-kpi-translation-kpi" ValueShapeId="shape-text">
-      <Description>Kpi id for KpiId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>kpi</Name>
-    </Parameter>
-    <Parameter Id="param-add-mdx-calculation-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-mdx-calculation-id" ValueShapeId="shape-text">
-      <Description>MdxCalculation row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-mdx-calculation-calculation-kind" ValueShapeId="shape-text">
       <Description>CalculationKind.</Description>
       <IsRequired>true</IsRequired>
       <Name>calculation-kind</Name>
+    </Parameter>
+    <Parameter Id="param-add-mdx-calculation-cube" ValueShapeId="shape-text">
+      <Description>Cube id for CubeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>cube</Name>
     </Parameter>
     <Parameter Id="param-add-mdx-calculation-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
@@ -800,6 +721,11 @@
       <IsRequired>true</IsRequired>
       <Name>expression</Name>
     </Parameter>
+    <Parameter Id="param-add-mdx-calculation-id" ValueShapeId="shape-text">
+      <Description>MdxCalculation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-mdx-calculation-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
       <IsRequired>true</IsRequired>
@@ -810,20 +736,10 @@
       <IsRequired>false</IsRequired>
       <Name>solve-order</Name>
     </Parameter>
-    <Parameter Id="param-add-mdx-calculation-cube" ValueShapeId="shape-text">
-      <Description>Cube id for CubeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>cube</Name>
-    </Parameter>
-    <Parameter Id="param-add-measure-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-mdx-calculation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-measure-id" ValueShapeId="shape-text">
-      <Description>Measure row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-measure-aggregate-function" ValueShapeId="shape-text">
       <Description>AggregateFunction.</Description>
@@ -850,35 +766,20 @@
       <IsRequired>false</IsRequired>
       <Name>format-string</Name>
     </Parameter>
-    <Parameter Id="param-add-measure-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
+    <Parameter Id="param-add-measure-group-cube" ValueShapeId="shape-text">
+      <Description>Cube id for CubeId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-measure-source-name" ValueShapeId="shape-text">
-      <Description>SourceName.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>source-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-measure-measure-group" ValueShapeId="shape-text">
-      <Description>MeasureGroup id for MeasureGroupId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>measure-group</Name>
-    </Parameter>
-    <Parameter Id="param-add-measure-group-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-measure-group-id" ValueShapeId="shape-text">
-      <Description>MeasureGroup row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>cube</Name>
     </Parameter>
     <Parameter Id="param-add-measure-group-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-group-id" ValueShapeId="shape-text">
+      <Description>MeasureGroup row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-measure-group-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
@@ -900,80 +801,65 @@
       <IsRequired>false</IsRequired>
       <Name>storage-mode</Name>
     </Parameter>
-    <Parameter Id="param-add-measure-group-cube" ValueShapeId="shape-text">
-      <Description>Cube id for CubeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>cube</Name>
-    </Parameter>
-    <Parameter Id="param-add-measure-translation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-measure-group-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-measure-translation-id" ValueShapeId="shape-text">
-      <Description>MeasureTranslation row id.</Description>
+    <Parameter Id="param-add-measure-id" ValueShapeId="shape-text">
+      <Description>Measure row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-measure-group" ValueShapeId="shape-text">
+      <Description>MeasureGroup id for MeasureGroupId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>measure-group</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-source-name" ValueShapeId="shape-text">
+      <Description>SourceName.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>source-name</Name>
     </Parameter>
     <Parameter Id="param-add-measure-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
       <IsRequired>false</IsRequired>
       <Name>caption</Name>
     </Parameter>
+    <Parameter Id="param-add-measure-translation-culture" ValueShapeId="shape-text">
+      <Description>Culture id for CultureId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>culture</Name>
+    </Parameter>
     <Parameter Id="param-add-measure-translation-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
-    <Parameter Id="param-add-measure-translation-culture" ValueShapeId="shape-text">
-      <Description>Culture id for CultureId.</Description>
+    <Parameter Id="param-add-measure-translation-id" ValueShapeId="shape-text">
+      <Description>MeasureTranslation row id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>culture</Name>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-measure-translation-measure" ValueShapeId="shape-text">
       <Description>Measure id for MeasureId.</Description>
       <IsRequired>true</IsRequired>
       <Name>measure</Name>
     </Parameter>
-    <Parameter Id="param-add-multi-dimensional-database-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-measure-translation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-multi-dimensional-database-id" ValueShapeId="shape-text">
-      <Description>MultiDimensionalDatabase row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-multi-dimensional-database-collation" ValueShapeId="shape-text">
-      <Description>Collation.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>collation</Name>
-    </Parameter>
-    <Parameter Id="param-add-multi-dimensional-database-default-language" ValueShapeId="shape-text">
-      <Description>DefaultLanguage.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>default-language</Name>
-    </Parameter>
-    <Parameter Id="param-add-multi-dimensional-database-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-multi-dimensional-database-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-multi-dimensional-data-source-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-measure-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-multi-dimensional-data-source-id" ValueShapeId="shape-text">
-      <Description>MultiDimensionalDataSource row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-multi-dimensional-data-source-connection-reference" ValueShapeId="shape-text">
       <Description>ConnectionReference.</Description>
@@ -984,6 +870,16 @@
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-multi-dimensional-data-source-id" ValueShapeId="shape-text">
+      <Description>MultiDimensionalDataSource row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-multi-dimensional-data-source-multi-dimensional-database" ValueShapeId="shape-text">
+      <Description>MultiDimensionalDatabase id for MultiDimensionalDatabaseId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>multi-dimensional-database</Name>
     </Parameter>
     <Parameter Id="param-add-multi-dimensional-data-source-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
@@ -1000,20 +896,45 @@
       <IsRequired>false</IsRequired>
       <Name>source-kind</Name>
     </Parameter>
-    <Parameter Id="param-add-multi-dimensional-data-source-multi-dimensional-database" ValueShapeId="shape-text">
-      <Description>MultiDimensionalDatabase id for MultiDimensionalDatabaseId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>multi-dimensional-database</Name>
-    </Parameter>
-    <Parameter Id="param-add-named-set-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-multi-dimensional-data-source-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-named-set-id" ValueShapeId="shape-text">
-      <Description>NamedSet row id.</Description>
+    <Parameter Id="param-add-multi-dimensional-database-collation" ValueShapeId="shape-text">
+      <Description>Collation.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>collation</Name>
+    </Parameter>
+    <Parameter Id="param-add-multi-dimensional-database-default-language" ValueShapeId="shape-text">
+      <Description>DefaultLanguage.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>default-language</Name>
+    </Parameter>
+    <Parameter Id="param-add-multi-dimensional-database-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-multi-dimensional-database-id" ValueShapeId="shape-text">
+      <Description>MultiDimensionalDatabase row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-multi-dimensional-database-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-multi-dimensional-database-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-named-set-cube" ValueShapeId="shape-text">
+      <Description>Cube id for CubeId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>cube</Name>
     </Parameter>
     <Parameter Id="param-add-named-set-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
@@ -1030,60 +951,70 @@
       <IsRequired>true</IsRequired>
       <Name>expression</Name>
     </Parameter>
+    <Parameter Id="param-add-named-set-id" ValueShapeId="shape-text">
+      <Description>NamedSet row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-named-set-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-named-set-cube" ValueShapeId="shape-text">
-      <Description>Cube id for CubeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>cube</Name>
-    </Parameter>
-    <Parameter Id="param-add-named-set-translation-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-named-set-translation-id" ValueShapeId="shape-text">
-      <Description>NamedSetTranslation row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-named-set-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
       <IsRequired>false</IsRequired>
       <Name>caption</Name>
     </Parameter>
+    <Parameter Id="param-add-named-set-translation-culture" ValueShapeId="shape-text">
+      <Description>Culture id for CultureId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>culture</Name>
+    </Parameter>
     <Parameter Id="param-add-named-set-translation-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
-    <Parameter Id="param-add-named-set-translation-culture" ValueShapeId="shape-text">
-      <Description>Culture id for CultureId.</Description>
+    <Parameter Id="param-add-named-set-translation-id" ValueShapeId="shape-text">
+      <Description>NamedSetTranslation row id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>culture</Name>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-named-set-translation-named-set" ValueShapeId="shape-text">
       <Description>NamedSet id for NamedSetId.</Description>
       <IsRequired>true</IsRequired>
       <Name>named-set</Name>
     </Parameter>
-    <Parameter Id="param-add-partition-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-named-set-translation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-named-set-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-partition-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-partition-id" ValueShapeId="shape-text">
       <Description>Partition row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-add-partition-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
+    <Parameter Id="param-add-partition-measure-group" ValueShapeId="shape-text">
+      <Description>MeasureGroup id for MeasureGroupId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>measure-group</Name>
+    </Parameter>
+    <Parameter Id="param-add-partition-multi-dimensional-data-source" ValueShapeId="shape-text">
+      <Description>MultiDimensionalDataSource id for MultiDimensionalDataSourceId.</Description>
       <IsRequired>false</IsRequired>
-      <Name>description</Name>
+      <Name>multi-dimensional-data-source</Name>
     </Parameter>
     <Parameter Id="param-add-partition-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
@@ -1115,67 +1046,27 @@
       <IsRequired>false</IsRequired>
       <Name>storage-mode</Name>
     </Parameter>
-    <Parameter Id="param-add-partition-measure-group" ValueShapeId="shape-text">
-      <Description>MeasureGroup id for MeasureGroupId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>measure-group</Name>
-    </Parameter>
-    <Parameter Id="param-add-partition-multi-dimensional-data-source" ValueShapeId="shape-text">
-      <Description>MultiDimensionalDataSource id for MultiDimensionalDataSourceId.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>multi-dimensional-data-source</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-partition-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-id" ValueShapeId="shape-text">
-      <Description>Perspective row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-default-measure-name" ValueShapeId="shape-text">
-      <Description>DefaultMeasureName.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>default-measure-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-cube" ValueShapeId="shape-text">
-      <Description>Cube id for CubeId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>cube</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-action-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-action-id" ValueShapeId="shape-text">
-      <Description>PerspectiveAction row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-perspective-action-cube-action" ValueShapeId="shape-text">
       <Description>CubeAction id for CubeActionId.</Description>
       <IsRequired>true</IsRequired>
       <Name>cube-action</Name>
     </Parameter>
+    <Parameter Id="param-add-perspective-action-id" ValueShapeId="shape-text">
+      <Description>PerspectiveAction row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-perspective-action-perspective" ValueShapeId="shape-text">
       <Description>Perspective id for PerspectiveId.</Description>
       <IsRequired>true</IsRequired>
       <Name>perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-perspective-calculation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-perspective-action-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
@@ -1195,30 +1086,50 @@
       <IsRequired>true</IsRequired>
       <Name>perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-perspective-dimension-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-perspective-calculation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-perspective-dimension-id" ValueShapeId="shape-text">
-      <Description>PerspectiveDimension row id.</Description>
+    <Parameter Id="param-add-perspective-cube" ValueShapeId="shape-text">
+      <Description>Cube id for CubeId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>cube</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-default-measure-name" ValueShapeId="shape-text">
+      <Description>DefaultMeasureName.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>default-measure-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-perspective-dimension-cube-dimension" ValueShapeId="shape-text">
       <Description>CubeDimension id for CubeDimensionId.</Description>
       <IsRequired>true</IsRequired>
       <Name>cube-dimension</Name>
     </Parameter>
+    <Parameter Id="param-add-perspective-dimension-id" ValueShapeId="shape-text">
+      <Description>PerspectiveDimension row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-perspective-dimension-perspective" ValueShapeId="shape-text">
       <Description>Perspective id for PerspectiveId.</Description>
       <IsRequired>true</IsRequired>
       <Name>perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-perspective-kpi-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-perspective-dimension-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-id" ValueShapeId="shape-text">
+      <Description>Perspective row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-perspective-kpi-id" ValueShapeId="shape-text">
       <Description>PerspectiveKpi row id.</Description>
@@ -1235,27 +1146,7 @@
       <IsRequired>true</IsRequired>
       <Name>perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-perspective-measure-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-measure-id" ValueShapeId="shape-text">
-      <Description>PerspectiveMeasure row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-measure-measure" ValueShapeId="shape-text">
-      <Description>Measure id for MeasureId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>measure</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-measure-perspective" ValueShapeId="shape-text">
-      <Description>Perspective id for PerspectiveId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>perspective</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-measure-group-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-perspective-kpi-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
@@ -1275,10 +1166,35 @@
       <IsRequired>true</IsRequired>
       <Name>perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-perspective-named-set-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-perspective-measure-group-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-measure-id" ValueShapeId="shape-text">
+      <Description>PerspectiveMeasure row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-measure-measure" ValueShapeId="shape-text">
+      <Description>Measure id for MeasureId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>measure</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-measure-perspective" ValueShapeId="shape-text">
+      <Description>Perspective id for PerspectiveId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>perspective</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-measure-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
     </Parameter>
     <Parameter Id="param-add-perspective-named-set-id" ValueShapeId="shape-text">
       <Description>PerspectiveNamedSet row id.</Description>
@@ -1295,37 +1211,42 @@
       <IsRequired>true</IsRequired>
       <Name>perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-perspective-translation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-perspective-named-set-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-perspective-translation-id" ValueShapeId="shape-text">
-      <Description>PerspectiveTranslation row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-perspective-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
       <IsRequired>false</IsRequired>
       <Name>caption</Name>
     </Parameter>
+    <Parameter Id="param-add-perspective-translation-culture" ValueShapeId="shape-text">
+      <Description>Culture id for CultureId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>culture</Name>
+    </Parameter>
     <Parameter Id="param-add-perspective-translation-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
-    <Parameter Id="param-add-perspective-translation-culture" ValueShapeId="shape-text">
-      <Description>Culture id for CultureId.</Description>
+    <Parameter Id="param-add-perspective-translation-id" ValueShapeId="shape-text">
+      <Description>PerspectiveTranslation row id.</Description>
       <IsRequired>true</IsRequired>
-      <Name>culture</Name>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-perspective-translation-perspective" ValueShapeId="shape-text">
       <Description>Perspective id for PerspectiveId.</Description>
       <IsRequired>true</IsRequired>
       <Name>perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-role-member-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-perspective-translation-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-perspective-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
@@ -1350,20 +1271,25 @@
       <IsRequired>true</IsRequired>
       <Name>security-role</Name>
     </Parameter>
-    <Parameter Id="param-add-security-role-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-role-member-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-security-role-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-security-role-id" ValueShapeId="shape-text">
       <Description>SecurityRole row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
     </Parameter>
-    <Parameter Id="param-add-security-role-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
+    <Parameter Id="param-add-security-role-multi-dimensional-database" ValueShapeId="shape-text">
+      <Description>MultiDimensionalDatabase id for MultiDimensionalDatabaseId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>multi-dimensional-database</Name>
     </Parameter>
     <Parameter Id="param-add-security-role-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
@@ -1375,10 +1301,96 @@
       <IsRequired>true</IsRequired>
       <Name>permission</Name>
     </Parameter>
-    <Parameter Id="param-add-security-role-multi-dimensional-database" ValueShapeId="shape-text">
-      <Description>MultiDimensionalDatabase id for MultiDimensionalDatabaseId.</Description>
+    <Parameter Id="param-add-security-role-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-create-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL Server connection string.</Description>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-create-csharp" ValueShapeId="shape-path">
+      <Description>Create a C# workspace at this directory.</Description>
+      <Name>csharp</Name>
+    </Parameter>
+    <Parameter Id="param-create-sql" ValueShapeId="shape-path">
+      <Description>Create a SQL workspace described by this directory.</Description>
+      <Name>sql</Name>
+    </Parameter>
+    <Parameter Id="param-create-xml" ValueShapeId="shape-path">
+      <Description>Create an XML workspace at this directory.</Description>
+      <Name>xml</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-database-name" ValueShapeId="shape-text">
+      <Description>Target database name. Defaults to the modeled database name.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>database-name</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-drop-existing" ValueShapeId="shape-flag">
+      <Description>Drop an existing target database before create/deploy.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>drop-existing</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-no-process" ValueShapeId="shape-flag">
+      <Description>Deploy metadata only and skip full processing.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>no-process</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-server" ValueShapeId="shape-text">
+      <Description>Analysis Services multidimensional server.</Description>
       <IsRequired>true</IsRequired>
-      <Name>multi-dimensional-database</Name>
+      <Name>server</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-drop-database-name" ValueShapeId="shape-text">
+      <Description>Database name to drop.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>database-name</Name>
+    </Parameter>
+    <Parameter Id="param-drop-server" ValueShapeId="shape-text">
+      <Description>Analysis Services multidimensional server.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>server</Name>
+    </Parameter>
+    <Parameter Id="param-restore-backup-file" ValueShapeId="shape-path">
+      <Description>Backup file path accessible to the Analysis Services service accounts.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>backup-file</Name>
+    </Parameter>
+    <Parameter Id="param-restore-drop-existing" ValueShapeId="shape-flag">
+      <Description>Drop an existing target database before restore.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>drop-existing</Name>
+    </Parameter>
+    <Parameter Id="param-restore-overwrite-backup-file" ValueShapeId="shape-flag">
+      <Description>Overwrite an existing backup file.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>overwrite-backup-file</Name>
+    </Parameter>
+    <Parameter Id="param-restore-source-database-name" ValueShapeId="shape-text">
+      <Description>Source processed database name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-database-name</Name>
+    </Parameter>
+    <Parameter Id="param-restore-source-server" ValueShapeId="shape-text">
+      <Description>Source Analysis Services server containing the processed database.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-server</Name>
+    </Parameter>
+    <Parameter Id="param-restore-target-database-name" ValueShapeId="shape-text">
+      <Description>Target database name to restore.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>target-database-name</Name>
+    </Parameter>
+    <Parameter Id="param-restore-target-server" ValueShapeId="shape-text">
+      <Description>Target Analysis Services server.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>target-server</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

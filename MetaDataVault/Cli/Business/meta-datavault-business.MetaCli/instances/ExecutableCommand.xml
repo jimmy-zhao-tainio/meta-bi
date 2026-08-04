@@ -21,7 +21,7 @@
     <ExecutableCommand Id="exec-add-business-same-as-link" CommandId="cmd-add-business-same-as-link" />
     <ExecutableCommand Id="exec-add-business-same-as-link-satellite" CommandId="cmd-add-business-same-as-link-satellite" />
     <ExecutableCommand Id="exec-add-business-satellite-attribute" CommandId="cmd-add-business-satellite-attribute" />
+    <ExecutableCommand Id="exec-create" CommandId="cmd-create" />
     <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
-    <ExecutableCommand Id="exec-new-workspace" CommandId="cmd-new-workspace" />
   </ExecutableCommandList>
 </MetaCli>

@@ -5,26 +5,27 @@ namespace MetaDataTypeConversion.Tests;
 public sealed class CliTests
 {
     [Fact]
-    public void Help_ShowsNewWorkspaceCommand()
+    public void Help_ShowsCreateCommand()
     {
         var result = RunCli("help");
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-data-type-conversion <command> [options]", result.Output);
-        Assert.Contains("new-workspace", result.Output);
+        Assert.Contains("create", result.Output);
         Assert.Contains("check", result.Output);
         Assert.Contains("resolve", result.Output);
     }
 
     [Fact]
-    public void NewWorkspace_Help_ShowsRequiredOptions()
+    public void Create_Help_ShowsOutputOptions()
     {
-        var result = RunCli("new-workspace --help");
+        var result = RunCli("create --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("new-workspace <path>", result.Output);
-        Assert.Contains("Arguments:", result.Output);
-        Assert.Contains("Directory where the sanctioned workspace will be created.", result.Output);
+        Assert.Contains("meta-data-type-conversion create", result.Output);
+        Assert.Contains("--xml <path>", result.Output);
+        Assert.Contains("--csharp <path>", result.Output);
+        Assert.Contains("--sql <path>", result.Output);
     }
 
     [Fact]
@@ -40,12 +41,12 @@ public sealed class CliTests
     }
 
     [Fact]
-    public void NewWorkspace_CreatesWorkspace()
+    public void Create_CreatesWorkspace()
     {
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-tests", Guid.NewGuid().ToString("N"));
         try
         {
-            var result = RunCli($"new-workspace \"{workspacePath}\"");
+            var result = RunCli($"create --xml \"{workspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("Ok", result.Output);
@@ -64,7 +65,7 @@ public sealed class CliTests
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-check-tests", Guid.NewGuid().ToString("N"));
         try
         {
-            var create = RunCli($"new-workspace \"{workspacePath}\"");
+            var create = RunCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, create.ExitCode);
 
             var check = RunCli($"check --workspace \"{workspacePath}\"");
@@ -83,7 +84,7 @@ public sealed class CliTests
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-cwd-check-tests", Guid.NewGuid().ToString("N"));
         try
         {
-            var create = RunCli($"new-workspace \"{workspacePath}\"");
+            var create = RunCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, create.ExitCode);
 
             var check = RunCli("check", workingDirectory: workspacePath);
@@ -102,7 +103,7 @@ public sealed class CliTests
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-resolve-tests", Guid.NewGuid().ToString("N"));
         try
         {
-            var create = RunCli($"new-workspace \"{workspacePath}\"");
+            var create = RunCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, create.ExitCode);
 
             var resolve = RunCli($"resolve --workspace \"{workspacePath}\" --source-data-type sqlserver:type:nvarchar");
@@ -121,7 +122,7 @@ public sealed class CliTests
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-cwd-resolve-tests", Guid.NewGuid().ToString("N"));
         try
         {
-            var create = RunCli($"new-workspace \"{workspacePath}\"");
+            var create = RunCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, create.ExitCode);
 
             var resolve = RunCli("resolve --source-data-type sqlserver:type:nvarchar", workingDirectory: workspacePath);
@@ -140,7 +141,7 @@ public sealed class CliTests
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-resolve-target-tests", Guid.NewGuid().ToString("N"));
         try
         {
-            var create = RunCli($"new-workspace \"{workspacePath}\"");
+            var create = RunCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, create.ExitCode);
 
             var resolve = RunCli($"resolve --workspace \"{workspacePath}\" --source-data-type meta:type:String --target-data-type-system SqlServer");

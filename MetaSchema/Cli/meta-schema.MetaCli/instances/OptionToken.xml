@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="token-extract-sqlserver-new-workspace" OptionId="opt-extract-sqlserver-new-workspace">
-      <Token>--new-workspace</Token>
+    <OptionToken Id="token-extract-sqlserver-all-schemas" OptionId="opt-extract-sqlserver-all-schemas">
+      <Token>--all-schemas</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-all-tables" OptionId="opt-extract-sqlserver-all-tables">
+      <Token>--all-tables</Token>
     </OptionToken>
     <OptionToken Id="token-extract-sqlserver-connection-env" OptionId="opt-extract-sqlserver-connection-env">
       <Token>--connection-env</Token>
     </OptionToken>
-    <OptionToken Id="token-extract-sqlserver-system" OptionId="opt-extract-sqlserver-system">
-      <Token>--system</Token>
+    <OptionToken Id="token-extract-sqlserver-output-connection-env" OptionId="option-extract-sqlserver-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-output-csharp" OptionId="option-extract-sqlserver-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-output-sql" OptionId="option-extract-sqlserver-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-output-xml" OptionId="option-extract-sqlserver-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-extract-sqlserver-schema" OptionId="opt-extract-sqlserver-schema">
       <Token>--schema</Token>
     </OptionToken>
-    <OptionToken Id="token-extract-sqlserver-all-schemas" OptionId="opt-extract-sqlserver-all-schemas">
-      <Token>--all-schemas</Token>
+    <OptionToken Id="token-extract-sqlserver-system" OptionId="opt-extract-sqlserver-system">
+      <Token>--system</Token>
     </OptionToken>
     <OptionToken Id="token-extract-sqlserver-table" OptionId="opt-extract-sqlserver-table">
       <Token>--table</Token>
-    </OptionToken>
-    <OptionToken Id="token-extract-sqlserver-all-tables" OptionId="opt-extract-sqlserver-all-tables">
-      <Token>--all-tables</Token>
     </OptionToken>
   </OptionTokenList>
 </MetaCli>

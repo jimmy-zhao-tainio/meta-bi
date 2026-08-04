@@ -113,5 +113,9 @@
     <Option Id="option-business-same-as-link-satellite-same-as-link" ParameterId="param-business-same-as-link-satellite-same-as-link" />
     <Option Id="option-business-same-as-link-satellite-workspace" ParameterId="param-business-same-as-link-satellite-workspace" />
     <Option Id="option-business-same-as-link-workspace" ParameterId="param-business-same-as-link-workspace" />
+    <Option Id="option-create-connection-env" ParameterId="param-create-connection-env" />
+    <Option Id="option-create-csharp" ParameterId="param-create-csharp" />
+    <Option Id="option-create-sql" ParameterId="param-create-sql" />
+    <Option Id="option-create-xml" ParameterId="param-create-xml" />
   </OptionList>
 </MetaCli>

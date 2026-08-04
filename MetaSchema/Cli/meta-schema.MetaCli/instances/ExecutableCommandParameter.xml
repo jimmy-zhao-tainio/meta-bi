@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandParameterList>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-new-workspace" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-new-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-connection-env" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-connection-env">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-system" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-system">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-schema" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-schema">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-all-schemas" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-all-schemas">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-table" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-all-tables" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-all-tables">
-    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-all-schemas" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-all-schemas" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-all-tables" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-all-tables" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-connection-env" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-connection-env" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-connection-env" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-connection-env" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-csharp" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-csharp" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-sql" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-sql" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-xml" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-xml" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-schema" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-schema" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-system" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-system" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-table" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-table" />
   </ExecutableCommandParameterList>
 </MetaCli>

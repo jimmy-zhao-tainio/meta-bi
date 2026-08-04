@@ -1,126 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <CommandList>
-    <Command Id="cmd-help" ApplicationId="app-meta-data-warehouse">
-      <Description>Show help.</Description>
-      <Name>help</Name>
-      <Token>help</Token>
-    </Command>
-    <Command Id="cmd-new-workspace" ApplicationId="app-meta-data-warehouse">
-      <Description>Create a MetaDataWarehouse workspace.</Description>
-      <Name>new-workspace</Name>
-      <Token>new-workspace</Token>
-    </Command>
-    <Command Id="cmd-add-warehouse" ApplicationId="app-meta-data-warehouse">
-      <Description>Add a dimensional warehouse.</Description>
-      <Name>add-warehouse</Name>
-      <Token>add-warehouse</Token>
-    </Command>
-    <Command Id="cmd-add-dimension" ApplicationId="app-meta-data-warehouse">
-      <Description>Add a dimension.</Description>
-      <Name>add-dimension</Name>
-      <Token>add-dimension</Token>
-    </Command>
-    <Command Id="cmd-add-conformed-dimension" ApplicationId="app-meta-data-warehouse">
-      <Description>Mark a dimension as conformed.</Description>
-      <Name>add-conformed-dimension</Name>
-      <Token>add-conformed-dimension</Token>
-    </Command>
-    <Command Id="cmd-add-dimension-attribute" ApplicationId="app-meta-data-warehouse">
-      <Description>Add a dimension attribute with a Meta data type.</Description>
-      <Name>add-dimension-attribute</Name>
-      <Token>add-dimension-attribute</Token>
-    </Command>
-    <Command Id="cmd-add-dimension-business-key" ApplicationId="app-meta-data-warehouse">
-      <Description>Add a dimension business key.</Description>
-      <Name>add-dimension-business-key</Name>
-      <Token>add-dimension-business-key</Token>
-    </Command>
-    <Command Id="cmd-add-dimension-business-key-part" ApplicationId="app-meta-data-warehouse">
-      <Description>Add an ordered attribute to a dimension business key.</Description>
-      <Name>add-dimension-business-key-part</Name>
-      <Token>add-dimension-business-key-part</Token>
-    </Command>
-    <Command Id="cmd-add-slowly-changing-dimension" ApplicationId="app-meta-data-warehouse">
-      <Description>Declare SCD behavior for a dimension.</Description>
-      <Name>add-slowly-changing-dimension</Name>
-      <Token>add-slowly-changing-dimension</Token>
-    </Command>
-    <Command Id="cmd-add-type1-dimension-attribute" ApplicationId="app-meta-data-warehouse">
-      <Description>Declare a Type 1 attribute in an SCD dimension.</Description>
-      <Name>add-type1-dimension-attribute</Name>
-      <Token>add-type1-dimension-attribute</Token>
-    </Command>
-    <Command Id="cmd-add-type2-dimension-attribute" ApplicationId="app-meta-data-warehouse">
-      <Description>Declare a Type 2 attribute in an SCD dimension.</Description>
-      <Name>add-type2-dimension-attribute</Name>
-      <Token>add-type2-dimension-attribute</Token>
-    </Command>
-    <Command Id="cmd-add-dimension-hierarchy" ApplicationId="app-meta-data-warehouse">
-      <Description>Add a dimension hierarchy.</Description>
-      <Name>add-dimension-hierarchy</Name>
-      <Token>add-dimension-hierarchy</Token>
-    </Command>
-    <Command Id="cmd-add-dimension-hierarchy-level" ApplicationId="app-meta-data-warehouse">
-      <Description>Add a hierarchy level.</Description>
-      <Name>add-dimension-hierarchy-level</Name>
-      <Token>add-dimension-hierarchy-level</Token>
-    </Command>
-    <Command Id="cmd-add-junk-dimension" ApplicationId="app-meta-data-warehouse">
-      <Description>Declare a junk dimension.</Description>
-      <Name>add-junk-dimension</Name>
-      <Token>add-junk-dimension</Token>
-    </Command>
-    <Command Id="cmd-add-junk-dimension-component" ApplicationId="app-meta-data-warehouse">
-      <Description>Add an attribute component to a junk dimension.</Description>
-      <Name>add-junk-dimension-component</Name>
-      <Token>add-junk-dimension-component</Token>
-    </Command>
-    <Command Id="cmd-add-mini-dimension" ApplicationId="app-meta-data-warehouse">
-      <Description>Declare a mini-dimension relationship.</Description>
-      <Name>add-mini-dimension</Name>
-      <Token>add-mini-dimension</Token>
-    </Command>
-    <Command Id="cmd-add-outrigger-dimension" ApplicationId="app-meta-data-warehouse">
-      <Description>Declare an outrigger dimension relationship.</Description>
-      <Name>add-outrigger-dimension</Name>
-      <Token>add-outrigger-dimension</Token>
-    </Command>
-    <Command Id="cmd-add-fact" ApplicationId="app-meta-data-warehouse">
-      <Description>Add a fact table concept.</Description>
-      <Name>add-fact</Name>
-      <Token>add-fact</Token>
-    </Command>
-    <Command Id="cmd-add-fact-grain" ApplicationId="app-meta-data-warehouse">
-      <Description>Declare a fact grain.</Description>
-      <Name>add-fact-grain</Name>
-      <Token>add-fact-grain</Token>
-    </Command>
-    <Command Id="cmd-add-fact-dimension" ApplicationId="app-meta-data-warehouse">
-      <Description>Add a dimensional role to a fact.</Description>
-      <Name>add-fact-dimension</Name>
-      <Token>add-fact-dimension</Token>
-    </Command>
-    <Command Id="cmd-add-fact-measure" ApplicationId="app-meta-data-warehouse">
-      <Description>Add a typed fact measure.</Description>
-      <Name>add-fact-measure</Name>
-      <Token>add-fact-measure</Token>
-    </Command>
-    <Command Id="cmd-add-degenerate-dimension" ApplicationId="app-meta-data-warehouse">
-      <Description>Add a degenerate dimension value to a fact.</Description>
-      <Name>add-degenerate-dimension</Name>
-      <Token>add-degenerate-dimension</Token>
-    </Command>
-    <Command Id="cmd-add-transaction-fact" ApplicationId="app-meta-data-warehouse">
-      <Description>Mark a fact as transaction-grain.</Description>
-      <Name>add-transaction-fact</Name>
-      <Token>add-transaction-fact</Token>
-    </Command>
-    <Command Id="cmd-add-periodic-snapshot-fact" ApplicationId="app-meta-data-warehouse">
-      <Description>Mark a fact as a periodic snapshot.</Description>
-      <Name>add-periodic-snapshot-fact</Name>
-      <Token>add-periodic-snapshot-fact</Token>
-    </Command>
     <Command Id="cmd-add-accumulating-snapshot-fact" ApplicationId="app-meta-data-warehouse">
       <Description>Mark a fact as an accumulating snapshot.</Description>
       <Name>add-accumulating-snapshot-fact</Name>
@@ -130,11 +10,6 @@
       <Description>Add a lifecycle milestone to an accumulating snapshot.</Description>
       <Name>add-accumulating-snapshot-milestone</Name>
       <Token>add-accumulating-snapshot-milestone</Token>
-    </Command>
-    <Command Id="cmd-add-factless-fact" ApplicationId="app-meta-data-warehouse">
-      <Description>Mark a fact as factless.</Description>
-      <Name>add-factless-fact</Name>
-      <Token>add-factless-fact</Token>
     </Command>
     <Command Id="cmd-add-aggregate-fact" ApplicationId="app-meta-data-warehouse">
       <Description>Declare an aggregate fact derived from a source fact.</Description>
@@ -156,10 +31,135 @@
       <Name>add-bridge-weight</Name>
       <Token>add-bridge-weight</Token>
     </Command>
+    <Command Id="cmd-add-conformed-dimension" ApplicationId="app-meta-data-warehouse">
+      <Description>Mark a dimension as conformed.</Description>
+      <Name>add-conformed-dimension</Name>
+      <Token>add-conformed-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-degenerate-dimension" ApplicationId="app-meta-data-warehouse">
+      <Description>Add a degenerate dimension value to a fact.</Description>
+      <Name>add-degenerate-dimension</Name>
+      <Token>add-degenerate-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-dimension" ApplicationId="app-meta-data-warehouse">
+      <Description>Add a dimension.</Description>
+      <Name>add-dimension</Name>
+      <Token>add-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-attribute" ApplicationId="app-meta-data-warehouse">
+      <Description>Add a dimension attribute with a Meta data type.</Description>
+      <Name>add-dimension-attribute</Name>
+      <Token>add-dimension-attribute</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-business-key" ApplicationId="app-meta-data-warehouse">
+      <Description>Add a dimension business key.</Description>
+      <Name>add-dimension-business-key</Name>
+      <Token>add-dimension-business-key</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-business-key-part" ApplicationId="app-meta-data-warehouse">
+      <Description>Add an ordered attribute to a dimension business key.</Description>
+      <Name>add-dimension-business-key-part</Name>
+      <Token>add-dimension-business-key-part</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-hierarchy" ApplicationId="app-meta-data-warehouse">
+      <Description>Add a dimension hierarchy.</Description>
+      <Name>add-dimension-hierarchy</Name>
+      <Token>add-dimension-hierarchy</Token>
+    </Command>
+    <Command Id="cmd-add-dimension-hierarchy-level" ApplicationId="app-meta-data-warehouse">
+      <Description>Add a hierarchy level.</Description>
+      <Name>add-dimension-hierarchy-level</Name>
+      <Token>add-dimension-hierarchy-level</Token>
+    </Command>
+    <Command Id="cmd-add-fact" ApplicationId="app-meta-data-warehouse">
+      <Description>Add a fact table concept.</Description>
+      <Name>add-fact</Name>
+      <Token>add-fact</Token>
+    </Command>
     <Command Id="cmd-add-fact-bridge" ApplicationId="app-meta-data-warehouse">
       <Description>Connect a fact to a bridge table.</Description>
       <Name>add-fact-bridge</Name>
       <Token>add-fact-bridge</Token>
+    </Command>
+    <Command Id="cmd-add-fact-dimension" ApplicationId="app-meta-data-warehouse">
+      <Description>Add a dimensional role to a fact.</Description>
+      <Name>add-fact-dimension</Name>
+      <Token>add-fact-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-fact-grain" ApplicationId="app-meta-data-warehouse">
+      <Description>Declare a fact grain.</Description>
+      <Name>add-fact-grain</Name>
+      <Token>add-fact-grain</Token>
+    </Command>
+    <Command Id="cmd-add-fact-measure" ApplicationId="app-meta-data-warehouse">
+      <Description>Add a typed fact measure.</Description>
+      <Name>add-fact-measure</Name>
+      <Token>add-fact-measure</Token>
+    </Command>
+    <Command Id="cmd-add-factless-fact" ApplicationId="app-meta-data-warehouse">
+      <Description>Mark a fact as factless.</Description>
+      <Name>add-factless-fact</Name>
+      <Token>add-factless-fact</Token>
+    </Command>
+    <Command Id="cmd-add-junk-dimension" ApplicationId="app-meta-data-warehouse">
+      <Description>Declare a junk dimension.</Description>
+      <Name>add-junk-dimension</Name>
+      <Token>add-junk-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-junk-dimension-component" ApplicationId="app-meta-data-warehouse">
+      <Description>Add an attribute component to a junk dimension.</Description>
+      <Name>add-junk-dimension-component</Name>
+      <Token>add-junk-dimension-component</Token>
+    </Command>
+    <Command Id="cmd-add-mini-dimension" ApplicationId="app-meta-data-warehouse">
+      <Description>Declare a mini-dimension relationship.</Description>
+      <Name>add-mini-dimension</Name>
+      <Token>add-mini-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-outrigger-dimension" ApplicationId="app-meta-data-warehouse">
+      <Description>Declare an outrigger dimension relationship.</Description>
+      <Name>add-outrigger-dimension</Name>
+      <Token>add-outrigger-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-periodic-snapshot-fact" ApplicationId="app-meta-data-warehouse">
+      <Description>Mark a fact as a periodic snapshot.</Description>
+      <Name>add-periodic-snapshot-fact</Name>
+      <Token>add-periodic-snapshot-fact</Token>
+    </Command>
+    <Command Id="cmd-add-slowly-changing-dimension" ApplicationId="app-meta-data-warehouse">
+      <Description>Declare SCD behavior for a dimension.</Description>
+      <Name>add-slowly-changing-dimension</Name>
+      <Token>add-slowly-changing-dimension</Token>
+    </Command>
+    <Command Id="cmd-add-transaction-fact" ApplicationId="app-meta-data-warehouse">
+      <Description>Mark a fact as transaction-grain.</Description>
+      <Name>add-transaction-fact</Name>
+      <Token>add-transaction-fact</Token>
+    </Command>
+    <Command Id="cmd-add-type1-dimension-attribute" ApplicationId="app-meta-data-warehouse">
+      <Description>Declare a Type 1 attribute in an SCD dimension.</Description>
+      <Name>add-type1-dimension-attribute</Name>
+      <Token>add-type1-dimension-attribute</Token>
+    </Command>
+    <Command Id="cmd-add-type2-dimension-attribute" ApplicationId="app-meta-data-warehouse">
+      <Description>Declare a Type 2 attribute in an SCD dimension.</Description>
+      <Name>add-type2-dimension-attribute</Name>
+      <Token>add-type2-dimension-attribute</Token>
+    </Command>
+    <Command Id="cmd-add-warehouse" ApplicationId="app-meta-data-warehouse">
+      <Description>Add a dimensional warehouse.</Description>
+      <Name>add-warehouse</Name>
+      <Token>add-warehouse</Token>
+    </Command>
+    <Command Id="cmd-create" ApplicationId="app-meta-data-warehouse">
+      <Description>Create a meta-data-warehouse workspace.</Description>
+      <Name>create</Name>
+      <Token>create</Token>
+    </Command>
+    <Command Id="cmd-help" ApplicationId="app-meta-data-warehouse">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
     </Command>
   </CommandList>
 </MetaCli>

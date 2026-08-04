@@ -22,8 +22,7 @@ public sealed partial class CliDiffTests
         string databaseName,
         int customerIdLength)
     {
-        SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: sourcePath,
+        var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
             tableRows:
             [
@@ -52,13 +51,13 @@ public sealed partial class CliDiffTests
             foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+        model.SaveToXmlWorkspace(sourcePath);
         return Task.CompletedTask;
     }
 
     private static Task CreateSourceWorkspaceWithChildOnlyNoForeignKeyAsync(string sourcePath, string databaseName)
     {
-        SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: sourcePath,
+        var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
             tableRows:
             [
@@ -85,6 +84,7 @@ public sealed partial class CliDiffTests
             foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+        model.SaveToXmlWorkspace(sourcePath);
         return Task.CompletedTask;
     }
 
@@ -94,8 +94,7 @@ public sealed partial class CliDiffTests
         string targetTableName,
         bool includeForeignKeyMember)
     {
-        SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: sourcePath,
+        var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
             tableRows:
             [
@@ -143,13 +142,13 @@ public sealed partial class CliDiffTests
                 : new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+        model.SaveToXmlWorkspace(sourcePath);
         return Task.CompletedTask;
     }
 
     private static Task CreateSourceWorkspaceWithTwoForeignKeysTargetingParentBAsync(string sourcePath, string databaseName)
     {
-        SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: sourcePath,
+        var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
             tableRows:
             [
@@ -205,13 +204,13 @@ public sealed partial class CliDiffTests
             },
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+        model.SaveToXmlWorkspace(sourcePath);
         return Task.CompletedTask;
     }
 
     private static Task CreateSourceWorkspaceWithExtraColumnAsync(string sourcePath, string databaseName)
     {
-        SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: sourcePath,
+        var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
             tableRows:
             [
@@ -241,13 +240,13 @@ public sealed partial class CliDiffTests
             foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+        model.SaveToXmlWorkspace(sourcePath);
         return Task.CompletedTask;
     }
 
     private static Task CreateSourceWorkspaceWithIdentityTableAsync(string sourcePath, string databaseName)
     {
-        SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: sourcePath,
+        var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
             tableRows:
             [
@@ -273,13 +272,13 @@ public sealed partial class CliDiffTests
             foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+        model.SaveToXmlWorkspace(sourcePath);
         return Task.CompletedTask;
     }
 
     private static Task CreateSourceWorkspaceWithExtraColumnInDboAsync(string sourcePath, string databaseName)
     {
-        SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: sourcePath,
+        var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
             tableRows:
             [
@@ -309,6 +308,7 @@ public sealed partial class CliDiffTests
             foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+        model.SaveToXmlWorkspace(sourcePath);
         return Task.CompletedTask;
     }
 

@@ -25,7 +25,7 @@ public sealed class CliTests
         var result = RunCli("extract sqlserver --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("--new-workspace <path>", result.Output);
+        Assert.Contains("--output-xml <path>", result.Output);
         Assert.Contains("--connection-env <value>", result.Output);
         Assert.Contains("Options:", result.Output);
         Assert.Contains("--system", result.Output);
@@ -46,7 +46,7 @@ public sealed class CliTests
         {
             Environment.SetEnvironmentVariable(environmentVariableName, null);
 
-            var result = RunCli($"extract sqlserver --new-workspace \"{workspacePath}\" --connection-env {environmentVariableName} --system TestSystem --schema dbo --table Cube");
+            var result = RunCli($"extract sqlserver --output-xml \"{workspacePath}\" --connection-env {environmentVariableName} --system TestSystem --schema dbo --table Cube");
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("Cannot extract schema.", result.Output);

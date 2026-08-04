@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <CommandList>
-    <Command Id="cmd-help" ApplicationId="app-meta-orchestration">
-      <Description>Show help.</Description>
-      <Name>help</Name>
-      <Token>help</Token>
-    </Command>
-    <Command Id="cmd-infer" ApplicationId="app-meta-orchestration">
-      <Description>Infer a MetaOrchestration workspace from a modeled MetaPipeline workspace.</Description>
-      <Name>infer</Name>
-      <Token>infer</Token>
-    </Command>
-    <Command Id="cmd-inspect" ApplicationId="app-meta-orchestration">
-      <Description>Inspect a MetaOrchestration workspace.</Description>
-      <Name>inspect</Name>
-      <Token>inspect</Token>
-    </Command>
-    <Command Id="cmd-list-issues" ApplicationId="app-meta-orchestration">
-      <Description>List analyzer issues recorded in an orchestration workspace.</Description>
-      <Name>list-issues</Name>
-      <Token>list-issues</Token>
-    </Command>
-    <Command Id="cmd-explain-issue" ApplicationId="app-meta-orchestration">
-      <Description>Explain one analyzer issue and its participating pipelines.</Description>
-      <Name>explain-issue</Name>
-      <Token>explain-issue</Token>
-    </Command>
     <Command Id="cmd-add-dependency" ApplicationId="app-meta-orchestration">
       <Description>Record an explicit success or failure dependency between tasks.</Description>
       <Name>add-dependency</Name>
@@ -41,25 +16,50 @@
       <Name>allow-concurrent-append</Name>
       <Token>allow-concurrent-append</Token>
     </Command>
-    <Command Id="cmd-set-lock-policy" ApplicationId="app-meta-orchestration">
-      <Description>Record scoped lock compatibility for one object/effect interaction.</Description>
-      <Name>set-lock-policy</Name>
-      <Token>set-lock-policy</Token>
+    <Command Id="cmd-execute" ApplicationId="app-meta-orchestration">
+      <Description>Execute the current run plan by coordinating meta-pipeline worker processes.</Description>
+      <Name>execute</Name>
+      <Token>execute</Token>
     </Command>
-    <Command Id="cmd-refresh-run-plan" ApplicationId="app-meta-orchestration">
-      <Description>Refresh lock-aware run-plan rows in an orchestration workspace.</Description>
-      <Name>refresh-run-plan</Name>
-      <Token>refresh-run-plan</Token>
+    <Command Id="cmd-explain-issue" ApplicationId="app-meta-orchestration">
+      <Description>Explain one analyzer issue and its participating pipelines.</Description>
+      <Name>explain-issue</Name>
+      <Token>explain-issue</Token>
+    </Command>
+    <Command Id="cmd-help" ApplicationId="app-meta-orchestration">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-infer" ApplicationId="app-meta-orchestration">
+      <Description>Infer a MetaOrchestration workspace from a modeled MetaPipeline workspace.</Description>
+      <Name>infer</Name>
+      <Token>infer</Token>
+    </Command>
+    <Command Id="cmd-inspect" ApplicationId="app-meta-orchestration">
+      <Description>Inspect a MetaOrchestration workspace.</Description>
+      <Name>inspect</Name>
+      <Token>inspect</Token>
     </Command>
     <Command Id="cmd-inspect-run-plan" ApplicationId="app-meta-orchestration">
       <Description>Inspect the planned task dependency graph.</Description>
       <Name>inspect-run-plan</Name>
       <Token>inspect-run-plan</Token>
     </Command>
-    <Command Id="cmd-execute" ApplicationId="app-meta-orchestration">
-      <Description>Execute the current run plan by coordinating meta-pipeline worker processes.</Description>
-      <Name>execute</Name>
-      <Token>execute</Token>
+    <Command Id="cmd-list-issues" ApplicationId="app-meta-orchestration">
+      <Description>List analyzer issues recorded in an orchestration workspace.</Description>
+      <Name>list-issues</Name>
+      <Token>list-issues</Token>
+    </Command>
+    <Command Id="cmd-refresh-run-plan" ApplicationId="app-meta-orchestration">
+      <Description>Refresh lock-aware run-plan rows in an orchestration workspace.</Description>
+      <Name>refresh-run-plan</Name>
+      <Token>refresh-run-plan</Token>
+    </Command>
+    <Command Id="cmd-set-lock-policy" ApplicationId="app-meta-orchestration">
+      <Description>Record scoped lock compatibility for one object/effect interaction.</Description>
+      <Name>set-lock-policy</Name>
+      <Token>set-lock-policy</Token>
     </Command>
   </CommandList>
 </MetaCli>

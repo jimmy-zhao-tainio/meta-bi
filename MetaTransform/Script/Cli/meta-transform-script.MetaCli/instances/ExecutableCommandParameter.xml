@@ -3,15 +3,24 @@
   <ExecutableCommandParameterList>
     <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-code" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-code" />
     <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-name" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-name" />
-    <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-new-workspace" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-new-workspace" />
+    <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-output-connection-env" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-output-connection-env" />
+    <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-output-csharp" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-output-csharp" />
+    <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-output-sql" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-output-sql" />
+    <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-output-xml" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-output-xml" />
     <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-target" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-target" />
     <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-workspace" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-workspace" />
-    <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-new-workspace" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-new-workspace" />
+    <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-output-connection-env" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-output-connection-env" />
+    <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-output-csharp" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-output-csharp" />
+    <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-output-sql" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-output-sql" />
+    <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-output-xml" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-output-xml" />
     <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-path" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-path" />
     <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-target" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-target" />
     <ExecutableCommandParameter Id="exec-from-sql-file:parameter:param-from-sql-file-workspace" ExecutableCommandId="exec-from-sql-file" ParameterId="param-from-sql-file-workspace" />
     <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-manifest" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-manifest" />
-    <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-new-workspace" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-new-workspace" />
+    <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-output-connection-env" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-output-connection-env" />
+    <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-output-csharp" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-output-csharp" />
+    <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-output-sql" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-output-sql" />
+    <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-output-xml" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-output-xml" />
     <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-report" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-report" />
     <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-verbose" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-verbose" />
     <ExecutableCommandParameter Id="exec-from-sql-files:parameter:param-from-sql-files-workspace" ExecutableCommandId="exec-from-sql-files" ParameterId="param-from-sql-files-workspace" />

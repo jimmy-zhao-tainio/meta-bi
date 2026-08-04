@@ -11,7 +11,7 @@
     <ExecutableCommand Id="exec-add-raw-link-role" CommandId="cmd-add-raw-link-role" />
     <ExecutableCommand Id="exec-add-raw-link-satellite" CommandId="cmd-add-raw-link-satellite" />
     <ExecutableCommand Id="exec-add-raw-link-satellite-attribute" CommandId="cmd-add-raw-link-satellite-attribute" />
+    <ExecutableCommand Id="exec-create" CommandId="cmd-create" />
     <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
-    <ExecutableCommand Id="exec-new-workspace" CommandId="cmd-new-workspace" />
   </ExecutableCommandList>
 </MetaCli>

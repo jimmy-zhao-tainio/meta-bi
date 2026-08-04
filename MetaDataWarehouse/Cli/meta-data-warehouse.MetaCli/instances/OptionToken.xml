@@ -1,392 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="tok-add-warehouse-workspace" OptionId="opt-add-warehouse-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-warehouse-id" OptionId="opt-add-warehouse-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-warehouse-name" OptionId="opt-add-warehouse-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-warehouse-description" OptionId="opt-add-warehouse-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-workspace" OptionId="opt-add-dimension-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-id" OptionId="opt-add-dimension-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-name" OptionId="opt-add-dimension-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-description" OptionId="opt-add-dimension-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-warehouse" OptionId="opt-add-dimension-warehouse">
-      <Token>--warehouse</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-conformed-dimension-workspace" OptionId="opt-add-conformed-dimension-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-conformed-dimension-id" OptionId="opt-add-conformed-dimension-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-conformed-dimension-conformance-name" OptionId="opt-add-conformed-dimension-conformance-name">
-      <Token>--conformance-name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-conformed-dimension-description" OptionId="opt-add-conformed-dimension-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-conformed-dimension-dimension" OptionId="opt-add-conformed-dimension-dimension">
-      <Token>--dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-attribute-workspace" OptionId="opt-add-dimension-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-attribute-id" OptionId="opt-add-dimension-attribute-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-attribute-name" OptionId="opt-add-dimension-attribute-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-attribute-data-type-id" OptionId="opt-add-dimension-attribute-data-type-id">
-      <Token>--data-type-id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-attribute-ordinal" OptionId="opt-add-dimension-attribute-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-attribute-is-nullable" OptionId="opt-add-dimension-attribute-is-nullable">
-      <Token>--is-nullable</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-attribute-description" OptionId="opt-add-dimension-attribute-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-attribute-dimension" OptionId="opt-add-dimension-attribute-dimension">
-      <Token>--dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-business-key-workspace" OptionId="opt-add-dimension-business-key-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-business-key-id" OptionId="opt-add-dimension-business-key-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-business-key-name" OptionId="opt-add-dimension-business-key-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-business-key-description" OptionId="opt-add-dimension-business-key-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-business-key-dimension" OptionId="opt-add-dimension-business-key-dimension">
-      <Token>--dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-business-key-part-workspace" OptionId="opt-add-dimension-business-key-part-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-business-key-part-id" OptionId="opt-add-dimension-business-key-part-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-business-key-part-ordinal" OptionId="opt-add-dimension-business-key-part-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-business-key-part-business-key" OptionId="opt-add-dimension-business-key-part-business-key">
-      <Token>--business-key</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-business-key-part-attribute" OptionId="opt-add-dimension-business-key-part-attribute">
-      <Token>--attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-slowly-changing-dimension-workspace" OptionId="opt-add-slowly-changing-dimension-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-slowly-changing-dimension-id" OptionId="opt-add-slowly-changing-dimension-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-slowly-changing-dimension-name" OptionId="opt-add-slowly-changing-dimension-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-slowly-changing-dimension-description" OptionId="opt-add-slowly-changing-dimension-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-slowly-changing-dimension-dimension" OptionId="opt-add-slowly-changing-dimension-dimension">
-      <Token>--dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-type1-dimension-attribute-workspace" OptionId="opt-add-type1-dimension-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-type1-dimension-attribute-id" OptionId="opt-add-type1-dimension-attribute-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-type1-dimension-attribute-description" OptionId="opt-add-type1-dimension-attribute-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-type1-dimension-attribute-slowly-changing-dimension" OptionId="opt-add-type1-dimension-attribute-slowly-changing-dimension">
-      <Token>--slowly-changing-dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-type1-dimension-attribute-attribute" OptionId="opt-add-type1-dimension-attribute-attribute">
-      <Token>--attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-type2-dimension-attribute-workspace" OptionId="opt-add-type2-dimension-attribute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-type2-dimension-attribute-id" OptionId="opt-add-type2-dimension-attribute-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-type2-dimension-attribute-description" OptionId="opt-add-type2-dimension-attribute-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-type2-dimension-attribute-slowly-changing-dimension" OptionId="opt-add-type2-dimension-attribute-slowly-changing-dimension">
-      <Token>--slowly-changing-dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-type2-dimension-attribute-attribute" OptionId="opt-add-type2-dimension-attribute-attribute">
-      <Token>--attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-workspace" OptionId="opt-add-dimension-hierarchy-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-id" OptionId="opt-add-dimension-hierarchy-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-name" OptionId="opt-add-dimension-hierarchy-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-description" OptionId="opt-add-dimension-hierarchy-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-dimension" OptionId="opt-add-dimension-hierarchy-dimension">
-      <Token>--dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-level-workspace" OptionId="opt-add-dimension-hierarchy-level-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-level-id" OptionId="opt-add-dimension-hierarchy-level-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-level-name" OptionId="opt-add-dimension-hierarchy-level-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-level-ordinal" OptionId="opt-add-dimension-hierarchy-level-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-level-hierarchy" OptionId="opt-add-dimension-hierarchy-level-hierarchy">
-      <Token>--hierarchy</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-dimension-hierarchy-level-attribute" OptionId="opt-add-dimension-hierarchy-level-attribute">
-      <Token>--attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-junk-dimension-workspace" OptionId="opt-add-junk-dimension-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-junk-dimension-id" OptionId="opt-add-junk-dimension-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-junk-dimension-description" OptionId="opt-add-junk-dimension-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-junk-dimension-dimension" OptionId="opt-add-junk-dimension-dimension">
-      <Token>--dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-junk-dimension-component-workspace" OptionId="opt-add-junk-dimension-component-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-junk-dimension-component-id" OptionId="opt-add-junk-dimension-component-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-junk-dimension-component-ordinal" OptionId="opt-add-junk-dimension-component-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-junk-dimension-component-description" OptionId="opt-add-junk-dimension-component-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-junk-dimension-component-junk-dimension" OptionId="opt-add-junk-dimension-component-junk-dimension">
-      <Token>--junk-dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-junk-dimension-component-attribute" OptionId="opt-add-junk-dimension-component-attribute">
-      <Token>--attribute</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-mini-dimension-workspace" OptionId="opt-add-mini-dimension-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-mini-dimension-id" OptionId="opt-add-mini-dimension-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-mini-dimension-role-name" OptionId="opt-add-mini-dimension-role-name">
-      <Token>--role-name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-mini-dimension-description" OptionId="opt-add-mini-dimension-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-mini-dimension-source-dimension" OptionId="opt-add-mini-dimension-source-dimension">
-      <Token>--source-dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-mini-dimension-profile-dimension" OptionId="opt-add-mini-dimension-profile-dimension">
-      <Token>--profile-dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-outrigger-dimension-workspace" OptionId="opt-add-outrigger-dimension-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-outrigger-dimension-id" OptionId="opt-add-outrigger-dimension-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-outrigger-dimension-role-name" OptionId="opt-add-outrigger-dimension-role-name">
-      <Token>--role-name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-outrigger-dimension-ordinal" OptionId="opt-add-outrigger-dimension-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-outrigger-dimension-is-required" OptionId="opt-add-outrigger-dimension-is-required">
-      <Token>--is-required</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-outrigger-dimension-description" OptionId="opt-add-outrigger-dimension-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-outrigger-dimension-parent-dimension" OptionId="opt-add-outrigger-dimension-parent-dimension">
-      <Token>--parent-dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-outrigger-dimension-child-dimension" OptionId="opt-add-outrigger-dimension-child-dimension">
-      <Token>--child-dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-workspace" OptionId="opt-add-fact-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-id" OptionId="opt-add-fact-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-name" OptionId="opt-add-fact-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-description" OptionId="opt-add-fact-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-warehouse" OptionId="opt-add-fact-warehouse">
-      <Token>--warehouse</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-grain-workspace" OptionId="opt-add-fact-grain-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-grain-id" OptionId="opt-add-fact-grain-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-grain-name" OptionId="opt-add-fact-grain-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-grain-description" OptionId="opt-add-fact-grain-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-grain-fact" OptionId="opt-add-fact-grain-fact">
-      <Token>--fact</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-dimension-workspace" OptionId="opt-add-fact-dimension-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-dimension-id" OptionId="opt-add-fact-dimension-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-dimension-role-name" OptionId="opt-add-fact-dimension-role-name">
-      <Token>--role-name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-dimension-ordinal" OptionId="opt-add-fact-dimension-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-dimension-is-required" OptionId="opt-add-fact-dimension-is-required">
-      <Token>--is-required</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-dimension-description" OptionId="opt-add-fact-dimension-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-dimension-fact" OptionId="opt-add-fact-dimension-fact">
-      <Token>--fact</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-dimension-dimension" OptionId="opt-add-fact-dimension-dimension">
-      <Token>--dimension</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-measure-workspace" OptionId="opt-add-fact-measure-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-measure-id" OptionId="opt-add-fact-measure-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-measure-name" OptionId="opt-add-fact-measure-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-measure-data-type-id" OptionId="opt-add-fact-measure-data-type-id">
-      <Token>--data-type-id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-measure-ordinal" OptionId="opt-add-fact-measure-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-measure-is-nullable" OptionId="opt-add-fact-measure-is-nullable">
-      <Token>--is-nullable</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-measure-description" OptionId="opt-add-fact-measure-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-measure-fact" OptionId="opt-add-fact-measure-fact">
-      <Token>--fact</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-degenerate-dimension-workspace" OptionId="opt-add-degenerate-dimension-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-degenerate-dimension-id" OptionId="opt-add-degenerate-dimension-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-degenerate-dimension-name" OptionId="opt-add-degenerate-dimension-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-degenerate-dimension-data-type-id" OptionId="opt-add-degenerate-dimension-data-type-id">
-      <Token>--data-type-id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-degenerate-dimension-ordinal" OptionId="opt-add-degenerate-dimension-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-degenerate-dimension-description" OptionId="opt-add-degenerate-dimension-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-degenerate-dimension-fact" OptionId="opt-add-degenerate-dimension-fact">
-      <Token>--fact</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-transaction-fact-workspace" OptionId="opt-add-transaction-fact-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-transaction-fact-id" OptionId="opt-add-transaction-fact-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-transaction-fact-description" OptionId="opt-add-transaction-fact-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-transaction-fact-fact" OptionId="opt-add-transaction-fact-fact">
-      <Token>--fact</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-periodic-snapshot-fact-workspace" OptionId="opt-add-periodic-snapshot-fact-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-periodic-snapshot-fact-id" OptionId="opt-add-periodic-snapshot-fact-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-periodic-snapshot-fact-period-name" OptionId="opt-add-periodic-snapshot-fact-period-name">
-      <Token>--period-name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-periodic-snapshot-fact-description" OptionId="opt-add-periodic-snapshot-fact-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-periodic-snapshot-fact-fact" OptionId="opt-add-periodic-snapshot-fact-fact">
-      <Token>--fact</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-accumulating-snapshot-fact-workspace" OptionId="opt-add-accumulating-snapshot-fact-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-accumulating-snapshot-fact-id" OptionId="opt-add-accumulating-snapshot-fact-id">
-      <Token>--id</Token>
-    </OptionToken>
     <OptionToken Id="tok-add-accumulating-snapshot-fact-description" OptionId="opt-add-accumulating-snapshot-fact-description">
       <Token>--description</Token>
     </OptionToken>
     <OptionToken Id="tok-add-accumulating-snapshot-fact-fact" OptionId="opt-add-accumulating-snapshot-fact-fact">
       <Token>--fact</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-accumulating-snapshot-milestone-workspace" OptionId="opt-add-accumulating-snapshot-milestone-workspace">
+    <OptionToken Id="tok-add-accumulating-snapshot-fact-id" OptionId="opt-add-accumulating-snapshot-fact-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-accumulating-snapshot-fact-workspace" OptionId="opt-add-accumulating-snapshot-fact-workspace">
       <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-accumulating-snapshot-milestone-accumulating-snapshot" OptionId="opt-add-accumulating-snapshot-milestone-accumulating-snapshot">
+      <Token>--accumulating-snapshot</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-accumulating-snapshot-milestone-date-role-name" OptionId="opt-add-accumulating-snapshot-milestone-date-role-name">
+      <Token>--date-role-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-accumulating-snapshot-milestone-description" OptionId="opt-add-accumulating-snapshot-milestone-description">
+      <Token>--description</Token>
     </OptionToken>
     <OptionToken Id="tok-add-accumulating-snapshot-milestone-id" OptionId="opt-add-accumulating-snapshot-milestone-id">
       <Token>--id</Token>
@@ -397,44 +31,26 @@
     <OptionToken Id="tok-add-accumulating-snapshot-milestone-ordinal" OptionId="opt-add-accumulating-snapshot-milestone-ordinal">
       <Token>--ordinal</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-accumulating-snapshot-milestone-date-role-name" OptionId="opt-add-accumulating-snapshot-milestone-date-role-name">
-      <Token>--date-role-name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-accumulating-snapshot-milestone-description" OptionId="opt-add-accumulating-snapshot-milestone-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-accumulating-snapshot-milestone-accumulating-snapshot" OptionId="opt-add-accumulating-snapshot-milestone-accumulating-snapshot">
-      <Token>--accumulating-snapshot</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-factless-fact-workspace" OptionId="opt-add-factless-fact-workspace">
+    <OptionToken Id="tok-add-accumulating-snapshot-milestone-workspace" OptionId="opt-add-accumulating-snapshot-milestone-workspace">
       <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-factless-fact-id" OptionId="opt-add-factless-fact-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-factless-fact-description" OptionId="opt-add-factless-fact-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-factless-fact-fact" OptionId="opt-add-factless-fact-fact">
-      <Token>--fact</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregate-fact-workspace" OptionId="opt-add-aggregate-fact-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregate-fact-id" OptionId="opt-add-aggregate-fact-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregate-fact-description" OptionId="opt-add-aggregate-fact-description">
-      <Token>--description</Token>
     </OptionToken>
     <OptionToken Id="tok-add-aggregate-fact-aggregated-fact" OptionId="opt-add-aggregate-fact-aggregated-fact">
       <Token>--aggregated-fact</Token>
     </OptionToken>
+    <OptionToken Id="tok-add-aggregate-fact-description" OptionId="opt-add-aggregate-fact-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-aggregate-fact-id" OptionId="opt-add-aggregate-fact-id">
+      <Token>--id</Token>
+    </OptionToken>
     <OptionToken Id="tok-add-aggregate-fact-source-fact" OptionId="opt-add-aggregate-fact-source-fact">
       <Token>--source-fact</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-bridge-workspace" OptionId="opt-add-bridge-workspace">
+    <OptionToken Id="tok-add-aggregate-fact-workspace" OptionId="opt-add-aggregate-fact-workspace">
       <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-bridge-description" OptionId="opt-add-bridge-description">
+      <Token>--description</Token>
     </OptionToken>
     <OptionToken Id="tok-add-bridge-id" OptionId="opt-add-bridge-id">
       <Token>--id</Token>
@@ -442,41 +58,32 @@
     <OptionToken Id="tok-add-bridge-name" OptionId="opt-add-bridge-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-bridge-description" OptionId="opt-add-bridge-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-bridge-warehouse" OptionId="opt-add-bridge-warehouse">
-      <Token>--warehouse</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-bridge-participant-workspace" OptionId="opt-add-bridge-participant-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-bridge-participant-id" OptionId="opt-add-bridge-participant-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-bridge-participant-role-name" OptionId="opt-add-bridge-participant-role-name">
-      <Token>--role-name</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-bridge-participant-ordinal" OptionId="opt-add-bridge-participant-ordinal">
-      <Token>--ordinal</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-bridge-participant-is-required" OptionId="opt-add-bridge-participant-is-required">
-      <Token>--is-required</Token>
-    </OptionToken>
     <OptionToken Id="tok-add-bridge-participant-bridge" OptionId="opt-add-bridge-participant-bridge">
       <Token>--bridge</Token>
     </OptionToken>
     <OptionToken Id="tok-add-bridge-participant-dimension" OptionId="opt-add-bridge-participant-dimension">
       <Token>--dimension</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-bridge-weight-workspace" OptionId="opt-add-bridge-weight-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-bridge-weight-id" OptionId="opt-add-bridge-weight-id">
+    <OptionToken Id="tok-add-bridge-participant-id" OptionId="opt-add-bridge-participant-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-bridge-weight-name" OptionId="opt-add-bridge-weight-name">
-      <Token>--name</Token>
+    <OptionToken Id="tok-add-bridge-participant-is-required" OptionId="opt-add-bridge-participant-is-required">
+      <Token>--is-required</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-bridge-participant-ordinal" OptionId="opt-add-bridge-participant-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-bridge-participant-role-name" OptionId="opt-add-bridge-participant-role-name">
+      <Token>--role-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-bridge-participant-workspace" OptionId="opt-add-bridge-participant-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-bridge-warehouse" OptionId="opt-add-bridge-warehouse">
+      <Token>--warehouse</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-bridge-weight-bridge" OptionId="opt-add-bridge-weight-bridge">
+      <Token>--bridge</Token>
     </OptionToken>
     <OptionToken Id="tok-add-bridge-weight-data-type-id" OptionId="opt-add-bridge-weight-data-type-id">
       <Token>--data-type-id</Token>
@@ -484,20 +91,158 @@
     <OptionToken Id="tok-add-bridge-weight-description" OptionId="opt-add-bridge-weight-description">
       <Token>--description</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-bridge-weight-bridge" OptionId="opt-add-bridge-weight-bridge">
-      <Token>--bridge</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-bridge-workspace" OptionId="opt-add-fact-bridge-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-fact-bridge-id" OptionId="opt-add-fact-bridge-id">
+    <OptionToken Id="tok-add-bridge-weight-id" OptionId="opt-add-bridge-weight-id">
       <Token>--id</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-fact-bridge-role-name" OptionId="opt-add-fact-bridge-role-name">
-      <Token>--role-name</Token>
+    <OptionToken Id="tok-add-bridge-weight-name" OptionId="opt-add-bridge-weight-name">
+      <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-fact-bridge-ordinal" OptionId="opt-add-fact-bridge-ordinal">
+    <OptionToken Id="tok-add-bridge-weight-workspace" OptionId="opt-add-bridge-weight-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-bridge-workspace" OptionId="opt-add-bridge-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-conformed-dimension-conformance-name" OptionId="opt-add-conformed-dimension-conformance-name">
+      <Token>--conformance-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-conformed-dimension-description" OptionId="opt-add-conformed-dimension-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-conformed-dimension-dimension" OptionId="opt-add-conformed-dimension-dimension">
+      <Token>--dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-conformed-dimension-id" OptionId="opt-add-conformed-dimension-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-conformed-dimension-workspace" OptionId="opt-add-conformed-dimension-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-degenerate-dimension-data-type-id" OptionId="opt-add-degenerate-dimension-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-degenerate-dimension-description" OptionId="opt-add-degenerate-dimension-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-degenerate-dimension-fact" OptionId="opt-add-degenerate-dimension-fact">
+      <Token>--fact</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-degenerate-dimension-id" OptionId="opt-add-degenerate-dimension-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-degenerate-dimension-name" OptionId="opt-add-degenerate-dimension-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-degenerate-dimension-ordinal" OptionId="opt-add-degenerate-dimension-ordinal">
       <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-degenerate-dimension-workspace" OptionId="opt-add-degenerate-dimension-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-attribute-data-type-id" OptionId="opt-add-dimension-attribute-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-attribute-description" OptionId="opt-add-dimension-attribute-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-attribute-dimension" OptionId="opt-add-dimension-attribute-dimension">
+      <Token>--dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-attribute-id" OptionId="opt-add-dimension-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-attribute-is-nullable" OptionId="opt-add-dimension-attribute-is-nullable">
+      <Token>--is-nullable</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-attribute-name" OptionId="opt-add-dimension-attribute-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-attribute-ordinal" OptionId="opt-add-dimension-attribute-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-attribute-workspace" OptionId="opt-add-dimension-attribute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-business-key-description" OptionId="opt-add-dimension-business-key-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-business-key-dimension" OptionId="opt-add-dimension-business-key-dimension">
+      <Token>--dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-business-key-id" OptionId="opt-add-dimension-business-key-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-business-key-name" OptionId="opt-add-dimension-business-key-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-business-key-part-attribute" OptionId="opt-add-dimension-business-key-part-attribute">
+      <Token>--attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-business-key-part-business-key" OptionId="opt-add-dimension-business-key-part-business-key">
+      <Token>--business-key</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-business-key-part-id" OptionId="opt-add-dimension-business-key-part-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-business-key-part-ordinal" OptionId="opt-add-dimension-business-key-part-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-business-key-part-workspace" OptionId="opt-add-dimension-business-key-part-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-business-key-workspace" OptionId="opt-add-dimension-business-key-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-description" OptionId="opt-add-dimension-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-description" OptionId="opt-add-dimension-hierarchy-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-dimension" OptionId="opt-add-dimension-hierarchy-dimension">
+      <Token>--dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-id" OptionId="opt-add-dimension-hierarchy-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-level-attribute" OptionId="opt-add-dimension-hierarchy-level-attribute">
+      <Token>--attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-level-hierarchy" OptionId="opt-add-dimension-hierarchy-level-hierarchy">
+      <Token>--hierarchy</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-level-id" OptionId="opt-add-dimension-hierarchy-level-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-level-name" OptionId="opt-add-dimension-hierarchy-level-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-level-ordinal" OptionId="opt-add-dimension-hierarchy-level-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-level-workspace" OptionId="opt-add-dimension-hierarchy-level-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-name" OptionId="opt-add-dimension-hierarchy-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-hierarchy-workspace" OptionId="opt-add-dimension-hierarchy-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-id" OptionId="opt-add-dimension-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-name" OptionId="opt-add-dimension-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-warehouse" OptionId="opt-add-dimension-warehouse">
+      <Token>--warehouse</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-dimension-workspace" OptionId="opt-add-dimension-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-bridge-bridge" OptionId="opt-add-fact-bridge-bridge">
+      <Token>--bridge</Token>
     </OptionToken>
     <OptionToken Id="tok-add-fact-bridge-description" OptionId="opt-add-fact-bridge-description">
       <Token>--description</Token>
@@ -505,8 +250,275 @@
     <OptionToken Id="tok-add-fact-bridge-fact" OptionId="opt-add-fact-bridge-fact">
       <Token>--fact</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-fact-bridge-bridge" OptionId="opt-add-fact-bridge-bridge">
-      <Token>--bridge</Token>
+    <OptionToken Id="tok-add-fact-bridge-id" OptionId="opt-add-fact-bridge-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-bridge-ordinal" OptionId="opt-add-fact-bridge-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-bridge-role-name" OptionId="opt-add-fact-bridge-role-name">
+      <Token>--role-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-bridge-workspace" OptionId="opt-add-fact-bridge-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-description" OptionId="opt-add-fact-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-dimension-description" OptionId="opt-add-fact-dimension-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-dimension-dimension" OptionId="opt-add-fact-dimension-dimension">
+      <Token>--dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-dimension-fact" OptionId="opt-add-fact-dimension-fact">
+      <Token>--fact</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-dimension-id" OptionId="opt-add-fact-dimension-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-dimension-is-required" OptionId="opt-add-fact-dimension-is-required">
+      <Token>--is-required</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-dimension-ordinal" OptionId="opt-add-fact-dimension-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-dimension-role-name" OptionId="opt-add-fact-dimension-role-name">
+      <Token>--role-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-dimension-workspace" OptionId="opt-add-fact-dimension-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-grain-description" OptionId="opt-add-fact-grain-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-grain-fact" OptionId="opt-add-fact-grain-fact">
+      <Token>--fact</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-grain-id" OptionId="opt-add-fact-grain-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-grain-name" OptionId="opt-add-fact-grain-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-grain-workspace" OptionId="opt-add-fact-grain-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-id" OptionId="opt-add-fact-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-measure-data-type-id" OptionId="opt-add-fact-measure-data-type-id">
+      <Token>--data-type-id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-measure-description" OptionId="opt-add-fact-measure-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-measure-fact" OptionId="opt-add-fact-measure-fact">
+      <Token>--fact</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-measure-id" OptionId="opt-add-fact-measure-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-measure-is-nullable" OptionId="opt-add-fact-measure-is-nullable">
+      <Token>--is-nullable</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-measure-name" OptionId="opt-add-fact-measure-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-measure-ordinal" OptionId="opt-add-fact-measure-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-measure-workspace" OptionId="opt-add-fact-measure-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-name" OptionId="opt-add-fact-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-warehouse" OptionId="opt-add-fact-warehouse">
+      <Token>--warehouse</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-fact-workspace" OptionId="opt-add-fact-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-factless-fact-description" OptionId="opt-add-factless-fact-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-factless-fact-fact" OptionId="opt-add-factless-fact-fact">
+      <Token>--fact</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-factless-fact-id" OptionId="opt-add-factless-fact-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-factless-fact-workspace" OptionId="opt-add-factless-fact-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-junk-dimension-component-attribute" OptionId="opt-add-junk-dimension-component-attribute">
+      <Token>--attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-junk-dimension-component-description" OptionId="opt-add-junk-dimension-component-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-junk-dimension-component-id" OptionId="opt-add-junk-dimension-component-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-junk-dimension-component-junk-dimension" OptionId="opt-add-junk-dimension-component-junk-dimension">
+      <Token>--junk-dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-junk-dimension-component-ordinal" OptionId="opt-add-junk-dimension-component-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-junk-dimension-component-workspace" OptionId="opt-add-junk-dimension-component-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-junk-dimension-description" OptionId="opt-add-junk-dimension-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-junk-dimension-dimension" OptionId="opt-add-junk-dimension-dimension">
+      <Token>--dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-junk-dimension-id" OptionId="opt-add-junk-dimension-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-junk-dimension-workspace" OptionId="opt-add-junk-dimension-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-mini-dimension-description" OptionId="opt-add-mini-dimension-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-mini-dimension-id" OptionId="opt-add-mini-dimension-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-mini-dimension-profile-dimension" OptionId="opt-add-mini-dimension-profile-dimension">
+      <Token>--profile-dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-mini-dimension-role-name" OptionId="opt-add-mini-dimension-role-name">
+      <Token>--role-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-mini-dimension-source-dimension" OptionId="opt-add-mini-dimension-source-dimension">
+      <Token>--source-dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-mini-dimension-workspace" OptionId="opt-add-mini-dimension-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-outrigger-dimension-child-dimension" OptionId="opt-add-outrigger-dimension-child-dimension">
+      <Token>--child-dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-outrigger-dimension-description" OptionId="opt-add-outrigger-dimension-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-outrigger-dimension-id" OptionId="opt-add-outrigger-dimension-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-outrigger-dimension-is-required" OptionId="opt-add-outrigger-dimension-is-required">
+      <Token>--is-required</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-outrigger-dimension-ordinal" OptionId="opt-add-outrigger-dimension-ordinal">
+      <Token>--ordinal</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-outrigger-dimension-parent-dimension" OptionId="opt-add-outrigger-dimension-parent-dimension">
+      <Token>--parent-dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-outrigger-dimension-role-name" OptionId="opt-add-outrigger-dimension-role-name">
+      <Token>--role-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-outrigger-dimension-workspace" OptionId="opt-add-outrigger-dimension-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-periodic-snapshot-fact-description" OptionId="opt-add-periodic-snapshot-fact-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-periodic-snapshot-fact-fact" OptionId="opt-add-periodic-snapshot-fact-fact">
+      <Token>--fact</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-periodic-snapshot-fact-id" OptionId="opt-add-periodic-snapshot-fact-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-periodic-snapshot-fact-period-name" OptionId="opt-add-periodic-snapshot-fact-period-name">
+      <Token>--period-name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-periodic-snapshot-fact-workspace" OptionId="opt-add-periodic-snapshot-fact-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-slowly-changing-dimension-description" OptionId="opt-add-slowly-changing-dimension-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-slowly-changing-dimension-dimension" OptionId="opt-add-slowly-changing-dimension-dimension">
+      <Token>--dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-slowly-changing-dimension-id" OptionId="opt-add-slowly-changing-dimension-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-slowly-changing-dimension-name" OptionId="opt-add-slowly-changing-dimension-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-slowly-changing-dimension-workspace" OptionId="opt-add-slowly-changing-dimension-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-transaction-fact-description" OptionId="opt-add-transaction-fact-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-transaction-fact-fact" OptionId="opt-add-transaction-fact-fact">
+      <Token>--fact</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-transaction-fact-id" OptionId="opt-add-transaction-fact-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-transaction-fact-workspace" OptionId="opt-add-transaction-fact-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-type1-dimension-attribute-attribute" OptionId="opt-add-type1-dimension-attribute-attribute">
+      <Token>--attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-type1-dimension-attribute-description" OptionId="opt-add-type1-dimension-attribute-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-type1-dimension-attribute-id" OptionId="opt-add-type1-dimension-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-type1-dimension-attribute-slowly-changing-dimension" OptionId="opt-add-type1-dimension-attribute-slowly-changing-dimension">
+      <Token>--slowly-changing-dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-type1-dimension-attribute-workspace" OptionId="opt-add-type1-dimension-attribute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-type2-dimension-attribute-attribute" OptionId="opt-add-type2-dimension-attribute-attribute">
+      <Token>--attribute</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-type2-dimension-attribute-description" OptionId="opt-add-type2-dimension-attribute-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-type2-dimension-attribute-id" OptionId="opt-add-type2-dimension-attribute-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-type2-dimension-attribute-slowly-changing-dimension" OptionId="opt-add-type2-dimension-attribute-slowly-changing-dimension">
+      <Token>--slowly-changing-dimension</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-type2-dimension-attribute-workspace" OptionId="opt-add-type2-dimension-attribute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-warehouse-description" OptionId="opt-add-warehouse-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-warehouse-id" OptionId="opt-add-warehouse-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-warehouse-name" OptionId="opt-add-warehouse-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="tok-add-warehouse-workspace" OptionId="opt-add-warehouse-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-connection-env" OptionId="option-create-connection-env">
+      <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-csharp" OptionId="option-create-csharp">
+      <Token>--csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-sql" OptionId="option-create-sql">
+      <Token>--sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-xml" OptionId="option-create-xml">
+      <Token>--xml</Token>
     </OptionToken>
   </OptionTokenList>
 </MetaCli>

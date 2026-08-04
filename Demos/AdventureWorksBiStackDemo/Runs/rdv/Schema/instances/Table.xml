@@ -1,469 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaSchema>
   <TableList>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_AddressType_AddressType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_AddressType_AddressType">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Address_Address" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Address_Address">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_AWBuildVersion_AWBuildVersion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_AWBuildVersion_AWBuildVersion">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BillOfMaterials_BillOfMaterials" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BillOfMaterials_BillOfMaterials">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntityAddress_BusinessEntityAddress" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntityAddress_BusinessEntityAddress">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntityContact_BusinessEntityContact" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntityContact_BusinessEntityContact">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntity_BusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntity_BusinessEntity">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ContactType_ContactType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ContactType_ContactType">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CountryRegionCurrency_CountryRegionCurrency" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CountryRegionCurrency_CountryRegionCurrency">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CountryRegion_CountryRegion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CountryRegion_CountryRegion">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CreditCard_CreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CreditCard_CreditCard">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Culture_Culture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Culture_Culture">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CurrencyRate_CurrencyRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CurrencyRate_CurrencyRate">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Currency_Currency" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Currency_Currency">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_DatabaseLog_DatabaseLog" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_DatabaseLog_DatabaseLog">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Department_Department" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Department_Department">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Document_Document" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Document_Document">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmailAddress_EmailAddress" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmailAddress_EmailAddress">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmployeePayHistory_EmployeePayHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmployeePayHistory_EmployeePayHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Employee_Employee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Employee_Employee">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Illustration_Illustration" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Illustration_Illustration">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_JobCandidate_JobCandidate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_JobCandidate_JobCandidate">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Password_Password" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Password_Password">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PersonCreditCard_PersonCreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PersonCreditCard_PersonCreditCard">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PersonPhone_PersonPhone" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PersonPhone_PersonPhone">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Person_Person" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Person_Person">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PhoneNumberType_PhoneNumberType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PhoneNumberType_PhoneNumberType">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCostHistory_ProductCostHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCostHistory_ProductCostHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductDescription_ProductDescription" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductDescription_ProductDescription">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductDocument_ProductDocument" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductDocument_ProductDocument">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductInventory_ProductInventory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductInventory_ProductInventory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductListPriceHistory_ProductListPriceHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductListPriceHistory_ProductListPriceHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModelIllustration_ProductModelIllustration" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModelIllustration_ProductModelIllustration">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModel_ProductModel" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModel_ProductModel">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductPhoto_ProductPhoto" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductPhoto_ProductPhoto">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductProductPhoto_ProductProductPhoto" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductProductPhoto_ProductProductPhoto">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductReview_ProductReview" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductReview_ProductReview">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PurchaseOrderDetail_PurchaseOrderDetail" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PurchaseOrderDetail_PurchaseOrderDetail">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PurchaseOrderHeader_PurchaseOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PurchaseOrderHeader_PurchaseOrderHeader">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesReason_SalesReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesReason_SalesReason">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritoryHistory_SalesTerritoryHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritoryHistory_SalesTerritoryHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ScrapReason_ScrapReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ScrapReason_ScrapReason">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Shift_Shift" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Shift_Shift">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShipMethod_ShipMethod" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShipMethod_ShipMethod">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShoppingCartItem_ShoppingCartItem" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShoppingCartItem_ShoppingCartItem">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOfferProduct_SpecialOfferProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOfferProduct_SpecialOfferProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_StateProvince_StateProvince" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_StateProvince_StateProvince">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_UnitMeasure_UnitMeasure" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_UnitMeasure_UnitMeasure">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Vendor_Vendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Vendor_Vendor">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrderRouting_WorkOrderRouting" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrderRouting_WorkOrderRouting">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AWBuildVersion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AWBuildVersion">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegionCurrency" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegionCurrency">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Culture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Culture">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_DatabaseLog" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_DatabaseLog">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Department" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Department">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Document" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Document">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ErrorLog" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ErrorLog">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Location" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Location">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ScrapReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ScrapReason">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Shift" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Shift">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder">
-    </Table>
-    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason">
-    </Table>
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_AddressType_AddressType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_AddressType_AddressType" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Address_Address" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Address_Address" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_AWBuildVersion_AWBuildVersion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_AWBuildVersion_AWBuildVersion" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BillOfMaterials_BillOfMaterials" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BillOfMaterials_BillOfMaterials" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntityAddress_BusinessEntityAddress" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntityAddress_BusinessEntityAddress" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntityContact_BusinessEntityContact" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntityContact_BusinessEntityContact" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntity_BusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_BusinessEntity_BusinessEntity" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ContactType_ContactType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ContactType_ContactType" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CountryRegionCurrency_CountryRegionCurrency" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CountryRegionCurrency_CountryRegionCurrency" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CountryRegion_CountryRegion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CountryRegion_CountryRegion" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CreditCard_CreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CreditCard_CreditCard" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Culture_Culture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Culture_Culture" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CurrencyRate_CurrencyRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_CurrencyRate_CurrencyRate" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Currency_Currency" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Currency_Currency" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_DatabaseLog_DatabaseLog" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_DatabaseLog_DatabaseLog" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Department_Department" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Department_Department" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Document_Document" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Document_Document" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmailAddress_EmailAddress" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmailAddress_EmailAddress" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmployeePayHistory_EmployeePayHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_EmployeePayHistory_EmployeePayHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Employee_Employee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Employee_Employee" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Illustration_Illustration" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Illustration_Illustration" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_JobCandidate_JobCandidate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_JobCandidate_JobCandidate" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Password_Password" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Password_Password" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PersonCreditCard_PersonCreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PersonCreditCard_PersonCreditCard" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PersonPhone_PersonPhone" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PersonPhone_PersonPhone" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Person_Person" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Person_Person" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PhoneNumberType_PhoneNumberType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PhoneNumberType_PhoneNumberType" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCostHistory_ProductCostHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCostHistory_ProductCostHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductDescription_ProductDescription" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductDescription_ProductDescription" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductDocument_ProductDocument" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductDocument_ProductDocument" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductInventory_ProductInventory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductInventory_ProductInventory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductListPriceHistory_ProductListPriceHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductListPriceHistory_ProductListPriceHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModelIllustration_ProductModelIllustration" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModelIllustration_ProductModelIllustration" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModel_ProductModel" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductModel_ProductModel" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductPhoto_ProductPhoto" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductPhoto_ProductPhoto" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductProductPhoto_ProductProductPhoto" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductProductPhoto_ProductProductPhoto" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductReview_ProductReview" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductReview_ProductReview" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PurchaseOrderDetail_PurchaseOrderDetail" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PurchaseOrderDetail_PurchaseOrderDetail" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PurchaseOrderHeader_PurchaseOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PurchaseOrderHeader_PurchaseOrderHeader" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesReason_SalesReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesReason_SalesReason" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritoryHistory_SalesTerritoryHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritoryHistory_SalesTerritoryHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ScrapReason_ScrapReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ScrapReason_ScrapReason" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Shift_Shift" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Shift_Shift" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShipMethod_ShipMethod" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShipMethod_ShipMethod" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShoppingCartItem_ShoppingCartItem" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShoppingCartItem_ShoppingCartItem" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOfferProduct_SpecialOfferProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOfferProduct_SpecialOfferProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_StateProvince_StateProvince" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_StateProvince_StateProvince" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_UnitMeasure_UnitMeasure" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_UnitMeasure_UnitMeasure" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Vendor_Vendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Vendor_Vendor" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrderRouting_WorkOrderRouting" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrderRouting_WorkOrderRouting" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AWBuildVersion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AWBuildVersion" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegionCurrency" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegionCurrency" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Culture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Culture" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_DatabaseLog" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_DatabaseLog" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Department" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Department" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Document" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Document" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ErrorLog" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ErrorLog" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Location" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Location" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ScrapReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ScrapReason" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Shift" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Shift" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder" />
+    <Table Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason" />
   </TableList>
 </MetaSchema>

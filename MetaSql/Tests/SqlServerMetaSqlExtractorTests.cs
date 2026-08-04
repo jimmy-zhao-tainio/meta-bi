@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using Meta.Core.Serialization;
 using MetaSql.Extractors.SqlServer;
 
 namespace MetaSql.Tests;
@@ -8,8 +9,7 @@ public sealed class SqlServerMetaSqlExtractorTests
     [Fact]
     public void Project_CreatesPhysicalIdsForSupportedObjects()
     {
-        var workspace = SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: "C:\\tmp\\MetaSql",
+        var workspace = TypedWorkspaceModelMapper.ToInMemoryWorkspace(SqlServerMetaSqlProjector.Project(
             databaseName: "SalesDb",
             tableRows:
             [
@@ -54,7 +54,7 @@ public sealed class SqlServerMetaSqlExtractorTests
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)
             {
                 ["dbo.Customer"] = [new("IX_Customer_Name", 1, "CustomerName", false, false)],
-            });
+            }));
 
         Assert.Equal("MetaSql", workspace.Model.Name);
 
@@ -83,8 +83,7 @@ public sealed class SqlServerMetaSqlExtractorTests
     [Fact]
     public void Project_PreservesColumnTypeDetailsAndIndexFlags()
     {
-        var workspace = SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: "C:\\tmp\\MetaSql",
+        var workspace = TypedWorkspaceModelMapper.ToInMemoryWorkspace(SqlServerMetaSqlProjector.Project(
             databaseName: "SalesDb",
             tableRows: [new SqlServerMetaSqlProjector.TableRow("dbo", "Customer")],
             columnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ColumnRow>>(StringComparer.OrdinalIgnoreCase)
@@ -105,7 +104,7 @@ public sealed class SqlServerMetaSqlExtractorTests
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)
             {
                 ["dbo.Customer"] = [new("IX_Customer_Name", 1, "CustomerName", true, true)],
-            });
+            }));
 
         var columns = workspace.Instance.GetOrCreateEntityRecords("TableColumn");
         var details = workspace.Instance.GetOrCreateEntityRecords("TableColumnDataTypeDetail");
@@ -126,8 +125,7 @@ public sealed class SqlServerMetaSqlExtractorTests
     [Fact]
     public void Project_PreservesIdentityComputedAndFilteredIndexMetadata()
     {
-        var workspace = SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: "C:\\tmp\\MetaSql",
+        var workspace = TypedWorkspaceModelMapper.ToInMemoryWorkspace(SqlServerMetaSqlProjector.Project(
             databaseName: "SalesDb",
             tableRows: [new SqlServerMetaSqlProjector.TableRow("dbo", "Customer")],
             columnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ColumnRow>>(StringComparer.OrdinalIgnoreCase)
@@ -150,7 +148,7 @@ public sealed class SqlServerMetaSqlExtractorTests
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)
             {
                 ["dbo.Customer"] = [new("IX_Customer_Code_Filtered", 1, "CustomerCode", false, false)],
-            });
+            }));
 
         var columns = workspace.Instance.GetOrCreateEntityRecords("TableColumn");
         var indexes = workspace.Instance.GetOrCreateEntityRecords("Index");
@@ -173,8 +171,7 @@ public sealed class SqlServerMetaSqlExtractorTests
         const string functionDefinition = "CREATE FUNCTION [dbo].[fnAddOne](@value int) RETURNS int AS BEGIN RETURN @value + 1 END;";
         const string procedureDefinition = "CREATE OR ALTER PROCEDURE [dbo].[Run] AS SELECT 1 AS [Result];";
 
-        var workspace = SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: "C:\\tmp\\MetaSql",
+        var workspace = TypedWorkspaceModelMapper.ToInMemoryWorkspace(SqlServerMetaSqlProjector.Project(
             databaseName: "SalesDb",
             tableRows: [],
             columnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ColumnRow>>(StringComparer.OrdinalIgnoreCase),
@@ -186,7 +183,7 @@ public sealed class SqlServerMetaSqlExtractorTests
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase),
             viewRows: [new("dq", "v_DataQualityReview", viewDefinition, 2)],
             functionRows: [new("dbo", "fnAddOne", "ScalarFunction", functionDefinition, 1)],
-            storedProcedureRows: [new("dbo", "Run", procedureDefinition, 3)]);
+            storedProcedureRows: [new("dbo", "Run", procedureDefinition, 3)]));
 
         var schemas = workspace.Instance.GetOrCreateEntityRecords("Schema");
         var views = workspace.Instance.GetOrCreateEntityRecords("View");
@@ -284,8 +281,7 @@ public sealed class SqlServerMetaSqlExtractorTests
     [Fact]
     public void Project_CreatesForeignKeysEvenWhenTargetTableAppearsLater()
     {
-        var workspace = SqlServerMetaSqlProjector.Project(
-            newWorkspacePath: "C:\\tmp\\MetaSql",
+        var workspace = TypedWorkspaceModelMapper.ToInMemoryWorkspace(SqlServerMetaSqlProjector.Project(
             databaseName: "SalesDb",
             tableRows:
             [
@@ -315,7 +311,7 @@ public sealed class SqlServerMetaSqlExtractorTests
                 ["dbo.Order"] = [new("FK_Order_Customer", 1, "CustomerId", "CustomerId")],
             },
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
-            indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+            indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)));
 
         var foreignKeys = workspace.Instance.GetOrCreateEntityRecords("ForeignKey");
         var foreignKeyColumns = workspace.Instance.GetOrCreateEntityRecords("ForeignKeyColumn");

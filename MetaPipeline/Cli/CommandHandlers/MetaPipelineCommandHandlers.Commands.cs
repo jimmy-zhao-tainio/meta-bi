@@ -3,30 +3,10 @@ using MetaCli.Core;
 
 internal sealed partial class MetaPipelineCommandHandlers
 {
-    private int RunNewWorkspaceCore(MetaCliInvocation invocation)
-    {
-        var parse = ReadNewWorkspaceArgs(invocation);
-        if (!parse.Ok)
-        {
-            return Fail(parse.ErrorMessage, HelpCommand("new-workspace"));
-        }
-
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(parse.NewWorkspacePath);
-        if (!targetValidation.Ok)
-        {
-            return Fail(
-                targetValidation.ErrorMessage,
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                targetValidation.Details);
-        }
-
-        workspaceService.CreateWorkspace(targetValidation.FullPath);
-        presenter.WriteOk();
-        return 0;
-    }
-
-    private int RunAddPipelineCore(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
+    private int RunAddPipelineCore(
+        MetaCliInvocation invocation,
+        MetaPipeline.MetaPipelineModel model,
+        MetaCliCommandCompletion completion)
     {
         var parse = ReadAddPipelineArgs(invocation);
         if (!parse.Ok)
@@ -38,11 +18,10 @@ internal sealed partial class MetaPipelineCommandHandlers
         {
             workspaceService.AddPipeline(
                 model,
-                parse.WorkspacePath,
                 parse.Name,
                 parse.Description);
 
-            presenter.WriteOk();
+            completion.OnSucceeded(() => presenter.WriteOk());
             return 0;
         }
         catch (Exception ex)
@@ -104,7 +83,10 @@ internal sealed partial class MetaPipelineCommandHandlers
         }
     }
 
-    private int RunAddExecutableStepCore(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
+    private int RunAddExecutableStepCore(
+        MetaCliInvocation invocation,
+        MetaPipeline.MetaPipelineModel model,
+        MetaCliCommandCompletion completion)
     {
         var parse = ReadAddExecutableStepArgs(invocation);
         if (!parse.Ok)
@@ -117,7 +99,6 @@ internal sealed partial class MetaPipelineCommandHandlers
             workspaceService.AddExecutableStep(
                 model,
                 new MetaPipeline.MetaPipelineAddExecutableStepRequest(
-                    parse.WorkspacePath,
                     parse.PipelineName,
                     parse.StepName,
                     parse.ExecutablePath,
@@ -128,7 +109,7 @@ internal sealed partial class MetaPipelineCommandHandlers
                     parse.TimeoutSeconds,
                     parse.TimeoutSecondsSpecified));
 
-            presenter.WriteOk();
+            completion.OnSucceeded(() => presenter.WriteOk());
             return 0;
         }
         catch (Exception ex)
@@ -141,7 +122,10 @@ internal sealed partial class MetaPipelineCommandHandlers
         }
     }
 
-    private int RunAddStepCore(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
+    private int RunAddStepCore(
+        MetaCliInvocation invocation,
+        MetaPipeline.MetaPipelineModel model,
+        MetaCliCommandCompletion completion)
     {
         var parse = ReadAddStepArgs(invocation);
         if (!parse.Ok)
@@ -154,7 +138,6 @@ internal sealed partial class MetaPipelineCommandHandlers
             workspaceService.AddStep(
                 model,
                 new MetaPipeline.MetaPipelineAddStepRequest(
-                    parse.WorkspacePath,
                     parse.PipelineName,
                     parse.StepName,
                     parse.TransformWorkspacePath,
@@ -173,7 +156,7 @@ internal sealed partial class MetaPipelineCommandHandlers
                     parse.TargetDataTypeSystemName,
                     parse.TargetDataTypeSystemSpecified));
 
-            presenter.WriteOk();
+            completion.OnSucceeded(() => presenter.WriteOk());
             return 0;
         }
         catch (Exception ex)

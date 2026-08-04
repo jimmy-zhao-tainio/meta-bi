@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <XmlWorkspaceList>
+    <XmlWorkspace Id="workspace:data-vault-implementation" WorkspaceId="workspace:data-vault-implementation">
+      <Path>..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:deploy-manifest" WorkspaceId="workspace:deploy-manifest">
+      <Path>MetaSqlDeployManifest</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:raw-data-vault" WorkspaceId="workspace:raw-data-vault">
+      <Path>RawDataVaultCliIntegrationWorkspace</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:sql" WorkspaceId="workspace:sql">
+      <Path>CurrentMetaSqlWorkspace</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:verify-manifest" WorkspaceId="workspace:verify-manifest">
+      <Path>MetaSqlVerifyManifest</Path>
+    </XmlWorkspace>
+  </XmlWorkspaceList>
+</MetaMesh>

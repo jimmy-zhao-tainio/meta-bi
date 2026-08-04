@@ -1,95 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaMesh>
   <OperationStepList>
-    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup">
-      <Arguments>/c if exist MetaTransformScriptCliIntegrationWorkspace rmdir /s /q MetaTransformScriptCliIntegrationWorkspace</Arguments>
+    <OperationStep Id="operation-step:cleanup:remove-roundtripped-views-file" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-roundtripped-views-folder">
+      <Arguments>/c if exist RoundTrippedViews.sql del /q RoundTrippedViews.sql</Arguments>
       <Executable>cmd.exe</Executable>
-      <Name>remove-transform-workspace</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-transform-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
-      <Arguments>/c if exist MetaTransformScriptRoundTripWorkspace rmdir /s /q MetaTransformScriptRoundTripWorkspace</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-transform-roundtrip-workspace</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-sql-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-roundtrip-workspace">
-      <Arguments>/c if exist MetaSqlWorkspace rmdir /s /q MetaSqlWorkspace</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-sql-workspace</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-sql-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-workspace">
-      <Arguments>/c if exist MetaSqlRoundTripWorkspace rmdir /s /q MetaSqlRoundTripWorkspace</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-sql-roundtrip-workspace</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-sql-diff" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-roundtrip-workspace">
-      <Arguments>/c if exist MetaSqlRoundTripWorkspace.instance-diff rmdir /s /q MetaSqlRoundTripWorkspace.instance-diff</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-sql-diff</Name>
+      <Name>remove-roundtripped-views-file</Name>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-roundtripped-views-folder" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-diff">
       <Arguments>/c if exist RoundTrippedViews rmdir /s /q RoundTrippedViews</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-roundtripped-views-folder</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-roundtripped-views-file" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-roundtripped-views-folder">
-      <Arguments>/c if exist RoundTrippedViews.sql del /q RoundTrippedViews.sql</Arguments>
+    <OperationStep Id="operation-step:cleanup:remove-sql-diff" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-roundtrip-workspace">
+      <Arguments>/c if exist MetaSqlRoundTripWorkspace.instance-diff rmdir /s /q MetaSqlRoundTripWorkspace.instance-diff</Arguments>
       <Executable>cmd.exe</Executable>
-      <Name>remove-roundtripped-views-file</Name>
+      <Name>remove-sql-diff</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:round-trip-sql:import-customer-order-summary" OperationId="operation:round-trip-sql">
-      <Arguments>from sql-file --path SourceViews\001_customer_order_summary\view.sql --target sales.CustomerOrderSummary --new-workspace "{workspace:transform.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>import-customer-order-summary</Name>
+    <OperationStep Id="operation-step:cleanup:remove-sql-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-workspace">
+      <Arguments>/c if exist MetaSqlRoundTripWorkspace rmdir /s /q MetaSqlRoundTripWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-sql-roundtrip-workspace</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:round-trip-sql:import-invoice-window" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:import-customer-order-summary">
-      <Arguments>from sql-file --path SourceViews\002_invoice_window\view.sql --target reporting.InvoiceWindow --workspace "{workspace:transform.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>import-invoice-window</Name>
+    <OperationStep Id="operation-step:cleanup:remove-sql-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-roundtrip-workspace">
+      <Arguments>/c if exist MetaSqlWorkspace rmdir /s /q MetaSqlWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-sql-workspace</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:round-trip-sql:export-roundtripped-views-folder" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:import-invoice-window">
-      <Arguments>to sql-path --workspace "{workspace:transform.path}" --out RoundTrippedViews</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>export-roundtripped-views-folder</Name>
+    <OperationStep Id="operation-step:cleanup:remove-transform-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
+      <Arguments>/c if exist MetaTransformScriptRoundTripWorkspace rmdir /s /q MetaTransformScriptRoundTripWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-roundtrip-workspace</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:round-trip-sql:export-roundtripped-views-file" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:export-roundtripped-views-folder">
-      <Arguments>to sql-path --workspace "{workspace:transform.path}" --out RoundTrippedViews.sql</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>export-roundtripped-views-file</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:round-trip-sql:print-customer-order-summary-sql" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:export-roundtripped-views-file">
-      <Arguments>to sql-code --workspace "{workspace:transform.path}" --name sales.CustomerOrderSummary</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>print-customer-order-summary-sql</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:round-trip-sql:import-roundtripped-customer-order-summary" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:print-customer-order-summary-sql">
-      <Arguments>from sql-file --path RoundTrippedViews\view.sql --target sales.CustomerOrderSummary --new-workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>import-roundtripped-customer-order-summary</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:round-trip-sql:import-roundtripped-invoice-window" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:import-roundtripped-customer-order-summary">
-      <Arguments>from sql-file --path RoundTrippedViews\view_2.sql --target reporting.InvoiceWindow --workspace "{workspace:transform-roundtrip.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>import-roundtripped-invoice-window</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:round-trip-sql:convert-transform-to-sql" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:import-roundtripped-invoice-window">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform.path}" --database-name CliIntegrationDb --out "{workspace:sql.path}"</Arguments>
-      <Executable>meta-convert.exe</Executable>
-      <Name>convert-transform-to-sql</Name>
+    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup">
+      <Arguments>/c if exist MetaTransformScriptCliIntegrationWorkspace rmdir /s /q MetaTransformScriptCliIntegrationWorkspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-workspace</Name>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-sql:convert-roundtrip-transform-to-sql" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:convert-transform-to-sql">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.path}" --database-name CliIntegrationDb --out "{workspace:sql-roundtrip.path}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.location}" --database-name CliIntegrationDb --out "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-roundtrip-transform-to-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:round-trip-sql:convert-transform-to-sql" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:import-roundtripped-invoice-window">
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform.location}" --database-name CliIntegrationDb --out "{workspace:sql.location}"</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-transform-to-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-sql:diff-sql-workspaces" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:convert-roundtrip-transform-to-sql">
-      <Arguments>instance diff "{workspace:sql.path}" "{workspace:sql-roundtrip.path}"</Arguments>
+      <Arguments>instance diff "{workspace:sql.location}" "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>meta.exe</Executable>
       <Name>diff-sql-workspaces</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:round-trip-sql:export-roundtripped-views-file" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:export-roundtripped-views-folder">
+      <Arguments>to sql-path --workspace "{workspace:transform.location}" --out RoundTrippedViews.sql</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>export-roundtripped-views-file</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:round-trip-sql:export-roundtripped-views-folder" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:import-invoice-window">
+      <Arguments>to sql-path --workspace "{workspace:transform.location}" --out RoundTrippedViews</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>export-roundtripped-views-folder</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:round-trip-sql:import-customer-order-summary" OperationId="operation:round-trip-sql">
+      <Arguments>from sql-file --path SourceViews\001_customer_order_summary\view.sql --target sales.CustomerOrderSummary --new-workspace "{workspace:transform.location}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-summary</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:round-trip-sql:import-invoice-window" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:import-customer-order-summary">
+      <Arguments>from sql-file --path SourceViews\002_invoice_window\view.sql --target reporting.InvoiceWindow --workspace "{workspace:transform.location}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-invoice-window</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:round-trip-sql:import-roundtripped-customer-order-summary" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:print-customer-order-summary-sql">
+      <Arguments>from sql-file --path RoundTrippedViews\view.sql --target sales.CustomerOrderSummary --new-workspace "{workspace:transform-roundtrip.location}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-roundtripped-customer-order-summary</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:round-trip-sql:import-roundtripped-invoice-window" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:import-roundtripped-customer-order-summary">
+      <Arguments>from sql-file --path RoundTrippedViews\view_2.sql --target reporting.InvoiceWindow --workspace "{workspace:transform-roundtrip.location}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-roundtripped-invoice-window</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:round-trip-sql:print-customer-order-summary-sql" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:export-roundtripped-views-file">
+      <Arguments>to sql-code --workspace "{workspace:transform.location}" --name sales.CustomerOrderSummary</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>print-customer-order-summary-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-sql:print-invoice-window-sql" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:diff-sql-workspaces">
-      <Arguments>to sql-code --workspace "{workspace:transform-roundtrip.path}" --name reporting.InvoiceWindow</Arguments>
+      <Arguments>to sql-code --workspace "{workspace:transform-roundtrip.location}" --name reporting.InvoiceWindow</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>print-invoice-window-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
   </OperationStepList>
 </MetaMesh>

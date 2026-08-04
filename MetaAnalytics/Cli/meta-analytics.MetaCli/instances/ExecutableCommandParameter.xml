@@ -1,369 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandParameterList>
-    <ExecutableCommandParameter Id="exec-new-workspace:parameter:param-new-workspace-path" ExecutableCommandId="exec-new-workspace" ParameterId="param-new-workspace-path">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-model:parameter:param-add-model-id" ExecutableCommandId="exec-add-model" ParameterId="param-add-model-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-model:parameter:param-add-model-workspace" ExecutableCommandId="exec-add-model" ParameterId="param-add-model-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-model:parameter:param-add-model-name" ExecutableCommandId="exec-add-model" ParameterId="param-add-model-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-model:parameter:param-add-model-default-culture" ExecutableCommandId="exec-add-model" ParameterId="param-add-model-default-culture">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-model:parameter:param-add-model-description" ExecutableCommandId="exec-add-model" ParameterId="param-add-model-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-id" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-workspace" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-name" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-provider" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-provider">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-connection-reference" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-connection-reference">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-source-kind" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-source-kind">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-description" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-model" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-model">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-id" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-workspace" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-name" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-kind" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-kind">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-data-category" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-data-category">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-is-hidden" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-is-hidden">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-display-folder" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-display-folder">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-description" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-model" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-model">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-id" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-workspace" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-name" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-data-type-id" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-data-type-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-ordinal" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-ordinal">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-kind" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-kind">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-source-name" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-source-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-expression-language" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-expression-language">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-expression" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-expression">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-is-key" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-is-key">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-is-nullable" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-is-nullable">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-is-hidden" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-is-hidden">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-format-string" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-format-string">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-summarize-by" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-summarize-by">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-data-category" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-data-category">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-description" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-table" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-sort-by-attribute:parameter:param-add-sort-by-attribute-id" ExecutableCommandId="exec-add-sort-by-attribute" ParameterId="param-add-sort-by-attribute-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-sort-by-attribute:parameter:param-add-sort-by-attribute-workspace" ExecutableCommandId="exec-add-sort-by-attribute" ParameterId="param-add-sort-by-attribute-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-sort-by-attribute:parameter:param-add-sort-by-attribute-description" ExecutableCommandId="exec-add-sort-by-attribute" ParameterId="param-add-sort-by-attribute-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-sort-by-attribute:parameter:param-add-sort-by-attribute-source-attribute" ExecutableCommandId="exec-add-sort-by-attribute" ParameterId="param-add-sort-by-attribute-source-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-sort-by-attribute:parameter:param-add-sort-by-attribute-sort-attribute" ExecutableCommandId="exec-add-sort-by-attribute" ParameterId="param-add-sort-by-attribute-sort-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-id" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-workspace" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-relationship-type" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-relationship-type">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-description" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-child-attribute" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-child-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-parent-attribute" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-parent-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-id" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-workspace" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-name" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-kind" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-kind">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-is-hidden" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-is-hidden">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-display-folder" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-display-folder">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-description" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-table" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-id" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-workspace" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-name" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-ordinal" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-ordinal">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-hierarchy" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-hierarchy">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-attribute" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-id" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-workspace" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-name" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-role-name" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-role-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-relationship-kind" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-relationship-kind">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-cardinality" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-cardinality">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-cross-filter-direction" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-cross-filter-direction">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-is-active" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-is-active">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-is-required" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-is-required">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-description" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-from-table" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-from-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-from-attribute" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-from-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-to-table" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-to-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-to-attribute" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-to-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-granularity-attribute" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-granularity-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-intermediate-table" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-intermediate-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-id" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-workspace" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-name" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-data-type-id" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-data-type-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-format-string" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-format-string">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-display-folder" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-display-folder">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-is-hidden" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-is-hidden">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-description" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-table" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-source-attribute" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-source-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-id" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-workspace" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-function" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-function">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-description" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-measure" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-measure">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective:parameter:param-add-perspective-id" ExecutableCommandId="exec-add-perspective" ParameterId="param-add-perspective-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective:parameter:param-add-perspective-workspace" ExecutableCommandId="exec-add-perspective" ParameterId="param-add-perspective-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective:parameter:param-add-perspective-name" ExecutableCommandId="exec-add-perspective" ParameterId="param-add-perspective-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective:parameter:param-add-perspective-description" ExecutableCommandId="exec-add-perspective" ParameterId="param-add-perspective-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective:parameter:param-add-perspective-model" ExecutableCommandId="exec-add-perspective" ParameterId="param-add-perspective-model">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-table:parameter:param-add-perspective-table-id" ExecutableCommandId="exec-add-perspective-table" ParameterId="param-add-perspective-table-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-table:parameter:param-add-perspective-table-workspace" ExecutableCommandId="exec-add-perspective-table" ParameterId="param-add-perspective-table-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-table:parameter:param-add-perspective-table-perspective" ExecutableCommandId="exec-add-perspective-table" ParameterId="param-add-perspective-table-perspective">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-table:parameter:param-add-perspective-table-table" ExecutableCommandId="exec-add-perspective-table" ParameterId="param-add-perspective-table-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-attribute:parameter:param-add-perspective-attribute-id" ExecutableCommandId="exec-add-perspective-attribute" ParameterId="param-add-perspective-attribute-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-attribute:parameter:param-add-perspective-attribute-workspace" ExecutableCommandId="exec-add-perspective-attribute" ParameterId="param-add-perspective-attribute-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-attribute:parameter:param-add-perspective-attribute-perspective" ExecutableCommandId="exec-add-perspective-attribute" ParameterId="param-add-perspective-attribute-perspective">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-attribute:parameter:param-add-perspective-attribute-attribute" ExecutableCommandId="exec-add-perspective-attribute" ParameterId="param-add-perspective-attribute-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-hierarchy:parameter:param-add-perspective-hierarchy-id" ExecutableCommandId="exec-add-perspective-hierarchy" ParameterId="param-add-perspective-hierarchy-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-hierarchy:parameter:param-add-perspective-hierarchy-workspace" ExecutableCommandId="exec-add-perspective-hierarchy" ParameterId="param-add-perspective-hierarchy-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-hierarchy:parameter:param-add-perspective-hierarchy-perspective" ExecutableCommandId="exec-add-perspective-hierarchy" ParameterId="param-add-perspective-hierarchy-perspective">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-hierarchy:parameter:param-add-perspective-hierarchy-hierarchy" ExecutableCommandId="exec-add-perspective-hierarchy" ParameterId="param-add-perspective-hierarchy-hierarchy">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-measure:parameter:param-add-perspective-measure-id" ExecutableCommandId="exec-add-perspective-measure" ParameterId="param-add-perspective-measure-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-measure:parameter:param-add-perspective-measure-workspace" ExecutableCommandId="exec-add-perspective-measure" ParameterId="param-add-perspective-measure-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-measure:parameter:param-add-perspective-measure-perspective" ExecutableCommandId="exec-add-perspective-measure" ParameterId="param-add-perspective-measure-perspective">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-measure:parameter:param-add-perspective-measure-measure" ExecutableCommandId="exec-add-perspective-measure" ParameterId="param-add-perspective-measure-measure">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-id" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-workspace" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-name" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-permission" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-permission">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-description" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-model" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-model">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-id" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-workspace" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-member-name" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-member-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-member-kind" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-member-kind">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-role" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-role">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-id" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-workspace" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-expression-language" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-expression-language">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-expression" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-expression">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-description" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-role" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-role">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-table" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-id" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-workspace" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-metadata-permission" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-metadata-permission">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-description" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-role" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-role">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-table" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-id" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-workspace" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-metadata-permission" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-metadata-permission">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-description" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-role" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-role">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-attribute" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-culture:parameter:param-add-culture-id" ExecutableCommandId="exec-add-culture" ParameterId="param-add-culture-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-culture:parameter:param-add-culture-workspace" ExecutableCommandId="exec-add-culture" ParameterId="param-add-culture-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-culture:parameter:param-add-culture-name" ExecutableCommandId="exec-add-culture" ParameterId="param-add-culture-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-culture:parameter:param-add-culture-description" ExecutableCommandId="exec-add-culture" ParameterId="param-add-culture-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-culture:parameter:param-add-culture-model" ExecutableCommandId="exec-add-culture" ParameterId="param-add-culture-model">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-id" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-workspace" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-caption" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-caption">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-description" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-culture" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-culture">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-table" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-id" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-workspace" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-caption" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-caption">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-description" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-culture" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-culture">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-attribute" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-attribute">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-id" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-workspace" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-caption" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-caption">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-description" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-culture" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-culture">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-hierarchy" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-hierarchy">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-id" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-workspace" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-caption" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-caption">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-description" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-culture" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-culture">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-measure" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-measure">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-id" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-id">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-workspace" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-caption" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-caption">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-description" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-description">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-culture" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-culture">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-perspective" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-perspective">
-    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-description" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-description" />
+    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-function" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-function" />
+    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-id" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-id" />
+    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-measure" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-measure" />
+    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-workspace" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-workspace" />
+    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-attribute" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-attribute" />
+    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-description" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-description" />
+    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-id" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-id" />
+    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-metadata-permission" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-metadata-permission" />
+    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-role" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-role" />
+    <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-workspace" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-workspace" />
+    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-child-attribute" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-child-attribute" />
+    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-description" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-description" />
+    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-id" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-id" />
+    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-parent-attribute" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-parent-attribute" />
+    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-relationship-type" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-relationship-type" />
+    <ExecutableCommandParameter Id="exec-add-attribute-relationship:parameter:param-add-attribute-relationship-workspace" ExecutableCommandId="exec-add-attribute-relationship" ParameterId="param-add-attribute-relationship-workspace" />
+    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-attribute" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-attribute" />
+    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-caption" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-caption" />
+    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-culture" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-culture" />
+    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-description" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-description" />
+    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-id" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-id" />
+    <ExecutableCommandParameter Id="exec-add-attribute-translation:parameter:param-add-attribute-translation-workspace" ExecutableCommandId="exec-add-attribute-translation" ParameterId="param-add-attribute-translation-workspace" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-data-category" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-data-category" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-data-type-id" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-data-type-id" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-description" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-description" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-expression" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-expression" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-expression-language" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-expression-language" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-format-string" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-format-string" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-id" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-id" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-is-hidden" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-is-hidden" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-is-key" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-is-key" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-is-nullable" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-is-nullable" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-kind" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-kind" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-name" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-name" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-ordinal" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-ordinal" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-source-name" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-source-name" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-summarize-by" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-summarize-by" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-table" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-table" />
+    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-workspace" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-workspace" />
+    <ExecutableCommandParameter Id="exec-add-culture:parameter:param-add-culture-description" ExecutableCommandId="exec-add-culture" ParameterId="param-add-culture-description" />
+    <ExecutableCommandParameter Id="exec-add-culture:parameter:param-add-culture-id" ExecutableCommandId="exec-add-culture" ParameterId="param-add-culture-id" />
+    <ExecutableCommandParameter Id="exec-add-culture:parameter:param-add-culture-model" ExecutableCommandId="exec-add-culture" ParameterId="param-add-culture-model" />
+    <ExecutableCommandParameter Id="exec-add-culture:parameter:param-add-culture-name" ExecutableCommandId="exec-add-culture" ParameterId="param-add-culture-name" />
+    <ExecutableCommandParameter Id="exec-add-culture:parameter:param-add-culture-workspace" ExecutableCommandId="exec-add-culture" ParameterId="param-add-culture-workspace" />
+    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-connection-reference" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-connection-reference" />
+    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-description" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-description" />
+    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-id" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-id" />
+    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-model" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-model" />
+    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-name" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-name" />
+    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-provider" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-provider" />
+    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-source-kind" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-source-kind" />
+    <ExecutableCommandParameter Id="exec-add-data-source:parameter:param-add-data-source-workspace" ExecutableCommandId="exec-add-data-source" ParameterId="param-add-data-source-workspace" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-attribute" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-attribute" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-hierarchy" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-hierarchy" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-id" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-id" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-name" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-name" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-ordinal" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-ordinal" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-level:parameter:param-add-hierarchy-level-workspace" ExecutableCommandId="exec-add-hierarchy-level" ParameterId="param-add-hierarchy-level-workspace" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-caption" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-caption" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-culture" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-culture" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-description" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-description" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-hierarchy" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-hierarchy" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-id" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-id" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy-translation:parameter:param-add-hierarchy-translation-workspace" ExecutableCommandId="exec-add-hierarchy-translation" ParameterId="param-add-hierarchy-translation-workspace" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-description" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-description" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-display-folder" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-display-folder" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-id" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-id" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-is-hidden" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-is-hidden" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-kind" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-kind" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-name" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-name" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-table" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-table" />
+    <ExecutableCommandParameter Id="exec-add-hierarchy:parameter:param-add-hierarchy-workspace" ExecutableCommandId="exec-add-hierarchy" ParameterId="param-add-hierarchy-workspace" />
+    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-caption" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-caption" />
+    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-culture" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-culture" />
+    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-description" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-description" />
+    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-id" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-id" />
+    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-measure" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-measure" />
+    <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-workspace" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-workspace" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-data-type-id" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-data-type-id" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-description" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-description" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-display-folder" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-display-folder" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-format-string" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-format-string" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-id" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-id" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-is-hidden" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-is-hidden" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-name" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-name" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-source-attribute" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-source-attribute" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-table" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-table" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-workspace" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-workspace" />
+    <ExecutableCommandParameter Id="exec-add-model:parameter:param-add-model-default-culture" ExecutableCommandId="exec-add-model" ParameterId="param-add-model-default-culture" />
+    <ExecutableCommandParameter Id="exec-add-model:parameter:param-add-model-description" ExecutableCommandId="exec-add-model" ParameterId="param-add-model-description" />
+    <ExecutableCommandParameter Id="exec-add-model:parameter:param-add-model-id" ExecutableCommandId="exec-add-model" ParameterId="param-add-model-id" />
+    <ExecutableCommandParameter Id="exec-add-model:parameter:param-add-model-name" ExecutableCommandId="exec-add-model" ParameterId="param-add-model-name" />
+    <ExecutableCommandParameter Id="exec-add-model:parameter:param-add-model-workspace" ExecutableCommandId="exec-add-model" ParameterId="param-add-model-workspace" />
+    <ExecutableCommandParameter Id="exec-add-perspective-attribute:parameter:param-add-perspective-attribute-attribute" ExecutableCommandId="exec-add-perspective-attribute" ParameterId="param-add-perspective-attribute-attribute" />
+    <ExecutableCommandParameter Id="exec-add-perspective-attribute:parameter:param-add-perspective-attribute-id" ExecutableCommandId="exec-add-perspective-attribute" ParameterId="param-add-perspective-attribute-id" />
+    <ExecutableCommandParameter Id="exec-add-perspective-attribute:parameter:param-add-perspective-attribute-perspective" ExecutableCommandId="exec-add-perspective-attribute" ParameterId="param-add-perspective-attribute-perspective" />
+    <ExecutableCommandParameter Id="exec-add-perspective-attribute:parameter:param-add-perspective-attribute-workspace" ExecutableCommandId="exec-add-perspective-attribute" ParameterId="param-add-perspective-attribute-workspace" />
+    <ExecutableCommandParameter Id="exec-add-perspective-hierarchy:parameter:param-add-perspective-hierarchy-hierarchy" ExecutableCommandId="exec-add-perspective-hierarchy" ParameterId="param-add-perspective-hierarchy-hierarchy" />
+    <ExecutableCommandParameter Id="exec-add-perspective-hierarchy:parameter:param-add-perspective-hierarchy-id" ExecutableCommandId="exec-add-perspective-hierarchy" ParameterId="param-add-perspective-hierarchy-id" />
+    <ExecutableCommandParameter Id="exec-add-perspective-hierarchy:parameter:param-add-perspective-hierarchy-perspective" ExecutableCommandId="exec-add-perspective-hierarchy" ParameterId="param-add-perspective-hierarchy-perspective" />
+    <ExecutableCommandParameter Id="exec-add-perspective-hierarchy:parameter:param-add-perspective-hierarchy-workspace" ExecutableCommandId="exec-add-perspective-hierarchy" ParameterId="param-add-perspective-hierarchy-workspace" />
+    <ExecutableCommandParameter Id="exec-add-perspective-measure:parameter:param-add-perspective-measure-id" ExecutableCommandId="exec-add-perspective-measure" ParameterId="param-add-perspective-measure-id" />
+    <ExecutableCommandParameter Id="exec-add-perspective-measure:parameter:param-add-perspective-measure-measure" ExecutableCommandId="exec-add-perspective-measure" ParameterId="param-add-perspective-measure-measure" />
+    <ExecutableCommandParameter Id="exec-add-perspective-measure:parameter:param-add-perspective-measure-perspective" ExecutableCommandId="exec-add-perspective-measure" ParameterId="param-add-perspective-measure-perspective" />
+    <ExecutableCommandParameter Id="exec-add-perspective-measure:parameter:param-add-perspective-measure-workspace" ExecutableCommandId="exec-add-perspective-measure" ParameterId="param-add-perspective-measure-workspace" />
+    <ExecutableCommandParameter Id="exec-add-perspective-table:parameter:param-add-perspective-table-id" ExecutableCommandId="exec-add-perspective-table" ParameterId="param-add-perspective-table-id" />
+    <ExecutableCommandParameter Id="exec-add-perspective-table:parameter:param-add-perspective-table-perspective" ExecutableCommandId="exec-add-perspective-table" ParameterId="param-add-perspective-table-perspective" />
+    <ExecutableCommandParameter Id="exec-add-perspective-table:parameter:param-add-perspective-table-table" ExecutableCommandId="exec-add-perspective-table" ParameterId="param-add-perspective-table-table" />
+    <ExecutableCommandParameter Id="exec-add-perspective-table:parameter:param-add-perspective-table-workspace" ExecutableCommandId="exec-add-perspective-table" ParameterId="param-add-perspective-table-workspace" />
+    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-caption" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-caption" />
+    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-culture" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-culture" />
+    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-description" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-description" />
+    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-id" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-id" />
+    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-perspective" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-perspective" />
+    <ExecutableCommandParameter Id="exec-add-perspective-translation:parameter:param-add-perspective-translation-workspace" ExecutableCommandId="exec-add-perspective-translation" ParameterId="param-add-perspective-translation-workspace" />
+    <ExecutableCommandParameter Id="exec-add-perspective:parameter:param-add-perspective-description" ExecutableCommandId="exec-add-perspective" ParameterId="param-add-perspective-description" />
+    <ExecutableCommandParameter Id="exec-add-perspective:parameter:param-add-perspective-id" ExecutableCommandId="exec-add-perspective" ParameterId="param-add-perspective-id" />
+    <ExecutableCommandParameter Id="exec-add-perspective:parameter:param-add-perspective-model" ExecutableCommandId="exec-add-perspective" ParameterId="param-add-perspective-model" />
+    <ExecutableCommandParameter Id="exec-add-perspective:parameter:param-add-perspective-name" ExecutableCommandId="exec-add-perspective" ParameterId="param-add-perspective-name" />
+    <ExecutableCommandParameter Id="exec-add-perspective:parameter:param-add-perspective-workspace" ExecutableCommandId="exec-add-perspective" ParameterId="param-add-perspective-workspace" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-cardinality" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-cardinality" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-cross-filter-direction" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-cross-filter-direction" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-description" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-description" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-from-attribute" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-from-attribute" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-from-table" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-from-table" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-granularity-attribute" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-granularity-attribute" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-id" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-id" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-intermediate-table" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-intermediate-table" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-is-active" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-is-active" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-is-required" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-is-required" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-name" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-name" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-relationship-kind" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-relationship-kind" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-role-name" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-role-name" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-to-attribute" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-to-attribute" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-to-table" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-to-table" />
+    <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-workspace" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-workspace" />
+    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-description" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-description" />
+    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-expression" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-expression" />
+    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-expression-language" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-expression-language" />
+    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-id" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-id" />
+    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-role" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-role" />
+    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-table" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-table" />
+    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-workspace" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-workspace" />
+    <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-id" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-id" />
+    <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-member-kind" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-member-kind" />
+    <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-member-name" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-member-name" />
+    <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-role" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-role" />
+    <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-workspace" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-workspace" />
+    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-description" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-description" />
+    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-id" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-id" />
+    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-model" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-model" />
+    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-name" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-name" />
+    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-permission" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-permission" />
+    <ExecutableCommandParameter Id="exec-add-security-role:parameter:param-add-security-role-workspace" ExecutableCommandId="exec-add-security-role" ParameterId="param-add-security-role-workspace" />
+    <ExecutableCommandParameter Id="exec-add-sort-by-attribute:parameter:param-add-sort-by-attribute-description" ExecutableCommandId="exec-add-sort-by-attribute" ParameterId="param-add-sort-by-attribute-description" />
+    <ExecutableCommandParameter Id="exec-add-sort-by-attribute:parameter:param-add-sort-by-attribute-id" ExecutableCommandId="exec-add-sort-by-attribute" ParameterId="param-add-sort-by-attribute-id" />
+    <ExecutableCommandParameter Id="exec-add-sort-by-attribute:parameter:param-add-sort-by-attribute-sort-attribute" ExecutableCommandId="exec-add-sort-by-attribute" ParameterId="param-add-sort-by-attribute-sort-attribute" />
+    <ExecutableCommandParameter Id="exec-add-sort-by-attribute:parameter:param-add-sort-by-attribute-source-attribute" ExecutableCommandId="exec-add-sort-by-attribute" ParameterId="param-add-sort-by-attribute-source-attribute" />
+    <ExecutableCommandParameter Id="exec-add-sort-by-attribute:parameter:param-add-sort-by-attribute-workspace" ExecutableCommandId="exec-add-sort-by-attribute" ParameterId="param-add-sort-by-attribute-workspace" />
+    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-description" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-description" />
+    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-id" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-id" />
+    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-metadata-permission" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-metadata-permission" />
+    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-role" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-role" />
+    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-table" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-table" />
+    <ExecutableCommandParameter Id="exec-add-table-permission:parameter:param-add-table-permission-workspace" ExecutableCommandId="exec-add-table-permission" ParameterId="param-add-table-permission-workspace" />
+    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-caption" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-caption" />
+    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-culture" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-culture" />
+    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-description" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-description" />
+    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-id" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-id" />
+    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-table" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-table" />
+    <ExecutableCommandParameter Id="exec-add-table-translation:parameter:param-add-table-translation-workspace" ExecutableCommandId="exec-add-table-translation" ParameterId="param-add-table-translation-workspace" />
+    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-data-category" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-data-category" />
+    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-description" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-description" />
+    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-display-folder" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-display-folder" />
+    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-id" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-id" />
+    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-is-hidden" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-is-hidden" />
+    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-kind" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-kind" />
+    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-model" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-model" />
+    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-name" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-name" />
+    <ExecutableCommandParameter Id="exec-add-table:parameter:param-add-table-workspace" ExecutableCommandId="exec-add-table" ParameterId="param-add-table-workspace" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-connection-env" ExecutableCommandId="exec-create" ParameterId="param-create-connection-env" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-csharp" ExecutableCommandId="exec-create" ParameterId="param-create-csharp" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-sql" ExecutableCommandId="exec-create" ParameterId="param-create-sql" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-xml" ExecutableCommandId="exec-create" ParameterId="param-create-xml" />
   </ExecutableCommandParameterList>
 </MetaCli>

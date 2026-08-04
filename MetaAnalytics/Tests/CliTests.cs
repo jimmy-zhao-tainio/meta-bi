@@ -11,11 +11,11 @@ public sealed class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-analytics <command> [options]", result.Output);
-        Assert.Contains("new-workspace", result.Output);
+        Assert.Contains("create", result.Output);
         Assert.Contains("add-data-source", result.Output);
         Assert.Contains("add-role-filter", result.Output);
         Assert.Contains("add-attribute-permission", result.Output);
-        Assert.DoesNotContain("--new-workspace", result.Output);
+        Assert.DoesNotContain("--output-xml", result.Output);
         Assert.DoesNotContain("add-measure-expression", result.Output);
         Assert.DoesNotContain("add-kpi", result.Output);
         Assert.DoesNotContain("add-calculation-group", result.Output);
@@ -43,7 +43,7 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            var create = RunCli($"new-workspace \"{path}\"");
+            var create = RunCli($"create --xml \"{path}\"");
             Assert.Equal(0, create.ExitCode);
             Assert.Contains("MetaAnalytics workspace created", create.Output);
 
@@ -86,7 +86,7 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            Assert.Equal(0, RunCli($"new-workspace \"{path}\"").ExitCode);
+            Assert.Equal(0, RunCli($"create --xml \"{path}\"").ExitCode);
             Assert.Equal(0, RunCli($"add-model --workspace \"{path}\" --id Commerce --name Commerce").ExitCode);
             Assert.Equal(0, RunCli($"add-table --workspace \"{path}\" --id Date --model Commerce --name Date --kind Dimension").ExitCode);
             Assert.Equal(0, RunCli($"add-table --workspace \"{path}\" --id Product --model Commerce --name Product --kind Dimension").ExitCode);

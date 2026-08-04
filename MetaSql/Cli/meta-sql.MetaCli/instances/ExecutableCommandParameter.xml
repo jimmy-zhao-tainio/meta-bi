@@ -1,55 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandParameterList>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-new-workspace" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-new-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-connection-env" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-connection-env">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-schema" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-schema">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-table" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-include-tables" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-include-tables">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-include-views" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-include-views">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-include-functions" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-include-functions">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-include-stored-procedures" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-include-stored-procedures">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-allow-empty" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-allow-empty">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-source-workspace" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-source-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-connection-env" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-connection-env">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-out" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-out">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-approve-drop-table" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-approve-drop-table">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-approve-drop-column" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-approve-drop-column">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-approve-truncate-column" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-approve-truncate-column">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-approval-file" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-approval-file">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-manifest-workspace" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-manifest-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-source-workspace" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-source-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-connection-env" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-connection-env">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-connection-env" ExecutableCommandId="exec-execute" ParameterId="param-execute-connection-env">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-file" ExecutableCommandId="exec-execute" ParameterId="param-execute-file">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-query" ExecutableCommandId="exec-execute" ParameterId="param-execute-query">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-var" ExecutableCommandId="exec-execute" ParameterId="param-execute-var">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-timeout-seconds" ExecutableCommandId="exec-execute" ParameterId="param-execute-timeout-seconds">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-quiet" ExecutableCommandId="exec-execute" ParameterId="param-execute-quiet">
-    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-approval-file" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-approval-file" />
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-approve-drop-column" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-approve-drop-column" />
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-approve-drop-table" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-approve-drop-table" />
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-approve-truncate-column" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-approve-truncate-column" />
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-connection-env" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-connection-env" />
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-out" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-out" />
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-source-workspace" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-source-workspace" />
+    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-connection-env" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-connection-env" />
+    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-manifest-workspace" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-manifest-workspace" />
+    <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-source-workspace" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-source-workspace" />
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-connection-env" ExecutableCommandId="exec-execute" ParameterId="param-execute-connection-env" />
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-file" ExecutableCommandId="exec-execute" ParameterId="param-execute-file" />
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-query" ExecutableCommandId="exec-execute" ParameterId="param-execute-query" />
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-quiet" ExecutableCommandId="exec-execute" ParameterId="param-execute-quiet" />
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-timeout-seconds" ExecutableCommandId="exec-execute" ParameterId="param-execute-timeout-seconds" />
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-var" ExecutableCommandId="exec-execute" ParameterId="param-execute-var" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-allow-empty" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-allow-empty" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-connection-env" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-connection-env" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-include-functions" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-include-functions" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-include-stored-procedures" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-include-stored-procedures" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-include-tables" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-include-tables" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-include-views" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-include-views" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-connection-env" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-connection-env" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-csharp" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-csharp" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-sql" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-sql" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-xml" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-xml" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-schema" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-schema" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-table" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-table" />
   </ExecutableCommandParameterList>
 </MetaCli>

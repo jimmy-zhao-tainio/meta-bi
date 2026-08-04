@@ -1,14 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="token-execute-workspace" OptionId="opt-execute-workspace">
-      <Token>--workspace</Token>
+    <OptionToken Id="token-add-executable-step-arguments" OptionId="opt-add-executable-step-arguments">
+      <Token>--arguments</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-pipeline" OptionId="opt-execute-pipeline">
+    <OptionToken Id="token-add-executable-step-executable" OptionId="opt-add-executable-step-executable">
+      <Token>--executable</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-executable-step-pipeline" OptionId="opt-add-executable-step-pipeline">
       <Token>--pipeline</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-transform-workspace" OptionId="opt-execute-transform-workspace">
+    <OptionToken Id="token-add-executable-step-step-name" OptionId="opt-add-executable-step-step-name">
+      <Token>--step-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-executable-step-success-exit-code" OptionId="opt-add-executable-step-success-exit-code">
+      <Token>--success-exit-code</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-executable-step-timeout-seconds" OptionId="opt-add-executable-step-timeout-seconds">
+      <Token>--timeout-seconds</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-executable-step-working-directory" OptionId="opt-add-executable-step-working-directory">
+      <Token>--working-directory</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-executable-step-workspace" OptionId="opt-add-executable-step-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-pipeline-description" OptionId="opt-add-pipeline-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-pipeline-name" OptionId="opt-add-pipeline-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-pipeline-workspace" OptionId="opt-add-pipeline-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-batch-size" OptionId="opt-add-step-batch-size">
+      <Token>--batch-size</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-binding" OptionId="opt-add-step-binding">
+      <Token>--binding</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-binding-workspace" OptionId="opt-add-step-binding-workspace">
+      <Token>--binding-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-execution-connection-env" OptionId="opt-add-step-execution-connection-env">
+      <Token>--execution-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-pipeline" OptionId="opt-add-step-pipeline">
+      <Token>--pipeline</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-script" OptionId="opt-add-step-script">
+      <Token>--script</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-step-name" OptionId="opt-add-step-step-name">
+      <Token>--step-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-target" OptionId="opt-add-step-target">
+      <Token>--target</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-target-connection-env" OptionId="opt-add-step-target-connection-env">
+      <Token>--target-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-target-data-type-system" OptionId="opt-add-step-target-data-type-system">
+      <Token>--target-data-type-system</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-target-write" OptionId="opt-add-step-target-write">
+      <Token>--target-write</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-timeout-seconds" OptionId="opt-add-step-timeout-seconds">
+      <Token>--timeout-seconds</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-transform-workspace" OptionId="opt-add-step-transform-workspace">
       <Token>--transform-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-step-workspace" OptionId="opt-add-step-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-connection-env" OptionId="option-create-connection-env">
+      <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-csharp" OptionId="option-create-csharp">
+      <Token>--csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-pipeline-db-pipeline-db-connection-env" OptionId="opt-create-pipeline-db-pipeline-db-connection-env">
+      <Token>--pipeline-db-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-pipeline-db-pipeline-db-name" OptionId="opt-create-pipeline-db-pipeline-db-name">
+      <Token>--pipeline-db-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-sql" OptionId="option-create-sql">
+      <Token>--sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-xml" OptionId="option-create-xml">
+      <Token>--xml</Token>
     </OptionToken>
     <OptionToken Id="token-execute-binding-workspace" OptionId="opt-execute-binding-workspace">
       <Token>--binding-workspace</Token>
@@ -16,43 +100,46 @@
     <OptionToken Id="token-execute-data-type-conversion-workspace" OptionId="opt-execute-data-type-conversion-workspace">
       <Token>--data-type-conversion-workspace</Token>
     </OptionToken>
+    <OptionToken Id="token-execute-pipeline" OptionId="opt-execute-pipeline">
+      <Token>--pipeline</Token>
+    </OptionToken>
     <OptionToken Id="token-execute-pipeline-db-connection-env" OptionId="opt-execute-pipeline-db-connection-env">
       <Token>--pipeline-db-connection-env</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-worker-workspace" OptionId="opt-execute-worker-workspace">
-      <Token>--workspace</Token>
+    <OptionToken Id="token-execute-sqlserver-batch-size" OptionId="opt-execute-sqlserver-batch-size">
+      <Token>--batch-size</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-worker-pipeline" OptionId="opt-execute-worker-pipeline">
-      <Token>--pipeline</Token>
+    <OptionToken Id="token-execute-sqlserver-binding" OptionId="opt-execute-sqlserver-binding">
+      <Token>--binding</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-worker-control-pipe" OptionId="opt-execute-worker-control-pipe">
-      <Token>--control-pipe</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-worker-transform-workspace" OptionId="opt-execute-worker-transform-workspace">
-      <Token>--transform-workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-worker-binding-workspace" OptionId="opt-execute-worker-binding-workspace">
+    <OptionToken Id="token-execute-sqlserver-binding-workspace" OptionId="opt-execute-sqlserver-binding-workspace">
       <Token>--binding-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-worker-control-pipe-connect-timeout-seconds" OptionId="opt-execute-worker-control-pipe-connect-timeout-seconds">
-      <Token>--control-pipe-connect-timeout-seconds</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-worker-data-type-conversion-workspace" OptionId="opt-execute-worker-data-type-conversion-workspace">
+    <OptionToken Id="token-execute-sqlserver-data-type-conversion-workspace" OptionId="opt-execute-sqlserver-data-type-conversion-workspace">
       <Token>--data-type-conversion-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-worker-pipeline-db-connection-env" OptionId="opt-execute-worker-pipeline-db-connection-env">
+    <OptionToken Id="token-execute-sqlserver-execution-connection-env" OptionId="opt-execute-sqlserver-execution-connection-env">
+      <Token>--execution-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-sqlserver-pipeline-db-connection-env" OptionId="opt-execute-sqlserver-pipeline-db-connection-env">
       <Token>--pipeline-db-connection-env</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-step-workspace" OptionId="opt-execute-step-workspace">
-      <Token>--workspace</Token>
+    <OptionToken Id="token-execute-sqlserver-script" OptionId="opt-execute-sqlserver-script">
+      <Token>--script</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-step-pipeline" OptionId="opt-execute-step-pipeline">
-      <Token>--pipeline</Token>
+    <OptionToken Id="token-execute-sqlserver-target" OptionId="opt-execute-sqlserver-target">
+      <Token>--target</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-step-step-name" OptionId="opt-execute-step-step-name">
-      <Token>--step-name</Token>
+    <OptionToken Id="token-execute-sqlserver-target-connection-env" OptionId="opt-execute-sqlserver-target-connection-env">
+      <Token>--target-connection-env</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-step-transform-workspace" OptionId="opt-execute-step-transform-workspace">
+    <OptionToken Id="token-execute-sqlserver-target-data-type-system" OptionId="opt-execute-sqlserver-target-data-type-system">
+      <Token>--target-data-type-system</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-sqlserver-timeout-seconds" OptionId="opt-execute-sqlserver-timeout-seconds">
+      <Token>--timeout-seconds</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-sqlserver-transform-workspace" OptionId="opt-execute-sqlserver-transform-workspace">
       <Token>--transform-workspace</Token>
     </OptionToken>
     <OptionToken Id="token-execute-step-binding-workspace" OptionId="opt-execute-step-binding-workspace">
@@ -61,137 +148,62 @@
     <OptionToken Id="token-execute-step-data-type-conversion-workspace" OptionId="opt-execute-step-data-type-conversion-workspace">
       <Token>--data-type-conversion-workspace</Token>
     </OptionToken>
+    <OptionToken Id="token-execute-step-pipeline" OptionId="opt-execute-step-pipeline">
+      <Token>--pipeline</Token>
+    </OptionToken>
     <OptionToken Id="token-execute-step-pipeline-db-connection-env" OptionId="opt-execute-step-pipeline-db-connection-env">
       <Token>--pipeline-db-connection-env</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-transform-workspace" OptionId="opt-execute-sqlserver-transform-workspace">
+    <OptionToken Id="token-execute-step-step-name" OptionId="opt-execute-step-step-name">
+      <Token>--step-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-step-transform-workspace" OptionId="opt-execute-step-transform-workspace">
       <Token>--transform-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-binding-workspace" OptionId="opt-execute-sqlserver-binding-workspace">
+    <OptionToken Id="token-execute-step-workspace" OptionId="opt-execute-step-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-transform-workspace" OptionId="opt-execute-transform-workspace">
+      <Token>--transform-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-worker-binding-workspace" OptionId="opt-execute-worker-binding-workspace">
       <Token>--binding-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-script" OptionId="opt-execute-sqlserver-script">
-      <Token>--script</Token>
+    <OptionToken Id="token-execute-worker-control-pipe" OptionId="opt-execute-worker-control-pipe">
+      <Token>--control-pipe</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-binding" OptionId="opt-execute-sqlserver-binding">
-      <Token>--binding</Token>
+    <OptionToken Id="token-execute-worker-control-pipe-connect-timeout-seconds" OptionId="opt-execute-worker-control-pipe-connect-timeout-seconds">
+      <Token>--control-pipe-connect-timeout-seconds</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-execution-connection-env" OptionId="opt-execute-sqlserver-execution-connection-env">
-      <Token>--execution-connection-env</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-target-connection-env" OptionId="opt-execute-sqlserver-target-connection-env">
-      <Token>--target-connection-env</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-target" OptionId="opt-execute-sqlserver-target">
-      <Token>--target</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-batch-size" OptionId="opt-execute-sqlserver-batch-size">
-      <Token>--batch-size</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-timeout-seconds" OptionId="opt-execute-sqlserver-timeout-seconds">
-      <Token>--timeout-seconds</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-target-data-type-system" OptionId="opt-execute-sqlserver-target-data-type-system">
-      <Token>--target-data-type-system</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-data-type-conversion-workspace" OptionId="opt-execute-sqlserver-data-type-conversion-workspace">
+    <OptionToken Id="token-execute-worker-data-type-conversion-workspace" OptionId="opt-execute-worker-data-type-conversion-workspace">
       <Token>--data-type-conversion-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-pipeline-db-connection-env" OptionId="opt-execute-sqlserver-pipeline-db-connection-env">
+    <OptionToken Id="token-execute-worker-pipeline" OptionId="opt-execute-worker-pipeline">
+      <Token>--pipeline</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-worker-pipeline-db-connection-env" OptionId="opt-execute-worker-pipeline-db-connection-env">
       <Token>--pipeline-db-connection-env</Token>
     </OptionToken>
-    <OptionToken Id="token-create-pipeline-db-pipeline-db-connection-env" OptionId="opt-create-pipeline-db-pipeline-db-connection-env">
-      <Token>--pipeline-db-connection-env</Token>
+    <OptionToken Id="token-execute-worker-transform-workspace" OptionId="opt-execute-worker-transform-workspace">
+      <Token>--transform-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-create-pipeline-db-pipeline-db-name" OptionId="opt-create-pipeline-db-pipeline-db-name">
-      <Token>--pipeline-db-name</Token>
+    <OptionToken Id="token-execute-worker-workspace" OptionId="opt-execute-worker-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-workspace" OptionId="opt-execute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-inspect-workspace" OptionId="opt-inspect-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-prune-pipeline-db-dry-run" OptionId="opt-prune-pipeline-db-dry-run">
+      <Token>--dry-run</Token>
     </OptionToken>
     <OptionToken Id="token-prune-pipeline-db-pipeline-db-connection-env" OptionId="opt-prune-pipeline-db-pipeline-db-connection-env">
       <Token>--pipeline-db-connection-env</Token>
     </OptionToken>
     <OptionToken Id="token-prune-pipeline-db-retention-days" OptionId="opt-prune-pipeline-db-retention-days">
       <Token>--retention-days</Token>
-    </OptionToken>
-    <OptionToken Id="token-prune-pipeline-db-dry-run" OptionId="opt-prune-pipeline-db-dry-run">
-      <Token>--dry-run</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-pipeline-workspace" OptionId="opt-add-pipeline-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-pipeline-name" OptionId="opt-add-pipeline-name">
-      <Token>--name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-pipeline-description" OptionId="opt-add-pipeline-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="token-inspect-workspace" OptionId="opt-inspect-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-executable-step-workspace" OptionId="opt-add-executable-step-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-executable-step-pipeline" OptionId="opt-add-executable-step-pipeline">
-      <Token>--pipeline</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-executable-step-executable" OptionId="opt-add-executable-step-executable">
-      <Token>--executable</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-executable-step-step-name" OptionId="opt-add-executable-step-step-name">
-      <Token>--step-name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-executable-step-arguments" OptionId="opt-add-executable-step-arguments">
-      <Token>--arguments</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-executable-step-working-directory" OptionId="opt-add-executable-step-working-directory">
-      <Token>--working-directory</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-executable-step-success-exit-code" OptionId="opt-add-executable-step-success-exit-code">
-      <Token>--success-exit-code</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-executable-step-timeout-seconds" OptionId="opt-add-executable-step-timeout-seconds">
-      <Token>--timeout-seconds</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-workspace" OptionId="opt-add-step-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-pipeline" OptionId="opt-add-step-pipeline">
-      <Token>--pipeline</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-script" OptionId="opt-add-step-script">
-      <Token>--script</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-transform-workspace" OptionId="opt-add-step-transform-workspace">
-      <Token>--transform-workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-binding-workspace" OptionId="opt-add-step-binding-workspace">
-      <Token>--binding-workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-execution-connection-env" OptionId="opt-add-step-execution-connection-env">
-      <Token>--execution-connection-env</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-step-name" OptionId="opt-add-step-step-name">
-      <Token>--step-name</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-binding" OptionId="opt-add-step-binding">
-      <Token>--binding</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-target-connection-env" OptionId="opt-add-step-target-connection-env">
-      <Token>--target-connection-env</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-target" OptionId="opt-add-step-target">
-      <Token>--target</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-target-write" OptionId="opt-add-step-target-write">
-      <Token>--target-write</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-batch-size" OptionId="opt-add-step-batch-size">
-      <Token>--batch-size</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-timeout-seconds" OptionId="opt-add-step-timeout-seconds">
-      <Token>--timeout-seconds</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-step-target-data-type-system" OptionId="opt-add-step-target-data-type-system">
-      <Token>--target-data-type-system</Token>
     </OptionToken>
   </OptionTokenList>
 </MetaCli>

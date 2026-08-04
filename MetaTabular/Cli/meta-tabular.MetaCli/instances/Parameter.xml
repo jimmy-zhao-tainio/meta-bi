@@ -1,119 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-new-workspace-path" ValueShapeId="shape-path">
-      <IsRequired>true</IsRequired>
-      <Name>path</Name>
-    </Parameter>
-    <Parameter Id="param-deploy-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
+    <Parameter Id="param-add-tabular-calculation-group-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
       <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-deploy-server" ValueShapeId="shape-text">
-      <Description>Analysis Services tabular server.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>server</Name>
-    </Parameter>
-    <Parameter Id="param-deploy-database-name" ValueShapeId="shape-text">
-      <Description>Target database name. Defaults to the modeled database name.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>database-name</Name>
-    </Parameter>
-    <Parameter Id="param-deploy-drop-existing" ValueShapeId="shape-flag">
-      <Description>Drop an existing target database before create/deploy.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>drop-existing</Name>
-    </Parameter>
-    <Parameter Id="param-deploy-no-process" ValueShapeId="shape-flag">
-      <Description>Deploy metadata only and skip full processing.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>no-process</Name>
-    </Parameter>
-    <Parameter Id="param-process-server" ValueShapeId="shape-text">
-      <Description>Analysis Services tabular server.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>server</Name>
-    </Parameter>
-    <Parameter Id="param-process-database-name" ValueShapeId="shape-text">
-      <Description>Database name to process.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>database-name</Name>
-    </Parameter>
-    <Parameter Id="param-process-refresh-type" ValueShapeId="shape-text">
-      <Description>Refresh type. Defaults to Full. Common values: Full, DataOnly, Calculate, ClearValues, Automatic, Add, Defragment.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>refresh-type</Name>
-    </Parameter>
-    <Parameter Id="param-process-table" ValueShapeId="shape-text">
-      <Description>Table name or id to process instead of the whole database.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>table</Name>
-    </Parameter>
-    <Parameter Id="param-process-partition" ValueShapeId="shape-text">
-      <Description>Partition name or id to process. Requires --table.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>partition</Name>
-    </Parameter>
-    <Parameter Id="param-restore-source-server" ValueShapeId="shape-text">
-      <Description>Source Analysis Services server containing the processed database.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-server</Name>
-    </Parameter>
-    <Parameter Id="param-restore-source-database-name" ValueShapeId="shape-text">
-      <Description>Source processed database name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>source-database-name</Name>
-    </Parameter>
-    <Parameter Id="param-restore-target-server" ValueShapeId="shape-text">
-      <Description>Target Analysis Services server.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>target-server</Name>
-    </Parameter>
-    <Parameter Id="param-restore-target-database-name" ValueShapeId="shape-text">
-      <Description>Target database name to restore.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>target-database-name</Name>
-    </Parameter>
-    <Parameter Id="param-restore-backup-file" ValueShapeId="shape-path">
-      <Description>Backup file path accessible to the Analysis Services service accounts.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>backup-file</Name>
-    </Parameter>
-    <Parameter Id="param-restore-drop-existing" ValueShapeId="shape-flag">
-      <Description>Drop an existing target database before restore.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>drop-existing</Name>
-    </Parameter>
-    <Parameter Id="param-restore-overwrite-backup-file" ValueShapeId="shape-flag">
-      <Description>Overwrite an existing backup file.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>overwrite-backup-file</Name>
-    </Parameter>
-    <Parameter Id="param-drop-server" ValueShapeId="shape-text">
-      <Description>Analysis Services tabular server.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>server</Name>
-    </Parameter>
-    <Parameter Id="param-drop-database-name" ValueShapeId="shape-text">
-      <Description>Database name to drop.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>database-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-calculation-group-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
+      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-calculation-group-id" ValueShapeId="shape-text">
       <Description>TabularCalculationGroup row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-calculation-group-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-calculation-group-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
@@ -130,15 +26,10 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-model</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-calculation-item-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-calculation-group-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-calculation-item-id" ValueShapeId="shape-text">
-      <Description>TabularCalculationItem row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-calculation-item-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
@@ -155,6 +46,11 @@
       <IsRequired>false</IsRequired>
       <Name>format-string-expression</Name>
     </Parameter>
+    <Parameter Id="param-add-tabular-calculation-item-id" ValueShapeId="shape-text">
+      <Description>TabularCalculationItem row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-tabular-calculation-item-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
       <IsRequired>true</IsRequired>
@@ -170,15 +66,10 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-calculation-group</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-column-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-calculation-item-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-column-id" ValueShapeId="shape-text">
-      <Description>TabularColumn row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-column-data-category" ValueShapeId="shape-text">
       <Description>DataCategory.</Description>
@@ -205,6 +96,11 @@
       <IsRequired>false</IsRequired>
       <Name>format-string</Name>
     </Parameter>
+    <Parameter Id="param-add-tabular-column-id" ValueShapeId="shape-text">
+      <Description>TabularColumn row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-tabular-column-is-hidden" ValueShapeId="shape-bool">
       <Description>IsHidden.</Description>
       <IsRequired>false</IsRequired>
@@ -230,26 +126,6 @@
       <IsRequired>false</IsRequired>
       <Name>ordinal</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-column-source-name" ValueShapeId="shape-text">
-      <Description>SourceName.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>source-name</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-column-summarize-by" ValueShapeId="shape-text">
-      <Description>SummarizeBy.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>summarize-by</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-column-tabular-table" ValueShapeId="shape-text">
-      <Description>TabularTable id for TabularTableId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>tabular-table</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-column-permission-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
     <Parameter Id="param-add-tabular-column-permission-id" ValueShapeId="shape-text">
       <Description>TabularColumnPermission row id.</Description>
       <IsRequired>true</IsRequired>
@@ -270,15 +146,25 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-security-role</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-column-translation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-column-permission-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-column-translation-id" ValueShapeId="shape-text">
-      <Description>TabularColumnTranslation row id.</Description>
+    <Parameter Id="param-add-tabular-column-source-name" ValueShapeId="shape-text">
+      <Description>SourceName.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>source-name</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-column-summarize-by" ValueShapeId="shape-text">
+      <Description>SummarizeBy.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>summarize-by</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-column-tabular-table" ValueShapeId="shape-text">
+      <Description>TabularTable id for TabularTableId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>tabular-table</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-column-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
@@ -290,6 +176,11 @@
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
+    <Parameter Id="param-add-tabular-column-translation-id" ValueShapeId="shape-text">
+      <Description>TabularColumnTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-tabular-column-translation-tabular-column" ValueShapeId="shape-text">
       <Description>TabularColumn id for TabularColumnId.</Description>
       <IsRequired>true</IsRequired>
@@ -300,7 +191,12 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-culture</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-culture-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-column-translation-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-column-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
@@ -320,15 +216,10 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-model</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-data-source-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-culture-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-data-source-id" ValueShapeId="shape-text">
-      <Description>TabularDataSource row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-data-source-connection-reference" ValueShapeId="shape-text">
       <Description>ConnectionReference.</Description>
@@ -339,6 +230,11 @@
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-data-source-id" ValueShapeId="shape-text">
+      <Description>TabularDataSource row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-data-source-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
@@ -355,15 +251,10 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-model</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-hierarchy-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-data-source-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-hierarchy-id" ValueShapeId="shape-text">
-      <Description>TabularHierarchy row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-hierarchy-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
@@ -375,25 +266,15 @@
       <IsRequired>false</IsRequired>
       <Name>display-folder</Name>
     </Parameter>
+    <Parameter Id="param-add-tabular-hierarchy-id" ValueShapeId="shape-text">
+      <Description>TabularHierarchy row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-tabular-hierarchy-is-hidden" ValueShapeId="shape-bool">
       <Description>IsHidden.</Description>
       <IsRequired>false</IsRequired>
       <Name>is-hidden</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-hierarchy-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-hierarchy-tabular-table" ValueShapeId="shape-text">
-      <Description>TabularTable id for TabularTableId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>tabular-table</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-hierarchy-level-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-hierarchy-level-id" ValueShapeId="shape-text">
       <Description>TabularHierarchyLevel row id.</Description>
@@ -420,15 +301,20 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-hierarchy</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-hierarchy-translation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-hierarchy-level-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-hierarchy-translation-id" ValueShapeId="shape-text">
-      <Description>TabularHierarchyTranslation row id.</Description>
+    <Parameter Id="param-add-tabular-hierarchy-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-hierarchy-tabular-table" ValueShapeId="shape-text">
+      <Description>TabularTable id for TabularTableId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>tabular-table</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-hierarchy-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
@@ -440,6 +326,11 @@
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
+    <Parameter Id="param-add-tabular-hierarchy-translation-id" ValueShapeId="shape-text">
+      <Description>TabularHierarchyTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-tabular-hierarchy-translation-tabular-culture" ValueShapeId="shape-text">
       <Description>TabularCulture id for TabularCultureId.</Description>
       <IsRequired>true</IsRequired>
@@ -450,20 +341,30 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-hierarchy</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-kpi-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-hierarchy-translation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-kpi-id" ValueShapeId="shape-text">
-      <Description>TabularKpi row id.</Description>
+    <Parameter Id="param-add-tabular-hierarchy-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-kpi-base-measure" ValueShapeId="shape-text">
+      <Description>TabularMeasure id for BaseMeasureId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>base-measure</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-kpi-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-kpi-id" ValueShapeId="shape-text">
+      <Description>TabularKpi row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-kpi-status-expression" ValueShapeId="shape-text">
       <Description>StatusExpression.</Description>
@@ -480,40 +381,20 @@
       <IsRequired>false</IsRequired>
       <Name>target-expression</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-kpi-trend-expression" ValueShapeId="shape-text">
-      <Description>TrendExpression.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>trend-expression</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-kpi-trend-graphic" ValueShapeId="shape-text">
-      <Description>TrendGraphic.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>trend-graphic</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-kpi-base-measure" ValueShapeId="shape-text">
-      <Description>TabularMeasure id for BaseMeasureId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>base-measure</Name>
-    </Parameter>
     <Parameter Id="param-add-tabular-kpi-target-measure" ValueShapeId="shape-text">
       <Description>TabularMeasure id for TargetMeasureId.</Description>
       <IsRequired>false</IsRequired>
       <Name>target-measure</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-kpi-translation-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
+    <Parameter Id="param-add-tabular-kpi-translation-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
       <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
+      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-kpi-translation-id" ValueShapeId="shape-text">
       <Description>TabularKpiTranslation row id.</Description>
       <IsRequired>true</IsRequired>
       <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-kpi-translation-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-kpi-translation-tabular-culture" ValueShapeId="shape-text">
       <Description>TabularCulture id for TabularCultureId.</Description>
@@ -525,15 +406,25 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-kpi</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-measure-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-kpi-translation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-measure-id" ValueShapeId="shape-text">
-      <Description>TabularMeasure row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
+    <Parameter Id="param-add-tabular-kpi-trend-expression" ValueShapeId="shape-text">
+      <Description>TrendExpression.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>trend-expression</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-kpi-trend-graphic" ValueShapeId="shape-text">
+      <Description>TrendGraphic.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>trend-graphic</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-kpi-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-measure-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
@@ -555,6 +446,11 @@
       <IsRequired>false</IsRequired>
       <Name>format-string</Name>
     </Parameter>
+    <Parameter Id="param-add-tabular-measure-id" ValueShapeId="shape-text">
+      <Description>TabularMeasure row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-tabular-measure-is-hidden" ValueShapeId="shape-bool">
       <Description>IsHidden.</Description>
       <IsRequired>false</IsRequired>
@@ -570,16 +466,6 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-table</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-measure-translation-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-measure-translation-id" ValueShapeId="shape-text">
-      <Description>TabularMeasureTranslation row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
     <Parameter Id="param-add-tabular-measure-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
       <IsRequired>false</IsRequired>
@@ -589,6 +475,11 @@
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-measure-translation-id" ValueShapeId="shape-text">
+      <Description>TabularMeasureTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-measure-translation-tabular-culture" ValueShapeId="shape-text">
       <Description>TabularCulture id for TabularCultureId.</Description>
@@ -600,15 +491,15 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-measure</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-model-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-measure-translation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-model-id" ValueShapeId="shape-text">
-      <Description>TabularModel row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
+    <Parameter Id="param-add-tabular-measure-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-model-collation" ValueShapeId="shape-text">
       <Description>Collation.</Description>
@@ -635,20 +526,20 @@
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
+    <Parameter Id="param-add-tabular-model-id" ValueShapeId="shape-text">
+      <Description>TabularModel row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-tabular-model-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-partition-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-model-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-partition-id" ValueShapeId="shape-text">
-      <Description>TabularPartition row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-partition-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
@@ -659,6 +550,11 @@
       <Description>Expression.</Description>
       <IsRequired>false</IsRequired>
       <Name>expression</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-partition-id" ValueShapeId="shape-text">
+      <Description>TabularPartition row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-partition-mode" ValueShapeId="shape-text">
       <Description>Mode.</Description>
@@ -685,32 +581,7 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-table</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-perspective-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-perspective-id" ValueShapeId="shape-text">
-      <Description>TabularPerspective row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-perspective-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-perspective-name" ValueShapeId="shape-text">
-      <Description>Name.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-perspective-tabular-model" ValueShapeId="shape-text">
-      <Description>TabularModel id for TabularModelId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>tabular-model</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-perspective-calculation-group-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-partition-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
@@ -730,7 +601,7 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-perspective-column-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-perspective-calculation-group-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
@@ -750,10 +621,15 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-perspective-hierarchy-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-perspective-column-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-perspective-description" ValueShapeId="shape-text">
+      <Description>Description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-perspective-hierarchy-id" ValueShapeId="shape-text">
       <Description>TabularPerspectiveHierarchy row id.</Description>
@@ -770,10 +646,15 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-perspective-kpi-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-perspective-hierarchy-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-perspective-id" ValueShapeId="shape-text">
+      <Description>TabularPerspective row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-perspective-kpi-id" ValueShapeId="shape-text">
       <Description>TabularPerspectiveKpi row id.</Description>
@@ -790,7 +671,7 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-perspective-measure-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-perspective-kpi-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
@@ -810,10 +691,15 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-perspective-table-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-perspective-measure-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-perspective-name" ValueShapeId="shape-text">
+      <Description>Name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-perspective-table-id" ValueShapeId="shape-text">
       <Description>TabularPerspectiveTable row id.</Description>
@@ -830,15 +716,15 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-table</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-perspective-translation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-perspective-table-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-perspective-translation-id" ValueShapeId="shape-text">
-      <Description>TabularPerspectiveTranslation row id.</Description>
+    <Parameter Id="param-add-tabular-perspective-tabular-model" ValueShapeId="shape-text">
+      <Description>TabularModel id for TabularModelId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>tabular-model</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-perspective-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
@@ -850,6 +736,11 @@
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
+    <Parameter Id="param-add-tabular-perspective-translation-id" ValueShapeId="shape-text">
+      <Description>TabularPerspectiveTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-tabular-perspective-translation-tabular-culture" ValueShapeId="shape-text">
       <Description>TabularCulture id for TabularCultureId.</Description>
       <IsRequired>true</IsRequired>
@@ -860,15 +751,15 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-perspective</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-relationship-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-perspective-translation-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-relationship-id" ValueShapeId="shape-text">
-      <Description>TabularRelationship row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
+    <Parameter Id="param-add-tabular-perspective-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-relationship-cardinality" ValueShapeId="shape-text">
       <Description>Cardinality.</Description>
@@ -879,6 +770,21 @@
       <Description>CrossFilterDirection.</Description>
       <IsRequired>false</IsRequired>
       <Name>cross-filter-direction</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-relationship-from-column" ValueShapeId="shape-text">
+      <Description>TabularColumn id for FromColumnId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>from-column</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-relationship-from-table" ValueShapeId="shape-text">
+      <Description>TabularTable id for FromTableId.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>from-table</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-relationship-id" ValueShapeId="shape-text">
+      <Description>TabularRelationship row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-relationship-is-active" ValueShapeId="shape-bool">
       <Description>IsActive.</Description>
@@ -895,16 +801,6 @@
       <IsRequired>true</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-relationship-from-column" ValueShapeId="shape-text">
-      <Description>TabularColumn id for FromColumnId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>from-column</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-relationship-from-table" ValueShapeId="shape-text">
-      <Description>TabularTable id for FromTableId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>from-table</Name>
-    </Parameter>
     <Parameter Id="param-add-tabular-relationship-to-column" ValueShapeId="shape-text">
       <Description>TabularColumn id for ToColumnId.</Description>
       <IsRequired>true</IsRequired>
@@ -915,20 +811,20 @@
       <IsRequired>true</IsRequired>
       <Name>to-table</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-role-filter-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-relationship-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-role-filter-id" ValueShapeId="shape-text">
-      <Description>TabularRoleFilter row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-role-filter-expression" ValueShapeId="shape-text">
       <Description>Expression.</Description>
       <IsRequired>true</IsRequired>
       <Name>expression</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-role-filter-id" ValueShapeId="shape-text">
+      <Description>TabularRoleFilter row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-role-filter-tabular-security-role" ValueShapeId="shape-text">
       <Description>TabularSecurityRole id for TabularSecurityRoleId.</Description>
@@ -940,7 +836,7 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-table</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-role-member-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-role-filter-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
@@ -965,20 +861,20 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-security-role</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-security-role-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-role-member-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-security-role-id" ValueShapeId="shape-text">
-      <Description>TabularSecurityRole row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-security-role-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <IsRequired>false</IsRequired>
       <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-security-role-id" ValueShapeId="shape-text">
+      <Description>TabularSecurityRole row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-security-role-name" ValueShapeId="shape-text">
       <Description>Name.</Description>
@@ -995,7 +891,7 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-model</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-sort-by-column-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-security-role-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
@@ -1015,15 +911,10 @@
       <IsRequired>true</IsRequired>
       <Name>source-column</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-table-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-sort-by-column-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-table-id" ValueShapeId="shape-text">
-      <Description>TabularTable row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-table-data-category" ValueShapeId="shape-text">
       <Description>DataCategory.</Description>
@@ -1035,6 +926,11 @@
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
+    <Parameter Id="param-add-tabular-table-id" ValueShapeId="shape-text">
+      <Description>TabularTable row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-tabular-table-is-hidden" ValueShapeId="shape-bool">
       <Description>IsHidden.</Description>
       <IsRequired>false</IsRequired>
@@ -1044,16 +940,6 @@
       <Description>Name.</Description>
       <IsRequired>true</IsRequired>
       <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-table-tabular-model" ValueShapeId="shape-text">
-      <Description>TabularModel id for TabularModelId.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>tabular-model</Name>
-    </Parameter>
-    <Parameter Id="param-add-tabular-table-permission-workspace" ValueShapeId="shape-path">
-      <Description>Workspace path. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-table-permission-id" ValueShapeId="shape-text">
       <Description>TabularTablePermission row id.</Description>
@@ -1075,15 +961,15 @@
       <IsRequired>true</IsRequired>
       <Name>tabular-table</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-table-translation-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-add-tabular-table-permission-workspace" ValueShapeId="shape-path">
       <Description>Workspace path. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-add-tabular-table-translation-id" ValueShapeId="shape-text">
-      <Description>TabularTableTranslation row id.</Description>
+    <Parameter Id="param-add-tabular-table-tabular-model" ValueShapeId="shape-text">
+      <Description>TabularModel id for TabularModelId.</Description>
       <IsRequired>true</IsRequired>
-      <Name>id</Name>
+      <Name>tabular-model</Name>
     </Parameter>
     <Parameter Id="param-add-tabular-table-translation-caption" ValueShapeId="shape-text">
       <Description>Caption.</Description>
@@ -1095,6 +981,11 @@
       <IsRequired>false</IsRequired>
       <Name>description</Name>
     </Parameter>
+    <Parameter Id="param-add-tabular-table-translation-id" ValueShapeId="shape-text">
+      <Description>TabularTableTranslation row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
     <Parameter Id="param-add-tabular-table-translation-tabular-culture" ValueShapeId="shape-text">
       <Description>TabularCulture id for TabularCultureId.</Description>
       <IsRequired>true</IsRequired>
@@ -1104,6 +995,127 @@
       <Description>TabularTable id for TabularTableId.</Description>
       <IsRequired>true</IsRequired>
       <Name>tabular-table</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-table-translation-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-tabular-table-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-create-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL Server connection string.</Description>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-create-csharp" ValueShapeId="shape-path">
+      <Description>Create a C# workspace at this directory.</Description>
+      <Name>csharp</Name>
+    </Parameter>
+    <Parameter Id="param-create-sql" ValueShapeId="shape-path">
+      <Description>Create a SQL workspace described by this directory.</Description>
+      <Name>sql</Name>
+    </Parameter>
+    <Parameter Id="param-create-xml" ValueShapeId="shape-path">
+      <Description>Create an XML workspace at this directory.</Description>
+      <Name>xml</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-database-name" ValueShapeId="shape-text">
+      <Description>Target database name. Defaults to the modeled database name.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>database-name</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-drop-existing" ValueShapeId="shape-flag">
+      <Description>Drop an existing target database before create/deploy.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>drop-existing</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-no-process" ValueShapeId="shape-flag">
+      <Description>Deploy metadata only and skip full processing.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>no-process</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-server" ValueShapeId="shape-text">
+      <Description>Analysis Services tabular server.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>server</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-drop-database-name" ValueShapeId="shape-text">
+      <Description>Database name to drop.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>database-name</Name>
+    </Parameter>
+    <Parameter Id="param-drop-server" ValueShapeId="shape-text">
+      <Description>Analysis Services tabular server.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>server</Name>
+    </Parameter>
+    <Parameter Id="param-process-database-name" ValueShapeId="shape-text">
+      <Description>Database name to process.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>database-name</Name>
+    </Parameter>
+    <Parameter Id="param-process-partition" ValueShapeId="shape-text">
+      <Description>Partition name or id to process. Requires --table.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>partition</Name>
+    </Parameter>
+    <Parameter Id="param-process-refresh-type" ValueShapeId="shape-text">
+      <Description>Refresh type. Defaults to Full. Common values: Full, DataOnly, Calculate, ClearValues, Automatic, Add, Defragment.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>refresh-type</Name>
+    </Parameter>
+    <Parameter Id="param-process-server" ValueShapeId="shape-text">
+      <Description>Analysis Services tabular server.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>server</Name>
+    </Parameter>
+    <Parameter Id="param-process-table" ValueShapeId="shape-text">
+      <Description>Table name or id to process instead of the whole database.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>table</Name>
+    </Parameter>
+    <Parameter Id="param-restore-backup-file" ValueShapeId="shape-path">
+      <Description>Backup file path accessible to the Analysis Services service accounts.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>backup-file</Name>
+    </Parameter>
+    <Parameter Id="param-restore-drop-existing" ValueShapeId="shape-flag">
+      <Description>Drop an existing target database before restore.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>drop-existing</Name>
+    </Parameter>
+    <Parameter Id="param-restore-overwrite-backup-file" ValueShapeId="shape-flag">
+      <Description>Overwrite an existing backup file.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>overwrite-backup-file</Name>
+    </Parameter>
+    <Parameter Id="param-restore-source-database-name" ValueShapeId="shape-text">
+      <Description>Source processed database name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-database-name</Name>
+    </Parameter>
+    <Parameter Id="param-restore-source-server" ValueShapeId="shape-text">
+      <Description>Source Analysis Services server containing the processed database.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-server</Name>
+    </Parameter>
+    <Parameter Id="param-restore-target-database-name" ValueShapeId="shape-text">
+      <Description>Target database name to restore.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>target-database-name</Name>
+    </Parameter>
+    <Parameter Id="param-restore-target-server" ValueShapeId="shape-text">
+      <Description>Target Analysis Services server.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>target-server</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

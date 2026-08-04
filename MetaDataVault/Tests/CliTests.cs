@@ -15,7 +15,7 @@ public sealed partial class CliTests
 
         try
         {
-            var createResult = RunBusinessCli($"new-workspace \"{workspacePath}\"");
+            var createResult = RunBusinessCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
@@ -123,7 +123,7 @@ public sealed partial class CliTests
 
         try
         {
-            var createResult = RunBusinessCli($"new-workspace \"{workspacePath}\"");
+            var createResult = RunBusinessCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
@@ -146,7 +146,7 @@ public sealed partial class CliTests
 
         try
         {
-            var createResult = RunBusinessCli($"new-workspace \"{workspacePath}\"");
+            var createResult = RunBusinessCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
@@ -172,7 +172,7 @@ public sealed partial class CliTests
 
         try
         {
-            Assert.Equal(0, RunBusinessCli($"new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"create --xml \"{workspacePath}\"").ExitCode);
 
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
             RunBusinessAdd(workspacePath, "add-hub --id Order --name Order");
@@ -199,7 +199,7 @@ public sealed partial class CliTests
 
         try
         {
-            Assert.Equal(0, RunBusinessCli($"new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"create --xml \"{workspacePath}\"").ExitCode);
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
             RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerCountry --hub Customer --name CountryCode --data-type-id meta:type:String");
 
@@ -222,7 +222,7 @@ public sealed partial class CliTests
 
         try
         {
-            Assert.Equal(0, RunBusinessCli($"new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"create --xml \"{workspacePath}\"").ExitCode);
 
             RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
             RunBusinessAdd(workspacePath, "add-hub --id Order --name Order");
@@ -263,7 +263,7 @@ public sealed partial class CliTests
 
         try
         {
-            Assert.Equal(0, RunBusinessCli($"new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"create --xml \"{workspacePath}\"").ExitCode);
 
             var result = RunBusinessCli("add-hub --id Customer --name Customer", workspacePath);
 
@@ -289,7 +289,7 @@ public sealed partial class CliTests
 
         try
         {
-            var createResult = RunRawCli($"new-workspace \"{workspacePath}\"");
+            var createResult = RunRawCli($"create --xml \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
             RunRawAdd(workspacePath, "add-field --id CustomerIdField --name CustomerId --data-type-id sqlserver:type:nvarchar");
@@ -333,7 +333,7 @@ public sealed partial class CliTests
 
         try
         {
-            Assert.Equal(0, RunRawCli($"new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunRawCli($"create --xml \"{workspacePath}\"").ExitCode);
 
             RunRawAdd(workspacePath, "add-field --id CustomerIdField --name CustomerId --data-type-id sqlserver:type:nvarchar");
             RunRawAdd(workspacePath, "add-field --id CustomerNameField --name CustomerName --data-type-id sqlserver:type:nvarchar");

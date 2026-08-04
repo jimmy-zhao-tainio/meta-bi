@@ -17,14 +17,16 @@
       <Name>remove-sql-diff</Name>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-sql-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-workspace">
-      <Arguments>/c if exist "{workspace:sql-roundtrip.path}\*" rmdir /s /q "{workspace:sql-roundtrip.path}"</Arguments>
+      <Arguments>/c if exist "{workspace:sql-roundtrip.location}\*" rmdir /s /q "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-sql-roundtrip-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-sql-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-diff">
-      <Arguments>/c if exist "{workspace:sql.path}\*" rmdir /s /q "{workspace:sql.path}"</Arguments>
+      <Arguments>/c if exist "{workspace:sql.location}\*" rmdir /s /q "{workspace:sql.location}"</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-sql-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-transform-diff" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-roundtrip-workspace">
       <Arguments>/c if exist "{mesh.root}\MetaTransformScriptReferenceCorpusRoundTripWorkspace.instance-diff\*" rmdir /s /q "{mesh.root}\MetaTransformScriptReferenceCorpusRoundTripWorkspace.instance-diff"</Arguments>
@@ -32,222 +34,265 @@
       <Name>remove-transform-diff</Name>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-transform-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
-      <Arguments>/c if exist "{workspace:transform-roundtrip.path}\*" rmdir /s /q "{workspace:transform-roundtrip.path}"</Arguments>
+      <Arguments>/c if exist "{workspace:transform-roundtrip.location}\*" rmdir /s /q "{workspace:transform-roundtrip.location}"</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-transform-roundtrip-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup">
-      <Arguments>/c if exist "{workspace:transform.path}\*" rmdir /s /q "{workspace:transform.path}"</Arguments>
+      <Arguments>/c if exist "{workspace:transform.location}\*" rmdir /s /q "{workspace:transform.location}"</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-transform-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:convert-roundtrip-transform-to-sql" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:convert-transform-to-sql">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.path}" --database-name ReferenceCorpusDb --out "{workspace:sql-roundtrip.path}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.location}" --database-name ReferenceCorpusDb --out "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-roundtrip-transform-to-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:convert-transform-to-sql" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:record-transform-source-path-diff">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform.path}" --database-name ReferenceCorpusDb --out "{workspace:sql.path}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform.location}" --database-name ReferenceCorpusDb --out "{workspace:sql.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-transform-to-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:diff-sql-workspaces" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:convert-roundtrip-transform-to-sql">
-      <Arguments>instance diff "{workspace:sql.path}" "{workspace:sql-roundtrip.path}"</Arguments>
+      <Arguments>instance diff "{workspace:sql.location}" "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>meta.exe</Executable>
       <Name>diff-sql-workspaces</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:export-roundtripped-views-file" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:export-roundtripped-views-folder">
-      <Arguments>to sql-path --workspace "{workspace:transform.path}" --out RoundTrippedViews.sql</Arguments>
+      <Arguments>to sql-path --workspace "{workspace:transform.location}" --out RoundTrippedViews.sql</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>export-roundtripped-views-file</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:export-roundtripped-views-folder" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-view-column-list">
-      <Arguments>to sql-path --workspace "{workspace:transform.path}" --out RoundTrippedViews</Arguments>
+      <Arguments>to sql-path --workspace "{workspace:transform.location}" --out RoundTrippedViews</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>export-roundtripped-views-folder</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-apply-sources" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-join-variants">
-      <Arguments>from sql-file --path SourceViews\004_apply_sources\view.sql --target dbo.v_apply_sources --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\004_apply_sources\view.sql --target dbo.v_apply_sources --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-apply-sources</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-basic" OperationId="operation:round-trip-reference-corpus">
-      <Arguments>from sql-file --path SourceViews\001_basic_select\view.sql --target dbo.v_basic --new-workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\001_basic_select\view.sql --target dbo.v_basic --new-workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-basic</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-builtin-table-functions" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-distinct-predicate">
-      <Arguments>from sql-file --path SourceViews\026_builtin_table_functions\view.sql --target dbo.v_builtin_table_functions --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\026_builtin_table_functions\view.sql --target dbo.v_builtin_table_functions --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-builtin-table-functions</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-cte" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-named-window">
-      <Arguments>from sql-file --path SourceViews\017_cte\view.sql --target dbo.v_cte --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\017_cte\view.sql --target dbo.v_cte --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-cte</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-distinct-predicate" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-query-parentheses">
-      <Arguments>from sql-file --path SourceViews\025_distinct_predicate\view.sql --target dbo.v_distinct_predicate --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\025_distinct_predicate\view.sql --target dbo.v_distinct_predicate --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-distinct-predicate</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-fulltext" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-builtin-table-functions">
-      <Arguments>from sql-file --path SourceViews\027_fulltext\view.sql --target dbo.v_fulltext --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\027_fulltext\view.sql --target dbo.v_fulltext --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-fulltext</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-fulltext-table" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-fulltext">
-      <Arguments>from sql-file --path SourceViews\028_fulltext_table\view.sql --target dbo.v_fulltext_table --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\028_fulltext_table\view.sql --target dbo.v_fulltext_table --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-fulltext-table</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-group-by-having" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-where-predicates">
-      <Arguments>from sql-file --path SourceViews\008_group_by_having\view.sql --target dbo.v_group_by_having --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\008_group_by_having\view.sql --target dbo.v_group_by_having --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-group-by-having</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-grouping-sets" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-group-by-having">
-      <Arguments>from sql-file --path SourceViews\009_grouping_sets\view.sql --target dbo.v_grouping_sets --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\009_grouping_sets\view.sql --target dbo.v_grouping_sets --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-grouping-sets</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-inline-values" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-xml-namespaces-and-methods">
-      <Arguments>from sql-file --path SourceViews\021_inline_values\view.sql --target dbo.v_inline_values --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\021_inline_values\view.sql --target dbo.v_inline_values --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-inline-values</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-join-parentheses" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-time-zone-extract">
-      <Arguments>from sql-file --path SourceViews\031_join_parentheses\view.sql --target dbo.v_join_parentheses --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\031_join_parentheses\view.sql --target dbo.v_join_parentheses --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-join-parentheses</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-join-variants" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-select-star">
-      <Arguments>from sql-file --path SourceViews\003_join_variants\view.sql --target dbo.v_join_variants --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\003_join_variants\view.sql --target dbo.v_join_variants --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-join-variants</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-literals-and-special-calls" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-fulltext-table">
-      <Arguments>from sql-file --path SourceViews\029_literals_and_special_calls\view.sql --target dbo.v_literals_and_special_calls --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\029_literals_and_special_calls\view.sql --target dbo.v_literals_and_special_calls --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-literals-and-special-calls</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-named-window" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-window-functions">
-      <Arguments>from sql-file --path SourceViews\016_named_window\view.sql --target dbo.v_named_window --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\016_named_window\view.sql --target dbo.v_named_window --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-named-window</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-offset-fetch" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-ordering-and-top">
-      <Arguments>from sql-file --path SourceViews\019_offset_fetch\view.sql --target dbo.v_offset_fetch --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\019_offset_fetch\view.sql --target dbo.v_offset_fetch --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-offset-fetch</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-ordering-and-top" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-cte">
-      <Arguments>from sql-file --path SourceViews\018_ordering_and_top\view.sql --target dbo.v_ordering_and_top --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\018_ordering_and_top\view.sql --target dbo.v_ordering_and_top --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-ordering-and-top</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-pivot" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-apply-sources">
-      <Arguments>from sql-file --path SourceViews\005_pivot\view.sql --target dbo.v_pivot --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\005_pivot\view.sql --target dbo.v_pivot --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-pivot</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-query-parentheses" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-table-sample">
-      <Arguments>from sql-file --path SourceViews\024_query_parentheses\view.sql --target dbo.v_query_parentheses --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\024_query_parentheses\view.sql --target dbo.v_query_parentheses --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-query-parentheses</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-rollup-cube" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-grouping-sets">
-      <Arguments>from sql-file --path SourceViews\010_rollup_cube\view.sql --target dbo.v_rollup_cube --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\010_rollup_cube\view.sql --target dbo.v_rollup_cube --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-rollup-cube</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-select-star" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-basic">
-      <Arguments>from sql-file --path SourceViews\002_select_star\view.sql --target dbo.v_select_star --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\002_select_star\view.sql --target dbo.v_select_star --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-select-star</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-sequence-and-globals" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-join-parentheses">
-      <Arguments>from sql-file --path SourceViews\036_sequence_and_globals\view.sql --target dbo.v_sequence_and_globals --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\036_sequence_and_globals\view.sql --target dbo.v_sequence_and_globals --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-sequence-and-globals</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-set-operations" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-subquery-predicates">
-      <Arguments>from sql-file --path SourceViews\013_set_operations\view.sql --target dbo.v_set_operations --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\013_set_operations\view.sql --target dbo.v_set_operations --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-set-operations</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-subqueries-and-correlation" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-rollup-cube">
-      <Arguments>from sql-file --path SourceViews\011_subqueries_and_correlation\view.sql --target dbo.v_subqueries_and_correlation --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\011_subqueries_and_correlation\view.sql --target dbo.v_subqueries_and_correlation --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-subqueries-and-correlation</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-subquery-predicates" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-subqueries-and-correlation">
-      <Arguments>from sql-file --path SourceViews\012_subquery_predicates\view.sql --target dbo.v_subquery_predicates --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\012_subquery_predicates\view.sql --target dbo.v_subquery_predicates --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-subquery-predicates</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-table-sample" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-inline-values">
-      <Arguments>from sql-file --path SourceViews\023_table_sample\view.sql --target dbo.v_table_sample --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\023_table_sample\view.sql --target dbo.v_table_sample --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-table-sample</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-time-zone-extract" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-literals-and-special-calls">
-      <Arguments>from sql-file --path SourceViews\030_time_zone_extract\view.sql --target dbo.v_time_zone_extract --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\030_time_zone_extract\view.sql --target dbo.v_time_zone_extract --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-time-zone-extract</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-unpivot" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-pivot">
-      <Arguments>from sql-file --path SourceViews\006_unpivot\view.sql --target dbo.v_unpivot --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\006_unpivot\view.sql --target dbo.v_unpivot --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-unpivot</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-value-expressions" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-set-operations">
-      <Arguments>from sql-file --path SourceViews\014_value_expressions\view.sql --target dbo.v_value_expressions --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\014_value_expressions\view.sql --target dbo.v_value_expressions --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-value-expressions</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-view-column-list" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-sequence-and-globals">
-      <Arguments>from sql-file --path SourceViews\040_view_column_list\view.sql --target dbo.v_view_column_list --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\040_view_column_list\view.sql --target dbo.v_view_column_list --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-view-column-list</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-where-predicates" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-unpivot">
-      <Arguments>from sql-file --path SourceViews\007_where_predicates\view.sql --target dbo.v_where_predicates --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\007_where_predicates\view.sql --target dbo.v_where_predicates --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-where-predicates</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-window-functions" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-value-expressions">
-      <Arguments>from sql-file --path SourceViews\015_window_functions\view.sql --target dbo.v_window_functions --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\015_window_functions\view.sql --target dbo.v_window_functions --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-window-functions</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-xml-namespaces-and-methods" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:import-offset-fetch">
-      <Arguments>from sql-file --path SourceViews\020_xml_namespaces_and_methods\view.sql --target dbo.v_xml_namespaces_and_methods --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\020_xml_namespaces_and_methods\view.sql --target dbo.v_xml_namespaces_and_methods --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-xml-namespaces-and-methods</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:print-sql-window-functions" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:export-roundtripped-views-file">
-      <Arguments>to sql-code --workspace "{workspace:transform.path}" --name dbo.v_window_functions</Arguments>
+      <Arguments>to sql-code --workspace "{workspace:transform.location}" --name dbo.v_window_functions</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>print-sql-window-functions</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:record-transform-source-path-diff" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:roundtrip-import-manifest">
-      <Arguments>instance diff "{workspace:transform.path}" "{workspace:transform-roundtrip.path}"</Arguments>
+      <Arguments>instance diff "{workspace:transform.location}" "{workspace:transform-roundtrip.location}"</Arguments>
       <Description>Record the expected transform representation and emitted-file provenance differences after re-importing SQL modules.</Description>
       <Executable>meta.exe</Executable>
       <ExpectedExitCode>1</ExpectedExitCode>
       <Name>record-transform-source-path-diff</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:roundtrip-import-manifest" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:print-sql-window-functions">
-      <Arguments>from sql-files --manifest RoundTrippedViews.manifest.tsv --new-workspace "{workspace:transform-roundtrip.path}"</Arguments>
+      <Arguments>from sql-files --manifest RoundTrippedViews.manifest.tsv --new-workspace "{workspace:transform-roundtrip.location}"</Arguments>
       <Description>Import emitted SQL modules through the semantic path manifest.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>roundtrip-import-manifest</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:roundtrip-print-sql-xml-namespaces-and-methods" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:diff-sql-workspaces">
-      <Arguments>to sql-code --workspace "{workspace:transform-roundtrip.path}" --name dbo.v_xml_namespaces_and_methods</Arguments>
+      <Arguments>to sql-code --workspace "{workspace:transform-roundtrip.location}" --name dbo.v_xml_namespaces_and_methods</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>roundtrip-print-sql-xml-namespaces-and-methods</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
   </OperationStepList>
 </MetaMesh>

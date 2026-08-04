@@ -50,39 +50,14 @@ internal sealed class MetaBusinessDataVaultCommandHandlers
             .OrderBy(static id => id, StringComparer.Ordinal)
             .ToArray();
 
-    public void RunNewWorkspace(MetaCliInvocation invocation)
+    public async Task RunCreate(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(invocation.Required("path"));
-        if (!targetValidation.Ok)
-        {
-            Fail(
-                targetValidation.ErrorMessage,
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                targetValidation.Details);
-        }
-
-        try
-        {
-            var result = authoringService.CreateWorkspace(targetValidation.FullPath);
-            presenter.WriteKeyValueBlock(
-                "MetaBusinessDataVault workspace created",
-                new[]
-                {
-                    ("Path", result.WorkspacePath),
-                    ("Model", result.ModelName),
-                    ("Rows", result.RowCount.ToString())
-                });
-        }
-        catch (Exception ex) when (ex is not MetaCliExitException and
-                                   (InvalidOperationException or ArgumentException or IOException or UnauthorizedAccessException))
-        {
-            Fail(
-                "Cannot create business DataVault workspace.",
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                [$"  {ex.Message}"]);
-        }
+        await workspaces.CreateAsync("output", authoringService.CreateWorkspace()).ConfigureAwait(false);
+        presenter.WriteKeyValueBlock(
+            "MetaBusinessDataVault workspace created",
+            [("Path", MetaCliWorkspace.OutputLocation(invocation)), ("Model", "MetaBusinessDataVault"), ("Rows", "0")]);
     }
 
     public void RunAddRecord(MetaCliInvocation invocation)

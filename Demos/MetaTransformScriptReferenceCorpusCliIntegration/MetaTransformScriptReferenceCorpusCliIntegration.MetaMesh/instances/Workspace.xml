@@ -5,25 +5,21 @@
       <Description>Generated MetaSql workspace converted from the reference transform workspace.</Description>
       <ModelName>MetaSql</ModelName>
       <Name>sql</Name>
-      <Path>MetaSqlReferenceCorpusWorkspace</Path>
     </Workspace>
     <Workspace Id="workspace:sql-roundtrip" MeshId="mesh:default">
       <Description>Generated MetaSql workspace converted from the round-tripped transform workspace.</Description>
       <ModelName>MetaSql</ModelName>
       <Name>sql-roundtrip</Name>
-      <Path>MetaSqlReferenceCorpusRoundTripWorkspace</Path>
     </Workspace>
     <Workspace Id="workspace:transform" MeshId="mesh:default">
       <Description>Generated transform script workspace imported from the reference SQL corpus.</Description>
       <ModelName>MetaTransformScript</ModelName>
       <Name>transform</Name>
-      <Path>MetaTransformScriptReferenceCorpusWorkspace</Path>
     </Workspace>
     <Workspace Id="workspace:transform-roundtrip" MeshId="mesh:default">
       <Description>Generated transform script workspace imported from emitted reference SQL.</Description>
       <ModelName>MetaTransformScript</ModelName>
       <Name>transform-roundtrip</Name>
-      <Path>MetaTransformScriptReferenceCorpusRoundTripWorkspace</Path>
     </Workspace>
   </WorkspaceList>
 </MetaMesh>

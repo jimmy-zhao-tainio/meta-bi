@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupMemberList>
+    <ParameterGroupMember Id="member-bind-target-first" ParameterGroupId="group-bind-target" ParameterId="param-bind-output-xml" />
+    <ParameterGroupMember Id="member-bind-target-output-csharp" ParameterGroupId="group-bind-target" ParameterId="param-bind-output-csharp" PreviousMemberId="member-bind-target-first" />
+    <ParameterGroupMember Id="member-bind-target-output-sql" ParameterGroupId="group-bind-target" ParameterId="param-bind-output-sql" PreviousMemberId="member-bind-target-output-csharp" />
+  </ParameterGroupMemberList>
+</MetaCli>

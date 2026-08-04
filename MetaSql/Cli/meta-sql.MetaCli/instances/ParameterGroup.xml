@@ -6,5 +6,10 @@
       <IsRequired>true</IsRequired>
       <Name>sql-input</Name>
     </ParameterGroup>
+    <ParameterGroup Id="group-extract-sqlserver-target" ExecutableCommandId="exec-extract-sqlserver">
+      <Description>Choose one workspace target.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>target</Name>
+    </ParameterGroup>
   </ParameterGroupList>
 </MetaCli>

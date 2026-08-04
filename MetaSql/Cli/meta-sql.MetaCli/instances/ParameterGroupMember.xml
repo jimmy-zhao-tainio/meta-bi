@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupMemberList>
-    <ParameterGroupMember Id="member-execute-file" ParameterGroupId="group-execute-sql-input" ParameterId="param-execute-file">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-execute-query" ParameterGroupId="group-execute-sql-input" ParameterId="param-execute-query" PreviousMemberId="member-execute-file">
-    </ParameterGroupMember>
+    <ParameterGroupMember Id="member-execute-file" ParameterGroupId="group-execute-sql-input" ParameterId="param-execute-file" />
+    <ParameterGroupMember Id="member-execute-query" ParameterGroupId="group-execute-sql-input" ParameterId="param-execute-query" PreviousMemberId="member-execute-file" />
+    <ParameterGroupMember Id="member-extract-sqlserver-target-first" ParameterGroupId="group-extract-sqlserver-target" ParameterId="param-extract-sqlserver-output-xml" />
+    <ParameterGroupMember Id="member-extract-sqlserver-target-output-csharp" ParameterGroupId="group-extract-sqlserver-target" ParameterId="param-extract-sqlserver-output-csharp" PreviousMemberId="member-extract-sqlserver-target-first" />
+    <ParameterGroupMember Id="member-extract-sqlserver-target-output-sql" ParameterGroupId="group-extract-sqlserver-target" ParameterId="param-extract-sqlserver-output-sql" PreviousMemberId="member-extract-sqlserver-target-output-csharp" />
   </ParameterGroupMemberList>
 </MetaCli>

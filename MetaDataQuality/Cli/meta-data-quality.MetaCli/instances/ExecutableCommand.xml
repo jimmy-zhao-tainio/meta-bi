@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandList>
-    <ExecutableCommand Id="exec-help" CommandId="cmd-help">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-from-transform-workspace" CommandId="cmd-from-transform-workspace">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-inspect" CommandId="cmd-inspect">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-promote" CommandId="cmd-promote">
-    </ExecutableCommand>
+    <ExecutableCommand Id="exec-from-transform-workspace" CommandId="cmd-from-transform-workspace" />
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
+    <ExecutableCommand Id="exec-inspect" CommandId="cmd-inspect" />
+    <ExecutableCommand Id="exec-promote" CommandId="cmd-promote" />
   </ExecutableCommandList>
 </MetaCli>

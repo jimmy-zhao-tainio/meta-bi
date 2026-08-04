@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-new-workspace-path" ValueShapeId="shape-path">
-      <Description>Directory where the sanctioned workspace will be created.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>path</Name>
-    </Parameter>
     <Parameter Id="param-check-workspace" ValueShapeId="shape-path">
       <Description>MetaDataTypeConversion workspace. Defaults to the current directory.</Description>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-resolve-workspace" ValueShapeId="shape-path">
-      <Description>MetaDataTypeConversion workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
+    <Parameter Id="param-create-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL Server connection string.</Description>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-create-csharp" ValueShapeId="shape-path">
+      <Description>Create a C# workspace at this directory.</Description>
+      <Name>csharp</Name>
+    </Parameter>
+    <Parameter Id="param-create-sql" ValueShapeId="shape-path">
+      <Description>Create a SQL workspace described by this directory.</Description>
+      <Name>sql</Name>
+    </Parameter>
+    <Parameter Id="param-create-xml" ValueShapeId="shape-path">
+      <Description>Create an XML workspace at this directory.</Description>
+      <Name>xml</Name>
     </Parameter>
     <Parameter Id="param-resolve-source-data-type" ValueShapeId="shape-text">
       <Description>Source data type id to resolve.</Description>
@@ -22,6 +29,10 @@
     <Parameter Id="param-resolve-target-data-type-system" ValueShapeId="shape-text">
       <Description>Target data type system when the source type has mappings to several target systems.</Description>
       <Name>target-data-type-system</Name>
+    </Parameter>
+    <Parameter Id="param-resolve-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataTypeConversion workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

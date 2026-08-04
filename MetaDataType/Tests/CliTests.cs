@@ -5,41 +5,43 @@ namespace MetaDataType.Tests;
 public sealed class CliTests
 {
     [Fact]
-    public void Help_ShowsNewWorkspaceCommand()
+    public void Help_ShowsCreateCommand()
     {
         var result = RunCli("help");
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-data-type <command> [options]", result.Output);
-        Assert.Contains("new-workspace", result.Output);
+        Assert.Contains("create", result.Output);
     }
 
     [Fact]
-    public void NewWorkspace_Help_ShowsRequiredOptions()
+    public void Create_Help_ShowsOutputOptions()
     {
-        var result = RunCli("new-workspace --help");
+        var result = RunCli("create --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("meta-data-type new-workspace <path>", result.Output);
-        Assert.Contains("Create a MetaDataType workspace.", result.Output);
+        Assert.Contains("meta-data-type create", result.Output);
+        Assert.Contains("--xml <path>", result.Output);
+        Assert.Contains("--csharp <path>", result.Output);
+        Assert.Contains("--sql <path>", result.Output);
     }
 
     [Fact]
-    public void NewWorkspace_FailsWhenPathMissing()
+    public void Create_FailsWhenOutputIsMissing()
     {
-        var result = RunCli("new-workspace");
+        var result = RunCli("create");
 
         Assert.Equal(2, result.ExitCode);
-        Assert.Contains("Required parameter 'path' was not provided.", result.Output);
+        Assert.Contains("Parameter group 'output' requires one of:", result.Output);
     }
 
     [Fact]
-    public void NewWorkspace_CreatesWorkspace()
+    public void Create_CreatesWorkspace()
     {
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaDataType-tests", Guid.NewGuid().ToString("N"));
         try
         {
-            var result = RunCli($"new-workspace \"{workspacePath}\"");
+            var result = RunCli($"create --xml \"{workspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("MetaDataType workspace created:", result.Output);

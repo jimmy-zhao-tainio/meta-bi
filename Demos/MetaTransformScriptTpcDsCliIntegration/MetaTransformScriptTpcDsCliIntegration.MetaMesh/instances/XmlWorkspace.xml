@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <XmlWorkspaceList>
+    <XmlWorkspace Id="workspace:binding" WorkspaceId="workspace:binding">
+      <Path>BindingWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:schema" WorkspaceId="workspace:schema">
+      <Path>SchemaWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:sql" WorkspaceId="workspace:sql">
+      <Path>MetaSqlWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:sql-roundtrip" WorkspaceId="workspace:sql-roundtrip">
+      <Path>MetaSqlRoundTripWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:transform" WorkspaceId="workspace:transform">
+      <Path>TransformWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:transform-roundtrip" WorkspaceId="workspace:transform-roundtrip">
+      <Path>TransformRoundTripWS</Path>
+    </XmlWorkspace>
+  </XmlWorkspaceList>
+</MetaMesh>

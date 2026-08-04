@@ -17,14 +17,9 @@ public sealed record TabularRelationshipAssignment(
     string TargetEntityName,
     string TargetRecordId);
 
-public sealed record TabularWorkspaceCreationResult(
-    string WorkspacePath,
-    string ModelName,
-    int RowCount);
-
 public interface ITabularAuthoringService
 {
-    TabularWorkspaceCreationResult CreateWorkspace(string workspacePath);
+    MetaTabularModel CreateWorkspace();
 
     MetaTabularModel AddRecord(TabularAuthoringRequest request);
 }
@@ -35,13 +30,7 @@ public sealed class TabularAuthoringService : ITabularAuthoringService
 
     private static readonly Type ModelType = typeof(MetaTabularModel);
 
-    public TabularWorkspaceCreationResult CreateWorkspace(string workspacePath)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-
-        var fullPath = MetaTabularTooling.CreateWorkspace(Path.GetFullPath(workspacePath));
-        return new TabularWorkspaceCreationResult(fullPath, ModelName, RowCount: 0);
-    }
+    public MetaTabularModel CreateWorkspace() => MetaTabularModel.CreateEmpty();
 
     public MetaTabularModel AddRecord(TabularAuthoringRequest request)
     {

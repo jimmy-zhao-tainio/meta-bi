@@ -35,9 +35,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:14</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>profile.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:599</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:600</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:600</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.12.KeyPart.1" JoinPatternId="JoinPattern.12">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:15</BooleanComparisonExpressionId>
@@ -63,9 +65,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:17</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>subcategoryProfile.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:605</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:606</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:606</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.14.KeyPart.1" JoinPatternId="JoinPattern.14">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:18</BooleanComparisonExpressionId>
@@ -91,9 +95,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:20</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>categoryProfile.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:611</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:612</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:612</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.16.KeyPart.1" JoinPatternId="JoinPattern.16">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:41</BooleanComparisonExpressionId>
@@ -119,9 +125,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:43</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>person.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:838</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:839</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:839</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.18.KeyPart.1" JoinPatternId="JoinPattern.18">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:45</BooleanComparisonExpressionId>
@@ -137,9 +145,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:46</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>profile.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:878</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:879</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:879</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.19.KeyPart.1" JoinPatternId="JoinPattern.19">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:47</BooleanComparisonExpressionId>
@@ -165,9 +175,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:36</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>personProfile.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:782</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:783</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:783</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.20.KeyPart.1" JoinPatternId="JoinPattern.20">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:48</BooleanComparisonExpressionId>
@@ -193,9 +205,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:75</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>lineDetail.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:1118</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:1119</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:1119</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.22.KeyPart.1" JoinPatternId="JoinPattern.22">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:76</BooleanComparisonExpressionId>
@@ -231,9 +245,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:79</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>orderDetail.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:1126</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:1127</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:1127</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.25.KeyPart.1" JoinPatternId="JoinPattern.25">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:80</BooleanComparisonExpressionId>
@@ -409,25 +425,31 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:39</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>storeProfile.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:788</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:789</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:789</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.40.KeyPart.1" JoinPatternId="JoinPattern.40">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:95</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>orderDate.CalendarDate</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:1158</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>1</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:1160</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:1160</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.41.KeyPart.1" JoinPatternId="JoinPattern.41">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:97</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>channel.ChannelCode</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:1161</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>1</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:1166</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:1166</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.42.KeyPart.1" JoinPatternId="JoinPattern.42">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:50</BooleanComparisonExpressionId>
@@ -443,9 +465,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:51</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>detail.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:954</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:955</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:955</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.43.KeyPart.1" JoinPatternId="JoinPattern.43">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:52</BooleanComparisonExpressionId>
@@ -611,17 +635,21 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:67</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>orderDate.CalendarDate</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:986</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>1</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:988</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:988</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.59.KeyPart.1" JoinPatternId="JoinPattern.59">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:68</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>dueDate.CalendarDate</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:989</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>1</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:991</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:991</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.6.KeyPart.1" JoinPatternId="JoinPattern.6">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:29</BooleanComparisonExpressionId>
@@ -637,25 +665,31 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:30</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>countryRegionProfile.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:691</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:692</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:692</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.60.KeyPart.1" JoinPatternId="JoinPattern.60">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:69</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>shipDate.CalendarDate</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:992</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>1</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:994</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:994</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.61.KeyPart.1" JoinPatternId="JoinPattern.61">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:71</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>channel.ChannelCode</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:995</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>1</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:1000</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:1000</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.62.KeyPart.1" JoinPatternId="JoinPattern.62">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:72</BooleanComparisonExpressionId>
@@ -681,9 +715,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:101</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>quotaDetail.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:1237</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:1238</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:1238</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.64.KeyPart.1" JoinPatternId="JoinPattern.64">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:102</BooleanComparisonExpressionId>
@@ -719,9 +755,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:105</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>quotaPeriod.CalendarDate</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:1245</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>1</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:1247</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:1247</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.7.KeyPart.1" JoinPatternId="JoinPattern.7">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:22</BooleanComparisonExpressionId>
@@ -737,9 +775,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:23</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>addressProfile.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:677</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:678</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:678</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.8.KeyPart.1" JoinPatternId="JoinPattern.8">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:24</BooleanComparisonExpressionId>
@@ -765,9 +805,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:26</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>stateProvinceProfile.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:683</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:684</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:684</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
     <JoinPatternKeyPart Id="JoinPattern.KeyPart.1" JoinPatternId="JoinPattern">
       <BooleanComparisonExpressionId>BooleanComparisonExpression:32</BooleanComparisonExpressionId>
@@ -783,9 +825,11 @@
       <BooleanComparisonExpressionId>BooleanComparisonExpression:33</BooleanComparisonExpressionId>
       <FirstExpressionDisplay>customerProfile.VersionRank</FirstExpressionDisplay>
       <FirstExpressionId>ScalarExpression:776</FirstExpressionId>
+      <FirstJoinInputColumnName></FirstJoinInputColumnName>
       <Ordinal>2</Ordinal>
       <SecondExpressionDisplay>ScalarExpression:777</SecondExpressionDisplay>
       <SecondExpressionId>ScalarExpression:777</SecondExpressionId>
+      <SecondJoinInputColumnName></SecondJoinInputColumnName>
     </JoinPatternKeyPart>
   </JoinPatternKeyPartList>
 </MetaDataQuality>

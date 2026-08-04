@@ -1,79 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-infer-pipeline-workspace" ValueShapeId="shape-path">
-      <Description>MetaPipeline workspace to analyze.</Description>
+    <Parameter Id="param-add-dependency-condition" ValueShapeId="shape-dependency-condition">
+      <Description>Whether the successor follows predecessor success or failure.</Description>
       <IsRequired>true</IsRequired>
-      <Name>pipeline-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-infer-new-workspace" ValueShapeId="shape-path">
-      <Description>Directory where the MetaOrchestration workspace will be created.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>new-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-infer-description" ValueShapeId="shape-text">
-      <Description>Description recorded on the orchestration plan.</Description>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-inspect-workspace" ValueShapeId="shape-path">
-      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-list-issues-workspace" ValueShapeId="shape-path">
-      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-explain-issue-workspace" ValueShapeId="shape-path">
-      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-dependency-workspace" ValueShapeId="shape-path">
-      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-order-workspace" ValueShapeId="shape-path">
-      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-allow-concurrent-append-workspace" ValueShapeId="shape-path">
-      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-set-lock-policy-workspace" ValueShapeId="shape-path">
-      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-refresh-run-plan-workspace" ValueShapeId="shape-path">
-      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-inspect-run-plan-workspace" ValueShapeId="shape-path">
-      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-workspace" ValueShapeId="shape-path">
-      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-explain-issue-issue" ValueShapeId="shape-text">
-      <Description>Issue id or unique issue code.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>issue</Name>
+      <Name>condition</Name>
     </Parameter>
     <Parameter Id="param-add-dependency-from-task" ValueShapeId="shape-text">
       <Description>Predecessor task selector.</Description>
       <IsRequired>true</IsRequired>
       <Name>from-task</Name>
-    </Parameter>
-    <Parameter Id="param-add-dependency-to-task" ValueShapeId="shape-text">
-      <Description>Successor task selector.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>to-task</Name>
-    </Parameter>
-    <Parameter Id="param-add-dependency-condition" ValueShapeId="shape-dependency-condition">
-      <Description>Whether the successor follows predecessor success or failure.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>condition</Name>
     </Parameter>
     <Parameter Id="param-add-dependency-object" ValueShapeId="shape-text">
       <Description>Object selector for object-scoped dependency resolution.</Description>
@@ -83,20 +19,24 @@
       <Description>Reason recorded with the policy row.</Description>
       <Name>reason</Name>
     </Parameter>
-    <Parameter Id="param-add-order-from-task" ValueShapeId="shape-text">
-      <Description>Predecessor task selector.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>from-task</Name>
-    </Parameter>
-    <Parameter Id="param-add-order-to-task" ValueShapeId="shape-text">
+    <Parameter Id="param-add-dependency-to-task" ValueShapeId="shape-text">
       <Description>Successor task selector.</Description>
       <IsRequired>true</IsRequired>
       <Name>to-task</Name>
+    </Parameter>
+    <Parameter Id="param-add-dependency-workspace" ValueShapeId="shape-path">
+      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-add-order-condition" ValueShapeId="shape-dependency-condition">
       <DefaultValue>success</DefaultValue>
       <Description>Dependency condition. Default: success.</Description>
       <Name>condition</Name>
+    </Parameter>
+    <Parameter Id="param-add-order-from-task" ValueShapeId="shape-text">
+      <Description>Predecessor task selector.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>from-task</Name>
     </Parameter>
     <Parameter Id="param-add-order-object" ValueShapeId="shape-text">
       <Description>Object selector for object-scoped dependency resolution.</Description>
@@ -105,6 +45,15 @@
     <Parameter Id="param-add-order-reason" ValueShapeId="shape-text">
       <Description>Reason recorded with the policy row.</Description>
       <Name>reason</Name>
+    </Parameter>
+    <Parameter Id="param-add-order-to-task" ValueShapeId="shape-text">
+      <Description>Successor task selector.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>to-task</Name>
+    </Parameter>
+    <Parameter Id="param-add-order-workspace" ValueShapeId="shape-path">
+      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-allow-concurrent-append-object" ValueShapeId="shape-text">
       <Description>Data object whose append writers can overlap.</Description>
@@ -115,55 +64,31 @@
       <Description>Reason recorded with the policy row.</Description>
       <Name>reason</Name>
     </Parameter>
-    <Parameter Id="param-set-lock-policy-object" ValueShapeId="shape-text">
-      <Description>Data object whose effect interaction is being resolved.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>object</Name>
-    </Parameter>
-    <Parameter Id="param-set-lock-policy-left-effect" ValueShapeId="shape-text">
-      <Description>Left write effect, such as Append, Replace, Mutation, KeyedUpsert, or ConditionalKeyedUpsert.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>left-effect</Name>
-    </Parameter>
-    <Parameter Id="param-set-lock-policy-right-effect" ValueShapeId="shape-text">
-      <Description>Right write effect, such as Append, Replace, Mutation, KeyedUpsert, or ConditionalKeyedUpsert.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>right-effect</Name>
-    </Parameter>
-    <Parameter Id="param-set-lock-policy-behavior" ValueShapeId="shape-lock-behavior">
-      <Description>Lock behavior for the object/effect pair.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>behavior</Name>
-    </Parameter>
-    <Parameter Id="param-set-lock-policy-reason" ValueShapeId="shape-text">
-      <Description>Reason recorded with the policy row.</Description>
-      <Name>reason</Name>
-    </Parameter>
-    <Parameter Id="param-execute-pipeline-workspace" ValueShapeId="shape-path">
-      <Description>MetaPipeline workspace used by child pipeline workers.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>pipeline-workspace</Name>
+    <Parameter Id="param-allow-concurrent-append-workspace" ValueShapeId="shape-path">
+      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-data-type-conversion-workspace" ValueShapeId="shape-path">
       <Description>Conversion policy workspace passed to child workers.</Description>
       <Name>data-type-conversion-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-execute-pipeline-db-connection-env" ValueShapeId="shape-text">
-      <Description>Operational DB connection environment variable passed to child workers.</Description>
-      <Name>pipeline-db-connection-env</Name>
     </Parameter>
     <Parameter Id="param-execute-max-degree-of-parallelism" ValueShapeId="shape-count">
       <DefaultValue>1</DefaultValue>
       <Description>Maximum concurrently granted pipeline tasks. Default: 1.</Description>
       <Name>max-degree-of-parallelism</Name>
     </Parameter>
+    <Parameter Id="param-execute-pipeline-db-connection-env" ValueShapeId="shape-text">
+      <Description>Operational DB connection environment variable passed to child workers.</Description>
+      <Name>pipeline-db-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-execute-pipeline-workspace" ValueShapeId="shape-path">
+      <Description>MetaPipeline workspace used by child pipeline workers.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pipeline-workspace</Name>
+    </Parameter>
     <Parameter Id="param-execute-run-artifacts-root" ValueShapeId="shape-path">
       <Description>Operational root for run journals, worker logs, and workspace execution leases.</Description>
       <Name>run-artifacts-root</Name>
-    </Parameter>
-    <Parameter Id="param-execute-worker-event-timeout-seconds" ValueShapeId="shape-count">
-      <Description>Timeout for silent worker protocol periods. 0 or omitted means no timeout.</Description>
-      <Name>worker-event-timeout-seconds</Name>
     </Parameter>
     <Parameter Id="param-execute-worker-activation-timeout-seconds" ValueShapeId="shape-count">
       <Description>Startup/activation timeout. Omitted follows --worker-event-timeout-seconds; 0 disables activation timeout.</Description>
@@ -172,6 +97,92 @@
     <Parameter Id="param-execute-worker-control-pipe-connect-timeout-seconds" ValueShapeId="shape-count">
       <Description>Timeout while waiting for child workers to connect to the named pipe. 0 or omitted means no timeout.</Description>
       <Name>worker-control-pipe-connect-timeout-seconds</Name>
+    </Parameter>
+    <Parameter Id="param-execute-worker-event-timeout-seconds" ValueShapeId="shape-count">
+      <Description>Timeout for silent worker protocol periods. 0 or omitted means no timeout.</Description>
+      <Name>worker-event-timeout-seconds</Name>
+    </Parameter>
+    <Parameter Id="param-execute-workspace" ValueShapeId="shape-path">
+      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-explain-issue-issue" ValueShapeId="shape-text">
+      <Description>Issue id or unique issue code.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>issue</Name>
+    </Parameter>
+    <Parameter Id="param-explain-issue-workspace" ValueShapeId="shape-path">
+      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-infer-description" ValueShapeId="shape-text">
+      <Description>Description recorded on the orchestration plan.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-infer-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-infer-output-csharp" ValueShapeId="shape-path">
+      <Description>Create the output on the csharp workspace surface.</Description>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-infer-output-sql" ValueShapeId="shape-path">
+      <Description>Create the output on the sql workspace surface.</Description>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-infer-output-xml" ValueShapeId="shape-path">
+      <Description>Create the output on the xml workspace surface.</Description>
+      <Name>output-xml</Name>
+    </Parameter>
+    <Parameter Id="param-infer-pipeline-workspace" ValueShapeId="shape-path">
+      <Description>MetaPipeline workspace to analyze.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pipeline-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-run-plan-workspace" ValueShapeId="shape-path">
+      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-workspace" ValueShapeId="shape-path">
+      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-list-issues-workspace" ValueShapeId="shape-path">
+      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-refresh-run-plan-workspace" ValueShapeId="shape-path">
+      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-set-lock-policy-behavior" ValueShapeId="shape-lock-behavior">
+      <Description>Lock behavior for the object/effect pair.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>behavior</Name>
+    </Parameter>
+    <Parameter Id="param-set-lock-policy-left-effect" ValueShapeId="shape-text">
+      <Description>Left write effect, such as Append, Replace, Mutation, KeyedUpsert, or ConditionalKeyedUpsert.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>left-effect</Name>
+    </Parameter>
+    <Parameter Id="param-set-lock-policy-object" ValueShapeId="shape-text">
+      <Description>Data object whose effect interaction is being resolved.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>object</Name>
+    </Parameter>
+    <Parameter Id="param-set-lock-policy-reason" ValueShapeId="shape-text">
+      <Description>Reason recorded with the policy row.</Description>
+      <Name>reason</Name>
+    </Parameter>
+    <Parameter Id="param-set-lock-policy-right-effect" ValueShapeId="shape-text">
+      <Description>Right write effect, such as Append, Replace, Mutation, KeyedUpsert, or ConditionalKeyedUpsert.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>right-effect</Name>
+    </Parameter>
+    <Parameter Id="param-set-lock-policy-workspace" ValueShapeId="shape-path">
+      <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

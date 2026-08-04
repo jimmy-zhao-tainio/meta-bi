@@ -43,39 +43,14 @@ internal sealed class MetaMultiDimensionalCommandHandlers
             .Select(static spec => spec.ExecutableCommandId)
             .ToArray();
 
-    public void RunNewWorkspace(MetaCliInvocation invocation)
+    public async Task RunCreate(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(invocation.Required("path"));
-        if (!targetValidation.Ok)
-        {
-            Fail(
-                targetValidation.ErrorMessage,
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                targetValidation.Details);
-        }
-
-        try
-        {
-            var result = authoringService.CreateWorkspace(targetValidation.FullPath);
-            presenter.WriteKeyValueBlock(
-                "MetaMultiDimensional workspace created",
-                new[]
-                {
-                    ("Path", result.WorkspacePath),
-                    ("Model", result.ModelName),
-                    ("Rows", result.RowCount.ToString())
-                });
-        }
-        catch (Exception ex) when (ex is not MetaCliExitException and
-                                   (InvalidOperationException or ArgumentException or IOException or UnauthorizedAccessException))
-        {
-            Fail(
-                "Cannot create multidimensional workspace.",
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                [$"  {ex.Message}"]);
-        }
+        await workspaces.CreateAsync("output", authoringService.CreateWorkspace()).ConfigureAwait(false);
+        presenter.WriteKeyValueBlock(
+            "MetaMultiDimensional workspace created",
+            [("Path", MetaCliWorkspace.OutputLocation(invocation)), ("Model", "MetaMultiDimensional"), ("Rows", "0")]);
     }
 
     public void RunAddRecord(MetaCliInvocation invocation)

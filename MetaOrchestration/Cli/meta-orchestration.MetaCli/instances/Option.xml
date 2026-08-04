@@ -1,83 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
-    <Option Id="opt-infer-pipeline-workspace" ParameterId="param-infer-pipeline-workspace">
-    </Option>
-    <Option Id="opt-infer-new-workspace" ParameterId="param-infer-new-workspace">
-    </Option>
-    <Option Id="opt-infer-description" ParameterId="param-infer-description">
-    </Option>
-    <Option Id="opt-inspect-workspace" ParameterId="param-inspect-workspace">
-    </Option>
-    <Option Id="opt-list-issues-workspace" ParameterId="param-list-issues-workspace">
-    </Option>
-    <Option Id="opt-explain-issue-workspace" ParameterId="param-explain-issue-workspace">
-    </Option>
-    <Option Id="opt-add-dependency-workspace" ParameterId="param-add-dependency-workspace">
-    </Option>
-    <Option Id="opt-add-order-workspace" ParameterId="param-add-order-workspace">
-    </Option>
-    <Option Id="opt-allow-concurrent-append-workspace" ParameterId="param-allow-concurrent-append-workspace">
-    </Option>
-    <Option Id="opt-set-lock-policy-workspace" ParameterId="param-set-lock-policy-workspace">
-    </Option>
-    <Option Id="opt-refresh-run-plan-workspace" ParameterId="param-refresh-run-plan-workspace">
-    </Option>
-    <Option Id="opt-inspect-run-plan-workspace" ParameterId="param-inspect-run-plan-workspace">
-    </Option>
-    <Option Id="opt-execute-workspace" ParameterId="param-execute-workspace">
-    </Option>
-    <Option Id="opt-explain-issue-issue" ParameterId="param-explain-issue-issue">
-    </Option>
-    <Option Id="opt-add-dependency-from-task" ParameterId="param-add-dependency-from-task">
-    </Option>
-    <Option Id="opt-add-dependency-to-task" ParameterId="param-add-dependency-to-task">
-    </Option>
-    <Option Id="opt-add-dependency-condition" ParameterId="param-add-dependency-condition">
-    </Option>
-    <Option Id="opt-add-dependency-object" ParameterId="param-add-dependency-object">
-    </Option>
-    <Option Id="opt-add-dependency-reason" ParameterId="param-add-dependency-reason">
-    </Option>
-    <Option Id="opt-add-order-from-task" ParameterId="param-add-order-from-task">
-    </Option>
-    <Option Id="opt-add-order-to-task" ParameterId="param-add-order-to-task">
-    </Option>
-    <Option Id="opt-add-order-condition" ParameterId="param-add-order-condition">
-    </Option>
-    <Option Id="opt-add-order-object" ParameterId="param-add-order-object">
-    </Option>
-    <Option Id="opt-add-order-reason" ParameterId="param-add-order-reason">
-    </Option>
-    <Option Id="opt-allow-concurrent-append-object" ParameterId="param-allow-concurrent-append-object">
-    </Option>
-    <Option Id="opt-allow-concurrent-append-reason" ParameterId="param-allow-concurrent-append-reason">
-    </Option>
-    <Option Id="opt-set-lock-policy-object" ParameterId="param-set-lock-policy-object">
-    </Option>
-    <Option Id="opt-set-lock-policy-left-effect" ParameterId="param-set-lock-policy-left-effect">
-    </Option>
-    <Option Id="opt-set-lock-policy-right-effect" ParameterId="param-set-lock-policy-right-effect">
-    </Option>
-    <Option Id="opt-set-lock-policy-behavior" ParameterId="param-set-lock-policy-behavior">
-    </Option>
-    <Option Id="opt-set-lock-policy-reason" ParameterId="param-set-lock-policy-reason">
-    </Option>
-    <Option Id="opt-execute-pipeline-workspace" ParameterId="param-execute-pipeline-workspace">
-    </Option>
-    <Option Id="opt-execute-data-type-conversion-workspace" ParameterId="param-execute-data-type-conversion-workspace">
-    </Option>
-    <Option Id="opt-execute-pipeline-db-connection-env" ParameterId="param-execute-pipeline-db-connection-env">
-    </Option>
-    <Option Id="opt-execute-max-degree-of-parallelism" ParameterId="param-execute-max-degree-of-parallelism">
-    </Option>
-    <Option Id="opt-execute-run-artifacts-root" ParameterId="param-execute-run-artifacts-root">
-    </Option>
-    <Option Id="opt-execute-worker-event-timeout-seconds" ParameterId="param-execute-worker-event-timeout-seconds">
-    </Option>
-    <Option Id="opt-execute-worker-activation-timeout-seconds" ParameterId="param-execute-worker-activation-timeout-seconds">
-    </Option>
-    <Option Id="opt-execute-worker-control-pipe-connect-timeout-seconds" ParameterId="param-execute-worker-control-pipe-connect-timeout-seconds">
-    </Option>
+    <Option Id="opt-add-dependency-condition" ParameterId="param-add-dependency-condition" />
+    <Option Id="opt-add-dependency-from-task" ParameterId="param-add-dependency-from-task" />
+    <Option Id="opt-add-dependency-object" ParameterId="param-add-dependency-object" />
+    <Option Id="opt-add-dependency-reason" ParameterId="param-add-dependency-reason" />
+    <Option Id="opt-add-dependency-to-task" ParameterId="param-add-dependency-to-task" />
+    <Option Id="opt-add-dependency-workspace" ParameterId="param-add-dependency-workspace" />
+    <Option Id="opt-add-order-condition" ParameterId="param-add-order-condition" />
+    <Option Id="opt-add-order-from-task" ParameterId="param-add-order-from-task" />
+    <Option Id="opt-add-order-object" ParameterId="param-add-order-object" />
+    <Option Id="opt-add-order-reason" ParameterId="param-add-order-reason" />
+    <Option Id="opt-add-order-to-task" ParameterId="param-add-order-to-task" />
+    <Option Id="opt-add-order-workspace" ParameterId="param-add-order-workspace" />
+    <Option Id="opt-allow-concurrent-append-object" ParameterId="param-allow-concurrent-append-object" />
+    <Option Id="opt-allow-concurrent-append-reason" ParameterId="param-allow-concurrent-append-reason" />
+    <Option Id="opt-allow-concurrent-append-workspace" ParameterId="param-allow-concurrent-append-workspace" />
+    <Option Id="opt-execute-data-type-conversion-workspace" ParameterId="param-execute-data-type-conversion-workspace" />
+    <Option Id="opt-execute-max-degree-of-parallelism" ParameterId="param-execute-max-degree-of-parallelism" />
+    <Option Id="opt-execute-pipeline-db-connection-env" ParameterId="param-execute-pipeline-db-connection-env" />
+    <Option Id="opt-execute-pipeline-workspace" ParameterId="param-execute-pipeline-workspace" />
+    <Option Id="opt-execute-run-artifacts-root" ParameterId="param-execute-run-artifacts-root" />
+    <Option Id="opt-execute-worker-activation-timeout-seconds" ParameterId="param-execute-worker-activation-timeout-seconds" />
+    <Option Id="opt-execute-worker-control-pipe-connect-timeout-seconds" ParameterId="param-execute-worker-control-pipe-connect-timeout-seconds" />
+    <Option Id="opt-execute-worker-event-timeout-seconds" ParameterId="param-execute-worker-event-timeout-seconds" />
+    <Option Id="opt-execute-workspace" ParameterId="param-execute-workspace" />
+    <Option Id="opt-explain-issue-issue" ParameterId="param-explain-issue-issue" />
+    <Option Id="opt-explain-issue-workspace" ParameterId="param-explain-issue-workspace" />
+    <Option Id="opt-infer-description" ParameterId="param-infer-description" />
+    <Option Id="opt-infer-pipeline-workspace" ParameterId="param-infer-pipeline-workspace" />
+    <Option Id="opt-inspect-run-plan-workspace" ParameterId="param-inspect-run-plan-workspace" />
+    <Option Id="opt-inspect-workspace" ParameterId="param-inspect-workspace" />
+    <Option Id="opt-list-issues-workspace" ParameterId="param-list-issues-workspace" />
+    <Option Id="opt-refresh-run-plan-workspace" ParameterId="param-refresh-run-plan-workspace" />
+    <Option Id="opt-set-lock-policy-behavior" ParameterId="param-set-lock-policy-behavior" />
+    <Option Id="opt-set-lock-policy-left-effect" ParameterId="param-set-lock-policy-left-effect" />
+    <Option Id="opt-set-lock-policy-object" ParameterId="param-set-lock-policy-object" />
+    <Option Id="opt-set-lock-policy-reason" ParameterId="param-set-lock-policy-reason" />
+    <Option Id="opt-set-lock-policy-right-effect" ParameterId="param-set-lock-policy-right-effect" />
+    <Option Id="opt-set-lock-policy-workspace" ParameterId="param-set-lock-policy-workspace" />
+    <Option Id="option-infer-output-connection-env" ParameterId="param-infer-output-connection-env" />
+    <Option Id="option-infer-output-csharp" ParameterId="param-infer-output-csharp" />
+    <Option Id="option-infer-output-sql" ParameterId="param-infer-output-sql" />
+    <Option Id="option-infer-output-xml" ParameterId="param-infer-output-xml" />
   </OptionList>
 </MetaCli>

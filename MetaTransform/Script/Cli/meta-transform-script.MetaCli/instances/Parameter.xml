@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
+    <Parameter Id="param-from-sql-code-code" ValueShapeId="shape-sql">
+      <Description>SQL text to import.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>true</IsRequired>
+      <Name>code</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-code-name" ValueShapeId="shape-text">
+      <Description>Required when SQL code is bare SELECT or mutation text without a CREATE wrapper.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-code-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-code-output-csharp" ValueShapeId="shape-path">
+      <Description>Create the output on the csharp workspace surface.</Description>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-code-output-sql" ValueShapeId="shape-path">
+      <Description>Create the output on the sql workspace surface.</Description>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-code-output-xml" ValueShapeId="shape-path">
+      <Description>Create the output on the xml workspace surface.</Description>
+      <Name>output-xml</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-code-target" ValueShapeId="shape-sql-identifier">
+      <Description>Optional for CREATE VIEW imports; required for bare SELECT; not allowed for inline CREATE FUNCTION or mutation imports.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>target</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-code-workspace" ValueShapeId="shape-path">
+      <Description>Add one script to an existing workspace.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-file-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-file-output-csharp" ValueShapeId="shape-path">
+      <Description>Create the output on the csharp workspace surface.</Description>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-file-output-sql" ValueShapeId="shape-path">
+      <Description>Create the output on the sql workspace surface.</Description>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-file-output-xml" ValueShapeId="shape-path">
+      <Description>Create the output on the xml workspace surface.</Description>
+      <Name>output-xml</Name>
+    </Parameter>
     <Parameter Id="param-from-sql-file-path" ValueShapeId="shape-sql-file">
       <Description>SQL file to import.</Description>
       <IsRepeatable>false</IsRepeatable>
@@ -12,12 +68,6 @@
       <IsRepeatable>false</IsRepeatable>
       <IsRequired>false</IsRequired>
       <Name>target</Name>
-    </Parameter>
-    <Parameter Id="param-from-sql-file-new-workspace" ValueShapeId="shape-path">
-      <Description>Create a new MetaTransformScript workspace.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>new-workspace</Name>
     </Parameter>
     <Parameter Id="param-from-sql-file-workspace" ValueShapeId="shape-path">
       <Description>Add one script to an existing workspace.</Description>
@@ -31,17 +81,21 @@
       <IsRequired>true</IsRequired>
       <Name>manifest</Name>
     </Parameter>
-    <Parameter Id="param-from-sql-files-new-workspace" ValueShapeId="shape-path">
-      <Description>Create a new MetaTransformScript workspace.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>new-workspace</Name>
+    <Parameter Id="param-from-sql-files-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <Name>output-connection-env</Name>
     </Parameter>
-    <Parameter Id="param-from-sql-files-workspace" ValueShapeId="shape-path">
-      <Description>Add successful imports to an existing workspace.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
+    <Parameter Id="param-from-sql-files-output-csharp" ValueShapeId="shape-path">
+      <Description>Create the output on the csharp workspace surface.</Description>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-files-output-sql" ValueShapeId="shape-path">
+      <Description>Create the output on the sql workspace surface.</Description>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-files-output-xml" ValueShapeId="shape-path">
+      <Description>Create the output on the xml workspace surface.</Description>
+      <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-from-sql-files-report" ValueShapeId="shape-path">
       <Description>Write per-file Success/Failure rows.</Description>
@@ -55,65 +109,89 @@
       <IsRequired>false</IsRequired>
       <Name>verbose</Name>
     </Parameter>
-    <Parameter Id="param-from-sql-code-code" ValueShapeId="shape-sql">
-      <Description>SQL text to import.</Description>
+    <Parameter Id="param-from-sql-files-workspace" ValueShapeId="shape-path">
+      <Description>Add successful imports to an existing workspace.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-stored-procedure-add-contract-name" ValueShapeId="shape-text">
+      <Description>Stored procedure transform script name.</Description>
       <IsRepeatable>false</IsRepeatable>
       <IsRequired>true</IsRequired>
-      <Name>code</Name>
-    </Parameter>
-    <Parameter Id="param-from-sql-code-target" ValueShapeId="shape-sql-identifier">
-      <Description>Optional for CREATE VIEW imports; required for bare SELECT; not allowed for inline CREATE FUNCTION or mutation imports.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>target</Name>
-    </Parameter>
-    <Parameter Id="param-from-sql-code-new-workspace" ValueShapeId="shape-path">
-      <Description>Create a new MetaTransformScript workspace.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>new-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-from-sql-code-workspace" ValueShapeId="shape-path">
-      <Description>Add one script to an existing workspace.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-from-sql-code-name" ValueShapeId="shape-text">
-      <Description>Required when SQL code is bare SELECT or mutation text without a CREATE wrapper.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-to-sql-path-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformScript workspace to export. Defaults to the current directory.</Description>
+    <Parameter Id="param-stored-procedure-add-contract-notes" ValueShapeId="shape-text">
+      <Description>Human note stored on the contract.</Description>
       <IsRepeatable>false</IsRepeatable>
       <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
+      <Name>notes</Name>
     </Parameter>
-    <Parameter Id="param-to-sql-path-out" ValueShapeId="shape-path">
-      <Description>Output .sql file or target folder.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>true</IsRequired>
-      <Name>out</Name>
+    <Parameter Id="param-stored-procedure-add-contract-operation" ValueShapeId="shape-operation">
+      <Description>Declare an ordered operation: `&lt;ordinal&gt;:&lt;kind&gt;:&lt;sql-id&gt;[=&lt;role&gt;]`.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>operation</Name>
     </Parameter>
-    <Parameter Id="param-to-sql-code-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformScript workspace to export. Defaults to the current directory.</Description>
+    <Parameter Id="param-stored-procedure-add-contract-result-column" ValueShapeId="shape-rowset-column">
+      <Description>Declare a result column for a named result rowset.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>result-column</Name>
+    </Parameter>
+    <Parameter Id="param-stored-procedure-add-contract-result-rowset" ValueShapeId="shape-text">
+      <Description>Declare the optional result rowset.</Description>
       <IsRepeatable>false</IsRepeatable>
       <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
+      <Name>result-rowset</Name>
     </Parameter>
-    <Parameter Id="param-to-sql-code-name" ValueShapeId="shape-text">
-      <Description>Required when the workspace contains multiple scripts.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-target-identifiers-from-pattern-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-stored-procedure-add-contract-workspace" ValueShapeId="shape-path">
       <Description>MetaTransformScript workspace to update. Defaults to the current directory.</Description>
       <IsRepeatable>false</IsRepeatable>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-stored-procedure-remove-contract-name" ValueShapeId="shape-text">
+      <Description>Stored procedure transform script name.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-stored-procedure-remove-contract-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace to update. Defaults to the current directory.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-stored-procedure-view-contract-name" ValueShapeId="shape-text">
+      <Description>Inspect one stored procedure transform script by name.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-stored-procedure-view-contract-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace to inspect. Defaults to the current directory.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-target-identifiers-from-pattern-allow-empty" ValueShapeId="shape-flag">
+      <Description>Exit successfully even when the pattern updates no target identifiers.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>allow-empty</Name>
+    </Parameter>
+    <Parameter Id="param-target-identifiers-from-pattern-dry-run" ValueShapeId="shape-flag">
+      <Description>Show what would change without saving the workspace.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>dry-run</Name>
+    </Parameter>
+    <Parameter Id="param-target-identifiers-from-pattern-only-missing" ValueShapeId="shape-flag">
+      <Description>Skip view scripts that already have a target identifier.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>only-missing</Name>
     </Parameter>
     <Parameter Id="param-target-identifiers-from-pattern-source-pattern" ValueShapeId="shape-pattern">
       <Description>Pattern matched against TransformScript.Name. Tokens use {name}.</Description>
@@ -127,89 +205,41 @@
       <IsRequired>true</IsRequired>
       <Name>target-pattern</Name>
     </Parameter>
-    <Parameter Id="param-target-identifiers-from-pattern-only-missing" ValueShapeId="shape-flag">
-      <Description>Skip view scripts that already have a target identifier.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>only-missing</Name>
-    </Parameter>
-    <Parameter Id="param-target-identifiers-from-pattern-dry-run" ValueShapeId="shape-flag">
-      <Description>Show what would change without saving the workspace.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>dry-run</Name>
-    </Parameter>
-    <Parameter Id="param-target-identifiers-from-pattern-allow-empty" ValueShapeId="shape-flag">
-      <Description>Exit successfully even when the pattern updates no target identifiers.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>allow-empty</Name>
-    </Parameter>
     <Parameter Id="param-target-identifiers-from-pattern-verbose" ValueShapeId="shape-flag">
       <Description>Print each target identifier update.</Description>
       <IsRepeatable>false</IsRepeatable>
       <IsRequired>false</IsRequired>
       <Name>verbose</Name>
     </Parameter>
-    <Parameter Id="param-stored-procedure-view-contract-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformScript workspace to inspect. Defaults to the current directory.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-stored-procedure-view-contract-name" ValueShapeId="shape-text">
-      <Description>Inspect one stored procedure transform script by name.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>name</Name>
-    </Parameter>
-    <Parameter Id="param-stored-procedure-add-contract-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-target-identifiers-from-pattern-workspace" ValueShapeId="shape-path">
       <Description>MetaTransformScript workspace to update. Defaults to the current directory.</Description>
       <IsRepeatable>false</IsRepeatable>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-stored-procedure-add-contract-name" ValueShapeId="shape-text">
-      <Description>Stored procedure transform script name.</Description>
+    <Parameter Id="param-to-sql-code-name" ValueShapeId="shape-text">
+      <Description>Required when the workspace contains multiple scripts.</Description>
       <IsRepeatable>false</IsRepeatable>
-      <IsRequired>true</IsRequired>
+      <IsRequired>false</IsRequired>
       <Name>name</Name>
     </Parameter>
-    <Parameter Id="param-stored-procedure-add-contract-operation" ValueShapeId="shape-operation">
-      <Description>Declare an ordered operation: `&lt;ordinal&gt;:&lt;kind&gt;:&lt;sql-id&gt;[=&lt;role&gt;]`.</Description>
-      <IsRepeatable>true</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>operation</Name>
-    </Parameter>
-    <Parameter Id="param-stored-procedure-add-contract-result-rowset" ValueShapeId="shape-text">
-      <Description>Declare the optional result rowset.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>result-rowset</Name>
-    </Parameter>
-    <Parameter Id="param-stored-procedure-add-contract-result-column" ValueShapeId="shape-rowset-column">
-      <Description>Declare a result column for a named result rowset.</Description>
-      <IsRepeatable>true</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>result-column</Name>
-    </Parameter>
-    <Parameter Id="param-stored-procedure-add-contract-notes" ValueShapeId="shape-text">
-      <Description>Human note stored on the contract.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>notes</Name>
-    </Parameter>
-    <Parameter Id="param-stored-procedure-remove-contract-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformScript workspace to update. Defaults to the current directory.</Description>
+    <Parameter Id="param-to-sql-code-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace to export. Defaults to the current directory.</Description>
       <IsRepeatable>false</IsRepeatable>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-stored-procedure-remove-contract-name" ValueShapeId="shape-text">
-      <Description>Stored procedure transform script name.</Description>
+    <Parameter Id="param-to-sql-path-out" ValueShapeId="shape-path">
+      <Description>Output .sql file or target folder.</Description>
       <IsRepeatable>false</IsRepeatable>
       <IsRequired>true</IsRequired>
-      <Name>name</Name>
+      <Name>out</Name>
+    </Parameter>
+    <Parameter Id="param-to-sql-path-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace to export. Defaults to the current directory.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

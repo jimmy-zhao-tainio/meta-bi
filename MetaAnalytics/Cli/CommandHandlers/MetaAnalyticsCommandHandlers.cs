@@ -30,39 +30,14 @@ internal sealed class MetaAnalyticsCommandHandlers
             .Select(static spec => spec.ExecutableCommandId)
             .ToArray();
 
-    public void RunNewWorkspace(MetaCliInvocation invocation)
+    public async Task RunCreate(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(invocation.Required("path"));
-        if (!targetValidation.Ok)
-        {
-            Fail(
-                targetValidation.ErrorMessage,
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                targetValidation.Details);
-        }
-
-        try
-        {
-            var result = service.CreateWorkspace(targetValidation.FullPath);
-            presenter.WriteKeyValueBlock(
-                "MetaAnalytics workspace created",
-                new[]
-                {
-                    ("Path", result.WorkspacePath),
-                    ("Model", result.ModelName),
-                    ("Rows", result.RowCount.ToString())
-                });
-        }
-        catch (Exception ex) when (ex is not MetaCliExitException and
-                                   (InvalidOperationException or ArgumentException or IOException or UnauthorizedAccessException))
-        {
-            Fail(
-                "Cannot create analytics workspace.",
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                [$"  {ex.Message}"]);
-        }
+        await workspaces.CreateAsync("output", service.CreateWorkspace()).ConfigureAwait(false);
+        presenter.WriteKeyValueBlock(
+            "MetaAnalytics workspace created",
+            [("Path", MetaCliWorkspace.OutputLocation(invocation)), ("Model", "MetaAnalytics"), ("Rows", "0")]);
     }
 
     public void RunAddRecord(MetaCliInvocation invocation)

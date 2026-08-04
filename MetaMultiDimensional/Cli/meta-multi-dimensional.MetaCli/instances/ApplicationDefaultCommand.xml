@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ApplicationDefaultCommandList>
-    <ApplicationDefaultCommand Id="app-meta-multi-dimensional:default-command" ApplicationId="app-meta-multi-dimensional" ExecutableCommandId="exec-help">
-    </ApplicationDefaultCommand>
+    <ApplicationDefaultCommand Id="app-meta-multi-dimensional:default-command" ApplicationId="app-meta-multi-dimensional" ExecutableCommandId="exec-help" />
   </ApplicationDefaultCommandList>
 </MetaCli>

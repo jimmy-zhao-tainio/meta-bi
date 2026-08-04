@@ -5,10 +5,6 @@
       <Description>Drop the demo-owned databases and clear transient pipeline execution evidence.</Description>
       <Name>cleanup</Name>
     </Operation>
-    <Operation Id="operation:cleanup-source-schema" MeshId="mesh:default">
-      <Description>Remove the generated AdventureWorks source schema workspace.</Description>
-      <Name>cleanup-source-schema</Name>
-    </Operation>
     <Operation Id="operation:create-analytics" MeshId="mesh:default">
       <Description>Author the AdventureWorks sales analytics model over the conformed dimensional warehouse.</Description>
       <Name>create-analytics</Name>

@@ -28,7 +28,10 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaTransformBindingModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-bind", handlers.RunBind);
+            .Bind(
+                "exec-bind",
+                [MetaCliWorkspace.Create("output", "output-xml", "output-csharp", "output-sql", "output-connection-env")],
+                handlers.RunBindAsync);
 
         runtime.Run(args);
         return Environment.ExitCode;

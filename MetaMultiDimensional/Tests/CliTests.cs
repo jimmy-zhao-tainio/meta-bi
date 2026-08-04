@@ -11,7 +11,7 @@ public sealed class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-multi-dimensional <command> [options]", result.Output);
-        Assert.Contains("new-workspace", result.Output);
+        Assert.Contains("create", result.Output);
         Assert.Contains("deploy", result.Output);
         Assert.Contains("restore", result.Output);
         Assert.Contains("drop", result.Output);
@@ -91,7 +91,7 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            Assert.Equal(0, RunCli($"new-workspace \"{path}\"").ExitCode);
+            Assert.Equal(0, RunCli($"create --xml \"{path}\"").ExitCode);
             Assert.Equal(0, RunCli($"add-multi-dimensional-database --workspace \"{path}\" --id CommerceDb --name Commerce").ExitCode);
             Assert.Equal(0, RunCli($"add-cube --workspace \"{path}\" --id CommerceCube --multi-dimensional-database CommerceDb --name Commerce").ExitCode);
             Assert.Equal(0, RunCli($"add-dimension --workspace \"{path}\" --id Date --multi-dimensional-database CommerceDb --name Date").ExitCode);
@@ -128,7 +128,7 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            Assert.Equal(0, RunCli($"new-workspace \"{path}\"").ExitCode);
+            Assert.Equal(0, RunCli($"create --xml \"{path}\"").ExitCode);
 
             var add = RunCli(
                 "--id CommerceDb --name Commerce",

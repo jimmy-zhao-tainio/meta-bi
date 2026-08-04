@@ -23,7 +23,19 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaCliModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-schema-to-raw-datavault", invocation => CompleteAsync(() => handlers.RunSchemaToRawDataVaultAsync(invocation)))
+            .Bind(
+                "exec-schema-to-raw-datavault",
+                [
+                    MetaCliWorkspace.Open("source-workspace"),
+                    MetaCliWorkspace.Create(
+                        "output",
+                        "output-xml",
+                        "output-csharp",
+                        "output-sql",
+                        "output-connection-env"),
+                ],
+                (invocation, workspaces) => CompleteAsync(() =>
+                    handlers.RunSchemaToRawDataVaultAsync(invocation, workspaces)))
             .Bind("exec-raw-datavault-to-sql", invocation => CompleteAsync(() => handlers.RunRawDataVaultToSqlAsync(invocation)))
             .Bind("exec-business-datavault-to-sql", invocation => CompleteAsync(() => handlers.RunBusinessDataVaultToSqlAsync(invocation)))
             .Bind("exec-data-quality-to-sql", invocation => CompleteAsync(() => handlers.RunDataQualityToSqlAsync(invocation)))

@@ -5,7 +5,6 @@
       <Description>Generated MetaAnalytics workspace authored by the demo operation.</Description>
       <ModelName>MetaAnalytics</ModelName>
       <Name>analytics</Name>
-      <Path>MetaAnalyticsCliIntegrationWorkspace</Path>
     </Workspace>
   </WorkspaceList>
 </MetaMesh>

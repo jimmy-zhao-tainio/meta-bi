@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandParameterList>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-transform-workspace" ExecutableCommandId="exec-bind" ParameterId="param-transform-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-source-schema" ExecutableCommandId="exec-bind" ParameterId="param-source-schema">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-target-schema" ExecutableCommandId="exec-bind" ParameterId="param-target-schema">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-execute-system" ExecutableCommandId="exec-bind" ParameterId="param-execute-system">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-new-workspace" ExecutableCommandId="exec-bind" ParameterId="param-new-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-execute-system-default-schema-name" ExecutableCommandId="exec-bind" ParameterId="param-execute-system-default-schema-name">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-ignore-target-columns" ExecutableCommandId="exec-bind" ParameterId="param-ignore-target-columns">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-ignore-target-columns-if-present" ExecutableCommandId="exec-bind" ParameterId="param-ignore-target-columns-if-present">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-data-type-conversion-workspace" ExecutableCommandId="exec-bind" ParameterId="param-data-type-conversion-workspace">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-allow-partial" ExecutableCommandId="exec-bind" ParameterId="param-allow-partial">
-    </ExecutableCommandParameter>
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-partial-report" ExecutableCommandId="exec-bind" ParameterId="param-partial-report">
-    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-allow-partial" ExecutableCommandId="exec-bind" ParameterId="param-allow-partial" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-bind-output-connection-env" ExecutableCommandId="exec-bind" ParameterId="param-bind-output-connection-env" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-bind-output-csharp" ExecutableCommandId="exec-bind" ParameterId="param-bind-output-csharp" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-bind-output-sql" ExecutableCommandId="exec-bind" ParameterId="param-bind-output-sql" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-bind-output-xml" ExecutableCommandId="exec-bind" ParameterId="param-bind-output-xml" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-data-type-conversion-workspace" ExecutableCommandId="exec-bind" ParameterId="param-data-type-conversion-workspace" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-execute-system" ExecutableCommandId="exec-bind" ParameterId="param-execute-system" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-execute-system-default-schema-name" ExecutableCommandId="exec-bind" ParameterId="param-execute-system-default-schema-name" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-ignore-target-columns" ExecutableCommandId="exec-bind" ParameterId="param-ignore-target-columns" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-ignore-target-columns-if-present" ExecutableCommandId="exec-bind" ParameterId="param-ignore-target-columns-if-present" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-partial-report" ExecutableCommandId="exec-bind" ParameterId="param-partial-report" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-source-schema" ExecutableCommandId="exec-bind" ParameterId="param-source-schema" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-target-schema" ExecutableCommandId="exec-bind" ParameterId="param-target-schema" />
+    <ExecutableCommandParameter Id="exec-bind:parameter:param-transform-workspace" ExecutableCommandId="exec-bind" ParameterId="param-transform-workspace" />
   </ExecutableCommandParameterList>
 </MetaCli>

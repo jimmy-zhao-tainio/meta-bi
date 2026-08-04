@@ -19,13 +19,20 @@ public sealed partial class MetaTransformScriptSqlService
         var workspaceFullPath = Path.GetFullPath(newWorkspacePath);
         EnsureTargetDirectoryIsEmpty(workspaceFullPath);
 
-        return await ImportSqlFilesToWorkspaceCoreAsync(
+        var result = await ImportSqlFilesAsync(
                 requests,
                 MTS.MetaTransformScriptModel.CreateEmpty(),
-                workspaceFullPath,
                 progress,
                 cancellationToken)
             .ConfigureAwait(false);
+        if (result.Successes.Count > 0)
+        {
+            Directory.CreateDirectory(workspaceFullPath);
+            await MetaTransformScriptInstance.SaveToWorkspaceAsync(result.Model, workspaceFullPath, cancellationToken)
+                .ConfigureAwait(false);
+        }
+
+        return result with { WorkspacePath = workspaceFullPath };
     }
 
     public async Task<ImportSqlFilesToWorkspaceResult> AddSqlFilesToWorkspaceAsync(
@@ -44,19 +51,24 @@ public sealed partial class MetaTransformScriptSqlService
                 cancellationToken)
             .ConfigureAwait(false);
 
-        return await ImportSqlFilesToWorkspaceCoreAsync(
+        var result = await ImportSqlFilesAsync(
                 requests,
                 model,
-                workspaceFullPath,
                 progress,
                 cancellationToken)
             .ConfigureAwait(false);
+        if (result.Successes.Count > 0)
+        {
+            await MetaTransformScriptInstance.SaveToWorkspaceAsync(result.Model, workspaceFullPath, cancellationToken)
+                .ConfigureAwait(false);
+        }
+
+        return result with { WorkspacePath = workspaceFullPath };
     }
 
-    private async Task<ImportSqlFilesToWorkspaceResult> ImportSqlFilesToWorkspaceCoreAsync(
+    public Task<ImportSqlFilesToWorkspaceResult> ImportSqlFilesAsync(
         IEnumerable<SqlFileImportRequest> requests,
         MTS.MetaTransformScriptModel model,
-        string workspaceFullPath,
         Action<SqlFileImportProgress>? progress,
         CancellationToken cancellationToken)
     {
@@ -159,19 +171,12 @@ public sealed partial class MetaTransformScriptSqlService
             }
         }
 
-        if (successes.Count > 0)
-        {
-            Directory.CreateDirectory(workspaceFullPath);
-            await MetaTransformScriptInstance.SaveToWorkspaceAsync(model, workspaceFullPath, cancellationToken)
-                .ConfigureAwait(false);
-        }
-
-        return new ImportSqlFilesToWorkspaceResult(
+        return Task.FromResult(new ImportSqlFilesToWorkspaceResult(
             model,
             model.TransformScriptList.Count,
-            workspaceFullPath,
+            string.Empty,
             successes,
-            failures);
+            failures));
     }
 
     private static void NotifyProgress(

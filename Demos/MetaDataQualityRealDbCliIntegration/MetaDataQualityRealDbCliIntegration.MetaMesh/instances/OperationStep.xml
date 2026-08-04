@@ -1,35 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaMesh>
   <OperationStepList>
-    <OperationStep Id="operation-step:cleanup:drop-demo-databases" OperationId="operation:cleanup">
-      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_MASTER_SQL} --quiet --file cleanup-demo-db.sql --var DEMO_DB=MetaDataQualityRealDbDemo --var METADQ_DB=MetaDQ</Arguments>
-      <Executable>meta-sql.exe</Executable>
-      <Name>drop-demo-databases</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-demo-databases">
-      <Arguments>/c if exist MetaTransformScript.Workspace rmdir /s /q MetaTransformScript.Workspace</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-transform-workspace</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-data-quality-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
-      <Arguments>/c if exist MetaDataQuality.Workspace rmdir /s /q MetaDataQuality.Workspace</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-data-quality-workspace</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-data-quality-sql" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-data-quality-workspace">
-      <Arguments>/c if exist DataQualityViews.sql del /q DataQualityViews.sql</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-data-quality-sql</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-import-report" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-data-quality-sql">
-      <Arguments>/c if exist SourceViews.import-report.tsv del /q SourceViews.import-report.tsv</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-import-report</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-real-db-data-quality:setup-demo-database" OperationId="operation:build-real-db-data-quality">
-      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_MASTER_SQL} --file setup-demo-db.sql --var DEMO_DB=MetaDataQualityRealDbDemo</Arguments>
-      <Executable>meta-sql.exe</Executable>
-      <Name>setup-demo-database</Name>
+    <OperationStep Id="operation-step:build-real-db-data-quality:convert-data-quality-to-sql" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:promote-sql-capable-candidates">
+      <Arguments>data-quality-to-sql --workspace "{workspace:data-quality.location}" --out DataQualityViews.sql</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-data-quality-to-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-real-db-data-quality:deploy-001-customer-order-implied-01" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:setup-demo-database">
       <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file SourceViews\001_customer_order_implied_01.sql</Arguments>
@@ -166,40 +142,69 @@
       <Executable>meta-sql.exe</Executable>
       <Name>deploy-027_customer_campaign_extra_outlier_01</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-real-db-data-quality:import-source-views" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-027-customer-campaign-extra-outlier-01">
-      <Arguments>from sql-files --manifest SourceViews.manifest.tsv --new-workspace "{workspace:transform.path}" --report SourceViews.import-report.tsv</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>import-source-views</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-real-db-data-quality:infer-data-quality" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:import-source-views">
-      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.path}" --new-workspace "{workspace:data-quality.path}"</Arguments>
-      <Executable>meta-data-quality.exe</Executable>
-      <Name>infer-data-quality</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-real-db-data-quality:inspect-data-quality" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:infer-data-quality">
-      <Arguments>inspect --workspace "{workspace:data-quality.path}" --show-cases --show-candidate-ids</Arguments>
-      <Executable>meta-data-quality.exe</Executable>
-      <Name>inspect-data-quality</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-real-db-data-quality:promote-sql-capable-candidates" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:inspect-data-quality">
-      <Arguments>promote --workspace "{workspace:data-quality.path}" --candidate-kind ImpliedForeignKeyMissingReference --candidate-kind ImpliedUniqueKeyViolation --candidate-kind MinorityJoinPattern --candidate-kind IncompleteCompositeJoin --candidate-kind SuspiciousExtraJoinPredicate --candidate-kind InnerJoinAgainstUsuallyOptionalRelationship --candidate-kind LeftJoinAgainstUsuallyMandatoryRelationship</Arguments>
-      <Executable>meta-data-quality.exe</Executable>
-      <Name>promote-sql-capable-candidates</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-real-db-data-quality:convert-data-quality-to-sql" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:promote-sql-capable-candidates">
-      <Arguments>data-quality-to-sql --workspace "{workspace:data-quality.path}" --out DataQualityViews.sql</Arguments>
-      <Executable>meta-convert.exe</Executable>
-      <Name>convert-data-quality-to-sql</Name>
-    </OperationStep>
     <OperationStep Id="operation-step:build-real-db-data-quality:deploy-data-quality-sql" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:convert-data-quality-to-sql">
       <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_SOURCE_SQL} --file DataQualityViews.sql</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>deploy-data-quality-sql</Name>
     </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:import-source-views" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-027-customer-campaign-extra-outlier-01">
+      <Arguments>from sql-files --manifest SourceViews.manifest.tsv --new-workspace "{workspace:transform.location}" --report SourceViews.import-report.tsv</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-source-views</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:infer-data-quality" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:import-source-views">
+      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --new-workspace "{workspace:data-quality.location}"</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>infer-data-quality</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:inspect-data-quality" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:infer-data-quality">
+      <Arguments>inspect --workspace "{workspace:data-quality.location}" --show-cases --show-candidate-ids</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>inspect-data-quality</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:promote-sql-capable-candidates" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:inspect-data-quality">
+      <Arguments>promote --workspace "{workspace:data-quality.location}" --candidate-kind ImpliedForeignKeyMissingReference --candidate-kind ImpliedUniqueKeyViolation --candidate-kind MinorityJoinPattern --candidate-kind IncompleteCompositeJoin --candidate-kind SuspiciousExtraJoinPredicate --candidate-kind InnerJoinAgainstUsuallyOptionalRelationship --candidate-kind LeftJoinAgainstUsuallyMandatoryRelationship</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>promote-sql-capable-candidates</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
     <OperationStep Id="operation-step:build-real-db-data-quality:run-metadq" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-data-quality-sql">
       <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_OPERATIONAL_SQL} --quiet --query "SET NOCOUNT ON; DECLARE @RunId bigint; EXEC dbo.Run @SourceDatabaseName = N'MetaDataQualityRealDbDemo', @RunId = @RunId OUTPUT;"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>run-metadq</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-real-db-data-quality:setup-demo-database" OperationId="operation:build-real-db-data-quality">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_MASTER_SQL} --file setup-demo-db.sql --var DEMO_DB=MetaDataQualityRealDbDemo</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>setup-demo-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:drop-demo-databases" OperationId="operation:cleanup">
+      <Arguments>execute --connection-env {env:META_DQ_REAL_DEMO_MASTER_SQL} --quiet --file cleanup-demo-db.sql --var DEMO_DB=MetaDataQualityRealDbDemo --var METADQ_DB=MetaDQ</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>drop-demo-databases</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-data-quality-sql" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-data-quality-workspace">
+      <Arguments>/c if exist DataQualityViews.sql del /q DataQualityViews.sql</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-data-quality-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-data-quality-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
+      <Arguments>/c if exist MetaDataQuality.Workspace rmdir /s /q MetaDataQuality.Workspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-data-quality-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-import-report" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-data-quality-sql">
+      <Arguments>/c if exist SourceViews.import-report.tsv del /q SourceViews.import-report.tsv</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-import-report</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-demo-databases">
+      <Arguments>/c if exist MetaTransformScript.Workspace rmdir /s /q MetaTransformScript.Workspace</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-workspace</Name>
     </OperationStep>
   </OperationStepList>
 </MetaMesh>

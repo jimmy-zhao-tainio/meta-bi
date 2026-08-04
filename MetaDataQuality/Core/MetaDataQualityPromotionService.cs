@@ -55,24 +55,6 @@ public sealed class MetaDataQualityPromotionService
         return new MetaDataQualityPromotionResult(promotedCount, totalPromoted);
     }
 
-    public MetaDataQualityPromotionResult PromoteWorkspace(
-        MetaDataQualityModel model,
-        string workspacePath,
-        IReadOnlyList<string> candidateIds,
-        bool promoteAll,
-        IReadOnlyList<string> candidateKinds)
-    {
-        ArgumentNullException.ThrowIfNull(model);
-        if (string.IsNullOrWhiteSpace(workspacePath))
-        {
-            throw new ArgumentException("Workspace path is required.", nameof(workspacePath));
-        }
-
-        var result = Promote(model, candidateIds, promoteAll, candidateKinds);
-        model.SaveToXmlWorkspace(workspacePath);
-        return result;
-    }
-
     private static IEnumerable<string> ResolveCandidateIdsByKind(
         MetaDataQualityModel model,
         IReadOnlyList<string> candidateKinds)

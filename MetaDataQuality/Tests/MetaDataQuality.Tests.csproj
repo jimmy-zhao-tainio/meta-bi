@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
     <ProjectReference Include="..\Core\MetaDataQuality.Core.csproj" />
     <ProjectReference Include="..\Tooling\MetaDataQuality.Tooling.csproj" />

@@ -1,45 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaSchema>
   <ViewList>
-    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts">
-    </View>
-    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics">
-    </View>
+    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee" />
+    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment" />
+    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory" />
+    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate" />
+    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation" />
+    <View Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment" SchemaObjectId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts" />
+    <View Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics" SchemaObjectId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics" />
   </ViewList>
 </MetaSchema>

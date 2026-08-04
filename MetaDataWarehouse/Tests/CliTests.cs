@@ -11,7 +11,7 @@ public sealed class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-data-warehouse <command> [options]", result.Output);
-        Assert.Contains("new-workspace", result.Output);
+        Assert.Contains("create", result.Output);
         Assert.Contains("add-dimension", result.Output);
         Assert.DoesNotContain("create-sample", result.Output);
         Assert.DoesNotContain("init-implementation", result.Output);
@@ -38,7 +38,7 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            var create = RunCli($"new-workspace \"{path}\"");
+            var create = RunCli($"create --xml \"{path}\"");
             Assert.Equal(0, create.ExitCode);
             Assert.Contains("MetaDataWarehouse workspace created", create.Output);
             Assert.True(File.Exists(Path.Combine(path, "workspace.xml")));
@@ -73,7 +73,7 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            Assert.Equal(0, RunCli($"new-workspace \"{path}\"").ExitCode);
+            Assert.Equal(0, RunCli($"create --xml \"{path}\"").ExitCode);
 
             var add = RunCli("--id Commerce --name Commerce", command: "add-warehouse", workingDirectory: path);
 

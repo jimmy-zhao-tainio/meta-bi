@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionList>
+    <Option Id="option-create-connection-env" ParameterId="param-create-connection-env" />
+    <Option Id="option-create-csharp" ParameterId="param-create-csharp" />
+    <Option Id="option-create-sql" ParameterId="param-create-sql" />
+    <Option Id="option-create-xml" ParameterId="param-create-xml" />
+  </OptionList>
+</MetaCli>

@@ -1,11 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="token-schema-to-raw-datavault-source-workspace" OptionId="opt-schema-to-raw-datavault-source-workspace">
-      <Token>--source-workspace</Token>
+    <OptionToken Id="token-analytics-to-multi-dimensional-out" OptionId="opt-analytics-to-multi-dimensional-out">
+      <Token>--out</Token>
     </OptionToken>
-    <OptionToken Id="token-schema-to-raw-datavault-new-workspace" OptionId="opt-schema-to-raw-datavault-new-workspace">
-      <Token>--new-workspace</Token>
+    <OptionToken Id="token-analytics-to-multi-dimensional-workspace" OptionId="opt-analytics-to-multi-dimensional-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-analytics-to-tabular-out" OptionId="opt-analytics-to-tabular-out">
+      <Token>--out</Token>
+    </OptionToken>
+    <OptionToken Id="token-analytics-to-tabular-workspace" OptionId="opt-analytics-to-tabular-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-datavault-to-sql-database-name" OptionId="opt-business-datavault-to-sql-database-name">
+      <Token>--database-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-datavault-to-sql-implementation-workspace" OptionId="opt-business-datavault-to-sql-implementation-workspace">
+      <Token>--implementation-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-datavault-to-sql-out" OptionId="opt-business-datavault-to-sql-out">
+      <Token>--out</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-datavault-to-sql-workspace" OptionId="opt-business-datavault-to-sql-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-quality-to-sql-out" OptionId="opt-data-quality-to-sql-out">
+      <Token>--out</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-quality-to-sql-workspace" OptionId="opt-data-quality-to-sql-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-warehouse-to-sql-database-name" OptionId="opt-data-warehouse-to-sql-database-name">
+      <Token>--database-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-warehouse-to-sql-implementation-workspace" OptionId="opt-data-warehouse-to-sql-implementation-workspace">
+      <Token>--implementation-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-warehouse-to-sql-out" OptionId="opt-data-warehouse-to-sql-out">
+      <Token>--out</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-warehouse-to-sql-workspace" OptionId="opt-data-warehouse-to-sql-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-raw-datavault-to-sql-database-name" OptionId="opt-raw-datavault-to-sql-database-name">
+      <Token>--database-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-raw-datavault-to-sql-implementation-workspace" OptionId="opt-raw-datavault-to-sql-implementation-workspace">
+      <Token>--implementation-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-raw-datavault-to-sql-out" OptionId="opt-raw-datavault-to-sql-out">
+      <Token>--out</Token>
+    </OptionToken>
+    <OptionToken Id="token-raw-datavault-to-sql-workspace" OptionId="opt-raw-datavault-to-sql-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-schema-to-raw-datavault-connection-env" OptionId="opt-schema-to-raw-datavault-connection-env">
+      <Token>--connection-env</Token>
     </OptionToken>
     <OptionToken Id="token-schema-to-raw-datavault-ignore-field-name" OptionId="opt-schema-to-raw-datavault-ignore-field-name">
       <Token>--ignore-field-name</Token>
@@ -16,64 +67,40 @@
     <OptionToken Id="token-schema-to-raw-datavault-include-views" OptionId="opt-schema-to-raw-datavault-include-views">
       <Token>--include-views</Token>
     </OptionToken>
+    <OptionToken Id="token-schema-to-raw-datavault-output-connection-env" OptionId="option-schema-to-raw-datavault-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-schema-to-raw-datavault-output-csharp" OptionId="option-schema-to-raw-datavault-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-schema-to-raw-datavault-output-sql" OptionId="option-schema-to-raw-datavault-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-schema-to-raw-datavault-output-xml" OptionId="option-schema-to-raw-datavault-output-xml">
+      <Token>--output-xml</Token>
+    </OptionToken>
+    <OptionToken Id="token-schema-to-raw-datavault-source-workspace" OptionId="opt-schema-to-raw-datavault-source-workspace">
+      <Token>--source-workspace</Token>
+    </OptionToken>
     <OptionToken Id="token-schema-to-raw-datavault-verbose" OptionId="opt-schema-to-raw-datavault-verbose">
       <Token>--verbose</Token>
     </OptionToken>
-    <OptionToken Id="token-raw-datavault-to-sql-workspace" OptionId="opt-raw-datavault-to-sql-workspace">
-      <Token>--workspace</Token>
+    <OptionToken Id="token-sql-to-transform-script-allow-empty" OptionId="opt-sql-to-transform-script-allow-empty">
+      <Token>--allow-empty</Token>
     </OptionToken>
-    <OptionToken Id="token-raw-datavault-to-sql-implementation-workspace" OptionId="opt-raw-datavault-to-sql-implementation-workspace">
-      <Token>--implementation-workspace</Token>
+    <OptionToken Id="token-sql-to-transform-script-include-functions" OptionId="opt-sql-to-transform-script-include-functions">
+      <Token>--include-functions</Token>
     </OptionToken>
-    <OptionToken Id="token-raw-datavault-to-sql-database-name" OptionId="opt-raw-datavault-to-sql-database-name">
-      <Token>--database-name</Token>
+    <OptionToken Id="token-sql-to-transform-script-include-stored-procedures" OptionId="opt-sql-to-transform-script-include-stored-procedures">
+      <Token>--include-stored-procedures</Token>
     </OptionToken>
-    <OptionToken Id="token-raw-datavault-to-sql-out" OptionId="opt-raw-datavault-to-sql-out">
+    <OptionToken Id="token-sql-to-transform-script-include-views" OptionId="opt-sql-to-transform-script-include-views">
+      <Token>--include-views</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-to-transform-script-out" OptionId="opt-sql-to-transform-script-out">
       <Token>--out</Token>
     </OptionToken>
-    <OptionToken Id="token-business-datavault-to-sql-workspace" OptionId="opt-business-datavault-to-sql-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-datavault-to-sql-implementation-workspace" OptionId="opt-business-datavault-to-sql-implementation-workspace">
-      <Token>--implementation-workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-datavault-to-sql-database-name" OptionId="opt-business-datavault-to-sql-database-name">
-      <Token>--database-name</Token>
-    </OptionToken>
-    <OptionToken Id="token-business-datavault-to-sql-out" OptionId="opt-business-datavault-to-sql-out">
-      <Token>--out</Token>
-    </OptionToken>
-    <OptionToken Id="token-data-warehouse-to-sql-workspace" OptionId="opt-data-warehouse-to-sql-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-data-warehouse-to-sql-implementation-workspace" OptionId="opt-data-warehouse-to-sql-implementation-workspace">
-      <Token>--implementation-workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-data-warehouse-to-sql-database-name" OptionId="opt-data-warehouse-to-sql-database-name">
-      <Token>--database-name</Token>
-    </OptionToken>
-    <OptionToken Id="token-data-warehouse-to-sql-out" OptionId="opt-data-warehouse-to-sql-out">
-      <Token>--out</Token>
-    </OptionToken>
-    <OptionToken Id="token-data-quality-to-sql-workspace" OptionId="opt-data-quality-to-sql-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-data-quality-to-sql-out" OptionId="opt-data-quality-to-sql-out">
-      <Token>--out</Token>
-    </OptionToken>
-    <OptionToken Id="token-analytics-to-tabular-workspace" OptionId="opt-analytics-to-tabular-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-analytics-to-tabular-out" OptionId="opt-analytics-to-tabular-out">
-      <Token>--out</Token>
-    </OptionToken>
-    <OptionToken Id="token-analytics-to-multi-dimensional-workspace" OptionId="opt-analytics-to-multi-dimensional-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-analytics-to-multi-dimensional-out" OptionId="opt-analytics-to-multi-dimensional-out">
-      <Token>--out</Token>
-    </OptionToken>
-    <OptionToken Id="token-transform-script-to-sql-workspace" OptionId="opt-transform-script-to-sql-workspace">
+    <OptionToken Id="token-sql-to-transform-script-workspace" OptionId="opt-sql-to-transform-script-workspace">
       <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="token-transform-script-to-sql-database-name" OptionId="opt-transform-script-to-sql-database-name">
@@ -82,23 +109,8 @@
     <OptionToken Id="token-transform-script-to-sql-out" OptionId="opt-transform-script-to-sql-out">
       <Token>--out</Token>
     </OptionToken>
-    <OptionToken Id="token-sql-to-transform-script-workspace" OptionId="opt-sql-to-transform-script-workspace">
+    <OptionToken Id="token-transform-script-to-sql-workspace" OptionId="opt-transform-script-to-sql-workspace">
       <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-sql-to-transform-script-out" OptionId="opt-sql-to-transform-script-out">
-      <Token>--out</Token>
-    </OptionToken>
-    <OptionToken Id="token-sql-to-transform-script-include-views" OptionId="opt-sql-to-transform-script-include-views">
-      <Token>--include-views</Token>
-    </OptionToken>
-    <OptionToken Id="token-sql-to-transform-script-include-functions" OptionId="opt-sql-to-transform-script-include-functions">
-      <Token>--include-functions</Token>
-    </OptionToken>
-    <OptionToken Id="token-sql-to-transform-script-include-stored-procedures" OptionId="opt-sql-to-transform-script-include-stored-procedures">
-      <Token>--include-stored-procedures</Token>
-    </OptionToken>
-    <OptionToken Id="token-sql-to-transform-script-allow-empty" OptionId="opt-sql-to-transform-script-allow-empty">
-      <Token>--allow-empty</Token>
     </OptionToken>
   </OptionTokenList>
 </MetaCli>

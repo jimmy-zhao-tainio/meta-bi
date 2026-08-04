@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaMesh>
   <OperationList>
-    <Operation Id="operation:cleanup" MeshId="mesh:default">
-      <Description>Remove generated MetaAnalytics demo workspace.</Description>
-      <Name>cleanup</Name>
-    </Operation>
     <Operation Id="operation:author-analytics-model" MeshId="mesh:default">
       <Description>Author a small Commerce analytics model through the public meta-analytics CLI.</Description>
       <Name>author-analytics-model</Name>
+    </Operation>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove generated MetaAnalytics demo workspace.</Description>
+      <Name>cleanup</Name>
     </Operation>
   </OperationList>
 </MetaMesh>

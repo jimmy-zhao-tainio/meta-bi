@@ -9,8 +9,7 @@ using MetaConvert.DataWarehouseToSql;
 using MetaConvert.SchemaToDataVault;
 using MetaConvert.SqlToTransformScript;
 using MetaConvert.TransformScriptToSql;
-using MetaRawDataVault.Instance;
-using MetaSchema.Instance;
+using MetaSchema;
 
 internal sealed class MetaConvertCommandHandlers
 {
@@ -23,24 +22,23 @@ internal sealed class MetaConvertCommandHandlers
         this.appName = appName;
     }
 
-    public async Task<int> RunSchemaToRawDataVaultAsync(MetaCliInvocation invocation)
+    public async Task<int> RunSchemaToRawDataVaultAsync(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
-        var sourceWorkspacePath = Path.GetFullPath(invocation.Required("source-workspace"));
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(invocation.Required("new-workspace"));
-        if (!targetValidation.Ok)
-        {
-            return Fail(targetValidation.ErrorMessage, "choose a new folder or empty the target directory and retry.", 4, targetValidation.Details);
-        }
-
-        var targetWorkspacePath = targetValidation.FullPath;
-        Directory.CreateDirectory(targetWorkspacePath);
+        var sourceWorkspace = invocation.Required("source-workspace");
+        var targetWorkspace = MetaCliWorkspace.OutputLocation(
+            invocation,
+            "output-xml",
+            "output-csharp",
+            "output-sql");
 
         RawDataVaultFromMetaSchemaService.RawDataVaultFromMetaSchemaResult result;
         try
         {
-            var sourceModel = await MetaSchemaInstance.LoadFromWorkspaceAsync(
-                sourceWorkspacePath,
-                searchUpward: false).ConfigureAwait(false);
+            var sourceModel = await workspaces
+                .RequiredAsync<MetaSchemaModel>("source-workspace")
+                .ConfigureAwait(false);
 
             result = new RawDataVaultFromMetaSchemaService().MaterializeWithReport(
                 sourceModel,
@@ -48,9 +46,10 @@ internal sealed class MetaConvertCommandHandlers
                 invocation.Values("ignore-field-suffix").ToList(),
                 invocation.Flag("include-views"));
 
-            await MetaRawDataVaultInstance.SaveToWorkspaceAsync(
-                result.Model,
-                targetWorkspacePath).ConfigureAwait(false);
+            await workspaces.CreateAsync(
+                    "output",
+                    result.Model)
+                .ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -60,13 +59,13 @@ internal sealed class MetaConvertCommandHandlers
                 4,
                 new[]
                 {
-                    $"  SourceWorkspace: {sourceWorkspacePath}",
-                    $"  TargetWorkspace: {targetWorkspacePath}",
+                    $"  Source workspace: {sourceWorkspace}",
+                    $"  Target workspace: {targetWorkspace}",
                     $"  {ex.Message}",
                 });
         }
 
-        presenter.WriteOk($"Created {Path.GetFileName(targetWorkspacePath)}");
+        presenter.WriteOk($"Created {targetWorkspace}");
         if (invocation.Flag("verbose"))
         {
             RenderSummary(result.Report.Summary);

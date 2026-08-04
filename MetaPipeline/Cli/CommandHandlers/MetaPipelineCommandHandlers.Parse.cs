@@ -168,17 +168,6 @@ internal sealed partial class MetaPipelineCommandHandlers
 
     private static (
         bool Ok,
-        string NewWorkspacePath,
-        string ErrorMessage) ReadNewWorkspaceArgs(MetaCliInvocation invocation)
-    {
-        var newWorkspacePath = Required(invocation, "path");
-        return string.IsNullOrWhiteSpace(newWorkspacePath)
-            ? (false, newWorkspacePath, "missing required argument <path>.")
-            : (true, newWorkspacePath, string.Empty);
-    }
-
-    private static (
-        bool Ok,
         string WorkspacePath,
         string Name,
         string Description,

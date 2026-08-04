@@ -2,6 +2,8 @@
 <MetaDataQuality>
   <JoinPatternOccurrenceList>
     <JoinPatternOccurrence Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:1" JoinPatternId="JoinPattern.11">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:20</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:1</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:1</QualifiedJoinId>
@@ -14,6 +16,8 @@
       <TransformScriptName>Dim_Product</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:2" JoinPatternId="JoinPattern.12">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:22</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:2</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:2</QualifiedJoinId>
@@ -26,6 +30,8 @@
       <TransformScriptName>Dim_Product</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:3" JoinPatternId="JoinPattern.13">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:24</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:3</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:3</QualifiedJoinId>
@@ -38,6 +44,8 @@
       <TransformScriptName>Dim_Product</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:4" JoinPatternId="JoinPattern.14">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:26</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:4</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:4</QualifiedJoinId>
@@ -50,6 +58,8 @@
       <TransformScriptName>Dim_Product</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:5" JoinPatternId="JoinPattern.15">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:28</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:5</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:5</QualifiedJoinId>
@@ -62,6 +72,8 @@
       <TransformScriptName>Dim_Product</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:10" JoinPatternId="JoinPattern.5">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:43</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:10</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:10</QualifiedJoinId>
@@ -74,6 +86,8 @@
       <TransformScriptName>Dim_Geography</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:11" JoinPatternId="JoinPattern.6">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:45</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:11</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:11</QualifiedJoinId>
@@ -86,6 +100,8 @@
       <TransformScriptName>Dim_Geography</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:6" JoinPatternId="JoinPattern.7">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:35</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:6</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:6</QualifiedJoinId>
@@ -98,6 +114,8 @@
       <TransformScriptName>Dim_Geography</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:7" JoinPatternId="JoinPattern.8">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:37</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:7</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:7</QualifiedJoinId>
@@ -110,6 +128,8 @@
       <TransformScriptName>Dim_Geography</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:8" JoinPatternId="JoinPattern.9">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:39</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:8</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:8</QualifiedJoinId>
@@ -122,6 +142,8 @@
       <TransformScriptName>Dim_Geography</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:9" JoinPatternId="JoinPattern.10">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:41</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:9</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:9</QualifiedJoinId>
@@ -134,6 +156,8 @@
       <TransformScriptName>Dim_Geography</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:12" JoinPatternId="JoinPattern">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:52</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:12</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:12</QualifiedJoinId>
@@ -146,6 +170,8 @@
       <TransformScriptName>Dim_Customer</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:13" JoinPatternId="JoinPattern.1">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:54</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:13</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:13</QualifiedJoinId>
@@ -158,6 +184,8 @@
       <TransformScriptName>Dim_Customer</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:14" JoinPatternId="JoinPattern.2">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:56</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:14</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:14</QualifiedJoinId>
@@ -170,6 +198,8 @@
       <TransformScriptName>Dim_Customer</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:15" JoinPatternId="JoinPattern.3">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:58</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:15</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:15</QualifiedJoinId>
@@ -182,6 +212,8 @@
       <TransformScriptName>Dim_Customer</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:16" JoinPatternId="JoinPattern.4">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:60</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:16</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:16</QualifiedJoinId>
@@ -194,6 +226,8 @@
       <TransformScriptName>Dim_Customer</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:16.JoinPatternOccurrence.QualifiedJoin:17" JoinPatternId="JoinPattern.16">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:65</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:17</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:17</QualifiedJoinId>
@@ -206,6 +240,8 @@
       <TransformScriptName>Dim_Salesperson</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:16.JoinPatternOccurrence.QualifiedJoin:18" JoinPatternId="JoinPattern.17">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:67</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:18</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:18</QualifiedJoinId>
@@ -218,6 +254,8 @@
       <TransformScriptName>Dim_Salesperson</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:19" JoinPatternId="JoinPattern.18">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:72</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:19</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:19</QualifiedJoinId>
@@ -230,6 +268,8 @@
       <TransformScriptName>Dim_SalesTerritory</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:20" JoinPatternId="JoinPattern.19">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:74</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:20</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:20</QualifiedJoinId>
@@ -242,6 +282,8 @@
       <TransformScriptName>Dim_SalesTerritory</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:21" JoinPatternId="JoinPattern.20">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:76</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:21</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:21</QualifiedJoinId>
@@ -254,6 +296,8 @@
       <TransformScriptName>Dim_SalesTerritory</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22" JoinPatternId="JoinPattern.42">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:81</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:22</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:22</QualifiedJoinId>
@@ -266,6 +310,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23" JoinPatternId="JoinPattern.43">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:83</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:23</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:23</QualifiedJoinId>
@@ -278,6 +324,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24" JoinPatternId="JoinPattern.44">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:85</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:24</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:24</QualifiedJoinId>
@@ -290,6 +338,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:25" JoinPatternId="JoinPattern.45">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:87</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:25</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:25</QualifiedJoinId>
@@ -302,6 +352,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26" JoinPatternId="JoinPattern.46">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:89</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:26</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:26</QualifiedJoinId>
@@ -314,6 +366,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27" JoinPatternId="JoinPattern.47">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:91</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:27</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:27</QualifiedJoinId>
@@ -326,6 +380,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:28" JoinPatternId="JoinPattern.48">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:93</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:28</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:28</QualifiedJoinId>
@@ -338,6 +394,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29" JoinPatternId="JoinPattern.49">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:95</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:29</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:29</QualifiedJoinId>
@@ -350,6 +408,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30" JoinPatternId="JoinPattern.50">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:97</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:30</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:30</QualifiedJoinId>
@@ -362,6 +422,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:31" JoinPatternId="JoinPattern.51">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:99</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:31</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:31</QualifiedJoinId>
@@ -374,6 +436,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32" JoinPatternId="JoinPattern.52">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:101</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:32</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:32</QualifiedJoinId>
@@ -386,6 +450,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33" JoinPatternId="JoinPattern.53">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:103</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:33</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:33</QualifiedJoinId>
@@ -398,6 +464,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:34" JoinPatternId="JoinPattern.54">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:105</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:34</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:34</QualifiedJoinId>
@@ -410,6 +478,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35" JoinPatternId="JoinPattern.55">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:107</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:35</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:35</QualifiedJoinId>
@@ -422,6 +492,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36" JoinPatternId="JoinPattern.56">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:109</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:36</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:36</QualifiedJoinId>
@@ -434,6 +506,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:37" JoinPatternId="JoinPattern.57">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:111</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:37</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:37</QualifiedJoinId>
@@ -446,6 +520,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:38" JoinPatternId="JoinPattern.58">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:113</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:38</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:38</QualifiedJoinId>
@@ -458,6 +534,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:39" JoinPatternId="JoinPattern.59">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:115</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:39</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:39</QualifiedJoinId>
@@ -470,6 +548,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:40" JoinPatternId="JoinPattern.60">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:117</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:40</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:40</QualifiedJoinId>
@@ -482,6 +562,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:41" JoinPatternId="JoinPattern.61">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:119</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:41</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:41</QualifiedJoinId>
@@ -494,6 +576,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:42" JoinPatternId="JoinPattern.62">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:121</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:42</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:42</QualifiedJoinId>
@@ -506,6 +590,8 @@
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43" JoinPatternId="JoinPattern.21">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:127</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:43</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:43</QualifiedJoinId>
@@ -518,6 +604,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44" JoinPatternId="JoinPattern.22">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:129</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:44</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:44</QualifiedJoinId>
@@ -530,6 +618,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45" JoinPatternId="JoinPattern.23">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:131</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:45</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:45</QualifiedJoinId>
@@ -542,6 +632,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46" JoinPatternId="JoinPattern.24">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:133</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:46</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:46</QualifiedJoinId>
@@ -554,6 +646,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47" JoinPatternId="JoinPattern.25">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:135</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:47</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:47</QualifiedJoinId>
@@ -566,6 +660,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48" JoinPatternId="JoinPattern.26">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:137</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:48</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:48</QualifiedJoinId>
@@ -578,6 +674,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:49" JoinPatternId="JoinPattern.27">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:139</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:49</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:49</QualifiedJoinId>
@@ -590,6 +688,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50" JoinPatternId="JoinPattern.28">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:141</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:50</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:50</QualifiedJoinId>
@@ -602,6 +702,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51" JoinPatternId="JoinPattern.29">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:143</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:51</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:51</QualifiedJoinId>
@@ -614,6 +716,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:52" JoinPatternId="JoinPattern.30">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:145</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:52</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:52</QualifiedJoinId>
@@ -626,6 +730,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53" JoinPatternId="JoinPattern.31">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:147</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:53</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:53</QualifiedJoinId>
@@ -638,6 +744,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54" JoinPatternId="JoinPattern.32">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:149</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:54</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:54</QualifiedJoinId>
@@ -650,6 +758,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:55" JoinPatternId="JoinPattern.33">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:151</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:55</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:55</QualifiedJoinId>
@@ -662,6 +772,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56" JoinPatternId="JoinPattern.34">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:153</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:56</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:56</QualifiedJoinId>
@@ -674,6 +786,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57" JoinPatternId="JoinPattern.35">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:155</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:57</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:57</QualifiedJoinId>
@@ -686,6 +800,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:58" JoinPatternId="JoinPattern.36">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:157</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:58</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:58</QualifiedJoinId>
@@ -698,6 +814,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59" JoinPatternId="JoinPattern.37">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:159</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:59</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:59</QualifiedJoinId>
@@ -710,6 +828,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60" JoinPatternId="JoinPattern.38">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:161</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:60</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:60</QualifiedJoinId>
@@ -722,6 +842,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:61" JoinPatternId="JoinPattern.39">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:163</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:61</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:61</QualifiedJoinId>
@@ -734,6 +856,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:62" JoinPatternId="JoinPattern.40">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:165</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:62</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:62</QualifiedJoinId>
@@ -746,6 +870,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:63" JoinPatternId="JoinPattern.41">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:167</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:63</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:63</QualifiedJoinId>
@@ -758,6 +884,8 @@
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:64" JoinPatternId="JoinPattern.63">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:172</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:64</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:64</QualifiedJoinId>
@@ -770,6 +898,8 @@
       <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:65" JoinPatternId="JoinPattern.64">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:174</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:65</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:65</QualifiedJoinId>
@@ -782,6 +912,8 @@
       <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:66" JoinPatternId="JoinPattern.65">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:176</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:66</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:66</QualifiedJoinId>
@@ -794,6 +926,8 @@
       <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:67" JoinPatternId="JoinPattern.66">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:178</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:67</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:67</QualifiedJoinId>
@@ -806,6 +940,8 @@
       <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
     </JoinPatternOccurrence>
     <JoinPatternOccurrence Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:68" JoinPatternId="JoinPattern.67">
+      <CteId></CteId>
+      <CteName></CteName>
       <FirstTableReferenceId>TableReference:180</FirstTableReferenceId>
       <JoinTableReferenceId>JoinTableReference:68</JoinTableReferenceId>
       <QualifiedJoinId>QualifiedJoin:68</QualifiedJoinId>

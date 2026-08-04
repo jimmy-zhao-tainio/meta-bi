@@ -2,552 +2,661 @@
 <MetaMesh>
   <OperationStepList>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:bind-transforms" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q99">
-      <Arguments>bind --transform-workspace "{workspace:transform.path}" --source-schema "{workspace:schema.path}" --target-schema "{workspace:schema.path}" --execute-system TpcDsSnapshot --execute-system-default-schema-name dbo --new-workspace "{workspace:binding.path}"</Arguments>
+      <Arguments>bind --transform-workspace "{workspace:transform.location}" --source-schema "{workspace:schema.location}" --target-schema "{workspace:schema.location}" --execute-system TpcDsSnapshot --execute-system-default-schema-name dbo --new-workspace "{workspace:binding.location}"</Arguments>
       <Executable>meta-transform-binding.exe</Executable>
       <Name>bind-transforms</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:convert-roundtrip-transform-to-sql" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:convert-transform-to-sql">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.path}" --database-name TpcDsSnapshot --out "{workspace:sql-roundtrip.path}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.location}" --database-name TpcDsSnapshot --out "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-roundtrip-transform-to-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:convert-transform-to-sql" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:record-transform-roundtrip-diff">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform.path}" --database-name TpcDsSnapshot --out "{workspace:sql.path}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform.location}" --database-name TpcDsSnapshot --out "{workspace:sql.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-transform-to-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:diff-sql-workspaces" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:convert-roundtrip-transform-to-sql">
-      <Arguments>instance diff "{workspace:sql.path}" "{workspace:sql-roundtrip.path}"</Arguments>
+      <Arguments>instance diff "{workspace:sql.location}" "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>meta.exe</Executable>
       <Name>diff-sql-workspaces</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-file" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-folder">
-      <Arguments>to sql-path --workspace "{workspace:transform.path}" --out RoundTrippedViews.sql</Arguments>
+      <Arguments>to sql-path --workspace "{workspace:transform.location}" --out RoundTrippedViews.sql</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>export-roundtripped-views-file</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-folder" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:bind-transforms">
-      <Arguments>to sql-path --workspace "{workspace:transform.path}" --out RoundTrippedViews</Arguments>
+      <Arguments>to sql-path --workspace "{workspace:transform.location}" --out RoundTrippedViews</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>export-roundtripped-views-folder</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q01" OperationId="operation:build-tpc-ds-snapshot">
-      <Arguments>from sql-file --path SourceViews\001_q01\view.sql --target tpcds.v_q01 --new-workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\001_q01\view.sql --target tpcds.v_q01 --new-workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q01</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q02" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q01">
-      <Arguments>from sql-file --path SourceViews\002_q02\view.sql --target tpcds.v_q02 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\002_q02\view.sql --target tpcds.v_q02 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q02</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q03" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q02">
-      <Arguments>from sql-file --path SourceViews\003_q03\view.sql --target tpcds.v_q03 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\003_q03\view.sql --target tpcds.v_q03 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q03</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q04" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q03">
-      <Arguments>from sql-file --path SourceViews\004_q04\view.sql --target tpcds.v_q04 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\004_q04\view.sql --target tpcds.v_q04 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q04</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q05" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q04">
-      <Arguments>from sql-file --path SourceViews\005_q05\view.sql --target tpcds.v_q05 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\005_q05\view.sql --target tpcds.v_q05 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q05</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q06" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q05">
-      <Arguments>from sql-file --path SourceViews\006_q06\view.sql --target tpcds.v_q06 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\006_q06\view.sql --target tpcds.v_q06 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q06</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q07" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q06">
-      <Arguments>from sql-file --path SourceViews\007_q07\view.sql --target tpcds.v_q07 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\007_q07\view.sql --target tpcds.v_q07 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q07</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q08" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q07">
-      <Arguments>from sql-file --path SourceViews\008_q08\view.sql --target tpcds.v_q08 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\008_q08\view.sql --target tpcds.v_q08 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q08</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q09" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q08">
-      <Arguments>from sql-file --path SourceViews\009_q09\view.sql --target tpcds.v_q09 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\009_q09\view.sql --target tpcds.v_q09 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q09</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q10" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q09">
-      <Arguments>from sql-file --path SourceViews\010_q10\view.sql --target tpcds.v_q10 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\010_q10\view.sql --target tpcds.v_q10 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q10</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q11" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q10">
-      <Arguments>from sql-file --path SourceViews\011_q11\view.sql --target tpcds.v_q11 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\011_q11\view.sql --target tpcds.v_q11 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q11</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q12" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q11">
-      <Arguments>from sql-file --path SourceViews\012_q12\view.sql --target tpcds.v_q12 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\012_q12\view.sql --target tpcds.v_q12 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q12</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q13" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q12">
-      <Arguments>from sql-file --path SourceViews\013_q13\view.sql --target tpcds.v_q13 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\013_q13\view.sql --target tpcds.v_q13 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q13</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q14" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q13">
-      <Arguments>from sql-file --path SourceViews\014_q14\view.sql --target tpcds.v_q14 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\014_q14\view.sql --target tpcds.v_q14 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q14</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q15" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q14">
-      <Arguments>from sql-file --path SourceViews\015_q15\view.sql --target tpcds.v_q15 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\015_q15\view.sql --target tpcds.v_q15 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q15</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q16" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q15">
-      <Arguments>from sql-file --path SourceViews\016_q16\view.sql --target tpcds.v_q16 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\016_q16\view.sql --target tpcds.v_q16 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q16</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q17" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q16">
-      <Arguments>from sql-file --path SourceViews\017_q17\view.sql --target tpcds.v_q17 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\017_q17\view.sql --target tpcds.v_q17 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q17</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q18" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q17">
-      <Arguments>from sql-file --path SourceViews\018_q18\view.sql --target tpcds.v_q18 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\018_q18\view.sql --target tpcds.v_q18 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q18</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q19" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q18">
-      <Arguments>from sql-file --path SourceViews\019_q19\view.sql --target tpcds.v_q19 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\019_q19\view.sql --target tpcds.v_q19 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q19</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q20" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q19">
-      <Arguments>from sql-file --path SourceViews\020_q20\view.sql --target tpcds.v_q20 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\020_q20\view.sql --target tpcds.v_q20 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q20</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q21" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q20">
-      <Arguments>from sql-file --path SourceViews\021_q21\view.sql --target tpcds.v_q21 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\021_q21\view.sql --target tpcds.v_q21 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q21</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q22" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q21">
-      <Arguments>from sql-file --path SourceViews\022_q22\view.sql --target tpcds.v_q22 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\022_q22\view.sql --target tpcds.v_q22 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q22</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q23" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q22">
-      <Arguments>from sql-file --path SourceViews\023_q23\view.sql --target tpcds.v_q23 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\023_q23\view.sql --target tpcds.v_q23 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q23</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q24" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q23">
-      <Arguments>from sql-file --path SourceViews\024_q24\view.sql --target tpcds.v_q24 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\024_q24\view.sql --target tpcds.v_q24 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q24</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q25" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q24">
-      <Arguments>from sql-file --path SourceViews\025_q25\view.sql --target tpcds.v_q25 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\025_q25\view.sql --target tpcds.v_q25 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q25</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q26" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q25">
-      <Arguments>from sql-file --path SourceViews\026_q26\view.sql --target tpcds.v_q26 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\026_q26\view.sql --target tpcds.v_q26 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q26</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q27" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q26">
-      <Arguments>from sql-file --path SourceViews\027_q27\view.sql --target tpcds.v_q27 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\027_q27\view.sql --target tpcds.v_q27 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q27</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q28" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q27">
-      <Arguments>from sql-file --path SourceViews\028_q28\view.sql --target tpcds.v_q28 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\028_q28\view.sql --target tpcds.v_q28 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q28</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q29" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q28">
-      <Arguments>from sql-file --path SourceViews\029_q29\view.sql --target tpcds.v_q29 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\029_q29\view.sql --target tpcds.v_q29 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q29</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q30" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q29">
-      <Arguments>from sql-file --path SourceViews\030_q30\view.sql --target tpcds.v_q30 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\030_q30\view.sql --target tpcds.v_q30 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q30</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q31" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q30">
-      <Arguments>from sql-file --path SourceViews\031_q31\view.sql --target tpcds.v_q31 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\031_q31\view.sql --target tpcds.v_q31 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q31</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q32" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q31">
-      <Arguments>from sql-file --path SourceViews\032_q32\view.sql --target tpcds.v_q32 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\032_q32\view.sql --target tpcds.v_q32 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q32</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q33" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q32">
-      <Arguments>from sql-file --path SourceViews\033_q33\view.sql --target tpcds.v_q33 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\033_q33\view.sql --target tpcds.v_q33 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q33</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q34" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q33">
-      <Arguments>from sql-file --path SourceViews\034_q34\view.sql --target tpcds.v_q34 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\034_q34\view.sql --target tpcds.v_q34 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q34</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q35" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q34">
-      <Arguments>from sql-file --path SourceViews\035_q35\view.sql --target tpcds.v_q35 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\035_q35\view.sql --target tpcds.v_q35 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q35</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q36" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q35">
-      <Arguments>from sql-file --path SourceViews\036_q36\view.sql --target tpcds.v_q36 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\036_q36\view.sql --target tpcds.v_q36 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q36</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q37" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q36">
-      <Arguments>from sql-file --path SourceViews\037_q37\view.sql --target tpcds.v_q37 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\037_q37\view.sql --target tpcds.v_q37 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q37</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q38" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q37">
-      <Arguments>from sql-file --path SourceViews\038_q38\view.sql --target tpcds.v_q38 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\038_q38\view.sql --target tpcds.v_q38 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q38</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q39" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q38">
-      <Arguments>from sql-file --path SourceViews\039_q39\view.sql --target tpcds.v_q39 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\039_q39\view.sql --target tpcds.v_q39 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q39</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q40" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q39">
-      <Arguments>from sql-file --path SourceViews\040_q40\view.sql --target tpcds.v_q40 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\040_q40\view.sql --target tpcds.v_q40 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q40</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q41" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q40">
-      <Arguments>from sql-file --path SourceViews\041_q41\view.sql --target tpcds.v_q41 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\041_q41\view.sql --target tpcds.v_q41 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q41</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q42" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q41">
-      <Arguments>from sql-file --path SourceViews\042_q42\view.sql --target tpcds.v_q42 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\042_q42\view.sql --target tpcds.v_q42 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q42</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q43" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q42">
-      <Arguments>from sql-file --path SourceViews\043_q43\view.sql --target tpcds.v_q43 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\043_q43\view.sql --target tpcds.v_q43 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q43</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q44" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q43">
-      <Arguments>from sql-file --path SourceViews\044_q44\view.sql --target tpcds.v_q44 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\044_q44\view.sql --target tpcds.v_q44 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q44</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q45" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q44">
-      <Arguments>from sql-file --path SourceViews\045_q45\view.sql --target tpcds.v_q45 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\045_q45\view.sql --target tpcds.v_q45 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q45</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q46" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q45">
-      <Arguments>from sql-file --path SourceViews\046_q46\view.sql --target tpcds.v_q46 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\046_q46\view.sql --target tpcds.v_q46 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q46</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q47" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q46">
-      <Arguments>from sql-file --path SourceViews\047_q47\view.sql --target tpcds.v_q47 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\047_q47\view.sql --target tpcds.v_q47 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q47</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q48" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q47">
-      <Arguments>from sql-file --path SourceViews\048_q48\view.sql --target tpcds.v_q48 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\048_q48\view.sql --target tpcds.v_q48 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q48</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q49" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q48">
-      <Arguments>from sql-file --path SourceViews\049_q49\view.sql --target tpcds.v_q49 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\049_q49\view.sql --target tpcds.v_q49 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q49</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q50" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q49">
-      <Arguments>from sql-file --path SourceViews\050_q50\view.sql --target tpcds.v_q50 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\050_q50\view.sql --target tpcds.v_q50 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q50</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q51" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q50">
-      <Arguments>from sql-file --path SourceViews\051_q51\view.sql --target tpcds.v_q51 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\051_q51\view.sql --target tpcds.v_q51 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q51</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q52" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q51">
-      <Arguments>from sql-file --path SourceViews\052_q52\view.sql --target tpcds.v_q52 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\052_q52\view.sql --target tpcds.v_q52 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q52</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q53" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q52">
-      <Arguments>from sql-file --path SourceViews\053_q53\view.sql --target tpcds.v_q53 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\053_q53\view.sql --target tpcds.v_q53 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q53</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q54" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q53">
-      <Arguments>from sql-file --path SourceViews\054_q54\view.sql --target tpcds.v_q54 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\054_q54\view.sql --target tpcds.v_q54 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q54</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q55" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q54">
-      <Arguments>from sql-file --path SourceViews\055_q55\view.sql --target tpcds.v_q55 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\055_q55\view.sql --target tpcds.v_q55 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q55</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q56" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q55">
-      <Arguments>from sql-file --path SourceViews\056_q56\view.sql --target tpcds.v_q56 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\056_q56\view.sql --target tpcds.v_q56 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q56</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q57" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q56">
-      <Arguments>from sql-file --path SourceViews\057_q57\view.sql --target tpcds.v_q57 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\057_q57\view.sql --target tpcds.v_q57 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q57</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q58" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q57">
-      <Arguments>from sql-file --path SourceViews\058_q58\view.sql --target tpcds.v_q58 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\058_q58\view.sql --target tpcds.v_q58 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q58</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q59" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q58">
-      <Arguments>from sql-file --path SourceViews\059_q59\view.sql --target tpcds.v_q59 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\059_q59\view.sql --target tpcds.v_q59 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q59</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q60" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q59">
-      <Arguments>from sql-file --path SourceViews\060_q60\view.sql --target tpcds.v_q60 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\060_q60\view.sql --target tpcds.v_q60 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q60</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q61" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q60">
-      <Arguments>from sql-file --path SourceViews\061_q61\view.sql --target tpcds.v_q61 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\061_q61\view.sql --target tpcds.v_q61 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q61</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q62" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q61">
-      <Arguments>from sql-file --path SourceViews\062_q62\view.sql --target tpcds.v_q62 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\062_q62\view.sql --target tpcds.v_q62 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q62</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q63" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q62">
-      <Arguments>from sql-file --path SourceViews\063_q63\view.sql --target tpcds.v_q63 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\063_q63\view.sql --target tpcds.v_q63 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q63</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q64" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q63">
-      <Arguments>from sql-file --path SourceViews\064_q64\view.sql --target tpcds.v_q64 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\064_q64\view.sql --target tpcds.v_q64 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q64</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q65" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q64">
-      <Arguments>from sql-file --path SourceViews\065_q65\view.sql --target tpcds.v_q65 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\065_q65\view.sql --target tpcds.v_q65 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q65</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q66" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q65">
-      <Arguments>from sql-file --path SourceViews\066_q66\view.sql --target tpcds.v_q66 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\066_q66\view.sql --target tpcds.v_q66 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q66</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q67" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q66">
-      <Arguments>from sql-file --path SourceViews\067_q67\view.sql --target tpcds.v_q67 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\067_q67\view.sql --target tpcds.v_q67 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q67</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q68" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q67">
-      <Arguments>from sql-file --path SourceViews\068_q68\view.sql --target tpcds.v_q68 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\068_q68\view.sql --target tpcds.v_q68 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q68</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q69" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q68">
-      <Arguments>from sql-file --path SourceViews\069_q69\view.sql --target tpcds.v_q69 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\069_q69\view.sql --target tpcds.v_q69 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q69</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q70" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q69">
-      <Arguments>from sql-file --path SourceViews\070_q70\view.sql --target tpcds.v_q70 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\070_q70\view.sql --target tpcds.v_q70 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q70</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q71" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q70">
-      <Arguments>from sql-file --path SourceViews\071_q71\view.sql --target tpcds.v_q71 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\071_q71\view.sql --target tpcds.v_q71 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q71</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q72" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q71">
-      <Arguments>from sql-file --path SourceViews\072_q72\view.sql --target tpcds.v_q72 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\072_q72\view.sql --target tpcds.v_q72 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q72</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q73" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q72">
-      <Arguments>from sql-file --path SourceViews\073_q73\view.sql --target tpcds.v_q73 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\073_q73\view.sql --target tpcds.v_q73 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q73</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q74" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q73">
-      <Arguments>from sql-file --path SourceViews\074_q74\view.sql --target tpcds.v_q74 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\074_q74\view.sql --target tpcds.v_q74 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q74</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q75" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q74">
-      <Arguments>from sql-file --path SourceViews\075_q75\view.sql --target tpcds.v_q75 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\075_q75\view.sql --target tpcds.v_q75 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q75</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q76" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q75">
-      <Arguments>from sql-file --path SourceViews\076_q76\view.sql --target tpcds.v_q76 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\076_q76\view.sql --target tpcds.v_q76 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q76</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q77" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q76">
-      <Arguments>from sql-file --path SourceViews\077_q77\view.sql --target tpcds.v_q77 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\077_q77\view.sql --target tpcds.v_q77 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q77</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q78" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q77">
-      <Arguments>from sql-file --path SourceViews\078_q78\view.sql --target tpcds.v_q78 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\078_q78\view.sql --target tpcds.v_q78 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q78</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q79" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q78">
-      <Arguments>from sql-file --path SourceViews\079_q79\view.sql --target tpcds.v_q79 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\079_q79\view.sql --target tpcds.v_q79 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q79</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q80" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q79">
-      <Arguments>from sql-file --path SourceViews\080_q80\view.sql --target tpcds.v_q80 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\080_q80\view.sql --target tpcds.v_q80 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q80</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q81" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q80">
-      <Arguments>from sql-file --path SourceViews\081_q81\view.sql --target tpcds.v_q81 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\081_q81\view.sql --target tpcds.v_q81 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q81</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q82" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q81">
-      <Arguments>from sql-file --path SourceViews\082_q82\view.sql --target tpcds.v_q82 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\082_q82\view.sql --target tpcds.v_q82 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q82</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q83" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q82">
-      <Arguments>from sql-file --path SourceViews\083_q83\view.sql --target tpcds.v_q83 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\083_q83\view.sql --target tpcds.v_q83 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q83</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q84" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q83">
-      <Arguments>from sql-file --path SourceViews\084_q84\view.sql --target tpcds.v_q84 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\084_q84\view.sql --target tpcds.v_q84 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q84</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q85" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q84">
-      <Arguments>from sql-file --path SourceViews\085_q85\view.sql --target tpcds.v_q85 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\085_q85\view.sql --target tpcds.v_q85 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q85</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q86" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q85">
-      <Arguments>from sql-file --path SourceViews\086_q86\view.sql --target tpcds.v_q86 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\086_q86\view.sql --target tpcds.v_q86 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q86</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q87" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q86">
-      <Arguments>from sql-file --path SourceViews\087_q87\view.sql --target tpcds.v_q87 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\087_q87\view.sql --target tpcds.v_q87 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q87</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q88" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q87">
-      <Arguments>from sql-file --path SourceViews\088_q88\view.sql --target tpcds.v_q88 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\088_q88\view.sql --target tpcds.v_q88 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q88</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q89" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q88">
-      <Arguments>from sql-file --path SourceViews\089_q89\view.sql --target tpcds.v_q89 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\089_q89\view.sql --target tpcds.v_q89 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q89</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q90" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q89">
-      <Arguments>from sql-file --path SourceViews\090_q90\view.sql --target tpcds.v_q90 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\090_q90\view.sql --target tpcds.v_q90 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q90</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q91" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q90">
-      <Arguments>from sql-file --path SourceViews\091_q91\view.sql --target tpcds.v_q91 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\091_q91\view.sql --target tpcds.v_q91 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q91</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q92" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q91">
-      <Arguments>from sql-file --path SourceViews\092_q92\view.sql --target tpcds.v_q92 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\092_q92\view.sql --target tpcds.v_q92 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q92</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q93" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q92">
-      <Arguments>from sql-file --path SourceViews\093_q93\view.sql --target tpcds.v_q93 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\093_q93\view.sql --target tpcds.v_q93 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q93</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q94" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q93">
-      <Arguments>from sql-file --path SourceViews\094_q94\view.sql --target tpcds.v_q94 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\094_q94\view.sql --target tpcds.v_q94 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q94</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q95" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q94">
-      <Arguments>from sql-file --path SourceViews\095_q95\view.sql --target tpcds.v_q95 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\095_q95\view.sql --target tpcds.v_q95 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q95</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q96" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q95">
-      <Arguments>from sql-file --path SourceViews\096_q96\view.sql --target tpcds.v_q96 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\096_q96\view.sql --target tpcds.v_q96 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q96</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q97" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q96">
-      <Arguments>from sql-file --path SourceViews\097_q97\view.sql --target tpcds.v_q97 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\097_q97\view.sql --target tpcds.v_q97 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q97</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q98" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q97">
-      <Arguments>from sql-file --path SourceViews\098_q98\view.sql --target tpcds.v_q98 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\098_q98\view.sql --target tpcds.v_q98 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q98</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q99" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q98">
-      <Arguments>from sql-file --path SourceViews\099_q99\view.sql --target tpcds.v_q99 --workspace "{workspace:transform.path}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\099_q99\view.sql --target tpcds.v_q99 --workspace "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q99</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:print-sql-q01" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:export-roundtripped-views-file">
-      <Arguments>to sql-code --workspace "{workspace:transform.path}" --name tpcds.v_q01</Arguments>
+      <Arguments>to sql-code --workspace "{workspace:transform.location}" --name tpcds.v_q01</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>print-sql-q01</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:record-transform-roundtrip-diff" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-manifest">
-      <Arguments>instance diff "{workspace:transform.path}" "{workspace:transform-roundtrip.path}"</Arguments>
+      <Arguments>instance diff "{workspace:transform.location}" "{workspace:transform-roundtrip.location}"</Arguments>
       <Description>Record the expected transform representation and emitted-file provenance differences after re-importing SQL modules.</Description>
       <Executable>meta.exe</Executable>
       <ExpectedExitCode>1</ExpectedExitCode>
       <Name>record-transform-roundtrip-diff</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-manifest" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:print-sql-q01">
-      <Arguments>from sql-files --manifest RoundTrippedViews.manifest.tsv --new-workspace "{workspace:transform-roundtrip.path}"</Arguments>
+      <Arguments>from sql-files --manifest RoundTrippedViews.manifest.tsv --new-workspace "{workspace:transform-roundtrip.location}"</Arguments>
       <Description>Import emitted SQL modules through the semantic path manifest.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>roundtrip-import-manifest</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-binding-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-roundtrip-workspace">
-      <Arguments>/c if exist "{workspace:binding.path}\*" rmdir /s /q "{workspace:binding.path}"</Arguments>
+      <Arguments>/c if exist "{workspace:binding.location}\*" rmdir /s /q "{workspace:binding.location}"</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-binding-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-roundtripped-views-file" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-roundtripped-views-folder">
       <Arguments>/c if exist "{mesh.root}\RoundTrippedViews.sql" del /q "{mesh.root}\RoundTrippedViews.sql"</Arguments>
@@ -565,14 +674,16 @@
       <Name>remove-sql-roundtrip-diff</Name>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-sql-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-workspace">
-      <Arguments>/c if exist "{workspace:sql-roundtrip.path}\*" rmdir /s /q "{workspace:sql-roundtrip.path}"</Arguments>
+      <Arguments>/c if exist "{workspace:sql-roundtrip.location}\*" rmdir /s /q "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-sql-roundtrip-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-sql-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-binding-workspace">
-      <Arguments>/c if exist "{workspace:sql.path}\*" rmdir /s /q "{workspace:sql.path}"</Arguments>
+      <Arguments>/c if exist "{workspace:sql.location}\*" rmdir /s /q "{workspace:sql.location}"</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-sql-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-transform-roundtrip-diff" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sql-roundtrip-workspace">
       <Arguments>/c if exist "{mesh.root}\TransformRoundTripWS.instance-diff\*" rmdir /s /q "{mesh.root}\TransformRoundTripWS.instance-diff"</Arguments>
@@ -580,14 +691,16 @@
       <Name>remove-transform-roundtrip-diff</Name>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-transform-roundtrip-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
-      <Arguments>/c if exist "{workspace:transform-roundtrip.path}\*" rmdir /s /q "{workspace:transform-roundtrip.path}"</Arguments>
+      <Arguments>/c if exist "{workspace:transform-roundtrip.location}\*" rmdir /s /q "{workspace:transform-roundtrip.location}"</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-transform-roundtrip-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup">
-      <Arguments>/c if exist "{workspace:transform.path}\*" rmdir /s /q "{workspace:transform.path}"</Arguments>
+      <Arguments>/c if exist "{workspace:transform.location}\*" rmdir /s /q "{workspace:transform.location}"</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-transform-workspace</Name>
+      <WorkingDirectory></WorkingDirectory>
     </OperationStep>
   </OperationStepList>
 </MetaMesh>

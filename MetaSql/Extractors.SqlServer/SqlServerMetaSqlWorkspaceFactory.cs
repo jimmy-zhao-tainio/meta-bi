@@ -13,6 +13,15 @@ public static class SqlServerMetaSqlWorkspaceFactory
         IEnumerable<string>? schemaNames = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
+        var model = CreateEmptyModel(databaseName, schemaNames);
+        model.SaveToXmlWorkspace(newWorkspacePath);
+        return XmlWorkspaceReader.OpenAsync(newWorkspacePath).GetAwaiter().GetResult().State;
+    }
+
+    public static MetaSqlModel CreateEmptyModel(
+        string databaseName,
+        IEnumerable<string>? schemaNames = null)
+    {
         ArgumentException.ThrowIfNullOrWhiteSpace(databaseName);
 
         var model = MetaSqlModel.CreateEmpty();
@@ -47,7 +56,6 @@ public static class SqlServerMetaSqlWorkspaceFactory
             });
         }
 
-        model.SaveToXmlWorkspace(newWorkspacePath);
-        return XmlWorkspaceReader.OpenAsync(newWorkspacePath).GetAwaiter().GetResult().State;
+        return model;
     }
 }

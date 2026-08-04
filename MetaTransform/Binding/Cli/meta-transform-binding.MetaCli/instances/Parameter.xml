@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-transform-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformScript workspace to bind.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>transform-workspace</Name>
+    <Parameter Id="param-allow-partial" ValueShapeId="shape-flag">
+      <Description>Save only objects that bind and validate successfully.</Description>
+      <Name>allow-partial</Name>
     </Parameter>
-    <Parameter Id="param-source-schema" ValueShapeId="shape-path">
-      <Description>Repeatable source MetaSchema workspace.</Description>
-      <IsRepeatable>true</IsRepeatable>
-      <IsRequired>true</IsRequired>
-      <Name>source-schema</Name>
+    <Parameter Id="param-bind-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <Name>output-connection-env</Name>
     </Parameter>
-    <Parameter Id="param-target-schema" ValueShapeId="shape-path">
-      <Description>Target MetaSchema workspace.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>target-schema</Name>
+    <Parameter Id="param-bind-output-csharp" ValueShapeId="shape-path">
+      <Description>Create the output on the csharp workspace surface.</Description>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-bind-output-sql" ValueShapeId="shape-path">
+      <Description>Create the output on the sql workspace surface.</Description>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-bind-output-xml" ValueShapeId="shape-path">
+      <Description>Create the output on the xml workspace surface.</Description>
+      <Name>output-xml</Name>
+    </Parameter>
+    <Parameter Id="param-data-type-conversion-workspace" ValueShapeId="shape-path">
+      <Description>Optional sanctioned conversion policy workspace. Omitted uses built-in defaults.</Description>
+      <Name>data-type-conversion-workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-system" ValueShapeId="shape-text">
       <Description>Execution context for one/two-part source identifiers.</Description>
       <IsRequired>true</IsRequired>
       <Name>execute-system</Name>
-    </Parameter>
-    <Parameter Id="param-new-workspace" ValueShapeId="shape-path">
-      <Description>Directory where the binding workspace will be created.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>new-workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-system-default-schema-name" ValueShapeId="shape-text">
       <Description>Required when any one-part source identifier exists.</Description>
@@ -41,17 +44,25 @@
       <IsRepeatable>true</IsRepeatable>
       <Name>ignore-target-columns-if-present</Name>
     </Parameter>
-    <Parameter Id="param-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Optional sanctioned conversion policy workspace. Omitted uses built-in defaults.</Description>
-      <Name>data-type-conversion-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-allow-partial" ValueShapeId="shape-flag">
-      <Description>Save only objects that bind and validate successfully.</Description>
-      <Name>allow-partial</Name>
-    </Parameter>
     <Parameter Id="param-partial-report" ValueShapeId="shape-path">
       <Description>TSV report for objects skipped due to binding or validation failure. Requires --allow-partial.</Description>
       <Name>partial-report</Name>
+    </Parameter>
+    <Parameter Id="param-source-schema" ValueShapeId="shape-path">
+      <Description>Repeatable source MetaSchema workspace.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <IsRequired>true</IsRequired>
+      <Name>source-schema</Name>
+    </Parameter>
+    <Parameter Id="param-target-schema" ValueShapeId="shape-path">
+      <Description>Target MetaSchema workspace.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>target-schema</Name>
+    </Parameter>
+    <Parameter Id="param-transform-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace to bind.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>transform-workspace</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

@@ -18,13 +18,42 @@ public sealed partial class MetaTransformScriptSqlService
         ArgumentException.ThrowIfNullOrWhiteSpace(targetPattern);
         cancellationToken.ThrowIfCancellationRequested();
 
-        var compiledSourcePattern = TransformScriptTargetIdentifierSourcePattern.Compile(sourcePattern);
-        TransformScriptTargetIdentifierPattern.ValidatePattern(targetPattern, "target-pattern");
-
         var workspaceFullPath = Path.GetFullPath(workspacePath);
         var model = await MetaTransformScriptInstance
             .LoadFromWorkspaceAsync(workspaceFullPath, searchUpward: false, cancellationToken)
             .ConfigureAwait(false);
+
+        var result = UpdateTargetIdentifiersFromPattern(
+            model,
+            sourcePattern,
+            targetPattern,
+            onlyMissing,
+            dryRun,
+            workspaceFullPath);
+
+        if (!dryRun && result.UpdatedCount != 0)
+        {
+            await MetaTransformScriptInstance
+                .SaveToWorkspaceAsync(model, workspaceFullPath, cancellationToken)
+                .ConfigureAwait(false);
+        }
+
+        return result;
+    }
+
+    public UpdateTargetIdentifiersFromPatternResult UpdateTargetIdentifiersFromPattern(
+        MTS.MetaTransformScriptModel model,
+        string sourcePattern,
+        string targetPattern,
+        bool onlyMissing = false,
+        bool dryRun = false,
+        string workspacePath = "")
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentException.ThrowIfNullOrWhiteSpace(sourcePattern);
+        ArgumentException.ThrowIfNullOrWhiteSpace(targetPattern);
+        var compiledSourcePattern = TransformScriptTargetIdentifierSourcePattern.Compile(sourcePattern);
+        TransformScriptTargetIdentifierPattern.ValidatePattern(targetPattern, "target-pattern");
 
         var updates = new List<TargetIdentifierPatternUpdate>();
         var matchedCount = 0;
@@ -74,15 +103,8 @@ public sealed partial class MetaTransformScriptSqlService
             }
         }
 
-        if (!dryRun && updates.Count != 0)
-        {
-            await MetaTransformScriptInstance
-                .SaveToWorkspaceAsync(model, workspaceFullPath, cancellationToken)
-                .ConfigureAwait(false);
-        }
-
         return new UpdateTargetIdentifiersFromPatternResult(
-            workspaceFullPath,
+            workspacePath,
             model.TransformScriptList.Count,
             matchedCount,
             updates.Count,

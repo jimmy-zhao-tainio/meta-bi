@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaDataWarehouse>
   <TransactionFactList>
-    <TransactionFact Id="fact:sales-line:transaction" FactId="fact:sales-line">
-    </TransactionFact>
-    <TransactionFact Id="fact:sales-order:transaction" FactId="fact:sales-order">
-    </TransactionFact>
-    <TransactionFact Id="fact:salesperson-quota:transaction" FactId="fact:salesperson-quota">
-    </TransactionFact>
+    <TransactionFact Id="fact:sales-line:transaction" FactId="fact:sales-line" />
+    <TransactionFact Id="fact:sales-order:transaction" FactId="fact:sales-order" />
+    <TransactionFact Id="fact:salesperson-quota:transaction" FactId="fact:salesperson-quota" />
   </TransactionFactList>
 </MetaDataWarehouse>

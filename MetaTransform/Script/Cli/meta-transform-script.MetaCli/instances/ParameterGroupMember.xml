@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupMemberList>
-    <ParameterGroupMember Id="member-from-sql-code-new-workspace" ParameterGroupId="group-from-sql-code-workspace-target" ParameterId="param-from-sql-code-new-workspace" />
-    <ParameterGroupMember Id="member-from-sql-code-workspace" ParameterGroupId="group-from-sql-code-workspace-target" ParameterId="param-from-sql-code-workspace" PreviousMemberId="member-from-sql-code-new-workspace" />
-    <ParameterGroupMember Id="member-from-sql-file-new-workspace" ParameterGroupId="group-from-sql-file-workspace-target" ParameterId="param-from-sql-file-new-workspace" />
-    <ParameterGroupMember Id="member-from-sql-file-workspace" ParameterGroupId="group-from-sql-file-workspace-target" ParameterId="param-from-sql-file-workspace" PreviousMemberId="member-from-sql-file-new-workspace" />
-    <ParameterGroupMember Id="member-from-sql-files-new-workspace" ParameterGroupId="group-from-sql-files-workspace-target" ParameterId="param-from-sql-files-new-workspace" />
-    <ParameterGroupMember Id="member-from-sql-files-workspace" ParameterGroupId="group-from-sql-files-workspace-target" ParameterId="param-from-sql-files-workspace" PreviousMemberId="member-from-sql-files-new-workspace" />
+    <ParameterGroupMember Id="member-from-sql-code-target-first" ParameterGroupId="group-from-sql-code-target" ParameterId="param-from-sql-code-workspace" />
+    <ParameterGroupMember Id="member-from-sql-code-target-output-csharp" ParameterGroupId="group-from-sql-code-target" ParameterId="param-from-sql-code-output-csharp" PreviousMemberId="member-from-sql-code-target-output-xml" />
+    <ParameterGroupMember Id="member-from-sql-code-target-output-sql" ParameterGroupId="group-from-sql-code-target" ParameterId="param-from-sql-code-output-sql" PreviousMemberId="member-from-sql-code-target-output-csharp" />
+    <ParameterGroupMember Id="member-from-sql-code-target-output-xml" ParameterGroupId="group-from-sql-code-target" ParameterId="param-from-sql-code-output-xml" PreviousMemberId="member-from-sql-code-target-first" />
+    <ParameterGroupMember Id="member-from-sql-file-target-first" ParameterGroupId="group-from-sql-file-target" ParameterId="param-from-sql-file-workspace" />
+    <ParameterGroupMember Id="member-from-sql-file-target-output-csharp" ParameterGroupId="group-from-sql-file-target" ParameterId="param-from-sql-file-output-csharp" PreviousMemberId="member-from-sql-file-target-output-xml" />
+    <ParameterGroupMember Id="member-from-sql-file-target-output-sql" ParameterGroupId="group-from-sql-file-target" ParameterId="param-from-sql-file-output-sql" PreviousMemberId="member-from-sql-file-target-output-csharp" />
+    <ParameterGroupMember Id="member-from-sql-file-target-output-xml" ParameterGroupId="group-from-sql-file-target" ParameterId="param-from-sql-file-output-xml" PreviousMemberId="member-from-sql-file-target-first" />
+    <ParameterGroupMember Id="member-from-sql-files-target-first" ParameterGroupId="group-from-sql-files-target" ParameterId="param-from-sql-files-workspace" />
+    <ParameterGroupMember Id="member-from-sql-files-target-output-csharp" ParameterGroupId="group-from-sql-files-target" ParameterId="param-from-sql-files-output-csharp" PreviousMemberId="member-from-sql-files-target-output-xml" />
+    <ParameterGroupMember Id="member-from-sql-files-target-output-sql" ParameterGroupId="group-from-sql-files-target" ParameterId="param-from-sql-files-output-sql" PreviousMemberId="member-from-sql-files-target-output-csharp" />
+    <ParameterGroupMember Id="member-from-sql-files-target-output-xml" ParameterGroupId="group-from-sql-files-target" ParameterId="param-from-sql-files-output-xml" PreviousMemberId="member-from-sql-files-target-first" />
   </ParameterGroupMemberList>
 </MetaCli>

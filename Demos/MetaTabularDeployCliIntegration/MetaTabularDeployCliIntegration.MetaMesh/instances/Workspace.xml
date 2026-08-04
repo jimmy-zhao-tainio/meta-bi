@@ -5,13 +5,11 @@
       <Description>Generated MetaAnalytics workspace authored by the demo operation.</Description>
       <ModelName>MetaAnalytics</ModelName>
       <Name>analytics</Name>
-      <Path>AnalyticsWorkspace</Path>
     </Workspace>
     <Workspace Id="workspace:tabular" MeshId="mesh:default">
       <Description>Generated MetaTabular workspace converted from the analytics model and patched for tabular deployment.</Description>
       <ModelName>MetaTabular</ModelName>
       <Name>tabular</Name>
-      <Path>TabularWorkspace</Path>
     </Workspace>
   </WorkspaceList>
 </MetaMesh>

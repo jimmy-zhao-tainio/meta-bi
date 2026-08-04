@@ -1,445 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
-    <Option Id="option-deploy-workspace" ParameterId="param-deploy-workspace">
-    </Option>
-    <Option Id="option-deploy-server" ParameterId="param-deploy-server">
-    </Option>
-    <Option Id="option-deploy-database-name" ParameterId="param-deploy-database-name">
-    </Option>
-    <Option Id="option-deploy-drop-existing" ParameterId="param-deploy-drop-existing">
-    </Option>
-    <Option Id="option-deploy-no-process" ParameterId="param-deploy-no-process">
-    </Option>
-    <Option Id="option-process-server" ParameterId="param-process-server">
-    </Option>
-    <Option Id="option-process-database-name" ParameterId="param-process-database-name">
-    </Option>
-    <Option Id="option-process-refresh-type" ParameterId="param-process-refresh-type">
-    </Option>
-    <Option Id="option-process-table" ParameterId="param-process-table">
-    </Option>
-    <Option Id="option-process-partition" ParameterId="param-process-partition">
-    </Option>
-    <Option Id="option-restore-source-server" ParameterId="param-restore-source-server">
-    </Option>
-    <Option Id="option-restore-source-database-name" ParameterId="param-restore-source-database-name">
-    </Option>
-    <Option Id="option-restore-target-server" ParameterId="param-restore-target-server">
-    </Option>
-    <Option Id="option-restore-target-database-name" ParameterId="param-restore-target-database-name">
-    </Option>
-    <Option Id="option-restore-backup-file" ParameterId="param-restore-backup-file">
-    </Option>
-    <Option Id="option-restore-drop-existing" ParameterId="param-restore-drop-existing">
-    </Option>
-    <Option Id="option-restore-overwrite-backup-file" ParameterId="param-restore-overwrite-backup-file">
-    </Option>
-    <Option Id="option-drop-server" ParameterId="param-drop-server">
-    </Option>
-    <Option Id="option-drop-database-name" ParameterId="param-drop-database-name">
-    </Option>
-    <Option Id="option-add-tabular-calculation-group-workspace" ParameterId="param-add-tabular-calculation-group-workspace">
-    </Option>
-    <Option Id="option-add-tabular-calculation-group-id" ParameterId="param-add-tabular-calculation-group-id">
-    </Option>
-    <Option Id="option-add-tabular-calculation-group-description" ParameterId="param-add-tabular-calculation-group-description">
-    </Option>
-    <Option Id="option-add-tabular-calculation-group-name" ParameterId="param-add-tabular-calculation-group-name">
-    </Option>
-    <Option Id="option-add-tabular-calculation-group-precedence" ParameterId="param-add-tabular-calculation-group-precedence">
-    </Option>
-    <Option Id="option-add-tabular-calculation-group-tabular-model" ParameterId="param-add-tabular-calculation-group-tabular-model">
-    </Option>
-    <Option Id="option-add-tabular-calculation-item-workspace" ParameterId="param-add-tabular-calculation-item-workspace">
-    </Option>
-    <Option Id="option-add-tabular-calculation-item-id" ParameterId="param-add-tabular-calculation-item-id">
-    </Option>
-    <Option Id="option-add-tabular-calculation-item-description" ParameterId="param-add-tabular-calculation-item-description">
-    </Option>
-    <Option Id="option-add-tabular-calculation-item-expression" ParameterId="param-add-tabular-calculation-item-expression">
-    </Option>
-    <Option Id="option-add-tabular-calculation-item-format-string-expression" ParameterId="param-add-tabular-calculation-item-format-string-expression">
-    </Option>
-    <Option Id="option-add-tabular-calculation-item-name" ParameterId="param-add-tabular-calculation-item-name">
-    </Option>
-    <Option Id="option-add-tabular-calculation-item-ordinal" ParameterId="param-add-tabular-calculation-item-ordinal">
-    </Option>
-    <Option Id="option-add-tabular-calculation-item-tabular-calculation-group" ParameterId="param-add-tabular-calculation-item-tabular-calculation-group">
-    </Option>
-    <Option Id="option-add-tabular-column-workspace" ParameterId="param-add-tabular-column-workspace">
-    </Option>
-    <Option Id="option-add-tabular-column-id" ParameterId="param-add-tabular-column-id">
-    </Option>
-    <Option Id="option-add-tabular-column-data-category" ParameterId="param-add-tabular-column-data-category">
-    </Option>
-    <Option Id="option-add-tabular-column-data-type-id" ParameterId="param-add-tabular-column-data-type-id">
-    </Option>
-    <Option Id="option-add-tabular-column-description" ParameterId="param-add-tabular-column-description">
-    </Option>
-    <Option Id="option-add-tabular-column-expression" ParameterId="param-add-tabular-column-expression">
-    </Option>
-    <Option Id="option-add-tabular-column-format-string" ParameterId="param-add-tabular-column-format-string">
-    </Option>
-    <Option Id="option-add-tabular-column-is-hidden" ParameterId="param-add-tabular-column-is-hidden">
-    </Option>
-    <Option Id="option-add-tabular-column-is-key" ParameterId="param-add-tabular-column-is-key">
-    </Option>
-    <Option Id="option-add-tabular-column-is-nullable" ParameterId="param-add-tabular-column-is-nullable">
-    </Option>
-    <Option Id="option-add-tabular-column-name" ParameterId="param-add-tabular-column-name">
-    </Option>
-    <Option Id="option-add-tabular-column-ordinal" ParameterId="param-add-tabular-column-ordinal">
-    </Option>
-    <Option Id="option-add-tabular-column-source-name" ParameterId="param-add-tabular-column-source-name">
-    </Option>
-    <Option Id="option-add-tabular-column-summarize-by" ParameterId="param-add-tabular-column-summarize-by">
-    </Option>
-    <Option Id="option-add-tabular-column-tabular-table" ParameterId="param-add-tabular-column-tabular-table">
-    </Option>
-    <Option Id="option-add-tabular-column-permission-workspace" ParameterId="param-add-tabular-column-permission-workspace">
-    </Option>
-    <Option Id="option-add-tabular-column-permission-id" ParameterId="param-add-tabular-column-permission-id">
-    </Option>
-    <Option Id="option-add-tabular-column-permission-metadata-permission" ParameterId="param-add-tabular-column-permission-metadata-permission">
-    </Option>
-    <Option Id="option-add-tabular-column-permission-tabular-column" ParameterId="param-add-tabular-column-permission-tabular-column">
-    </Option>
-    <Option Id="option-add-tabular-column-permission-tabular-security-role" ParameterId="param-add-tabular-column-permission-tabular-security-role">
-    </Option>
-    <Option Id="option-add-tabular-column-translation-workspace" ParameterId="param-add-tabular-column-translation-workspace">
-    </Option>
-    <Option Id="option-add-tabular-column-translation-id" ParameterId="param-add-tabular-column-translation-id">
-    </Option>
-    <Option Id="option-add-tabular-column-translation-caption" ParameterId="param-add-tabular-column-translation-caption">
-    </Option>
-    <Option Id="option-add-tabular-column-translation-description" ParameterId="param-add-tabular-column-translation-description">
-    </Option>
-    <Option Id="option-add-tabular-column-translation-tabular-column" ParameterId="param-add-tabular-column-translation-tabular-column">
-    </Option>
-    <Option Id="option-add-tabular-column-translation-tabular-culture" ParameterId="param-add-tabular-column-translation-tabular-culture">
-    </Option>
-    <Option Id="option-add-tabular-culture-workspace" ParameterId="param-add-tabular-culture-workspace">
-    </Option>
-    <Option Id="option-add-tabular-culture-id" ParameterId="param-add-tabular-culture-id">
-    </Option>
-    <Option Id="option-add-tabular-culture-name" ParameterId="param-add-tabular-culture-name">
-    </Option>
-    <Option Id="option-add-tabular-culture-tabular-model" ParameterId="param-add-tabular-culture-tabular-model">
-    </Option>
-    <Option Id="option-add-tabular-data-source-workspace" ParameterId="param-add-tabular-data-source-workspace">
-    </Option>
-    <Option Id="option-add-tabular-data-source-id" ParameterId="param-add-tabular-data-source-id">
-    </Option>
-    <Option Id="option-add-tabular-data-source-connection-reference" ParameterId="param-add-tabular-data-source-connection-reference">
-    </Option>
-    <Option Id="option-add-tabular-data-source-description" ParameterId="param-add-tabular-data-source-description">
-    </Option>
-    <Option Id="option-add-tabular-data-source-name" ParameterId="param-add-tabular-data-source-name">
-    </Option>
-    <Option Id="option-add-tabular-data-source-provider" ParameterId="param-add-tabular-data-source-provider">
-    </Option>
-    <Option Id="option-add-tabular-data-source-tabular-model" ParameterId="param-add-tabular-data-source-tabular-model">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-workspace" ParameterId="param-add-tabular-hierarchy-workspace">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-id" ParameterId="param-add-tabular-hierarchy-id">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-description" ParameterId="param-add-tabular-hierarchy-description">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-display-folder" ParameterId="param-add-tabular-hierarchy-display-folder">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-is-hidden" ParameterId="param-add-tabular-hierarchy-is-hidden">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-name" ParameterId="param-add-tabular-hierarchy-name">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-tabular-table" ParameterId="param-add-tabular-hierarchy-tabular-table">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-level-workspace" ParameterId="param-add-tabular-hierarchy-level-workspace">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-level-id" ParameterId="param-add-tabular-hierarchy-level-id">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-level-name" ParameterId="param-add-tabular-hierarchy-level-name">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-level-ordinal" ParameterId="param-add-tabular-hierarchy-level-ordinal">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-level-tabular-column" ParameterId="param-add-tabular-hierarchy-level-tabular-column">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-level-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-level-tabular-hierarchy">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-translation-workspace" ParameterId="param-add-tabular-hierarchy-translation-workspace">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-translation-id" ParameterId="param-add-tabular-hierarchy-translation-id">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-translation-caption" ParameterId="param-add-tabular-hierarchy-translation-caption">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-translation-description" ParameterId="param-add-tabular-hierarchy-translation-description">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-translation-tabular-culture" ParameterId="param-add-tabular-hierarchy-translation-tabular-culture">
-    </Option>
-    <Option Id="option-add-tabular-hierarchy-translation-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-translation-tabular-hierarchy">
-    </Option>
-    <Option Id="option-add-tabular-kpi-workspace" ParameterId="param-add-tabular-kpi-workspace">
-    </Option>
-    <Option Id="option-add-tabular-kpi-id" ParameterId="param-add-tabular-kpi-id">
-    </Option>
-    <Option Id="option-add-tabular-kpi-description" ParameterId="param-add-tabular-kpi-description">
-    </Option>
-    <Option Id="option-add-tabular-kpi-status-expression" ParameterId="param-add-tabular-kpi-status-expression">
-    </Option>
-    <Option Id="option-add-tabular-kpi-status-graphic" ParameterId="param-add-tabular-kpi-status-graphic">
-    </Option>
-    <Option Id="option-add-tabular-kpi-target-expression" ParameterId="param-add-tabular-kpi-target-expression">
-    </Option>
-    <Option Id="option-add-tabular-kpi-trend-expression" ParameterId="param-add-tabular-kpi-trend-expression">
-    </Option>
-    <Option Id="option-add-tabular-kpi-trend-graphic" ParameterId="param-add-tabular-kpi-trend-graphic">
-    </Option>
-    <Option Id="option-add-tabular-kpi-base-measure" ParameterId="param-add-tabular-kpi-base-measure">
-    </Option>
-    <Option Id="option-add-tabular-kpi-target-measure" ParameterId="param-add-tabular-kpi-target-measure">
-    </Option>
-    <Option Id="option-add-tabular-kpi-translation-workspace" ParameterId="param-add-tabular-kpi-translation-workspace">
-    </Option>
-    <Option Id="option-add-tabular-kpi-translation-id" ParameterId="param-add-tabular-kpi-translation-id">
-    </Option>
-    <Option Id="option-add-tabular-kpi-translation-description" ParameterId="param-add-tabular-kpi-translation-description">
-    </Option>
-    <Option Id="option-add-tabular-kpi-translation-tabular-culture" ParameterId="param-add-tabular-kpi-translation-tabular-culture">
-    </Option>
-    <Option Id="option-add-tabular-kpi-translation-tabular-kpi" ParameterId="param-add-tabular-kpi-translation-tabular-kpi">
-    </Option>
-    <Option Id="option-add-tabular-measure-workspace" ParameterId="param-add-tabular-measure-workspace">
-    </Option>
-    <Option Id="option-add-tabular-measure-id" ParameterId="param-add-tabular-measure-id">
-    </Option>
-    <Option Id="option-add-tabular-measure-description" ParameterId="param-add-tabular-measure-description">
-    </Option>
-    <Option Id="option-add-tabular-measure-display-folder" ParameterId="param-add-tabular-measure-display-folder">
-    </Option>
-    <Option Id="option-add-tabular-measure-expression" ParameterId="param-add-tabular-measure-expression">
-    </Option>
-    <Option Id="option-add-tabular-measure-format-string" ParameterId="param-add-tabular-measure-format-string">
-    </Option>
-    <Option Id="option-add-tabular-measure-is-hidden" ParameterId="param-add-tabular-measure-is-hidden">
-    </Option>
-    <Option Id="option-add-tabular-measure-name" ParameterId="param-add-tabular-measure-name">
-    </Option>
-    <Option Id="option-add-tabular-measure-tabular-table" ParameterId="param-add-tabular-measure-tabular-table">
-    </Option>
-    <Option Id="option-add-tabular-measure-translation-workspace" ParameterId="param-add-tabular-measure-translation-workspace">
-    </Option>
-    <Option Id="option-add-tabular-measure-translation-id" ParameterId="param-add-tabular-measure-translation-id">
-    </Option>
-    <Option Id="option-add-tabular-measure-translation-caption" ParameterId="param-add-tabular-measure-translation-caption">
-    </Option>
-    <Option Id="option-add-tabular-measure-translation-description" ParameterId="param-add-tabular-measure-translation-description">
-    </Option>
-    <Option Id="option-add-tabular-measure-translation-tabular-culture" ParameterId="param-add-tabular-measure-translation-tabular-culture">
-    </Option>
-    <Option Id="option-add-tabular-measure-translation-tabular-measure" ParameterId="param-add-tabular-measure-translation-tabular-measure">
-    </Option>
-    <Option Id="option-add-tabular-model-workspace" ParameterId="param-add-tabular-model-workspace">
-    </Option>
-    <Option Id="option-add-tabular-model-id" ParameterId="param-add-tabular-model-id">
-    </Option>
-    <Option Id="option-add-tabular-model-collation" ParameterId="param-add-tabular-model-collation">
-    </Option>
-    <Option Id="option-add-tabular-model-compatibility-level" ParameterId="param-add-tabular-model-compatibility-level">
-    </Option>
-    <Option Id="option-add-tabular-model-default-culture" ParameterId="param-add-tabular-model-default-culture">
-    </Option>
-    <Option Id="option-add-tabular-model-default-data-view" ParameterId="param-add-tabular-model-default-data-view">
-    </Option>
-    <Option Id="option-add-tabular-model-description" ParameterId="param-add-tabular-model-description">
-    </Option>
-    <Option Id="option-add-tabular-model-name" ParameterId="param-add-tabular-model-name">
-    </Option>
-    <Option Id="option-add-tabular-partition-workspace" ParameterId="param-add-tabular-partition-workspace">
-    </Option>
-    <Option Id="option-add-tabular-partition-id" ParameterId="param-add-tabular-partition-id">
-    </Option>
-    <Option Id="option-add-tabular-partition-description" ParameterId="param-add-tabular-partition-description">
-    </Option>
-    <Option Id="option-add-tabular-partition-expression" ParameterId="param-add-tabular-partition-expression">
-    </Option>
-    <Option Id="option-add-tabular-partition-mode" ParameterId="param-add-tabular-partition-mode">
-    </Option>
-    <Option Id="option-add-tabular-partition-name" ParameterId="param-add-tabular-partition-name">
-    </Option>
-    <Option Id="option-add-tabular-partition-ordinal" ParameterId="param-add-tabular-partition-ordinal">
-    </Option>
-    <Option Id="option-add-tabular-partition-tabular-data-source" ParameterId="param-add-tabular-partition-tabular-data-source">
-    </Option>
-    <Option Id="option-add-tabular-partition-tabular-table" ParameterId="param-add-tabular-partition-tabular-table">
-    </Option>
-    <Option Id="option-add-tabular-perspective-workspace" ParameterId="param-add-tabular-perspective-workspace">
-    </Option>
-    <Option Id="option-add-tabular-perspective-id" ParameterId="param-add-tabular-perspective-id">
-    </Option>
-    <Option Id="option-add-tabular-perspective-description" ParameterId="param-add-tabular-perspective-description">
-    </Option>
-    <Option Id="option-add-tabular-perspective-name" ParameterId="param-add-tabular-perspective-name">
-    </Option>
-    <Option Id="option-add-tabular-perspective-tabular-model" ParameterId="param-add-tabular-perspective-tabular-model">
-    </Option>
-    <Option Id="option-add-tabular-perspective-calculation-group-workspace" ParameterId="param-add-tabular-perspective-calculation-group-workspace">
-    </Option>
-    <Option Id="option-add-tabular-perspective-calculation-group-id" ParameterId="param-add-tabular-perspective-calculation-group-id">
-    </Option>
-    <Option Id="option-add-tabular-perspective-calculation-group-tabular-calculation-group" ParameterId="param-add-tabular-perspective-calculation-group-tabular-calculation-group">
-    </Option>
-    <Option Id="option-add-tabular-perspective-calculation-group-tabular-perspective" ParameterId="param-add-tabular-perspective-calculation-group-tabular-perspective">
-    </Option>
-    <Option Id="option-add-tabular-perspective-column-workspace" ParameterId="param-add-tabular-perspective-column-workspace">
-    </Option>
-    <Option Id="option-add-tabular-perspective-column-id" ParameterId="param-add-tabular-perspective-column-id">
-    </Option>
-    <Option Id="option-add-tabular-perspective-column-tabular-column" ParameterId="param-add-tabular-perspective-column-tabular-column">
-    </Option>
-    <Option Id="option-add-tabular-perspective-column-tabular-perspective" ParameterId="param-add-tabular-perspective-column-tabular-perspective">
-    </Option>
-    <Option Id="option-add-tabular-perspective-hierarchy-workspace" ParameterId="param-add-tabular-perspective-hierarchy-workspace">
-    </Option>
-    <Option Id="option-add-tabular-perspective-hierarchy-id" ParameterId="param-add-tabular-perspective-hierarchy-id">
-    </Option>
-    <Option Id="option-add-tabular-perspective-hierarchy-tabular-hierarchy" ParameterId="param-add-tabular-perspective-hierarchy-tabular-hierarchy">
-    </Option>
-    <Option Id="option-add-tabular-perspective-hierarchy-tabular-perspective" ParameterId="param-add-tabular-perspective-hierarchy-tabular-perspective">
-    </Option>
-    <Option Id="option-add-tabular-perspective-kpi-workspace" ParameterId="param-add-tabular-perspective-kpi-workspace">
-    </Option>
-    <Option Id="option-add-tabular-perspective-kpi-id" ParameterId="param-add-tabular-perspective-kpi-id">
-    </Option>
-    <Option Id="option-add-tabular-perspective-kpi-tabular-kpi" ParameterId="param-add-tabular-perspective-kpi-tabular-kpi">
-    </Option>
-    <Option Id="option-add-tabular-perspective-kpi-tabular-perspective" ParameterId="param-add-tabular-perspective-kpi-tabular-perspective">
-    </Option>
-    <Option Id="option-add-tabular-perspective-measure-workspace" ParameterId="param-add-tabular-perspective-measure-workspace">
-    </Option>
-    <Option Id="option-add-tabular-perspective-measure-id" ParameterId="param-add-tabular-perspective-measure-id">
-    </Option>
-    <Option Id="option-add-tabular-perspective-measure-tabular-measure" ParameterId="param-add-tabular-perspective-measure-tabular-measure">
-    </Option>
-    <Option Id="option-add-tabular-perspective-measure-tabular-perspective" ParameterId="param-add-tabular-perspective-measure-tabular-perspective">
-    </Option>
-    <Option Id="option-add-tabular-perspective-table-workspace" ParameterId="param-add-tabular-perspective-table-workspace">
-    </Option>
-    <Option Id="option-add-tabular-perspective-table-id" ParameterId="param-add-tabular-perspective-table-id">
-    </Option>
-    <Option Id="option-add-tabular-perspective-table-tabular-perspective" ParameterId="param-add-tabular-perspective-table-tabular-perspective">
-    </Option>
-    <Option Id="option-add-tabular-perspective-table-tabular-table" ParameterId="param-add-tabular-perspective-table-tabular-table">
-    </Option>
-    <Option Id="option-add-tabular-perspective-translation-workspace" ParameterId="param-add-tabular-perspective-translation-workspace">
-    </Option>
-    <Option Id="option-add-tabular-perspective-translation-id" ParameterId="param-add-tabular-perspective-translation-id">
-    </Option>
-    <Option Id="option-add-tabular-perspective-translation-caption" ParameterId="param-add-tabular-perspective-translation-caption">
-    </Option>
-    <Option Id="option-add-tabular-perspective-translation-description" ParameterId="param-add-tabular-perspective-translation-description">
-    </Option>
-    <Option Id="option-add-tabular-perspective-translation-tabular-culture" ParameterId="param-add-tabular-perspective-translation-tabular-culture">
-    </Option>
-    <Option Id="option-add-tabular-perspective-translation-tabular-perspective" ParameterId="param-add-tabular-perspective-translation-tabular-perspective">
-    </Option>
-    <Option Id="option-add-tabular-relationship-workspace" ParameterId="param-add-tabular-relationship-workspace">
-    </Option>
-    <Option Id="option-add-tabular-relationship-id" ParameterId="param-add-tabular-relationship-id">
-    </Option>
-    <Option Id="option-add-tabular-relationship-cardinality" ParameterId="param-add-tabular-relationship-cardinality">
-    </Option>
-    <Option Id="option-add-tabular-relationship-cross-filter-direction" ParameterId="param-add-tabular-relationship-cross-filter-direction">
-    </Option>
-    <Option Id="option-add-tabular-relationship-is-active" ParameterId="param-add-tabular-relationship-is-active">
-    </Option>
-    <Option Id="option-add-tabular-relationship-is-required" ParameterId="param-add-tabular-relationship-is-required">
-    </Option>
-    <Option Id="option-add-tabular-relationship-name" ParameterId="param-add-tabular-relationship-name">
-    </Option>
-    <Option Id="option-add-tabular-relationship-from-column" ParameterId="param-add-tabular-relationship-from-column">
-    </Option>
-    <Option Id="option-add-tabular-relationship-from-table" ParameterId="param-add-tabular-relationship-from-table">
-    </Option>
-    <Option Id="option-add-tabular-relationship-to-column" ParameterId="param-add-tabular-relationship-to-column">
-    </Option>
-    <Option Id="option-add-tabular-relationship-to-table" ParameterId="param-add-tabular-relationship-to-table">
-    </Option>
-    <Option Id="option-add-tabular-role-filter-workspace" ParameterId="param-add-tabular-role-filter-workspace">
-    </Option>
-    <Option Id="option-add-tabular-role-filter-id" ParameterId="param-add-tabular-role-filter-id">
-    </Option>
-    <Option Id="option-add-tabular-role-filter-expression" ParameterId="param-add-tabular-role-filter-expression">
-    </Option>
-    <Option Id="option-add-tabular-role-filter-tabular-security-role" ParameterId="param-add-tabular-role-filter-tabular-security-role">
-    </Option>
-    <Option Id="option-add-tabular-role-filter-tabular-table" ParameterId="param-add-tabular-role-filter-tabular-table">
-    </Option>
-    <Option Id="option-add-tabular-role-member-workspace" ParameterId="param-add-tabular-role-member-workspace">
-    </Option>
-    <Option Id="option-add-tabular-role-member-id" ParameterId="param-add-tabular-role-member-id">
-    </Option>
-    <Option Id="option-add-tabular-role-member-member-id" ParameterId="param-add-tabular-role-member-member-id">
-    </Option>
-    <Option Id="option-add-tabular-role-member-member-name" ParameterId="param-add-tabular-role-member-member-name">
-    </Option>
-    <Option Id="option-add-tabular-role-member-tabular-security-role" ParameterId="param-add-tabular-role-member-tabular-security-role">
-    </Option>
-    <Option Id="option-add-tabular-security-role-workspace" ParameterId="param-add-tabular-security-role-workspace">
-    </Option>
-    <Option Id="option-add-tabular-security-role-id" ParameterId="param-add-tabular-security-role-id">
-    </Option>
-    <Option Id="option-add-tabular-security-role-description" ParameterId="param-add-tabular-security-role-description">
-    </Option>
-    <Option Id="option-add-tabular-security-role-name" ParameterId="param-add-tabular-security-role-name">
-    </Option>
-    <Option Id="option-add-tabular-security-role-permission" ParameterId="param-add-tabular-security-role-permission">
-    </Option>
-    <Option Id="option-add-tabular-security-role-tabular-model" ParameterId="param-add-tabular-security-role-tabular-model">
-    </Option>
-    <Option Id="option-add-tabular-sort-by-column-workspace" ParameterId="param-add-tabular-sort-by-column-workspace">
-    </Option>
-    <Option Id="option-add-tabular-sort-by-column-id" ParameterId="param-add-tabular-sort-by-column-id">
-    </Option>
-    <Option Id="option-add-tabular-sort-by-column-sort-column" ParameterId="param-add-tabular-sort-by-column-sort-column">
-    </Option>
-    <Option Id="option-add-tabular-sort-by-column-source-column" ParameterId="param-add-tabular-sort-by-column-source-column">
-    </Option>
-    <Option Id="option-add-tabular-table-workspace" ParameterId="param-add-tabular-table-workspace">
-    </Option>
-    <Option Id="option-add-tabular-table-id" ParameterId="param-add-tabular-table-id">
-    </Option>
-    <Option Id="option-add-tabular-table-data-category" ParameterId="param-add-tabular-table-data-category">
-    </Option>
-    <Option Id="option-add-tabular-table-description" ParameterId="param-add-tabular-table-description">
-    </Option>
-    <Option Id="option-add-tabular-table-is-hidden" ParameterId="param-add-tabular-table-is-hidden">
-    </Option>
-    <Option Id="option-add-tabular-table-name" ParameterId="param-add-tabular-table-name">
-    </Option>
-    <Option Id="option-add-tabular-table-tabular-model" ParameterId="param-add-tabular-table-tabular-model">
-    </Option>
-    <Option Id="option-add-tabular-table-permission-workspace" ParameterId="param-add-tabular-table-permission-workspace">
-    </Option>
-    <Option Id="option-add-tabular-table-permission-id" ParameterId="param-add-tabular-table-permission-id">
-    </Option>
-    <Option Id="option-add-tabular-table-permission-metadata-permission" ParameterId="param-add-tabular-table-permission-metadata-permission">
-    </Option>
-    <Option Id="option-add-tabular-table-permission-tabular-security-role" ParameterId="param-add-tabular-table-permission-tabular-security-role">
-    </Option>
-    <Option Id="option-add-tabular-table-permission-tabular-table" ParameterId="param-add-tabular-table-permission-tabular-table">
-    </Option>
-    <Option Id="option-add-tabular-table-translation-workspace" ParameterId="param-add-tabular-table-translation-workspace">
-    </Option>
-    <Option Id="option-add-tabular-table-translation-id" ParameterId="param-add-tabular-table-translation-id">
-    </Option>
-    <Option Id="option-add-tabular-table-translation-caption" ParameterId="param-add-tabular-table-translation-caption">
-    </Option>
-    <Option Id="option-add-tabular-table-translation-description" ParameterId="param-add-tabular-table-translation-description">
-    </Option>
-    <Option Id="option-add-tabular-table-translation-tabular-culture" ParameterId="param-add-tabular-table-translation-tabular-culture">
-    </Option>
-    <Option Id="option-add-tabular-table-translation-tabular-table" ParameterId="param-add-tabular-table-translation-tabular-table">
-    </Option>
+    <Option Id="option-add-tabular-calculation-group-description" ParameterId="param-add-tabular-calculation-group-description" />
+    <Option Id="option-add-tabular-calculation-group-id" ParameterId="param-add-tabular-calculation-group-id" />
+    <Option Id="option-add-tabular-calculation-group-name" ParameterId="param-add-tabular-calculation-group-name" />
+    <Option Id="option-add-tabular-calculation-group-precedence" ParameterId="param-add-tabular-calculation-group-precedence" />
+    <Option Id="option-add-tabular-calculation-group-tabular-model" ParameterId="param-add-tabular-calculation-group-tabular-model" />
+    <Option Id="option-add-tabular-calculation-group-workspace" ParameterId="param-add-tabular-calculation-group-workspace" />
+    <Option Id="option-add-tabular-calculation-item-description" ParameterId="param-add-tabular-calculation-item-description" />
+    <Option Id="option-add-tabular-calculation-item-expression" ParameterId="param-add-tabular-calculation-item-expression" />
+    <Option Id="option-add-tabular-calculation-item-format-string-expression" ParameterId="param-add-tabular-calculation-item-format-string-expression" />
+    <Option Id="option-add-tabular-calculation-item-id" ParameterId="param-add-tabular-calculation-item-id" />
+    <Option Id="option-add-tabular-calculation-item-name" ParameterId="param-add-tabular-calculation-item-name" />
+    <Option Id="option-add-tabular-calculation-item-ordinal" ParameterId="param-add-tabular-calculation-item-ordinal" />
+    <Option Id="option-add-tabular-calculation-item-tabular-calculation-group" ParameterId="param-add-tabular-calculation-item-tabular-calculation-group" />
+    <Option Id="option-add-tabular-calculation-item-workspace" ParameterId="param-add-tabular-calculation-item-workspace" />
+    <Option Id="option-add-tabular-column-data-category" ParameterId="param-add-tabular-column-data-category" />
+    <Option Id="option-add-tabular-column-data-type-id" ParameterId="param-add-tabular-column-data-type-id" />
+    <Option Id="option-add-tabular-column-description" ParameterId="param-add-tabular-column-description" />
+    <Option Id="option-add-tabular-column-expression" ParameterId="param-add-tabular-column-expression" />
+    <Option Id="option-add-tabular-column-format-string" ParameterId="param-add-tabular-column-format-string" />
+    <Option Id="option-add-tabular-column-id" ParameterId="param-add-tabular-column-id" />
+    <Option Id="option-add-tabular-column-is-hidden" ParameterId="param-add-tabular-column-is-hidden" />
+    <Option Id="option-add-tabular-column-is-key" ParameterId="param-add-tabular-column-is-key" />
+    <Option Id="option-add-tabular-column-is-nullable" ParameterId="param-add-tabular-column-is-nullable" />
+    <Option Id="option-add-tabular-column-name" ParameterId="param-add-tabular-column-name" />
+    <Option Id="option-add-tabular-column-ordinal" ParameterId="param-add-tabular-column-ordinal" />
+    <Option Id="option-add-tabular-column-permission-id" ParameterId="param-add-tabular-column-permission-id" />
+    <Option Id="option-add-tabular-column-permission-metadata-permission" ParameterId="param-add-tabular-column-permission-metadata-permission" />
+    <Option Id="option-add-tabular-column-permission-tabular-column" ParameterId="param-add-tabular-column-permission-tabular-column" />
+    <Option Id="option-add-tabular-column-permission-tabular-security-role" ParameterId="param-add-tabular-column-permission-tabular-security-role" />
+    <Option Id="option-add-tabular-column-permission-workspace" ParameterId="param-add-tabular-column-permission-workspace" />
+    <Option Id="option-add-tabular-column-source-name" ParameterId="param-add-tabular-column-source-name" />
+    <Option Id="option-add-tabular-column-summarize-by" ParameterId="param-add-tabular-column-summarize-by" />
+    <Option Id="option-add-tabular-column-tabular-table" ParameterId="param-add-tabular-column-tabular-table" />
+    <Option Id="option-add-tabular-column-translation-caption" ParameterId="param-add-tabular-column-translation-caption" />
+    <Option Id="option-add-tabular-column-translation-description" ParameterId="param-add-tabular-column-translation-description" />
+    <Option Id="option-add-tabular-column-translation-id" ParameterId="param-add-tabular-column-translation-id" />
+    <Option Id="option-add-tabular-column-translation-tabular-column" ParameterId="param-add-tabular-column-translation-tabular-column" />
+    <Option Id="option-add-tabular-column-translation-tabular-culture" ParameterId="param-add-tabular-column-translation-tabular-culture" />
+    <Option Id="option-add-tabular-column-translation-workspace" ParameterId="param-add-tabular-column-translation-workspace" />
+    <Option Id="option-add-tabular-column-workspace" ParameterId="param-add-tabular-column-workspace" />
+    <Option Id="option-add-tabular-culture-id" ParameterId="param-add-tabular-culture-id" />
+    <Option Id="option-add-tabular-culture-name" ParameterId="param-add-tabular-culture-name" />
+    <Option Id="option-add-tabular-culture-tabular-model" ParameterId="param-add-tabular-culture-tabular-model" />
+    <Option Id="option-add-tabular-culture-workspace" ParameterId="param-add-tabular-culture-workspace" />
+    <Option Id="option-add-tabular-data-source-connection-reference" ParameterId="param-add-tabular-data-source-connection-reference" />
+    <Option Id="option-add-tabular-data-source-description" ParameterId="param-add-tabular-data-source-description" />
+    <Option Id="option-add-tabular-data-source-id" ParameterId="param-add-tabular-data-source-id" />
+    <Option Id="option-add-tabular-data-source-name" ParameterId="param-add-tabular-data-source-name" />
+    <Option Id="option-add-tabular-data-source-provider" ParameterId="param-add-tabular-data-source-provider" />
+    <Option Id="option-add-tabular-data-source-tabular-model" ParameterId="param-add-tabular-data-source-tabular-model" />
+    <Option Id="option-add-tabular-data-source-workspace" ParameterId="param-add-tabular-data-source-workspace" />
+    <Option Id="option-add-tabular-hierarchy-description" ParameterId="param-add-tabular-hierarchy-description" />
+    <Option Id="option-add-tabular-hierarchy-display-folder" ParameterId="param-add-tabular-hierarchy-display-folder" />
+    <Option Id="option-add-tabular-hierarchy-id" ParameterId="param-add-tabular-hierarchy-id" />
+    <Option Id="option-add-tabular-hierarchy-is-hidden" ParameterId="param-add-tabular-hierarchy-is-hidden" />
+    <Option Id="option-add-tabular-hierarchy-level-id" ParameterId="param-add-tabular-hierarchy-level-id" />
+    <Option Id="option-add-tabular-hierarchy-level-name" ParameterId="param-add-tabular-hierarchy-level-name" />
+    <Option Id="option-add-tabular-hierarchy-level-ordinal" ParameterId="param-add-tabular-hierarchy-level-ordinal" />
+    <Option Id="option-add-tabular-hierarchy-level-tabular-column" ParameterId="param-add-tabular-hierarchy-level-tabular-column" />
+    <Option Id="option-add-tabular-hierarchy-level-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-level-tabular-hierarchy" />
+    <Option Id="option-add-tabular-hierarchy-level-workspace" ParameterId="param-add-tabular-hierarchy-level-workspace" />
+    <Option Id="option-add-tabular-hierarchy-name" ParameterId="param-add-tabular-hierarchy-name" />
+    <Option Id="option-add-tabular-hierarchy-tabular-table" ParameterId="param-add-tabular-hierarchy-tabular-table" />
+    <Option Id="option-add-tabular-hierarchy-translation-caption" ParameterId="param-add-tabular-hierarchy-translation-caption" />
+    <Option Id="option-add-tabular-hierarchy-translation-description" ParameterId="param-add-tabular-hierarchy-translation-description" />
+    <Option Id="option-add-tabular-hierarchy-translation-id" ParameterId="param-add-tabular-hierarchy-translation-id" />
+    <Option Id="option-add-tabular-hierarchy-translation-tabular-culture" ParameterId="param-add-tabular-hierarchy-translation-tabular-culture" />
+    <Option Id="option-add-tabular-hierarchy-translation-tabular-hierarchy" ParameterId="param-add-tabular-hierarchy-translation-tabular-hierarchy" />
+    <Option Id="option-add-tabular-hierarchy-translation-workspace" ParameterId="param-add-tabular-hierarchy-translation-workspace" />
+    <Option Id="option-add-tabular-hierarchy-workspace" ParameterId="param-add-tabular-hierarchy-workspace" />
+    <Option Id="option-add-tabular-kpi-base-measure" ParameterId="param-add-tabular-kpi-base-measure" />
+    <Option Id="option-add-tabular-kpi-description" ParameterId="param-add-tabular-kpi-description" />
+    <Option Id="option-add-tabular-kpi-id" ParameterId="param-add-tabular-kpi-id" />
+    <Option Id="option-add-tabular-kpi-status-expression" ParameterId="param-add-tabular-kpi-status-expression" />
+    <Option Id="option-add-tabular-kpi-status-graphic" ParameterId="param-add-tabular-kpi-status-graphic" />
+    <Option Id="option-add-tabular-kpi-target-expression" ParameterId="param-add-tabular-kpi-target-expression" />
+    <Option Id="option-add-tabular-kpi-target-measure" ParameterId="param-add-tabular-kpi-target-measure" />
+    <Option Id="option-add-tabular-kpi-translation-description" ParameterId="param-add-tabular-kpi-translation-description" />
+    <Option Id="option-add-tabular-kpi-translation-id" ParameterId="param-add-tabular-kpi-translation-id" />
+    <Option Id="option-add-tabular-kpi-translation-tabular-culture" ParameterId="param-add-tabular-kpi-translation-tabular-culture" />
+    <Option Id="option-add-tabular-kpi-translation-tabular-kpi" ParameterId="param-add-tabular-kpi-translation-tabular-kpi" />
+    <Option Id="option-add-tabular-kpi-translation-workspace" ParameterId="param-add-tabular-kpi-translation-workspace" />
+    <Option Id="option-add-tabular-kpi-trend-expression" ParameterId="param-add-tabular-kpi-trend-expression" />
+    <Option Id="option-add-tabular-kpi-trend-graphic" ParameterId="param-add-tabular-kpi-trend-graphic" />
+    <Option Id="option-add-tabular-kpi-workspace" ParameterId="param-add-tabular-kpi-workspace" />
+    <Option Id="option-add-tabular-measure-description" ParameterId="param-add-tabular-measure-description" />
+    <Option Id="option-add-tabular-measure-display-folder" ParameterId="param-add-tabular-measure-display-folder" />
+    <Option Id="option-add-tabular-measure-expression" ParameterId="param-add-tabular-measure-expression" />
+    <Option Id="option-add-tabular-measure-format-string" ParameterId="param-add-tabular-measure-format-string" />
+    <Option Id="option-add-tabular-measure-id" ParameterId="param-add-tabular-measure-id" />
+    <Option Id="option-add-tabular-measure-is-hidden" ParameterId="param-add-tabular-measure-is-hidden" />
+    <Option Id="option-add-tabular-measure-name" ParameterId="param-add-tabular-measure-name" />
+    <Option Id="option-add-tabular-measure-tabular-table" ParameterId="param-add-tabular-measure-tabular-table" />
+    <Option Id="option-add-tabular-measure-translation-caption" ParameterId="param-add-tabular-measure-translation-caption" />
+    <Option Id="option-add-tabular-measure-translation-description" ParameterId="param-add-tabular-measure-translation-description" />
+    <Option Id="option-add-tabular-measure-translation-id" ParameterId="param-add-tabular-measure-translation-id" />
+    <Option Id="option-add-tabular-measure-translation-tabular-culture" ParameterId="param-add-tabular-measure-translation-tabular-culture" />
+    <Option Id="option-add-tabular-measure-translation-tabular-measure" ParameterId="param-add-tabular-measure-translation-tabular-measure" />
+    <Option Id="option-add-tabular-measure-translation-workspace" ParameterId="param-add-tabular-measure-translation-workspace" />
+    <Option Id="option-add-tabular-measure-workspace" ParameterId="param-add-tabular-measure-workspace" />
+    <Option Id="option-add-tabular-model-collation" ParameterId="param-add-tabular-model-collation" />
+    <Option Id="option-add-tabular-model-compatibility-level" ParameterId="param-add-tabular-model-compatibility-level" />
+    <Option Id="option-add-tabular-model-default-culture" ParameterId="param-add-tabular-model-default-culture" />
+    <Option Id="option-add-tabular-model-default-data-view" ParameterId="param-add-tabular-model-default-data-view" />
+    <Option Id="option-add-tabular-model-description" ParameterId="param-add-tabular-model-description" />
+    <Option Id="option-add-tabular-model-id" ParameterId="param-add-tabular-model-id" />
+    <Option Id="option-add-tabular-model-name" ParameterId="param-add-tabular-model-name" />
+    <Option Id="option-add-tabular-model-workspace" ParameterId="param-add-tabular-model-workspace" />
+    <Option Id="option-add-tabular-partition-description" ParameterId="param-add-tabular-partition-description" />
+    <Option Id="option-add-tabular-partition-expression" ParameterId="param-add-tabular-partition-expression" />
+    <Option Id="option-add-tabular-partition-id" ParameterId="param-add-tabular-partition-id" />
+    <Option Id="option-add-tabular-partition-mode" ParameterId="param-add-tabular-partition-mode" />
+    <Option Id="option-add-tabular-partition-name" ParameterId="param-add-tabular-partition-name" />
+    <Option Id="option-add-tabular-partition-ordinal" ParameterId="param-add-tabular-partition-ordinal" />
+    <Option Id="option-add-tabular-partition-tabular-data-source" ParameterId="param-add-tabular-partition-tabular-data-source" />
+    <Option Id="option-add-tabular-partition-tabular-table" ParameterId="param-add-tabular-partition-tabular-table" />
+    <Option Id="option-add-tabular-partition-workspace" ParameterId="param-add-tabular-partition-workspace" />
+    <Option Id="option-add-tabular-perspective-calculation-group-id" ParameterId="param-add-tabular-perspective-calculation-group-id" />
+    <Option Id="option-add-tabular-perspective-calculation-group-tabular-calculation-group" ParameterId="param-add-tabular-perspective-calculation-group-tabular-calculation-group" />
+    <Option Id="option-add-tabular-perspective-calculation-group-tabular-perspective" ParameterId="param-add-tabular-perspective-calculation-group-tabular-perspective" />
+    <Option Id="option-add-tabular-perspective-calculation-group-workspace" ParameterId="param-add-tabular-perspective-calculation-group-workspace" />
+    <Option Id="option-add-tabular-perspective-column-id" ParameterId="param-add-tabular-perspective-column-id" />
+    <Option Id="option-add-tabular-perspective-column-tabular-column" ParameterId="param-add-tabular-perspective-column-tabular-column" />
+    <Option Id="option-add-tabular-perspective-column-tabular-perspective" ParameterId="param-add-tabular-perspective-column-tabular-perspective" />
+    <Option Id="option-add-tabular-perspective-column-workspace" ParameterId="param-add-tabular-perspective-column-workspace" />
+    <Option Id="option-add-tabular-perspective-description" ParameterId="param-add-tabular-perspective-description" />
+    <Option Id="option-add-tabular-perspective-hierarchy-id" ParameterId="param-add-tabular-perspective-hierarchy-id" />
+    <Option Id="option-add-tabular-perspective-hierarchy-tabular-hierarchy" ParameterId="param-add-tabular-perspective-hierarchy-tabular-hierarchy" />
+    <Option Id="option-add-tabular-perspective-hierarchy-tabular-perspective" ParameterId="param-add-tabular-perspective-hierarchy-tabular-perspective" />
+    <Option Id="option-add-tabular-perspective-hierarchy-workspace" ParameterId="param-add-tabular-perspective-hierarchy-workspace" />
+    <Option Id="option-add-tabular-perspective-id" ParameterId="param-add-tabular-perspective-id" />
+    <Option Id="option-add-tabular-perspective-kpi-id" ParameterId="param-add-tabular-perspective-kpi-id" />
+    <Option Id="option-add-tabular-perspective-kpi-tabular-kpi" ParameterId="param-add-tabular-perspective-kpi-tabular-kpi" />
+    <Option Id="option-add-tabular-perspective-kpi-tabular-perspective" ParameterId="param-add-tabular-perspective-kpi-tabular-perspective" />
+    <Option Id="option-add-tabular-perspective-kpi-workspace" ParameterId="param-add-tabular-perspective-kpi-workspace" />
+    <Option Id="option-add-tabular-perspective-measure-id" ParameterId="param-add-tabular-perspective-measure-id" />
+    <Option Id="option-add-tabular-perspective-measure-tabular-measure" ParameterId="param-add-tabular-perspective-measure-tabular-measure" />
+    <Option Id="option-add-tabular-perspective-measure-tabular-perspective" ParameterId="param-add-tabular-perspective-measure-tabular-perspective" />
+    <Option Id="option-add-tabular-perspective-measure-workspace" ParameterId="param-add-tabular-perspective-measure-workspace" />
+    <Option Id="option-add-tabular-perspective-name" ParameterId="param-add-tabular-perspective-name" />
+    <Option Id="option-add-tabular-perspective-table-id" ParameterId="param-add-tabular-perspective-table-id" />
+    <Option Id="option-add-tabular-perspective-table-tabular-perspective" ParameterId="param-add-tabular-perspective-table-tabular-perspective" />
+    <Option Id="option-add-tabular-perspective-table-tabular-table" ParameterId="param-add-tabular-perspective-table-tabular-table" />
+    <Option Id="option-add-tabular-perspective-table-workspace" ParameterId="param-add-tabular-perspective-table-workspace" />
+    <Option Id="option-add-tabular-perspective-tabular-model" ParameterId="param-add-tabular-perspective-tabular-model" />
+    <Option Id="option-add-tabular-perspective-translation-caption" ParameterId="param-add-tabular-perspective-translation-caption" />
+    <Option Id="option-add-tabular-perspective-translation-description" ParameterId="param-add-tabular-perspective-translation-description" />
+    <Option Id="option-add-tabular-perspective-translation-id" ParameterId="param-add-tabular-perspective-translation-id" />
+    <Option Id="option-add-tabular-perspective-translation-tabular-culture" ParameterId="param-add-tabular-perspective-translation-tabular-culture" />
+    <Option Id="option-add-tabular-perspective-translation-tabular-perspective" ParameterId="param-add-tabular-perspective-translation-tabular-perspective" />
+    <Option Id="option-add-tabular-perspective-translation-workspace" ParameterId="param-add-tabular-perspective-translation-workspace" />
+    <Option Id="option-add-tabular-perspective-workspace" ParameterId="param-add-tabular-perspective-workspace" />
+    <Option Id="option-add-tabular-relationship-cardinality" ParameterId="param-add-tabular-relationship-cardinality" />
+    <Option Id="option-add-tabular-relationship-cross-filter-direction" ParameterId="param-add-tabular-relationship-cross-filter-direction" />
+    <Option Id="option-add-tabular-relationship-from-column" ParameterId="param-add-tabular-relationship-from-column" />
+    <Option Id="option-add-tabular-relationship-from-table" ParameterId="param-add-tabular-relationship-from-table" />
+    <Option Id="option-add-tabular-relationship-id" ParameterId="param-add-tabular-relationship-id" />
+    <Option Id="option-add-tabular-relationship-is-active" ParameterId="param-add-tabular-relationship-is-active" />
+    <Option Id="option-add-tabular-relationship-is-required" ParameterId="param-add-tabular-relationship-is-required" />
+    <Option Id="option-add-tabular-relationship-name" ParameterId="param-add-tabular-relationship-name" />
+    <Option Id="option-add-tabular-relationship-to-column" ParameterId="param-add-tabular-relationship-to-column" />
+    <Option Id="option-add-tabular-relationship-to-table" ParameterId="param-add-tabular-relationship-to-table" />
+    <Option Id="option-add-tabular-relationship-workspace" ParameterId="param-add-tabular-relationship-workspace" />
+    <Option Id="option-add-tabular-role-filter-expression" ParameterId="param-add-tabular-role-filter-expression" />
+    <Option Id="option-add-tabular-role-filter-id" ParameterId="param-add-tabular-role-filter-id" />
+    <Option Id="option-add-tabular-role-filter-tabular-security-role" ParameterId="param-add-tabular-role-filter-tabular-security-role" />
+    <Option Id="option-add-tabular-role-filter-tabular-table" ParameterId="param-add-tabular-role-filter-tabular-table" />
+    <Option Id="option-add-tabular-role-filter-workspace" ParameterId="param-add-tabular-role-filter-workspace" />
+    <Option Id="option-add-tabular-role-member-id" ParameterId="param-add-tabular-role-member-id" />
+    <Option Id="option-add-tabular-role-member-member-id" ParameterId="param-add-tabular-role-member-member-id" />
+    <Option Id="option-add-tabular-role-member-member-name" ParameterId="param-add-tabular-role-member-member-name" />
+    <Option Id="option-add-tabular-role-member-tabular-security-role" ParameterId="param-add-tabular-role-member-tabular-security-role" />
+    <Option Id="option-add-tabular-role-member-workspace" ParameterId="param-add-tabular-role-member-workspace" />
+    <Option Id="option-add-tabular-security-role-description" ParameterId="param-add-tabular-security-role-description" />
+    <Option Id="option-add-tabular-security-role-id" ParameterId="param-add-tabular-security-role-id" />
+    <Option Id="option-add-tabular-security-role-name" ParameterId="param-add-tabular-security-role-name" />
+    <Option Id="option-add-tabular-security-role-permission" ParameterId="param-add-tabular-security-role-permission" />
+    <Option Id="option-add-tabular-security-role-tabular-model" ParameterId="param-add-tabular-security-role-tabular-model" />
+    <Option Id="option-add-tabular-security-role-workspace" ParameterId="param-add-tabular-security-role-workspace" />
+    <Option Id="option-add-tabular-sort-by-column-id" ParameterId="param-add-tabular-sort-by-column-id" />
+    <Option Id="option-add-tabular-sort-by-column-sort-column" ParameterId="param-add-tabular-sort-by-column-sort-column" />
+    <Option Id="option-add-tabular-sort-by-column-source-column" ParameterId="param-add-tabular-sort-by-column-source-column" />
+    <Option Id="option-add-tabular-sort-by-column-workspace" ParameterId="param-add-tabular-sort-by-column-workspace" />
+    <Option Id="option-add-tabular-table-data-category" ParameterId="param-add-tabular-table-data-category" />
+    <Option Id="option-add-tabular-table-description" ParameterId="param-add-tabular-table-description" />
+    <Option Id="option-add-tabular-table-id" ParameterId="param-add-tabular-table-id" />
+    <Option Id="option-add-tabular-table-is-hidden" ParameterId="param-add-tabular-table-is-hidden" />
+    <Option Id="option-add-tabular-table-name" ParameterId="param-add-tabular-table-name" />
+    <Option Id="option-add-tabular-table-permission-id" ParameterId="param-add-tabular-table-permission-id" />
+    <Option Id="option-add-tabular-table-permission-metadata-permission" ParameterId="param-add-tabular-table-permission-metadata-permission" />
+    <Option Id="option-add-tabular-table-permission-tabular-security-role" ParameterId="param-add-tabular-table-permission-tabular-security-role" />
+    <Option Id="option-add-tabular-table-permission-tabular-table" ParameterId="param-add-tabular-table-permission-tabular-table" />
+    <Option Id="option-add-tabular-table-permission-workspace" ParameterId="param-add-tabular-table-permission-workspace" />
+    <Option Id="option-add-tabular-table-tabular-model" ParameterId="param-add-tabular-table-tabular-model" />
+    <Option Id="option-add-tabular-table-translation-caption" ParameterId="param-add-tabular-table-translation-caption" />
+    <Option Id="option-add-tabular-table-translation-description" ParameterId="param-add-tabular-table-translation-description" />
+    <Option Id="option-add-tabular-table-translation-id" ParameterId="param-add-tabular-table-translation-id" />
+    <Option Id="option-add-tabular-table-translation-tabular-culture" ParameterId="param-add-tabular-table-translation-tabular-culture" />
+    <Option Id="option-add-tabular-table-translation-tabular-table" ParameterId="param-add-tabular-table-translation-tabular-table" />
+    <Option Id="option-add-tabular-table-translation-workspace" ParameterId="param-add-tabular-table-translation-workspace" />
+    <Option Id="option-add-tabular-table-workspace" ParameterId="param-add-tabular-table-workspace" />
+    <Option Id="option-create-connection-env" ParameterId="param-create-connection-env" />
+    <Option Id="option-create-csharp" ParameterId="param-create-csharp" />
+    <Option Id="option-create-sql" ParameterId="param-create-sql" />
+    <Option Id="option-create-xml" ParameterId="param-create-xml" />
+    <Option Id="option-deploy-database-name" ParameterId="param-deploy-database-name" />
+    <Option Id="option-deploy-drop-existing" ParameterId="param-deploy-drop-existing" />
+    <Option Id="option-deploy-no-process" ParameterId="param-deploy-no-process" />
+    <Option Id="option-deploy-server" ParameterId="param-deploy-server" />
+    <Option Id="option-deploy-workspace" ParameterId="param-deploy-workspace" />
+    <Option Id="option-drop-database-name" ParameterId="param-drop-database-name" />
+    <Option Id="option-drop-server" ParameterId="param-drop-server" />
+    <Option Id="option-process-database-name" ParameterId="param-process-database-name" />
+    <Option Id="option-process-partition" ParameterId="param-process-partition" />
+    <Option Id="option-process-refresh-type" ParameterId="param-process-refresh-type" />
+    <Option Id="option-process-server" ParameterId="param-process-server" />
+    <Option Id="option-process-table" ParameterId="param-process-table" />
+    <Option Id="option-restore-backup-file" ParameterId="param-restore-backup-file" />
+    <Option Id="option-restore-drop-existing" ParameterId="param-restore-drop-existing" />
+    <Option Id="option-restore-overwrite-backup-file" ParameterId="param-restore-overwrite-backup-file" />
+    <Option Id="option-restore-source-database-name" ParameterId="param-restore-source-database-name" />
+    <Option Id="option-restore-source-server" ParameterId="param-restore-source-server" />
+    <Option Id="option-restore-target-database-name" ParameterId="param-restore-target-database-name" />
+    <Option Id="option-restore-target-server" ParameterId="param-restore-target-server" />
   </OptionList>
 </MetaCli>

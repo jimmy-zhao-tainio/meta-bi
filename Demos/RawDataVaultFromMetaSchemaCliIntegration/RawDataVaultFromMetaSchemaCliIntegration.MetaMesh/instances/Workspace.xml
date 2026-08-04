@@ -1,47 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaMesh>
   <WorkspaceList>
-    <Workspace Id="workspace:source-business-data-vault-mesh" MeshId="mesh:default">
-      <Description>Source Business Data Vault demo mesh used to prepare the source SQL database.</Description>
-      <ModelName>MetaMesh</ModelName>
-      <Name>source-business-data-vault-mesh</Name>
-      <Path>..\BusinessDataVaultCliIntegration\BusinessDataVaultCliIntegration.MetaMesh</Path>
-    </Workspace>
-    <Workspace Id="workspace:schema" MeshId="mesh:default">
-      <Description>Generated schema workspace extracted from the source Business Data Vault database.</Description>
-      <ModelName>MetaSchema</ModelName>
-      <Name>schema</Name>
-      <Path>MetaSchemaWorkspace</Path>
-    </Workspace>
-    <Workspace Id="workspace:raw-data-vault" MeshId="mesh:default">
-      <Description>Generated raw data vault workspace converted from the schema workspace.</Description>
-      <ModelName>MetaRawDataVault</ModelName>
-      <Name>raw-data-vault</Name>
-      <Path>RawDataVaultFromMetaSchemaCliIntegrationWorkspace</Path>
-    </Workspace>
     <Workspace Id="workspace:data-vault-implementation" MeshId="mesh:default">
       <Description>Implementation policy workspace used by the Data Vault to SQL converter.</Description>
       <ModelName>MetaDataVaultImplementation</ModelName>
       <Name>data-vault-implementation</Name>
-      <Path>..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation</Path>
-    </Workspace>
-    <Workspace Id="workspace:sql" MeshId="mesh:default">
-      <Description>Generated MetaSql workspace produced from the raw data vault model.</Description>
-      <ModelName>MetaSql</ModelName>
-      <Name>sql</Name>
-      <Path>CurrentMetaSqlWorkspace</Path>
     </Workspace>
     <Workspace Id="workspace:deploy-manifest" MeshId="mesh:default">
       <Description>Generated deployment manifest for the first SQL deploy.</Description>
       <ModelName>MetaSqlDeployManifest</ModelName>
       <Name>deploy-manifest</Name>
-      <Path>MetaSqlDeployManifest</Path>
+    </Workspace>
+    <Workspace Id="workspace:raw-data-vault" MeshId="mesh:default">
+      <Description>Generated raw data vault workspace converted from the schema workspace.</Description>
+      <ModelName>MetaRawDataVault</ModelName>
+      <Name>raw-data-vault</Name>
+    </Workspace>
+    <Workspace Id="workspace:schema" MeshId="mesh:default">
+      <Description>Generated schema workspace extracted from the source Business Data Vault database.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>schema</Name>
+    </Workspace>
+    <Workspace Id="workspace:source-business-data-vault-mesh" MeshId="mesh:default">
+      <Description>Source Business Data Vault demo mesh used to prepare the source SQL database.</Description>
+      <ModelName>MetaMesh</ModelName>
+      <Name>source-business-data-vault-mesh</Name>
+    </Workspace>
+    <Workspace Id="workspace:sql" MeshId="mesh:default">
+      <Description>Generated MetaSql workspace produced from the raw data vault model.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>sql</Name>
     </Workspace>
     <Workspace Id="workspace:verify-manifest" MeshId="mesh:default">
       <Description>Generated verification manifest after deployment.</Description>
       <ModelName>MetaSqlDeployManifest</ModelName>
       <Name>verify-manifest</Name>
-      <Path>MetaSqlVerifyManifest</Path>
     </Workspace>
   </WorkspaceList>
 </MetaMesh>

@@ -40,6 +40,33 @@ public sealed partial class MetaTransformScriptSqlService
         return ImportFromSqlSources([new SqlImportSource(sqlCode, SourcePath: null, BareSelectName: scriptName)]);
     }
 
+    public ImportToWorkspaceResult ImportSqlFile(
+        MTS.MetaTransformScriptModel model,
+        string sqlFilePath,
+        string? targetSqlIdentifier)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        var imported = ImportFromSqlFile(sqlFilePath);
+        ApplySingleScriptImportTarget(imported, targetSqlIdentifier, Path.GetFileName(sqlFilePath));
+        RemapModelIds(imported, ReadNextIdState(model));
+        AppendModelRows(model, imported);
+        return new ImportToWorkspaceResult(model, model.TransformScriptList.Count, string.Empty);
+    }
+
+    public ImportToWorkspaceResult ImportSqlCode(
+        MTS.MetaTransformScriptModel model,
+        string sqlCode,
+        string? targetSqlIdentifier,
+        string? scriptName = null)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        var imported = ImportFromSqlCode(sqlCode, scriptName);
+        ApplySingleScriptImportTarget(imported, targetSqlIdentifier, "<sql-code>");
+        RemapModelIds(imported, ReadNextIdState(model));
+        AppendModelRows(model, imported);
+        return new ImportToWorkspaceResult(model, model.TransformScriptList.Count, string.Empty);
+    }
+
     public async Task<ImportToWorkspaceResult> ImportSingleSqlFileToWorkspaceAsync(
         string sqlFilePath,
         string? targetSqlIdentifier,

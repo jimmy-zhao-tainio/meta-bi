@@ -44,7 +44,34 @@ public sealed class MetaSchemaSqlServerExtractService
             model.KeyList.Count,
             model.TableRelationshipList.Count);
     }
+
+    public SqlServerExtractModelResult Extract(SqlServerExtractRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+        var model = extractor.ExtractMetaSchemaModel(request);
+        return new SqlServerExtractModelResult(
+            model,
+            model.SystemList.Count,
+            model.SchemaList.Count,
+            model.SchemaObjectList.Count,
+            model.TableList.Count,
+            model.ViewList.Count,
+            model.FieldList.Count,
+            model.KeyList.Count,
+            model.TableRelationshipList.Count);
+    }
 }
+
+public sealed record SqlServerExtractModelResult(
+    MS.MetaSchemaModel Model,
+    int SystemCount,
+    int SchemaCount,
+    int SchemaObjectCount,
+    int TableCount,
+    int ViewCount,
+    int FieldCount,
+    int KeyCount,
+    int TableRelationshipCount);
 
 public sealed record SqlServerExtractResult(
     string WorkspacePath,

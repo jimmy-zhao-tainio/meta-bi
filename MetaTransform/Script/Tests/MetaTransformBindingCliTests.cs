@@ -25,7 +25,7 @@ public sealed class MetaTransformBindingCliTests
         Assert.Contains("--source-schema <path>", result.Output);
         Assert.Contains("--target-schema <path>", result.Output);
         Assert.Contains("--execute-system <value>", result.Output);
-        Assert.Contains("--new-workspace <path>", result.Output);
+        Assert.Contains("--output-xml <path>", result.Output);
         Assert.Contains("--ignore-target-columns <col[,col...]>", result.Output);
         Assert.Contains("--allow-partial", result.Output);
         Assert.Contains("--partial-report <path>", result.Output);
@@ -34,7 +34,7 @@ public sealed class MetaTransformBindingCliTests
     [Fact]
     public void Bind_WhenSourceSchemaIsMissing_FailsInMetaCliParser()
     {
-        var result = RunCli("bind --transform-workspace transform --target-schema target --execute-system sys --new-workspace binding");
+        var result = RunCli("bind --transform-workspace transform --target-schema target --execute-system sys --output-xml binding");
 
         Assert.Equal(2, result.ExitCode);
         Assert.Contains("Required parameter 'source-schema' was not provided.", result.Output);
@@ -43,7 +43,7 @@ public sealed class MetaTransformBindingCliTests
     [Fact]
     public void Bind_WhenPartialReportIsProvidedWithoutAllowPartial_FailsDomainValidation()
     {
-        var result = RunCli("bind --transform-workspace transform --source-schema source --target-schema target --execute-system sys --new-workspace binding --partial-report skipped.tsv");
+        var result = RunCli("bind --transform-workspace transform --source-schema source --target-schema target --execute-system sys --output-xml binding --partial-report skipped.tsv");
 
         Assert.Equal(1, result.ExitCode);
         Assert.Contains("--partial-report requires --allow-partial.", result.Output);

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <XmlWorkspaceList>
+    <XmlWorkspace Id="workspace:analytics" WorkspaceId="workspace:analytics">
+      <Path>AnalyticsWorkspace</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:multi-dimensional" WorkspaceId="workspace:multi-dimensional">
+      <Path>MultiDimensionalWorkspace</Path>
+    </XmlWorkspace>
+  </XmlWorkspaceList>
+</MetaMesh>

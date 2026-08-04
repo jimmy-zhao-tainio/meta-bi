@@ -22,22 +22,14 @@ internal sealed class MetaTransformBindingCommandHandlers
         this.appName = appName;
     }
 
-    public void RunBind(MetaCliInvocation invocation)
+    public async Task RunBindAsync(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
         var parse = ReadBindArgs(invocation);
         if (!parse.Ok)
         {
             Fail(parse.ErrorMessage, HelpCommand("bind"));
-        }
-
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(parse.NewWorkspacePath);
-        if (!targetValidation.Ok)
-        {
-            Fail(
-                targetValidation.ErrorMessage,
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                targetValidation.Details);
         }
 
         try
@@ -49,16 +41,16 @@ internal sealed class MetaTransformBindingCommandHandlers
                 parse.ExecuteSystemDefaultSchemaName);
 
             using var activity = CliActivityLine.Start("Binding");
-            var result = service.BindValidatedToWorkspace(
+            var result = service.BindValidated(
                 parse.TransformWorkspacePath,
                 parse.SourceSchemaWorkspacePaths,
                 parse.TargetSchemaWorkspacePath,
                 parse.ExecuteSystemName,
                 parse.ExecuteSystemDefaultSchemaName,
-                targetValidation.FullPath,
                 validationOptions: options,
                 dataTypeConversionWorkspacePath: parse.DataTypeConversionWorkspacePath,
                 allowPartial: parse.AllowPartial);
+            await workspaces.CreateAsync("output", result.Model).ConfigureAwait(false);
 
             var partialReportFullPath = partialReportService.Write(parse.PartialReportPath, result.ObjectIssues ?? []);
 
@@ -105,7 +97,6 @@ internal sealed class MetaTransformBindingCommandHandlers
                     $"  DataTypeConversionWorkspace: {(string.IsNullOrWhiteSpace(parse.DataTypeConversionWorkspacePath) ? "<default>" : Path.GetFullPath(parse.DataTypeConversionWorkspacePath))}",
                     $"  ExecuteSystem: {parse.ExecuteSystemName}",
                     $"  ExecuteSystemDefaultSchemaName: {(string.IsNullOrWhiteSpace(parse.ExecuteSystemDefaultSchemaName) ? "<none>" : parse.ExecuteSystemDefaultSchemaName)}",
-                    $"  BindingWorkspace: {targetValidation.FullPath}",
                     $"  {ex.Message}",
                 });
         }
@@ -145,7 +136,6 @@ internal sealed class MetaTransformBindingCommandHandlers
             invocation.Required("target-schema"),
             invocation.Required("execute-system"),
             invocation.Optional("execute-system-default-schema-name") ?? string.Empty,
-            invocation.Required("new-workspace"),
             ignoredTargetColumns,
             ignoredTargetColumnsIfPresent,
             invocation.Optional("data-type-conversion-workspace") ?? string.Empty,
@@ -239,7 +229,6 @@ internal sealed class MetaTransformBindingCommandHandlers
         string TargetSchemaWorkspacePath,
         string ExecuteSystemName,
         string ExecuteSystemDefaultSchemaName,
-        string NewWorkspacePath,
         string[] IgnoredTargetColumns,
         string[] IgnoredTargetColumnsIfPresent,
         string DataTypeConversionWorkspacePath,
@@ -252,7 +241,6 @@ internal sealed class MetaTransformBindingCommandHandlers
                 false,
                 string.Empty,
                 [],
-                string.Empty,
                 string.Empty,
                 string.Empty,
                 string.Empty,

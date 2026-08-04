@@ -27,7 +27,10 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaAnalyticsModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-new-workspace", handlers.RunNewWorkspace);
+            .Bind(
+                "exec-create",
+                [MetaCliWorkspace.Create("output", "xml", "csharp", "sql")],
+                handlers.RunCreate);
 
         foreach (var executableCommandId in MetaAnalyticsCommandHandlers.AuthoringExecutableCommandIds)
         {

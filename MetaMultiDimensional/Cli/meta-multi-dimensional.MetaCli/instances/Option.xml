@@ -1,555 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
-    <Option Id="opt-deploy-workspace" ParameterId="param-deploy-workspace">
-    </Option>
-    <Option Id="opt-deploy-server" ParameterId="param-deploy-server">
-    </Option>
-    <Option Id="opt-deploy-database-name" ParameterId="param-deploy-database-name">
-    </Option>
-    <Option Id="opt-deploy-drop-existing" ParameterId="param-deploy-drop-existing">
-    </Option>
-    <Option Id="opt-deploy-no-process" ParameterId="param-deploy-no-process">
-    </Option>
-    <Option Id="opt-restore-source-server" ParameterId="param-restore-source-server">
-    </Option>
-    <Option Id="opt-restore-source-database-name" ParameterId="param-restore-source-database-name">
-    </Option>
-    <Option Id="opt-restore-target-server" ParameterId="param-restore-target-server">
-    </Option>
-    <Option Id="opt-restore-target-database-name" ParameterId="param-restore-target-database-name">
-    </Option>
-    <Option Id="opt-restore-backup-file" ParameterId="param-restore-backup-file">
-    </Option>
-    <Option Id="opt-restore-drop-existing" ParameterId="param-restore-drop-existing">
-    </Option>
-    <Option Id="opt-restore-overwrite-backup-file" ParameterId="param-restore-overwrite-backup-file">
-    </Option>
-    <Option Id="opt-drop-server" ParameterId="param-drop-server">
-    </Option>
-    <Option Id="opt-drop-database-name" ParameterId="param-drop-database-name">
-    </Option>
-    <Option Id="opt-add-action-translation-workspace" ParameterId="param-add-action-translation-workspace">
-    </Option>
-    <Option Id="opt-add-action-translation-id" ParameterId="param-add-action-translation-id">
-    </Option>
-    <Option Id="opt-add-action-translation-caption" ParameterId="param-add-action-translation-caption">
-    </Option>
-    <Option Id="opt-add-action-translation-description" ParameterId="param-add-action-translation-description">
-    </Option>
-    <Option Id="opt-add-action-translation-cube-action" ParameterId="param-add-action-translation-cube-action">
-    </Option>
-    <Option Id="opt-add-action-translation-culture" ParameterId="param-add-action-translation-culture">
-    </Option>
-    <Option Id="opt-add-attribute-relationship-workspace" ParameterId="param-add-attribute-relationship-workspace">
-    </Option>
-    <Option Id="opt-add-attribute-relationship-id" ParameterId="param-add-attribute-relationship-id">
-    </Option>
-    <Option Id="opt-add-attribute-relationship-description" ParameterId="param-add-attribute-relationship-description">
-    </Option>
-    <Option Id="opt-add-attribute-relationship-relationship-type" ParameterId="param-add-attribute-relationship-relationship-type">
-    </Option>
-    <Option Id="opt-add-attribute-relationship-child-attribute" ParameterId="param-add-attribute-relationship-child-attribute">
-    </Option>
-    <Option Id="opt-add-attribute-relationship-parent-attribute" ParameterId="param-add-attribute-relationship-parent-attribute">
-    </Option>
-    <Option Id="opt-add-attribute-translation-workspace" ParameterId="param-add-attribute-translation-workspace">
-    </Option>
-    <Option Id="opt-add-attribute-translation-id" ParameterId="param-add-attribute-translation-id">
-    </Option>
-    <Option Id="opt-add-attribute-translation-caption" ParameterId="param-add-attribute-translation-caption">
-    </Option>
-    <Option Id="opt-add-attribute-translation-description" ParameterId="param-add-attribute-translation-description">
-    </Option>
-    <Option Id="opt-add-attribute-translation-culture" ParameterId="param-add-attribute-translation-culture">
-    </Option>
-    <Option Id="opt-add-attribute-translation-dimension-attribute" ParameterId="param-add-attribute-translation-dimension-attribute">
-    </Option>
-    <Option Id="opt-add-cell-permission-workspace" ParameterId="param-add-cell-permission-workspace">
-    </Option>
-    <Option Id="opt-add-cell-permission-id" ParameterId="param-add-cell-permission-id">
-    </Option>
-    <Option Id="opt-add-cell-permission-description" ParameterId="param-add-cell-permission-description">
-    </Option>
-    <Option Id="opt-add-cell-permission-expression" ParameterId="param-add-cell-permission-expression">
-    </Option>
-    <Option Id="opt-add-cell-permission-cube" ParameterId="param-add-cell-permission-cube">
-    </Option>
-    <Option Id="opt-add-cell-permission-security-role" ParameterId="param-add-cell-permission-security-role">
-    </Option>
-    <Option Id="opt-add-cube-workspace" ParameterId="param-add-cube-workspace">
-    </Option>
-    <Option Id="opt-add-cube-id" ParameterId="param-add-cube-id">
-    </Option>
-    <Option Id="opt-add-cube-default-measure-name" ParameterId="param-add-cube-default-measure-name">
-    </Option>
-    <Option Id="opt-add-cube-description" ParameterId="param-add-cube-description">
-    </Option>
-    <Option Id="opt-add-cube-name" ParameterId="param-add-cube-name">
-    </Option>
-    <Option Id="opt-add-cube-processing-mode" ParameterId="param-add-cube-processing-mode">
-    </Option>
-    <Option Id="opt-add-cube-storage-mode" ParameterId="param-add-cube-storage-mode">
-    </Option>
-    <Option Id="opt-add-cube-multi-dimensional-database" ParameterId="param-add-cube-multi-dimensional-database">
-    </Option>
-    <Option Id="opt-add-cube-action-workspace" ParameterId="param-add-cube-action-workspace">
-    </Option>
-    <Option Id="opt-add-cube-action-id" ParameterId="param-add-cube-action-id">
-    </Option>
-    <Option Id="opt-add-cube-action-action-type" ParameterId="param-add-cube-action-action-type">
-    </Option>
-    <Option Id="opt-add-cube-action-caption" ParameterId="param-add-cube-action-caption">
-    </Option>
-    <Option Id="opt-add-cube-action-description" ParameterId="param-add-cube-action-description">
-    </Option>
-    <Option Id="opt-add-cube-action-expression" ParameterId="param-add-cube-action-expression">
-    </Option>
-    <Option Id="opt-add-cube-action-name" ParameterId="param-add-cube-action-name">
-    </Option>
-    <Option Id="opt-add-cube-action-target" ParameterId="param-add-cube-action-target">
-    </Option>
-    <Option Id="opt-add-cube-action-target-kind" ParameterId="param-add-cube-action-target-kind">
-    </Option>
-    <Option Id="opt-add-cube-action-cube" ParameterId="param-add-cube-action-cube">
-    </Option>
-    <Option Id="opt-add-cube-dimension-workspace" ParameterId="param-add-cube-dimension-workspace">
-    </Option>
-    <Option Id="opt-add-cube-dimension-id" ParameterId="param-add-cube-dimension-id">
-    </Option>
-    <Option Id="opt-add-cube-dimension-description" ParameterId="param-add-cube-dimension-description">
-    </Option>
-    <Option Id="opt-add-cube-dimension-name" ParameterId="param-add-cube-dimension-name">
-    </Option>
-    <Option Id="opt-add-cube-dimension-role-name" ParameterId="param-add-cube-dimension-role-name">
-    </Option>
-    <Option Id="opt-add-cube-dimension-cube" ParameterId="param-add-cube-dimension-cube">
-    </Option>
-    <Option Id="opt-add-cube-dimension-dimension" ParameterId="param-add-cube-dimension-dimension">
-    </Option>
-    <Option Id="opt-add-cube-translation-workspace" ParameterId="param-add-cube-translation-workspace">
-    </Option>
-    <Option Id="opt-add-cube-translation-id" ParameterId="param-add-cube-translation-id">
-    </Option>
-    <Option Id="opt-add-cube-translation-caption" ParameterId="param-add-cube-translation-caption">
-    </Option>
-    <Option Id="opt-add-cube-translation-description" ParameterId="param-add-cube-translation-description">
-    </Option>
-    <Option Id="opt-add-cube-translation-cube" ParameterId="param-add-cube-translation-cube">
-    </Option>
-    <Option Id="opt-add-cube-translation-culture" ParameterId="param-add-cube-translation-culture">
-    </Option>
-    <Option Id="opt-add-culture-workspace" ParameterId="param-add-culture-workspace">
-    </Option>
-    <Option Id="opt-add-culture-id" ParameterId="param-add-culture-id">
-    </Option>
-    <Option Id="opt-add-culture-description" ParameterId="param-add-culture-description">
-    </Option>
-    <Option Id="opt-add-culture-language-id" ParameterId="param-add-culture-language-id">
-    </Option>
-    <Option Id="opt-add-culture-name" ParameterId="param-add-culture-name">
-    </Option>
-    <Option Id="opt-add-culture-multi-dimensional-database" ParameterId="param-add-culture-multi-dimensional-database">
-    </Option>
-    <Option Id="opt-add-dimension-workspace" ParameterId="param-add-dimension-workspace">
-    </Option>
-    <Option Id="opt-add-dimension-id" ParameterId="param-add-dimension-id">
-    </Option>
-    <Option Id="opt-add-dimension-description" ParameterId="param-add-dimension-description">
-    </Option>
-    <Option Id="opt-add-dimension-dimension-type" ParameterId="param-add-dimension-dimension-type">
-    </Option>
-    <Option Id="opt-add-dimension-name" ParameterId="param-add-dimension-name">
-    </Option>
-    <Option Id="opt-add-dimension-processing-group" ParameterId="param-add-dimension-processing-group">
-    </Option>
-    <Option Id="opt-add-dimension-processing-mode" ParameterId="param-add-dimension-processing-mode">
-    </Option>
-    <Option Id="opt-add-dimension-source-name" ParameterId="param-add-dimension-source-name">
-    </Option>
-    <Option Id="opt-add-dimension-storage-mode" ParameterId="param-add-dimension-storage-mode">
-    </Option>
-    <Option Id="opt-add-dimension-multi-dimensional-database" ParameterId="param-add-dimension-multi-dimensional-database">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-workspace" ParameterId="param-add-dimension-attribute-workspace">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-id" ParameterId="param-add-dimension-attribute-id">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-attribute-hierarchy-enabled" ParameterId="param-add-dimension-attribute-attribute-hierarchy-enabled">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-attribute-hierarchy-visible" ParameterId="param-add-dimension-attribute-attribute-hierarchy-visible">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-data-type-id" ParameterId="param-add-dimension-attribute-data-type-id">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-description" ParameterId="param-add-dimension-attribute-description">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-is-key" ParameterId="param-add-dimension-attribute-is-key">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-name" ParameterId="param-add-dimension-attribute-name">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-ordinal" ParameterId="param-add-dimension-attribute-ordinal">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-source-name" ParameterId="param-add-dimension-attribute-source-name">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-usage" ParameterId="param-add-dimension-attribute-usage">
-    </Option>
-    <Option Id="opt-add-dimension-attribute-dimension" ParameterId="param-add-dimension-attribute-dimension">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-workspace" ParameterId="param-add-dimension-hierarchy-workspace">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-id" ParameterId="param-add-dimension-hierarchy-id">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-description" ParameterId="param-add-dimension-hierarchy-description">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-hierarchy-type" ParameterId="param-add-dimension-hierarchy-hierarchy-type">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-name" ParameterId="param-add-dimension-hierarchy-name">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-dimension" ParameterId="param-add-dimension-hierarchy-dimension">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-level-workspace" ParameterId="param-add-dimension-hierarchy-level-workspace">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-level-id" ParameterId="param-add-dimension-hierarchy-level-id">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-level-name" ParameterId="param-add-dimension-hierarchy-level-name">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-level-ordinal" ParameterId="param-add-dimension-hierarchy-level-ordinal">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-level-dimension-attribute" ParameterId="param-add-dimension-hierarchy-level-dimension-attribute">
-    </Option>
-    <Option Id="opt-add-dimension-hierarchy-level-dimension-hierarchy" ParameterId="param-add-dimension-hierarchy-level-dimension-hierarchy">
-    </Option>
-    <Option Id="opt-add-dimension-permission-workspace" ParameterId="param-add-dimension-permission-workspace">
-    </Option>
-    <Option Id="opt-add-dimension-permission-id" ParameterId="param-add-dimension-permission-id">
-    </Option>
-    <Option Id="opt-add-dimension-permission-allowed-set-expression" ParameterId="param-add-dimension-permission-allowed-set-expression">
-    </Option>
-    <Option Id="opt-add-dimension-permission-default-member-expression" ParameterId="param-add-dimension-permission-default-member-expression">
-    </Option>
-    <Option Id="opt-add-dimension-permission-denied-set-expression" ParameterId="param-add-dimension-permission-denied-set-expression">
-    </Option>
-    <Option Id="opt-add-dimension-permission-description" ParameterId="param-add-dimension-permission-description">
-    </Option>
-    <Option Id="opt-add-dimension-permission-visual-totals" ParameterId="param-add-dimension-permission-visual-totals">
-    </Option>
-    <Option Id="opt-add-dimension-permission-dimension-attribute" ParameterId="param-add-dimension-permission-dimension-attribute">
-    </Option>
-    <Option Id="opt-add-dimension-permission-dimension" ParameterId="param-add-dimension-permission-dimension">
-    </Option>
-    <Option Id="opt-add-dimension-permission-security-role" ParameterId="param-add-dimension-permission-security-role">
-    </Option>
-    <Option Id="opt-add-dimension-translation-workspace" ParameterId="param-add-dimension-translation-workspace">
-    </Option>
-    <Option Id="opt-add-dimension-translation-id" ParameterId="param-add-dimension-translation-id">
-    </Option>
-    <Option Id="opt-add-dimension-translation-caption" ParameterId="param-add-dimension-translation-caption">
-    </Option>
-    <Option Id="opt-add-dimension-translation-description" ParameterId="param-add-dimension-translation-description">
-    </Option>
-    <Option Id="opt-add-dimension-translation-culture" ParameterId="param-add-dimension-translation-culture">
-    </Option>
-    <Option Id="opt-add-dimension-translation-dimension" ParameterId="param-add-dimension-translation-dimension">
-    </Option>
-    <Option Id="opt-add-dimension-usage-workspace" ParameterId="param-add-dimension-usage-workspace">
-    </Option>
-    <Option Id="opt-add-dimension-usage-id" ParameterId="param-add-dimension-usage-id">
-    </Option>
-    <Option Id="opt-add-dimension-usage-description" ParameterId="param-add-dimension-usage-description">
-    </Option>
-    <Option Id="opt-add-dimension-usage-is-required" ParameterId="param-add-dimension-usage-is-required">
-    </Option>
-    <Option Id="opt-add-dimension-usage-role-name" ParameterId="param-add-dimension-usage-role-name">
-    </Option>
-    <Option Id="opt-add-dimension-usage-usage-kind" ParameterId="param-add-dimension-usage-usage-kind">
-    </Option>
-    <Option Id="opt-add-dimension-usage-cube-dimension" ParameterId="param-add-dimension-usage-cube-dimension">
-    </Option>
-    <Option Id="opt-add-dimension-usage-granularity-attribute" ParameterId="param-add-dimension-usage-granularity-attribute">
-    </Option>
-    <Option Id="opt-add-dimension-usage-intermediate-measure-group" ParameterId="param-add-dimension-usage-intermediate-measure-group">
-    </Option>
-    <Option Id="opt-add-dimension-usage-measure-group" ParameterId="param-add-dimension-usage-measure-group">
-    </Option>
-    <Option Id="opt-add-kpi-workspace" ParameterId="param-add-kpi-workspace">
-    </Option>
-    <Option Id="opt-add-kpi-id" ParameterId="param-add-kpi-id">
-    </Option>
-    <Option Id="opt-add-kpi-description" ParameterId="param-add-kpi-description">
-    </Option>
-    <Option Id="opt-add-kpi-goal-expression" ParameterId="param-add-kpi-goal-expression">
-    </Option>
-    <Option Id="opt-add-kpi-name" ParameterId="param-add-kpi-name">
-    </Option>
-    <Option Id="opt-add-kpi-status-expression" ParameterId="param-add-kpi-status-expression">
-    </Option>
-    <Option Id="opt-add-kpi-status-graphic" ParameterId="param-add-kpi-status-graphic">
-    </Option>
-    <Option Id="opt-add-kpi-trend-expression" ParameterId="param-add-kpi-trend-expression">
-    </Option>
-    <Option Id="opt-add-kpi-trend-graphic" ParameterId="param-add-kpi-trend-graphic">
-    </Option>
-    <Option Id="opt-add-kpi-value-expression" ParameterId="param-add-kpi-value-expression">
-    </Option>
-    <Option Id="opt-add-kpi-associated-measure" ParameterId="param-add-kpi-associated-measure">
-    </Option>
-    <Option Id="opt-add-kpi-cube" ParameterId="param-add-kpi-cube">
-    </Option>
-    <Option Id="opt-add-kpi-translation-workspace" ParameterId="param-add-kpi-translation-workspace">
-    </Option>
-    <Option Id="opt-add-kpi-translation-id" ParameterId="param-add-kpi-translation-id">
-    </Option>
-    <Option Id="opt-add-kpi-translation-caption" ParameterId="param-add-kpi-translation-caption">
-    </Option>
-    <Option Id="opt-add-kpi-translation-description" ParameterId="param-add-kpi-translation-description">
-    </Option>
-    <Option Id="opt-add-kpi-translation-culture" ParameterId="param-add-kpi-translation-culture">
-    </Option>
-    <Option Id="opt-add-kpi-translation-kpi" ParameterId="param-add-kpi-translation-kpi">
-    </Option>
-    <Option Id="opt-add-mdx-calculation-workspace" ParameterId="param-add-mdx-calculation-workspace">
-    </Option>
-    <Option Id="opt-add-mdx-calculation-id" ParameterId="param-add-mdx-calculation-id">
-    </Option>
-    <Option Id="opt-add-mdx-calculation-calculation-kind" ParameterId="param-add-mdx-calculation-calculation-kind">
-    </Option>
-    <Option Id="opt-add-mdx-calculation-description" ParameterId="param-add-mdx-calculation-description">
-    </Option>
-    <Option Id="opt-add-mdx-calculation-display-folder" ParameterId="param-add-mdx-calculation-display-folder">
-    </Option>
-    <Option Id="opt-add-mdx-calculation-expression" ParameterId="param-add-mdx-calculation-expression">
-    </Option>
-    <Option Id="opt-add-mdx-calculation-name" ParameterId="param-add-mdx-calculation-name">
-    </Option>
-    <Option Id="opt-add-mdx-calculation-solve-order" ParameterId="param-add-mdx-calculation-solve-order">
-    </Option>
-    <Option Id="opt-add-mdx-calculation-cube" ParameterId="param-add-mdx-calculation-cube">
-    </Option>
-    <Option Id="opt-add-measure-workspace" ParameterId="param-add-measure-workspace">
-    </Option>
-    <Option Id="opt-add-measure-id" ParameterId="param-add-measure-id">
-    </Option>
-    <Option Id="opt-add-measure-aggregate-function" ParameterId="param-add-measure-aggregate-function">
-    </Option>
-    <Option Id="opt-add-measure-data-type-id" ParameterId="param-add-measure-data-type-id">
-    </Option>
-    <Option Id="opt-add-measure-description" ParameterId="param-add-measure-description">
-    </Option>
-    <Option Id="opt-add-measure-display-folder" ParameterId="param-add-measure-display-folder">
-    </Option>
-    <Option Id="opt-add-measure-format-string" ParameterId="param-add-measure-format-string">
-    </Option>
-    <Option Id="opt-add-measure-name" ParameterId="param-add-measure-name">
-    </Option>
-    <Option Id="opt-add-measure-source-name" ParameterId="param-add-measure-source-name">
-    </Option>
-    <Option Id="opt-add-measure-measure-group" ParameterId="param-add-measure-measure-group">
-    </Option>
-    <Option Id="opt-add-measure-group-workspace" ParameterId="param-add-measure-group-workspace">
-    </Option>
-    <Option Id="opt-add-measure-group-id" ParameterId="param-add-measure-group-id">
-    </Option>
-    <Option Id="opt-add-measure-group-description" ParameterId="param-add-measure-group-description">
-    </Option>
-    <Option Id="opt-add-measure-group-name" ParameterId="param-add-measure-group-name">
-    </Option>
-    <Option Id="opt-add-measure-group-processing-mode" ParameterId="param-add-measure-group-processing-mode">
-    </Option>
-    <Option Id="opt-add-measure-group-source-name" ParameterId="param-add-measure-group-source-name">
-    </Option>
-    <Option Id="opt-add-measure-group-storage-mode" ParameterId="param-add-measure-group-storage-mode">
-    </Option>
-    <Option Id="opt-add-measure-group-cube" ParameterId="param-add-measure-group-cube">
-    </Option>
-    <Option Id="opt-add-measure-translation-workspace" ParameterId="param-add-measure-translation-workspace">
-    </Option>
-    <Option Id="opt-add-measure-translation-id" ParameterId="param-add-measure-translation-id">
-    </Option>
-    <Option Id="opt-add-measure-translation-caption" ParameterId="param-add-measure-translation-caption">
-    </Option>
-    <Option Id="opt-add-measure-translation-description" ParameterId="param-add-measure-translation-description">
-    </Option>
-    <Option Id="opt-add-measure-translation-culture" ParameterId="param-add-measure-translation-culture">
-    </Option>
-    <Option Id="opt-add-measure-translation-measure" ParameterId="param-add-measure-translation-measure">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-database-workspace" ParameterId="param-add-multi-dimensional-database-workspace">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-database-id" ParameterId="param-add-multi-dimensional-database-id">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-database-collation" ParameterId="param-add-multi-dimensional-database-collation">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-database-default-language" ParameterId="param-add-multi-dimensional-database-default-language">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-database-description" ParameterId="param-add-multi-dimensional-database-description">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-database-name" ParameterId="param-add-multi-dimensional-database-name">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-data-source-workspace" ParameterId="param-add-multi-dimensional-data-source-workspace">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-data-source-id" ParameterId="param-add-multi-dimensional-data-source-id">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-data-source-connection-reference" ParameterId="param-add-multi-dimensional-data-source-connection-reference">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-data-source-description" ParameterId="param-add-multi-dimensional-data-source-description">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-data-source-name" ParameterId="param-add-multi-dimensional-data-source-name">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-data-source-provider" ParameterId="param-add-multi-dimensional-data-source-provider">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-data-source-source-kind" ParameterId="param-add-multi-dimensional-data-source-source-kind">
-    </Option>
-    <Option Id="opt-add-multi-dimensional-data-source-multi-dimensional-database" ParameterId="param-add-multi-dimensional-data-source-multi-dimensional-database">
-    </Option>
-    <Option Id="opt-add-named-set-workspace" ParameterId="param-add-named-set-workspace">
-    </Option>
-    <Option Id="opt-add-named-set-id" ParameterId="param-add-named-set-id">
-    </Option>
-    <Option Id="opt-add-named-set-description" ParameterId="param-add-named-set-description">
-    </Option>
-    <Option Id="opt-add-named-set-display-folder" ParameterId="param-add-named-set-display-folder">
-    </Option>
-    <Option Id="opt-add-named-set-expression" ParameterId="param-add-named-set-expression">
-    </Option>
-    <Option Id="opt-add-named-set-name" ParameterId="param-add-named-set-name">
-    </Option>
-    <Option Id="opt-add-named-set-cube" ParameterId="param-add-named-set-cube">
-    </Option>
-    <Option Id="opt-add-named-set-translation-workspace" ParameterId="param-add-named-set-translation-workspace">
-    </Option>
-    <Option Id="opt-add-named-set-translation-id" ParameterId="param-add-named-set-translation-id">
-    </Option>
-    <Option Id="opt-add-named-set-translation-caption" ParameterId="param-add-named-set-translation-caption">
-    </Option>
-    <Option Id="opt-add-named-set-translation-description" ParameterId="param-add-named-set-translation-description">
-    </Option>
-    <Option Id="opt-add-named-set-translation-culture" ParameterId="param-add-named-set-translation-culture">
-    </Option>
-    <Option Id="opt-add-named-set-translation-named-set" ParameterId="param-add-named-set-translation-named-set">
-    </Option>
-    <Option Id="opt-add-partition-workspace" ParameterId="param-add-partition-workspace">
-    </Option>
-    <Option Id="opt-add-partition-id" ParameterId="param-add-partition-id">
-    </Option>
-    <Option Id="opt-add-partition-description" ParameterId="param-add-partition-description">
-    </Option>
-    <Option Id="opt-add-partition-name" ParameterId="param-add-partition-name">
-    </Option>
-    <Option Id="opt-add-partition-ordinal" ParameterId="param-add-partition-ordinal">
-    </Option>
-    <Option Id="opt-add-partition-processing-mode" ParameterId="param-add-partition-processing-mode">
-    </Option>
-    <Option Id="opt-add-partition-slice-expression" ParameterId="param-add-partition-slice-expression">
-    </Option>
-    <Option Id="opt-add-partition-source-expression" ParameterId="param-add-partition-source-expression">
-    </Option>
-    <Option Id="opt-add-partition-storage-mode" ParameterId="param-add-partition-storage-mode">
-    </Option>
-    <Option Id="opt-add-partition-measure-group" ParameterId="param-add-partition-measure-group">
-    </Option>
-    <Option Id="opt-add-partition-multi-dimensional-data-source" ParameterId="param-add-partition-multi-dimensional-data-source">
-    </Option>
-    <Option Id="opt-add-perspective-workspace" ParameterId="param-add-perspective-workspace">
-    </Option>
-    <Option Id="opt-add-perspective-id" ParameterId="param-add-perspective-id">
-    </Option>
-    <Option Id="opt-add-perspective-default-measure-name" ParameterId="param-add-perspective-default-measure-name">
-    </Option>
-    <Option Id="opt-add-perspective-description" ParameterId="param-add-perspective-description">
-    </Option>
-    <Option Id="opt-add-perspective-name" ParameterId="param-add-perspective-name">
-    </Option>
-    <Option Id="opt-add-perspective-cube" ParameterId="param-add-perspective-cube">
-    </Option>
-    <Option Id="opt-add-perspective-action-workspace" ParameterId="param-add-perspective-action-workspace">
-    </Option>
-    <Option Id="opt-add-perspective-action-id" ParameterId="param-add-perspective-action-id">
-    </Option>
-    <Option Id="opt-add-perspective-action-cube-action" ParameterId="param-add-perspective-action-cube-action">
-    </Option>
-    <Option Id="opt-add-perspective-action-perspective" ParameterId="param-add-perspective-action-perspective">
-    </Option>
-    <Option Id="opt-add-perspective-calculation-workspace" ParameterId="param-add-perspective-calculation-workspace">
-    </Option>
-    <Option Id="opt-add-perspective-calculation-id" ParameterId="param-add-perspective-calculation-id">
-    </Option>
-    <Option Id="opt-add-perspective-calculation-mdx-calculation" ParameterId="param-add-perspective-calculation-mdx-calculation">
-    </Option>
-    <Option Id="opt-add-perspective-calculation-perspective" ParameterId="param-add-perspective-calculation-perspective">
-    </Option>
-    <Option Id="opt-add-perspective-dimension-workspace" ParameterId="param-add-perspective-dimension-workspace">
-    </Option>
-    <Option Id="opt-add-perspective-dimension-id" ParameterId="param-add-perspective-dimension-id">
-    </Option>
-    <Option Id="opt-add-perspective-dimension-cube-dimension" ParameterId="param-add-perspective-dimension-cube-dimension">
-    </Option>
-    <Option Id="opt-add-perspective-dimension-perspective" ParameterId="param-add-perspective-dimension-perspective">
-    </Option>
-    <Option Id="opt-add-perspective-kpi-workspace" ParameterId="param-add-perspective-kpi-workspace">
-    </Option>
-    <Option Id="opt-add-perspective-kpi-id" ParameterId="param-add-perspective-kpi-id">
-    </Option>
-    <Option Id="opt-add-perspective-kpi-kpi" ParameterId="param-add-perspective-kpi-kpi">
-    </Option>
-    <Option Id="opt-add-perspective-kpi-perspective" ParameterId="param-add-perspective-kpi-perspective">
-    </Option>
-    <Option Id="opt-add-perspective-measure-workspace" ParameterId="param-add-perspective-measure-workspace">
-    </Option>
-    <Option Id="opt-add-perspective-measure-id" ParameterId="param-add-perspective-measure-id">
-    </Option>
-    <Option Id="opt-add-perspective-measure-measure" ParameterId="param-add-perspective-measure-measure">
-    </Option>
-    <Option Id="opt-add-perspective-measure-perspective" ParameterId="param-add-perspective-measure-perspective">
-    </Option>
-    <Option Id="opt-add-perspective-measure-group-workspace" ParameterId="param-add-perspective-measure-group-workspace">
-    </Option>
-    <Option Id="opt-add-perspective-measure-group-id" ParameterId="param-add-perspective-measure-group-id">
-    </Option>
-    <Option Id="opt-add-perspective-measure-group-measure-group" ParameterId="param-add-perspective-measure-group-measure-group">
-    </Option>
-    <Option Id="opt-add-perspective-measure-group-perspective" ParameterId="param-add-perspective-measure-group-perspective">
-    </Option>
-    <Option Id="opt-add-perspective-named-set-workspace" ParameterId="param-add-perspective-named-set-workspace">
-    </Option>
-    <Option Id="opt-add-perspective-named-set-id" ParameterId="param-add-perspective-named-set-id">
-    </Option>
-    <Option Id="opt-add-perspective-named-set-named-set" ParameterId="param-add-perspective-named-set-named-set">
-    </Option>
-    <Option Id="opt-add-perspective-named-set-perspective" ParameterId="param-add-perspective-named-set-perspective">
-    </Option>
-    <Option Id="opt-add-perspective-translation-workspace" ParameterId="param-add-perspective-translation-workspace">
-    </Option>
-    <Option Id="opt-add-perspective-translation-id" ParameterId="param-add-perspective-translation-id">
-    </Option>
-    <Option Id="opt-add-perspective-translation-caption" ParameterId="param-add-perspective-translation-caption">
-    </Option>
-    <Option Id="opt-add-perspective-translation-description" ParameterId="param-add-perspective-translation-description">
-    </Option>
-    <Option Id="opt-add-perspective-translation-culture" ParameterId="param-add-perspective-translation-culture">
-    </Option>
-    <Option Id="opt-add-perspective-translation-perspective" ParameterId="param-add-perspective-translation-perspective">
-    </Option>
-    <Option Id="opt-add-role-member-workspace" ParameterId="param-add-role-member-workspace">
-    </Option>
-    <Option Id="opt-add-role-member-id" ParameterId="param-add-role-member-id">
-    </Option>
-    <Option Id="opt-add-role-member-member-name" ParameterId="param-add-role-member-member-name">
-    </Option>
-    <Option Id="opt-add-role-member-member-sid" ParameterId="param-add-role-member-member-sid">
-    </Option>
-    <Option Id="opt-add-role-member-security-role" ParameterId="param-add-role-member-security-role">
-    </Option>
-    <Option Id="opt-add-security-role-workspace" ParameterId="param-add-security-role-workspace">
-    </Option>
-    <Option Id="opt-add-security-role-id" ParameterId="param-add-security-role-id">
-    </Option>
-    <Option Id="opt-add-security-role-description" ParameterId="param-add-security-role-description">
-    </Option>
-    <Option Id="opt-add-security-role-name" ParameterId="param-add-security-role-name">
-    </Option>
-    <Option Id="opt-add-security-role-permission" ParameterId="param-add-security-role-permission">
-    </Option>
-    <Option Id="opt-add-security-role-multi-dimensional-database" ParameterId="param-add-security-role-multi-dimensional-database">
-    </Option>
+    <Option Id="opt-add-action-translation-caption" ParameterId="param-add-action-translation-caption" />
+    <Option Id="opt-add-action-translation-cube-action" ParameterId="param-add-action-translation-cube-action" />
+    <Option Id="opt-add-action-translation-culture" ParameterId="param-add-action-translation-culture" />
+    <Option Id="opt-add-action-translation-description" ParameterId="param-add-action-translation-description" />
+    <Option Id="opt-add-action-translation-id" ParameterId="param-add-action-translation-id" />
+    <Option Id="opt-add-action-translation-workspace" ParameterId="param-add-action-translation-workspace" />
+    <Option Id="opt-add-attribute-relationship-child-attribute" ParameterId="param-add-attribute-relationship-child-attribute" />
+    <Option Id="opt-add-attribute-relationship-description" ParameterId="param-add-attribute-relationship-description" />
+    <Option Id="opt-add-attribute-relationship-id" ParameterId="param-add-attribute-relationship-id" />
+    <Option Id="opt-add-attribute-relationship-parent-attribute" ParameterId="param-add-attribute-relationship-parent-attribute" />
+    <Option Id="opt-add-attribute-relationship-relationship-type" ParameterId="param-add-attribute-relationship-relationship-type" />
+    <Option Id="opt-add-attribute-relationship-workspace" ParameterId="param-add-attribute-relationship-workspace" />
+    <Option Id="opt-add-attribute-translation-caption" ParameterId="param-add-attribute-translation-caption" />
+    <Option Id="opt-add-attribute-translation-culture" ParameterId="param-add-attribute-translation-culture" />
+    <Option Id="opt-add-attribute-translation-description" ParameterId="param-add-attribute-translation-description" />
+    <Option Id="opt-add-attribute-translation-dimension-attribute" ParameterId="param-add-attribute-translation-dimension-attribute" />
+    <Option Id="opt-add-attribute-translation-id" ParameterId="param-add-attribute-translation-id" />
+    <Option Id="opt-add-attribute-translation-workspace" ParameterId="param-add-attribute-translation-workspace" />
+    <Option Id="opt-add-cell-permission-cube" ParameterId="param-add-cell-permission-cube" />
+    <Option Id="opt-add-cell-permission-description" ParameterId="param-add-cell-permission-description" />
+    <Option Id="opt-add-cell-permission-expression" ParameterId="param-add-cell-permission-expression" />
+    <Option Id="opt-add-cell-permission-id" ParameterId="param-add-cell-permission-id" />
+    <Option Id="opt-add-cell-permission-security-role" ParameterId="param-add-cell-permission-security-role" />
+    <Option Id="opt-add-cell-permission-workspace" ParameterId="param-add-cell-permission-workspace" />
+    <Option Id="opt-add-cube-action-action-type" ParameterId="param-add-cube-action-action-type" />
+    <Option Id="opt-add-cube-action-caption" ParameterId="param-add-cube-action-caption" />
+    <Option Id="opt-add-cube-action-cube" ParameterId="param-add-cube-action-cube" />
+    <Option Id="opt-add-cube-action-description" ParameterId="param-add-cube-action-description" />
+    <Option Id="opt-add-cube-action-expression" ParameterId="param-add-cube-action-expression" />
+    <Option Id="opt-add-cube-action-id" ParameterId="param-add-cube-action-id" />
+    <Option Id="opt-add-cube-action-name" ParameterId="param-add-cube-action-name" />
+    <Option Id="opt-add-cube-action-target" ParameterId="param-add-cube-action-target" />
+    <Option Id="opt-add-cube-action-target-kind" ParameterId="param-add-cube-action-target-kind" />
+    <Option Id="opt-add-cube-action-workspace" ParameterId="param-add-cube-action-workspace" />
+    <Option Id="opt-add-cube-default-measure-name" ParameterId="param-add-cube-default-measure-name" />
+    <Option Id="opt-add-cube-description" ParameterId="param-add-cube-description" />
+    <Option Id="opt-add-cube-dimension-cube" ParameterId="param-add-cube-dimension-cube" />
+    <Option Id="opt-add-cube-dimension-description" ParameterId="param-add-cube-dimension-description" />
+    <Option Id="opt-add-cube-dimension-dimension" ParameterId="param-add-cube-dimension-dimension" />
+    <Option Id="opt-add-cube-dimension-id" ParameterId="param-add-cube-dimension-id" />
+    <Option Id="opt-add-cube-dimension-name" ParameterId="param-add-cube-dimension-name" />
+    <Option Id="opt-add-cube-dimension-role-name" ParameterId="param-add-cube-dimension-role-name" />
+    <Option Id="opt-add-cube-dimension-workspace" ParameterId="param-add-cube-dimension-workspace" />
+    <Option Id="opt-add-cube-id" ParameterId="param-add-cube-id" />
+    <Option Id="opt-add-cube-multi-dimensional-database" ParameterId="param-add-cube-multi-dimensional-database" />
+    <Option Id="opt-add-cube-name" ParameterId="param-add-cube-name" />
+    <Option Id="opt-add-cube-processing-mode" ParameterId="param-add-cube-processing-mode" />
+    <Option Id="opt-add-cube-storage-mode" ParameterId="param-add-cube-storage-mode" />
+    <Option Id="opt-add-cube-translation-caption" ParameterId="param-add-cube-translation-caption" />
+    <Option Id="opt-add-cube-translation-cube" ParameterId="param-add-cube-translation-cube" />
+    <Option Id="opt-add-cube-translation-culture" ParameterId="param-add-cube-translation-culture" />
+    <Option Id="opt-add-cube-translation-description" ParameterId="param-add-cube-translation-description" />
+    <Option Id="opt-add-cube-translation-id" ParameterId="param-add-cube-translation-id" />
+    <Option Id="opt-add-cube-translation-workspace" ParameterId="param-add-cube-translation-workspace" />
+    <Option Id="opt-add-cube-workspace" ParameterId="param-add-cube-workspace" />
+    <Option Id="opt-add-culture-description" ParameterId="param-add-culture-description" />
+    <Option Id="opt-add-culture-id" ParameterId="param-add-culture-id" />
+    <Option Id="opt-add-culture-language-id" ParameterId="param-add-culture-language-id" />
+    <Option Id="opt-add-culture-multi-dimensional-database" ParameterId="param-add-culture-multi-dimensional-database" />
+    <Option Id="opt-add-culture-name" ParameterId="param-add-culture-name" />
+    <Option Id="opt-add-culture-workspace" ParameterId="param-add-culture-workspace" />
+    <Option Id="opt-add-dimension-attribute-attribute-hierarchy-enabled" ParameterId="param-add-dimension-attribute-attribute-hierarchy-enabled" />
+    <Option Id="opt-add-dimension-attribute-attribute-hierarchy-visible" ParameterId="param-add-dimension-attribute-attribute-hierarchy-visible" />
+    <Option Id="opt-add-dimension-attribute-data-type-id" ParameterId="param-add-dimension-attribute-data-type-id" />
+    <Option Id="opt-add-dimension-attribute-description" ParameterId="param-add-dimension-attribute-description" />
+    <Option Id="opt-add-dimension-attribute-dimension" ParameterId="param-add-dimension-attribute-dimension" />
+    <Option Id="opt-add-dimension-attribute-id" ParameterId="param-add-dimension-attribute-id" />
+    <Option Id="opt-add-dimension-attribute-is-key" ParameterId="param-add-dimension-attribute-is-key" />
+    <Option Id="opt-add-dimension-attribute-name" ParameterId="param-add-dimension-attribute-name" />
+    <Option Id="opt-add-dimension-attribute-ordinal" ParameterId="param-add-dimension-attribute-ordinal" />
+    <Option Id="opt-add-dimension-attribute-source-name" ParameterId="param-add-dimension-attribute-source-name" />
+    <Option Id="opt-add-dimension-attribute-usage" ParameterId="param-add-dimension-attribute-usage" />
+    <Option Id="opt-add-dimension-attribute-workspace" ParameterId="param-add-dimension-attribute-workspace" />
+    <Option Id="opt-add-dimension-description" ParameterId="param-add-dimension-description" />
+    <Option Id="opt-add-dimension-dimension-type" ParameterId="param-add-dimension-dimension-type" />
+    <Option Id="opt-add-dimension-hierarchy-description" ParameterId="param-add-dimension-hierarchy-description" />
+    <Option Id="opt-add-dimension-hierarchy-dimension" ParameterId="param-add-dimension-hierarchy-dimension" />
+    <Option Id="opt-add-dimension-hierarchy-hierarchy-type" ParameterId="param-add-dimension-hierarchy-hierarchy-type" />
+    <Option Id="opt-add-dimension-hierarchy-id" ParameterId="param-add-dimension-hierarchy-id" />
+    <Option Id="opt-add-dimension-hierarchy-level-dimension-attribute" ParameterId="param-add-dimension-hierarchy-level-dimension-attribute" />
+    <Option Id="opt-add-dimension-hierarchy-level-dimension-hierarchy" ParameterId="param-add-dimension-hierarchy-level-dimension-hierarchy" />
+    <Option Id="opt-add-dimension-hierarchy-level-id" ParameterId="param-add-dimension-hierarchy-level-id" />
+    <Option Id="opt-add-dimension-hierarchy-level-name" ParameterId="param-add-dimension-hierarchy-level-name" />
+    <Option Id="opt-add-dimension-hierarchy-level-ordinal" ParameterId="param-add-dimension-hierarchy-level-ordinal" />
+    <Option Id="opt-add-dimension-hierarchy-level-workspace" ParameterId="param-add-dimension-hierarchy-level-workspace" />
+    <Option Id="opt-add-dimension-hierarchy-name" ParameterId="param-add-dimension-hierarchy-name" />
+    <Option Id="opt-add-dimension-hierarchy-workspace" ParameterId="param-add-dimension-hierarchy-workspace" />
+    <Option Id="opt-add-dimension-id" ParameterId="param-add-dimension-id" />
+    <Option Id="opt-add-dimension-multi-dimensional-database" ParameterId="param-add-dimension-multi-dimensional-database" />
+    <Option Id="opt-add-dimension-name" ParameterId="param-add-dimension-name" />
+    <Option Id="opt-add-dimension-permission-allowed-set-expression" ParameterId="param-add-dimension-permission-allowed-set-expression" />
+    <Option Id="opt-add-dimension-permission-default-member-expression" ParameterId="param-add-dimension-permission-default-member-expression" />
+    <Option Id="opt-add-dimension-permission-denied-set-expression" ParameterId="param-add-dimension-permission-denied-set-expression" />
+    <Option Id="opt-add-dimension-permission-description" ParameterId="param-add-dimension-permission-description" />
+    <Option Id="opt-add-dimension-permission-dimension" ParameterId="param-add-dimension-permission-dimension" />
+    <Option Id="opt-add-dimension-permission-dimension-attribute" ParameterId="param-add-dimension-permission-dimension-attribute" />
+    <Option Id="opt-add-dimension-permission-id" ParameterId="param-add-dimension-permission-id" />
+    <Option Id="opt-add-dimension-permission-security-role" ParameterId="param-add-dimension-permission-security-role" />
+    <Option Id="opt-add-dimension-permission-visual-totals" ParameterId="param-add-dimension-permission-visual-totals" />
+    <Option Id="opt-add-dimension-permission-workspace" ParameterId="param-add-dimension-permission-workspace" />
+    <Option Id="opt-add-dimension-processing-group" ParameterId="param-add-dimension-processing-group" />
+    <Option Id="opt-add-dimension-processing-mode" ParameterId="param-add-dimension-processing-mode" />
+    <Option Id="opt-add-dimension-source-name" ParameterId="param-add-dimension-source-name" />
+    <Option Id="opt-add-dimension-storage-mode" ParameterId="param-add-dimension-storage-mode" />
+    <Option Id="opt-add-dimension-translation-caption" ParameterId="param-add-dimension-translation-caption" />
+    <Option Id="opt-add-dimension-translation-culture" ParameterId="param-add-dimension-translation-culture" />
+    <Option Id="opt-add-dimension-translation-description" ParameterId="param-add-dimension-translation-description" />
+    <Option Id="opt-add-dimension-translation-dimension" ParameterId="param-add-dimension-translation-dimension" />
+    <Option Id="opt-add-dimension-translation-id" ParameterId="param-add-dimension-translation-id" />
+    <Option Id="opt-add-dimension-translation-workspace" ParameterId="param-add-dimension-translation-workspace" />
+    <Option Id="opt-add-dimension-usage-cube-dimension" ParameterId="param-add-dimension-usage-cube-dimension" />
+    <Option Id="opt-add-dimension-usage-description" ParameterId="param-add-dimension-usage-description" />
+    <Option Id="opt-add-dimension-usage-granularity-attribute" ParameterId="param-add-dimension-usage-granularity-attribute" />
+    <Option Id="opt-add-dimension-usage-id" ParameterId="param-add-dimension-usage-id" />
+    <Option Id="opt-add-dimension-usage-intermediate-measure-group" ParameterId="param-add-dimension-usage-intermediate-measure-group" />
+    <Option Id="opt-add-dimension-usage-is-required" ParameterId="param-add-dimension-usage-is-required" />
+    <Option Id="opt-add-dimension-usage-measure-group" ParameterId="param-add-dimension-usage-measure-group" />
+    <Option Id="opt-add-dimension-usage-role-name" ParameterId="param-add-dimension-usage-role-name" />
+    <Option Id="opt-add-dimension-usage-usage-kind" ParameterId="param-add-dimension-usage-usage-kind" />
+    <Option Id="opt-add-dimension-usage-workspace" ParameterId="param-add-dimension-usage-workspace" />
+    <Option Id="opt-add-dimension-workspace" ParameterId="param-add-dimension-workspace" />
+    <Option Id="opt-add-kpi-associated-measure" ParameterId="param-add-kpi-associated-measure" />
+    <Option Id="opt-add-kpi-cube" ParameterId="param-add-kpi-cube" />
+    <Option Id="opt-add-kpi-description" ParameterId="param-add-kpi-description" />
+    <Option Id="opt-add-kpi-goal-expression" ParameterId="param-add-kpi-goal-expression" />
+    <Option Id="opt-add-kpi-id" ParameterId="param-add-kpi-id" />
+    <Option Id="opt-add-kpi-name" ParameterId="param-add-kpi-name" />
+    <Option Id="opt-add-kpi-status-expression" ParameterId="param-add-kpi-status-expression" />
+    <Option Id="opt-add-kpi-status-graphic" ParameterId="param-add-kpi-status-graphic" />
+    <Option Id="opt-add-kpi-translation-caption" ParameterId="param-add-kpi-translation-caption" />
+    <Option Id="opt-add-kpi-translation-culture" ParameterId="param-add-kpi-translation-culture" />
+    <Option Id="opt-add-kpi-translation-description" ParameterId="param-add-kpi-translation-description" />
+    <Option Id="opt-add-kpi-translation-id" ParameterId="param-add-kpi-translation-id" />
+    <Option Id="opt-add-kpi-translation-kpi" ParameterId="param-add-kpi-translation-kpi" />
+    <Option Id="opt-add-kpi-translation-workspace" ParameterId="param-add-kpi-translation-workspace" />
+    <Option Id="opt-add-kpi-trend-expression" ParameterId="param-add-kpi-trend-expression" />
+    <Option Id="opt-add-kpi-trend-graphic" ParameterId="param-add-kpi-trend-graphic" />
+    <Option Id="opt-add-kpi-value-expression" ParameterId="param-add-kpi-value-expression" />
+    <Option Id="opt-add-kpi-workspace" ParameterId="param-add-kpi-workspace" />
+    <Option Id="opt-add-mdx-calculation-calculation-kind" ParameterId="param-add-mdx-calculation-calculation-kind" />
+    <Option Id="opt-add-mdx-calculation-cube" ParameterId="param-add-mdx-calculation-cube" />
+    <Option Id="opt-add-mdx-calculation-description" ParameterId="param-add-mdx-calculation-description" />
+    <Option Id="opt-add-mdx-calculation-display-folder" ParameterId="param-add-mdx-calculation-display-folder" />
+    <Option Id="opt-add-mdx-calculation-expression" ParameterId="param-add-mdx-calculation-expression" />
+    <Option Id="opt-add-mdx-calculation-id" ParameterId="param-add-mdx-calculation-id" />
+    <Option Id="opt-add-mdx-calculation-name" ParameterId="param-add-mdx-calculation-name" />
+    <Option Id="opt-add-mdx-calculation-solve-order" ParameterId="param-add-mdx-calculation-solve-order" />
+    <Option Id="opt-add-mdx-calculation-workspace" ParameterId="param-add-mdx-calculation-workspace" />
+    <Option Id="opt-add-measure-aggregate-function" ParameterId="param-add-measure-aggregate-function" />
+    <Option Id="opt-add-measure-data-type-id" ParameterId="param-add-measure-data-type-id" />
+    <Option Id="opt-add-measure-description" ParameterId="param-add-measure-description" />
+    <Option Id="opt-add-measure-display-folder" ParameterId="param-add-measure-display-folder" />
+    <Option Id="opt-add-measure-format-string" ParameterId="param-add-measure-format-string" />
+    <Option Id="opt-add-measure-group-cube" ParameterId="param-add-measure-group-cube" />
+    <Option Id="opt-add-measure-group-description" ParameterId="param-add-measure-group-description" />
+    <Option Id="opt-add-measure-group-id" ParameterId="param-add-measure-group-id" />
+    <Option Id="opt-add-measure-group-name" ParameterId="param-add-measure-group-name" />
+    <Option Id="opt-add-measure-group-processing-mode" ParameterId="param-add-measure-group-processing-mode" />
+    <Option Id="opt-add-measure-group-source-name" ParameterId="param-add-measure-group-source-name" />
+    <Option Id="opt-add-measure-group-storage-mode" ParameterId="param-add-measure-group-storage-mode" />
+    <Option Id="opt-add-measure-group-workspace" ParameterId="param-add-measure-group-workspace" />
+    <Option Id="opt-add-measure-id" ParameterId="param-add-measure-id" />
+    <Option Id="opt-add-measure-measure-group" ParameterId="param-add-measure-measure-group" />
+    <Option Id="opt-add-measure-name" ParameterId="param-add-measure-name" />
+    <Option Id="opt-add-measure-source-name" ParameterId="param-add-measure-source-name" />
+    <Option Id="opt-add-measure-translation-caption" ParameterId="param-add-measure-translation-caption" />
+    <Option Id="opt-add-measure-translation-culture" ParameterId="param-add-measure-translation-culture" />
+    <Option Id="opt-add-measure-translation-description" ParameterId="param-add-measure-translation-description" />
+    <Option Id="opt-add-measure-translation-id" ParameterId="param-add-measure-translation-id" />
+    <Option Id="opt-add-measure-translation-measure" ParameterId="param-add-measure-translation-measure" />
+    <Option Id="opt-add-measure-translation-workspace" ParameterId="param-add-measure-translation-workspace" />
+    <Option Id="opt-add-measure-workspace" ParameterId="param-add-measure-workspace" />
+    <Option Id="opt-add-multi-dimensional-data-source-connection-reference" ParameterId="param-add-multi-dimensional-data-source-connection-reference" />
+    <Option Id="opt-add-multi-dimensional-data-source-description" ParameterId="param-add-multi-dimensional-data-source-description" />
+    <Option Id="opt-add-multi-dimensional-data-source-id" ParameterId="param-add-multi-dimensional-data-source-id" />
+    <Option Id="opt-add-multi-dimensional-data-source-multi-dimensional-database" ParameterId="param-add-multi-dimensional-data-source-multi-dimensional-database" />
+    <Option Id="opt-add-multi-dimensional-data-source-name" ParameterId="param-add-multi-dimensional-data-source-name" />
+    <Option Id="opt-add-multi-dimensional-data-source-provider" ParameterId="param-add-multi-dimensional-data-source-provider" />
+    <Option Id="opt-add-multi-dimensional-data-source-source-kind" ParameterId="param-add-multi-dimensional-data-source-source-kind" />
+    <Option Id="opt-add-multi-dimensional-data-source-workspace" ParameterId="param-add-multi-dimensional-data-source-workspace" />
+    <Option Id="opt-add-multi-dimensional-database-collation" ParameterId="param-add-multi-dimensional-database-collation" />
+    <Option Id="opt-add-multi-dimensional-database-default-language" ParameterId="param-add-multi-dimensional-database-default-language" />
+    <Option Id="opt-add-multi-dimensional-database-description" ParameterId="param-add-multi-dimensional-database-description" />
+    <Option Id="opt-add-multi-dimensional-database-id" ParameterId="param-add-multi-dimensional-database-id" />
+    <Option Id="opt-add-multi-dimensional-database-name" ParameterId="param-add-multi-dimensional-database-name" />
+    <Option Id="opt-add-multi-dimensional-database-workspace" ParameterId="param-add-multi-dimensional-database-workspace" />
+    <Option Id="opt-add-named-set-cube" ParameterId="param-add-named-set-cube" />
+    <Option Id="opt-add-named-set-description" ParameterId="param-add-named-set-description" />
+    <Option Id="opt-add-named-set-display-folder" ParameterId="param-add-named-set-display-folder" />
+    <Option Id="opt-add-named-set-expression" ParameterId="param-add-named-set-expression" />
+    <Option Id="opt-add-named-set-id" ParameterId="param-add-named-set-id" />
+    <Option Id="opt-add-named-set-name" ParameterId="param-add-named-set-name" />
+    <Option Id="opt-add-named-set-translation-caption" ParameterId="param-add-named-set-translation-caption" />
+    <Option Id="opt-add-named-set-translation-culture" ParameterId="param-add-named-set-translation-culture" />
+    <Option Id="opt-add-named-set-translation-description" ParameterId="param-add-named-set-translation-description" />
+    <Option Id="opt-add-named-set-translation-id" ParameterId="param-add-named-set-translation-id" />
+    <Option Id="opt-add-named-set-translation-named-set" ParameterId="param-add-named-set-translation-named-set" />
+    <Option Id="opt-add-named-set-translation-workspace" ParameterId="param-add-named-set-translation-workspace" />
+    <Option Id="opt-add-named-set-workspace" ParameterId="param-add-named-set-workspace" />
+    <Option Id="opt-add-partition-description" ParameterId="param-add-partition-description" />
+    <Option Id="opt-add-partition-id" ParameterId="param-add-partition-id" />
+    <Option Id="opt-add-partition-measure-group" ParameterId="param-add-partition-measure-group" />
+    <Option Id="opt-add-partition-multi-dimensional-data-source" ParameterId="param-add-partition-multi-dimensional-data-source" />
+    <Option Id="opt-add-partition-name" ParameterId="param-add-partition-name" />
+    <Option Id="opt-add-partition-ordinal" ParameterId="param-add-partition-ordinal" />
+    <Option Id="opt-add-partition-processing-mode" ParameterId="param-add-partition-processing-mode" />
+    <Option Id="opt-add-partition-slice-expression" ParameterId="param-add-partition-slice-expression" />
+    <Option Id="opt-add-partition-source-expression" ParameterId="param-add-partition-source-expression" />
+    <Option Id="opt-add-partition-storage-mode" ParameterId="param-add-partition-storage-mode" />
+    <Option Id="opt-add-partition-workspace" ParameterId="param-add-partition-workspace" />
+    <Option Id="opt-add-perspective-action-cube-action" ParameterId="param-add-perspective-action-cube-action" />
+    <Option Id="opt-add-perspective-action-id" ParameterId="param-add-perspective-action-id" />
+    <Option Id="opt-add-perspective-action-perspective" ParameterId="param-add-perspective-action-perspective" />
+    <Option Id="opt-add-perspective-action-workspace" ParameterId="param-add-perspective-action-workspace" />
+    <Option Id="opt-add-perspective-calculation-id" ParameterId="param-add-perspective-calculation-id" />
+    <Option Id="opt-add-perspective-calculation-mdx-calculation" ParameterId="param-add-perspective-calculation-mdx-calculation" />
+    <Option Id="opt-add-perspective-calculation-perspective" ParameterId="param-add-perspective-calculation-perspective" />
+    <Option Id="opt-add-perspective-calculation-workspace" ParameterId="param-add-perspective-calculation-workspace" />
+    <Option Id="opt-add-perspective-cube" ParameterId="param-add-perspective-cube" />
+    <Option Id="opt-add-perspective-default-measure-name" ParameterId="param-add-perspective-default-measure-name" />
+    <Option Id="opt-add-perspective-description" ParameterId="param-add-perspective-description" />
+    <Option Id="opt-add-perspective-dimension-cube-dimension" ParameterId="param-add-perspective-dimension-cube-dimension" />
+    <Option Id="opt-add-perspective-dimension-id" ParameterId="param-add-perspective-dimension-id" />
+    <Option Id="opt-add-perspective-dimension-perspective" ParameterId="param-add-perspective-dimension-perspective" />
+    <Option Id="opt-add-perspective-dimension-workspace" ParameterId="param-add-perspective-dimension-workspace" />
+    <Option Id="opt-add-perspective-id" ParameterId="param-add-perspective-id" />
+    <Option Id="opt-add-perspective-kpi-id" ParameterId="param-add-perspective-kpi-id" />
+    <Option Id="opt-add-perspective-kpi-kpi" ParameterId="param-add-perspective-kpi-kpi" />
+    <Option Id="opt-add-perspective-kpi-perspective" ParameterId="param-add-perspective-kpi-perspective" />
+    <Option Id="opt-add-perspective-kpi-workspace" ParameterId="param-add-perspective-kpi-workspace" />
+    <Option Id="opt-add-perspective-measure-group-id" ParameterId="param-add-perspective-measure-group-id" />
+    <Option Id="opt-add-perspective-measure-group-measure-group" ParameterId="param-add-perspective-measure-group-measure-group" />
+    <Option Id="opt-add-perspective-measure-group-perspective" ParameterId="param-add-perspective-measure-group-perspective" />
+    <Option Id="opt-add-perspective-measure-group-workspace" ParameterId="param-add-perspective-measure-group-workspace" />
+    <Option Id="opt-add-perspective-measure-id" ParameterId="param-add-perspective-measure-id" />
+    <Option Id="opt-add-perspective-measure-measure" ParameterId="param-add-perspective-measure-measure" />
+    <Option Id="opt-add-perspective-measure-perspective" ParameterId="param-add-perspective-measure-perspective" />
+    <Option Id="opt-add-perspective-measure-workspace" ParameterId="param-add-perspective-measure-workspace" />
+    <Option Id="opt-add-perspective-name" ParameterId="param-add-perspective-name" />
+    <Option Id="opt-add-perspective-named-set-id" ParameterId="param-add-perspective-named-set-id" />
+    <Option Id="opt-add-perspective-named-set-named-set" ParameterId="param-add-perspective-named-set-named-set" />
+    <Option Id="opt-add-perspective-named-set-perspective" ParameterId="param-add-perspective-named-set-perspective" />
+    <Option Id="opt-add-perspective-named-set-workspace" ParameterId="param-add-perspective-named-set-workspace" />
+    <Option Id="opt-add-perspective-translation-caption" ParameterId="param-add-perspective-translation-caption" />
+    <Option Id="opt-add-perspective-translation-culture" ParameterId="param-add-perspective-translation-culture" />
+    <Option Id="opt-add-perspective-translation-description" ParameterId="param-add-perspective-translation-description" />
+    <Option Id="opt-add-perspective-translation-id" ParameterId="param-add-perspective-translation-id" />
+    <Option Id="opt-add-perspective-translation-perspective" ParameterId="param-add-perspective-translation-perspective" />
+    <Option Id="opt-add-perspective-translation-workspace" ParameterId="param-add-perspective-translation-workspace" />
+    <Option Id="opt-add-perspective-workspace" ParameterId="param-add-perspective-workspace" />
+    <Option Id="opt-add-role-member-id" ParameterId="param-add-role-member-id" />
+    <Option Id="opt-add-role-member-member-name" ParameterId="param-add-role-member-member-name" />
+    <Option Id="opt-add-role-member-member-sid" ParameterId="param-add-role-member-member-sid" />
+    <Option Id="opt-add-role-member-security-role" ParameterId="param-add-role-member-security-role" />
+    <Option Id="opt-add-role-member-workspace" ParameterId="param-add-role-member-workspace" />
+    <Option Id="opt-add-security-role-description" ParameterId="param-add-security-role-description" />
+    <Option Id="opt-add-security-role-id" ParameterId="param-add-security-role-id" />
+    <Option Id="opt-add-security-role-multi-dimensional-database" ParameterId="param-add-security-role-multi-dimensional-database" />
+    <Option Id="opt-add-security-role-name" ParameterId="param-add-security-role-name" />
+    <Option Id="opt-add-security-role-permission" ParameterId="param-add-security-role-permission" />
+    <Option Id="opt-add-security-role-workspace" ParameterId="param-add-security-role-workspace" />
+    <Option Id="opt-deploy-database-name" ParameterId="param-deploy-database-name" />
+    <Option Id="opt-deploy-drop-existing" ParameterId="param-deploy-drop-existing" />
+    <Option Id="opt-deploy-no-process" ParameterId="param-deploy-no-process" />
+    <Option Id="opt-deploy-server" ParameterId="param-deploy-server" />
+    <Option Id="opt-deploy-workspace" ParameterId="param-deploy-workspace" />
+    <Option Id="opt-drop-database-name" ParameterId="param-drop-database-name" />
+    <Option Id="opt-drop-server" ParameterId="param-drop-server" />
+    <Option Id="opt-restore-backup-file" ParameterId="param-restore-backup-file" />
+    <Option Id="opt-restore-drop-existing" ParameterId="param-restore-drop-existing" />
+    <Option Id="opt-restore-overwrite-backup-file" ParameterId="param-restore-overwrite-backup-file" />
+    <Option Id="opt-restore-source-database-name" ParameterId="param-restore-source-database-name" />
+    <Option Id="opt-restore-source-server" ParameterId="param-restore-source-server" />
+    <Option Id="opt-restore-target-database-name" ParameterId="param-restore-target-database-name" />
+    <Option Id="opt-restore-target-server" ParameterId="param-restore-target-server" />
+    <Option Id="option-create-connection-env" ParameterId="param-create-connection-env" />
+    <Option Id="option-create-csharp" ParameterId="param-create-csharp" />
+    <Option Id="option-create-sql" ParameterId="param-create-sql" />
+    <Option Id="option-create-xml" ParameterId="param-create-xml" />
   </OptionList>
 </MetaCli>

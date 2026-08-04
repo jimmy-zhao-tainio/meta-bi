@@ -1,55 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
-    <Option Id="opt-extract-sqlserver-new-workspace" ParameterId="param-extract-sqlserver-new-workspace">
-    </Option>
-    <Option Id="opt-extract-sqlserver-connection-env" ParameterId="param-extract-sqlserver-connection-env">
-    </Option>
-    <Option Id="opt-extract-sqlserver-schema" ParameterId="param-extract-sqlserver-schema">
-    </Option>
-    <Option Id="opt-extract-sqlserver-table" ParameterId="param-extract-sqlserver-table">
-    </Option>
-    <Option Id="opt-extract-sqlserver-include-tables" ParameterId="param-extract-sqlserver-include-tables">
-    </Option>
-    <Option Id="opt-extract-sqlserver-include-views" ParameterId="param-extract-sqlserver-include-views">
-    </Option>
-    <Option Id="opt-extract-sqlserver-include-functions" ParameterId="param-extract-sqlserver-include-functions">
-    </Option>
-    <Option Id="opt-extract-sqlserver-include-stored-procedures" ParameterId="param-extract-sqlserver-include-stored-procedures">
-    </Option>
-    <Option Id="opt-extract-sqlserver-allow-empty" ParameterId="param-extract-sqlserver-allow-empty">
-    </Option>
-    <Option Id="opt-deploy-plan-source-workspace" ParameterId="param-deploy-plan-source-workspace">
-    </Option>
-    <Option Id="opt-deploy-plan-connection-env" ParameterId="param-deploy-plan-connection-env">
-    </Option>
-    <Option Id="opt-deploy-plan-out" ParameterId="param-deploy-plan-out">
-    </Option>
-    <Option Id="opt-deploy-plan-approve-drop-table" ParameterId="param-deploy-plan-approve-drop-table">
-    </Option>
-    <Option Id="opt-deploy-plan-approve-drop-column" ParameterId="param-deploy-plan-approve-drop-column">
-    </Option>
-    <Option Id="opt-deploy-plan-approve-truncate-column" ParameterId="param-deploy-plan-approve-truncate-column">
-    </Option>
-    <Option Id="opt-deploy-plan-approval-file" ParameterId="param-deploy-plan-approval-file">
-    </Option>
-    <Option Id="opt-deploy-manifest-workspace" ParameterId="param-deploy-manifest-workspace">
-    </Option>
-    <Option Id="opt-deploy-source-workspace" ParameterId="param-deploy-source-workspace">
-    </Option>
-    <Option Id="opt-deploy-connection-env" ParameterId="param-deploy-connection-env">
-    </Option>
-    <Option Id="opt-execute-connection-env" ParameterId="param-execute-connection-env">
-    </Option>
-    <Option Id="opt-execute-file" ParameterId="param-execute-file">
-    </Option>
-    <Option Id="opt-execute-query" ParameterId="param-execute-query">
-    </Option>
-    <Option Id="opt-execute-var" ParameterId="param-execute-var">
-    </Option>
-    <Option Id="opt-execute-timeout-seconds" ParameterId="param-execute-timeout-seconds">
-    </Option>
-    <Option Id="opt-execute-quiet" ParameterId="param-execute-quiet">
-    </Option>
+    <Option Id="opt-deploy-connection-env" ParameterId="param-deploy-connection-env" />
+    <Option Id="opt-deploy-manifest-workspace" ParameterId="param-deploy-manifest-workspace" />
+    <Option Id="opt-deploy-plan-approval-file" ParameterId="param-deploy-plan-approval-file" />
+    <Option Id="opt-deploy-plan-approve-drop-column" ParameterId="param-deploy-plan-approve-drop-column" />
+    <Option Id="opt-deploy-plan-approve-drop-table" ParameterId="param-deploy-plan-approve-drop-table" />
+    <Option Id="opt-deploy-plan-approve-truncate-column" ParameterId="param-deploy-plan-approve-truncate-column" />
+    <Option Id="opt-deploy-plan-connection-env" ParameterId="param-deploy-plan-connection-env" />
+    <Option Id="opt-deploy-plan-out" ParameterId="param-deploy-plan-out" />
+    <Option Id="opt-deploy-plan-source-workspace" ParameterId="param-deploy-plan-source-workspace" />
+    <Option Id="opt-deploy-source-workspace" ParameterId="param-deploy-source-workspace" />
+    <Option Id="opt-execute-connection-env" ParameterId="param-execute-connection-env" />
+    <Option Id="opt-execute-file" ParameterId="param-execute-file" />
+    <Option Id="opt-execute-query" ParameterId="param-execute-query" />
+    <Option Id="opt-execute-quiet" ParameterId="param-execute-quiet" />
+    <Option Id="opt-execute-timeout-seconds" ParameterId="param-execute-timeout-seconds" />
+    <Option Id="opt-execute-var" ParameterId="param-execute-var" />
+    <Option Id="opt-extract-sqlserver-allow-empty" ParameterId="param-extract-sqlserver-allow-empty" />
+    <Option Id="opt-extract-sqlserver-connection-env" ParameterId="param-extract-sqlserver-connection-env" />
+    <Option Id="opt-extract-sqlserver-include-functions" ParameterId="param-extract-sqlserver-include-functions" />
+    <Option Id="opt-extract-sqlserver-include-stored-procedures" ParameterId="param-extract-sqlserver-include-stored-procedures" />
+    <Option Id="opt-extract-sqlserver-include-tables" ParameterId="param-extract-sqlserver-include-tables" />
+    <Option Id="opt-extract-sqlserver-include-views" ParameterId="param-extract-sqlserver-include-views" />
+    <Option Id="opt-extract-sqlserver-schema" ParameterId="param-extract-sqlserver-schema" />
+    <Option Id="opt-extract-sqlserver-table" ParameterId="param-extract-sqlserver-table" />
+    <Option Id="option-extract-sqlserver-output-connection-env" ParameterId="param-extract-sqlserver-output-connection-env" />
+    <Option Id="option-extract-sqlserver-output-csharp" ParameterId="param-extract-sqlserver-output-csharp" />
+    <Option Id="option-extract-sqlserver-output-sql" ParameterId="param-extract-sqlserver-output-sql" />
+    <Option Id="option-extract-sqlserver-output-xml" ParameterId="param-extract-sqlserver-output-xml" />
   </OptionList>
 </MetaCli>

@@ -17,14 +17,9 @@ public sealed record MultiDimensionalRelationshipAssignment(
     string TargetEntityName,
     string TargetRecordId);
 
-public sealed record MultiDimensionalWorkspaceCreationResult(
-    string WorkspacePath,
-    string ModelName,
-    int RowCount);
-
 public interface IMultiDimensionalAuthoringService
 {
-    MultiDimensionalWorkspaceCreationResult CreateWorkspace(string workspacePath);
+    MetaMultiDimensionalModel CreateWorkspace();
 
     MetaMultiDimensionalModel AddRecord(MultiDimensionalAuthoringRequest request);
 }
@@ -35,13 +30,7 @@ public sealed class MultiDimensionalAuthoringService : IMultiDimensionalAuthorin
 
     private static readonly Type ModelType = typeof(MetaMultiDimensionalModel);
 
-    public MultiDimensionalWorkspaceCreationResult CreateWorkspace(string workspacePath)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-
-        var fullPath = MetaMultiDimensionalTooling.CreateWorkspace(Path.GetFullPath(workspacePath));
-        return new MultiDimensionalWorkspaceCreationResult(fullPath, ModelName, RowCount: 0);
-    }
+    public MetaMultiDimensionalModel CreateWorkspace() => MetaMultiDimensionalModel.CreateEmpty();
 
     public MetaMultiDimensionalModel AddRecord(MultiDimensionalAuthoringRequest request)
     {

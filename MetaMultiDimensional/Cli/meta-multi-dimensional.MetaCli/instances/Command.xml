@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <CommandList>
-    <Command Id="cmd-help" ApplicationId="app-meta-multi-dimensional">
-      <Description>Show help.</Description>
-      <Name>help</Name>
-      <Token>help</Token>
-    </Command>
-    <Command Id="cmd-new-workspace" ApplicationId="app-meta-multi-dimensional">
-      <Description>Create a MetaMultiDimensional workspace.</Description>
-      <Name>new-workspace</Name>
-      <Token>new-workspace</Token>
-    </Command>
-    <Command Id="cmd-deploy" ApplicationId="app-meta-multi-dimensional">
-      <Description>Create modeled multidimensional database objects, including data source views, and process unless --no-process is used; processing failures fail the command.</Description>
-      <Name>deploy</Name>
-      <Token>deploy</Token>
-    </Command>
-    <Command Id="cmd-restore" ApplicationId="app-meta-multi-dimensional">
-      <Description>Promote a processed multidimensional database through backup and restore for pre-prod-to-prod promotion; restore does not process.</Description>
-      <Name>restore</Name>
-      <Token>restore</Token>
-    </Command>
-    <Command Id="cmd-drop" ApplicationId="app-meta-multi-dimensional">
-      <Description>Drop a multidimensional database from an Analysis Services multidimensional instance with no confirmation prompt.</Description>
-      <Name>drop</Name>
-      <Token>drop</Token>
-    </Command>
     <Command Id="cmd-add-action-translation" ApplicationId="app-meta-multi-dimensional">
       <Description>Add a ActionTranslation row.</Description>
       <Name>add-action-translation</Name>
@@ -136,15 +111,15 @@
       <Name>add-measure-translation</Name>
       <Token>add-measure-translation</Token>
     </Command>
-    <Command Id="cmd-add-multi-dimensional-database" ApplicationId="app-meta-multi-dimensional">
-      <Description>Add a MultiDimensionalDatabase row.</Description>
-      <Name>add-multi-dimensional-database</Name>
-      <Token>add-multi-dimensional-database</Token>
-    </Command>
     <Command Id="cmd-add-multi-dimensional-data-source" ApplicationId="app-meta-multi-dimensional">
       <Description>Add a MultiDimensionalDataSource row.</Description>
       <Name>add-multi-dimensional-data-source</Name>
       <Token>add-multi-dimensional-data-source</Token>
+    </Command>
+    <Command Id="cmd-add-multi-dimensional-database" ApplicationId="app-meta-multi-dimensional">
+      <Description>Add a MultiDimensionalDatabase row.</Description>
+      <Name>add-multi-dimensional-database</Name>
+      <Token>add-multi-dimensional-database</Token>
     </Command>
     <Command Id="cmd-add-named-set" ApplicationId="app-meta-multi-dimensional">
       <Description>Add a NamedSet row.</Description>
@@ -215,6 +190,31 @@
       <Description>Add a SecurityRole row.</Description>
       <Name>add-security-role</Name>
       <Token>add-security-role</Token>
+    </Command>
+    <Command Id="cmd-create" ApplicationId="app-meta-multi-dimensional">
+      <Description>Create a meta-multi-dimensional workspace.</Description>
+      <Name>create</Name>
+      <Token>create</Token>
+    </Command>
+    <Command Id="cmd-deploy" ApplicationId="app-meta-multi-dimensional">
+      <Description>Create modeled multidimensional database objects, including data source views, and process unless --no-process is used; processing failures fail the command.</Description>
+      <Name>deploy</Name>
+      <Token>deploy</Token>
+    </Command>
+    <Command Id="cmd-drop" ApplicationId="app-meta-multi-dimensional">
+      <Description>Drop a multidimensional database from an Analysis Services multidimensional instance with no confirmation prompt.</Description>
+      <Name>drop</Name>
+      <Token>drop</Token>
+    </Command>
+    <Command Id="cmd-help" ApplicationId="app-meta-multi-dimensional">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-restore" ApplicationId="app-meta-multi-dimensional">
+      <Description>Promote a processed multidimensional database through backup and restore for pre-prod-to-prod promotion; restore does not process.</Description>
+      <Name>restore</Name>
+      <Token>restore</Token>
     </Command>
   </CommandList>
 </MetaCli>

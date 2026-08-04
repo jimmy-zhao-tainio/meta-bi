@@ -11,7 +11,7 @@ public sealed class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-tabular <command> [options]", result.Output);
-        Assert.Contains("new-workspace", result.Output);
+        Assert.Contains("create", result.Output);
         Assert.Contains("deploy", result.Output);
         Assert.Contains("process", result.Output);
         Assert.Contains("restore", result.Output);
@@ -121,7 +121,7 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            Assert.Equal(0, RunCli($"new-workspace \"{path}\"").ExitCode);
+            Assert.Equal(0, RunCli($"create --xml \"{path}\"").ExitCode);
             Assert.Equal(0, RunCli($"add-tabular-model --workspace \"{path}\" --id Commerce --name Commerce --compatibility-level 1500").ExitCode);
             Assert.Equal(0, RunCli($"add-tabular-table --workspace \"{path}\" --id Sales --tabular-model Commerce --name Sales").ExitCode);
             Assert.Equal(0, RunCli($"add-tabular-column --workspace \"{path}\" --id SalesAmountColumn --tabular-table Sales --name SalesAmount --data-type-id meta:type:Decimal").ExitCode);
@@ -147,7 +147,7 @@ public sealed class CliTests
         var path = CreateTempPath();
         try
         {
-            Assert.Equal(0, RunCli($"new-workspace \"{path}\"").ExitCode);
+            Assert.Equal(0, RunCli($"create --xml \"{path}\"").ExitCode);
 
             var add = RunCli(
                 "--id Commerce --name Commerce --compatibility-level 1500",

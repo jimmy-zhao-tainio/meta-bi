@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-extract-sqlserver-new-workspace" ValueShapeId="shape-path">
-      <Description>Directory where the MetaSchema workspace will be created.</Description>
+    <Parameter Id="param-extract-sqlserver-all-schemas" ValueShapeId="shape-flag">
+      <Description>Extract all SQL Server schemas in scope.</Description>
       <IsRepeatable>false</IsRepeatable>
-      <IsRequired>true</IsRequired>
-      <Name>new-workspace</Name>
+      <IsRequired>false</IsRequired>
+      <Name>all-schemas</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-all-tables" ValueShapeId="shape-flag">
+      <Description>Extract all SQL Server tables and views in scope.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>all-tables</Name>
     </Parameter>
     <Parameter Id="param-extract-sqlserver-connection-env" ValueShapeId="shape-text">
       <Description>Environment variable containing the SQL Server connection string.</Description>
@@ -13,11 +19,21 @@
       <IsRequired>true</IsRequired>
       <Name>connection-env</Name>
     </Parameter>
-    <Parameter Id="param-extract-sqlserver-system" ValueShapeId="shape-text">
-      <Description>Source system name recorded in the workspace.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>true</IsRequired>
-      <Name>system</Name>
+    <Parameter Id="param-extract-sqlserver-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-output-csharp" ValueShapeId="shape-path">
+      <Description>Create the output on the csharp workspace surface.</Description>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-output-sql" ValueShapeId="shape-path">
+      <Description>Create the output on the sql workspace surface.</Description>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-output-xml" ValueShapeId="shape-path">
+      <Description>Create the output on the xml workspace surface.</Description>
+      <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-extract-sqlserver-schema" ValueShapeId="shape-text">
       <Description>Extract one SQL Server schema.</Description>
@@ -25,23 +41,17 @@
       <IsRequired>false</IsRequired>
       <Name>schema</Name>
     </Parameter>
-    <Parameter Id="param-extract-sqlserver-all-schemas" ValueShapeId="shape-flag">
-      <Description>Extract all SQL Server schemas in scope.</Description>
+    <Parameter Id="param-extract-sqlserver-system" ValueShapeId="shape-text">
+      <Description>Source system name recorded in the workspace.</Description>
       <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>all-schemas</Name>
+      <IsRequired>true</IsRequired>
+      <Name>system</Name>
     </Parameter>
     <Parameter Id="param-extract-sqlserver-table" ValueShapeId="shape-text">
       <Description>Extract one SQL Server table or view.</Description>
       <IsRepeatable>false</IsRepeatable>
       <IsRequired>false</IsRequired>
       <Name>table</Name>
-    </Parameter>
-    <Parameter Id="param-extract-sqlserver-all-tables" ValueShapeId="shape-flag">
-      <Description>Extract all SQL Server tables and views in scope.</Description>
-      <IsRepeatable>false</IsRepeatable>
-      <IsRequired>false</IsRequired>
-      <Name>all-tables</Name>
     </Parameter>
   </ParameterList>
 </MetaCli>

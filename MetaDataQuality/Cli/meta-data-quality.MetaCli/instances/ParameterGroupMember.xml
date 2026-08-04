@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupMemberList>
-    <ParameterGroupMember Id="member-promote-selection-all" ParameterGroupId="group-promote-selection" ParameterId="param-promote-all">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-promote-selection-candidate-id" ParameterGroupId="group-promote-selection" ParameterId="param-promote-candidate-id" PreviousMemberId="member-promote-selection-all">
-    </ParameterGroupMember>
-    <ParameterGroupMember Id="member-promote-selection-candidate-kind" ParameterGroupId="group-promote-selection" ParameterId="param-promote-candidate-kind" PreviousMemberId="member-promote-selection-candidate-id">
-    </ParameterGroupMember>
+    <ParameterGroupMember Id="member-from-transform-workspace-target-first" ParameterGroupId="group-from-transform-workspace-target" ParameterId="param-from-transform-workspace-output-xml" />
+    <ParameterGroupMember Id="member-from-transform-workspace-target-output-csharp" ParameterGroupId="group-from-transform-workspace-target" ParameterId="param-from-transform-workspace-output-csharp" PreviousMemberId="member-from-transform-workspace-target-first" />
+    <ParameterGroupMember Id="member-from-transform-workspace-target-output-sql" ParameterGroupId="group-from-transform-workspace-target" ParameterId="param-from-transform-workspace-output-sql" PreviousMemberId="member-from-transform-workspace-target-output-csharp" />
+    <ParameterGroupMember Id="member-promote-selection-all" ParameterGroupId="group-promote-selection" ParameterId="param-promote-all" />
+    <ParameterGroupMember Id="member-promote-selection-candidate-id" ParameterGroupId="group-promote-selection" ParameterId="param-promote-candidate-id" PreviousMemberId="member-promote-selection-all" />
+    <ParameterGroupMember Id="member-promote-selection-candidate-kind" ParameterGroupId="group-promote-selection" ParameterId="param-promote-candidate-kind" PreviousMemberId="member-promote-selection-candidate-id" />
   </ParameterGroupMemberList>
 </MetaCli>

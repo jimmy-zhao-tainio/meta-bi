@@ -26,7 +26,10 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaPipeline.MetaPipelineModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-new-workspace", handlers.RunNewWorkspace)
+            .Bind(
+                "exec-create",
+                [MetaCliWorkspace.Create("output", "xml", "csharp", "sql")],
+                handlers.RunCreate)
             .Bind("exec-add-pipeline", handlers.RunAddPipeline)
             .Bind("exec-inspect", handlers.RunInspect)
             .Bind("exec-add-step", handlers.RunAddStep)

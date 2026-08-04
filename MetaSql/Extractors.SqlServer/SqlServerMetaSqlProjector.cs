@@ -1,14 +1,11 @@
 using System.Globalization;
-using Meta.Core.Domain;
-using Meta.Core.Serialization;
 using MetaDataType.Instance;
 
 namespace MetaSql.Extractors.SqlServer;
 
 internal static class SqlServerMetaSqlProjector
 {
-    internal static InMemoryWorkspace Project(
-        string newWorkspacePath,
+    internal static MetaSqlModel Project(
         string databaseName,
         IReadOnlyList<TableRow> tableRows,
         IReadOnlyDictionary<string, List<ColumnRow>> columnsByTableKey,
@@ -222,8 +219,7 @@ internal static class SqlServerMetaSqlProjector
             AddStoredProcedure(model, schema, storedProcedureRow);
         }
 
-        model.SaveToXmlWorkspace(newWorkspacePath);
-        return XmlWorkspaceReader.OpenAsync(newWorkspacePath).GetAwaiter().GetResult().State;
+        return model;
     }
 
     internal static string BuildScopedObjectKey(string part1, string part2) => part1 + "." + part2;

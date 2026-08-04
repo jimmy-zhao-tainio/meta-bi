@@ -18,15 +18,38 @@ public sealed class TransformBindingWorkspaceService
         string? dataTypeConversionWorkspacePath = null,
         bool allowPartial = false)
     {
+        ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
+        var workspacePath = Path.GetFullPath(newWorkspacePath);
+        var result = BindValidated(
+            transformWorkspacePath,
+            sourceSchemaWorkspacePaths,
+            targetSchemaWorkspacePath,
+            executeSystemName,
+            executeSystemDefaultSchemaName,
+            validationOptions,
+            dataTypeConversionWorkspacePath,
+            allowPartial);
+        result.Model.SaveToXmlWorkspace(workspacePath);
+        return result with { WorkspacePath = workspacePath };
+    }
+
+    public BindToWorkspaceResult BindValidated(
+        string transformWorkspacePath,
+        IEnumerable<string> sourceSchemaWorkspacePaths,
+        string targetSchemaWorkspacePath,
+        string executeSystemName,
+        string? executeSystemDefaultSchemaName,
+        TransformBindingValidationOptions? validationOptions = null,
+        string? dataTypeConversionWorkspacePath = null,
+        bool allowPartial = false)
+    {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
         ArgumentNullException.ThrowIfNull(sourceSchemaWorkspacePaths);
         ArgumentException.ThrowIfNullOrWhiteSpace(targetSchemaWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(executeSystemName);
-        ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
 
         var transformWorkspaceFullPath = Path.GetFullPath(transformWorkspacePath);
         var targetSchemaWorkspaceFullPath = Path.GetFullPath(targetSchemaWorkspacePath);
-        var bindingWorkspaceFullPath = Path.GetFullPath(newWorkspacePath);
         var normalizedExecuteSystemName = executeSystemName.Trim();
         var normalizedExecuteSystemDefaultSchemaName = executeSystemDefaultSchemaName?.Trim() ?? string.Empty;
 
@@ -130,11 +153,9 @@ public sealed class TransformBindingWorkspaceService
             }
         }
 
-        validatedModel.SaveToXmlWorkspace(bindingWorkspaceFullPath);
-
         return new BindToWorkspaceResult(
             validatedModel,
-            bindingWorkspaceFullPath,
+            string.Empty,
             transformScripts.Length,
             validatedModel.TransformBindingList.Count,
             validatedModel.RowsetList.Count(item =>

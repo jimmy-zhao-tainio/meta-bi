@@ -16,28 +16,21 @@ internal sealed class MetaDataTypeCommandHandlers
         this.service = service;
     }
 
-    public void RunNewWorkspace(MetaCliInvocation invocation)
+    public async Task RunCreate(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
     {
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(invocation.Required("path"));
-        if (!targetValidation.Ok)
-        {
-            Fail(
-                targetValidation.ErrorMessage,
-                "choose a new folder or empty the target directory and retry.",
-                4,
-                targetValidation.Details);
-        }
-
-        var result = service.CreateWorkspace(targetValidation.FullPath);
+        var model = service.CreateWorkspace();
+        await workspaces.CreateAsync("output", model).ConfigureAwait(false);
 
         presenter.WriteKeyValueBlock(
             "MetaDataType workspace created",
             new[]
             {
-                ("Path", result.WorkspacePath),
-                ("Model", result.ModelName),
-                ("DataTypeSystems", result.DataTypeSystemCount.ToString()),
-                ("DataTypes", result.DataTypeCount.ToString())
+                ("Path", MetaCliWorkspace.OutputLocation(invocation)),
+                ("Model", "MetaDataType"),
+                ("DataTypeSystems", model.DataTypeSystemList.Count.ToString()),
+                ("DataTypes", model.DataTypeList.Count.ToString())
             });
     }
 

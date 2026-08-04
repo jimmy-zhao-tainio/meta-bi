@@ -7,8 +7,17 @@
     <OptionToken Id="token-from-sql-code-name" OptionId="opt-from-sql-code-name">
       <Token>--name</Token>
     </OptionToken>
-    <OptionToken Id="token-from-sql-code-new-workspace" OptionId="opt-from-sql-code-new-workspace">
-      <Token>--new-workspace</Token>
+    <OptionToken Id="token-from-sql-code-output-connection-env" OptionId="option-from-sql-code-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-code-output-csharp" OptionId="option-from-sql-code-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-code-output-sql" OptionId="option-from-sql-code-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-code-output-xml" OptionId="option-from-sql-code-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-from-sql-code-target" OptionId="opt-from-sql-code-target">
       <Token>--target</Token>
@@ -16,8 +25,17 @@
     <OptionToken Id="token-from-sql-code-workspace" OptionId="opt-from-sql-code-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-from-sql-file-new-workspace" OptionId="opt-from-sql-file-new-workspace">
-      <Token>--new-workspace</Token>
+    <OptionToken Id="token-from-sql-file-output-connection-env" OptionId="option-from-sql-file-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-file-output-csharp" OptionId="option-from-sql-file-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-file-output-sql" OptionId="option-from-sql-file-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-file-output-xml" OptionId="option-from-sql-file-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-from-sql-file-path" OptionId="opt-from-sql-file-path">
       <Token>--path</Token>
@@ -31,8 +49,17 @@
     <OptionToken Id="token-from-sql-files-manifest" OptionId="opt-from-sql-files-manifest">
       <Token>--manifest</Token>
     </OptionToken>
-    <OptionToken Id="token-from-sql-files-new-workspace" OptionId="opt-from-sql-files-new-workspace">
-      <Token>--new-workspace</Token>
+    <OptionToken Id="token-from-sql-files-output-connection-env" OptionId="option-from-sql-files-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-files-output-csharp" OptionId="option-from-sql-files-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-files-output-sql" OptionId="option-from-sql-files-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-files-output-xml" OptionId="option-from-sql-files-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-from-sql-files-report" OptionId="opt-from-sql-files-report">
       <Token>--report</Token>

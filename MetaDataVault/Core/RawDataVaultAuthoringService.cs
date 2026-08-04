@@ -15,14 +15,9 @@ public sealed class RawDataVaultAuthoringRequest
 
 public sealed record RawDataVaultRelationshipAssignment(string ColumnName, string TargetEntityName, string TargetRecordId);
 
-public sealed record RawDataVaultWorkspaceCreationResult(
-    string WorkspacePath,
-    string ModelName,
-    int RowCount);
-
 public interface IRawDataVaultAuthoringService
 {
-    RawDataVaultWorkspaceCreationResult CreateWorkspace(string workspacePath);
+    MetaRawDataVaultModel CreateWorkspace();
 
     MetaRawDataVaultModel AddRecord(RawDataVaultAuthoringRequest request);
 }
@@ -33,13 +28,7 @@ public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
 
     private static readonly Type ModelType = typeof(MetaRawDataVaultModel);
 
-    public RawDataVaultWorkspaceCreationResult CreateWorkspace(string workspacePath)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-
-        var fullPath = MetaRawDataVaultTooling.CreateWorkspace(Path.GetFullPath(workspacePath));
-        return new RawDataVaultWorkspaceCreationResult(fullPath, ModelName, RowCount: 0);
-    }
+    public MetaRawDataVaultModel CreateWorkspace() => MetaRawDataVaultModel.CreateEmpty();
 
     public MetaRawDataVaultModel AddRecord(RawDataVaultAuthoringRequest request)
     {

@@ -1,20 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaMesh>
   <OperationStepList>
-    <OperationStep Id="operation-step:cleanup:drop-source-database" OperationId="operation:cleanup">
-      <Arguments>execute --connection-env {env:META_DQ_DEMO_MASTER_SQL} --quiet --query "IF DB_ID(N'MetaDataQualityCliIntegration') IS NOT NULL BEGIN ALTER DATABASE [MetaDataQualityCliIntegration] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [MetaDataQualityCliIntegration]; END"</Arguments>
+    <OperationStep Id="operation-step:build-data-quality:convert-data-quality-to-sql" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:promote-data-quality">
+      <Arguments>data-quality-to-sql --workspace "{workspace:data-quality.location}" --out DataQualityViews.sql</Arguments>
+      <Executable>meta-convert.exe</Executable>
+      <Name>convert-data-quality-to-sql</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-data-quality:deploy-customer-invoice-view" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:deploy-customer-order-view">
+      <Arguments>execute --connection-env {env:META_DQ_DEMO_SOURCE_SQL} --file SourceViews\002_customer_invoice_composite\view.sql</Arguments>
       <Executable>meta-sql.exe</Executable>
-      <Name>drop-source-database</Name>
+      <Name>deploy-customer-invoice-view</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-data-quality:deploy-customer-order-view" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:setup-source-database">
+      <Arguments>execute --connection-env {env:META_DQ_DEMO_SOURCE_SQL} --file SourceViews\001_customer_order_coverage\view.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-customer-order-view</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-data-quality:deploy-data-quality-sql" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:convert-data-quality-to-sql">
+      <Arguments>execute --connection-env {env:META_DQ_DEMO_SOURCE_SQL} --file DataQualityViews.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>deploy-data-quality-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-data-quality:discover-data-quality" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:import-customer-invoice-transform">
+      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --new-workspace "{workspace:data-quality.location}"</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>discover-data-quality</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-data-quality:import-customer-invoice-transform" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:import-customer-order-transform">
+      <Arguments>from sql-file --path SourceViews\002_customer_invoice_composite\view.sql --target dq.CustomerInvoiceComposite --workspace "{workspace:transform.location}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-invoice-transform</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-data-quality:import-customer-order-transform" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:deploy-customer-invoice-view">
+      <Arguments>from sql-file --path SourceViews\001_customer_order_coverage\view.sql --target dq.CustomerOrderCoverage --new-workspace "{workspace:transform.location}"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-customer-order-transform</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-data-quality:inspect-data-quality" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:discover-data-quality">
+      <Arguments>inspect --workspace "{workspace:data-quality.location}"</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>inspect-data-quality</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-data-quality:promote-data-quality" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:inspect-data-quality">
+      <Arguments>promote --workspace "{workspace:data-quality.location}" --all</Arguments>
+      <Executable>meta-data-quality.exe</Executable>
+      <Name>promote-data-quality</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
+    <OperationStep Id="operation-step:build-data-quality:setup-source-database" OperationId="operation:build-data-quality">
+      <Arguments>execute --connection-env {env:META_DQ_DEMO_MASTER_SQL} --file setup.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>setup-source-database</Name>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:drop-operational-database" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-source-database">
       <Arguments>execute --connection-env {env:META_DQ_DEMO_MASTER_SQL} --quiet --query "IF DB_ID(N'MetaDQ') IS NOT NULL BEGIN ALTER DATABASE [MetaDQ] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [MetaDQ]; END"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>drop-operational-database</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-operational-database">
-      <Arguments>/c if exist TransformWS rmdir /s /q TransformWS</Arguments>
-      <Executable>cmd.exe</Executable>
-      <Name>remove-transform-workspace</Name>
+    <OperationStep Id="operation-step:cleanup:drop-source-database" OperationId="operation:cleanup">
+      <Arguments>execute --connection-env {env:META_DQ_DEMO_MASTER_SQL} --quiet --query "IF DB_ID(N'MetaDataQualityCliIntegration') IS NOT NULL BEGIN ALTER DATABASE [MetaDataQualityCliIntegration] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [MetaDataQualityCliIntegration]; END"</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>drop-source-database</Name>
     </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-data-quality-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-transform-workspace">
       <Arguments>/c if exist DataQualityWS rmdir /s /q DataQualityWS</Arguments>
@@ -26,55 +77,10 @@
       <Executable>cmd.exe</Executable>
       <Name>remove-generated-sql</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:build-data-quality:setup-source-database" OperationId="operation:build-data-quality">
-      <Arguments>execute --connection-env {env:META_DQ_DEMO_MASTER_SQL} --file setup.sql</Arguments>
-      <Executable>meta-sql.exe</Executable>
-      <Name>setup-source-database</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-data-quality:deploy-customer-order-view" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:setup-source-database">
-      <Arguments>execute --connection-env {env:META_DQ_DEMO_SOURCE_SQL} --file SourceViews\001_customer_order_coverage\view.sql</Arguments>
-      <Executable>meta-sql.exe</Executable>
-      <Name>deploy-customer-order-view</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-data-quality:deploy-customer-invoice-view" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:deploy-customer-order-view">
-      <Arguments>execute --connection-env {env:META_DQ_DEMO_SOURCE_SQL} --file SourceViews\002_customer_invoice_composite\view.sql</Arguments>
-      <Executable>meta-sql.exe</Executable>
-      <Name>deploy-customer-invoice-view</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-data-quality:import-customer-order-transform" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:deploy-customer-invoice-view">
-      <Arguments>from sql-file --path SourceViews\001_customer_order_coverage\view.sql --target dq.CustomerOrderCoverage --new-workspace "{workspace:transform.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>import-customer-order-transform</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-data-quality:import-customer-invoice-transform" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:import-customer-order-transform">
-      <Arguments>from sql-file --path SourceViews\002_customer_invoice_composite\view.sql --target dq.CustomerInvoiceComposite --workspace "{workspace:transform.path}"</Arguments>
-      <Executable>meta-transform-script.exe</Executable>
-      <Name>import-customer-invoice-transform</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-data-quality:discover-data-quality" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:import-customer-invoice-transform">
-      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.path}" --new-workspace "{workspace:data-quality.path}"</Arguments>
-      <Executable>meta-data-quality.exe</Executable>
-      <Name>discover-data-quality</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-data-quality:inspect-data-quality" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:discover-data-quality">
-      <Arguments>inspect --workspace "{workspace:data-quality.path}"</Arguments>
-      <Executable>meta-data-quality.exe</Executable>
-      <Name>inspect-data-quality</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-data-quality:promote-data-quality" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:inspect-data-quality">
-      <Arguments>promote --workspace "{workspace:data-quality.path}" --all</Arguments>
-      <Executable>meta-data-quality.exe</Executable>
-      <Name>promote-data-quality</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-data-quality:convert-data-quality-to-sql" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:promote-data-quality">
-      <Arguments>data-quality-to-sql --workspace "{workspace:data-quality.path}" --out DataQualityViews.sql</Arguments>
-      <Executable>meta-convert.exe</Executable>
-      <Name>convert-data-quality-to-sql</Name>
-    </OperationStep>
-    <OperationStep Id="operation-step:build-data-quality:deploy-data-quality-sql" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:convert-data-quality-to-sql">
-      <Arguments>execute --connection-env {env:META_DQ_DEMO_SOURCE_SQL} --file DataQualityViews.sql</Arguments>
-      <Executable>meta-sql.exe</Executable>
-      <Name>deploy-data-quality-sql</Name>
+    <OperationStep Id="operation-step:cleanup:remove-transform-workspace" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-operational-database">
+      <Arguments>/c if exist TransformWS rmdir /s /q TransformWS</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-transform-workspace</Name>
     </OperationStep>
   </OperationStepList>
 </MetaMesh>

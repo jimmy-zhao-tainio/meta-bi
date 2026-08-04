@@ -1,5 +1,6 @@
 using System.Globalization;
 using MetaBi.Tests.Common;
+using MetaCli.Core;
 using MetaOrchestration.Core;
 using MetaOrchestration.WorkerProtocol;
 using MetaPipeline;
@@ -2148,10 +2149,10 @@ public sealed class MetaOrchestrationAnalysisServiceTests
         Assert.Equal(0, infer.ExitCode);
         Assert.Equal(0, runPlan.ExitCode);
         Assert.Contains("infer", help.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("--new-workspace", infer.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("--output-xml", infer.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--pipeline-workspace", infer.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("--new-workspace", help.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("--new-workspace", runPlan.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("--output-xml", help.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("--output-xml", runPlan.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--plan", help.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--schedule", runPlan.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--out", help.Output, StringComparison.OrdinalIgnoreCase);
@@ -2987,6 +2988,7 @@ INNER JOIN dw.DimCustomer AS d
                         "LoadB",
                         Task("LoadB", 1, "load-b", "Select", Access("dbo.RawB", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.B", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
             model.SaveToXmlWorkspace(orchestrationWorkspace);
+            MetaCliWorkspace.DescribeXml(orchestrationWorkspace);
 
             var result = RunCli($"refresh-run-plan --workspace \"{orchestrationWorkspace}\"");
 
@@ -3235,6 +3237,7 @@ INNER JOIN dw.DimCustomer AS d
                         Task("Mart", 1, "mart", "Select", Access("dbo.Dim", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.Fact", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.Mart", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
             new MetaOrchestrationRunPlanningService().BuildRunPlan(model);
             model.SaveToXmlWorkspace(orchestrationWorkspace);
+            MetaCliWorkspace.DescribeXml(orchestrationWorkspace);
 
             var result = RunCli($"inspect-run-plan --workspace \"{orchestrationWorkspace}\"");
 
@@ -3438,7 +3441,7 @@ INNER JOIN dw.DimCustomer AS d
                 (PipelineName: "TruncateStage", Script: ResolveScript(transformModel, "truncate-stage"), InsertRowsTarget: null),
                 (PipelineName: "ReadStage", Script: ResolveScript(transformModel, "read-stage"), InsertRowsTarget: "dbo.DimCustomer"));
 
-            var result = RunCli($"infer --pipeline-workspace \"{pipelineWorkspace}\" --new-workspace \"{orchestrationWorkspace}\"");
+            var result = RunCli($"infer --pipeline-workspace \"{pipelineWorkspace}\" --output-xml \"{orchestrationWorkspace}\"");
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("Cannot continue", result.Output, StringComparison.Ordinal);

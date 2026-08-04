@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupMemberList>
+    <ParameterGroupMember Id="member-schema-to-raw-datavault-target-first" ParameterGroupId="group-schema-to-raw-datavault-target" ParameterId="param-schema-to-raw-datavault-output-xml" />
+    <ParameterGroupMember Id="member-schema-to-raw-datavault-target-output-csharp" ParameterGroupId="group-schema-to-raw-datavault-target" ParameterId="param-schema-to-raw-datavault-output-csharp" PreviousMemberId="member-schema-to-raw-datavault-target-first" />
+    <ParameterGroupMember Id="member-schema-to-raw-datavault-target-output-sql" ParameterGroupId="group-schema-to-raw-datavault-target" ParameterId="param-schema-to-raw-datavault-output-sql" PreviousMemberId="member-schema-to-raw-datavault-target-output-csharp" />
+  </ParameterGroupMemberList>
+</MetaCli>

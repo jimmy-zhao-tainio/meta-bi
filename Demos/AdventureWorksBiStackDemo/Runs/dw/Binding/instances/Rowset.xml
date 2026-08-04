@@ -4,374 +4,467 @@
     <Rowset Id="CommonTableExpression:10:placeholder-rowset" TransformBindingId="TransformScript:16:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestPerson:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:10:rowset" TransformBindingId="TransformScript:16:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestPerson</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:11:placeholder-rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestSalesTerritory:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:11:rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestSalesTerritory</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:12:placeholder-rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestOrder:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:12:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestOrder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:13:placeholder-rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestLine:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:13:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestLine</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:14:placeholder-rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestOrder:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:14:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestOrder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:15:placeholder-rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestQuota:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:15:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestQuota</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:1:placeholder-rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestProduct:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:1:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestProduct</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:2:placeholder-rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestSubcategory:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:2:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestSubcategory</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:3:placeholder-rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestCategory:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:3:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestCategory</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:4:placeholder-rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestAddress:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:4:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestAddress</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:5:placeholder-rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestStateProvince:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:5:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestStateProvince</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:6:placeholder-rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestCountryRegion:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:6:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestCountryRegion</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:7:placeholder-rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestCustomer:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:7:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestCustomer</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:8:placeholder-rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestPerson:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:8:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestPerson</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:9:placeholder-rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>CommonTableExpressionPlaceholder</DerivationKind>
       <Name>latestStore:placeholder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="CommonTableExpression:9:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>CommonTableExpression</DerivationKind>
       <Name>latestStore</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:10:mutation-write-rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Fact_SalesOrder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:11:mutation-write-rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Fact_SalesLine</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:12:mutation-write-rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Fact_SalespersonQuota</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:1:mutation-write-rowset" TransformBindingId="TransformScript:9:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Dim_Date_OrderDate</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:2:mutation-write-rowset" TransformBindingId="TransformScript:10:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Dim_Date_DueDate</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:3:mutation-write-rowset" TransformBindingId="TransformScript:11:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Dim_Date_ShipDate</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:4:mutation-write-rowset" TransformBindingId="TransformScript:12:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Dim_Date_QuotaDate</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:5:mutation-write-rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Dim_Product</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:6:mutation-write-rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Dim_Geography</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:7:mutation-write-rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Dim_Customer</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:8:mutation-write-rowset" TransformBindingId="TransformScript:16:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Dim_Salesperson</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeInsertAction:9:mutation-write-rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeInsert:Dim_SalesTerritory</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeUpdateAction:1:mutation-write-rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeUpdate:Dim_Product</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeUpdateAction:2:mutation-write-rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeUpdate:Dim_Geography</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeUpdateAction:3:mutation-write-rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeUpdate:Dim_Customer</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeUpdateAction:4:mutation-write-rowset" TransformBindingId="TransformScript:16:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeUpdate:Dim_Salesperson</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeUpdateAction:5:mutation-write-rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeUpdate:Dim_SalesTerritory</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeUpdateAction:6:mutation-write-rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeUpdate:Fact_SalesOrder</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeUpdateAction:7:mutation-write-rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeUpdate:Fact_SalesLine</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="MergeUpdateAction:8:mutation-write-rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>MergeUpdate:Fact_SalespersonQuota</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:10:mutation-source-rowset" TransformBindingId="TransformScript:5:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Insert:Source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:11:output-rowset" TransformBindingId="TransformScript:6:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Subquery:ScalarSubquery:6</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:12:mutation-source-rowset" TransformBindingId="TransformScript:6:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Insert:Source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:13:output-rowset" TransformBindingId="TransformScript:7:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Subquery:ScalarSubquery:7</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:14:mutation-source-rowset" TransformBindingId="TransformScript:7:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Insert:Source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:15:output-rowset" TransformBindingId="TransformScript:8:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Subquery:ScalarSubquery:8</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:16:mutation-source-rowset" TransformBindingId="TransformScript:8:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Insert:Source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:17:output-rowset" TransformBindingId="TransformScript:9:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:18:output-rowset" TransformBindingId="TransformScript:10:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:19:output-rowset" TransformBindingId="TransformScript:11:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:1:output-rowset" TransformBindingId="TransformScript:1:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Subquery:ScalarSubquery:1</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:20:output-rowset" TransformBindingId="TransformScript:12:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:21:output-rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestProduct:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:22:output-rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestSubcategory:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:23:output-rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestCategory:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:24:output-rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:25:output-rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestAddress:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:26:output-rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestStateProvince:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:27:output-rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestCountryRegion:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:28:output-rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:29:output-rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestCustomer:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:2:mutation-source-rowset" TransformBindingId="TransformScript:1:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Insert:Source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:30:output-rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestPerson:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:31:output-rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestStore:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:32:output-rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:33:output-rowset" TransformBindingId="TransformScript:16:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestPerson:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:34:output-rowset" TransformBindingId="TransformScript:16:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:35:output-rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestSalesTerritory:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:36:output-rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:37:output-rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestOrder:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:38:output-rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:39:output-rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestLine:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:3:output-rowset" TransformBindingId="TransformScript:2:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Subquery:ScalarSubquery:2</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:40:output-rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestOrder:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:41:output-rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:42:output-rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>latestQuota:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:43:output-rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>source:inner</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:4:mutation-source-rowset" TransformBindingId="TransformScript:2:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Insert:Source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:5:output-rowset" TransformBindingId="TransformScript:3:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Subquery:ScalarSubquery:3</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:6:mutation-source-rowset" TransformBindingId="TransformScript:3:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Insert:Source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:7:output-rowset" TransformBindingId="TransformScript:4:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Subquery:ScalarSubquery:4</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:8:mutation-source-rowset" TransformBindingId="TransformScript:4:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Insert:Source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="QueryExpression:9:output-rowset" TransformBindingId="TransformScript:5:binding">
       <DerivationKind>Projection</DerivationKind>
       <Name>Subquery:ScalarSubquery:5</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:100:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -381,6 +474,7 @@
     <Rowset Id="TableReference:101:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:101</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:102:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -390,6 +484,7 @@
     <Rowset Id="TableReference:103:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:103</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:104:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -399,6 +494,7 @@
     <Rowset Id="TableReference:105:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:105</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:106:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -408,6 +504,7 @@
     <Rowset Id="TableReference:107:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:107</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:108:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -417,10 +514,12 @@
     <Rowset Id="TableReference:109:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:109</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:10:rowset" TransformBindingId="TransformScript:9:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:110:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -430,6 +529,7 @@
     <Rowset Id="TableReference:111:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:111</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:112:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -439,6 +539,7 @@
     <Rowset Id="TableReference:113:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:113</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:114:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -448,6 +549,7 @@
     <Rowset Id="TableReference:115:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:115</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:116:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -457,6 +559,7 @@
     <Rowset Id="TableReference:117:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:117</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:118:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -466,6 +569,7 @@
     <Rowset Id="TableReference:119:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:119</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:11:rowset" TransformBindingId="TransformScript:10:binding">
       <DerivationKind>Source</DerivationKind>
@@ -480,6 +584,7 @@
     <Rowset Id="TableReference:121:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:121</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:122:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -489,10 +594,12 @@
     <Rowset Id="TableReference:123:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:123</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:124:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:125:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -512,10 +619,12 @@
     <Rowset Id="TableReference:129:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:129</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:12:rowset" TransformBindingId="TransformScript:10:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:130:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -525,6 +634,7 @@
     <Rowset Id="TableReference:131:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:131</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:132:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -534,10 +644,12 @@
     <Rowset Id="TableReference:133:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:133</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:135:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:135</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:136:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -547,6 +659,7 @@
     <Rowset Id="TableReference:137:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:137</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:138:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -556,6 +669,7 @@
     <Rowset Id="TableReference:139:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:139</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:13:rowset" TransformBindingId="TransformScript:11:binding">
       <DerivationKind>Source</DerivationKind>
@@ -570,6 +684,7 @@
     <Rowset Id="TableReference:141:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:141</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:142:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -579,6 +694,7 @@
     <Rowset Id="TableReference:143:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:143</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:144:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -588,6 +704,7 @@
     <Rowset Id="TableReference:145:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:145</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:146:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -597,6 +714,7 @@
     <Rowset Id="TableReference:147:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:147</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:148:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -606,10 +724,12 @@
     <Rowset Id="TableReference:149:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:149</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:14:rowset" TransformBindingId="TransformScript:11:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:150:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -619,6 +739,7 @@
     <Rowset Id="TableReference:151:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:151</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:152:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -628,6 +749,7 @@
     <Rowset Id="TableReference:153:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:153</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:154:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -637,6 +759,7 @@
     <Rowset Id="TableReference:155:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:155</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:156:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -646,6 +769,7 @@
     <Rowset Id="TableReference:157:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:157</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:158:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -655,6 +779,7 @@
     <Rowset Id="TableReference:159:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:159</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:15:rowset" TransformBindingId="TransformScript:12:binding">
       <DerivationKind>Source</DerivationKind>
@@ -669,6 +794,7 @@
     <Rowset Id="TableReference:161:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:161</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:162:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -678,6 +804,7 @@
     <Rowset Id="TableReference:163:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:163</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:164:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -687,6 +814,7 @@
     <Rowset Id="TableReference:165:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:165</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:166:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -696,6 +824,7 @@
     <Rowset Id="TableReference:167:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:167</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:168:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Source</DerivationKind>
@@ -705,14 +834,17 @@
     <Rowset Id="TableReference:169:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:169</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:16:rowset" TransformBindingId="TransformScript:12:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:170:rowset" TransformBindingId="TransformScript:19:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:171:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Source</DerivationKind>
@@ -727,6 +859,7 @@
     <Rowset Id="TableReference:174:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:174</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:175:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Source</DerivationKind>
@@ -736,6 +869,7 @@
     <Rowset Id="TableReference:176:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:176</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:177:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Source</DerivationKind>
@@ -745,6 +879,7 @@
     <Rowset Id="TableReference:178:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:178</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:179:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Source</DerivationKind>
@@ -759,6 +894,7 @@
     <Rowset Id="TableReference:180:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:180</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:181:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Source</DerivationKind>
@@ -768,10 +904,12 @@
     <Rowset Id="TableReference:182:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:182</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:183:rowset" TransformBindingId="TransformScript:20:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:18:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Source</DerivationKind>
@@ -796,6 +934,7 @@
     <Rowset Id="TableReference:22:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:22</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:23:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Source</DerivationKind>
@@ -805,10 +944,12 @@
     <Rowset Id="TableReference:24:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:24</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:26:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:26</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:27:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Source</DerivationKind>
@@ -818,6 +959,7 @@
     <Rowset Id="TableReference:28:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:28</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:2:rowset" TransformBindingId="TransformScript:2:binding">
       <DerivationKind>Source</DerivationKind>
@@ -827,10 +969,12 @@
     <Rowset Id="TableReference:30:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:30</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:31:rowset" TransformBindingId="TransformScript:13:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:32:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Source</DerivationKind>
@@ -855,6 +999,7 @@
     <Rowset Id="TableReference:37:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:37</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:38:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Source</DerivationKind>
@@ -864,6 +1009,7 @@
     <Rowset Id="TableReference:39:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:39</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:3:rowset" TransformBindingId="TransformScript:3:binding">
       <DerivationKind>Source</DerivationKind>
@@ -873,6 +1019,7 @@
     <Rowset Id="TableReference:41:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:41</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:42:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Source</DerivationKind>
@@ -882,6 +1029,7 @@
     <Rowset Id="TableReference:43:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:43</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:44:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Source</DerivationKind>
@@ -891,14 +1039,17 @@
     <Rowset Id="TableReference:45:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:45</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:47:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:47</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:48:rowset" TransformBindingId="TransformScript:14:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:49:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Source</DerivationKind>
@@ -928,6 +1079,7 @@
     <Rowset Id="TableReference:54:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:54</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:55:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Source</DerivationKind>
@@ -937,10 +1089,12 @@
     <Rowset Id="TableReference:56:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:56</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:58:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:58</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:59:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Source</DerivationKind>
@@ -955,14 +1109,17 @@
     <Rowset Id="TableReference:60:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:60</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:62:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:62</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:63:rowset" TransformBindingId="TransformScript:15:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:64:rowset" TransformBindingId="TransformScript:16:binding">
       <DerivationKind>Source</DerivationKind>
@@ -982,10 +1139,12 @@
     <Rowset Id="TableReference:67:rowset" TransformBindingId="TransformScript:16:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:67</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:69:rowset" TransformBindingId="TransformScript:16:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:69</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:6:rowset" TransformBindingId="TransformScript:6:binding">
       <DerivationKind>Source</DerivationKind>
@@ -995,6 +1154,7 @@
     <Rowset Id="TableReference:70:rowset" TransformBindingId="TransformScript:16:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:71:rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1009,6 +1169,7 @@
     <Rowset Id="TableReference:74:rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:74</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:75:rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1018,6 +1179,7 @@
     <Rowset Id="TableReference:76:rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:76</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:77:rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1027,10 +1189,12 @@
     <Rowset Id="TableReference:78:rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:78</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:79:rowset" TransformBindingId="TransformScript:17:binding">
       <DerivationKind>DerivedTable</DerivationKind>
       <Name>source</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:7:rowset" TransformBindingId="TransformScript:7:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1050,6 +1214,7 @@
     <Rowset Id="TableReference:83:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:83</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:84:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1059,6 +1224,7 @@
     <Rowset Id="TableReference:85:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:85</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:86:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1068,6 +1234,7 @@
     <Rowset Id="TableReference:87:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:87</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:88:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1077,6 +1244,7 @@
     <Rowset Id="TableReference:89:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>Inner:TableReference:89</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:8:rowset" TransformBindingId="TransformScript:8:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1091,6 +1259,7 @@
     <Rowset Id="TableReference:91:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:91</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:92:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1100,6 +1269,7 @@
     <Rowset Id="TableReference:93:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:93</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:94:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1109,6 +1279,7 @@
     <Rowset Id="TableReference:95:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:95</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:96:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1118,6 +1289,7 @@
     <Rowset Id="TableReference:97:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:97</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:98:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Source</DerivationKind>
@@ -1127,6 +1299,7 @@
     <Rowset Id="TableReference:99:rowset" TransformBindingId="TransformScript:18:binding">
       <DerivationKind>Join</DerivationKind>
       <Name>LeftOuter:TableReference:99</Name>
+      <SqlIdentifier></SqlIdentifier>
     </Rowset>
     <Rowset Id="TableReference:9:rowset" TransformBindingId="TransformScript:9:binding">
       <DerivationKind>Source</DerivationKind>

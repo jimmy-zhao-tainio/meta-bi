@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupMemberList>
+    <ParameterGroupMember Id="member-infer-target-first" ParameterGroupId="group-infer-target" ParameterId="param-infer-output-xml" />
+    <ParameterGroupMember Id="member-infer-target-output-csharp" ParameterGroupId="group-infer-target" ParameterId="param-infer-output-csharp" PreviousMemberId="member-infer-target-first" />
+    <ParameterGroupMember Id="member-infer-target-output-sql" ParameterGroupId="group-infer-target" ParameterId="param-infer-output-sql" PreviousMemberId="member-infer-target-output-csharp" />
+  </ParameterGroupMemberList>
+</MetaCli>

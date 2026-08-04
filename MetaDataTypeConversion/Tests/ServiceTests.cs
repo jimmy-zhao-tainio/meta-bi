@@ -5,28 +5,12 @@ namespace MetaDataTypeConversion.Tests;
 public sealed class ServiceTests
 {
     [Fact]
-    public void CreateWorkspace_CreatesSanctionedTypedWorkspace()
+    public void CreateWorkspace_ReturnsSanctionedModel()
     {
-        var workspacePath = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-service-tests", Guid.NewGuid().ToString("N"));
-        try
-        {
-            var result = new MetaDataTypeConversionService().CreateWorkspace(workspacePath);
+        var model = new MetaDataTypeConversionService().CreateWorkspace();
 
-            Assert.Equal(Path.GetFullPath(workspacePath), result.WorkspacePath);
-            Assert.Equal("MetaDataTypeConversion", result.ModelName);
-            Assert.True(result.ConversionImplementationCount > 0);
-            Assert.True(result.DataTypeMappingCount > 0);
-            Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.xml")));
-            Assert.True(File.Exists(Path.Combine(workspacePath, "model.xml")));
-
-            var model = MetaDataTypeConversionModel.LoadFromXmlWorkspace(workspacePath);
-            Assert.Equal(result.ConversionImplementationCount, model.ConversionImplementationList.Count);
-            Assert.Equal(result.DataTypeMappingCount, model.DataTypeMappingList.Count);
-        }
-        finally
-        {
-            DeleteDirectoryIfExists(workspacePath);
-        }
+        Assert.NotEmpty(model.ConversionImplementationList);
+        Assert.NotEmpty(model.DataTypeMappingList);
     }
 
     [Fact]
@@ -106,11 +90,4 @@ public sealed class ServiceTests
         Assert.Equal(expectedTargetDataTypeId, resolution.TargetDataTypeId);
     }
 
-    private static void DeleteDirectoryIfExists(string path)
-    {
-        if (Directory.Exists(path))
-        {
-            Directory.Delete(path, recursive: true);
-        }
-    }
 }

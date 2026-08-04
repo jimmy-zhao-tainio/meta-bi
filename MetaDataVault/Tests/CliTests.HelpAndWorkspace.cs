@@ -12,7 +12,7 @@ public sealed partial class CliTests
 
         try
         {
-            var result = RunBusinessCli($"new-workspace \"{workspacePath}\"");
+            var result = RunBusinessCli($"create --xml \"{workspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("MetaBusinessDataVault workspace created", result.Output, StringComparison.Ordinal);
@@ -34,7 +34,7 @@ public sealed partial class CliTests
 
         try
         {
-            var result = RunRawCli($"new-workspace \"{workspacePath}\"");
+            var result = RunRawCli($"create --xml \"{workspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("MetaRawDataVault workspace created", result.Output, StringComparison.Ordinal);
@@ -68,8 +68,8 @@ public sealed partial class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("schema-to-raw-datavault", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("--source-workspace <path>", result.Output);
-        Assert.Contains("--new-workspace <path>", result.Output);
+        Assert.Contains("--source-workspace <location>", result.Output);
+        Assert.Contains("--output-xml <location>", result.Output);
         Assert.Contains("[--ignore-field-name <value>]", result.Output);
         Assert.Contains("[--ignore-field-suffix <value>]", result.Output);
         Assert.Contains("[--include-views]", result.Output);

@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandList>
-    <ExecutableCommand Id="exec-help" CommandId="cmd-help">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-infer" CommandId="cmd-infer">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-inspect" CommandId="cmd-inspect">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-list-issues" CommandId="cmd-list-issues">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-explain-issue" CommandId="cmd-explain-issue">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-dependency" CommandId="cmd-add-dependency">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-add-order" CommandId="cmd-add-order">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-allow-concurrent-append" CommandId="cmd-allow-concurrent-append">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-set-lock-policy" CommandId="cmd-set-lock-policy">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-refresh-run-plan" CommandId="cmd-refresh-run-plan">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-inspect-run-plan" CommandId="cmd-inspect-run-plan">
-    </ExecutableCommand>
-    <ExecutableCommand Id="exec-execute" CommandId="cmd-execute">
-    </ExecutableCommand>
+    <ExecutableCommand Id="exec-add-dependency" CommandId="cmd-add-dependency" />
+    <ExecutableCommand Id="exec-add-order" CommandId="cmd-add-order" />
+    <ExecutableCommand Id="exec-allow-concurrent-append" CommandId="cmd-allow-concurrent-append" />
+    <ExecutableCommand Id="exec-execute" CommandId="cmd-execute" />
+    <ExecutableCommand Id="exec-explain-issue" CommandId="cmd-explain-issue" />
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
+    <ExecutableCommand Id="exec-infer" CommandId="cmd-infer" />
+    <ExecutableCommand Id="exec-inspect" CommandId="cmd-inspect" />
+    <ExecutableCommand Id="exec-inspect-run-plan" CommandId="cmd-inspect-run-plan" />
+    <ExecutableCommand Id="exec-list-issues" CommandId="cmd-list-issues" />
+    <ExecutableCommand Id="exec-refresh-run-plan" CommandId="cmd-refresh-run-plan" />
+    <ExecutableCommand Id="exec-set-lock-policy" CommandId="cmd-set-lock-policy" />
   </ExecutableCommandList>
 </MetaCli>

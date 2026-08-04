@@ -27,7 +27,10 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaSchemaModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-extract-sqlserver", invocation => RunAsync(() => handlers.RunExtractSqlServerAsync(invocation)));
+            .Bind(
+                "exec-extract-sqlserver",
+                [MetaCliWorkspace.Create("output", "output-xml", "output-csharp", "output-sql", "output-connection-env")],
+                handlers.RunExtractSqlServerAsync);
 
         runtime.Run(args);
         return Environment.ExitCode;
@@ -36,6 +39,4 @@ internal static class Program
     private static string CommandWorkspacePath =>
         Path.Combine(AppContext.BaseDirectory, CommandWorkspaceDirectoryName);
 
-    private static void RunAsync(Func<Task> action) =>
-        action().GetAwaiter().GetResult();
 }

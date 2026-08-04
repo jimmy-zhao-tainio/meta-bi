@@ -28,7 +28,10 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaDataQualityModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-from-transform-workspace", handlers.RunFromTransformWorkspace)
+            .Bind(
+                "exec-from-transform-workspace",
+                [MetaCliWorkspace.Create("output", "output-xml", "output-csharp", "output-sql", "output-connection-env")],
+                handlers.RunFromTransformWorkspaceAsync)
             .Bind("exec-inspect", handlers.RunInspect)
             .Bind("exec-promote", handlers.RunPromote);
 

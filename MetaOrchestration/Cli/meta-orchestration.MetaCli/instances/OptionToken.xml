@@ -1,56 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="token-infer-pipeline-workspace" OptionId="opt-infer-pipeline-workspace">
-      <Token>--pipeline-workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-infer-new-workspace" OptionId="opt-infer-new-workspace">
-      <Token>--new-workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-infer-description" OptionId="opt-infer-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="token-inspect-workspace" OptionId="opt-inspect-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-list-issues-workspace" OptionId="opt-list-issues-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-explain-issue-workspace" OptionId="opt-explain-issue-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-dependency-workspace" OptionId="opt-add-dependency-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-order-workspace" OptionId="opt-add-order-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-allow-concurrent-append-workspace" OptionId="opt-allow-concurrent-append-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-set-lock-policy-workspace" OptionId="opt-set-lock-policy-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-refresh-run-plan-workspace" OptionId="opt-refresh-run-plan-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-inspect-run-plan-workspace" OptionId="opt-inspect-run-plan-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-workspace" OptionId="opt-execute-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-explain-issue-issue" OptionId="opt-explain-issue-issue">
-      <Token>--issue</Token>
+    <OptionToken Id="token-add-dependency-condition" OptionId="opt-add-dependency-condition">
+      <Token>--condition</Token>
     </OptionToken>
     <OptionToken Id="token-add-dependency-from-task" OptionId="opt-add-dependency-from-task">
       <Token>--from-task</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-dependency-to-task" OptionId="opt-add-dependency-to-task">
-      <Token>--to-task</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-dependency-condition" OptionId="opt-add-dependency-condition">
-      <Token>--condition</Token>
     </OptionToken>
     <OptionToken Id="token-add-dependency-object" OptionId="opt-add-dependency-object">
       <Token>--object</Token>
@@ -58,14 +13,17 @@
     <OptionToken Id="token-add-dependency-reason" OptionId="opt-add-dependency-reason">
       <Token>--reason</Token>
     </OptionToken>
-    <OptionToken Id="token-add-order-from-task" OptionId="opt-add-order-from-task">
-      <Token>--from-task</Token>
-    </OptionToken>
-    <OptionToken Id="token-add-order-to-task" OptionId="opt-add-order-to-task">
+    <OptionToken Id="token-add-dependency-to-task" OptionId="opt-add-dependency-to-task">
       <Token>--to-task</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-dependency-workspace" OptionId="opt-add-dependency-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="token-add-order-condition" OptionId="opt-add-order-condition">
       <Token>--condition</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-order-from-task" OptionId="opt-add-order-from-task">
+      <Token>--from-task</Token>
     </OptionToken>
     <OptionToken Id="token-add-order-object" OptionId="opt-add-order-object">
       <Token>--object</Token>
@@ -73,50 +31,101 @@
     <OptionToken Id="token-add-order-reason" OptionId="opt-add-order-reason">
       <Token>--reason</Token>
     </OptionToken>
+    <OptionToken Id="token-add-order-to-task" OptionId="opt-add-order-to-task">
+      <Token>--to-task</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-order-workspace" OptionId="opt-add-order-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
     <OptionToken Id="token-allow-concurrent-append-object" OptionId="opt-allow-concurrent-append-object">
       <Token>--object</Token>
     </OptionToken>
     <OptionToken Id="token-allow-concurrent-append-reason" OptionId="opt-allow-concurrent-append-reason">
       <Token>--reason</Token>
     </OptionToken>
-    <OptionToken Id="token-set-lock-policy-object" OptionId="opt-set-lock-policy-object">
-      <Token>--object</Token>
-    </OptionToken>
-    <OptionToken Id="token-set-lock-policy-left-effect" OptionId="opt-set-lock-policy-left-effect">
-      <Token>--left-effect</Token>
-    </OptionToken>
-    <OptionToken Id="token-set-lock-policy-right-effect" OptionId="opt-set-lock-policy-right-effect">
-      <Token>--right-effect</Token>
-    </OptionToken>
-    <OptionToken Id="token-set-lock-policy-behavior" OptionId="opt-set-lock-policy-behavior">
-      <Token>--behavior</Token>
-    </OptionToken>
-    <OptionToken Id="token-set-lock-policy-reason" OptionId="opt-set-lock-policy-reason">
-      <Token>--reason</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-pipeline-workspace" OptionId="opt-execute-pipeline-workspace">
-      <Token>--pipeline-workspace</Token>
+    <OptionToken Id="token-allow-concurrent-append-workspace" OptionId="opt-allow-concurrent-append-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="token-execute-data-type-conversion-workspace" OptionId="opt-execute-data-type-conversion-workspace">
       <Token>--data-type-conversion-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-pipeline-db-connection-env" OptionId="opt-execute-pipeline-db-connection-env">
-      <Token>--pipeline-db-connection-env</Token>
-    </OptionToken>
     <OptionToken Id="token-execute-max-degree-of-parallelism" OptionId="opt-execute-max-degree-of-parallelism">
       <Token>--max-degree-of-parallelism</Token>
     </OptionToken>
+    <OptionToken Id="token-execute-pipeline-db-connection-env" OptionId="opt-execute-pipeline-db-connection-env">
+      <Token>--pipeline-db-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-pipeline-workspace" OptionId="opt-execute-pipeline-workspace">
+      <Token>--pipeline-workspace</Token>
+    </OptionToken>
     <OptionToken Id="token-execute-run-artifacts-root" OptionId="opt-execute-run-artifacts-root">
       <Token>--run-artifacts-root</Token>
-    </OptionToken>
-    <OptionToken Id="token-execute-worker-event-timeout-seconds" OptionId="opt-execute-worker-event-timeout-seconds">
-      <Token>--worker-event-timeout-seconds</Token>
     </OptionToken>
     <OptionToken Id="token-execute-worker-activation-timeout-seconds" OptionId="opt-execute-worker-activation-timeout-seconds">
       <Token>--worker-activation-timeout-seconds</Token>
     </OptionToken>
     <OptionToken Id="token-execute-worker-control-pipe-connect-timeout-seconds" OptionId="opt-execute-worker-control-pipe-connect-timeout-seconds">
       <Token>--worker-control-pipe-connect-timeout-seconds</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-worker-event-timeout-seconds" OptionId="opt-execute-worker-event-timeout-seconds">
+      <Token>--worker-event-timeout-seconds</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-workspace" OptionId="opt-execute-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-explain-issue-issue" OptionId="opt-explain-issue-issue">
+      <Token>--issue</Token>
+    </OptionToken>
+    <OptionToken Id="token-explain-issue-workspace" OptionId="opt-explain-issue-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-infer-description" OptionId="opt-infer-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-infer-output-connection-env" OptionId="option-infer-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-infer-output-csharp" OptionId="option-infer-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-infer-output-sql" OptionId="option-infer-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-infer-output-xml" OptionId="option-infer-output-xml">
+      <Token>--output-xml</Token>
+    </OptionToken>
+    <OptionToken Id="token-infer-pipeline-workspace" OptionId="opt-infer-pipeline-workspace">
+      <Token>--pipeline-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-inspect-run-plan-workspace" OptionId="opt-inspect-run-plan-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-inspect-workspace" OptionId="opt-inspect-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-list-issues-workspace" OptionId="opt-list-issues-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-refresh-run-plan-workspace" OptionId="opt-refresh-run-plan-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-set-lock-policy-behavior" OptionId="opt-set-lock-policy-behavior">
+      <Token>--behavior</Token>
+    </OptionToken>
+    <OptionToken Id="token-set-lock-policy-left-effect" OptionId="opt-set-lock-policy-left-effect">
+      <Token>--left-effect</Token>
+    </OptionToken>
+    <OptionToken Id="token-set-lock-policy-object" OptionId="opt-set-lock-policy-object">
+      <Token>--object</Token>
+    </OptionToken>
+    <OptionToken Id="token-set-lock-policy-reason" OptionId="opt-set-lock-policy-reason">
+      <Token>--reason</Token>
+    </OptionToken>
+    <OptionToken Id="token-set-lock-policy-right-effect" OptionId="opt-set-lock-policy-right-effect">
+      <Token>--right-effect</Token>
+    </OptionToken>
+    <OptionToken Id="token-set-lock-policy-workspace" OptionId="opt-set-lock-policy-workspace">
+      <Token>--workspace</Token>
     </OptionToken>
   </OptionTokenList>
 </MetaCli>

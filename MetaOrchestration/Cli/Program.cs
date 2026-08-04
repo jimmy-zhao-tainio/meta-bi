@@ -23,7 +23,10 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaOrchestrationModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-infer", handlers.RunInfer)
+            .Bind(
+                "exec-infer",
+                [MetaCliWorkspace.Create("output", "output-xml", "output-csharp", "output-sql", "output-connection-env")],
+                handlers.RunInferAsync)
             .Bind("exec-inspect", handlers.RunInspect)
             .Bind("exec-list-issues", handlers.RunListIssues)
             .Bind("exec-explain-issue", handlers.RunExplainIssue)

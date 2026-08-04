@@ -20,14 +20,9 @@ public sealed record AnalyticsRelationshipAssignment(
     string TargetEntityName,
     string TargetRecordId);
 
-public sealed record AnalyticsWorkspaceCreationResult(
-    string WorkspacePath,
-    string ModelName,
-    int RowCount);
-
 public interface IAnalyticsAuthoringService
 {
-    AnalyticsWorkspaceCreationResult CreateWorkspace(string workspacePath);
+    MetaAnalyticsModel CreateWorkspace();
 
     MetaAnalyticsModel AddRecord(AnalyticsAuthoringRequest request);
 }
@@ -38,13 +33,7 @@ public sealed class AnalyticsAuthoringService : IAnalyticsAuthoringService
 
     private static readonly Type ModelType = typeof(MetaAnalyticsModel);
 
-    public AnalyticsWorkspaceCreationResult CreateWorkspace(string workspacePath)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-
-        var fullPath = MetaAnalyticsTooling.CreateWorkspace(Path.GetFullPath(workspacePath));
-        return new AnalyticsWorkspaceCreationResult(fullPath, ModelName, RowCount: 0);
-    }
+    public MetaAnalyticsModel CreateWorkspace() => MetaAnalyticsModel.CreateEmpty();
 
     public MetaAnalyticsModel AddRecord(AnalyticsAuthoringRequest request)
     {

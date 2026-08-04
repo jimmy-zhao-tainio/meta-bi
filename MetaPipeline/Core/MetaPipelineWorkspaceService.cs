@@ -2,30 +2,16 @@ namespace MetaPipeline;
 
 public sealed class MetaPipelineWorkspaceService
 {
-    public MetaPipelineWorkspaceCreationResult CreateWorkspace(string workspacePath)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-
-        var fullPath = Path.GetFullPath(workspacePath);
-        Directory.CreateDirectory(fullPath);
-
-        var model = MetaPipelineModel.CreateEmpty();
-        model.SaveToXmlWorkspace(fullPath);
-
-        return new MetaPipelineWorkspaceCreationResult(fullPath);
-    }
+    public MetaPipelineModel CreateWorkspace() => MetaPipelineModel.CreateEmpty();
 
     public void AddPipeline(
         MetaPipelineModel model,
-        string workspacePath,
         string name,
         string description)
     {
         ArgumentNullException.ThrowIfNull(model);
-        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
 
-        var fullPath = Path.GetFullPath(workspacePath);
         EnsurePipelineNameAvailable(model, name);
 
         var pipeline = new Pipeline
@@ -35,7 +21,6 @@ public sealed class MetaPipelineWorkspaceService
             Description = description.Trim(),
         };
         model.PipelineList.Add(pipeline);
-        model.SaveToXmlWorkspace(fullPath);
     }
 
     public MetaPipelineWorkspaceInspectionResult Inspect(MetaPipelineModel model)
@@ -76,7 +61,6 @@ public sealed class MetaPipelineWorkspaceService
         ArgumentNullException.ThrowIfNull(model);
         ArgumentNullException.ThrowIfNull(request);
 
-        var workspacePath = Path.GetFullPath(request.WorkspacePath);
         var pipeline = ResolvePipeline(model, request.PipelineName);
         var taskName = ResolveExecutableStepName(request.StepName, request.ExecutablePath);
         EnsureTaskNameAvailable(model, pipeline, taskName);
@@ -106,7 +90,6 @@ public sealed class MetaPipelineWorkspaceService
             AddSerialDependency(model, pipeline, previousTerminalTask, task);
         }
 
-        model.SaveToXmlWorkspace(workspacePath);
     }
 
     public void AddStep(
@@ -116,7 +99,6 @@ public sealed class MetaPipelineWorkspaceService
         ArgumentNullException.ThrowIfNull(model);
         ArgumentNullException.ThrowIfNull(request);
 
-        var workspacePath = Path.GetFullPath(request.WorkspacePath);
         var pipeline = ResolvePipeline(model, request.PipelineName);
         var selection = new MetaPipelineTransformSelectionResolver().Resolve(
             request.TransformWorkspacePath,
@@ -177,7 +159,6 @@ public sealed class MetaPipelineWorkspaceService
                 AddSerialDependency(model, pipeline, previousTerminalTask, mutationTransformTask);
             }
 
-            model.SaveToXmlWorkspace(workspacePath);
             return;
         }
 
@@ -298,7 +279,6 @@ public sealed class MetaPipelineWorkspaceService
 
         AddSerialDependency(model, pipeline, transformTask, targetWritePipelineTask);
 
-        model.SaveToXmlWorkspace(workspacePath);
     }
 
     private static string RequireValue(string? value, string errorMessage) =>
@@ -661,7 +641,6 @@ public sealed record MetaPipelineTaskInspectionResult(
     string Label);
 
 public sealed record MetaPipelineAddExecutableStepRequest(
-    string WorkspacePath,
     string PipelineName,
     string StepName,
     string ExecutablePath,
@@ -673,7 +652,6 @@ public sealed record MetaPipelineAddExecutableStepRequest(
     bool TimeoutSecondsSpecified);
 
 public sealed record MetaPipelineAddStepRequest(
-    string WorkspacePath,
     string PipelineName,
     string StepName,
     string TransformWorkspacePath,

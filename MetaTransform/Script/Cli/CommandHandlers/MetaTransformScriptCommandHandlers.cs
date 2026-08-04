@@ -21,11 +21,15 @@ internal sealed class MetaTransformScriptCommandHandlers
         this.appName = appName;
     }
 
-    public async Task RunFromSqlFileAsync(MetaCliInvocation invocation)
+    public async Task RunFromSqlFileAsync(
+        MetaCliInvocation invocation,
+        MTS.MetaTransformScriptModel model,
+        MetaCliWorkspaces workspaces)
     {
         var path = invocation.Required("path");
         var targetSqlIdentifier = invocation.Optional("target");
-        var (newWorkspacePath, workspacePath) = ReadImportWorkspaceChoice(invocation);
+        var output = MetaCliWorkspace.OptionalOutputLocation(invocation);
+        var workspacePath = WorkspacePath(invocation);
         var fullPath = Path.GetFullPath(path);
         if (!File.Exists(fullPath))
         {
@@ -47,35 +51,14 @@ internal sealed class MetaTransformScriptCommandHandlers
 
         try
         {
-            if (!string.IsNullOrWhiteSpace(newWorkspacePath))
-            {
-                var targetValidation = CliNewWorkspaceTargetValidator.Validate(newWorkspacePath);
-                if (!targetValidation.Ok)
-                {
-                    Fail(
-                        targetValidation.ErrorMessage,
-                        "choose a new folder or empty the target directory and retry.",
-                        4,
-                        targetValidation.Details);
-                }
-
-                using var activity = CliActivityLine.Start("Importing");
-                await service.ImportSingleSqlFileToWorkspaceAsync(
-                        fullPath,
-                        targetSqlIdentifier,
-                        targetValidation.FullPath)
-                    .ConfigureAwait(false);
-                activity.Succeed();
-                return;
-            }
-
             using (var activity = CliActivityLine.Start("Importing"))
             {
-                await service.AddSqlFileToWorkspaceAsync(
-                        fullPath,
-                        targetSqlIdentifier,
-                        Path.GetFullPath(workspacePath!))
-                    .ConfigureAwait(false);
+                service.ImportSqlFile(model, fullPath, targetSqlIdentifier);
+                if (output is not null)
+                {
+                    await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+                }
+
                 activity.Succeed();
             }
         }
@@ -88,7 +71,7 @@ internal sealed class MetaTransformScriptCommandHandlers
                 [
                     $"  Path: {fullPath}",
                     $"  Target: {DisplayTarget(targetSqlIdentifier)}",
-                    $"  Workspace: {Path.GetFullPath(newWorkspacePath ?? workspacePath ?? string.Empty)}",
+                    $"  Workspace: {output ?? workspacePath}",
                     $"  {ex.Message}"
                 ]);
         }
@@ -101,16 +84,20 @@ internal sealed class MetaTransformScriptCommandHandlers
                 [
                     $"  Path: {fullPath}",
                     $"  Target: {DisplayTarget(targetSqlIdentifier)}",
-                    $"  Workspace: {Path.GetFullPath(newWorkspacePath ?? workspacePath ?? string.Empty)}",
+                    $"  Workspace: {output ?? workspacePath}",
                     $"  {ex.Message}"
                 ]);
         }
     }
 
-    public async Task RunFromSqlFilesAsync(MetaCliInvocation invocation)
+    public async Task RunFromSqlFilesAsync(
+        MetaCliInvocation invocation,
+        MTS.MetaTransformScriptModel model,
+        MetaCliWorkspaces workspaces)
     {
         var manifestPath = invocation.Required("manifest");
-        var (newWorkspacePath, workspacePath) = ReadImportWorkspaceChoice(invocation);
+        var output = MetaCliWorkspace.OptionalOutputLocation(invocation);
+        var workspacePath = WorkspacePath(invocation);
         var reportPath = invocation.Optional("report");
         var verbose = invocation.Flag("verbose");
         var manifestFullPath = Path.GetFullPath(manifestPath);
@@ -187,34 +174,12 @@ internal sealed class MetaTransformScriptCommandHandlers
                         delay: TimeSpan.Zero);
                 }
 
-                if (!string.IsNullOrWhiteSpace(newWorkspacePath))
-                {
-                    var targetValidation = CliNewWorkspaceTargetValidator.Validate(newWorkspacePath);
-                    if (!targetValidation.Ok)
-                    {
-                        liveLine?.Clear();
-                        liveLine = null;
-                        Fail(
-                            targetValidation.ErrorMessage,
-                            "choose a new folder or empty the target directory and retry.",
-                            4,
-                            targetValidation.Details);
-                    }
-
-                    result = await service.ImportSqlFilesToNewWorkspaceAsync(
-                            requests,
-                            targetValidation.FullPath,
-                            ReportProgress)
-                        .ConfigureAwait(false);
-                }
-                else
-                {
-                    result = await service.AddSqlFilesToWorkspaceAsync(
-                            requests,
-                            Path.GetFullPath(workspacePath!),
-                            ReportProgress)
-                        .ConfigureAwait(false);
-                }
+                result = await service.ImportSqlFilesAsync(
+                        requests,
+                        model,
+                        ReportProgress,
+                        CancellationToken.None)
+                    .ConfigureAwait(false);
 
                 liveLine?.Complete(BuildSqlFilesImportProgressLine(
                     result.Successes.Count + result.Failures.Count,
@@ -244,10 +209,15 @@ internal sealed class MetaTransformScriptCommandHandlers
                     BuildSqlFilesFailureDetails(result, reportPath));
             }
 
+            if (output is not null)
+            {
+                await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+            }
+
             presenter.WriteOk($"Imported {result.Successes.Count} SQL file{(result.Successes.Count == 1 ? string.Empty : "s")}");
             presenter.WriteKeyValueBlock("Workspace", [
                 ("Scripts", result.ScriptCount.ToString(CultureInfo.InvariantCulture)),
-                ("Path", result.WorkspacePath)
+                ("Path", output ?? workspacePath)
             ]);
             if (!string.IsNullOrWhiteSpace(reportPath))
             {
@@ -262,51 +232,32 @@ internal sealed class MetaTransformScriptCommandHandlers
                 4,
                 [
                     $"  Manifest: {manifestFullPath}",
-                    $"  Workspace: {Path.GetFullPath(newWorkspacePath ?? workspacePath ?? string.Empty)}",
+                    $"  Workspace: {output ?? workspacePath}",
                     $"  {ex.Message}"
                 ]);
         }
     }
 
-    public async Task RunFromSqlCodeAsync(MetaCliInvocation invocation)
+    public async Task RunFromSqlCodeAsync(
+        MetaCliInvocation invocation,
+        MTS.MetaTransformScriptModel model,
+        MetaCliWorkspaces workspaces)
     {
         var code = invocation.Required("code");
         var targetSqlIdentifier = invocation.Optional("target");
         var name = invocation.Optional("name");
-        var (newWorkspacePath, workspacePath) = ReadImportWorkspaceChoice(invocation);
+        var output = MetaCliWorkspace.OptionalOutputLocation(invocation);
+        var workspacePath = WorkspacePath(invocation);
         try
         {
-            if (!string.IsNullOrWhiteSpace(newWorkspacePath))
-            {
-                var targetValidation = CliNewWorkspaceTargetValidator.Validate(newWorkspacePath);
-                if (!targetValidation.Ok)
-                {
-                    Fail(
-                        targetValidation.ErrorMessage,
-                        "choose a new folder or empty the target directory and retry.",
-                        4,
-                        targetValidation.Details);
-                }
-
-                using var activity = CliActivityLine.Start("Importing");
-                await service.ImportFromSqlCodeToWorkspaceAsync(
-                        code,
-                        targetSqlIdentifier,
-                        targetValidation.FullPath,
-                        name)
-                    .ConfigureAwait(false);
-                activity.Succeed();
-                return;
-            }
-
             using (var activity = CliActivityLine.Start("Importing"))
             {
-                await service.AddSqlCodeToWorkspaceAsync(
-                        code,
-                        targetSqlIdentifier,
-                        Path.GetFullPath(workspacePath!),
-                        name)
-                    .ConfigureAwait(false);
+                service.ImportSqlCode(model, code, targetSqlIdentifier, name);
+                if (output is not null)
+                {
+                    await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+                }
+
                 activity.Succeed();
             }
         }
@@ -318,7 +269,7 @@ internal sealed class MetaTransformScriptCommandHandlers
                 4,
                 [
                     $"  Target: {DisplayTarget(targetSqlIdentifier)}",
-                    $"  Workspace: {Path.GetFullPath(newWorkspacePath ?? workspacePath ?? string.Empty)}",
+                    $"  Workspace: {output ?? workspacePath}",
                     $"  {ex.Message}"
                 ]);
         }
@@ -330,7 +281,7 @@ internal sealed class MetaTransformScriptCommandHandlers
                 4,
                 [
                     $"  Target: {DisplayTarget(targetSqlIdentifier)}",
-                    $"  Workspace: {Path.GetFullPath(newWorkspacePath ?? workspacePath ?? string.Empty)}",
+                    $"  Workspace: {output ?? workspacePath}",
                     $"  {ex.Message}"
                 ]);
         }
@@ -385,9 +336,10 @@ internal sealed class MetaTransformScriptCommandHandlers
         }
     }
 
-    public async Task RunTargetIdentifiersFromPatternAsync(MetaCliInvocation invocation)
+    public void RunTargetIdentifiersFromPattern(
+        MetaCliInvocation invocation,
+        MTS.MetaTransformScriptModel model)
     {
-        var workspacePath = WorkspacePath(invocation);
         var sourcePattern = invocation.Required("source-pattern");
         var targetPattern = invocation.Required("target-pattern");
         var onlyMissing = invocation.Flag("only-missing");
@@ -396,13 +348,12 @@ internal sealed class MetaTransformScriptCommandHandlers
         var verbose = invocation.Flag("verbose");
         try
         {
-            var result = await service.UpdateTargetIdentifiersFromPatternAsync(
-                    workspacePath,
-                    sourcePattern,
-                    targetPattern,
-                    onlyMissing,
-                    dryRun)
-                .ConfigureAwait(false);
+            var result = service.UpdateTargetIdentifiersFromPattern(
+                model,
+                sourcePattern,
+                targetPattern,
+                onlyMissing,
+                dryRun);
 
             if (result.UpdatedCount == 0 && !allowEmpty)
             {
@@ -411,7 +362,6 @@ internal sealed class MetaTransformScriptCommandHandlers
                     "adjust --source-pattern/--target-pattern or pass --allow-empty when no updates are expected.",
                     4,
                     [
-                        $"  Workspace: {workspacePath}",
                         $"  SourcePattern: {sourcePattern}",
                         $"  TargetPattern: {targetPattern}",
                         $"  Scripts: {result.ScriptCount}",
@@ -430,8 +380,7 @@ internal sealed class MetaTransformScriptCommandHandlers
                 ("Matched", result.MatchedCount.ToString(CultureInfo.InvariantCulture)),
                 ("Updated", result.UpdatedCount.ToString(CultureInfo.InvariantCulture)),
                 ("ExistingSkipped", result.SkippedExistingCount.ToString(CultureInfo.InvariantCulture)),
-                ("Unchanged", result.UnchangedCount.ToString(CultureInfo.InvariantCulture)),
-                ("Workspace", result.WorkspacePath)
+                ("Unchanged", result.UnchangedCount.ToString(CultureInfo.InvariantCulture))
             ]);
 
             if (verbose || dryRun)
@@ -450,7 +399,6 @@ internal sealed class MetaTransformScriptCommandHandlers
                 "check the workspace, patterns, and target identifier shape, then retry.",
                 4,
                 [
-                    $"  Workspace: {workspacePath}",
                     $"  SourcePattern: {sourcePattern}",
                     $"  TargetPattern: {targetPattern}",
                     $"  {ex.Message}"
@@ -458,22 +406,21 @@ internal sealed class MetaTransformScriptCommandHandlers
         }
     }
 
-    public async Task RunStoredProcedureViewContractAsync(MetaCliInvocation invocation)
+    public void RunStoredProcedureViewContract(
+        MetaCliInvocation invocation,
+        MTS.MetaTransformScriptModel model)
     {
-        var workspacePath = WorkspacePath(invocation);
         try
         {
-            var result = await service.InspectStoredProcedureContractsAsync(
-                    workspacePath,
-                    invocation.Optional("name"))
-                .ConfigureAwait(false);
+            var result = service.InspectStoredProcedureContracts(
+                model,
+                invocation.Optional("name"));
 
             presenter.WriteInfo($"Stored procedures: {result.StoredProcedureCount}");
             presenter.WriteKeyValueBlock("Contracts", [
                 ("Present", result.ContractedCount.ToString(CultureInfo.InvariantCulture)),
                 ("Missing", result.MissingContractCount.ToString(CultureInfo.InvariantCulture)),
-                ("Invalid", result.InvalidContractCount.ToString(CultureInfo.InvariantCulture)),
-                ("Workspace", result.WorkspacePath)
+                ("Invalid", result.InvalidContractCount.ToString(CultureInfo.InvariantCulture))
             ]);
 
             foreach (var item in result.Items)
@@ -487,22 +434,19 @@ internal sealed class MetaTransformScriptCommandHandlers
                 "Cannot view stored procedure contracts.",
                 "check the workspace path and optional --name value, then retry.",
                 4,
-                [$"  Workspace: {workspacePath}", $"  {ex.Message}"]);
+                [$"  {ex.Message}"]);
         }
     }
 
-    public async Task RunStoredProcedureAddContractAsync(MetaCliInvocation invocation)
+    public void RunStoredProcedureAddContract(
+        MetaCliInvocation invocation,
+        MTS.MetaTransformScriptModel model)
     {
-        var workspacePath = WorkspacePath(invocation);
         var name = invocation.Required("name");
         try
         {
             var declaration = ReadStoredProcedureDeclaration(invocation);
-            var result = await service.AddStoredProcedureContractAsync(
-                    workspacePath,
-                    name,
-                    declaration)
-                .ConfigureAwait(false);
+            var result = service.AddStoredProcedureContract(model, name, declaration);
 
             presenter.WriteInfo($"Stored procedure contract written: {result.Item.TransformScriptName}");
             presenter.WriteKeyValueBlock("Declared", [
@@ -511,8 +455,7 @@ internal sealed class MetaTransformScriptCommandHandlers
                 ("Writes", result.Item.WriteOperationCount.ToString(CultureInfo.InvariantCulture)),
                 ("Calls", result.Item.CallOperationCount.ToString(CultureInfo.InvariantCulture)),
                 ("ResultRowsets", result.Item.ResultRowsetCount.ToString(CultureInfo.InvariantCulture)),
-                ("ResultColumns", result.Item.ResultColumnCount.ToString(CultureInfo.InvariantCulture)),
-                ("Workspace", result.WorkspacePath)
+                ("ResultColumns", result.Item.ResultColumnCount.ToString(CultureInfo.InvariantCulture))
             ]);
         }
         catch (Exception ex) when (ex is not MetaCliExitException)
@@ -521,26 +464,25 @@ internal sealed class MetaTransformScriptCommandHandlers
                 "Cannot add stored procedure contract.",
                 "check the workspace, transform script name, and declaration options, then retry.",
                 4,
-                [$"  Workspace: {workspacePath}", $"  Name: {name}", $"  {ex.Message}"]);
+                [$"  Name: {name}", $"  {ex.Message}"]);
         }
     }
 
-    public async Task RunStoredProcedureRemoveContractAsync(MetaCliInvocation invocation)
+    public void RunStoredProcedureRemoveContract(
+        MetaCliInvocation invocation,
+        MTS.MetaTransformScriptModel model)
     {
-        var workspacePath = WorkspacePath(invocation);
         var name = invocation.Required("name");
         try
         {
-            var result = await service.RemoveStoredProcedureContractAsync(workspacePath, name)
-                .ConfigureAwait(false);
+            var result = service.RemoveStoredProcedureContract(model, name);
 
             presenter.WriteInfo($"Stored procedure contract removed: {result.TransformScriptName}");
             presenter.WriteKeyValueBlock("Removed", [
                 ("Contracts", result.ContractCount.ToString(CultureInfo.InvariantCulture)),
                 ("Operations", result.OperationCount.ToString(CultureInfo.InvariantCulture)),
                 ("ResultRowsets", result.ResultRowsetCount.ToString(CultureInfo.InvariantCulture)),
-                ("ResultColumns", result.ResultColumnCount.ToString(CultureInfo.InvariantCulture)),
-                ("Workspace", result.WorkspacePath)
+                ("ResultColumns", result.ResultColumnCount.ToString(CultureInfo.InvariantCulture))
             ]);
         }
         catch (Exception ex)
@@ -549,12 +491,9 @@ internal sealed class MetaTransformScriptCommandHandlers
                 "Cannot remove stored procedure contract.",
                 "check the workspace and transform script name, then retry.",
                 4,
-                [$"  Workspace: {workspacePath}", $"  Name: {name}", $"  {ex.Message}"]);
+                [$"  Name: {name}", $"  {ex.Message}"]);
         }
     }
-
-    private static (string? NewWorkspacePath, string? WorkspacePath) ReadImportWorkspaceChoice(MetaCliInvocation invocation) =>
-        (invocation.Optional("new-workspace"), invocation.Optional("workspace"));
 
     private static string WorkspacePath(MetaCliInvocation invocation)
     {

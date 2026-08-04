@@ -37,7 +37,7 @@ public sealed class MetaTransformScriptCliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--path <file.sql>", result.Output);
         Assert.Contains("--target <sql-identifier>", result.Output);
-        Assert.Contains("--new-workspace <path>", result.Output);
+        Assert.Contains("--output-xml <path>", result.Output);
         Assert.Contains("--workspace <path>", result.Output);
     }
 
@@ -55,15 +55,6 @@ public sealed class MetaTransformScriptCliTests
     }
 
     [Fact]
-    public void FromSqlCode_WhenWorkspaceChoiceIsMissing_FailsInMetaCliParser()
-    {
-        var result = RunCli("from sql-code --code \"SELECT 1 AS A\"");
-
-        Assert.Equal(2, result.ExitCode);
-        Assert.Contains("Parameter group 'workspace-target' requires one of: new-workspace, workspace.", result.Output);
-    }
-
-    [Fact]
     public void FromSqlCode_CreatesWorkspace_AndToSqlCodeDefaultsWorkspaceToCurrentDirectory()
     {
         var root = CreateTempRoot();
@@ -71,7 +62,7 @@ public sealed class MetaTransformScriptCliTests
         {
             var workspacePath = Path.Combine(root, "TransformWS");
             var create = RunCli(
-                $"from sql-code --code \"CREATE VIEW dbo.v_test AS SELECT 1 AS A\" --new-workspace \"{workspacePath}\"");
+                $"from sql-code --code \"CREATE VIEW dbo.v_test AS SELECT 1 AS A\" --output-xml \"{workspacePath}\"");
 
             Assert.Equal(0, create.ExitCode);
             Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.xml")));
