@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meta.Adapters" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
   </ItemGroup>
   <ItemGroup>

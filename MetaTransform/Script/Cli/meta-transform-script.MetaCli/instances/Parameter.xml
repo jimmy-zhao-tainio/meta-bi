@@ -18,15 +18,15 @@
       <Name>output-connection-env</Name>
     </Parameter>
     <Parameter Id="param-from-sql-code-output-csharp" ValueShapeId="shape-path">
-      <Description>Create the output on the csharp workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-csharp</Name>
     </Parameter>
     <Parameter Id="param-from-sql-code-output-sql" ValueShapeId="shape-path">
-      <Description>Create the output on the sql workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-sql</Name>
     </Parameter>
     <Parameter Id="param-from-sql-code-output-xml" ValueShapeId="shape-path">
-      <Description>Create the output on the xml workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-from-sql-code-target" ValueShapeId="shape-sql-identifier">
@@ -46,15 +46,15 @@
       <Name>output-connection-env</Name>
     </Parameter>
     <Parameter Id="param-from-sql-file-output-csharp" ValueShapeId="shape-path">
-      <Description>Create the output on the csharp workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-csharp</Name>
     </Parameter>
     <Parameter Id="param-from-sql-file-output-sql" ValueShapeId="shape-path">
-      <Description>Create the output on the sql workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-sql</Name>
     </Parameter>
     <Parameter Id="param-from-sql-file-output-xml" ValueShapeId="shape-path">
-      <Description>Create the output on the xml workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-from-sql-file-path" ValueShapeId="shape-sql-file">
@@ -86,15 +86,15 @@
       <Name>output-connection-env</Name>
     </Parameter>
     <Parameter Id="param-from-sql-files-output-csharp" ValueShapeId="shape-path">
-      <Description>Create the output on the csharp workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-csharp</Name>
     </Parameter>
     <Parameter Id="param-from-sql-files-output-sql" ValueShapeId="shape-path">
-      <Description>Create the output on the sql workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-sql</Name>
     </Parameter>
     <Parameter Id="param-from-sql-files-output-xml" ValueShapeId="shape-path">
-      <Description>Create the output on the xml workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-from-sql-files-report" ValueShapeId="shape-path">

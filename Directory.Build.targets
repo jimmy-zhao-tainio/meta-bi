@@ -12,8 +12,13 @@
     <ProjectReference Include="$(MetaRepoRoot)Meta\Core\Meta.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition="Exists('$(MetaRepoRoot)Meta\Adapters\Meta.Adapters.csproj')">
-    <PackageReference Remove="Meta.Adapters" />
-    <ProjectReference Include="$(MetaRepoRoot)Meta\Adapters\Meta.Adapters.csproj" />
+  <ItemGroup Condition="Exists('$(MetaRepoRoot)Meta\Surfaces\Meta.Surfaces.csproj')">
+    <PackageReference Remove="Meta.Surfaces" />
+    <ProjectReference Include="$(MetaRepoRoot)Meta\Surfaces\Meta.Surfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('$(MetaRepoRoot)Meta\Integration\Meta.Integration.csproj')">
+    <PackageReference Remove="Meta.Integration" />
+    <ProjectReference Include="$(MetaRepoRoot)Meta\Integration\Meta.Integration.csproj" />
   </ItemGroup>
 </Project>

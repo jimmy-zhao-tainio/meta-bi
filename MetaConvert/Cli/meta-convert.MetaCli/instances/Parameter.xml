@@ -108,15 +108,15 @@
       <Name>output-connection-env</Name>
     </Parameter>
     <Parameter Id="param-schema-to-raw-datavault-output-csharp" ValueShapeId="shape-workspace-location">
-      <Description>Create the output on the csharp workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-csharp</Name>
     </Parameter>
     <Parameter Id="param-schema-to-raw-datavault-output-sql" ValueShapeId="shape-workspace-location">
-      <Description>Create the output on the sql workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-sql</Name>
     </Parameter>
     <Parameter Id="param-schema-to-raw-datavault-output-xml" ValueShapeId="shape-workspace-location">
-      <Description>Create the output on the xml workspace surface.</Description>
+      <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-schema-to-raw-datavault-source-workspace" ValueShapeId="shape-workspace-location">
