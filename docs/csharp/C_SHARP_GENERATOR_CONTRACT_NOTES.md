@@ -5,8 +5,8 @@ It avoids machine-local paths and keeps the focus on reproducible repository con
 
 ## Workspace Arguments
 
-`meta generate csharp` expects `--workspace` to point at the workspace directory that contains `workspace.xml` and `model.xml`.
-Passing the `workspace.xml` file path directly is invalid.
+The C# workspace surface is selected by `workspace.meta`; the workspace directory also contains the model and emitted C# sources.
+Passing a metadata file path directly is invalid.
 
 Correct shape:
 

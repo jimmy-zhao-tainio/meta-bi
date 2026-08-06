@@ -281,10 +281,10 @@ function Copy-SanctionedWorkspace {
 
     $sourceWorkspace = Join-Path $repoRoot $Source
     $targetWorkspace = Join-Path $payloadDir $Target
-    $workspaceXml = Join-Path $sourceWorkspace 'workspace.xml'
+    $workspaceMeta = Join-Path $sourceWorkspace 'workspace.meta'
     $modelXml = Join-Path $sourceWorkspace 'model.xml'
-    if (-not (Test-Path -LiteralPath $workspaceXml)) {
-        throw "Missing sanctioned workspace.xml: $sourceWorkspace"
+    if (-not (Test-Path -LiteralPath $workspaceMeta)) {
+        throw "Missing sanctioned workspace.meta: $sourceWorkspace"
     }
     if (-not (Test-Path -LiteralPath $modelXml)) {
         throw "Missing sanctioned model.xml: $sourceWorkspace"
@@ -292,7 +292,7 @@ function Copy-SanctionedWorkspace {
 
     Write-Host "Copying sanctioned workspace: $Target"
     New-Item -ItemType Directory -Path $targetWorkspace -Force | Out-Null
-    Copy-Item -LiteralPath $workspaceXml -Destination (Join-Path $targetWorkspace 'workspace.xml') -Force
+    Copy-Item -LiteralPath $workspaceMeta -Destination (Join-Path $targetWorkspace 'workspace.meta') -Force
     Copy-Item -LiteralPath $modelXml -Destination (Join-Path $targetWorkspace 'model.xml') -Force
 
     $sourceInstances = Join-Path $sourceWorkspace 'instances'

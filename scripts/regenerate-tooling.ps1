@@ -147,8 +147,8 @@ foreach ($target in $selectedTargets) {
     Assert-PathInside -Path $workspacePath -Root $script:RepoRoot -Description "Workspace path for '$($target.Name)'"
     Assert-CanonicalToolingOutput -Target $target -OutputPath $outputPath
 
-    if (-not (Test-Path (Join-Path $workspacePath "workspace.xml"))) {
-        throw "Workspace '$($target.Name)' is missing workspace.xml at '$workspacePath'."
+    if (-not (Test-Path (Join-Path $workspacePath "workspace.meta"))) {
+        throw "Workspace '$($target.Name)' is missing workspace.meta at '$workspacePath'."
     }
 
     if (-not (Test-Path (Join-Path $workspacePath "model.xml"))) {

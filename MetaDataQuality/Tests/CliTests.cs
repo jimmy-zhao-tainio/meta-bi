@@ -62,7 +62,7 @@ public sealed class CliTests
             Assert.DoesNotContain("Ok", generated.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("Run This First:", generated.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("Review The Results:", generated.Output, StringComparison.Ordinal);
-            Assert.True(File.Exists(Path.Combine(qualityWorkspacePath, "workspace.xml")));
+            Assert.True(File.Exists(Path.Combine(qualityWorkspacePath, "workspace.meta")));
             Assert.True(File.Exists(Path.Combine(qualityWorkspacePath, "model.xml")));
 
             var model = MetaDataQualityModel.LoadFromXmlWorkspace(qualityWorkspacePath, searchUpward: false);

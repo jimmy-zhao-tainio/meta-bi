@@ -17,7 +17,7 @@ Use it as a first-class constraint, not an optional note.
 
 - `meta` is representation-symmetric metadata, not XML-canonical metadata.
 - XML workspace/model/instance files are one deterministic working surface:
-  - `workspace.xml`
+  - `workspace.meta`
   - `model.xml`
   - `instances/*.xml`
 - XML, SQL, C#, and future forms should be able to carry the same structure without semantic drift.

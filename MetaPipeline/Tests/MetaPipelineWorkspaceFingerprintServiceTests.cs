@@ -61,7 +61,9 @@ public sealed class MetaPipelineWorkspaceFingerprintServiceTests
     private static void WriteWorkspace(string workspacePath, string marker)
     {
         Directory.CreateDirectory(Path.Combine(workspacePath, "instances"));
-        File.WriteAllText(Path.Combine(workspacePath, "workspace.xml"), "<Workspace />");
+        File.WriteAllText(
+            Path.Combine(workspacePath, "workspace.meta"),
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<MetaWorkspace representation=\"xml\" location=\".\" />\n");
         File.WriteAllText(Path.Combine(workspacePath, "model.xml"), "<Model />");
         File.WriteAllText(Path.Combine(workspacePath, "instances", "Thing.xml"), "<ThingList><Thing Id=\"" + marker + "\" /></ThingList>");
     }

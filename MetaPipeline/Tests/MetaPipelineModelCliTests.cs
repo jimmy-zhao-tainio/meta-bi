@@ -206,7 +206,7 @@ public sealed class MetaPipelineModelCliTests
 
             Assert.Equal(0, created.ExitCode);
             Assert.Contains("Ok", created.Output, StringComparison.Ordinal);
-            Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.xml")));
+            Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.meta")));
             Assert.True(File.Exists(Path.Combine(workspacePath, "model.xml")));
 
             var addPipeline = RunCli($"add-pipeline --workspace \"{workspacePath}\" --name CustomerLoad --description \"Customer load\"");

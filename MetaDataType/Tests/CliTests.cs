@@ -45,7 +45,7 @@ public sealed class CliTests
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("MetaDataType workspace created:", result.Output);
-            Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.xml")));
+            Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.meta")));
             Assert.True(File.Exists(Path.Combine(workspacePath, "model.xml")));
             
             var typeXml = File.ReadAllText(Path.Combine(workspacePath, "instances", "DataType.xml"));

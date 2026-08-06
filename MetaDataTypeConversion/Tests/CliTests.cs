@@ -50,7 +50,7 @@ public sealed class CliTests
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("Ok", result.Output);
-            Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.xml")));
+            Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.meta")));
             Assert.True(File.Exists(Path.Combine(workspacePath, "model.xml")));
         }
         finally

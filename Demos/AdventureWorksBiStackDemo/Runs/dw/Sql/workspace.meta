@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<MetaWorkspace>
+<MetaWorkspace representation="xml" location=".">
   <WorkspaceList>
     <Workspace Id="1" WorkspaceLayoutId="1" EncodingId="1" NewlinesId="1" EntitiesOrderId="1" PropertiesOrderId="1" RelationshipsOrderId="1" RowsOrderId="2" AttributesOrderId="3">
-      <Name>MetaPipeline</Name>
+      <Name>Workspace</Name>
       <FormatVersion>1.0</FormatVersion>
     </Workspace>
   </WorkspaceList>

@@ -114,8 +114,8 @@ public sealed class CliTests
             var result = RunCli("add-model --id Commerce --name Commerce", workingDirectory: path);
 
             Assert.Equal(4, result.ExitCode);
-            Assert.Contains("does not contain workspace.xml", result.Output);
-            Assert.False(File.Exists(Path.Combine(path, "workspace.xml")));
+            Assert.Contains("does not contain workspace.meta", result.Output);
+            Assert.False(File.Exists(Path.Combine(path, "workspace.meta")));
             Assert.False(File.Exists(Path.Combine(path, "model.xml")));
             Assert.False(Directory.Exists(Path.Combine(path, "instances")));
         }

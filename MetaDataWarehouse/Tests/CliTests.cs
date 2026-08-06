@@ -41,7 +41,7 @@ public sealed class CliTests
             var create = RunCli($"create --xml \"{path}\"");
             Assert.Equal(0, create.ExitCode);
             Assert.Contains("MetaDataWarehouse workspace created", create.Output);
-            Assert.True(File.Exists(Path.Combine(path, "workspace.xml")));
+            Assert.True(File.Exists(Path.Combine(path, "workspace.meta")));
             Assert.True(File.Exists(Path.Combine(path, "model.xml")));
 
             Assert.Equal(0, RunCli($"add-warehouse --workspace \"{path}\" --id Commerce --name Commerce").ExitCode);

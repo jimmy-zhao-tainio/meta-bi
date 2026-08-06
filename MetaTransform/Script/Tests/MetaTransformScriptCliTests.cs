@@ -65,7 +65,7 @@ public sealed class MetaTransformScriptCliTests
                 $"from sql-code --code \"CREATE VIEW dbo.v_test AS SELECT 1 AS A\" --output-xml \"{workspacePath}\"");
 
             Assert.Equal(0, create.ExitCode);
-            Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.xml")));
+            Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.meta")));
 
             var export = RunCli("to sql-code", workingDirectory: workspacePath);
 
