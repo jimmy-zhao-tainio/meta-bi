@@ -42,7 +42,7 @@ To build a slower, larger package optimized for CLI startup time, add:
 cmd /c MetaInstaller\Installer\package-offline.cmd -ReadyToRun
 ```
 
-The `meta-bi` package script expects the sibling upstream repo at `../meta` and packs fresh local `Meta.Core` / `Meta.Adapters` packages for the release restore. Use `-MetaRepo <path>` if the upstream repo is elsewhere.
+The `meta-bi` package script expects the sibling upstream repo at `../meta` and packs fresh local foundation packages for the release restore. Use `-MetaRepo <path>` if the upstream repo is elsewhere.
 
 Produces:
 

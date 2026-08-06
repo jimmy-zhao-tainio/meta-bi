@@ -62,9 +62,9 @@ Use it as a first-class constraint, not an optional note.
 - Prefer small staged deliverables.
 - Every substantial task should end with explicit acceptance criteria.
 - Verify with the actual sanctioned artifact whenever possible:
-  - generated `model.xml`
-  - generated workspace
-  - generated tooling
+  - `model.xml`
+  - `workspace.meta`
+  - typed workspace sources
   - representative run output
 - Do not wander into broad side reports, catalog dumps, or "interesting artifact" detours unless the task explicitly asks for them.
 - If docs, code, and generated artifacts disagree, stop and reconcile before building more on top.

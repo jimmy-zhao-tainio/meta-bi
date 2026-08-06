@@ -15,7 +15,8 @@ It stores:
 - failure records for validation, configuration, connection, runtime, and unexpected failures
 
 It does not store sanctioned model truth.
-The modeled metadata surfaces remain XML workspaces, SQL, and generated C#.
+The modeled metadata surfaces remain XML workspaces, SQL workspaces, and C#
+workspaces.
 XML is one deterministic workspace surface, not a semantic authority above SQL or C#.
 
 ## Bootstrap

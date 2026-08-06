@@ -108,7 +108,9 @@ If two surfaces disagree, reconcile before extending the model.
 Do not treat a standalone `check` command as product truth.
 
 The first integrity judge is relationship / referential integrity in the modeled instance graph.
-The stronger product judge is isomorphism: the represented structure must survive projection into sanctioned surfaces such as generated C# and SQL without semantic drift.
+The stronger product judge is isomorphism: the represented structure must
+survive projection into sanctioned surfaces such as C# workspaces and SQL
+without semantic drift.
 
 XML is one deterministic working surface, not the semantic authority.
 A workspace can be mechanically jumbled as XML and still be acceptable if it loads, binds, and round-trips through the modeled surfaces correctly.

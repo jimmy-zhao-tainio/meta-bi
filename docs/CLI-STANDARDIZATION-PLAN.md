@@ -12,9 +12,9 @@ Every production CLI should converge on the same small architecture:
 - `Cli/<executable>.MetaCli`
   - authored command surface
   - command grammar, parameters, help shape, and parser facts
-- generated tooling
+- typed workspace sources
   - MetaCli tooling loads the command-surface workspace
-  - domain tooling loads and saves the domain workspace model
+  - domain C# sources load and save the domain workspace model
 - CLI command handlers
   - read `MetaCliInvocation`
   - map invocation values into domain request objects
@@ -145,5 +145,5 @@ Stop and call it out when:
 - a service still depends on generic `Meta.Core.Domain.Workspace` for primary domain behavior
 - a CLI needs custom parser behavior that should be modeled or added to MetaCli runtime
 - a handler grows beyond adapter/presenter work
-- a model or generated tooling boundary blocks a clean typed service
+- a model or C# workspace boundary blocks a clean typed service
 - docs, generated artifacts, and source disagree

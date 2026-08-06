@@ -1,56 +1,36 @@
-# C# Generator Contract Notes
+# C# Workspace Surface Notes
 
-This note records stable lessons from the generated C# tooling alignment work.
-It avoids machine-local paths and keeps the focus on reproducible repository contracts.
+This note records the current C# workspace contract. C# is a workspace
+surface, not a separate product workflow built around a special output mode.
 
-## Workspace Arguments
+## Workspace Shape
 
-The C# workspace surface is selected by `workspace.meta`; the workspace directory also contains the model and emitted C# sources.
-Passing a metadata file path directly is invalid.
+A C# workspace is a directory containing the C# sources that describe one
+model and its instance graph, together with its `workspace.meta` descriptor.
+The descriptor identifies the C# surface. The sources are ordinary C# and may
+be produced by a tool or maintained by an application; the workspace contract
+does not depend on how they were authored.
 
-Correct shape:
+## In-Memory Integrity
 
-```cmd
-meta generate csharp --workspace MetaSchema\Workspaces\MetaSchema --out MetaSchema\Tooling\MetaSchema --tooling
-```
+Object references are the natural C# representation of relationships. Identity
+values are persistence and transport details used to reconstruct those
+references. Consumers should work with the references exposed by the typed
+model rather than treating relationship identity fields as the primary object
+model.
 
-## Output Shape
+The C# surface reads the sources into the shared semantic workspace state and
+writes them back from that state. A write reads the published sources again and
+rejects a semantic difference before completing.
 
-Generated tooling output must land under the model-specific tooling folder, for example:
+## Review Boundary
 
-```text
-MetaSchema\Tooling\MetaSchema
-```
+Roslyn is an implementation authority used by the C# reader where C# syntax
+must be understood. It is not a customer-facing feature of the Meta product.
+The important contract is that the C# surface preserves the same modeled
+structure as the XML and SQL surfaces.
 
-Avoid flat output directly under `Tooling`; it can leave generated model files and generated project files out of sync.
-
-Use the repository wrapper for regeneration:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts\regenerate-tooling.ps1 -Project MetaSchema
-```
-
-The wrapper pins canonical output paths and can build the generated tooling against locally packed foundation packages.
-
-## C# Integrity Surface
-
-Generated public C# model APIs use object references as the in-memory integrity surface.
-XML identity attributes are serializer transport, not normal authoring API.
-
-Consumer code should assign and traverse relationship references:
-
-```csharp
-row.DataTypeSystem = dataTypeSystem;
-var systemName = row.DataTypeSystem.Name;
-```
-
-Avoid authoring through relationship transport names such as `DataTypeSystemId`, `TableId`, `PrimaryKeyId`, or similar generated XML projection details.
-
-## Verification Pattern
-
-For a bounded generator/tooling change:
-
-1. Regenerate through `scripts\regenerate-tooling.ps1`.
-2. Build the affected generated tooling project.
-3. Run the smallest relevant test project using the same local package source.
-4. Expand to dependent projects only after the direct model contract is green.
+When reviewing a C# workspace change, verify the semantic round trip through
+the current C# reader and writer, then run the affected product integration
+test. Use the current workspace creation and surface commands rather than
+superseded C# output instructions.

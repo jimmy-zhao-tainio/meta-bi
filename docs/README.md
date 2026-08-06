@@ -9,10 +9,10 @@
 - [CLI interaction wall](cli/CLI-INTERACTION-WALL.md)
 - [Modeling guardrails](META-MODELING-GUARDRAILS.md)
 
-## C# Tooling
+## C# Workspace Surface
 
 - [C# integrity non-negotiable](csharp/ISOMORPHISM-C_SHARP-INTEGRITY-NON-NEGOTIABLE.md)
-- [C# generator contract notes](csharp/C_SHARP_GENERATOR_CONTRACT_NOTES.md)
+- [C# workspace surface notes](csharp/C_SHARP_GENERATOR_CONTRACT_NOTES.md)
 
 ## Domain Notes
 
