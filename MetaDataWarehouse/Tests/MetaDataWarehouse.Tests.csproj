@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
+    <ProjectReference Include="..\Cli\MetaDataWarehouse.Cli.csproj" />
     <ProjectReference Include="..\Instance\MetaDataWarehouse.Instance.csproj" />
     <ProjectReference Include="..\..\MetaConvert\DataWarehouseToSql\MetaConvert.DataWarehouseToSql.csproj" />
   </ItemGroup>

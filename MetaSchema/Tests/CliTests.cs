@@ -431,7 +431,7 @@ public sealed class CliTests
     }
 
     private static (int ExitCode, string Output) RunCli(string arguments) =>
-        CliTestRunner.RunStandardCli("MetaSchema", "meta-schema.exe", arguments);
+        CliTestRunner.RunStandardCli("meta-schema", arguments);
 
     private static void CreateDatabase(string masterConnectionString, string databaseName)
     {

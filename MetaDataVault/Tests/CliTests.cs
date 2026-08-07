@@ -526,16 +526,7 @@ public sealed partial class CliTests
     private static (int ExitCode, string Output) RunRawCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();
-        var startInfo = new ProcessStartInfo
-        {
-            FileName = CliTestSupport.RequireBuiltCli(repoRoot, "MetaDataVault", "Cli", "Raw", "bin", "Debug", "net8.0", "meta-datavault-raw.exe"),
-            Arguments = arguments,
-            WorkingDirectory = repoRoot,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false,
-            CreateNoWindow = true,
-        };
+        var startInfo = CliTestSupport.CreateManagedCliStartInfo("meta-datavault-raw", arguments, repoRoot);
 
         return RunProcess(startInfo, "Could not start DataVault CLI process.");
     }
@@ -590,32 +581,17 @@ public sealed partial class CliTests
     private static (int ExitCode, string Output) RunBusinessCli(string arguments, string? workingDirectory = null)
     {
         var repoRoot = FindRepositoryRoot();
-        var startInfo = new ProcessStartInfo
-        {
-            FileName = CliTestSupport.RequireBuiltCli(repoRoot, "MetaDataVault", "Cli", "Business", "bin", "Debug", "net8.0", "meta-datavault-business.exe"),
-            Arguments = arguments,
-            WorkingDirectory = workingDirectory ?? repoRoot,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false,
-            CreateNoWindow = true,
-        };
+        var startInfo = CliTestSupport.CreateManagedCliStartInfo(
+            "meta-datavault-business",
+            arguments,
+            workingDirectory ?? repoRoot);
         return RunProcess(startInfo, "Could not start DataVault CLI process.");
     }
 
     private static (int ExitCode, string Output) RunMetaConvertCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();
-        var startInfo = new ProcessStartInfo
-        {
-            FileName = CliTestSupport.RequireBuiltCli(repoRoot, "MetaConvert", "Cli", "bin", "Debug", "net8.0", "meta-convert.exe"),
-            Arguments = arguments,
-            WorkingDirectory = repoRoot,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false,
-            CreateNoWindow = true,
-        };
+        var startInfo = CliTestSupport.CreateManagedCliStartInfo("meta-convert", arguments, repoRoot);
 
         return RunProcess(startInfo, "Could not start MetaConvert CLI process.");
     }

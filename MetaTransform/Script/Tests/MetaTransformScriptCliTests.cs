@@ -81,8 +81,7 @@ public sealed class MetaTransformScriptCliTests
 
     private static (int ExitCode, string Output) RunCli(string arguments, string? workingDirectory = null) =>
         CliTestRunner.RunStandardCli(
-            Path.Combine("MetaTransform", "Script"),
-            "meta-transform-script.exe",
+            "meta-transform-script",
             arguments,
             workingDirectory: workingDirectory);
 

@@ -567,7 +567,7 @@ public sealed class MetaPipelineModelCliTests
     }
 
     private static (int ExitCode, string Output) RunCli(string arguments, string? workingDirectory = null) =>
-        CliTestRunner.RunStandardCli("MetaPipeline", "meta-pipeline.exe", arguments, workingDirectory: workingDirectory);
+        CliTestRunner.RunStandardCli("meta-pipeline", arguments, workingDirectory: workingDirectory);
 
     private static string ResolveCmdExe() =>
         Environment.GetEnvironmentVariable("ComSpec") ?? "cmd.exe";

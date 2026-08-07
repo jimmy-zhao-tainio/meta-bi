@@ -52,7 +52,6 @@ public sealed class MetaTransformBindingCliTests
 
     private static (int ExitCode, string Output) RunCli(string arguments) =>
         CliTestRunner.RunStandardCli(
-            Path.Combine("MetaTransform", "Binding"),
-            "meta-transform-binding.exe",
+            "meta-transform-binding",
             arguments);
 }

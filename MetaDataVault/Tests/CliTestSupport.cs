@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using MetaBi.Tests.Common;
 
 namespace MetaDataVault.Tests;
 
@@ -35,15 +36,12 @@ internal static class CliTestSupport
         return (process.ExitCode, stdOut + stdErr);
     }
 
-    internal static string RequireBuiltCli(string repositoryRoot, params string[] relativePath)
+    internal static ProcessStartInfo CreateManagedCliStartInfo(
+        string cliAssemblyName,
+        string arguments,
+        string workingDirectory)
     {
-        var executablePath = Path.Combine([repositoryRoot, .. relativePath]);
-        if (!File.Exists(executablePath))
-        {
-            throw new InvalidOperationException($"Expected test CLI executable was not built: {executablePath}");
-        }
-
-        return executablePath;
+        return CliTestRunner.CreateManagedCliStartInfo(cliAssemblyName, arguments, workingDirectory: workingDirectory);
     }
 }
 

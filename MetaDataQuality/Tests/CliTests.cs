@@ -761,7 +761,7 @@ LEFT OUTER JOIN dbo.[Order] o
     }
 
     private static (int ExitCode, string Output) RunCli(string arguments, string? workingDirectory = null) =>
-        CliTestRunner.RunStandardCli("MetaDataQuality", "meta-data-quality.exe", arguments, workingDirectory: workingDirectory);
+        CliTestRunner.RunStandardCli("meta-data-quality", arguments, workingDirectory: workingDirectory);
 
     private static void DeleteDirectoryIfExists(string path)
     {

@@ -97,8 +97,7 @@ public sealed class CliTests
             ? arguments
             : $"{command} {arguments}";
         return CliTestRunner.RunStandardCli(
-            "MetaDataWarehouse",
-            "meta-data-warehouse.exe",
+            "meta-data-warehouse",
             cliArguments,
             workingDirectory: workingDirectory);
     }

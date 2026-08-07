@@ -4815,7 +4815,7 @@ INNER JOIN dw.DimCustomer AS d
         model.TransformScriptList.Single(item => string.Equals(item.Name, name, StringComparison.OrdinalIgnoreCase));
 
     private static (int ExitCode, string Output) RunCli(string arguments, string? pathPrefix = null) =>
-        CliTestRunner.RunStandardCli("MetaOrchestration", "meta-orchestration.exe", arguments, pathPrefix);
+        CliTestRunner.RunStandardCli("meta-orchestration", arguments, pathPrefix);
 
     private static string CreateTempRoot()
     {

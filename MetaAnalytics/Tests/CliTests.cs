@@ -126,7 +126,7 @@ public sealed class CliTests
     }
 
     private static (int ExitCode, string Output) RunCli(string arguments, string? workingDirectory = null) =>
-        CliTestRunner.RunStandardCli("MetaAnalytics", "meta-analytics.exe", arguments, workingDirectory: workingDirectory);
+        CliTestRunner.RunStandardCli("meta-analytics", arguments, workingDirectory: workingDirectory);
 
     private static string CreateTempPath()
     {

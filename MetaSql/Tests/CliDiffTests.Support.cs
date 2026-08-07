@@ -7,6 +7,7 @@ using Meta.Core.Serialization;
 using MetaSql;
 using MetaSqlDeployManifest;
 using MetaSql.Extractors.SqlServer;
+using MetaBi.Tests.Common;
 
 namespace MetaSql.Tests;
 
@@ -1282,17 +1283,7 @@ public sealed partial class CliDiffTests
     }
     private static (int ExitCode, string Output) RunProcess(ProcessStartInfo startInfo, string errorMessage)
     {
-        if (string.Equals(startInfo.FileName, "meta-sql", StringComparison.OrdinalIgnoreCase))
-        {
-            startInfo.FileName = Path.Combine(
-                FindRepositoryRoot(),
-                "MetaSql",
-                "Cli",
-                "bin",
-                "Debug",
-                "net8.0",
-                "meta-sql.exe");
-        }
+        CliTestRunner.ConfigureManagedCli(startInfo, "meta-sql");
 
         RewriteConnectionArguments(startInfo);
 

@@ -174,8 +174,7 @@ public sealed class CliTests
             ? arguments
             : $"{command} {arguments}";
         return CliTestRunner.RunStandardCli(
-            "MetaTabular",
-            "meta-tabular.exe",
+            "meta-tabular",
             cliArguments,
             workingDirectory: workingDirectory);
     }

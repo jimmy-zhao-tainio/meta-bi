@@ -1229,16 +1229,7 @@ public sealed class ConvertToMetaSqlTests
     private static (int ExitCode, string Output) RunRawCli(string arguments)
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var startInfo = new System.Diagnostics.ProcessStartInfo
-        {
-            FileName = CliTestSupport.RequireBuiltCli(repoRoot, "MetaDataVault", "Cli", "Raw", "bin", "Debug", "net8.0", "meta-datavault-raw.exe"),
-            Arguments = arguments,
-            WorkingDirectory = repoRoot,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false,
-            CreateNoWindow = true,
-        };
+        var startInfo = CliTestSupport.CreateManagedCliStartInfo("meta-datavault-raw", arguments, repoRoot);
 
         return CliTestSupport.RunProcess(startInfo, "Could not start DataVault CLI process.");
     }
@@ -1246,16 +1237,7 @@ public sealed class ConvertToMetaSqlTests
     private static (int ExitCode, string Output) RunBusinessCli(string arguments)
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var startInfo = new System.Diagnostics.ProcessStartInfo
-        {
-            FileName = CliTestSupport.RequireBuiltCli(repoRoot, "MetaDataVault", "Cli", "Business", "bin", "Debug", "net8.0", "meta-datavault-business.exe"),
-            Arguments = arguments,
-            WorkingDirectory = repoRoot,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false,
-            CreateNoWindow = true,
-        };
+        var startInfo = CliTestSupport.CreateManagedCliStartInfo("meta-datavault-business", arguments, repoRoot);
 
         return CliTestSupport.RunProcess(startInfo, "Could not start DataVault CLI process.");
     }

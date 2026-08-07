@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
+    <ProjectReference Include="..\Cli\MetaDataTypeConversion.Cli.csproj" />
     <ProjectReference Include="..\Core\MetaDataTypeConversion.Core.csproj" />
     <ProjectReference Include="..\Instance\MetaDataTypeConversion.Instance.csproj" />
   </ItemGroup>

@@ -169,8 +169,7 @@ public sealed class CliTests
             ? arguments
             : $"{command} {arguments}";
         return CliTestRunner.RunStandardCli(
-            "MetaMultiDimensional",
-            "meta-multi-dimensional.exe",
+            "meta-multi-dimensional",
             cliArguments,
             workingDirectory: workingDirectory);
     }

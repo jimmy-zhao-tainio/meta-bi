@@ -58,7 +58,7 @@ public sealed class CliTests
     }
 
     private static (int ExitCode, string Output) RunCli(string arguments) =>
-        CliTestRunner.RunStandardCli("MetaDataType", "meta-data-type.exe", arguments);
+        CliTestRunner.RunStandardCli("meta-data-type", arguments);
 
     private static void DeleteDirectoryIfExists(string path)
     {

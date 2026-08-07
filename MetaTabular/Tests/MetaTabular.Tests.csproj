@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
+    <ProjectReference Include="..\Cli\MetaTabular.Cli.csproj" />
     <ProjectReference Include="..\Core\MetaTabular.Core.csproj" />
     <ProjectReference Include="..\Instance\MetaTabular.Instance.csproj" />
     <ProjectReference Include="..\..\MetaAnalytics\Instance\MetaAnalytics.Instance.csproj" />
