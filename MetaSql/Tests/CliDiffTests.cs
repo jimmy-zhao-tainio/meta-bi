@@ -29,7 +29,7 @@ public sealed partial class CliDiffTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Usage:", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql deploy-plan --source-workspace <path> --connection-env <value> --out <path>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql deploy-plan [--approval-file <path>] [--approve-drop-column <value>] [--approve-drop-table <value>] [--approve-truncate-column <value>] --connection-env <value> --out <path> --source-workspace <path>", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-drop-table", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-drop-column", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-truncate-column", result.Output, StringComparison.Ordinal);
@@ -61,7 +61,7 @@ public sealed partial class CliDiffTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Usage:", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-env <value>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql deploy --connection-env <value> --manifest-workspace <path> --source-workspace <path>", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("--schema", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("--table", result.Output, StringComparison.Ordinal);
     }
@@ -113,12 +113,14 @@ public sealed partial class CliDiffTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Usage:", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql extract sqlserver --output-xml <path> --connection-env <value>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql extract sqlserver [--allow-empty] --connection-env <value> [--include-functions] [--include-stored-procedures] [--include-tables] [--include-views] [--output-connection-env <value>] [--schema <value>] [--table <value>] (--output-xml <path> | --output-csharp <path> | --output-sql <path>)", result.Output, StringComparison.Ordinal);
         Assert.Contains("--include-tables", result.Output, StringComparison.Ordinal);
         Assert.Contains("--include-views", result.Output, StringComparison.Ordinal);
         Assert.Contains("--include-functions", result.Output, StringComparison.Ordinal);
         Assert.Contains("--include-stored-procedures", result.Output, StringComparison.Ordinal);
         Assert.Contains("--allow-empty", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--output-csharp <path>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--output-sql <path>", result.Output, StringComparison.Ordinal);
     }
 
     [Fact]
