@@ -23,9 +23,9 @@ public static class AnalyticsToTabularConverter
 
         var sourcePath = Path.GetFullPath(sourceWorkspacePath);
         var outputPath = Path.GetFullPath(outputWorkspacePath);
-        var source = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(sourcePath, searchUpward: false);
+        var source = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaAnalyticsModel>(sourcePath, searchUpward: false);
         var target = Convert(source);
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(target, outputPath);
+        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(target, outputPath);
 
         return Task.FromResult(new AnalyticsToTabularResult(
             sourcePath,

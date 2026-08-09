@@ -67,7 +67,7 @@ public sealed class MetaOrchestrationRuntimeService
             observer?.PhaseChanged("Loading");
             supervisorState.SetPhase("Loading");
             journal.WriteEvent("Phase", "Loading", workspacePath);
-            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MO.MetaOrchestrationModel>(workspacePath, searchUpward: false);
+            var model = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MO.MetaOrchestrationModel>(workspacePath, searchUpward: false);
             observer?.PhaseChanged("Building");
             supervisorState.SetPhase("Building");
             journal.WriteEvent("Phase", "Building", workspacePath);
@@ -75,7 +75,7 @@ public sealed class MetaOrchestrationRuntimeService
             observer?.PhaseChanged("Saving");
             supervisorState.SetPhase("Saving");
             journal.WriteEvent("Phase", "Saving", workspacePath);
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+            Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(model, workspacePath);
 
             var runPlan = ResolveRunPlan(model);
             supervisorState.SetRunPlan(runPlan.Name, 0);

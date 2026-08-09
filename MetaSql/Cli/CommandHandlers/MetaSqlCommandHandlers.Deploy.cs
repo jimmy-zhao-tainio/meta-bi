@@ -28,7 +28,7 @@ internal sealed partial class MetaSqlCommandHandlers
 
         try
         {
-            var manifestModel = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(manifestWorkspacePath, searchUpward: false)
+            var manifestModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlDeployManifestModel>(manifestWorkspacePath, searchUpward: false)
                 .ConfigureAwait(false);
             var deployService = new MetaSqlDeployService();
             var result = await deployService.DeployAsync(

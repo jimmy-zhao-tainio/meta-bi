@@ -79,7 +79,7 @@ internal sealed partial class MetaSqlCommandHandlers
                 targetDescription: BuildTargetDescription(),
                 feasibilityBlockers: feasibilityBlockers,
                 destructiveApprovals: destructiveApprovals);
-            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(manifest.ManifestModel, outputPath).ConfigureAwait(false);
+            await Meta.Core.Serialization.TypedWorkspaceModelMapper.SaveAsync(manifest.ManifestModel, outputPath).ConfigureAwait(false);
 
             if (manifest.IsDeployable)
             {

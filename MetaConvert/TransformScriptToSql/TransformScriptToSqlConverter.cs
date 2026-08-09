@@ -20,7 +20,7 @@ public static class TransformScriptToSqlConverter
 
         var modules = new MetaTransformScriptSqlService().ExportModuleDefinitions(transformScriptWorkspacePath);
         var metaSql = ConvertToMetaSql(modules, databaseName);
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(metaSql, pathToNewMetaSqlWorkspace);
+        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(metaSql, pathToNewMetaSqlWorkspace);
 
         var outputWorkspace = await XmlWorkspaceReader
             .OpenAsync(pathToNewMetaSqlWorkspace, cancellationToken)

@@ -32,7 +32,7 @@ internal sealed class MetaSqlDeployExecutionEngine
                 .ConfigureAwait(false);
             manifestContractValidator.Validate(manifestWorkspace.State);
 
-            var manifestModel = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifest.MetaSqlDeployManifestModel>(
+            var manifestModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlDeployManifest.MetaSqlDeployManifestModel>(
                     manifestWorkspacePath,
                     searchUpward: false,
                     cancellationToken)
@@ -94,12 +94,12 @@ internal sealed class MetaSqlDeployExecutionEngine
             MetaSqlDiffService.EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));
             manifestFingerprintValidator.ValidateLiveFingerprint(root, liveWorkspace);
 
-            var sourceModel = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(
+            var sourceModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlModel>(
                     sourceWorkspacePath,
                     searchUpward: false,
                     cancellationToken)
                 .ConfigureAwait(false);
-            var liveModel = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(
+            var liveModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlModel>(
                     liveWorkspacePath,
                     searchUpward: false,
                     cancellationToken)

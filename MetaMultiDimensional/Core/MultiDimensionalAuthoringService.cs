@@ -40,7 +40,7 @@ public sealed class MultiDimensionalAuthoringService : IMultiDimensionalAuthorin
         ArgumentException.ThrowIfNullOrWhiteSpace(request.RecordId);
 
         var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaMultiDimensionalModel>(workspacePath);
+        var model = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaMultiDimensionalModel>(workspacePath);
         var entityType = ResolveEntityType(request.EntityName);
         var rows = GetEntityRows(model, entityType, request.EntityName);
         if (rows.Cast<object>().Any(row => string.Equals(ReadId(row), request.RecordId, StringComparison.Ordinal)))
@@ -65,7 +65,7 @@ public sealed class MultiDimensionalAuthoringService : IMultiDimensionalAuthorin
         AssignOrdinalIfMissing(model, rowToAdd, request);
         AssignTargetDefaults(rowToAdd);
         rows.Add(rowToAdd);
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(model, workspacePath);
         return model;
     }
 

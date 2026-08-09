@@ -12,7 +12,7 @@ public static class MetaTransformScriptInstance
     public static MetaTransformScriptModel LoadFromWorkspace(string workspacePath, bool searchUpward = false)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(workspacePath, searchUpward);
+        return Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(workspacePath, searchUpward);
     }
 
     public static Task<MetaTransformScriptModel> LoadFromWorkspaceAsync(
@@ -21,14 +21,14 @@ public static class MetaTransformScriptInstance
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaTransformScriptModel>(workspacePath, searchUpward, cancellationToken);
+        return Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaTransformScriptModel>(workspacePath, searchUpward, cancellationToken);
     }
 
     public static void SaveToWorkspace(MetaTransformScriptModel model, string workspacePath)
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(model, workspacePath);
     }
 
     public static Task SaveToWorkspaceAsync(
@@ -38,6 +38,6 @@ public static class MetaTransformScriptInstance
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, cancellationToken);
+        return Meta.Core.Serialization.TypedWorkspaceModelMapper.SaveAsync(model, workspacePath, cancellationToken);
     }
 }

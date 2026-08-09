@@ -28,7 +28,7 @@ public sealed class MetaMultiDimensionalDeployService
         ArgumentException.ThrowIfNullOrWhiteSpace(request.Server);
 
         var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaMultiDimensionalModel>(workspacePath, searchUpward: false);
+        var model = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaMultiDimensionalModel>(workspacePath, searchUpward: false);
         var root = RequireSingleDatabase(model);
         var databaseName = string.IsNullOrWhiteSpace(request.DatabaseName)
             ? root.Name

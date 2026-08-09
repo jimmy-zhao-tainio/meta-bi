@@ -12,7 +12,7 @@ public static class MetaSchemaInstance
     public static MetaSchemaModel LoadFromWorkspace(string workspacePath, bool searchUpward = false)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSchemaModel>(workspacePath, searchUpward);
+        return Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaSchemaModel>(workspacePath, searchUpward);
     }
 
     public static Task<MetaSchemaModel> LoadFromWorkspaceAsync(
@@ -21,14 +21,14 @@ public static class MetaSchemaInstance
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSchemaModel>(workspacePath, searchUpward, cancellationToken);
+        return Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSchemaModel>(workspacePath, searchUpward, cancellationToken);
     }
 
     public static void SaveToWorkspace(MetaSchemaModel model, string workspacePath)
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(model, workspacePath);
     }
 
     public static Task SaveToWorkspaceAsync(
@@ -38,6 +38,6 @@ public static class MetaSchemaInstance
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, cancellationToken);
+        return Meta.Core.Serialization.TypedWorkspaceModelMapper.SaveAsync(model, workspacePath, cancellationToken);
     }
 }

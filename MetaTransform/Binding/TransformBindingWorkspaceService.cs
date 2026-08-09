@@ -29,7 +29,7 @@ public sealed class TransformBindingWorkspaceService
             validationOptions,
             dataTypeConversionWorkspacePath,
             allowPartial);
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(result.Model, workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(result.Model, workspacePath);
         return result with { WorkspacePath = workspacePath };
     }
 
@@ -60,7 +60,7 @@ public sealed class TransformBindingWorkspaceService
             .Select(item => item.SystemName)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspaceFullPath, searchUpward: false);
+        var transformModel = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(transformWorkspaceFullPath, searchUpward: false);
         var transformScripts = ResolveScripts(transformModel);
         var sourceIdentifiers = CollectSourceIdentifierUsages(transformModel, transformScripts);
 
@@ -183,12 +183,12 @@ public sealed class TransformBindingWorkspaceService
         var transformWorkspaceFullPath = Path.GetFullPath(transformWorkspacePath);
         var bindingWorkspaceFullPath = Path.GetFullPath(newWorkspacePath);
 
-        var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspaceFullPath, searchUpward: false);
+        var transformModel = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(transformWorkspaceFullPath, searchUpward: false);
         var transformScripts = ResolveScripts(transformModel);
         var packages = BindTransformScripts(transformModel, transformScripts);
         var bindingModel = BuildCombinedBindingModel(packages);
 
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(bindingModel, bindingWorkspaceFullPath);
+        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(bindingModel, bindingWorkspaceFullPath);
 
         var objectIssues = packages
             .SelectMany(package => package.Bound.Issues.Select(issue =>
@@ -551,7 +551,7 @@ public sealed class TransformBindingWorkspaceService
 
     private static SchemaWorkspaceInput LoadSchemaWorkspace(string workspaceFullPath, string role)
     {
-        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSchemaModel>(workspaceFullPath, searchUpward: false);
+        var model = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaSchemaModel>(workspaceFullPath, searchUpward: false);
         if (model.SystemList.Count != 1)
         {
             throw new TransformBindingValidationException(

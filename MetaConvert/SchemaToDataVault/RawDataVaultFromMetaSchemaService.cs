@@ -51,7 +51,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         var newWorkspacePathFull = Path.GetFullPath(newWorkspacePath);
         EnsureTargetDirectoryIsEmpty(newWorkspacePathFull);
 
-        var sourceModel = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MS.MetaSchemaModel>(
+        var sourceModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MS.MetaSchemaModel>(
             sourceWorkspacePathFull,
             searchUpward: false,
             cancellationToken).ConfigureAwait(false);
@@ -62,7 +62,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             ignoredFieldSuffixes,
             includeViews);
 
-        await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(
+        await Meta.Core.Serialization.TypedWorkspaceModelMapper.SaveAsync(
             result.Model,
             newWorkspacePathFull,
             cancellationToken).ConfigureAwait(false);

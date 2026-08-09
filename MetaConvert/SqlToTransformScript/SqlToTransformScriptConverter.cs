@@ -37,7 +37,7 @@ public static class SqlToTransformScriptConverter
             ? SqlToTransformScriptModuleKinds.All
             : options.ModuleKinds;
 
-        var metaSql = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(
+        var metaSql = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlModel>(
                 Path.GetFullPath(metaSqlWorkspacePath),
                 searchUpward: false,
                 cancellationToken)
@@ -50,7 +50,7 @@ public static class SqlToTransformScriptConverter
             if (options.AllowEmpty)
             {
                 var emptyModel = MTS.MetaTransformScriptModel.CreateEmpty();
-                await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(emptyModel, outputWorkspacePath, cancellationToken)
+                await Meta.Core.Serialization.TypedWorkspaceModelMapper.SaveAsync(emptyModel, outputWorkspacePath, cancellationToken)
                     .ConfigureAwait(false);
                 var emptyWorkspace = await XmlWorkspaceReader
                     .OpenAsync(outputWorkspacePath, cancellationToken)

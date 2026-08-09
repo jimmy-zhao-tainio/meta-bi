@@ -12,7 +12,7 @@ public sealed class DataQualityToSqlConverter
 
     public DataQualityToSqlResult Convert(string workspacePath, string outputPath)
     {
-        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(workspacePath, searchUpward: false);
+        var model = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaDataQualityModel>(workspacePath, searchUpward: false);
         var candidateTypes = ResolveCandidateTypeMap(model);
         var candidateEvidenceByCandidateId = model.DataQualityCandidateEvidenceList
             .GroupBy(item => item.DataQualityCandidate.Id, StringComparer.Ordinal)
