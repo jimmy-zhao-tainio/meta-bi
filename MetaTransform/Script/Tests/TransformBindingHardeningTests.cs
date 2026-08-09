@@ -136,9 +136,9 @@ FROM src
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            sourceSchema.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
-            targetSchema.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchema, sourceSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchema, targetSchemaWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
                 transformWorkspacePath,
@@ -191,9 +191,9 @@ FROM dbo.SourceView AS s
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            sourceSchema.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
-            targetSchema.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchema, sourceSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchema, targetSchemaWorkspacePath);
 
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
                 new TransformBindingWorkspaceService().BindValidatedToWorkspace(

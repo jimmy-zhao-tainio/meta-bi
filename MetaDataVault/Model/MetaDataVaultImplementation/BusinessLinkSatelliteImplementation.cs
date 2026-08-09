@@ -1,0 +1,50 @@
+#nullable enable
+
+namespace MetaDataVaultImplementation
+{
+    public sealed class BusinessLinkSatelliteImplementation
+    {
+        public string Id { get; set; } = string.Empty;
+
+        public string AuditIdColumnName { get; set; } = string.Empty;
+
+        public string AuditIdDataTypeId { get; set; } = string.Empty;
+
+        public string? AuditIdDefaultExpressionSql { get; set; }
+
+        public string? HashDiffColumnName { get; set; }
+
+        public string? HashDiffDataTypeId { get; set; }
+
+        public string? HashDiffLength { get; set; }
+
+        public string LoadTimestampColumnName { get; set; } = string.Empty;
+
+        public string LoadTimestampDataTypeId { get; set; } = string.Empty;
+
+        public string? LoadTimestampDefaultExpressionSql { get; set; }
+
+        public string? LoadTimestampPrecision { get; set; }
+
+        public string ParentForeignKeyNamePattern { get; set; } = string.Empty;
+
+        public string ParentHashKeyColumnName { get; set; } = string.Empty;
+
+        public string ParentHashKeyDataTypeId { get; set; } = string.Empty;
+
+        public string ParentHashKeyLength { get; set; } = string.Empty;
+
+        public string PrimaryKeyNamePattern { get; set; } = string.Empty;
+
+        public string? RecordSourceColumnName { get; set; }
+
+        public string? RecordSourceDataTypeId { get; set; }
+
+        public string? RecordSourceLength { get; set; }
+
+        public string SchemaName { get; set; } = string.Empty;
+
+        public string TableNamePattern { get; set; } = string.Empty;
+
+    }
+}

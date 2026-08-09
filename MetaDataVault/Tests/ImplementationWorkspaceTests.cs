@@ -9,7 +9,7 @@ public sealed class ImplementationWorkspaceTests
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
         var workspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "MetaDataVaultImplementation");
-        var model = await MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(workspacePath, searchUpward: false);
+        var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaDataVaultImplementationModel>(workspacePath, searchUpward: false);
 
         Assert.Equal("32", model.RawHubImplementationList.Single().HashKeyLength);
         Assert.Equal("32", model.RawHubSatelliteImplementationList.Single().ParentHashKeyLength);

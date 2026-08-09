@@ -25,17 +25,17 @@ public static class DataWarehouseToSqlConverter
         ArgumentException.ThrowIfNullOrWhiteSpace(implementationWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(databaseName);
 
-        var model = await Dw.MetaDataWarehouseModel.LoadFromXmlWorkspaceAsync(
+        var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<Dw.MetaDataWarehouseModel>(
             dataWarehouseWorkspacePath,
             searchUpward: false,
             cancellationToken).ConfigureAwait(false);
-        var implementation = await Dwi.MetaDataWarehouseImplementationModel.LoadFromXmlWorkspaceAsync(
+        var implementation = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<Dwi.MetaDataWarehouseImplementationModel>(
             implementationWorkspacePath,
             searchUpward: false,
             cancellationToken).ConfigureAwait(false);
 
         var metaSql = ConvertToMetaSql(model, implementation, databaseName);
-        metaSql.SaveToXmlWorkspace(pathToNewMetaSqlWorkspace);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(metaSql, pathToNewMetaSqlWorkspace);
         var outputWorkspace = await XmlWorkspaceReader
             .OpenAsync(pathToNewMetaSqlWorkspace, cancellationToken)
             .ConfigureAwait(false);

@@ -1,0 +1,58 @@
+#nullable enable
+
+namespace MetaDataVaultImplementation
+{
+    public sealed class BusinessBridgeImplementation
+    {
+        public string Id { get; set; } = string.Empty;
+
+        public string AnchorHubForeignKeyNamePattern { get; set; } = string.Empty;
+
+        public string AuditIdColumnName { get; set; } = string.Empty;
+
+        public string AuditIdDataTypeId { get; set; } = string.Empty;
+
+        public string? AuditIdDefaultExpressionSql { get; set; }
+
+        public string? DepthColumnName { get; set; }
+
+        public string? DepthDataTypeId { get; set; }
+
+        public string? EffectiveFromColumnName { get; set; }
+
+        public string? EffectiveFromDataTypeId { get; set; }
+
+        public string? EffectiveFromPrecision { get; set; }
+
+        public string? EffectiveToColumnName { get; set; }
+
+        public string? EffectiveToDataTypeId { get; set; }
+
+        public string? EffectiveToPrecision { get; set; }
+
+        public string? PathColumnName { get; set; }
+
+        public string? PathDataTypeId { get; set; }
+
+        public string? PathLength { get; set; }
+
+        public string RelatedHashKeyColumnName { get; set; } = string.Empty;
+
+        public string RelatedHashKeyDataTypeId { get; set; } = string.Empty;
+
+        public string RelatedHashKeyLength { get; set; } = string.Empty;
+
+        public string RelatedHubForeignKeyNamePattern { get; set; } = string.Empty;
+
+        public string RootHashKeyColumnName { get; set; } = string.Empty;
+
+        public string RootHashKeyDataTypeId { get; set; } = string.Empty;
+
+        public string RootHashKeyLength { get; set; } = string.Empty;
+
+        public string SchemaName { get; set; } = string.Empty;
+
+        public string TableNamePattern { get; set; } = string.Empty;
+
+    }
+}

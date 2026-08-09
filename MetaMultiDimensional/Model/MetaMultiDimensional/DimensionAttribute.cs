@@ -1,0 +1,30 @@
+#nullable enable
+
+namespace MetaMultiDimensional
+{
+    public sealed class DimensionAttribute
+    {
+        public string Id { get; set; } = string.Empty;
+
+        public string? AttributeHierarchyEnabled { get; set; }
+
+        public string? AttributeHierarchyVisible { get; set; }
+
+        public string DataTypeId { get; set; } = string.Empty;
+
+        public string? Description { get; set; }
+
+        public string? IsKey { get; set; }
+
+        public string Name { get; set; } = string.Empty;
+
+        public string Ordinal { get; set; } = string.Empty;
+
+        public string? SourceName { get; set; }
+
+        public string? Usage { get; set; }
+
+        public Dimension Dimension { get; set; } = null!;
+
+    }
+}

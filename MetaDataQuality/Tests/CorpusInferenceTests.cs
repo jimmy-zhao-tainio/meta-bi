@@ -553,7 +553,7 @@ public sealed class CorpusInferenceTests
                 candidate.Status = CandidateStatuses.Promoted;
             }
 
-            model.SaveToXmlWorkspace(workspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
 
             var result = new DataQualityToSqlConverter().Convert(workspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -662,7 +662,7 @@ public sealed class CorpusInferenceTests
                 row => string.Equals(row.Id, impliedUniqueCandidateId, StringComparison.Ordinal));
             impliedUniqueCandidate.Status = CandidateStatuses.Promoted;
 
-            model.SaveToXmlWorkspace(workspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
 
             var result = new DataQualityToSqlConverter().Convert(workspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -735,7 +735,7 @@ public sealed class CorpusInferenceTests
             var promotedCandidate = model.DataQualityCandidateList.Single(
                 row => string.Equals(row.Id, detail.DataQualityCandidate.Id, StringComparison.Ordinal));
             promotedCandidate.Status = CandidateStatuses.Promoted;
-            model.SaveToXmlWorkspace(workspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
 
             var result = new DataQualityToSqlConverter().Convert(workspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -904,7 +904,7 @@ public sealed class CorpusInferenceTests
                 candidate.Status = CandidateStatuses.Promoted;
             }
 
-            model.SaveToXmlWorkspace(workspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
 
             var result = new DataQualityToSqlConverter().Convert(workspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -1080,7 +1080,7 @@ public sealed class CorpusInferenceTests
             model.DataQualityCandidateList
                 .Single(candidate => string.Equals(candidate.Id, minority.DataQualityCandidate.Id, StringComparison.Ordinal))
                 .Status = CandidateStatuses.Promoted;
-            model.SaveToXmlWorkspace(workspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
 
             var result = new DataQualityToSqlConverter().Convert(workspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -1224,7 +1224,7 @@ public sealed class CorpusInferenceTests
             model.DataQualityCandidateList
                 .Single(candidate => string.Equals(candidate.Id, missingCommonFilter.DataQualityCandidate.Id, StringComparison.Ordinal))
                 .Status = CandidateStatuses.Promoted;
-            model.SaveToXmlWorkspace(workspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
 
             var result = new DataQualityToSqlConverter().Convert(workspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);

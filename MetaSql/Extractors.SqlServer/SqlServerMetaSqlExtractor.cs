@@ -16,7 +16,7 @@ public sealed class SqlServerMetaSqlExtractor
         }
 
         var model = ExtractMetaSqlModel(request);
-        model.SaveToXmlWorkspace(request.NewWorkspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, request.NewWorkspacePath);
         return XmlWorkspaceReader.OpenAsync(request.NewWorkspacePath).GetAwaiter().GetResult().State;
     }
 

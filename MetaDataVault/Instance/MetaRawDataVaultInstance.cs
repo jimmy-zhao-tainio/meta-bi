@@ -12,7 +12,7 @@ public static class MetaRawDataVaultInstance
     public static MetaRawDataVaultModel LoadFromWorkspace(string workspacePath, bool searchUpward = false)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return MetaRawDataVaultModel.LoadFromXmlWorkspace(workspacePath, searchUpward);
+        return Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaRawDataVaultModel>(workspacePath, searchUpward);
     }
 
     public static Task<MetaRawDataVaultModel> LoadFromWorkspaceAsync(
@@ -21,14 +21,14 @@ public static class MetaRawDataVaultInstance
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return MetaRawDataVaultModel.LoadFromXmlWorkspaceAsync(workspacePath, searchUpward, cancellationToken);
+        return Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaRawDataVaultModel>(workspacePath, searchUpward, cancellationToken);
     }
 
     public static void SaveToWorkspace(MetaRawDataVaultModel model, string workspacePath)
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        model.SaveToXmlWorkspace(workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
     }
 
     public static Task SaveToWorkspaceAsync(
@@ -38,6 +38,6 @@ public static class MetaRawDataVaultInstance
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return model.SaveToXmlWorkspaceAsync(workspacePath, cancellationToken);
+        return Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, cancellationToken);
     }
 }

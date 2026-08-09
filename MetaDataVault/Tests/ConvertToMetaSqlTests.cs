@@ -162,13 +162,13 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var implementation = await MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(
+            var implementation = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaDataVaultImplementationModel>(
                 GetImplementationWorkspacePath(repoRoot),
                 searchUpward: false);
             var hubImplementation = Assert.Single(implementation.BusinessHubImplementationList);
             hubImplementation.LoadTimestampColumnName = null;
             hubImplementation.LoadTimestampDataTypeId = null;
-            await implementation.SaveToXmlWorkspaceAsync(implementationPath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(implementation, implementationPath);
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -201,12 +201,12 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var implementation = await MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(
+            var implementation = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaDataVaultImplementationModel>(
                 GetImplementationWorkspacePath(repoRoot),
                 searchUpward: false);
             var hubImplementation = Assert.Single(implementation.BusinessHubImplementationList);
             hubImplementation.LoadTimestampDataTypeId = null;
-            await implementation.SaveToXmlWorkspaceAsync(implementationPath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(implementation, implementationPath);
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -267,7 +267,7 @@ public sealed class ConvertToMetaSqlTests
                 RawLink = assignment,
             });
 
-            await model.SaveToXmlWorkspaceAsync(workspacePath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -337,7 +337,7 @@ public sealed class ConvertToMetaSqlTests
                 RawLink = assignment,
             });
 
-            await model.SaveToXmlWorkspaceAsync(workspacePath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -396,7 +396,7 @@ public sealed class ConvertToMetaSqlTests
             model.RawHubList.Add(rawHub);
             model.RawHubKeyPartList.Add(rawHubKeyPart);
 
-            await model.SaveToXmlWorkspaceAsync(workspacePath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -493,7 +493,7 @@ public sealed class ConvertToMetaSqlTests
             model.RawHubKeyPartList.Add(rawHubKeyPart);
             model.RawHubKeyPartList.Add(sysnameRawHubKeyPart);
 
-            await model.SaveToXmlWorkspaceAsync(workspacePath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -625,7 +625,7 @@ public sealed class ConvertToMetaSqlTests
             model.RawLinkRoleList.Add(childLinkRole);
             model.RawLinkRoleList.Add(parentLinkRole);
 
-            await model.SaveToXmlWorkspaceAsync(workspacePath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -758,7 +758,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var model = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(sourceWorkspacePath, searchUpward: false);
+            var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, searchUpward: false);
             var customerProfile = model.BusinessHubSatelliteList.Single(row => row.Id == "CustomerProfile");
             var customerOrderStatus = model.BusinessLinkSatelliteList.Single(row => row.Id == "CustomerOrderStatus");
 
@@ -778,7 +778,7 @@ public sealed class ConvertToMetaSqlTests
                 DataTypeId = "meta:type:String",
                 Name = "ZuluPayload",
             });
-            await model.SaveToXmlWorkspaceAsync(workspacePath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -945,7 +945,7 @@ public sealed class ConvertToMetaSqlTests
             Assert.Equal(0, RunBusinessCli($"add-link-role --workspace \"{workspacePath}\" --id CustomerOrderOrder --link CustomerOrder --hub Order --name Order").ExitCode);
             Assert.Equal(0, RunBusinessCli($"add-bridge --workspace \"{workspacePath}\" --id CustomerShipmentTraversal --hub Customer --name CustomerShipmentTraversal").ExitCode);
 
-            var model = MetaBusinessDataVaultTooling.Load(workspacePath);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaBusinessDataVaultModel>(workspacePath);
             var bridge = Assert.Single(model.BusinessBridgeList);
             var customerRole = model.BusinessLinkRoleList.Single(row => row.Id == "CustomerOrderCustomer");
             var orderRole = model.BusinessLinkRoleList.Single(row => row.Id == "CustomerOrderOrder");
@@ -956,7 +956,7 @@ public sealed class ConvertToMetaSqlTests
                 SourceRole = orderRole,
                 TargetRole = customerRole,
             });
-            model.SaveToXmlWorkspace(workspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
 
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -984,7 +984,7 @@ public sealed class ConvertToMetaSqlTests
             Assert.Equal(0, RunBusinessCli($"create --xml \"{workspacePath}\"").ExitCode);
             Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Customer --name Customer").ExitCode);
 
-            var model = MetaBusinessDataVaultTooling.Load(workspacePath);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaBusinessDataVaultModel>(workspacePath);
             var customer = Assert.Single(model.BusinessHubList);
             var countryCode = new BusinessHubKeyPart
             {
@@ -1010,7 +1010,7 @@ public sealed class ConvertToMetaSqlTests
                 Name = "SourceSystem",
                 PreviousKeyPart = countryCode,
             });
-            model.SaveToXmlWorkspace(workspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
 
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -1122,7 +1122,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var model = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(sourceWorkspacePath, searchUpward: false);
+            var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, searchUpward: false);
 
             foreach (var row in model.BusinessHubKeyPartList)
             {
@@ -1144,7 +1144,7 @@ public sealed class ConvertToMetaSqlTests
                 row.DataTypeId = "sqlserver:type:nvarchar";
             }
 
-            await model.SaveToXmlWorkspaceAsync(workspacePath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -1172,9 +1172,9 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var model = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(sourceWorkspacePath, searchUpward: false);
+            var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, searchUpward: false);
             model.BusinessHubKeyPartList[0].DataTypeId = "meta:type:Xml";
-            await model.SaveToXmlWorkspaceAsync(workspacePath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -1202,9 +1202,9 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var model = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(sourceWorkspacePath, searchUpward: false);
+            var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, searchUpward: false);
             model.BusinessHubKeyPartList[0].DataTypeId = "sqlserver:type:not-real";
-            await model.SaveToXmlWorkspaceAsync(workspacePath);
+            await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,

@@ -14,7 +14,7 @@
     <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\..\MetaSchema\Instance\MetaSchema.Instance.csproj" />
     <ProjectReference Include="..\..\MetaDataVault\Instance\MetaRawDataVault.Instance.csproj" />
-    <ProjectReference Include="..\..\MetaDataQuality\Tooling\MetaDataQuality.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaDataQuality\Model\MetaDataQuality.Model.csproj" />
     <ProjectReference Include="..\DataVaultToSql\MetaConvert.DataVaultToSql.csproj" />
     <ProjectReference Include="..\DataWarehouseToSql\MetaConvert.DataWarehouseToSql.csproj" />
     <ProjectReference Include="..\DataQualityToSql\MetaConvert.DataQualityToSql.csproj" />

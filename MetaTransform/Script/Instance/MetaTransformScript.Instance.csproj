@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tooling\MetaTransformScript.Tooling.csproj" />
+    <ProjectReference Include="..\Model\MetaTransformScript.Model.csproj" />
   </ItemGroup>
 
 </Project>

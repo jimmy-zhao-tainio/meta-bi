@@ -55,7 +55,7 @@ public sealed class MetaSqlAlignmentTests
                 foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
                 indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
                 indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
-            liveModel.SaveToXmlWorkspace(liveMetaSqlPath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(liveModel, liveMetaSqlPath);
             var liveWorkspace = (await XmlWorkspaceReader.OpenAsync(liveMetaSqlPath)).State;
 
             var diffService = new MetaSqlDiffService();
@@ -106,7 +106,7 @@ public sealed class MetaSqlAlignmentTests
         model.RawHubList.Add(rawHub);
         model.RawHubKeyPartList.Add(rawHubKeyPart);
 
-        await model.SaveToXmlWorkspaceAsync(workspacePath);
+        await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
     }
 
     private static string FindRepositoryRoot()

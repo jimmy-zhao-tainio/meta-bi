@@ -1,4 +1,4 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -12,13 +12,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Business.Cli"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Core", "MetaSql\Core\MetaSql.Core.csproj", "{D7A616AE-9A3C-4E07-A4D4-0A3B1A80A8A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Tooling", "MetaDataVault\Tooling\MetaDataVault.Tooling.csproj", "{4A8DB13E-596B-4DE1-BB8A-7F8485B8E4A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Model", "MetaDataVault\Model\MetaDataVault.Model.csproj", "{4A8DB13E-596B-4DE1-BB8A-7F8485B8E4A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Tooling", "MetaSql\Tooling\MetaSql.Tooling.csproj", "{7EFA7A6E-B84A-430C-8308-0AA11A267E2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Model", "MetaSql\Model\MetaSql.Model.csproj", "{7EFA7A6E-B84A-430C-8308-0AA11A267E2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaConvert.DataVaultToSql", "MetaConvert\DataVaultToSql\MetaConvert.DataVaultToSql.csproj", "{2B527C0F-10EE-48A2-84F1-BF469B4D0F1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tooling", "MetaSchema\Tooling\MetaSchema.Tooling.csproj", "{A44AD474-008C-4E63-ADA4-A4C77F6F888F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Model", "MetaSchema\Model\MetaSchema.Model.csproj", "{A44AD474-008C-4E63-ADA4-A4C77F6F888F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Extractors.SqlServer", "MetaSql\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj", "{A1B88888-AD3A-42C3-8DC8-D4D0525FB2D1}"
 EndProject
@@ -30,7 +30,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Instance", "Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Cli", "MetaSql\Cli\MetaSql.Cli.csproj", "{3671CC11-A94E-40CC-B34C-27E755EBA77A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSqlDeployManifest.Tooling", "MetaSql\DeployManifest\Tooling\MetaSqlDeployManifest.Tooling.csproj", "{746307B0-49E9-49C5-A92D-6370BD02533B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSqlDeployManifest.Model", "MetaSql\DeployManifest\Model\MetaSqlDeployManifest.Model.csproj", "{746307B0-49E9-49C5-A92D-6370BD02533B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Instance", "MetaSchema\Instance\MetaSchema.Instance.csproj", "{4C9CE717-9437-4D9B-8C2D-EB5C0170F272}"
 EndProject

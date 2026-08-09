@@ -29,7 +29,7 @@ public sealed class SqlToTransformScriptConverterTests
                 roundTripMetaSqlWorkspacePath,
                 "SymmetryDb");
 
-            var roundTrip = MetaSqlModel.LoadFromXmlWorkspace(roundTripMetaSqlWorkspacePath, searchUpward: false);
+            var roundTrip = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(roundTripMetaSqlWorkspacePath, searchUpward: false);
             var view = Assert.Single(roundTrip.ViewList);
             Assert.Equal("dq", view.Schema.Name);
             Assert.Equal("vCustomerScore", view.Name);
@@ -67,7 +67,7 @@ public sealed class SqlToTransformScriptConverterTests
             Assert.Equal(0, result.FunctionCount);
             Assert.Equal(1, result.StoredProcedureCount);
 
-            var transformModel = MetaTransformScript.MetaTransformScriptModel.LoadFromXmlWorkspace(
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScript.MetaTransformScriptModel>(
                 transformScriptWorkspacePath,
                 searchUpward: false);
             var procedureScript = Assert.Single(transformModel.TransformScriptList);
@@ -81,7 +81,7 @@ public sealed class SqlToTransformScriptConverterTests
                 roundTripMetaSqlWorkspacePath,
                 "SymmetryDb");
 
-            var roundTrip = MetaSqlModel.LoadFromXmlWorkspace(roundTripMetaSqlWorkspacePath, searchUpward: false);
+            var roundTrip = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(roundTripMetaSqlWorkspacePath, searchUpward: false);
             var procedure = Assert.Single(roundTrip.StoredProcedureList);
             Assert.Equal("dq", procedure.Schema.Name);
             Assert.Equal("RunReview", procedure.Name);
@@ -209,13 +209,13 @@ FROM dq.fnCustomerScore(1)
 """,
         });
 
-        model.SaveToXmlWorkspace(workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
     }
 
     private static void SaveMetaSqlWithViewFunctionAndStoredProcedure(string workspacePath)
     {
         SaveMetaSqlWithViewAndFunction(workspacePath);
-        var model = MetaSqlModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
+        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(workspacePath, searchUpward: false);
         var schema = model.SchemaList.Single(row => string.Equals(row.Name, "dq", StringComparison.Ordinal));
         model.StoredProcedureList.Add(new StoredProcedure
         {
@@ -232,7 +232,7 @@ END
 """,
         });
 
-        model.SaveToXmlWorkspace(workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
     }
 
     private static void SaveMetaSqlWithStoredProcedure(string workspacePath)
@@ -253,7 +253,7 @@ END
 """,
         });
 
-        model.SaveToXmlWorkspace(workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
     }
 
     private static MetaSqlModel CreateBaseMetaSql(out Schema schema)

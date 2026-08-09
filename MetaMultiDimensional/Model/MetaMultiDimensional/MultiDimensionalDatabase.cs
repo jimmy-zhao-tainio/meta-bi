@@ -1,0 +1,18 @@
+#nullable enable
+
+namespace MetaMultiDimensional
+{
+    public sealed class MultiDimensionalDatabase
+    {
+        public string Id { get; set; } = string.Empty;
+
+        public string? Collation { get; set; }
+
+        public string? DefaultLanguage { get; set; }
+
+        public string? Description { get; set; }
+
+        public string Name { get; set; } = string.Empty;
+
+    }
+}

@@ -129,7 +129,7 @@ public sealed class CliTests
             Assert.Equal(0, RunCli($"add-tabular-calculation-group --workspace \"{path}\" --id TimeIntelligence --tabular-model Commerce --name TimeIntelligence --precedence 10").ExitCode);
             Assert.Equal(0, RunCli($"add-tabular-calculation-item --workspace \"{path}\" --id TimeYtd --tabular-calculation-group TimeIntelligence --name YTD --expression \"SELECTEDMEASURE()\"").ExitCode);
 
-            var model = MetaTabularModel.LoadFromXmlWorkspace(path, searchUpward: false);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTabularModel>(path, searchUpward: false);
             Assert.Single(model.TabularModelList);
             Assert.Single(model.TabularCalculationGroupList);
             Assert.Single(model.TabularCalculationItemList);
@@ -155,7 +155,7 @@ public sealed class CliTests
                 workingDirectory: path);
 
             Assert.Equal(0, add.ExitCode);
-            var model = MetaTabularModel.LoadFromXmlWorkspace(path, searchUpward: false);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTabularModel>(path, searchUpward: false);
             var tabularModel = Assert.Single(model.TabularModelList);
             Assert.Equal("Commerce", tabularModel.Name);
         }

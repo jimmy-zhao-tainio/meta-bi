@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MetaDataWarehouse", "MetaDataWarehouse", "{958B1012-0671-433A-8269-4A96B994C855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataWarehouse.Tooling", "MetaDataWarehouse\Tooling\MetaDataWarehouse.Tooling.csproj", "{267B146C-F171-4DFD-B1CE-4E328940B8A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataWarehouse.Model", "MetaDataWarehouse\Model\MetaDataWarehouse.Model.csproj", "{267B146C-F171-4DFD-B1CE-4E328940B8A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataWarehouse.Instance", "MetaDataWarehouse\Instance\MetaDataWarehouse.Instance.csproj", "{4E238457-C0BB-4552-B51B-9DE0922877CF}"
 EndProject

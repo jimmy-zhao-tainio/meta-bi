@@ -141,7 +141,7 @@ FROM src;
             Assert.Equal(transformModel.QueryExpressionList.Single().Id, insertWrite.MetaTransformScriptQueryExpressionId);
             Assert.Empty(result.Model.WriteValueScalarExpressionList);
 
-            var persisted = MetaTransformBindingModel.LoadFromXmlWorkspace(result.WorkspacePath, searchUpward: false);
+            var persisted = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
             Assert.Single(persisted.WriteList);
             Assert.Equal(2, persisted.WriteValueList.Count);
             Assert.Single(persisted.InsertQueryWriteList);
@@ -533,7 +533,7 @@ FROM Sales.Store AS source;
                 transformModel.ColumnReferenceExpressionList,
                 item => string.Equals(item.Id, targetRead.MetaTransformScriptColumnReferenceId, StringComparison.Ordinal));
 
-            var persisted = MetaTransformBindingModel.LoadFromXmlWorkspace(result.WorkspacePath, searchUpward: false);
+            var persisted = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
             var persistedTargetRead = Assert.Single(persisted.TargetColumnReferenceList);
             Assert.Equal(targetRead.MetaTransformScriptColumnReferenceId, persistedTargetRead.MetaTransformScriptColumnReferenceId);
             Assert.Equal(targetRead.MetaSchemaFieldId, persistedTargetRead.MetaSchemaFieldId);
@@ -708,7 +708,7 @@ WHEN NOT MATCHED THEN
             Assert.Contains("Name", targetReadNames);
             Assert.Contains("IsActive", targetReadNames);
 
-            var persisted = MetaTransformBindingModel.LoadFromXmlWorkspace(result.WorkspacePath, searchUpward: false);
+            var persisted = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
             Assert.Equal(3, persisted.WriteList.Count);
             Assert.Equal(2, persisted.MergeUpdateWriteList.Count);
             Assert.Single(persisted.MergeInsertWriteList);
@@ -736,7 +736,7 @@ WHEN NOT MATCHED THEN
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -1164,8 +1164,8 @@ WHEN NOT MATCHED THEN
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            schemaModel.SaveToXmlWorkspace(schemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(schemaModel, schemaWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
                 transformWorkspacePath,
@@ -1179,7 +1179,7 @@ WHEN NOT MATCHED THEN
             Assert.Equal(1, result.TargetRowsetValidationCount);
             Assert.Equal(0, result.TargetColumnValidationCount);
 
-            var validated = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var validated = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Single(validated.ValidationTargetRowsetLinkList);
             Assert.Empty(validated.ValidationTargetColumnLinkList);
             Assert.Empty(validated.ValidationTargetIgnoredColumnList);
@@ -2337,7 +2337,7 @@ END
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -2399,7 +2399,7 @@ FROM dbo.Source AS s
                 transformWorkspacePath,
                 "dbo.v_customer_order_count");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var viewScript = transformModel.TransformScriptList.Single(item =>
                 string.Equals(item.Name, "dbo.v_customer_order_count", StringComparison.OrdinalIgnoreCase));
             var sourceSchema = CreateSourceSchema(
@@ -3130,8 +3130,8 @@ FROM dbo.Source AS s;
 
         try
         {
-            bindingModel.SaveToXmlWorkspace(workspacePath);
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(bindingModel, workspacePath);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(workspacePath, searchUpward: false);
 
             Assert.Single(reloaded.TransformBindingList);
             Assert.Single(reloaded.OutputRowsetList);
@@ -3159,7 +3159,7 @@ FROM dbo.Source AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3173,7 +3173,7 @@ FROM dbo.Source AS s;
             Assert.Equal(0, result.IssueCount);
             Assert.Equal(0, result.ErrorCount);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Single(reloaded.TransformBindingList);
             Assert.Single(reloaded.OutputRowsetList);
             Assert.NotEmpty(reloaded.RowsetList);
@@ -3205,7 +3205,7 @@ FROM dbo.Source AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3214,7 +3214,7 @@ FROM dbo.Source AS s;
             Assert.Equal(1, result.TargetCount);
             Assert.Equal(0, result.IssueCount);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             var target = Assert.Single(reloaded.TransformBindingTargetList);
             Assert.Equal("Warehouse.dbo.CustomerSummary", target.SqlIdentifier);
         }
@@ -3239,7 +3239,7 @@ FROM dbo.Source AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3248,7 +3248,7 @@ FROM dbo.Source AS s;
             Assert.Equal(0, result.IssueCount);
             Assert.Equal(0, result.ErrorCount);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Single(reloaded.TransformBindingTargetList);
         }
         finally
@@ -3292,7 +3292,7 @@ GO
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3303,7 +3303,7 @@ GO
             Assert.Equal(2, result.TargetCount);
             Assert.Equal(0, result.IssueCount);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Equal(2, reloaded.TransformBindingTargetList.Count);
             Assert.Contains(reloaded.TransformBindingTargetList, item => string.Equals(item.SqlIdentifier, "sales.CustomerSummary", StringComparison.Ordinal));
             Assert.Contains(reloaded.TransformBindingTargetList, item => string.Equals(item.SqlIdentifier, "reporting.CustomerSummaryReplica", StringComparison.Ordinal));
@@ -3329,7 +3329,7 @@ GO
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var ex = Assert.Throws<InvalidOperationException>(() => new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3358,7 +3358,7 @@ GO
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3367,7 +3367,7 @@ GO
             Assert.Equal(0, result.IssueCount);
             Assert.Equal(0, result.ErrorCount);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
         }
         finally
         {
@@ -3400,7 +3400,7 @@ GO
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3450,7 +3450,7 @@ GO
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3492,7 +3492,7 @@ FROM dbo.SourceTable AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3540,7 +3540,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3573,7 +3573,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3624,7 +3624,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3672,7 +3672,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3716,7 +3716,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3753,7 +3753,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3791,7 +3791,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3838,7 +3838,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3876,7 +3876,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3925,7 +3925,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -3974,7 +3974,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -4023,7 +4023,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -4063,7 +4063,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -4103,7 +4103,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -4143,7 +4143,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -4180,7 +4180,7 @@ INNER JOIN dbo.SourceB AS b
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -4222,7 +4222,7 @@ FROM SourceTable AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -4257,7 +4257,7 @@ FROM SourceTable AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -4308,7 +4308,7 @@ FROM SourceTable AS s;
             Assert.Equal(3, result.SourceColumnValidationCount);
             Assert.Equal(4, result.TargetColumnValidationCount);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(result.WorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
             Assert.Single(reloaded.ValidationList);
             Assert.Single(reloaded.ValidationSourceRowsetLinkList);
             Assert.Single(reloaded.ValidationTargetRowsetLinkList);
@@ -4340,16 +4340,16 @@ FROM SourceTable AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
                 Path.Combine(tempRoot, "BindingWorkspace"));
 
             var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel);
-            validated.SaveToXmlWorkspace(validatedWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(validated, validatedWorkspacePath);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(validatedWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(validatedWorkspacePath, searchUpward: false);
             Assert.Single(reloaded.ValidationList);
             Assert.Single(reloaded.ValidationSourceRowsetLinkList);
             Assert.Single(reloaded.ValidationTargetRowsetLinkList);
@@ -4456,9 +4456,9 @@ FROM SourceTable AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
-            targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchemaModel, sourceSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchemaModel, targetSchemaWorkspacePath);
 
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
                 new TransformBindingWorkspaceService().BindValidatedToWorkspace(
@@ -4507,9 +4507,9 @@ FROM sales.SourceTable AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
-            targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchemaModel, sourceSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchemaModel, targetSchemaWorkspacePath);
 
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
                 new TransformBindingWorkspaceService().BindValidatedToWorkspace(
@@ -4562,10 +4562,10 @@ FROM sales.SourceTable AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            executeSourceSchemaModel.SaveToXmlWorkspace(executeSourceWorkspacePath);
-            otherSourceSchemaModel.SaveToXmlWorkspace(otherSourceWorkspacePath);
-            targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(executeSourceSchemaModel, executeSourceWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(otherSourceSchemaModel, otherSourceWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchemaModel, targetSchemaWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
                 transformWorkspacePath,
@@ -4579,7 +4579,7 @@ FROM sales.SourceTable AS s;
             Assert.Equal(1, result.SourceRowsetValidationCount);
             Assert.Equal(1, result.SourceColumnValidationCount);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             var sourceLink = Assert.Single(reloaded.ValidationSourceRowsetLinkList);
             Assert.Contains("source:ExecDb:", sourceLink.MetaSchemaTableId, StringComparison.Ordinal);
         }
@@ -4620,9 +4620,9 @@ FROM SourceTable AS s;
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
-            targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchemaModel, sourceSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchemaModel, targetSchemaWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
                 transformWorkspacePath,
@@ -4670,9 +4670,9 @@ GO
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
-            targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchemaModel, sourceSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchemaModel, targetSchemaWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
                 transformWorkspacePath,
@@ -4687,7 +4687,7 @@ GO
             Assert.Equal(1, result.SourceRowsetValidationCount);
             Assert.Equal(0, result.TargetRowsetValidationCount);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Single(reloaded.TransformBindingList);
             Assert.Empty(reloaded.TransformBindingTargetList);
             Assert.Empty(reloaded.ValidationTargetRowsetLinkList);
@@ -4737,9 +4737,9 @@ GO
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
-            targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchemaModel, sourceSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchemaModel, targetSchemaWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
                 transformWorkspacePath,
@@ -4758,7 +4758,7 @@ GO
             Assert.Contains("ColumnReferenceNotFound", issue.Code, StringComparison.Ordinal);
             Assert.Contains("MissingTable", issue.Message, StringComparison.OrdinalIgnoreCase);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             var binding = Assert.Single(reloaded.TransformBindingList);
             Assert.Equal("dbo.v_valid", binding.TransformScriptName);
             Assert.Single(reloaded.ValidationList);
@@ -4807,9 +4807,9 @@ GO
 
         try
         {
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-            sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
-            targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchemaModel, sourceSchemaWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchemaModel, targetSchemaWorkspacePath);
 
             var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
                 transformWorkspacePath,
@@ -4827,7 +4827,7 @@ GO
             Assert.Equal("Validation", issue.Stage);
             Assert.Equal("TargetSchemaTableNotFound", issue.Code);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             var binding = Assert.Single(reloaded.TransformBindingList);
             Assert.Equal("dbo.v_valid", binding.TransformScriptName);
             Assert.DoesNotContain(reloaded.TransformBindingList, item =>
@@ -4932,9 +4932,9 @@ GO
         var sourceSchemaWorkspacePath = Path.Combine(tempRoot, "SourceSchemaWorkspace");
         var targetSchemaWorkspacePath = Path.Combine(tempRoot, "TargetSchemaWorkspace");
         var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
-        transformModel.SaveToXmlWorkspace(transformWorkspacePath);
-        sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
-        targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchemaModel, sourceSchemaWorkspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchemaModel, targetSchemaWorkspacePath);
 
         return new TransformBindingWorkspaceService().BindValidatedToWorkspace(
             transformWorkspacePath,

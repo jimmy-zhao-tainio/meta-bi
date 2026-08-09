@@ -12,10 +12,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\MetaDataVault\Core\MetaDataVault.Core.csproj" />
-    <ProjectReference Include="..\..\MetaDataVault\Tooling\MetaDataVault.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaDataVault\Model\MetaDataVault.Model.csproj" />
     <ProjectReference Include="..\..\MetaDataType\Instance\MetaDataType.Instance.csproj" />
     <ProjectReference Include="..\..\MetaDataTypeConversion\Instance\MetaDataTypeConversion.Instance.csproj" />
-    <ProjectReference Include="..\..\MetaSql\Tooling\MetaSql.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaSql\Model\MetaSql.Model.csproj" />
   </ItemGroup>
 
 </Project>

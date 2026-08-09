@@ -16,7 +16,7 @@ public static class MetaDataTypeConversionWorkspaceProvider
             return DefaultWorkspace.Value;
         }
 
-        return MetaDataTypeConversionModel.LoadFromXmlWorkspace(Path.GetFullPath(workspacePath), searchUpward: false);
+        return Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaDataTypeConversionModel>(Path.GetFullPath(workspacePath), searchUpward: false);
     }
 
     public static MetaDataTypeConversionModel GetDefaultWorkspace() => DefaultWorkspace.Value;

@@ -1801,7 +1801,7 @@ public sealed class MetaSqlDeployManifestServiceTests
     private static InMemoryWorkspace CreateWorkspace(MetaSqlModel model, string leafName)
     {
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"), leafName);
-        model.SaveToXmlWorkspace(workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
         return XmlWorkspaceReader.OpenAsync(workspacePath).GetAwaiter().GetResult().State;
     }
 }

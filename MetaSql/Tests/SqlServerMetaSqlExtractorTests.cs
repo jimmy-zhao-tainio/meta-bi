@@ -260,7 +260,7 @@ public sealed class SqlServerMetaSqlExtractorTests
                 TableName = "Customer",
             });
 
-            var model = await MetaSqlModel.LoadFromXmlWorkspaceAsync(workspacePath, searchUpward: false);
+            var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(workspacePath, searchUpward: false);
             var identityColumn = model.TableColumnList.Single(row => row.Id == $"{databaseName}.raw.Customer.CustomerId");
             var computedColumn = model.TableColumnList.Single(row => row.Id == $"{databaseName}.raw.Customer.CustomerCodeUpper");
             var filteredIndex = model.IndexList.Single(row => row.Id == $"{databaseName}.raw.Customer.index.IX_Customer_Code_Filtered");

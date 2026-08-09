@@ -41,7 +41,7 @@ public static partial class Converter
         var dataVaultWorkspace = await XmlWorkspaceReader
             .OpenAsync(dataVaultWorkspacePath, cancellationToken)
             .ConfigureAwait(false);
-        var implementationModel = await MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(implementationWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
+        var implementationModel = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaDataVaultImplementationModel>(implementationWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
 
         switch (dataVaultWorkspace.Model.Name)
         {
@@ -52,9 +52,9 @@ public static partial class Converter
                         databaseName,
                         implementationModel,
                         SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.Default, MetaDataTypeConversionInstance.Default));
-                    var rawModel = await MetaRawDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
+                    var rawModel = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaRawDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var metaSqlModel = ConvertRaw(rawModel, context);
-                    metaSqlModel.SaveToXmlWorkspace(pathToNewMetaSqlWorkspace);
+                    Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(metaSqlModel, pathToNewMetaSqlWorkspace);
                     var outputWorkspace = await XmlWorkspaceReader
                         .OpenAsync(pathToNewMetaSqlWorkspace, cancellationToken)
                         .ConfigureAwait(false);
@@ -68,9 +68,9 @@ public static partial class Converter
                         databaseName,
                         implementationModel,
                         SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.Default, MetaDataTypeConversionInstance.Default));
-                    var businessModel = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
+                    var businessModel = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var metaSqlModel = ConvertBusiness(businessModel, context);
-                    metaSqlModel.SaveToXmlWorkspace(pathToNewMetaSqlWorkspace);
+                    Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(metaSqlModel, pathToNewMetaSqlWorkspace);
                     var outputWorkspace = await XmlWorkspaceReader
                         .OpenAsync(pathToNewMetaSqlWorkspace, cancellationToken)
                         .ConfigureAwait(false);

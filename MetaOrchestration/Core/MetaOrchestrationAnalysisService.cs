@@ -22,7 +22,7 @@ public sealed class MetaOrchestrationAnalysisService
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PlanName);
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
-        var pipelineModel = MP.MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
+        var pipelineModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MP.MetaPipelineModel>(pipelineWorkspacePath, searchUpward: false);
 
         return AnalyzeProfiles(
             request.PlanName,
@@ -1750,8 +1750,8 @@ public sealed class MetaOrchestrationAnalysisService
                 return existing;
             }
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(fullTransformWorkspacePath, searchUpward: false);
-            var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(fullBindingWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(fullTransformWorkspacePath, searchUpward: false);
+            var bindingModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(fullBindingWorkspacePath, searchUpward: false);
             var context = new TransformWorkspaceProfileContext(
                 fullTransformWorkspacePath,
                 fullBindingWorkspacePath,

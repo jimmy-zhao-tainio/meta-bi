@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tooling\MetaDataQuality.Tooling.csproj" />
-    <ProjectReference Include="..\..\MetaTransform\Script\Tooling\MetaTransformScript.Tooling.csproj" />
-    <ProjectReference Include="..\..\MetaTransform\Binding\Tooling\MetaTransformBinding.Tooling.csproj" />
+    <ProjectReference Include="..\Model\MetaDataQuality.Model.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Script\Model\MetaTransformScript.Model.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Binding\Model\MetaTransformBinding.Model.csproj" />
   </ItemGroup>
 
 </Project>

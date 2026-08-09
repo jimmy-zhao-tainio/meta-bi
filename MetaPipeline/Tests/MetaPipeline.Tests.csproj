@@ -22,7 +22,7 @@
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
     <ProjectReference Include="..\Cli\MetaPipeline.Cli.csproj" />
     <ProjectReference Include="..\Core\MetaPipeline.Core.csproj" />
-    <ProjectReference Include="..\Tooling\MetaPipeline.Tooling.csproj" />
+    <ProjectReference Include="..\Model\MetaPipeline.Model.csproj" />
   </ItemGroup>
 
 </Project>

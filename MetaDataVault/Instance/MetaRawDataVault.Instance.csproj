@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tooling\MetaDataVault.Tooling.csproj" />
+    <ProjectReference Include="..\Model\MetaDataVault.Model.csproj" />
   </ItemGroup>
 
 </Project>

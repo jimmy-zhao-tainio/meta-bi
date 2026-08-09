@@ -45,7 +45,7 @@ SELECT
             Assert.Equal(0, result.SkippedExistingCount);
             Assert.Equal(0, result.UnchangedCount);
 
-            var model = MetaTransformScriptModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(workspacePath, searchUpward: false);
             Assert.Equal(
                 "Warehouse.dbo.FactCustomer",
                 GetTargetSqlIdentifier(model, "dbo.FactCustomer_TargetView"));
@@ -88,7 +88,7 @@ SELECT
             Assert.Equal(0, result.UpdatedCount);
             Assert.Equal(1, result.SkippedExistingCount);
 
-            var model = MetaTransformScriptModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(workspacePath, searchUpward: false);
             Assert.Equal(
                 "ExistingWarehouse.dbo.FactCustomer",
                 GetTargetSqlIdentifier(model, "dbo.FactCustomer_TargetView"));
@@ -129,7 +129,7 @@ SELECT
             Assert.Equal(1, result.UpdatedCount);
             Assert.True(result.DryRun);
 
-            var model = MetaTransformScriptModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(workspacePath, searchUpward: false);
             Assert.True(string.IsNullOrWhiteSpace(GetTargetSqlIdentifier(model, "dbo.FactCustomer_TargetView")));
         }
         finally

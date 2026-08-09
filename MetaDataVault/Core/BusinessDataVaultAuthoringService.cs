@@ -52,7 +52,7 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
         ArgumentException.ThrowIfNullOrWhiteSpace(request.RecordId);
 
         var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = MetaBusinessDataVaultTooling.Load(workspacePath);
+        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaBusinessDataVaultModel>(workspacePath);
         var entityType = ResolveEntityType(request.EntityName);
         var rows = GetEntityRows(model, entityType, request.EntityName);
         if (rows.Cast<object>().Any(row => string.Equals(ReadId(row), request.RecordId, StringComparison.Ordinal)))
@@ -79,7 +79,7 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
         ValidateDomainRules(model, rowToAdd, request);
         BusinessDataVaultRules.ValidateSatelliteSpecializations(model);
 
-        model.SaveToXmlWorkspace(workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
         return model;
     }
 
@@ -94,7 +94,7 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
         ArgumentException.ThrowIfNullOrWhiteSpace(request.Name);
 
         var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = MetaBusinessDataVaultTooling.Load(workspacePath);
+        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaBusinessDataVaultModel>(workspacePath);
         var baseEntityType = ResolveEntityType("BusinessSatellite");
         var baseRows = GetEntityRows(model, baseEntityType, "BusinessSatellite");
         var satelliteEntityType = ResolveEntityType(request.SatelliteEntityName);
@@ -141,7 +141,7 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
         satelliteRows.Add(satelliteRow);
         BusinessDataVaultRules.ValidateSatelliteSpecializations(model);
 
-        model.SaveToXmlWorkspace(workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
         return model;
     }
 

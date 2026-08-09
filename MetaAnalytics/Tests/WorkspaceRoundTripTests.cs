@@ -10,9 +10,9 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            MetaAnalyticsInstance.SampleCommerce.SaveToXmlWorkspace(path);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(MetaAnalyticsInstance.SampleCommerce, path);
 
-            var loaded = MetaAnalyticsModel.LoadFromXmlWorkspace(path, searchUpward: false);
+            var loaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(path, searchUpward: false);
             var sales = Assert.Single(loaded.TableList, row => row.Id == "table:sales");
             var date = Assert.Single(loaded.TableList, row => row.Id == "table:date");
             var salesAmount = Assert.Single(loaded.MeasureList, row => row.Id == "measure:sales-amount");
@@ -59,7 +59,7 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Assert.Throws<InvalidOperationException>(() => model.SaveToXmlWorkspace(path));
+            Assert.Throws<InvalidOperationException>(() => Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, path));
         }
         finally
         {

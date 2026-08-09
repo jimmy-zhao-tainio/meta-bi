@@ -65,7 +65,7 @@ public sealed class CliTests
             Assert.True(File.Exists(Path.Combine(qualityWorkspacePath, "workspace.meta")));
             Assert.True(File.Exists(Path.Combine(qualityWorkspacePath, "model.xml")));
 
-            var model = MetaDataQualityModel.LoadFromXmlWorkspace(qualityWorkspacePath, searchUpward: false);
+            var model = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, searchUpward: false);
             Assert.NotEmpty(model.DataQualityCandidateList);
             Assert.NotEmpty(model.OuterJoinNullExpansionList);
             Assert.NotEmpty(model.CorpusRelationshipList);
@@ -89,7 +89,7 @@ public sealed class CliTests
             Assert.DoesNotContain("Ok", promoted.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("Next:", promoted.Output, StringComparison.Ordinal);
 
-            var reloaded = MetaDataQualityModel.LoadFromXmlWorkspace(qualityWorkspacePath, searchUpward: false);
+            var reloaded = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, searchUpward: false);
             var promotedRow = Assert.Single(
                 reloaded.DataQualityCandidateList,
                 item => string.Equals(item.Id, firstCandidate.Id, StringComparison.Ordinal));
@@ -157,7 +157,7 @@ public sealed class CliTests
                 DominantPattern = dominantPattern,
             });
 
-            model.SaveToXmlWorkspace(qualityWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(model, qualityWorkspacePath);
             MetaCliWorkspace.DescribeXml(qualityWorkspacePath);
 
             var promoted = RunCli(
@@ -167,7 +167,7 @@ public sealed class CliTests
             Assert.True(promoted.ExitCode == 0, promoted.Output);
             Assert.Contains("Candidates promoted this run: 2", promoted.Output, StringComparison.Ordinal);
 
-            var reloaded = MetaDataQualityModel.LoadFromXmlWorkspace(qualityWorkspacePath, searchUpward: false);
+            var reloaded = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, searchUpward: false);
             Assert.Equal(
                 CandidateStatuses.Discovered,
                 reloaded.DataQualityCandidateList.Single(row => string.Equals(row.Id, plainCandidate.Id, StringComparison.Ordinal)).Status);
@@ -206,7 +206,7 @@ public sealed class CliTests
                 transformWorkspacePath,
                 "dbo.v_missing_payments");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var boundScript = transformModel.TransformScriptList.Single(item =>
                 string.Equals(item.Name, "dbo.v_customer_orders", StringComparison.OrdinalIgnoreCase));
             var bindingModel = MetaTransformBindingModel.CreateEmpty();
@@ -222,7 +222,7 @@ public sealed class CliTests
                 Id = $"{binding.Id}:validation",
                 TransformBinding = binding
             });
-            bindingModel.SaveToXmlWorkspace(bindingWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(bindingModel, bindingWorkspacePath);
 
             var generated = RunCli(
                 $"from-transform-workspace --transform-workspace \"{transformWorkspacePath}\" --binding-workspace \"{bindingWorkspacePath}\" --output-xml \"{qualityWorkspacePath}\"");
@@ -230,7 +230,7 @@ public sealed class CliTests
             Assert.Equal(0, generated.ExitCode);
             Assert.Contains("Transform scripts scanned: 1/2", generated.Output, StringComparison.Ordinal);
 
-            var model = MetaDataQualityModel.LoadFromXmlWorkspace(qualityWorkspacePath, searchUpward: false);
+            var model = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, searchUpward: false);
             Assert.NotEmpty(model.DataQualityCandidateList);
             Assert.Contains(model.JoinPatternOccurrenceList, item =>
                 string.Equals(item.TransformScriptName, "dbo.v_customer_orders", StringComparison.OrdinalIgnoreCase));
@@ -542,7 +542,7 @@ LEFT OUTER JOIN dbo.[Order] o
                 candidate.Status = CandidateStatuses.Promoted;
             }
 
-            discovery.Model.SaveToXmlWorkspace(qualityWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(discovery.Model, qualityWorkspacePath);
 
             var result = new DataQualityToSqlConverter().Convert(qualityWorkspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -614,7 +614,7 @@ LEFT OUTER JOIN dbo.[Order] o
             Assert.Equal("CustomerId", keyPart.FirstJoinInputColumnName);
             Assert.Equal("CustomerHubId", keyPart.SecondJoinInputColumnName);
 
-            discovery.Model.SaveToXmlWorkspace(qualityWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(discovery.Model, qualityWorkspacePath);
 
             new DataQualityToSqlConverter().Convert(qualityWorkspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -639,7 +639,9 @@ LEFT OUTER JOIN dbo.[Order] o
 
         try
         {
-            MetaDataQualityModel.CreateEmpty().SaveToXmlWorkspace(qualityWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(
+                MetaDataQualityModel.CreateEmpty(),
+                qualityWorkspacePath);
 
             var result = new DataQualityToSqlConverter().Convert(qualityWorkspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -705,7 +707,7 @@ LEFT OUTER JOIN dbo.[Order] o
                 rightTable: "sales.Order");
 
             new MetaDataQualityCorpusInferenceService().Apply(model, BuildOptionalityOnlyThresholdsForCli());
-            model.SaveToXmlWorkspace(qualityWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(model, qualityWorkspacePath);
             MetaCliWorkspace.DescribeXml(qualityWorkspacePath);
 
             var inspect = RunCli($"inspect --workspace \"{qualityWorkspacePath}\"");
@@ -745,7 +747,7 @@ LEFT OUTER JOIN dbo.[Order] o
                 leftTable: "sales.ExpressionSource",
                 rightTable: "sales.CalendarException");
             AddDiscoveredJoinOrphanCandidateForCli(model, "JoinPattern.Scalar.Cli");
-            model.SaveToXmlWorkspace(qualityWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(model, qualityWorkspacePath);
             MetaCliWorkspace.DescribeXml(qualityWorkspacePath);
 
             var inspect = RunCli($"inspect --workspace \"{qualityWorkspacePath}\" --show-cases --top-cases 1");

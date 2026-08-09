@@ -53,7 +53,7 @@ public sealed class CliTests
             Assert.Equal(0, RunCli($"add-fact --workspace \"{path}\" --id SalesOrder --warehouse Commerce --name SalesOrder").ExitCode);
             Assert.Equal(0, RunCli($"add-fact-measure --workspace \"{path}\" --id SalesAmount --fact SalesOrder --name SalesAmount --data-type-id meta:type:Decimal").ExitCode);
 
-            var model = MetaDataWarehouseModel.LoadFromXmlWorkspace(path, searchUpward: false);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, searchUpward: false);
             var keyPart = Assert.Single(model.DimensionBusinessKeyPartList);
             Assert.Equal("CustomerNumber", keyPart.DimensionAttribute.Name);
             Assert.Single(model.SlowlyChangingDimensionList);
@@ -78,7 +78,7 @@ public sealed class CliTests
             var add = RunCli("--id Commerce --name Commerce", command: "add-warehouse", workingDirectory: path);
 
             Assert.Equal(0, add.ExitCode);
-            var model = MetaDataWarehouseModel.LoadFromXmlWorkspace(path, searchUpward: false);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, searchUpward: false);
             var warehouse = Assert.Single(model.WarehouseList);
             Assert.Equal("Commerce", warehouse.Name);
         }

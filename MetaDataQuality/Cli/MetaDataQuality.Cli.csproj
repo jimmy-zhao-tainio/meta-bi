@@ -13,7 +13,7 @@
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\Core\MetaDataQuality.Core.csproj" />
-    <ProjectReference Include="..\Tooling\MetaDataQuality.Tooling.csproj" />
+    <ProjectReference Include="..\Model\MetaDataQuality.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>

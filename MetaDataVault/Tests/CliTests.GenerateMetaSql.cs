@@ -22,7 +22,7 @@ public sealed partial class CliTests
             Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
             Assert.True(Directory.Exists(outputWorkspacePath));
 
-            var model = await MetaSqlModel.LoadFromXmlWorkspaceAsync(outputWorkspacePath, searchUpward: false);
+            var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(outputWorkspacePath, searchUpward: false);
             Assert.NotEmpty(model.DatabaseList);
             Assert.NotEmpty(model.TableList);
         }
@@ -50,7 +50,7 @@ public sealed partial class CliTests
             Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
             Assert.True(Directory.Exists(outputWorkspacePath));
 
-            var model = await MetaSqlModel.LoadFromXmlWorkspaceAsync(outputWorkspacePath, searchUpward: false);
+            var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(outputWorkspacePath, searchUpward: false);
             Assert.NotEmpty(model.DatabaseList);
             Assert.Contains(model.TableList, row => string.Equals(row.Name, "RSAT_Status_Current", StringComparison.Ordinal));
         }

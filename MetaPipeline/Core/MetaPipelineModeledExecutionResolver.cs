@@ -1,4 +1,4 @@
-﻿namespace MetaPipeline;
+namespace MetaPipeline;
 
 public sealed class MetaPipelineModeledExecutionResolver
 {
@@ -10,7 +10,7 @@ public sealed class MetaPipelineModeledExecutionResolver
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PipelineName);
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
-        var model = MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
+        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaPipelineModel>(pipelineWorkspacePath, searchUpward: false);
         return Resolve(model, pipelineWorkspacePath, request.PipelineName);
     }
 
@@ -199,7 +199,7 @@ public sealed class MetaPipelineModeledExecutionResolver
         ArgumentException.ThrowIfNullOrWhiteSpace(request.StepName);
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
-        var model = MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
+        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaPipelineModel>(pipelineWorkspacePath, searchUpward: false);
         return ResolveStep(model, pipelineWorkspacePath, request.PipelineName, request.StepName);
     }
 

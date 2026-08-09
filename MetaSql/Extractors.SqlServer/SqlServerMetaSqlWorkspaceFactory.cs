@@ -14,7 +14,7 @@ public static class SqlServerMetaSqlWorkspaceFactory
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
         var model = CreateEmptyModel(databaseName, schemaNames);
-        model.SaveToXmlWorkspace(newWorkspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, newWorkspacePath);
         return XmlWorkspaceReader.OpenAsync(newWorkspacePath).GetAwaiter().GetResult().State;
     }
 

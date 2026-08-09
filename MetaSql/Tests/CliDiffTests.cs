@@ -194,7 +194,7 @@ public sealed partial class CliDiffTests
             Assert.Contains("Status: ready to deploy", result.Output, StringComparison.Ordinal);
             Assert.False(DatabaseExists(masterConnectionString, databaseName));
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
             var root = Assert.Single(manifest.DeployManifestList);
             Assert.Equal("Missing", root.ExpectedLiveDatabasePresence);
             Assert.Single(manifest.AddSchemaList);
@@ -238,7 +238,7 @@ public sealed partial class CliDiffTests
             Assert.Equal(0, planResult.ExitCode);
             Assert.False(DatabaseExists(masterConnectionString, databaseName));
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
             Assert.Single(manifest.AddSchemaList);
 
             var deployCommand = new ProcessStartInfo
@@ -354,7 +354,7 @@ public sealed partial class CliDiffTests
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
             Assert.Empty(manifest.AddSchemaList);
 
             var deployCommand = new ProcessStartInfo
@@ -413,7 +413,7 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
             var root = Assert.Single(manifest.DeployManifestList);
             Assert.Equal("Present", root.ExpectedLiveDatabasePresence);
             Assert.Single(manifest.AddSchemaList);
@@ -459,7 +459,7 @@ public sealed partial class CliDiffTests
             Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
             Assert.Contains("Status: ready to deploy", result.Output, StringComparison.Ordinal);
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
             Assert.Single(manifest.AddTableColumnList);
             Assert.Empty(manifest.BlockTableColumnDifferenceList);
         }
@@ -505,7 +505,7 @@ public sealed partial class CliDiffTests
             Assert.Contains("BlockTableDifference", result.Output, StringComparison.Ordinal);
             Assert.Contains("missing approval DataDropTable", result.Output, StringComparison.Ordinal);
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
             Assert.Empty(manifest.DropTableList);
             Assert.Single(manifest.DropForeignKeyList);
             Assert.Single(manifest.BlockTableDifferenceList);
@@ -560,7 +560,7 @@ public sealed partial class CliDiffTests
             Assert.Equal(0, result.ExitCode);
             AssertPlanChanges(result.Output, "1 to add", "1 column", "1 to alter", "1 column");
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
             Assert.Single(manifest.AddTableColumnList);
             Assert.Single(manifest.AlterTableColumnList);
             Assert.Empty(manifest.DropTableList);
@@ -609,7 +609,7 @@ public sealed partial class CliDiffTests
             Assert.Equal(0, result.ExitCode);
             AssertPlanChanges(result.Output, "2 to drop", "1 table", "1 foreign key");
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
             Assert.Single(manifest.DropTableList);
             Assert.Single(manifest.DropForeignKeyList);
             Assert.Empty(manifest.BlockTableDifferenceList);
@@ -654,7 +654,7 @@ public sealed partial class CliDiffTests
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("missing approval DataDropTable(raw.Parent)", result.Output, StringComparison.Ordinal);
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
             Assert.Empty(manifest.DropTableList);
             Assert.Single(manifest.DropForeignKeyList);
             Assert.Single(manifest.BlockTableDifferenceList);
@@ -722,7 +722,7 @@ public sealed partial class CliDiffTests
             Assert.Equal(0, result.ExitCode);
             AssertPlanChanges(result.Output, "2 to drop");
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
             Assert.Single(manifest.DropPrimaryKeyList);
             Assert.Single(manifest.DropIndexList);
             Assert.Empty(manifest.DropTableList);
@@ -813,7 +813,7 @@ public sealed partial class CliDiffTests
 
             Assert.Equal(0, result.ExitCode);
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
             Assert.Single(manifest.DropTableList);
             Assert.Single(manifest.DropTableColumnList);
             Assert.Empty(manifest.BlockTableDifferenceList);
@@ -905,7 +905,7 @@ public sealed partial class CliDiffTests
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("DROP COLUMN is blocked by live DEFAULT constraint dependency", result.Output, StringComparison.Ordinal);
 
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var manifest = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
             Assert.Single(manifest.DropTableList);
             Assert.Empty(manifest.DropTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);

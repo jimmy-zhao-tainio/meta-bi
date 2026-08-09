@@ -14,7 +14,7 @@
     <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\Core\MetaSql.Core.csproj" />
     <ProjectReference Include="..\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
-    <ProjectReference Include="..\Tooling\MetaSql.Tooling.csproj" />
+    <ProjectReference Include="..\Model\MetaSql.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>

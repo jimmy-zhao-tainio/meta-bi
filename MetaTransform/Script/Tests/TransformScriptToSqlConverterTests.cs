@@ -32,7 +32,7 @@ SELECT
                 metaSqlWorkspacePath,
                 "Staging");
 
-            var model = MetaSqlModel.LoadFromXmlWorkspace(metaSqlWorkspacePath, searchUpward: false);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(metaSqlWorkspacePath, searchUpward: false);
             var schema = Assert.Single(model.SchemaList);
             Assert.Equal("stage", schema.Name);
 
@@ -223,7 +223,7 @@ SELECT
             Id = databaseName,
             Name = databaseName,
         });
-        model.SaveToXmlWorkspace(workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
     }
 
     private static void SetViewTargetSqlIdentifier(MetaTransformScriptModel model, string targetSqlIdentifier)

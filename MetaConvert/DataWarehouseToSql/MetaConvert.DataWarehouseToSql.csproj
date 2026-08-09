@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MetaDataWarehouse\Tooling\MetaDataWarehouse.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaDataWarehouse\Model\MetaDataWarehouse.Model.csproj" />
     <ProjectReference Include="..\..\MetaDataType\Instance\MetaDataType.Instance.csproj" />
     <ProjectReference Include="..\..\MetaDataTypeConversion\Instance\MetaDataTypeConversion.Instance.csproj" />
-    <ProjectReference Include="..\..\MetaSql\Tooling\MetaSql.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaSql\Model\MetaSql.Model.csproj" />
   </ItemGroup>
 
 </Project>

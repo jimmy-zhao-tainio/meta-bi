@@ -1,0 +1,22 @@
+#nullable enable
+
+namespace MetaPipeline
+{
+    public sealed class ExecutableTask
+    {
+        public string Id { get; set; } = string.Empty;
+
+        public string? Arguments { get; set; }
+
+        public string ExecutablePath { get; set; } = string.Empty;
+
+        public string? SuccessExitCode { get; set; }
+
+        public string? TimeoutSeconds { get; set; }
+
+        public string? WorkingDirectory { get; set; }
+
+        public PipelineTask PipelineTask { get; set; } = null!;
+
+    }
+}

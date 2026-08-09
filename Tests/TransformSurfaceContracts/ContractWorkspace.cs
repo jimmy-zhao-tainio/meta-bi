@@ -53,7 +53,7 @@ internal sealed class ContractWorkspace : IDisposable
             }
         }
 
-        TransformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(TransformWorkspacePath, searchUpward: false);
+        TransformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(TransformWorkspacePath, searchUpward: false);
     }
 
     public BindToWorkspaceResult Bind()
@@ -164,7 +164,7 @@ internal sealed class ContractWorkspace : IDisposable
             });
         }
 
-        model.SaveToXmlWorkspace(PipelineWorkspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, PipelineWorkspacePath);
     }
 
     public MetaPipelineExecutionDefinition ResolvePipelineExecution(TransformScript script)

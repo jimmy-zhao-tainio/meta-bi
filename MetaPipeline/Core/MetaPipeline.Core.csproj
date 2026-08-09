@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tooling\MetaPipeline.Tooling.csproj" />
+    <ProjectReference Include="..\Model\MetaPipeline.Model.csproj" />
     <ProjectReference Include="..\..\MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj" />
     <ProjectReference Include="..\..\MetaOrchestration\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />

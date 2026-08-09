@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MetaDataQuality\Tooling\MetaDataQuality.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaDataQuality\Model\MetaDataQuality.Model.csproj" />
     <ProjectReference Include="..\..\MetaDataQuality\Core\MetaDataQuality.Core.csproj" />
   </ItemGroup>
 

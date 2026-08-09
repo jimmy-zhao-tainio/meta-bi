@@ -13,7 +13,7 @@ public sealed class MetaTabularDeployService
         ArgumentException.ThrowIfNullOrWhiteSpace(request.Server);
 
         var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = MetaTabularModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
+        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTabularModel>(workspacePath, searchUpward: false);
         var root = RequireSingleModel(model);
         var databaseName = string.IsNullOrWhiteSpace(request.DatabaseName)
             ? root.Name

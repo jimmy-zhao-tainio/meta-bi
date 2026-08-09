@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Cli", "MetaSchem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tests", "MetaSchema\Tests\MetaSchema.Tests.csproj", "{3AFAF730-13FD-497B-89EA-A81646893B25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tooling", "MetaSchema\Tooling\MetaSchema.Tooling.csproj", "{B61DF880-CA14-4B7B-B7D1-F2E79D35FB85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Model", "MetaSchema\Model\MetaSchema.Model.csproj", "{B61DF880-CA14-4B7B-B7D1-F2E79D35FB85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Instance", "MetaSchema\Instance\MetaSchema.Instance.csproj", "{483D2D68-AFD8-47FB-B63A-151C74894151}"
 EndProject

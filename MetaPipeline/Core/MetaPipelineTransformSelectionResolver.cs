@@ -15,12 +15,12 @@ public sealed class MetaPipelineTransformSelectionResolver
         ArgumentException.ThrowIfNullOrWhiteSpace(bindingWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(script);
 
-        var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(
+        var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(
             Path.GetFullPath(transformWorkspacePath),
             searchUpward: false);
         var transformScript = ResolveScript(transformModel, script.Trim());
 
-        var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(
+        var bindingModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(
             Path.GetFullPath(bindingWorkspacePath),
             searchUpward: false);
         var transformBinding = string.IsNullOrWhiteSpace(binding)

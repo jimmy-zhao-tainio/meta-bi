@@ -28,7 +28,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 transformWorkspacePath,
                 "dbo.v_customer_two");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var first = transformModel.TransformScriptList.Single(item => string.Equals(item.Name, "dbo.v_customer_one", StringComparison.OrdinalIgnoreCase));
             var second = transformModel.TransformScriptList.Single(item => string.Equals(item.Name, "dbo.v_customer_two", StringComparison.OrdinalIgnoreCase));
 
@@ -63,7 +63,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 transformWorkspacePath,
                 "dbo.v_customer_load");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
 
             BuildBindingWorkspace(
@@ -115,7 +115,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 transformWorkspacePath,
                 "dbo.v_customer_load");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -151,7 +151,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 transformWorkspacePath,
                 "dbo.v_customer_load");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -195,7 +195,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 transformWorkspacePath,
                 "dbo.v_customer_load");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
 
             BuildBindingWorkspace(
@@ -245,10 +245,10 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 null,
                 transformWorkspacePath);
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
             AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId", "CustomerName"]);
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -306,10 +306,10 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 null,
                 transformWorkspacePath);
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
             AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId"]);
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -354,10 +354,10 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 null,
                 transformWorkspacePath);
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
             AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId", "CustomerName"]);
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
                 transformWorkspacePath,
@@ -404,7 +404,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 null,
                 transformWorkspacePath);
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
 
             BuildBindingWorkspace(
@@ -441,7 +441,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 transformWorkspacePath,
                 "dbo.v_customer_load");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
 
             BuildBindingWorkspace(
@@ -478,7 +478,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 transformWorkspacePath,
                 "dbo.v_customer_load");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
 
             BuildBindingWorkspace(
@@ -515,7 +515,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 transformWorkspacePath,
                 "update-target");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -564,7 +564,7 @@ END
                 transformWorkspacePath,
                 "dbo.fnAddOne");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -601,7 +601,7 @@ END
                 transformWorkspacePath,
                 "delete-target");
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -638,7 +638,7 @@ END
                 null,
                 transformWorkspacePath,
                 "truncate-target");
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -685,7 +685,7 @@ END
                 null,
                 transformWorkspacePath,
                 "delete-target");
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var updateScript = transformModel.TransformScriptList.Single(item => item.Name == "update-target");
             var deleteScript = transformModel.TransformScriptList.Single(item => item.Name == "delete-target");
             BuildBindingWorkspace(
@@ -740,7 +740,7 @@ END
                 null,
                 transformWorkspacePath,
                 "delete-target");
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var updateScript = transformModel.TransformScriptList.Single(item => item.Name == "update-target");
             var deleteScript = transformModel.TransformScriptList.Single(item => item.Name == "delete-target");
             BuildBindingWorkspace(
@@ -788,7 +788,7 @@ END
                 "dbo.CustomerLoad",
                 transformWorkspacePath,
                 "dbo.v_customer_load");
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var script = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -929,7 +929,7 @@ END
             }
         }
 
-        model.SaveToXmlWorkspace(bindingWorkspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspacePath);
     }
 
     private static void AddStoredProcedureContractResultRowset(
@@ -1078,7 +1078,7 @@ END
             Successor = targetWriteTask,
         });
 
-        model.SaveToXmlWorkspace(pipelineWorkspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, pipelineWorkspacePath);
     }
 
     private static void BuildTransformOnlyPipelineWorkspace(
@@ -1123,7 +1123,7 @@ END
             TimeoutSeconds = timeoutSeconds,
         });
 
-        model.SaveToXmlWorkspace(pipelineWorkspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, pipelineWorkspacePath);
     }
 
     private static void BuildSerialTransformPipelineWorkspace(
@@ -1192,7 +1192,7 @@ END
             Successor = secondTask,
         });
 
-        model.SaveToXmlWorkspace(pipelineWorkspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, pipelineWorkspacePath);
     }
 
     private sealed record BindingSeed(

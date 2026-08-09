@@ -23,9 +23,9 @@
     <ProjectReference Include="..\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\Cli\MetaOrchestration.Cli.csproj" />
     <ProjectReference Include="..\Core\MetaOrchestration.Core.csproj" />
-    <ProjectReference Include="..\..\MetaPipeline\Tooling\MetaPipeline.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaPipeline\Model\MetaPipeline.Model.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
-    <ProjectReference Include="..\..\MetaTransform\Binding\Tooling\MetaTransformBinding.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Binding\Model\MetaTransformBinding.Model.csproj" />
   </ItemGroup>
 
 </Project>

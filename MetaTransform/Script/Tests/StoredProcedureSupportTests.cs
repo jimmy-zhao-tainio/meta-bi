@@ -26,7 +26,7 @@ public sealed class StoredProcedureSupportTests
                 targetSqlIdentifier: null,
                 newWorkspacePath: workspacePath);
 
-            var model = MetaTransformScriptModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
+            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(workspacePath, searchUpward: false);
             var script = Assert.Single(model.TransformScriptList);
             Assert.Equal("dq.RunReview", script.Name);
             Assert.Empty(model.TransformScriptStatementLinkList);
@@ -253,10 +253,10 @@ public sealed class StoredProcedureSupportTests
                 targetSqlIdentifier: null,
                 workspacePath: transformWorkspacePath);
 
-            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             AddSingleReadContract(transformModel, "etl.FirstLoad", "src.SharedSource");
             AddSingleReadContract(transformModel, "etl.SecondLoad", "src.SharedSource");
-            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
             SaveSchemaWorkspace(schemaWorkspacePath, "src.SharedSource");
 
             var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
@@ -267,7 +267,7 @@ public sealed class StoredProcedureSupportTests
                 executeSystemDefaultSchemaName: null,
                 newWorkspacePath: bindingWorkspacePath);
 
-            var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var bindingModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Equal(2, result.TransformBindingCount);
             Assert.Equal(bindingModel.ColumnList.Count, bindingModel.ColumnList.Select(static item => item.Id).Distinct(StringComparer.Ordinal).Count());
             Assert.Equal(2, bindingModel.RowsetList.Count(static item =>
@@ -475,6 +475,6 @@ public sealed class StoredProcedureSupportTests
             Ordinal = "0",
             IsNullable = "false"
         });
-        model.SaveToXmlWorkspace(workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
     }
 }

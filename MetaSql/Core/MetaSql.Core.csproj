@@ -15,10 +15,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
-    <ProjectReference Include="..\DeployManifest\Tooling\MetaSqlDeployManifest.Tooling.csproj" />
-    <ProjectReference Include="..\Tooling\MetaSql.Tooling.csproj" />
+    <ProjectReference Include="..\DeployManifest\Model\MetaSqlDeployManifest.Model.csproj" />
+    <ProjectReference Include="..\Model\MetaSql.Model.csproj" />
     <ProjectReference Include="..\..\MetaDataType\Instance\MetaDataType.Instance.csproj" />
-    <ProjectReference Include="..\..\MetaDataType\Tooling\MetaDataType.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaDataType\Model\MetaDataType.Model.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MetaAnalytics", "MetaAnalytics", "{9FB3B3A1-706B-4A03-9464-4D89BBFDD277}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaAnalytics.Tooling", "MetaAnalytics\Tooling\MetaAnalytics.Tooling.csproj", "{B16F683B-2021-4A5B-AC8F-3B51AD823021}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaAnalytics.Model", "MetaAnalytics\Model\MetaAnalytics.Model.csproj", "{B16F683B-2021-4A5B-AC8F-3B51AD823021}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaAnalytics.Instance", "MetaAnalytics\Instance\MetaAnalytics.Instance.csproj", "{050A431D-2053-4266-B1F0-89C41387B1C3}"
 EndProject

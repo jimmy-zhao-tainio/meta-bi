@@ -22,7 +22,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         ArgumentException.ThrowIfNullOrWhiteSpace(transformScriptId);
         ArgumentException.ThrowIfNullOrWhiteSpace(transformBindingId);
 
-        var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(
+        var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(
             Path.GetFullPath(transformWorkspacePath),
             searchUpward: false);
 
@@ -30,7 +30,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         var statementKind = new TransformScriptStatementKindService().GetStatementKind(transformModel, transformScript);
         EnsureTransformScriptIsSupported(transformModel, transformScript, statementKind);
         var rowStreamMode = ResolveRowStreamMode(transformModel, transformScript, statementKind);
-        var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(
+        var bindingModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(
             Path.GetFullPath(bindingWorkspacePath),
             searchUpward: false);
 

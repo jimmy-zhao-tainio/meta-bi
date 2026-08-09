@@ -40,7 +40,7 @@ public sealed class DataWarehouseAuthoringService : IDataWarehouseAuthoringServi
         ArgumentException.ThrowIfNullOrWhiteSpace(request.RecordId);
 
         var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = MetaDataWarehouseTooling.Load(workspacePath);
+        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(workspacePath);
         var entityType = ResolveEntityType(request.EntityName);
         var rows = GetEntityRows(model, entityType, request.EntityName);
         if (rows.Cast<object>().Any(row => string.Equals(ReadId(row), request.RecordId, StringComparison.Ordinal)))
@@ -65,7 +65,7 @@ public sealed class DataWarehouseAuthoringService : IDataWarehouseAuthoringServi
         AssignOrdinalIfMissing(model, rowToAdd, request);
         rows.Add(rowToAdd);
         ValidateDomainRules(model, rowToAdd);
-        model.SaveToXmlWorkspace(workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
         return model;
     }
 

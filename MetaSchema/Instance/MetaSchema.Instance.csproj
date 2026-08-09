@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tooling\MetaSchema.Tooling.csproj" />
+    <ProjectReference Include="..\Model\MetaSchema.Model.csproj" />
   </ItemGroup>
 
 </Project>
