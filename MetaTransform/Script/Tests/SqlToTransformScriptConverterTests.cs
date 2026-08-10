@@ -27,7 +27,8 @@ public sealed class SqlToTransformScriptConverterTests
             await TransformScriptToSqlConverter.ConvertAsync(
                 transformScriptWorkspacePath,
                 roundTripMetaSqlWorkspacePath,
-                "SymmetryDb");
+                "SymmetryDb",
+                "xml");
 
             var roundTrip = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(roundTripMetaSqlWorkspacePath, searchUpward: false);
             var view = Assert.Single(roundTrip.ViewList);
@@ -79,7 +80,8 @@ public sealed class SqlToTransformScriptConverterTests
             await TransformScriptToSqlConverter.ConvertAsync(
                 transformScriptWorkspacePath,
                 roundTripMetaSqlWorkspacePath,
-                "SymmetryDb");
+                "SymmetryDb",
+                "xml");
 
             var roundTrip = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(roundTripMetaSqlWorkspacePath, searchUpward: false);
             var procedure = Assert.Single(roundTrip.StoredProcedureList);

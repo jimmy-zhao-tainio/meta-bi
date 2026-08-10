@@ -62,10 +62,11 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             ignoredFieldSuffixes,
             includeViews);
 
-        await Meta.Core.Serialization.TypedWorkspaceModelMapper.SaveAsync(
+        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
             result.Model,
             newWorkspacePathFull,
-            cancellationToken).ConfigureAwait(false);
+            "xml",
+            cancellationToken: cancellationToken).ConfigureAwait(false);
 
         return result;
     }

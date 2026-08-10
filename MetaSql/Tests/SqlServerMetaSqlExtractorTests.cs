@@ -219,7 +219,6 @@ public sealed class SqlServerMetaSqlExtractorTests
         var extractor = new SqlServerMetaSqlExtractor();
         var exception = Assert.Throws<InvalidOperationException>(() => extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
         {
-            NewWorkspacePath = "C:\\tmp\\MetaSql",
         }));
 
         Assert.Contains("connection string", exception.Message, StringComparison.OrdinalIgnoreCase);
@@ -254,7 +253,6 @@ public sealed class SqlServerMetaSqlExtractorTests
             var extractor = new SqlServerMetaSqlExtractor();
             extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
             {
-                NewWorkspacePath = workspacePath,
                 ConnectionString = databaseConnectionString,
                 SchemaName = "raw",
                 TableName = "Customer",

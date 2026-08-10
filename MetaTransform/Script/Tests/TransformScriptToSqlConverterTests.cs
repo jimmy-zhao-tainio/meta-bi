@@ -30,7 +30,8 @@ SELECT
             await TransformScriptToSqlConverter.ConvertAsync(
                 transformWorkspacePath,
                 metaSqlWorkspacePath,
-                "Staging");
+                "Staging",
+                "xml");
 
             var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(metaSqlWorkspacePath, searchUpward: false);
             var schema = Assert.Single(model.SchemaList);
@@ -91,7 +92,8 @@ SELECT
             await TransformScriptToSqlConverter.ConvertAsync(
                 transformWorkspacePath,
                 sourceMetaSqlWorkspacePath,
-                "SymmetryDb");
+                "SymmetryDb",
+                "xml");
             SaveEmptyMetaSqlWorkspace(liveMetaSqlWorkspacePath, "SymmetryDb");
 
             var sourceWorkspace = await XmlWorkspaceReader.OpenAsync(sourceMetaSqlWorkspacePath);

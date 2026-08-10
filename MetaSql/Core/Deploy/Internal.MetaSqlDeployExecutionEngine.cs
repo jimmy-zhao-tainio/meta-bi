@@ -22,21 +22,19 @@ internal sealed class MetaSqlDeployExecutionEngine
         var manifestWorkspacePath = Path.GetFullPath(request.ManifestWorkspacePath);
         var sourceWorkspacePath = Path.GetFullPath(request.SourceWorkspacePath);
         var tempRootPath = Path.Combine(Path.GetTempPath(), "MetaSql.Core", "deploy", Guid.NewGuid().ToString("N"));
-        var liveWorkspacePath = Path.Combine(tempRootPath, "live-metasql");
 
         Directory.CreateDirectory(tempRootPath);
         try
         {
-            var manifestWorkspace = await XmlWorkspaceReader
-                .OpenAsync(manifestWorkspacePath, cancellationToken)
-                .ConfigureAwait(false);
-            manifestContractValidator.Validate(manifestWorkspace.State);
-
-            var manifestModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlDeployManifest.MetaSqlDeployManifestModel>(
+            var manifestWorkspace = await TypedWorkspaceModelMapper.LoadStateAsync(
                     manifestWorkspacePath,
-                    searchUpward: false,
                     cancellationToken)
                 .ConfigureAwait(false);
+            manifestContractValidator.Validate(manifestWorkspace);
+
+            var manifestModel = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
+                manifestWorkspace,
+                static () => new MetaSqlDeployManifest.MetaSqlDeployManifestModel());
             var root = manifestContractValidator.RequireSingleManifestRoot(manifestModel);
 
             var blockCount = statementPlanBuilder.CountBlocks(manifestModel);
@@ -46,11 +44,12 @@ internal sealed class MetaSqlDeployExecutionEngine
                     $"Manifest '{root.Name}' is not deployable because it contains {blockCount} block {(blockCount == 1 ? "entry" : "entries")}.");
             }
 
-            var sourceWorkspace = await XmlWorkspaceReader
-                .OpenAsync(sourceWorkspacePath, cancellationToken)
+            var sourceWorkspace = await TypedWorkspaceModelMapper.LoadStateAsync(
+                    sourceWorkspacePath,
+                    cancellationToken)
                 .ConfigureAwait(false);
-            MetaSqlDiffService.EnsureMetaSqlWorkspace(sourceWorkspace.State, nameof(sourceWorkspace));
-            manifestFingerprintValidator.ValidateSourceFingerprint(root, sourceWorkspace.State);
+            MetaSqlDiffService.EnsureMetaSqlWorkspace(sourceWorkspace, nameof(sourceWorkspace));
+            manifestFingerprintValidator.ValidateSourceFingerprint(root, sourceWorkspace);
 
             var expectedLiveDatabasePresence = ParseExpectedLiveDatabasePresence(root.ExpectedLiveDatabasePresence);
             var actualLiveDatabasePresence = await SqlServerDatabaseRuntime
@@ -78,7 +77,6 @@ internal sealed class MetaSqlDeployExecutionEngine
             if (expectedLiveDatabasePresence == MetaSqlLiveDatabasePresence.Missing)
             {
                 liveWorkspace = SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(
-                    liveWorkspacePath,
                     SqlServerDatabaseRuntime.RequireDatabaseName(request.ConnectionString));
             }
             else
@@ -86,7 +84,6 @@ internal sealed class MetaSqlDeployExecutionEngine
                 var extractor = new SqlServerMetaSqlExtractor();
                 liveWorkspace = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
                 {
-                    NewWorkspacePath = liveWorkspacePath,
                     ConnectionString = request.ConnectionString,
                     AllowEmpty = true,
                 });
@@ -94,16 +91,12 @@ internal sealed class MetaSqlDeployExecutionEngine
             MetaSqlDiffService.EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));
             manifestFingerprintValidator.ValidateLiveFingerprint(root, liveWorkspace);
 
-            var sourceModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlModel>(
-                    sourceWorkspacePath,
-                    searchUpward: false,
-                    cancellationToken)
-                .ConfigureAwait(false);
-            var liveModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlModel>(
-                    liveWorkspacePath,
-                    searchUpward: false,
-                    cancellationToken)
-                .ConfigureAwait(false);
+            var sourceModel = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
+                sourceWorkspace,
+                static () => new MetaSqlModel());
+            var liveModel = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
+                liveWorkspace,
+                static () => new MetaSqlModel());
 
             var statementPlan = statementPlanBuilder.Build(manifestModel, sourceModel, liveModel);
             var statements = sqlRenderer.Render(statementPlan);

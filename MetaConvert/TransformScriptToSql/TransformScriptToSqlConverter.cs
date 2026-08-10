@@ -12,20 +12,25 @@ public static class TransformScriptToSqlConverter
         string transformScriptWorkspacePath,
         string pathToNewMetaSqlWorkspace,
         string databaseName,
+        string outputRepresentation,
+        string? connectionEnvironmentVariable = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformScriptWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(pathToNewMetaSqlWorkspace);
         ArgumentException.ThrowIfNullOrWhiteSpace(databaseName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(outputRepresentation);
 
         var modules = new MetaTransformScriptSqlService().ExportModuleDefinitions(transformScriptWorkspacePath);
         var metaSql = ConvertToMetaSql(modules, databaseName);
-        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(metaSql, pathToNewMetaSqlWorkspace);
-
-        var outputWorkspace = await XmlWorkspaceReader
-            .OpenAsync(pathToNewMetaSqlWorkspace, cancellationToken)
+        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
+                metaSql,
+                pathToNewMetaSqlWorkspace,
+                outputRepresentation,
+                connectionEnvironmentVariable,
+                cancellationToken: cancellationToken)
             .ConfigureAwait(false);
-        return outputWorkspace.State;
+        return Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql);
     }
 
     public static MetaSqlModel ConvertToMetaSql(

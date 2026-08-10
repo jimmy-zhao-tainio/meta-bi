@@ -50,13 +50,19 @@ public static class SqlToTransformScriptConverter
             if (options.AllowEmpty)
             {
                 var emptyModel = MTS.MetaTransformScriptModel.CreateEmpty();
-                await Meta.Core.Serialization.TypedWorkspaceModelMapper.SaveAsync(emptyModel, outputWorkspacePath, cancellationToken)
-                    .ConfigureAwait(false);
-                var emptyWorkspace = await XmlWorkspaceReader
-                    .OpenAsync(outputWorkspacePath, cancellationToken)
+                await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
+                        emptyModel,
+                        outputWorkspacePath,
+                        "xml",
+                        cancellationToken: cancellationToken)
                     .ConfigureAwait(false);
 
-                return new SqlToTransformScriptConversionResult(emptyWorkspace.State, outputWorkspacePath, 0, 0, 0);
+                return new SqlToTransformScriptConversionResult(
+                    Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(emptyModel),
+                    outputWorkspacePath,
+                    0,
+                    0,
+                    0);
             }
 
             throw new InvalidOperationException(
@@ -64,37 +70,26 @@ public static class SqlToTransformScriptConverter
         }
 
         var transformScriptSql = new MetaTransformScriptSqlService();
+        var transformModel = MTS.MetaTransformScriptModel.CreateEmpty();
         for (var i = 0; i < modules.Count; i++)
         {
             var module = modules[i];
-            if (i == 0)
-            {
-                await transformScriptSql
-                    .ImportFromSqlCodeToWorkspaceAsync(
-                        module.DefinitionSql,
-                        targetSqlIdentifier: null,
-                        outputWorkspacePath,
-                        cancellationToken: cancellationToken)
-                    .ConfigureAwait(false);
-            }
-            else
-            {
-                await transformScriptSql
-                    .AddSqlCodeToWorkspaceAsync(
-                        module.DefinitionSql,
-                        targetSqlIdentifier: null,
-                        outputWorkspacePath,
-                        cancellationToken: cancellationToken)
-                    .ConfigureAwait(false);
-            }
+            transformScriptSql.ImportSqlCode(
+                transformModel,
+                module.DefinitionSql,
+                targetSqlIdentifier: null,
+                scriptName: $"{module.SchemaName}.{module.ObjectName}");
         }
 
-        var workspace = await XmlWorkspaceReader
-            .OpenAsync(outputWorkspacePath, cancellationToken)
+        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
+                transformModel,
+                outputWorkspacePath,
+                "xml",
+                cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
         return new SqlToTransformScriptConversionResult(
-            workspace.State,
+            Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(transformModel),
             outputWorkspacePath,
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.View),
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.Function),

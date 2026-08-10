@@ -8,14 +8,11 @@ public static class SqlServerMetaSqlWorkspaceFactory
     public const string DefaultSchemaName = "dbo";
 
     public static InMemoryWorkspace CreateEmptyWorkspace(
-        string newWorkspacePath,
         string databaseName,
         IEnumerable<string>? schemaNames = null)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
         var model = CreateEmptyModel(databaseName, schemaNames);
-        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(model, newWorkspacePath);
-        return XmlWorkspaceReader.OpenAsync(newWorkspacePath).GetAwaiter().GetResult().State;
+        return TypedWorkspaceModelMapper.ToInMemoryWorkspace(model);
     }
 
     public static MetaSqlModel CreateEmptyModel(

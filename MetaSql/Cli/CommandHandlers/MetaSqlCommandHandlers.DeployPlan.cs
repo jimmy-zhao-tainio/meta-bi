@@ -29,14 +29,14 @@ internal sealed partial class MetaSqlCommandHandlers
         var sourceWorkspacePath = Path.GetFullPath(invocation.Required("source-workspace"));
         var outputPath = Path.GetFullPath(invocation.Required("out"));
         var tempRootPath = Path.Combine(Path.GetTempPath(), "MetaSql.Cli", "deploy-plan", Guid.NewGuid().ToString("N"));
-        var liveRuntimePath = Path.Combine(tempRootPath, "live-metasql");
 
         try
         {
             Directory.CreateDirectory(tempRootPath);
 
-            var openedSourceWorkspace = await XmlWorkspaceReader.OpenAsync(sourceWorkspacePath).ConfigureAwait(false);
-            var sourceWorkspace = openedSourceWorkspace.State;
+            var sourceWorkspace = await Meta.Core.Serialization.TypedWorkspaceModelMapper
+                .LoadStateAsync(sourceWorkspacePath)
+                .ConfigureAwait(false);
 
             var liveDatabasePresence = await SqlServerDatabaseRuntime
                 .GetPresenceAsync(connectionString)
@@ -45,7 +45,6 @@ internal sealed partial class MetaSqlCommandHandlers
             if (liveDatabasePresence == MetaSqlLiveDatabasePresence.Missing)
             {
                 liveWorkspace = SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(
-                    liveRuntimePath,
                     SqlServerDatabaseRuntime.RequireDatabaseName(connectionString));
             }
             else
@@ -53,7 +52,6 @@ internal sealed partial class MetaSqlCommandHandlers
                 var extractor = new SqlServerMetaSqlExtractor();
                 liveWorkspace = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
                 {
-                    NewWorkspacePath = liveRuntimePath,
                     ConnectionString = connectionString,
                     AllowEmpty = true,
                 });
@@ -79,7 +77,19 @@ internal sealed partial class MetaSqlCommandHandlers
                 targetDescription: BuildTargetDescription(),
                 feasibilityBlockers: feasibilityBlockers,
                 destructiveApprovals: destructiveApprovals);
-            await Meta.Core.Serialization.TypedWorkspaceModelMapper.SaveAsync(manifest.ManifestModel, outputPath).ConfigureAwait(false);
+            var outputMetaPath = Path.Combine(outputPath, Meta.Surfaces.WorkspaceMetaFile.FileName);
+            if (File.Exists(outputMetaPath))
+            {
+                await Meta.Core.Serialization.TypedWorkspaceModelMapper
+                    .SaveAsync(manifest.ManifestModel, outputPath)
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                await Meta.Core.Serialization.TypedWorkspaceModelMapper
+                    .CreateAsync(manifest.ManifestModel, outputPath, "xml")
+                    .ConfigureAwait(false);
+            }
 
             if (manifest.IsDeployable)
             {

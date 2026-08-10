@@ -30,7 +30,11 @@ public sealed class MetaSchemaSqlServerExtractService
 
         var workspacePath = Path.GetFullPath(request.NewWorkspacePath);
         var model = extractor.ExtractMetaSchemaModel(request);
-        await MetaSchemaInstance.SaveToWorkspaceAsync(model, workspacePath, cancellationToken)
+        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
+                model,
+                workspacePath,
+                "xml",
+                cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
         return new SqlServerExtractResult(

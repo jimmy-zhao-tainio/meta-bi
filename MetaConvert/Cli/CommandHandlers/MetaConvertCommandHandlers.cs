@@ -186,7 +186,8 @@ internal sealed class MetaConvertCommandHandlers
             await TransformScriptToSqlConverter.ConvertAsync(
                 workspacePath,
                 outputWorkspacePath,
-                databaseName).ConfigureAwait(false);
+                databaseName,
+                outputRepresentation: "xml").ConfigureAwait(false);
 
             presenter.WriteInfo($"Generated {Path.GetFileName(outputWorkspacePath)}");
             return 0;

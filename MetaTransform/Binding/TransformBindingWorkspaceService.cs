@@ -29,7 +29,7 @@ public sealed class TransformBindingWorkspaceService
             validationOptions,
             dataTypeConversionWorkspacePath,
             allowPartial);
-        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(result.Model, workspacePath);
+        Meta.Core.Serialization.TypedWorkspaceModelMapper.Create(result.Model, workspacePath, "xml");
         return result with { WorkspacePath = workspacePath };
     }
 
@@ -188,7 +188,7 @@ public sealed class TransformBindingWorkspaceService
         var packages = BindTransformScripts(transformModel, transformScripts);
         var bindingModel = BuildCombinedBindingModel(packages);
 
-        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(bindingModel, bindingWorkspaceFullPath);
+        Meta.Core.Serialization.TypedWorkspaceModelMapper.Create(bindingModel, bindingWorkspaceFullPath, "xml");
 
         var objectIssues = packages
             .SelectMany(package => package.Bound.Issues.Select(issue =>

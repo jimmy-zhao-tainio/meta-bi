@@ -323,7 +323,6 @@ public sealed partial class CliDiffTests
         var extractor = new SqlServerMetaSqlExtractor();
         extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
         {
-            NewWorkspacePath = sourcePath,
             ConnectionString = connectionString,
             SchemaName = schemaName,
             TableName = tableName,

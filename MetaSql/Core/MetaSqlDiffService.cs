@@ -1,4 +1,3 @@
-using Meta.Surfaces;
 using Meta.Integration;
 using Meta.Core.Domain;
 using Meta.Core.Serialization;
@@ -28,16 +27,16 @@ public sealed class MetaSqlDiffService
         ArgumentException.ThrowIfNullOrWhiteSpace(sourceWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(liveWorkspacePath);
 
-        var sourceWorkspace = await XmlWorkspaceReader
-            .OpenAsync(sourceWorkspacePath, cancellationToken)
+        var sourceWorkspace = await TypedWorkspaceModelMapper.LoadStateAsync(
+                sourceWorkspacePath,
+                cancellationToken)
             .ConfigureAwait(false);
-        var liveWorkspace = await XmlWorkspaceReader
-            .OpenAsync(liveWorkspacePath, cancellationToken)
+        var liveWorkspace = await TypedWorkspaceModelMapper.LoadStateAsync(
+                liveWorkspacePath,
+                cancellationToken)
             .ConfigureAwait(false);
 
-        return BuildEqualDiffWorkspace(
-            sourceWorkspace.State,
-            liveWorkspace.State);
+        return BuildEqualDiffWorkspace(sourceWorkspace, liveWorkspace);
     }
 
     public InstanceDiffBuildResult BuildEqualDiffWorkspace(

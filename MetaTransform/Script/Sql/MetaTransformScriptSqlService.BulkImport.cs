@@ -28,7 +28,11 @@ public sealed partial class MetaTransformScriptSqlService
         if (result.Successes.Count > 0)
         {
             Directory.CreateDirectory(workspaceFullPath);
-            await MetaTransformScriptInstance.SaveToWorkspaceAsync(result.Model, workspaceFullPath, cancellationToken)
+            await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
+                    result.Model,
+                    workspaceFullPath,
+                    "xml",
+                    cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
         }
 

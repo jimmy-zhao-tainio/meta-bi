@@ -10,14 +10,8 @@ public sealed class SqlServerMetaSqlExtractor
     public InMemoryWorkspace ExtractMetaSqlWorkspace(SqlServerExtractRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
-        if (string.IsNullOrWhiteSpace(request.NewWorkspacePath))
-        {
-            throw new InvalidOperationException("extract sqlserver requires a target workspace path.");
-        }
-
         var model = ExtractMetaSqlModel(request);
-        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(model, request.NewWorkspacePath);
-        return XmlWorkspaceReader.OpenAsync(request.NewWorkspacePath).GetAwaiter().GetResult().State;
+        return TypedWorkspaceModelMapper.ToInMemoryWorkspace(model);
     }
 
     public MetaSqlModel ExtractMetaSqlModel(SqlServerExtractRequest request)
@@ -698,7 +692,6 @@ public sealed class SqlServerMetaSqlExtractor
 
 public sealed class SqlServerExtractRequest
 {
-    public string NewWorkspacePath { get; set; } = string.Empty;
     public string ConnectionString { get; set; } = string.Empty;
     public string? SchemaName { get; set; }
     public string? TableName { get; set; }
