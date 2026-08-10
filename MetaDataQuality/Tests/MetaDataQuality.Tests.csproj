@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
+    <PackageReference Include="MetaCli.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
     <ProjectReference Include="..\Cli\MetaDataQuality.Cli.csproj" />
     <ProjectReference Include="..\Core\MetaDataQuality.Core.csproj" />

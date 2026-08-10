@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
+    <PackageReference Include="MetaCli.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\Core\MetaTabular.Core.csproj" />
   </ItemGroup>
 

@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
+    <PackageReference Include="MetaCli.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\..\Core\MetaDataVault.Core.csproj" />
     <ProjectReference Include="..\..\..\MetaSql\Core\MetaSql.Core.csproj" />
     <ProjectReference Include="..\..\..\MetaSql\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />

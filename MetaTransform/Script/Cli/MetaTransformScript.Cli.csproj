@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
+    <PackageReference Include="MetaCli.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\Model\MetaTransformScript.Model.csproj" />
     <ProjectReference Include="..\Sql\MetaTransformScript.Sql.csproj" />
   </ItemGroup>

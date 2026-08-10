@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
+    <PackageReference Include="MetaCli.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\Core\MetaDataQuality.Core.csproj" />
     <ProjectReference Include="..\Model\MetaDataQuality.Model.csproj" />
   </ItemGroup>
