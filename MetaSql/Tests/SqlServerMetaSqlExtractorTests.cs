@@ -1,6 +1,7 @@
 using Microsoft.Data.SqlClient;
 using Meta.Core.Serialization;
 using MetaSql.Extractors.SqlServer;
+using Meta.Surfaces;
 
 namespace MetaSql.Tests;
 
@@ -251,12 +252,13 @@ public sealed class SqlServerMetaSqlExtractorTests
                 """);
 
             var extractor = new SqlServerMetaSqlExtractor();
-            extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
+            var extractedWorkspace = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
             {
                 ConnectionString = databaseConnectionString,
                 SchemaName = "raw",
                 TableName = "Customer",
             });
+            await WorkspaceSurface.CreateAsync(extractedWorkspace, workspacePath, "xml");
 
             var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(workspacePath, searchUpward: false);
             var identityColumn = model.TableColumnList.Single(row => row.Id == $"{databaseName}.raw.Customer.CustomerId");

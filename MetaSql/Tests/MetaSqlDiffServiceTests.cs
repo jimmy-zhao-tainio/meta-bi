@@ -135,14 +135,14 @@ public sealed class MetaSqlDiffServiceTests
 
     private static Task SaveWorkspaceAsync(string workspacePath, MetaSqlModel model)
     {
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+        MetaSqlTestSupport.SaveXml(model, workspacePath);
         return Task.CompletedTask;
     }
 
     private static InMemoryWorkspace CreateWorkspace(MetaSqlModel model, string leafName)
     {
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"), leafName);
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+        MetaSqlTestSupport.SaveXml(model, workspacePath);
         return XmlWorkspaceReader.OpenAsync(workspacePath).GetAwaiter().GetResult().State;
     }
 

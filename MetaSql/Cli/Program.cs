@@ -27,7 +27,10 @@ internal static class Program
                 "exec-extract-sqlserver",
                 [MetaCliWorkspace.Create("output", "output-xml", "output-csharp", "output-sql", "output-connection-env")],
                 handlers.RunExtractSqlServerAsync)
-            .Bind("exec-deploy-plan", invocation => CompleteAsync(() => handlers.RunDeployPlanAsync(invocation)))
+            .Bind(
+                "exec-deploy-plan",
+                [MetaCliWorkspace.Create("output", "output-xml", "output-csharp", "output-sql", "output-connection-env")],
+                (invocation, workspaces) => CompleteAsync(() => handlers.RunDeployPlanAsync(invocation, workspaces)))
             .Bind("exec-deploy", invocation => CompleteAsync(() => handlers.RunDeployAsync(invocation)))
             .Bind("exec-execute", invocation => CompleteAsync(() => handlers.RunExecuteAsync(invocation)));
 

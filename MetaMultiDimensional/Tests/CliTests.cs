@@ -67,7 +67,7 @@ public sealed class CliTests
     [Fact]
     public void RestoreCommand_RequiresSourceServer()
     {
-        var result = RunCli("restore --target-server localhost\\MULTI --target-database-name Prod --backup-file C:\\Temp\\prod.abf");
+        var result = RunCli("restore --source-database-name Source --target-server localhost\\MULTI --target-database-name Prod --backup-file C:\\Temp\\prod.abf");
 
         Assert.NotEqual(0, result.ExitCode);
         Assert.Contains("Required parameter 'source-server' was not provided.", result.Output);

@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using Meta.Core.Domain;
 using Meta.Core.Operations;
 using Meta.Core.Serialization;
+using Meta.Surfaces;
 using MetaSql;
 using MetaSqlDeployManifest;
 using MetaSql.Extractors.SqlServer;
@@ -52,7 +53,7 @@ public sealed partial class CliDiffTests
             foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, sourcePath);
+        MetaSqlTestSupport.SaveXml(model, sourcePath);
         return Task.CompletedTask;
     }
 
@@ -85,7 +86,7 @@ public sealed partial class CliDiffTests
             foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, sourcePath);
+        MetaSqlTestSupport.SaveXml(model, sourcePath);
         return Task.CompletedTask;
     }
 
@@ -143,7 +144,7 @@ public sealed partial class CliDiffTests
                 : new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, sourcePath);
+        MetaSqlTestSupport.SaveXml(model, sourcePath);
         return Task.CompletedTask;
     }
 
@@ -205,7 +206,7 @@ public sealed partial class CliDiffTests
             },
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, sourcePath);
+        MetaSqlTestSupport.SaveXml(model, sourcePath);
         return Task.CompletedTask;
     }
 
@@ -241,7 +242,7 @@ public sealed partial class CliDiffTests
             foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, sourcePath);
+        MetaSqlTestSupport.SaveXml(model, sourcePath);
         return Task.CompletedTask;
     }
 
@@ -273,7 +274,7 @@ public sealed partial class CliDiffTests
             foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, sourcePath);
+        MetaSqlTestSupport.SaveXml(model, sourcePath);
         return Task.CompletedTask;
     }
 
@@ -309,7 +310,7 @@ public sealed partial class CliDiffTests
             foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, sourcePath);
+        MetaSqlTestSupport.SaveXml(model, sourcePath);
         return Task.CompletedTask;
     }
 
@@ -321,12 +322,13 @@ public sealed partial class CliDiffTests
         Action<MetaSqlModel> mutate)
     {
         var extractor = new SqlServerMetaSqlExtractor();
-        extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
+        var model = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
         {
             ConnectionString = connectionString,
             SchemaName = schemaName,
             TableName = tableName,
         });
+        await WorkspaceSurface.CreateAsync(model, sourcePath, "xml");
 
         await MutateSourceWorkspaceAsync(sourcePath, mutate);
     }
@@ -337,7 +339,7 @@ public sealed partial class CliDiffTests
     {
         var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(sourcePath, searchUpward: false);
         mutate(model);
-        await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, sourcePath);
+        await TypedWorkspaceModelMapper.SaveAsync(model, sourcePath);
     }
 
     private static TableColumn RequireColumn(

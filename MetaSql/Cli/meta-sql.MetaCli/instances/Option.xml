@@ -8,7 +8,6 @@
     <Option Id="opt-deploy-plan-approve-drop-table" ParameterId="param-deploy-plan-approve-drop-table" />
     <Option Id="opt-deploy-plan-approve-truncate-column" ParameterId="param-deploy-plan-approve-truncate-column" />
     <Option Id="opt-deploy-plan-connection-env" ParameterId="param-deploy-plan-connection-env" />
-    <Option Id="opt-deploy-plan-out" ParameterId="param-deploy-plan-out" />
     <Option Id="opt-deploy-plan-source-workspace" ParameterId="param-deploy-plan-source-workspace" />
     <Option Id="opt-deploy-source-workspace" ParameterId="param-deploy-source-workspace" />
     <Option Id="opt-execute-connection-env" ParameterId="param-execute-connection-env" />
@@ -25,6 +24,10 @@
     <Option Id="opt-extract-sqlserver-include-views" ParameterId="param-extract-sqlserver-include-views" />
     <Option Id="opt-extract-sqlserver-schema" ParameterId="param-extract-sqlserver-schema" />
     <Option Id="opt-extract-sqlserver-table" ParameterId="param-extract-sqlserver-table" />
+    <Option Id="option-deploy-plan-output-connection-env" ParameterId="param-deploy-plan-output-connection-env" />
+    <Option Id="option-deploy-plan-output-csharp" ParameterId="param-deploy-plan-output-csharp" />
+    <Option Id="option-deploy-plan-output-sql" ParameterId="param-deploy-plan-output-sql" />
+    <Option Id="option-deploy-plan-output-xml" ParameterId="param-deploy-plan-output-xml" />
     <Option Id="option-extract-sqlserver-output-connection-env" ParameterId="param-extract-sqlserver-output-connection-env" />
     <Option Id="option-extract-sqlserver-output-csharp" ParameterId="param-extract-sqlserver-output-csharp" />
     <Option Id="option-extract-sqlserver-output-sql" ParameterId="param-extract-sqlserver-output-sql" />

@@ -7,7 +7,7 @@ using MetaCli.Core;
 
 internal sealed partial class MetaSqlCommandHandlers
 {
-    public async Task<int> RunDeployPlanAsync(MetaCliInvocation invocation)
+    public async Task<int> RunDeployPlanAsync(MetaCliInvocation invocation, MetaCliWorkspaces workspaces)
     {
         var connectionEnvironmentVariableName = invocation.Required("connection-env");
         var destructiveApprovals = BuildDestructiveApprovals(invocation);
@@ -27,7 +27,11 @@ internal sealed partial class MetaSqlCommandHandlers
         }
 
         var sourceWorkspacePath = Path.GetFullPath(invocation.Required("source-workspace"));
-        var outputPath = Path.GetFullPath(invocation.Required("out"));
+        var outputPath = Path.GetFullPath(MetaCliWorkspace.OutputLocation(
+            invocation,
+            "output-xml",
+            "output-csharp",
+            "output-sql"));
         var tempRootPath = Path.Combine(Path.GetTempPath(), "MetaSql.Cli", "deploy-plan", Guid.NewGuid().ToString("N"));
 
         try
@@ -86,8 +90,9 @@ internal sealed partial class MetaSqlCommandHandlers
             }
             else
             {
-                await Meta.Core.Serialization.TypedWorkspaceModelMapper
-                    .CreateAsync(manifest.ManifestModel, outputPath, "xml")
+                await workspaces.CreateAsync(
+                        "output",
+                        manifest.ManifestModel)
                     .ConfigureAwait(false);
             }
 

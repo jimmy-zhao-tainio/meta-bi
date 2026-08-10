@@ -17,7 +17,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
         try
         {
             var sqlService = new MetaTransformScriptSqlService();
-            await sqlService.ImportFromSqlCodeToWorkspaceAsync(
+            await sqlService.ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select 1 as CustomerId",
                 "dbo.CustomerTarget",
                 transformWorkspacePath,
@@ -57,7 +57,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select 1 as CustomerId, 'A' as CustomerName",
                 "dbo.CustomerLoad",
                 transformWorkspacePath,
@@ -109,7 +109,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select 1 as CustomerId",
                 "dbo.CustomerLoad",
                 transformWorkspacePath,
@@ -145,7 +145,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select 1 as CustomerId",
                 "dbo.CustomerLoad",
                 transformWorkspacePath,
@@ -189,7 +189,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select cast(1 as int) as CustomerId",
                 "dbo.CustomerLoad",
                 transformWorkspacePath,
@@ -234,7 +234,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 """
                 CREATE PROCEDURE dq.ExportCustomers
                 AS
@@ -250,7 +250,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
             AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId", "CustomerName"]);
             Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -295,7 +295,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 """
                 CREATE PROCEDURE dq.ExportCustomers
                 AS
@@ -311,7 +311,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
             AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId"]);
             Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -343,7 +343,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 """
                 CREATE PROCEDURE dq.ExportCustomers
                 AS
@@ -359,7 +359,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
             AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId", "CustomerName"]);
             Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspacePath,
                 bindingWorkspacePath);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -399,7 +399,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "create function dbo.fn_customer(@CustomerId int) returns table as return (select @CustomerId as CustomerId)",
                 null,
                 transformWorkspacePath);
@@ -435,7 +435,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select 1 as CustomerId",
                 "dbo.CustomerLoad",
                 transformWorkspacePath,
@@ -472,7 +472,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select 1 as CustomerId",
                 "dbo.CustomerLoad",
                 transformWorkspacePath,
@@ -509,7 +509,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "UPDATE dbo.Target SET Name = 'A' WHERE Id = 1",
                 null,
                 transformWorkspacePath,
@@ -548,7 +548,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 """
 CREATE FUNCTION dbo.fnAddOne
 (
@@ -595,7 +595,7 @@ END
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "DELETE FROM dbo.Target WHERE Id = 1",
                 null,
                 transformWorkspacePath,
@@ -633,7 +633,7 @@ END
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "TRUNCATE TABLE dbo.Target",
                 null,
                 transformWorkspacePath,
@@ -675,7 +675,7 @@ END
         try
         {
             var sqlService = new MetaTransformScriptSqlService();
-            await sqlService.ImportFromSqlCodeToWorkspaceAsync(
+            await sqlService.ImportFromSqlCodeToXmlWorkspaceAsync(
                 "UPDATE dbo.Target SET Name = 'A' WHERE Id = 1",
                 null,
                 transformWorkspacePath,
@@ -730,7 +730,7 @@ END
         try
         {
             var sqlService = new MetaTransformScriptSqlService();
-            await sqlService.ImportFromSqlCodeToWorkspaceAsync(
+            await sqlService.ImportFromSqlCodeToXmlWorkspaceAsync(
                 "UPDATE dbo.Target SET Name = 'A' WHERE Id = 1",
                 null,
                 transformWorkspacePath,
@@ -783,7 +783,7 @@ END
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select 1 as CustomerId",
                 "dbo.CustomerLoad",
                 transformWorkspacePath,

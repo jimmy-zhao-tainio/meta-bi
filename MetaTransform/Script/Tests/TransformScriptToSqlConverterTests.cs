@@ -22,7 +22,7 @@ SELECT
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 sql,
                 targetSqlIdentifier: null,
                 transformWorkspacePath);
@@ -80,7 +80,7 @@ SELECT
         try
         {
             var transformService = new MetaTransformScriptSqlService();
-            await transformService.ImportFromSqlCodeToWorkspaceAsync(
+            await transformService.ImportFromSqlCodeToXmlWorkspaceAsync(
                 functionSql,
                 targetSqlIdentifier: null,
                 transformWorkspacePath);
@@ -225,7 +225,7 @@ SELECT
             Id = databaseName,
             Name = databaseName,
         });
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+        MetaTransformScriptTestHelper.SaveXml(model, workspacePath);
     }
 
     private static void SetViewTargetSqlIdentifier(MetaTransformScriptModel model, string targetSqlIdentifier)

@@ -107,10 +107,10 @@ public sealed class TransformBindingTpcDsValidatedCorpusTests
                     var schemaWorkspacePath = Path.Combine(scenarioRoot, "SchemaWS");
                     var bindingWorkspacePath = Path.Combine(scenarioRoot, "BindingWS");
 
-                    Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, transformWorkspacePath);
-                    Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(schemaModel, schemaWorkspacePath);
+                    MetaTransformScriptTestHelper.SaveXml(model, transformWorkspacePath);
+                    MetaTransformScriptTestHelper.SaveXml(schemaModel, schemaWorkspacePath);
 
-                    var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+                    var result = new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(
                         transformWorkspacePath,
                         new[] { schemaWorkspacePath },
                         schemaWorkspacePath,

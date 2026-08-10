@@ -87,7 +87,7 @@ GO
             "SELECT N'M\u00c3\u00a5nad' AS Name" + Environment.NewLine +
             "GO" + Environment.NewLine);
 
-        var result = await new MetaTransformScriptSqlService().ImportSqlFilesToNewWorkspaceAsync(
+        var result = await new MetaTransformScriptSqlService().ImportSqlFilesToNewXmlWorkspaceAsync(
             new[]
             {
                 new SqlFileImportRequest(goodPath, "dbo.TargetGood"),

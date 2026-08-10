@@ -1,5 +1,8 @@
 using System.Collections;
+using Meta.Core.Domain;
+using Meta.Core.Serialization;
 using MetaConvert.TransformScriptToSql;
+using Meta.Surfaces;
 using MetaTransformScript;
 using MetaTransformScript.Instance;
 using MetaTransformScript.Sql;
@@ -61,9 +64,17 @@ internal static class MetaTransformScriptTestHelper
     public static MetaTransformScriptModel RoundTripWorkspace(MetaTransformScriptModel model, string label)
     {
         var workspacePath = Path.Combine(Path.GetTempPath(), "meta-bi", "metatransformscript-tests", Guid.NewGuid().ToString("N"), label);
-        Directory.CreateDirectory(workspacePath);
-        MetaTransformScriptInstance.SaveToWorkspace(model, workspacePath);
+        SaveXml(model, workspacePath);
         return MetaTransformScriptInstance.LoadFromWorkspace(workspacePath, searchUpward: false);
+    }
+
+    public static void SaveXml<TModel>(TModel model, string workspacePath)
+        where TModel : class
+    {
+        var state = TypedWorkspaceModelMapper.ToInMemoryWorkspace(model);
+        WorkspaceSurface.CreateAsync(state, workspacePath, "xml")
+            .GetAwaiter()
+            .GetResult();
     }
 
     public static string WriteTempSqlFile(string fileName, string sql)

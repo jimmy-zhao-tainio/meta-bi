@@ -1,19 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-analytics-to-multi-dimensional-out" ValueShapeId="shape-path">
-      <Description>Output workspace or script folder path.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>out</Name>
+    <Parameter Id="param-analytics-to-multi-dimensional-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-analytics-to-multi-dimensional-output-csharp" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a C# workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-analytics-to-multi-dimensional-output-sql" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a SQL workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-analytics-to-multi-dimensional-output-xml" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as an XML workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-analytics-to-multi-dimensional-workspace" ValueShapeId="shape-path">
       <Description>Source workspace path. Defaults to the current directory.</Description>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-analytics-to-tabular-out" ValueShapeId="shape-path">
-      <Description>Output workspace or script folder path.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>out</Name>
+    <Parameter Id="param-analytics-to-tabular-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-analytics-to-tabular-output-csharp" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a C# workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-analytics-to-tabular-output-sql" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a SQL workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-analytics-to-tabular-output-xml" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as an XML workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-analytics-to-tabular-workspace" ValueShapeId="shape-path">
       <Description>Source workspace path. Defaults to the current directory.</Description>
@@ -29,10 +67,29 @@
       <IsRequired>true</IsRequired>
       <Name>implementation-workspace</Name>
     </Parameter>
-    <Parameter Id="param-business-datavault-to-sql-out" ValueShapeId="shape-path">
-      <Description>Output MetaSql workspace path.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>out</Name>
+    <Parameter Id="param-business-datavault-to-sql-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-business-datavault-to-sql-output-csharp" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a C# workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-business-datavault-to-sql-output-sql" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a SQL workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-business-datavault-to-sql-output-xml" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as an XML workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-business-datavault-to-sql-workspace" ValueShapeId="shape-path">
       <Description>Source workspace path. Defaults to the current directory.</Description>
@@ -57,10 +114,29 @@
       <IsRequired>true</IsRequired>
       <Name>implementation-workspace</Name>
     </Parameter>
-    <Parameter Id="param-data-warehouse-to-sql-out" ValueShapeId="shape-path">
-      <Description>Output MetaSql workspace path.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>out</Name>
+    <Parameter Id="param-data-warehouse-to-sql-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-data-warehouse-to-sql-output-csharp" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a C# workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-data-warehouse-to-sql-output-sql" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a SQL workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-data-warehouse-to-sql-output-xml" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as an XML workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-data-warehouse-to-sql-workspace" ValueShapeId="shape-path">
       <Description>Source workspace path. Defaults to the current directory.</Description>
@@ -76,10 +152,29 @@
       <IsRequired>true</IsRequired>
       <Name>implementation-workspace</Name>
     </Parameter>
-    <Parameter Id="param-raw-datavault-to-sql-out" ValueShapeId="shape-path">
-      <Description>Output MetaSql workspace path.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>out</Name>
+    <Parameter Id="param-raw-datavault-to-sql-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-raw-datavault-to-sql-output-csharp" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a C# workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-raw-datavault-to-sql-output-sql" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a SQL workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-raw-datavault-to-sql-output-xml" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as an XML workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-raw-datavault-to-sql-workspace" ValueShapeId="shape-path">
       <Description>Source workspace path. Defaults to the current directory.</Description>
@@ -144,10 +239,29 @@
       <Description>Convert view modules. If no include switch is provided, all module kinds are selected.</Description>
       <Name>include-views</Name>
     </Parameter>
-    <Parameter Id="param-sql-to-transform-script-out" ValueShapeId="shape-path">
-      <Description>Output MetaTransformScript workspace path.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>out</Name>
+    <Parameter Id="param-sql-to-transform-script-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-sql-to-transform-script-output-csharp" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a C# workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-sql-to-transform-script-output-sql" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a SQL workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-sql-to-transform-script-output-xml" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as an XML workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-sql-to-transform-script-workspace" ValueShapeId="shape-path">
       <Description>Source MetaSql workspace path. Defaults to the current directory.</Description>
@@ -158,10 +272,29 @@
       <IsRequired>true</IsRequired>
       <Name>database-name</Name>
     </Parameter>
-    <Parameter Id="param-transform-script-to-sql-out" ValueShapeId="shape-path">
-      <Description>Output MetaSql workspace path.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>out</Name>
+    <Parameter Id="param-transform-script-to-sql-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-transform-script-to-sql-output-csharp" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a C# workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-transform-script-to-sql-output-sql" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as a SQL workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-transform-script-to-sql-output-xml" ValueShapeId="shape-workspace-location">
+      <Description>Create the output as an XML workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-transform-script-to-sql-workspace" ValueShapeId="shape-path">
       <Description>Source MetaTransformScript workspace path. Defaults to the current directory.</Description>

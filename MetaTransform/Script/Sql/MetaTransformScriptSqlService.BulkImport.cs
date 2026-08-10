@@ -7,7 +7,7 @@ namespace MetaTransformScript.Sql;
 
 public sealed partial class MetaTransformScriptSqlService
 {
-    public async Task<ImportSqlFilesToWorkspaceResult> ImportSqlFilesToNewWorkspaceAsync(
+    public async Task<ImportSqlFilesToWorkspaceResult> ImportSqlFilesToNewXmlWorkspaceAsync(
         IEnumerable<SqlFileImportRequest> requests,
         string newWorkspacePath,
         Action<SqlFileImportProgress>? progress = null,

@@ -14,8 +14,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Model\MetaPipeline.Model.csproj" />
     <ProjectReference Include="..\..\MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj" />
+    <ProjectReference Include="..\..\MetaDataTypeConversion\Model\MetaDataTypeConversion.Model.csproj" />
     <ProjectReference Include="..\..\MetaOrchestration\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Binding\Model\MetaTransformBinding.Model.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Script\Model\MetaTransformScript.Model.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
   </ItemGroup>
 

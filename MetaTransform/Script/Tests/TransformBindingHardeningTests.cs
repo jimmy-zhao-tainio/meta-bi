@@ -136,11 +136,11 @@ FROM src
 
         try
         {
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchema, sourceSchemaWorkspacePath);
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchema, targetSchemaWorkspacePath);
+            MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
+            MetaTransformScriptTestHelper.SaveXml(sourceSchema, sourceSchemaWorkspacePath);
+            MetaTransformScriptTestHelper.SaveXml(targetSchema, targetSchemaWorkspacePath);
 
-            var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+            var result = new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(
                 transformWorkspacePath,
                 new[] { sourceSchemaWorkspacePath },
                 targetSchemaWorkspacePath,
@@ -191,12 +191,12 @@ FROM dbo.SourceView AS s
 
         try
         {
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(sourceSchema, sourceSchemaWorkspacePath);
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(targetSchema, targetSchemaWorkspacePath);
+            MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
+            MetaTransformScriptTestHelper.SaveXml(sourceSchema, sourceSchemaWorkspacePath);
+            MetaTransformScriptTestHelper.SaveXml(targetSchema, targetSchemaWorkspacePath);
 
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+                new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(
                     transformWorkspacePath,
                     new[] { sourceSchemaWorkspacePath },
                     targetSchemaWorkspacePath,

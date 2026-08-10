@@ -25,7 +25,7 @@ SELECT
         try
         {
             var service = new MetaTransformScriptSqlService();
-            await service.ImportFromSqlCodeToWorkspaceAsync(
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
                 targetViewSql,
                 targetSqlIdentifier: null,
                 workspacePath);
@@ -73,7 +73,7 @@ SELECT
         try
         {
             var service = new MetaTransformScriptSqlService();
-            await service.ImportFromSqlCodeToWorkspaceAsync(
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
                 sql,
                 targetSqlIdentifier: "ExistingWarehouse.dbo.FactCustomer",
                 workspacePath);
@@ -115,7 +115,7 @@ SELECT
         try
         {
             var service = new MetaTransformScriptSqlService();
-            await service.ImportFromSqlCodeToWorkspaceAsync(
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
                 sql,
                 targetSqlIdentifier: null,
                 workspacePath);
@@ -161,7 +161,7 @@ RETURN
         try
         {
             var service = new MetaTransformScriptSqlService();
-            await service.ImportFromSqlCodeToWorkspaceAsync(
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
                 sql,
                 targetSqlIdentifier: null,
                 workspacePath);

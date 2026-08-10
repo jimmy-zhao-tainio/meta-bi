@@ -35,61 +35,6 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             includeViews).Model;
     }
 
-    public async Task<RawDataVaultFromMetaSchemaResult> MaterializeWithReportAsync(
-        string sourceWorkspacePath,
-        string newWorkspacePath,
-        IEnumerable<string>? ignoredFieldNames = null,
-        IEnumerable<string>? ignoredFieldSuffixes = null,
-        bool includeViews = false,
-        CancellationToken cancellationToken = default)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(sourceWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
-        cancellationToken.ThrowIfCancellationRequested();
-
-        var sourceWorkspacePathFull = Path.GetFullPath(sourceWorkspacePath);
-        var newWorkspacePathFull = Path.GetFullPath(newWorkspacePath);
-        EnsureTargetDirectoryIsEmpty(newWorkspacePathFull);
-
-        var sourceModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MS.MetaSchemaModel>(
-            sourceWorkspacePathFull,
-            searchUpward: false,
-            cancellationToken).ConfigureAwait(false);
-
-        var result = MaterializeWithReport(
-            sourceModel,
-            ignoredFieldNames,
-            ignoredFieldSuffixes,
-            includeViews);
-
-        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
-            result.Model,
-            newWorkspacePathFull,
-            "xml",
-            cancellationToken: cancellationToken).ConfigureAwait(false);
-
-        return result;
-    }
-
-    public async Task<MRDV.MetaRawDataVaultModel> MaterializeAsync(
-        string sourceWorkspacePath,
-        string newWorkspacePath,
-        IEnumerable<string>? ignoredFieldNames = null,
-        IEnumerable<string>? ignoredFieldSuffixes = null,
-        bool includeViews = false,
-        CancellationToken cancellationToken = default)
-    {
-        var result = await MaterializeWithReportAsync(
-            sourceWorkspacePath,
-            newWorkspacePath,
-            ignoredFieldNames,
-            ignoredFieldSuffixes,
-            includeViews,
-            cancellationToken).ConfigureAwait(false);
-
-        return result.Model;
-    }
-
     private static FromMetaSchemaOptions CreateOptions(
         IEnumerable<string>? ignoredFieldNames,
         IEnumerable<string>? ignoredFieldSuffixes,
@@ -105,14 +50,6 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             ?? new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         return new FromMetaSchemaOptions(ignoredFieldNameSet, ignoredFieldSuffixSet, includeViews);
-    }
-
-    private static void EnsureTargetDirectoryIsEmpty(string targetDirectoryPath)
-    {
-        if (Directory.Exists(targetDirectoryPath) && Directory.EnumerateFileSystemEntries(targetDirectoryPath).Any())
-        {
-            throw new InvalidOperationException($"target directory '{targetDirectoryPath}' must be empty.");
-        }
     }
 
     public sealed record RawDataVaultFromMetaSchemaResult(

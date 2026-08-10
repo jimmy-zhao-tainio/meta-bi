@@ -20,35 +20,6 @@ public sealed class MetaSchemaSqlServerExtractService
         this.extractor = extractor;
     }
 
-    public async Task<SqlServerExtractResult> ExtractToNewWorkspaceAsync(
-        SqlServerExtractRequest request,
-        CancellationToken cancellationToken = default)
-    {
-        ArgumentNullException.ThrowIfNull(request);
-        ArgumentException.ThrowIfNullOrWhiteSpace(request.NewWorkspacePath);
-        cancellationToken.ThrowIfCancellationRequested();
-
-        var workspacePath = Path.GetFullPath(request.NewWorkspacePath);
-        var model = extractor.ExtractMetaSchemaModel(request);
-        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
-                model,
-                workspacePath,
-                "xml",
-                cancellationToken: cancellationToken)
-            .ConfigureAwait(false);
-
-        return new SqlServerExtractResult(
-            workspacePath,
-            model.SystemList.Count,
-            model.SchemaList.Count,
-            model.SchemaObjectList.Count,
-            model.TableList.Count,
-            model.ViewList.Count,
-            model.FieldList.Count,
-            model.KeyList.Count,
-            model.TableRelationshipList.Count);
-    }
-
     public SqlServerExtractModelResult Extract(SqlServerExtractRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
@@ -68,17 +39,6 @@ public sealed class MetaSchemaSqlServerExtractService
 
 public sealed record SqlServerExtractModelResult(
     MS.MetaSchemaModel Model,
-    int SystemCount,
-    int SchemaCount,
-    int SchemaObjectCount,
-    int TableCount,
-    int ViewCount,
-    int FieldCount,
-    int KeyCount,
-    int TableRelationshipCount);
-
-public sealed record SqlServerExtractResult(
-    string WorkspacePath,
     int SystemCount,
     int SchemaCount,
     int SchemaObjectCount,

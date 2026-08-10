@@ -2,6 +2,7 @@ using MetaConvert.DataVaultToSql;
 using Meta.Core.Serialization;
 using MetaRawDataVault;
 using MetaSql.Extractors.SqlServer;
+using Meta.Surfaces;
 
 namespace MetaSql.Tests;
 
@@ -22,9 +23,9 @@ public sealed class MetaSqlAlignmentTests
 
             var sourceWorkspace = await Converter.ConvertAsync(
                 rawWorkspacePath,
-                sourceMetaSqlPath,
                 Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "MetaDataVaultImplementation"),
                 databaseName: "RawVault");
+            await WorkspaceSurface.CreateAsync(sourceWorkspace, sourceMetaSqlPath, "xml");
 
             var liveModel = SqlServerMetaSqlProjector.Project(
                 databaseName: "RawVault",
@@ -55,7 +56,7 @@ public sealed class MetaSqlAlignmentTests
                 foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
                 indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
                 indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(liveModel, liveMetaSqlPath);
+            MetaSqlTestSupport.SaveXml(liveModel, liveMetaSqlPath);
             var liveWorkspace = (await XmlWorkspaceReader.OpenAsync(liveMetaSqlPath)).State;
 
             var diffService = new MetaSqlDiffService();
@@ -106,7 +107,7 @@ public sealed class MetaSqlAlignmentTests
         model.RawHubList.Add(rawHub);
         model.RawHubKeyPartList.Add(rawHubKeyPart);
 
-        await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
+        await MetaSqlTestSupport.SaveXmlAsync(model, workspacePath);
     }
 
     private static string FindRepositoryRoot()

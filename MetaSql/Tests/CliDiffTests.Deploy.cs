@@ -29,7 +29,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -72,7 +72,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -117,7 +117,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -169,7 +169,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -222,7 +222,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -288,7 +288,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -343,7 +343,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -413,7 +413,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -466,7 +466,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -521,7 +521,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -576,7 +576,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -639,7 +639,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -708,7 +708,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -772,7 +772,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -824,7 +824,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -877,7 +877,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -930,7 +930,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -991,7 +991,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1053,7 +1053,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1108,7 +1108,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1153,7 +1153,7 @@ public sealed partial class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1199,7 +1199,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1229,7 +1229,7 @@ public sealed partial class CliDiffTests
             var verifyCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{verifyPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{verifyPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1267,7 +1267,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1301,7 +1301,7 @@ public sealed partial class CliDiffTests
             var verifyCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{verifyPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{verifyPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1339,7 +1339,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1391,7 +1391,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1455,7 +1455,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1518,7 +1518,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1571,7 +1571,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-truncate-column raw.VarcharCase.ValueCol --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-truncate-column raw.VarcharCase.ValueCol --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1640,7 +1640,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1691,7 +1691,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1754,7 +1754,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1809,7 +1809,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1865,7 +1865,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1922,7 +1922,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1979,7 +1979,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2063,7 +2063,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2142,7 +2142,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2219,7 +2219,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2269,7 +2269,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2332,7 +2332,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePlannedPath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePlannedPath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2384,7 +2384,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2438,7 +2438,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2494,7 +2494,7 @@ public sealed partial class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-drop-table raw.Parent --out \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-drop-table raw.Parent --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,

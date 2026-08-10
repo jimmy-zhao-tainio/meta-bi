@@ -188,7 +188,7 @@ public sealed class MetaPipelineModelCliTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select 1 as CustomerId, 'Acme' as CustomerName, cast(125.50 as decimal(18, 2)) as TotalAmount",
                 "dbo.TargetCustomer",
                 transformWorkspacePath,
@@ -362,7 +362,7 @@ public sealed class MetaPipelineModelCliTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "UPDATE dbo.Customer SET Name = 'Acme' WHERE CustomerId = 1",
                 null,
                 transformWorkspacePath,
@@ -419,7 +419,7 @@ public sealed class MetaPipelineModelCliTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select 1 as CustomerId",
                 "dbo.TargetCustomer",
                 transformWorkspacePath,
@@ -475,7 +475,7 @@ public sealed class MetaPipelineModelCliTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select 1 as CustomerId, 'Acme' as CustomerName",
                 "dbo.TargetCustomer",
                 transformWorkspacePath,

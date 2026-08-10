@@ -85,14 +85,14 @@ public sealed partial class CliTests
         Assert.Contains("[--workspace <path>]", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--database-name <value>", result.Output);
-        Assert.Contains("--out <path>", result.Output);
+        Assert.Contains("--output-xml <location>", result.Output);
         Assert.Contains("Source workspace path. Defaults to the current directory.", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
     public void BusinessDataVaultToSql_RequiresDatabaseName()
     {
-        var result = RunMetaConvertCli("business-datavault-to-sql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --out C:\\temp\\sql");
+        var result = RunMetaConvertCli("business-datavault-to-sql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --output-xml C:\\temp\\sql");
 
         Assert.Equal(2, result.ExitCode);
         Assert.Contains("Required parameter 'database-name' was not provided.", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -107,14 +107,14 @@ public sealed partial class CliTests
         Assert.Contains("[--workspace <path>]", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--database-name <value>", result.Output);
-        Assert.Contains("--out <path>", result.Output);
+        Assert.Contains("--output-xml <location>", result.Output);
         Assert.Contains("Source workspace path. Defaults to the current directory.", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
     public void RawDataVaultToSql_RequiresDatabaseName()
     {
-        var result = RunMetaConvertCli("raw-datavault-to-sql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --out C:\\temp\\sql");
+        var result = RunMetaConvertCli("raw-datavault-to-sql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --output-xml C:\\temp\\sql");
 
         Assert.Equal(2, result.ExitCode);
         Assert.Contains("Required parameter 'database-name' was not provided.", result.Output, StringComparison.OrdinalIgnoreCase);

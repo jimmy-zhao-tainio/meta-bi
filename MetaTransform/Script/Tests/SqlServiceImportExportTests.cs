@@ -252,7 +252,7 @@ FROM dbo.XmlSource AS s
     }
 
     [Fact]
-    public async Task ImportSingleSqlFileToWorkspaceAsync_CreateView_WithoutTarget_LeavesTargetBlank()
+    public async Task ImportSingleSqlFileToXmlWorkspaceAsync_CreateView_WithoutTarget_LeavesTargetBlank()
     {
         const string sql = """
 CREATE VIEW dbo.v_customer
@@ -268,7 +268,7 @@ FROM sales.Customer AS c
 
         try
         {
-            var result = await new MetaTransformScriptSqlService().ImportSingleSqlFileToWorkspaceAsync(
+            var result = await new MetaTransformScriptSqlService().ImportSingleSqlFileToXmlWorkspaceAsync(
                 sqlPath,
                 null,
                 workspacePath);
@@ -286,7 +286,7 @@ FROM sales.Customer AS c
     }
 
     [Fact]
-    public async Task ImportFromSqlCodeToWorkspaceAsync_BareSelect_RequiresTarget()
+    public async Task ImportFromSqlCodeToXmlWorkspaceAsync_BareSelect_RequiresTarget()
     {
         const string sql = """
 SELECT
@@ -301,7 +301,7 @@ FROM sales.Customer AS c
         {
             var service = new MetaTransformScriptSqlService();
             var exception = await Assert.ThrowsAsync<MetaTransformScriptSqlImportException>(() =>
-                service.ImportFromSqlCodeToWorkspaceAsync(sql, null, workspacePath, scriptName: "dbo.v_customer"));
+                service.ImportFromSqlCodeToXmlWorkspaceAsync(sql, null, workspacePath, scriptName: "dbo.v_customer"));
 
             Assert.Equal(MetaTransformScriptSqlImportFailureKind.InvalidSqlInput, exception.Kind);
             Assert.Contains("requires --target", exception.Message, StringComparison.OrdinalIgnoreCase);
@@ -317,7 +317,7 @@ FROM sales.Customer AS c
     }
 
     [Fact]
-    public async Task ImportSingleSqlFileToWorkspaceAsync_CreateView_WithTarget_AssignsTargetSqlIdentifier()
+    public async Task ImportSingleSqlFileToXmlWorkspaceAsync_CreateView_WithTarget_AssignsTargetSqlIdentifier()
     {
         const string sql = """
 CREATE VIEW dbo.v_customer
@@ -333,7 +333,7 @@ FROM sales.Customer AS c
 
         try
         {
-            var result = await new MetaTransformScriptSqlService().ImportSingleSqlFileToWorkspaceAsync(
+            var result = await new MetaTransformScriptSqlService().ImportSingleSqlFileToXmlWorkspaceAsync(
                 sqlPath,
                 "warehouse.CustomerLoad",
                 workspacePath);
@@ -351,7 +351,7 @@ FROM sales.Customer AS c
     }
 
     [Fact]
-    public async Task ImportSingleSqlFileToWorkspaceAsync_InlineTvf_RejectsTarget()
+    public async Task ImportSingleSqlFileToXmlWorkspaceAsync_InlineTvf_RejectsTarget()
     {
         var sql = MetaTransformScriptTestHelper.LoadCorpus("066_inline_tvf.sql");
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Script.Tests", Guid.NewGuid().ToString("N"));
@@ -362,7 +362,7 @@ FROM sales.Customer AS c
         {
             var service = new MetaTransformScriptSqlService();
             var exception = await Assert.ThrowsAsync<MetaTransformScriptSqlImportException>(() =>
-                service.ImportSingleSqlFileToWorkspaceAsync(sqlPath, "warehouse.CustomerLoad", workspacePath));
+                service.ImportSingleSqlFileToXmlWorkspaceAsync(sqlPath, "warehouse.CustomerLoad", workspacePath));
 
             Assert.Equal(MetaTransformScriptSqlImportFailureKind.InvalidSqlInput, exception.Kind);
             Assert.Contains("does not allow --target", exception.Message, StringComparison.OrdinalIgnoreCase);
@@ -377,7 +377,7 @@ FROM sales.Customer AS c
     }
 
     [Fact]
-    public async Task ImportSingleSqlFileToWorkspaceAsync_InlineTvf_AllowsNoTarget_AndRoundTrips()
+    public async Task ImportSingleSqlFileToXmlWorkspaceAsync_InlineTvf_AllowsNoTarget_AndRoundTrips()
     {
         var sql = MetaTransformScriptTestHelper.LoadCorpus("066_inline_tvf.sql");
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Script.Tests", Guid.NewGuid().ToString("N"));
@@ -386,7 +386,7 @@ FROM sales.Customer AS c
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportSingleSqlFileToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportSingleSqlFileToXmlWorkspaceAsync(
                 sqlPath,
                 null,
                 workspacePath);
@@ -1616,7 +1616,7 @@ SELECT
 
         try
         {
-            await service.ImportFromSqlCodeToWorkspaceAsync(firstSql, targetSqlIdentifier: null, workspacePath);
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(firstSql, targetSqlIdentifier: null, workspacePath);
             await service.AddSqlCodeToWorkspaceAsync(secondSql, targetSqlIdentifier: null, workspacePath);
 
             var modules = service.ExportModuleDefinitions(workspacePath);

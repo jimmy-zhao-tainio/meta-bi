@@ -38,7 +38,7 @@ GO
 """);
 
         var progress = new List<SqlFileImportProgress>();
-        var result = await new MetaTransformScriptSqlService().ImportSqlFilesToNewWorkspaceAsync(
+        var result = await new MetaTransformScriptSqlService().ImportSqlFilesToNewXmlWorkspaceAsync(
             new[]
             {
                 new SqlFileImportRequest(firstPath, "dbo.TargetFirst"),
@@ -107,7 +107,7 @@ RETURN
 GO
 """);
 
-        var result = await new MetaTransformScriptSqlService().ImportSqlFilesToNewWorkspaceAsync(
+        var result = await new MetaTransformScriptSqlService().ImportSqlFilesToNewXmlWorkspaceAsync(
             new[]
             {
                 new SqlFileImportRequest(viewPath, "dbo.TargetCustomer"),
@@ -144,7 +144,7 @@ SELECT FROM dbo.Source
 GO
 """);
 
-        var result = await new MetaTransformScriptSqlService().ImportSqlFilesToNewWorkspaceAsync(
+        var result = await new MetaTransformScriptSqlService().ImportSqlFilesToNewXmlWorkspaceAsync(
             new[]
             {
                 new SqlFileImportRequest(badPath, "dbo.TargetBad")

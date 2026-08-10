@@ -2277,7 +2277,7 @@ SELECT
 FROM dbo.Source AS s
 """, "dbo.StageCustomer"));
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -2340,7 +2340,7 @@ BEGIN
     RETURN @value + 1;
 END
 """, null));
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -2398,7 +2398,7 @@ END
                 operationOrder.Split(',').Select(ParseOperationSeed).ToArray());
             Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -2458,7 +2458,7 @@ END
                 ["CustomerId"]);
             Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -2556,7 +2556,7 @@ INNER JOIN dw.DimCustomer AS d
                 ]);
             Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToWorkspace(
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);
@@ -4455,7 +4455,7 @@ INNER JOIN dw.DimCustomer AS d
             var script = scripts[index];
             if (index == 0)
             {
-                await service.ImportFromSqlCodeToWorkspaceAsync(
+                await service.ImportFromSqlCodeToXmlWorkspaceAsync(
                     script.Sql,
                     script.TargetSqlIdentifier,
                     transformWorkspace,

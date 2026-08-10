@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="token-analytics-to-multi-dimensional-out" OptionId="opt-analytics-to-multi-dimensional-out">
-      <Token>--out</Token>
+    <OptionToken Id="token-analytics-to-multi-dimensional-output-connection-env" OptionId="option-analytics-to-multi-dimensional-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-analytics-to-multi-dimensional-output-csharp" OptionId="option-analytics-to-multi-dimensional-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-analytics-to-multi-dimensional-output-sql" OptionId="option-analytics-to-multi-dimensional-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-analytics-to-multi-dimensional-output-xml" OptionId="option-analytics-to-multi-dimensional-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-analytics-to-multi-dimensional-workspace" OptionId="opt-analytics-to-multi-dimensional-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-analytics-to-tabular-out" OptionId="opt-analytics-to-tabular-out">
-      <Token>--out</Token>
+    <OptionToken Id="token-analytics-to-tabular-output-connection-env" OptionId="option-analytics-to-tabular-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-analytics-to-tabular-output-csharp" OptionId="option-analytics-to-tabular-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-analytics-to-tabular-output-sql" OptionId="option-analytics-to-tabular-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-analytics-to-tabular-output-xml" OptionId="option-analytics-to-tabular-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-analytics-to-tabular-workspace" OptionId="opt-analytics-to-tabular-workspace">
       <Token>--workspace</Token>
@@ -19,8 +37,17 @@
     <OptionToken Id="token-business-datavault-to-sql-implementation-workspace" OptionId="opt-business-datavault-to-sql-implementation-workspace">
       <Token>--implementation-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-business-datavault-to-sql-out" OptionId="opt-business-datavault-to-sql-out">
-      <Token>--out</Token>
+    <OptionToken Id="token-business-datavault-to-sql-output-connection-env" OptionId="option-business-datavault-to-sql-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-datavault-to-sql-output-csharp" OptionId="option-business-datavault-to-sql-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-datavault-to-sql-output-sql" OptionId="option-business-datavault-to-sql-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-datavault-to-sql-output-xml" OptionId="option-business-datavault-to-sql-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-business-datavault-to-sql-workspace" OptionId="opt-business-datavault-to-sql-workspace">
       <Token>--workspace</Token>
@@ -37,8 +64,17 @@
     <OptionToken Id="token-data-warehouse-to-sql-implementation-workspace" OptionId="opt-data-warehouse-to-sql-implementation-workspace">
       <Token>--implementation-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-data-warehouse-to-sql-out" OptionId="opt-data-warehouse-to-sql-out">
-      <Token>--out</Token>
+    <OptionToken Id="token-data-warehouse-to-sql-output-connection-env" OptionId="option-data-warehouse-to-sql-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-warehouse-to-sql-output-csharp" OptionId="option-data-warehouse-to-sql-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-warehouse-to-sql-output-sql" OptionId="option-data-warehouse-to-sql-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-warehouse-to-sql-output-xml" OptionId="option-data-warehouse-to-sql-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-data-warehouse-to-sql-workspace" OptionId="opt-data-warehouse-to-sql-workspace">
       <Token>--workspace</Token>
@@ -49,8 +85,17 @@
     <OptionToken Id="token-raw-datavault-to-sql-implementation-workspace" OptionId="opt-raw-datavault-to-sql-implementation-workspace">
       <Token>--implementation-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-raw-datavault-to-sql-out" OptionId="opt-raw-datavault-to-sql-out">
-      <Token>--out</Token>
+    <OptionToken Id="token-raw-datavault-to-sql-output-connection-env" OptionId="option-raw-datavault-to-sql-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-raw-datavault-to-sql-output-csharp" OptionId="option-raw-datavault-to-sql-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-raw-datavault-to-sql-output-sql" OptionId="option-raw-datavault-to-sql-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-raw-datavault-to-sql-output-xml" OptionId="option-raw-datavault-to-sql-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-raw-datavault-to-sql-workspace" OptionId="opt-raw-datavault-to-sql-workspace">
       <Token>--workspace</Token>
@@ -97,8 +142,17 @@
     <OptionToken Id="token-sql-to-transform-script-include-views" OptionId="opt-sql-to-transform-script-include-views">
       <Token>--include-views</Token>
     </OptionToken>
-    <OptionToken Id="token-sql-to-transform-script-out" OptionId="opt-sql-to-transform-script-out">
-      <Token>--out</Token>
+    <OptionToken Id="token-sql-to-transform-script-output-connection-env" OptionId="option-sql-to-transform-script-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-to-transform-script-output-csharp" OptionId="option-sql-to-transform-script-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-to-transform-script-output-sql" OptionId="option-sql-to-transform-script-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-to-transform-script-output-xml" OptionId="option-sql-to-transform-script-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-sql-to-transform-script-workspace" OptionId="opt-sql-to-transform-script-workspace">
       <Token>--workspace</Token>
@@ -106,8 +160,17 @@
     <OptionToken Id="token-transform-script-to-sql-database-name" OptionId="opt-transform-script-to-sql-database-name">
       <Token>--database-name</Token>
     </OptionToken>
-    <OptionToken Id="token-transform-script-to-sql-out" OptionId="opt-transform-script-to-sql-out">
-      <Token>--out</Token>
+    <OptionToken Id="token-transform-script-to-sql-output-connection-env" OptionId="option-transform-script-to-sql-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-transform-script-to-sql-output-csharp" OptionId="option-transform-script-to-sql-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-transform-script-to-sql-output-sql" OptionId="option-transform-script-to-sql-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-transform-script-to-sql-output-xml" OptionId="option-transform-script-to-sql-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-transform-script-to-sql-workspace" OptionId="opt-transform-script-to-sql-workspace">
       <Token>--workspace</Token>

@@ -67,7 +67,7 @@ public sealed partial class MetaTransformScriptSqlService
         return new ImportToWorkspaceResult(model, model.TransformScriptList.Count, string.Empty);
     }
 
-    public async Task<ImportToWorkspaceResult> ImportSingleSqlFileToWorkspaceAsync(
+    public async Task<ImportToWorkspaceResult> ImportSingleSqlFileToXmlWorkspaceAsync(
         string sqlFilePath,
         string? targetSqlIdentifier,
         string newWorkspacePath,
@@ -93,7 +93,7 @@ public sealed partial class MetaTransformScriptSqlService
         return new ImportToWorkspaceResult(model, model.TransformScriptList.Count, workspaceFullPath);
     }
 
-    public async Task<ImportToWorkspaceResult> ImportFromSqlCodeToWorkspaceAsync(
+    public async Task<ImportToWorkspaceResult> ImportFromSqlCodeToXmlWorkspaceAsync(
         string sqlCode,
         string? targetSqlIdentifier,
         string newWorkspacePath,

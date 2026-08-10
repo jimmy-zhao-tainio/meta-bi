@@ -1,4 +1,5 @@
 using System.Globalization;
+using Meta.Core.Serialization;
 using MetaConvert.DataQualityToSql;
 using MetaBi.Tests.Common;
 using MetaCli.Core;
@@ -47,7 +48,7 @@ public sealed class CliTests
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select c.CustomerId, o.OrderId from dbo.Customer c left outer join dbo.[Order] o on c.CustomerId = o.CustomerId",
                 "dbo.TargetOrders",
                 transformWorkspacePath,
@@ -195,7 +196,7 @@ public sealed class CliTests
         try
         {
             var sqlService = new MetaTransformScriptSqlService();
-            await sqlService.ImportFromSqlCodeToWorkspaceAsync(
+            await sqlService.ImportFromSqlCodeToXmlWorkspaceAsync(
                 "select c.CustomerId, o.OrderId from dbo.Customer c left outer join dbo.[Order] o on c.CustomerId = o.CustomerId",
                 "dbo.TargetOrders",
                 transformWorkspacePath,
@@ -270,7 +271,7 @@ SELECT CustomerId, OrderId
 FROM joined_cte;
 """;
 
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 sql,
                 "dbo.TargetOrders",
                 transformWorkspacePath,
@@ -321,7 +322,7 @@ INNER JOIN dbo.[Order] o
    AND c.RegionId = o.RegionId;
 """;
 
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 sql,
                 "dbo.TargetOrders",
                 transformWorkspacePath,
@@ -375,7 +376,7 @@ WHERE c.IsDeleted = 0
   AND c.ValidTo IS NULL;
 """;
 
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 sql,
                 "dbo.TargetOrders",
                 transformWorkspacePath,
@@ -414,7 +415,7 @@ LEFT OUTER JOIN dbo.[Order] o
    AND c.RegionId = o.RegionId;
 """;
 
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 sql,
                 "dbo.TargetOrders",
                 transformWorkspacePath,
@@ -456,7 +457,7 @@ LEFT OUTER JOIN dbo.[Order] o
    AND c.RegionId = o.RegionId;
 """;
 
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 sql,
                 "dbo.TargetOrders",
                 transformWorkspacePath,
@@ -523,7 +524,7 @@ LEFT OUTER JOIN dbo.[Order] o
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 """
                 SELECT c.CustomerId, c.RegionId, o.OrderId
                 FROM dbo.Customer c
@@ -592,7 +593,7 @@ LEFT OUTER JOIN dbo.[Order] o
 
         try
         {
-            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 """
                 SELECT c.CustomerId, cp.ProfileName
                 FROM dbo.Customer c

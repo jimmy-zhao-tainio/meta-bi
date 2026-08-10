@@ -20,38 +20,8 @@ using MetaMultiDimensional;
 
 namespace MetaConvert.AnalyticsToMultiDimensional;
 
-public sealed record AnalyticsToMultiDimensionalResult(
-    string SourceWorkspacePath,
-    string OutputWorkspacePath,
-    int CubeCount,
-    int DimensionCount,
-    int MeasureGroupCount,
-    int MeasureCount);
-
 public static class AnalyticsToMultiDimensionalConverter
 {
-    public static Task<AnalyticsToMultiDimensionalResult> ConvertAsync(
-        string sourceWorkspacePath,
-        string outputWorkspacePath)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(sourceWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(outputWorkspacePath);
-
-        var sourcePath = Path.GetFullPath(sourceWorkspacePath);
-        var outputPath = Path.GetFullPath(outputWorkspacePath);
-        var source = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(sourcePath, searchUpward: false);
-        var target = Convert(source);
-        Meta.Core.Serialization.TypedWorkspaceModelMapper.Create(target, outputPath, "xml");
-
-        return Task.FromResult(new AnalyticsToMultiDimensionalResult(
-            sourcePath,
-            outputPath,
-            target.CubeList.Count,
-            target.DimensionList.Count,
-            target.MeasureGroupList.Count,
-            target.MeasureList.Count));
-    }
-
     public static MetaMultiDimensionalModel Convert(MetaAnalytics.MetaAnalyticsModel source)
     {
         ArgumentNullException.ThrowIfNull(source);

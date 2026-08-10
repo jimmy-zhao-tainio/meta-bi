@@ -5,7 +5,6 @@ namespace MetaConvert.DataVaultToSql;
 
 internal sealed class ConversionContext
 {
-    public required string PathToNewMetaSqlWorkspace { get; init; }
     public required string DatabaseName { get; init; }
     public required MetaDataVaultImplementationModel ImplementationModel { get; init; }
     public SqlServerBusinessTypeLowering? BusinessTypeLowering { get; init; }

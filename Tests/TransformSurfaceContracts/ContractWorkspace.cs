@@ -37,7 +37,7 @@ internal sealed class ContractWorkspace : IDisposable
             var script = scripts[index];
             if (index == 0)
             {
-                await service.ImportFromSqlCodeToWorkspaceAsync(
+                await service.ImportFromSqlCodeToXmlWorkspaceAsync(
                     script.Sql,
                     script.TargetSqlIdentifier,
                     TransformWorkspacePath,
@@ -58,7 +58,7 @@ internal sealed class ContractWorkspace : IDisposable
 
     public BindToWorkspaceResult Bind()
     {
-        var result = new TransformBindingWorkspaceService().BindStructureToWorkspace(
+        var result = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
             TransformWorkspacePath,
             BindingWorkspacePath);
         BindingModel = result.Model;

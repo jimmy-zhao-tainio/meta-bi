@@ -8,6 +8,20 @@ namespace MetaConvert.TransformScriptToSql;
 
 public static class TransformScriptToSqlConverter
 {
+    public static Task<InMemoryWorkspace> ConvertAsync(
+        string transformScriptWorkspacePath,
+        string databaseName,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(transformScriptWorkspacePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(databaseName);
+
+        var modules = new MetaTransformScriptSqlService().ExportModuleDefinitions(transformScriptWorkspacePath);
+        var metaSql = ConvertToMetaSql(modules, databaseName);
+        return Task.FromResult(
+            Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql));
+    }
+
     public static async Task<InMemoryWorkspace> ConvertAsync(
         string transformScriptWorkspacePath,
         string pathToNewMetaSqlWorkspace,

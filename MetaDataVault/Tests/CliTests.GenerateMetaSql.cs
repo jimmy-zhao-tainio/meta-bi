@@ -16,7 +16,7 @@ public sealed partial class CliTests
         try
         {
             var result = RunMetaConvertCli(
-                $"raw-datavault-to-sql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"RawGenerateMetaSqlTest\" --out \"{outputWorkspacePath}\"");
+                $"raw-datavault-to-sql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"RawGenerateMetaSqlTest\" --output-xml \"{outputWorkspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
@@ -44,7 +44,7 @@ public sealed partial class CliTests
         try
         {
             var result = RunMetaConvertCli(
-                $"business-datavault-to-sql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"BusinessGenerateMetaSqlTest\" --out \"{outputWorkspacePath}\"");
+                $"business-datavault-to-sql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"BusinessGenerateMetaSqlTest\" --output-xml \"{outputWorkspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("Ok", result.Output, StringComparison.Ordinal);

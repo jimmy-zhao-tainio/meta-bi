@@ -28,8 +28,6 @@ internal sealed partial class MetaSqlCommandHandlers
 
         try
         {
-            var manifestModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlDeployManifestModel>(manifestWorkspacePath, searchUpward: false)
-                .ConfigureAwait(false);
             var deployService = new MetaSqlDeployService();
             var result = await deployService.DeployAsync(
                     new MetaSqlDeployRequest
@@ -38,6 +36,8 @@ internal sealed partial class MetaSqlCommandHandlers
                         SourceWorkspacePath = sourceWorkspacePath,
                         ConnectionString = connectionString,
                     })
+                .ConfigureAwait(false);
+            var manifestModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlDeployManifestModel>(manifestWorkspacePath, searchUpward: false)
                 .ConfigureAwait(false);
 
             var details = new List<(string Label, string Value)>

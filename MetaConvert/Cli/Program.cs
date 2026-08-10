@@ -36,14 +36,14 @@ internal static class Program
                 ],
                 (invocation, workspaces) => CompleteAsync(() =>
                     handlers.RunSchemaToRawDataVaultAsync(invocation, workspaces)))
-            .Bind("exec-raw-datavault-to-sql", invocation => CompleteAsync(() => handlers.RunRawDataVaultToSqlAsync(invocation)))
-            .Bind("exec-business-datavault-to-sql", invocation => CompleteAsync(() => handlers.RunBusinessDataVaultToSqlAsync(invocation)))
+            .Bind("exec-raw-datavault-to-sql", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunRawDataVaultToSqlAsync(invocation, workspaces)))
+            .Bind("exec-business-datavault-to-sql", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunBusinessDataVaultToSqlAsync(invocation, workspaces)))
             .Bind("exec-data-quality-to-sql", invocation => CompleteAsync(() => handlers.RunDataQualityToSqlAsync(invocation)))
-            .Bind("exec-data-warehouse-to-sql", invocation => CompleteAsync(() => handlers.RunDataWarehouseToSqlAsync(invocation)))
-            .Bind("exec-transform-script-to-sql", invocation => CompleteAsync(() => handlers.RunTransformScriptToSqlAsync(invocation)))
-            .Bind("exec-sql-to-transform-script", invocation => CompleteAsync(() => handlers.RunSqlToTransformScriptAsync(invocation)))
-            .Bind("exec-analytics-to-tabular", invocation => CompleteAsync(() => handlers.RunAnalyticsToTabularAsync(invocation)))
-            .Bind("exec-analytics-to-multi-dimensional", invocation => CompleteAsync(() => handlers.RunAnalyticsToMultiDimensionalAsync(invocation)));
+            .Bind("exec-data-warehouse-to-sql", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunDataWarehouseToSqlAsync(invocation, workspaces)))
+            .Bind("exec-transform-script-to-sql", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunTransformScriptToSqlAsync(invocation, workspaces)))
+            .Bind("exec-sql-to-transform-script", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunSqlToTransformScriptAsync(invocation, workspaces)))
+            .Bind("exec-analytics-to-tabular", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunAnalyticsToTabularAsync(invocation, workspaces)))
+            .Bind("exec-analytics-to-multi-dimensional", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunAnalyticsToMultiDimensionalAsync(invocation, workspaces)));
 
         runtime.Run(args);
         return Environment.ExitCode;
@@ -51,6 +51,14 @@ internal static class Program
 
     private static string CommandWorkspacePath =>
         Path.Combine(AppContext.BaseDirectory, CommandWorkspaceDirectoryName);
+
+    private static MetaCliWorkspaceOutput OutputWorkspace() =>
+        MetaCliWorkspace.Create(
+            "output",
+            "output-xml",
+            "output-csharp",
+            "output-sql",
+            "output-connection-env");
 
     private static void CompleteAsync(Func<Task<int>> action)
     {

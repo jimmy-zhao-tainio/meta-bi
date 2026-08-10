@@ -15,7 +15,7 @@ public sealed class StoredProcedureSupportTests
         try
         {
             var service = new MetaTransformScriptSqlService();
-            await service.ImportFromSqlCodeToWorkspaceAsync(
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
                 """
                 CREATE PROCEDURE dq.RunReview
                 AS
@@ -232,7 +232,7 @@ public sealed class StoredProcedureSupportTests
         try
         {
             var service = new MetaTransformScriptSqlService();
-            await service.ImportFromSqlCodeToWorkspaceAsync(
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
                 """
                 CREATE PROCEDURE etl.FirstLoad
                 AS
@@ -256,10 +256,10 @@ public sealed class StoredProcedureSupportTests
             var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             AddSingleReadContract(transformModel, "etl.FirstLoad", "src.SharedSource");
             AddSingleReadContract(transformModel, "etl.SecondLoad", "src.SharedSource");
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspacePath);
+            MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
             SaveSchemaWorkspace(schemaWorkspacePath, "src.SharedSource");
 
-            var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+            var result = new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(
                 transformWorkspacePath,
                 [schemaWorkspacePath],
                 schemaWorkspacePath,
@@ -288,7 +288,7 @@ public sealed class StoredProcedureSupportTests
         try
         {
             var service = new MetaTransformScriptSqlService();
-            await service.ImportFromSqlCodeToWorkspaceAsync(
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
                 """
                 CREATE PROCEDURE dq.RunReview
                 AS
@@ -346,7 +346,7 @@ public sealed class StoredProcedureSupportTests
         try
         {
             var service = new MetaTransformScriptSqlService();
-            await service.ImportFromSqlCodeToWorkspaceAsync(
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
                 """
                 CREATE PROCEDURE dq.ExportReviewRows
                 AS
@@ -475,6 +475,6 @@ public sealed class StoredProcedureSupportTests
             Ordinal = "0",
             IsNullable = "false"
         });
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+        MetaTransformScriptTestHelper.SaveXml(model, workspacePath);
     }
 }

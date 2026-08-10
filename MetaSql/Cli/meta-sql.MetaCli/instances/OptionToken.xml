@@ -22,8 +22,17 @@
     <OptionToken Id="token-deploy-plan-connection-env" OptionId="opt-deploy-plan-connection-env">
       <Token>--connection-env</Token>
     </OptionToken>
-    <OptionToken Id="token-deploy-plan-out" OptionId="opt-deploy-plan-out">
-      <Token>--out</Token>
+    <OptionToken Id="token-deploy-plan-output-connection-env" OptionId="option-deploy-plan-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-output-csharp" OptionId="option-deploy-plan-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-output-sql" OptionId="option-deploy-plan-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-output-xml" OptionId="option-deploy-plan-output-xml">
+      <Token>--output-xml</Token>
     </OptionToken>
     <OptionToken Id="token-deploy-plan-source-workspace" OptionId="opt-deploy-plan-source-workspace">
       <Token>--source-workspace</Token>

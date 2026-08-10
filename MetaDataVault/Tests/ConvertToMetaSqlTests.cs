@@ -4,6 +4,7 @@ using MetaBusinessDataVault;
 using MetaRawDataVault;
 using Meta.Core.Serialization;
 using MetaDataVaultImplementation;
+using Meta.Surfaces;
 
 namespace MetaDataVault.Tests;
 
@@ -24,11 +25,10 @@ public sealed class ConvertToMetaSqlTests
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "RawVault");
 
-            Assert.True(Directory.Exists(targetPath));
+            Assert.False(Directory.Exists(targetPath));
             Assert.Equal("MetaSql", sqlWorkspace.Model.Name);
             var databases = sqlWorkspace.Instance.GetOrCreateEntityRecords("Database");
             var schemas = sqlWorkspace.Instance.GetOrCreateEntityRecords("Schema");
@@ -61,11 +61,10 @@ public sealed class ConvertToMetaSqlTests
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
-            Assert.True(Directory.Exists(targetPath));
+            Assert.False(Directory.Exists(targetPath));
             Assert.Equal("MetaSql", sqlWorkspace.Model.Name);
             var databases = sqlWorkspace.Instance.GetOrCreateEntityRecords("Database");
             var schemas = sqlWorkspace.Instance.GetOrCreateEntityRecords("Schema");
@@ -94,8 +93,7 @@ public sealed class ConvertToMetaSqlTests
         {
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "RawVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -172,8 +170,7 @@ public sealed class ConvertToMetaSqlTests
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                implementationPath,
+                                implementationPath,
                 databaseName: "BusinessVault");
 
             var customerHub = GetTable(sqlWorkspace.Instance.GetOrCreateEntityRecords("Table"), "BH_Customer");
@@ -210,8 +207,7 @@ public sealed class ConvertToMetaSqlTests
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                implementationPath,
+                                implementationPath,
                 databaseName: "BusinessVault"));
 
             Assert.Contains(
@@ -271,8 +267,7 @@ public sealed class ConvertToMetaSqlTests
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "RawVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -341,8 +336,7 @@ public sealed class ConvertToMetaSqlTests
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "RawVault"));
 
             Assert.Contains("Raw link 'RawLink:Assignment' contains duplicate role name 'Participant'.", error.Message, StringComparison.Ordinal);
@@ -400,8 +394,7 @@ public sealed class ConvertToMetaSqlTests
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "RawVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -497,8 +490,7 @@ public sealed class ConvertToMetaSqlTests
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "RawVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -629,8 +621,7 @@ public sealed class ConvertToMetaSqlTests
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "RawVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -674,8 +665,7 @@ public sealed class ConvertToMetaSqlTests
         {
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -782,8 +772,7 @@ public sealed class ConvertToMetaSqlTests
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -823,8 +812,7 @@ public sealed class ConvertToMetaSqlTests
         {
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -879,8 +867,7 @@ public sealed class ConvertToMetaSqlTests
         {
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -908,8 +895,7 @@ public sealed class ConvertToMetaSqlTests
         {
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -960,8 +946,7 @@ public sealed class ConvertToMetaSqlTests
 
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault"));
             Assert.Contains("must start from its anchor hub 'Customer'", exception.Message, StringComparison.Ordinal);
         }
@@ -1014,8 +999,7 @@ public sealed class ConvertToMetaSqlTests
 
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault"));
             Assert.Contains("key-part precedence branches", exception.Message, StringComparison.Ordinal);
         }
@@ -1037,10 +1021,10 @@ public sealed class ConvertToMetaSqlTests
         {
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
                 GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
+            await WorkspaceSurface.CreateAsync(sqlWorkspace, targetPath, "xml");
             var reloaded = await XmlWorkspaceReader.OpenAsync(targetPath);
 
             Assert.Equal("MetaSql", reloaded.Model.Name);
@@ -1066,8 +1050,7 @@ public sealed class ConvertToMetaSqlTests
         {
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -1096,8 +1079,7 @@ public sealed class ConvertToMetaSqlTests
         {
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault");
 
             var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
@@ -1148,8 +1130,7 @@ public sealed class ConvertToMetaSqlTests
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault"));
 
             Assert.Contains("sqlserver:type:nvarchar", error.Message, StringComparison.Ordinal);
@@ -1178,8 +1159,7 @@ public sealed class ConvertToMetaSqlTests
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault"));
 
             Assert.Contains("meta:type:Xml", error.Message, StringComparison.Ordinal);
@@ -1208,8 +1188,7 @@ public sealed class ConvertToMetaSqlTests
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
-                targetPath,
-                GetImplementationWorkspacePath(repoRoot),
+                                GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault"));
 
             Assert.Contains("sqlserver:type:not-real", error.Message, StringComparison.Ordinal);

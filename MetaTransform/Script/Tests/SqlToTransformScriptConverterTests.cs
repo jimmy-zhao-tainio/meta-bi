@@ -1,6 +1,7 @@
 using MetaConvert.SqlToTransformScript;
 using MetaConvert.TransformScriptToSql;
 using MetaSql;
+using Meta.Surfaces;
 
 public sealed class SqlToTransformScriptConverterTests
 {
@@ -17,8 +18,8 @@ public sealed class SqlToTransformScriptConverterTests
             SaveMetaSqlWithViewAndFunction(sourceMetaSqlWorkspacePath);
 
             var result = await SqlToTransformScriptConverter.ConvertAsync(
-                sourceMetaSqlWorkspacePath,
-                transformScriptWorkspacePath);
+                sourceMetaSqlWorkspacePath);
+            await WorkspaceSurface.CreateAsync(result.Workspace, transformScriptWorkspacePath, "xml");
 
             Assert.Equal(1, result.ViewCount);
             Assert.Equal(1, result.FunctionCount);
@@ -61,8 +62,8 @@ public sealed class SqlToTransformScriptConverterTests
             SaveMetaSqlWithStoredProcedure(sourceMetaSqlWorkspacePath);
 
             var result = await SqlToTransformScriptConverter.ConvertAsync(
-                sourceMetaSqlWorkspacePath,
-                transformScriptWorkspacePath);
+                sourceMetaSqlWorkspacePath);
+            await WorkspaceSurface.CreateAsync(result.Workspace, transformScriptWorkspacePath, "xml");
 
             Assert.Equal(0, result.ViewCount);
             Assert.Equal(0, result.FunctionCount);
@@ -108,11 +109,11 @@ public sealed class SqlToTransformScriptConverterTests
 
             var result = await SqlToTransformScriptConverter.ConvertAsync(
                 sourceMetaSqlWorkspacePath,
-                transformScriptWorkspacePath,
                 new SqlToTransformScriptConversionOptions
                 {
                     ModuleKinds = SqlToTransformScriptModuleKinds.Views | SqlToTransformScriptModuleKinds.Functions,
                 });
+            await WorkspaceSurface.CreateAsync(result.Workspace, transformScriptWorkspacePath, "xml");
 
             Assert.Equal(1, result.ViewCount);
             Assert.Equal(1, result.FunctionCount);
@@ -138,12 +139,12 @@ public sealed class SqlToTransformScriptConverterTests
 
             var result = await SqlToTransformScriptConverter.ConvertAsync(
                 sourceMetaSqlWorkspacePath,
-                transformScriptWorkspacePath,
                 new SqlToTransformScriptConversionOptions
                 {
                     ModuleKinds = SqlToTransformScriptModuleKinds.Views | SqlToTransformScriptModuleKinds.Functions,
                     AllowEmpty = true,
                 });
+            await WorkspaceSurface.CreateAsync(result.Workspace, transformScriptWorkspacePath, "xml");
 
             Assert.Equal(0, result.ViewCount);
             Assert.Equal(0, result.FunctionCount);
@@ -211,7 +212,7 @@ FROM dq.fnCustomerScore(1)
 """,
         });
 
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+        MetaTransformScriptTestHelper.SaveXml(model, workspacePath);
     }
 
     private static void SaveMetaSqlWithViewFunctionAndStoredProcedure(string workspacePath)
@@ -234,7 +235,7 @@ END
 """,
         });
 
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+        MetaTransformScriptTestHelper.SaveXml(model, workspacePath);
     }
 
     private static void SaveMetaSqlWithStoredProcedure(string workspacePath)
@@ -255,7 +256,7 @@ END
 """,
         });
 
-        Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+        MetaTransformScriptTestHelper.SaveXml(model, workspacePath);
     }
 
     private static MetaSqlModel CreateBaseMetaSql(out Schema schema)

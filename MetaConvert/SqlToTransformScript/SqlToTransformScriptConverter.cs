@@ -11,12 +11,10 @@ public static class SqlToTransformScriptConverter
 {
     public static async Task<SqlToTransformScriptConversionResult> ConvertAsync(
         string metaSqlWorkspacePath,
-        string pathToNewTransformScriptWorkspace,
         CancellationToken cancellationToken = default)
     {
         return await ConvertAsync(
                 metaSqlWorkspacePath,
-                pathToNewTransformScriptWorkspace,
                 new SqlToTransformScriptConversionOptions(),
                 cancellationToken)
             .ConfigureAwait(false);
@@ -24,12 +22,10 @@ public static class SqlToTransformScriptConverter
 
     public static async Task<SqlToTransformScriptConversionResult> ConvertAsync(
         string metaSqlWorkspacePath,
-        string pathToNewTransformScriptWorkspace,
         SqlToTransformScriptConversionOptions options,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(metaSqlWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(pathToNewTransformScriptWorkspace);
         ArgumentNullException.ThrowIfNull(options);
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -44,22 +40,14 @@ public static class SqlToTransformScriptConverter
             .ConfigureAwait(false);
 
         var modules = GetConvertibleModules(metaSql, moduleKinds);
-        var outputWorkspacePath = Path.GetFullPath(pathToNewTransformScriptWorkspace);
         if (modules.Count == 0)
         {
             if (options.AllowEmpty)
             {
                 var emptyModel = MTS.MetaTransformScriptModel.CreateEmpty();
-                await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
-                        emptyModel,
-                        outputWorkspacePath,
-                        "xml",
-                        cancellationToken: cancellationToken)
-                    .ConfigureAwait(false);
-
                 return new SqlToTransformScriptConversionResult(
                     Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(emptyModel),
-                    outputWorkspacePath,
+                    string.Empty,
                     0,
                     0,
                     0);
@@ -81,16 +69,9 @@ public static class SqlToTransformScriptConverter
                 scriptName: $"{module.SchemaName}.{module.ObjectName}");
         }
 
-        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
-                transformModel,
-                outputWorkspacePath,
-                "xml",
-                cancellationToken: cancellationToken)
-            .ConfigureAwait(false);
-
         return new SqlToTransformScriptConversionResult(
             Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(transformModel),
-            outputWorkspacePath,
+            string.Empty,
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.View),
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.Function),
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.StoredProcedure));

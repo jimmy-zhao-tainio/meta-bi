@@ -15,13 +15,11 @@ public static class DataWarehouseToSqlConverter
 {
     public static async Task<InMemoryWorkspace> ConvertAsync(
         string dataWarehouseWorkspacePath,
-        string pathToNewMetaSqlWorkspace,
         string implementationWorkspacePath,
         string databaseName,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(dataWarehouseWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(pathToNewMetaSqlWorkspace);
         ArgumentException.ThrowIfNullOrWhiteSpace(implementationWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(databaseName);
 
@@ -35,12 +33,6 @@ public static class DataWarehouseToSqlConverter
             cancellationToken).ConfigureAwait(false);
 
         var metaSql = ConvertToMetaSql(model, implementation, databaseName);
-        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
-                metaSql,
-                pathToNewMetaSqlWorkspace,
-                "xml",
-                cancellationToken: cancellationToken)
-            .ConfigureAwait(false);
         return Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql);
     }
 

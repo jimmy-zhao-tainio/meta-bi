@@ -25,6 +25,7 @@
     <ProjectReference Include="..\Core\MetaDataQuality.Core.csproj" />
     <ProjectReference Include="..\Model\MetaDataQuality.Model.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\Model\MetaTransformBinding.Model.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Script\Model\MetaTransformScript.Model.csproj" />
     <ProjectReference Include="..\..\MetaConvert\DataQualityToSql\MetaConvert.DataQualityToSql.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
   </ItemGroup>

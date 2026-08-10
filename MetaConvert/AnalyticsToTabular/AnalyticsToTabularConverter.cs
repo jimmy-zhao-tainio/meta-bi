@@ -5,36 +5,8 @@ using MetaTabular;
 
 namespace MetaConvert.AnalyticsToTabular;
 
-public sealed record AnalyticsToTabularResult(
-    string SourceWorkspacePath,
-    string OutputWorkspacePath,
-    int TableCount,
-    int ColumnCount,
-    int MeasureCount);
-
 public static class AnalyticsToTabularConverter
 {
-    public static Task<AnalyticsToTabularResult> ConvertAsync(
-        string sourceWorkspacePath,
-        string outputWorkspacePath)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(sourceWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(outputWorkspacePath);
-
-        var sourcePath = Path.GetFullPath(sourceWorkspacePath);
-        var outputPath = Path.GetFullPath(outputWorkspacePath);
-        var source = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaAnalyticsModel>(sourcePath, searchUpward: false);
-        var target = Convert(source);
-        Meta.Core.Serialization.TypedWorkspaceModelMapper.Create(target, outputPath, "xml");
-
-        return Task.FromResult(new AnalyticsToTabularResult(
-            sourcePath,
-            outputPath,
-            target.TabularTableList.Count,
-            target.TabularColumnList.Count,
-            target.TabularMeasureList.Count));
-    }
-
     public static MetaTabularModel Convert(MetaAnalyticsModel source)
     {
         ArgumentNullException.ThrowIfNull(source);

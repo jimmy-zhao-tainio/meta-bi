@@ -7,7 +7,7 @@ namespace MetaTransform.Binding;
 
 public sealed class TransformBindingWorkspaceService
 {
-    public BindToWorkspaceResult BindValidatedToWorkspace(
+    public BindToWorkspaceResult BindValidatedToXmlWorkspace(
         string transformWorkspacePath,
         IEnumerable<string> sourceSchemaWorkspacePaths,
         string targetSchemaWorkspacePath,
@@ -172,8 +172,8 @@ public sealed class TransformBindingWorkspaceService
     }
 
     // Test support for consumers that need syntax-derived rowsets without schema contracts.
-    // Strict read/write/delete facts belong to BindValidatedToWorkspace.
-    internal BindToWorkspaceResult BindStructureToWorkspace(
+    // Strict read/write/delete facts belong to BindValidatedToXmlWorkspace.
+    internal BindToWorkspaceResult BindStructureToXmlWorkspace(
         string transformWorkspacePath,
         string newWorkspacePath)
     {

@@ -6,7 +6,10 @@
     <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-approve-drop-table" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-approve-drop-table" />
     <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-approve-truncate-column" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-approve-truncate-column" />
     <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-connection-env" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-connection-env" />
-    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-out" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-out" />
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-output-connection-env" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-output-connection-env" />
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-output-csharp" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-output-csharp" />
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-output-sql" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-output-sql" />
+    <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-output-xml" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-output-xml" />
     <ExecutableCommandParameter Id="exec-deploy-plan:parameter:param-deploy-plan-source-workspace" ExecutableCommandId="exec-deploy-plan" ParameterId="param-deploy-plan-source-workspace" />
     <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-connection-env" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-connection-env" />
     <ExecutableCommandParameter Id="exec-deploy:parameter:param-deploy-manifest-workspace" ExecutableCommandId="exec-deploy" ParameterId="param-deploy-manifest-workspace" />

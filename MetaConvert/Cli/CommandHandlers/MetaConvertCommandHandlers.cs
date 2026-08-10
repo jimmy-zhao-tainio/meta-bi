@@ -1,5 +1,6 @@
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
+using Meta.Core.Serialization;
 using MetaCli.Core;
 using MetaConvert.AnalyticsToMultiDimensional;
 using MetaConvert.AnalyticsToTabular;
@@ -74,45 +75,43 @@ internal sealed class MetaConvertCommandHandlers
         return 0;
     }
 
-    public async Task<int> RunRawDataVaultToSqlAsync(MetaCliInvocation invocation)
+    public async Task<int> RunRawDataVaultToSqlAsync(MetaCliInvocation invocation, MetaCliWorkspaces workspaces)
     {
         var request = ReadDataVaultToSqlRequest(invocation);
         try
         {
-            Directory.CreateDirectory(request.OutputWorkspacePath);
-            await Converter.ConvertAsync(
+            var result = await Converter.ConvertAsync(
                 request.WorkspacePath,
-                request.OutputWorkspacePath,
                 request.ImplementationWorkspacePath,
                 request.DatabaseName).ConfigureAwait(false);
+            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
 
-            presenter.WriteOk($"Generated {Path.GetFileName(request.OutputWorkspacePath)}");
+            presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             return 0;
         }
         catch (Exception ex)
         {
-            return FailDataVaultToSql("Cannot convert raw DataVault to SQL.", "raw-datavault-to-sql", request, ex);
+            return FailDataVaultToSql(invocation, "Cannot convert raw DataVault to SQL.", "raw-datavault-to-sql", request, ex);
         }
     }
 
-    public async Task<int> RunBusinessDataVaultToSqlAsync(MetaCliInvocation invocation)
+    public async Task<int> RunBusinessDataVaultToSqlAsync(MetaCliInvocation invocation, MetaCliWorkspaces workspaces)
     {
         var request = ReadDataVaultToSqlRequest(invocation);
         try
         {
-            Directory.CreateDirectory(request.OutputWorkspacePath);
-            await Converter.ConvertAsync(
+            var result = await Converter.ConvertAsync(
                 request.WorkspacePath,
-                request.OutputWorkspacePath,
                 request.ImplementationWorkspacePath,
                 request.DatabaseName).ConfigureAwait(false);
+            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
 
-            presenter.WriteOk($"Generated {Path.GetFileName(request.OutputWorkspacePath)}");
+            presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             return 0;
         }
         catch (Exception ex)
         {
-            return FailDataVaultToSql("Cannot convert business DataVault to SQL.", "business-datavault-to-sql", request, ex);
+            return FailDataVaultToSql(invocation, "Cannot convert business DataVault to SQL.", "business-datavault-to-sql", request, ex);
         }
     }
 
@@ -153,43 +152,39 @@ internal sealed class MetaConvertCommandHandlers
         }
     }
 
-    public async Task<int> RunDataWarehouseToSqlAsync(MetaCliInvocation invocation)
+    public async Task<int> RunDataWarehouseToSqlAsync(MetaCliInvocation invocation, MetaCliWorkspaces workspaces)
     {
         var request = ReadDataVaultToSqlRequest(invocation);
         try
         {
-            Directory.CreateDirectory(request.OutputWorkspacePath);
-            await DataWarehouseToSqlConverter.ConvertAsync(
+            var result = await DataWarehouseToSqlConverter.ConvertAsync(
                 request.WorkspacePath,
-                request.OutputWorkspacePath,
                 request.ImplementationWorkspacePath,
                 request.DatabaseName).ConfigureAwait(false);
+            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
 
-            presenter.WriteOk($"Generated {Path.GetFileName(request.OutputWorkspacePath)}");
+            presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             return 0;
         }
         catch (Exception ex)
         {
-            return FailDataVaultToSql("Cannot convert data warehouse to SQL.", "data-warehouse-to-sql", request, ex);
+            return FailDataVaultToSql(invocation, "Cannot convert data warehouse to SQL.", "data-warehouse-to-sql", request, ex);
         }
     }
 
-    public async Task<int> RunTransformScriptToSqlAsync(MetaCliInvocation invocation)
+    public async Task<int> RunTransformScriptToSqlAsync(MetaCliInvocation invocation, MetaCliWorkspaces workspaces)
     {
         var workspacePath = ReadWorkspacePath(invocation);
-        var outputWorkspacePath = Path.GetFullPath(invocation.Required("out"));
         var databaseName = invocation.Required("database-name");
 
         try
         {
-            Directory.CreateDirectory(outputWorkspacePath);
-            await TransformScriptToSqlConverter.ConvertAsync(
+            var result = await TransformScriptToSqlConverter.ConvertAsync(
                 workspacePath,
-                outputWorkspacePath,
-                databaseName,
-                outputRepresentation: "xml").ConfigureAwait(false);
+                databaseName).ConfigureAwait(false);
+            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
 
-            presenter.WriteInfo($"Generated {Path.GetFileName(outputWorkspacePath)}");
+            presenter.WriteInfo($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             return 0;
         }
         catch (Exception ex)
@@ -202,29 +197,28 @@ internal sealed class MetaConvertCommandHandlers
                 {
                     $"  Workspace: {workspacePath}",
                     $"  Database: {databaseName}",
-                    $"  Output: {outputWorkspacePath}",
+                    $"  Output: {MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql")}",
                     $"  {ex.Message}",
                 });
         }
     }
 
-    public async Task<int> RunSqlToTransformScriptAsync(MetaCliInvocation invocation)
+    public async Task<int> RunSqlToTransformScriptAsync(MetaCliInvocation invocation, MetaCliWorkspaces workspaces)
     {
         var workspacePath = ReadWorkspacePath(invocation);
-        var outputWorkspacePath = Path.GetFullPath(invocation.Required("out"));
 
         try
         {
             var result = await SqlToTransformScriptConverter.ConvertAsync(
                 workspacePath,
-                outputWorkspacePath,
                 new SqlToTransformScriptConversionOptions
                 {
                     ModuleKinds = ReadSqlModuleKinds(invocation),
                     AllowEmpty = invocation.Flag("allow-empty"),
                 }).ConfigureAwait(false);
+            await workspaces.CreateAsync("output", result.Workspace).ConfigureAwait(false);
 
-            presenter.WriteInfo($"Generated {Path.GetFileName(outputWorkspacePath)}");
+            presenter.WriteInfo($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             presenter.WriteKeyValueBlock("Summary", new[]
             {
                 ("Views", result.ViewCount.ToString()),
@@ -242,27 +236,27 @@ internal sealed class MetaConvertCommandHandlers
                 new[]
                 {
                     $"  Workspace: {workspacePath}",
-                    $"  Output: {outputWorkspacePath}",
+                    $"  Output: {MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql")}",
                     $"  {ex.Message}",
                 });
         }
     }
 
-    public async Task<int> RunAnalyticsToTabularAsync(MetaCliInvocation invocation)
+    public async Task<int> RunAnalyticsToTabularAsync(MetaCliInvocation invocation, MetaCliWorkspaces workspaces)
     {
         var workspacePath = ReadWorkspacePath(invocation);
-        var outputPath = Path.GetFullPath(invocation.Required("out"));
 
         try
         {
-            Directory.CreateDirectory(outputPath);
-            var result = await AnalyticsToTabularConverter.ConvertAsync(workspacePath, outputPath).ConfigureAwait(false);
-            presenter.WriteOk($"Generated {Path.GetFileName(outputPath)}");
+            var source = TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(workspacePath, searchUpward: false);
+            var result = AnalyticsToTabularConverter.Convert(source);
+            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+            presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             presenter.WriteKeyValueBlock("Summary", new[]
             {
-                ("Tables", result.TableCount.ToString()),
-                ("Columns", result.ColumnCount.ToString()),
-                ("Measures", result.MeasureCount.ToString()),
+                ("Tables", result.TabularTableList.Count.ToString()),
+                ("Columns", result.TabularColumnList.Count.ToString()),
+                ("Measures", result.TabularMeasureList.Count.ToString()),
             });
             return 0;
         }
@@ -275,28 +269,28 @@ internal sealed class MetaConvertCommandHandlers
                 new[]
                 {
                     $"  Workspace: {workspacePath}",
-                    $"  Output: {outputPath}",
+                    $"  Output: {MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql")}",
                     $"  {ex.Message}",
                 });
         }
     }
 
-    public async Task<int> RunAnalyticsToMultiDimensionalAsync(MetaCliInvocation invocation)
+    public async Task<int> RunAnalyticsToMultiDimensionalAsync(MetaCliInvocation invocation, MetaCliWorkspaces workspaces)
     {
         var workspacePath = ReadWorkspacePath(invocation);
-        var outputPath = Path.GetFullPath(invocation.Required("out"));
 
         try
         {
-            Directory.CreateDirectory(outputPath);
-            var result = await AnalyticsToMultiDimensionalConverter.ConvertAsync(workspacePath, outputPath).ConfigureAwait(false);
-            presenter.WriteOk($"Generated {Path.GetFileName(outputPath)}");
+            var source = TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(workspacePath, searchUpward: false);
+            var result = AnalyticsToMultiDimensionalConverter.Convert(source);
+            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+            presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             presenter.WriteKeyValueBlock("Summary", new[]
             {
-                ("Cubes", result.CubeCount.ToString()),
-                ("Dimensions", result.DimensionCount.ToString()),
-                ("MeasureGroups", result.MeasureGroupCount.ToString()),
-                ("Measures", result.MeasureCount.ToString()),
+                ("Cubes", result.CubeList.Count.ToString()),
+                ("Dimensions", result.DimensionList.Count.ToString()),
+                ("MeasureGroups", result.MeasureGroupList.Count.ToString()),
+                ("Measures", result.MeasureList.Count.ToString()),
             });
             return 0;
         }
@@ -309,7 +303,7 @@ internal sealed class MetaConvertCommandHandlers
                 new[]
                 {
                     $"  Workspace: {workspacePath}",
-                    $"  Output: {outputPath}",
+                    $"  Output: {MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql")}",
                     $"  {ex.Message}",
                 });
         }
@@ -320,11 +314,11 @@ internal sealed class MetaConvertCommandHandlers
         return new DataVaultToSqlRequest(
             WorkspacePath: ReadWorkspacePath(invocation),
             ImplementationWorkspacePath: Path.GetFullPath(invocation.Required("implementation-workspace")),
-            OutputWorkspacePath: Path.GetFullPath(invocation.Required("out")),
             DatabaseName: invocation.Required("database-name"));
     }
 
     private int FailDataVaultToSql(
+        MetaCliInvocation invocation,
         string message,
         string commandName,
         DataVaultToSqlRequest request,
@@ -338,7 +332,7 @@ internal sealed class MetaConvertCommandHandlers
             {
                 $"  Workspace: {request.WorkspacePath}",
                 $"  Database: {request.DatabaseName}",
-                $"  Output: {request.OutputWorkspacePath}",
+                $"  Output: {MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql")}",
                 $"  {exception.Message}",
             });
     }
@@ -415,6 +409,5 @@ internal sealed class MetaConvertCommandHandlers
     private sealed record DataVaultToSqlRequest(
         string WorkspacePath,
         string ImplementationWorkspacePath,
-        string OutputWorkspacePath,
         string DatabaseName);
 }
