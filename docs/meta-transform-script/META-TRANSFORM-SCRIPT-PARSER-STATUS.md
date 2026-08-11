@@ -120,6 +120,7 @@ Remaining gaps are ordinary parser, emitter, model, or import-shaping errata. Th
 - [x] global variables such as `@@SPID`
 - [x] signed literals used by the corpus
 - [x] scientific notation literals used by the corpus
+- [x] leading-dot numeric and scientific literals such as `.5`, `.5E2`, and `.5e-2`
 - [x] binary literals used by the corpus
 - [x] `NULL` literal expressions
 - [x] primary-expression `COLLATE`

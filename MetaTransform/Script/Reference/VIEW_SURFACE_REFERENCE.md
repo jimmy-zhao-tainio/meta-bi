@@ -167,8 +167,8 @@
 ## Literals
 
 - Integer literal
-- Numeric literal
-- Real literal
+- Numeric literal, including leading-dot decimal forms such as `.5`
+- Real literal, including leading-dot scientific forms such as `.5E2` and `.5e-2`
 - String literal
 - Binary literal
 - NULL literal

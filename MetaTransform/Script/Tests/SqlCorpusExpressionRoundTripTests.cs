@@ -21,6 +21,7 @@ public sealed class SqlCorpusExpressionRoundTripTests
     [InlineData("059_range_window_frames.sql")]
     [InlineData("060_remaining_analytic_functions.sql")]
     [InlineData("067_backtick_identifiers.sql")]
+    [InlineData("069_leading_dot_numeric_literals.sql")]
     public void ParserAndEmitter_RoundTripExpressionCorpus(string fileName)
     {
         MetaTransformScriptTestHelper.AssertParserRoundTripsCorpusFile(fileName);

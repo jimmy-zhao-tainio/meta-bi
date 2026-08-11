@@ -76,6 +76,7 @@ internal sealed class MetaTransformScriptSqlLexer
                 '`' => ReadBacktickQuotedIdentifier(),
                 '\'' => ReadStringLiteral(),
                 ',' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Comma),
+                '.' when char.IsDigit(Peek(1)) => ReadNumberLiteral(),
                 '.' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Dot),
                 '*' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Star),
                 '/' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Slash),
@@ -397,6 +398,7 @@ internal sealed class MetaTransformScriptSqlLexer
         var startOffset = index;
         var startLine = line;
         var startColumn = column;
+        var startsWithDot = Current == '.';
 
         if (Current == '0' && (Peek(1) is 'x' or 'X'))
         {
@@ -451,6 +453,13 @@ internal sealed class MetaTransformScriptSqlLexer
 
             if (IsEnd || !char.IsDigit(Current))
             {
+                if (startsWithDot)
+                {
+                    throw Error(
+                        MetaTransformScriptSqlParserFailureKind.ParseError,
+                        "Expected decimal digits after the exponent in a leading-dot numeric literal.");
+                }
+
                 index = exponentStart;
             }
             else

@@ -203,8 +203,8 @@ Legend:
 | Label | M | R | S |
 | --- | --- | --- | --- |
 | Integer literal | Y | Y | Y |
-| Numeric literal | Y | Y | Y |
-| Real literal | Y | Y | Y |
+| Numeric literal, including leading-dot decimal | Y | Y | Y |
+| Real literal, including leading-dot scientific notation | Y | Y | Y |
 | String literal | Y | Y | Y |
 | Binary literal | Y | Y | Y |
 | NULL literal | Y | Y | Y |

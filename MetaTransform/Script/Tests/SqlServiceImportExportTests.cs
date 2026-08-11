@@ -63,6 +63,7 @@ public sealed class SqlServiceImportExportTests
     [InlineData("066_inline_tvf.sql")]
     [InlineData("067_backtick_identifiers.sql")]
     [InlineData("068_parenthesized_set_derived_table.sql")]
+    [InlineData("069_leading_dot_numeric_literals.sql")]
     public void ImportFromSqlCode_MatchesDirectParser_OnAuditedCorpus(string fileName)
     {
         var sql = MetaTransformScriptTestHelper.LoadCorpus(fileName);
