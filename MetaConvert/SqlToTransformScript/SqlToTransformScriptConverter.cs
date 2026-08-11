@@ -1,6 +1,6 @@
 using System.Globalization;
-using Meta.Core.Domain;
-using Meta.Core.Serialization;
+using Meta.Operations.Domain;
+using Meta.Integration;
 using MetaSql;
 using MetaTransformScript.Sql;
 using MTS = global::MetaTransformScript;
@@ -33,7 +33,7 @@ public static class SqlToTransformScriptConverter
             ? SqlToTransformScriptModuleKinds.All
             : options.ModuleKinds;
 
-        var metaSql = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlModel>(
+        var metaSql = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaSqlModel>(
                 Path.GetFullPath(metaSqlWorkspacePath),
                 searchUpward: false,
                 cancellationToken)
@@ -46,7 +46,7 @@ public static class SqlToTransformScriptConverter
             {
                 var emptyModel = MTS.MetaTransformScriptModel.CreateEmpty();
                 return new SqlToTransformScriptConversionResult(
-                    Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(emptyModel),
+                    Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(emptyModel),
                     string.Empty,
                     0,
                     0,
@@ -70,7 +70,7 @@ public static class SqlToTransformScriptConverter
         }
 
         return new SqlToTransformScriptConversionResult(
-            Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(transformModel),
+            Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(transformModel),
             string.Empty,
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.View),
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.Function),

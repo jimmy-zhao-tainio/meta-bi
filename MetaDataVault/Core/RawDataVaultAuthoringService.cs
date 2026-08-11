@@ -38,7 +38,7 @@ public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
         ArgumentException.ThrowIfNullOrWhiteSpace(request.RecordId);
 
         var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaRawDataVaultModel>(workspacePath);
+        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaRawDataVaultModel>(workspacePath);
         var entityType = ResolveEntityType(request.EntityName);
         var rows = GetEntityRows(model, entityType, request.EntityName);
         if (rows.Cast<object>().Any(row => string.Equals(ReadId(row), request.RecordId, StringComparison.Ordinal)))
@@ -61,7 +61,7 @@ public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
         }
 
         rows.Add(rowToAdd);
-        Meta.Core.Serialization.TypedWorkspaceModelMapper.Save(model, workspacePath);
+        Meta.Integration.TypedWorkspaceModelMapper.Save(model, workspacePath);
         return model;
     }
 

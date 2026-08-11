@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include=".\Model\MetaTransformBinding.Model.csproj" />
     <ProjectReference Include="..\Script\Model\MetaTransformScript.Model.csproj" />
     <ProjectReference Include="..\Script\Sql\MetaTransformScript.Sql.csproj" />

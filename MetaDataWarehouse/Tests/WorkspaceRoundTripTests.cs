@@ -10,9 +10,9 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(MetaDataWarehouseInstance.SampleSales, path);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(MetaDataWarehouseInstance.SampleSales, path);
 
-            var loaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, searchUpward: false);
+            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, searchUpward: false);
             var date = Assert.Single(loaded.DimensionList, row => row.Id == "dimension:date");
             var salesOrder = Assert.Single(loaded.FactList, row => row.Id == "fact:sales-order");
             var orderDate = Assert.Single(loaded.FactDimensionList, row => row.Fact.Id == salesOrder.Id && row.RoleName == "OrderDate");
@@ -36,9 +36,9 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(MetaDataWarehouseInstance.SampleSales, path);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(MetaDataWarehouseInstance.SampleSales, path);
 
-            var loaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, searchUpward: false);
+            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, searchUpward: false);
             var scd = Assert.Single(loaded.SlowlyChangingDimensionList, row => row.Id == "scd:customer");
             var key = Assert.Single(loaded.DimensionBusinessKeyList, row => row.Dimension.Id == "dimension:customer");
             var keyPart = Assert.Single(loaded.DimensionBusinessKeyPartList, row => row.DimensionBusinessKey == key);
@@ -59,9 +59,9 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(MetaDataWarehouseImplementationInstance.Default, path);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(MetaDataWarehouseImplementationInstance.Default, path);
 
-            var loaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseImplementation.MetaDataWarehouseImplementationModel>(path, searchUpward: false);
+            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseImplementation.MetaDataWarehouseImplementationModel>(path, searchUpward: false);
             Assert.Contains(loaded.PlatformColumnImplementationList, row =>
                 row.ColumnName == "AuditId" &&
                 row.DataTypeId == "meta:type:Int64" &&

@@ -18,6 +18,9 @@ $expectedPackages = @(
     'Meta.Operations',
     'Meta.Core',
     'Meta.Surfaces',
+    'Meta.Surfaces.Xml',
+    'Meta.Surfaces.CSharp',
+    'Meta.Surfaces.Sql',
     'Meta.Integration',
     'MetaCli.Model',
     'MetaCli.Core',
@@ -56,6 +59,45 @@ function Invoke-Dotnet {
     & dotnet @Arguments
     if ($LASTEXITCODE -ne 0) {
         throw "dotnet command failed with exit code $LASTEXITCODE"
+    }
+}
+
+function Get-PackageDependencies {
+    param([Parameter(Mandatory = $true)][string]$PackagePath)
+
+    $archive = [System.IO.Compression.ZipFile]::OpenRead($PackagePath)
+    try {
+        $entry = $archive.Entries | Where-Object FullName -like '*.nuspec' | Select-Object -First 1
+        if ($null -eq $entry) {
+            throw "Package has no nuspec: $PackagePath"
+        }
+
+        $reader = [System.IO.StreamReader]::new($entry.Open())
+        try {
+            [xml]$nuspec = $reader.ReadToEnd()
+        }
+        finally {
+            $reader.Dispose()
+        }
+
+        return @($nuspec.package.metadata.dependencies.group.dependency.id | Sort-Object -Unique)
+    }
+    finally {
+        $archive.Dispose()
+    }
+}
+
+function Assert-PackageDependencies {
+    param(
+        [Parameter(Mandatory = $true)][string]$PackageId,
+        [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$ExpectedDependencies
+    )
+
+    $package = $packageInfo | Where-Object Id -eq $PackageId | Select-Object -First 1
+    $actual = @(Get-PackageDependencies $package.Path | Sort-Object)
+    $expected = @($ExpectedDependencies | Sort-Object)
+    if (($actual -join '|') -ne ($expected -join '|')) {
+        throw "$PackageId dependencies differ. Expected: $($expected -join ', '). Actual: $($actual -join ', ')"
     }
 }
 
@@ -100,6 +142,47 @@ $nugetConfig = Join-Path $consumerRoot 'package-consumer.NuGet.Config'
 "@ | Set-Content -LiteralPath $nugetConfig
 
 $packages = Join-Path $env:TEMP ('meta-bi-package-cache-' + [Guid]::NewGuid().ToString('N'))
+
+Assert-PackageDependencies 'Meta.Operations' @()
+Assert-PackageDependencies 'Meta.Core' @('Meta.Operations')
+Assert-PackageDependencies 'Meta.Surfaces' @('Meta.Core', 'Meta.Operations')
+Assert-PackageDependencies 'Meta.Surfaces.Xml' @('Meta.Core', 'Meta.Operations', 'Meta.Surfaces')
+Assert-PackageDependencies 'Meta.Surfaces.CSharp' @(
+    'Meta.Core', 'Meta.Operations', 'Meta.Surfaces', 'Microsoft.CodeAnalysis.CSharp')
+Assert-PackageDependencies 'Meta.Surfaces.Sql' @(
+    'Meta.Core', 'Meta.Operations', 'Meta.Surfaces', 'Microsoft.Data.SqlClient')
+Assert-PackageDependencies 'Meta.Integration' @(
+    'Meta.Core', 'Meta.Operations', 'Meta.Surfaces', 'Meta.Surfaces.Xml',
+    'Meta.Surfaces.CSharp', 'Meta.Surfaces.Sql', 'Microsoft.Data.SqlClient')
+
+$closureCases = @(
+    @{ Package = 'Meta.Core'; Roslyn = $false; SqlClient = $false },
+    @{ Package = 'Meta.Surfaces.Xml'; Roslyn = $false; SqlClient = $false },
+    @{ Package = 'Meta.Surfaces.CSharp'; Roslyn = $true; SqlClient = $false },
+    @{ Package = 'Meta.Surfaces.Sql'; Roslyn = $false; SqlClient = $true },
+    @{ Package = 'Meta.Integration'; Roslyn = $true; SqlClient = $true }
+)
+foreach ($case in $closureCases) {
+    $caseRoot = Join-Path $consumerRoot ('package-closure-' + $case.Package)
+    New-Item -ItemType Directory -Path $caseRoot | Out-Null
+    $projectPath = Join-Path $caseRoot 'Consumer.csproj'
+    @"
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net8.0</TargetFramework></PropertyGroup>
+  <ItemGroup><PackageReference Include="$($case.Package)" Version="$($versions[0])" /></ItemGroup>
+</Project>
+"@ | Set-Content -LiteralPath $projectPath
+    Invoke-Dotnet @('restore', $projectPath, '--configfile', $nugetConfig, '--packages', $packages, '--disable-parallel', '--nologo')
+
+    $assets = Get-Content -LiteralPath (Join-Path $caseRoot 'obj\project.assets.json') -Raw | ConvertFrom-Json
+    $libraryNames = @($assets.libraries.PSObject.Properties.Name | ForEach-Object { ($_ -split '/')[0] })
+    $hasRoslyn = $libraryNames -contains 'Microsoft.CodeAnalysis.CSharp'
+    $hasSqlClient = $libraryNames -contains 'Microsoft.Data.SqlClient'
+    if ($hasRoslyn -ne $case.Roslyn -or $hasSqlClient -ne $case.SqlClient) {
+        throw "$($case.Package) closure differs. Roslyn=$hasRoslyn SqlClient=$hasSqlClient"
+    }
+}
+
 $solutions = @(Get-ChildItem -LiteralPath $consumerRoot -Filter '*.sln' -File | Sort-Object FullName)
 foreach ($solution in $solutions) {
     Invoke-Dotnet @('restore', $solution.FullName, '--configfile', $nugetConfig, '--packages', $packages, '--disable-parallel', '--nologo')
@@ -112,7 +195,7 @@ foreach ($solution in $solutions) {
 $assetFiles = @(Get-ChildItem -LiteralPath $consumerRoot -Filter 'project.assets.json' -File -Recurse)
 foreach ($assetFile in $assetFiles) {
     $assetText = Get-Content -LiteralPath $assetFile.FullName -Raw
-    if ($assetText -match 'Meta\.Core\.csproj|Meta\.Surfaces\.csproj|Meta\.Integration\.csproj|MetaCli\.Core\.csproj|MetaWeave\.(Model|Core)\.csproj') {
+    if ($assetText -match 'Meta\.(Operations|Core|Surfaces(?:\.(?:Xml|CSharp|Sql))?|Integration)\.csproj|MetaCli\.Core\.csproj|MetaWeave\.(Model|Core)\.csproj') {
         throw "Foundation dependency was resolved as a project in $($assetFile.FullName)"
     }
 }

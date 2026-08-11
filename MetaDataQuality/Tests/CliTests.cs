@@ -1,5 +1,5 @@
 using System.Globalization;
-using Meta.Core.Serialization;
+using Meta.Surfaces.Xml;
 using MetaConvert.DataQualityToSql;
 using MetaBi.Tests.Common;
 using MetaCli.Core;
@@ -640,7 +640,7 @@ LEFT OUTER JOIN dbo.[Order] o
 
         try
         {
-            Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Save(
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(
                 MetaDataQualityModel.CreateEmpty(),
                 qualityWorkspacePath);
 

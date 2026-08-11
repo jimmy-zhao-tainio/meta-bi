@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
-    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\Workspaces\MetaTransformScript\model.xml" Link="MetaTransformScript\model.xml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

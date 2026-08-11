@@ -83,7 +83,7 @@ public sealed partial class MetaTransformScriptSqlService
 
         var model = ImportFromSqlFile(sqlFilePath);
         ApplySingleScriptImportTarget(model, targetSqlIdentifier, sourceLabel: Path.GetFileName(sqlFilePath));
-        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
+        await Meta.Integration.TypedWorkspaceModelMapper.CreateAsync(
                 model,
                 workspaceFullPath,
                 "xml",
@@ -110,7 +110,7 @@ public sealed partial class MetaTransformScriptSqlService
 
         var model = ImportFromSqlCode(sqlCode, scriptName);
         ApplySingleScriptImportTarget(model, targetSqlIdentifier, sourceLabel: "<sql-code>");
-        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
+        await Meta.Integration.TypedWorkspaceModelMapper.CreateAsync(
                 model,
                 workspaceFullPath,
                 "xml",

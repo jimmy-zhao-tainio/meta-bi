@@ -1,6 +1,6 @@
 using System.Globalization;
-using Meta.Core.Domain;
-using Meta.Core.Serialization;
+using Meta.Operations.Domain;
+using Meta.Integration;
 using MetaSql;
 using MetaTransformScript.Sql;
 
@@ -19,7 +19,7 @@ public static class TransformScriptToSqlConverter
         var modules = new MetaTransformScriptSqlService().ExportModuleDefinitions(transformScriptWorkspacePath);
         var metaSql = ConvertToMetaSql(modules, databaseName);
         return Task.FromResult(
-            Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql));
+            Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql));
     }
 
     public static async Task<InMemoryWorkspace> ConvertAsync(
@@ -37,14 +37,14 @@ public static class TransformScriptToSqlConverter
 
         var modules = new MetaTransformScriptSqlService().ExportModuleDefinitions(transformScriptWorkspacePath);
         var metaSql = ConvertToMetaSql(modules, databaseName);
-        await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
+        await Meta.Integration.TypedWorkspaceModelMapper.CreateAsync(
                 metaSql,
                 pathToNewMetaSqlWorkspace,
                 outputRepresentation,
                 connectionEnvironmentVariable,
                 cancellationToken: cancellationToken)
             .ConfigureAwait(false);
-        return Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql);
+        return Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql);
     }
 
     public static MetaSqlModel ConvertToMetaSql(

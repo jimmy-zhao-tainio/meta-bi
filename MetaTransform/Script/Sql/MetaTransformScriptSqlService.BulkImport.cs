@@ -28,7 +28,7 @@ public sealed partial class MetaTransformScriptSqlService
         if (result.Successes.Count > 0)
         {
             Directory.CreateDirectory(workspaceFullPath);
-            await Meta.Core.Serialization.TypedWorkspaceModelMapper.CreateAsync(
+            await Meta.Integration.TypedWorkspaceModelMapper.CreateAsync(
                     result.Model,
                     workspaceFullPath,
                     "xml",

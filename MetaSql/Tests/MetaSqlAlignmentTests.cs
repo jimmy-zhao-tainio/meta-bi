@@ -1,5 +1,6 @@
 using MetaConvert.DataVaultToSql;
-using Meta.Core.Serialization;
+using Meta.Integration;
+using Meta.Surfaces.Xml;
 using MetaRawDataVault;
 using MetaSql.Extractors.SqlServer;
 using Meta.Surfaces;

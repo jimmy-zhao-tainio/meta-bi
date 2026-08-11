@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\Model\MetaDataQuality.Model.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Model\MetaTransformScript.Model.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\Model\MetaTransformBinding.Model.csproj" />

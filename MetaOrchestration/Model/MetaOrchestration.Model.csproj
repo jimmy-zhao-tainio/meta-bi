@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
-    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="MetaOrchestration\model.xml" Link="MetaOrchestration\model.xml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

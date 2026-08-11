@@ -1,5 +1,5 @@
-using Meta.Core.Domain;
-using Meta.Core.Serialization;
+using Meta.Operations.Domain;
+using Meta.Integration;
 using MetaDataVaultImplementation;
 using MetaDataType.Instance;
 using MetaDataTypeConversion.Instance;
@@ -32,10 +32,10 @@ public static partial class Converter
             throw new ArgumentException("Database name is required.", nameof(databaseName));
         }
 
-        var dataVaultWorkspace = await Meta.Core.Serialization.TypedWorkspaceModelMapper
+        var dataVaultWorkspace = await Meta.Integration.TypedWorkspaceModelMapper
             .LoadStateAsync(dataVaultWorkspacePath, cancellationToken)
             .ConfigureAwait(false);
-        var implementationModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(implementationWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
+        var implementationModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(implementationWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
 
         switch (dataVaultWorkspace.Model.Name)
         {
@@ -45,9 +45,9 @@ public static partial class Converter
                         databaseName,
                         implementationModel,
                         SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.Default, MetaDataTypeConversionInstance.Default));
-                    var rawModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaRawDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
+                    var rawModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaRawDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var metaSqlModel = ConvertRaw(rawModel, context);
-                    return Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSqlModel);
+                    return Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSqlModel);
                 }
 
             case "MetaBusinessDataVault":
@@ -56,9 +56,9 @@ public static partial class Converter
                         databaseName,
                         implementationModel,
                         SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.Default, MetaDataTypeConversionInstance.Default));
-                    var businessModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaBusinessDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
+                    var businessModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaBusinessDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var metaSqlModel = ConvertBusiness(businessModel, context);
-                    return Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSqlModel);
+                    return Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSqlModel);
                 }
 
             default:

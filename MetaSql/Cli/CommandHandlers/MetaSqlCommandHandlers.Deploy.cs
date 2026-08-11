@@ -37,7 +37,7 @@ internal sealed partial class MetaSqlCommandHandlers
                         ConnectionString = connectionString,
                     })
                 .ConfigureAwait(false);
-            var manifestModel = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<MetaSqlDeployManifestModel>(manifestWorkspacePath, searchUpward: false)
+            var manifestModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaSqlDeployManifestModel>(manifestWorkspacePath, searchUpward: false)
                 .ConfigureAwait(false);
 
             var details = new List<(string Label, string Value)>

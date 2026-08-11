@@ -1,6 +1,6 @@
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
-using Meta.Core.Serialization;
+using Meta.Integration;
 using MetaCli.Core;
 using MetaConvert.AnalyticsToMultiDimensional;
 using MetaConvert.AnalyticsToTabular;

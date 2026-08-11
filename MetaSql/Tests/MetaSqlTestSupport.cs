@@ -1,4 +1,4 @@
-using Meta.Core.Serialization;
+using Meta.Integration;
 using Meta.Surfaces;
 
 namespace MetaSql.Tests;

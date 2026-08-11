@@ -1,6 +1,6 @@
 using Meta.Surfaces;
 using Meta.Integration;
-using Meta.Core.Domain;
+using Meta.Operations.Domain;
 using MetaSqlDeployManifest;
 
 namespace MetaSql;

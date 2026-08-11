@@ -30,6 +30,6 @@ jobs:
         working-directory: meta-foundation
         run: .\pack-internal.cmd "${{ runner.temp }}\meta-foundation-feed"
 
-      - name: Verify isolated package consumer
+      - name: Verify isolated consumers and package closures
         shell: pwsh
         run: .\scripts\verify-package-consumer.ps1 -FoundationFeed "${{ runner.temp }}\meta-foundation-feed"

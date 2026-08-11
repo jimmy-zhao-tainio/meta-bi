@@ -141,7 +141,7 @@ FROM src;
             Assert.Equal(transformModel.QueryExpressionList.Single().Id, insertWrite.MetaTransformScriptQueryExpressionId);
             Assert.Empty(result.Model.WriteValueScalarExpressionList);
 
-            var persisted = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
+            var persisted = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
             Assert.Single(persisted.WriteList);
             Assert.Equal(2, persisted.WriteValueList.Count);
             Assert.Single(persisted.InsertQueryWriteList);
@@ -533,7 +533,7 @@ FROM Sales.Store AS source;
                 transformModel.ColumnReferenceExpressionList,
                 item => string.Equals(item.Id, targetRead.MetaTransformScriptColumnReferenceId, StringComparison.Ordinal));
 
-            var persisted = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
+            var persisted = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
             var persistedTargetRead = Assert.Single(persisted.TargetColumnReferenceList);
             Assert.Equal(targetRead.MetaTransformScriptColumnReferenceId, persistedTargetRead.MetaTransformScriptColumnReferenceId);
             Assert.Equal(targetRead.MetaSchemaFieldId, persistedTargetRead.MetaSchemaFieldId);
@@ -708,7 +708,7 @@ WHEN NOT MATCHED THEN
             Assert.Contains("Name", targetReadNames);
             Assert.Contains("IsActive", targetReadNames);
 
-            var persisted = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
+            var persisted = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
             Assert.Equal(3, persisted.WriteList.Count);
             Assert.Equal(2, persisted.MergeUpdateWriteList.Count);
             Assert.Single(persisted.MergeInsertWriteList);
@@ -1179,7 +1179,7 @@ WHEN NOT MATCHED THEN
             Assert.Equal(1, result.TargetRowsetValidationCount);
             Assert.Equal(0, result.TargetColumnValidationCount);
 
-            var validated = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var validated = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Single(validated.ValidationTargetRowsetLinkList);
             Assert.Empty(validated.ValidationTargetColumnLinkList);
             Assert.Empty(validated.ValidationTargetIgnoredColumnList);
@@ -2399,7 +2399,7 @@ FROM dbo.Source AS s
                 transformWorkspacePath,
                 "dbo.v_customer_order_count");
 
-            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
             var viewScript = transformModel.TransformScriptList.Single(item =>
                 string.Equals(item.Name, "dbo.v_customer_order_count", StringComparison.OrdinalIgnoreCase));
             var sourceSchema = CreateSourceSchema(
@@ -3131,7 +3131,7 @@ FROM dbo.Source AS s;
         try
         {
             MetaTransformScriptTestHelper.SaveXml(bindingModel, workspacePath);
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(workspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(workspacePath, searchUpward: false);
 
             Assert.Single(reloaded.TransformBindingList);
             Assert.Single(reloaded.OutputRowsetList);
@@ -3173,7 +3173,7 @@ FROM dbo.Source AS s;
             Assert.Equal(0, result.IssueCount);
             Assert.Equal(0, result.ErrorCount);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Single(reloaded.TransformBindingList);
             Assert.Single(reloaded.OutputRowsetList);
             Assert.NotEmpty(reloaded.RowsetList);
@@ -3214,7 +3214,7 @@ FROM dbo.Source AS s;
             Assert.Equal(1, result.TargetCount);
             Assert.Equal(0, result.IssueCount);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             var target = Assert.Single(reloaded.TransformBindingTargetList);
             Assert.Equal("Warehouse.dbo.CustomerSummary", target.SqlIdentifier);
         }
@@ -3248,7 +3248,7 @@ FROM dbo.Source AS s;
             Assert.Equal(0, result.IssueCount);
             Assert.Equal(0, result.ErrorCount);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Single(reloaded.TransformBindingTargetList);
         }
         finally
@@ -3303,7 +3303,7 @@ GO
             Assert.Equal(2, result.TargetCount);
             Assert.Equal(0, result.IssueCount);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Equal(2, reloaded.TransformBindingTargetList.Count);
             Assert.Contains(reloaded.TransformBindingTargetList, item => string.Equals(item.SqlIdentifier, "sales.CustomerSummary", StringComparison.Ordinal));
             Assert.Contains(reloaded.TransformBindingTargetList, item => string.Equals(item.SqlIdentifier, "reporting.CustomerSummaryReplica", StringComparison.Ordinal));
@@ -3367,7 +3367,7 @@ GO
             Assert.Equal(0, result.IssueCount);
             Assert.Equal(0, result.ErrorCount);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
         }
         finally
         {
@@ -4308,7 +4308,7 @@ FROM SourceTable AS s;
             Assert.Equal(3, result.SourceColumnValidationCount);
             Assert.Equal(4, result.TargetColumnValidationCount);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(result.WorkspacePath, searchUpward: false);
             Assert.Single(reloaded.ValidationList);
             Assert.Single(reloaded.ValidationSourceRowsetLinkList);
             Assert.Single(reloaded.ValidationTargetRowsetLinkList);
@@ -4349,7 +4349,7 @@ FROM SourceTable AS s;
             var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel);
             MetaTransformScriptTestHelper.SaveXml(validated, validatedWorkspacePath);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(validatedWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(validatedWorkspacePath, searchUpward: false);
             Assert.Single(reloaded.ValidationList);
             Assert.Single(reloaded.ValidationSourceRowsetLinkList);
             Assert.Single(reloaded.ValidationTargetRowsetLinkList);
@@ -4579,7 +4579,7 @@ FROM sales.SourceTable AS s;
             Assert.Equal(1, result.SourceRowsetValidationCount);
             Assert.Equal(1, result.SourceColumnValidationCount);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             var sourceLink = Assert.Single(reloaded.ValidationSourceRowsetLinkList);
             Assert.Contains("source:ExecDb:", sourceLink.MetaSchemaTableId, StringComparison.Ordinal);
         }
@@ -4687,7 +4687,7 @@ GO
             Assert.Equal(1, result.SourceRowsetValidationCount);
             Assert.Equal(0, result.TargetRowsetValidationCount);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             Assert.Single(reloaded.TransformBindingList);
             Assert.Empty(reloaded.TransformBindingTargetList);
             Assert.Empty(reloaded.ValidationTargetRowsetLinkList);
@@ -4758,7 +4758,7 @@ GO
             Assert.Contains("ColumnReferenceNotFound", issue.Code, StringComparison.Ordinal);
             Assert.Contains("MissingTable", issue.Message, StringComparison.OrdinalIgnoreCase);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             var binding = Assert.Single(reloaded.TransformBindingList);
             Assert.Equal("dbo.v_valid", binding.TransformScriptName);
             Assert.Single(reloaded.ValidationList);
@@ -4827,7 +4827,7 @@ GO
             Assert.Equal("Validation", issue.Stage);
             Assert.Equal("TargetSchemaTableNotFound", issue.Code);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
             var binding = Assert.Single(reloaded.TransformBindingList);
             Assert.Equal("dbo.v_valid", binding.TransformScriptName);
             Assert.DoesNotContain(reloaded.TransformBindingList, item =>

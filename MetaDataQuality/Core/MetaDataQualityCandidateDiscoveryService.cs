@@ -15,7 +15,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
         string transformWorkspacePath,
         string? bindingWorkspacePath)
     {
-        var model = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
         var includedTransformScriptIds = LoadValidatedTransformScriptIds(bindingWorkspacePath);
         var dataQualityModel = Discover(model, includedTransformScriptIds);
         var analyzedTransformScriptCount = includedTransformScriptIds is null
@@ -58,7 +58,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
             return null;
         }
 
-        var bindingModel = Meta.Core.Serialization.TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+        var bindingModel = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
         var validatedBindingIds = bindingModel.ValidationList
             .Select(static item => item.TransformBinding.Id)
             .Where(static item => !string.IsNullOrWhiteSpace(item))

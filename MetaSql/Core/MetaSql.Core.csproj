@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />

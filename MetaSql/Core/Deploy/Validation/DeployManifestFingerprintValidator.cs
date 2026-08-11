@@ -15,7 +15,7 @@ internal sealed class DeployManifestFingerprintValidator
 
     public void ValidateSourceFingerprint(
         MetaSqlDeployManifest.DeployManifest root,
-        Meta.Core.Domain.InMemoryWorkspace sourceWorkspace)
+        Meta.Operations.Domain.InMemoryWorkspace sourceWorkspace)
     {
         ArgumentNullException.ThrowIfNull(root);
         ArgumentNullException.ThrowIfNull(sourceWorkspace);
@@ -30,7 +30,7 @@ internal sealed class DeployManifestFingerprintValidator
 
     public void ValidateLiveFingerprint(
         MetaSqlDeployManifest.DeployManifest root,
-        Meta.Core.Domain.InMemoryWorkspace liveWorkspace)
+        Meta.Operations.Domain.InMemoryWorkspace liveWorkspace)
     {
         ArgumentNullException.ThrowIfNull(root);
         ArgumentNullException.ThrowIfNull(liveWorkspace);

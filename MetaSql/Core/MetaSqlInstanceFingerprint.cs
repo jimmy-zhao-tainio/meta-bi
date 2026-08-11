@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-using Meta.Core.Domain;
+using Meta.Operations.Domain;
 
 namespace MetaSql;
 

@@ -1,8 +1,8 @@
 using MetaSql;
 using MetaSql.Extractors.SqlServer;
 using Meta.Core.Connections;
-using Meta.Core.Domain;
-using Meta.Core.Serialization;
+using Meta.Operations.Domain;
+using Meta.Integration;
 using MetaCli.Core;
 
 internal sealed partial class MetaSqlCommandHandlers
@@ -38,7 +38,7 @@ internal sealed partial class MetaSqlCommandHandlers
         {
             Directory.CreateDirectory(tempRootPath);
 
-            var sourceWorkspace = await Meta.Core.Serialization.TypedWorkspaceModelMapper
+            var sourceWorkspace = await Meta.Integration.TypedWorkspaceModelMapper
                 .LoadStateAsync(sourceWorkspacePath)
                 .ConfigureAwait(false);
 
@@ -84,7 +84,7 @@ internal sealed partial class MetaSqlCommandHandlers
             var outputMetaPath = Path.Combine(outputPath, Meta.Surfaces.WorkspaceMetaFile.FileName);
             if (File.Exists(outputMetaPath))
             {
-                await Meta.Core.Serialization.TypedWorkspaceModelMapper
+                await Meta.Integration.TypedWorkspaceModelMapper
                     .SaveAsync(manifest.ManifestModel, outputPath)
                     .ConfigureAwait(false);
             }

@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-    <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Surfaces.Xml" Version="$(MetaFoundationPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>

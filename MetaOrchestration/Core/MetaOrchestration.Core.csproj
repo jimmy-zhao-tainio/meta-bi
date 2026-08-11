@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\Model\MetaOrchestration.Model.csproj" />
     <ProjectReference Include="..\..\MetaPipeline\Model\MetaPipeline.Model.csproj" />

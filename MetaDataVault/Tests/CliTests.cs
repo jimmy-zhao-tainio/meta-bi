@@ -1,6 +1,6 @@
 using System.Diagnostics;
-using Meta.Core.Domain;
-using Meta.Core.Serialization;
+using Meta.Operations.Domain;
+using Meta.Surfaces.Xml;
 using MetaSchema.Core;
 
 namespace MetaDataVault.Tests;
@@ -368,7 +368,7 @@ public sealed partial class CliTests
     private static void SeedMetaSchema(InMemoryWorkspace workspace)
     {
         var systems = workspace.Instance.GetOrCreateEntityRecords("System");
-        systems.Add(new Meta.Core.Domain.GenericRecord
+        systems.Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = "1",
             Values =
@@ -378,7 +378,7 @@ public sealed partial class CliTests
         });
 
         var schemas = workspace.Instance.GetOrCreateEntityRecords("Schema");
-        schemas.Add(new Meta.Core.Domain.GenericRecord
+        schemas.Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = "1",
             Values =
@@ -404,7 +404,7 @@ public sealed partial class CliTests
         AddMetaSchemaKeyField(workspace, "keyf:2", "key:2", "4", "1");
 
         var tableRelationships = workspace.Instance.GetOrCreateEntityRecords("TableRelationship");
-        tableRelationships.Add(new Meta.Core.Domain.GenericRecord
+        tableRelationships.Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = "rel:1",
             Values =
@@ -419,7 +419,7 @@ public sealed partial class CliTests
         });
 
         var tableRelationshipFields = workspace.Instance.GetOrCreateEntityRecords("TableRelationshipField");
-        tableRelationshipFields.Add(new Meta.Core.Domain.GenericRecord
+        tableRelationshipFields.Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = "relf:1",
             Values =
@@ -437,13 +437,13 @@ public sealed partial class CliTests
 
     private static void AddMetaSchemaTable(InMemoryWorkspace workspace, string id, string name, string schemaId)
     {
-        workspace.Instance.GetOrCreateEntityRecords("SchemaObject").Add(new Meta.Core.Domain.GenericRecord
+        workspace.Instance.GetOrCreateEntityRecords("SchemaObject").Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = id,
             Values = { ["Name"] = name },
             RelationshipIds = { ["SchemaId"] = schemaId }
         });
-        workspace.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
+        workspace.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = id,
             RelationshipIds = { ["SchemaObjectId"] = id }
@@ -452,13 +452,13 @@ public sealed partial class CliTests
 
     private static void AddMetaSchemaView(InMemoryWorkspace workspace, string id, string name, string schemaId)
     {
-        workspace.Instance.GetOrCreateEntityRecords("SchemaObject").Add(new Meta.Core.Domain.GenericRecord
+        workspace.Instance.GetOrCreateEntityRecords("SchemaObject").Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = id,
             Values = { ["Name"] = name },
             RelationshipIds = { ["SchemaId"] = schemaId }
         });
-        workspace.Instance.GetOrCreateEntityRecords("View").Add(new Meta.Core.Domain.GenericRecord
+        workspace.Instance.GetOrCreateEntityRecords("View").Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = id,
             RelationshipIds = { ["SchemaObjectId"] = id }
@@ -467,13 +467,13 @@ public sealed partial class CliTests
 
     private static void AddMetaSchemaPrimaryKey(InMemoryWorkspace workspace, string id, string name, string tableId)
     {
-        workspace.Instance.GetOrCreateEntityRecords("Key").Add(new Meta.Core.Domain.GenericRecord
+        workspace.Instance.GetOrCreateEntityRecords("Key").Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = id,
             Values = { ["Name"] = name },
             RelationshipIds = { ["TableId"] = tableId }
         });
-        workspace.Instance.GetOrCreateEntityRecords("PrimaryKey").Add(new Meta.Core.Domain.GenericRecord
+        workspace.Instance.GetOrCreateEntityRecords("PrimaryKey").Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = id,
             RelationshipIds = { ["KeyId"] = id }
@@ -482,7 +482,7 @@ public sealed partial class CliTests
 
     private static void AddMetaSchemaKeyField(InMemoryWorkspace workspace, string id, string keyId, string fieldId, string ordinal)
     {
-        workspace.Instance.GetOrCreateEntityRecords("KeyField").Add(new Meta.Core.Domain.GenericRecord
+        workspace.Instance.GetOrCreateEntityRecords("KeyField").Add(new Meta.Operations.Domain.GenericRecord
         {
             Id = id,
             Values = { ["Ordinal"] = ordinal },
@@ -507,7 +507,7 @@ public sealed partial class CliTests
             values["IsNullable"] = isNullable;
         }
 
-        var field = new Meta.Core.Domain.GenericRecord
+        var field = new Meta.Operations.Domain.GenericRecord
         {
             Id = id,
             RelationshipIds =

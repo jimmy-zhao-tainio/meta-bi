@@ -5,10 +5,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
-    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\Workspaces\MetaPipeline\model.xml" Link="MetaPipeline\model.xml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

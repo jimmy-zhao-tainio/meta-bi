@@ -1,4 +1,4 @@
-using Meta.Core.Serialization;
+using Meta.Surfaces.Xml;
 
 namespace MetaDataVault.Tests;
 

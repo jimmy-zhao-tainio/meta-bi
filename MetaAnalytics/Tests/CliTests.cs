@@ -65,7 +65,7 @@ public sealed class CliTests
             Assert.Equal(0, RunCli($"add-security-role --workspace \"{path}\" --id Reader --model Commerce --name Reader --permission Read").ExitCode);
             Assert.Equal(0, RunCli($"add-role-filter --workspace \"{path}\" --id ReaderSalesFilter --role Reader --table Sales --expression-language DAX --expression \"Sales[Region] = USERNAME()\"").ExitCode);
 
-            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(path, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(path, searchUpward: false);
             Assert.Single(model.AnalyticsModelList);
             Assert.Single(model.DataSourceList);
             Assert.Single(model.MeasureList);

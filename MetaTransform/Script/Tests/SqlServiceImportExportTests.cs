@@ -391,7 +391,7 @@ FROM sales.Customer AS c
                 null,
                 workspacePath);
 
-            var reloaded = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(workspacePath, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(workspacePath, searchUpward: false);
             var script = Assert.Single(reloaded.TransformScriptList);
             Assert.True(IsInlineTableValuedFunction(reloaded, script));
             Assert.True(string.IsNullOrWhiteSpace(GetViewTargetSqlIdentifier(reloaded, script)));

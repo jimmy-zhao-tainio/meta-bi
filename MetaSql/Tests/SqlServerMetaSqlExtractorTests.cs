@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
-using Meta.Core.Serialization;
+using Meta.Integration;
+using Meta.Surfaces.Xml;
 using MetaSql.Extractors.SqlServer;
 using Meta.Surfaces;
 
@@ -260,7 +261,7 @@ public sealed class SqlServerMetaSqlExtractorTests
             });
             await WorkspaceSurface.CreateAsync(extractedWorkspace, workspacePath, "xml");
 
-            var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(workspacePath, searchUpward: false);
+            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(workspacePath, searchUpward: false);
             var identityColumn = model.TableColumnList.Single(row => row.Id == $"{databaseName}.raw.Customer.CustomerId");
             var computedColumn = model.TableColumnList.Single(row => row.Id == $"{databaseName}.raw.Customer.CustomerCodeUpper");
             var filteredIndex = model.IndexList.Single(row => row.Id == $"{databaseName}.raw.Customer.index.IX_Customer_Code_Filtered");

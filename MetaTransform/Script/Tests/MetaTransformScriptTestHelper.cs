@@ -1,6 +1,6 @@
 using System.Collections;
-using Meta.Core.Domain;
-using Meta.Core.Serialization;
+using Meta.Operations.Domain;
+using Meta.Integration;
 using MetaConvert.TransformScriptToSql;
 using Meta.Surfaces;
 using MetaTransformScript;

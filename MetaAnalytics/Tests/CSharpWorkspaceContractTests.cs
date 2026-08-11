@@ -1,6 +1,7 @@
-using Meta.Core.Domain;
-using Meta.Core.Operations;
-using Meta.Core.Serialization;
+using Meta.Operations.Domain;
+using Meta.Operations;
+using Meta.Integration;
+using Meta.Surfaces.CSharp;
 using Meta.Surfaces;
 using MetaAnalytics.Instance;
 

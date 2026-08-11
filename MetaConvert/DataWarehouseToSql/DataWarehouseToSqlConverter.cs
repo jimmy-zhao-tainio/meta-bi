@@ -1,5 +1,5 @@
-using Meta.Core.Domain;
-using Meta.Core.Serialization;
+using Meta.Operations.Domain;
+using Meta.Integration;
 using Dw = MetaDataWarehouse;
 using Dwi = MetaDataWarehouseImplementation;
 using MetaDataType;
@@ -23,17 +23,17 @@ public static class DataWarehouseToSqlConverter
         ArgumentException.ThrowIfNullOrWhiteSpace(implementationWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(databaseName);
 
-        var model = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<Dw.MetaDataWarehouseModel>(
+        var model = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<Dw.MetaDataWarehouseModel>(
             dataWarehouseWorkspacePath,
             searchUpward: false,
             cancellationToken).ConfigureAwait(false);
-        var implementation = await Meta.Core.Serialization.TypedWorkspaceModelMapper.LoadAsync<Dwi.MetaDataWarehouseImplementationModel>(
+        var implementation = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<Dwi.MetaDataWarehouseImplementationModel>(
             implementationWorkspacePath,
             searchUpward: false,
             cancellationToken).ConfigureAwait(false);
 
         var metaSql = ConvertToMetaSql(model, implementation, databaseName);
-        return Meta.Core.Serialization.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql);
+        return Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql);
     }
 
     public static MetaSqlModel ConvertToMetaSql(

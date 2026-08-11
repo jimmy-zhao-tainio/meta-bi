@@ -1,5 +1,5 @@
 using MetaConvert.TransformScriptToSql;
-using Meta.Core.Serialization;
+using Meta.Surfaces.Xml;
 using MetaSql;
 using MetaTransformScript;
 using MetaTransformScript.Sql;
@@ -33,7 +33,7 @@ SELECT
                 "Staging",
                 "xml");
 
-            var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(metaSqlWorkspacePath, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(metaSqlWorkspacePath, searchUpward: false);
             var schema = Assert.Single(model.SchemaList);
             Assert.Equal("stage", schema.Name);
 

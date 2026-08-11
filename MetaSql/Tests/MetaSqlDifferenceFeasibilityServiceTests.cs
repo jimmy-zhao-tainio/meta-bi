@@ -1,6 +1,6 @@
 using Microsoft.Data.SqlClient;
-using Meta.Core.Domain;
-using Meta.Core.Serialization;
+using Meta.Operations.Domain;
+using Meta.Integration;
 
 namespace MetaSql.Tests;
 

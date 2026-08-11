@@ -31,7 +31,7 @@ public sealed class SqlToTransformScriptConverterTests
                 "SymmetryDb",
                 "xml");
 
-            var roundTrip = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(roundTripMetaSqlWorkspacePath, searchUpward: false);
+            var roundTrip = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(roundTripMetaSqlWorkspacePath, searchUpward: false);
             var view = Assert.Single(roundTrip.ViewList);
             Assert.Equal("dq", view.Schema.Name);
             Assert.Equal("vCustomerScore", view.Name);
@@ -69,7 +69,7 @@ public sealed class SqlToTransformScriptConverterTests
             Assert.Equal(0, result.FunctionCount);
             Assert.Equal(1, result.StoredProcedureCount);
 
-            var transformModel = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaTransformScript.MetaTransformScriptModel>(
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScript.MetaTransformScriptModel>(
                 transformScriptWorkspacePath,
                 searchUpward: false);
             var procedureScript = Assert.Single(transformModel.TransformScriptList);
@@ -84,7 +84,7 @@ public sealed class SqlToTransformScriptConverterTests
                 "SymmetryDb",
                 "xml");
 
-            var roundTrip = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(roundTripMetaSqlWorkspacePath, searchUpward: false);
+            var roundTrip = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(roundTripMetaSqlWorkspacePath, searchUpward: false);
             var procedure = Assert.Single(roundTrip.StoredProcedureList);
             Assert.Equal("dq", procedure.Schema.Name);
             Assert.Equal("RunReview", procedure.Name);
@@ -218,7 +218,7 @@ FROM dq.fnCustomerScore(1)
     private static void SaveMetaSqlWithViewFunctionAndStoredProcedure(string workspacePath)
     {
         SaveMetaSqlWithViewAndFunction(workspacePath);
-        var model = Meta.Core.Serialization.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(workspacePath, searchUpward: false);
+        var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(workspacePath, searchUpward: false);
         var schema = model.SchemaList.Single(row => string.Equals(row.Name, "dq", StringComparison.Ordinal));
         model.StoredProcedureList.Add(new StoredProcedure
         {

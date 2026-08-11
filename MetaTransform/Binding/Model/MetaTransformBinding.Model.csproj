@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
-    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\Workspaces\MetaTransformBinding\model.xml" Link="MetaTransformBinding\model.xml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

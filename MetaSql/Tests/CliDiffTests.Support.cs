@@ -1,9 +1,10 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Microsoft.Data.SqlClient;
-using Meta.Core.Domain;
-using Meta.Core.Operations;
-using Meta.Core.Serialization;
+using Meta.Operations.Domain;
+using Meta.Operations;
+using Meta.Integration;
+using Meta.Surfaces.Xml;
 using Meta.Surfaces;
 using MetaSql;
 using MetaSqlDeployManifest;
@@ -337,7 +338,7 @@ public sealed partial class CliDiffTests
         string sourcePath,
         Action<MetaSqlModel> mutate)
     {
-        var model = await Meta.Core.Serialization.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(sourcePath, searchUpward: false);
+        var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(sourcePath, searchUpward: false);
         mutate(model);
         await TypedWorkspaceModelMapper.SaveAsync(model, sourcePath);
     }

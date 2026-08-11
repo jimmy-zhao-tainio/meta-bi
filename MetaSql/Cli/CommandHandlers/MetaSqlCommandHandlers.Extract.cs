@@ -1,5 +1,5 @@
 using Meta.Core.Connections;
-using Meta.Core.Operations;
+using Meta.Operations;
 using Meta.Core.Services;
 using MetaCli.Core;
 using MetaSql;

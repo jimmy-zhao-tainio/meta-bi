@@ -155,8 +155,8 @@ internal sealed class PrimaryKeyReplacementForeignKeyExpansionService
         return current;
     }
 
-    private static List<Meta.Core.Domain.GenericRecord> GetOrderedPrimaryKeyMembers(
-        IReadOnlyDictionary<string, List<Meta.Core.Domain.GenericRecord>> membersByPrimaryKeyId,
+    private static List<Meta.Operations.Domain.GenericRecord> GetOrderedPrimaryKeyMembers(
+        IReadOnlyDictionary<string, List<Meta.Operations.Domain.GenericRecord>> membersByPrimaryKeyId,
         string primaryKeyId)
     {
         if (!membersByPrimaryKeyId.TryGetValue(primaryKeyId, out var members))
@@ -170,8 +170,8 @@ internal sealed class PrimaryKeyReplacementForeignKeyExpansionService
             .ToList();
     }
 
-    private static List<Meta.Core.Domain.GenericRecord> GetOrderedTargetTableForeignKeys(
-        IReadOnlyDictionary<string, List<Meta.Core.Domain.GenericRecord>> foreignKeysByTargetTableId,
+    private static List<Meta.Operations.Domain.GenericRecord> GetOrderedTargetTableForeignKeys(
+        IReadOnlyDictionary<string, List<Meta.Operations.Domain.GenericRecord>> foreignKeysByTargetTableId,
         string targetTableId)
     {
         if (!foreignKeysByTargetTableId.TryGetValue(targetTableId, out var foreignKeys))
@@ -184,7 +184,7 @@ internal sealed class PrimaryKeyReplacementForeignKeyExpansionService
             .ToList();
     }
 
-    private static string BuildForeignKeyMatchKey(Meta.Core.Domain.GenericRecord foreignKey)
+    private static string BuildForeignKeyMatchKey(Meta.Operations.Domain.GenericRecord foreignKey)
     {
         var sourceTableId = foreignKey.RelationshipIds["SourceTableId"];
         var name = GetValue(foreignKey, "Name");
@@ -201,7 +201,7 @@ internal sealed class PrimaryKeyReplacementForeignKeyExpansionService
         return int.TryParse(value, out var ordinal) ? ordinal : int.MaxValue;
     }
 
-    private static string GetValue(Meta.Core.Domain.GenericRecord record, string propertyName)
+    private static string GetValue(Meta.Operations.Domain.GenericRecord record, string propertyName)
     {
         return record.Values.TryGetValue(propertyName, out var value) ? value : string.Empty;
     }
