@@ -410,7 +410,7 @@ public static class DataWarehouseToSqlConverter
                 Name = name,
                 IsUnique = NormalizeOptionalFalse(implementation.IsUnique),
                 IsClustered = NormalizeOptionalFalse(implementation.IsClustered),
-                FilterSql = implementation.FilterSql,
+                FilterSql = string.IsNullOrWhiteSpace(implementation.FilterSql) ? null : implementation.FilterSql,
             };
             context.MetaSql.IndexList.Add(index);
             context.MetaSql.IndexColumnList.Add(new IndexColumn
@@ -473,11 +473,17 @@ public static class DataWarehouseToSqlConverter
         return string.IsNullOrWhiteSpace(value) || IsTrue(value);
     }
 
-    private static string NormalizeOptionalFalse(string? value)
+    private static string? NormalizeOptionalFalse(string? value)
     {
-        return string.Equals(value?.Trim(), "false", StringComparison.OrdinalIgnoreCase)
-            ? string.Empty
-            : value ?? string.Empty;
+        if (string.IsNullOrWhiteSpace(value) ||
+            string.Equals(value.Trim(), "false", StringComparison.OrdinalIgnoreCase))
+        {
+            return null;
+        }
+
+        return string.Equals(value.Trim(), "true", StringComparison.OrdinalIgnoreCase)
+            ? "true"
+            : value;
     }
 
     private static string ApplyPattern(string pattern, params (string Name, string Value)[] tokens)
@@ -620,7 +626,7 @@ public static class DataWarehouseToSqlConverter
                 MetaDataTypeId = loweredType.DataTypeId,
                 Ordinal = (MetaSql.TableColumnList.Count(row => ReferenceEquals(row.Table, table)) + 1).ToString(),
                 IsNullable = string.IsNullOrWhiteSpace(isNullable) ? "true" : isNullable,
-                DefaultExpressionSql = defaultExpressionSql,
+                DefaultExpressionSql = string.IsNullOrWhiteSpace(defaultExpressionSql) ? null : defaultExpressionSql,
             };
             MetaSql.TableColumnList.Add(column);
             foreach (var detail in loweredType.DefaultDetails)
@@ -655,7 +661,6 @@ public static class DataWarehouseToSqlConverter
                 Id = $"{table.Id}:primary-key",
                 Table = table,
                 Name = name,
-                IsClustered = string.Empty,
             };
             MetaSql.PrimaryKeyList.Add(primaryKey);
 

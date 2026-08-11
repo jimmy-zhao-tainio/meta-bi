@@ -508,7 +508,7 @@ public static partial class Converter
             isNullable,
             reservedColumnNames);
         column.DefaultExpressionSql = string.IsNullOrWhiteSpace(defaultExpressionSql)
-            ? string.Empty
+            ? null
             : defaultExpressionSql.Trim();
 
         foreach (var detail in details)

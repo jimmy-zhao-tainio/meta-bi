@@ -48,8 +48,8 @@ public sealed class MetaSqlDiffService
         EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));
 
         return _services.InstanceDiffService.BuildEqualDiffWorkspace(
-            sourceWorkspace,
-            liveWorkspace);
+            MetaSqlCanonicalizer.Canonicalize(sourceWorkspace),
+            MetaSqlCanonicalizer.Canonicalize(liveWorkspace));
     }
 
     internal static void EnsureMetaSqlWorkspace(InMemoryWorkspace workspace, string parameterName)

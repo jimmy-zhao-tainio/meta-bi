@@ -1,5 +1,6 @@
 using MetaConvert.DataVaultToSql;
 using Meta.Integration;
+using Meta.Operations.Domain;
 using Meta.Surfaces.Xml;
 using MetaRawDataVault;
 using MetaSql.Extractors.SqlServer;
@@ -57,20 +58,121 @@ public sealed class MetaSqlAlignmentTests
                 foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
                 indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
                 indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+            var liveBeforeXml = TypedWorkspaceModelMapper.ToInMemoryWorkspace(liveModel);
+
+            var sourceAfterXml = (await XmlWorkspaceReader.OpenAsync(sourceMetaSqlPath)).State;
             MetaSqlTestSupport.SaveXml(liveModel, liveMetaSqlPath);
             var liveWorkspace = (await XmlWorkspaceReader.OpenAsync(liveMetaSqlPath)).State;
+
+            Assert.Null(InMemoryWorkspaceComparer.FindDifference(sourceWorkspace, sourceAfterXml));
+            Assert.Null(InMemoryWorkspaceComparer.FindDifference(liveBeforeXml, liveWorkspace));
 
             var diffService = new MetaSqlDiffService();
             var result = diffService.BuildEqualDiffWorkspace(
                 sourceWorkspace,
                 liveWorkspace);
 
-            Assert.False(result.HasDifferences);
+            Assert.False(
+                result.HasDifferences,
+                string.Join(
+                    Environment.NewLine,
+                    "Source -> live before XML:",
+                    FormatPropertyDifferences(sourceWorkspace, liveBeforeXml),
+                    "Source -> live after XML:",
+                    FormatPropertyDifferences(sourceWorkspace, liveWorkspace),
+                    "Source before -> source after XML:",
+                    FormatPropertyDifferences(sourceWorkspace, sourceAfterXml),
+                    "Live before -> live after XML:",
+                    FormatPropertyDifferences(liveBeforeXml, liveWorkspace)));
         }
         finally
         {
             DeleteIfExists(tempRoot);
         }
+    }
+
+    private static string FormatPropertyDifferences(InMemoryWorkspace source, InMemoryWorkspace projected)
+    {
+        var differences = new List<string>();
+        var entityNames = source.Model.Entities
+            .Select(entity => entity.Name)
+            .Union(projected.Model.Entities.Select(entity => entity.Name), StringComparer.OrdinalIgnoreCase)
+            .OrderBy(name => name, StringComparer.OrdinalIgnoreCase);
+
+        foreach (var entityName in entityNames)
+        {
+            var sourceRecords = GetRecords(source, entityName).ToDictionary(record => record.Id, StringComparer.OrdinalIgnoreCase);
+            var projectedRecords = GetRecords(projected, entityName).ToDictionary(record => record.Id, StringComparer.OrdinalIgnoreCase);
+            foreach (var recordId in sourceRecords.Keys
+                         .Union(projectedRecords.Keys, StringComparer.OrdinalIgnoreCase)
+                         .OrderBy(id => id, StringComparer.OrdinalIgnoreCase))
+            {
+                if (!sourceRecords.TryGetValue(recordId, out var sourceRecord) ||
+                    !projectedRecords.TryGetValue(recordId, out var projectedRecord))
+                {
+                    differences.Add($"{entityName}/{recordId}: record {(sourceRecord is null ? "missing from source" : "missing from projected")}");
+                    continue;
+                }
+
+                foreach (var propertyName in sourceRecord.Values.Keys
+                             .Union(projectedRecord.Values.Keys, StringComparer.OrdinalIgnoreCase)
+                             .OrderBy(name => name, StringComparer.OrdinalIgnoreCase))
+                {
+                    var sourcePresent = sourceRecord.Values.TryGetValue(propertyName, out var sourceValue);
+                    var projectedPresent = projectedRecord.Values.TryGetValue(propertyName, out var projectedValue);
+                    if (sourcePresent == projectedPresent && string.Equals(sourceValue, projectedValue, StringComparison.Ordinal))
+                    {
+                        continue;
+                    }
+
+                    differences.Add(
+                        $"{entityName}/{recordId}.{propertyName}: source={DescribeValue(sourcePresent, sourceValue)}; projected={DescribeValue(projectedPresent, projectedValue)}");
+                }
+            }
+        }
+
+        return differences.Count == 0
+            ? "  none"
+            : string.Join(Environment.NewLine, differences.Select(difference => "  " + difference));
+    }
+
+    private static IReadOnlyList<GenericRecord> GetRecords(InMemoryWorkspace workspace, string entityName)
+    {
+        return workspace.Instance.RecordsByEntity.TryGetValue(entityName, out var records)
+            ? records
+            : [];
+    }
+
+    private static string DescribeValue(bool present, string? value)
+    {
+        if (!present)
+        {
+            return "missing";
+        }
+
+        if (value is null)
+        {
+            return "null";
+        }
+
+        if (value.Length == 0)
+        {
+            return "empty";
+        }
+
+        if (string.Equals(value, "false", StringComparison.Ordinal))
+        {
+            return "\"false\"";
+        }
+
+        if (string.Equals(value, "true", StringComparison.Ordinal))
+        {
+            return "\"true\"";
+        }
+
+        return string.IsNullOrWhiteSpace(value)
+            ? $"whitespace({value.Length})"
+            : $"\"{value}\"";
     }
 
     private static async Task CreateSimpleRawHubWorkspaceAsync(string workspacePath)

@@ -65,8 +65,10 @@ public sealed class SqlServerMetaSqlExtractorTests
         var tables = workspace.Instance.GetOrCreateEntityRecords("Table");
         var columns = workspace.Instance.GetOrCreateEntityRecords("TableColumn");
         var primaryKeys = workspace.Instance.GetOrCreateEntityRecords("PrimaryKey");
+        var primaryKeyColumns = workspace.Instance.GetOrCreateEntityRecords("PrimaryKeyColumn");
         var foreignKeys = workspace.Instance.GetOrCreateEntityRecords("ForeignKey");
         var indexes = workspace.Instance.GetOrCreateEntityRecords("Index");
+        var indexColumns = workspace.Instance.GetOrCreateEntityRecords("IndexColumn");
 
         Assert.Single(databases);
         Assert.Equal("SalesDb", databases[0].Id);
@@ -80,6 +82,19 @@ public sealed class SqlServerMetaSqlExtractorTests
         Assert.Contains(primaryKeys, row => row.Id == "SalesDb.dbo.Customer.pk.PK_Customer");
         Assert.Contains(foreignKeys, row => row.Id == "SalesDb.dbo.Order.fk.FK_Order_Customer");
         Assert.Contains(indexes, row => row.Id == "SalesDb.dbo.Customer.index.IX_Customer_Name");
+        Assert.All(primaryKeys, row => Assert.Equal("true", row.Values["IsClustered"]));
+        Assert.All(primaryKeyColumns, row => Assert.DoesNotContain("IsDescending", row.Values.Keys));
+        Assert.All(indexes, row =>
+        {
+            Assert.DoesNotContain("IsUnique", row.Values.Keys);
+            Assert.DoesNotContain("IsClustered", row.Values.Keys);
+            Assert.DoesNotContain("FilterSql", row.Values.Keys);
+        });
+        Assert.All(indexColumns, row =>
+        {
+            Assert.DoesNotContain("IsDescending", row.Values.Keys);
+            Assert.DoesNotContain("IsIncluded", row.Values.Keys);
+        });
     }
 
     [Fact]
@@ -164,6 +179,9 @@ public sealed class SqlServerMetaSqlExtractorTests
         Assert.Equal("5", identityColumn.Values["IdentityIncrement"]);
         Assert.Equal("upper([CustomerCode])", computedColumn.Values["ExpressionSql"]);
         Assert.Equal("[CustomerCode] IS NOT NULL", filteredIndex.Values["FilterSql"]);
+        Assert.DoesNotContain("IsIdentity", computedColumn.Values.Keys);
+        Assert.DoesNotContain("IdentitySeed", computedColumn.Values.Keys);
+        Assert.DoesNotContain("IdentityIncrement", computedColumn.Values.Keys);
     }
 
     [Fact]

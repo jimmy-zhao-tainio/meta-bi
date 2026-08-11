@@ -10,6 +10,8 @@ internal static class MetaSqlInstanceFingerprint
     {
         ArgumentNullException.ThrowIfNull(workspace);
 
+        workspace = MetaSqlCanonicalizer.Canonicalize(workspace);
+
         var builder = new StringBuilder();
         foreach (var entityName in workspace.Instance.RecordsByEntity.Keys.OrderBy(row => row, StringComparer.Ordinal))
         {

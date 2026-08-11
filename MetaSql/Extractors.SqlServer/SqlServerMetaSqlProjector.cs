@@ -94,7 +94,7 @@ internal static class SqlServerMetaSqlProjector
                     PrimaryKey = primaryKey,
                     TableColumn = column,
                     Ordinal = primaryKeyColumnRow.Ordinal.ToString(CultureInfo.InvariantCulture),
-                    IsDescending = primaryKeyColumnRow.IsDescending ? "true" : string.Empty,
+                    IsDescending = primaryKeyColumnRow.IsDescending ? "true" : null,
                 });
             }
         }
@@ -183,8 +183,8 @@ internal static class SqlServerMetaSqlProjector
                     Index = index,
                     TableColumn = column,
                     Ordinal = indexColumnRow.Ordinal.ToString(CultureInfo.InvariantCulture),
-                    IsDescending = indexColumnRow.IsDescending ? "true" : string.Empty,
-                    IsIncluded = indexColumnRow.IsIncluded ? "true" : string.Empty,
+                    IsDescending = indexColumnRow.IsDescending ? "true" : null,
+                    IsIncluded = indexColumnRow.IsIncluded ? "true" : null,
                 });
             }
         }
@@ -263,10 +263,10 @@ internal static class SqlServerMetaSqlProjector
             Ordinal = row.OrdinalPosition.ToString(CultureInfo.InvariantCulture),
             MetaDataTypeId = MetaDataTypeInstance.BuildDataTypeId("SqlServer", row.DataTypeName),
             IsNullable = row.IsNullable ? "true" : "false",
-            IsIdentity = row.IsIdentity ? "true" : string.Empty,
-            IdentitySeed = string.IsNullOrWhiteSpace(row.IdentitySeed) ? string.Empty : row.IdentitySeed,
-            IdentityIncrement = string.IsNullOrWhiteSpace(row.IdentityIncrement) ? string.Empty : row.IdentityIncrement,
-            ExpressionSql = string.IsNullOrWhiteSpace(row.ExpressionSql) ? string.Empty : row.ExpressionSql,
+            IsIdentity = row.IsIdentity ? "true" : null,
+            IdentitySeed = NormalizeOptionalText(row.IdentitySeed),
+            IdentityIncrement = NormalizeOptionalText(row.IdentityIncrement),
+            ExpressionSql = NormalizeOptionalText(row.ExpressionSql),
             DefaultExpressionSql = NormalizeDefaultExpressionSql(row.DefaultExpressionSql),
             Table = table,
         };
@@ -318,11 +318,11 @@ internal static class SqlServerMetaSqlProjector
         });
     }
 
-    private static string NormalizeDefaultExpressionSql(string expressionSql)
+    private static string? NormalizeDefaultExpressionSql(string? expressionSql)
     {
         if (string.IsNullOrWhiteSpace(expressionSql))
         {
-            return string.Empty;
+            return null;
         }
 
         var current = expressionSql.Trim();
@@ -333,6 +333,9 @@ internal static class SqlServerMetaSqlProjector
 
         return current;
     }
+
+    private static string? NormalizeOptionalText(string? value) =>
+        string.IsNullOrWhiteSpace(value) ? null : value;
 
     private static bool HasSingleOuterParenthesisPair(string value)
     {
@@ -373,7 +376,7 @@ internal static class SqlServerMetaSqlProjector
         {
             Id = $"{table.Id}.pk.{row.Name}",
             Name = row.Name,
-            IsClustered = row.IsClustered ? "true" : string.Empty,
+            IsClustered = row.IsClustered ? "true" : null,
             Table = table,
         };
         model.PrimaryKeyList.Add(primaryKey);
@@ -399,9 +402,9 @@ internal static class SqlServerMetaSqlProjector
         {
             Id = $"{table.Id}.index.{row.Name}",
             Name = row.Name,
-            IsUnique = row.IsUnique ? "true" : string.Empty,
-            IsClustered = row.IsClustered ? "true" : string.Empty,
-            FilterSql = string.IsNullOrWhiteSpace(row.FilterSql) ? string.Empty : row.FilterSql,
+            IsUnique = row.IsUnique ? "true" : null,
+            IsClustered = row.IsClustered ? "true" : null,
+            FilterSql = NormalizeOptionalText(row.FilterSql),
             Table = table,
         };
         model.IndexList.Add(index);
@@ -415,7 +418,7 @@ internal static class SqlServerMetaSqlProjector
             Id = $"{schema.Id}.view.{row.ViewName}",
             Name = row.ViewName,
             DefinitionSql = row.DefinitionSql,
-            DeployOrdinal = row.DeployOrdinal?.ToString(CultureInfo.InvariantCulture) ?? string.Empty,
+            DeployOrdinal = row.DeployOrdinal?.ToString(CultureInfo.InvariantCulture),
             Schema = schema,
         };
         model.ViewList.Add(view);
@@ -430,7 +433,7 @@ internal static class SqlServerMetaSqlProjector
             Name = row.FunctionName,
             FunctionKind = row.FunctionKind,
             DefinitionSql = row.DefinitionSql,
-            DeployOrdinal = row.DeployOrdinal?.ToString(CultureInfo.InvariantCulture) ?? string.Empty,
+            DeployOrdinal = row.DeployOrdinal?.ToString(CultureInfo.InvariantCulture),
             Schema = schema,
         };
         model.FunctionList.Add(function);
@@ -444,7 +447,7 @@ internal static class SqlServerMetaSqlProjector
             Id = $"{schema.Id}.procedure.{row.ProcedureName}",
             Name = row.ProcedureName,
             DefinitionSql = row.DefinitionSql,
-            DeployOrdinal = row.DeployOrdinal?.ToString(CultureInfo.InvariantCulture) ?? string.Empty,
+            DeployOrdinal = row.DeployOrdinal?.ToString(CultureInfo.InvariantCulture),
             Schema = schema,
         };
         model.StoredProcedureList.Add(storedProcedure);
@@ -470,15 +473,15 @@ internal static class SqlServerMetaSqlProjector
         int? Precision,
         int? Scale,
         bool IsIdentity = false,
-        string IdentitySeed = "",
-        string IdentityIncrement = "",
-        string ExpressionSql = "",
-        string DefaultExpressionSql = "");
+        string? IdentitySeed = null,
+        string? IdentityIncrement = null,
+        string? ExpressionSql = null,
+        string? DefaultExpressionSql = null);
     internal readonly record struct PrimaryKeyRow(string Name, bool IsClustered);
     internal readonly record struct PrimaryKeyColumnRow(string KeyName, int Ordinal, string ColumnName, bool IsDescending);
     internal readonly record struct ForeignKeyRow(string Name, string TargetSchemaName, string TargetTableName);
     internal readonly record struct ForeignKeyColumnRow(string ForeignKeyName, int Ordinal, string SourceColumnName, string TargetColumnName);
-    internal readonly record struct IndexRow(string Name, bool IsUnique, bool IsClustered, string FilterSql = "");
+    internal readonly record struct IndexRow(string Name, bool IsUnique, bool IsClustered, string? FilterSql = null);
     internal readonly record struct IndexColumnRow(string IndexName, int Ordinal, string ColumnName, bool IsDescending, bool IsIncluded);
     internal readonly record struct ViewRow(string SchemaName, string ViewName, string DefinitionSql, int? DeployOrdinal = null);
     internal readonly record struct FunctionRow(string SchemaName, string FunctionName, string FunctionKind, string DefinitionSql, int? DeployOrdinal = null);

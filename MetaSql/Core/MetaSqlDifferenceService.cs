@@ -47,6 +47,9 @@ public sealed class MetaSqlDifferenceService
         MetaSqlDiffService.EnsureMetaSqlWorkspace(sourceWorkspace, nameof(sourceWorkspace));
         MetaSqlDiffService.EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));
 
+        sourceWorkspace = MetaSqlCanonicalizer.Canonicalize(sourceWorkspace);
+        liveWorkspace = MetaSqlCanonicalizer.Canonicalize(liveWorkspace);
+
         var differences = new List<MetaSqlDifference>();
 
         var sourceSchemasById = GetRecordIndex(sourceWorkspace, "Schema");
