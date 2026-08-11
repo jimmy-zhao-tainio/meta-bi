@@ -1,7 +1,6 @@
 param(
     [Parameter(Mandatory = $true)]
-    [string]$FoundationFeed,
-    [switch]$IncludeMetaSqlIntegrationTests
+    [string]$FoundationFeed
 )
 
 $ErrorActionPreference = 'Stop'
@@ -16,6 +15,7 @@ if (-not (Test-Path -LiteralPath $feed -PathType Container)) {
 
 $expectedPackages = @(
     'Meta.Operations',
+    'Meta.TypedModels',
     'Meta.Core',
     'Meta.Surfaces',
     'Meta.Surfaces.Xml',
@@ -144,23 +144,37 @@ $nugetConfig = Join-Path $consumerRoot 'package-consumer.NuGet.Config'
 $packages = Join-Path $env:TEMP ('meta-bi-package-cache-' + [Guid]::NewGuid().ToString('N'))
 
 Assert-PackageDependencies 'Meta.Operations' @()
+Assert-PackageDependencies 'Meta.TypedModels' @('Meta.Operations')
 Assert-PackageDependencies 'Meta.Core' @('Meta.Operations')
 Assert-PackageDependencies 'Meta.Surfaces' @()
-Assert-PackageDependencies 'Meta.Surfaces.Xml' @('Meta.Operations', 'Meta.Surfaces')
+Assert-PackageDependencies 'Meta.Surfaces.Xml' @('Meta.Operations', 'Meta.Surfaces', 'Meta.TypedModels')
 Assert-PackageDependencies 'Meta.Surfaces.CSharp' @(
     'Meta.Operations', 'Meta.Surfaces', 'Microsoft.CodeAnalysis.CSharp')
 Assert-PackageDependencies 'Meta.Surfaces.Sql' @(
     'Meta.Operations', 'Microsoft.Data.SqlClient')
 Assert-PackageDependencies 'Meta.Integration' @(
     'Meta.Core', 'Meta.Operations', 'Meta.Surfaces', 'Meta.Surfaces.Xml',
-    'Meta.Surfaces.CSharp', 'Meta.Surfaces.Sql', 'Microsoft.Data.SqlClient')
+    'Meta.Surfaces.CSharp', 'Meta.Surfaces.Sql', 'Meta.TypedModels', 'Microsoft.Data.SqlClient')
+Assert-PackageDependencies 'MetaCli.Model' @()
+Assert-PackageDependencies 'MetaCli.Core' @(
+    'Meta.Integration', 'Meta.Operations', 'Meta.Surfaces', 'MetaCli.Model')
+Assert-PackageDependencies 'MetaWeave.Model' @()
+Assert-PackageDependencies 'MetaWeave.Core' @(
+    'Meta.Core', 'Meta.Integration', 'Meta.Operations', 'MetaWeave.Model')
 
 $closureCases = @(
-    @{ Package = 'Meta.Core'; Roslyn = $false; SqlClient = $false },
-    @{ Package = 'Meta.Surfaces.Xml'; Roslyn = $false; SqlClient = $false },
-    @{ Package = 'Meta.Surfaces.CSharp'; Roslyn = $true; SqlClient = $false },
-    @{ Package = 'Meta.Surfaces.Sql'; Roslyn = $false; SqlClient = $true },
-    @{ Package = 'Meta.Integration'; Roslyn = $true; SqlClient = $true }
+    @{ Package = 'Meta.Operations'; Roslyn = $false; SqlClient = $false; Xml = $false },
+    @{ Package = 'Meta.TypedModels'; Roslyn = $false; SqlClient = $false; Xml = $false },
+    @{ Package = 'Meta.Core'; Roslyn = $false; SqlClient = $false; Xml = $false },
+    @{ Package = 'Meta.Surfaces'; Roslyn = $false; SqlClient = $false; Xml = $false },
+    @{ Package = 'Meta.Surfaces.Xml'; Roslyn = $false; SqlClient = $false; Xml = $true },
+    @{ Package = 'Meta.Surfaces.CSharp'; Roslyn = $true; SqlClient = $false; Xml = $false },
+    @{ Package = 'Meta.Surfaces.Sql'; Roslyn = $false; SqlClient = $true; Xml = $false },
+    @{ Package = 'Meta.Integration'; Roslyn = $true; SqlClient = $true; Xml = $true },
+    @{ Package = 'MetaCli.Model'; Roslyn = $false; SqlClient = $false; Xml = $false },
+    @{ Package = 'MetaCli.Core'; Roslyn = $true; SqlClient = $true; Xml = $true },
+    @{ Package = 'MetaWeave.Model'; Roslyn = $false; SqlClient = $false; Xml = $false },
+    @{ Package = 'MetaWeave.Core'; Roslyn = $true; SqlClient = $true; Xml = $true }
 )
 foreach ($case in $closureCases) {
     $caseRoot = Join-Path $consumerRoot ('package-closure-' + $case.Package)
@@ -180,8 +194,9 @@ foreach ($case in $closureCases) {
         $_ -eq 'Microsoft.CodeAnalysis' -or $_ -like 'Microsoft.CodeAnalysis.*'
     }).Count -gt 0
     $hasSqlClient = $libraryNames -contains 'Microsoft.Data.SqlClient'
-    if ($hasRoslyn -ne $case.Roslyn -or $hasSqlClient -ne $case.SqlClient) {
-        throw "$($case.Package) closure differs. Roslyn=$hasRoslyn SqlClient=$hasSqlClient"
+    $hasXml = $libraryNames -contains 'Meta.Surfaces.Xml'
+    if ($hasRoslyn -ne $case.Roslyn -or $hasSqlClient -ne $case.SqlClient -or $hasXml -ne $case.Xml) {
+        throw "$($case.Package) closure differs. Roslyn=$hasRoslyn SqlClient=$hasSqlClient Xml=$hasXml"
     }
 }
 
@@ -197,7 +212,7 @@ foreach ($solution in $solutions) {
 $assetFiles = @(Get-ChildItem -LiteralPath $consumerRoot -Filter 'project.assets.json' -File -Recurse)
 foreach ($assetFile in $assetFiles) {
     $assetText = Get-Content -LiteralPath $assetFile.FullName -Raw
-    if ($assetText -match 'Meta\.(Operations|Core|Surfaces(?:\.(?:Xml|CSharp|Sql))?|Integration)\.csproj|MetaCli\.Core\.csproj|MetaWeave\.(Model|Core)\.csproj') {
+    if ($assetText -match 'Meta\.(Operations|Core|TypedModels|Surfaces(?:\.(?:Xml|CSharp|Sql))?|Integration)\.csproj|MetaCli\.(Model|Core)\.csproj|MetaWeave\.(Model|Core)\.csproj') {
         throw "Foundation dependency was resolved as a project in $($assetFile.FullName)"
     }
 }
@@ -213,9 +228,7 @@ $testProjects = @(
     'MetaPipeline\Tests\MetaPipeline.Tests.csproj'
 )
 
-if ($IncludeMetaSqlIntegrationTests) {
-    $testProjects += 'MetaSql\Tests\MetaSql.Tests.csproj'
-}
+$testProjects += 'MetaSql\Tests\MetaSql.Tests.csproj'
 
 foreach ($testProject in $testProjects) {
     $testPath = Join-Path $consumerRoot $testProject
@@ -236,15 +249,25 @@ foreach ($cli in @(
     Invoke-Dotnet @($cliPath, '--help')
 }
 
-$weavePackage = $packageInfo | Where-Object Id -eq 'MetaWeave.Model' | Select-Object -First 1
-$archive = [System.IO.Compression.ZipFile]::OpenRead($weavePackage.Path)
-try {
-    if ($null -eq $archive.GetEntry('contentFiles/any/any/MetaWeave/model.xml')) {
-        throw 'MetaWeave.Model package does not contain contentFiles/any/any/MetaWeave/model.xml'
+function Assert-PackageEntry {
+    param(
+        [Parameter(Mandatory = $true)][string]$PackageId,
+        [Parameter(Mandatory = $true)][string]$EntryPath
+    )
+
+    $package = $packageInfo | Where-Object Id -eq $PackageId | Select-Object -First 1
+    $archive = [System.IO.Compression.ZipFile]::OpenRead($package.Path)
+    try {
+        if ($null -eq $archive.GetEntry($EntryPath)) {
+            throw "$PackageId package does not contain $EntryPath"
+        }
+    }
+    finally {
+        $archive.Dispose()
     }
 }
-finally {
-    $archive.Dispose()
-}
+
+Assert-PackageEntry 'MetaWeave.Model' 'contentFiles/any/any/MetaWeave/model.xml'
+Assert-PackageEntry 'MetaCli.Model' 'contentFiles/any/any/MetaCli/model.xml'
 
 Write-Host "Package-consumer verification passed. Isolated checkout: $consumerRoot"

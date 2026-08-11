@@ -27,16 +27,16 @@ Use it as a first-class constraint, not an optional note.
 - Do not use heuristic lineage or inferred semantics as product truth.
 - Prefer explicitly modeled understanding over clever post-hoc interpretation.
 
-## SQL Model Direction
+## MetaTransform Modeling Direction
 
-- Current high-stakes work is a bounded SQL `CREATE VIEW` syntax model.
-- The acceptance goal is:
+- `MetaTransform` is a bounded SQL `CREATE VIEW` syntax model.
+- Its structural goal is:
   - `SQL -> model -> semantically equivalent SQL`
 - This is a syntax-modeling problem first.
 - Semantic, lineage, transform, or optimization layers are derived later.
 - They must not replace syntax understanding.
-- The current `MetaTransform` area is still speculative and experimental.
-- Do not treat files under `MetaTransform` as settled sanctioned product truth without checking the current task and latest review context.
+- The `MetaTransform` area remains experimental until its model is explicitly sanctioned.
+- Do not treat exploratory files under `MetaTransform` as settled product truth.
 
 ## Codex Rules
 
@@ -82,6 +82,6 @@ Use it as a first-class constraint, not an optional note.
 ## Repo Notes
 
 - Current repo-level structure is centered around sanctioned model families plus conversion and tooling projects.
-- `MetaTransform` currently contains exploratory work aimed at reaching a bounded SQL-in-`VIEW` model.
-- Progress there is still limited. Treat it as an experiment unless the task explicitly says otherwise.
+- `MetaTransform` contains exploratory work aimed at a bounded SQL-in-`VIEW` model.
+- Treat it as an experiment unless its model has been explicitly sanctioned.
 - If a task touches `MetaTransform`, avoid assuming older docs, generated workspaces, or exploratory files are final.
