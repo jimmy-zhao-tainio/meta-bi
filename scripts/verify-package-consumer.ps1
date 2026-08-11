@@ -145,12 +145,12 @@ $packages = Join-Path $env:TEMP ('meta-bi-package-cache-' + [Guid]::NewGuid().To
 
 Assert-PackageDependencies 'Meta.Operations' @()
 Assert-PackageDependencies 'Meta.Core' @('Meta.Operations')
-Assert-PackageDependencies 'Meta.Surfaces' @('Meta.Core', 'Meta.Operations')
-Assert-PackageDependencies 'Meta.Surfaces.Xml' @('Meta.Core', 'Meta.Operations', 'Meta.Surfaces')
+Assert-PackageDependencies 'Meta.Surfaces' @()
+Assert-PackageDependencies 'Meta.Surfaces.Xml' @('Meta.Operations', 'Meta.Surfaces')
 Assert-PackageDependencies 'Meta.Surfaces.CSharp' @(
-    'Meta.Core', 'Meta.Operations', 'Meta.Surfaces', 'Microsoft.CodeAnalysis.CSharp')
+    'Meta.Operations', 'Meta.Surfaces', 'Microsoft.CodeAnalysis.CSharp')
 Assert-PackageDependencies 'Meta.Surfaces.Sql' @(
-    'Meta.Core', 'Meta.Operations', 'Meta.Surfaces', 'Microsoft.Data.SqlClient')
+    'Meta.Operations', 'Microsoft.Data.SqlClient')
 Assert-PackageDependencies 'Meta.Integration' @(
     'Meta.Core', 'Meta.Operations', 'Meta.Surfaces', 'Meta.Surfaces.Xml',
     'Meta.Surfaces.CSharp', 'Meta.Surfaces.Sql', 'Microsoft.Data.SqlClient')
@@ -176,7 +176,9 @@ foreach ($case in $closureCases) {
 
     $assets = Get-Content -LiteralPath (Join-Path $caseRoot 'obj\project.assets.json') -Raw | ConvertFrom-Json
     $libraryNames = @($assets.libraries.PSObject.Properties.Name | ForEach-Object { ($_ -split '/')[0] })
-    $hasRoslyn = $libraryNames -contains 'Microsoft.CodeAnalysis.CSharp'
+    $hasRoslyn = @($libraryNames | Where-Object {
+        $_ -eq 'Microsoft.CodeAnalysis' -or $_ -like 'Microsoft.CodeAnalysis.*'
+    }).Count -gt 0
     $hasSqlClient = $libraryNames -contains 'Microsoft.Data.SqlClient'
     if ($hasRoslyn -ne $case.Roslyn -or $hasSqlClient -ne $case.SqlClient) {
         throw "$($case.Package) closure differs. Roslyn=$hasRoslyn SqlClient=$hasSqlClient"
