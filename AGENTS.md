@@ -27,16 +27,18 @@ Use it as a first-class constraint, not an optional note.
 - Do not use heuristic lineage or inferred semantics as product truth.
 - Prefer explicitly modeled understanding over clever post-hoc interpretation.
 
-## MetaTransform Modeling Direction
+## MetaTransform Product Contract
 
-- `MetaTransform` is a bounded SQL `CREATE VIEW` syntax model.
-- Its structural goal is:
+- `MetaTransform` is a settled, sanctioned, bounded product area.
+- `MetaTransformScript` is the sanctioned SQL Server transform syntax model.
+- Its structural contract is:
   - `SQL -> model -> semantically equivalent SQL`
-- This is a syntax-modeling problem first.
-- Semantic, lineage, transform, or optimization layers are derived later.
-- They must not replace syntax understanding.
-- The `MetaTransform` area remains experimental until its model is explicitly sanctioned.
-- Do not treat exploratory files under `MetaTransform` as settled product truth.
+- `MetaTransformBinding` is the sanctioned derived binding and validation model for
+  resolving script structure against source and target schema contracts.
+- Syntax understanding remains primary. Binding, type evidence, target validation,
+  lineage, and operational profiles are derived layers and must not replace it.
+- Bounded support and explicit unsupported syntax do not make either model
+  experimental. Product model changes still require deliberate review.
 
 ## Codex Rules
 
@@ -82,6 +84,7 @@ Use it as a first-class constraint, not an optional note.
 ## Repo Notes
 
 - Current repo-level structure is centered around sanctioned model families plus conversion and tooling projects.
-- `MetaTransform` contains exploratory work aimed at a bounded SQL-in-`VIEW` model.
-- Treat it as an experiment unless its model has been explicitly sanctioned.
-- If a task touches `MetaTransform`, avoid assuming older docs, generated workspaces, or exploratory files are final.
+- `MetaTransformScript` and `MetaTransformBinding` are sanctioned product models
+  with checked-in workspaces, typed models, CLIs, converters, and tests.
+- Use the current model workspaces, source, and support trackers to determine the
+  bounded supported surface. Historical planning notes are not product status.

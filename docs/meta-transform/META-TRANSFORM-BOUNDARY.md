@@ -1,98 +1,75 @@
 # MetaTransform boundary
 
-## Purpose
+## Status and purpose
 
-`MetaTransform` is the sanctioned neutral transform model for the BI stack.
+`MetaTransform` is the settled, sanctioned, bounded transformation product area
+in the BI stack. It currently contains two sanctioned models:
 
-It should describe how tabular data is reshaped from a source surface into a target surface without learning source-domain or target-domain semantics.
+- `MetaTransformScript` represents supported SQL Server transform syntax.
+- `MetaTransformBinding` records derived binding and validation evidence for a
+  script against explicit source and target contracts.
 
-## What MetaTransform should own
+The models are deliberately bounded. Unsupported SQL or deferred binding
+coverage must be reported explicitly; bounded coverage does not imply
+experimental product status.
 
-`MetaTransform` should own:
+## MetaTransformScript ownership
 
-- the authored transform contract
-- the source-side tabular surface
-- the target-side tabular surface
-- explicit table mappings
-- explicit field mappings
-- structured row-shape expressions
-- structured value-shape expressions
-- target feed intent
-- type intent via sanctioned `MetaDataTypeId`
-- requested coercion via sanctioned `MetaDataTypeConversionId`
+`MetaTransformScript` owns the authored structure of supported SQL Server
+transform statements. Its core acceptance contract is:
 
-## What MetaTransform should not own
+```text
+SQL -> MetaTransformScript -> semantically equivalent SQL
+```
 
-`MetaTransform` should not own:
+The supported surface includes the sanctioned view, query, expression,
+function, and mutation shapes represented by its current model. Stored
+procedures use explicit modeled contracts for supported operational
+understanding rather than pretending to provide a general procedural SQL
+model.
 
-- source-schema extraction concerns
-- raw-vault or business-vault semantics
-- SQL physical design
-- deployment plans
-- CLI prose
-- runtime execution history
+Syntax structure is product truth at this layer. Binding, inferred types,
+lineage, target validation, optimization, and operational execution profiles
+are derived concerns and must not be substituted for syntax understanding.
+
+The detailed claimed surface lives in
+[`VIEW_SURFACE_SUPPORT_TRACKER.md`](../../MetaTransform/Script/Reference/VIEW_SURFACE_SUPPORT_TRACKER.md).
+
+## MetaTransformBinding ownership
+
+`MetaTransformBinding` derives explicit semantic evidence from a
+`MetaTransformScript` workspace and sanctioned supporting contracts. It owns:
+
+- name and scope resolution
+- derived rowsets and columns
+- source and target references
+- read and write evidence
+- target-shape validation evidence
+- exact or sanctioned type-conversion outcomes
+
+Source and target schema truth comes from `MetaSchema`. Type compatibility comes
+from `MetaDataType` and `MetaDataTypeConversion`; Binding does not redefine
+those vocabularies.
+
+The detailed claimed surface lives in
+[`BINDING_SUPPORT_TRACKER.md`](../../MetaTransform/Binding/Reference/BINDING_SUPPORT_TRACKER.md).
+
+## Ownership exclusions
+
+The MetaTransform product area does not own:
+
+- source-schema extraction
+- Data Vault or dimensional-model semantics
+- physical SQL deployment planning
+- pipeline or orchestration runtime history
 - external-system connectivity
+- inferred optimization behavior as authored truth
 
-Those belong in other sanctioned models or in glue code.
+Those outcomes belong to their respective sanctioned models and services.
 
-## Core structure
+## Review rule
 
-The first sanctioned shape is intentionally neutral:
-
-- `Transform` is the authored contract root
-- `Source` and `Target` are named tabular surfaces under that contract
-- `SourceTable` and `SourceField` describe the source surface
-- `TargetTable` and `TargetField` describe the target surface
-- datatype facets stay on `SourceFieldDataTypeDetail` and `TargetFieldDataTypeDetail`
-- `TableMapping` owns row-shape
-- `FieldMapping` owns value-shape
-- `TableExpressionNode` forms the row-shape tree
-- `ValueExpressionNode` forms the value-shape tree
-
-This keeps the model cleaner than free-form SQL while staying separate from source-model and target-model ownership.
-
-## Sanctioned type references
-
-`MetaTransform` must not redefine type vocabularies already sanctioned elsewhere.
-
-- `SourceField.MetaDataTypeId`
-- `TargetField.MetaDataTypeId`
-- `ValueExpressionNode.ResultMetaDataTypeId`
-
-should point at sanctioned `MetaDataType` ids.
-
-`ValueExpressionNode.MetaDataTypeConversionId` should point at a sanctioned `MetaDataTypeConversion` id when a transform explicitly requests a coercion.
-
-## Initial vocabulary
-
-Until tooling hardens these further, the initial intended vocabularies are:
-
-- `TargetField.FeedKind`: `SourceMapped`, `DerivedMapped`, `Defaulted`, `SystemGenerated`, `Ignored`
-- `TableExpressionNode.ExpressionKind`: `SourceTable`, `Join`, `Filter`, `Distinct`, `Union`, `Intersect`, `Except`
-- `TableExpressionNode.JoinKind`: `Inner`, `Left`, `Right`, `Full`
-- `ValueExpressionNode.ExpressionKind`: `SourceField`, `Literal`, `Function`, `Cast`, `Comparison`, `Boolean`, `Case`
-
-These values are conventions for now, but they should stay small and deliberate.
-
-## Initial invariants
-
-The model is meant to support these invariants:
-
-- each `SourceTable` name is unique within its `Source`
-- each `TargetTable` name is unique within its `Target`
-- each field name is unique within its owning table
-- every `TableMapping` targets exactly one `TargetTable`
-- every `FieldMapping` targets exactly one `TargetField`
-- every target field with `FeedKind` of `SourceMapped`, `DerivedMapped`, or `Defaulted` should be satisfied exactly once
-- `SystemGenerated` and `Ignored` target fields should not require source coverage
-- every referenced `SourceField` must be reachable from the `TableMapping` row-shape
-
-## Relationship to other sanctioned models
-
-`MetaTransform` should stay neutral and let other sanctioned models keep their own meaning:
-
-- `MetaSchema` describes extracted source structure
-- `MetaRawDataVault` and `MetaBusinessDataVault` describe logical vault targets
-- `MetaSql` describes physical SQL realization
-
-Glue code and weave can bind those worlds to a `MetaTransform` workspace without forcing `MetaTransform` to understand them directly.
+The checked-in model workspaces, typed sources, current services, and tests are
+authoritative for implemented structure. Support trackers describe the bounded
+coverage. Historical plans and audits can explain how the product arrived here,
+but they do not downgrade the sanctioned models to experimental status.

@@ -1,5 +1,6 @@
 using MetaConvert.SqlToTransformScript;
 using MetaConvert.TransformScriptToSql;
+using Meta.Integration;
 using MetaSql;
 using Meta.Surfaces;
 
