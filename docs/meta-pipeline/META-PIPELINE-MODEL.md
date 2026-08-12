@@ -215,4 +215,5 @@ Do not store connection strings in pipeline metadata.
 
 Do not make orchestration intelligence part of the plain executor.
 
-Do not model every [`../meta-load/META-LOAD.md`](../meta-load/META-LOAD.md) concern as a first-class class before there is a concrete task that needs it.
+Do not model every conceivable loading concern as a first-class class before
+there is a concrete task that needs it.

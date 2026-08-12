@@ -27,7 +27,7 @@ public sealed class MetaOrchestrationAnalysisService
         return AnalyzeProfiles(
             request.PlanName,
             request.Description,
-            CreateProfiles(pipelineModel));
+            CreateProfiles(pipelineModel, pipelineWorkspacePath));
     }
 
     public OrchestrationAnalysisResult AnalyzeProfiles(
@@ -68,10 +68,31 @@ public sealed class MetaOrchestrationAnalysisService
         return BuildModel(result, Path.GetFullPath(pipelineWorkspacePath));
     }
 
-    private IReadOnlyList<PipelineDependencyProfile> CreateProfiles(
-        MP.MetaPipelineModel pipelineModel)
+    public MO.MetaOrchestrationModel CreatePortableModel(
+        OrchestrationAnalysisResult result,
+        string pipelineWorkspacePath,
+        string outputWorkspacePath)
     {
-        var workspaceCache = new TransformWorkspaceProfileCache(statementKindService);
+        ArgumentNullException.ThrowIfNull(result);
+        ArgumentException.ThrowIfNullOrWhiteSpace(pipelineWorkspacePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(outputWorkspacePath);
+
+        var outputRoot = Path.GetFullPath(outputWorkspacePath);
+        var pipelineRoot = Path.GetFullPath(pipelineWorkspacePath);
+        var pipelineReference = Path.GetRelativePath(outputRoot, pipelineRoot);
+        if (!Path.IsPathRooted(pipelineReference))
+        {
+            pipelineReference = pipelineReference.Replace(Path.DirectorySeparatorChar, '/');
+        }
+
+        return BuildModel(result, pipelineReference);
+    }
+
+    private IReadOnlyList<PipelineDependencyProfile> CreateProfiles(
+        MP.MetaPipelineModel pipelineModel,
+        string pipelineWorkspacePath)
+    {
+        var workspaceCache = new TransformWorkspaceProfileCache(statementKindService, pipelineWorkspacePath);
 
         return pipelineModel.PipelineList
             .OrderBy(static item => item.Name, StringComparer.OrdinalIgnoreCase)
@@ -1736,14 +1757,16 @@ public sealed class MetaOrchestrationAnalysisService
         MP.ExecutableTask? Executable,
         int Ordinal);
 
-    private sealed class TransformWorkspaceProfileCache(TransformScriptStatementKindService statementKindService)
+    private sealed class TransformWorkspaceProfileCache(
+        TransformScriptStatementKindService statementKindService,
+        string pipelineWorkspacePath)
     {
         private readonly Dictionary<string, TransformWorkspaceProfileContext> cache = new(StringComparer.OrdinalIgnoreCase);
 
         public TransformWorkspaceProfileContext Get(string transformWorkspacePath, string bindingWorkspacePath)
         {
-            var fullTransformWorkspacePath = Path.GetFullPath(transformWorkspacePath);
-            var fullBindingWorkspacePath = Path.GetFullPath(bindingWorkspacePath);
+            var fullTransformWorkspacePath = Path.GetFullPath(transformWorkspacePath, pipelineWorkspacePath);
+            var fullBindingWorkspacePath = Path.GetFullPath(bindingWorkspacePath, pipelineWorkspacePath);
             var key = $"{fullTransformWorkspacePath}|{fullBindingWorkspacePath}";
             if (cache.TryGetValue(key, out var existing))
             {

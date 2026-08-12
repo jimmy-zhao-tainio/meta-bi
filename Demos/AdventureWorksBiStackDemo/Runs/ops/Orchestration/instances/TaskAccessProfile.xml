@@ -2,7 +2,7 @@
 <MetaOrchestration>
   <TaskAccessProfileList>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-customer" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_Customer</MetaPipelinePipelineTaskId>
       <Ordinal>15</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -11,10 +11,10 @@
       <TransformBindingId>TransformScript:15:binding</TransformBindingId>
       <TransformScriptId>TransformScript:15</TransformScriptId>
       <TransformScriptName>Dim_Customer</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-date-duedate" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_Date_DueDate</MetaPipelinePipelineTaskId>
       <Ordinal>10</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -23,10 +23,10 @@
       <TransformBindingId>TransformScript:10:binding</TransformBindingId>
       <TransformScriptId>TransformScript:10</TransformScriptId>
       <TransformScriptName>Dim_Date_DueDate</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-date-orderdate" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_Date_OrderDate</MetaPipelinePipelineTaskId>
       <Ordinal>9</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -35,10 +35,10 @@
       <TransformBindingId>TransformScript:9:binding</TransformBindingId>
       <TransformScriptId>TransformScript:9</TransformScriptId>
       <TransformScriptName>Dim_Date_OrderDate</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-date-quotadate" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_Date_QuotaDate</MetaPipelinePipelineTaskId>
       <Ordinal>12</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -47,10 +47,10 @@
       <TransformBindingId>TransformScript:12:binding</TransformBindingId>
       <TransformScriptId>TransformScript:12</TransformScriptId>
       <TransformScriptName>Dim_Date_QuotaDate</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-date-shipdate" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_Date_ShipDate</MetaPipelinePipelineTaskId>
       <Ordinal>11</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -59,10 +59,10 @@
       <TransformBindingId>TransformScript:11:binding</TransformBindingId>
       <TransformScriptId>TransformScript:11</TransformScriptId>
       <TransformScriptName>Dim_Date_ShipDate</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-geography" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_Geography</MetaPipelinePipelineTaskId>
       <Ordinal>14</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -71,10 +71,10 @@
       <TransformBindingId>TransformScript:14:binding</TransformBindingId>
       <TransformScriptId>TransformScript:14</TransformScriptId>
       <TransformScriptName>Dim_Geography</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-orderstatus-1-inprocess" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_OrderStatus_1_InProcess</MetaPipelinePipelineTaskId>
       <Ordinal>3</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -83,10 +83,10 @@
       <TransformBindingId>TransformScript:3:binding</TransformBindingId>
       <TransformScriptId>TransformScript:3</TransformScriptId>
       <TransformScriptName>Dim_OrderStatus_1_InProcess</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-orderstatus-2-approved" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_OrderStatus_2_Approved</MetaPipelinePipelineTaskId>
       <Ordinal>4</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -95,10 +95,10 @@
       <TransformBindingId>TransformScript:4:binding</TransformBindingId>
       <TransformScriptId>TransformScript:4</TransformScriptId>
       <TransformScriptName>Dim_OrderStatus_2_Approved</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-orderstatus-3-backordered" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_OrderStatus_3_Backordered</MetaPipelinePipelineTaskId>
       <Ordinal>5</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -107,10 +107,10 @@
       <TransformBindingId>TransformScript:5:binding</TransformBindingId>
       <TransformScriptId>TransformScript:5</TransformScriptId>
       <TransformScriptName>Dim_OrderStatus_3_Backordered</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-orderstatus-4-rejected" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_OrderStatus_4_Rejected</MetaPipelinePipelineTaskId>
       <Ordinal>6</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -119,10 +119,10 @@
       <TransformBindingId>TransformScript:6:binding</TransformBindingId>
       <TransformScriptId>TransformScript:6</TransformScriptId>
       <TransformScriptName>Dim_OrderStatus_4_Rejected</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-orderstatus-5-shipped" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_OrderStatus_5_Shipped</MetaPipelinePipelineTaskId>
       <Ordinal>7</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -131,10 +131,10 @@
       <TransformBindingId>TransformScript:7:binding</TransformBindingId>
       <TransformScriptId>TransformScript:7</TransformScriptId>
       <TransformScriptName>Dim_OrderStatus_5_Shipped</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-orderstatus-6-cancelled" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_OrderStatus_6_Cancelled</MetaPipelinePipelineTaskId>
       <Ordinal>8</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -143,10 +143,10 @@
       <TransformBindingId>TransformScript:8:binding</TransformBindingId>
       <TransformScriptId>TransformScript:8</TransformScriptId>
       <TransformScriptName>Dim_OrderStatus_6_Cancelled</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-product" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_Product</MetaPipelinePipelineTaskId>
       <Ordinal>13</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -155,10 +155,10 @@
       <TransformBindingId>TransformScript:13:binding</TransformBindingId>
       <TransformScriptId>TransformScript:13</TransformScriptId>
       <TransformScriptName>Dim_Product</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-saleschannel-online" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_SalesChannel_Online</MetaPipelinePipelineTaskId>
       <Ordinal>1</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -167,10 +167,10 @@
       <TransformBindingId>TransformScript:1:binding</TransformBindingId>
       <TransformScriptId>TransformScript:1</TransformScriptId>
       <TransformScriptName>Dim_SalesChannel_Online</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-saleschannel-store" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_SalesChannel_Store</MetaPipelinePipelineTaskId>
       <Ordinal>2</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -179,10 +179,10 @@
       <TransformBindingId>TransformScript:2:binding</TransformBindingId>
       <TransformScriptId>TransformScript:2</TransformScriptId>
       <TransformScriptName>Dim_SalesChannel_Store</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-salesperson" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_Salesperson</MetaPipelinePipelineTaskId>
       <Ordinal>16</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -191,10 +191,10 @@
       <TransformBindingId>TransformScript:16:binding</TransformBindingId>
       <TransformScriptId>TransformScript:16</TransformScriptId>
       <TransformScriptName>Dim_Salesperson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:dim-salesterritory" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Dim_SalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>17</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -203,10 +203,10 @@
       <TransformBindingId>TransformScript:17:binding</TransformBindingId>
       <TransformScriptId>TransformScript:17</TransformScriptId>
       <TransformScriptName>Dim_SalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:fact-salesline" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Fact_SalesLine</MetaPipelinePipelineTaskId>
       <Ordinal>19</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -215,10 +215,10 @@
       <TransformBindingId>TransformScript:19:binding</TransformBindingId>
       <TransformScriptId>TransformScript:19</TransformScriptId>
       <TransformScriptName>Fact_SalesLine</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:fact-salesorder" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Fact_SalesOrder</MetaPipelinePipelineTaskId>
       <Ordinal>18</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -227,10 +227,10 @@
       <TransformBindingId>TransformScript:18:binding</TransformBindingId>
       <TransformScriptId>TransformScript:18</TransformScriptId>
       <TransformScriptName>Fact_SalesOrder</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-businesstowarehouse:task:fact-salespersonquota" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>BusinessToWarehouse.Fact_SalespersonQuota</MetaPipelinePipelineTaskId>
       <Ordinal>20</Ordinal>
       <StatementKind>Merge</StatementKind>
@@ -239,10 +239,10 @@
       <TransformBindingId>TransformScript:20:binding</TransformBindingId>
       <TransformScriptId>TransformScript:20</TransformScriptId>
       <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-address" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_Address</MetaPipelinePipelineTaskId>
       <Ordinal>1</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -251,10 +251,10 @@
       <TransformBindingId>TransformScript:1:binding</TransformBindingId>
       <TransformScriptId>TransformScript:1</TransformScriptId>
       <TransformScriptName>BH_Address</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-countryregion" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_CountryRegion</MetaPipelinePipelineTaskId>
       <Ordinal>2</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -263,10 +263,10 @@
       <TransformBindingId>TransformScript:2:binding</TransformBindingId>
       <TransformScriptId>TransformScript:2</TransformScriptId>
       <TransformScriptName>BH_CountryRegion</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-customer" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_Customer</MetaPipelinePipelineTaskId>
       <Ordinal>3</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -275,10 +275,10 @@
       <TransformBindingId>TransformScript:3:binding</TransformBindingId>
       <TransformScriptId>TransformScript:3</TransformScriptId>
       <TransformScriptName>BH_Customer</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-person" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_Person</MetaPipelinePipelineTaskId>
       <Ordinal>4</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -287,10 +287,10 @@
       <TransformBindingId>TransformScript:4:binding</TransformBindingId>
       <TransformScriptId>TransformScript:4</TransformScriptId>
       <TransformScriptName>BH_Person</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-product" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_Product</MetaPipelinePipelineTaskId>
       <Ordinal>5</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -299,10 +299,10 @@
       <TransformBindingId>TransformScript:5:binding</TransformBindingId>
       <TransformScriptId>TransformScript:5</TransformScriptId>
       <TransformScriptName>BH_Product</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-productcategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_ProductCategory</MetaPipelinePipelineTaskId>
       <Ordinal>6</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -311,10 +311,10 @@
       <TransformBindingId>TransformScript:6:binding</TransformBindingId>
       <TransformScriptId>TransformScript:6</TransformScriptId>
       <TransformScriptName>BH_ProductCategory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-productsubcategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_ProductSubcategory</MetaPipelinePipelineTaskId>
       <Ordinal>7</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -323,10 +323,10 @@
       <TransformBindingId>TransformScript:7:binding</TransformBindingId>
       <TransformScriptId>TransformScript:7</TransformScriptId>
       <TransformScriptName>BH_ProductSubcategory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-salesorder" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_SalesOrder</MetaPipelinePipelineTaskId>
       <Ordinal>8</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -335,10 +335,10 @@
       <TransformBindingId>TransformScript:8:binding</TransformBindingId>
       <TransformScriptId>TransformScript:8</TransformScriptId>
       <TransformScriptName>BH_SalesOrder</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-salesorderline" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_SalesOrderLine</MetaPipelinePipelineTaskId>
       <Ordinal>9</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -347,10 +347,10 @@
       <TransformBindingId>TransformScript:9:binding</TransformBindingId>
       <TransformScriptId>TransformScript:9</TransformScriptId>
       <TransformScriptName>BH_SalesOrderLine</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-salesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_SalesPerson</MetaPipelinePipelineTaskId>
       <Ordinal>10</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -359,10 +359,10 @@
       <TransformBindingId>TransformScript:10:binding</TransformBindingId>
       <TransformScriptId>TransformScript:10</TransformScriptId>
       <TransformScriptName>BH_SalesPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-salespersonquota" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_SalesPersonQuota</MetaPipelinePipelineTaskId>
       <Ordinal>11</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -371,10 +371,10 @@
       <TransformBindingId>TransformScript:11:binding</TransformBindingId>
       <TransformScriptId>TransformScript:11</TransformScriptId>
       <TransformScriptName>BH_SalesPersonQuota</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-salesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_SalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>12</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -383,10 +383,10 @@
       <TransformBindingId>TransformScript:12:binding</TransformBindingId>
       <TransformScriptId>TransformScript:12</TransformScriptId>
       <TransformScriptName>BH_SalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-stateprovince" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_StateProvince</MetaPipelinePipelineTaskId>
       <Ordinal>13</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -395,10 +395,10 @@
       <TransformBindingId>TransformScript:13:binding</TransformBindingId>
       <TransformScriptId>TransformScript:13</TransformScriptId>
       <TransformScriptName>BH_StateProvince</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bh-store" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BH_Store</MetaPipelinePipelineTaskId>
       <Ordinal>14</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -407,10 +407,10 @@
       <TransformBindingId>TransformScript:14:binding</TransformBindingId>
       <TransformScriptId>TransformScript:14</TransformScriptId>
       <TransformScriptName>BH_Store</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-address-addressprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_Address_AddressProfile</MetaPipelinePipelineTaskId>
       <Ordinal>15</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -419,10 +419,10 @@
       <TransformBindingId>TransformScript:15:binding</TransformBindingId>
       <TransformScriptId>TransformScript:15</TransformScriptId>
       <TransformScriptName>BHS_Address_AddressProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-countryregion-countryregionprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_CountryRegion_CountryRegionProfile</MetaPipelinePipelineTaskId>
       <Ordinal>16</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -431,10 +431,10 @@
       <TransformBindingId>TransformScript:16:binding</TransformBindingId>
       <TransformScriptId>TransformScript:16</TransformScriptId>
       <TransformScriptName>BHS_CountryRegion_CountryRegionProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-customer-customerprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_Customer_CustomerProfile</MetaPipelinePipelineTaskId>
       <Ordinal>17</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -443,10 +443,10 @@
       <TransformBindingId>TransformScript:17:binding</TransformBindingId>
       <TransformScriptId>TransformScript:17</TransformScriptId>
       <TransformScriptName>BHS_Customer_CustomerProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-person-personprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_Person_PersonProfile</MetaPipelinePipelineTaskId>
       <Ordinal>18</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -455,10 +455,10 @@
       <TransformBindingId>TransformScript:18:binding</TransformBindingId>
       <TransformScriptId>TransformScript:18</TransformScriptId>
       <TransformScriptName>BHS_Person_PersonProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-product-productprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_Product_ProductProfile</MetaPipelinePipelineTaskId>
       <Ordinal>19</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -467,10 +467,10 @@
       <TransformBindingId>TransformScript:19:binding</TransformBindingId>
       <TransformScriptId>TransformScript:19</TransformScriptId>
       <TransformScriptName>BHS_Product_ProductProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-productcategory-productcategoryprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_ProductCategory_ProductCategoryProfile</MetaPipelinePipelineTaskId>
       <Ordinal>20</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -479,10 +479,10 @@
       <TransformBindingId>TransformScript:20:binding</TransformBindingId>
       <TransformScriptId>TransformScript:20</TransformScriptId>
       <TransformScriptName>BHS_ProductCategory_ProductCategoryProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-productsubcategory-productsubcategoryprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_ProductSubcategory_ProductSubcategoryProfile</MetaPipelinePipelineTaskId>
       <Ordinal>21</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -491,10 +491,10 @@
       <TransformBindingId>TransformScript:21:binding</TransformBindingId>
       <TransformScriptId>TransformScript:21</TransformScriptId>
       <TransformScriptName>BHS_ProductSubcategory_ProductSubcategoryProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-salesorder-salesorderheader" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_SalesOrder_SalesOrderHeader</MetaPipelinePipelineTaskId>
       <Ordinal>22</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -503,10 +503,10 @@
       <TransformBindingId>TransformScript:22:binding</TransformBindingId>
       <TransformScriptId>TransformScript:22</TransformScriptId>
       <TransformScriptName>BHS_SalesOrder_SalesOrderHeader</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-salesorderline-salesorderlinedetail" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_SalesOrderLine_SalesOrderLineDetail</MetaPipelinePipelineTaskId>
       <Ordinal>23</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -515,10 +515,10 @@
       <TransformBindingId>TransformScript:23:binding</TransformBindingId>
       <TransformScriptId>TransformScript:23</TransformScriptId>
       <TransformScriptName>BHS_SalesOrderLine_SalesOrderLineDetail</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-salesperson-salespersonprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_SalesPerson_SalesPersonProfile</MetaPipelinePipelineTaskId>
       <Ordinal>24</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -527,10 +527,10 @@
       <TransformBindingId>TransformScript:24:binding</TransformBindingId>
       <TransformScriptId>TransformScript:24</TransformScriptId>
       <TransformScriptName>BHS_SalesPerson_SalesPersonProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-salespersonquota-salespersonquotaprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_SalesPersonQuota_SalesPersonQuotaProfile</MetaPipelinePipelineTaskId>
       <Ordinal>25</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -539,10 +539,10 @@
       <TransformBindingId>TransformScript:25:binding</TransformBindingId>
       <TransformScriptId>TransformScript:25</TransformScriptId>
       <TransformScriptName>BHS_SalesPersonQuota_SalesPersonQuotaProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-salesterritory-salesterritoryprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_SalesTerritory_SalesTerritoryProfile</MetaPipelinePipelineTaskId>
       <Ordinal>26</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -551,10 +551,10 @@
       <TransformBindingId>TransformScript:26:binding</TransformBindingId>
       <TransformScriptId>TransformScript:26</TransformScriptId>
       <TransformScriptName>BHS_SalesTerritory_SalesTerritoryProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-stateprovince-stateprovinceprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_StateProvince_StateProvinceProfile</MetaPipelinePipelineTaskId>
       <Ordinal>27</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -563,10 +563,10 @@
       <TransformBindingId>TransformScript:27:binding</TransformBindingId>
       <TransformScriptId>TransformScript:27</TransformScriptId>
       <TransformScriptName>BHS_StateProvince_StateProvinceProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bhs-store-storeprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BHS_Store_StoreProfile</MetaPipelinePipelineTaskId>
       <Ordinal>28</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -575,10 +575,10 @@
       <TransformBindingId>TransformScript:28:binding</TransformBindingId>
       <TransformScriptId>TransformScript:28</TransformScriptId>
       <TransformScriptName>BHS_Store_StoreProfile</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-addressstateprovince" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_AddressStateProvince</MetaPipelinePipelineTaskId>
       <Ordinal>29</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -587,10 +587,10 @@
       <TransformBindingId>TransformScript:29:binding</TransformBindingId>
       <TransformScriptId>TransformScript:29</TransformScriptId>
       <TransformScriptName>BL_AddressStateProvince</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-customerperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_CustomerPerson</MetaPipelinePipelineTaskId>
       <Ordinal>30</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -599,10 +599,10 @@
       <TransformBindingId>TransformScript:30:binding</TransformBindingId>
       <TransformScriptId>TransformScript:30</TransformScriptId>
       <TransformScriptName>BL_CustomerPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-customerstore" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_CustomerStore</MetaPipelinePipelineTaskId>
       <Ordinal>31</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -611,10 +611,10 @@
       <TransformBindingId>TransformScript:31:binding</TransformBindingId>
       <TransformScriptId>TransformScript:31</TransformScriptId>
       <TransformScriptName>BL_CustomerStore</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-productsubcategoryassignment" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_ProductSubcategoryAssignment</MetaPipelinePipelineTaskId>
       <Ordinal>32</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -623,10 +623,10 @@
       <TransformBindingId>TransformScript:32:binding</TransformBindingId>
       <TransformScriptId>TransformScript:32</TransformScriptId>
       <TransformScriptName>BL_ProductSubcategoryAssignment</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-productsubcategorycategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_ProductSubcategoryCategory</MetaPipelinePipelineTaskId>
       <Ordinal>33</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -635,10 +635,10 @@
       <TransformBindingId>TransformScript:33:binding</TransformBindingId>
       <TransformScriptId>TransformScript:33</TransformScriptId>
       <TransformScriptName>BL_ProductSubcategoryCategory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salesorderbilltoaddress" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesOrderBillToAddress</MetaPipelinePipelineTaskId>
       <Ordinal>34</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -647,10 +647,10 @@
       <TransformBindingId>TransformScript:34:binding</TransformBindingId>
       <TransformScriptId>TransformScript:34</TransformScriptId>
       <TransformScriptName>BL_SalesOrderBillToAddress</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salesordercustomer" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesOrderCustomer</MetaPipelinePipelineTaskId>
       <Ordinal>35</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -659,10 +659,10 @@
       <TransformBindingId>TransformScript:35:binding</TransformBindingId>
       <TransformScriptId>TransformScript:35</TransformScriptId>
       <TransformScriptName>BL_SalesOrderCustomer</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salesorderlineproduct" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesOrderLineProduct</MetaPipelinePipelineTaskId>
       <Ordinal>36</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -671,10 +671,10 @@
       <TransformBindingId>TransformScript:36:binding</TransformBindingId>
       <TransformScriptId>TransformScript:36</TransformScriptId>
       <TransformScriptName>BL_SalesOrderLineProduct</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salesorderlinesalesorder" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesOrderLineSalesOrder</MetaPipelinePipelineTaskId>
       <Ordinal>37</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -683,10 +683,10 @@
       <TransformBindingId>TransformScript:37:binding</TransformBindingId>
       <TransformScriptId>TransformScript:37</TransformScriptId>
       <TransformScriptName>BL_SalesOrderLineSalesOrder</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salesordersalesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesOrderSalesPerson</MetaPipelinePipelineTaskId>
       <Ordinal>38</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -695,10 +695,10 @@
       <TransformBindingId>TransformScript:38:binding</TransformBindingId>
       <TransformScriptId>TransformScript:38</TransformScriptId>
       <TransformScriptName>BL_SalesOrderSalesPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salesordersalesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesOrderSalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>40</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -707,10 +707,10 @@
       <TransformBindingId>TransformScript:40:binding</TransformBindingId>
       <TransformScriptId>TransformScript:40</TransformScriptId>
       <TransformScriptName>BL_SalesOrderSalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salesordershiptoaddress" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesOrderShipToAddress</MetaPipelinePipelineTaskId>
       <Ordinal>39</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -719,10 +719,10 @@
       <TransformBindingId>TransformScript:39:binding</TransformBindingId>
       <TransformScriptId>TransformScript:39</TransformScriptId>
       <TransformScriptName>BL_SalesOrderShipToAddress</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salespersonperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesPersonPerson</MetaPipelinePipelineTaskId>
       <Ordinal>41</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -731,10 +731,10 @@
       <TransformBindingId>TransformScript:41:binding</TransformBindingId>
       <TransformScriptId>TransformScript:41</TransformScriptId>
       <TransformScriptName>BL_SalesPersonPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salespersonquotasalesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesPersonQuotaSalesPerson</MetaPipelinePipelineTaskId>
       <Ordinal>42</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -743,10 +743,10 @@
       <TransformBindingId>TransformScript:42:binding</TransformBindingId>
       <TransformScriptId>TransformScript:42</TransformScriptId>
       <TransformScriptName>BL_SalesPersonQuotaSalesPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salespersonsalesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesPersonSalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>43</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -755,10 +755,10 @@
       <TransformBindingId>TransformScript:43:binding</TransformBindingId>
       <TransformScriptId>TransformScript:43</TransformScriptId>
       <TransformScriptName>BL_SalesPersonSalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-salesterritorycountryregion" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_SalesTerritoryCountryRegion</MetaPipelinePipelineTaskId>
       <Ordinal>44</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -767,10 +767,10 @@
       <TransformBindingId>TransformScript:44:binding</TransformBindingId>
       <TransformScriptId>TransformScript:44</TransformScriptId>
       <TransformScriptName>BL_SalesTerritoryCountryRegion</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-stateprovincecountryregion" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_StateProvinceCountryRegion</MetaPipelinePipelineTaskId>
       <Ordinal>45</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -779,10 +779,10 @@
       <TransformBindingId>TransformScript:45:binding</TransformBindingId>
       <TransformScriptId>TransformScript:45</TransformScriptId>
       <TransformScriptName>BL_StateProvinceCountryRegion</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-stateprovincesalesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_StateProvinceSalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>46</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -791,10 +791,10 @@
       <TransformBindingId>TransformScript:46:binding</TransformBindingId>
       <TransformScriptId>TransformScript:46</TransformScriptId>
       <TransformScriptName>BL_StateProvinceSalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-rawtobusiness:task:bl-storesalesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>RawToBusiness.BL_StoreSalesPerson</MetaPipelinePipelineTaskId>
       <Ordinal>47</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -803,10 +803,10 @@
       <TransformBindingId>TransformScript:47:binding</TransformBindingId>
       <TransformScriptId>TransformScript:47</TransformScriptId>
       <TransformScriptName>BL_StoreSalesPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-address" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_Address</MetaPipelinePipelineTaskId>
       <Ordinal>14</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -815,10 +815,10 @@
       <TransformBindingId>TransformScript:14:binding</TransformBindingId>
       <TransformScriptId>TransformScript:14</TransformScriptId>
       <TransformScriptName>H_Address</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-countryregion" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_CountryRegion</MetaPipelinePipelineTaskId>
       <Ordinal>1</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -827,10 +827,10 @@
       <TransformBindingId>TransformScript:1:binding</TransformBindingId>
       <TransformScriptId>TransformScript:1</TransformScriptId>
       <TransformScriptName>H_CountryRegion</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-customer" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_Customer</MetaPipelinePipelineTaskId>
       <Ordinal>2</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -839,10 +839,10 @@
       <TransformBindingId>TransformScript:2:binding</TransformBindingId>
       <TransformScriptId>TransformScript:2</TransformScriptId>
       <TransformScriptName>H_Customer</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-employee" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_Employee</MetaPipelinePipelineTaskId>
       <Ordinal>16</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -851,10 +851,10 @@
       <TransformBindingId>TransformScript:16:binding</TransformBindingId>
       <TransformScriptId>TransformScript:16</TransformScriptId>
       <TransformScriptName>H_Employee</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-person" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_Person</MetaPipelinePipelineTaskId>
       <Ordinal>3</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -863,10 +863,10 @@
       <TransformBindingId>TransformScript:3:binding</TransformBindingId>
       <TransformScriptId>TransformScript:3</TransformScriptId>
       <TransformScriptName>H_Person</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-product" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_Product</MetaPipelinePipelineTaskId>
       <Ordinal>4</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -875,10 +875,10 @@
       <TransformBindingId>TransformScript:4:binding</TransformBindingId>
       <TransformScriptId>TransformScript:4</TransformScriptId>
       <TransformScriptName>H_Product</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-productcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_ProductCategory</MetaPipelinePipelineTaskId>
       <Ordinal>5</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -887,10 +887,10 @@
       <TransformBindingId>TransformScript:5:binding</TransformBindingId>
       <TransformScriptId>TransformScript:5</TransformScriptId>
       <TransformScriptName>H_ProductCategory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-productsubcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_ProductSubcategory</MetaPipelinePipelineTaskId>
       <Ordinal>6</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -899,10 +899,10 @@
       <TransformBindingId>TransformScript:6:binding</TransformBindingId>
       <TransformScriptId>TransformScript:6</TransformScriptId>
       <TransformScriptName>H_ProductSubcategory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-salesorderdetail" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_SalesOrderDetail</MetaPipelinePipelineTaskId>
       <Ordinal>7</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -911,10 +911,10 @@
       <TransformBindingId>TransformScript:7:binding</TransformBindingId>
       <TransformScriptId>TransformScript:7</TransformScriptId>
       <TransformScriptName>H_SalesOrderDetail</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-salesorderheader" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_SalesOrderHeader</MetaPipelinePipelineTaskId>
       <Ordinal>8</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -923,10 +923,10 @@
       <TransformBindingId>TransformScript:8:binding</TransformBindingId>
       <TransformScriptId>TransformScript:8</TransformScriptId>
       <TransformScriptName>H_SalesOrderHeader</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-salesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_SalesPerson</MetaPipelinePipelineTaskId>
       <Ordinal>9</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -935,10 +935,10 @@
       <TransformBindingId>TransformScript:9:binding</TransformBindingId>
       <TransformScriptId>TransformScript:9</TransformScriptId>
       <TransformScriptName>H_SalesPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-salespersonquotahistory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_SalesPersonQuotaHistory</MetaPipelinePipelineTaskId>
       <Ordinal>10</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -947,10 +947,10 @@
       <TransformBindingId>TransformScript:10:binding</TransformBindingId>
       <TransformScriptId>TransformScript:10</TransformScriptId>
       <TransformScriptName>H_SalesPersonQuotaHistory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-salesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_SalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>11</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -959,10 +959,10 @@
       <TransformBindingId>TransformScript:11:binding</TransformBindingId>
       <TransformScriptId>TransformScript:11</TransformScriptId>
       <TransformScriptName>H_SalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-specialofferproduct" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_SpecialOfferProduct</MetaPipelinePipelineTaskId>
       <Ordinal>12</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -971,10 +971,10 @@
       <TransformBindingId>TransformScript:12:binding</TransformBindingId>
       <TransformScriptId>TransformScript:12</TransformScriptId>
       <TransformScriptName>H_SpecialOfferProduct</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-stateprovince" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_StateProvince</MetaPipelinePipelineTaskId>
       <Ordinal>15</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -983,10 +983,10 @@
       <TransformBindingId>TransformScript:15:binding</TransformBindingId>
       <TransformScriptId>TransformScript:15</TransformScriptId>
       <TransformScriptName>H_StateProvince</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:h-store" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.H_Store</MetaPipelinePipelineTaskId>
       <Ordinal>13</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -995,10 +995,10 @@
       <TransformBindingId>TransformScript:13:binding</TransformBindingId>
       <TransformScriptId>TransformScript:13</TransformScriptId>
       <TransformScriptName>H_Store</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-address-address" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_Address_Address</MetaPipelinePipelineTaskId>
       <Ordinal>30</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1007,10 +1007,10 @@
       <TransformBindingId>TransformScript:30:binding</TransformBindingId>
       <TransformScriptId>TransformScript:30</TransformScriptId>
       <TransformScriptName>HS_Address_Address</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-countryregion-countryregion" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_CountryRegion_CountryRegion</MetaPipelinePipelineTaskId>
       <Ordinal>17</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1019,10 +1019,10 @@
       <TransformBindingId>TransformScript:17:binding</TransformBindingId>
       <TransformScriptId>TransformScript:17</TransformScriptId>
       <TransformScriptName>HS_CountryRegion_CountryRegion</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-customer-customer" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_Customer_Customer</MetaPipelinePipelineTaskId>
       <Ordinal>18</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1031,10 +1031,10 @@
       <TransformBindingId>TransformScript:18:binding</TransformBindingId>
       <TransformScriptId>TransformScript:18</TransformScriptId>
       <TransformScriptName>HS_Customer_Customer</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-person-person" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_Person_Person</MetaPipelinePipelineTaskId>
       <Ordinal>19</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1043,10 +1043,10 @@
       <TransformBindingId>TransformScript:19:binding</TransformBindingId>
       <TransformScriptId>TransformScript:19</TransformScriptId>
       <TransformScriptName>HS_Person_Person</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-product-product" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_Product_Product</MetaPipelinePipelineTaskId>
       <Ordinal>20</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1055,10 +1055,10 @@
       <TransformBindingId>TransformScript:20:binding</TransformBindingId>
       <TransformScriptId>TransformScript:20</TransformScriptId>
       <TransformScriptName>HS_Product_Product</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-productcategory-productcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_ProductCategory_ProductCategory</MetaPipelinePipelineTaskId>
       <Ordinal>21</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1067,10 +1067,10 @@
       <TransformBindingId>TransformScript:21:binding</TransformBindingId>
       <TransformScriptId>TransformScript:21</TransformScriptId>
       <TransformScriptName>HS_ProductCategory_ProductCategory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-productsubcategory-productsubcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_ProductSubcategory_ProductSubcategory</MetaPipelinePipelineTaskId>
       <Ordinal>22</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1079,10 +1079,10 @@
       <TransformBindingId>TransformScript:22:binding</TransformBindingId>
       <TransformScriptId>TransformScript:22</TransformScriptId>
       <TransformScriptName>HS_ProductSubcategory_ProductSubcategory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-salesorderdetail-salesorderdetail" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_SalesOrderDetail_SalesOrderDetail</MetaPipelinePipelineTaskId>
       <Ordinal>23</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1091,10 +1091,10 @@
       <TransformBindingId>TransformScript:23:binding</TransformBindingId>
       <TransformScriptId>TransformScript:23</TransformScriptId>
       <TransformScriptName>HS_SalesOrderDetail_SalesOrderDetail</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-salesorderheader-salesorderheader" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_SalesOrderHeader_SalesOrderHeader</MetaPipelinePipelineTaskId>
       <Ordinal>24</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1103,10 +1103,10 @@
       <TransformBindingId>TransformScript:24:binding</TransformBindingId>
       <TransformScriptId>TransformScript:24</TransformScriptId>
       <TransformScriptName>HS_SalesOrderHeader_SalesOrderHeader</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-salesperson-salesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_SalesPerson_SalesPerson</MetaPipelinePipelineTaskId>
       <Ordinal>25</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1115,10 +1115,10 @@
       <TransformBindingId>TransformScript:25:binding</TransformBindingId>
       <TransformScriptId>TransformScript:25</TransformScriptId>
       <TransformScriptName>HS_SalesPerson_SalesPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-salespersonquotahistory-salespersonquotahistory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory</MetaPipelinePipelineTaskId>
       <Ordinal>26</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1127,10 +1127,10 @@
       <TransformBindingId>TransformScript:26:binding</TransformBindingId>
       <TransformScriptId>TransformScript:26</TransformScriptId>
       <TransformScriptName>HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-salesterritory-salesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_SalesTerritory_SalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>27</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1139,10 +1139,10 @@
       <TransformBindingId>TransformScript:27:binding</TransformBindingId>
       <TransformScriptId>TransformScript:27</TransformScriptId>
       <TransformScriptName>HS_SalesTerritory_SalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-specialofferproduct-specialofferproduct" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_SpecialOfferProduct_SpecialOfferProduct</MetaPipelinePipelineTaskId>
       <Ordinal>28</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1151,10 +1151,10 @@
       <TransformBindingId>TransformScript:28:binding</TransformBindingId>
       <TransformScriptId>TransformScript:28</TransformScriptId>
       <TransformScriptName>HS_SpecialOfferProduct_SpecialOfferProduct</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-stateprovince-stateprovince" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_StateProvince_StateProvince</MetaPipelinePipelineTaskId>
       <Ordinal>31</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1163,10 +1163,10 @@
       <TransformBindingId>TransformScript:31:binding</TransformBindingId>
       <TransformScriptId>TransformScript:31</TransformScriptId>
       <TransformScriptName>HS_StateProvince_StateProvince</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:hs-store-store" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.HS_Store_Store</MetaPipelinePipelineTaskId>
       <Ordinal>29</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1175,10 +1175,10 @@
       <TransformBindingId>TransformScript:29:binding</TransformBindingId>
       <TransformScriptId>TransformScript:29</TransformScriptId>
       <TransformScriptName>HS_Store_Store</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-addressstateprovince" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_AddressStateProvince</MetaPipelinePipelineTaskId>
       <Ordinal>47</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1187,10 +1187,10 @@
       <TransformBindingId>TransformScript:47:binding</TransformBindingId>
       <TransformScriptId>TransformScript:47</TransformScriptId>
       <TransformScriptName>L_AddressStateProvince</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-customerperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_CustomerPerson</MetaPipelinePipelineTaskId>
       <Ordinal>32</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1199,10 +1199,10 @@
       <TransformBindingId>TransformScript:32:binding</TransformBindingId>
       <TransformScriptId>TransformScript:32</TransformScriptId>
       <TransformScriptName>L_CustomerPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-customersalesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_CustomerSalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>33</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1211,10 +1211,10 @@
       <TransformBindingId>TransformScript:33:binding</TransformBindingId>
       <TransformScriptId>TransformScript:33</TransformScriptId>
       <TransformScriptName>L_CustomerSalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-customerstore" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_CustomerStore</MetaPipelinePipelineTaskId>
       <Ordinal>34</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1223,10 +1223,10 @@
       <TransformBindingId>TransformScript:34:binding</TransformBindingId>
       <TransformScriptId>TransformScript:34</TransformScriptId>
       <TransformScriptName>L_CustomerStore</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-employeeperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_EmployeePerson</MetaPipelinePipelineTaskId>
       <Ordinal>52</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1235,10 +1235,10 @@
       <TransformBindingId>TransformScript:52:binding</TransformBindingId>
       <TransformScriptId>TransformScript:52</TransformScriptId>
       <TransformScriptName>L_EmployeePerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-productproductsubcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_ProductProductSubcategory</MetaPipelinePipelineTaskId>
       <Ordinal>35</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1247,10 +1247,10 @@
       <TransformBindingId>TransformScript:35:binding</TransformBindingId>
       <TransformScriptId>TransformScript:35</TransformScriptId>
       <TransformScriptName>L_ProductProductSubcategory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-productsubcategoryproductcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_ProductSubcategoryProductCategory</MetaPipelinePipelineTaskId>
       <Ordinal>36</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1259,10 +1259,10 @@
       <TransformBindingId>TransformScript:36:binding</TransformBindingId>
       <TransformScriptId>TransformScript:36</TransformScriptId>
       <TransformScriptName>L_ProductSubcategoryProductCategory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salesorderdetailsalesorderheader" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesOrderDetailSalesOrderHeader</MetaPipelinePipelineTaskId>
       <Ordinal>37</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1271,10 +1271,10 @@
       <TransformBindingId>TransformScript:37:binding</TransformBindingId>
       <TransformScriptId>TransformScript:37</TransformScriptId>
       <TransformScriptName>L_SalesOrderDetailSalesOrderHeader</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salesorderdetailspecialofferproduct" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesOrderDetailSpecialOfferProduct</MetaPipelinePipelineTaskId>
       <Ordinal>38</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1283,10 +1283,10 @@
       <TransformBindingId>TransformScript:38:binding</TransformBindingId>
       <TransformScriptId>TransformScript:38</TransformScriptId>
       <TransformScriptName>L_SalesOrderDetailSpecialOfferProduct</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salesorderheaderaddress-billtoaddressid" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesOrderHeaderAddress_BillToAddressID</MetaPipelinePipelineTaskId>
       <Ordinal>50</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1295,10 +1295,10 @@
       <TransformBindingId>TransformScript:50:binding</TransformBindingId>
       <TransformScriptId>TransformScript:50</TransformScriptId>
       <TransformScriptName>L_SalesOrderHeaderAddress_BillToAddressID</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salesorderheaderaddress-shiptoaddressid" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesOrderHeaderAddress_ShipToAddressID</MetaPipelinePipelineTaskId>
       <Ordinal>51</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1307,10 +1307,10 @@
       <TransformBindingId>TransformScript:51:binding</TransformBindingId>
       <TransformScriptId>TransformScript:51</TransformScriptId>
       <TransformScriptName>L_SalesOrderHeaderAddress_ShipToAddressID</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salesorderheadercustomer" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesOrderHeaderCustomer</MetaPipelinePipelineTaskId>
       <Ordinal>39</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1319,10 +1319,10 @@
       <TransformBindingId>TransformScript:39:binding</TransformBindingId>
       <TransformScriptId>TransformScript:39</TransformScriptId>
       <TransformScriptName>L_SalesOrderHeaderCustomer</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salesorderheadersalesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesOrderHeaderSalesPerson</MetaPipelinePipelineTaskId>
       <Ordinal>40</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1331,10 +1331,10 @@
       <TransformBindingId>TransformScript:40:binding</TransformBindingId>
       <TransformScriptId>TransformScript:40</TransformScriptId>
       <TransformScriptName>L_SalesOrderHeaderSalesPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salesorderheadersalesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesOrderHeaderSalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>41</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1343,10 +1343,10 @@
       <TransformBindingId>TransformScript:41:binding</TransformBindingId>
       <TransformScriptId>TransformScript:41</TransformScriptId>
       <TransformScriptName>L_SalesOrderHeaderSalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salespersonemployee" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesPersonEmployee</MetaPipelinePipelineTaskId>
       <Ordinal>53</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1355,10 +1355,10 @@
       <TransformBindingId>TransformScript:53:binding</TransformBindingId>
       <TransformScriptId>TransformScript:53</TransformScriptId>
       <TransformScriptName>L_SalesPersonEmployee</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salespersonquotahistorysalesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesPersonQuotaHistorySalesPerson</MetaPipelinePipelineTaskId>
       <Ordinal>42</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1367,10 +1367,10 @@
       <TransformBindingId>TransformScript:42:binding</TransformBindingId>
       <TransformScriptId>TransformScript:42</TransformScriptId>
       <TransformScriptName>L_SalesPersonQuotaHistorySalesPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salespersonsalesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesPersonSalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>43</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1379,10 +1379,10 @@
       <TransformBindingId>TransformScript:43:binding</TransformBindingId>
       <TransformScriptId>TransformScript:43</TransformScriptId>
       <TransformScriptName>L_SalesPersonSalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-salesterritorycountryregion" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SalesTerritoryCountryRegion</MetaPipelinePipelineTaskId>
       <Ordinal>44</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1391,10 +1391,10 @@
       <TransformBindingId>TransformScript:44:binding</TransformBindingId>
       <TransformScriptId>TransformScript:44</TransformScriptId>
       <TransformScriptName>L_SalesTerritoryCountryRegion</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-specialofferproductproduct" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_SpecialOfferProductProduct</MetaPipelinePipelineTaskId>
       <Ordinal>45</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1403,10 +1403,10 @@
       <TransformBindingId>TransformScript:45:binding</TransformBindingId>
       <TransformScriptId>TransformScript:45</TransformScriptId>
       <TransformScriptName>L_SpecialOfferProductProduct</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-stateprovincecountryregion" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_StateProvinceCountryRegion</MetaPipelinePipelineTaskId>
       <Ordinal>48</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1415,10 +1415,10 @@
       <TransformBindingId>TransformScript:48:binding</TransformBindingId>
       <TransformScriptId>TransformScript:48</TransformScriptId>
       <TransformScriptName>L_StateProvinceCountryRegion</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-stateprovincesalesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_StateProvinceSalesTerritory</MetaPipelinePipelineTaskId>
       <Ordinal>49</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1427,10 +1427,10 @@
       <TransformBindingId>TransformScript:49:binding</TransformBindingId>
       <TransformScriptId>TransformScript:49</TransformScriptId>
       <TransformScriptName>L_StateProvinceSalesTerritory</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
     <TaskAccessProfile Id="plan-default-pipeline-sourcetoraw:task:l-storesalesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <MetaPipelinePipelineTaskId>SourceToRaw.L_StoreSalesPerson</MetaPipelinePipelineTaskId>
       <Ordinal>46</Ordinal>
       <StatementKind>Insert</StatementKind>
@@ -1439,7 +1439,7 @@
       <TransformBindingId>TransformScript:46:binding</TransformBindingId>
       <TransformScriptId>TransformScript:46</TransformScriptId>
       <TransformScriptName>L_StoreSalesPerson</TransformScriptName>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TaskAccessProfile>
   </TaskAccessProfileList>
 </MetaOrchestration>

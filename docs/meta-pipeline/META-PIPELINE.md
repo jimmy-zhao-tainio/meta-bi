@@ -107,11 +107,8 @@ It does not store XML metadata, connection strings, scheduling policy, watermark
 
 ## Relationship to other docs
 
-- [`../meta-load/META-LOAD.md`](../meta-load/META-LOAD.md) is the broad concern inventory.
 - `META-PIPELINE.md` is the compact grounding note for the first `MetaPipeline` slice.
 - [`META-PIPELINE-MODEL.md`](META-PIPELINE-MODEL.md) is the overarching model sketch for task families and boundaries.
-- [`META-PIPELINE-WORKING-PLAN.md`](META-PIPELINE-WORKING-PLAN.md) is the near-term steering note for growing the executable core without absorbing orchestration policy.
 - [`META-PIPELINE-DB.md`](META-PIPELINE-DB.md) is the operational evidence DB note.
-- [`META-PIPELINE-LOAD-CONCERN-TRIAGE.md`](META-PIPELINE-LOAD-CONCERN-TRIAGE.md) maps broad load concerns to their likely owners and records the remaining MetaPipeline confidence gaps.
 
 If later stages widen into orchestration or richer semantics, they should build on this nucleus rather than replace it.

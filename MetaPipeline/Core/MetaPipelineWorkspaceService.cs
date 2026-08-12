@@ -149,8 +149,8 @@ public sealed class MetaPipelineWorkspaceService
                 TransformScriptId = executionDefinition.TransformScriptId,
                 TransformBindingId = executionDefinition.TransformBindingId
                     ?? throw new MetaPipelineConfigurationException("Transform execution requires a transform binding."),
-                TransformWorkspacePath = Path.GetFullPath(request.TransformWorkspacePath),
-                BindingWorkspacePath = Path.GetFullPath(request.BindingWorkspacePath),
+                TransformWorkspacePath = CreatePortableWorkspaceReference(request.PipelineWorkspacePath, request.TransformWorkspacePath),
+                BindingWorkspacePath = CreatePortableWorkspaceReference(request.PipelineWorkspacePath, request.BindingWorkspacePath),
                 TimeoutSeconds = request.TimeoutSecondsSpecified ? request.TimeoutSeconds!.Value.ToString() : null,
             });
 
@@ -211,8 +211,8 @@ public sealed class MetaPipelineWorkspaceService
             ExecutionConnectionReference = executionConnection,
             TransformScriptId = executionDefinition.TransformScriptId,
             TransformBindingId = transformBindingId,
-            TransformWorkspacePath = Path.GetFullPath(request.TransformWorkspacePath),
-            BindingWorkspacePath = Path.GetFullPath(request.BindingWorkspacePath),
+            TransformWorkspacePath = CreatePortableWorkspaceReference(request.PipelineWorkspacePath, request.TransformWorkspacePath),
+            BindingWorkspacePath = CreatePortableWorkspaceReference(request.PipelineWorkspacePath, request.BindingWorkspacePath),
             TimeoutSeconds = request.TimeoutSecondsSpecified ? request.TimeoutSeconds!.Value.ToString() : null,
         });
 
@@ -614,6 +614,16 @@ public sealed class MetaPipelineWorkspaceService
         return id;
     }
 
+    private static string CreatePortableWorkspaceReference(string pipelineWorkspacePath, string referencedWorkspacePath)
+    {
+        var pipelineRoot = Path.GetFullPath(pipelineWorkspacePath);
+        var referencedRoot = Path.GetFullPath(referencedWorkspacePath);
+        var relativePath = Path.GetRelativePath(pipelineRoot, referencedRoot);
+        return Path.IsPathRooted(relativePath)
+            ? referencedRoot
+            : relativePath.Replace(Path.DirectorySeparatorChar, '/');
+    }
+
     private static string ScopedId(params string[] parts)
     {
         return string.Join(".", parts.Select(NaturalId));
@@ -654,6 +664,7 @@ public sealed record MetaPipelineAddExecutableStepRequest(
 public sealed record MetaPipelineAddStepRequest(
     string PipelineName,
     string StepName,
+    string PipelineWorkspacePath,
     string TransformWorkspacePath,
     string BindingWorkspacePath,
     string Script,

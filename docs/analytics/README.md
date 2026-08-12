@@ -100,10 +100,6 @@ The split follows Microsoft Analysis Services documentation:
 - Tabular models center on tables, columns, relationships, measures, perspectives, roles, partitions, cultures/translations, DAX, object-level security, and calculation groups.
 - Multidimensional models center on databases, cubes, dimensions, attributes, hierarchies, measure groups, dimension usage, partitions, KPIs, calculations, named sets, actions, perspectives, translations, and cell/dimension security.
 
-## Product Evaluation
-
-- [Adventure Works Product Evaluation](ADVENTURE-WORKS-PRODUCT-EVALUATION.md) defines the BI-developer-style recreation pass used to find and fix grounded snags against public Adventure Works data and Analysis Services behavior.
-
 ## Current Workspace
 
 - Conceptual workspace: `MetaAnalytics/Workspaces/MetaAnalytics`

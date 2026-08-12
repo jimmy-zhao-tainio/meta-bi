@@ -1,6 +1,6 @@
 # Transform Binding Coverage
 
-Seeded from [VIEW_SURFACE_REFERENCE.md](/c:/Users/jimmy/Desktop/meta-bi/MetaTransform/Script/Reference/VIEW_SURFACE_REFERENCE.md), but organized around binding concerns rather than syntax inventory.
+Seeded from [VIEW_SURFACE_REFERENCE.md](../../Script/Reference/VIEW_SURFACE_REFERENCE.md), but organized around binding concerns rather than syntax inventory.
 
 Status meanings:
 - `Supported` = binding behavior is implemented for the current sanctioned shapes

@@ -1,8 +1,13 @@
-# MetaTransformScript TPC-DS CLI Integration
+# MetaTransformScript CLI Integration with a Corpus Derived from TPC-DS
 
-This demo imports a TPC-DS query slice (`q01`-`q99`) into a `MetaTransformScript` workspace using per-file `from sql-file` calls with explicit `--target`, then binds all scripts in one `meta-transform-binding bind` run.
+This demo imports a query slice derived from TPC-DS (`q01`-`q99`) into a `MetaTransformScript` workspace using per-file `from sql-file` calls with explicit `--target`, then binds all scripts in one `meta-transform-binding bind` run.
 
 Purpose of this sample is gap-finding, not only green-path demonstration. Parse/export failures are signal and should be used to drive fix slices.
+
+The MetaTransformScript corpus is derived from TPC-DS and is not comparable to
+published TPC-DS results: the corpus is modified for parser and binding coverage
+and does not comply with the TPC-DS Specification. See [SOURCE.md](SOURCE.md)
+and the repository [third-party notices](../../THIRD-PARTY-NOTICES.md).
 
 Current status: full `q01`-`q99` import, one-shot workspace bind, semantic SQL
 module export, manifest-based re-import of emitted SQL, and MetaSql projection diff
@@ -14,7 +19,7 @@ See [CURRENT_GAPS.md](./CURRENT_GAPS.md) for the latest known failures from this
 
 `SchemaWS` is checked in as a one-off schema snapshot for this corpus.
 It includes:
-- TPC-DS source tables used by the corpus.
+- source tables derived from TPC-DS and used by the corpus.
 - `tpcds.v_q01`..`tpcds.v_q99` target table contracts used by binding.
 
 The target rows come from the TPC-DS view metadata workflow: deploy the query

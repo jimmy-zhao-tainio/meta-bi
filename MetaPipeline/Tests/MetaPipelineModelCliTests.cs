@@ -261,6 +261,8 @@ public sealed class MetaPipelineModelCliTests
             Assert.Equal(transformScript.Id, transformExecution.TransformScriptId);
             Assert.Equal("binding:customer-load", transformExecution.TransformBindingId);
             Assert.Equal("30", transformExecution.TimeoutSeconds);
+            Assert.Equal("../transform", transformExecution.TransformWorkspacePath);
+            Assert.Equal("../binding", transformExecution.BindingWorkspacePath);
 
             Assert.Equal(2, model.TargetWriteTaskList.Count);
             var targetWrite = Assert.Single(

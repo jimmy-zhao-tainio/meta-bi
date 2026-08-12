@@ -140,6 +140,7 @@ internal sealed partial class MetaPipelineCommandHandlers
                 new MetaPipeline.MetaPipelineAddStepRequest(
                     parse.PipelineName,
                     parse.StepName,
+                    parse.WorkspacePath,
                     parse.TransformWorkspacePath,
                     parse.BindingWorkspacePath,
                     parse.Script,

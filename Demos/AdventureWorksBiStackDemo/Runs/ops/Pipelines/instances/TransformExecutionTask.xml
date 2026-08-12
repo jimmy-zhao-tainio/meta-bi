@@ -2,724 +2,724 @@
 <MetaPipeline>
   <TransformExecutionTaskList>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_Customer.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_Customer">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:15:binding</TransformBindingId>
       <TransformScriptId>TransformScript:15</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_Date_DueDate.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_Date_DueDate">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:10:binding</TransformBindingId>
       <TransformScriptId>TransformScript:10</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_Date_OrderDate.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_Date_OrderDate">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:9:binding</TransformBindingId>
       <TransformScriptId>TransformScript:9</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_Date_QuotaDate.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_Date_QuotaDate">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:12:binding</TransformBindingId>
       <TransformScriptId>TransformScript:12</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_Date_ShipDate.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_Date_ShipDate">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:11:binding</TransformBindingId>
       <TransformScriptId>TransformScript:11</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_Geography.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_Geography">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:14:binding</TransformBindingId>
       <TransformScriptId>TransformScript:14</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_OrderStatus_1_InProcess.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_OrderStatus_1_InProcess">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:3:binding</TransformBindingId>
       <TransformScriptId>TransformScript:3</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_OrderStatus_2_Approved.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_OrderStatus_2_Approved">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:4:binding</TransformBindingId>
       <TransformScriptId>TransformScript:4</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_OrderStatus_3_Backordered.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_OrderStatus_3_Backordered">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:5:binding</TransformBindingId>
       <TransformScriptId>TransformScript:5</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_OrderStatus_4_Rejected.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_OrderStatus_4_Rejected">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:6:binding</TransformBindingId>
       <TransformScriptId>TransformScript:6</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_OrderStatus_5_Shipped.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_OrderStatus_5_Shipped">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:7:binding</TransformBindingId>
       <TransformScriptId>TransformScript:7</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_OrderStatus_6_Cancelled.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_OrderStatus_6_Cancelled">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:8:binding</TransformBindingId>
       <TransformScriptId>TransformScript:8</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_Product.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_Product">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:13:binding</TransformBindingId>
       <TransformScriptId>TransformScript:13</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_SalesChannel_Online.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_SalesChannel_Online">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:1:binding</TransformBindingId>
       <TransformScriptId>TransformScript:1</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_SalesChannel_Store.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_SalesChannel_Store">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:2:binding</TransformBindingId>
       <TransformScriptId>TransformScript:2</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_Salesperson.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_Salesperson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:16:binding</TransformBindingId>
       <TransformScriptId>TransformScript:16</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Dim_SalesTerritory.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Dim_SalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:17:binding</TransformBindingId>
       <TransformScriptId>TransformScript:17</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Fact_SalesLine.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Fact_SalesLine">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:19:binding</TransformBindingId>
       <TransformScriptId>TransformScript:19</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Fact_SalesOrder.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Fact_SalesOrder">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:18:binding</TransformBindingId>
       <TransformScriptId>TransformScript:18</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="BusinessToWarehouse.Fact_SalespersonQuota.TransformExecution" ExecutionConnectionReferenceId="BusinessToWarehouse.AW_DW_SQL" PipelineTaskId="BusinessToWarehouse.Fact_SalespersonQuota">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../dw/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:20:binding</TransformBindingId>
       <TransformScriptId>TransformScript:20</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\dw\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../dw/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_Address_AddressProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_Address_AddressProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:15:binding</TransformBindingId>
       <TransformScriptId>TransformScript:15</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_CountryRegion_CountryRegionProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_CountryRegion_CountryRegionProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:16:binding</TransformBindingId>
       <TransformScriptId>TransformScript:16</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_Customer_CustomerProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_Customer_CustomerProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:17:binding</TransformBindingId>
       <TransformScriptId>TransformScript:17</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_Person_PersonProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_Person_PersonProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:18:binding</TransformBindingId>
       <TransformScriptId>TransformScript:18</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_ProductCategory_ProductCategoryProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_ProductCategory_ProductCategoryProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:20:binding</TransformBindingId>
       <TransformScriptId>TransformScript:20</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_ProductSubcategory_ProductSubcategoryProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_ProductSubcategory_ProductSubcategoryProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:21:binding</TransformBindingId>
       <TransformScriptId>TransformScript:21</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_Product_ProductProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_Product_ProductProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:19:binding</TransformBindingId>
       <TransformScriptId>TransformScript:19</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_SalesOrderLine_SalesOrderLineDetail.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_SalesOrderLine_SalesOrderLineDetail">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:23:binding</TransformBindingId>
       <TransformScriptId>TransformScript:23</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_SalesOrder_SalesOrderHeader.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_SalesOrder_SalesOrderHeader">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:22:binding</TransformBindingId>
       <TransformScriptId>TransformScript:22</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_SalesPersonQuota_SalesPersonQuotaProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_SalesPersonQuota_SalesPersonQuotaProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:25:binding</TransformBindingId>
       <TransformScriptId>TransformScript:25</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_SalesPerson_SalesPersonProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_SalesPerson_SalesPersonProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:24:binding</TransformBindingId>
       <TransformScriptId>TransformScript:24</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_SalesTerritory_SalesTerritoryProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_SalesTerritory_SalesTerritoryProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:26:binding</TransformBindingId>
       <TransformScriptId>TransformScript:26</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_StateProvince_StateProvinceProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_StateProvince_StateProvinceProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:27:binding</TransformBindingId>
       <TransformScriptId>TransformScript:27</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BHS_Store_StoreProfile.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BHS_Store_StoreProfile">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:28:binding</TransformBindingId>
       <TransformScriptId>TransformScript:28</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_Address.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_Address">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:1:binding</TransformBindingId>
       <TransformScriptId>TransformScript:1</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_CountryRegion.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_CountryRegion">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:2:binding</TransformBindingId>
       <TransformScriptId>TransformScript:2</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_Customer.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_Customer">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:3:binding</TransformBindingId>
       <TransformScriptId>TransformScript:3</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_Person.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_Person">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:4:binding</TransformBindingId>
       <TransformScriptId>TransformScript:4</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_Product.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_Product">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:5:binding</TransformBindingId>
       <TransformScriptId>TransformScript:5</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_ProductCategory.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_ProductCategory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:6:binding</TransformBindingId>
       <TransformScriptId>TransformScript:6</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_ProductSubcategory.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_ProductSubcategory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:7:binding</TransformBindingId>
       <TransformScriptId>TransformScript:7</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_SalesOrder.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_SalesOrder">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:8:binding</TransformBindingId>
       <TransformScriptId>TransformScript:8</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_SalesOrderLine.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_SalesOrderLine">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:9:binding</TransformBindingId>
       <TransformScriptId>TransformScript:9</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_SalesPerson.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_SalesPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:10:binding</TransformBindingId>
       <TransformScriptId>TransformScript:10</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_SalesPersonQuota.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_SalesPersonQuota">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:11:binding</TransformBindingId>
       <TransformScriptId>TransformScript:11</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_SalesTerritory.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_SalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:12:binding</TransformBindingId>
       <TransformScriptId>TransformScript:12</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_StateProvince.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_StateProvince">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:13:binding</TransformBindingId>
       <TransformScriptId>TransformScript:13</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BH_Store.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BH_Store">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:14:binding</TransformBindingId>
       <TransformScriptId>TransformScript:14</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_AddressStateProvince.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_AddressStateProvince">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:29:binding</TransformBindingId>
       <TransformScriptId>TransformScript:29</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_CustomerPerson.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_CustomerPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:30:binding</TransformBindingId>
       <TransformScriptId>TransformScript:30</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_CustomerStore.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_CustomerStore">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:31:binding</TransformBindingId>
       <TransformScriptId>TransformScript:31</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_ProductSubcategoryAssignment.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_ProductSubcategoryAssignment">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:32:binding</TransformBindingId>
       <TransformScriptId>TransformScript:32</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_ProductSubcategoryCategory.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_ProductSubcategoryCategory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:33:binding</TransformBindingId>
       <TransformScriptId>TransformScript:33</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesOrderBillToAddress.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesOrderBillToAddress">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:34:binding</TransformBindingId>
       <TransformScriptId>TransformScript:34</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesOrderCustomer.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesOrderCustomer">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:35:binding</TransformBindingId>
       <TransformScriptId>TransformScript:35</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesOrderLineProduct.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesOrderLineProduct">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:36:binding</TransformBindingId>
       <TransformScriptId>TransformScript:36</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesOrderLineSalesOrder.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesOrderLineSalesOrder">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:37:binding</TransformBindingId>
       <TransformScriptId>TransformScript:37</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesOrderSalesPerson.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesOrderSalesPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:38:binding</TransformBindingId>
       <TransformScriptId>TransformScript:38</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesOrderSalesTerritory.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesOrderSalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:40:binding</TransformBindingId>
       <TransformScriptId>TransformScript:40</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesOrderShipToAddress.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesOrderShipToAddress">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:39:binding</TransformBindingId>
       <TransformScriptId>TransformScript:39</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesPersonPerson.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesPersonPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:41:binding</TransformBindingId>
       <TransformScriptId>TransformScript:41</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesPersonQuotaSalesPerson.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesPersonQuotaSalesPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:42:binding</TransformBindingId>
       <TransformScriptId>TransformScript:42</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesPersonSalesTerritory.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesPersonSalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:43:binding</TransformBindingId>
       <TransformScriptId>TransformScript:43</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_SalesTerritoryCountryRegion.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_SalesTerritoryCountryRegion">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:44:binding</TransformBindingId>
       <TransformScriptId>TransformScript:44</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_StateProvinceCountryRegion.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_StateProvinceCountryRegion">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:45:binding</TransformBindingId>
       <TransformScriptId>TransformScript:45</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_StateProvinceSalesTerritory.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_StateProvinceSalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:46:binding</TransformBindingId>
       <TransformScriptId>TransformScript:46</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="RawToBusiness.BL_StoreSalesPerson.TransformExecution" ExecutionConnectionReferenceId="RawToBusiness.AW_BDV_SQL" PipelineTaskId="RawToBusiness.BL_StoreSalesPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../bdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:47:binding</TransformBindingId>
       <TransformScriptId>TransformScript:47</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\bdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../bdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_Address_Address.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_Address_Address">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:30:binding</TransformBindingId>
       <TransformScriptId>TransformScript:30</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_CountryRegion_CountryRegion.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_CountryRegion_CountryRegion">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:17:binding</TransformBindingId>
       <TransformScriptId>TransformScript:17</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_Customer_Customer.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_Customer_Customer">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:18:binding</TransformBindingId>
       <TransformScriptId>TransformScript:18</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_Person_Person.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_Person_Person">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:19:binding</TransformBindingId>
       <TransformScriptId>TransformScript:19</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_ProductCategory_ProductCategory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_ProductCategory_ProductCategory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:21:binding</TransformBindingId>
       <TransformScriptId>TransformScript:21</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_ProductSubcategory_ProductSubcategory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_ProductSubcategory_ProductSubcategory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:22:binding</TransformBindingId>
       <TransformScriptId>TransformScript:22</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_Product_Product.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_Product_Product">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:20:binding</TransformBindingId>
       <TransformScriptId>TransformScript:20</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_SalesOrderDetail_SalesOrderDetail.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_SalesOrderDetail_SalesOrderDetail">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:23:binding</TransformBindingId>
       <TransformScriptId>TransformScript:23</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_SalesOrderHeader_SalesOrderHeader.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_SalesOrderHeader_SalesOrderHeader">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:24:binding</TransformBindingId>
       <TransformScriptId>TransformScript:24</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:26:binding</TransformBindingId>
       <TransformScriptId>TransformScript:26</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_SalesPerson_SalesPerson.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_SalesPerson_SalesPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:25:binding</TransformBindingId>
       <TransformScriptId>TransformScript:25</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_SalesTerritory_SalesTerritory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_SalesTerritory_SalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:27:binding</TransformBindingId>
       <TransformScriptId>TransformScript:27</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_SpecialOfferProduct_SpecialOfferProduct.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_SpecialOfferProduct_SpecialOfferProduct">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:28:binding</TransformBindingId>
       <TransformScriptId>TransformScript:28</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_StateProvince_StateProvince.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_StateProvince_StateProvince">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:31:binding</TransformBindingId>
       <TransformScriptId>TransformScript:31</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.HS_Store_Store.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.HS_Store_Store">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:29:binding</TransformBindingId>
       <TransformScriptId>TransformScript:29</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_Address.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_Address">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:14:binding</TransformBindingId>
       <TransformScriptId>TransformScript:14</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_CountryRegion.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_CountryRegion">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:1:binding</TransformBindingId>
       <TransformScriptId>TransformScript:1</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_Customer.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_Customer">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:2:binding</TransformBindingId>
       <TransformScriptId>TransformScript:2</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_Employee.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_Employee">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:16:binding</TransformBindingId>
       <TransformScriptId>TransformScript:16</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_Person.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_Person">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:3:binding</TransformBindingId>
       <TransformScriptId>TransformScript:3</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_Product.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_Product">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:4:binding</TransformBindingId>
       <TransformScriptId>TransformScript:4</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_ProductCategory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_ProductCategory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:5:binding</TransformBindingId>
       <TransformScriptId>TransformScript:5</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_ProductSubcategory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_ProductSubcategory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:6:binding</TransformBindingId>
       <TransformScriptId>TransformScript:6</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_SalesOrderDetail.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_SalesOrderDetail">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:7:binding</TransformBindingId>
       <TransformScriptId>TransformScript:7</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_SalesOrderHeader.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_SalesOrderHeader">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:8:binding</TransformBindingId>
       <TransformScriptId>TransformScript:8</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_SalesPerson.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_SalesPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:9:binding</TransformBindingId>
       <TransformScriptId>TransformScript:9</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_SalesPersonQuotaHistory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_SalesPersonQuotaHistory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:10:binding</TransformBindingId>
       <TransformScriptId>TransformScript:10</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_SalesTerritory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_SalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:11:binding</TransformBindingId>
       <TransformScriptId>TransformScript:11</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_SpecialOfferProduct.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_SpecialOfferProduct">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:12:binding</TransformBindingId>
       <TransformScriptId>TransformScript:12</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_StateProvince.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_StateProvince">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:15:binding</TransformBindingId>
       <TransformScriptId>TransformScript:15</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.H_Store.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.H_Store">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:13:binding</TransformBindingId>
       <TransformScriptId>TransformScript:13</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_AddressStateProvince.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_AddressStateProvince">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:47:binding</TransformBindingId>
       <TransformScriptId>TransformScript:47</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_CustomerPerson.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_CustomerPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:32:binding</TransformBindingId>
       <TransformScriptId>TransformScript:32</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_CustomerSalesTerritory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_CustomerSalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:33:binding</TransformBindingId>
       <TransformScriptId>TransformScript:33</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_CustomerStore.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_CustomerStore">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:34:binding</TransformBindingId>
       <TransformScriptId>TransformScript:34</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_EmployeePerson.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_EmployeePerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:52:binding</TransformBindingId>
       <TransformScriptId>TransformScript:52</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_ProductProductSubcategory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_ProductProductSubcategory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:35:binding</TransformBindingId>
       <TransformScriptId>TransformScript:35</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_ProductSubcategoryProductCategory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_ProductSubcategoryProductCategory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:36:binding</TransformBindingId>
       <TransformScriptId>TransformScript:36</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesOrderDetailSalesOrderHeader.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesOrderDetailSalesOrderHeader">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:37:binding</TransformBindingId>
       <TransformScriptId>TransformScript:37</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesOrderDetailSpecialOfferProduct.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesOrderDetailSpecialOfferProduct">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:38:binding</TransformBindingId>
       <TransformScriptId>TransformScript:38</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesOrderHeaderAddress_BillToAddressID.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesOrderHeaderAddress_BillToAddressID">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:50:binding</TransformBindingId>
       <TransformScriptId>TransformScript:50</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesOrderHeaderAddress_ShipToAddressID.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesOrderHeaderAddress_ShipToAddressID">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:51:binding</TransformBindingId>
       <TransformScriptId>TransformScript:51</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesOrderHeaderCustomer.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesOrderHeaderCustomer">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:39:binding</TransformBindingId>
       <TransformScriptId>TransformScript:39</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesOrderHeaderSalesPerson.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesOrderHeaderSalesPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:40:binding</TransformBindingId>
       <TransformScriptId>TransformScript:40</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesOrderHeaderSalesTerritory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesOrderHeaderSalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:41:binding</TransformBindingId>
       <TransformScriptId>TransformScript:41</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesPersonEmployee.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesPersonEmployee">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:53:binding</TransformBindingId>
       <TransformScriptId>TransformScript:53</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesPersonQuotaHistorySalesPerson.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesPersonQuotaHistorySalesPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:42:binding</TransformBindingId>
       <TransformScriptId>TransformScript:42</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesPersonSalesTerritory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesPersonSalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:43:binding</TransformBindingId>
       <TransformScriptId>TransformScript:43</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SalesTerritoryCountryRegion.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SalesTerritoryCountryRegion">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:44:binding</TransformBindingId>
       <TransformScriptId>TransformScript:44</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_SpecialOfferProductProduct.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_SpecialOfferProductProduct">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:45:binding</TransformBindingId>
       <TransformScriptId>TransformScript:45</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_StateProvinceCountryRegion.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_StateProvinceCountryRegion">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:48:binding</TransformBindingId>
       <TransformScriptId>TransformScript:48</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_StateProvinceSalesTerritory.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_StateProvinceSalesTerritory">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:49:binding</TransformBindingId>
       <TransformScriptId>TransformScript:49</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
     <TransformExecutionTask Id="SourceToRaw.L_StoreSalesPerson.TransformExecution" ExecutionConnectionReferenceId="SourceToRaw.AW_RDV_SQL" PipelineTaskId="SourceToRaw.L_StoreSalesPerson">
-      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Binding</BindingWorkspacePath>
+      <BindingWorkspacePath>../../rdv/Binding</BindingWorkspacePath>
       <TransformBindingId>TransformScript:46:binding</TransformBindingId>
       <TransformScriptId>TransformScript:46</TransformScriptId>
-      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Demos\AdventureWorksBiStackDemo\Runs\rdv\Transforms</TransformWorkspacePath>
+      <TransformWorkspacePath>../../rdv/Transforms</TransformWorkspacePath>
     </TransformExecutionTask>
   </TransformExecutionTaskList>
 </MetaPipeline>

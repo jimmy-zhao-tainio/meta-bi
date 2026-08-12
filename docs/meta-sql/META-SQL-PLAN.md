@@ -13,7 +13,7 @@ The current CLI surface is:
 - `deploy-plan`: extract live schema when the target database exists, otherwise treat live as empty, compute differences, run feasibility checks, write deploy manifest.
 - `deploy`: load manifest, validate source/live fingerprints and block-free status, create the target database only when the manifest explicitly expects missing live, then execute manifest actions.
 
-`meta-sql execute` is intentionally not part of this modeled deployment surface. It remains legacy demo glue pending removal; see `docs/meta-sql/META-SQL-EXECUTE-RETIREMENT.md`.
+`meta-sql execute` is intentionally not part of this modeled deployment surface.
 
 ## Current Command Surface
 

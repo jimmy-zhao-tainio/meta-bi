@@ -14,7 +14,7 @@ If meaning needs to survive generation, round-trip, or translation, it must be m
 XML, SQL, C#, and future forms are working surfaces over the same modeled structure, and no surface should gain semantic authority just because it is the current persistence format.
 XML workspace files are important deterministic artifacts, but they are not product truth above natural SQL or C# representation.
 
-Semantic precision must still be readable to both humans and agents, but prose cannot rescue vague model surfaces.
+Semantic precision must still be readable to both people and automated tooling, but prose cannot rescue vague model surfaces.
 Do not split or name concepts so finely that the reader can no longer understand the model surface.
 Do not rely on surrounding documentation to teach hidden semantics into a weak name or weak shape.
 If a technically precise structure obscures the domain meaning, improve the names, types, prose, or model boundary before accepting it.

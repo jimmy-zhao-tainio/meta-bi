@@ -21,7 +21,6 @@
 - [MetaDataQuality](meta-data-quality/META-DATA-QUALITY.md)
 - [MetaDataQuality extension notes](meta-data-quality/META-DATA-QUALITY-EXT.md)
 - [MetaDataWarehouse](data-warehouse/README.md)
-- [MetaLoad concern inventory](meta-load/META-LOAD.md)
 - [MetaOrchestration](orchestration/META-ORCHESTRATION.md)
 - [MetaPipeline](meta-pipeline/META-PIPELINE.md)
 - [MetaSql plan](meta-sql/META-SQL-PLAN.md)

@@ -60,9 +60,11 @@ public sealed class MetaPipelineModeledExecutionResolver
 
             var transformWorkspacePath = RequireWorkspacePath(
                 transformExecution.TransformWorkspacePath,
+                pipelineWorkspacePath,
                 $"Transform task '{pipelineTask.Name}' must name TransformWorkspacePath.");
             var bindingWorkspacePath = RequireWorkspacePath(
                 transformExecution.BindingWorkspacePath,
+                pipelineWorkspacePath,
                 $"Transform task '{pipelineTask.Name}' must name BindingWorkspacePath.");
             var transformScriptId = RequireValue(
                 transformExecution.TransformScriptId,
@@ -231,6 +233,7 @@ public sealed class MetaPipelineModeledExecutionResolver
                 model,
                 pipeline,
                 pipelineTask,
+                pipelineWorkspacePath,
                 transformExecution
                 ?? throw new MetaPipelineConfigurationException(
                     $"Pipeline task '{pipelineTask.Name}' is not an executable or transform execution step."));
@@ -279,13 +282,16 @@ public sealed class MetaPipelineModeledExecutionResolver
         MetaPipelineModel model,
         Pipeline pipeline,
         PipelineTask transformTask,
+        string pipelineWorkspacePath,
         TransformExecutionTask transformExecution)
     {
         var transformWorkspacePath = RequireWorkspacePath(
             transformExecution.TransformWorkspacePath,
+            pipelineWorkspacePath,
             $"Transform task '{transformTask.Name}' must name TransformWorkspacePath.");
         var bindingWorkspacePath = RequireWorkspacePath(
             transformExecution.BindingWorkspacePath,
+            pipelineWorkspacePath,
             $"Transform task '{transformTask.Name}' must name BindingWorkspacePath.");
         var transformScriptId = RequireValue(
             transformExecution.TransformScriptId,
@@ -842,10 +848,10 @@ public sealed class MetaPipelineModeledExecutionResolver
             ? null
             : value.Trim();
 
-    private static string RequireWorkspacePath(string? path, string errorMessage) =>
+    private static string RequireWorkspacePath(string? path, string pipelineWorkspacePath, string errorMessage) =>
         string.IsNullOrWhiteSpace(path)
             ? throw new MetaPipelineConfigurationException(errorMessage)
-            : Path.GetFullPath(path);
+            : Path.GetFullPath(path, pipelineWorkspacePath);
 
     private static string RenderColumnShape(IEnumerable<(int Ordinal, string Name)> columns) =>
         string.Join(", ", columns.Select(item => item.Ordinal.ToString() + ":" + item.Name));

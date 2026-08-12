@@ -56,7 +56,7 @@ Dependency ordering, write determinism, and runtime synchronization are separate
 - `HasConstraints`
 - `RequiresPolicy`
 
-Invalid and policy-requiring workspaces are still saved so the issues can be reviewed, corrected, and re-run by users or agents. Policy corrections are also modeled in the workspace rather than passed as ad-hoc command memory.
+Invalid and policy-requiring workspaces are still saved so the issues can be reviewed, corrected, and re-run by users or automation. Policy corrections are also modeled in the workspace rather than passed as ad-hoc command memory.
 
 ## Automatic Inference
 

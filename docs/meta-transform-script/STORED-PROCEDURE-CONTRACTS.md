@@ -92,6 +92,6 @@ Operations become ordered object accesses:
 
 Task object effects are classified from the ordered accesses. A reset followed by an append is treated as a replacement-style load; an append followed by a reset is treated as a final reset.
 
-## Agent Guidance
+## Authoring Guidance
 
-Agents should treat a stored procedure contract as a reviewed declaration, not a guess. Read the procedure text and any available source schema before writing the contract. When unsure, leave the contract missing or use `--notes` to record the evidence that made the declaration safe. Do not create extra declaration rows for objects that are only mentioned in comments, dynamic strings, temp-table implementation details, or unmodeled external systems.
+Treat a stored procedure contract as a reviewed declaration, not a guess. Read the procedure text and any available source schema before writing the contract. When unsure, leave the contract missing or use `--notes` to record the evidence that made the declaration safe. Do not create extra declaration rows for objects that are only mentioned in comments, dynamic strings, temp-table implementation details, or unmodeled external systems.

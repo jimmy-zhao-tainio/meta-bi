@@ -40,7 +40,7 @@ Use it as a first-class constraint, not an optional note.
 - Bounded support and explicit unsupported syntax do not make either model
   experimental. Product model changes still require deliberate review.
 
-## Codex Rules
+## Architecture and Review Rules
 
 - Plan first for difficult or architectural tasks.
 - Keep the abstraction level honest. Do not land "interesting artifacts" at the wrong layer.

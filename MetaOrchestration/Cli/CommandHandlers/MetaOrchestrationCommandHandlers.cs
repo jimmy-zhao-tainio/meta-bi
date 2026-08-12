@@ -35,7 +35,15 @@ internal sealed class MetaOrchestrationCommandHandlers
             using var activity = CliActivityLine.Start("Creating");
             var service = new MetaOrchestrationAnalysisService();
             var result = service.Analyze(request);
-            var model = service.CreateModel(result, pipelineWorkspacePath);
+            var outputWorkspacePath = new[]
+                {
+                    invocation.Optional("output-xml"),
+                    invocation.Optional("output-csharp"),
+                    invocation.Optional("output-sql"),
+                }
+                .FirstOrDefault(static path => !string.IsNullOrWhiteSpace(path))
+                ?? throw new InvalidOperationException("An output workspace path is required.");
+            var model = service.CreatePortableModel(result, pipelineWorkspacePath, outputWorkspacePath);
             await workspaces.CreateAsync("output", model).ConfigureAwait(false);
 
             if (!result.IsCompleteDag)

@@ -298,7 +298,11 @@ public sealed class MetaOrchestrationAnalysisServiceTests
             Assert.Empty(task.ObjectAccesses);
             Assert.Empty(result.TaskObjectEffects);
 
-            var model = service.CreateModel(result, pipelineWorkspace);
+            var model = service.CreatePortableModel(
+                result,
+                pipelineWorkspace,
+                Path.Combine(tempRoot, "Orchestration"));
+            Assert.Equal("../Pipeline", Assert.Single(model.PipelineReferenceList).PipelineWorkspacePath);
             var runPlan = new MetaOrchestrationRunPlanningService().BuildRunPlan(model);
             Assert.Equal("Ready", runPlan.Status);
             var plannedTask = Assert.Single(model.PlannedTaskList);
