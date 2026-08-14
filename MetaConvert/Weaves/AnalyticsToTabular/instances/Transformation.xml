@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TransformationList>
+    <Transformation Id="forward/TabularColumn" DirectionId="forward" SelectStatementId="SelectStatement:34">
+      <TargetEntityName>TabularColumn</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularColumnPermission" DirectionId="forward" SelectStatementId="SelectStatement:19">
+      <TargetEntityName>TabularColumnPermission</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularColumnTranslation" DirectionId="forward" SelectStatementId="SelectStatement:22">
+      <TargetEntityName>TabularColumnTranslation</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularCulture" DirectionId="forward" SelectStatementId="SelectStatement:20">
+      <TargetEntityName>TabularCulture</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularDataSource" DirectionId="forward" SelectStatementId="SelectStatement:2">
+      <TargetEntityName>TabularDataSource</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularHierarchy" DirectionId="forward" SelectStatementId="SelectStatement:6">
+      <TargetEntityName>TabularHierarchy</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularHierarchyLevel" DirectionId="forward" SelectStatementId="SelectStatement:7">
+      <TargetEntityName>TabularHierarchyLevel</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularHierarchyTranslation" DirectionId="forward" SelectStatementId="SelectStatement:23">
+      <TargetEntityName>TabularHierarchyTranslation</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularMeasure" DirectionId="forward" SelectStatementId="SelectStatement:9">
+      <TargetEntityName>TabularMeasure</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularMeasureTranslation" DirectionId="forward" SelectStatementId="SelectStatement:24">
+      <TargetEntityName>TabularMeasureTranslation</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularModel" DirectionId="forward" SelectStatementId="SelectStatement:1">
+      <TargetEntityName>TabularModel</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularPerspective" DirectionId="forward" SelectStatementId="SelectStatement:10">
+      <TargetEntityName>TabularPerspective</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularPerspectiveColumn" DirectionId="forward" SelectStatementId="SelectStatement:12">
+      <TargetEntityName>TabularPerspectiveColumn</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularPerspectiveHierarchy" DirectionId="forward" SelectStatementId="SelectStatement:13">
+      <TargetEntityName>TabularPerspectiveHierarchy</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularPerspectiveMeasure" DirectionId="forward" SelectStatementId="SelectStatement:14">
+      <TargetEntityName>TabularPerspectiveMeasure</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularPerspectiveTable" DirectionId="forward" SelectStatementId="SelectStatement:11">
+      <TargetEntityName>TabularPerspectiveTable</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularPerspectiveTranslation" DirectionId="forward" SelectStatementId="SelectStatement:25">
+      <TargetEntityName>TabularPerspectiveTranslation</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularRelationship" DirectionId="forward" SelectStatementId="SelectStatement:8">
+      <TargetEntityName>TabularRelationship</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularRoleFilter" DirectionId="forward" SelectStatementId="SelectStatement:17">
+      <TargetEntityName>TabularRoleFilter</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularRoleMember" DirectionId="forward" SelectStatementId="SelectStatement:16">
+      <TargetEntityName>TabularRoleMember</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularSecurityRole" DirectionId="forward" SelectStatementId="SelectStatement:15">
+      <TargetEntityName>TabularSecurityRole</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularSortByColumn" DirectionId="forward" SelectStatementId="SelectStatement:5">
+      <TargetEntityName>TabularSortByColumn</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularTable" DirectionId="forward" SelectStatementId="SelectStatement:3">
+      <TargetEntityName>TabularTable</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularTablePermission" DirectionId="forward" SelectStatementId="SelectStatement:18">
+      <TargetEntityName>TabularTablePermission</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TabularTableTranslation" DirectionId="forward" SelectStatementId="SelectStatement:21">
+      <TargetEntityName>TabularTableTranslation</TargetEntityName>
+    </Transformation>
+  </TransformationList>
+</MetaWeave>

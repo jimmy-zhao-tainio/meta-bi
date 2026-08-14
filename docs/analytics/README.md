@@ -56,7 +56,7 @@ Measures are deliberately source-backed base measurements: a `Measure` points at
 
 ## Conversion Boundary
 
-`meta-convert analytics-to-tabular` maps common analytics rows to `MetaTabular`. Source-backed base measures become deterministic tabular measures using the declared aggregate function and source attribute.
+The sanctioned [`AnalyticsToTabular` MetaWeave workspace](../../MetaConvert/Weaves/AnalyticsToTabular) maps common analytics rows to `MetaTabular`. Source-backed base measures become deterministic tabular measures using the declared aggregate function and source attribute. The existing `meta-convert analytics-to-tabular` implementation remains an executable compatibility oracle while the modeled weave is adopted.
 
 `meta-convert analytics-to-multi-dimensional` maps common analytics rows to `MetaMultiDimensional`. Source-backed base measures become measure group measures using the declared aggregate function and source attribute, and tabular-only security remains rejected clearly.
 

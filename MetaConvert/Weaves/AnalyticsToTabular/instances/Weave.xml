@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <WeaveList>
+    <Weave Id="AnalyticsToTabular">
+      <LeftModelName>MetaAnalytics</LeftModelName>
+      <RightModelName>MetaTabular</RightModelName>
+    </Weave>
+  </WeaveList>
+</MetaWeave>

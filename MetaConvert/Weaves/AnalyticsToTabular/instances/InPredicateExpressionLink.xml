@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <InPredicateExpressionLinkList>
+    <InPredicateExpressionLink Id="InPredicateExpressionLink:1" InPredicateId="InPredicate:1" ScalarExpressionId="ScalarExpression:71" />
+    <InPredicateExpressionLink Id="InPredicateExpressionLink:2" InPredicateId="InPredicate:2" ScalarExpressionId="ScalarExpression:87" />
+    <InPredicateExpressionLink Id="InPredicateExpressionLink:3" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:211" />
+  </InPredicateExpressionLinkList>
+</MetaWeave>

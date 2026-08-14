@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <InPredicateValuesItemList>
+    <InPredicateValuesItem Id="InPredicateValuesItem:1" InPredicateId="InPredicate:1" ScalarExpressionId="ScalarExpression:72">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:10" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:217">
+      <Ordinal>5</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:11" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:218">
+      <Ordinal>6</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:12" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:219">
+      <Ordinal>7</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:2" InPredicateId="InPredicate:1" ScalarExpressionId="ScalarExpression:73">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:3" InPredicateId="InPredicate:2" ScalarExpressionId="ScalarExpression:88">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:4" InPredicateId="InPredicate:2" ScalarExpressionId="ScalarExpression:89">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:5" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:212">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:6" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:213">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:7" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:214">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:8" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:215">
+      <Ordinal>3</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:9" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:216">
+      <Ordinal>4</Ordinal>
+    </InPredicateValuesItem>
+  </InPredicateValuesItemList>
+</MetaWeave>

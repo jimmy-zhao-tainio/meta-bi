@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QualifiedJoinSearchConditionLinkList>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:1" BooleanExpressionId="BooleanExpression:7" QualifiedJoinId="QualifiedJoin:1" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:2" BooleanExpressionId="BooleanExpression:8" QualifiedJoinId="QualifiedJoin:2" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:3" BooleanExpressionId="BooleanExpression:9" QualifiedJoinId="QualifiedJoin:3" />
+  </QualifiedJoinSearchConditionLinkList>
+</MetaWeave>

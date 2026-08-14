@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <LiteralList>
+    <Literal Id="Literal:1" ValueExpressionId="ValueExpression:1">
+      <Value>1500</Value>
+    </Literal>
+    <Literal Id="Literal:10" ValueExpressionId="ValueExpression:10">
+      <Value>MIN</Value>
+    </Literal>
+    <Literal Id="Literal:11" ValueExpressionId="ValueExpression:11">
+      <Value>MAX</Value>
+    </Literal>
+    <Literal Id="Literal:12" ValueExpressionId="ValueExpression:12">
+      <Value>MAX</Value>
+    </Literal>
+    <Literal Id="Literal:13" ValueExpressionId="ValueExpression:13">
+      <Value>AVERAGE</Value>
+    </Literal>
+    <Literal Id="Literal:14" ValueExpressionId="ValueExpression:14">
+      <Value>AVG</Value>
+    </Literal>
+    <Literal Id="Literal:15" ValueExpressionId="ValueExpression:15">
+      <Value>AVERAGE</Value>
+    </Literal>
+    <Literal Id="Literal:16" ValueExpressionId="ValueExpression:16">
+      <Value></Value>
+    </Literal>
+    <Literal Id="Literal:17" ValueExpressionId="ValueExpression:17">
+      <Value>('</Value>
+    </Literal>
+    <Literal Id="Literal:18" ValueExpressionId="ValueExpression:18">
+      <Value>'</Value>
+    </Literal>
+    <Literal Id="Literal:19" ValueExpressionId="ValueExpression:19">
+      <Value>''</Value>
+    </Literal>
+    <Literal Id="Literal:2" ValueExpressionId="ValueExpression:2">
+      <Value>SUM</Value>
+    </Literal>
+    <Literal Id="Literal:20" ValueExpressionId="ValueExpression:20">
+      <Value>'[</Value>
+    </Literal>
+    <Literal Id="Literal:21" ValueExpressionId="ValueExpression:21">
+      <Value>]</Value>
+    </Literal>
+    <Literal Id="Literal:22" ValueExpressionId="ValueExpression:22">
+      <Value>]]</Value>
+    </Literal>
+    <Literal Id="Literal:23" ValueExpressionId="ValueExpression:23">
+      <Value>])</Value>
+    </Literal>
+    <Literal Id="Literal:26" ValueExpressionId="ValueExpression:26">
+      <Value>DAX</Value>
+    </Literal>
+    <Literal Id="Literal:27" ValueExpressionId="ValueExpression:27">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:28" ValueExpressionId="ValueExpression:28">
+      <Value>SUM</Value>
+    </Literal>
+    <Literal Id="Literal:29" ValueExpressionId="ValueExpression:29">
+      <Value>COUNT</Value>
+    </Literal>
+    <Literal Id="Literal:3" ValueExpressionId="ValueExpression:3">
+      <Value>SUM</Value>
+    </Literal>
+    <Literal Id="Literal:30" ValueExpressionId="ValueExpression:30">
+      <Value>DISTINCTCOUNT</Value>
+    </Literal>
+    <Literal Id="Literal:31" ValueExpressionId="ValueExpression:31">
+      <Value>DISTINCT_COUNT</Value>
+    </Literal>
+    <Literal Id="Literal:32" ValueExpressionId="ValueExpression:32">
+      <Value>MIN</Value>
+    </Literal>
+    <Literal Id="Literal:33" ValueExpressionId="ValueExpression:33">
+      <Value>MAX</Value>
+    </Literal>
+    <Literal Id="Literal:34" ValueExpressionId="ValueExpression:34">
+      <Value>AVERAGE</Value>
+    </Literal>
+    <Literal Id="Literal:35" ValueExpressionId="ValueExpression:35">
+      <Value>AVG</Value>
+    </Literal>
+    <Literal Id="Literal:38" ValueExpressionId="ValueExpression:38">
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:39" ValueExpressionId="ValueExpression:39">
+      <Value>DAX</Value>
+    </Literal>
+    <Literal Id="Literal:4" ValueExpressionId="ValueExpression:4">
+      <Value>COUNT</Value>
+    </Literal>
+    <Literal Id="Literal:44" ValueExpressionId="ValueExpression:44">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:45" ValueExpressionId="ValueExpression:45">
+      <Value></Value>
+    </Literal>
+    <Literal Id="Literal:5" ValueExpressionId="ValueExpression:5">
+      <Value>COUNT</Value>
+    </Literal>
+    <Literal Id="Literal:6" ValueExpressionId="ValueExpression:6">
+      <Value>DISTINCTCOUNT</Value>
+    </Literal>
+    <Literal Id="Literal:7" ValueExpressionId="ValueExpression:7">
+      <Value>DISTINCT_COUNT</Value>
+    </Literal>
+    <Literal Id="Literal:8" ValueExpressionId="ValueExpression:8">
+      <Value>DISTINCTCOUNT</Value>
+    </Literal>
+    <Literal Id="Literal:9" ValueExpressionId="ValueExpression:9">
+      <Value>MIN</Value>
+    </Literal>
+  </LiteralList>
+</MetaWeave>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QualifiedJoinList>
+    <QualifiedJoin Id="QualifiedJoin:1" JoinTableReferenceId="JoinTableReference:1">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:2" JoinTableReferenceId="JoinTableReference:2">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:3" JoinTableReferenceId="JoinTableReference:3">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+  </QualifiedJoinList>
+</MetaWeave>

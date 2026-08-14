@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <JoinTableReferenceSecondTableReferenceLinkList>
+    <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:1" JoinTableReferenceId="JoinTableReference:1" TableReferenceId="TableReference:10" />
+    <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:2" JoinTableReferenceId="JoinTableReference:2" TableReferenceId="TableReference:12" />
+    <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:3" JoinTableReferenceId="JoinTableReference:3" TableReferenceId="TableReference:14" />
+  </JoinTableReferenceSecondTableReferenceLinkList>
+</MetaWeave>

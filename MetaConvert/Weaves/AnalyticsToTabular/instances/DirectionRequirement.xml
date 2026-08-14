@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRequirementList>
+    <DirectionRequirement Id="forward/AttributeExpressionLanguage" DirectionId="forward" SelectStatementId="SelectStatement:31">
+      <Code>AttributeExpressionLanguageInvalid</Code>
+      <Message>Nonblank attribute expressions must use DAX.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/MeasureAggregationCardinality" DirectionId="forward" SelectStatementId="SelectStatement:28">
+      <Code>MeasureAggregationBehaviorCardinalityInvalid</Code>
+      <Message>Every measure must define exactly one aggregation behavior.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/MeasureAggregationFunction" DirectionId="forward" SelectStatementId="SelectStatement:29">
+      <Code>MeasureAggregationFunctionUnsupported</Code>
+      <Message>Every aggregation behavior must use a supported DAX base-measure function.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/RoleFilterExpressionLanguage" DirectionId="forward" SelectStatementId="SelectStatement:27">
+      <Code>RoleFilterExpressionLanguageInvalid</Code>
+      <Message>Role-filter expressions must use DAX.</Message>
+    </DirectionRequirement>
+  </DirectionRequirementList>
+</MetaWeave>

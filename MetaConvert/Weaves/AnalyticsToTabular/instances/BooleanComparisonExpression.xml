@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanComparisonExpressionList>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:1" BooleanExpressionId="BooleanExpression:1">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:10" BooleanExpressionId="BooleanExpression:21">
+      <ComparisonType>NotEqualToBrackets</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:11" BooleanExpressionId="BooleanExpression:23">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:12" BooleanExpressionId="BooleanExpression:24">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:13" BooleanExpressionId="BooleanExpression:25">
+      <ComparisonType>NotEqualToBrackets</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:15" BooleanExpressionId="BooleanExpression:32">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:16" BooleanExpressionId="BooleanExpression:34">
+      <ComparisonType>NotEqualToBrackets</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:19" BooleanExpressionId="BooleanExpression:40">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:2" BooleanExpressionId="BooleanExpression:2">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:3" BooleanExpressionId="BooleanExpression:4">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:4" BooleanExpressionId="BooleanExpression:5">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:5" BooleanExpressionId="BooleanExpression:7">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:6" BooleanExpressionId="BooleanExpression:8">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:7" BooleanExpressionId="BooleanExpression:9">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+  </BooleanComparisonExpressionList>
+</MetaWeave>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <WhenClauseThenExpressionLinkList>
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:1" ScalarExpressionId="ScalarExpression:63" WhenClauseId="WhenClause:1" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:10" ScalarExpressionId="ScalarExpression:292" WhenClauseId="WhenClause:10" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:2" ScalarExpressionId="ScalarExpression:68" WhenClauseId="WhenClause:2" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:3" ScalarExpressionId="ScalarExpression:74" WhenClauseId="WhenClause:3" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:4" ScalarExpressionId="ScalarExpression:79" WhenClauseId="WhenClause:4" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:5" ScalarExpressionId="ScalarExpression:84" WhenClauseId="WhenClause:5" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:6" ScalarExpressionId="ScalarExpression:90" WhenClauseId="WhenClause:6" />
+  </WhenClauseThenExpressionLinkList>
+</MetaWeave>
