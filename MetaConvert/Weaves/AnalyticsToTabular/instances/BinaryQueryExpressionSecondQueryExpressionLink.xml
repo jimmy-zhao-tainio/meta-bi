@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BinaryQueryExpressionSecondQueryExpressionLinkList>
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:1" BinaryQueryExpressionId="BinaryQueryExpression:1" QueryExpressionId="QueryExpression:28" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:2" BinaryQueryExpressionId="BinaryQueryExpression:2" QueryExpressionId="QueryExpression:30" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:3" BinaryQueryExpressionId="BinaryQueryExpression:3" QueryExpressionId="QueryExpression:32" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:4" BinaryQueryExpressionId="BinaryQueryExpression:4" QueryExpressionId="QueryExpression:34" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:5" BinaryQueryExpressionId="BinaryQueryExpression:5" QueryExpressionId="QueryExpression:36" />
+  </BinaryQueryExpressionSecondQueryExpressionLinkList>
+</MetaWeave>

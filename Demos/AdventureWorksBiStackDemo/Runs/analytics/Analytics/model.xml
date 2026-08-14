@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Model name="MetaAnalytics">
   <EntityList>
-    <Entity name="AggregationBehavior">
-      <PropertyList>
-        <Property name="Description" isRequired="false" />
-        <Property name="Function" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="Measure" />
-      </RelationshipList>
-    </Entity>
+    <Entity name="AggregateFunction" />
     <Entity name="AnalyticsModel">
       <PropertyList>
         <Property name="DefaultCulture" isRequired="false" />
@@ -22,8 +14,6 @@
         <Property name="DataCategory" isRequired="false" />
         <Property name="DataTypeId" />
         <Property name="Description" isRequired="false" />
-        <Property name="Expression" isRequired="false" />
-        <Property name="ExpressionLanguage" isRequired="false" />
         <Property name="FormatString" isRequired="false" />
         <Property name="IsHidden" isRequired="false" />
         <Property name="IsKey" isRequired="false" />
@@ -68,6 +58,16 @@
         <Relationship entity="Culture" />
       </RelationshipList>
     </Entity>
+    <Entity name="AverageAggregateFunction">
+      <RelationshipList>
+        <Relationship entity="AggregateFunction" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="CountAggregateFunction">
+      <RelationshipList>
+        <Relationship entity="AggregateFunction" />
+      </RelationshipList>
+    </Entity>
     <Entity name="Culture">
       <PropertyList>
         <Property name="Description" isRequired="false" />
@@ -87,6 +87,11 @@
       </PropertyList>
       <RelationshipList>
         <Relationship entity="AnalyticsModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DistinctCountAggregateFunction">
+      <RelationshipList>
+        <Relationship entity="AggregateFunction" />
       </RelationshipList>
     </Entity>
     <Entity name="Hierarchy">
@@ -121,6 +126,11 @@
         <Relationship entity="Hierarchy" />
       </RelationshipList>
     </Entity>
+    <Entity name="MaximumAggregateFunction">
+      <RelationshipList>
+        <Relationship entity="AggregateFunction" />
+      </RelationshipList>
+    </Entity>
     <Entity name="Measure">
       <PropertyList>
         <Property name="DataTypeId" isRequired="false" />
@@ -131,6 +141,7 @@
         <Property name="Name" />
       </PropertyList>
       <RelationshipList>
+        <Relationship entity="AggregateFunction" />
         <Relationship entity="Attribute" role="SourceAttribute" />
         <Relationship entity="Table" />
       </RelationshipList>
@@ -143,6 +154,11 @@
       <RelationshipList>
         <Relationship entity="Culture" />
         <Relationship entity="Measure" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MinimumAggregateFunction">
+      <RelationshipList>
+        <Relationship entity="AggregateFunction" />
       </RelationshipList>
     </Entity>
     <Entity name="Perspective">
@@ -208,17 +224,6 @@
         <Relationship entity="Table" role="ToTable" />
       </RelationshipList>
     </Entity>
-    <Entity name="RoleFilter">
-      <PropertyList>
-        <Property name="Description" isRequired="false" />
-        <Property name="Expression" />
-        <Property name="ExpressionLanguage" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="SecurityRole" />
-        <Relationship entity="Table" />
-      </RelationshipList>
-    </Entity>
     <Entity name="RoleMember">
       <PropertyList>
         <Property name="MemberKind" isRequired="false" />
@@ -245,6 +250,11 @@
       <RelationshipList>
         <Relationship entity="Attribute" role="SortAttribute" />
         <Relationship entity="Attribute" role="SourceAttribute" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="SumAggregateFunction">
+      <RelationshipList>
+        <Relationship entity="AggregateFunction" />
       </RelationshipList>
     </Entity>
     <Entity name="Table">

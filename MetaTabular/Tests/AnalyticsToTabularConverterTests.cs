@@ -19,81 +19,77 @@ public sealed class AnalyticsToTabularConverterTests
         var sales = Assert.Single(converted.TabularTableList, row => row.Id == "table:sales");
         var salesAmount = Assert.Single(converted.TabularMeasureList, row => row.Id == "measure:sales-amount");
         var relationship = Assert.Single(converted.TabularRelationshipList, row => row.Id == "relationship:sales:customer");
-        var roleFilter = Assert.Single(converted.TabularRoleFilterList);
 
         Assert.Same(sales, salesAmount.TabularTable);
         Assert.Same(sales, relationship.FromTable);
         Assert.Contains("SUM", salesAmount.Expression, StringComparison.Ordinal);
-        Assert.Contains("Customer[Region]", roleFilter.Expression, StringComparison.Ordinal);
+        Assert.Empty(converted.TabularRoleFilterList);
     }
 
-    [Fact]
-    public void Convert_RejectsNonDaxAttributeAndRoleFilterExpressions()
-    {
-        var attributeSource = CloneSample();
-        var attribute = attributeSource.AttributeList[0];
-        attribute.Expression = "1 + 1";
-        attribute.ExpressionLanguage = "MDX";
-
-        var attributeError = Assert.Throws<InvalidOperationException>(
-            () => AnalyticsToTabularConverter.Convert(attributeSource));
-        Assert.Contains("requires DAX", attributeError.Message, StringComparison.Ordinal);
-
-        var roleSource = CloneSample();
-        roleSource.RoleFilterList[0].ExpressionLanguage = "MDX";
-
-        var roleError = Assert.Throws<InvalidOperationException>(
-            () => AnalyticsToTabularConverter.Convert(roleSource));
-        Assert.Contains("requires DAX", roleError.Message, StringComparison.Ordinal);
-    }
-
-    [Fact]
-    public void Convert_NormalizesBlankAttributeExpressionsToNull()
+    [Theory]
+    [InlineData(typeof(SumAggregateFunction), "SUM")]
+    [InlineData(typeof(AverageAggregateFunction), "AVERAGE")]
+    [InlineData(typeof(CountAggregateFunction), "COUNT")]
+    [InlineData(typeof(DistinctCountAggregateFunction), "DISTINCTCOUNT")]
+    [InlineData(typeof(MinimumAggregateFunction), "MIN")]
+    [InlineData(typeof(MaximumAggregateFunction), "MAX")]
+    public void Convert_ProjectsEveryNeutralBaseMeasureAggregate(Type aggregateFunctionType, string daxFunction)
     {
         var source = CloneSample();
-        var attribute = source.AttributeList[0];
-        attribute.Expression = "   ";
-        attribute.ExpressionLanguage = "MDX";
+        SetAggregateFunctionType(source, source.MeasureList[0].AggregateFunction, aggregateFunctionType);
 
         var converted = AnalyticsToTabularConverter.Convert(source);
 
-        Assert.Null(converted.TabularColumnList.Single(row => row.Id == attribute.Id).Expression);
+        Assert.StartsWith(
+            daxFunction + "(",
+            converted.TabularMeasureList.Single(row => row.Id == source.MeasureList[0].Id).Expression,
+            StringComparison.Ordinal);
     }
 
     [Fact]
-    public void Convert_RequiresExactlyOneSupportedAggregationBehaviorPerMeasure()
+    public void Convert_RejectsAnAggregateWithoutAConcreteType()
     {
-        var missingSource = CloneSample();
-        var missingMeasure = missingSource.MeasureList[0];
-        missingSource.AggregationBehaviorList.RemoveAll(row =>
-            ReferenceEquals(row.Measure, missingMeasure));
-        Assert.Contains(
-            "does not define an aggregation behavior",
-            Assert.Throws<InvalidOperationException>(
-                () => AnalyticsToTabularConverter.Convert(missingSource)).Message,
-            StringComparison.Ordinal);
-
-        var multipleSource = CloneSample();
-        var existing = multipleSource.AggregationBehaviorList[0];
-        multipleSource.AggregationBehaviorList.Add(new AggregationBehavior
-        {
-            Id = existing.Id + ":duplicate",
-            Measure = existing.Measure,
-            Function = existing.Function,
-        });
-        Assert.Contains(
-            "defines multiple aggregation behaviors",
-            Assert.Throws<InvalidOperationException>(
-                () => AnalyticsToTabularConverter.Convert(multipleSource)).Message,
-            StringComparison.Ordinal);
-
         var unsupportedSource = CloneSample();
-        unsupportedSource.AggregationBehaviorList[0].Function = "MEDIAN";
+        unsupportedSource.SumAggregateFunctionList.RemoveAll(
+            row => ReferenceEquals(row.AggregateFunction, unsupportedSource.MeasureList[0].AggregateFunction));
         Assert.Contains(
-            "does not have a supported DAX base-measure projection",
+            "must reference one concrete aggregate-function entity; found 0",
             Assert.Throws<InvalidOperationException>(
                 () => AnalyticsToTabularConverter.Convert(unsupportedSource)).Message,
             StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void Convert_RejectsAnAggregateWithOverlappingConcreteTypes()
+    {
+        var unsupportedSource = CloneSample();
+        var aggregateFunction = unsupportedSource.MeasureList[0].AggregateFunction;
+        unsupportedSource.AverageAggregateFunctionList.Add(new AverageAggregateFunction
+        {
+            Id = aggregateFunction.Id + ":average-type",
+            AggregateFunction = aggregateFunction,
+        });
+
+        Assert.Contains(
+            "must reference one concrete aggregate-function entity; found 2",
+            Assert.Throws<InvalidOperationException>(
+                () => AnalyticsToTabularConverter.Convert(unsupportedSource)).Message,
+            StringComparison.Ordinal);
+    }
+
+    private static void SetAggregateFunctionType(
+        MetaAnalyticsModel model,
+        AggregateFunction aggregateFunction,
+        Type aggregateFunctionType)
+    {
+        model.SumAggregateFunctionList.RemoveAll(row => ReferenceEquals(row.AggregateFunction, aggregateFunction));
+        if (aggregateFunctionType == typeof(SumAggregateFunction)) model.SumAggregateFunctionList.Add(new SumAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else if (aggregateFunctionType == typeof(AverageAggregateFunction)) model.AverageAggregateFunctionList.Add(new AverageAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else if (aggregateFunctionType == typeof(CountAggregateFunction)) model.CountAggregateFunctionList.Add(new CountAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else if (aggregateFunctionType == typeof(DistinctCountAggregateFunction)) model.DistinctCountAggregateFunctionList.Add(new DistinctCountAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else if (aggregateFunctionType == typeof(MinimumAggregateFunction)) model.MinimumAggregateFunctionList.Add(new MinimumAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else if (aggregateFunctionType == typeof(MaximumAggregateFunction)) model.MaximumAggregateFunctionList.Add(new MaximumAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else throw new ArgumentOutOfRangeException(nameof(aggregateFunctionType));
     }
 
     private static MetaAnalyticsModel CloneSample() =>

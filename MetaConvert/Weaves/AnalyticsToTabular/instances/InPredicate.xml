@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaWeave>
-  <InPredicateList>
-    <InPredicate Id="InPredicate:1" BooleanExpressionId="BooleanExpression:3" />
-    <InPredicate Id="InPredicate:2" BooleanExpressionId="BooleanExpression:6" />
-    <InPredicate Id="InPredicate:3" BooleanExpressionId="BooleanExpression:26" />
-  </InPredicateList>
-</MetaWeave>

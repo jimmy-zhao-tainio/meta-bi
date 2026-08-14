@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaWeave>
-  <ScalarSubqueryList>
-    <ScalarSubquery Id="ScalarSubquery:1" PrimaryExpressionId="PrimaryExpression:200" />
-    <ScalarSubquery Id="ScalarSubquery:2" PrimaryExpressionId="PrimaryExpression:205" />
-  </ScalarSubqueryList>
-</MetaWeave>

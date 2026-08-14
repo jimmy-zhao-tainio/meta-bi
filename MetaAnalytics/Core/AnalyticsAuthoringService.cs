@@ -25,6 +25,8 @@ public interface IAnalyticsAuthoringService
     MetaAnalyticsModel CreateWorkspace();
 
     MetaAnalyticsModel AddRecord(AnalyticsAuthoringRequest request);
+
+    MetaAnalyticsModel AddMeasure(AnalyticsAuthoringRequest request, string aggregateFunctionKind);
 }
 
 public sealed class AnalyticsAuthoringService : IAnalyticsAuthoringService
@@ -37,13 +39,51 @@ public sealed class AnalyticsAuthoringService : IAnalyticsAuthoringService
 
     public MetaAnalyticsModel AddRecord(AnalyticsAuthoringRequest request)
     {
+        ValidateRequest(request);
+        var workspacePath = Path.GetFullPath(request.WorkspacePath);
+        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaAnalyticsModel>(workspacePath);
+        AddRecord(model, request);
+        Meta.Integration.TypedWorkspaceModelMapper.Save(model, workspacePath);
+        return model;
+    }
+
+    public MetaAnalyticsModel AddMeasure(
+        AnalyticsAuthoringRequest request,
+        string aggregateFunctionKind)
+    {
+        ValidateRequest(request);
+        ArgumentException.ThrowIfNullOrWhiteSpace(aggregateFunctionKind);
+        if (!string.Equals(request.EntityName, nameof(Measure), StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"A measure request must target entity '{nameof(Measure)}'.");
+        }
+
+        var workspacePath = Path.GetFullPath(request.WorkspacePath);
+        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaAnalyticsModel>(workspacePath);
+        var aggregateFunction = new AggregateFunction
+        {
+            Id = $"{request.RecordId}:aggregate-function",
+        };
+        model.AggregateFunctionList.Add(aggregateFunction);
+        AddAggregateFunctionVariant(model, aggregateFunction, aggregateFunctionKind);
+        AddRecord(model, request, row => ((Measure)row).AggregateFunction = aggregateFunction);
+        Meta.Integration.TypedWorkspaceModelMapper.Save(model, workspacePath);
+        return model;
+    }
+
+    private static void ValidateRequest(AnalyticsAuthoringRequest request)
+    {
         ArgumentNullException.ThrowIfNull(request);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.WorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.EntityName);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.RecordId);
+    }
 
-        var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaAnalyticsModel>(workspacePath);
+    private static object AddRecord(
+        MetaAnalyticsModel model,
+        AnalyticsAuthoringRequest request,
+        Action<object>? configure = null)
+    {
         var entityType = ResolveEntityType(request.EntityName);
         var rows = GetEntityRows(model, entityType, request.EntityName);
         if (rows.Cast<object>().Any(row => string.Equals(ReadId(row), request.RecordId, StringComparison.Ordinal)))
@@ -65,11 +105,43 @@ public sealed class AnalyticsAuthoringService : IAnalyticsAuthoringService
             AssignRelationship(model, rowToAdd, request.EntityName, relationship);
         }
 
+        configure?.Invoke(rowToAdd);
         AssignOrdinalIfMissing(model, rowToAdd, request);
         rows.Add(rowToAdd);
         ValidateDomainRules(model, rowToAdd);
-        Meta.Integration.TypedWorkspaceModelMapper.Save(model, workspacePath);
-        return model;
+        return rowToAdd;
+    }
+
+    private static void AddAggregateFunctionVariant(
+        MetaAnalyticsModel model,
+        AggregateFunction aggregateFunction,
+        string aggregateFunctionKind)
+    {
+        var variantId = $"{aggregateFunction.Id}:type";
+        switch (aggregateFunctionKind.Trim().ToUpperInvariant())
+        {
+            case "SUM":
+                model.SumAggregateFunctionList.Add(new SumAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
+                break;
+            case "AVERAGE":
+                model.AverageAggregateFunctionList.Add(new AverageAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
+                break;
+            case "COUNT":
+                model.CountAggregateFunctionList.Add(new CountAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
+                break;
+            case "DISTINCTCOUNT":
+                model.DistinctCountAggregateFunctionList.Add(new DistinctCountAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
+                break;
+            case "MINIMUM":
+                model.MinimumAggregateFunctionList.Add(new MinimumAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
+                break;
+            case "MAXIMUM":
+                model.MaximumAggregateFunctionList.Add(new MaximumAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
+                break;
+            default:
+                throw new InvalidOperationException(
+                    $"Aggregate function kind '{aggregateFunctionKind}' is not modeled by MetaAnalytics.");
+        }
     }
 
     private static Type ResolveEntityType(string entityName)
@@ -220,9 +292,7 @@ public sealed class AnalyticsAuthoringService : IAnalyticsAuthoringService
                 break;
             case Measure measure:
                 ValidateTableAttributePair(measure.Table, measure.SourceAttribute, nameof(Measure), measure.Id);
-                break;
-            case AggregationBehavior aggregationBehavior:
-                ValidateUniqueMeasureAggregationBehavior(model, aggregationBehavior);
+                ValidateAggregateFunction(model, measure);
                 break;
             case PerspectiveTable perspectiveTable:
                 ValidatePerspectiveItem(perspectiveTable.Perspective, perspectiveTable.Table.AnalyticsModel, nameof(PerspectiveTable), perspectiveTable.Id);
@@ -235,9 +305,6 @@ public sealed class AnalyticsAuthoringService : IAnalyticsAuthoringService
                 break;
             case PerspectiveMeasure perspectiveMeasure:
                 ValidatePerspectiveItem(perspectiveMeasure.Perspective, perspectiveMeasure.Measure.Table.AnalyticsModel, nameof(PerspectiveMeasure), perspectiveMeasure.Id);
-                break;
-            case RoleFilter roleFilter:
-                ValidateRoleTableScope(roleFilter.SecurityRole, roleFilter.Table, nameof(RoleFilter), roleFilter.Id);
                 break;
             case TablePermission tablePermission:
                 ValidateRoleTableScope(tablePermission.SecurityRole, tablePermission.Table, nameof(TablePermission), tablePermission.Id);
@@ -315,16 +382,18 @@ public sealed class AnalyticsAuthoringService : IAnalyticsAuthoringService
         }
     }
 
-    private static void ValidateUniqueMeasureAggregationBehavior(
-        MetaAnalyticsModel model,
-        AggregationBehavior aggregationBehavior)
+    private static void ValidateAggregateFunction(MetaAnalyticsModel model, Measure measure)
     {
-        var duplicate = model.AggregationBehaviorList.Any(other =>
-            !ReferenceEquals(other, aggregationBehavior) &&
-            ReferenceEquals(other.Measure, aggregationBehavior.Measure));
-        if (duplicate)
+        var variantCount = model.SumAggregateFunctionList.Count(row => ReferenceEquals(row.AggregateFunction, measure.AggregateFunction))
+            + model.AverageAggregateFunctionList.Count(row => ReferenceEquals(row.AggregateFunction, measure.AggregateFunction))
+            + model.CountAggregateFunctionList.Count(row => ReferenceEquals(row.AggregateFunction, measure.AggregateFunction))
+            + model.DistinctCountAggregateFunctionList.Count(row => ReferenceEquals(row.AggregateFunction, measure.AggregateFunction))
+            + model.MinimumAggregateFunctionList.Count(row => ReferenceEquals(row.AggregateFunction, measure.AggregateFunction))
+            + model.MaximumAggregateFunctionList.Count(row => ReferenceEquals(row.AggregateFunction, measure.AggregateFunction));
+        if (variantCount != 1)
         {
-            throw new InvalidOperationException($"Measure '{aggregationBehavior.Measure.Id}' already has an aggregation behavior.");
+            throw new InvalidOperationException(
+                $"Measure '{measure.Id}' must reference one concrete aggregate-function entity; found {variantCount}.");
         }
     }
 

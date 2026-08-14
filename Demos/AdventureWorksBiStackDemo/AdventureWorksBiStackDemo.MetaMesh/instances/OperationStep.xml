@@ -13,72 +13,6 @@
       <Name>remove-run-artifacts</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-averageordervalueaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-totaldue">
-      <Arguments>add-aggregation-behavior --id "AverageOrderValueAggregation" --function "Average" --measure "AverageOrderValue" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-averageordervalueaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-averageunitpriceaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-averageordervalueaggregation">
-      <Arguments>add-aggregation-behavior --id "AverageUnitPriceAggregation" --function "Average" --measure "AverageUnitPrice" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-averageunitpriceaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-discountamountaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-averageunitpriceaggregation">
-      <Arguments>add-aggregation-behavior --id "DiscountAmountAggregation" --function "Sum" --measure "DiscountAmount" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-discountamountaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-freightamountaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-discountamountaggregation">
-      <Arguments>add-aggregation-behavior --id "FreightAmountAggregation" --function "Sum" --measure "FreightAmount" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-freightamountaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-ordercountaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-freightamountaggregation">
-      <Arguments>add-aggregation-behavior --id "OrderCountAggregation" --function "Sum" --measure "OrderCount" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-ordercountaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-orderquantityaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-ordercountaggregation">
-      <Arguments>add-aggregation-behavior --id "OrderQuantityAggregation" --function "Sum" --measure "OrderQuantity" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-orderquantityaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-ordersubtotalaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-orderquantityaggregation">
-      <Arguments>add-aggregation-behavior --id "OrderSubtotalAggregation" --function "Sum" --measure "OrderSubtotal" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-ordersubtotalaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-quotaamountaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-ordersubtotalaggregation">
-      <Arguments>add-aggregation-behavior --id "QuotaAmountAggregation" --function "Sum" --measure "QuotaAmount" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-quotaamountaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-salesamountaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-quotaamountaggregation">
-      <Arguments>add-aggregation-behavior --id "SalesAmountAggregation" --function "Sum" --measure "SalesAmount" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-salesamountaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-taxamountaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-salesamountaggregation">
-      <Arguments>add-aggregation-behavior --id "TaxAmountAggregation" --function "Sum" --measure "TaxAmount" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-taxamountaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-aggregation-behavior-totaldueaggregation" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-taxamountaggregation">
-      <Arguments>add-aggregation-behavior --id "TotalDueAggregation" --function "Sum" --measure "TotalDue" --workspace {workspace:analytics.location}</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation-behavior-totaldueaggregation</Name>
-      <WorkingDirectory>{mesh.root}</WorkingDirectory>
-    </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-attribute-customer-accountnumber" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-table-salesterritory">
       <Arguments>add-attribute --id "Customer_AccountNumber" --data-type-id "meta:type:String" --is-nullable "true" --name "Account Number" --ordinal "20" --source-name "AccountNumber" --summarize-by "None" --table "Customer" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
@@ -517,7 +451,7 @@
       <Name>add-data-source-warehouse</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:create-analytics:add-hierarchy-calendar" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-aggregation-behavior-totaldueaggregation">
+    <OperationStep Id="operation-step:create-analytics:add-hierarchy-calendar" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-totaldue">
       <Arguments>add-hierarchy --id "Calendar" --name "Calendar" --table "Date" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-hierarchy-calendar</Name>
@@ -602,67 +536,67 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-averageordervalue" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-relationship-salespersonquotas-salesperson">
-      <Arguments>add-measure --id "AverageOrderValue" --data-type-id "meta:type:Decimal" --display-folder "Orders" --format-string "#,0.00" --name "Average Order Value" --source-attribute "SalesOrders_TotalDue" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "AverageOrderValue" --aggregate-function "Average" --data-type-id "meta:type:Decimal" --display-folder "Orders" --format-string "#,0.00" --name "Average Order Value" --source-attribute "SalesOrders_TotalDue" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-averageordervalue</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-averageunitprice" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-averageordervalue">
-      <Arguments>add-measure --id "AverageUnitPrice" --data-type-id "meta:type:Decimal" --display-folder "Sales" --format-string "#,0.00" --name "Average Unit Price" --source-attribute "SalesLines_UnitPrice" --table "SalesLines" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "AverageUnitPrice" --aggregate-function "Average" --data-type-id "meta:type:Decimal" --display-folder "Sales" --format-string "#,0.00" --name "Average Unit Price" --source-attribute "SalesLines_UnitPrice" --table "SalesLines" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-averageunitprice</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-discountamount" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-averageunitprice">
-      <Arguments>add-measure --id "DiscountAmount" --data-type-id "meta:type:Decimal" --display-folder "Sales" --format-string "#,0.00" --name "Discount Amount" --source-attribute "SalesLines_DiscountAmount" --table "SalesLines" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "DiscountAmount" --aggregate-function "Sum" --data-type-id "meta:type:Decimal" --display-folder "Sales" --format-string "#,0.00" --name "Discount Amount" --source-attribute "SalesLines_DiscountAmount" --table "SalesLines" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-discountamount</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-freightamount" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-discountamount">
-      <Arguments>add-measure --id "FreightAmount" --data-type-id "meta:type:Decimal" --display-folder "Orders" --format-string "#,0.00" --name "Freight Amount" --source-attribute "SalesOrders_FreightAmount" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "FreightAmount" --aggregate-function "Sum" --data-type-id "meta:type:Decimal" --display-folder "Orders" --format-string "#,0.00" --name "Freight Amount" --source-attribute "SalesOrders_FreightAmount" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-freightamount</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-ordercount" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-freightamount">
-      <Arguments>add-measure --id "OrderCount" --data-type-id "meta:type:Int64" --display-folder "Orders" --format-string "#,0" --name "Order Count" --source-attribute "SalesOrders_OrderCount" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "OrderCount" --aggregate-function "Sum" --data-type-id "meta:type:Int64" --display-folder "Orders" --format-string "#,0" --name "Order Count" --source-attribute "SalesOrders_OrderCount" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-ordercount</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-orderquantity" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-ordercount">
-      <Arguments>add-measure --id "OrderQuantity" --data-type-id "meta:type:Int64" --display-folder "Sales" --format-string "#,0" --name "Order Quantity" --source-attribute "SalesLines_OrderQuantity" --table "SalesLines" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "OrderQuantity" --aggregate-function "Sum" --data-type-id "meta:type:Int64" --display-folder "Sales" --format-string "#,0" --name "Order Quantity" --source-attribute "SalesLines_OrderQuantity" --table "SalesLines" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-orderquantity</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-ordersubtotal" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-orderquantity">
-      <Arguments>add-measure --id "OrderSubtotal" --data-type-id "meta:type:Decimal" --display-folder "Orders" --format-string "#,0.00" --name "Order Subtotal" --source-attribute "SalesOrders_SubTotal" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "OrderSubtotal" --aggregate-function "Sum" --data-type-id "meta:type:Decimal" --display-folder "Orders" --format-string "#,0.00" --name "Order Subtotal" --source-attribute "SalesOrders_SubTotal" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-ordersubtotal</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-quotaamount" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-ordersubtotal">
-      <Arguments>add-measure --id "QuotaAmount" --data-type-id "meta:type:Decimal" --display-folder "Quota" --format-string "#,0.00" --name "Quota Amount" --source-attribute "SalespersonQuotas_QuotaAmount" --table "SalespersonQuotas" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "QuotaAmount" --aggregate-function "Sum" --data-type-id "meta:type:Decimal" --display-folder "Quota" --format-string "#,0.00" --name "Quota Amount" --source-attribute "SalespersonQuotas_QuotaAmount" --table "SalespersonQuotas" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-quotaamount</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-salesamount" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-quotaamount">
-      <Arguments>add-measure --id "SalesAmount" --data-type-id "meta:type:Decimal" --display-folder "Sales" --format-string "#,0.00" --name "Sales Amount" --source-attribute "SalesLines_LineSalesAmount" --table "SalesLines" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "SalesAmount" --aggregate-function "Sum" --data-type-id "meta:type:Decimal" --display-folder "Sales" --format-string "#,0.00" --name "Sales Amount" --source-attribute "SalesLines_LineSalesAmount" --table "SalesLines" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-salesamount</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-taxamount" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-salesamount">
-      <Arguments>add-measure --id "TaxAmount" --data-type-id "meta:type:Decimal" --display-folder "Orders" --format-string "#,0.00" --name "Tax Amount" --source-attribute "SalesOrders_TaxAmount" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "TaxAmount" --aggregate-function "Sum" --data-type-id "meta:type:Decimal" --display-folder "Orders" --format-string "#,0.00" --name "Tax Amount" --source-attribute "SalesOrders_TaxAmount" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-taxamount</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-analytics:add-measure-totaldue" OperationId="operation:create-analytics" PreviousStepId="operation-step:create-analytics:add-measure-taxamount">
-      <Arguments>add-measure --id "TotalDue" --data-type-id "meta:type:Decimal" --display-folder "Orders" --format-string "#,0.00" --name "Total Due" --source-attribute "SalesOrders_TotalDue" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
+      <Arguments>add-measure --id "TotalDue" --aggregate-function "Sum" --data-type-id "meta:type:Decimal" --display-folder "Orders" --format-string "#,0.00" --name "Total Due" --source-attribute "SalesOrders_TotalDue" --table "SalesOrders" --workspace {workspace:analytics.location}</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure-totaldue</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
@@ -3595,7 +3529,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-tabular:convert-analytics-to-tabular" OperationId="operation:create-tabular" PreviousStepId="operation-step:create-tabular:clear-generated-workspaces">
-      <Arguments>analytics-to-tabular --workspace {workspace:analytics.location} --out {workspace:tabular.location}</Arguments>
+      <Arguments>analytics-to-tabular --workspace {workspace:analytics.location} --output-xml {workspace:tabular.location}</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-analytics-to-tabular</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>

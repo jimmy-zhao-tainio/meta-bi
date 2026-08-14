@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BinaryQueryExpressionList>
+    <BinaryQueryExpression Id="BinaryQueryExpression:1" QueryExpressionId="QueryExpression:29" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:2" QueryExpressionId="QueryExpression:31" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:3" QueryExpressionId="QueryExpression:33" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:4" QueryExpressionId="QueryExpression:35" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:5" QueryExpressionId="QueryExpression:37" />
+  </BinaryQueryExpressionList>
+</MetaWeave>

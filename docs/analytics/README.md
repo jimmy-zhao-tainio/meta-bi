@@ -24,18 +24,18 @@ Users do the bulk of portable analytical authoring in `MetaAnalytics`, convert t
 - `HierarchyLevel`
 - `Relationship`
 - `Measure`
-- `AggregationBehavior`
 - `Perspective`
 - typed perspective membership rows
 - `SecurityRole`
 - `RoleMember`
-- `RoleFilter`
 - `TablePermission`
 - `AttributePermission`
 - `Culture`
 - typed translation rows
 
-Measures are deliberately source-backed base measurements: a `Measure` points at the source `Attribute` it summarizes, and `AggregationBehavior.Function` records the aggregate operation. Calculated measures, KPIs, rolling-period patterns, target-language scripts, and similar authored patterns belong after conversion in `MetaTabular` or `MetaMultiDimensional`.
+Measures are source-backed base measurements. Each `Measure` selects a prepared fact-table `SourceAttribute` and relates to an `AggregateFunction`. Exactly one concrete entity—`SumAggregateFunction`, `AverageAggregateFunction`, `CountAggregateFunction`, `DistinctCountAggregateFunction`, `MinimumAggregateFunction`, or `MaximumAggregateFunction`—types that function. This structure projects deterministically into DAX or multidimensional aggregation metadata.
+
+Target-specific calculated columns, calculated measures, row filters, KPIs, rolling-period patterns, and language expressions are authored after conversion in `MetaTabular` or `MetaMultiDimensional`.
 
 ## Target Surfaces
 

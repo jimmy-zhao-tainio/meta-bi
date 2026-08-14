@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ValueShapeList>
+    <ValueShape Id="shape-base-measure-aggregate" ValueArityId="arity-one">
+      <Name>Base measure aggregate</Name>
+      <ValueLabel>Sum|Average|Count|DistinctCount|Minimum|Maximum</ValueLabel>
+    </ValueShape>
     <ValueShape Id="shape-bool" ValueArityId="arity-one">
       <Name>Boolean</Name>
       <ValueLabel>true|false</ValueLabel>

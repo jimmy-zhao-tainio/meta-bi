@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaWeave>
-  <ScalarSubqueryQueryExpressionLinkList>
-    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:1" QueryExpressionId="QueryExpression:28" ScalarSubqueryId="ScalarSubquery:1" />
-    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:2" QueryExpressionId="QueryExpression:29" ScalarSubqueryId="ScalarSubquery:2" />
-  </ScalarSubqueryQueryExpressionLinkList>
-</MetaWeave>

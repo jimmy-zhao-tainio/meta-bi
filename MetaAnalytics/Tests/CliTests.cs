@@ -13,7 +13,9 @@ public sealed class CliTests
         Assert.Contains("meta-analytics <command> [options]", result.Output);
         Assert.Contains("create", result.Output);
         Assert.Contains("add-data-source", result.Output);
-        Assert.Contains("add-role-filter", result.Output);
+        Assert.Contains("add-measure", result.Output);
+        Assert.DoesNotContain("add-role-filter", result.Output);
+        Assert.DoesNotContain("add-aggregation-behavior", result.Output);
         Assert.Contains("add-attribute-permission", result.Output);
         Assert.DoesNotContain("--output-xml", result.Output);
         Assert.DoesNotContain("add-measure-expression", result.Output);
@@ -58,19 +60,18 @@ public sealed class CliTests
             Assert.Equal(0, RunCli($"add-attribute --workspace \"{path}\" --id SalesAmountColumn --table Sales --name SalesAmount --data-type-id meta:type:Decimal --is-hidden true").ExitCode);
             Assert.Equal(0, RunCli($"add-hierarchy --workspace \"{path}\" --id Calendar --table Date --name Calendar").ExitCode);
             Assert.Equal(0, RunCli($"add-hierarchy-level --workspace \"{path}\" --id CalendarYearLevel --hierarchy Calendar --attribute CalendarYear --name Year").ExitCode);
-            Assert.Equal(0, RunCli($"add-measure --workspace \"{path}\" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name SalesAmount --data-type-id meta:type:Decimal").ExitCode);
-            Assert.Equal(0, RunCli($"add-aggregation-behavior --workspace \"{path}\" --id SalesAmountAggregation --measure SalesAmount --function Sum").ExitCode);
+            Assert.Equal(0, RunCli($"add-measure --workspace \"{path}\" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name SalesAmount --aggregate-function Sum --data-type-id meta:type:Decimal").ExitCode);
             Assert.Equal(0, RunCli($"add-perspective --workspace \"{path}\" --id SalesPerspective --model Commerce --name Sales").ExitCode);
             Assert.Equal(0, RunCli($"add-perspective-measure --workspace \"{path}\" --id SalesPerspectiveSalesAmount --perspective SalesPerspective --measure SalesAmount").ExitCode);
             Assert.Equal(0, RunCli($"add-security-role --workspace \"{path}\" --id Reader --model Commerce --name Reader --permission Read").ExitCode);
-            Assert.Equal(0, RunCli($"add-role-filter --workspace \"{path}\" --id ReaderSalesFilter --role Reader --table Sales --expression-language DAX --expression \"Sales[Region] = USERNAME()\"").ExitCode);
 
             var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(path, searchUpward: false);
             Assert.Single(model.AnalyticsModelList);
             Assert.Single(model.DataSourceList);
             Assert.Single(model.MeasureList);
-            Assert.Single(model.AggregationBehaviorList);
-            Assert.Single(model.RoleFilterList);
+            Assert.Single(model.AggregateFunctionList);
+            Assert.Same(model.AggregateFunctionList.Single(), model.MeasureList.Single().AggregateFunction);
+            Assert.Same(model.AggregateFunctionList.Single(), model.SumAggregateFunctionList.Single().AggregateFunction);
             Assert.Same(model.AttributeList.Single(row => row.Id == "SalesAmountColumn"), model.MeasureList.Single().SourceAttribute);
             Assert.Same(model.MeasureList.Single(), model.PerspectiveMeasureList.Single().Measure);
         }

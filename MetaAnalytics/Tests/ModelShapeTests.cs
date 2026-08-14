@@ -21,8 +21,13 @@ public sealed class ModelShapeTests
         Assert.Contains("Hierarchy", entityNames);
         Assert.Contains("Relationship", entityNames);
         Assert.Contains("Measure", entityNames);
-        Assert.Contains("AggregationBehavior", entityNames);
-        Assert.Contains("RoleFilter", entityNames);
+        Assert.Contains("AggregateFunction", entityNames);
+        Assert.Contains("SumAggregateFunction", entityNames);
+        Assert.Contains("AverageAggregateFunction", entityNames);
+        Assert.Contains("CountAggregateFunction", entityNames);
+        Assert.Contains("DistinctCountAggregateFunction", entityNames);
+        Assert.Contains("MinimumAggregateFunction", entityNames);
+        Assert.Contains("MaximumAggregateFunction", entityNames);
         Assert.Contains("TablePermission", entityNames);
         Assert.Contains("AttributePermission", entityNames);
         Assert.Contains("Perspective", entityNames);
@@ -37,5 +42,11 @@ public sealed class ModelShapeTests
         Assert.DoesNotContain("NamedSet", entityNames);
         Assert.DoesNotContain("MeasureExpression", entityNames);
         Assert.DoesNotContain("Kpi", entityNames);
+
+        Assert.Equal(typeof(AggregateFunction), typeof(Measure).GetProperty(nameof(Measure.AggregateFunction))!.PropertyType);
+        Assert.Null(typeof(Attribute).GetProperty("ExpressionLanguage"));
+        Assert.Null(typeof(Attribute).GetProperty("Expression"));
+        Assert.DoesNotContain("AggregationBehavior", entityNames);
+        Assert.DoesNotContain("RoleFilter", entityNames);
     }
 }

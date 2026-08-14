@@ -1,4 +1,3 @@
-using AnalyticsAggregationBehavior = MetaAnalytics.AggregationBehavior;
 using AnalyticsAttribute = MetaAnalytics.Attribute;
 using AnalyticsCulture = MetaAnalytics.Culture;
 using AnalyticsDataSource = MetaAnalytics.DataSource;
@@ -28,6 +27,7 @@ public static class AnalyticsToMultiDimensionalConverter
         RejectUnsupportedSecurity(source);
 
         var target = MetaMultiDimensionalModel.CreateEmpty();
+        var aggregateFunctions = new AggregateFunctionIndex(source);
         var databases = new Dictionary<AnalyticsModel, MultiDimensionalDatabase>();
         var cubes = new Dictionary<AnalyticsModel, Cube>();
         var dataSources = new Dictionary<AnalyticsDataSource, MultiDimensionalDataSource>();
@@ -179,12 +179,8 @@ public static class AnalyticsToMultiDimensionalConverter
             measureGroups[row] = converted;
         }
 
-        var aggregationByMeasure = source.AggregationBehaviorList
-            .GroupBy(row => row.Measure)
-            .ToDictionary(group => group.Key, group => group.ToArray());
         foreach (var row in source.MeasureList)
         {
-            var behavior = RequireSingleAggregationBehavior(row, aggregationByMeasure.GetValueOrDefault(row));
             var converted = Add(target.MeasureList, new MultiMeasure
             {
                 Id = row.Id,
@@ -192,7 +188,7 @@ public static class AnalyticsToMultiDimensionalConverter
                 Name = row.Name,
                 DataTypeId = row.DataTypeId ?? row.SourceAttribute.DataTypeId,
                 SourceName = row.SourceAttribute.SourceName ?? row.SourceAttribute.Name,
-                AggregateFunction = behavior.Function,
+                AggregateFunction = aggregateFunctions.ToMultiDimensionalFunction(row),
                 FormatString = row.FormatString,
                 DisplayFolder = row.DisplayFolder,
                 Description = row.Description,
@@ -299,31 +295,66 @@ public static class AnalyticsToMultiDimensionalConverter
 
     private static void RejectUnsupportedSecurity(MetaAnalytics.MetaAnalyticsModel source)
     {
-        if (source.RoleFilterList.Count > 0 || source.TablePermissionList.Count > 0 || source.AttributePermissionList.Count > 0)
+        if (source.TablePermissionList.Count > 0 || source.AttributePermissionList.Count > 0)
         {
             throw new InvalidOperationException(
                 "MetaMultiDimensional conversion does not translate tabular-style row/object security. Convert the shared model first, then add dimension/cell permissions in MetaMultiDimensional.");
         }
     }
 
-    private static AnalyticsAggregationBehavior RequireSingleAggregationBehavior(AnalyticsMeasure measure, IReadOnlyList<AnalyticsAggregationBehavior>? aggregationBehaviors)
-    {
-        if (aggregationBehaviors == null || aggregationBehaviors.Count == 0)
-        {
-            throw new InvalidOperationException($"Measure '{measure.Id}' does not define an aggregation behavior.");
-        }
-
-        if (aggregationBehaviors.Count > 1)
-        {
-            throw new InvalidOperationException($"Measure '{measure.Id}' defines multiple aggregation behaviors.");
-        }
-
-        return aggregationBehaviors[0];
-    }
-
     private static T Add<T>(ICollection<T> rows, T row)
     {
         rows.Add(row);
         return row;
+    }
+
+    private sealed class AggregateFunctionIndex
+    {
+        private readonly HashSet<MetaAnalytics.AggregateFunction> sums;
+        private readonly HashSet<MetaAnalytics.AggregateFunction> averages;
+        private readonly HashSet<MetaAnalytics.AggregateFunction> counts;
+        private readonly HashSet<MetaAnalytics.AggregateFunction> distinctCounts;
+        private readonly HashSet<MetaAnalytics.AggregateFunction> minimums;
+        private readonly HashSet<MetaAnalytics.AggregateFunction> maximums;
+
+        public AggregateFunctionIndex(MetaAnalytics.MetaAnalyticsModel model)
+        {
+            sums = new HashSet<MetaAnalytics.AggregateFunction>(model.SumAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+            averages = new HashSet<MetaAnalytics.AggregateFunction>(model.AverageAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+            counts = new HashSet<MetaAnalytics.AggregateFunction>(model.CountAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+            distinctCounts = new HashSet<MetaAnalytics.AggregateFunction>(model.DistinctCountAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+            minimums = new HashSet<MetaAnalytics.AggregateFunction>(model.MinimumAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+            maximums = new HashSet<MetaAnalytics.AggregateFunction>(model.MaximumAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+        }
+
+        public string ToMultiDimensionalFunction(AnalyticsMeasure measure)
+        {
+            var matches = new List<string>(capacity: 1);
+            AddIf(matches, sums, measure.AggregateFunction, "Sum");
+            AddIf(matches, averages, measure.AggregateFunction, "Average");
+            AddIf(matches, counts, measure.AggregateFunction, "Count");
+            AddIf(matches, distinctCounts, measure.AggregateFunction, "DistinctCount");
+            AddIf(matches, minimums, measure.AggregateFunction, "Min");
+            AddIf(matches, maximums, measure.AggregateFunction, "Max");
+            if (matches.Count != 1)
+            {
+                throw new InvalidOperationException(
+                    $"Measure '{measure.Id}' must reference one concrete aggregate-function entity; found {matches.Count}.");
+            }
+
+            return matches[0];
+        }
+
+        private static void AddIf(
+            ICollection<string> matches,
+            IReadOnlySet<MetaAnalytics.AggregateFunction> functions,
+            MetaAnalytics.AggregateFunction candidate,
+            string targetName)
+        {
+            if (functions.Contains(candidate))
+            {
+                matches.Add(targetName);
+            }
+        }
     }
 }

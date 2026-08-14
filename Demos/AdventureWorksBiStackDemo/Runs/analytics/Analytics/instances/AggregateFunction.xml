@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AggregateFunctionList>
+    <AggregateFunction Id="AverageOrderValue:aggregate-function" />
+    <AggregateFunction Id="AverageUnitPrice:aggregate-function" />
+    <AggregateFunction Id="DiscountAmount:aggregate-function" />
+    <AggregateFunction Id="FreightAmount:aggregate-function" />
+    <AggregateFunction Id="OrderCount:aggregate-function" />
+    <AggregateFunction Id="OrderQuantity:aggregate-function" />
+    <AggregateFunction Id="OrderSubtotal:aggregate-function" />
+    <AggregateFunction Id="QuotaAmount:aggregate-function" />
+    <AggregateFunction Id="SalesAmount:aggregate-function" />
+    <AggregateFunction Id="TaxAmount:aggregate-function" />
+    <AggregateFunction Id="TotalDue:aggregate-function" />
+  </AggregateFunctionList>
+</MetaAnalytics>

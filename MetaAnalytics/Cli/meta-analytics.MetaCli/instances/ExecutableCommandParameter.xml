@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandParameterList>
-    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-description" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-description" />
-    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-function" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-function" />
-    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-id" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-id" />
-    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-measure" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-measure" />
-    <ExecutableCommandParameter Id="exec-add-aggregation-behavior:parameter:param-add-aggregation-behavior-workspace" ExecutableCommandId="exec-add-aggregation-behavior" ParameterId="param-add-aggregation-behavior-workspace" />
     <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-attribute" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-attribute" />
     <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-description" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-description" />
     <ExecutableCommandParameter Id="exec-add-attribute-permission:parameter:param-add-attribute-permission-id" ExecutableCommandId="exec-add-attribute-permission" ParameterId="param-add-attribute-permission-id" />
@@ -27,8 +22,6 @@
     <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-data-category" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-data-category" />
     <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-data-type-id" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-data-type-id" />
     <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-description" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-description" />
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-expression" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-expression" />
-    <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-expression-language" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-expression-language" />
     <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-format-string" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-format-string" />
     <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-id" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-id" />
     <ExecutableCommandParameter Id="exec-add-attribute:parameter:param-add-attribute-is-hidden" ExecutableCommandId="exec-add-attribute" ParameterId="param-add-attribute-is-hidden" />
@@ -80,6 +73,7 @@
     <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-id" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-id" />
     <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-measure" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-measure" />
     <ExecutableCommandParameter Id="exec-add-measure-translation:parameter:param-add-measure-translation-workspace" ExecutableCommandId="exec-add-measure-translation" ParameterId="param-add-measure-translation-workspace" />
+    <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-aggregate-function" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-aggregate-function" />
     <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-data-type-id" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-data-type-id" />
     <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-description" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-description" />
     <ExecutableCommandParameter Id="exec-add-measure:parameter:param-add-measure-display-folder" ExecutableCommandId="exec-add-measure" ParameterId="param-add-measure-display-folder" />
@@ -138,13 +132,6 @@
     <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-to-attribute" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-to-attribute" />
     <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-to-table" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-to-table" />
     <ExecutableCommandParameter Id="exec-add-relationship:parameter:param-add-relationship-workspace" ExecutableCommandId="exec-add-relationship" ParameterId="param-add-relationship-workspace" />
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-description" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-description" />
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-expression" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-expression" />
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-expression-language" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-expression-language" />
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-id" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-id" />
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-role" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-role" />
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-table" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-table" />
-    <ExecutableCommandParameter Id="exec-add-role-filter:parameter:param-add-role-filter-workspace" ExecutableCommandId="exec-add-role-filter" ParameterId="param-add-role-filter-workspace" />
     <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-id" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-id" />
     <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-member-kind" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-member-kind" />
     <ExecutableCommandParameter Id="exec-add-role-member:parameter:param-add-role-member-member-name" ExecutableCommandId="exec-add-role-member" ParameterId="param-add-role-member-member-name" />

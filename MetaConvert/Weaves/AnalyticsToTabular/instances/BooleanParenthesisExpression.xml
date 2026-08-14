@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaWeave>
-  <BooleanParenthesisExpressionList>
-    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:3" BooleanExpressionId="BooleanExpression:27" />
-    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:4" BooleanExpressionId="BooleanExpression:36" />
-  </BooleanParenthesisExpressionList>
-</MetaWeave>

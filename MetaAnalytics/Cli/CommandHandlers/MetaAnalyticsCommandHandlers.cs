@@ -79,7 +79,14 @@ internal sealed class MetaAnalyticsCommandHandlers
 
         try
         {
-            service.AddRecord(request);
+            if (spec.AggregateFunctionOptionName is { } aggregateFunctionOptionName)
+            {
+                service.AddMeasure(request, invocation.Required(aggregateFunctionOptionName));
+            }
+            else
+            {
+                service.AddRecord(request);
+            }
             presenter.WriteOk($"Added {request.RecordId} to {spec.EntityName}");
         }
         catch (Exception ex) when (ex is not MetaCliExitException and
@@ -99,8 +106,9 @@ internal sealed class MetaAnalyticsCommandHandlers
             string commandName,
             string entityName,
             PropertySpec[] properties,
-            RelationshipSpec[] relationships) =>
-            new(commandName, entityName, properties, relationships);
+            RelationshipSpec[] relationships,
+            string? aggregateFunctionOptionName = null) =>
+            new(commandName, entityName, properties, relationships, aggregateFunctionOptionName);
 
         static PropertySpec Prop(string optionName, string propertyName) =>
             new(optionName, propertyName);
@@ -120,7 +128,7 @@ internal sealed class MetaAnalyticsCommandHandlers
                 [Prop("name", "Name"), Prop("kind", "Kind"), Prop("data-category", "DataCategory"), Prop("is-hidden", "IsHidden"), Prop("display-folder", "DisplayFolder"), Prop("description", "Description")],
                 [Rel("model", "AnalyticsModelId", "AnalyticsModel")]),
             Cmd("add-attribute", "Attribute",
-                [Prop("name", "Name"), Prop("data-type-id", "DataTypeId"), Prop("ordinal", "Ordinal"), Prop("kind", "Kind"), Prop("source-name", "SourceName"), Prop("expression-language", "ExpressionLanguage"), Prop("expression", "Expression"), Prop("is-key", "IsKey"), Prop("is-nullable", "IsNullable"), Prop("is-hidden", "IsHidden"), Prop("format-string", "FormatString"), Prop("summarize-by", "SummarizeBy"), Prop("data-category", "DataCategory"), Prop("description", "Description")],
+                [Prop("name", "Name"), Prop("data-type-id", "DataTypeId"), Prop("ordinal", "Ordinal"), Prop("kind", "Kind"), Prop("source-name", "SourceName"), Prop("is-key", "IsKey"), Prop("is-nullable", "IsNullable"), Prop("is-hidden", "IsHidden"), Prop("format-string", "FormatString"), Prop("summarize-by", "SummarizeBy"), Prop("data-category", "DataCategory"), Prop("description", "Description")],
                 [Rel("table", "TableId", "Table")]),
             Cmd("add-sort-by-attribute", "SortByAttribute",
                 [Prop("description", "Description")],
@@ -139,10 +147,8 @@ internal sealed class MetaAnalyticsCommandHandlers
                 [Rel("from-table", "FromTableId", "Table"), Rel("from-attribute", "FromAttributeId", "Attribute"), Rel("to-table", "ToTableId", "Table"), Rel("to-attribute", "ToAttributeId", "Attribute"), Rel("granularity-attribute", "GranularityAttributeId", "Attribute"), Rel("intermediate-table", "IntermediateTableId", "Table")]),
             Cmd("add-measure", "Measure",
                 [Prop("name", "Name"), Prop("data-type-id", "DataTypeId"), Prop("format-string", "FormatString"), Prop("display-folder", "DisplayFolder"), Prop("is-hidden", "IsHidden"), Prop("description", "Description")],
-                [Rel("table", "TableId", "Table"), Rel("source-attribute", "SourceAttributeId", "Attribute")]),
-            Cmd("add-aggregation-behavior", "AggregationBehavior",
-                [Prop("function", "Function"), Prop("description", "Description")],
-                [Rel("measure", "MeasureId", "Measure")]),
+                [Rel("table", "TableId", "Table"), Rel("source-attribute", "SourceAttributeId", "Attribute")],
+                aggregateFunctionOptionName: "aggregate-function"),
             Cmd("add-perspective", "Perspective",
                 [Prop("name", "Name"), Prop("description", "Description")],
                 [Rel("model", "AnalyticsModelId", "AnalyticsModel")]),
@@ -164,9 +170,6 @@ internal sealed class MetaAnalyticsCommandHandlers
             Cmd("add-role-member", "RoleMember",
                 [Prop("member-name", "MemberName"), Prop("member-kind", "MemberKind")],
                 [Rel("role", "SecurityRoleId", "SecurityRole")]),
-            Cmd("add-role-filter", "RoleFilter",
-                [Prop("expression-language", "ExpressionLanguage"), Prop("expression", "Expression"), Prop("description", "Description")],
-                [Rel("role", "SecurityRoleId", "SecurityRole"), Rel("table", "TableId", "Table")]),
             Cmd("add-table-permission", "TablePermission",
                 [Prop("metadata-permission", "MetadataPermission"), Prop("description", "Description")],
                 [Rel("role", "SecurityRoleId", "SecurityRole"), Rel("table", "TableId", "Table")]),
@@ -214,7 +217,8 @@ internal sealed class MetaAnalyticsCommandHandlers
         string CommandName,
         string EntityName,
         IReadOnlyList<PropertySpec> Properties,
-        IReadOnlyList<RelationshipSpec> Relationships)
+        IReadOnlyList<RelationshipSpec> Relationships,
+        string? AggregateFunctionOptionName)
     {
         public string ExecutableCommandId => $"exec-{CommandName}";
     }

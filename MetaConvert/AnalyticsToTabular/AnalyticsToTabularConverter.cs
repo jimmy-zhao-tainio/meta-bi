@@ -12,6 +12,7 @@ public static class AnalyticsToTabularConverter
         ArgumentNullException.ThrowIfNull(source);
 
         var target = MetaTabularModel.CreateEmpty();
+        var aggregateFunctions = new AggregateFunctionIndex(source);
         var models = new Dictionary<AnalyticsModel, TabularModel>();
         var dataSources = new Dictionary<DataSource, TabularDataSource>();
         var tables = new Dictionary<AnalyticsTable, TabularTable>();
@@ -73,7 +74,6 @@ public static class AnalyticsToTabularConverter
                 DataTypeId = row.DataTypeId,
                 Ordinal = row.Ordinal,
                 SourceName = row.SourceName,
-                Expression = RequireTabularExpression(row.ExpressionLanguage, row.Expression, $"Attribute '{row.Id}'"),
                 IsKey = row.IsKey,
                 IsNullable = row.IsNullable,
                 IsHidden = row.IsHidden,
@@ -138,12 +138,9 @@ public static class AnalyticsToTabularConverter
             });
         }
 
-        var aggregationByMeasure = source.AggregationBehaviorList
-            .GroupBy(row => row.Measure)
-            .ToDictionary(group => group.Key, group => group.ToArray());
         foreach (var row in source.MeasureList)
         {
-            var expression = BuildDaxMeasureExpression(row, aggregationByMeasure.GetValueOrDefault(row));
+            var expression = BuildDaxMeasureExpression(row, aggregateFunctions);
             var converted = Add(target.TabularMeasureList, new TabularMeasure
             {
                 Id = row.Id,
@@ -189,7 +186,6 @@ public static class AnalyticsToTabularConverter
         }
 
         foreach (var row in source.RoleMemberList) Add(target.TabularRoleMemberList, new TabularRoleMember { Id = row.Id, TabularSecurityRole = roles[row.SecurityRole], MemberName = row.MemberName });
-        foreach (var row in source.RoleFilterList) Add(target.TabularRoleFilterList, new TabularRoleFilter { Id = row.Id, TabularSecurityRole = roles[row.SecurityRole], TabularTable = tables[row.Table], Expression = RequireExpressionLanguage(row.ExpressionLanguage, "DAX", row.Expression, $"RoleFilter '{row.Id}'") });
         foreach (var row in source.TablePermissionList) Add(target.TabularTablePermissionList, new TabularTablePermission { Id = row.Id, TabularSecurityRole = roles[row.SecurityRole], TabularTable = tables[row.Table], MetadataPermission = row.MetadataPermission });
         foreach (var row in source.AttributePermissionList) Add(target.TabularColumnPermissionList, new TabularColumnPermission { Id = row.Id, TabularSecurityRole = roles[row.SecurityRole], TabularColumn = columns[row.Attribute], MetadataPermission = row.MetadataPermission });
 
@@ -214,57 +210,12 @@ public static class AnalyticsToTabularConverter
         return target;
     }
 
-    private static string BuildDaxMeasureExpression(Measure measure, IReadOnlyList<AggregationBehavior>? aggregationBehaviors)
+    private static string BuildDaxMeasureExpression(
+        Measure measure,
+        AggregateFunctionIndex aggregateFunctions)
     {
-        var behavior = RequireSingleAggregationBehavior(measure, aggregationBehaviors);
-        var functionName = ToDaxAggregateFunction(behavior.Function, measure.Id);
+        var functionName = aggregateFunctions.ToDaxFunction(measure);
         return $"{functionName}({DaxIdentifier(measure.Table.Name)}[{DaxColumnIdentifier(measure.SourceAttribute.Name)}])";
-    }
-
-    private static AggregationBehavior RequireSingleAggregationBehavior(Measure measure, IReadOnlyList<AggregationBehavior>? aggregationBehaviors)
-    {
-        if (aggregationBehaviors == null || aggregationBehaviors.Count == 0)
-        {
-            throw new InvalidOperationException($"Measure '{measure.Id}' does not define an aggregation behavior.");
-        }
-
-        if (aggregationBehaviors.Count > 1)
-        {
-            throw new InvalidOperationException($"Measure '{measure.Id}' defines multiple aggregation behaviors.");
-        }
-
-        return aggregationBehaviors[0];
-    }
-
-    private static string? RequireTabularExpression(string? language, string? expression, string context)
-    {
-        return string.IsNullOrWhiteSpace(expression)
-            ? null
-            : RequireExpressionLanguage(language, "DAX", expression, context);
-    }
-
-    private static string RequireExpressionLanguage(string? actual, string expected, string expression, string context)
-    {
-        if (!string.Equals(actual, expected, StringComparison.OrdinalIgnoreCase))
-        {
-            throw new InvalidOperationException($"{context} uses expression language '{actual ?? "(none)"}', but MetaTabular conversion requires {expected}.");
-        }
-
-        return expression;
-    }
-
-    private static string ToDaxAggregateFunction(string function, string measureId)
-    {
-        return function.Trim().ToUpperInvariant() switch
-        {
-            "SUM" => "SUM",
-            "COUNT" => "COUNT",
-            "DISTINCTCOUNT" or "DISTINCT_COUNT" => "DISTINCTCOUNT",
-            "MIN" => "MIN",
-            "MAX" => "MAX",
-            "AVERAGE" or "AVG" => "AVERAGE",
-            _ => throw new InvalidOperationException($"Measure '{measureId}' uses aggregate function '{function}', which does not have a supported DAX base-measure projection."),
-        };
     }
 
     private static string DaxIdentifier(string value)
@@ -281,5 +232,55 @@ public static class AnalyticsToTabularConverter
     {
         rows.Add(row);
         return row;
+    }
+
+    private sealed class AggregateFunctionIndex
+    {
+        private readonly HashSet<AggregateFunction> sums;
+        private readonly HashSet<AggregateFunction> averages;
+        private readonly HashSet<AggregateFunction> counts;
+        private readonly HashSet<AggregateFunction> distinctCounts;
+        private readonly HashSet<AggregateFunction> minimums;
+        private readonly HashSet<AggregateFunction> maximums;
+
+        public AggregateFunctionIndex(MetaAnalyticsModel model)
+        {
+            sums = new HashSet<AggregateFunction>(model.SumAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+            averages = new HashSet<AggregateFunction>(model.AverageAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+            counts = new HashSet<AggregateFunction>(model.CountAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+            distinctCounts = new HashSet<AggregateFunction>(model.DistinctCountAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+            minimums = new HashSet<AggregateFunction>(model.MinimumAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+            maximums = new HashSet<AggregateFunction>(model.MaximumAggregateFunctionList.Select(row => row.AggregateFunction), ReferenceEqualityComparer.Instance);
+        }
+
+        public string ToDaxFunction(Measure measure)
+        {
+            var matches = new List<string>(capacity: 1);
+            AddIf(matches, sums, measure.AggregateFunction, "SUM");
+            AddIf(matches, averages, measure.AggregateFunction, "AVERAGE");
+            AddIf(matches, counts, measure.AggregateFunction, "COUNT");
+            AddIf(matches, distinctCounts, measure.AggregateFunction, "DISTINCTCOUNT");
+            AddIf(matches, minimums, measure.AggregateFunction, "MIN");
+            AddIf(matches, maximums, measure.AggregateFunction, "MAX");
+            if (matches.Count != 1)
+            {
+                throw new InvalidOperationException(
+                    $"Measure '{measure.Id}' must reference one concrete aggregate-function entity; found {matches.Count}.");
+            }
+
+            return matches[0];
+        }
+
+        private static void AddIf(
+            ICollection<string> matches,
+            IReadOnlySet<AggregateFunction> functions,
+            AggregateFunction candidate,
+            string targetName)
+        {
+            if (functions.Contains(candidate))
+            {
+                matches.Add(targetName);
+            }
+        }
     }
 }

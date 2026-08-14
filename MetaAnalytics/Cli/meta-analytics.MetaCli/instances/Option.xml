@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
-    <Option Id="opt-add-aggregation-behavior-description" ParameterId="param-add-aggregation-behavior-description" />
-    <Option Id="opt-add-aggregation-behavior-function" ParameterId="param-add-aggregation-behavior-function" />
-    <Option Id="opt-add-aggregation-behavior-id" ParameterId="param-add-aggregation-behavior-id" />
-    <Option Id="opt-add-aggregation-behavior-measure" ParameterId="param-add-aggregation-behavior-measure" />
-    <Option Id="opt-add-aggregation-behavior-workspace" ParameterId="param-add-aggregation-behavior-workspace" />
     <Option Id="opt-add-attribute-data-category" ParameterId="param-add-attribute-data-category" />
     <Option Id="opt-add-attribute-data-type-id" ParameterId="param-add-attribute-data-type-id" />
     <Option Id="opt-add-attribute-description" ParameterId="param-add-attribute-description" />
-    <Option Id="opt-add-attribute-expression" ParameterId="param-add-attribute-expression" />
-    <Option Id="opt-add-attribute-expression-language" ParameterId="param-add-attribute-expression-language" />
     <Option Id="opt-add-attribute-format-string" ParameterId="param-add-attribute-format-string" />
     <Option Id="opt-add-attribute-id" ParameterId="param-add-attribute-id" />
     <Option Id="opt-add-attribute-is-hidden" ParameterId="param-add-attribute-is-hidden" />
@@ -74,6 +67,7 @@
     <Option Id="opt-add-hierarchy-translation-id" ParameterId="param-add-hierarchy-translation-id" />
     <Option Id="opt-add-hierarchy-translation-workspace" ParameterId="param-add-hierarchy-translation-workspace" />
     <Option Id="opt-add-hierarchy-workspace" ParameterId="param-add-hierarchy-workspace" />
+    <Option Id="opt-add-measure-aggregate-function" ParameterId="param-add-measure-aggregate-function" />
     <Option Id="opt-add-measure-data-type-id" ParameterId="param-add-measure-data-type-id" />
     <Option Id="opt-add-measure-description" ParameterId="param-add-measure-description" />
     <Option Id="opt-add-measure-display-folder" ParameterId="param-add-measure-display-folder" />
@@ -138,13 +132,6 @@
     <Option Id="opt-add-relationship-to-attribute" ParameterId="param-add-relationship-to-attribute" />
     <Option Id="opt-add-relationship-to-table" ParameterId="param-add-relationship-to-table" />
     <Option Id="opt-add-relationship-workspace" ParameterId="param-add-relationship-workspace" />
-    <Option Id="opt-add-role-filter-description" ParameterId="param-add-role-filter-description" />
-    <Option Id="opt-add-role-filter-expression" ParameterId="param-add-role-filter-expression" />
-    <Option Id="opt-add-role-filter-expression-language" ParameterId="param-add-role-filter-expression-language" />
-    <Option Id="opt-add-role-filter-id" ParameterId="param-add-role-filter-id" />
-    <Option Id="opt-add-role-filter-role" ParameterId="param-add-role-filter-role" />
-    <Option Id="opt-add-role-filter-table" ParameterId="param-add-role-filter-table" />
-    <Option Id="opt-add-role-filter-workspace" ParameterId="param-add-role-filter-workspace" />
     <Option Id="opt-add-role-member-id" ParameterId="param-add-role-member-id" />
     <Option Id="opt-add-role-member-member-kind" ParameterId="param-add-role-member-member-kind" />
     <Option Id="opt-add-role-member-member-name" ParameterId="param-add-role-member-member-name" />

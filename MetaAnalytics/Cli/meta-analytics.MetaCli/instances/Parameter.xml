@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
-    <Parameter Id="param-add-aggregation-behavior-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-aggregation-behavior-function" ValueShapeId="shape-text">
-      <Description>Aggregate function.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>function</Name>
-    </Parameter>
-    <Parameter Id="param-add-aggregation-behavior-id" ValueShapeId="shape-text">
-      <Description>AggregationBehavior row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-aggregation-behavior-measure" ValueShapeId="shape-text">
-      <Description>Measure id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>measure</Name>
-    </Parameter>
-    <Parameter Id="param-add-aggregation-behavior-workspace" ValueShapeId="shape-path">
-      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
     <Parameter Id="param-add-attribute-data-category" ValueShapeId="shape-text">
       <Description>Data category.</Description>
       <Name>data-category</Name>
@@ -36,14 +13,6 @@
     <Parameter Id="param-add-attribute-description" ValueShapeId="shape-text">
       <Description>Description.</Description>
       <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-attribute-expression" ValueShapeId="shape-text">
-      <Description>Expression.</Description>
-      <Name>expression</Name>
-    </Parameter>
-    <Parameter Id="param-add-attribute-expression-language" ValueShapeId="shape-text">
-      <Description>Expression language.</Description>
-      <Name>expression-language</Name>
     </Parameter>
     <Parameter Id="param-add-attribute-format-string" ValueShapeId="shape-text">
       <Description>Format string.</Description>
@@ -325,6 +294,11 @@
     <Parameter Id="param-add-hierarchy-workspace" ValueShapeId="shape-path">
       <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-measure-aggregate-function" ValueShapeId="shape-base-measure-aggregate">
+      <Description>Neutral aggregate function applied to the prepared source attribute.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>aggregate-function</Name>
     </Parameter>
     <Parameter Id="param-add-measure-data-type-id" ValueShapeId="shape-text">
       <Description>Data type id.</Description>
@@ -614,39 +588,6 @@
       <Name>to-table</Name>
     </Parameter>
     <Parameter Id="param-add-relationship-workspace" ValueShapeId="shape-path">
-      <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
-      <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-add-role-filter-description" ValueShapeId="shape-text">
-      <Description>Description.</Description>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-add-role-filter-expression" ValueShapeId="shape-text">
-      <Description>Expression.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>expression</Name>
-    </Parameter>
-    <Parameter Id="param-add-role-filter-expression-language" ValueShapeId="shape-text">
-      <Description>Expression language.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>expression-language</Name>
-    </Parameter>
-    <Parameter Id="param-add-role-filter-id" ValueShapeId="shape-text">
-      <Description>RoleFilter row id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>id</Name>
-    </Parameter>
-    <Parameter Id="param-add-role-filter-role" ValueShapeId="shape-text">
-      <Description>SecurityRole id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>role</Name>
-    </Parameter>
-    <Parameter Id="param-add-role-filter-table" ValueShapeId="shape-text">
-      <Description>Table id.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>table</Name>
-    </Parameter>
-    <Parameter Id="param-add-role-filter-workspace" ValueShapeId="shape-path">
       <Description>MetaAnalytics workspace. Defaults to the current directory.</Description>
       <Name>workspace</Name>
     </Parameter>

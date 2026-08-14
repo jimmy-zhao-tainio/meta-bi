@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandList>
-    <ExecutableCommand Id="exec-add-aggregation-behavior" CommandId="cmd-add-aggregation-behavior" />
     <ExecutableCommand Id="exec-add-attribute" CommandId="cmd-add-attribute" />
     <ExecutableCommand Id="exec-add-attribute-permission" CommandId="cmd-add-attribute-permission" />
     <ExecutableCommand Id="exec-add-attribute-relationship" CommandId="cmd-add-attribute-relationship" />
@@ -21,7 +20,6 @@
     <ExecutableCommand Id="exec-add-perspective-table" CommandId="cmd-add-perspective-table" />
     <ExecutableCommand Id="exec-add-perspective-translation" CommandId="cmd-add-perspective-translation" />
     <ExecutableCommand Id="exec-add-relationship" CommandId="cmd-add-relationship" />
-    <ExecutableCommand Id="exec-add-role-filter" CommandId="cmd-add-role-filter" />
     <ExecutableCommand Id="exec-add-role-member" CommandId="cmd-add-role-member" />
     <ExecutableCommand Id="exec-add-security-role" CommandId="cmd-add-security-role" />
     <ExecutableCommand Id="exec-add-sort-by-attribute" CommandId="cmd-add-sort-by-attribute" />

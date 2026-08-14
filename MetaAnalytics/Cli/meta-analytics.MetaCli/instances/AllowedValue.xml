@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <AllowedValueList>
+    <AllowedValue Id="allowed-base-measure-aggregate-average" ValueShapeId="shape-base-measure-aggregate">
+      <Value>Average</Value>
+    </AllowedValue>
+    <AllowedValue Id="allowed-base-measure-aggregate-count" ValueShapeId="shape-base-measure-aggregate">
+      <Value>Count</Value>
+    </AllowedValue>
+    <AllowedValue Id="allowed-base-measure-aggregate-distinctcount" ValueShapeId="shape-base-measure-aggregate">
+      <Value>DistinctCount</Value>
+    </AllowedValue>
+    <AllowedValue Id="allowed-base-measure-aggregate-maximum" ValueShapeId="shape-base-measure-aggregate">
+      <Value>Maximum</Value>
+    </AllowedValue>
+    <AllowedValue Id="allowed-base-measure-aggregate-minimum" ValueShapeId="shape-base-measure-aggregate">
+      <Value>Minimum</Value>
+    </AllowedValue>
+    <AllowedValue Id="allowed-base-measure-aggregate-sum" ValueShapeId="shape-base-measure-aggregate">
+      <Value>Sum</Value>
+    </AllowedValue>
     <AllowedValue Id="allowed-boolean-false" ValueShapeId="shape-bool">
       <Value>false</Value>
     </AllowedValue>

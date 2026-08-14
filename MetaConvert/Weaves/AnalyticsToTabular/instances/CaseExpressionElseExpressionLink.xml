@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaWeave>
-  <CaseExpressionElseExpressionLinkList>
-    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:1" CaseExpressionId="CaseExpression:1" ScalarExpressionId="ScalarExpression:91" />
-    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:5" CaseExpressionId="CaseExpression:5" ScalarExpressionId="ScalarExpression:293" />
-  </CaseExpressionElseExpressionLinkList>
-</MetaWeave>

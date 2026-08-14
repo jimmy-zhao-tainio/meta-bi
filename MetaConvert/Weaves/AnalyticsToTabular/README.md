@@ -1,27 +1,31 @@
 # Analytics to Tabular Weave
 
 This is the sanctioned forward `MetaWeave` correspondence from
-`MetaAnalytics` to `MetaTabular`. Its four requirements define the admitted
-source domain, and its 25 transformations carry that domain into the
+`MetaAnalytics` to `MetaTabular`. Its requirement defines the admitted
+source domain, and its 24 transformations carry that domain into the
 corresponding tabular populations. The modeled queries in this workspace are
-the authored conversion truth; emitted SQL is only an inspection surface.
+the authored conversion truth; emitted SQL provides their editable inspection
+surface.
 
 The source and target contracts are:
 
 - [`MetaAnalytics`](../../../MetaAnalytics/Workspaces/MetaAnalytics)
 - [`MetaTabular`](../../../MetaTabular/Workspaces/MetaTabular)
 
-The direction is intentionally partial. A source-backed measure must have
-exactly one `AggregationBehavior` using `SUM`, `COUNT`, `DISTINCTCOUNT`,
-`DISTINCT_COUNT`, `MIN`, `MAX`, `AVERAGE`, or `AVG`. Attribute expressions,
-when present, and role-filter expressions must be DAX. These are the same
-admissibility rules as the established
+A source-backed base measure relates to an `AggregateFunction` with one
+concrete function entity: `SumAggregateFunction`,
+`AverageAggregateFunction`, `CountAggregateFunction`,
+`DistinctCountAggregateFunction`, `MinimumAggregateFunction`, or
+`MaximumAggregateFunction`. These are the same aggregate forms projected by
+the established
 [`AnalyticsToTabularConverter`](../../AnalyticsToTabular/AnalyticsToTabularConverter.cs).
 
-`AggregationBehavior` is consumed to construct a DAX base-measure expression.
-`AttributeRelationship` and source members without a tabular counterpart are
-deliberate losses. Target-only KPIs, calculation groups and items, partitions,
-their perspective memberships, and KPI translations remain empty.
+The `TabularMeasure` transformation combines six typed query branches with
+`UNION ALL`. Each branch projects its function into a deterministic DAX
+base-measure expression over the prepared source attribute. Target-specific
+calculated columns, row filters, KPIs, calculation groups and items,
+partitions, their perspective memberships, and KPI translations are authored
+in the resulting `MetaTabular` workspace.
 
 Execute the weave into a new target workspace:
 
@@ -46,7 +50,7 @@ Inspect a requirement and its violation query as readable WeaveScript:
 meta-weave emit-requirement \
   --workspace . \
   --direction forward \
-  --name MeasureAggregationCardinality
+  --name MeasureAggregateFunction
 ```
 
 Inspect any transformation as readable WeaveScript:

@@ -81,29 +81,9 @@ public static class MetaAnalyticsInstance
         AddRelationship(model, "relationship:sales:customer", sales, customerSalesKey, customer, customerKey, "Customer");
         AddRelationship(model, "relationship:sales:product", sales, productSalesKey, product, productKey, "Product");
 
-        var salesAmount = AddMeasure(model, sales, salesAmountColumn, "measure:sales-amount", "Sales Amount", "meta:type:Decimal", "#,0.00", "Sales");
-        Add(model.AggregationBehaviorList, new AggregationBehavior
-        {
-            Id = "aggregation:sales-amount",
-            Measure = salesAmount,
-            Function = "Sum",
-        });
-
-        var quantity = AddMeasure(model, sales, quantityColumn, "measure:quantity", "Quantity", "meta:type:Int32", "#,0", "Sales");
-        Add(model.AggregationBehaviorList, new AggregationBehavior
-        {
-            Id = "aggregation:quantity",
-            Measure = quantity,
-            Function = "Sum",
-        });
-
-        var salesTarget = AddMeasure(model, sales, salesTargetColumn, "measure:sales-target", "Sales Target", "meta:type:Decimal", "#,0.00", "Sales");
-        Add(model.AggregationBehaviorList, new AggregationBehavior
-        {
-            Id = "aggregation:sales-target",
-            Measure = salesTarget,
-            Function = "Sum",
-        });
+        var salesAmount = AddSumMeasure(model, sales, salesAmountColumn, "measure:sales-amount", "Sales Amount", "meta:type:Decimal", "#,0.00", "Sales");
+        var quantity = AddSumMeasure(model, sales, quantityColumn, "measure:quantity", "Quantity", "meta:type:Int32", "#,0", "Sales");
+        var salesTarget = AddSumMeasure(model, sales, salesTargetColumn, "measure:sales-target", "Sales Target", "meta:type:Decimal", "#,0.00", "Sales");
 
         var salesPerspective = Add(model.PerspectiveList, new Perspective
         {
@@ -133,14 +113,6 @@ public static class MetaAnalyticsInstance
             SecurityRole = salesRole,
             MemberName = "CONTOSO\\SalesAnalysts",
             MemberKind = "WindowsGroup",
-        });
-        Add(model.RoleFilterList, new RoleFilter
-        {
-            Id = "role-filter:sales-region-reader:customer",
-            SecurityRole = salesRole,
-            Table = customer,
-            ExpressionLanguage = "DAX",
-            Expression = "Customer[Region] = LOOKUPVALUE(UserRegion[Region], UserRegion[UserName], USERNAME())",
         });
         Add(model.AttributePermissionList, new AttributePermission
         {
@@ -255,7 +227,7 @@ public static class MetaAnalyticsInstance
         });
     }
 
-    private static Measure AddMeasure(
+    private static Measure AddSumMeasure(
         MetaAnalyticsModel model,
         AnalyticsTable table,
         AnalyticsAttribute sourceAttribute,
@@ -265,12 +237,23 @@ public static class MetaAnalyticsInstance
         string formatString,
         string displayFolder)
     {
+        var aggregateFunction = Add(model.AggregateFunctionList, new AggregateFunction
+        {
+            Id = $"{id}:aggregate-function",
+        });
+        Add(model.SumAggregateFunctionList, new SumAggregateFunction
+        {
+            Id = $"{id}:aggregate-function:type",
+            AggregateFunction = aggregateFunction,
+        });
+
         return Add(model.MeasureList, new Measure
         {
             Id = id,
             Table = table,
             SourceAttribute = sourceAttribute,
             Name = name,
+            AggregateFunction = aggregateFunction,
             DataTypeId = dataTypeId,
             FormatString = formatString,
             DisplayFolder = displayFolder,

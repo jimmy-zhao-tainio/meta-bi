@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <CommandList>
-    <Command Id="cmd-add-aggregation-behavior" ApplicationId="app-meta-analytics">
-      <Description>Declare a base measure aggregate function.</Description>
-      <Name>add-aggregation-behavior</Name>
-      <Token>add-aggregation-behavior</Token>
-    </Command>
     <Command Id="cmd-add-attribute" ApplicationId="app-meta-analytics">
       <Description>Add a typed table attribute or calculated attribute.</Description>
       <Name>add-attribute</Name>
@@ -100,11 +95,6 @@
       <Description>Add a relationship between analytics tables.</Description>
       <Name>add-relationship</Name>
       <Token>add-relationship</Token>
-    </Command>
-    <Command Id="cmd-add-role-filter" ApplicationId="app-meta-analytics">
-      <Description>Add row-level security over a table.</Description>
-      <Name>add-role-filter</Name>
-      <Token>add-role-filter</Token>
     </Command>
     <Command Id="cmd-add-role-member" ApplicationId="app-meta-analytics">
       <Description>Add a member to a security role.</Description>

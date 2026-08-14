@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
-    <OptionToken Id="tok-add-aggregation-behavior-description" OptionId="opt-add-aggregation-behavior-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregation-behavior-function" OptionId="opt-add-aggregation-behavior-function">
-      <Token>--function</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregation-behavior-id" OptionId="opt-add-aggregation-behavior-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregation-behavior-measure" OptionId="opt-add-aggregation-behavior-measure">
-      <Token>--measure</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-aggregation-behavior-workspace" OptionId="opt-add-aggregation-behavior-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
     <OptionToken Id="tok-add-attribute-data-category" OptionId="opt-add-attribute-data-category">
       <Token>--data-category</Token>
     </OptionToken>
@@ -24,12 +9,6 @@
     </OptionToken>
     <OptionToken Id="tok-add-attribute-description" OptionId="opt-add-attribute-description">
       <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-expression" OptionId="opt-add-attribute-expression">
-      <Token>--expression</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-attribute-expression-language" OptionId="opt-add-attribute-expression-language">
-      <Token>--expression-language</Token>
     </OptionToken>
     <OptionToken Id="tok-add-attribute-format-string" OptionId="opt-add-attribute-format-string">
       <Token>--format-string</Token>
@@ -412,27 +391,6 @@
     <OptionToken Id="tok-add-relationship-workspace" OptionId="opt-add-relationship-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="tok-add-role-filter-description" OptionId="opt-add-role-filter-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-expression" OptionId="opt-add-role-filter-expression">
-      <Token>--expression</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-expression-language" OptionId="opt-add-role-filter-expression-language">
-      <Token>--expression-language</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-id" OptionId="opt-add-role-filter-id">
-      <Token>--id</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-role" OptionId="opt-add-role-filter-role">
-      <Token>--role</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-table" OptionId="opt-add-role-filter-table">
-      <Token>--table</Token>
-    </OptionToken>
-    <OptionToken Id="tok-add-role-filter-workspace" OptionId="opt-add-role-filter-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
     <OptionToken Id="tok-add-role-member-id" OptionId="opt-add-role-member-id">
       <Token>--id</Token>
     </OptionToken>
@@ -543,6 +501,9 @@
     </OptionToken>
     <OptionToken Id="tok-add-table-workspace" OptionId="opt-add-table-workspace">
       <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-measure-aggregate-function" OptionId="opt-add-measure-aggregate-function">
+      <Token>--aggregate-function</Token>
     </OptionToken>
     <OptionToken Id="token-create-connection-env" OptionId="option-create-connection-env">
       <Token>--connection-env</Token>

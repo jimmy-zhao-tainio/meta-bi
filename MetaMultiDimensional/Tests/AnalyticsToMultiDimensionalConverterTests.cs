@@ -29,19 +29,37 @@ public sealed class AnalyticsToMultiDimensionalConverterTests
         Assert.Equal("OrderDate", usage.RoleName);
     }
 
+    [Theory]
+    [InlineData(typeof(SumAggregateFunction), "Sum")]
+    [InlineData(typeof(AverageAggregateFunction), "Average")]
+    [InlineData(typeof(CountAggregateFunction), "Count")]
+    [InlineData(typeof(DistinctCountAggregateFunction), "DistinctCount")]
+    [InlineData(typeof(MinimumAggregateFunction), "Min")]
+    [InlineData(typeof(MaximumAggregateFunction), "Max")]
+    public void Convert_ProjectsEveryNeutralBaseMeasureAggregate(
+        Type aggregateFunctionType,
+        string targetFunction)
+    {
+        var source = CreateConvertibleAnalyticsModel();
+        SetAggregateFunctionType(source, source.MeasureList.Single().AggregateFunction, aggregateFunctionType);
+
+        var converted = AnalyticsToMultiDimensionalConverter.Convert(source);
+
+        Assert.Equal(targetFunction, converted.MeasureList.Single().AggregateFunction);
+    }
+
     [Fact]
     public void Convert_RejectsTabularSpecificSecurityClearly()
     {
         var source = CreateConvertibleAnalyticsModel();
         var role = source.SecurityRoleList.Single();
         var sales = source.TableList.Single(row => row.Id == "Sales");
-        source.RoleFilterList.Add(new RoleFilter
+        source.TablePermissionList.Add(new TablePermission
         {
-            Id = "SalesRoleFilter",
+            Id = "SalesTablePermission",
             SecurityRole = role,
             Table = sales,
-            ExpressionLanguage = "DAX",
-            Expression = "Sales[Region] = USERNAME()",
+            MetadataPermission = "None",
         });
 
         var ex = Assert.Throws<InvalidOperationException>(() => AnalyticsToMultiDimensionalConverter.Convert(source));
@@ -134,20 +152,24 @@ public sealed class AnalyticsToMultiDimensionalConverterTests
             RelationshipKind = "Regular",
             Cardinality = "ManyToOne",
         });
+        var aggregateFunction = Add(model.AggregateFunctionList, new AggregateFunction
+        {
+            Id = "SalesAmount:aggregate-function",
+        });
+        Add(model.SumAggregateFunctionList, new SumAggregateFunction
+        {
+            Id = "SalesAmount:aggregate-function:type",
+            AggregateFunction = aggregateFunction,
+        });
         var salesAmount = Add(model.MeasureList, new AnalyticsMeasure
         {
             Id = "SalesAmount",
             Table = sales,
             SourceAttribute = salesAmountColumn,
             Name = "Sales Amount",
+            AggregateFunction = aggregateFunction,
             DataTypeId = "meta:type:Decimal",
             FormatString = "#,0.00",
-        });
-        Add(model.AggregationBehaviorList, new AggregationBehavior
-        {
-            Id = "SalesAmountAggregation",
-            Measure = salesAmount,
-            Function = "Sum",
         });
         Add(model.SecurityRoleList, new AnalyticsSecurityRole
         {
@@ -158,6 +180,21 @@ public sealed class AnalyticsToMultiDimensionalConverterTests
         });
 
         return model;
+    }
+
+    private static void SetAggregateFunctionType(
+        MetaAnalyticsModel model,
+        AggregateFunction aggregateFunction,
+        Type aggregateFunctionType)
+    {
+        model.SumAggregateFunctionList.Clear();
+        if (aggregateFunctionType == typeof(SumAggregateFunction)) model.SumAggregateFunctionList.Add(new SumAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else if (aggregateFunctionType == typeof(AverageAggregateFunction)) model.AverageAggregateFunctionList.Add(new AverageAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else if (aggregateFunctionType == typeof(CountAggregateFunction)) model.CountAggregateFunctionList.Add(new CountAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else if (aggregateFunctionType == typeof(DistinctCountAggregateFunction)) model.DistinctCountAggregateFunctionList.Add(new DistinctCountAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else if (aggregateFunctionType == typeof(MinimumAggregateFunction)) model.MinimumAggregateFunctionList.Add(new MinimumAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else if (aggregateFunctionType == typeof(MaximumAggregateFunction)) model.MaximumAggregateFunctionList.Add(new MaximumAggregateFunction { Id = aggregateFunction.Id + ":type", AggregateFunction = aggregateFunction });
+        else throw new ArgumentOutOfRangeException(nameof(aggregateFunctionType));
     }
 
     private static T Add<T>(ICollection<T> rows, T row)

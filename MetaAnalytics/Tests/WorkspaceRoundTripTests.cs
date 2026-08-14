@@ -17,17 +17,17 @@ public sealed class WorkspaceRoundTripTests
             var date = Assert.Single(loaded.TableList, row => row.Id == "table:date");
             var salesAmount = Assert.Single(loaded.MeasureList, row => row.Id == "measure:sales-amount");
             var relationship = Assert.Single(loaded.RelationshipList, row => row.Id == "relationship:sales:order-date");
-            var roleFilter = Assert.Single(loaded.RoleFilterList);
             var perspectiveMeasure = Assert.Single(loaded.PerspectiveMeasureList, row => row.Measure.Id == salesAmount.Id);
-            var aggregation = Assert.Single(loaded.AggregationBehaviorList, row => row.Measure == salesAmount);
 
             Assert.Same(sales, salesAmount.Table);
             Assert.Equal("Sales Amount", salesAmount.SourceAttribute.Name);
             Assert.Same(sales, relationship.FromTable);
             Assert.Same(date, relationship.ToTable);
             Assert.Same(salesAmount, perspectiveMeasure.Measure);
-            Assert.Equal("Sum", aggregation.Function);
-            Assert.Same(Assert.Single(loaded.SecurityRoleList), roleFilter.SecurityRole);
+            Assert.Contains(
+                loaded.SumAggregateFunctionList,
+                row => ReferenceEquals(row.AggregateFunction, salesAmount.AggregateFunction));
+            Assert.Single(loaded.SecurityRoleList);
             Assert.Contains(loaded.MeasureTranslationList, row => row.Measure == salesAmount && row.Culture.Name == "sv-SE");
         }
         finally
@@ -53,6 +53,7 @@ public sealed class WorkspaceRoundTripTests
                 Table = measure.Table,
                 SourceAttribute = measure.SourceAttribute,
                 Name = measure.Name,
+                AggregateFunction = measure.AggregateFunction,
             },
         });
 

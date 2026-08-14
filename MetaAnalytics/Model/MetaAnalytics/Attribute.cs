@@ -12,10 +12,6 @@ namespace MetaAnalytics
 
         public string? Description { get; set; }
 
-        public string? Expression { get; set; }
-
-        public string? ExpressionLanguage { get; set; }
-
         public string? FormatString { get; set; }
 
         public string? IsHidden { get; set; }

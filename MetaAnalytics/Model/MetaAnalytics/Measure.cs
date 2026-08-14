@@ -18,6 +18,8 @@ namespace MetaAnalytics
 
         public string Name { get; set; } = string.Empty;
 
+        public AggregateFunction AggregateFunction { get; set; } = null!;
+
         public Attribute SourceAttribute { get; set; } = null!;
 
         public Table Table { get; set; } = null!;

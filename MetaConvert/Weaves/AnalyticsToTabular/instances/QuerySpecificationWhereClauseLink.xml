@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <QuerySpecificationWhereClauseLinkList>
-    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:2" QuerySpecificationId="QuerySpecification:27" WhereClauseId="WhereClause:2" />
-    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:3" QuerySpecificationId="QuerySpecification:28" WhereClauseId="WhereClause:3" />
-    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:4" QuerySpecificationId="QuerySpecification:29" WhereClauseId="WhereClause:4" />
-    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:5" QuerySpecificationId="QuerySpecification:30" WhereClauseId="WhereClause:5" />
-    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:6" QuerySpecificationId="QuerySpecification:31" WhereClauseId="WhereClause:6" />
-    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:7" QuerySpecificationId="QuerySpecification:33" WhereClauseId="WhereClause:7" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:2" QuerySpecificationId="QuerySpecification:26" WhereClauseId="WhereClause:2" />
   </QuerySpecificationWhereClauseLinkList>
 </MetaWeave>
