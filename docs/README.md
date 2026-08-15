@@ -16,6 +16,7 @@
 
 ## Domain Notes
 
+- [MetaSchemaAdapter](meta-schema-adapter/README.md)
 - [MetaAnalytics](analytics/README.md)
 - [MetaBusiness boundary](meta-business/META-BUSINESS-BOUNDARY.md)
 - [MetaDataQuality](meta-data-quality/META-DATA-QUALITY.md)

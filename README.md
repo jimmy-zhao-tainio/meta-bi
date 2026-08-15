@@ -17,6 +17,11 @@ The repository-level [documentation index](docs/README.md) links design notes
 and product boundaries that complement the modeled reference. Use
 `meta-<tool> help` for local command help.
 
+External providers enter through
+[MetaSchemaAdapter](docs/meta-schema-adapter/README.md), which discovers
+MetaSchema contracts and supplies the runtime capabilities used by bound
+transforms and MetaPipeline.
+
 ## Status
 
 The repository is under active pre-release development. Product areas have

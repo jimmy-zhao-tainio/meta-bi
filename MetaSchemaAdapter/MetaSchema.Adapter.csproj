@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Description>Provider contracts connecting external systems to MetaSchema, MetaTransformBinding, and MetaPipeline.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Tests\**\*.cs" />
+    <EmbeddedResource Remove="Tests\**\*" />
+    <None Remove="Tests\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\MetaSchema\Core\MetaSchema.Core.csproj" />
+    <ProjectReference Include="..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
+    <ProjectReference Include="..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
+    <ProjectReference Include="..\MetaPipeline\Core\MetaPipeline.Core.csproj" />
+  </ItemGroup>
+
+</Project>

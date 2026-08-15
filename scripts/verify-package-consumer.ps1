@@ -25,6 +25,8 @@ $expectedPackages = @(
     'MetaCli.Model',
     'MetaCli.Core',
     'MetaWeave.Model',
+    'MetaWeaveScript.Execution',
+    'MetaWeaveScript.Sql',
     'MetaWeave.Core'
 )
 
@@ -159,8 +161,11 @@ Assert-PackageDependencies 'MetaCli.Model' @()
 Assert-PackageDependencies 'MetaCli.Core' @(
     'Meta.Integration', 'Meta.Operations', 'Meta.Surfaces', 'MetaCli.Model')
 Assert-PackageDependencies 'MetaWeave.Model' @()
+Assert-PackageDependencies 'MetaWeaveScript.Execution' @(
+    'Meta.Operations', 'MetaWeave.Model')
+Assert-PackageDependencies 'MetaWeaveScript.Sql' @('MetaWeave.Model')
 Assert-PackageDependencies 'MetaWeave.Core' @(
-    'Meta.Core', 'Meta.Integration', 'Meta.Operations', 'MetaWeave.Model')
+    'Meta.Integration', 'MetaWeave.Model', 'MetaWeaveScript.Execution', 'MetaWeaveScript.Sql')
 
 $closureCases = @(
     @{ Package = 'Meta.Operations'; Roslyn = $false; SqlClient = $false; Xml = $false },
@@ -174,6 +179,8 @@ $closureCases = @(
     @{ Package = 'MetaCli.Model'; Roslyn = $false; SqlClient = $false; Xml = $false },
     @{ Package = 'MetaCli.Core'; Roslyn = $true; SqlClient = $true; Xml = $true },
     @{ Package = 'MetaWeave.Model'; Roslyn = $false; SqlClient = $false; Xml = $false },
+    @{ Package = 'MetaWeaveScript.Execution'; Roslyn = $false; SqlClient = $false; Xml = $false },
+    @{ Package = 'MetaWeaveScript.Sql'; Roslyn = $false; SqlClient = $false; Xml = $false },
     @{ Package = 'MetaWeave.Core'; Roslyn = $true; SqlClient = $true; Xml = $true }
 )
 foreach ($case in $closureCases) {
@@ -212,7 +219,7 @@ foreach ($solution in $solutions) {
 $assetFiles = @(Get-ChildItem -LiteralPath $consumerRoot -Filter 'project.assets.json' -File -Recurse)
 foreach ($assetFile in $assetFiles) {
     $assetText = Get-Content -LiteralPath $assetFile.FullName -Raw
-    if ($assetText -match 'Meta\.(Operations|Core|TypedModels|Surfaces(?:\.(?:Xml|CSharp|Sql))?|Integration)\.csproj|MetaCli\.(Model|Core)\.csproj|MetaWeave\.(Model|Core)\.csproj') {
+    if ($assetText -match 'Meta\.(Operations|Core|TypedModels|Surfaces(?:\.(?:Xml|CSharp|Sql))?|Integration)\.csproj|MetaCli\.(Model|Core)\.csproj|MetaWeave\.(Model|Core)\.csproj|MetaWeaveScript\.(Execution|Sql)\.csproj') {
         throw "Foundation dependency was resolved as a project in $($assetFile.FullName)"
     }
 }
@@ -225,6 +232,7 @@ $testProjects = @(
     'MetaDataVault\Tests\MetaDataVault.Tests.csproj',
     'MetaDataWarehouse\Tests\MetaDataWarehouse.Tests.csproj',
     'MetaSchema\Tests\MetaSchema.Tests.csproj',
+    'MetaSchemaAdapter\Tests\MetaSchema.Adapter.Tests.csproj',
     'MetaPipeline\Tests\MetaPipeline.Tests.csproj'
 )
 
@@ -267,7 +275,9 @@ function Assert-PackageEntry {
     }
 }
 
-Assert-PackageEntry 'MetaWeave.Model' 'contentFiles/any/any/MetaWeave/model.xml'
-Assert-PackageEntry 'MetaCli.Model' 'contentFiles/any/any/MetaCli/model.xml'
+Assert-PackageEntry 'MetaWeave.Model' 'workspaces/MetaWeave/workspace.meta'
+Assert-PackageEntry 'MetaWeave.Model' 'workspaces/MetaWeave/MetaWeave.meta.cs'
+Assert-PackageEntry 'MetaCli.Model' 'workspaces/MetaCli/workspace.meta'
+Assert-PackageEntry 'MetaCli.Model' 'workspaces/MetaCli/MetaCli.meta.cs'
 
 Write-Host "Package-consumer verification passed. Isolated checkout: $consumerRoot"
