@@ -1,5 +1,5 @@
 using System.Text;
-using MetaTransformScript.Instance;
+using MetaTransformScript;
 using MetaTransformScript.Sql;
 
 public sealed class SqlServiceTextEncodingGuardTests

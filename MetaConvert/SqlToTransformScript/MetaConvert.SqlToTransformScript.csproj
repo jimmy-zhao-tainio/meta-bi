@@ -10,7 +10,7 @@
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\..\MetaSql\Model\MetaSql.Model.csproj" />
+    <ProjectReference Include="..\..\MetaSql\CSharp\MetaSql.CSharp.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
   </ItemGroup>
 

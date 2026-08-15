@@ -5,10 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MetaMultiDimensional", "MetaMultiDimensional", "{6316A33B-A188-47D1-9417-0675DFA76A5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaMultiDimensional.Model", "MetaMultiDimensional\Model\MetaMultiDimensional.Model.csproj", "{BC805D0A-428B-427B-B887-11DDEA0202A7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaMultiDimensional.Instance", "MetaMultiDimensional\Instance\MetaMultiDimensional.Instance.csproj", "{ADD5519E-1D32-4039-9C21-AC788E301B96}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaMultiDimensional.Core", "MetaMultiDimensional\Core\MetaMultiDimensional.Core.csproj", "{D095D3EA-8653-407D-8B5C-2E30870E2A5D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaMultiDimensional.Cli", "MetaMultiDimensional\Cli\MetaMultiDimensional.Cli.csproj", "{E0DA86DE-A9AB-4785-B733-18C862B7AECA}"
@@ -28,14 +24,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BC805D0A-428B-427B-B887-11DDEA0202A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC805D0A-428B-427B-B887-11DDEA0202A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC805D0A-428B-427B-B887-11DDEA0202A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC805D0A-428B-427B-B887-11DDEA0202A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ADD5519E-1D32-4039-9C21-AC788E301B96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ADD5519E-1D32-4039-9C21-AC788E301B96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ADD5519E-1D32-4039-9C21-AC788E301B96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ADD5519E-1D32-4039-9C21-AC788E301B96}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D095D3EA-8653-407D-8B5C-2E30870E2A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D095D3EA-8653-407D-8B5C-2E30870E2A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D095D3EA-8653-407D-8B5C-2E30870E2A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,8 +42,6 @@ Global
 		{27691079-3BD0-4DB8-84A1-212A427F4EFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BC805D0A-428B-427B-B887-11DDEA0202A7} = {6316A33B-A188-47D1-9417-0675DFA76A5C}
-		{ADD5519E-1D32-4039-9C21-AC788E301B96} = {6316A33B-A188-47D1-9417-0675DFA76A5C}
 		{D095D3EA-8653-407D-8B5C-2E30870E2A5D} = {6316A33B-A188-47D1-9417-0675DFA76A5C}
 		{E0DA86DE-A9AB-4785-B733-18C862B7AECA} = {6316A33B-A188-47D1-9417-0675DFA76A5C}
 		{1B20EB96-BD7C-44C5-9EE1-36F54CA4EE5E} = {6316A33B-A188-47D1-9417-0675DFA76A5C}

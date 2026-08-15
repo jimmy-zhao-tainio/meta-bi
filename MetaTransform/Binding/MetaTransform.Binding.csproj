@@ -13,9 +13,6 @@
     <EmbeddedResource Remove="CliDefinition\**\*" />
     <None Remove="Cli\**\*" />
     <None Remove="CliDefinition\**\*" />
-    <Compile Remove="Model\**\*.cs" />
-    <EmbeddedResource Remove="Model\**\*" />
-    <None Remove="Model\**\*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,10 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include=".\Model\MetaTransformBinding.Model.csproj" />
-    <ProjectReference Include="..\Script\Model\MetaTransformScript.Model.csproj" />
     <ProjectReference Include="..\Script\Sql\MetaTransformScript.Sql.csproj" />
-    <ProjectReference Include="..\..\MetaSchema\Model\MetaSchema.Model.csproj" />
+    <ProjectReference Include="..\..\MetaSchema\Core\MetaSchema.Core.csproj" />
     <ProjectReference Include="..\..\MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj" />
   </ItemGroup>
 

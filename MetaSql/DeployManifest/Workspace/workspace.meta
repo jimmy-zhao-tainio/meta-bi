@@ -1,1 +1,2 @@
-representation xml
+representation csharp
+source MetaSqlDeployManifest.meta.cs

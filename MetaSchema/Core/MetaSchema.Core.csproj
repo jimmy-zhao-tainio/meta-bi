@@ -7,15 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
-    <PackageReference Include="Meta.Surfaces.Xml" Version="$(MetaFoundationPackageVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="..\Workspaces\MetaSchema\model.xml">
-      <Link>Models\MetaSchema.model.xml</Link>
-      <LogicalName>MetaSchema.Core.Models.MetaSchema.model.xml</LogicalName>
-    </EmbeddedResource>
+    <Compile Include="..\Workspaces\MetaSchema\MetaSchema.meta.cs" Link="MetaSchema.meta.cs" />
   </ItemGroup>
 
 </Project>

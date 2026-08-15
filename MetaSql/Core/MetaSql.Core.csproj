@@ -16,10 +16,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
-    <ProjectReference Include="..\DeployManifest\Model\MetaSqlDeployManifest.Model.csproj" />
-    <ProjectReference Include="..\Model\MetaSql.Model.csproj" />
-    <ProjectReference Include="..\..\MetaDataType\Instance\MetaDataType.Instance.csproj" />
-    <ProjectReference Include="..\..\MetaDataType\Model\MetaDataType.Model.csproj" />
+    <ProjectReference Include="..\CSharp\MetaSql.CSharp.csproj" />
+    <ProjectReference Include="..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
   </ItemGroup>
 
 </Project>

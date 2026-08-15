@@ -14,8 +14,8 @@
     <ProjectReference Include="..\..\Core\MetaDataVault.Core.csproj" />
     <ProjectReference Include="..\..\..\MetaSql\Core\MetaSql.Core.csproj" />
     <ProjectReference Include="..\..\..\MetaSql\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
-    <ProjectReference Include="..\..\..\MetaSql\Model\MetaSql.Model.csproj" />
-    <ProjectReference Include="..\..\..\MetaSchema\Model\MetaSchema.Model.csproj" />
+    <ProjectReference Include="..\..\..\MetaSql\CSharp\MetaSql.CSharp.csproj" />
+    <ProjectReference Include="..\..\..\MetaSchema\Core\MetaSchema.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

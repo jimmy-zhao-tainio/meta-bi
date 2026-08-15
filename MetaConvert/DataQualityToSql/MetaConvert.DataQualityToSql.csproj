@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\..\MetaDataQuality\Model\MetaDataQuality.Model.csproj" />
     <ProjectReference Include="..\..\MetaDataQuality\Core\MetaDataQuality.Core.csproj" />
   </ItemGroup>
 

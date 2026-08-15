@@ -1,13 +1,11 @@
-using MetaDataType.Instance;
-
 namespace MetaDataType.Tests;
 
 public sealed class InstanceTests
 {
     [Fact]
-    public void Default_ProvidesSanctionedInMemoryInstance()
+    public void BuiltIn_ProvidesSanctionedWorkspaceInstance()
     {
-        var model = MetaDataTypeInstance.Default;
+        var model = MetaDataTypeInstance.BuiltIn;
 
         Assert.NotEmpty(model.DataTypeSystemList);
         Assert.NotEmpty(model.DataTypeList);

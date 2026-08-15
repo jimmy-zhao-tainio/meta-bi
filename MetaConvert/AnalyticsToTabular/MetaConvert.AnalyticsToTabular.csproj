@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MetaAnalytics\Instance\MetaAnalytics.Instance.csproj" />
-    <ProjectReference Include="..\..\MetaTabular\Instance\MetaTabular.Instance.csproj" />
+    <ProjectReference Include="..\..\MetaAnalytics\Core\MetaAnalytics.Core.csproj" />
+    <ProjectReference Include="..\..\MetaTabular\Core\MetaTabular.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,4 @@
 using System.Globalization;
-using MetaTransformScript.Instance;
 using MTS = global::MetaTransformScript;
 
 namespace MetaTransformScript.Sql;

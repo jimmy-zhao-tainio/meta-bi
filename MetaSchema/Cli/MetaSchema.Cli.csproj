@@ -12,9 +12,8 @@
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="MetaCli.Core" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\Core\MetaSchema.Core.csproj" />
     <ProjectReference Include="..\Extractors.SqlServer\MetaSchema.Extractors.SqlServer.csproj" />
-    <ProjectReference Include="..\Instance\MetaSchema.Instance.csproj" />
+    <ProjectReference Include="..\Core\MetaSchema.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

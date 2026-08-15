@@ -25,11 +25,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
     <ProjectReference Include="..\..\MetaConvert\DataVaultToSql\MetaConvert.DataVaultToSql.csproj" />
-    <ProjectReference Include="..\..\MetaDataVault\Model\MetaDataVault.Model.csproj" />
+    <ProjectReference Include="..\..\MetaDataVault\Core\MetaDataVault.Core.csproj" />
     <ProjectReference Include="..\Cli\MetaSql.Cli.csproj" />
     <ProjectReference Include="..\Core\MetaSql.Core.csproj" />
     <ProjectReference Include="..\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
-    <ProjectReference Include="..\Model\MetaSql.Model.csproj" />
+    <ProjectReference Include="..\CSharp\MetaSql.CSharp.csproj" />
   </ItemGroup>
 
 </Project>

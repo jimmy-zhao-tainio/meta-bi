@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\Model\MetaDataQuality.Model.csproj" />
-    <ProjectReference Include="..\..\MetaTransform\Script\Model\MetaTransformScript.Model.csproj" />
-    <ProjectReference Include="..\..\MetaTransform\Binding\Model\MetaTransformBinding.Model.csproj" />
+    <Compile Include="..\Workspaces\MetaDataQuality\MetaDataQuality.meta.cs" Link="MetaDataQuality.meta.cs" />
+    <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
   </ItemGroup>
 
 </Project>

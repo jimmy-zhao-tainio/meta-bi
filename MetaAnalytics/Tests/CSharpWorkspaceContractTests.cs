@@ -3,7 +3,6 @@ using Meta.Operations;
 using Meta.Integration;
 using Meta.Surfaces.CSharp;
 using Meta.Surfaces;
-using MetaAnalytics.Instance;
 
 namespace MetaAnalytics.Tests;
 
@@ -13,7 +12,7 @@ public sealed class CSharpWorkspaceContractTests
     public void MetaAnalyticsModel_IsProducedAndConsumedByTheCSharpSurfaceContract()
     {
         var sourceState = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
-            MetaAnalyticsInstance.SampleCommerce);
+            TestModels.LoadSampleCommerce());
 
         var csharp = MetaCSharpWriter.Write(sourceState);
         var source = Assert.Single(csharp.Sources.Values);

@@ -1,6 +1,5 @@
 using System.Text;
 using System.Reflection;
-using MetaTransformScript.Instance;
 using MetaTransformScript.Sql.Parsing;
 using MTS = global::MetaTransformScript;
 

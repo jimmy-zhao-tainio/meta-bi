@@ -27,7 +27,6 @@
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
     <ProjectReference Include="..\Cli\MetaAnalytics.Cli.csproj" />
     <ProjectReference Include="..\Core\MetaAnalytics.Core.csproj" />
-    <ProjectReference Include="..\Instance\MetaAnalytics.Instance.csproj" />
   </ItemGroup>
 
 </Project>

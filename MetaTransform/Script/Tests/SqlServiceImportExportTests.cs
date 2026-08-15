@@ -1,7 +1,7 @@
 using MetaTransformScript;
 using MetaTransformScript.Sql;
 using MetaTransformScript.Sql.Parsing;
-using MetaDataType.Instance;
+using MetaDataType;
 
 public sealed class SqlServiceImportExportTests
 {
@@ -632,7 +632,7 @@ FROM sales.Customer AS c
     [Fact]
     public void ImportFromSqlCode_SupportsAllSanctionedSqlServerDataTypes_FromMetaDataType()
     {
-        var sanctionedSqlServerTypeNames = MetaDataTypeInstance.Default.DataTypeList
+        var sanctionedSqlServerTypeNames = MetaDataTypeInstance.BuiltIn.DataTypeList
             .Where(row =>
                 string.Equals(row.DataTypeSystem.Id, "SqlServer", StringComparison.Ordinal) &&
                 !string.IsNullOrWhiteSpace(row.Name))

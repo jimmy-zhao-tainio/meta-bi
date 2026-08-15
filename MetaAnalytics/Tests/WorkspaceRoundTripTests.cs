@@ -1,5 +1,3 @@
-using MetaAnalytics.Instance;
-
 namespace MetaAnalytics.Tests;
 
 public sealed class WorkspaceRoundTripTests
@@ -10,7 +8,7 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(MetaAnalyticsInstance.SampleCommerce, path);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(TestModels.LoadSampleCommerce(), path);
 
             var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(path, searchUpward: false);
             var sales = Assert.Single(loaded.TableList, row => row.Id == "table:sales");
@@ -39,7 +37,7 @@ public sealed class WorkspaceRoundTripTests
     [Fact]
     public void GeneratedSaveRejectsReferenceOutsideCanonicalCollection()
     {
-        var model = MetaAnalyticsInstance.SampleCommerce;
+        var model = TestModels.LoadSampleCommerce();
         var measure = model.MeasureList.Single(row => row.Id == "measure:sales-amount");
         var perspective = model.PerspectiveList.Single(row => row.Id == "perspective:sales");
 

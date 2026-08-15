@@ -4,7 +4,6 @@ using Meta.Integration;
 using MetaConvert.TransformScriptToSql;
 using Meta.Surfaces;
 using MetaTransformScript;
-using MetaTransformScript.Instance;
 using MetaTransformScript.Sql;
 using MetaTransformScript.Sql.Parsing;
 

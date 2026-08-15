@@ -1,8 +1,8 @@
 using Meta.Operations.Domain;
 using Meta.Integration;
 using MetaDataVaultImplementation;
-using MetaDataType.Instance;
-using MetaDataTypeConversion.Instance;
+using MetaDataType;
+using MetaDataTypeConversion;
 using MetaBusinessDataVault;
 using MetaRawDataVault;
 using MetaSql;
@@ -44,7 +44,7 @@ public static partial class Converter
                     var context = CreateContext(
                         databaseName,
                         implementationModel,
-                        SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.Default, MetaDataTypeConversionInstance.Default));
+                        SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.BuiltIn, MetaDataTypeConversionInstance.BuiltIn));
                     var rawModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaRawDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var metaSqlModel = ConvertRaw(rawModel, context);
                     return Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSqlModel);
@@ -55,7 +55,7 @@ public static partial class Converter
                     var context = CreateContext(
                         databaseName,
                         implementationModel,
-                        SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.Default, MetaDataTypeConversionInstance.Default));
+                        SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.BuiltIn, MetaDataTypeConversionInstance.BuiltIn));
                     var businessModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaBusinessDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var metaSqlModel = ConvertBusiness(businessModel, context);
                     return Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSqlModel);

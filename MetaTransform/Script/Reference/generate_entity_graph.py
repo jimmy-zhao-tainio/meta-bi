@@ -1,14 +1,17 @@
 from __future__ import annotations
 
 import math
-import os
+import subprocess
+import tempfile
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+from pathlib import Path
 from xml.sax.saxutils import escape
 
 
-MODEL_PATH = os.path.join("MetaTransformScript", "Workspaces", "MetaTransformScript", "model.xml")
-OUTPUT_PATH = os.path.join("docs", "images", "meta-transform-script-entity-graph.svg")
+REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
+WORKSPACE_PATH = REPOSITORY_ROOT / "MetaTransform" / "Script" / "Workspaces" / "MetaTransformScript"
+OUTPUT_PATH = REPOSITORY_ROOT / "docs" / "images" / "meta-transform-script-entity-graph.svg"
 
 BACKGROUND = "#ffffff"
 TEXT = "#1f2937"
@@ -37,8 +40,24 @@ TOP_MARGIN = 36
 FONT_FAMILY = "Segoe UI, Arial, sans-serif"
 
 
-def load_model(path: str) -> list[str]:
-    root = ET.parse(path).getroot()
+def load_model(workspace_path: Path) -> list[str]:
+    with tempfile.TemporaryDirectory(prefix="meta-transform-script-graph-") as temporary_directory:
+        xml_workspace = Path(temporary_directory) / "MetaTransformScript"
+        subprocess.run(
+            [
+                "meta",
+                "create",
+                "--source-workspace",
+                str(workspace_path),
+                "--new-workspace",
+                str(xml_workspace),
+                "--xml",
+            ],
+            cwd=REPOSITORY_ROOT,
+            check=True,
+        )
+        root = ET.parse(xml_workspace / "model.xml").getroot()
+
     entities = []
     for entity in root.findall("./EntityList/Entity"):
         entities.append(entity.attrib["name"])
@@ -223,7 +242,7 @@ def render_svg(entities: list[str]) -> str:
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width:.0f}" height="{height:.0f}" viewBox="0 0 {width:.0f} {height:.0f}">',
         f'<rect width="100%" height="100%" fill="{BACKGROUND}" />',
         f'<text x="{LEFT_MARGIN}" y="30" font-family="{FONT_FAMILY}" font-size="22" font-weight="700" fill="{TEXT}">MetaTransformScript entity overview</text>',
-        f'<text x="{LEFT_MARGIN}" y="50" font-family="{FONT_FAMILY}" font-size="12" fill="{MUTED}">Generated from MetaTransform/Script/Workspaces/MetaTransformScript/model.xml - {len(entities)} entities grouped by role</text>',
+        f'<text x="{LEFT_MARGIN}" y="50" font-family="{FONT_FAMILY}" font-size="12" fill="{MUTED}">Generated from the MetaTransformScript workspace - {len(entities)} entities grouped by role</text>',
     ]
 
     for panel_index, (title, category, nodes) in enumerate(columns):
@@ -276,8 +295,8 @@ def render_svg(entities: list[str]) -> str:
 
 
 def main() -> None:
-    entities = load_model(MODEL_PATH)
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    entities = load_model(WORKSPACE_PATH)
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8", newline="\n") as handle:
         handle.write(render_svg(entities))
     print(f"Wrote {OUTPUT_PATH}")

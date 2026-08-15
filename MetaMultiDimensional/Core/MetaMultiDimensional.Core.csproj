@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model\MetaMultiDimensional.Model.csproj" />
+    <Compile Include="..\Workspaces\MetaMultiDimensional\MetaMultiDimensional.meta.cs" Link="MetaMultiDimensional.meta.cs" />
   </ItemGroup>
 
 </Project>

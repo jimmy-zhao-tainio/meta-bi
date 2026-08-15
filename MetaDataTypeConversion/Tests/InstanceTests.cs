@@ -1,14 +1,13 @@
 using MetaDataTypeConversion;
-using MetaDataTypeConversion.Instance;
 
 namespace MetaDataTypeConversion.Tests;
 
 public sealed class InstanceTests
 {
     [Fact]
-    public void Default_ProvidesSanctionedInMemoryInstance()
+    public void BuiltIn_ProvidesSanctionedWorkspaceInstance()
     {
-        var model = MetaDataTypeConversionInstance.Default;
+        var model = MetaDataTypeConversionInstance.BuiltIn;
 
         Assert.NotEmpty(model.ConversionImplementationList);
         Assert.NotEmpty(model.DataTypeMappingList);

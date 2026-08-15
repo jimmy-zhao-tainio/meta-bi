@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model\MetaTabular.Model.csproj" />
+    <Compile Include="..\Workspaces\MetaTabular\MetaTabular.meta.cs" Link="MetaTabular.meta.cs" />
   </ItemGroup>
 
 </Project>

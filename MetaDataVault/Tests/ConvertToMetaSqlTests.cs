@@ -161,7 +161,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var implementation = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaDataVaultImplementationModel>(
+            var implementation = await TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(
                 GetImplementationWorkspacePath(repoRoot),
                 searchUpward: false);
             var hubImplementation = Assert.Single(implementation.BusinessHubImplementationList);
@@ -199,7 +199,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var implementation = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaDataVaultImplementationModel>(
+            var implementation = await TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(
                 GetImplementationWorkspacePath(repoRoot),
                 searchUpward: false);
             var hubImplementation = Assert.Single(implementation.BusinessHubImplementationList);

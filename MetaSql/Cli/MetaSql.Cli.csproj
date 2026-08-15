@@ -17,7 +17,7 @@
     <PackageReference Include="MetaCli.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\Core\MetaSql.Core.csproj" />
     <ProjectReference Include="..\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
-    <ProjectReference Include="..\Model\MetaSql.Model.csproj" />
+    <ProjectReference Include="..\CSharp\MetaSql.CSharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

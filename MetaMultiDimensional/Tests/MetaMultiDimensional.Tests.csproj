@@ -23,8 +23,7 @@
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
     <ProjectReference Include="..\Cli\MetaMultiDimensional.Cli.csproj" />
     <ProjectReference Include="..\Core\MetaMultiDimensional.Core.csproj" />
-    <ProjectReference Include="..\Instance\MetaMultiDimensional.Instance.csproj" />
-    <ProjectReference Include="..\..\MetaAnalytics\Instance\MetaAnalytics.Instance.csproj" />
+    <ProjectReference Include="..\..\MetaAnalytics\Core\MetaAnalytics.Core.csproj" />
     <ProjectReference Include="..\..\MetaConvert\AnalyticsToMultiDimensional\MetaConvert.AnalyticsToMultiDimensional.csproj" />
   </ItemGroup>
 

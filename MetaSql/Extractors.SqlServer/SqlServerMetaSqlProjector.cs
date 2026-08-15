@@ -1,5 +1,5 @@
 using System.Globalization;
-using MetaDataType.Instance;
+using MetaDataType.Core;
 
 namespace MetaSql.Extractors.SqlServer;
 
@@ -261,7 +261,7 @@ internal static class SqlServerMetaSqlProjector
             Id = $"{table.Id}.{row.ColumnName}",
             Name = row.ColumnName,
             Ordinal = row.OrdinalPosition.ToString(CultureInfo.InvariantCulture),
-            MetaDataTypeId = MetaDataTypeInstance.BuildDataTypeId("SqlServer", row.DataTypeName),
+            MetaDataTypeId = MetaDataTypeIdentity.BuildDataTypeId("SqlServer", row.DataTypeName),
             IsNullable = row.IsNullable ? "true" : "false",
             IsIdentity = row.IsIdentity ? "true" : null,
             IdentitySeed = NormalizeOptionalText(row.IdentitySeed),

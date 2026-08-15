@@ -1,5 +1,3 @@
-using MetaDataWarehouse.Instance;
-
 namespace MetaDataWarehouse.Tests;
 
 public sealed class WorkspaceRoundTripTests
@@ -10,7 +8,7 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(MetaDataWarehouseInstance.SampleSales, path);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(TestModels.LoadSampleSales(), path);
 
             var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, searchUpward: false);
             var date = Assert.Single(loaded.DimensionList, row => row.Id == "dimension:date");
@@ -36,7 +34,7 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(MetaDataWarehouseInstance.SampleSales, path);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(TestModels.LoadSampleSales(), path);
 
             var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, searchUpward: false);
             var scd = Assert.Single(loaded.SlowlyChangingDimensionList, row => row.Id == "scd:customer");
@@ -59,7 +57,9 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(MetaDataWarehouseImplementationInstance.Default, path);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(
+                MetaDataWarehouseImplementation.MetaDataWarehouseImplementationInstance.BuiltIn,
+                path);
 
             var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseImplementation.MetaDataWarehouseImplementationModel>(path, searchUpward: false);
             Assert.Contains(loaded.PlatformColumnImplementationList, row =>

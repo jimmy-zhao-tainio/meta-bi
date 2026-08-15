@@ -1,5 +1,4 @@
 using MetaConvert.DataWarehouseToSql;
-using MetaDataWarehouse.Instance;
 
 namespace MetaDataWarehouse.Tests;
 
@@ -9,8 +8,8 @@ public sealed class DataWarehouseToSqlConverterTests
     public void ConvertToMetaSql_ProjectsDimensionsFactsRolesAndPlatformColumns()
     {
         var sql = DataWarehouseToSqlConverter.ConvertToMetaSql(
-            MetaDataWarehouseInstance.SampleSales,
-            MetaDataWarehouseImplementationInstance.Default,
+            TestModels.LoadSampleSales(),
+            MetaDataWarehouseImplementation.MetaDataWarehouseImplementationInstance.BuiltIn,
             "CommerceDw");
 
         var customerTable = Assert.Single(sql.TableList, row => row.Name == "Dim_Customer");

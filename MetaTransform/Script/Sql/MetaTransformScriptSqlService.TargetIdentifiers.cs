@@ -1,4 +1,3 @@
-using MetaTransformScript.Instance;
 using MTS = global::MetaTransformScript;
 
 namespace MetaTransformScript.Sql;

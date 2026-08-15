@@ -14,10 +14,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\MetaDataVault\Core\MetaDataVault.Core.csproj" />
-    <ProjectReference Include="..\..\MetaDataVault\Model\MetaDataVault.Model.csproj" />
-    <ProjectReference Include="..\..\MetaDataType\Instance\MetaDataType.Instance.csproj" />
-    <ProjectReference Include="..\..\MetaDataTypeConversion\Instance\MetaDataTypeConversion.Instance.csproj" />
-    <ProjectReference Include="..\..\MetaSql\Model\MetaSql.Model.csproj" />
+    <ProjectReference Include="..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
+    <ProjectReference Include="..\..\MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj" />
+    <ProjectReference Include="..\..\MetaSql\CSharp\MetaSql.CSharp.csproj" />
   </ItemGroup>
 
 </Project>

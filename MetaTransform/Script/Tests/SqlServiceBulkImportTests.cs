@@ -1,5 +1,4 @@
 using MetaTransformScript;
-using MetaTransformScript.Instance;
 using MetaTransformScript.Sql;
 
 public sealed class SqlServiceBulkImportTests

@@ -3,9 +3,7 @@ using Meta.Integration;
 using Dw = MetaDataWarehouse;
 using Dwi = MetaDataWarehouseImplementation;
 using MetaDataType;
-using MetaDataType.Instance;
 using MetaDataTypeConversion;
-using MetaDataTypeConversion.Instance;
 using SqlIndex = MetaSql.Index;
 using MetaSql;
 
@@ -722,8 +720,8 @@ public static class DataWarehouseToSqlConverter
         private const string SqlServerTypeSystemId = "SqlServer";
 
         public static readonly SqlServerTypeLowering Default = Create(
-            MetaDataTypeInstance.Default,
-            MetaDataTypeConversionInstance.Default);
+            MetaDataTypeInstance.BuiltIn,
+            MetaDataTypeConversionInstance.BuiltIn);
 
         private readonly IReadOnlyDictionary<string, DataType> dataTypesById;
         private readonly IReadOnlyDictionary<string, string> sqlServerTypesByLogicalTypeId;

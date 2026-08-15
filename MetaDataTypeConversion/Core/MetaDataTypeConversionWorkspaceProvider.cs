@@ -1,12 +1,10 @@
 using MetaDataTypeConversion;
-using MetaDataTypeConversion.Instance;
-
 namespace MetaDataTypeConversion.Core;
 
 public static class MetaDataTypeConversionWorkspaceProvider
 {
     private static readonly Lazy<MetaDataTypeConversionModel> DefaultWorkspace = new(
-        () => MetaDataTypeConversionInstance.Default,
+        () => MetaDataTypeConversionInstance.BuiltIn,
         LazyThreadSafetyMode.ExecutionAndPublication);
 
     public static MetaDataTypeConversionModel LoadOrDefault(string? workspacePath)

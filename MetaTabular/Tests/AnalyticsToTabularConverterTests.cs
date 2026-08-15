@@ -1,7 +1,8 @@
 using MetaAnalytics;
-using MetaAnalytics.Instance;
 using MetaConvert.AnalyticsToTabular;
+using Meta.Surfaces.Xml;
 using Meta.TypedModels;
+using MetaBi.Tests.Common;
 
 namespace MetaTabular.Tests;
 
@@ -10,11 +11,12 @@ public sealed class AnalyticsToTabularConverterTests
     [Fact]
     public void Convert_CopiesCommonAnalyticsIntent_ToTabularWorkspace()
     {
-        var converted = AnalyticsToTabularConverter.Convert(MetaAnalyticsInstance.SampleCommerce);
+        var source = LoadSampleCommerce();
+        var converted = AnalyticsToTabularConverter.Convert(source);
 
-        Assert.Equal(MetaAnalyticsInstance.SampleCommerce.TableList.Count, converted.TabularTableList.Count);
-        Assert.Equal(MetaAnalyticsInstance.SampleCommerce.AttributeList.Count, converted.TabularColumnList.Count);
-        Assert.Equal(MetaAnalyticsInstance.SampleCommerce.MeasureList.Count, converted.TabularMeasureList.Count);
+        Assert.Equal(source.TableList.Count, converted.TabularTableList.Count);
+        Assert.Equal(source.AttributeList.Count, converted.TabularColumnList.Count);
+        Assert.Equal(source.MeasureList.Count, converted.TabularMeasureList.Count);
 
         var sales = Assert.Single(converted.TabularTableList, row => row.Id == "table:sales");
         var salesAmount = Assert.Single(converted.TabularMeasureList, row => row.Id == "measure:sales-amount");
@@ -94,6 +96,16 @@ public sealed class AnalyticsToTabularConverterTests
 
     private static MetaAnalyticsModel CloneSample() =>
         TypedModelMapper.FromWorkspace(
-            TypedModelMapper.ToWorkspace(MetaAnalyticsInstance.SampleCommerce),
+            TypedModelMapper.ToWorkspace(LoadSampleCommerce()),
             MetaAnalyticsModel.CreateEmpty);
+
+    private static MetaAnalyticsModel LoadSampleCommerce()
+    {
+        var workspacePath = Path.Combine(
+            CliTestRunner.FindRepositoryRoot(),
+            "MetaAnalytics",
+            "Workspaces",
+            "SampleAnalyticsCommerce");
+        return TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(workspacePath, searchUpward: false);
+    }
 }

@@ -1,7 +1,6 @@
 using System.Data;
 using System.Globalization;
 using Microsoft.Data.SqlClient;
-using MetaSchema.Instance;
 using MS = global::MetaSchema;
 
 namespace MetaSchema.Extractors.SqlServer;

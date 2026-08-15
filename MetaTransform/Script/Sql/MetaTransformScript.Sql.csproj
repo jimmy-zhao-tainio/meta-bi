@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\Instance\MetaTransformScript.Instance.csproj" />
-    <ProjectReference Include="..\..\..\MetaDataType\Instance\MetaDataType.Instance.csproj" />
+    <Compile Include="..\Workspaces\MetaTransformScript\MetaTransformScript.meta.cs" Link="MetaTransformScript.meta.cs" />
+    <ProjectReference Include="..\..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\Model\MetaDataWarehouse.Model.csproj" />
+    <Compile Include="..\Workspaces\MetaDataWarehouse\MetaDataWarehouse.meta.cs" Link="MetaDataWarehouse.meta.cs" />
+    <Compile Include="..\Workspaces\MetaDataWarehouseImplementation\MetaDataWarehouseImplementation.meta.cs" Link="MetaDataWarehouseImplementation.meta.cs" />
   </ItemGroup>
 
 </Project>

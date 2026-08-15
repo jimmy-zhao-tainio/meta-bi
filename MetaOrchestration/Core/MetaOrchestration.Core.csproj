@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <Compile Include="..\Workspaces\MetaOrchestration\MetaOrchestration.meta.cs" Link="MetaOrchestration.meta.cs" />
     <ProjectReference Include="..\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
-    <ProjectReference Include="..\Model\MetaOrchestration.Model.csproj" />
-    <ProjectReference Include="..\..\MetaPipeline\Model\MetaPipeline.Model.csproj" />
+    <ProjectReference Include="..\..\MetaPipeline\Core\MetaPipeline.Core.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
   </ItemGroup>
 

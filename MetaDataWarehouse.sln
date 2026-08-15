@@ -5,10 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MetaDataWarehouse", "MetaDataWarehouse", "{958B1012-0671-433A-8269-4A96B994C855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataWarehouse.Model", "MetaDataWarehouse\Model\MetaDataWarehouse.Model.csproj", "{267B146C-F171-4DFD-B1CE-4E328940B8A1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataWarehouse.Instance", "MetaDataWarehouse\Instance\MetaDataWarehouse.Instance.csproj", "{4E238457-C0BB-4552-B51B-9DE0922877CF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataWarehouse.Core", "MetaDataWarehouse\Core\MetaDataWarehouse.Core.csproj", "{2C4716AE-83A3-437A-91C6-5B1209AD686B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataWarehouse.Cli", "MetaDataWarehouse\Cli\MetaDataWarehouse.Cli.csproj", "{EB85611A-82E7-49EF-A847-9C4B6AEAE481}"
@@ -30,14 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{267B146C-F171-4DFD-B1CE-4E328940B8A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{267B146C-F171-4DFD-B1CE-4E328940B8A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{267B146C-F171-4DFD-B1CE-4E328940B8A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{267B146C-F171-4DFD-B1CE-4E328940B8A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E238457-C0BB-4552-B51B-9DE0922877CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E238457-C0BB-4552-B51B-9DE0922877CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E238457-C0BB-4552-B51B-9DE0922877CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E238457-C0BB-4552-B51B-9DE0922877CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C4716AE-83A3-437A-91C6-5B1209AD686B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C4716AE-83A3-437A-91C6-5B1209AD686B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C4716AE-83A3-437A-91C6-5B1209AD686B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -60,8 +48,6 @@ Global
 		{37C137C4-557C-47F1-B4E1-3BFFADCFD799}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{267B146C-F171-4DFD-B1CE-4E328940B8A1} = {958B1012-0671-433A-8269-4A96B994C855}
-		{4E238457-C0BB-4552-B51B-9DE0922877CF} = {958B1012-0671-433A-8269-4A96B994C855}
 		{2C4716AE-83A3-437A-91C6-5B1209AD686B} = {958B1012-0671-433A-8269-4A96B994C855}
 		{EB85611A-82E7-49EF-A847-9C4B6AEAE481} = {958B1012-0671-433A-8269-4A96B994C855}
 		{594ACF32-6615-40A0-A0AF-0020F78781E9} = {958B1012-0671-433A-8269-4A96B994C855}

@@ -11,8 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MetaSchema\Model\MetaSchema.Model.csproj" />
-    <ProjectReference Include="..\Model\MetaDataVault.Model.csproj" />
+    <Compile Include="..\Workspaces\MetaBusinessDataVault\MetaBusinessDataVault.meta.cs" Link="MetaBusinessDataVault.meta.cs" />
+    <Compile Include="..\Workspaces\MetaDataVaultImplementation\MetaDataVaultImplementation.meta.cs" Link="MetaDataVaultImplementation.meta.cs" />
+    <Compile Include="..\Workspaces\MetaRawDataVault\MetaRawDataVault.meta.cs" Link="MetaRawDataVault.meta.cs" />
+    <ProjectReference Include="..\..\MetaSchema\Core\MetaSchema.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model\MetaSql.Model.csproj" />
-    <ProjectReference Include="..\..\MetaDataType\Instance\MetaDataType.Instance.csproj" />
+    <ProjectReference Include="..\CSharp\MetaSql.CSharp.csproj" />
+    <ProjectReference Include="..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

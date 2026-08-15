@@ -1,4 +1,4 @@
-using MetaDataType.Instance;
+using MetaDataType;
 
 namespace MetaTransformScript.Sql;
 
@@ -72,7 +72,7 @@ public static class MetaTransformScriptSqlServerDataTypes
             return false;
         }
 
-        var dataType = MetaDataTypeInstance.Default.DataTypeList.SingleOrDefault(dataType =>
+        var dataType = MetaDataTypeInstance.BuiltIn.DataTypeList.SingleOrDefault(dataType =>
             string.Equals(dataType.DataTypeSystem.Id, SqlServerDataTypeSystemId, StringComparison.Ordinal) &&
             string.Equals(dataType.Name, sqlName, StringComparison.OrdinalIgnoreCase));
         if (dataType is null || string.IsNullOrWhiteSpace(dataType.Id))
@@ -106,7 +106,7 @@ public static class MetaTransformScriptSqlServerDataTypes
     private static IReadOnlyDictionary<string, string> BuildCanonicalSqlNameToOption()
     {
         var map = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-        var sanctionedSqlServerTypeNames = MetaDataTypeInstance.Default.DataTypeList
+        var sanctionedSqlServerTypeNames = MetaDataTypeInstance.BuiltIn.DataTypeList
             .Where(dataType =>
                 string.Equals(dataType.DataTypeSystem.Id, SqlServerDataTypeSystemId, StringComparison.Ordinal) &&
                 !string.IsNullOrWhiteSpace(dataType.Name))

@@ -1,4 +1,4 @@
-using MetaDataType.Instance;
+using MetaDataType;
 
 namespace MetaSql;
 
@@ -6,7 +6,7 @@ internal static class SqlServerRenderingSupport
 {
     private const string SqlServerDataTypeSystemId = "SqlServer";
     private static readonly IReadOnlyDictionary<string, (string DataTypeSystemId, string Name)> DataTypesById =
-        MetaDataTypeInstance.Default.DataTypeList.ToDictionary(
+        MetaDataTypeInstance.BuiltIn.DataTypeList.ToDictionary(
             row => row.Id,
             row => (row.DataTypeSystem.Id, row.Name),
             StringComparer.Ordinal);
