@@ -1,20 +1,44 @@
 # AdventureWorks full BI stack
 
-This demo builds and runs a complete modeled BI stack from the live `AdventureWorks2022` OLTP database:
+## A complete BI stack built by an agent
 
-```text
-AdventureWorks2022
-  -> Raw Data Vault
-  -> Business Data Vault
-  -> dimensional warehouse
-  -> Data Quality
-  -> MetaAnalytics
-  -> MetaTabular
-```
+The AdventureWorks stack was fully designed and built by an agent using the
+public Meta and meta-bi command-line tools. Its starting inputs were a live
+`AdventureWorks2022` database and a short
+[business request](BUSINESS-REQUIREMENTS.md) for sales trends, channel and
+product analysis, geography, salesperson quotas, and visible data-quality
+risks.
 
-Every generated model, transform, binding, pipeline, orchestration plan, deployment manifest, and analytics workspace is produced by its sanctioned CLI. `AdventureWorksBiStackDemo.MetaMesh` records the complete workflow as named operations. The resulting workspaces under `Runs` are checked in so the complete modeled stack can be inspected without rebuilding it.
+The agent made the architectural decisions that turn those inputs into a BI
+system. It selected sales order, sales line, and salesperson quota as separate
+fact grains; kept tax and freight at order grain; created shared date, product,
+geography, customer, channel, and salesperson dimensions; derived the
+Online/Store channel from source evidence; and declined to publish gross margin
+because AdventureWorks lacks complete historical cost coverage.
 
-Read [BUSINESS-REQUIREMENTS.md](BUSINESS-REQUIREMENTS.md) for the requested analytical outcome and [FULL-STACK-DESIGN.md](FULL-STACK-DESIGN.md) for the grains, layer ownership, workspace graph, and acceptance contract.
+The implementation is preserved as models rather than summarized after the
+fact. Every generated workspace was created through its owning CLI. The demo's
+MetaMesh workspace names 27 participating workspaces, 29 operations, and 614
+ordered executable steps covering discovery, model authoring, conversion,
+deployment, transformation import and binding, pipeline construction,
+execution, verification, and analytical deployment. The generated results are
+checked in alongside that construction record.
+
+## What the agent built
+
+Each product owns a concrete part of the resulting stack:
+
+| Engineering concern | AdventureWorks result | Modeled capability |
+| --- | --- | --- |
+| Discover the live source | 6 schemas, 71 tables, 20 views, 744 fields, and 90 relationships | `meta-schema` extracts a reviewable `MetaSchema` source contract. |
+| Preserve source history | 71 Raw hubs, 90 links, 71 satellites, and 341 satellite attributes | `meta-datavault-raw` and `meta-convert` turn the source contract into `MetaRawDataVault`, then into 232 deployable `MetaSql` tables through an explicit implementation model. |
+| Establish business meaning | 14 Business hubs, 19 links, 14 satellites, stable business names, and the Online/Store derivation | `meta-datavault-business` authors `MetaBusinessDataVault` concepts separately from the source-shaped Raw layer. |
+| Fix analytical grain | 3 facts, 8 conformed dimensions, 10 warehouse measures, 40 dimension attributes, and 19 fact-to-dimension relationships | `meta-data-warehouse` authors `MetaDataWarehouse`; `meta-convert` projects it through an implementation model into an 11-table physical warehouse. |
+| Make transformations provable | 53 source-to-Raw, 47 Raw-to-Business, and 20 Business-to-warehouse transformations, each strictly bound | `meta-transform-script` models the T-SQL program; `meta-transform-binding`, `MetaSchema`, `MetaDataType`, and `MetaDataTypeConversion` prove its reads, writes, target shape, and type compatibility. |
+| Turn evidence into quality checks | 176 promoted checks covering orphan joins, multiplicity expansion, duplicate risk, and outer-join null expansion | `meta-data-quality` derives reviewable `MetaDataQuality` candidates and `meta-convert` emits executable quality SQL. |
+| Operate the load | 3 pipelines containing 120 transformation tasks, plus one inferred orchestration plan over the same 120 tasks | `meta-pipeline` executes and records work; `meta-orchestration` derives and governs runtime dependencies. |
+| Publish portable analytics | 11 analytical tables, 72 attributes, 11 base measures, 3 hierarchies, and 19 relationships | `meta-analytics` carries engine-neutral `MetaAnalytics`; `meta-convert` and `meta-tabular` produce and operate the Analysis Services model. |
+| Model the conversion itself | One requirement and 24 executable Analytics-to-Tabular transformations | `meta-weave` executes a `MetaWeave` correspondence whose WeaveScript projection is readable and editable modeled transformation. |
 
 ## Prerequisites
 
