@@ -178,14 +178,22 @@ internal sealed class MetaConvertCommandHandlers
         var request = ReadDataVaultToSqlRequest(invocation);
         try
         {
-            _ = await RunWithProgressAsync(
-                "Converting data warehouse to SQL",
-                async () =>
+            _ = await RunWithMeterAsync(
+                async meter =>
                 {
                     var result = await DataWarehouseToSqlConverter.ConvertAsync(
                         request.WorkspacePath,
                         request.ImplementationWorkspacePath,
-                        request.DatabaseName).ConfigureAwait(false);
+                        request.DatabaseName,
+                        cancellationToken: default,
+                        progress: meter is null
+                            ? null
+                            : value => meter.Report(
+                                value.CompletedTaskCount,
+                                value.TotalTaskCount,
+                                FormatWeaveTask(
+                                    value.CompletedTaskKind?.ToString(),
+                                    value.CompletedTaskName))).ConfigureAwait(false);
                     await workspaces.CreateAsync("output", result).ConfigureAwait(false);
                     return result;
                 }).ConfigureAwait(false);
@@ -294,12 +302,20 @@ internal sealed class MetaConvertCommandHandlers
 
         try
         {
-            var result = await RunWithProgressAsync(
-                "Converting analytics to tabular",
-                async () =>
+            var result = await RunWithMeterAsync(
+                async meter =>
                 {
                     var source = TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(workspacePath, searchUpward: false);
-                    var converted = AnalyticsToTabularConverter.Convert(source);
+                    var converted = AnalyticsToTabularConverter.Convert(
+                        source,
+                        meter is null
+                            ? null
+                            : value => meter.Report(
+                                value.CompletedTaskCount,
+                                value.TotalTaskCount,
+                                FormatWeaveTask(
+                                    value.CompletedTaskKind?.ToString(),
+                                    value.CompletedTaskName)));
                     await workspaces.CreateAsync("output", converted).ConfigureAwait(false);
                     return converted;
                 }).ConfigureAwait(false);

@@ -57,7 +57,7 @@ Use `emit-requirement` in the same way for `DatabaseName`,
 accepted through standard input by `update-transformation` and
 `update-requirement`.
 
-The checked-in sample is covered by an equivalence test against the established
-C# converter. The two paths produce the same complete `MetaSql` workspace,
-including database, schemas, tables, ordered columns, type details, keys,
-relationships and indexes.
+The product converter executes this packaged weave. Its checked-in sample and
+non-numeric ordinal witness remain structurally identical to the frozen C#
+reference converter retained by the test suite, including database, schemas,
+tables, ordered columns, type details, keys, relationships and indexes.

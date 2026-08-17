@@ -16,12 +16,17 @@ public sealed class AnalyticsToTabularConverterTests
     public async Task SanctionedWeave_MatchesEstablishedConverter()
     {
         var source = LoadSampleCommerce();
-        var expected = TypedModelMapper.ToWorkspace(AnalyticsToTabularConverter.Convert(source));
+        var expected = TypedModelMapper.ToWorkspace(AnalyticsToTabularCSharpReference.Convert(source));
+        var progress = new List<MetaWeaveScriptExecutionProgress>();
+        var converted = TypedModelMapper.ToWorkspace(
+            AnalyticsToTabularConverter.Convert(source, progress.Add));
 
         var actual = await ExecuteSanctionedWeaveAsync(TypedModelMapper.ToWorkspace(source));
 
         Assert.True(actual.IsSuccess, FormatIssues(actual));
+        Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, converted));
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, actual.OutputWorkspace!));
+        Assert.Equal(progress[^1].TotalTaskCount, progress[^1].CompletedTaskCount);
     }
 
     [Fact]
@@ -55,12 +60,14 @@ public sealed class AnalyticsToTabularConverterTests
             Table = source.TableList[0],
             MetadataPermission = "Read",
         });
-        var expected = TypedModelMapper.ToWorkspace(AnalyticsToTabularConverter.Convert(source));
+        var expected = TypedModelMapper.ToWorkspace(AnalyticsToTabularCSharpReference.Convert(source));
+        var converted = TypedModelMapper.ToWorkspace(AnalyticsToTabularConverter.Convert(source));
 
         var actual = await ExecuteSanctionedWeaveAsync(TypedModelMapper.ToWorkspace(source));
 
         Assert.True(actual.IsSuccess, FormatIssues(actual));
         var output = Assert.IsType<InMemoryWorkspace>(actual.OutputWorkspace);
+        Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, converted));
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, output));
         foreach (var targetEntity in LoadSanctionedDirection().Transformations
                      .Select(transformation => transformation.TargetEntityName))
@@ -139,6 +146,7 @@ public sealed class AnalyticsToTabularConverterTests
         var source = CloneSample();
         SetAggregateFunctionType(source, source.MeasureList[0].AggregateFunction, aggregateFunctionType);
 
+        var expected = AnalyticsToTabularCSharpReference.Convert(source);
         var converted = AnalyticsToTabularConverter.Convert(source);
         var woven = await ExecuteSanctionedWeaveAsync(TypedModelMapper.ToWorkspace(source));
 
@@ -147,6 +155,9 @@ public sealed class AnalyticsToTabularConverterTests
             converted.TabularMeasureList.Single(row => row.Id == source.MeasureList[0].Id).Expression,
             StringComparison.Ordinal);
         Assert.True(woven.IsSuccess, FormatIssues(woven));
+        Assert.Null(InMemoryWorkspaceComparer.FindDifference(
+            TypedModelMapper.ToWorkspace(expected),
+            TypedModelMapper.ToWorkspace(converted)));
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(
             TypedModelMapper.ToWorkspace(converted),
             woven.OutputWorkspace!));
@@ -159,7 +170,7 @@ public sealed class AnalyticsToTabularConverterTests
         unsupportedSource.SumAggregateFunctionList.RemoveAll(
             row => ReferenceEquals(row.AggregateFunction, unsupportedSource.MeasureList[0].AggregateFunction));
         Assert.Contains(
-            "must reference one concrete aggregate-function entity; found 0",
+            "exactly one concrete aggregate-function entity",
             Assert.Throws<InvalidOperationException>(
                 () => AnalyticsToTabularConverter.Convert(unsupportedSource)).Message,
             StringComparison.Ordinal);
@@ -177,7 +188,7 @@ public sealed class AnalyticsToTabularConverterTests
         });
 
         Assert.Contains(
-            "must reference one concrete aggregate-function entity; found 2",
+            "exactly one concrete aggregate-function entity",
             Assert.Throws<InvalidOperationException>(
                 () => AnalyticsToTabularConverter.Convert(unsupportedSource)).Message,
             StringComparison.Ordinal);

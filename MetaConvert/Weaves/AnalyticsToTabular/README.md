@@ -16,8 +16,8 @@ A source-backed base measure relates to an `AggregateFunction` with one
 concrete function entity: `SumAggregateFunction`,
 `AverageAggregateFunction`, `CountAggregateFunction`,
 `DistinctCountAggregateFunction`, `MinimumAggregateFunction`, or
-`MaximumAggregateFunction`. These are the same aggregate forms projected by
-the established
+`MaximumAggregateFunction`. These are the aggregate forms projected by the
+sanctioned weave through
 [`AnalyticsToTabularConverter`](../../AnalyticsToTabular/AnalyticsToTabularConverter.cs).
 
 The `TabularMeasure` transformation combines six typed query branches with
@@ -84,6 +84,6 @@ Both inspection and replacement require an explicit direction. The emitted
 text is an editable projection of the semantic model; the workspace stores
 the replacement query graph, not a `.sql` file.
 
-For the checked-in `SampleAnalyticsCommerce` source, the executed workspace is
-byte-for-byte identical across all emitted instance files to the established
-converter output.
+The product converter executes this packaged weave. Its sample and complete
+population witnesses remain structurally identical to the frozen C# reference
+converter retained by the test suite.

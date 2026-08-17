@@ -18,12 +18,21 @@ public sealed class DataWarehouseToSqlConverterTests
         var warehouse = TestModels.LoadSampleSales();
         var implementation = MetaDataWarehouseImplementation.MetaDataWarehouseImplementationInstance.BuiltIn;
         var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
-            DataWarehouseToSqlConverter.ConvertToMetaSql(warehouse, implementation, "CommerceDw"));
+            DataWarehouseToSqlCSharpReference.ConvertToMetaSql(warehouse, implementation, "CommerceDw"));
+        var progress = new List<MetaWeaveScriptExecutionProgress>();
+        var converted = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+            DataWarehouseToSqlConverter.ConvertToMetaSql(
+                warehouse,
+                implementation,
+                "CommerceDw",
+                progress.Add));
 
         var actual = await ExecuteSanctionedWeaveAsync(warehouse, implementation, "CommerceDw");
 
         Assert.True(actual.IsSuccess, FormatIssues(actual));
+        Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, converted));
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, actual.OutputWorkspace!));
+        Assert.Equal(progress[^1].TotalTaskCount, progress[^1].CompletedTaskCount);
     }
 
     [Fact]
@@ -34,12 +43,37 @@ public sealed class DataWarehouseToSqlConverterTests
         warehouse.DimensionAttributeList[0].Ordinal = "not-an-integer";
         warehouse.DimensionAttributeList[1].Ordinal = "also-not-an-integer";
         var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+            DataWarehouseToSqlCSharpReference.ConvertToMetaSql(warehouse, implementation, "CommerceDw"));
+        var converted = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
             DataWarehouseToSqlConverter.ConvertToMetaSql(warehouse, implementation, "CommerceDw"));
 
         var actual = await ExecuteSanctionedWeaveAsync(warehouse, implementation, "CommerceDw");
 
         Assert.True(actual.IsSuccess, FormatIssues(actual));
+        Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, converted));
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, actual.OutputWorkspace!));
+    }
+
+    [Fact]
+    public async Task SanctionedWeave_RejectsDatabaseNameWithIdentityWhitespace()
+    {
+        var warehouse = TestModels.LoadSampleSales();
+        var implementation = MetaDataWarehouseImplementation.MetaDataWarehouseImplementationInstance.BuiltIn;
+        const string databaseName = " CommerceDw ";
+
+        var result = await ExecuteSanctionedWeaveAsync(warehouse, implementation, databaseName);
+
+        Assert.False(result.IsSuccess);
+        Assert.Null(result.OutputWorkspace);
+        Assert.Contains("leading or trailing whitespace", FormatIssues(result), StringComparison.Ordinal);
+        Assert.Contains(
+            "leading or trailing whitespace",
+            Assert.Throws<InvalidOperationException>(() =>
+                DataWarehouseToSqlConverter.ConvertToMetaSql(
+                    warehouse,
+                    implementation,
+                    databaseName)).Message,
+            StringComparison.Ordinal);
     }
 
     [Fact]
@@ -69,6 +103,14 @@ public sealed class DataWarehouseToSqlConverterTests
         Assert.False(result.IsSuccess);
         Assert.Null(result.OutputWorkspace);
         Assert.Contains(result.Issues, issue => issue.Code == "SqlServerTypeLoweringInvalid");
+        Assert.Contains(
+            "SqlServerTypeLoweringInvalid",
+            Assert.Throws<InvalidOperationException>(() =>
+                DataWarehouseToSqlConverter.ConvertToMetaSql(
+                    warehouse,
+                    MetaDataWarehouseImplementation.MetaDataWarehouseImplementationInstance.BuiltIn,
+                    "CommerceDw")).Message,
+            StringComparison.Ordinal);
     }
 
     [Fact]
@@ -88,6 +130,14 @@ public sealed class DataWarehouseToSqlConverterTests
         Assert.False(result.IsSuccess);
         Assert.Null(result.OutputWorkspace);
         Assert.Contains(result.Issues, issue => issue.Code == "ImplementationCardinalityInvalid");
+        Assert.Contains(
+            "ImplementationCardinalityInvalid",
+            Assert.Throws<InvalidOperationException>(() =>
+                DataWarehouseToSqlConverter.ConvertToMetaSql(
+                    TestModels.LoadSampleSales(),
+                    implementation,
+                    "CommerceDw")).Message,
+            StringComparison.Ordinal);
     }
 
     [Fact]

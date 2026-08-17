@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaWeave.Core" Version="$(MetaFoundationPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +17,16 @@
     <ProjectReference Include="..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
     <ProjectReference Include="..\..\MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj" />
     <ProjectReference Include="..\..\MetaSql\CSharp\MetaSql.CSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Weaves\DataWarehouseToSql\**\*">
+      <Link>Weaves\DataWarehouseToSql\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Weaves\DataWarehouseToSql\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
   </ItemGroup>
 
 </Project>
