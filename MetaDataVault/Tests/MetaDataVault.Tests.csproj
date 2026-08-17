@@ -24,6 +24,8 @@
     <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Surfaces.Xml" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaWeave.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
     <ProjectReference Include="..\Cli\Business\MetaDataVault.Business.Cli.csproj" />
     <ProjectReference Include="..\Cli\Raw\MetaDataVault.Raw.Cli.csproj" />

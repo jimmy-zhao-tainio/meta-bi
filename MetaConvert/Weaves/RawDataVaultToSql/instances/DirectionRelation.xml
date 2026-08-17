@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRelationList>
+    <DirectionRelation Id="forward/ImplementationSchemas" DirectionId="forward" SelectStatementId="SelectStatement:2" />
+    <DirectionRelation Id="forward/LoweredTypes" DirectionId="forward" SelectStatementId="SelectStatement:30" />
+    <DirectionRelation Id="forward/RawColumnCandidates" DirectionId="forward" SelectStatementId="SelectStatement:8" />
+    <DirectionRelation Id="forward/RawColumnDetails" DirectionId="forward" SelectStatementId="SelectStatement:13" />
+    <DirectionRelation Id="forward/RawColumns" DirectionId="forward" SelectStatementId="SelectStatement:15" />
+    <DirectionRelation Id="forward/RawForeignKeys" DirectionId="forward" SelectStatementId="SelectStatement:19" />
+    <DirectionRelation Id="forward/RawPrimaryKeys" DirectionId="forward" SelectStatementId="SelectStatement:16" />
+    <DirectionRelation Id="forward/RawProtectedColumnNames" DirectionId="forward" SelectStatementId="SelectStatement:7" />
+    <DirectionRelation Id="forward/RawTables" DirectionId="forward" SelectStatementId="SelectStatement:3" />
+  </DirectionRelationList>
+</MetaWeave>

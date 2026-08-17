@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRequirementList>
+    <DirectionRequirement Id="forward/ColumnNameAllocation" DirectionId="forward" SelectStatementId="SelectStatement:26">
+      <Code>ColumnNameAllocationInvalid</Code>
+      <Message>Projected column names must be unique after the bounded source/technical collision rule.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ColumnTypeLowering" DirectionId="forward" SelectStatementId="SelectStatement:25">
+      <Code>ColumnTypeLoweringInvalid</Code>
+      <Message>Every projected raw column must have exactly one sanctioned SQL Server type; implementation columns must use Meta logical types.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/DatabaseName" DirectionId="forward" SelectStatementId="SelectStatement:29">
+      <Code>DatabaseNameInvalid</Code>
+      <Message>Database name is required.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/DirectSqlServerMapping" DirectionId="forward" SelectStatementId="SelectStatement:24">
+      <Code>DirectSqlServerMappingConflict</Code>
+      <Message>A source data type must not have conflicting sanctioned direct SQL Server mappings.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ProjectedIdentity" DirectionId="forward" SelectStatementId="SelectStatement:28">
+      <Code>ProjectedIdentityDuplicate</Code>
+      <Message>The physical naming contract must produce unique target identities.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/RawImplementationCardinality" DirectionId="forward" SelectStatementId="SelectStatement:22">
+      <Code>RawImplementationCardinalityInvalid</Code>
+      <Message>Raw Data Vault to SQL requires exactly one implementation record for each raw table family.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/RawLinkRoleName" DirectionId="forward" SelectStatementId="SelectStatement:23">
+      <Code>RawLinkRoleNameDuplicate</Code>
+      <Message>A raw link must not contain duplicate role names.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/RawSchemaName" DirectionId="forward" SelectStatementId="SelectStatement:27">
+      <Code>RawSchemaNameInvalid</Code>
+      <Message>Raw implementation schema names must be nonblank and must not contain surrounding whitespace.</Message>
+    </DirectionRequirement>
+  </DirectionRequirementList>
+</MetaWeave>

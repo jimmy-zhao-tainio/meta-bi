@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ExpressionGroupingSpecificationList>
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:1" GroupingSpecificationId="GroupingSpecification:1" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:10" GroupingSpecificationId="GroupingSpecification:10" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:2" GroupingSpecificationId="GroupingSpecification:2" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:3" GroupingSpecificationId="GroupingSpecification:3" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:4" GroupingSpecificationId="GroupingSpecification:4" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:5" GroupingSpecificationId="GroupingSpecification:5" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:6" GroupingSpecificationId="GroupingSpecification:6" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:7" GroupingSpecificationId="GroupingSpecification:7" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:8" GroupingSpecificationId="GroupingSpecification:8" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:9" GroupingSpecificationId="GroupingSpecification:9" />
+  </ExpressionGroupingSpecificationList>
+</MetaWeave>

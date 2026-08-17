@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <IntegerLiteralList>
+    <IntegerLiteral Id="IntegerLiteral:1" LiteralId="Literal:5" />
+    <IntegerLiteral Id="IntegerLiteral:10" LiteralId="Literal:81" />
+    <IntegerLiteral Id="IntegerLiteral:11" LiteralId="Literal:83" />
+    <IntegerLiteral Id="IntegerLiteral:12" LiteralId="Literal:94" />
+    <IntegerLiteral Id="IntegerLiteral:13" LiteralId="Literal:104" />
+    <IntegerLiteral Id="IntegerLiteral:14" LiteralId="Literal:113" />
+    <IntegerLiteral Id="IntegerLiteral:15" LiteralId="Literal:122" />
+    <IntegerLiteral Id="IntegerLiteral:16" LiteralId="Literal:124" />
+    <IntegerLiteral Id="IntegerLiteral:17" LiteralId="Literal:134" />
+    <IntegerLiteral Id="IntegerLiteral:18" LiteralId="Literal:143" />
+    <IntegerLiteral Id="IntegerLiteral:19" LiteralId="Literal:145" />
+    <IntegerLiteral Id="IntegerLiteral:2" LiteralId="Literal:16" />
+    <IntegerLiteral Id="IntegerLiteral:20" LiteralId="Literal:156" />
+    <IntegerLiteral Id="IntegerLiteral:21" LiteralId="Literal:167" />
+    <IntegerLiteral Id="IntegerLiteral:22" LiteralId="Literal:175" />
+    <IntegerLiteral Id="IntegerLiteral:23" LiteralId="Literal:177" />
+    <IntegerLiteral Id="IntegerLiteral:24" LiteralId="Literal:187" />
+    <IntegerLiteral Id="IntegerLiteral:25" LiteralId="Literal:196" />
+    <IntegerLiteral Id="IntegerLiteral:26" LiteralId="Literal:198" />
+    <IntegerLiteral Id="IntegerLiteral:27" LiteralId="Literal:209" />
+    <IntegerLiteral Id="IntegerLiteral:28" LiteralId="Literal:219" />
+    <IntegerLiteral Id="IntegerLiteral:29" LiteralId="Literal:228" />
+    <IntegerLiteral Id="IntegerLiteral:3" LiteralId="Literal:17" />
+    <IntegerLiteral Id="IntegerLiteral:30" LiteralId="Literal:237" />
+    <IntegerLiteral Id="IntegerLiteral:31" LiteralId="Literal:239" />
+    <IntegerLiteral Id="IntegerLiteral:32" LiteralId="Literal:249" />
+    <IntegerLiteral Id="IntegerLiteral:33" LiteralId="Literal:258" />
+    <IntegerLiteral Id="IntegerLiteral:34" LiteralId="Literal:260" />
+    <IntegerLiteral Id="IntegerLiteral:4" LiteralId="Literal:19" />
+    <IntegerLiteral Id="IntegerLiteral:5" LiteralId="Literal:42" />
+    <IntegerLiteral Id="IntegerLiteral:57" LiteralId="Literal:336" />
+    <IntegerLiteral Id="IntegerLiteral:58" LiteralId="Literal:337" />
+    <IntegerLiteral Id="IntegerLiteral:59" LiteralId="Literal:338" />
+    <IntegerLiteral Id="IntegerLiteral:6" LiteralId="Literal:52" />
+    <IntegerLiteral Id="IntegerLiteral:60" LiteralId="Literal:339" />
+    <IntegerLiteral Id="IntegerLiteral:61" LiteralId="Literal:374" />
+    <IntegerLiteral Id="IntegerLiteral:62" LiteralId="Literal:375" />
+    <IntegerLiteral Id="IntegerLiteral:63" LiteralId="Literal:377" />
+    <IntegerLiteral Id="IntegerLiteral:64" LiteralId="Literal:380" />
+    <IntegerLiteral Id="IntegerLiteral:65" LiteralId="Literal:384" />
+    <IntegerLiteral Id="IntegerLiteral:66" LiteralId="Literal:387" />
+    <IntegerLiteral Id="IntegerLiteral:67" LiteralId="Literal:405" />
+    <IntegerLiteral Id="IntegerLiteral:68" LiteralId="Literal:406" />
+    <IntegerLiteral Id="IntegerLiteral:69" LiteralId="Literal:408" />
+    <IntegerLiteral Id="IntegerLiteral:7" LiteralId="Literal:60" />
+    <IntegerLiteral Id="IntegerLiteral:70" LiteralId="Literal:433" />
+    <IntegerLiteral Id="IntegerLiteral:71" LiteralId="Literal:434" />
+    <IntegerLiteral Id="IntegerLiteral:72" LiteralId="Literal:436" />
+    <IntegerLiteral Id="IntegerLiteral:73" LiteralId="Literal:444" />
+    <IntegerLiteral Id="IntegerLiteral:74" LiteralId="Literal:445" />
+    <IntegerLiteral Id="IntegerLiteral:75" LiteralId="Literal:448" />
+    <IntegerLiteral Id="IntegerLiteral:76" LiteralId="Literal:452" />
+    <IntegerLiteral Id="IntegerLiteral:77" LiteralId="Literal:454" />
+    <IntegerLiteral Id="IntegerLiteral:78" LiteralId="Literal:456" />
+    <IntegerLiteral Id="IntegerLiteral:79" LiteralId="Literal:462" />
+    <IntegerLiteral Id="IntegerLiteral:8" LiteralId="Literal:62" />
+    <IntegerLiteral Id="IntegerLiteral:80" LiteralId="Literal:463" />
+    <IntegerLiteral Id="IntegerLiteral:9" LiteralId="Literal:72" />
+  </IntegerLiteralList>
+</MetaWeave>

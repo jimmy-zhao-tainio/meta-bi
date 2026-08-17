@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <GroupByClauseGroupingSpecificationsItemList>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:1" GroupByClauseId="GroupByClause:1" GroupingSpecificationId="GroupingSpecification:1">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:10" GroupByClauseId="GroupByClause:5" GroupingSpecificationId="GroupingSpecification:10">
+      <Ordinal>1</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:2" GroupByClauseId="GroupByClause:1" GroupingSpecificationId="GroupingSpecification:2">
+      <Ordinal>1</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:3" GroupByClauseId="GroupByClause:2" GroupingSpecificationId="GroupingSpecification:3">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:4" GroupByClauseId="GroupByClause:3" GroupingSpecificationId="GroupingSpecification:4">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:5" GroupByClauseId="GroupByClause:3" GroupingSpecificationId="GroupingSpecification:5">
+      <Ordinal>1</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:6" GroupByClauseId="GroupByClause:3" GroupingSpecificationId="GroupingSpecification:6">
+      <Ordinal>2</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:7" GroupByClauseId="GroupByClause:4" GroupingSpecificationId="GroupingSpecification:7">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:8" GroupByClauseId="GroupByClause:4" GroupingSpecificationId="GroupingSpecification:8">
+      <Ordinal>1</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:9" GroupByClauseId="GroupByClause:5" GroupingSpecificationId="GroupingSpecification:9">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+  </GroupByClauseGroupingSpecificationsItemList>
+</MetaWeave>

@@ -3,14 +3,70 @@ using MetaConvert.DataVaultToSql;
 using MetaBusinessDataVault;
 using MetaRawDataVault;
 using Meta.Integration;
+using Meta.Operations.Domain;
 using Meta.Surfaces.Xml;
+using Meta.TypedModels;
+using MetaBi.Tests.Common;
 using MetaDataVaultImplementation;
+using MetaDataType;
+using MetaDataTypeConversion;
 using Meta.Surfaces;
+using MetaSql;
+using MetaWeave.Core;
+using MetaWeaveScript.Execution;
 
 namespace MetaDataVault.Tests;
 
 public sealed class ConvertToMetaSqlTests
 {
+    [Fact]
+    public async Task RawProductConverter_ExecutesSanctionedWeave_ForCompleteSample()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "Demos", "RawDataVaultCliIntegration", "Workspace");
+        var implementationPath = GetImplementationWorkspacePath(repoRoot);
+        var actual = await Converter.ConvertAsync(
+            workspacePath,
+            implementationPath,
+            databaseName: "RawVault");
+        var raw = await TypedWorkspaceModelMapper.LoadAsync<MetaRawDataVaultModel>(
+            workspacePath,
+            searchUpward: false);
+        var implementation = await TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(
+            implementationPath,
+            searchUpward: false);
+        var direction = new MetaWeaveScriptDirectionLoader().Load(
+            Path.Combine(repoRoot, "MetaConvert", "Weaves", "RawDataVaultToSql"),
+            "forward");
+
+        var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
+            direction,
+            new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["raw"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(raw),
+                ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation),
+                ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn),
+                ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn),
+            },
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty()),
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["databaseName"] = "RawVault",
+            });
+
+        Assert.True(
+            result.IsSuccess,
+            string.Join(Environment.NewLine, result.Issues.Select(issue => $"{issue.Code}: {issue.Message}")));
+        var expected = Assert.IsType<InMemoryWorkspace>(result.OutputWorkspace);
+        Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, actual));
+        foreach (var targetEntity in direction.Transformations.Select(row => row.TargetEntityName))
+        {
+            Assert.True(
+                actual.Instance.RecordsByEntity.TryGetValue(targetEntity, out var records) && records.Count > 0,
+                $"Transformation target '{targetEntity}' produced no witness rows.");
+        }
+    }
+
     [Fact]
     public async Task ConvertAsync_LoadsRawWorkspaceAndCreatesSqlWorkspaceRootInMemory()
     {
@@ -340,7 +396,9 @@ public sealed class ConvertToMetaSqlTests
                                 GetImplementationWorkspacePath(repoRoot),
                 databaseName: "RawVault"));
 
-            Assert.Contains("Raw link 'RawLink:Assignment' contains duplicate role name 'Participant'.", error.Message, StringComparison.Ordinal);
+            Assert.Contains("RawLinkRoleNameDuplicate", error.Message, StringComparison.Ordinal);
+            Assert.Contains("RawLinkId=RawLink:Assignment", error.Message, StringComparison.Ordinal);
+            Assert.Contains("RoleName=Participant", error.Message, StringComparison.Ordinal);
         }
         finally
         {

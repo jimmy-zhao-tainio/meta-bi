@@ -86,14 +86,22 @@ internal sealed class MetaConvertCommandHandlers
         var request = ReadDataVaultToSqlRequest(invocation);
         try
         {
-            _ = await RunWithProgressAsync(
-                "Converting raw Data Vault to SQL",
-                async () =>
+            _ = await RunWithMeterAsync(
+                async meter =>
                 {
                     var result = await Converter.ConvertAsync(
                         request.WorkspacePath,
                         request.ImplementationWorkspacePath,
-                        request.DatabaseName).ConfigureAwait(false);
+                        request.DatabaseName,
+                        cancellationToken: default,
+                        progress: meter is null
+                            ? null
+                            : value => meter.Report(
+                                value.CompletedTaskCount,
+                                value.TotalTaskCount,
+                                FormatWeaveTask(
+                                    value.CompletedTaskKind?.ToString(),
+                                    value.CompletedTaskName))).ConfigureAwait(false);
                     await workspaces.CreateAsync("output", result).ConfigureAwait(false);
                     return result;
                 }).ConfigureAwait(false);
