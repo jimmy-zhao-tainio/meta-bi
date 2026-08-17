@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <InPredicateValuesItemList>
+    <InPredicateValuesItem Id="InPredicateValuesItem:1" InPredicateId="InPredicate:1" ScalarExpressionId="ScalarExpression:383">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:10" InPredicateId="InPredicate:4" ScalarExpressionId="ScalarExpression:700">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:11" InPredicateId="InPredicate:4" ScalarExpressionId="ScalarExpression:701">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:12" InPredicateId="InPredicate:4" ScalarExpressionId="ScalarExpression:702">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:13" InPredicateId="InPredicate:5" ScalarExpressionId="ScalarExpression:789">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:14" InPredicateId="InPredicate:5" ScalarExpressionId="ScalarExpression:790">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:15" InPredicateId="InPredicate:5" ScalarExpressionId="ScalarExpression:791">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:16" InPredicateId="InPredicate:6" ScalarExpressionId="ScalarExpression:878">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:17" InPredicateId="InPredicate:6" ScalarExpressionId="ScalarExpression:879">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:18" InPredicateId="InPredicate:6" ScalarExpressionId="ScalarExpression:880">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:19" InPredicateId="InPredicate:7" ScalarExpressionId="ScalarExpression:918">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:2" InPredicateId="InPredicate:1" ScalarExpressionId="ScalarExpression:384">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:20" InPredicateId="InPredicate:7" ScalarExpressionId="ScalarExpression:919">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:21" InPredicateId="InPredicate:7" ScalarExpressionId="ScalarExpression:920">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:22" InPredicateId="InPredicate:8" ScalarExpressionId="ScalarExpression:1277">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:23" InPredicateId="InPredicate:8" ScalarExpressionId="ScalarExpression:1278">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:24" InPredicateId="InPredicate:8" ScalarExpressionId="ScalarExpression:1279">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:25" InPredicateId="InPredicate:9" ScalarExpressionId="ScalarExpression:1321">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:26" InPredicateId="InPredicate:9" ScalarExpressionId="ScalarExpression:1322">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:27" InPredicateId="InPredicate:9" ScalarExpressionId="ScalarExpression:1323">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:28" InPredicateId="InPredicate:10" ScalarExpressionId="ScalarExpression:1489">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:29" InPredicateId="InPredicate:10" ScalarExpressionId="ScalarExpression:1490">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:3" InPredicateId="InPredicate:1" ScalarExpressionId="ScalarExpression:385">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:30" InPredicateId="InPredicate:10" ScalarExpressionId="ScalarExpression:1491">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:31" InPredicateId="InPredicate:11" ScalarExpressionId="ScalarExpression:1615">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:32" InPredicateId="InPredicate:11" ScalarExpressionId="ScalarExpression:1616">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:33" InPredicateId="InPredicate:11" ScalarExpressionId="ScalarExpression:1617">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:34" InPredicateId="InPredicate:12" ScalarExpressionId="ScalarExpression:1695">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:35" InPredicateId="InPredicate:12" ScalarExpressionId="ScalarExpression:1696">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:36" InPredicateId="InPredicate:12" ScalarExpressionId="ScalarExpression:1697">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:37" InPredicateId="InPredicate:13" ScalarExpressionId="ScalarExpression:1701">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:38" InPredicateId="InPredicate:13" ScalarExpressionId="ScalarExpression:1702">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:39" InPredicateId="InPredicate:13" ScalarExpressionId="ScalarExpression:1703">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:4" InPredicateId="InPredicate:2" ScalarExpressionId="ScalarExpression:424">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:40" InPredicateId="InPredicate:14" ScalarExpressionId="ScalarExpression:1707">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:41" InPredicateId="InPredicate:14" ScalarExpressionId="ScalarExpression:1708">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:42" InPredicateId="InPredicate:14" ScalarExpressionId="ScalarExpression:1709">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:43" InPredicateId="InPredicate:15" ScalarExpressionId="ScalarExpression:1794">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:44" InPredicateId="InPredicate:15" ScalarExpressionId="ScalarExpression:1795">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:45" InPredicateId="InPredicate:15" ScalarExpressionId="ScalarExpression:1796">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:46" InPredicateId="InPredicate:16" ScalarExpressionId="ScalarExpression:1920">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:47" InPredicateId="InPredicate:16" ScalarExpressionId="ScalarExpression:1921">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:48" InPredicateId="InPredicate:16" ScalarExpressionId="ScalarExpression:1922">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:49" InPredicateId="InPredicate:17" ScalarExpressionId="ScalarExpression:1969">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:5" InPredicateId="InPredicate:2" ScalarExpressionId="ScalarExpression:425">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:50" InPredicateId="InPredicate:17" ScalarExpressionId="ScalarExpression:1970">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:51" InPredicateId="InPredicate:17" ScalarExpressionId="ScalarExpression:1971">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:52" InPredicateId="InPredicate:18" ScalarExpressionId="ScalarExpression:1975">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:53" InPredicateId="InPredicate:18" ScalarExpressionId="ScalarExpression:1976">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:54" InPredicateId="InPredicate:18" ScalarExpressionId="ScalarExpression:1977">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:55" InPredicateId="InPredicate:19" ScalarExpressionId="ScalarExpression:1981">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:56" InPredicateId="InPredicate:19" ScalarExpressionId="ScalarExpression:1982">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:57" InPredicateId="InPredicate:19" ScalarExpressionId="ScalarExpression:1983">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:58" InPredicateId="InPredicate:20" ScalarExpressionId="ScalarExpression:2299">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:59" InPredicateId="InPredicate:20" ScalarExpressionId="ScalarExpression:2300">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:6" InPredicateId="InPredicate:2" ScalarExpressionId="ScalarExpression:426">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:60" InPredicateId="InPredicate:20" ScalarExpressionId="ScalarExpression:2301">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:61" InPredicateId="InPredicate:21" ScalarExpressionId="ScalarExpression:2340">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:62" InPredicateId="InPredicate:21" ScalarExpressionId="ScalarExpression:2341">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:63" InPredicateId="InPredicate:21" ScalarExpressionId="ScalarExpression:2342">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:64" InPredicateId="InPredicate:22" ScalarExpressionId="ScalarExpression:2575">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:65" InPredicateId="InPredicate:22" ScalarExpressionId="ScalarExpression:2576">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:66" InPredicateId="InPredicate:22" ScalarExpressionId="ScalarExpression:2577">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:67" InPredicateId="InPredicate:23" ScalarExpressionId="ScalarExpression:2616">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:68" InPredicateId="InPredicate:23" ScalarExpressionId="ScalarExpression:2617">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:69" InPredicateId="InPredicate:23" ScalarExpressionId="ScalarExpression:2618">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:7" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:659">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:70" InPredicateId="InPredicate:24" ScalarExpressionId="ScalarExpression:2705">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:71" InPredicateId="InPredicate:24" ScalarExpressionId="ScalarExpression:2706">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:72" InPredicateId="InPredicate:24" ScalarExpressionId="ScalarExpression:2707">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:73" InPredicateId="InPredicate:25" ScalarExpressionId="ScalarExpression:2729">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:74" InPredicateId="InPredicate:25" ScalarExpressionId="ScalarExpression:2730">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:75" InPredicateId="InPredicate:25" ScalarExpressionId="ScalarExpression:2731">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:76" InPredicateId="InPredicate:25" ScalarExpressionId="ScalarExpression:2732">
+      <Ordinal>3</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:77" InPredicateId="InPredicate:26" ScalarExpressionId="ScalarExpression:2741">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:78" InPredicateId="InPredicate:26" ScalarExpressionId="ScalarExpression:2742">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:79" InPredicateId="InPredicate:27" ScalarExpressionId="ScalarExpression:2751">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:8" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:660">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:80" InPredicateId="InPredicate:27" ScalarExpressionId="ScalarExpression:2752">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:81" InPredicateId="InPredicate:28" ScalarExpressionId="ScalarExpression:2761">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:82" InPredicateId="InPredicate:28" ScalarExpressionId="ScalarExpression:2762">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:83" InPredicateId="InPredicate:29" ScalarExpressionId="ScalarExpression:2771">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:84" InPredicateId="InPredicate:29" ScalarExpressionId="ScalarExpression:2772">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:85" InPredicateId="InPredicate:29" ScalarExpressionId="ScalarExpression:2773">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:86" InPredicateId="InPredicate:30" ScalarExpressionId="ScalarExpression:2911">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:87" InPredicateId="InPredicate:30" ScalarExpressionId="ScalarExpression:2912">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:88" InPredicateId="InPredicate:30" ScalarExpressionId="ScalarExpression:2913">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:89" InPredicateId="InPredicate:31" ScalarExpressionId="ScalarExpression:2917">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:9" InPredicateId="InPredicate:3" ScalarExpressionId="ScalarExpression:661">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:90" InPredicateId="InPredicate:31" ScalarExpressionId="ScalarExpression:2918">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:91" InPredicateId="InPredicate:31" ScalarExpressionId="ScalarExpression:2919">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:92" InPredicateId="InPredicate:32" ScalarExpressionId="ScalarExpression:2923">
+      <Ordinal>0</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:93" InPredicateId="InPredicate:32" ScalarExpressionId="ScalarExpression:2924">
+      <Ordinal>1</Ordinal>
+    </InPredicateValuesItem>
+    <InPredicateValuesItem Id="InPredicateValuesItem:94" InPredicateId="InPredicate:32" ScalarExpressionId="ScalarExpression:2925">
+      <Ordinal>2</Ordinal>
+    </InPredicateValuesItem>
+  </InPredicateValuesItemList>
+</MetaWeave>

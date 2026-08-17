@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DataTypeReferenceNameLinkList>
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:1" DataTypeReferenceId="DataTypeReference:1" SchemaObjectNameId="SchemaObjectName:87" />
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:2" DataTypeReferenceId="DataTypeReference:2" SchemaObjectNameId="SchemaObjectName:137" />
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:3" DataTypeReferenceId="DataTypeReference:3" SchemaObjectNameId="SchemaObjectName:157" />
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:4" DataTypeReferenceId="DataTypeReference:4" SchemaObjectNameId="SchemaObjectName:179" />
+  </DataTypeReferenceNameLinkList>
+</MetaWeave>

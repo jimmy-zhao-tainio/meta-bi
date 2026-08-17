@@ -136,7 +136,7 @@ SELECT
     }
 
     [Fact]
-    public void ConvertToMetaSql_MapsInlineTableValuedFunction()
+    public async Task ConvertAsync_MapsInlineTableValuedFunction()
     {
         const string sql = """
 CREATE FUNCTION dbo.fnCustomerOrders
@@ -152,17 +152,34 @@ RETURN
 )
 """;
 
-        var modules = new MetaTransformScriptSqlService()
-            .ExportModuleDefinitions(new MetaTransformScriptSqlService().ImportFromSqlCode(sql));
+        var root = CreateTempRoot();
+        var transformWorkspacePath = Path.Combine(root, "TransformScriptWS");
 
-        var model = TransformScriptToSqlConverter.ConvertToMetaSql(modules, "Warehouse");
+        try
+        {
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
+                sql,
+                targetSqlIdentifier: null,
+                transformWorkspacePath);
 
-        var function = Assert.Single(model.FunctionList);
-        Assert.Equal("fnCustomerOrders", function.Name);
-        Assert.Equal("InlineTableValuedFunction", function.FunctionKind);
-        Assert.Equal("dbo", function.Schema.Name);
-        Assert.StartsWith("CREATE FUNCTION dbo.fnCustomerOrders", function.DefinitionSql, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("GO", function.DefinitionSql, StringComparison.OrdinalIgnoreCase);
+            var result = await TransformScriptToSqlConverter.ConvertAsync(
+                transformWorkspacePath,
+                "Warehouse");
+            var model = Meta.Integration.TypedWorkspaceModelMapper.FromInMemoryWorkspace(
+                result,
+                static () => new MetaSqlModel());
+
+            var function = Assert.Single(model.FunctionList);
+            Assert.Equal("fnCustomerOrders", function.Name);
+            Assert.Equal("InlineTableValuedFunction", function.FunctionKind);
+            Assert.Equal("dbo", function.Schema.Name);
+            Assert.StartsWith("CREATE FUNCTION dbo.fnCustomerOrders", function.DefinitionSql, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("GO", function.DefinitionSql, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteTempRoot(root);
+        }
     }
 
     [Fact]

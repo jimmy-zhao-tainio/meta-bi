@@ -1,25 +1,59 @@
-using System.Globalization;
 using Meta.Operations.Domain;
 using Meta.Integration;
 using MetaSql;
-using MetaTransformScript.Sql;
+using MetaWeave.Core;
+using MetaWeaveScript.Execution;
 
 namespace MetaConvert.TransformScriptToSql;
 
 public static class TransformScriptToSqlConverter
 {
-    public static Task<InMemoryWorkspace> ConvertAsync(
+    private static readonly Lazy<MetaWeaveScriptDirection> ForwardDirection = new(
+        static () => new MetaWeaveScriptDirectionLoader().Load(
+            ResolveWeaveWorkspacePath(),
+            "forward"));
+
+    public static async Task<InMemoryWorkspace> ConvertAsync(
         string transformScriptWorkspacePath,
         string databaseName,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default,
+        Action<MetaWeaveScriptExecutionProgress>? progress = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformScriptWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(databaseName);
 
-        var modules = new MetaTransformScriptSqlService().ExportModuleDefinitions(transformScriptWorkspacePath);
-        var metaSql = ConvertToMetaSql(modules, databaseName);
-        return Task.FromResult(
-            Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql));
+        var sourceWorkspace = await TypedWorkspaceModelMapper.LoadStateAsync(
+                transformScriptWorkspacePath,
+                cancellationToken)
+            .ConfigureAwait(false);
+        var direction = ForwardDirection.Value;
+        var targetWorkspace = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+            MetaSqlModel.CreateEmpty());
+        var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
+            direction,
+            new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["transform"] = sourceWorkspace,
+            },
+            targetWorkspace,
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["databaseName"] = databaseName.Trim(),
+            },
+            progress);
+
+        if (!result.IsSuccess)
+        {
+            throw new InvalidOperationException(
+                "The sanctioned TransformScript-to-SQL weave rejected the source workspace:" +
+                Environment.NewLine +
+                string.Join(
+                    Environment.NewLine,
+                    result.Issues.Select(static issue =>
+                        $"{issue.Code}: {issue.Message}")));
+        }
+
+        return result.OutputWorkspace!;
     }
 
     public static async Task<InMemoryWorkspace> ConvertAsync(
@@ -28,134 +62,45 @@ public static class TransformScriptToSqlConverter
         string databaseName,
         string outputRepresentation,
         string? connectionEnvironmentVariable = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default,
+        Action<MetaWeaveScriptExecutionProgress>? progress = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformScriptWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(pathToNewMetaSqlWorkspace);
         ArgumentException.ThrowIfNullOrWhiteSpace(databaseName);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputRepresentation);
 
-        var modules = new MetaTransformScriptSqlService().ExportModuleDefinitions(transformScriptWorkspacePath);
-        var metaSql = ConvertToMetaSql(modules, databaseName);
-        await Meta.Integration.TypedWorkspaceModelMapper.CreateAsync(
+        var result = await ConvertAsync(
+                transformScriptWorkspacePath,
+                databaseName,
+                cancellationToken,
+                progress)
+            .ConfigureAwait(false);
+        var metaSql = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
+            result,
+            static () => new MetaSqlModel());
+        await TypedWorkspaceModelMapper.CreateAsync(
                 metaSql,
                 pathToNewMetaSqlWorkspace,
                 outputRepresentation,
                 connectionEnvironmentVariable,
                 cancellationToken: cancellationToken)
             .ConfigureAwait(false);
-        return Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql);
+        return result;
     }
 
-    public static MetaSqlModel ConvertToMetaSql(
-        IReadOnlyList<MetaTransformScriptSqlModuleDefinition> modules,
-        string databaseName)
+    private static string ResolveWeaveWorkspacePath()
     {
-        ArgumentNullException.ThrowIfNull(modules);
-        ArgumentException.ThrowIfNullOrWhiteSpace(databaseName);
-
-        var context = new ConversionContext(databaseName.Trim());
-        foreach (var module in modules
-                     .OrderBy(static item => item.DeployOrdinal)
-                     .ThenBy(static item => item.SchemaName, StringComparer.OrdinalIgnoreCase)
-                     .ThenBy(static item => item.ObjectName, StringComparer.OrdinalIgnoreCase)
-                     .ThenBy(static item => item.TransformScriptId, StringComparer.Ordinal))
+        var path = Path.Combine(
+            AppContext.BaseDirectory,
+            "Weaves",
+            "TransformScriptToSql");
+        if (!File.Exists(Path.Combine(path, "workspace.meta")))
         {
-            context.AddModule(module);
+            throw new InvalidOperationException(
+                $"The sanctioned TransformScript-to-SQL weave was not found at '{path}'.");
         }
 
-        return context.MetaSql;
-    }
-
-    private sealed class ConversionContext
-    {
-        private readonly Dictionary<string, Schema> schemasByName = new(StringComparer.OrdinalIgnoreCase);
-        private readonly HashSet<string> moduleKeys = new(StringComparer.OrdinalIgnoreCase);
-
-        public ConversionContext(string databaseName)
-        {
-            MetaSql = MetaSqlModel.CreateEmpty();
-            Database = new Database
-            {
-                Id = databaseName,
-                Name = databaseName,
-            };
-            MetaSql.DatabaseList.Add(Database);
-        }
-
-        public MetaSqlModel MetaSql { get; }
-        public Database Database { get; }
-
-        public void AddModule(MetaTransformScriptSqlModuleDefinition module)
-        {
-            var schema = GetOrAddSchema(module.SchemaName);
-            var moduleKey = $"{schema.Name}.{module.ObjectName}";
-            if (!moduleKeys.Add(moduleKey))
-            {
-                throw new InvalidOperationException(
-                    $"Duplicate transform-script SQL module '{moduleKey}' cannot be lowered to MetaSql.");
-            }
-
-            var deployOrdinal = module.DeployOrdinal.ToString(CultureInfo.InvariantCulture);
-            switch (module.ModuleKind)
-            {
-                case MetaTransformScriptSqlModuleKind.View:
-                    MetaSql.ViewList.Add(new View
-                    {
-                        Id = $"{Database.Id}.{schema.Name}.{module.ObjectName}",
-                        Schema = schema,
-                        Name = module.ObjectName,
-                        DefinitionSql = module.DefinitionSql,
-                        DeployOrdinal = deployOrdinal,
-                    });
-                    break;
-
-                case MetaTransformScriptSqlModuleKind.InlineTableValuedFunction:
-                case MetaTransformScriptSqlModuleKind.ScalarFunction:
-                    MetaSql.FunctionList.Add(new Function
-                    {
-                        Id = $"{Database.Id}.{schema.Name}.{module.ObjectName}",
-                        Schema = schema,
-                        Name = module.ObjectName,
-                        FunctionKind = module.ModuleKind.ToString(),
-                        DefinitionSql = module.DefinitionSql,
-                        DeployOrdinal = deployOrdinal,
-                    });
-                    break;
-
-                case MetaTransformScriptSqlModuleKind.StoredProcedure:
-                    MetaSql.StoredProcedureList.Add(new StoredProcedure
-                    {
-                        Id = $"{Database.Id}.{schema.Name}.{module.ObjectName}",
-                        Schema = schema,
-                        Name = module.ObjectName,
-                        DefinitionSql = module.DefinitionSql,
-                        DeployOrdinal = deployOrdinal,
-                    });
-                    break;
-
-                default:
-                    throw new InvalidOperationException(
-                        $"Unsupported transform-script SQL module kind '{module.ModuleKind}'.");
-            }
-        }
-
-        private Schema GetOrAddSchema(string schemaName)
-        {
-            if (schemasByName.TryGetValue(schemaName, out var schema))
-            {
-                return schema;
-            }
-
-            schema = new Schema
-            {
-                Id = $"{Database.Id}.{schemaName}",
-                Database = Database,
-                Name = schemaName,
-            };
-            schemasByName.Add(schemaName, schema);
-            MetaSql.SchemaList.Add(schema);
-            return schema;
-        }
+        return path;
     }
 }

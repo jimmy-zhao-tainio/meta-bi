@@ -148,5 +148,8 @@
     <Literal Id="Literal:75" ValueExpressionId="ValueExpression:75">
       <Value>])</Value>
     </Literal>
+    <Literal Id="Literal:76" ValueExpressionId="ValueExpression:76">
+      <Value>1</Value>
+    </Literal>
   </LiteralList>
 </MetaWeave>

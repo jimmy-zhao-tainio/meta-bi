@@ -109,6 +109,11 @@ Those all make the tool feel like it is narrating its own machinery.
 
 When the tool is busy and the user does not need measurements, the output is one activity line.
 
+`MetaCliRuntime` supplies a delayed `Starting...` activity line while it loads
+the modeled command surface and opens and materializes command workspaces. It
+clears that line before help, diagnostics, command output, or a command meter
+takes over. Fast commands complete before the line appears.
+
 ```text
 > meta-transform-binding bind --transform-workspace Transform --schema-workspace Schema --out Binding
 Binding...|
@@ -173,14 +178,14 @@ It is for work where the live quantity changes the user's confidence: rows movin
 
 ```text
 > meta-pipeline execute --workspace Pipeline --pipeline CustomerLoad --transform-workspace Transform --binding-workspace Binding --pipeline-db-connection-env META_PIPELINE
-|  [================----] 5 of 6  10 rows  155 B/s
-[====================] 6 of 6  10 rows  155 B/s
+Progress [=====/] 5/6  10 rows  155 B/s
+Progress [======] 6/6  OK  10 rows  155 B/s  00:12
 ```
 
 ```text
 > meta-orchestration execute --workspace Orchestration --pipeline-workspace Pipeline --pipeline-db-connection-env META_PIPELINE --max-degree-of-parallelism 2
-|  [=============-------] 12 of 18  4 running
-[====================] 18 of 18
+Progress [============/-----] 12/18  2/2 running
+Progress [==================] 18/18  OK  01:08
 ```
 
 ```text
@@ -189,11 +194,17 @@ It is for work where the live quantity changes the user's confidence: rows movin
 Deploying...Ok
 ```
 
-The meter begins with the same spinner in column 1.
+The spinner travels at the completed frontier inside the rail.
+Task counts up to 20 use one rail cell per task; larger totals use a
+20-cell proportional rail.
 The readout is short, factual, and unsentimental.
 It is not a sentence.
 It is not a diagnostic stream.
 It is not the final report.
+
+`MetaCliProgressMeter` owns the interactive-console detection, animation,
+rail shape, timing, completion, failure, and cleanup. Commands report only
+completed work, total work, and an optional short detail.
 
 If the readout cannot be useful, use plain motion.
 

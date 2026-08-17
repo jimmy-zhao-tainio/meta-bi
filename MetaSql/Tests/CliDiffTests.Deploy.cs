@@ -4,10 +4,11 @@ using Microsoft.Data.SqlClient;
 using MetaSql;
 using MetaSqlDeployManifest;
 using MetaSql.Extractors.SqlServer;
+using static MetaSql.Tests.CliDiffTestSupport;
 
 namespace MetaSql.Tests;
 
-public sealed partial class CliDiffTests
+public sealed class CliForeignKeyDeploymentTests
 {
     [Fact]
     public async Task DeployPlanCommand_EmitsReplaceForeignKeyForExecutableSharedForeignKeyDifference()
@@ -256,7 +257,10 @@ public sealed partial class CliDiffTests
             DeleteIfExists(tempRoot);
         }
     }
+}
 
+public sealed class CliPrimaryKeyDeploymentTests
+{
     [Fact]
     public async Task DeployPlanCommand_EmitsReplacePrimaryKeyForExecutableSharedNonClusteredPrimaryKeyDifference()
     {
@@ -742,7 +746,10 @@ public sealed partial class CliDiffTests
             DeleteIfExists(tempRoot);
         }
     }
+}
 
+public sealed class CliIndexDeploymentTests
+{
     [Fact]
     public async Task DeployPlanCommand_EmitsReplaceIndexForExecutableSharedNonClusteredIndexDifference()
     {
@@ -1087,7 +1094,10 @@ public sealed partial class CliDiffTests
             DeleteIfExists(tempRoot);
         }
     }
+}
 
+public sealed class CliManifestDeploymentTests
+{
     [Fact]
     public async Task DeployPlanCommand_EmitsAlterTableColumnForExecutableSharedObjectDifference()
     {
@@ -1425,7 +1435,10 @@ public sealed partial class CliDiffTests
             DeleteIfExists(tempRoot);
         }
     }
+}
 
+public sealed class CliColumnShapeDeploymentTests
+{
     [Fact]
     public async Task DeployCommand_AppliesVarcharLengthWidening()
     {
@@ -1723,7 +1736,10 @@ public sealed partial class CliDiffTests
             DeleteIfExists(tempRoot);
         }
     }
+}
 
+public sealed class CliColumnDependencyDeploymentTests
+{
     [Fact]
     public async Task DeployPlanCommand_BlocksDecimalPrecisionScaleChangeInCurrentSlice()
     {
@@ -2241,7 +2257,10 @@ public sealed partial class CliDiffTests
             DeleteIfExists(tempRoot);
         }
     }
+}
 
+public sealed class CliDeploymentSafetyTests
+{
     [Fact]
     public async Task DeployCommand_LeavesEarlierAlterAppliedWhenSecondFailsAtApplyTime()
     {

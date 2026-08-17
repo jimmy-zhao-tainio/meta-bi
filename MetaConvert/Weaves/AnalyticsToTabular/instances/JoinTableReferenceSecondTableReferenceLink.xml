@@ -18,12 +18,7 @@
     <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:24" JoinTableReferenceId="JoinTableReference:24" TableReferenceId="TableReference:79" />
     <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:25" JoinTableReferenceId="JoinTableReference:25" TableReferenceId="TableReference:81" />
     <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:26" JoinTableReferenceId="JoinTableReference:26" TableReferenceId="TableReference:83" />
-    <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:3" JoinTableReferenceId="JoinTableReference:3" TableReferenceId="TableReference:31" />
-    <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:4" JoinTableReferenceId="JoinTableReference:4" TableReferenceId="TableReference:33" />
-    <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:5" JoinTableReferenceId="JoinTableReference:5" TableReferenceId="TableReference:35" />
-    <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:6" JoinTableReferenceId="JoinTableReference:6" TableReferenceId="TableReference:37" />
-    <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:7" JoinTableReferenceId="JoinTableReference:7" TableReferenceId="TableReference:39" />
-    <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:8" JoinTableReferenceId="JoinTableReference:8" TableReferenceId="TableReference:41" />
+    <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:27" JoinTableReferenceId="JoinTableReference:27" TableReferenceId="TableReference:93" />
     <JoinTableReferenceSecondTableReferenceLink Id="JoinTableReferenceSecondTableReferenceLink:9" JoinTableReferenceId="JoinTableReference:9" TableReferenceId="TableReference:44" />
   </JoinTableReferenceSecondTableReferenceLinkList>
 </MetaWeave>

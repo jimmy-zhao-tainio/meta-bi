@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QueryDerivedTableQueryExpressionLinkList>
+    <QueryDerivedTableQueryExpressionLink Id="QueryDerivedTableQueryExpressionLink:2" QueryDerivedTableId="QueryDerivedTable:2" QueryExpressionId="QueryExpression:27124" />
+    <QueryDerivedTableQueryExpressionLink Id="QueryDerivedTableQueryExpressionLink:4" QueryDerivedTableId="QueryDerivedTable:4" QueryExpressionId="QueryExpression:27621" />
+    <QueryDerivedTableQueryExpressionLink Id="QueryDerivedTableQueryExpressionLink:6" QueryDerivedTableId="QueryDerivedTable:6" QueryExpressionId="QueryExpression:28309" />
+    <QueryDerivedTableQueryExpressionLink Id="QueryDerivedTableQueryExpressionLink:7" QueryDerivedTableId="QueryDerivedTable:7" QueryExpressionId="QueryExpression:28665" />
+    <QueryDerivedTableQueryExpressionLink Id="QueryDerivedTableQueryExpressionLink:9" QueryDerivedTableId="QueryDerivedTable:9" QueryExpressionId="QueryExpression:28701" />
+  </QueryDerivedTableQueryExpressionLinkList>
+</MetaWeave>

@@ -88,10 +88,10 @@ internal static class MetaTransformScriptTestHelper
     public static void AssertMetaSqlProjectionEqual(MetaTransformScriptModel expectedSource, MetaTransformScriptModel actualSource)
     {
         var service = new MetaTransformScriptSqlService();
-        var expected = TransformScriptToSqlConverter.ConvertToMetaSql(
+        var expected = TransformScriptToSqlCSharpReference.Convert(
             service.ExportModuleDefinitions(expectedSource),
             "RoundTripDb");
-        var actual = TransformScriptToSqlConverter.ConvertToMetaSql(
+        var actual = TransformScriptToSqlCSharpReference.Convert(
             service.ExportModuleDefinitions(actualSource),
             "RoundTripDb");
 

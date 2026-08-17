@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <WhereClauseSearchConditionLinkList>
-    <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:2" BooleanExpressionId="BooleanExpression:28" WhereClauseId="WhereClause:2" />
+    <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:3" BooleanExpressionId="BooleanExpression:50" WhereClauseId="WhereClause:3" />
   </WhereClauseSearchConditionLinkList>
 </MetaWeave>

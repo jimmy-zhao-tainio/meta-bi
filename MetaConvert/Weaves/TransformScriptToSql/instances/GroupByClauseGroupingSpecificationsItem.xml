@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <GroupByClauseGroupingSpecificationsItemList>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:11" GroupByClauseId="GroupByClause:9" GroupingSpecificationId="GroupingSpecification:11">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:12" GroupByClauseId="GroupByClause:9" GroupingSpecificationId="GroupingSpecification:12">
+      <Ordinal>1</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:146" GroupByClauseId="GroupByClause:143" GroupingSpecificationId="GroupingSpecification:146">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:147" GroupByClauseId="GroupByClause:144" GroupingSpecificationId="GroupingSpecification:147">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:156" GroupByClauseId="GroupByClause:153" GroupingSpecificationId="GroupingSpecification:156">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:157" GroupByClauseId="GroupByClause:154" GroupingSpecificationId="GroupingSpecification:157">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:158" GroupByClauseId="GroupByClause:155" GroupingSpecificationId="GroupingSpecification:158">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:159" GroupByClauseId="GroupByClause:156" GroupingSpecificationId="GroupingSpecification:159">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:160" GroupByClauseId="GroupByClause:156" GroupingSpecificationId="GroupingSpecification:160">
+      <Ordinal>1</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:161" GroupByClauseId="GroupByClause:156" GroupingSpecificationId="GroupingSpecification:161">
+      <Ordinal>2</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:4" GroupByClauseId="GroupByClause:3" GroupingSpecificationId="GroupingSpecification:4">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+  </GroupByClauseGroupingSpecificationsItemList>
+</MetaWeave>

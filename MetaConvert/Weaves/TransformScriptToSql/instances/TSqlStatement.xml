@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TSqlStatementList>
+    <TSqlStatement Id="TSqlStatement:1" />
+    <TSqlStatement Id="TSqlStatement:100" />
+    <TSqlStatement Id="TSqlStatement:102" />
+    <TSqlStatement Id="TSqlStatement:103" />
+    <TSqlStatement Id="TSqlStatement:104" />
+    <TSqlStatement Id="TSqlStatement:105" />
+    <TSqlStatement Id="TSqlStatement:107" />
+    <TSqlStatement Id="TSqlStatement:19" />
+    <TSqlStatement Id="TSqlStatement:3" />
+    <TSqlStatement Id="TSqlStatement:4" />
+    <TSqlStatement Id="TSqlStatement:6" />
+    <TSqlStatement Id="TSqlStatement:76" />
+    <TSqlStatement Id="TSqlStatement:77" />
+    <TSqlStatement Id="TSqlStatement:78" />
+    <TSqlStatement Id="TSqlStatement:79" />
+    <TSqlStatement Id="TSqlStatement:80" />
+    <TSqlStatement Id="TSqlStatement:81" />
+    <TSqlStatement Id="TSqlStatement:82" />
+    <TSqlStatement Id="TSqlStatement:83" />
+    <TSqlStatement Id="TSqlStatement:84" />
+    <TSqlStatement Id="TSqlStatement:85" />
+    <TSqlStatement Id="TSqlStatement:86" />
+    <TSqlStatement Id="TSqlStatement:9" />
+    <TSqlStatement Id="TSqlStatement:90" />
+    <TSqlStatement Id="TSqlStatement:92" />
+    <TSqlStatement Id="TSqlStatement:94" />
+    <TSqlStatement Id="TSqlStatement:97" />
+    <TSqlStatement Id="TSqlStatement:98" />
+    <TSqlStatement Id="TSqlStatement:99" />
+  </TSqlStatementList>
+</MetaWeave>

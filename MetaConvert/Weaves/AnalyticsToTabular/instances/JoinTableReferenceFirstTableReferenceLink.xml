@@ -18,12 +18,7 @@
     <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:24" JoinTableReferenceId="JoinTableReference:24" TableReferenceId="TableReference:78" />
     <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:25" JoinTableReferenceId="JoinTableReference:25" TableReferenceId="TableReference:80" />
     <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:26" JoinTableReferenceId="JoinTableReference:26" TableReferenceId="TableReference:82" />
-    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:3" JoinTableReferenceId="JoinTableReference:3" TableReferenceId="TableReference:30" />
-    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:4" JoinTableReferenceId="JoinTableReference:4" TableReferenceId="TableReference:32" />
-    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:5" JoinTableReferenceId="JoinTableReference:5" TableReferenceId="TableReference:34" />
-    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:6" JoinTableReferenceId="JoinTableReference:6" TableReferenceId="TableReference:36" />
-    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:7" JoinTableReferenceId="JoinTableReference:7" TableReferenceId="TableReference:38" />
-    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:8" JoinTableReferenceId="JoinTableReference:8" TableReferenceId="TableReference:40" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:27" JoinTableReferenceId="JoinTableReference:27" TableReferenceId="TableReference:85" />
     <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:9" JoinTableReferenceId="JoinTableReference:9" TableReferenceId="TableReference:43" />
   </JoinTableReferenceFirstTableReferenceLinkList>
 </MetaWeave>

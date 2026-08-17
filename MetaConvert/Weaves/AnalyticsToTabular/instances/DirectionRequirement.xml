@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <DirectionRequirementList>
-    <DirectionRequirement Id="forward/MeasureAggregateFunction" DirectionId="forward" SelectStatementId="SelectStatement:26">
-      <Code>MeasureAggregateFunctionMissing</Code>
-      <Message>Measure must reference a concrete aggregate-function entity.</Message>
+    <DirectionRequirement Id="forward/MeasureAggregateFunction" DirectionId="forward" SelectStatementId="SelectStatement:28">
+      <Code>MeasureAggregateFunctionInvalid</Code>
+      <Message>Measure must reference exactly one concrete aggregate-function entity.</Message>
     </DirectionRequirement>
   </DirectionRequirementList>
 </MetaWeave>

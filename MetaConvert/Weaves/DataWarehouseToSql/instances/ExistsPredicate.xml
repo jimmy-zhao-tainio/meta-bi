@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ExistsPredicateList>
+    <ExistsPredicate Id="ExistsPredicate:1" BooleanExpressionId="BooleanExpression:22" />
+    <ExistsPredicate Id="ExistsPredicate:2" BooleanExpressionId="BooleanExpression:64" />
+    <ExistsPredicate Id="ExistsPredicate:3" BooleanExpressionId="BooleanExpression:72" />
+    <ExistsPredicate Id="ExistsPredicate:4" BooleanExpressionId="BooleanExpression:74" />
+    <ExistsPredicate Id="ExistsPredicate:5" BooleanExpressionId="BooleanExpression:77" />
+    <ExistsPredicate Id="ExistsPredicate:6" BooleanExpressionId="BooleanExpression:189" />
+    <ExistsPredicate Id="ExistsPredicate:7" BooleanExpressionId="BooleanExpression:277" />
+    <ExistsPredicate Id="ExistsPredicate:8" BooleanExpressionId="BooleanExpression:281" />
+    <ExistsPredicate Id="ExistsPredicate:9" BooleanExpressionId="BooleanExpression:286" />
+  </ExistsPredicateList>
+</MetaWeave>

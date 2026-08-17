@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanParenthesisExpressionList>
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:1" BooleanExpressionId="BooleanExpression:62" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:10" BooleanExpressionId="BooleanExpression:167" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:11" BooleanExpressionId="BooleanExpression:279" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:12" BooleanExpressionId="BooleanExpression:283" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:13" BooleanExpressionId="BooleanExpression:288" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:2" BooleanExpressionId="BooleanExpression:70" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:3" BooleanExpressionId="BooleanExpression:79" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:4" BooleanExpressionId="BooleanExpression:100" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:5" BooleanExpressionId="BooleanExpression:131" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:6" BooleanExpressionId="BooleanExpression:135" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:7" BooleanExpressionId="BooleanExpression:140" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:8" BooleanExpressionId="BooleanExpression:158" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:9" BooleanExpressionId="BooleanExpression:162" />
+  </BooleanParenthesisExpressionList>
+</MetaWeave>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <WhenClauseList>
+    <WhenClause Id="WhenClause:1" />
+    <WhenClause Id="WhenClause:10" />
+    <WhenClause Id="WhenClause:11" />
+    <WhenClause Id="WhenClause:12" />
+    <WhenClause Id="WhenClause:13" />
+    <WhenClause Id="WhenClause:14" />
+    <WhenClause Id="WhenClause:15" />
+    <WhenClause Id="WhenClause:16" />
+    <WhenClause Id="WhenClause:17" />
+    <WhenClause Id="WhenClause:18" />
+    <WhenClause Id="WhenClause:2" />
+    <WhenClause Id="WhenClause:3" />
+    <WhenClause Id="WhenClause:4" />
+    <WhenClause Id="WhenClause:5" />
+    <WhenClause Id="WhenClause:6" />
+    <WhenClause Id="WhenClause:7" />
+    <WhenClause Id="WhenClause:8" />
+    <WhenClause Id="WhenClause:9" />
+  </WhenClauseList>
+</MetaWeave>

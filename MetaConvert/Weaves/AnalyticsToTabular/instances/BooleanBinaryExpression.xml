@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <BooleanBinaryExpressionList>
-    <BooleanBinaryExpression Id="BooleanBinaryExpression:1" BooleanExpressionId="BooleanExpression:20">
-      <BinaryExpressionType>And</BinaryExpressionType>
-    </BooleanBinaryExpression>
-    <BooleanBinaryExpression Id="BooleanBinaryExpression:2" BooleanExpressionId="BooleanExpression:22">
-      <BinaryExpressionType>And</BinaryExpressionType>
-    </BooleanBinaryExpression>
-    <BooleanBinaryExpression Id="BooleanBinaryExpression:3" BooleanExpressionId="BooleanExpression:24">
-      <BinaryExpressionType>And</BinaryExpressionType>
-    </BooleanBinaryExpression>
-    <BooleanBinaryExpression Id="BooleanBinaryExpression:4" BooleanExpressionId="BooleanExpression:26">
-      <BinaryExpressionType>And</BinaryExpressionType>
-    </BooleanBinaryExpression>
-    <BooleanBinaryExpression Id="BooleanBinaryExpression:5" BooleanExpressionId="BooleanExpression:28">
-      <BinaryExpressionType>And</BinaryExpressionType>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:6" BooleanExpressionId="BooleanExpression:50">
+      <BinaryExpressionType>Or</BinaryExpressionType>
     </BooleanBinaryExpression>
   </BooleanBinaryExpressionList>
 </MetaWeave>

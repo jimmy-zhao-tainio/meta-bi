@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRelationList>
+    <DirectionRelation Id="forward/body_identifiers" DirectionId="forward" SelectStatementId="SelectStatement:78" />
+    <DirectionRelation Id="forward/boolean_render_events" DirectionId="forward" SelectStatementId="SelectStatement:92" />
+    <DirectionRelation Id="forward/classifications" DirectionId="forward" SelectStatementId="SelectStatement:76" />
+    <DirectionRelation Id="forward/data_types" DirectionId="forward" SelectStatementId="SelectStatement:84" />
+    <DirectionRelation Id="forward/leaf_render_events" DirectionId="forward" SelectStatementId="SelectStatement:107" />
+    <DirectionRelation Id="forward/modules" DirectionId="forward" SelectStatementId="SelectStatement:79" />
+    <DirectionRelation Id="forward/module_identifiers" DirectionId="forward" SelectStatementId="SelectStatement:77" />
+    <DirectionRelation Id="forward/module_render_roots" DirectionId="forward" SelectStatementId="SelectStatement:97" />
+    <DirectionRelation Id="forward/ordered_modules" DirectionId="forward" SelectStatementId="SelectStatement:80" />
+    <DirectionRelation Id="forward/query_render_events" DirectionId="forward" SelectStatementId="SelectStatement:104" />
+    <DirectionRelation Id="forward/rendered_module_bodies" DirectionId="forward" SelectStatementId="SelectStatement:98" />
+    <DirectionRelation Id="forward/rendered_names" DirectionId="forward" SelectStatementId="SelectStatement:81" />
+    <DirectionRelation Id="forward/rendered_type_parameters" DirectionId="forward" SelectStatementId="SelectStatement:82" />
+    <DirectionRelation Id="forward/render_events" DirectionId="forward" SelectStatementId="SelectStatement:94" />
+    <DirectionRelation Id="forward/scalar_render_events" DirectionId="forward" SelectStatementId="SelectStatement:105" />
+    <DirectionRelation Id="forward/sql_data_type_names" DirectionId="forward" SelectStatementId="SelectStatement:83" />
+    <DirectionRelation Id="forward/table_render_events" DirectionId="forward" SelectStatementId="SelectStatement:90" />
+  </DirectionRelationList>
+</MetaWeave>

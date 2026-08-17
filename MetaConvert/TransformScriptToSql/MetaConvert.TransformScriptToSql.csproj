@@ -10,8 +10,18 @@
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaWeave.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\..\MetaSql\CSharp\MetaSql.CSharp.csproj" />
-    <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Weaves\TransformScriptToSql\**\*">
+      <Link>Weaves\TransformScriptToSql\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Weaves\TransformScriptToSql\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
   </ItemGroup>
 
 </Project>

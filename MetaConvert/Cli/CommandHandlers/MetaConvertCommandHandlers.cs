@@ -37,20 +37,26 @@ internal sealed class MetaConvertCommandHandlers
         RawDataVaultFromMetaSchemaService.RawDataVaultFromMetaSchemaResult result;
         try
         {
-            var sourceModel = await workspaces
-                .RequiredAsync<MetaSchemaModel>("source-workspace")
-                .ConfigureAwait(false);
+            result = await RunWithProgressAsync(
+                "Converting schema to raw Data Vault",
+                async () =>
+                {
+                    var sourceModel = await workspaces
+                        .RequiredAsync<MetaSchemaModel>("source-workspace")
+                        .ConfigureAwait(false);
 
-            result = new RawDataVaultFromMetaSchemaService().MaterializeWithReport(
-                sourceModel,
-                invocation.Values("ignore-field-name").ToList(),
-                invocation.Values("ignore-field-suffix").ToList(),
-                invocation.Flag("include-views"));
+                    var converted = new RawDataVaultFromMetaSchemaService().MaterializeWithReport(
+                        sourceModel,
+                        invocation.Values("ignore-field-name").ToList(),
+                        invocation.Values("ignore-field-suffix").ToList(),
+                        invocation.Flag("include-views"));
 
-            await workspaces.CreateAsync(
-                    "output",
-                    result.Model)
-                .ConfigureAwait(false);
+                    await workspaces.CreateAsync(
+                            "output",
+                            converted.Model)
+                        .ConfigureAwait(false);
+                    return converted;
+                }).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -80,11 +86,17 @@ internal sealed class MetaConvertCommandHandlers
         var request = ReadDataVaultToSqlRequest(invocation);
         try
         {
-            var result = await Converter.ConvertAsync(
-                request.WorkspacePath,
-                request.ImplementationWorkspacePath,
-                request.DatabaseName).ConfigureAwait(false);
-            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+            _ = await RunWithProgressAsync(
+                "Converting raw Data Vault to SQL",
+                async () =>
+                {
+                    var result = await Converter.ConvertAsync(
+                        request.WorkspacePath,
+                        request.ImplementationWorkspacePath,
+                        request.DatabaseName).ConfigureAwait(false);
+                    await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+                    return result;
+                }).ConfigureAwait(false);
 
             presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             return 0;
@@ -100,11 +112,17 @@ internal sealed class MetaConvertCommandHandlers
         var request = ReadDataVaultToSqlRequest(invocation);
         try
         {
-            var result = await Converter.ConvertAsync(
-                request.WorkspacePath,
-                request.ImplementationWorkspacePath,
-                request.DatabaseName).ConfigureAwait(false);
-            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+            _ = await RunWithProgressAsync(
+                "Converting business Data Vault to SQL",
+                async () =>
+                {
+                    var result = await Converter.ConvertAsync(
+                        request.WorkspacePath,
+                        request.ImplementationWorkspacePath,
+                        request.DatabaseName).ConfigureAwait(false);
+                    await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+                    return result;
+                }).ConfigureAwait(false);
 
             presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             return 0;
@@ -115,14 +133,17 @@ internal sealed class MetaConvertCommandHandlers
         }
     }
 
-    public Task<int> RunDataQualityToSqlAsync(MetaCliInvocation invocation)
+    public async Task<int> RunDataQualityToSqlAsync(MetaCliInvocation invocation)
     {
         var workspacePath = ReadWorkspacePath(invocation);
         var outputPath = Path.GetFullPath(invocation.Required("out"));
 
         try
         {
-            var result = new DataQualityToSqlConverter().Convert(workspacePath, outputPath);
+            var result = await RunWithProgressAsync(
+                "Converting data quality to SQL",
+                () => Task.FromResult(new DataQualityToSqlConverter().Convert(workspacePath, outputPath)))
+                .ConfigureAwait(false);
             presenter.WriteInfo(
                 $"Generated {result.CandidateViewCount} data quality view script{(result.CandidateViewCount == 1 ? string.Empty : "s")}, " +
                 $"{result.DashboardViewCount} review dashboard, and MetaDQ operational SQL ({result.OperationalTableCount} tables, {result.OperationalProcedureCount} procedure).");
@@ -135,11 +156,11 @@ internal sealed class MetaConvertCommandHandlers
                 ("Scripts", result.ScriptCount.ToString()),
                 ("Path", result.OutputPath),
             });
-            return Task.FromResult(0);
+            return 0;
         }
         catch (Exception ex)
         {
-            return Task.FromResult(Fail(
+            return Fail(
                 "Cannot convert data-quality workspace to SQL.",
                 "check the workspace, promoted candidates, and output path, then retry.",
                 4,
@@ -148,7 +169,7 @@ internal sealed class MetaConvertCommandHandlers
                     $"  Workspace: {workspacePath}",
                     $"  Output: {outputPath}",
                     $"  {ex.Message}",
-                }));
+                });
         }
     }
 
@@ -157,11 +178,17 @@ internal sealed class MetaConvertCommandHandlers
         var request = ReadDataVaultToSqlRequest(invocation);
         try
         {
-            var result = await DataWarehouseToSqlConverter.ConvertAsync(
-                request.WorkspacePath,
-                request.ImplementationWorkspacePath,
-                request.DatabaseName).ConfigureAwait(false);
-            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+            _ = await RunWithProgressAsync(
+                "Converting data warehouse to SQL",
+                async () =>
+                {
+                    var result = await DataWarehouseToSqlConverter.ConvertAsync(
+                        request.WorkspacePath,
+                        request.ImplementationWorkspacePath,
+                        request.DatabaseName).ConfigureAwait(false);
+                    await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+                    return result;
+                }).ConfigureAwait(false);
 
             presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             return 0;
@@ -179,10 +206,23 @@ internal sealed class MetaConvertCommandHandlers
 
         try
         {
-            var result = await TransformScriptToSqlConverter.ConvertAsync(
-                workspacePath,
-                databaseName).ConfigureAwait(false);
-            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+            _ = await RunWithMeterAsync(
+                async meter =>
+                {
+                    var result = await TransformScriptToSqlConverter.ConvertAsync(
+                        workspacePath,
+                        databaseName,
+                        progress: meter is null
+                            ? null
+                            : value => meter.Report(
+                                value.CompletedTaskCount,
+                                value.TotalTaskCount,
+                                FormatWeaveTask(
+                                    value.CompletedTaskKind?.ToString(),
+                                    value.CompletedTaskName))).ConfigureAwait(false);
+                    await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+                    return result;
+                }).ConfigureAwait(false);
 
             presenter.WriteInfo($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             return 0;
@@ -209,14 +249,20 @@ internal sealed class MetaConvertCommandHandlers
 
         try
         {
-            var result = await SqlToTransformScriptConverter.ConvertAsync(
-                workspacePath,
-                new SqlToTransformScriptConversionOptions
+            var result = await RunWithProgressAsync(
+                "Converting SQL to transform scripts",
+                async () =>
                 {
-                    ModuleKinds = ReadSqlModuleKinds(invocation),
-                    AllowEmpty = invocation.Flag("allow-empty"),
+                    var converted = await SqlToTransformScriptConverter.ConvertAsync(
+                        workspacePath,
+                        new SqlToTransformScriptConversionOptions
+                        {
+                            ModuleKinds = ReadSqlModuleKinds(invocation),
+                            AllowEmpty = invocation.Flag("allow-empty"),
+                        }).ConfigureAwait(false);
+                    await workspaces.CreateAsync("output", converted.Workspace).ConfigureAwait(false);
+                    return converted;
                 }).ConfigureAwait(false);
-            await workspaces.CreateAsync("output", result.Workspace).ConfigureAwait(false);
 
             presenter.WriteInfo($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             presenter.WriteKeyValueBlock("Summary", new[]
@@ -248,9 +294,15 @@ internal sealed class MetaConvertCommandHandlers
 
         try
         {
-            var source = TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(workspacePath, searchUpward: false);
-            var result = AnalyticsToTabularConverter.Convert(source);
-            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+            var result = await RunWithProgressAsync(
+                "Converting analytics to tabular",
+                async () =>
+                {
+                    var source = TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(workspacePath, searchUpward: false);
+                    var converted = AnalyticsToTabularConverter.Convert(source);
+                    await workspaces.CreateAsync("output", converted).ConfigureAwait(false);
+                    return converted;
+                }).ConfigureAwait(false);
             presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             presenter.WriteKeyValueBlock("Summary", new[]
             {
@@ -281,9 +333,15 @@ internal sealed class MetaConvertCommandHandlers
 
         try
         {
-            var source = TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(workspacePath, searchUpward: false);
-            var result = AnalyticsToMultiDimensionalConverter.Convert(source);
-            await workspaces.CreateAsync("output", result).ConfigureAwait(false);
+            var result = await RunWithProgressAsync(
+                "Converting analytics to multidimensional",
+                async () =>
+                {
+                    var source = TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(workspacePath, searchUpward: false);
+                    var converted = AnalyticsToMultiDimensionalConverter.Convert(source);
+                    await workspaces.CreateAsync("output", converted).ConfigureAwait(false);
+                    return converted;
+                }).ConfigureAwait(false);
             presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             presenter.WriteKeyValueBlock("Summary", new[]
             {
@@ -355,6 +413,52 @@ internal sealed class MetaConvertCommandHandlers
         if (invocation.Flag("include-functions")) moduleKinds |= SqlToTransformScriptModuleKinds.Functions;
         if (invocation.Flag("include-stored-procedures")) moduleKinds |= SqlToTransformScriptModuleKinds.StoredProcedures;
         return moduleKinds;
+    }
+
+    private static async Task<T> RunWithProgressAsync<T>(
+        string activity,
+        Func<Task<T>> action)
+        => await RunWithProgressAsync(activity, _ => action()).ConfigureAwait(false);
+
+    private static async Task<T> RunWithProgressAsync<T>(
+        string activity,
+        Func<CliActivityLine, Task<T>> action)
+    {
+        using var progress = CliActivityLine.Start(activity);
+        return await action(progress).ConfigureAwait(false);
+    }
+
+    private static async Task<T> RunWithMeterAsync<T>(
+        Func<MetaCliProgressMeter?, Task<T>> action)
+    {
+        using var meter = MetaCliProgressMeter.TryStart(initialDetail: "preparing");
+        try
+        {
+            var result = await action(meter).ConfigureAwait(false);
+            meter?.Succeed();
+            return result;
+        }
+        catch
+        {
+            meter?.Fail();
+            throw;
+        }
+    }
+
+    private static string? FormatWeaveTask(string? taskKind, string? taskName)
+    {
+        if (string.IsNullOrWhiteSpace(taskName))
+        {
+            return null;
+        }
+
+        return taskKind switch
+        {
+            "Requirement" => $"requirement {taskName}",
+            "Relation" => $"relation {taskName}",
+            "TargetEntity" => $"target {taskName}",
+            _ => taskName,
+        };
     }
 
     private void RenderSummary(RawDataVaultFromMetaSchemaSummary summary)

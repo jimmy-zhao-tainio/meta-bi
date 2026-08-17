@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <CoalesceExpressionExpressionsItemList>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:383" CoalesceExpressionId="CoalesceExpression:192" ScalarExpressionId="ScalarExpression:118465">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:384" CoalesceExpressionId="CoalesceExpression:192" ScalarExpressionId="ScalarExpression:118466">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:385" CoalesceExpressionId="CoalesceExpression:193" ScalarExpressionId="ScalarExpression:118568">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:386" CoalesceExpressionId="CoalesceExpression:193" ScalarExpressionId="ScalarExpression:118569">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:405" CoalesceExpressionId="CoalesceExpression:203" ScalarExpressionId="ScalarExpression:133374">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:406" CoalesceExpressionId="CoalesceExpression:203" ScalarExpressionId="ScalarExpression:133375">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:407" CoalesceExpressionId="CoalesceExpression:204" ScalarExpressionId="ScalarExpression:133434">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:408" CoalesceExpressionId="CoalesceExpression:204" ScalarExpressionId="ScalarExpression:133435">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:409" CoalesceExpressionId="CoalesceExpression:205" ScalarExpressionId="ScalarExpression:133560">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:410" CoalesceExpressionId="CoalesceExpression:205" ScalarExpressionId="ScalarExpression:133561">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:421" CoalesceExpressionId="CoalesceExpression:211" ScalarExpressionId="ScalarExpression:134293">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:422" CoalesceExpressionId="CoalesceExpression:211" ScalarExpressionId="ScalarExpression:134294">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:423" CoalesceExpressionId="CoalesceExpression:212" ScalarExpressionId="ScalarExpression:134299">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:424" CoalesceExpressionId="CoalesceExpression:212" ScalarExpressionId="ScalarExpression:134300">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:425" CoalesceExpressionId="CoalesceExpression:213" ScalarExpressionId="ScalarExpression:134311">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:426" CoalesceExpressionId="CoalesceExpression:213" ScalarExpressionId="ScalarExpression:134312">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:427" CoalesceExpressionId="CoalesceExpression:214" ScalarExpressionId="ScalarExpression:134502">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:428" CoalesceExpressionId="CoalesceExpression:214" ScalarExpressionId="ScalarExpression:134503">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:429" CoalesceExpressionId="CoalesceExpression:215" ScalarExpressionId="ScalarExpression:134891">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:430" CoalesceExpressionId="CoalesceExpression:215" ScalarExpressionId="ScalarExpression:134892">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:433" CoalesceExpressionId="CoalesceExpression:217" ScalarExpressionId="ScalarExpression:137815">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:434" CoalesceExpressionId="CoalesceExpression:217" ScalarExpressionId="ScalarExpression:137816">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+  </CoalesceExpressionExpressionsItemList>
+</MetaWeave>

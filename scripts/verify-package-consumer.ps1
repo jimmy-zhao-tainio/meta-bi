@@ -233,7 +233,8 @@ $testProjects = @(
     'MetaDataWarehouse\Tests\MetaDataWarehouse.Tests.csproj',
     'MetaSchema\Tests\MetaSchema.Tests.csproj',
     'MetaSchemaAdapter\Tests\MetaSchema.Adapter.Tests.csproj',
-    'MetaPipeline\Tests\MetaPipeline.Tests.csproj'
+    'MetaPipeline\Tests\MetaPipeline.Tests.csproj',
+    'MetaTabular\Tests\MetaTabular.Tests.csproj'
 )
 
 $testProjects += 'MetaSql\Tests\MetaSql.Tests.csproj'

@@ -1,40 +1,35 @@
 using System.Diagnostics;
 using System.Globalization;
-using Meta.Core.Presentation.Cli;
+using MetaCli.Core;
 
 internal sealed class PipelineConsoleProgressRenderer : MetaPipeline.IMetaPipelineExecutionProgress
 {
-    private const int ProgressRailWidth = 20;
     private readonly object sync = new();
     private readonly Stopwatch stopwatch = Stopwatch.StartNew();
-    private readonly CliLiveLineRenderer liveLine;
+    private readonly MetaCliProgressMeter meter;
     private readonly int totalSteps;
     private int completedSteps;
     private int currentStepIndex;
-    private int baseBatchCount;
     private long baseRowCount;
     private long baseByteCount;
-    private int batchCount;
     private long rowCount;
     private long byteCount;
-    private string status = "running";
+    private bool failed;
     private bool disposed;
 
-    private PipelineConsoleProgressRenderer(int totalSteps)
+    private PipelineConsoleProgressRenderer(int totalSteps, MetaCliProgressMeter meter)
     {
         this.totalSteps = Math.Max(totalSteps, 1);
-        liveLine = CliLiveLineRenderer.TryStart(BuildReadout, TimeSpan.FromSeconds(1))
-            ?? throw new InvalidOperationException("Console live-line renderer is not available.");
+        this.meter = meter;
+        meter.Report(0, this.totalSteps, BuildDetail());
     }
 
     public static PipelineConsoleProgressRenderer? TryCreate(int totalSteps)
     {
-        if (Console.IsErrorRedirected || Console.IsOutputRedirected)
-        {
-            return null;
-        }
-
-        return new PipelineConsoleProgressRenderer(totalSteps);
+        var meter = MetaCliProgressMeter.TryStart(delay: TimeSpan.FromSeconds(1));
+        return meter is null
+            ? null
+            : new PipelineConsoleProgressRenderer(totalSteps, meter);
     }
 
     public void StartStep(int stepIndex, string stepName)
@@ -43,28 +38,28 @@ internal sealed class PipelineConsoleProgressRenderer : MetaPipeline.IMetaPipeli
         lock (sync)
         {
             currentStepIndex = Math.Clamp(stepIndex, 1, totalSteps);
-            status = "running";
             baseRowCount = rowCount;
-            baseBatchCount = batchCount;
             baseByteCount = byteCount;
+            ReportMeter();
         }
     }
 
     public void CompleteStep(bool succeeded, long completedRowCount = 0, int completedBatchCount = 0)
     {
+        _ = completedBatchCount;
         lock (sync)
         {
             rowCount = Math.Max(rowCount, baseRowCount + Math.Max(0, completedRowCount));
-            batchCount = Math.Max(batchCount, baseBatchCount + Math.Max(0, completedBatchCount));
             if (succeeded)
             {
                 completedSteps = Math.Max(completedSteps, currentStepIndex);
-                status = "running";
             }
             else
             {
-                status = "failed";
+                failed = true;
             }
+
+            ReportMeter();
         }
     }
 
@@ -73,8 +68,8 @@ internal sealed class PipelineConsoleProgressRenderer : MetaPipeline.IMetaPipeli
         lock (sync)
         {
             rowCount = baseRowCount + value.RowCount;
-            batchCount = baseBatchCount + value.BatchCount;
             byteCount = baseByteCount + value.EstimatedByteCount;
+            ReportMeter();
         }
     }
 
@@ -88,15 +83,17 @@ internal sealed class PipelineConsoleProgressRenderer : MetaPipeline.IMetaPipeli
             }
 
             disposed = true;
+            this.failed |= failed;
+            var detail = BuildDetail();
+            if (this.failed)
+            {
+                meter.Fail(detail);
+            }
+            else
+            {
+                meter.Succeed(detail);
+            }
         }
-
-        if (failed)
-        {
-            liveLine.Clear();
-            return;
-        }
-
-        liveLine.Complete(BuildCompletionReadout());
     }
 
     public void Dispose()
@@ -109,54 +106,21 @@ internal sealed class PipelineConsoleProgressRenderer : MetaPipeline.IMetaPipeli
             }
 
             disposed = true;
-        }
-
-        liveLine.Dispose();
-    }
-
-    private string BuildReadout()
-    {
-        lock (sync)
-        {
-            var elapsed = stopwatch.Elapsed;
-            var rate = elapsed.TotalSeconds <= 0
-                ? 0
-                : byteCount / elapsed.TotalSeconds;
-            var stepText = $"{BuildProgressRail(completedSteps, totalSteps)} {completedSteps} of {totalSteps}";
-            var statusText = string.Equals(status, "failed", StringComparison.Ordinal)
-                ? "  failed"
-                : string.Empty;
-
-            return string.Create(
-                CultureInfo.InvariantCulture,
-                $"{stepText}  {rowCount:N0} rows  {FormatByteRate(rate)}{statusText}");
+            meter.Dispose();
         }
     }
 
-    private string BuildCompletionReadout()
-    {
-        lock (sync)
-        {
-            var elapsed = stopwatch.Elapsed;
-            var rate = elapsed.TotalSeconds <= 0
-                ? 0
-                : byteCount / elapsed.TotalSeconds;
+    private void ReportMeter() =>
+        meter.Report(completedSteps, totalSteps, BuildDetail());
 
-            return string.Create(
-                CultureInfo.InvariantCulture,
-                $"{BuildProgressRail(completedSteps, totalSteps)} {completedSteps} of {totalSteps}  {rowCount:N0} rows  {FormatByteRate(rate)}");
-        }
-    }
-
-    private static string BuildProgressRail(int completed, int total)
+    private string BuildDetail()
     {
-        var safeTotal = Math.Max(1, total);
-        const int width = ProgressRailWidth;
-        var safeCompleted = Math.Clamp(completed, 0, safeTotal);
-        var filled = safeCompleted >= safeTotal
-            ? width
-            : (int)Math.Floor(safeCompleted * width / (double)safeTotal);
-        return $"[{new string('=', filled)}{new string('-', width - filled)}]";
+        var rate = stopwatch.Elapsed.TotalSeconds <= 0
+            ? 0
+            : byteCount / stopwatch.Elapsed.TotalSeconds;
+        return string.Create(
+            CultureInfo.InvariantCulture,
+            $"{rowCount:N0} rows  {FormatByteRate(rate)}");
     }
 
     private static string FormatByteRate(double bytesPerSecond)

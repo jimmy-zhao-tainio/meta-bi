@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TryConvertCallDataTypeLinkList>
+    <TryConvertCallDataTypeLink Id="TryConvertCallDataTypeLink:1" DataTypeReferenceId="DataTypeReference:1" TryConvertCallId="TryConvertCall:1" />
+    <TryConvertCallDataTypeLink Id="TryConvertCallDataTypeLink:2" DataTypeReferenceId="DataTypeReference:2" TryConvertCallId="TryConvertCall:2" />
+    <TryConvertCallDataTypeLink Id="TryConvertCallDataTypeLink:3" DataTypeReferenceId="DataTypeReference:3" TryConvertCallId="TryConvertCall:3" />
+    <TryConvertCallDataTypeLink Id="TryConvertCallDataTypeLink:4" DataTypeReferenceId="DataTypeReference:4" TryConvertCallId="TryConvertCall:4" />
+  </TryConvertCallDataTypeLinkList>
+</MetaWeave>

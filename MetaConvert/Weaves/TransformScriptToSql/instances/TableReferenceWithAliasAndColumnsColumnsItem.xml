@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TableReferenceWithAliasAndColumnsColumnsItemList>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:103" IdentifierId="Identifier:165536" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:42">
+      <Ordinal>0</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:104" IdentifierId="Identifier:165537" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:42">
+      <Ordinal>1</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:105" IdentifierId="Identifier:165538" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:42">
+      <Ordinal>2</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:106" IdentifierId="Identifier:165539" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:42">
+      <Ordinal>3</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:107" IdentifierId="Identifier:165540" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:42">
+      <Ordinal>4</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:108" IdentifierId="Identifier:165541" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:42">
+      <Ordinal>5</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:109" IdentifierId="Identifier:167076" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:43">
+      <Ordinal>0</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:110" IdentifierId="Identifier:167077" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:43">
+      <Ordinal>1</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:111" IdentifierId="Identifier:167078" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:43">
+      <Ordinal>2</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:112" IdentifierId="Identifier:167079" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:43">
+      <Ordinal>3</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:113" IdentifierId="Identifier:167080" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:43">
+      <Ordinal>4</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:114" IdentifierId="Identifier:167081" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:43">
+      <Ordinal>5</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:121" IdentifierId="Identifier:167458" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:45">
+      <Ordinal>0</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:122" IdentifierId="Identifier:167459" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:45">
+      <Ordinal>1</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:123" IdentifierId="Identifier:167460" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:45">
+      <Ordinal>2</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:124" IdentifierId="Identifier:167461" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:45">
+      <Ordinal>3</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:125" IdentifierId="Identifier:167462" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:45">
+      <Ordinal>4</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:126" IdentifierId="Identifier:167463" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:45">
+      <Ordinal>5</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:71" IdentifierId="Identifier:144423" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:36">
+      <Ordinal>0</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:72" IdentifierId="Identifier:144424" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:36">
+      <Ordinal>1</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:79" IdentifierId="Identifier:157660" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:38">
+      <Ordinal>0</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:80" IdentifierId="Identifier:157661" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:38">
+      <Ordinal>1</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:81" IdentifierId="Identifier:157662" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:38">
+      <Ordinal>2</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:82" IdentifierId="Identifier:157663" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:38">
+      <Ordinal>3</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:83" IdentifierId="Identifier:157664" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:38">
+      <Ordinal>4</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:84" IdentifierId="Identifier:157665" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:38">
+      <Ordinal>5</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:91" IdentifierId="Identifier:159877" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:40">
+      <Ordinal>0</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:92" IdentifierId="Identifier:159878" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:40">
+      <Ordinal>1</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:93" IdentifierId="Identifier:159879" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:40">
+      <Ordinal>2</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:94" IdentifierId="Identifier:159880" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:40">
+      <Ordinal>3</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:95" IdentifierId="Identifier:159881" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:40">
+      <Ordinal>4</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:96" IdentifierId="Identifier:159882" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:40">
+      <Ordinal>5</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+  </TableReferenceWithAliasAndColumnsColumnsItemList>
+</MetaWeave>

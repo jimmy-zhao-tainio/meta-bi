@@ -13,14 +13,14 @@ using MetaBi.Tests.Common;
 
 namespace MetaSql.Tests;
 
-public sealed partial class CliDiffTests
+internal static class CliDiffTestSupport
 {
-    private static Task CreateSourceWorkspaceWithChangedCustomerIdLengthAsync(string sourcePath, string databaseName)
+    internal static Task CreateSourceWorkspaceWithChangedCustomerIdLengthAsync(string sourcePath, string databaseName)
     {
         return CreateSourceWorkspaceWithCustomerIdLengthAsync(sourcePath, databaseName, customerIdLength: 20);
     }
 
-    private static Task CreateSourceWorkspaceWithCustomerIdLengthAsync(
+    internal static Task CreateSourceWorkspaceWithCustomerIdLengthAsync(
         string sourcePath,
         string databaseName,
         int customerIdLength)
@@ -58,7 +58,7 @@ public sealed partial class CliDiffTests
         return Task.CompletedTask;
     }
 
-    private static Task CreateSourceWorkspaceWithChildOnlyNoForeignKeyAsync(string sourcePath, string databaseName)
+    internal static Task CreateSourceWorkspaceWithChildOnlyNoForeignKeyAsync(string sourcePath, string databaseName)
     {
         var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
@@ -91,7 +91,7 @@ public sealed partial class CliDiffTests
         return Task.CompletedTask;
     }
 
-    private static Task CreateSourceWorkspaceWithSingleForeignKeyTargetAsync(
+    internal static Task CreateSourceWorkspaceWithSingleForeignKeyTargetAsync(
         string sourcePath,
         string databaseName,
         string targetTableName,
@@ -149,7 +149,7 @@ public sealed partial class CliDiffTests
         return Task.CompletedTask;
     }
 
-    private static Task CreateSourceWorkspaceWithTwoForeignKeysTargetingParentBAsync(string sourcePath, string databaseName)
+    internal static Task CreateSourceWorkspaceWithTwoForeignKeysTargetingParentBAsync(string sourcePath, string databaseName)
     {
         var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
@@ -211,7 +211,7 @@ public sealed partial class CliDiffTests
         return Task.CompletedTask;
     }
 
-    private static Task CreateSourceWorkspaceWithExtraColumnAsync(string sourcePath, string databaseName)
+    internal static Task CreateSourceWorkspaceWithExtraColumnAsync(string sourcePath, string databaseName)
     {
         var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
@@ -247,7 +247,7 @@ public sealed partial class CliDiffTests
         return Task.CompletedTask;
     }
 
-    private static Task CreateSourceWorkspaceWithIdentityTableAsync(string sourcePath, string databaseName)
+    internal static Task CreateSourceWorkspaceWithIdentityTableAsync(string sourcePath, string databaseName)
     {
         var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
@@ -279,7 +279,7 @@ public sealed partial class CliDiffTests
         return Task.CompletedTask;
     }
 
-    private static Task CreateSourceWorkspaceWithExtraColumnInDboAsync(string sourcePath, string databaseName)
+    internal static Task CreateSourceWorkspaceWithExtraColumnInDboAsync(string sourcePath, string databaseName)
     {
         var model = SqlServerMetaSqlProjector.Project(
             databaseName: databaseName,
@@ -315,7 +315,7 @@ public sealed partial class CliDiffTests
         return Task.CompletedTask;
     }
 
-    private static async Task CreateSourceWorkspaceFromLiveAndMutateAsync(
+    internal static async Task CreateSourceWorkspaceFromLiveAndMutateAsync(
         string sourcePath,
         string connectionString,
         string schemaName,
@@ -334,7 +334,7 @@ public sealed partial class CliDiffTests
         await MutateSourceWorkspaceAsync(sourcePath, mutate);
     }
 
-    private static async Task MutateSourceWorkspaceAsync(
+    internal static async Task MutateSourceWorkspaceAsync(
         string sourcePath,
         Action<MetaSqlModel> mutate)
     {
@@ -343,7 +343,7 @@ public sealed partial class CliDiffTests
         await TypedWorkspaceModelMapper.SaveAsync(model, sourcePath);
     }
 
-    private static TableColumn RequireColumn(
+    internal static TableColumn RequireColumn(
         MetaSqlModel model,
         string schemaName,
         string tableName,
@@ -361,7 +361,7 @@ public sealed partial class CliDiffTests
                 string.Equals(row.Name, columnName, StringComparison.OrdinalIgnoreCase));
     }
 
-    private static PrimaryKey RequirePrimaryKey(
+    internal static PrimaryKey RequirePrimaryKey(
         MetaSqlModel model,
         string schemaName,
         string tableName,
@@ -379,7 +379,7 @@ public sealed partial class CliDiffTests
                 string.Equals(row.Name, primaryKeyName, StringComparison.OrdinalIgnoreCase));
     }
 
-    private static void SetPrimaryKeyMembers(
+    internal static void SetPrimaryKeyMembers(
         MetaSqlModel model,
         PrimaryKey primaryKey,
         IReadOnlyList<TableColumn> columns)
@@ -398,7 +398,7 @@ public sealed partial class CliDiffTests
         }
     }
 
-    private static Index RequireIndex(
+    internal static Index RequireIndex(
         MetaSqlModel model,
         string schemaName,
         string tableName,
@@ -416,7 +416,7 @@ public sealed partial class CliDiffTests
                 string.Equals(row.Name, indexName, StringComparison.OrdinalIgnoreCase));
     }
 
-    private static IndexColumn RequireIndexMember(
+    internal static IndexColumn RequireIndexMember(
         MetaSqlModel model,
         string schemaName,
         string tableName,
@@ -431,7 +431,7 @@ public sealed partial class CliDiffTests
                 row.TableColumn.Id == column.Id);
     }
 
-    private static void SetOrReplaceColumnDetail(
+    internal static void SetOrReplaceColumnDetail(
         MetaSqlModel model,
         TableColumn column,
         string detailName,
@@ -455,7 +455,7 @@ public sealed partial class CliDiffTests
         existing.Value = detailValue;
     }
 
-    private static void CreateVarcharCaseTable(
+    internal static void CreateVarcharCaseTable(
         string connectionString,
         int length,
         string? seedValue)
@@ -481,7 +481,7 @@ public sealed partial class CliDiffTests
         ExecuteSql(connectionString, script);
     }
 
-    private static void CreateNullableCaseTable(string connectionString, bool includeNullRow)
+    internal static void CreateNullableCaseTable(string connectionString, bool includeNullRow)
     {
         var script = """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -505,7 +505,7 @@ public sealed partial class CliDiffTests
         ExecuteSql(connectionString, script);
     }
 
-    private static void CreateDecimalCaseTable(
+    internal static void CreateDecimalCaseTable(
         string connectionString,
         int precision,
         int scale)
@@ -522,7 +522,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateDatabase(string masterConnectionString, string databaseName)
+    internal static void CreateDatabase(string masterConnectionString, string databaseName)
     {
         ExecuteSql(masterConnectionString, $"""
             IF DB_ID('{databaseName}') IS NOT NULL
@@ -534,7 +534,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateSimpleTable(
+    internal static void CreateSimpleTable(
         string databaseConnectionString,
         int customerIdLength = 50,
         string? customerIdValue = null)
@@ -564,7 +564,7 @@ public sealed partial class CliDiffTests
         ExecuteSql(databaseConnectionString, setupSql);
     }
 
-    private static void CreatePkIndexOnlyDriftFixture(string connectionString)
+    internal static void CreatePkIndexOnlyDriftFixture(string connectionString)
     {
         ExecuteSql(connectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -578,7 +578,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateTableAndColumnOnlyDataDropFixture(string connectionString)
+    internal static void CreateTableAndColumnOnlyDataDropFixture(string connectionString)
     {
         ExecuteSql(connectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -596,7 +596,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateTableAndColumnOnlyDataDropFixtureWithDefaultConstraint(string connectionString)
+    internal static void CreateTableAndColumnOnlyDataDropFixtureWithDefaultConstraint(string connectionString)
     {
         ExecuteSql(connectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -614,7 +614,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateParentChildWithForeignKey(string databaseConnectionString)
+    internal static void CreateParentChildWithForeignKey(string databaseConnectionString)
     {
         ExecuteSql(databaseConnectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -634,7 +634,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateForeignKeyReplaceFixture(string databaseConnectionString)
+    internal static void CreateForeignKeyReplaceFixture(string databaseConnectionString)
     {
         ExecuteSql(databaseConnectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -657,7 +657,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateForeignKeyReplaceRollbackFixture(string databaseConnectionString)
+    internal static void CreateForeignKeyReplaceRollbackFixture(string databaseConnectionString)
     {
         ExecuteSql(databaseConnectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -692,7 +692,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreatePrimaryKeyReplaceFixture(string connectionString)
+    internal static void CreatePrimaryKeyReplaceFixture(string connectionString)
     {
         ExecuteSql(connectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -707,7 +707,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateClusteredPrimaryKeyReplaceFixture(string connectionString)
+    internal static void CreateClusteredPrimaryKeyReplaceFixture(string connectionString)
     {
         ExecuteSql(connectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -722,7 +722,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreatePrimaryKeyReplaceWithDependentForeignKeyFixture(string connectionString)
+    internal static void CreatePrimaryKeyReplaceWithDependentForeignKeyFixture(string connectionString)
     {
         ExecuteSql(connectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -748,7 +748,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreatePrimaryKeyReplaceRollbackFixture(string connectionString)
+    internal static void CreatePrimaryKeyReplaceRollbackFixture(string connectionString)
     {
         ExecuteSql(connectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -771,7 +771,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateIndexReplaceFixture(string connectionString)
+    internal static void CreateIndexReplaceFixture(string connectionString)
     {
         ExecuteSql(connectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -788,7 +788,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateClusteredIndexReplaceFixture(string connectionString)
+    internal static void CreateClusteredIndexReplaceFixture(string connectionString)
     {
         ExecuteSql(connectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -803,7 +803,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void CreateIndexReplaceRollbackFixture(string connectionString)
+    internal static void CreateIndexReplaceRollbackFixture(string connectionString)
     {
         ExecuteSql(connectionString, """
             IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
@@ -822,7 +822,7 @@ public sealed partial class CliDiffTests
             """);
     }
 
-    private static void DropDatabase(string masterConnectionString, string databaseName)
+    internal static void DropDatabase(string masterConnectionString, string databaseName)
     {
         try
         {
@@ -839,7 +839,7 @@ public sealed partial class CliDiffTests
         }
     }
 
-    private static void ExecuteSql(string connectionString, string sql)
+    internal static void ExecuteSql(string connectionString, string sql)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -848,7 +848,7 @@ public sealed partial class CliDiffTests
         command.ExecuteNonQuery();
     }
 
-    private static bool DatabaseExists(string masterConnectionString, string databaseName)
+    internal static bool DatabaseExists(string masterConnectionString, string databaseName)
     {
         using var connection = new SqlConnection(masterConnectionString);
         connection.Open();
@@ -858,7 +858,7 @@ public sealed partial class CliDiffTests
         return Convert.ToInt32(command.ExecuteScalar()) == 1;
     }
 
-    private static bool SchemaExists(string connectionString, string schemaName)
+    internal static bool SchemaExists(string connectionString, string schemaName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -873,7 +873,7 @@ public sealed partial class CliDiffTests
         return Convert.ToInt32(value) > 0;
     }
 
-    private static bool ColumnExists(string connectionString, string schemaName, string tableName, string columnName)
+    internal static bool ColumnExists(string connectionString, string schemaName, string tableName, string columnName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -894,7 +894,7 @@ public sealed partial class CliDiffTests
         return Convert.ToInt32(value) > 0;
     }
 
-    private static short GetColumnMaxLengthBytes(string connectionString, string schemaName, string tableName, string columnName)
+    internal static short GetColumnMaxLengthBytes(string connectionString, string schemaName, string tableName, string columnName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -920,7 +920,7 @@ public sealed partial class CliDiffTests
         return Convert.ToInt16(value);
     }
 
-    private static int GetValueLength(
+    internal static int GetValueLength(
         string connectionString,
         string schemaName,
         string tableName,
@@ -945,7 +945,7 @@ public sealed partial class CliDiffTests
         return Convert.ToInt32(value);
     }
 
-    private static bool GetColumnNullable(string connectionString, string schemaName, string tableName, string columnName)
+    internal static bool GetColumnNullable(string connectionString, string schemaName, string tableName, string columnName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -971,7 +971,7 @@ public sealed partial class CliDiffTests
         return Convert.ToInt32(value) == 1;
     }
 
-    private static (bool IsIdentity, string? IdentitySeed, string? IdentityIncrement) GetColumnIdentityMetadata(
+    internal static (bool IsIdentity, string? IdentitySeed, string? IdentityIncrement) GetColumnIdentityMetadata(
         string connectionString,
         string schemaName,
         string tableName,
@@ -1008,7 +1008,7 @@ public sealed partial class CliDiffTests
             IdentityIncrement: reader.IsDBNull(2) ? null : reader.GetString(2));
     }
 
-    private static bool TableExists(string connectionString, string schemaName, string tableName)
+    internal static bool TableExists(string connectionString, string schemaName, string tableName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -1026,7 +1026,7 @@ public sealed partial class CliDiffTests
         return Convert.ToInt32(value) > 0;
     }
 
-    private static bool ForeignKeyExists(string connectionString, string foreignKeyName)
+    internal static bool ForeignKeyExists(string connectionString, string foreignKeyName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -1041,7 +1041,7 @@ public sealed partial class CliDiffTests
         return Convert.ToInt32(value) > 0;
     }
 
-    private static bool IndexExists(string connectionString, string indexName)
+    internal static bool IndexExists(string connectionString, string indexName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -1056,7 +1056,7 @@ public sealed partial class CliDiffTests
         return Convert.ToInt32(value) > 0;
     }
 
-    private static string GetForeignKeyTargetTableName(string connectionString, string foreignKeyName)
+    internal static string GetForeignKeyTargetTableName(string connectionString, string foreignKeyName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -1077,7 +1077,7 @@ public sealed partial class CliDiffTests
         return Convert.ToString(value)!;
     }
 
-    private static List<string> GetPrimaryKeyKeyColumns(string connectionString, string schemaName, string tableName)
+    internal static List<string> GetPrimaryKeyKeyColumns(string connectionString, string schemaName, string tableName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -1116,7 +1116,7 @@ public sealed partial class CliDiffTests
         return result;
     }
 
-    private static bool PrimaryKeyExists(string connectionString, string schemaName, string tableName)
+    internal static bool PrimaryKeyExists(string connectionString, string schemaName, string tableName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -1136,7 +1136,7 @@ public sealed partial class CliDiffTests
         return Convert.ToInt32(value) > 0;
     }
 
-    private static bool GetPrimaryKeyIsClustered(string connectionString, string schemaName, string tableName)
+    internal static bool GetPrimaryKeyIsClustered(string connectionString, string schemaName, string tableName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -1164,7 +1164,7 @@ public sealed partial class CliDiffTests
         return string.Equals(Convert.ToString(value), "CLUSTERED", StringComparison.OrdinalIgnoreCase);
     }
 
-    private static bool GetPrimaryKeyKeyIsDescending(string connectionString, string schemaName, string tableName, string columnName)
+    internal static bool GetPrimaryKeyKeyIsDescending(string connectionString, string schemaName, string tableName, string columnName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -1198,7 +1198,7 @@ public sealed partial class CliDiffTests
         return Convert.ToBoolean(value);
     }
 
-    private static bool GetIndexIsUnique(string connectionString, string indexName)
+    internal static bool GetIndexIsUnique(string connectionString, string indexName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -1218,7 +1218,7 @@ public sealed partial class CliDiffTests
         return Convert.ToBoolean(value);
     }
 
-    private static bool GetIndexIsDescending(string connectionString, string indexName, string columnName)
+    internal static bool GetIndexIsDescending(string connectionString, string indexName, string columnName)
     {
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -1247,7 +1247,7 @@ public sealed partial class CliDiffTests
         return Convert.ToBoolean(value);
     }
 
-    private static void AddUnsupportedActionKindToManifestModel(string manifestWorkspacePath, string unsupportedEntityName)
+    internal static void AddUnsupportedActionKindToManifestModel(string manifestWorkspacePath, string unsupportedEntityName)
     {
         var workspace = XmlWorkspaceReader
             .OpenAsync(manifestWorkspacePath)
@@ -1268,7 +1268,7 @@ public sealed partial class CliDiffTests
             .GetResult();
     }
 
-    private static string FindRepositoryRoot()
+    internal static string FindRepositoryRoot()
     {
         var current = new DirectoryInfo(AppContext.BaseDirectory);
         while (current != null)
@@ -1283,7 +1283,7 @@ public sealed partial class CliDiffTests
 
         throw new InvalidOperationException("Could not find the repository root.");
     }
-    private static (int ExitCode, string Output) RunProcess(ProcessStartInfo startInfo, string errorMessage)
+    internal static (int ExitCode, string Output) RunProcess(ProcessStartInfo startInfo, string errorMessage)
     {
         CliTestRunner.ConfigureManagedCli(startInfo, "meta-sql");
 
@@ -1301,7 +1301,7 @@ public sealed partial class CliDiffTests
         return (process.ExitCode, output + error);
     }
 
-    private static void RewriteConnectionArguments(ProcessStartInfo startInfo)
+    internal static void RewriteConnectionArguments(ProcessStartInfo startInfo)
     {
         const string Pattern = "(?<=^|\\s)--connection-string\\s+\"([^\"]*)\"";
         var match = Regex.Match(startInfo.Arguments, Pattern, RegexOptions.IgnoreCase);
@@ -1320,7 +1320,7 @@ public sealed partial class CliDiffTests
             TimeSpan.FromSeconds(1));
     }
 
-    private static void AssertOutputLineContains(string output, string prefix, params string[] fragments)
+    internal static void AssertOutputLineContains(string output, string prefix, params string[] fragments)
     {
         var line = output
             .Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)
@@ -1333,17 +1333,17 @@ public sealed partial class CliDiffTests
         }
     }
 
-    private static void AssertPlanChanges(string output, params string[] fragments)
+    internal static void AssertPlanChanges(string output, params string[] fragments)
     {
         AssertOutputLineContains(output, "Changes:", fragments);
     }
 
-    private static void AssertAppliedChanges(string output, params string[] fragments)
+    internal static void AssertAppliedChanges(string output, params string[] fragments)
     {
         AssertOutputLineContains(output, "Deployed:", fragments);
     }
 
-    private static void DeleteIfExists(string path)
+    internal static void DeleteIfExists(string path)
     {
         if (Directory.Exists(path))
         {

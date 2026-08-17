@@ -136,15 +136,12 @@ internal sealed class MetaTransformScriptCommandHandlers
 
         try
         {
-            var completedCount = 0;
             var failureCount = 0;
-            var currentFileName = string.Empty;
-            CliLiveLineRenderer? liveLine = null;
+            MetaCliProgressMeter? meter = null;
 
             void ReportProgress(SqlFileImportProgress progress)
             {
-                completedCount = progress.Index;
-                currentFileName = Path.GetFileName(progress.Path);
+                var currentFileName = Path.GetFileName(progress.Path);
                 if (!progress.Success)
                 {
                     failureCount++;
@@ -152,6 +149,10 @@ internal sealed class MetaTransformScriptCommandHandlers
 
                 if (!verbose)
                 {
+                    meter?.Report(
+                        progress.Index,
+                        progress.Total,
+                        $"{failureCount} failed  {currentFileName}");
                     return;
                 }
 
@@ -165,13 +166,10 @@ internal sealed class MetaTransformScriptCommandHandlers
             {
                 if (!verbose)
                 {
-                    liveLine = CliLiveLineRenderer.TryStart(
-                        () => BuildSqlFilesImportProgressLine(
-                            completedCount,
-                            requests.Count,
-                            failureCount,
-                            currentFileName),
+                    meter = MetaCliProgressMeter.TryStart(
+                        initialDetail: "0 failed",
                         delay: TimeSpan.Zero);
+                    meter?.Report(0, requests.Count, "0 failed");
                 }
 
                 result = await service.ImportSqlFilesAsync(
@@ -181,16 +179,20 @@ internal sealed class MetaTransformScriptCommandHandlers
                         CancellationToken.None)
                     .ConfigureAwait(false);
 
-                liveLine?.Complete(BuildSqlFilesImportProgressLine(
-                    result.Successes.Count + result.Failures.Count,
-                    requests.Count,
-                    result.Failures.Count,
-                    string.Empty));
-                liveLine = null;
+                if (result.Failures.Count == 0)
+                {
+                    meter?.Succeed("0 failed");
+                }
+                else
+                {
+                    meter?.Fail($"{result.Failures.Count} failed");
+                }
+
+                meter = null;
             }
             finally
             {
-                liveLine?.Clear();
+                meter?.Dispose();
             }
 
             if (!string.IsNullOrWhiteSpace(reportPath))
@@ -709,29 +711,6 @@ internal sealed class MetaTransformScriptCommandHandlers
         {
             yield return $"  ...{result.Failures.Count - 10} more failure(s).";
         }
-    }
-
-    private static string BuildSqlFilesImportProgressLine(
-        int completed,
-        int total,
-        int failures,
-        string? currentFileName)
-    {
-        var meter = BuildMeter(completed, total);
-        var file = string.IsNullOrWhiteSpace(currentFileName) ? string.Empty : " " + currentFileName;
-        return $"Importing SQL files {meter} {completed} of {total}, {failures} failed{file}";
-    }
-
-    private static string BuildMeter(int completed, int total)
-    {
-        const int width = 20;
-        if (total <= 0)
-        {
-            return "[" + new string('-', width) + "]";
-        }
-
-        var filled = Math.Clamp((int)Math.Round(width * (completed / (double)total)), 0, width);
-        return "[" + new string('=', filled) + new string('-', width - filled) + "]";
     }
 
     private static string SummarizeImportFailure(string? value)

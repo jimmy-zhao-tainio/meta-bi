@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <WithCtesCommonTableExpressionsItemList>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:1" CommonTableExpressionId="CommonTableExpression:1" WithCtesId="WithCtes:1">
+      <Ordinal>0</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:10" CommonTableExpressionId="CommonTableExpression:10" WithCtesId="WithCtes:4">
+      <Ordinal>2</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:11" CommonTableExpressionId="CommonTableExpression:11" WithCtesId="WithCtes:5">
+      <Ordinal>0</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:12" CommonTableExpressionId="CommonTableExpression:12" WithCtesId="WithCtes:5">
+      <Ordinal>1</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:13" CommonTableExpressionId="CommonTableExpression:13" WithCtesId="WithCtes:5">
+      <Ordinal>2</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:14" CommonTableExpressionId="CommonTableExpression:14" WithCtesId="WithCtes:5">
+      <Ordinal>3</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:15" CommonTableExpressionId="CommonTableExpression:15" WithCtesId="WithCtes:6">
+      <Ordinal>0</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:16" CommonTableExpressionId="CommonTableExpression:16" WithCtesId="WithCtes:6">
+      <Ordinal>1</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:17" CommonTableExpressionId="CommonTableExpression:17" WithCtesId="WithCtes:6">
+      <Ordinal>2</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:2" CommonTableExpressionId="CommonTableExpression:2" WithCtesId="WithCtes:1">
+      <Ordinal>1</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:3" CommonTableExpressionId="CommonTableExpression:3" WithCtesId="WithCtes:2">
+      <Ordinal>0</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:4" CommonTableExpressionId="CommonTableExpression:4" WithCtesId="WithCtes:2">
+      <Ordinal>1</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:5" CommonTableExpressionId="CommonTableExpression:5" WithCtesId="WithCtes:3">
+      <Ordinal>0</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:6" CommonTableExpressionId="CommonTableExpression:6" WithCtesId="WithCtes:3">
+      <Ordinal>1</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:7" CommonTableExpressionId="CommonTableExpression:7" WithCtesId="WithCtes:3">
+      <Ordinal>2</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:8" CommonTableExpressionId="CommonTableExpression:8" WithCtesId="WithCtes:4">
+      <Ordinal>0</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:9" CommonTableExpressionId="CommonTableExpression:9" WithCtesId="WithCtes:4">
+      <Ordinal>1</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+  </WithCtesCommonTableExpressionsItemList>
+</MetaWeave>

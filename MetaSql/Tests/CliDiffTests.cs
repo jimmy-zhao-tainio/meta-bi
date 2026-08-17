@@ -4,10 +4,11 @@ using Microsoft.Data.SqlClient;
 using MetaSql;
 using MetaSqlDeployManifest;
 using MetaSql.Extractors.SqlServer;
+using static MetaSql.Tests.CliDiffTestSupport;
 
 namespace MetaSql.Tests;
 
-public sealed partial class CliDiffTests
+public sealed class CliCommandContractTests
 {
     [Fact]
     public void DeployPlanHelp_RendersExpectedUsage()
@@ -160,7 +161,10 @@ public sealed partial class CliDiffTests
             DeleteIfExists(tempRoot);
         }
     }
+}
 
+public sealed class CliDatabaseLifecycleTests
+{
     [Fact]
     public async Task DeployPlanCommand_WhenDatabaseIsMissing_TreatsLiveAsEmpty()
     {
@@ -424,7 +428,10 @@ public sealed partial class CliDiffTests
             DeleteIfExists(tempRoot);
         }
     }
+}
 
+public sealed class CliDeployPlanApprovalTests
+{
     [Fact]
     public async Task DeployPlanCommand_WritesDeployableManifestForAddOnlyChanges()
     {

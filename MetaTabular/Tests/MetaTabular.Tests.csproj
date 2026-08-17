@@ -9,8 +9,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Surfaces.Xml" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaWeave.Core" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.assert" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />

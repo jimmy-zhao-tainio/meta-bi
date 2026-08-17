@@ -18,12 +18,7 @@
     <JoinTableReference Id="JoinTableReference:24" TableReferenceId="TableReference:80" />
     <JoinTableReference Id="JoinTableReference:25" TableReferenceId="TableReference:82" />
     <JoinTableReference Id="JoinTableReference:26" TableReferenceId="TableReference:84" />
-    <JoinTableReference Id="JoinTableReference:3" TableReferenceId="TableReference:32" />
-    <JoinTableReference Id="JoinTableReference:4" TableReferenceId="TableReference:34" />
-    <JoinTableReference Id="JoinTableReference:5" TableReferenceId="TableReference:36" />
-    <JoinTableReference Id="JoinTableReference:6" TableReferenceId="TableReference:38" />
-    <JoinTableReference Id="JoinTableReference:7" TableReferenceId="TableReference:40" />
-    <JoinTableReference Id="JoinTableReference:8" TableReferenceId="TableReference:42" />
+    <JoinTableReference Id="JoinTableReference:27" TableReferenceId="TableReference:94" />
     <JoinTableReference Id="JoinTableReference:9" TableReferenceId="TableReference:45" />
   </JoinTableReferenceList>
 </MetaWeave>

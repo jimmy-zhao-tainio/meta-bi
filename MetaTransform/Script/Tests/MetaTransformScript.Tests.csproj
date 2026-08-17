@@ -13,6 +13,7 @@
     <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Surfaces.Xml" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaWeave.Core" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="xunit.assert" Version="2.9.2" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />

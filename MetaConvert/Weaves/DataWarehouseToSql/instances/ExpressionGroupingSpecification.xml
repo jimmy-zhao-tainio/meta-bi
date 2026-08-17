@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ExpressionGroupingSpecificationList>
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:1" GroupingSpecificationId="GroupingSpecification:1" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:2" GroupingSpecificationId="GroupingSpecification:2" />
+  </ExpressionGroupingSpecificationList>
+</MetaWeave>

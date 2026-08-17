@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <StatementWithCtesWithCtesLinkList>
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:1" StatementWithCtesId="StatementWithCtes:4" WithCtesId="WithCtes:1" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:2" StatementWithCtesId="StatementWithCtes:8" WithCtesId="WithCtes:2" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:3" StatementWithCtesId="StatementWithCtes:9" WithCtesId="WithCtes:3" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:4" StatementWithCtesId="StatementWithCtes:10" WithCtesId="WithCtes:4" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:5" StatementWithCtesId="StatementWithCtes:11" WithCtesId="WithCtes:5" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:6" StatementWithCtesId="StatementWithCtes:14" WithCtesId="WithCtes:6" />
+  </StatementWithCtesWithCtesLinkList>
+</MetaWeave>

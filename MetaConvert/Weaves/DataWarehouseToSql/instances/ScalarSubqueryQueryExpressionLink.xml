@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ScalarSubqueryQueryExpressionLinkList>
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:1" QueryExpressionId="QueryExpression:19" ScalarSubqueryId="ScalarSubquery:1" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:2" QueryExpressionId="QueryExpression:54" ScalarSubqueryId="ScalarSubquery:2" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:3" QueryExpressionId="QueryExpression:57" ScalarSubqueryId="ScalarSubquery:3" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:4" QueryExpressionId="QueryExpression:58" ScalarSubqueryId="ScalarSubquery:4" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:5" QueryExpressionId="QueryExpression:59" ScalarSubqueryId="ScalarSubquery:5" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:6" QueryExpressionId="QueryExpression:109" ScalarSubqueryId="ScalarSubquery:6" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:7" QueryExpressionId="QueryExpression:193" ScalarSubqueryId="ScalarSubquery:7" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:8" QueryExpressionId="QueryExpression:194" ScalarSubqueryId="ScalarSubquery:8" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:9" QueryExpressionId="QueryExpression:195" ScalarSubqueryId="ScalarSubquery:9" />
+  </ScalarSubqueryQueryExpressionLinkList>
+</MetaWeave>

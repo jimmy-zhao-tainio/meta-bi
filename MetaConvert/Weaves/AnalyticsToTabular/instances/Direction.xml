@@ -2,7 +2,6 @@
 <MetaWeave>
   <DirectionList>
     <Direction Id="forward" WeaveId="AnalyticsToTabular">
-      <SourceModelName>MetaAnalytics</SourceModelName>
       <TargetModelName>MetaTabular</TargetModelName>
     </Direction>
   </DirectionList>

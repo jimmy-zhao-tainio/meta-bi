@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <WithCtesList>
+    <WithCtes Id="WithCtes:1" />
+    <WithCtes Id="WithCtes:2" />
+    <WithCtes Id="WithCtes:3" />
+    <WithCtes Id="WithCtes:4" />
+    <WithCtes Id="WithCtes:5" />
+    <WithCtes Id="WithCtes:6" />
+  </WithCtesList>
+</MetaWeave>
