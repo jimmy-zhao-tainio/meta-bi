@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <LiteralList>
+    <Literal Id="Literal:1" ValueExpressionId="ValueExpression:1">
+      <Value>TablePermission</Value>
+    </Literal>
+    <Literal Id="Literal:10" ValueExpressionId="ValueExpression:10">
+      <Value>true</Value>
+    </Literal>
+    <Literal Id="Literal:11" ValueExpressionId="ValueExpression:11">
+      <Value>false</Value>
+    </Literal>
+    <Literal Id="Literal:12" ValueExpressionId="ValueExpression:12">
+      <Value>true</Value>
+    </Literal>
+    <Literal Id="Literal:13" ValueExpressionId="ValueExpression:13">
+      <Value>:measure-group</Value>
+    </Literal>
+    <Literal Id="Literal:14" ValueExpressionId="ValueExpression:14">
+      <Value>:cube</Value>
+    </Literal>
+    <Literal Id="Literal:15" ValueExpressionId="ValueExpression:15">
+      <Value>:measure-group</Value>
+    </Literal>
+    <Literal Id="Literal:16" ValueExpressionId="ValueExpression:16">
+      <Value>Sum</Value>
+    </Literal>
+    <Literal Id="Literal:17" ValueExpressionId="ValueExpression:17">
+      <Value>:measure-group</Value>
+    </Literal>
+    <Literal Id="Literal:18" ValueExpressionId="ValueExpression:18">
+      <Value>Average</Value>
+    </Literal>
+    <Literal Id="Literal:19" ValueExpressionId="ValueExpression:19">
+      <Value>:measure-group</Value>
+    </Literal>
+    <Literal Id="Literal:2" ValueExpressionId="ValueExpression:2">
+      <Value>AttributePermission</Value>
+    </Literal>
+    <Literal Id="Literal:20" ValueExpressionId="ValueExpression:20">
+      <Value>Count</Value>
+    </Literal>
+    <Literal Id="Literal:21" ValueExpressionId="ValueExpression:21">
+      <Value>:measure-group</Value>
+    </Literal>
+    <Literal Id="Literal:22" ValueExpressionId="ValueExpression:22">
+      <Value>DistinctCount</Value>
+    </Literal>
+    <Literal Id="Literal:23" ValueExpressionId="ValueExpression:23">
+      <Value>:measure-group</Value>
+    </Literal>
+    <Literal Id="Literal:24" ValueExpressionId="ValueExpression:24">
+      <Value>Min</Value>
+    </Literal>
+    <Literal Id="Literal:25" ValueExpressionId="ValueExpression:25">
+      <Value>:measure-group</Value>
+    </Literal>
+    <Literal Id="Literal:26" ValueExpressionId="ValueExpression:26">
+      <Value>Max</Value>
+    </Literal>
+    <Literal Id="Literal:27" ValueExpressionId="ValueExpression:27">
+      <Value>:measure-group</Value>
+    </Literal>
+    <Literal Id="Literal:28" ValueExpressionId="ValueExpression:28">
+      <Value>:cube-dimension</Value>
+    </Literal>
+    <Literal Id="Literal:29" ValueExpressionId="ValueExpression:29">
+      <Value>:cube</Value>
+    </Literal>
+    <Literal Id="Literal:3" ValueExpressionId="ValueExpression:3">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:30" ValueExpressionId="ValueExpression:30">
+      <Value>:cube-dimension</Value>
+    </Literal>
+    <Literal Id="Literal:31" ValueExpressionId="ValueExpression:31">
+      <Value>:measure-group</Value>
+    </Literal>
+    <Literal Id="Literal:4" ValueExpressionId="ValueExpression:4">
+      <Value>:cube</Value>
+    </Literal>
+    <Literal Id="Literal:5" ValueExpressionId="ValueExpression:5">
+      <Value>:cube-dimension</Value>
+    </Literal>
+    <Literal Id="Literal:6" ValueExpressionId="ValueExpression:6">
+      <Value>:cube</Value>
+    </Literal>
+    <Literal Id="Literal:7" ValueExpressionId="ValueExpression:7">
+      <Value>true</Value>
+    </Literal>
+    <Literal Id="Literal:8" ValueExpressionId="ValueExpression:8">
+      <Value>Key</Value>
+    </Literal>
+    <Literal Id="Literal:9" ValueExpressionId="ValueExpression:9">
+      <Value>true</Value>
+    </Literal>
+  </LiteralList>
+</MetaWeave>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BinaryQueryExpressionSecondQueryExpressionLinkList>
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:1" BinaryQueryExpressionId="BinaryQueryExpression:1" QueryExpressionId="QueryExpression:2" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:10" BinaryQueryExpressionId="BinaryQueryExpression:10" QueryExpressionId="QueryExpression:42" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:11" BinaryQueryExpressionId="BinaryQueryExpression:11" QueryExpressionId="QueryExpression:44" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:2" BinaryQueryExpressionId="BinaryQueryExpression:2" QueryExpressionId="QueryExpression:5" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:3" BinaryQueryExpressionId="BinaryQueryExpression:3" QueryExpressionId="QueryExpression:7" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:4" BinaryQueryExpressionId="BinaryQueryExpression:4" QueryExpressionId="QueryExpression:9" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:5" BinaryQueryExpressionId="BinaryQueryExpression:5" QueryExpressionId="QueryExpression:11" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:6" BinaryQueryExpressionId="BinaryQueryExpression:6" QueryExpressionId="QueryExpression:13" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:7" BinaryQueryExpressionId="BinaryQueryExpression:7" QueryExpressionId="QueryExpression:36" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:8" BinaryQueryExpressionId="BinaryQueryExpression:8" QueryExpressionId="QueryExpression:38" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:9" BinaryQueryExpressionId="BinaryQueryExpression:9" QueryExpressionId="QueryExpression:40" />
+  </BinaryQueryExpressionSecondQueryExpressionLinkList>
+</MetaWeave>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanBinaryExpressionSecondExpressionLinkList>
+    <BooleanBinaryExpressionSecondExpressionLink Id="BooleanBinaryExpressionSecondExpressionLink:1" BooleanBinaryExpressionId="BooleanBinaryExpression:1" BooleanExpressionId="BooleanExpression:3" />
+    <BooleanBinaryExpressionSecondExpressionLink Id="BooleanBinaryExpressionSecondExpressionLink:2" BooleanBinaryExpressionId="BooleanBinaryExpression:2" BooleanExpressionId="BooleanExpression:23" />
+    <BooleanBinaryExpressionSecondExpressionLink Id="BooleanBinaryExpressionSecondExpressionLink:3" BooleanBinaryExpressionId="BooleanBinaryExpression:3" BooleanExpressionId="BooleanExpression:50" />
+  </BooleanBinaryExpressionSecondExpressionLinkList>
+</MetaWeave>

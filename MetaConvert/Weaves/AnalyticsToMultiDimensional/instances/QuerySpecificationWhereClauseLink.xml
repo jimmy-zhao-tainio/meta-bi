@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QuerySpecificationWhereClauseLinkList>
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:1" QuerySpecificationId="QuerySpecification:10" WhereClauseId="WhereClause:1" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:10" QuerySpecificationId="QuerySpecification:22" WhereClauseId="WhereClause:10" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:11" QuerySpecificationId="QuerySpecification:23" WhereClauseId="WhereClause:11" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:12" QuerySpecificationId="QuerySpecification:24" WhereClauseId="WhereClause:12" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:13" QuerySpecificationId="QuerySpecification:25" WhereClauseId="WhereClause:13" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:14" QuerySpecificationId="QuerySpecification:26" WhereClauseId="WhereClause:14" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:15" QuerySpecificationId="QuerySpecification:27" WhereClauseId="WhereClause:15" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:16" QuerySpecificationId="QuerySpecification:28" WhereClauseId="WhereClause:16" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:17" QuerySpecificationId="QuerySpecification:35" WhereClauseId="WhereClause:17" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:18" QuerySpecificationId="QuerySpecification:36" WhereClauseId="WhereClause:18" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:19" QuerySpecificationId="QuerySpecification:37" WhereClauseId="WhereClause:19" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:2" QuerySpecificationId="QuerySpecification:14" WhereClauseId="WhereClause:2" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:20" QuerySpecificationId="QuerySpecification:39" WhereClauseId="WhereClause:20" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:21" QuerySpecificationId="QuerySpecification:40" WhereClauseId="WhereClause:21" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:22" QuerySpecificationId="QuerySpecification:41" WhereClauseId="WhereClause:22" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:23" QuerySpecificationId="QuerySpecification:42" WhereClauseId="WhereClause:23" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:24" QuerySpecificationId="QuerySpecification:47" WhereClauseId="WhereClause:24" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:25" QuerySpecificationId="QuerySpecification:48" WhereClauseId="WhereClause:25" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:26" QuerySpecificationId="QuerySpecification:49" WhereClauseId="WhereClause:26" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:27" QuerySpecificationId="QuerySpecification:50" WhereClauseId="WhereClause:27" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:3" QuerySpecificationId="QuerySpecification:15" WhereClauseId="WhereClause:3" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:4" QuerySpecificationId="QuerySpecification:16" WhereClauseId="WhereClause:4" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:5" QuerySpecificationId="QuerySpecification:17" WhereClauseId="WhereClause:5" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:6" QuerySpecificationId="QuerySpecification:18" WhereClauseId="WhereClause:6" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:7" QuerySpecificationId="QuerySpecification:19" WhereClauseId="WhereClause:7" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:8" QuerySpecificationId="QuerySpecification:20" WhereClauseId="WhereClause:8" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:9" QuerySpecificationId="QuerySpecification:21" WhereClauseId="WhereClause:9" />
+  </QuerySpecificationWhereClauseLinkList>
+</MetaWeave>

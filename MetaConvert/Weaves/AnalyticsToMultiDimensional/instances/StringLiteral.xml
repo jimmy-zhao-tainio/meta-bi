@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <StringLiteralList>
+    <StringLiteral Id="StringLiteral:1" LiteralId="Literal:1" />
+    <StringLiteral Id="StringLiteral:10" LiteralId="Literal:11" />
+    <StringLiteral Id="StringLiteral:11" LiteralId="Literal:12" />
+    <StringLiteral Id="StringLiteral:12" LiteralId="Literal:13" />
+    <StringLiteral Id="StringLiteral:13" LiteralId="Literal:14" />
+    <StringLiteral Id="StringLiteral:14" LiteralId="Literal:15" />
+    <StringLiteral Id="StringLiteral:15" LiteralId="Literal:16" />
+    <StringLiteral Id="StringLiteral:16" LiteralId="Literal:17" />
+    <StringLiteral Id="StringLiteral:17" LiteralId="Literal:18" />
+    <StringLiteral Id="StringLiteral:18" LiteralId="Literal:19" />
+    <StringLiteral Id="StringLiteral:19" LiteralId="Literal:20" />
+    <StringLiteral Id="StringLiteral:2" LiteralId="Literal:2" />
+    <StringLiteral Id="StringLiteral:20" LiteralId="Literal:21" />
+    <StringLiteral Id="StringLiteral:21" LiteralId="Literal:22" />
+    <StringLiteral Id="StringLiteral:22" LiteralId="Literal:23" />
+    <StringLiteral Id="StringLiteral:23" LiteralId="Literal:24" />
+    <StringLiteral Id="StringLiteral:24" LiteralId="Literal:25" />
+    <StringLiteral Id="StringLiteral:25" LiteralId="Literal:26" />
+    <StringLiteral Id="StringLiteral:26" LiteralId="Literal:27" />
+    <StringLiteral Id="StringLiteral:27" LiteralId="Literal:28" />
+    <StringLiteral Id="StringLiteral:28" LiteralId="Literal:29" />
+    <StringLiteral Id="StringLiteral:29" LiteralId="Literal:30" />
+    <StringLiteral Id="StringLiteral:3" LiteralId="Literal:4" />
+    <StringLiteral Id="StringLiteral:30" LiteralId="Literal:31" />
+    <StringLiteral Id="StringLiteral:4" LiteralId="Literal:5" />
+    <StringLiteral Id="StringLiteral:5" LiteralId="Literal:6" />
+    <StringLiteral Id="StringLiteral:6" LiteralId="Literal:7" />
+    <StringLiteral Id="StringLiteral:7" LiteralId="Literal:8" />
+    <StringLiteral Id="StringLiteral:8" LiteralId="Literal:9" />
+    <StringLiteral Id="StringLiteral:9" LiteralId="Literal:10" />
+  </StringLiteralList>
+</MetaWeave>

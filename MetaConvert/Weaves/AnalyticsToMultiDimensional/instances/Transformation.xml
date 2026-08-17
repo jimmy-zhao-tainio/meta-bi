@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TransformationList>
+    <Transformation Id="forward/AttributeRelationship" DirectionId="forward" SelectStatementId="SelectStatement:9">
+      <TargetEntityName>AttributeRelationship</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/AttributeTranslation" DirectionId="forward" SelectStatementId="SelectStatement:23">
+      <TargetEntityName>AttributeTranslation</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Cube" DirectionId="forward" SelectStatementId="SelectStatement:4">
+      <TargetEntityName>Cube</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/CubeDimension" DirectionId="forward" SelectStatementId="SelectStatement:7">
+      <TargetEntityName>CubeDimension</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Culture" DirectionId="forward" SelectStatementId="SelectStatement:21">
+      <TargetEntityName>Culture</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Dimension" DirectionId="forward" SelectStatementId="SelectStatement:6">
+      <TargetEntityName>Dimension</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/DimensionAttribute" DirectionId="forward" SelectStatementId="SelectStatement:8">
+      <TargetEntityName>DimensionAttribute</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/DimensionHierarchy" DirectionId="forward" SelectStatementId="SelectStatement:10">
+      <TargetEntityName>DimensionHierarchy</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/DimensionHierarchyLevel" DirectionId="forward" SelectStatementId="SelectStatement:11">
+      <TargetEntityName>DimensionHierarchyLevel</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/DimensionTranslation" DirectionId="forward" SelectStatementId="SelectStatement:22">
+      <TargetEntityName>DimensionTranslation</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/DimensionUsage" DirectionId="forward" SelectStatementId="SelectStatement:14">
+      <TargetEntityName>DimensionUsage</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Measure" DirectionId="forward" SelectStatementId="SelectStatement:13">
+      <TargetEntityName>Measure</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/MeasureGroup" DirectionId="forward" SelectStatementId="SelectStatement:12">
+      <TargetEntityName>MeasureGroup</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/MeasureTranslation" DirectionId="forward" SelectStatementId="SelectStatement:24">
+      <TargetEntityName>MeasureTranslation</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/MultiDimensionalDatabase" DirectionId="forward" SelectStatementId="SelectStatement:3">
+      <TargetEntityName>MultiDimensionalDatabase</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/MultiDimensionalDataSource" DirectionId="forward" SelectStatementId="SelectStatement:5">
+      <TargetEntityName>MultiDimensionalDataSource</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Perspective" DirectionId="forward" SelectStatementId="SelectStatement:15">
+      <TargetEntityName>Perspective</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/PerspectiveDimension" DirectionId="forward" SelectStatementId="SelectStatement:16">
+      <TargetEntityName>PerspectiveDimension</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/PerspectiveMeasure" DirectionId="forward" SelectStatementId="SelectStatement:18">
+      <TargetEntityName>PerspectiveMeasure</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/PerspectiveMeasureGroup" DirectionId="forward" SelectStatementId="SelectStatement:17">
+      <TargetEntityName>PerspectiveMeasureGroup</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/PerspectiveTranslation" DirectionId="forward" SelectStatementId="SelectStatement:25">
+      <TargetEntityName>PerspectiveTranslation</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/RoleMember" DirectionId="forward" SelectStatementId="SelectStatement:20">
+      <TargetEntityName>RoleMember</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/SecurityRole" DirectionId="forward" SelectStatementId="SelectStatement:19">
+      <TargetEntityName>SecurityRole</TargetEntityName>
+    </Transformation>
+  </TransformationList>
+</MetaWeave>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QualifiedJoinSearchConditionLinkList>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:1" BooleanExpressionId="BooleanExpression:1" QualifiedJoinId="QualifiedJoin:1" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:10" BooleanExpressionId="BooleanExpression:39" QualifiedJoinId="QualifiedJoin:10" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:11" BooleanExpressionId="BooleanExpression:40" QualifiedJoinId="QualifiedJoin:11" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:12" BooleanExpressionId="BooleanExpression:41" QualifiedJoinId="QualifiedJoin:12" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:13" BooleanExpressionId="BooleanExpression:42" QualifiedJoinId="QualifiedJoin:13" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:14" BooleanExpressionId="BooleanExpression:43" QualifiedJoinId="QualifiedJoin:14" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:15" BooleanExpressionId="BooleanExpression:44" QualifiedJoinId="QualifiedJoin:15" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:16" BooleanExpressionId="BooleanExpression:45" QualifiedJoinId="QualifiedJoin:16" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:17" BooleanExpressionId="BooleanExpression:60" QualifiedJoinId="QualifiedJoin:17" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:2" BooleanExpressionId="BooleanExpression:16" QualifiedJoinId="QualifiedJoin:2" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:3" BooleanExpressionId="BooleanExpression:17" QualifiedJoinId="QualifiedJoin:3" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:4" BooleanExpressionId="BooleanExpression:28" QualifiedJoinId="QualifiedJoin:4" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:5" BooleanExpressionId="BooleanExpression:34" QualifiedJoinId="QualifiedJoin:5" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:6" BooleanExpressionId="BooleanExpression:35" QualifiedJoinId="QualifiedJoin:6" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:7" BooleanExpressionId="BooleanExpression:36" QualifiedJoinId="QualifiedJoin:7" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:8" BooleanExpressionId="BooleanExpression:37" QualifiedJoinId="QualifiedJoin:8" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:9" BooleanExpressionId="BooleanExpression:38" QualifiedJoinId="QualifiedJoin:9" />
+  </QualifiedJoinSearchConditionLinkList>
+</MetaWeave>

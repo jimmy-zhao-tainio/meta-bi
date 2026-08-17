@@ -349,12 +349,20 @@ internal sealed class MetaConvertCommandHandlers
 
         try
         {
-            var result = await RunWithProgressAsync(
-                "Converting analytics to multidimensional",
-                async () =>
+            var result = await RunWithMeterAsync(
+                async meter =>
                 {
                     var source = TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(workspacePath, searchUpward: false);
-                    var converted = AnalyticsToMultiDimensionalConverter.Convert(source);
+                    var converted = AnalyticsToMultiDimensionalConverter.Convert(
+                        source,
+                        meter is null
+                            ? null
+                            : value => meter.Report(
+                                value.CompletedTaskCount,
+                                value.TotalTaskCount,
+                                FormatWeaveTask(
+                                    value.CompletedTaskKind?.ToString(),
+                                    value.CompletedTaskName)));
                     await workspaces.CreateAsync("output", converted).ConfigureAwait(false);
                     return converted;
                 }).ConfigureAwait(false);
