@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRelationList>
+    <DirectionRelation Id="forward/BusinessBridgeTraversalOrder" DirectionId="forward" SelectStatementId="SelectStatement:6" />
+    <DirectionRelation Id="forward/BusinessColumnAllocations" DirectionId="forward" SelectStatementId="SelectStatement:37" />
+    <DirectionRelation Id="forward/BusinessColumnCandidates" DirectionId="forward" SelectStatementId="SelectStatement:7" />
+    <DirectionRelation Id="forward/BusinessColumnDetails" DirectionId="forward" SelectStatementId="SelectStatement:11" />
+    <DirectionRelation Id="forward/BusinessColumns" DirectionId="forward" SelectStatementId="SelectStatement:10" />
+    <DirectionRelation Id="forward/BusinessForeignKeys" DirectionId="forward" SelectStatementId="SelectStatement:13" />
+    <DirectionRelation Id="forward/BusinessHubKeyPartOrder" DirectionId="forward" SelectStatementId="SelectStatement:4" />
+    <DirectionRelation Id="forward/BusinessOptionalColumnPairs" DirectionId="forward" SelectStatementId="SelectStatement:23" />
+    <DirectionRelation Id="forward/BusinessPrimaryKeys" DirectionId="forward" SelectStatementId="SelectStatement:12" />
+    <DirectionRelation Id="forward/BusinessRankedColumnCandidates" DirectionId="forward" SelectStatementId="SelectStatement:8" />
+    <DirectionRelation Id="forward/BusinessReferenceKeyPartOrder" DirectionId="forward" SelectStatementId="SelectStatement:5" />
+    <DirectionRelation Id="forward/BusinessTables" DirectionId="forward" SelectStatementId="SelectStatement:3" />
+    <DirectionRelation Id="forward/ImplementationSchemas" DirectionId="forward" SelectStatementId="SelectStatement:1" />
+    <DirectionRelation Id="forward/LoweredTypes" DirectionId="forward" SelectStatementId="SelectStatement:2" />
+  </DirectionRelationList>
+</MetaWeave>

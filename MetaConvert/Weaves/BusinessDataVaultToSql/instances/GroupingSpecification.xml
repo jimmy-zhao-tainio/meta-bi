@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <GroupingSpecificationList>
+    <GroupingSpecification Id="GroupingSpecification:1" />
+    <GroupingSpecification Id="GroupingSpecification:10" />
+    <GroupingSpecification Id="GroupingSpecification:11" />
+    <GroupingSpecification Id="GroupingSpecification:12" />
+    <GroupingSpecification Id="GroupingSpecification:13" />
+    <GroupingSpecification Id="GroupingSpecification:14" />
+    <GroupingSpecification Id="GroupingSpecification:15" />
+    <GroupingSpecification Id="GroupingSpecification:16" />
+    <GroupingSpecification Id="GroupingSpecification:17" />
+    <GroupingSpecification Id="GroupingSpecification:18" />
+    <GroupingSpecification Id="GroupingSpecification:19" />
+    <GroupingSpecification Id="GroupingSpecification:2" />
+    <GroupingSpecification Id="GroupingSpecification:3" />
+    <GroupingSpecification Id="GroupingSpecification:4" />
+    <GroupingSpecification Id="GroupingSpecification:5" />
+    <GroupingSpecification Id="GroupingSpecification:6" />
+    <GroupingSpecification Id="GroupingSpecification:7" />
+    <GroupingSpecification Id="GroupingSpecification:8" />
+    <GroupingSpecification Id="GroupingSpecification:9" />
+  </GroupingSpecificationList>
+</MetaWeave>

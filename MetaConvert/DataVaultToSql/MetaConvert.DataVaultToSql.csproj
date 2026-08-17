@@ -21,6 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="..\Weaves\BusinessDataVaultToSql\**\*">
+      <Link>Weaves\BusinessDataVaultToSql\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Weaves\BusinessDataVaultToSql\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
     <Content Include="..\Weaves\RawDataVaultToSql\**\*">
       <Link>Weaves\RawDataVaultToSql\%(RecursiveDir)%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

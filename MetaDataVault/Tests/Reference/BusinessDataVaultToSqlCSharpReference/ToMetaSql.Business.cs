@@ -3,7 +3,7 @@ using MetaSql;
 
 namespace MetaConvert.DataVaultToSql;
 
-public static partial class Converter
+internal static partial class BusinessDataVaultToSqlCSharpReference
 {
     private static MetaSqlModel ConvertBusiness(MetaBusinessDataVaultModel model, ConversionContext context)
     {

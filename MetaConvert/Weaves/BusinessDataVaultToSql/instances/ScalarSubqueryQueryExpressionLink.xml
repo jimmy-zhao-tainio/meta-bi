@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ScalarSubqueryQueryExpressionLinkList>
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:5" QueryExpressionId="QueryExpression:277" ScalarSubqueryId="ScalarSubquery:5" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:6" QueryExpressionId="QueryExpression:452" ScalarSubqueryId="ScalarSubquery:6" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:7" QueryExpressionId="QueryExpression:454" ScalarSubqueryId="ScalarSubquery:7" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:8" QueryExpressionId="QueryExpression:457" ScalarSubqueryId="ScalarSubquery:8" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:9" QueryExpressionId="QueryExpression:459" ScalarSubqueryId="ScalarSubquery:9" />
+  </ScalarSubqueryQueryExpressionLinkList>
+</MetaWeave>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ExistsPredicateSubqueryLinkList>
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:5" ExistsPredicateId="ExistsPredicate:5" ScalarSubqueryId="ScalarSubquery:5" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:6" ExistsPredicateId="ExistsPredicate:6" ScalarSubqueryId="ScalarSubquery:6" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:7" ExistsPredicateId="ExistsPredicate:7" ScalarSubqueryId="ScalarSubquery:7" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:8" ExistsPredicateId="ExistsPredicate:8" ScalarSubqueryId="ScalarSubquery:8" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:9" ExistsPredicateId="ExistsPredicate:9" ScalarSubqueryId="ScalarSubquery:9" />
+  </ExistsPredicateSubqueryLinkList>
+</MetaWeave>

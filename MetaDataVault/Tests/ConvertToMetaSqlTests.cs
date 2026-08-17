@@ -67,6 +67,118 @@ public sealed class ConvertToMetaSqlTests
         }
     }
 
+    [Theory]
+    [InlineData("MetaDataVault/Workspaces/SampleBusinessDataVaultCommerceHelpers")]
+    [InlineData("MetaDataVault/Workspaces/SampleBusinessDataVaultLinkVariants")]
+    [InlineData("Demos/AdventureWorksBIStackDemo/Runs/bdv/BusinessVault")]
+    public async Task BusinessSanctionedWeave_MatchesCSharpReference_ForCompleteSamples(string relativeWorkspacePath)
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(
+            repoRoot,
+            relativeWorkspacePath.Replace('/', Path.DirectorySeparatorChar));
+        var implementationPath = GetImplementationWorkspacePath(repoRoot);
+        var business = await TypedWorkspaceModelMapper.LoadAsync<MetaBusinessDataVaultModel>(
+            workspacePath,
+            searchUpward: false);
+        var implementation = await TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(
+            implementationPath,
+            searchUpward: false);
+        var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+            BusinessDataVaultToSqlCSharpReference.ConvertToMetaSql(
+                business,
+                implementation,
+                "BusinessVault"));
+        var direction = new MetaWeaveScriptDirectionLoader().Load(
+            Path.Combine(repoRoot, "MetaConvert", "Weaves", "BusinessDataVaultToSql"),
+            "forward");
+
+        var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
+            direction,
+            new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["business"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(business),
+                ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation),
+                ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn),
+                ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn),
+            },
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty()),
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["databaseName"] = "BusinessVault",
+            });
+
+        Assert.True(
+            result.IsSuccess,
+            string.Join(Environment.NewLine, result.Issues.Select(issue => $"{issue.Code}: {issue.Message}")));
+        var actual = Assert.IsType<InMemoryWorkspace>(result.OutputWorkspace);
+        Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, actual));
+    }
+
+    [Fact]
+    public async Task BusinessSanctionedWeave_ReproducesRepeatedUnderscoreColumnAllocation()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var sourceWorkspacePath = Path.Combine(
+            repoRoot,
+            "MetaDataVault",
+            "Workspaces",
+            "SampleBusinessDataVaultCommerceHelpers");
+        var implementationPath = GetImplementationWorkspacePath(repoRoot);
+        var business = await TypedWorkspaceModelMapper.LoadAsync<MetaBusinessDataVaultModel>(
+            sourceWorkspacePath,
+            searchUpward: false);
+        var firstKeyPart = business.BusinessHubKeyPartList.Single(row => row.Id == "CustomerIdentifier");
+        firstKeyPart.Name = "HashKey";
+        business.BusinessHubKeyPartList.Add(new BusinessHubKeyPart
+        {
+            Id = "CustomerSecondaryIdentifier",
+            Name = "_HashKey",
+            DataTypeId = firstKeyPart.DataTypeId,
+            BusinessHub = firstKeyPart.BusinessHub,
+            PreviousKeyPart = firstKeyPart,
+        });
+        var implementation = await TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(
+            implementationPath,
+            searchUpward: false);
+        var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+            BusinessDataVaultToSqlCSharpReference.ConvertToMetaSql(
+                business,
+                implementation,
+                "BusinessVault"));
+        var direction = new MetaWeaveScriptDirectionLoader().Load(
+            Path.Combine(repoRoot, "MetaConvert", "Weaves", "BusinessDataVaultToSql"),
+            "forward");
+        var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
+            direction,
+            new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["business"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(business),
+                ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation),
+                ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn),
+                ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn),
+            },
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty()),
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["databaseName"] = "BusinessVault",
+            });
+
+        Assert.True(
+            result.IsSuccess,
+            string.Join(Environment.NewLine, result.Issues.Select(issue => $"{issue.Code}: {issue.Message}")));
+        var actual = Assert.IsType<InMemoryWorkspace>(result.OutputWorkspace);
+        Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, actual));
+        var customerHubColumns = actual.Instance.GetOrCreateEntityRecords("TableColumn")
+            .Where(row => row.RelationshipIds.TryGetValue("TableId", out var tableId) &&
+                          tableId == "BusinessVault.dbo.BH_Customer")
+            .Select(row => row.Values["Name"])
+            .ToList();
+        Assert.Contains("HashKey", customerHubColumns);
+        Assert.Contains("_HashKey", customerHubColumns);
+        Assert.Contains("__HashKey", customerHubColumns);
+    }
+
     [Fact]
     public async Task ConvertAsync_LoadsRawWorkspaceAndCreatesSqlWorkspaceRootInMemory()
     {
@@ -267,10 +379,8 @@ public sealed class ConvertToMetaSqlTests
                                 implementationPath,
                 databaseName: "BusinessVault"));
 
-            Assert.Contains(
-                "must define both its name and metadata type, or neither",
-                error.Message,
-                StringComparison.Ordinal);
+            Assert.Contains("BusinessOptionalColumnInvalid", error.Message, StringComparison.Ordinal);
+            Assert.Contains("ColumnKind=LoadTimestamp", error.Message, StringComparison.Ordinal);
         }
         finally
         {
@@ -709,8 +819,8 @@ public sealed class ConvertToMetaSqlTests
             GetImplementationWorkspacePath(repoRoot),
             databaseName));
 
-        Assert.Contains("SQL Server database identifier", error.Message, StringComparison.Ordinal);
-        Assert.Contains("contains 129 characters; maximum is 128", error.Message, StringComparison.Ordinal);
+        Assert.Contains("SqlServerIdentifierTooLong", error.Message, StringComparison.Ordinal);
+        Assert.Contains("IdentifierKind=Database", error.Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -1007,7 +1117,8 @@ public sealed class ConvertToMetaSqlTests
                 workspacePath,
                                 GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault"));
-            Assert.Contains("must start from its anchor hub 'Customer'", exception.Message, StringComparison.Ordinal);
+            Assert.Contains("BusinessBridgeTraversalInvalid", exception.Message, StringComparison.Ordinal);
+            Assert.Contains("Failure=DoesNotStartAtAnchor", exception.Message, StringComparison.Ordinal);
         }
         finally
         {
@@ -1060,7 +1171,8 @@ public sealed class ConvertToMetaSqlTests
                 workspacePath,
                                 GetImplementationWorkspacePath(repoRoot),
                 databaseName: "BusinessVault"));
-            Assert.Contains("key-part precedence branches", exception.Message, StringComparison.Ordinal);
+            Assert.Contains("BusinessKeyPartChainInvalid", exception.Message, StringComparison.Ordinal);
+            Assert.Contains("Failure=Branch", exception.Message, StringComparison.Ordinal);
         }
         finally
         {
@@ -1193,7 +1305,8 @@ public sealed class ConvertToMetaSqlTests
                 databaseName: "BusinessVault"));
 
             Assert.Contains("sqlserver:type:nvarchar", error.Message, StringComparison.Ordinal);
-            Assert.Contains("must belong to DataTypeSystem 'Meta'", error.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("BusinessColumnTypeLoweringInvalid", error.Message, StringComparison.Ordinal);
+            Assert.Contains("SourceSystemId=SqlServer", error.Message, StringComparison.Ordinal);
         }
         finally
         {
@@ -1222,7 +1335,9 @@ public sealed class ConvertToMetaSqlTests
                 databaseName: "BusinessVault"));
 
             Assert.Contains("meta:type:Xml", error.Message, StringComparison.Ordinal);
-            Assert.Contains("no sanctioned direct SqlServer lowering", error.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("BusinessColumnTypeLoweringInvalid", error.Message, StringComparison.Ordinal);
+            Assert.Contains("SourceSystemId=Meta", error.Message, StringComparison.Ordinal);
+            Assert.Contains("MappingCount=0", error.Message, StringComparison.Ordinal);
         }
         finally
         {
@@ -1251,7 +1366,9 @@ public sealed class ConvertToMetaSqlTests
                 databaseName: "BusinessVault"));
 
             Assert.Contains("sqlserver:type:not-real", error.Message, StringComparison.Ordinal);
-            Assert.Contains("not sanctioned in MetaDataType", error.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("BusinessColumnTypeLoweringInvalid", error.Message, StringComparison.Ordinal);
+            Assert.Contains("SourceSystemId=NULL", error.Message, StringComparison.Ordinal);
+            Assert.Contains("MappingCount=0", error.Message, StringComparison.Ordinal);
         }
         finally
         {

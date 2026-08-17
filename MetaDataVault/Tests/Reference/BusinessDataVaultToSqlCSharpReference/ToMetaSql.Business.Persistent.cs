@@ -5,7 +5,7 @@ using MetaSql;
 
 namespace MetaConvert.DataVaultToSql;
 
-public static partial class Converter
+internal static partial class BusinessDataVaultToSqlCSharpReference
 {
     private static (Dictionary<string, Table> HubTablesByHubId, Dictionary<string, TableColumn> HubHashKeyColumnsByHubId) PopulateBusinessPersistentMetaSqlModel(
         MetaBusinessDataVaultModel model,

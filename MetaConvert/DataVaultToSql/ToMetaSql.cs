@@ -18,6 +18,11 @@ public static partial class Converter
             ResolveRawWeaveWorkspacePath(),
             "forward"));
 
+    private static readonly Lazy<MetaWeaveScriptDirection> BusinessForwardDirection = new(
+        static () => new MetaWeaveScriptDirectionLoader().Load(
+            ResolveBusinessWeaveWorkspacePath(),
+            "forward"));
+
     public static async Task<InMemoryWorkspace> ConvertAsync(
         string dataVaultWorkspacePath,
         string implementationWorkspacePath,
@@ -93,13 +98,34 @@ public static partial class Converter
 
             case "MetaBusinessDataVault":
                 {
-                    var context = CreateContext(
-                        databaseName,
-                        implementationModel,
-                        SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.BuiltIn, MetaDataTypeConversionInstance.BuiltIn));
                     var businessModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaBusinessDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
-                    var metaSqlModel = ConvertBusiness(businessModel, context);
-                    return Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSqlModel);
+                    var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
+                        BusinessForwardDirection.Value,
+                        new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
+                        {
+                            ["business"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(businessModel),
+                            ["implementation"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementationModel),
+                            ["dataTypes"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn),
+                            ["typeConversions"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn),
+                        },
+                        Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty()),
+                        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                        {
+                            ["databaseName"] = databaseName,
+                        },
+                        progress);
+
+                    if (!result.IsSuccess)
+                    {
+                        throw new InvalidOperationException(
+                            "The sanctioned Business-Data-Vault-to-SQL weave rejected the source workspaces:" +
+                            Environment.NewLine +
+                            string.Join(
+                                Environment.NewLine,
+                                result.Issues.Select(static issue => $"{issue.Code}: {issue.Message}")));
+                    }
+
+                    return result.OutputWorkspace!;
                 }
 
             default:
@@ -123,109 +149,19 @@ public static partial class Converter
         return path;
     }
 
-    private static ConversionContext CreateContext(
-        string databaseName,
-        MetaDataVaultImplementationModel implementationModel,
-        SqlServerBusinessTypeLowering? businessTypeLowering = null)
+    private static string ResolveBusinessWeaveWorkspacePath()
     {
-        RequireSqlServerIdentifier(databaseName, "database");
-        var metaSqlModel = MetaSqlModel.CreateEmpty();
-
-        var database = new Database
+        var path = Path.Combine(
+            AppContext.BaseDirectory,
+            "Weaves",
+            "BusinessDataVaultToSql");
+        if (!File.Exists(Path.Combine(path, "workspace.meta")))
         {
-            Id = databaseName,
-            Name = databaseName,
-        };
-
-        metaSqlModel.DatabaseList.Add(database);
-        var schemasByName = new Dictionary<string, Schema>(StringComparer.OrdinalIgnoreCase);
-        foreach (var schemaName in GetSchemaNames(implementationModel))
-        {
-            RequireSqlServerIdentifier(schemaName, "schema");
-            if (schemasByName.ContainsKey(schemaName))
-            {
-                continue;
-            }
-
-            var schema = new Schema
-            {
-                Id = $"{database.Id}.{schemaName}",
-                Name = schemaName,
-                Database = database,
-            };
-            metaSqlModel.SchemaList.Add(schema);
-            schemasByName[schemaName] = schema;
+            throw new InvalidOperationException(
+                $"The sanctioned Business-Data-Vault-to-SQL weave was not found at '{path}'.");
         }
 
-        return new ConversionContext
-        {
-            DatabaseName = databaseName,
-            ImplementationModel = implementationModel,
-            BusinessTypeLowering = businessTypeLowering,
-            MetaSql = metaSqlModel,
-            Database = database,
-            SchemasByName = schemasByName,
-        };
+        return path;
     }
 
-    private static IEnumerable<string> GetSchemaNames(MetaDataVaultImplementationModel implementationModel)
-    {
-        return implementationModel.BusinessHierarchicalLinkImplementationList.Select(row => row.SchemaName)
-            .Concat(implementationModel.BusinessHierarchicalLinkSatelliteImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.BusinessBridgeImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.BusinessHubImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.BusinessHubSatelliteImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.BusinessLinkImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.BusinessLinkSatelliteImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.BusinessPointInTimeImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.BusinessReferenceImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.BusinessReferenceSatelliteImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.BusinessSameAsLinkImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.BusinessSameAsLinkSatelliteImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.RawHubImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.RawHubSatelliteImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.RawLinkImplementationList.Select(row => row.SchemaName))
-            .Concat(implementationModel.RawLinkSatelliteImplementationList.Select(row => row.SchemaName))
-            .Where(row => !string.IsNullOrWhiteSpace(row))
-            .Select(row => row.Trim());
-    }
-
-    private static Dictionary<string, T> IndexById<T>(IEnumerable<T> rows, Func<T, string> idSelector)
-        where T : class
-    {
-        var index = new Dictionary<string, T>(StringComparer.Ordinal);
-        foreach (var row in rows)
-        {
-            index[idSelector(row)] = row;
-        }
-
-        return index;
-    }
-
-    private static Dictionary<string, List<T>> GroupById<T>(IEnumerable<T> rows, Func<T, string> keySelector)
-        where T : class
-    {
-        var groups = new Dictionary<string, List<T>>(StringComparer.Ordinal);
-        foreach (var row in rows)
-        {
-            var key = keySelector(row);
-            if (!groups.TryGetValue(key, out var bucket))
-            {
-                bucket = new List<T>();
-                groups[key] = bucket;
-            }
-
-            bucket.Add(row);
-        }
-
-        return groups;
-    }
-
-    private static IReadOnlyList<T> GetGroup<T>(IReadOnlyDictionary<string, List<T>> groups, string key)
-        where T : class
-    {
-        return groups.TryGetValue(key, out var bucket)
-            ? bucket
-            : Array.Empty<T>();
-    }
 }
