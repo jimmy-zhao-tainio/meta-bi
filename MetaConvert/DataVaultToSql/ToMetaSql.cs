@@ -128,6 +128,7 @@ public static partial class Converter
         MetaDataVaultImplementationModel implementationModel,
         SqlServerBusinessTypeLowering? businessTypeLowering = null)
     {
+        RequireSqlServerIdentifier(databaseName, "database");
         var metaSqlModel = MetaSqlModel.CreateEmpty();
 
         var database = new Database
@@ -140,6 +141,7 @@ public static partial class Converter
         var schemasByName = new Dictionary<string, Schema>(StringComparer.OrdinalIgnoreCase);
         foreach (var schemaName in GetSchemaNames(implementationModel))
         {
+            RequireSqlServerIdentifier(schemaName, "schema");
             if (schemasByName.ContainsKey(schemaName))
             {
                 continue;

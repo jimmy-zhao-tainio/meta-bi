@@ -760,7 +760,7 @@ public static partial class MetaDataVaultImplementationInstance
             HashKeyColumnName = "HashKey",
             HashKeyDataTypeId = "meta:type:Binary",
             HashKeyLength = "32",
-            HubForeignKeyNamePattern = "FK_{TableName}_{TargetTableName}_{SourceColumnName}",
+            HubForeignKeyNamePattern = "FK_{TableName}_{SourceColumnName}",
             LoadTimestampColumnName = "LoadTimestamp",
             LoadTimestampDataTypeId = "meta:type:DateTime2",
             LoadTimestampDefaultExpressionSql = "CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))",

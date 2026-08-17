@@ -3542,7 +3542,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-business-vault:convert-business-vault-to-sql" OperationId="operation:deploy-business-vault" PreviousStepId="operation-step:deploy-business-vault:clear-generated-workspaces">
-      <Arguments>business-datavault-to-sql --workspace {workspace:business-vault.location} --implementation-workspace {workspace:data-vault-implementation.location} --database-name AdventureWorksBusinessVault --out {workspace:business-vault-sql.location}</Arguments>
+      <Arguments>business-datavault-to-sql --workspace {workspace:business-vault.location} --implementation-workspace {workspace:data-vault-implementation.location} --database-name AdventureWorksBusinessVault --output-xml {workspace:business-vault-sql.location}</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-business-vault-to-sql</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
@@ -3560,7 +3560,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-business-vault:plan-business-vault-deployment" OperationId="operation:deploy-business-vault" PreviousStepId="operation-step:deploy-business-vault:convert-business-vault-to-sql">
-      <Arguments>deploy-plan --source-workspace {workspace:business-vault-sql.location} --connection-env {env:AW_BDV_SQL} --out {workspace:business-vault-deploy-manifest.location}</Arguments>
+      <Arguments>deploy-plan --source-workspace {workspace:business-vault-sql.location} --connection-env {env:AW_BDV_SQL} --output-xml {workspace:business-vault-deploy-manifest.location}</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>plan-business-vault-deployment</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
@@ -3580,7 +3580,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-dimensional-warehouse:convert-dimensional-warehouse-to-sql" OperationId="operation:deploy-dimensional-warehouse" PreviousStepId="operation-step:deploy-dimensional-warehouse:clear-generated-workspaces">
-      <Arguments>data-warehouse-to-sql --workspace {workspace:dimensional-warehouse.location} --implementation-workspace {workspace:dimensional-warehouse-implementation.location} --database-name AdventureWorksAnalytics --out {workspace:dimensional-warehouse-sql.location}</Arguments>
+      <Arguments>data-warehouse-to-sql --workspace {workspace:dimensional-warehouse.location} --implementation-workspace {workspace:dimensional-warehouse-implementation.location} --database-name AdventureWorksAnalytics --output-xml {workspace:dimensional-warehouse-sql.location}</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-dimensional-warehouse-to-sql</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
@@ -3598,7 +3598,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-dimensional-warehouse:plan-dimensional-warehouse-deployment" OperationId="operation:deploy-dimensional-warehouse" PreviousStepId="operation-step:deploy-dimensional-warehouse:convert-dimensional-warehouse-to-sql">
-      <Arguments>deploy-plan --source-workspace {workspace:dimensional-warehouse-sql.location} --connection-env {env:AW_DW_SQL} --out {workspace:dimensional-warehouse-deploy-manifest.location}</Arguments>
+      <Arguments>deploy-plan --source-workspace {workspace:dimensional-warehouse-sql.location} --connection-env {env:AW_DW_SQL} --output-xml {workspace:dimensional-warehouse-deploy-manifest.location}</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>plan-dimensional-warehouse-deployment</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
@@ -3618,7 +3618,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-raw-vault:convert-raw-vault-to-sql" OperationId="operation:deploy-raw-vault" PreviousStepId="operation-step:deploy-raw-vault:clear-generated-workspaces">
-      <Arguments>raw-datavault-to-sql --workspace {workspace:raw-vault.location} --implementation-workspace {workspace:data-vault-implementation.location} --database-name AdventureWorksRawVault --out {workspace:raw-vault-sql.location}</Arguments>
+      <Arguments>raw-datavault-to-sql --workspace {workspace:raw-vault.location} --implementation-workspace {workspace:data-vault-implementation.location} --database-name AdventureWorksRawVault --output-xml {workspace:raw-vault-sql.location}</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-raw-vault-to-sql</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
@@ -3636,7 +3636,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-raw-vault:plan-raw-vault-deployment" OperationId="operation:deploy-raw-vault" PreviousStepId="operation-step:deploy-raw-vault:convert-raw-vault-to-sql">
-      <Arguments>deploy-plan --source-workspace {workspace:raw-vault-sql.location} --connection-env {env:AW_RDV_SQL} --out {workspace:raw-vault-deploy-manifest.location}</Arguments>
+      <Arguments>deploy-plan --source-workspace {workspace:raw-vault-sql.location} --connection-env {env:AW_RDV_SQL} --output-xml {workspace:raw-vault-deploy-manifest.location}</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>plan-raw-vault-deployment</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>

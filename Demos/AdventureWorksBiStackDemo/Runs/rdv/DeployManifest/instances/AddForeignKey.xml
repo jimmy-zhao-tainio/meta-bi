@@ -214,545 +214,545 @@
     <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.fk.FK_HS_WorkOrder_WorkOrder_H_WorkOrder" DeployManifestId="DeployManifest:1">
       <SourceForeignKeyId>AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.fk.FK_HS_WorkOrder_WorkOrder_H_WorkOrder</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_H_Address_AddressHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_H_Address_AddressHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_AddressHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_AddressHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_H_StateProvince_StateProvinceHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_H_StateProvince_StateProvinceHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_StateProvinceHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_StateProvinceHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_H_BillOfMaterials_BillOfMaterialsHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_H_BillOfMaterials_BillOfMaterialsHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_BillOfMaterialsHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_BillOfMaterialsHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_BillOfMaterials_BillOfMaterialsHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_BillOfMaterials_BillOfMaterialsHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_BillOfMaterialsHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_BillOfMaterialsHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_H_BillOfMaterials_BillOfMaterialsHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_H_BillOfMaterials_BillOfMaterialsHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_BillOfMaterialsHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_BillOfMaterialsHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_H_UnitMeasure_UnitMeasureHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_H_UnitMeasure_UnitMeasureHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_UnitMeasureHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_UnitMeasureHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_H_Address_AddressHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_H_Address_AddressHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_AddressHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_AddressHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_H_BusinessEntityAddress_BusinessEntityAddressHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_H_BusinessEntityAddress_BusinessEntityAddressHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_BusinessEntityAddressHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_BusinessEntityAddressHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_H_AddressType_AddressTypeHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_H_AddressType_AddressTypeHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_AddressTypeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_AddressTypeHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_H_BusinessEntityAddress_BusinessEntityAddressHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_H_BusinessEntityAddress_BusinessEntityAddressHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_BusinessEntityAddressHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_BusinessEntityAddressHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntityAddress_BusinessEntityAddressHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntityAddress_BusinessEntityAddressHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_BusinessEntityAddressHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_BusinessEntityAddressHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntity_BusinessEntityHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_BusinessEntityHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_BusinessEntityHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntityContact_BusinessEntityContactHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntityContact_BusinessEntityContactHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_BusinessEntityContactHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_BusinessEntityContactHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntity_BusinessEntityHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_BusinessEntityHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_BusinessEntityHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_H_BusinessEntityContact_BusinessEntityContactHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_H_BusinessEntityContact_BusinessEntityContactHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_BusinessEntityContactHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_BusinessEntityContactHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_H_ContactType_ContactTypeHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_H_ContactType_ContactTypeHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_ContactTypeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_ContactTypeHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_H_BusinessEntityContact_BusinessEntityContactHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_H_BusinessEntityContact_BusinessEntityContactHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_BusinessEntityContactHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_BusinessEntityContactHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_H_Person_PersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_H_Person_PersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_PersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_PersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegionCurrency_CountryRegionCurrencyHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegionCurrency_CountryRegionCurrencyHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_CountryRegionCurrencyHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_CountryRegionCurrencyHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegion_CountryRegionHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegion_CountryRegionHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_CountryRegionHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_CountryRegionHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_H_CountryRegionCurrency_CountryRegionCurrencyHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_H_CountryRegionCurrency_CountryRegionCurrencyHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_CountryRegionCurrencyHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_CountryRegionCurrencyHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_H_Currency_CurrencyHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_H_Currency_CurrencyHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_CurrencyHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_CurrencyHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_H_CurrencyRate_CurrencyRateHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_H_CurrencyRate_CurrencyRateHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_CurrencyHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_CurrencyHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_H_Currency_CurrencyHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_H_Currency_CurrencyHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_CurrencyRateHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_CurrencyRateHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_H_CurrencyRate_CurrencyRateHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_H_CurrencyRate_CurrencyRateHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_CurrencyHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_CurrencyHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_H_Currency_CurrencyHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_H_Currency_CurrencyHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_CurrencyRateHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_CurrencyRateHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_H_Customer_CustomerHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_H_Customer_CustomerHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_CustomerHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_CustomerHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_H_Person_PersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_H_Person_PersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_PersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_PersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_H_Customer_CustomerHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_H_Customer_CustomerHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_CustomerHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_CustomerHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_H_Customer_CustomerHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_H_Customer_CustomerHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_CustomerHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_CustomerHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_H_Store_StoreHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_H_Store_StoreHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_StoreHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_StoreHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_H_Document_DocumentHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_H_Document_DocumentHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_DocumentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_DocumentHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_H_Employee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_H_Employee_EmployeeHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_EmployeeHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_H_EmailAddress_EmailAddressHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_H_EmailAddress_EmailAddressHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_EmailAddressHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_EmailAddressHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_H_Person_PersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_H_Person_PersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_PersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_PersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_H_Department_DepartmentHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_H_Department_DepartmentHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_DepartmentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_DepartmentHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_EmployeeDepartmentHistoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_EmployeeDepartmentHistoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_EmployeeDepartmentHistoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_EmployeeDepartmentHistoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_H_Employee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_H_Employee_EmployeeHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_EmployeeHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_EmployeeDepartmentHistoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_EmployeeDepartmentHistoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_H_Shift_ShiftHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_H_Shift_ShiftHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_ShiftHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_ShiftHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_H_EmployeePayHistory_EmployeePayHistoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_H_EmployeePayHistory_EmployeePayHistoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_EmployeeHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_H_Employee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_H_Employee_EmployeeHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_EmployeePayHistoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_EmployeePayHistoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_H_Employee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_H_Employee_EmployeeHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_EmployeeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_EmployeeHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_H_Person_PersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_H_Person_PersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_PersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_PersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_H_Employee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_H_Employee_EmployeeHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_EmployeeHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_H_JobCandidate_JobCandidateHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_H_JobCandidate_JobCandidateHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_JobCandidateHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_JobCandidateHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_H_Password_PasswordHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_H_Password_PasswordHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_PasswordHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_PasswordHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_H_Person_PersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_H_Person_PersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_PersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_PersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_H_BusinessEntity_BusinessEntityHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_BusinessEntityHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_BusinessEntityHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_H_Person_PersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_H_Person_PersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_PersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_PersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_H_CreditCard_CreditCardHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_H_CreditCard_CreditCardHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_CreditCardHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_CreditCardHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_H_PersonCreditCard_PersonCreditCardHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_H_PersonCreditCard_PersonCreditCardHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_PersonCreditCardHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_PersonCreditCardHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_H_PersonCreditCard_PersonCreditCardHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_H_PersonCreditCard_PersonCreditCardHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_PersonCreditCardHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_PersonCreditCardHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_H_Person_PersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_H_Person_PersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_PersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_PersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_H_PersonPhone_PersonPhoneHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_H_PersonPhone_PersonPhoneHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_PersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_PersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_H_Person_PersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_H_Person_PersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_PersonPhoneHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_PersonPhoneHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_H_PersonPhone_PersonPhoneHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_H_PersonPhone_PersonPhoneHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_PersonPhoneHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_PersonPhoneHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_H_PhoneNumberType_PhoneNumberTypeHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_H_PhoneNumberType_PhoneNumberTypeHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_PhoneNumberTypeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_PhoneNumberTypeHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_H_ProductCostHistory_ProductCostHistoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_H_ProductCostHistory_ProductCostHistoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_ProductCostHistoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_ProductCostHistoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_H_Document_DocumentHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_H_Document_DocumentHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_DocumentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_DocumentHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_H_ProductDocument_ProductDocumentHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_H_ProductDocument_ProductDocumentHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_ProductDocumentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_ProductDocumentHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_H_ProductDocument_ProductDocumentHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_H_ProductDocument_ProductDocumentHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_ProductDocumentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_ProductDocumentHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_H_Location_LocationHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_H_Location_LocationHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_LocationHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_LocationHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_H_ProductInventory_ProductInventoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_H_ProductInventory_ProductInventoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_ProductInventoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_ProductInventoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_H_ProductInventory_ProductInventoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_H_ProductInventory_ProductInventoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_ProductInventoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_ProductInventoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_H_ProductListPriceHistory_ProductListPriceHistoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_H_ProductListPriceHistory_ProductListPriceHistoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_ProductListPriceHistoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_ProductListPriceHistoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_H_Illustration_IllustrationHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_H_Illustration_IllustrationHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_IllustrationHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_IllustrationHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_H_ProductModelIllustration_ProductModelIllustrationHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_H_ProductModelIllustration_ProductModelIllustrationHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_ProductModelIllustrationHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_ProductModelIllustrationHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_H_ProductModelIllustration_ProductModelIllustrationHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_H_ProductModelIllustration_ProductModelIllustrationHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_ProductModelHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_ProductModelHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_H_ProductModel_ProductModelHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_H_ProductModel_ProductModelHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_ProductModelIllustrationHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_ProductModelIllustrationHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_H_Culture_CultureHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_H_Culture_CultureHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_CultureHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_CultureHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_H_ProductModelProductDescriptionCulture_ProductModelProductDescri_041500cc3c79" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_H_ProductModelProductDescriptionCulture_ProductModelProductDescri_041500cc3c79</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_ProductModelProductDescriptionCultureHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_ProductModelProductDescriptionCultureHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductDescription_ProductDescriptionHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductDescription_ProductDescriptionHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_ProductDescriptionHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_ProductDescriptionHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductModelProductDescriptionCulture_ProductModelPr_2245e837153e" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductModelProductDescriptionCulture_ProductModelPr_2245e837153e</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_ProductModelProductDescriptionCultureHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_ProductModelProductDescriptionCultureHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModelProductDescriptionCulture_ProductModelProductD_ac59eee6c09a" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModelProductDescriptionCulture_ProductModelProductD_ac59eee6c09a</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_ProductModelHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_ProductModelHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModel_ProductModelHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModel_ProductModelHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_ProductModelProductDescriptionCultureHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_ProductModelProductDescriptionCultureHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_H_ProductModel_ProductModelHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_H_ProductModel_ProductModelHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_ProductModelHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_ProductModelHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_H_ProductProductPhoto_ProductProductPhotoHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_H_ProductProductPhoto_ProductProductPhotoHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_ProductProductPhotoHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_ProductProductPhotoHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_H_ProductPhoto_ProductPhotoHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_H_ProductPhoto_ProductPhotoHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_ProductPhotoHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_ProductPhotoHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_H_ProductProductPhoto_ProductProductPhotoHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_H_ProductProductPhoto_ProductProductPhotoHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_ProductProductPhotoHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_ProductProductPhotoHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_H_ProductSubcategory_ProductSubcategoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_H_ProductSubcategory_ProductSubcategoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_ProductSubcategoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_ProductSubcategoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_H_ProductReview_ProductReviewHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_H_ProductReview_ProductReviewHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_ProductReviewHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_ProductReviewHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_H_ProductCategory_ProductCategoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_H_ProductCategory_ProductCategoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_ProductCategoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_ProductCategoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_H_ProductSubcategory_ProductSubcategoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_H_ProductSubcategory_ProductSubcategoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_ProductSubcategoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_ProductSubcategoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_UnitMeasureHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_UnitMeasureHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_UnitMeasureHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_UnitMeasureHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_H_ProductVendor_ProductVendorHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_H_ProductVendor_ProductVendorHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_ProductVendorHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_ProductVendorHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_H_ProductVendor_ProductVendorHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_H_ProductVendor_ProductVendorHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_ProductVendorHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_ProductVendorHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_H_UnitMeasure_UnitMeasureHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_H_UnitMeasure_UnitMeasureHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_UnitMeasureHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_UnitMeasureHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_H_ProductVendor_ProductVendorHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_H_ProductVendor_ProductVendorHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_ProductVendorHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_ProductVendorHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_H_Vendor_VendorHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_H_Vendor_VendorHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_VendorHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_VendorHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_PurchaseOrderDetailHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_PurchaseOrderDetailHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_PurchaseOrderDetailHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_PurchaseOrderDetailHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_PurchaseOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_PurchaseOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_H_Employee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_H_Employee_EmployeeHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_EmployeeHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_PurchaseOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_PurchaseOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_PurchaseOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_PurchaseOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_ShipMethodHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_ShipMethodHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_PurchaseOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_PurchaseOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_H_Vendor_VendorHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_H_Vendor_VendorHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_VendorHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_VendorHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderDetail_SalesOrderDetailHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderDetail_SalesOrderDetailHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_SalesOrderDetailHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_SalesOrderDetailHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_H_SalesOrderDetail_SalesOrderDetailHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_H_SalesOrderDetail_SalesOrderDetailHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_SalesOrderDetailHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_SalesOrderDetailHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_SpecialOfferProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_SpecialOfferProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_H_Address_AddressHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_H_Address_AddressHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_AddressHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_AddressHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_SalesOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_Address_AddressHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_Address_AddressHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_AddressHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_AddressHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_SalesOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_H_CreditCard_CreditCardHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_H_CreditCard_CreditCardHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_CreditCardHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_CreditCardHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_H_SalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_H_SalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_SalesOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_H_CurrencyRate_CurrencyRateHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_H_CurrencyRate_CurrencyRateHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_CurrencyRateHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_CurrencyRateHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_H_SalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_H_SalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_SalesOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_H_Customer_CustomerHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_H_Customer_CustomerHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_CustomerHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_CustomerHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_H_SalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_H_SalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_SalesOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_H_SalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_H_SalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_SalesOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_H_SalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_H_SalesPerson_SalesPersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_SalesPersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_SalesOrderHeaderSalesReasonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_SalesOrderHeaderSalesReasonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_SalesOrderHeaderSalesReasonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_SalesOrderHeaderSalesReasonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesReason_SalesReasonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesReason_SalesReasonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_SalesReasonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_SalesReasonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_H_SalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_H_SalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_SalesOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_H_SalesOrderHeader_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_H_SalesOrderHeader_SalesOrderHeaderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_SalesOrderHeaderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_SalesOrderHeaderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_ShipMethodHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_ShipMethodHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_H_Employee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_H_Employee_EmployeeHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_EmployeeHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_H_SalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_H_SalesPerson_SalesPersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_SalesPersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPersonQuotaHistory_SalesPersonQuotaHistoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPersonQuotaHistory_SalesPersonQuotaHistoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_SalesPersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPerson_SalesPersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_SalesPersonQuotaHistoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_SalesPersonQuotaHistoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_H_SalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_H_SalesPerson_SalesPersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_SalesPersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_H_SalesTaxRate_SalesTaxRateHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_H_SalesTaxRate_SalesTaxRateHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_SalesTaxRateHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_SalesTaxRateHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_H_StateProvince_StateProvinceHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_H_StateProvince_StateProvinceHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_StateProvinceHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_StateProvinceHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_H_CountryRegion_CountryRegionHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_H_CountryRegion_CountryRegionHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_CountryRegionHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_CountryRegionHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_H_SalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_H_SalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_SalesTerritoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_H_SalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_H_SalesPerson_SalesPersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_SalesPersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_SalesTerritoryHistoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_SalesTerritoryHistoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_SalesTerritoryHistoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_SalesTerritoryHistoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_H_ShoppingCartItem_ShoppingCartItemHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_H_ShoppingCartItem_ShoppingCartItemHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_ShoppingCartItemHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_ShoppingCartItemHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_SpecialOfferProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_SpecialOfferProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_H_SpecialOfferProduct_SpecialOfferProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_H_SpecialOfferProduct_SpecialOfferProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_SpecialOfferHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_SpecialOfferHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_H_SpecialOffer_SpecialOfferHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_H_SpecialOffer_SpecialOfferHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_SpecialOfferProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_SpecialOfferProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_H_CountryRegion_CountryRegionHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_H_CountryRegion_CountryRegionHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_CountryRegionHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_CountryRegionHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_H_StateProvince_StateProvinceHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_H_StateProvince_StateProvinceHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_StateProvinceHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_StateProvinceHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_H_StateProvince_StateProvinceHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_H_StateProvince_StateProvinceHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_StateProvinceHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_StateProvinceHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_H_BusinessEntity_BusinessEntityHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_BusinessEntityHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_BusinessEntityHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_H_Store_StoreHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_H_Store_StoreHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_StoreHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_StoreHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_H_SalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_H_SalesPerson_SalesPersonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_SalesPersonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_H_Store_StoreHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_H_Store_StoreHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_StoreHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_StoreHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_H_TransactionHistory_TransactionHistoryHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_H_TransactionHistory_TransactionHistoryHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_TransactionHistoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_TransactionHistoryHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_H_BusinessEntity_BusinessEntityHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_BusinessEntityHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_BusinessEntityHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_H_Vendor_VendorHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_H_Vendor_VendorHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_VendorHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_VendorHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_H_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_H_Product_ProductHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_ProductHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_H_WorkOrder_WorkOrderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_H_WorkOrder_WorkOrderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_WorkOrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_WorkOrderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_H_Location_LocationHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_H_Location_LocationHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_LocationHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_LocationHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_H_WorkOrderRouting_WorkOrderRoutingHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_H_WorkOrderRouting_WorkOrderRoutingHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_WorkOrderRoutingHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_WorkOrderRoutingHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_H_WorkOrderRouting_WorkOrderRoutingHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_H_WorkOrderRouting_WorkOrderRoutingHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_WorkOrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_WorkOrderHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_H_WorkOrder_WorkOrderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_H_WorkOrder_WorkOrderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_WorkOrderRoutingHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_WorkOrderRoutingHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_H_ScrapReason_ScrapReasonHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_H_ScrapReason_ScrapReasonHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_ScrapReasonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_ScrapReasonHashKey</SourceForeignKeyId>
     </AddForeignKey>
-    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_H_WorkOrder_WorkOrderHashKey" DeployManifestId="DeployManifest:1">
-      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_H_WorkOrder_WorkOrderHashKey</SourceForeignKeyId>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_WorkOrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_WorkOrderHashKey</SourceForeignKeyId>
     </AddForeignKey>
   </AddForeignKeyList>
 </MetaSqlDeployManifest>

@@ -1,6 +1,4 @@
 using System.Globalization;
-using System.Security.Cryptography;
-using System.Text;
 using MetaSql;
 
 namespace MetaConvert.DataVaultToSql;
@@ -8,7 +6,6 @@ namespace MetaConvert.DataVaultToSql;
 public static partial class Converter
 {
     private const int SqlServerIdentifierMaxLength = 128;
-    private const int SqlServerIdentifierHashLength = 12;
 
     private static T RequireSingleImplementation<T>(IReadOnlyList<T> rows, string logicalName)
         where T : class
@@ -28,7 +25,7 @@ public static partial class Converter
             throw new InvalidOperationException($"Projected schema '{schemaName}' is not present in conversion context.");
         }
 
-        var actualName = ShortenSqlServerIdentifier(name);
+        var actualName = RequireSqlServerIdentifier(name, "table");
         var id = $"{schema.Id}.{actualName}";
         EnsureUniqueId(context.MetaSql.TableList.Select(row => row.Id), id, "table");
 
@@ -107,7 +104,9 @@ public static partial class Converter
         string isNullable,
         HashSet<string> reservedColumnNames)
     {
-        var actualName = ReserveColumnName(reservedColumnNames, ShortenSqlServerIdentifier(requestedName));
+        var actualName = ReserveColumnName(
+            reservedColumnNames,
+            RequireSqlServerIdentifier(requestedName, "column"));
         var id = $"{table.Id}.{actualName}";
         EnsureUniqueId(context.MetaSql.TableColumnList.Select(row => row.Id), id, "table column");
         var ordinal = (context.MetaSql.TableColumnList.Count(row => ReferenceEquals(row.Table, table)) + 1).ToString(CultureInfo.InvariantCulture);
@@ -153,7 +152,7 @@ public static partial class Converter
             throw new InvalidOperationException("A primary key must contain at least one column.");
         }
 
-        var actualName = ShortenSqlServerIdentifier(name);
+        var actualName = RequireSqlServerIdentifier(name, "primary-key");
         var id = $"{table.Id}.pk.{actualName}";
         EnsureUniqueId(context.MetaSql.PrimaryKeyList.Select(row => row.Id), id, "primary key");
 
@@ -183,7 +182,7 @@ public static partial class Converter
         Table targetTable,
         IEnumerable<(TableColumn SourceColumn, TableColumn TargetColumn)> columnPairs)
     {
-        var actualName = ShortenSqlServerIdentifier(name);
+        var actualName = RequireSqlServerIdentifier(name, "foreign-key");
         var id = $"{sourceTable.Id}.fk.{actualName}";
         EnsureUniqueId(context.MetaSql.ForeignKeyList.Select(row => row.Id), id, "foreign key");
 
@@ -216,26 +215,22 @@ public static partial class Converter
         var actualName = requestedName;
         while (reservedColumnNames.Contains(actualName))
         {
-            actualName = ShortenSqlServerIdentifier("_" + actualName);
+            actualName = RequireSqlServerIdentifier("_" + actualName, "column");
         }
 
         reservedColumnNames.Add(actualName);
         return actualName;
     }
 
-    private static string ShortenSqlServerIdentifier(string value)
+    private static string RequireSqlServerIdentifier(string value, string logicalName)
     {
-        if (value.Length <= SqlServerIdentifierMaxLength)
+        if (value.Length > SqlServerIdentifierMaxLength)
         {
-            return value;
+            throw new InvalidOperationException(
+                $"SQL Server {logicalName} identifier '{value}' contains {value.Length} characters; maximum is {SqlServerIdentifierMaxLength}.");
         }
 
-        var hash = Convert
-            .ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value)))
-            .Substring(0, SqlServerIdentifierHashLength)
-            .ToLowerInvariant();
-        var suffix = "_" + hash;
-        return value.Substring(0, SqlServerIdentifierMaxLength - suffix.Length) + suffix;
+        return value;
     }
 
     private static void EnsureUniqueId(IEnumerable<string> existingIds, string id, string logicalName)

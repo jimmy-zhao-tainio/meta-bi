@@ -33,5 +33,9 @@
       <Code>RawSchemaNameInvalid</Code>
       <Message>Raw implementation schema names must be nonblank and must not contain surrounding whitespace.</Message>
     </DirectionRequirement>
+    <DirectionRequirement Id="forward/SqlServerIdentifierLength" DirectionId="forward" SelectStatementId="SelectStatement:35">
+      <Code>SqlServerIdentifierTooLong</Code>
+      <Message>SQL Server identifiers must contain at most 128 characters.</Message>
+    </DirectionRequirement>
   </DirectionRequirementList>
 </MetaWeave>

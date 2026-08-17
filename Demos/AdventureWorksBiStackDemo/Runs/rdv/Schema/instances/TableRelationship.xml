@@ -214,545 +214,545 @@
     <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder:relationship:FK_HS_WorkOrder_WorkOrder_H_WorkOrder" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder">
       <Name>FK_HS_WorkOrder_WorkOrder_H_WorkOrder</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince:relationship:FK_L_AddressStateProvince_H_Address_AddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
-      <Name>FK_L_AddressStateProvince_H_Address_AddressHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince:relationship:FK_L_AddressStateProvince_AddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
+      <Name>FK_L_AddressStateProvince_AddressHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince:relationship:FK_L_AddressStateProvince_H_StateProvince_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
-      <Name>FK_L_AddressStateProvince_H_StateProvince_StateProvinceHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince:relationship:FK_L_AddressStateProvince_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
+      <Name>FK_L_AddressStateProvince_StateProvinceHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID:relationship:FK_L_BillOfMaterialsProduct_ComponentID_H_BillOfMaterials_BillOfMaterialsHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials">
-      <Name>FK_L_BillOfMaterialsProduct_ComponentID_H_BillOfMaterials_BillOfMaterialsHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID:relationship:FK_L_BillOfMaterialsProduct_ComponentID_BillOfMaterialsHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials">
+      <Name>FK_L_BillOfMaterialsProduct_ComponentID_BillOfMaterialsHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID:relationship:FK_L_BillOfMaterialsProduct_ComponentID_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_BillOfMaterialsProduct_ComponentID_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID:relationship:FK_L_BillOfMaterialsProduct_ComponentID_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_BillOfMaterialsProduct_ComponentID_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID:relationship:FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_BillOfMaterials_BillOfMaterialsHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials">
-      <Name>FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_BillOfMaterials_BillOfMaterialsHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID:relationship:FK_L_BillOfMaterialsProduct_ProductAssemblyID_BillOfMaterialsHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials">
+      <Name>FK_L_BillOfMaterialsProduct_ProductAssemblyID_BillOfMaterialsHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID:relationship:FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID:relationship:FK_L_BillOfMaterialsProduct_ProductAssemblyID_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_BillOfMaterialsProduct_ProductAssemblyID_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure:relationship:FK_L_BillOfMaterialsUnitMeasure_H_BillOfMaterials_BillOfMaterialsHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials">
-      <Name>FK_L_BillOfMaterialsUnitMeasure_H_BillOfMaterials_BillOfMaterialsHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure:relationship:FK_L_BillOfMaterialsUnitMeasure_BillOfMaterialsHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials">
+      <Name>FK_L_BillOfMaterialsUnitMeasure_BillOfMaterialsHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure:relationship:FK_L_BillOfMaterialsUnitMeasure_H_UnitMeasure_UnitMeasureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure">
-      <Name>FK_L_BillOfMaterialsUnitMeasure_H_UnitMeasure_UnitMeasureHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure:relationship:FK_L_BillOfMaterialsUnitMeasure_UnitMeasureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure">
+      <Name>FK_L_BillOfMaterialsUnitMeasure_UnitMeasureHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress:relationship:FK_L_BusinessEntityAddressAddress_H_Address_AddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
-      <Name>FK_L_BusinessEntityAddressAddress_H_Address_AddressHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress:relationship:FK_L_BusinessEntityAddressAddress_AddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
+      <Name>FK_L_BusinessEntityAddressAddress_AddressHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress:relationship:FK_L_BusinessEntityAddressAddress_H_BusinessEntityAddress_BusinessEntityAddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
-      <Name>FK_L_BusinessEntityAddressAddress_H_BusinessEntityAddress_BusinessEntityAddressHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress:relationship:FK_L_BusinessEntityAddressAddress_BusinessEntityAddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
+      <Name>FK_L_BusinessEntityAddressAddress_BusinessEntityAddressHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType:relationship:FK_L_BusinessEntityAddressAddressType_H_AddressType_AddressTypeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType">
-      <Name>FK_L_BusinessEntityAddressAddressType_H_AddressType_AddressTypeHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType:relationship:FK_L_BusinessEntityAddressAddressType_AddressTypeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType">
+      <Name>FK_L_BusinessEntityAddressAddressType_AddressTypeHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType:relationship:FK_L_BusinessEntityAddressAddressType_H_BusinessEntityAddress_BusinessEntityAddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
-      <Name>FK_L_BusinessEntityAddressAddressType_H_BusinessEntityAddress_BusinessEntityAddressHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType:relationship:FK_L_BusinessEntityAddressAddressType_BusinessEntityAddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
+      <Name>FK_L_BusinessEntityAddressAddressType_BusinessEntityAddressHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity:relationship:FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntityAddress_BusinessEntityAddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
-      <Name>FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntityAddress_BusinessEntityAddressHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity:relationship:FK_L_BusinessEntityAddressBusinessEntity_BusinessEntityAddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
+      <Name>FK_L_BusinessEntityAddressBusinessEntity_BusinessEntityAddressHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity:relationship:FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
-      <Name>FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntity_BusinessEntityHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity:relationship:FK_L_BusinessEntityAddressBusinessEntity_BusinessEntityHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
+      <Name>FK_L_BusinessEntityAddressBusinessEntity_BusinessEntityHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity:relationship:FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntityContact_BusinessEntityContactHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
-      <Name>FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntityContact_BusinessEntityContactHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity:relationship:FK_L_BusinessEntityContactBusinessEntity_BusinessEntityContactHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
+      <Name>FK_L_BusinessEntityContactBusinessEntity_BusinessEntityContactHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity:relationship:FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
-      <Name>FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntity_BusinessEntityHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity:relationship:FK_L_BusinessEntityContactBusinessEntity_BusinessEntityHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
+      <Name>FK_L_BusinessEntityContactBusinessEntity_BusinessEntityHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType:relationship:FK_L_BusinessEntityContactContactType_H_BusinessEntityContact_BusinessEntityContactHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
-      <Name>FK_L_BusinessEntityContactContactType_H_BusinessEntityContact_BusinessEntityContactHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType:relationship:FK_L_BusinessEntityContactContactType_BusinessEntityContactHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
+      <Name>FK_L_BusinessEntityContactContactType_BusinessEntityContactHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType:relationship:FK_L_BusinessEntityContactContactType_H_ContactType_ContactTypeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType">
-      <Name>FK_L_BusinessEntityContactContactType_H_ContactType_ContactTypeHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType:relationship:FK_L_BusinessEntityContactContactType_ContactTypeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType">
+      <Name>FK_L_BusinessEntityContactContactType_ContactTypeHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson:relationship:FK_L_BusinessEntityContactPerson_H_BusinessEntityContact_BusinessEntityContactHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
-      <Name>FK_L_BusinessEntityContactPerson_H_BusinessEntityContact_BusinessEntityContactHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson:relationship:FK_L_BusinessEntityContactPerson_BusinessEntityContactHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
+      <Name>FK_L_BusinessEntityContactPerson_BusinessEntityContactHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson:relationship:FK_L_BusinessEntityContactPerson_H_Person_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
-      <Name>FK_L_BusinessEntityContactPerson_H_Person_PersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson:relationship:FK_L_BusinessEntityContactPerson_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
+      <Name>FK_L_BusinessEntityContactPerson_PersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion:relationship:FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegionCurrency_CountryRegionCurrencyHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegionCurrency">
-      <Name>FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegionCurrency_CountryRegionCurrencyHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion:relationship:FK_L_CountryRegionCurrencyCountryRegion_CountryRegionCurrencyHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegionCurrency">
+      <Name>FK_L_CountryRegionCurrencyCountryRegion_CountryRegionCurrencyHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion:relationship:FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegion_CountryRegionHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion">
-      <Name>FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegion_CountryRegionHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion:relationship:FK_L_CountryRegionCurrencyCountryRegion_CountryRegionHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion">
+      <Name>FK_L_CountryRegionCurrencyCountryRegion_CountryRegionHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency:relationship:FK_L_CountryRegionCurrencyCurrency_H_CountryRegionCurrency_CountryRegionCurrencyHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegionCurrency">
-      <Name>FK_L_CountryRegionCurrencyCurrency_H_CountryRegionCurrency_CountryRegionCurrencyHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency:relationship:FK_L_CountryRegionCurrencyCurrency_CountryRegionCurrencyHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegionCurrency">
+      <Name>FK_L_CountryRegionCurrencyCurrency_CountryRegionCurrencyHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency:relationship:FK_L_CountryRegionCurrencyCurrency_H_Currency_CurrencyHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency">
-      <Name>FK_L_CountryRegionCurrencyCurrency_H_Currency_CurrencyHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency:relationship:FK_L_CountryRegionCurrencyCurrency_CurrencyHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency">
+      <Name>FK_L_CountryRegionCurrencyCurrency_CurrencyHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode:relationship:FK_L_CurrencyRateCurrency_FromCurrencyCode_H_CurrencyRate_CurrencyRateHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate">
-      <Name>FK_L_CurrencyRateCurrency_FromCurrencyCode_H_CurrencyRate_CurrencyRateHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode:relationship:FK_L_CurrencyRateCurrency_FromCurrencyCode_CurrencyHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency">
+      <Name>FK_L_CurrencyRateCurrency_FromCurrencyCode_CurrencyHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode:relationship:FK_L_CurrencyRateCurrency_FromCurrencyCode_H_Currency_CurrencyHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency">
-      <Name>FK_L_CurrencyRateCurrency_FromCurrencyCode_H_Currency_CurrencyHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode:relationship:FK_L_CurrencyRateCurrency_FromCurrencyCode_CurrencyRateHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate">
+      <Name>FK_L_CurrencyRateCurrency_FromCurrencyCode_CurrencyRateHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode:relationship:FK_L_CurrencyRateCurrency_ToCurrencyCode_H_CurrencyRate_CurrencyRateHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate">
-      <Name>FK_L_CurrencyRateCurrency_ToCurrencyCode_H_CurrencyRate_CurrencyRateHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode:relationship:FK_L_CurrencyRateCurrency_ToCurrencyCode_CurrencyHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency">
+      <Name>FK_L_CurrencyRateCurrency_ToCurrencyCode_CurrencyHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode:relationship:FK_L_CurrencyRateCurrency_ToCurrencyCode_H_Currency_CurrencyHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency">
-      <Name>FK_L_CurrencyRateCurrency_ToCurrencyCode_H_Currency_CurrencyHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode:relationship:FK_L_CurrencyRateCurrency_ToCurrencyCode_CurrencyRateHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate">
+      <Name>FK_L_CurrencyRateCurrency_ToCurrencyCode_CurrencyRateHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson:relationship:FK_L_CustomerPerson_H_Customer_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
-      <Name>FK_L_CustomerPerson_H_Customer_CustomerHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson:relationship:FK_L_CustomerPerson_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
+      <Name>FK_L_CustomerPerson_CustomerHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson:relationship:FK_L_CustomerPerson_H_Person_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
-      <Name>FK_L_CustomerPerson_H_Person_PersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson:relationship:FK_L_CustomerPerson_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
+      <Name>FK_L_CustomerPerson_PersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:relationship:FK_L_CustomerSalesTerritory_H_Customer_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
-      <Name>FK_L_CustomerSalesTerritory_H_Customer_CustomerHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:relationship:FK_L_CustomerSalesTerritory_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
+      <Name>FK_L_CustomerSalesTerritory_CustomerHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:relationship:FK_L_CustomerSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
-      <Name>FK_L_CustomerSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:relationship:FK_L_CustomerSalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
+      <Name>FK_L_CustomerSalesTerritory_SalesTerritoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:relationship:FK_L_CustomerStore_H_Customer_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
-      <Name>FK_L_CustomerStore_H_Customer_CustomerHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:relationship:FK_L_CustomerStore_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
+      <Name>FK_L_CustomerStore_CustomerHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:relationship:FK_L_CustomerStore_H_Store_StoreHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store">
-      <Name>FK_L_CustomerStore_H_Store_StoreHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:relationship:FK_L_CustomerStore_StoreHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store">
+      <Name>FK_L_CustomerStore_StoreHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee:relationship:FK_L_DocumentEmployee_H_Document_DocumentHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Document">
-      <Name>FK_L_DocumentEmployee_H_Document_DocumentHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee:relationship:FK_L_DocumentEmployee_DocumentHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Document">
+      <Name>FK_L_DocumentEmployee_DocumentHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee:relationship:FK_L_DocumentEmployee_H_Employee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
-      <Name>FK_L_DocumentEmployee_H_Employee_EmployeeHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee:relationship:FK_L_DocumentEmployee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
+      <Name>FK_L_DocumentEmployee_EmployeeHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson:relationship:FK_L_EmailAddressPerson_H_EmailAddress_EmailAddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress">
-      <Name>FK_L_EmailAddressPerson_H_EmailAddress_EmailAddressHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson:relationship:FK_L_EmailAddressPerson_EmailAddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress">
+      <Name>FK_L_EmailAddressPerson_EmailAddressHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson:relationship:FK_L_EmailAddressPerson_H_Person_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
-      <Name>FK_L_EmailAddressPerson_H_Person_PersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson:relationship:FK_L_EmailAddressPerson_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
+      <Name>FK_L_EmailAddressPerson_PersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment:relationship:FK_L_EmployeeDepartmentHistoryDepartment_H_Department_DepartmentHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Department">
-      <Name>FK_L_EmployeeDepartmentHistoryDepartment_H_Department_DepartmentHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment:relationship:FK_L_EmployeeDepartmentHistoryDepartment_DepartmentHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Department">
+      <Name>FK_L_EmployeeDepartmentHistoryDepartment_DepartmentHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment:relationship:FK_L_EmployeeDepartmentHistoryDepartment_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory">
-      <Name>FK_L_EmployeeDepartmentHistoryDepartment_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment:relationship:FK_L_EmployeeDepartmentHistoryDepartment_EmployeeDepartmentHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory">
+      <Name>FK_L_EmployeeDepartmentHistoryDepartment_EmployeeDepartmentHistoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee:relationship:FK_L_EmployeeDepartmentHistoryEmployee_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory">
-      <Name>FK_L_EmployeeDepartmentHistoryEmployee_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee:relationship:FK_L_EmployeeDepartmentHistoryEmployee_EmployeeDepartmentHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory">
+      <Name>FK_L_EmployeeDepartmentHistoryEmployee_EmployeeDepartmentHistoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee:relationship:FK_L_EmployeeDepartmentHistoryEmployee_H_Employee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
-      <Name>FK_L_EmployeeDepartmentHistoryEmployee_H_Employee_EmployeeHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee:relationship:FK_L_EmployeeDepartmentHistoryEmployee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
+      <Name>FK_L_EmployeeDepartmentHistoryEmployee_EmployeeHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift:relationship:FK_L_EmployeeDepartmentHistoryShift_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory">
-      <Name>FK_L_EmployeeDepartmentHistoryShift_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift:relationship:FK_L_EmployeeDepartmentHistoryShift_EmployeeDepartmentHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory">
+      <Name>FK_L_EmployeeDepartmentHistoryShift_EmployeeDepartmentHistoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift:relationship:FK_L_EmployeeDepartmentHistoryShift_H_Shift_ShiftHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Shift">
-      <Name>FK_L_EmployeeDepartmentHistoryShift_H_Shift_ShiftHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift:relationship:FK_L_EmployeeDepartmentHistoryShift_ShiftHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Shift">
+      <Name>FK_L_EmployeeDepartmentHistoryShift_ShiftHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee:relationship:FK_L_EmployeePayHistoryEmployee_H_EmployeePayHistory_EmployeePayHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory">
-      <Name>FK_L_EmployeePayHistoryEmployee_H_EmployeePayHistory_EmployeePayHistoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee:relationship:FK_L_EmployeePayHistoryEmployee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
+      <Name>FK_L_EmployeePayHistoryEmployee_EmployeeHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee:relationship:FK_L_EmployeePayHistoryEmployee_H_Employee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
-      <Name>FK_L_EmployeePayHistoryEmployee_H_Employee_EmployeeHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee:relationship:FK_L_EmployeePayHistoryEmployee_EmployeePayHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory">
+      <Name>FK_L_EmployeePayHistoryEmployee_EmployeePayHistoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson:relationship:FK_L_EmployeePerson_H_Employee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
-      <Name>FK_L_EmployeePerson_H_Employee_EmployeeHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson:relationship:FK_L_EmployeePerson_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
+      <Name>FK_L_EmployeePerson_EmployeeHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson:relationship:FK_L_EmployeePerson_H_Person_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
-      <Name>FK_L_EmployeePerson_H_Person_PersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson:relationship:FK_L_EmployeePerson_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
+      <Name>FK_L_EmployeePerson_PersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee:relationship:FK_L_JobCandidateEmployee_H_Employee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
-      <Name>FK_L_JobCandidateEmployee_H_Employee_EmployeeHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee:relationship:FK_L_JobCandidateEmployee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
+      <Name>FK_L_JobCandidateEmployee_EmployeeHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee:relationship:FK_L_JobCandidateEmployee_H_JobCandidate_JobCandidateHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate">
-      <Name>FK_L_JobCandidateEmployee_H_JobCandidate_JobCandidateHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee:relationship:FK_L_JobCandidateEmployee_JobCandidateHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate">
+      <Name>FK_L_JobCandidateEmployee_JobCandidateHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson:relationship:FK_L_PasswordPerson_H_Password_PasswordHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password">
-      <Name>FK_L_PasswordPerson_H_Password_PasswordHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson:relationship:FK_L_PasswordPerson_PasswordHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password">
+      <Name>FK_L_PasswordPerson_PasswordHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson:relationship:FK_L_PasswordPerson_H_Person_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
-      <Name>FK_L_PasswordPerson_H_Person_PersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson:relationship:FK_L_PasswordPerson_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
+      <Name>FK_L_PasswordPerson_PersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity:relationship:FK_L_PersonBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
-      <Name>FK_L_PersonBusinessEntity_H_BusinessEntity_BusinessEntityHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity:relationship:FK_L_PersonBusinessEntity_BusinessEntityHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
+      <Name>FK_L_PersonBusinessEntity_BusinessEntityHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity:relationship:FK_L_PersonBusinessEntity_H_Person_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
-      <Name>FK_L_PersonBusinessEntity_H_Person_PersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity:relationship:FK_L_PersonBusinessEntity_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
+      <Name>FK_L_PersonBusinessEntity_PersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard:relationship:FK_L_PersonCreditCardCreditCard_H_CreditCard_CreditCardHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard">
-      <Name>FK_L_PersonCreditCardCreditCard_H_CreditCard_CreditCardHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard:relationship:FK_L_PersonCreditCardCreditCard_CreditCardHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard">
+      <Name>FK_L_PersonCreditCardCreditCard_CreditCardHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard:relationship:FK_L_PersonCreditCardCreditCard_H_PersonCreditCard_PersonCreditCardHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard">
-      <Name>FK_L_PersonCreditCardCreditCard_H_PersonCreditCard_PersonCreditCardHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard:relationship:FK_L_PersonCreditCardCreditCard_PersonCreditCardHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard">
+      <Name>FK_L_PersonCreditCardCreditCard_PersonCreditCardHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson:relationship:FK_L_PersonCreditCardPerson_H_PersonCreditCard_PersonCreditCardHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard">
-      <Name>FK_L_PersonCreditCardPerson_H_PersonCreditCard_PersonCreditCardHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson:relationship:FK_L_PersonCreditCardPerson_PersonCreditCardHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard">
+      <Name>FK_L_PersonCreditCardPerson_PersonCreditCardHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson:relationship:FK_L_PersonCreditCardPerson_H_Person_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
-      <Name>FK_L_PersonCreditCardPerson_H_Person_PersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson:relationship:FK_L_PersonCreditCardPerson_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
+      <Name>FK_L_PersonCreditCardPerson_PersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson:relationship:FK_L_PersonPhonePerson_H_PersonPhone_PersonPhoneHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone">
-      <Name>FK_L_PersonPhonePerson_H_PersonPhone_PersonPhoneHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson:relationship:FK_L_PersonPhonePerson_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
+      <Name>FK_L_PersonPhonePerson_PersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson:relationship:FK_L_PersonPhonePerson_H_Person_PersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
-      <Name>FK_L_PersonPhonePerson_H_Person_PersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson:relationship:FK_L_PersonPhonePerson_PersonPhoneHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone">
+      <Name>FK_L_PersonPhonePerson_PersonPhoneHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType:relationship:FK_L_PersonPhonePhoneNumberType_H_PersonPhone_PersonPhoneHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone">
-      <Name>FK_L_PersonPhonePhoneNumberType_H_PersonPhone_PersonPhoneHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType:relationship:FK_L_PersonPhonePhoneNumberType_PersonPhoneHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone">
+      <Name>FK_L_PersonPhonePhoneNumberType_PersonPhoneHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType:relationship:FK_L_PersonPhonePhoneNumberType_H_PhoneNumberType_PhoneNumberTypeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType">
-      <Name>FK_L_PersonPhonePhoneNumberType_H_PhoneNumberType_PhoneNumberTypeHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType:relationship:FK_L_PersonPhonePhoneNumberType_PhoneNumberTypeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType">
+      <Name>FK_L_PersonPhonePhoneNumberType_PhoneNumberTypeHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct:relationship:FK_L_ProductCostHistoryProduct_H_ProductCostHistory_ProductCostHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory">
-      <Name>FK_L_ProductCostHistoryProduct_H_ProductCostHistory_ProductCostHistoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct:relationship:FK_L_ProductCostHistoryProduct_ProductCostHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory">
+      <Name>FK_L_ProductCostHistoryProduct_ProductCostHistoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct:relationship:FK_L_ProductCostHistoryProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductCostHistoryProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct:relationship:FK_L_ProductCostHistoryProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductCostHistoryProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument:relationship:FK_L_ProductDocumentDocument_H_Document_DocumentHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Document">
-      <Name>FK_L_ProductDocumentDocument_H_Document_DocumentHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument:relationship:FK_L_ProductDocumentDocument_DocumentHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Document">
+      <Name>FK_L_ProductDocumentDocument_DocumentHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument:relationship:FK_L_ProductDocumentDocument_H_ProductDocument_ProductDocumentHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument">
-      <Name>FK_L_ProductDocumentDocument_H_ProductDocument_ProductDocumentHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument:relationship:FK_L_ProductDocumentDocument_ProductDocumentHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument">
+      <Name>FK_L_ProductDocumentDocument_ProductDocumentHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct:relationship:FK_L_ProductDocumentProduct_H_ProductDocument_ProductDocumentHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument">
-      <Name>FK_L_ProductDocumentProduct_H_ProductDocument_ProductDocumentHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct:relationship:FK_L_ProductDocumentProduct_ProductDocumentHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument">
+      <Name>FK_L_ProductDocumentProduct_ProductDocumentHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct:relationship:FK_L_ProductDocumentProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductDocumentProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct:relationship:FK_L_ProductDocumentProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductDocumentProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation:relationship:FK_L_ProductInventoryLocation_H_Location_LocationHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Location">
-      <Name>FK_L_ProductInventoryLocation_H_Location_LocationHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation:relationship:FK_L_ProductInventoryLocation_LocationHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Location">
+      <Name>FK_L_ProductInventoryLocation_LocationHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation:relationship:FK_L_ProductInventoryLocation_H_ProductInventory_ProductInventoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory">
-      <Name>FK_L_ProductInventoryLocation_H_ProductInventory_ProductInventoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation:relationship:FK_L_ProductInventoryLocation_ProductInventoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory">
+      <Name>FK_L_ProductInventoryLocation_ProductInventoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct:relationship:FK_L_ProductInventoryProduct_H_ProductInventory_ProductInventoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory">
-      <Name>FK_L_ProductInventoryProduct_H_ProductInventory_ProductInventoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct:relationship:FK_L_ProductInventoryProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductInventoryProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct:relationship:FK_L_ProductInventoryProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductInventoryProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct:relationship:FK_L_ProductInventoryProduct_ProductInventoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory">
+      <Name>FK_L_ProductInventoryProduct_ProductInventoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct:relationship:FK_L_ProductListPriceHistoryProduct_H_ProductListPriceHistory_ProductListPriceHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory">
-      <Name>FK_L_ProductListPriceHistoryProduct_H_ProductListPriceHistory_ProductListPriceHistoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct:relationship:FK_L_ProductListPriceHistoryProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductListPriceHistoryProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct:relationship:FK_L_ProductListPriceHistoryProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductListPriceHistoryProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct:relationship:FK_L_ProductListPriceHistoryProduct_ProductListPriceHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory">
+      <Name>FK_L_ProductListPriceHistoryProduct_ProductListPriceHistoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration:relationship:FK_L_ProductModelIllustrationIllustration_H_Illustration_IllustrationHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration">
-      <Name>FK_L_ProductModelIllustrationIllustration_H_Illustration_IllustrationHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration:relationship:FK_L_ProductModelIllustrationIllustration_IllustrationHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration">
+      <Name>FK_L_ProductModelIllustrationIllustration_IllustrationHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration:relationship:FK_L_ProductModelIllustrationIllustration_H_ProductModelIllustration_ProductModelIllustrationHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration">
-      <Name>FK_L_ProductModelIllustrationIllustration_H_ProductModelIllustration_ProductModelIllustrationHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration:relationship:FK_L_ProductModelIllustrationIllustration_ProductModelIllustrationHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration">
+      <Name>FK_L_ProductModelIllustrationIllustration_ProductModelIllustrationHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel:relationship:FK_L_ProductModelIllustrationProductModel_H_ProductModelIllustration_ProductModelIllustrationHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration">
-      <Name>FK_L_ProductModelIllustrationProductModel_H_ProductModelIllustration_ProductModelIllustrationHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel:relationship:FK_L_ProductModelIllustrationProductModel_ProductModelHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel">
+      <Name>FK_L_ProductModelIllustrationProductModel_ProductModelHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel:relationship:FK_L_ProductModelIllustrationProductModel_H_ProductModel_ProductModelHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel">
-      <Name>FK_L_ProductModelIllustrationProductModel_H_ProductModel_ProductModelHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel:relationship:FK_L_ProductModelIllustrationProductModel_ProductModelIllustrationHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration">
+      <Name>FK_L_ProductModelIllustrationProductModel_ProductModelIllustrationHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture:relationship:FK_L_ProductModelProductDescriptionCultureCulture_H_Culture_CultureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Culture">
-      <Name>FK_L_ProductModelProductDescriptionCultureCulture_H_Culture_CultureHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture:relationship:FK_L_ProductModelProductDescriptionCultureCulture_CultureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Culture">
+      <Name>FK_L_ProductModelProductDescriptionCultureCulture_CultureHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture:relationship:FK_L_ProductModelProductDescriptionCultureCulture_H_ProductModelProductDescriptionCulture_ProductModelProductDescri_041500cc3c79" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture">
-      <Name>FK_L_ProductModelProductDescriptionCultureCulture_H_ProductModelProductDescriptionCulture_ProductModelProductDescri_041500cc3c79</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture:relationship:FK_L_ProductModelProductDescriptionCultureCulture_ProductModelProductDescriptionCultureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture">
+      <Name>FK_L_ProductModelProductDescriptionCultureCulture_ProductModelProductDescriptionCultureHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription:relationship:FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductDescription_ProductDescriptionHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription">
-      <Name>FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductDescription_ProductDescriptionHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription:relationship:FK_L_ProductModelProductDescriptionCultureProductDescription_ProductDescriptionHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription">
+      <Name>FK_L_ProductModelProductDescriptionCultureProductDescription_ProductDescriptionHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription:relationship:FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductModelProductDescriptionCulture_ProductModelPr_2245e837153e" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture">
-      <Name>FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductModelProductDescriptionCulture_ProductModelPr_2245e837153e</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription:relationship:FK_L_ProductModelProductDescriptionCultureProductDescription_ProductModelProductDescriptionCultureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture">
+      <Name>FK_L_ProductModelProductDescriptionCultureProductDescription_ProductModelProductDescriptionCultureHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel:relationship:FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModelProductDescriptionCulture_ProductModelProductD_ac59eee6c09a" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture">
-      <Name>FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModelProductDescriptionCulture_ProductModelProductD_ac59eee6c09a</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel:relationship:FK_L_ProductModelProductDescriptionCultureProductModel_ProductModelHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel">
+      <Name>FK_L_ProductModelProductDescriptionCultureProductModel_ProductModelHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel:relationship:FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModel_ProductModelHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel">
-      <Name>FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModel_ProductModelHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel:relationship:FK_L_ProductModelProductDescriptionCultureProductModel_ProductModelProductDescriptionCultureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture">
+      <Name>FK_L_ProductModelProductDescriptionCultureProductModel_ProductModelProductDescriptionCultureHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel:relationship:FK_L_ProductProductModel_H_ProductModel_ProductModelHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel">
-      <Name>FK_L_ProductProductModel_H_ProductModel_ProductModelHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel:relationship:FK_L_ProductProductModel_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductProductModel_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel:relationship:FK_L_ProductProductModel_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductProductModel_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel:relationship:FK_L_ProductProductModel_ProductModelHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel">
+      <Name>FK_L_ProductProductModel_ProductModelHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct:relationship:FK_L_ProductProductPhotoProduct_H_ProductProductPhoto_ProductProductPhotoHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto">
-      <Name>FK_L_ProductProductPhotoProduct_H_ProductProductPhoto_ProductProductPhotoHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct:relationship:FK_L_ProductProductPhotoProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductProductPhotoProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct:relationship:FK_L_ProductProductPhotoProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductProductPhotoProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct:relationship:FK_L_ProductProductPhotoProduct_ProductProductPhotoHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto">
+      <Name>FK_L_ProductProductPhotoProduct_ProductProductPhotoHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto:relationship:FK_L_ProductProductPhotoProductPhoto_H_ProductPhoto_ProductPhotoHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto">
-      <Name>FK_L_ProductProductPhotoProductPhoto_H_ProductPhoto_ProductPhotoHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto:relationship:FK_L_ProductProductPhotoProductPhoto_ProductPhotoHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto">
+      <Name>FK_L_ProductProductPhotoProductPhoto_ProductPhotoHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto:relationship:FK_L_ProductProductPhotoProductPhoto_H_ProductProductPhoto_ProductProductPhotoHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto">
-      <Name>FK_L_ProductProductPhotoProductPhoto_H_ProductProductPhoto_ProductProductPhotoHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto:relationship:FK_L_ProductProductPhotoProductPhoto_ProductProductPhotoHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto">
+      <Name>FK_L_ProductProductPhotoProductPhoto_ProductProductPhotoHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:relationship:FK_L_ProductProductSubcategory_H_ProductSubcategory_ProductSubcategoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory">
-      <Name>FK_L_ProductProductSubcategory_H_ProductSubcategory_ProductSubcategoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:relationship:FK_L_ProductProductSubcategory_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductProductSubcategory_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:relationship:FK_L_ProductProductSubcategory_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductProductSubcategory_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:relationship:FK_L_ProductProductSubcategory_ProductSubcategoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory">
+      <Name>FK_L_ProductProductSubcategory_ProductSubcategoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct:relationship:FK_L_ProductReviewProduct_H_ProductReview_ProductReviewHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview">
-      <Name>FK_L_ProductReviewProduct_H_ProductReview_ProductReviewHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct:relationship:FK_L_ProductReviewProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductReviewProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct:relationship:FK_L_ProductReviewProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductReviewProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct:relationship:FK_L_ProductReviewProduct_ProductReviewHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview">
+      <Name>FK_L_ProductReviewProduct_ProductReviewHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:relationship:FK_L_ProductSubcategoryProductCategory_H_ProductCategory_ProductCategoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory">
-      <Name>FK_L_ProductSubcategoryProductCategory_H_ProductCategory_ProductCategoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:relationship:FK_L_ProductSubcategoryProductCategory_ProductCategoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory">
+      <Name>FK_L_ProductSubcategoryProductCategory_ProductCategoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:relationship:FK_L_ProductSubcategoryProductCategory_H_ProductSubcategory_ProductSubcategoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory">
-      <Name>FK_L_ProductSubcategoryProductCategory_H_ProductSubcategory_ProductSubcategoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:relationship:FK_L_ProductSubcategoryProductCategory_ProductSubcategoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory">
+      <Name>FK_L_ProductSubcategoryProductCategory_ProductSubcategoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode:relationship:FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode:relationship:FK_L_ProductUnitMeasure_SizeUnitMeasureCode_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductUnitMeasure_SizeUnitMeasureCode_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode:relationship:FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure">
-      <Name>FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode:relationship:FK_L_ProductUnitMeasure_SizeUnitMeasureCode_UnitMeasureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure">
+      <Name>FK_L_ProductUnitMeasure_SizeUnitMeasureCode_UnitMeasureHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode:relationship:FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode:relationship:FK_L_ProductUnitMeasure_WeightUnitMeasureCode_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductUnitMeasure_WeightUnitMeasureCode_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode:relationship:FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure">
-      <Name>FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode:relationship:FK_L_ProductUnitMeasure_WeightUnitMeasureCode_UnitMeasureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure">
+      <Name>FK_L_ProductUnitMeasure_WeightUnitMeasureCode_UnitMeasureHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct:relationship:FK_L_ProductVendorProduct_H_ProductVendor_ProductVendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor">
-      <Name>FK_L_ProductVendorProduct_H_ProductVendor_ProductVendorHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct:relationship:FK_L_ProductVendorProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ProductVendorProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct:relationship:FK_L_ProductVendorProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ProductVendorProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct:relationship:FK_L_ProductVendorProduct_ProductVendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor">
+      <Name>FK_L_ProductVendorProduct_ProductVendorHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure:relationship:FK_L_ProductVendorUnitMeasure_H_ProductVendor_ProductVendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor">
-      <Name>FK_L_ProductVendorUnitMeasure_H_ProductVendor_ProductVendorHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure:relationship:FK_L_ProductVendorUnitMeasure_ProductVendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor">
+      <Name>FK_L_ProductVendorUnitMeasure_ProductVendorHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure:relationship:FK_L_ProductVendorUnitMeasure_H_UnitMeasure_UnitMeasureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure">
-      <Name>FK_L_ProductVendorUnitMeasure_H_UnitMeasure_UnitMeasureHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure:relationship:FK_L_ProductVendorUnitMeasure_UnitMeasureHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure">
+      <Name>FK_L_ProductVendorUnitMeasure_UnitMeasureHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor:relationship:FK_L_ProductVendorVendor_H_ProductVendor_ProductVendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor">
-      <Name>FK_L_ProductVendorVendor_H_ProductVendor_ProductVendorHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor:relationship:FK_L_ProductVendorVendor_ProductVendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor">
+      <Name>FK_L_ProductVendorVendor_ProductVendorHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor:relationship:FK_L_ProductVendorVendor_H_Vendor_VendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor">
-      <Name>FK_L_ProductVendorVendor_H_Vendor_VendorHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor:relationship:FK_L_ProductVendorVendor_VendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor">
+      <Name>FK_L_ProductVendorVendor_VendorHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct:relationship:FK_L_PurchaseOrderDetailProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_PurchaseOrderDetailProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct:relationship:FK_L_PurchaseOrderDetailProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_PurchaseOrderDetailProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct:relationship:FK_L_PurchaseOrderDetailProduct_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail">
-      <Name>FK_L_PurchaseOrderDetailProduct_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct:relationship:FK_L_PurchaseOrderDetailProduct_PurchaseOrderDetailHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail">
+      <Name>FK_L_PurchaseOrderDetailProduct_PurchaseOrderDetailHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader:relationship:FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail">
-      <Name>FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader:relationship:FK_L_PurchaseOrderDetailPurchaseOrderHeader_PurchaseOrderDetailHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail">
+      <Name>FK_L_PurchaseOrderDetailPurchaseOrderHeader_PurchaseOrderDetailHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader:relationship:FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
-      <Name>FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader:relationship:FK_L_PurchaseOrderDetailPurchaseOrderHeader_PurchaseOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
+      <Name>FK_L_PurchaseOrderDetailPurchaseOrderHeader_PurchaseOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee:relationship:FK_L_PurchaseOrderHeaderEmployee_H_Employee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
-      <Name>FK_L_PurchaseOrderHeaderEmployee_H_Employee_EmployeeHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee:relationship:FK_L_PurchaseOrderHeaderEmployee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
+      <Name>FK_L_PurchaseOrderHeaderEmployee_EmployeeHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee:relationship:FK_L_PurchaseOrderHeaderEmployee_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
-      <Name>FK_L_PurchaseOrderHeaderEmployee_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee:relationship:FK_L_PurchaseOrderHeaderEmployee_PurchaseOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
+      <Name>FK_L_PurchaseOrderHeaderEmployee_PurchaseOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod:relationship:FK_L_PurchaseOrderHeaderShipMethod_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
-      <Name>FK_L_PurchaseOrderHeaderShipMethod_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod:relationship:FK_L_PurchaseOrderHeaderShipMethod_PurchaseOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
+      <Name>FK_L_PurchaseOrderHeaderShipMethod_PurchaseOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod:relationship:FK_L_PurchaseOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod">
-      <Name>FK_L_PurchaseOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod:relationship:FK_L_PurchaseOrderHeaderShipMethod_ShipMethodHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod">
+      <Name>FK_L_PurchaseOrderHeaderShipMethod_ShipMethodHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor:relationship:FK_L_PurchaseOrderHeaderVendor_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
-      <Name>FK_L_PurchaseOrderHeaderVendor_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor:relationship:FK_L_PurchaseOrderHeaderVendor_PurchaseOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
+      <Name>FK_L_PurchaseOrderHeaderVendor_PurchaseOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor:relationship:FK_L_PurchaseOrderHeaderVendor_H_Vendor_VendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor">
-      <Name>FK_L_PurchaseOrderHeaderVendor_H_Vendor_VendorHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor:relationship:FK_L_PurchaseOrderHeaderVendor_VendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor">
+      <Name>FK_L_PurchaseOrderHeaderVendor_VendorHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:relationship:FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderDetail_SalesOrderDetailHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail">
-      <Name>FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderDetail_SalesOrderDetailHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:relationship:FK_L_SalesOrderDetailSalesOrderHeader_SalesOrderDetailHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail">
+      <Name>FK_L_SalesOrderDetailSalesOrderHeader_SalesOrderDetailHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:relationship:FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-      <Name>FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:relationship:FK_L_SalesOrderDetailSalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <Name>FK_L_SalesOrderDetailSalesOrderHeader_SalesOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:relationship:FK_L_SalesOrderDetailSpecialOfferProduct_H_SalesOrderDetail_SalesOrderDetailHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail">
-      <Name>FK_L_SalesOrderDetailSpecialOfferProduct_H_SalesOrderDetail_SalesOrderDetailHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:relationship:FK_L_SalesOrderDetailSpecialOfferProduct_SalesOrderDetailHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail">
+      <Name>FK_L_SalesOrderDetailSpecialOfferProduct_SalesOrderDetailHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:relationship:FK_L_SalesOrderDetailSpecialOfferProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct">
-      <Name>FK_L_SalesOrderDetailSpecialOfferProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:relationship:FK_L_SalesOrderDetailSpecialOfferProduct_SpecialOfferProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct">
+      <Name>FK_L_SalesOrderDetailSpecialOfferProduct_SpecialOfferProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID:relationship:FK_L_SalesOrderHeaderAddress_BillToAddressID_H_Address_AddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
-      <Name>FK_L_SalesOrderHeaderAddress_BillToAddressID_H_Address_AddressHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID:relationship:FK_L_SalesOrderHeaderAddress_BillToAddressID_AddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
+      <Name>FK_L_SalesOrderHeaderAddress_BillToAddressID_AddressHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID:relationship:FK_L_SalesOrderHeaderAddress_BillToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-      <Name>FK_L_SalesOrderHeaderAddress_BillToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID:relationship:FK_L_SalesOrderHeaderAddress_BillToAddressID_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <Name>FK_L_SalesOrderHeaderAddress_BillToAddressID_SalesOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID:relationship:FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_Address_AddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
-      <Name>FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_Address_AddressHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID:relationship:FK_L_SalesOrderHeaderAddress_ShipToAddressID_AddressHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
+      <Name>FK_L_SalesOrderHeaderAddress_ShipToAddressID_AddressHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID:relationship:FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-      <Name>FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID:relationship:FK_L_SalesOrderHeaderAddress_ShipToAddressID_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <Name>FK_L_SalesOrderHeaderAddress_ShipToAddressID_SalesOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard:relationship:FK_L_SalesOrderHeaderCreditCard_H_CreditCard_CreditCardHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard">
-      <Name>FK_L_SalesOrderHeaderCreditCard_H_CreditCard_CreditCardHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard:relationship:FK_L_SalesOrderHeaderCreditCard_CreditCardHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard">
+      <Name>FK_L_SalesOrderHeaderCreditCard_CreditCardHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard:relationship:FK_L_SalesOrderHeaderCreditCard_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-      <Name>FK_L_SalesOrderHeaderCreditCard_H_SalesOrderHeader_SalesOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard:relationship:FK_L_SalesOrderHeaderCreditCard_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <Name>FK_L_SalesOrderHeaderCreditCard_SalesOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate:relationship:FK_L_SalesOrderHeaderCurrencyRate_H_CurrencyRate_CurrencyRateHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate">
-      <Name>FK_L_SalesOrderHeaderCurrencyRate_H_CurrencyRate_CurrencyRateHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate:relationship:FK_L_SalesOrderHeaderCurrencyRate_CurrencyRateHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate">
+      <Name>FK_L_SalesOrderHeaderCurrencyRate_CurrencyRateHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate:relationship:FK_L_SalesOrderHeaderCurrencyRate_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-      <Name>FK_L_SalesOrderHeaderCurrencyRate_H_SalesOrderHeader_SalesOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate:relationship:FK_L_SalesOrderHeaderCurrencyRate_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <Name>FK_L_SalesOrderHeaderCurrencyRate_SalesOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:relationship:FK_L_SalesOrderHeaderCustomer_H_Customer_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
-      <Name>FK_L_SalesOrderHeaderCustomer_H_Customer_CustomerHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:relationship:FK_L_SalesOrderHeaderCustomer_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
+      <Name>FK_L_SalesOrderHeaderCustomer_CustomerHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:relationship:FK_L_SalesOrderHeaderCustomer_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-      <Name>FK_L_SalesOrderHeaderCustomer_H_SalesOrderHeader_SalesOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:relationship:FK_L_SalesOrderHeaderCustomer_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <Name>FK_L_SalesOrderHeaderCustomer_SalesOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:relationship:FK_L_SalesOrderHeaderSalesPerson_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-      <Name>FK_L_SalesOrderHeaderSalesPerson_H_SalesOrderHeader_SalesOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:relationship:FK_L_SalesOrderHeaderSalesPerson_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <Name>FK_L_SalesOrderHeaderSalesPerson_SalesOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:relationship:FK_L_SalesOrderHeaderSalesPerson_H_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
-      <Name>FK_L_SalesOrderHeaderSalesPerson_H_SalesPerson_SalesPersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:relationship:FK_L_SalesOrderHeaderSalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
+      <Name>FK_L_SalesOrderHeaderSalesPerson_SalesPersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader:relationship:FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason">
-      <Name>FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader:relationship:FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <Name>FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_SalesOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader:relationship:FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-      <Name>FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader:relationship:FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_SalesOrderHeaderSalesReasonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason">
+      <Name>FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_SalesOrderHeaderSalesReasonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason:relationship:FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason">
-      <Name>FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason:relationship:FK_L_SalesOrderHeaderSalesReasonSalesReason_SalesOrderHeaderSalesReasonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason">
+      <Name>FK_L_SalesOrderHeaderSalesReasonSalesReason_SalesOrderHeaderSalesReasonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason:relationship:FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesReason_SalesReasonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason">
-      <Name>FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesReason_SalesReasonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason:relationship:FK_L_SalesOrderHeaderSalesReasonSalesReason_SalesReasonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason">
+      <Name>FK_L_SalesOrderHeaderSalesReasonSalesReason_SalesReasonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:relationship:FK_L_SalesOrderHeaderSalesTerritory_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-      <Name>FK_L_SalesOrderHeaderSalesTerritory_H_SalesOrderHeader_SalesOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:relationship:FK_L_SalesOrderHeaderSalesTerritory_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <Name>FK_L_SalesOrderHeaderSalesTerritory_SalesOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:relationship:FK_L_SalesOrderHeaderSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
-      <Name>FK_L_SalesOrderHeaderSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:relationship:FK_L_SalesOrderHeaderSalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
+      <Name>FK_L_SalesOrderHeaderSalesTerritory_SalesTerritoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod:relationship:FK_L_SalesOrderHeaderShipMethod_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
-      <Name>FK_L_SalesOrderHeaderShipMethod_H_SalesOrderHeader_SalesOrderHeaderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod:relationship:FK_L_SalesOrderHeaderShipMethod_SalesOrderHeaderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <Name>FK_L_SalesOrderHeaderShipMethod_SalesOrderHeaderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod:relationship:FK_L_SalesOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod">
-      <Name>FK_L_SalesOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod:relationship:FK_L_SalesOrderHeaderShipMethod_ShipMethodHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod">
+      <Name>FK_L_SalesOrderHeaderShipMethod_ShipMethodHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee:relationship:FK_L_SalesPersonEmployee_H_Employee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
-      <Name>FK_L_SalesPersonEmployee_H_Employee_EmployeeHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee:relationship:FK_L_SalesPersonEmployee_EmployeeHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
+      <Name>FK_L_SalesPersonEmployee_EmployeeHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee:relationship:FK_L_SalesPersonEmployee_H_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
-      <Name>FK_L_SalesPersonEmployee_H_SalesPerson_SalesPersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee:relationship:FK_L_SalesPersonEmployee_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
+      <Name>FK_L_SalesPersonEmployee_SalesPersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson:relationship:FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPersonQuotaHistory_SalesPersonQuotaHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory">
-      <Name>FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPersonQuotaHistory_SalesPersonQuotaHistoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson:relationship:FK_L_SalesPersonQuotaHistorySalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
+      <Name>FK_L_SalesPersonQuotaHistorySalesPerson_SalesPersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson:relationship:FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
-      <Name>FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPerson_SalesPersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson:relationship:FK_L_SalesPersonQuotaHistorySalesPerson_SalesPersonQuotaHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory">
+      <Name>FK_L_SalesPersonQuotaHistorySalesPerson_SalesPersonQuotaHistoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory:relationship:FK_L_SalesPersonSalesTerritory_H_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
-      <Name>FK_L_SalesPersonSalesTerritory_H_SalesPerson_SalesPersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory:relationship:FK_L_SalesPersonSalesTerritory_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
+      <Name>FK_L_SalesPersonSalesTerritory_SalesPersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory:relationship:FK_L_SalesPersonSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
-      <Name>FK_L_SalesPersonSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory:relationship:FK_L_SalesPersonSalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
+      <Name>FK_L_SalesPersonSalesTerritory_SalesTerritoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince:relationship:FK_L_SalesTaxRateStateProvince_H_SalesTaxRate_SalesTaxRateHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate">
-      <Name>FK_L_SalesTaxRateStateProvince_H_SalesTaxRate_SalesTaxRateHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince:relationship:FK_L_SalesTaxRateStateProvince_SalesTaxRateHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate">
+      <Name>FK_L_SalesTaxRateStateProvince_SalesTaxRateHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince:relationship:FK_L_SalesTaxRateStateProvince_H_StateProvince_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
-      <Name>FK_L_SalesTaxRateStateProvince_H_StateProvince_StateProvinceHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince:relationship:FK_L_SalesTaxRateStateProvince_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
+      <Name>FK_L_SalesTaxRateStateProvince_StateProvinceHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion:relationship:FK_L_SalesTerritoryCountryRegion_H_CountryRegion_CountryRegionHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion">
-      <Name>FK_L_SalesTerritoryCountryRegion_H_CountryRegion_CountryRegionHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion:relationship:FK_L_SalesTerritoryCountryRegion_CountryRegionHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion">
+      <Name>FK_L_SalesTerritoryCountryRegion_CountryRegionHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion:relationship:FK_L_SalesTerritoryCountryRegion_H_SalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
-      <Name>FK_L_SalesTerritoryCountryRegion_H_SalesTerritory_SalesTerritoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion:relationship:FK_L_SalesTerritoryCountryRegion_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
+      <Name>FK_L_SalesTerritoryCountryRegion_SalesTerritoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson:relationship:FK_L_SalesTerritoryHistorySalesPerson_H_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
-      <Name>FK_L_SalesTerritoryHistorySalesPerson_H_SalesPerson_SalesPersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson:relationship:FK_L_SalesTerritoryHistorySalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
+      <Name>FK_L_SalesTerritoryHistorySalesPerson_SalesPersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson:relationship:FK_L_SalesTerritoryHistorySalesPerson_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory">
-      <Name>FK_L_SalesTerritoryHistorySalesPerson_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson:relationship:FK_L_SalesTerritoryHistorySalesPerson_SalesTerritoryHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory">
+      <Name>FK_L_SalesTerritoryHistorySalesPerson_SalesTerritoryHistoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory:relationship:FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory">
-      <Name>FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory:relationship:FK_L_SalesTerritoryHistorySalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
+      <Name>FK_L_SalesTerritoryHistorySalesTerritory_SalesTerritoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory:relationship:FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
-      <Name>FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritory_SalesTerritoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory:relationship:FK_L_SalesTerritoryHistorySalesTerritory_SalesTerritoryHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory">
+      <Name>FK_L_SalesTerritoryHistorySalesTerritory_SalesTerritoryHistoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct:relationship:FK_L_ShoppingCartItemProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_ShoppingCartItemProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct:relationship:FK_L_ShoppingCartItemProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_ShoppingCartItemProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct:relationship:FK_L_ShoppingCartItemProduct_H_ShoppingCartItem_ShoppingCartItemHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem">
-      <Name>FK_L_ShoppingCartItemProduct_H_ShoppingCartItem_ShoppingCartItemHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct:relationship:FK_L_ShoppingCartItemProduct_ShoppingCartItemHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem">
+      <Name>FK_L_ShoppingCartItemProduct_ShoppingCartItemHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:relationship:FK_L_SpecialOfferProductProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_SpecialOfferProductProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:relationship:FK_L_SpecialOfferProductProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_SpecialOfferProductProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:relationship:FK_L_SpecialOfferProductProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct">
-      <Name>FK_L_SpecialOfferProductProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:relationship:FK_L_SpecialOfferProductProduct_SpecialOfferProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct">
+      <Name>FK_L_SpecialOfferProductProduct_SpecialOfferProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer:relationship:FK_L_SpecialOfferProductSpecialOffer_H_SpecialOfferProduct_SpecialOfferProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct">
-      <Name>FK_L_SpecialOfferProductSpecialOffer_H_SpecialOfferProduct_SpecialOfferProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer:relationship:FK_L_SpecialOfferProductSpecialOffer_SpecialOfferHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer">
+      <Name>FK_L_SpecialOfferProductSpecialOffer_SpecialOfferHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer:relationship:FK_L_SpecialOfferProductSpecialOffer_H_SpecialOffer_SpecialOfferHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer">
-      <Name>FK_L_SpecialOfferProductSpecialOffer_H_SpecialOffer_SpecialOfferHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer:relationship:FK_L_SpecialOfferProductSpecialOffer_SpecialOfferProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct">
+      <Name>FK_L_SpecialOfferProductSpecialOffer_SpecialOfferProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion:relationship:FK_L_StateProvinceCountryRegion_H_CountryRegion_CountryRegionHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion">
-      <Name>FK_L_StateProvinceCountryRegion_H_CountryRegion_CountryRegionHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion:relationship:FK_L_StateProvinceCountryRegion_CountryRegionHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion">
+      <Name>FK_L_StateProvinceCountryRegion_CountryRegionHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion:relationship:FK_L_StateProvinceCountryRegion_H_StateProvince_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
-      <Name>FK_L_StateProvinceCountryRegion_H_StateProvince_StateProvinceHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion:relationship:FK_L_StateProvinceCountryRegion_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
+      <Name>FK_L_StateProvinceCountryRegion_StateProvinceHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory:relationship:FK_L_StateProvinceSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
-      <Name>FK_L_StateProvinceSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory:relationship:FK_L_StateProvinceSalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
+      <Name>FK_L_StateProvinceSalesTerritory_SalesTerritoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory:relationship:FK_L_StateProvinceSalesTerritory_H_StateProvince_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
-      <Name>FK_L_StateProvinceSalesTerritory_H_StateProvince_StateProvinceHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory:relationship:FK_L_StateProvinceSalesTerritory_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
+      <Name>FK_L_StateProvinceSalesTerritory_StateProvinceHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity:relationship:FK_L_StoreBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
-      <Name>FK_L_StoreBusinessEntity_H_BusinessEntity_BusinessEntityHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity:relationship:FK_L_StoreBusinessEntity_BusinessEntityHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
+      <Name>FK_L_StoreBusinessEntity_BusinessEntityHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity:relationship:FK_L_StoreBusinessEntity_H_Store_StoreHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store">
-      <Name>FK_L_StoreBusinessEntity_H_Store_StoreHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity:relationship:FK_L_StoreBusinessEntity_StoreHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store">
+      <Name>FK_L_StoreBusinessEntity_StoreHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson:relationship:FK_L_StoreSalesPerson_H_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
-      <Name>FK_L_StoreSalesPerson_H_SalesPerson_SalesPersonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson:relationship:FK_L_StoreSalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
+      <Name>FK_L_StoreSalesPerson_SalesPersonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson:relationship:FK_L_StoreSalesPerson_H_Store_StoreHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store">
-      <Name>FK_L_StoreSalesPerson_H_Store_StoreHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson:relationship:FK_L_StoreSalesPerson_StoreHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store">
+      <Name>FK_L_StoreSalesPerson_StoreHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct:relationship:FK_L_TransactionHistoryProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_TransactionHistoryProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct:relationship:FK_L_TransactionHistoryProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_TransactionHistoryProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct:relationship:FK_L_TransactionHistoryProduct_H_TransactionHistory_TransactionHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory">
-      <Name>FK_L_TransactionHistoryProduct_H_TransactionHistory_TransactionHistoryHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct:relationship:FK_L_TransactionHistoryProduct_TransactionHistoryHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory">
+      <Name>FK_L_TransactionHistoryProduct_TransactionHistoryHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity:relationship:FK_L_VendorBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
-      <Name>FK_L_VendorBusinessEntity_H_BusinessEntity_BusinessEntityHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity:relationship:FK_L_VendorBusinessEntity_BusinessEntityHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
+      <Name>FK_L_VendorBusinessEntity_BusinessEntityHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity:relationship:FK_L_VendorBusinessEntity_H_Vendor_VendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor">
-      <Name>FK_L_VendorBusinessEntity_H_Vendor_VendorHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity:relationship:FK_L_VendorBusinessEntity_VendorHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor">
+      <Name>FK_L_VendorBusinessEntity_VendorHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct:relationship:FK_L_WorkOrderProduct_H_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
-      <Name>FK_L_WorkOrderProduct_H_Product_ProductHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct:relationship:FK_L_WorkOrderProduct_ProductHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <Name>FK_L_WorkOrderProduct_ProductHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct:relationship:FK_L_WorkOrderProduct_H_WorkOrder_WorkOrderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder">
-      <Name>FK_L_WorkOrderProduct_H_WorkOrder_WorkOrderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct:relationship:FK_L_WorkOrderProduct_WorkOrderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder">
+      <Name>FK_L_WorkOrderProduct_WorkOrderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation:relationship:FK_L_WorkOrderRoutingLocation_H_Location_LocationHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Location">
-      <Name>FK_L_WorkOrderRoutingLocation_H_Location_LocationHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation:relationship:FK_L_WorkOrderRoutingLocation_LocationHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Location">
+      <Name>FK_L_WorkOrderRoutingLocation_LocationHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation:relationship:FK_L_WorkOrderRoutingLocation_H_WorkOrderRouting_WorkOrderRoutingHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting">
-      <Name>FK_L_WorkOrderRoutingLocation_H_WorkOrderRouting_WorkOrderRoutingHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation:relationship:FK_L_WorkOrderRoutingLocation_WorkOrderRoutingHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting">
+      <Name>FK_L_WorkOrderRoutingLocation_WorkOrderRoutingHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder:relationship:FK_L_WorkOrderRoutingWorkOrder_H_WorkOrderRouting_WorkOrderRoutingHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting">
-      <Name>FK_L_WorkOrderRoutingWorkOrder_H_WorkOrderRouting_WorkOrderRoutingHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder:relationship:FK_L_WorkOrderRoutingWorkOrder_WorkOrderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder">
+      <Name>FK_L_WorkOrderRoutingWorkOrder_WorkOrderHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder:relationship:FK_L_WorkOrderRoutingWorkOrder_H_WorkOrder_WorkOrderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder">
-      <Name>FK_L_WorkOrderRoutingWorkOrder_H_WorkOrder_WorkOrderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder:relationship:FK_L_WorkOrderRoutingWorkOrder_WorkOrderRoutingHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting">
+      <Name>FK_L_WorkOrderRoutingWorkOrder_WorkOrderRoutingHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason:relationship:FK_L_WorkOrderScrapReason_H_ScrapReason_ScrapReasonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ScrapReason">
-      <Name>FK_L_WorkOrderScrapReason_H_ScrapReason_ScrapReasonHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason:relationship:FK_L_WorkOrderScrapReason_ScrapReasonHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ScrapReason">
+      <Name>FK_L_WorkOrderScrapReason_ScrapReasonHashKey</Name>
     </TableRelationship>
-    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason:relationship:FK_L_WorkOrderScrapReason_H_WorkOrder_WorkOrderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder">
-      <Name>FK_L_WorkOrderScrapReason_H_WorkOrder_WorkOrderHashKey</Name>
+    <TableRelationship Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason:relationship:FK_L_WorkOrderScrapReason_WorkOrderHashKey" SourceTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason" TargetTableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder">
+      <Name>FK_L_WorkOrderScrapReason_WorkOrderHashKey</Name>
     </TableRelationship>
   </TableRelationshipList>
 </MetaSchema>

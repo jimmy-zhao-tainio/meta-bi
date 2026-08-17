@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <LiteralList>
-    <Literal Id="Literal:10" ValueExpressionId="ValueExpression:10">
-      <Value>{Name}</Value>
-    </Literal>
     <Literal Id="Literal:100" ValueExpressionId="ValueExpression:106">
       <Value>RawHubSatelliteAttribute:</Value>
     </Literal>
@@ -33,9 +30,6 @@
     </Literal>
     <Literal Id="Literal:109" ValueExpressionId="ValueExpression:115">
       <Value>RawHubSatelliteHashDiff:</Value>
-    </Literal>
-    <Literal Id="Literal:11" ValueExpressionId="ValueExpression:11">
-      <Value>RawLink</Value>
     </Literal>
     <Literal Id="Literal:110" ValueExpressionId="ValueExpression:116">
       <Value>MetaOnly</Value>
@@ -67,9 +61,6 @@
     <Literal Id="Literal:119" ValueExpressionId="ValueExpression:125">
       <Value>RawHubSatelliteLoad:</Value>
     </Literal>
-    <Literal Id="Literal:12" ValueExpressionId="ValueExpression:12">
-      <Value>{Name}</Value>
-    </Literal>
     <Literal Id="Literal:120" ValueExpressionId="ValueExpression:126">
       <Value>MetaOnly</Value>
     </Literal>
@@ -99,9 +90,6 @@
     </Literal>
     <Literal Id="Literal:129" ValueExpressionId="ValueExpression:135">
       <Value>RawHubSatellite</Value>
-    </Literal>
-    <Literal Id="Literal:13" ValueExpressionId="ValueExpression:13">
-      <Value>RawLinkSatellite</Value>
     </Literal>
     <Literal Id="Literal:130" ValueExpressionId="ValueExpression:136">
       <Value>RawHubSatelliteRecordSource:</Value>
@@ -133,9 +121,6 @@
     <Literal Id="Literal:139" ValueExpressionId="ValueExpression:145">
       <Value>RawHubSatellite</Value>
     </Literal>
-    <Literal Id="Literal:14" ValueExpressionId="ValueExpression:14">
-      <Value>{ParentName}</Value>
-    </Literal>
     <Literal Id="Literal:140" ValueExpressionId="ValueExpression:146">
       <Value>RawHubSatelliteAudit:</Value>
     </Literal>
@@ -165,9 +150,6 @@
     </Literal>
     <Literal Id="Literal:149" ValueExpressionId="ValueExpression:155">
       <Value></Value>
-    </Literal>
-    <Literal Id="Literal:15" ValueExpressionId="ValueExpression:15">
-      <Value>{Name}</Value>
     </Literal>
     <Literal Id="Literal:150" ValueExpressionId="ValueExpression:156">
       <Value>false</Value>
@@ -199,9 +181,6 @@
     <Literal Id="Literal:159" ValueExpressionId="ValueExpression:165">
       <Value>Length</Value>
     </Literal>
-    <Literal Id="Literal:16" ValueExpressionId="ValueExpression:16">
-      <Value>128</Value>
-    </Literal>
     <Literal Id="Literal:160" ValueExpressionId="ValueExpression:166">
       <Value>false</Value>
     </Literal>
@@ -231,9 +210,6 @@
     </Literal>
     <Literal Id="Literal:169" ValueExpressionId="ValueExpression:175">
       <Value>Length</Value>
-    </Literal>
-    <Literal Id="Literal:17" ValueExpressionId="ValueExpression:17">
-      <Value>115</Value>
     </Literal>
     <Literal Id="Literal:170" ValueExpressionId="ValueExpression:176">
       <Value>false</Value>
@@ -265,9 +241,6 @@
     <Literal Id="Literal:179" ValueExpressionId="ValueExpression:185">
       <Value></Value>
     </Literal>
-    <Literal Id="Literal:18" ValueExpressionId="ValueExpression:18">
-      <Value>_</Value>
-    </Literal>
     <Literal Id="Literal:180" ValueExpressionId="ValueExpression:186">
       <Value>Precision</Value>
     </Literal>
@@ -297,9 +270,6 @@
     </Literal>
     <Literal Id="Literal:189" ValueExpressionId="ValueExpression:195">
       <Value></Value>
-    </Literal>
-    <Literal Id="Literal:19" ValueExpressionId="ValueExpression:19">
-      <Value>12</Value>
     </Literal>
     <Literal Id="Literal:190" ValueExpressionId="ValueExpression:196">
       <Value>Length</Value>
@@ -331,9 +301,6 @@
     <Literal Id="Literal:199" ValueExpressionId="ValueExpression:205">
       <Value></Value>
     </Literal>
-    <Literal Id="Literal:20" ValueExpressionId="ValueExpression:21">
-      <Value>.</Value>
-    </Literal>
     <Literal Id="Literal:200" ValueExpressionId="ValueExpression:206">
       <Value></Value>
     </Literal>
@@ -363,9 +330,6 @@
     </Literal>
     <Literal Id="Literal:209" ValueExpressionId="ValueExpression:215">
       <Value>10</Value>
-    </Literal>
-    <Literal Id="Literal:21" ValueExpressionId="ValueExpression:22">
-      <Value>.</Value>
     </Literal>
     <Literal Id="Literal:210" ValueExpressionId="ValueExpression:216">
       <Value></Value>
@@ -700,122 +664,14 @@
     <Literal Id="Literal:373" ValueExpressionId="ValueExpression:379">
       <Value>.detail.</Value>
     </Literal>
-    <Literal Id="Literal:374" ValueExpressionId="ValueExpression:380">
-      <Value>128</Value>
-    </Literal>
-    <Literal Id="Literal:375" ValueExpressionId="ValueExpression:381">
-      <Value>115</Value>
-    </Literal>
-    <Literal Id="Literal:376" ValueExpressionId="ValueExpression:382">
-      <Value>_</Value>
-    </Literal>
-    <Literal Id="Literal:377" ValueExpressionId="ValueExpression:383">
-      <Value>12</Value>
-    </Literal>
-    <Literal Id="Literal:378" ValueExpressionId="ValueExpression:384">
-      <Value>true</Value>
-    </Literal>
-    <Literal Id="Literal:379" ValueExpressionId="ValueExpression:385">
-      <Value>_</Value>
-    </Literal>
     <Literal Id="Literal:38" ValueExpressionId="ValueExpression:44">
       <Value>RawHubHash:</Value>
-    </Literal>
-    <Literal Id="Literal:380" ValueExpressionId="ValueExpression:386">
-      <Value>128</Value>
-    </Literal>
-    <Literal Id="Literal:381" ValueExpressionId="ValueExpression:387">
-      <Value>_</Value>
-    </Literal>
-    <Literal Id="Literal:382" ValueExpressionId="ValueExpression:388">
-      <Value>_</Value>
-    </Literal>
-    <Literal Id="Literal:383" ValueExpressionId="ValueExpression:389">
-      <Value>_</Value>
-    </Literal>
-    <Literal Id="Literal:384" ValueExpressionId="ValueExpression:390">
-      <Value>115</Value>
-    </Literal>
-    <Literal Id="Literal:385" ValueExpressionId="ValueExpression:391">
-      <Value>_</Value>
-    </Literal>
-    <Literal Id="Literal:386" ValueExpressionId="ValueExpression:392">
-      <Value>_</Value>
-    </Literal>
-    <Literal Id="Literal:387" ValueExpressionId="ValueExpression:393">
-      <Value>12</Value>
-    </Literal>
-    <Literal Id="Literal:388" ValueExpressionId="ValueExpression:394">
-      <Value>.</Value>
-    </Literal>
-    <Literal Id="Literal:389" ValueExpressionId="ValueExpression:395">
-      <Value>{TableName}</Value>
     </Literal>
     <Literal Id="Literal:39" ValueExpressionId="ValueExpression:45">
       <Value>MetaOnly</Value>
     </Literal>
-    <Literal Id="Literal:390" ValueExpressionId="ValueExpression:396">
-      <Value></Value>
-    </Literal>
-    <Literal Id="Literal:391" ValueExpressionId="ValueExpression:397">
-      <Value>RawHub</Value>
-    </Literal>
-    <Literal Id="Literal:392" ValueExpressionId="ValueExpression:398">
-      <Value>RawHubHash:</Value>
-    </Literal>
-    <Literal Id="Literal:393" ValueExpressionId="ValueExpression:399">
-      <Value>{TableName}</Value>
-    </Literal>
-    <Literal Id="Literal:394" ValueExpressionId="ValueExpression:400">
-      <Value>RawHubSatellite</Value>
-    </Literal>
-    <Literal Id="Literal:395" ValueExpressionId="ValueExpression:401">
-      <Value>RawHubSatelliteParent:</Value>
-    </Literal>
-    <Literal Id="Literal:396" ValueExpressionId="ValueExpression:402">
-      <Value>RawHubSatelliteLoad:</Value>
-    </Literal>
-    <Literal Id="Literal:397" ValueExpressionId="ValueExpression:403">
-      <Value>{TableName}</Value>
-    </Literal>
-    <Literal Id="Literal:398" ValueExpressionId="ValueExpression:404">
-      <Value></Value>
-    </Literal>
-    <Literal Id="Literal:399" ValueExpressionId="ValueExpression:405">
-      <Value>RawLink</Value>
-    </Literal>
     <Literal Id="Literal:40" ValueExpressionId="ValueExpression:46">
       <Value>false</Value>
-    </Literal>
-    <Literal Id="Literal:400" ValueExpressionId="ValueExpression:406">
-      <Value>RawLinkHash:</Value>
-    </Literal>
-    <Literal Id="Literal:401" ValueExpressionId="ValueExpression:407">
-      <Value>{TableName}</Value>
-    </Literal>
-    <Literal Id="Literal:402" ValueExpressionId="ValueExpression:408">
-      <Value>RawLinkSatellite</Value>
-    </Literal>
-    <Literal Id="Literal:403" ValueExpressionId="ValueExpression:409">
-      <Value>RawLinkSatelliteParent:</Value>
-    </Literal>
-    <Literal Id="Literal:404" ValueExpressionId="ValueExpression:410">
-      <Value>RawLinkSatelliteLoad:</Value>
-    </Literal>
-    <Literal Id="Literal:405" ValueExpressionId="ValueExpression:411">
-      <Value>128</Value>
-    </Literal>
-    <Literal Id="Literal:406" ValueExpressionId="ValueExpression:412">
-      <Value>115</Value>
-    </Literal>
-    <Literal Id="Literal:407" ValueExpressionId="ValueExpression:413">
-      <Value>_</Value>
-    </Literal>
-    <Literal Id="Literal:408" ValueExpressionId="ValueExpression:414">
-      <Value>12</Value>
-    </Literal>
-    <Literal Id="Literal:409" ValueExpressionId="ValueExpression:415">
-      <Value>.pk.</Value>
     </Literal>
     <Literal Id="Literal:41" ValueExpressionId="ValueExpression:47">
       <Value></Value>
@@ -832,83 +688,11 @@
     <Literal Id="Literal:413" ValueExpressionId="ValueExpression:419">
       <Value>2</Value>
     </Literal>
-    <Literal Id="Literal:414" ValueExpressionId="ValueExpression:420">
-      <Value>{TableName}</Value>
-    </Literal>
-    <Literal Id="Literal:415" ValueExpressionId="ValueExpression:421">
-      <Value>{ParentTableName}</Value>
-    </Literal>
-    <Literal Id="Literal:416" ValueExpressionId="ValueExpression:422">
-      <Value>RawHubSatellite</Value>
-    </Literal>
-    <Literal Id="Literal:417" ValueExpressionId="ValueExpression:423">
-      <Value>RawHub</Value>
-    </Literal>
-    <Literal Id="Literal:418" ValueExpressionId="ValueExpression:424">
-      <Value>RawHubSatelliteParent:</Value>
-    </Literal>
-    <Literal Id="Literal:419" ValueExpressionId="ValueExpression:425">
-      <Value>RawHubHash:</Value>
-    </Literal>
     <Literal Id="Literal:42" ValueExpressionId="ValueExpression:48">
       <Value>10</Value>
     </Literal>
-    <Literal Id="Literal:420" ValueExpressionId="ValueExpression:426">
-      <Value>{TableName}</Value>
-    </Literal>
-    <Literal Id="Literal:421" ValueExpressionId="ValueExpression:427">
-      <Value>{TargetTableName}</Value>
-    </Literal>
-    <Literal Id="Literal:422" ValueExpressionId="ValueExpression:428">
-      <Value>{SourceColumnName}</Value>
-    </Literal>
-    <Literal Id="Literal:423" ValueExpressionId="ValueExpression:429">
-      <Value>RawLink</Value>
-    </Literal>
-    <Literal Id="Literal:424" ValueExpressionId="ValueExpression:430">
-      <Value>RawHub</Value>
-    </Literal>
-    <Literal Id="Literal:425" ValueExpressionId="ValueExpression:431">
-      <Value>RawLinkRole:</Value>
-    </Literal>
-    <Literal Id="Literal:426" ValueExpressionId="ValueExpression:432">
-      <Value>RawHubHash:</Value>
-    </Literal>
-    <Literal Id="Literal:427" ValueExpressionId="ValueExpression:433">
-      <Value>{TableName}</Value>
-    </Literal>
-    <Literal Id="Literal:428" ValueExpressionId="ValueExpression:434">
-      <Value>{ParentTableName}</Value>
-    </Literal>
-    <Literal Id="Literal:429" ValueExpressionId="ValueExpression:435">
-      <Value>RawLinkSatellite</Value>
-    </Literal>
     <Literal Id="Literal:43" ValueExpressionId="ValueExpression:49">
       <Value></Value>
-    </Literal>
-    <Literal Id="Literal:430" ValueExpressionId="ValueExpression:436">
-      <Value>RawLink</Value>
-    </Literal>
-    <Literal Id="Literal:431" ValueExpressionId="ValueExpression:437">
-      <Value>RawLinkSatelliteParent:</Value>
-    </Literal>
-    <Literal Id="Literal:432" ValueExpressionId="ValueExpression:438">
-      <Value>RawLinkHash:</Value>
-    </Literal>
-    <Literal Id="Literal:433" ValueExpressionId="ValueExpression:439">
-      <Value>128</Value>
-    </Literal>
-    <Literal Id="Literal:434" ValueExpressionId="ValueExpression:440">
-      <Value>115</Value>
-    </Literal>
-    <Literal Id="Literal:435" ValueExpressionId="ValueExpression:441">
-      <Value>_</Value>
-    </Literal>
-    <Literal Id="Literal:436" ValueExpressionId="ValueExpression:442">
-      <Value>12</Value>
-    </Literal>
-    <Literal Id="Literal:437" ValueExpressionId="ValueExpression:443">
-      <Value>.fk.</Value>
     </Literal>
     <Literal Id="Literal:438" ValueExpressionId="ValueExpression:444">
       <Value>.column.1</Value>
@@ -1006,14 +790,113 @@
     <Literal Id="Literal:466" ValueExpressionId="ValueExpression:474">
       <Value>SqlServer</Value>
     </Literal>
+    <Literal Id="Literal:467" ValueExpressionId="ValueExpression:475">
+      <Value>RawHub</Value>
+    </Literal>
+    <Literal Id="Literal:468" ValueExpressionId="ValueExpression:476">
+      <Value>{Name}</Value>
+    </Literal>
+    <Literal Id="Literal:469" ValueExpressionId="ValueExpression:477">
+      <Value>RawHubSatellite</Value>
+    </Literal>
     <Literal Id="Literal:47" ValueExpressionId="ValueExpression:53">
       <Value>RawHub</Value>
+    </Literal>
+    <Literal Id="Literal:470" ValueExpressionId="ValueExpression:478">
+      <Value>{ParentName}</Value>
+    </Literal>
+    <Literal Id="Literal:471" ValueExpressionId="ValueExpression:479">
+      <Value>{Name}</Value>
+    </Literal>
+    <Literal Id="Literal:472" ValueExpressionId="ValueExpression:480">
+      <Value>RawLink</Value>
+    </Literal>
+    <Literal Id="Literal:473" ValueExpressionId="ValueExpression:481">
+      <Value>{Name}</Value>
+    </Literal>
+    <Literal Id="Literal:474" ValueExpressionId="ValueExpression:482">
+      <Value>RawLinkSatellite</Value>
+    </Literal>
+    <Literal Id="Literal:475" ValueExpressionId="ValueExpression:483">
+      <Value>{ParentName}</Value>
+    </Literal>
+    <Literal Id="Literal:476" ValueExpressionId="ValueExpression:484">
+      <Value>{Name}</Value>
+    </Literal>
+    <Literal Id="Literal:477" ValueExpressionId="ValueExpression:486">
+      <Value>.</Value>
+    </Literal>
+    <Literal Id="Literal:478" ValueExpressionId="ValueExpression:487">
+      <Value>.</Value>
+    </Literal>
+    <Literal Id="Literal:479" ValueExpressionId="ValueExpression:488">
+      <Value>true</Value>
     </Literal>
     <Literal Id="Literal:48" ValueExpressionId="ValueExpression:54">
       <Value>RawHubKeyPart:</Value>
     </Literal>
+    <Literal Id="Literal:480" ValueExpressionId="ValueExpression:489">
+      <Value>_</Value>
+    </Literal>
+    <Literal Id="Literal:481" ValueExpressionId="ValueExpression:490">
+      <Value>.</Value>
+    </Literal>
+    <Literal Id="Literal:482" ValueExpressionId="ValueExpression:491">
+      <Value>{TableName}</Value>
+    </Literal>
+    <Literal Id="Literal:483" ValueExpressionId="ValueExpression:492">
+      <Value></Value>
+    </Literal>
+    <Literal Id="Literal:484" ValueExpressionId="ValueExpression:493">
+      <Value>RawHub</Value>
+    </Literal>
+    <Literal Id="Literal:485" ValueExpressionId="ValueExpression:494">
+      <Value>RawHubHash:</Value>
+    </Literal>
+    <Literal Id="Literal:486" ValueExpressionId="ValueExpression:495">
+      <Value>{TableName}</Value>
+    </Literal>
+    <Literal Id="Literal:487" ValueExpressionId="ValueExpression:496">
+      <Value>RawHubSatellite</Value>
+    </Literal>
+    <Literal Id="Literal:488" ValueExpressionId="ValueExpression:497">
+      <Value>RawHubSatelliteParent:</Value>
+    </Literal>
+    <Literal Id="Literal:489" ValueExpressionId="ValueExpression:498">
+      <Value>RawHubSatelliteLoad:</Value>
+    </Literal>
     <Literal Id="Literal:49" ValueExpressionId="ValueExpression:55">
       <Value>RawField</Value>
+    </Literal>
+    <Literal Id="Literal:490" ValueExpressionId="ValueExpression:499">
+      <Value>{TableName}</Value>
+    </Literal>
+    <Literal Id="Literal:491" ValueExpressionId="ValueExpression:500">
+      <Value></Value>
+    </Literal>
+    <Literal Id="Literal:492" ValueExpressionId="ValueExpression:501">
+      <Value>RawLink</Value>
+    </Literal>
+    <Literal Id="Literal:493" ValueExpressionId="ValueExpression:502">
+      <Value>RawLinkHash:</Value>
+    </Literal>
+    <Literal Id="Literal:494" ValueExpressionId="ValueExpression:503">
+      <Value>{TableName}</Value>
+    </Literal>
+    <Literal Id="Literal:495" ValueExpressionId="ValueExpression:504">
+      <Value>RawLinkSatellite</Value>
+    </Literal>
+    <Literal Id="Literal:496" ValueExpressionId="ValueExpression:505">
+      <Value>RawLinkSatelliteParent:</Value>
+    </Literal>
+    <Literal Id="Literal:497" ValueExpressionId="ValueExpression:506">
+      <Value>RawLinkSatelliteLoad:</Value>
+    </Literal>
+    <Literal Id="Literal:498" ValueExpressionId="ValueExpression:507">
+      <Value>.pk.</Value>
+    </Literal>
+    <Literal Id="Literal:499" ValueExpressionId="ValueExpression:508">
+      <Value>{TableName}</Value>
     </Literal>
     <Literal Id="Literal:5" ValueExpressionId="ValueExpression:5">
       <Value>0</Value>
@@ -1021,11 +904,89 @@
     <Literal Id="Literal:50" ValueExpressionId="ValueExpression:56">
       <Value>true</Value>
     </Literal>
+    <Literal Id="Literal:500" ValueExpressionId="ValueExpression:509">
+      <Value>{ParentTableName}</Value>
+    </Literal>
+    <Literal Id="Literal:501" ValueExpressionId="ValueExpression:510">
+      <Value>RawHubSatellite</Value>
+    </Literal>
+    <Literal Id="Literal:502" ValueExpressionId="ValueExpression:511">
+      <Value>RawHub</Value>
+    </Literal>
+    <Literal Id="Literal:503" ValueExpressionId="ValueExpression:512">
+      <Value>RawHubSatelliteParent:</Value>
+    </Literal>
+    <Literal Id="Literal:504" ValueExpressionId="ValueExpression:513">
+      <Value>RawHubHash:</Value>
+    </Literal>
+    <Literal Id="Literal:505" ValueExpressionId="ValueExpression:514">
+      <Value>{TableName}</Value>
+    </Literal>
+    <Literal Id="Literal:506" ValueExpressionId="ValueExpression:515">
+      <Value>{TargetTableName}</Value>
+    </Literal>
+    <Literal Id="Literal:507" ValueExpressionId="ValueExpression:516">
+      <Value>{SourceColumnName}</Value>
+    </Literal>
+    <Literal Id="Literal:508" ValueExpressionId="ValueExpression:517">
+      <Value>RawLink</Value>
+    </Literal>
+    <Literal Id="Literal:509" ValueExpressionId="ValueExpression:518">
+      <Value>RawHub</Value>
+    </Literal>
     <Literal Id="Literal:51" ValueExpressionId="ValueExpression:57">
       <Value></Value>
     </Literal>
+    <Literal Id="Literal:510" ValueExpressionId="ValueExpression:519">
+      <Value>RawLinkRole:</Value>
+    </Literal>
+    <Literal Id="Literal:511" ValueExpressionId="ValueExpression:520">
+      <Value>RawHubHash:</Value>
+    </Literal>
+    <Literal Id="Literal:512" ValueExpressionId="ValueExpression:521">
+      <Value>{TableName}</Value>
+    </Literal>
+    <Literal Id="Literal:513" ValueExpressionId="ValueExpression:522">
+      <Value>{ParentTableName}</Value>
+    </Literal>
+    <Literal Id="Literal:514" ValueExpressionId="ValueExpression:523">
+      <Value>RawLinkSatellite</Value>
+    </Literal>
+    <Literal Id="Literal:515" ValueExpressionId="ValueExpression:524">
+      <Value>RawLink</Value>
+    </Literal>
+    <Literal Id="Literal:516" ValueExpressionId="ValueExpression:525">
+      <Value>RawLinkSatelliteParent:</Value>
+    </Literal>
+    <Literal Id="Literal:517" ValueExpressionId="ValueExpression:526">
+      <Value>RawLinkHash:</Value>
+    </Literal>
+    <Literal Id="Literal:518" ValueExpressionId="ValueExpression:527">
+      <Value>.fk.</Value>
+    </Literal>
+    <Literal Id="Literal:519" ValueExpressionId="ValueExpression:528">
+      <Value>Database</Value>
+    </Literal>
     <Literal Id="Literal:52" ValueExpressionId="ValueExpression:58">
       <Value>20</Value>
+    </Literal>
+    <Literal Id="Literal:520" ValueExpressionId="ValueExpression:531">
+      <Value>Schema</Value>
+    </Literal>
+    <Literal Id="Literal:521" ValueExpressionId="ValueExpression:532">
+      <Value>Table</Value>
+    </Literal>
+    <Literal Id="Literal:522" ValueExpressionId="ValueExpression:533">
+      <Value>Column</Value>
+    </Literal>
+    <Literal Id="Literal:523" ValueExpressionId="ValueExpression:534">
+      <Value>PrimaryKey</Value>
+    </Literal>
+    <Literal Id="Literal:524" ValueExpressionId="ValueExpression:535">
+      <Value>ForeignKey</Value>
+    </Literal>
+    <Literal Id="Literal:525" ValueExpressionId="ValueExpression:536">
+      <Value>128</Value>
     </Literal>
     <Literal Id="Literal:53" ValueExpressionId="ValueExpression:59">
       <Value></Value>
@@ -1047,9 +1008,6 @@
     </Literal>
     <Literal Id="Literal:59" ValueExpressionId="ValueExpression:65">
       <Value>false</Value>
-    </Literal>
-    <Literal Id="Literal:6" ValueExpressionId="ValueExpression:6">
-      <Value>RawHub</Value>
     </Literal>
     <Literal Id="Literal:60" ValueExpressionId="ValueExpression:66">
       <Value>1</Value>
@@ -1081,9 +1039,6 @@
     <Literal Id="Literal:69" ValueExpressionId="ValueExpression:75">
       <Value>MetaOnly</Value>
     </Literal>
-    <Literal Id="Literal:7" ValueExpressionId="ValueExpression:7">
-      <Value>{Name}</Value>
-    </Literal>
     <Literal Id="Literal:70" ValueExpressionId="ValueExpression:76">
       <Value>false</Value>
     </Literal>
@@ -1114,9 +1069,6 @@
     <Literal Id="Literal:79" ValueExpressionId="ValueExpression:85">
       <Value>MetaOnly</Value>
     </Literal>
-    <Literal Id="Literal:8" ValueExpressionId="ValueExpression:8">
-      <Value>RawHubSatellite</Value>
-    </Literal>
     <Literal Id="Literal:80" ValueExpressionId="ValueExpression:86">
       <Value>false</Value>
     </Literal>
@@ -1146,9 +1098,6 @@
     </Literal>
     <Literal Id="Literal:89" ValueExpressionId="ValueExpression:95">
       <Value>RawHub</Value>
-    </Literal>
-    <Literal Id="Literal:9" ValueExpressionId="ValueExpression:9">
-      <Value>{ParentName}</Value>
     </Literal>
     <Literal Id="Literal:90" ValueExpressionId="ValueExpression:96">
       <Value>RawHubSatelliteParent:</Value>

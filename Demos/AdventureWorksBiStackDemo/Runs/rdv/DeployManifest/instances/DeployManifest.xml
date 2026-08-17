@@ -2,11 +2,11 @@
 <MetaSqlDeployManifest>
   <DeployManifestList>
     <DeployManifest Id="DeployManifest:1">
-      <CreatedUtc>2026-08-04T18:58:48.6752745Z</CreatedUtc>
+      <CreatedUtc>2026-08-17T21:01:28.5757879Z</CreatedUtc>
       <ExpectedLiveDatabasePresence>Missing</ExpectedLiveDatabasePresence>
       <LiveInstanceFingerprint>1747401064733feab90d03cfc0d06e895f080d7f4518d7e5ccf6b2e9f9a5eb2b</LiveInstanceFingerprint>
       <Name>DeployManifest</Name>
-      <SourceInstanceFingerprint>fedf44bfa59ef8665c21f17bf92e4573f827bd0329dfab79f0a78be14336a791</SourceInstanceFingerprint>
+      <SourceInstanceFingerprint>35253cbd9cce2805f26bca007bccaa6ff3e5fdbe67843d0764659ede2a57c05a</SourceInstanceFingerprint>
       <TargetDescription>Scope=(all)</TargetDescription>
     </DeployManifest>
   </DeployManifestList>

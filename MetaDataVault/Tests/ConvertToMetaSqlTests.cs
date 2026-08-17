@@ -186,7 +186,7 @@ public sealed class ConvertToMetaSqlTests
             Assert.Equal("RawVault.dbo.L_OrderCustomer", orderCustomerLink.Id);
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == orderCustomerLink.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "OrderHashKey", StringComparison.Ordinal));
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == orderCustomerLink.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "CustomerHashKey", StringComparison.Ordinal));
-            Assert.Contains(foreignKeys, row => row.Id == "RawVault.dbo.L_OrderCustomer.fk.FK_L_OrderCustomer_H_Order_OrderHashKey");
+            Assert.Contains(foreignKeys, row => row.Id == "RawVault.dbo.L_OrderCustomer.fk.FK_L_OrderCustomer_OrderHashKey");
 
             var satelliteTables = tables
                 .Where(row => row.Values["Name"].StartsWith("HS_", StringComparison.Ordinal) || row.Values["Name"].StartsWith("LS_", StringComparison.Ordinal))
@@ -579,7 +579,7 @@ public sealed class ConvertToMetaSqlTests
     }
 
     [Fact]
-    public async Task ConvertAsync_ShortensLongSqlServerPhysicalIdentifiers()
+    public async Task ConvertAsync_RejectsSqlServerPhysicalIdentifiersLongerThan128Characters()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
@@ -678,39 +678,39 @@ public sealed class ConvertToMetaSqlTests
 
             await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
 
-            var sqlWorkspace = await Converter.ConvertAsync(
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
-                                GetImplementationWorkspacePath(repoRoot),
-                databaseName: "RawVault");
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "RawVault"));
 
-            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
-            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
-            var primaryKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("PrimaryKey");
-            var foreignKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("ForeignKey");
-
-            Assert.All(tables, row => AssertSqlServerIdentifier(row.Values["Name"]));
-            Assert.All(columns, row => AssertSqlServerIdentifier(row.Values["Name"]));
-            Assert.All(primaryKeys, row => AssertSqlServerIdentifier(row.Values["Name"]));
-            Assert.All(foreignKeys, row => AssertSqlServerIdentifier(row.Values["Name"]));
-
-            var shortenedForeignKeyName = foreignKeys
-                .Select(row => row.Values["Name"])
-                .OrderByDescending(row => row.Length)
-                .First();
-            Assert.Equal(128, shortenedForeignKeyName.Length);
-            Assert.StartsWith("FK_", shortenedForeignKeyName);
-            AssertStableHashSuffix(shortenedForeignKeyName);
-            Assert.All(foreignKeys, row => Assert.True(
-                row.Id.EndsWith(".fk." + row.Values["Name"], StringComparison.Ordinal),
-                $"Foreign key id '{row.Id}' must use the shortened physical name '{row.Values["Name"]}'."));
-            Assert.All(primaryKeys, row => Assert.True(
-                row.Id.EndsWith(".pk." + row.Values["Name"], StringComparison.Ordinal),
-                $"Primary key id '{row.Id}' must use the shortened physical name '{row.Values["Name"]}'."));
+            Assert.Contains("SqlServerIdentifierTooLong", error.Message, StringComparison.Ordinal);
+            Assert.Contains("IdentifierKind=Table", error.Message, StringComparison.Ordinal);
+            Assert.Contains("SQL Server identifiers must contain at most 128 characters.", error.Message, StringComparison.Ordinal);
         }
         finally
         {
             DeleteDirectoryIfExists(root);
         }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_RejectsLongSqlServerDatabaseIdentifierForBusinessProjection()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(
+            repoRoot,
+            "MetaDataVault",
+            "Workspaces",
+            "SampleBusinessDataVaultCommerceHelpers");
+        var databaseName = new string('D', 129);
+
+        var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
+            workspacePath,
+            GetImplementationWorkspacePath(repoRoot),
+            databaseName));
+
+        Assert.Contains("SQL Server database identifier", error.Message, StringComparison.Ordinal);
+        Assert.Contains("contains 129 characters; maximum is 128", error.Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -1339,25 +1339,4 @@ public sealed class ConvertToMetaSqlTests
             string.Equals(currentName, detailName, StringComparison.Ordinal)).Values["Value"];
     }
 
-    private static void AssertSqlServerIdentifier(string value)
-    {
-        Assert.True(
-            value.Length <= 128,
-            $"SQL Server identifier '{value}' has length {value.Length}; maximum is 128.");
-    }
-
-    private static void AssertStableHashSuffix(string value)
-    {
-        var suffix = value.Substring(value.Length - 13);
-        Assert.Equal('_', suffix[0]);
-        Assert.True(
-            suffix.Substring(1).All(IsLowerHexDigit),
-            $"Shortened identifier '{value}' must end with a stable lowercase hex hash suffix.");
-    }
-
-    private static bool IsLowerHexDigit(char value)
-    {
-        return (value >= '0' && value <= '9') ||
-               (value >= 'a' && value <= 'f');
-    }
 }

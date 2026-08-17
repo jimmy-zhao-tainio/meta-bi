@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <WhenClauseList>
-    <WhenClause Id="WhenClause:1" />
-    <WhenClause Id="WhenClause:17" />
-    <WhenClause Id="WhenClause:18" />
-    <WhenClause Id="WhenClause:19" />
     <WhenClause Id="WhenClause:2" />
-    <WhenClause Id="WhenClause:20" />
-    <WhenClause Id="WhenClause:21" />
+    <WhenClause Id="WhenClause:22" />
     <WhenClause Id="WhenClause:3" />
     <WhenClause Id="WhenClause:4" />
     <WhenClause Id="WhenClause:5" />
