@@ -911,7 +911,7 @@ public sealed class CorpusInferenceTests
             Assert.True(result.CandidateViewCount >= 2);
             Assert.Contains("Implied join fanout risk (semantic review)", sql, StringComparison.Ordinal);
             Assert.Contains("Implied output duplicate risk (semantic review)", sql, StringComparison.Ordinal);
-            Assert.Contains("Signal evidence from", sql, StringComparison.Ordinal);
+            Assert.Contains("[EvidenceOccurrenceCount]", sql, StringComparison.Ordinal);
             Assert.Contains("[ConfidenceBand]", sql, StringComparison.Ordinal);
             Assert.Contains("[ConfidenceSummary]", sql, StringComparison.Ordinal);
             Assert.Contains("SemanticReviewFinding", sql, StringComparison.Ordinal);
@@ -1474,6 +1474,17 @@ public sealed class CorpusInferenceTests
         };
         model.JoinPatternOccurrenceList.Add(occurrence);
 
+        foreach (var keyPart in model.JoinPatternKeyPartList.Where(
+                     row => string.Equals(row.JoinPattern.Id, patternId, StringComparison.Ordinal)))
+        {
+            keyPart.FirstJoinInputObjectName = leftTable;
+            keyPart.SecondJoinInputObjectName = rightTable;
+            keyPart.FirstJoinInputColumnName = ResolveTestColumnName(keyPart.FirstExpressionDisplay!);
+            keyPart.SecondJoinInputColumnName = ResolveTestColumnName(keyPart.SecondExpressionDisplay!);
+            AddTestInputObjectParts(model, keyPart, "First", leftTable);
+            AddTestInputObjectParts(model, keyPart, "Second", rightTable);
+        }
+
         model.JoinPatternOccurrenceBaseTableList.Add(new JoinPatternOccurrenceBaseTable
         {
             Id = $"{occurrenceId}.BaseTable.Left",
@@ -1502,6 +1513,42 @@ public sealed class CorpusInferenceTests
             ResolvedInCteId = string.Empty,
             ResolvedInCteName = string.Empty,
         });
+    }
+
+    private static string ResolveTestColumnName(string expression)
+    {
+        var separator = expression.LastIndexOf('.');
+        return separator < 0
+            ? expression
+            : expression[(separator + 1)..];
+    }
+
+    private static void AddTestInputObjectParts(
+        MetaDataQualityModel model,
+        JoinPatternKeyPart keyPart,
+        string inputSide,
+        string objectName)
+    {
+        if (model.JoinPatternKeyPartInputObjectIdentifierPartList.Any(
+                part => string.Equals(part.JoinPatternKeyPart.Id, keyPart.Id, StringComparison.Ordinal)
+                    && string.Equals(part.InputSide, inputSide, StringComparison.Ordinal)))
+        {
+            return;
+        }
+
+        var parts = objectName.Split('.', StringSplitOptions.RemoveEmptyEntries);
+        for (var index = 0; index < parts.Length; index++)
+        {
+            model.JoinPatternKeyPartInputObjectIdentifierPartList.Add(
+                new JoinPatternKeyPartInputObjectIdentifierPart
+                {
+                    Id = $"{keyPart.Id}.{inputSide}.{index}",
+                    JoinPatternKeyPart = keyPart,
+                    InputSide = inputSide,
+                    Ordinal = index.ToString(CultureInfo.InvariantCulture),
+                    Value = parts[index],
+                });
+        }
     }
 
     private static void AddOccurrenceSignalsForPattern(

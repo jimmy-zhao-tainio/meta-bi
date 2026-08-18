@@ -1,0 +1,1820 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <JoinPatternKeyPartInputObjectIdentifierPartList>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.1.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.1.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.1.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.1.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.1.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.1.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Customer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.1.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.1.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.1.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.1.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.1.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.1.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_CustomerPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.10.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.10.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.10.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.10.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.10.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.10.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_AddressStateProvince</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.10.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.10.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.10.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.10.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.10.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.10.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_StateProvinceCountryRegion</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.11.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.11.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.11.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.11.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.11.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.11.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Product</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.11.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.11.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.11.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.11.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.11.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.11.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_Product_ProductProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.12.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.12.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.12.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.12.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.12.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.12.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Product</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.12.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.12.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.12.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.12.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.12.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.12.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_ProductSubcategoryAssignment</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.13.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.13.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.13.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.13.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.13.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.13.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_ProductSubcategoryAssignment</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.13.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.13.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.13.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.13.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.13.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.13.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_ProductSubcategory_ProductSubcategoryProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.14.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.14.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.14.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.14.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.14.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.14.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_ProductSubcategoryAssignment</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.14.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.14.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.14.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.14.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.14.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.14.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_ProductSubcategoryCategory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.15.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.15.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.15.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.15.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.15.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.15.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_ProductSubcategoryCategory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.15.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.15.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.15.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.15.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.15.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.15.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_ProductCategory_ProductCategoryProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.16.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.16.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.16.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.16.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.16.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.16.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.16.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.16.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.16.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.16.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.16.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.16.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesPersonPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.17.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.17.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.17.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.17.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.17.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.17.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesPersonPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.17.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.17.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.17.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.17.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.17.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.17.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_Person_PersonProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.18.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.18.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.18.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.18.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.18.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.18.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.18.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.18.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.18.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.18.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.18.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.18.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_SalesTerritory_SalesTerritoryProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.19.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.19.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.19.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.19.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.19.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.19.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.19.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.19.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.19.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.19.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.19.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.19.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesTerritoryCountryRegion</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.2.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.2.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.2.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.2.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.2.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.2.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_CustomerPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.2.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.2.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.2.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.2.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.2.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.2.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_Person_PersonProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.20.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.20.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.20.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.20.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.20.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.20.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesTerritoryCountryRegion</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.20.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.20.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.20.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.20.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.20.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.20.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_CountryRegion</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.21.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.21.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.21.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.21.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.21.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.21.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrderLine</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.21.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.21.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.21.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.21.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.21.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.21.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_SalesOrderLine_SalesOrderLineDetail</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.22.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.22.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.22.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.22.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.22.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.22.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrderLine</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.22.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.22.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.22.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.22.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.22.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.22.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderLineSalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.23.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.23.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.23.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.23.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.23.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.23.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderLineSalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.23.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.23.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.23.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.23.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.23.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.23.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.24.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.24.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.24.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.24.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.24.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.24.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.24.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.24.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.24.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.24.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.24.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.24.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_SalesOrder_SalesOrderHeader</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.25.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.25.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.25.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.25.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.25.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.25.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrderLine</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.25.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.25.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.25.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.25.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.25.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.25.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderLineProduct</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.26.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.26.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.26.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.26.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.26.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.26.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderLineProduct</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.26.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.26.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.26.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.26.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.26.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.26.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Product</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.27.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.27.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.27.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.27.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.27.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.27.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Product</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.27.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.27.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.27.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.27.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.27.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.27.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_Product</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.28.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.28.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.28.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.28.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.28.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.28.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.28.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.28.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.28.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.28.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.28.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.28.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderCustomer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.29.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.29.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.29.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.29.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.29.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.29.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderCustomer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.29.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.29.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.29.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.29.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.29.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.29.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Customer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.3.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.3.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.3.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.3.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.3.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.3.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Customer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.3.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.3.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.3.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.3.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.3.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.3.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_CustomerStore</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.30.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.30.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.30.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.30.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.30.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.30.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Customer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.30.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.30.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.30.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.30.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.30.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.30.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_Customer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.31.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.31.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.31.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.31.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.31.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.31.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.31.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.31.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.31.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.31.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.31.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.31.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderSalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.32.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.32.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.32.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.32.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.32.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.32.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderSalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.32.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.32.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.32.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.32.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.32.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.32.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.33.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.33.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.33.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.33.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.33.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.33.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.33.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.33.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.33.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.33.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.33.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.33.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_Salesperson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.34.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.34.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.34.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.34.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.34.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.34.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.34.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.34.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.34.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.34.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.34.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.34.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderSalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.35.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.35.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.35.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.35.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.35.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.35.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderSalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.35.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.35.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.35.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.35.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.35.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.35.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.36.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.36.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.36.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.36.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.36.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.36.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.36.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.36.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.36.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.36.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.36.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.36.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_SalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.37.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.37.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.37.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.37.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.37.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.37.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.37.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.37.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.37.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.37.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.37.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.37.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderShipToAddress</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.38.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.38.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.38.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.38.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.38.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.38.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderShipToAddress</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.38.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.38.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.38.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.38.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.38.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.38.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Address</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.39.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.39.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.39.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.39.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.39.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.39.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Address</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.39.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.39.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.39.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.39.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.39.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.39.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_Geography</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.4.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.4.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.4.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.4.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.4.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.4.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_CustomerStore</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.4.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.4.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.4.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.4.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.4.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.4.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_Store_StoreProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.42.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.42.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.42.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.42.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.42.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.42.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.42.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.42.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.42.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.42.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.42.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.42.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_SalesOrder_SalesOrderHeader</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.43.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.43.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.43.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.43.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.43.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.43.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.43.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.43.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.43.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.43.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.43.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.43.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderCustomer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.44.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.44.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.44.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.44.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.44.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.44.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderCustomer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.44.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.44.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.44.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.44.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.44.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.44.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Customer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.45.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.45.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.45.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.45.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.45.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.45.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Customer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.45.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.45.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.45.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.45.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.45.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.45.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_Customer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.46.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.46.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.46.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.46.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.46.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.46.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.46.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.46.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.46.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.46.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.46.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.46.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderSalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.47.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.47.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.47.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.47.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.47.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.47.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderSalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.47.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.47.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.47.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.47.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.47.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.47.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.48.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.48.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.48.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.48.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.48.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.48.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.48.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.48.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.48.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.48.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.48.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.48.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_Salesperson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.49.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.49.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.49.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.49.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.49.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.49.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.49.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.49.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.49.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.49.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.49.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.49.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderSalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.5.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.5.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.5.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.5.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.5.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.5.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_StateProvinceCountryRegion</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.5.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.5.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.5.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.5.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.5.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.5.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_CountryRegion</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.50.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.50.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.50.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.50.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.50.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.50.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderSalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.50.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.50.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.50.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.50.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.50.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.50.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.51.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.51.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.51.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.51.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.51.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.51.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.51.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.51.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.51.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.51.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.51.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.51.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_SalesTerritory</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.52.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.52.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.52.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.52.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.52.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.52.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.52.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.52.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.52.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.52.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.52.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.52.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderBillToAddress</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.53.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.53.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.53.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.53.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.53.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.53.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderBillToAddress</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.53.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.53.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.53.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.53.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.53.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.53.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Address</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.54.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.54.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.54.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.54.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.54.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.54.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Address</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.54.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.54.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.54.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.54.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.54.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.54.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_Geography</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.55.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.55.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.55.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.55.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.55.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.55.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesOrder</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.55.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.55.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.55.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.55.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.55.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.55.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderShipToAddress</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.56.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.56.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.56.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.56.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.56.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.56.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesOrderShipToAddress</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.56.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.56.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.56.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.56.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.56.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.56.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Address</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.57.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.57.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.57.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.57.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.57.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.57.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Address</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.57.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.57.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.57.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.57.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.57.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.57.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_Geography</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.6.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.6.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.6.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.6.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.6.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.6.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_CountryRegion</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.6.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.6.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.6.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.6.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.6.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.6.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_CountryRegion_CountryRegionProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.62.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.62.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.62.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.62.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.62.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.62.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_OrderStatus</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.63.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.63.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.63.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.63.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.63.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.63.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesPersonQuota</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.63.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.63.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.63.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.63.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.63.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.63.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_SalesPersonQuota_SalesPersonQuotaProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.64.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.64.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.64.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.64.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.64.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.64.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesPersonQuota</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.64.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.64.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.64.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.64.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.64.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.64.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesPersonQuotaSalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.65.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.65.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.65.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.65.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.65.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.65.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_SalesPersonQuotaSalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.65.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.65.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.65.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.65.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.65.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.65.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.66.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.66.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.66.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.66.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.66.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.66.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_SalesPerson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.66.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.66.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksAnalytics</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.66.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.66.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dw</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.66.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.66.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>Dim_Salesperson</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.7.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.7.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.7.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.7.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.7.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.7.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Address</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.7.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.7.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.7.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.7.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.7.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.7.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_Address_AddressProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.8.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.8.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.8.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.8.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.8.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.8.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Address</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.8.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.8.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.8.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.8.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.8.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.8.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_AddressStateProvince</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.9.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.9.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.9.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.9.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.9.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.9.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BL_AddressStateProvince</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.9.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.9.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.9.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.9.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.9.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.9.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_StateProvince_StateProvinceProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.KeyPart.1.FirstObjectPart.1" JoinPatternKeyPartId="JoinPattern.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.KeyPart.1.FirstObjectPart.2" JoinPatternKeyPartId="JoinPattern.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.KeyPart.1.FirstObjectPart.3" JoinPatternKeyPartId="JoinPattern.KeyPart.1">
+      <InputSide>First</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BH_Customer</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.KeyPart.1.SecondObjectPart.1" JoinPatternKeyPartId="JoinPattern.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>0</Ordinal>
+      <Value>AdventureWorksBusinessVault</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.KeyPart.1.SecondObjectPart.2" JoinPatternKeyPartId="JoinPattern.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>1</Ordinal>
+      <Value>dbo</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+    <JoinPatternKeyPartInputObjectIdentifierPart Id="JoinPattern.KeyPart.1.SecondObjectPart.3" JoinPatternKeyPartId="JoinPattern.KeyPart.1">
+      <InputSide>Second</InputSide>
+      <Ordinal>2</Ordinal>
+      <Value>BHS_Customer_CustomerProfile</Value>
+    </JoinPatternKeyPartInputObjectIdentifierPart>
+  </JoinPatternKeyPartInputObjectIdentifierPartList>
+</MetaDataQuality>

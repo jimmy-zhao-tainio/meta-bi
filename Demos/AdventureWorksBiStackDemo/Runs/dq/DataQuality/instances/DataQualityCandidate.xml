@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaDataQuality>
   <DataQualityCandidateList>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.1.144">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.1.135">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.1</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -15,7 +15,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.10.122">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.10.113">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.10</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -29,7 +29,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.12.158">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.12.149">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.12</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -43,7 +43,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.14.152">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.14.143">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.14</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -57,7 +57,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.16.166">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.16.157">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.16</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -71,7 +71,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.19.172">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.19.163">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.19</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -85,7 +85,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.2.140">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.2.131">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.2</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -99,7 +99,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.21.63">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.21.56">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.21</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -113,7 +113,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.22.60">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.22.53">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.22</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -127,7 +127,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.23.57">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.23.50">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.23</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -141,7 +141,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.24.45">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.24.38">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.24</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -155,7 +155,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.25.42">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.25.35">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.25</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -169,7 +169,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.26.39">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.26.32">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.26</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -183,7 +183,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.28.33">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.28.27">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.28</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -197,7 +197,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.29.30">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.29.24">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.29</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -211,7 +211,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.3.136">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.3.127">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.3</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -225,7 +225,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.31.94">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.31.85">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.31</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -239,7 +239,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.32.90">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.32.81">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.32</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -253,7 +253,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.34.84">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.34.75">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.34</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -267,7 +267,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.35.80">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.35.71">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.35</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -281,7 +281,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.37.19">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.37.13">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.37</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -295,7 +295,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.38.16">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.38.10">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.38</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -309,7 +309,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.42.54">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.42.47">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.42</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -323,7 +323,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.43.51">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.43.44">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.43</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -337,7 +337,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.44.48">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.44.41">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.44</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -351,7 +351,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.46.114">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.46.105">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.46</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -365,7 +365,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.47.110">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.47.101">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.47</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -379,7 +379,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.49.104">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.49.95">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.49</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -393,7 +393,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.50.100">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.50.91">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.50</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -407,7 +407,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.52.26">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.52.20">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.52</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -421,7 +421,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.53.23">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.53.17">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.53</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -435,7 +435,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.55.12">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.55.6">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.55</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -449,7 +449,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.56.9">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.56.3">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.56</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -463,7 +463,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.63.73">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.63.66">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.63</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -477,7 +477,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.64.70">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.64.63">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.64</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -491,7 +491,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.65.67">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.65.60">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.65</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -505,7 +505,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.8.128">
+    <DataQualityCandidate Id="JoinMultiplicityExplosion.JoinPattern.8.119">
       <Assumptions>Expected multiplicity (1:1, 1:N, N:1) is not inferable from syntax alone.</Assumptions>
       <Name>JoinMultiplicityExplosion:JoinPattern.8</Name>
       <Rationale>Qualified joins with equality predicates were found without an obvious detail-grain projection; fanout checks are likely relevant.</Rationale>
@@ -519,7 +519,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.1.143">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.1.134">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.1</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -533,7 +533,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.10.121">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.10.112">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.10</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -547,7 +547,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.11.161">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.11.152">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.11</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -561,7 +561,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.12.157">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.12.148">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.12</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -575,7 +575,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.13.155">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.13.146">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.13</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -589,21 +589,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.14.151">
-      <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
-      <Name>JoinOrphan:JoinPattern.14</Name>
-      <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: JoinOrphan
-JoinPatternId: JoinPattern.14
-JoinPatternSignature: type=leftouter;left=adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bhs_product_productprofile,adventureworksbusinessvault.dbo.bhs_productsubcategory_productsubcategoryprofile,adventureworksbusinessvault.dbo.bl_productsubcategoryassignment;right=adventureworksbusinessvault.dbo.bl_productsubcategorycategory;eq=1;hasEq=1;keys=assignment.productsubcategoryhashkey=categoryassignment.productsubcategoryhashkey
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.147">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.138">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -617,7 +603,21 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.15.149">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.14.142">
+      <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
+      <Name>JoinOrphan:JoinPattern.14</Name>
+      <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
+      <SqlTemplate>/*
+CandidateType: JoinOrphan
+JoinPatternId: JoinPattern.14
+JoinPatternSignature: type=leftouter;left=adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bhs_product_productprofile,adventureworksbusinessvault.dbo.bhs_productsubcategory_productsubcategoryprofile,adventureworksbusinessvault.dbo.bl_productsubcategoryassignment;right=adventureworksbusinessvault.dbo.bl_productsubcategorycategory;eq=1;hasEq=1;keys=assignment.productsubcategoryhashkey=categoryassignment.productsubcategoryhashkey
+*/
+SELECT
+    CAST(NULL AS bigint) AS SuspectRowCount
+WHERE 1 = 0;</SqlTemplate>
+      <Status>Promoted</Status>
+    </DataQualityCandidate>
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.15.140">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.15</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -631,7 +631,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.16.165">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.16.156">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.16</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -645,7 +645,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.17.163">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.17.154">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.17</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -659,7 +659,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.18.175">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.18.166">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.18</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -673,7 +673,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.19.171">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.19.162">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.19</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -687,7 +687,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.2.139">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.2.130">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.2</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -701,7 +701,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.20.169">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.20.160">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.20</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -715,7 +715,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.21.62">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.21.55">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.21</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -729,7 +729,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.22.59">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.22.52">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.22</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -743,7 +743,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.23.56">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.23.49">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.23</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -757,7 +757,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.24.44">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.24.37">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.24</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -771,7 +771,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.25.41">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.25.34">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.25</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -785,7 +785,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.26.38">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.26.31">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.26</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -799,7 +799,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.27.37">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.27.30">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.27</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -813,7 +813,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.28.32">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.28.26">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.28</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -827,7 +827,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.29.29">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.29.23">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.29</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -841,7 +841,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.3.135">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.3.126">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.3</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -855,7 +855,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.30.28">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.30.22">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.30</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -869,7 +869,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.31.93">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.31.84">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.31</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -883,7 +883,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.32.89">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.32.80">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.32</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -897,7 +897,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.33.87">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.33.78">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.33</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -911,7 +911,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.34.83">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.34.74">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.34</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -925,7 +925,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.35.79">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.35.70">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.35</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -939,7 +939,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.36.77">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.36.68">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.36</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -953,7 +953,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.37.18">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.37.12">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.37</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -967,7 +967,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.38.15">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.38.9">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.38</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -981,7 +981,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.39.14">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.39.8">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.39</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -995,7 +995,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.4.133">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.4.124">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.4</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1009,35 +1009,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.40.5">
-      <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
-      <Name>JoinOrphan:JoinPattern.40</Name>
-      <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: JoinOrphan
-JoinPatternId: JoinPattern.40
-JoinPatternSignature: type=inner;left=adventureworksanalytics.dw.dim_customer,adventureworksanalytics.dw.dim_geography,adventureworksanalytics.dw.dim_product,adventureworksanalytics.dw.dim_salesperson,adventureworksanalytics.dw.dim_salesterritory,adventureworksbusinessvault.dbo.bh_address,adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bh_salesperson,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderheader,adventureworksbusinessvault.dbo.bhs_salesorderline_salesorderlinedetail,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bl_salesorderlinesalesorder,adventureworksbusinessvault.dbo.bl_salesordersalesperson,adventureworksbusinessvault.dbo.bl_salesordersalesterritory,adventureworksbusinessvault.dbo.bl_salesordershiptoaddress;right=adventureworksanalytics.dw.dim_date;eq=1;hasEq=1;keys=orderdate.calendardate=scalarexpression:1160
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.41.1">
-      <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
-      <Name>JoinOrphan:JoinPattern.41</Name>
-      <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: JoinOrphan
-JoinPatternId: JoinPattern.41
-JoinPatternSignature: type=inner;left=adventureworksanalytics.dw.dim_customer,adventureworksanalytics.dw.dim_date,adventureworksanalytics.dw.dim_geography,adventureworksanalytics.dw.dim_product,adventureworksanalytics.dw.dim_salesperson,adventureworksanalytics.dw.dim_salesterritory,adventureworksbusinessvault.dbo.bh_address,adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bh_salesperson,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderheader,adventureworksbusinessvault.dbo.bhs_salesorderline_salesorderlinedetail,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bl_salesorderlinesalesorder,adventureworksbusinessvault.dbo.bl_salesordersalesperson,adventureworksbusinessvault.dbo.bl_salesordersalesterritory,adventureworksbusinessvault.dbo.bl_salesordershiptoaddress;right=adventureworksanalytics.dw.dim_saleschannel;eq=1;hasEq=1;keys=channel.channelcode=scalarexpression:1166
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.42.53">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.42.46">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.42</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1051,7 +1023,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.43.50">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.43.43">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.43</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1065,7 +1037,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.44.47">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.44.40">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.44</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1079,7 +1051,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.45.36">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.45.29">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.45</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1093,7 +1065,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.46.113">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.46.104">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.46</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1107,7 +1079,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.47.109">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.47.100">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.47</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1121,7 +1093,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.48.107">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.48.98">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.48</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1135,7 +1107,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.49.103">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.49.94">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.49</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1149,7 +1121,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.5.119">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.5.110">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.5</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1163,7 +1135,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.50.99">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.50.90">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.50</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1177,7 +1149,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.51.97">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.51.88">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.51</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1191,7 +1163,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.52.25">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.52.19">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.52</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1205,7 +1177,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.53.22">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.53.16">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.53</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1219,7 +1191,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.54.21">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.54.15">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.54</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1233,7 +1205,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.55.11">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.55.5">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.55</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1247,7 +1219,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.56.8">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.56.2">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.56</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1261,7 +1233,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.57.7">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.57.1">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.57</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1275,35 +1247,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.58.6">
-      <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
-      <Name>JoinOrphan:JoinPattern.58</Name>
-      <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: JoinOrphan
-JoinPatternId: JoinPattern.58
-JoinPatternSignature: type=inner;left=adventureworksanalytics.dw.dim_customer,adventureworksanalytics.dw.dim_geography,adventureworksanalytics.dw.dim_salesperson,adventureworksanalytics.dw.dim_salesterritory,adventureworksbusinessvault.dbo.bh_address,adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesperson,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderheader,adventureworksbusinessvault.dbo.bl_salesorderbilltoaddress,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesordersalesperson,adventureworksbusinessvault.dbo.bl_salesordersalesterritory,adventureworksbusinessvault.dbo.bl_salesordershiptoaddress;right=adventureworksanalytics.dw.dim_date;eq=1;hasEq=1;keys=orderdate.calendardate=scalarexpression:988
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.59.3">
-      <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
-      <Name>JoinOrphan:JoinPattern.59</Name>
-      <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: JoinOrphan
-JoinPatternId: JoinPattern.59
-JoinPatternSignature: type=inner;left=adventureworksanalytics.dw.dim_customer,adventureworksanalytics.dw.dim_date,adventureworksanalytics.dw.dim_geography,adventureworksanalytics.dw.dim_salesperson,adventureworksanalytics.dw.dim_salesterritory,adventureworksbusinessvault.dbo.bh_address,adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesperson,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderheader,adventureworksbusinessvault.dbo.bl_salesorderbilltoaddress,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesordersalesperson,adventureworksbusinessvault.dbo.bl_salesordersalesterritory,adventureworksbusinessvault.dbo.bl_salesordershiptoaddress;right=adventureworksanalytics.dw.dim_date;eq=1;hasEq=1;keys=duedate.calendardate=scalarexpression:991
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.6.117">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.6.108">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.6</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1317,49 +1261,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.60.75">
-      <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
-      <Name>JoinOrphan:JoinPattern.60</Name>
-      <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: JoinOrphan
-JoinPatternId: JoinPattern.60
-JoinPatternSignature: type=leftouter;left=adventureworksanalytics.dw.dim_customer,adventureworksanalytics.dw.dim_date,adventureworksanalytics.dw.dim_geography,adventureworksanalytics.dw.dim_salesperson,adventureworksanalytics.dw.dim_salesterritory,adventureworksbusinessvault.dbo.bh_address,adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesperson,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderheader,adventureworksbusinessvault.dbo.bl_salesorderbilltoaddress,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesordersalesperson,adventureworksbusinessvault.dbo.bl_salesordersalesterritory,adventureworksbusinessvault.dbo.bl_salesordershiptoaddress;right=adventureworksanalytics.dw.dim_date;eq=1;hasEq=1;keys=scalarexpression:994=shipdate.calendardate
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.61.4">
-      <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
-      <Name>JoinOrphan:JoinPattern.61</Name>
-      <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: JoinOrphan
-JoinPatternId: JoinPattern.61
-JoinPatternSignature: type=inner;left=adventureworksanalytics.dw.dim_customer,adventureworksanalytics.dw.dim_date,adventureworksanalytics.dw.dim_geography,adventureworksanalytics.dw.dim_salesperson,adventureworksanalytics.dw.dim_salesterritory,adventureworksbusinessvault.dbo.bh_address,adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesperson,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderheader,adventureworksbusinessvault.dbo.bl_salesorderbilltoaddress,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesordersalesperson,adventureworksbusinessvault.dbo.bl_salesordersalesterritory,adventureworksbusinessvault.dbo.bl_salesordershiptoaddress;right=adventureworksanalytics.dw.dim_saleschannel;eq=1;hasEq=1;keys=channel.channelcode=scalarexpression:1000
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.62.2">
-      <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
-      <Name>JoinOrphan:JoinPattern.62</Name>
-      <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: JoinOrphan
-JoinPatternId: JoinPattern.62
-JoinPatternSignature: type=inner;left=adventureworksanalytics.dw.dim_customer,adventureworksanalytics.dw.dim_date,adventureworksanalytics.dw.dim_geography,adventureworksanalytics.dw.dim_saleschannel,adventureworksanalytics.dw.dim_salesperson,adventureworksanalytics.dw.dim_salesterritory,adventureworksbusinessvault.dbo.bh_address,adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesperson,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderheader,adventureworksbusinessvault.dbo.bl_salesorderbilltoaddress,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesordersalesperson,adventureworksbusinessvault.dbo.bl_salesordersalesterritory,adventureworksbusinessvault.dbo.bl_salesordershiptoaddress;right=adventureworksanalytics.dw.dim_orderstatus;eq=1;hasEq=1;keys=detail.status=orderstatus.statuscode
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.63.72">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.63.65">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.63</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1373,7 +1275,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.64.69">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.64.62">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.64</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1387,7 +1289,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.65.66">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.65.59">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.65</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1401,7 +1303,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.66.65">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.66.58">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.66</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1415,21 +1317,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.67.35">
-      <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
-      <Name>JoinOrphan:JoinPattern.67</Name>
-      <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: JoinOrphan
-JoinPatternId: JoinPattern.67
-JoinPatternSignature: type=inner;left=adventureworksanalytics.dw.dim_salesperson,adventureworksbusinessvault.dbo.bh_salesperson,adventureworksbusinessvault.dbo.bh_salespersonquota,adventureworksbusinessvault.dbo.bhs_salespersonquota_salespersonquotaprofile,adventureworksbusinessvault.dbo.bl_salespersonquotasalesperson;right=adventureworksanalytics.dw.dim_date;eq=1;hasEq=1;keys=quotaperiod.calendardate=scalarexpression:1247
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.7.131">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.7.122">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.7</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1443,7 +1331,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.8.127">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.8.118">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.8</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1457,7 +1345,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="JoinOrphan.JoinPattern.9.125">
+    <DataQualityCandidate Id="JoinOrphan.JoinPattern.9.116">
       <Assumptions>Relationship direction is inferred from syntax and may require user correction.</Assumptions>
       <Name>JoinOrphan:JoinPattern.9</Name>
       <Rationale>Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.</Rationale>
@@ -1471,7 +1359,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.1.145">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.1.136">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.1</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1485,7 +1373,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.10.123">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.10.114">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.10</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1499,7 +1387,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.11.162">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.11.153">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.11</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1513,7 +1401,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.12.159">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.12.150">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.12</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1527,7 +1415,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.13.156">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.13.147">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.13</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1541,21 +1429,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.14.153">
-      <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
-      <Name>OuterJoinNullExpansion:JoinPattern.14</Name>
-      <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: OuterJoinNullExpansion
-JoinPatternId: JoinPattern.14
-JoinPatternSignature: type=leftouter;left=adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bhs_product_productprofile,adventureworksbusinessvault.dbo.bhs_productsubcategory_productsubcategoryprofile,adventureworksbusinessvault.dbo.bl_productsubcategoryassignment;right=adventureworksbusinessvault.dbo.bl_productsubcategorycategory;eq=1;hasEq=1;keys=assignment.productsubcategoryhashkey=categoryassignment.productsubcategoryhashkey
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.148">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.139">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1569,7 +1443,21 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.15.150">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.14.144">
+      <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
+      <Name>OuterJoinNullExpansion:JoinPattern.14</Name>
+      <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
+      <SqlTemplate>/*
+CandidateType: OuterJoinNullExpansion
+JoinPatternId: JoinPattern.14
+JoinPatternSignature: type=leftouter;left=adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bhs_product_productprofile,adventureworksbusinessvault.dbo.bhs_productsubcategory_productsubcategoryprofile,adventureworksbusinessvault.dbo.bl_productsubcategoryassignment;right=adventureworksbusinessvault.dbo.bl_productsubcategorycategory;eq=1;hasEq=1;keys=assignment.productsubcategoryhashkey=categoryassignment.productsubcategoryhashkey
+*/
+SELECT
+    CAST(NULL AS bigint) AS SuspectRowCount
+WHERE 1 = 0;</SqlTemplate>
+      <Status>Promoted</Status>
+    </DataQualityCandidate>
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.15.141">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.15</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1583,7 +1471,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.16.167">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.16.158">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.16</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1597,7 +1485,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.17.164">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.17.155">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.17</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1611,7 +1499,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.18.176">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.18.167">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.18</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1625,7 +1513,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.19.173">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.19.164">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.19</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1639,7 +1527,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.2.141">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.2.132">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.2</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1653,7 +1541,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.20.170">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.20.161">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.20</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1667,7 +1555,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.3.137">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.3.128">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.3</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1681,7 +1569,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.31.95">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.31.86">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.31</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1695,7 +1583,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.32.91">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.32.82">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.32</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1709,7 +1597,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.33.88">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.33.79">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.33</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1723,7 +1611,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.34.85">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.34.76">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.34</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1737,7 +1625,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.35.81">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.35.72">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.35</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1751,7 +1639,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.36.78">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.36.69">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.36</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1765,7 +1653,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.4.134">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.4.125">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.4</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1779,7 +1667,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.46.115">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.46.106">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.46</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1793,7 +1681,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.47.111">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.47.102">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.47</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1807,7 +1695,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.48.108">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.48.99">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.48</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1821,7 +1709,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.49.105">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.49.96">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.49</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1835,7 +1723,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.5.120">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.5.111">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.5</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1849,7 +1737,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.50.101">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.50.92">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.50</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1863,7 +1751,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.51.98">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.51.89">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.51</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1877,7 +1765,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.6.118">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.6.109">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.6</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1891,21 +1779,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.60.76">
-      <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
-      <Name>OuterJoinNullExpansion:JoinPattern.60</Name>
-      <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
-      <SqlTemplate>/*
-CandidateType: OuterJoinNullExpansion
-JoinPatternId: JoinPattern.60
-JoinPatternSignature: type=leftouter;left=adventureworksanalytics.dw.dim_customer,adventureworksanalytics.dw.dim_date,adventureworksanalytics.dw.dim_geography,adventureworksanalytics.dw.dim_salesperson,adventureworksanalytics.dw.dim_salesterritory,adventureworksbusinessvault.dbo.bh_address,adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesperson,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderheader,adventureworksbusinessvault.dbo.bl_salesorderbilltoaddress,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesordersalesperson,adventureworksbusinessvault.dbo.bl_salesordersalesterritory,adventureworksbusinessvault.dbo.bl_salesordershiptoaddress;right=adventureworksanalytics.dw.dim_date;eq=1;hasEq=1;keys=scalarexpression:994=shipdate.calendardate
-*/
-SELECT
-    CAST(NULL AS bigint) AS SuspectRowCount
-WHERE 1 = 0;</SqlTemplate>
-      <Status>Promoted</Status>
-    </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.7.132">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.7.123">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.7</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1919,7 +1793,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.8.129">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.8.120">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.8</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1933,7 +1807,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.9.126">
+    <DataQualityCandidate Id="OuterJoinNullExpansion.JoinPattern.9.117">
       <Assumptions>Optional-side semantics depend on business intent and may require user adjustment.</Assumptions>
       <Name>OuterJoinNullExpansion:JoinPattern.9</Name>
       <Rationale>Outer join usage was found; null-expansion checks are likely relevant.</Rationale>
@@ -1947,7 +1821,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.1.146">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.1.137">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.1</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -1961,7 +1835,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.10.124">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.10.115">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.10</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -1975,7 +1849,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.12.160">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.12.151">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.12</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -1989,7 +1863,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.14.154">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.14.145">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.14</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2003,7 +1877,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.16.168">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.16.159">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.16</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2017,7 +1891,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.19.174">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.19.165">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.19</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2031,7 +1905,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.2.142">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.2.133">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.2</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2045,7 +1919,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.21.64">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.21.57">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.21</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2059,7 +1933,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.22.61">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.22.54">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.22</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2073,7 +1947,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.23.58">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.23.51">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.23</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2087,7 +1961,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.24.46">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.24.39">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.24</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2101,7 +1975,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.25.43">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.25.36">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.25</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2115,7 +1989,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.26.40">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.26.33">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.26</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2129,7 +2003,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.28.34">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.28.28">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.28</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2143,7 +2017,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.29.31">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.29.25">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.29</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2157,7 +2031,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.3.138">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.3.129">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.3</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2171,7 +2045,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.31.96">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.31.87">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.31</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2185,7 +2059,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.32.92">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.32.83">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.32</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2199,7 +2073,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.34.86">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.34.77">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.34</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2213,7 +2087,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.35.82">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.35.73">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.35</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2227,7 +2101,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.37.20">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.37.14">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.37</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2241,7 +2115,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.38.17">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.38.11">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.38</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2255,7 +2129,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.42.55">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.42.48">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.42</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2269,7 +2143,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.43.52">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.43.45">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.43</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2283,7 +2157,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.44.49">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.44.42">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.44</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2297,7 +2171,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.46.116">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.46.107">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.46</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2311,7 +2185,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.47.112">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.47.103">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.47</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2325,7 +2199,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.49.106">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.49.97">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.49</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2339,7 +2213,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.50.102">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.50.93">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.50</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2353,7 +2227,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.52.27">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.52.21">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.52</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2367,7 +2241,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.53.24">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.53.18">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.53</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2381,7 +2255,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.55.13">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.55.7">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.55</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2395,7 +2269,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.56.10">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.56.4">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.56</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2409,7 +2283,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.63.74">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.63.67">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.63</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2423,7 +2297,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.64.71">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.64.64">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.64</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2437,7 +2311,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.65.68">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.65.61">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.65</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>
@@ -2451,7 +2325,7 @@ SELECT
 WHERE 1 = 0;</SqlTemplate>
       <Status>Promoted</Status>
     </DataQualityCandidate>
-    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.8.130">
+    <DataQualityCandidate Id="OutputDuplicateRisk.JoinPattern.8.121">
       <Assumptions>Candidate key selection requires user confirmation.</Assumptions>
       <Name>OutputDuplicateRisk:JoinPattern.8</Name>
       <Rationale>Join usage without DISTINCT/GROUP BY indicates possible duplicate amplification.</Rationale>

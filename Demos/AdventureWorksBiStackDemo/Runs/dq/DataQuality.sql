@@ -1,72 +1,75 @@
 IF SCHEMA_ID(N'dq') IS NULL EXEC(N'CREATE SCHEMA [dq]');
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.1' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_1_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.1.135]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_CustomerPerson] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[CustomerHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.10' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_10_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.10.113]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'StateProvinceHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[StateProvinceHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_AddressStateProvince] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_StateProvinceCountryRegion] AS [dq_right]
+    ON [dq_left].[StateProvinceHashKey] = [dq_right].[StateProvinceHashKey]
+GROUP BY [dq_left].[StateProvinceHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.12' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_12_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.12.149]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Product] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryAssignment] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[ProductHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.14' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_14_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.14.143]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ProductSubcategoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ProductSubcategoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryAssignment] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryCategory] AS [dq_right]
+    ON [dq_left].[ProductSubcategoryHashKey] = [dq_right].[ProductSubcategoryHashKey]
+GROUP BY [dq_left].[ProductSubcategoryHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-CREATE OR ALTER VIEW [dq].[v_Row_multiplication_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPerson]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.16.157]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -83,648 +86,703 @@ GROUP BY [dq_left].[HashKey]
 HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.19' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_19_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.19.163]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesTerritoryCountryRegion] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesTerritoryHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.2' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_2_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.2.131]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'PersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[PersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_CustomerPerson] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_Person_PersonProfile] AS [dq_right]
+    ON [dq_left].[PersonHashKey] = [dq_right].[HubHashKey]
+GROUP BY [dq_left].[PersonHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.21' cannot be rendered: only simple column equality predicates can be rendered; found 'lineDetail.VersionRank' = 'ScalarExpression:1119'. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_21_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.21.56]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrderLine] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrderLine_SalesOrderLineDetail] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[HubHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.22' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_22_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.22.53]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrderLine] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineSalesOrder] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderLineHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.23' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_23_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.23.50]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder -> AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineSalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_right]
+    ON [dq_left].[SalesOrderHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesOrderHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.24' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_24_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.24.38]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrder_SalesOrderHeader] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[HubHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.25' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_25_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.25.35]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrderLine] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineProduct] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderLineHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.26' resolves to 6 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_26_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.26.32]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct -> AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ProductHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ProductHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineProduct] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Product] AS [dq_right]
+    ON [dq_left].[ProductHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[ProductHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.28' resolves to 8 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_28_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.28.27]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.29' resolves to 9 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_29_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.29.24]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'CustomerHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[CustomerHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_right]
+    ON [dq_left].[CustomerHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[CustomerHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.3' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_3_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.3.127]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_CustomerStore] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[CustomerHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.31' resolves to 11 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_31_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.31.85]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.32' resolves to 12 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_32_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.32.81]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesPersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesPersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+    ON [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesPersonHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.34' resolves to 14 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_34_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.34.75]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.35' resolves to 15 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_35_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.35.71]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesTerritoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesTerritoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_right]
+    ON [dq_left].[SalesTerritoryHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesTerritoryHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.37' resolves to 17 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_37_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.37.13]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.38' resolves to 18 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_38_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.38.10]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ShipToAddressHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ShipToAddressHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_right]
+    ON [dq_left].[ShipToAddressHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[ShipToAddressHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.42' cannot be rendered: only simple column equality predicates can be rendered; found 'detail.VersionRank' = 'ScalarExpression:955'. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_42_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.42.47]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrder_SalesOrderHeader] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[HubHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.43' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_43_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.43.44]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.44' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_44_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.44.41]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'CustomerHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[CustomerHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_right]
+    ON [dq_left].[CustomerHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[CustomerHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.46' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_46_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.46.105]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.47' resolves to 6 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_47_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.47.101]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesPersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesPersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+    ON [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesPersonHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.49' resolves to 8 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_49_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.49.95]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.50' resolves to 9 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_50_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.50.91]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesTerritoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesTerritoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_right]
+    ON [dq_left].[SalesTerritoryHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesTerritoryHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.52' resolves to 11 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_52_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.52.20]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderBillToAddress] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.53' resolves to 12 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_53_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.53.17]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'BillToAddressHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[BillToAddressHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderBillToAddress] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_right]
+    ON [dq_left].[BillToAddressHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[BillToAddressHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.55' resolves to 14 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_55_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.55.6]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.56' resolves to 15 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_56_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.56.3]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ShipToAddressHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ShipToAddressHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_right]
+    ON [dq_left].[ShipToAddressHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[ShipToAddressHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.63' cannot be rendered: only simple column equality predicates can be rendered; found 'quotaDetail.VersionRank' = 'ScalarExpression:1238'. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_63_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.63.66]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPersonQuota] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesPersonQuota_SalesPersonQuotaProfile] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[HubHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.64' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_64_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.64.63]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPersonQuota] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesPersonQuotaSalesPerson] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesPersonQuotaHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.65' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_65_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.65.60]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesPersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesPersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesPersonQuotaSalesPerson] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+    ON [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesPersonHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Row multiplication */
-/* Warning: Join relationship 'JoinPattern.8' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion_JoinPattern_8_JoinMultiplicityExplosion]
+CREATE OR ALTER VIEW [dq].[v_JoinMultiplicityExplosion.JoinPattern.8.119]
 AS
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
     CAST(N'Row multiplication' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_AddressStateProvince] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[AddressHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern' cannot be rendered: only simple column equality predicates can be rendered; found 'customerProfile.VersionRank' = 'ScalarExpression:777'. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.1.134]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'CustomerHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[CustomerHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_CustomerPerson] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[CustomerHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.1' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_1_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.10.112]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'StateProvinceHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[StateProvinceHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_StateProvinceCountryRegion] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_AddressStateProvince] AS [dq_left]
+    WHERE [dq_left].[StateProvinceHashKey] = [dq_right].[StateProvinceHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.10' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_10_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.11.152]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_Product_ProductProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Product] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.11' cannot be rendered: only simple column equality predicates can be rendered; found 'profile.VersionRank' = 'ScalarExpression:600'. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_11_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.12.148]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ProductHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[ProductHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryAssignment] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Product] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[ProductHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.12' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_12_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.13.146]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_ProductSubcategory_ProductSubcategoryProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryAssignment] AS [dq_left]
+    WHERE [dq_left].[ProductSubcategoryHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.13' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_13_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.138]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_Customer_CustomerProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.14' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_14_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.14.142]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ProductSubcategoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[ProductSubcategoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryCategory] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryAssignment] AS [dq_left]
+    WHERE [dq_left].[ProductSubcategoryHashKey] = [dq_right].[ProductSubcategoryHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.15' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_15_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.15.140]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory -> AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_ProductCategory_ProductCategoryProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryCategory] AS [dq_left]
+    WHERE [dq_left].[ProductCategoryHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-CREATE OR ALTER VIEW [dq].[v_Missing_referenced_rows_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPer]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.16.156]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -743,1080 +801,1128 @@ WHERE NOT EXISTS
 )
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.17' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_17_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.17.154]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Salesperson' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_Person_PersonProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesPersonPerson] AS [dq_left]
+    WHERE [dq_left].[PersonHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.18' cannot be rendered: only simple column equality predicates can be rendered; found 'profile.VersionRank' = 'ScalarExpression:879'. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_18_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.18.166]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_SalesTerritory_SalesTerritoryProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.19' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_19_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.19.162]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesTerritoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesTerritoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesTerritoryCountryRegion] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesTerritoryHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.2' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_2_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.2.130]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_Person_PersonProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_CustomerPerson] AS [dq_left]
+    WHERE [dq_left].[PersonHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.20' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_20_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.20.160]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_CountryRegion] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesTerritoryCountryRegion] AS [dq_left]
+    WHERE [dq_left].[CountryRegionHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.21' cannot be rendered: only simple column equality predicates can be rendered; found 'lineDetail.VersionRank' = 'ScalarExpression:1119'. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_21_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.21.55]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrderLine_SalesOrderLineDetail] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrderLine] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.22' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_22_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.22.52]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderLineHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderLineHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineSalesOrder] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrderLine] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderLineHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.23' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_23_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.23.49]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder -> AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineSalesOrder] AS [dq_left]
+    WHERE [dq_left].[SalesOrderHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.24' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_24_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.24.37]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrder_SalesOrderHeader] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.25' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_25_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.25.34]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderLineHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderLineHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineProduct] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrderLine] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderLineHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.26' resolves to 6 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_26_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.26.31]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct -> AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Product] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineProduct] AS [dq_left]
+    WHERE [dq_left].[ProductHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.27' resolves to 7 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_27_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.27.30]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksAnalytics.dw.Dim_Product' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_Product' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ProductID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[ProductID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_Product] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Product] AS [dq_left]
+    WHERE [dq_left].[ProductID] = [dq_right].[ProductID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.28' resolves to 8 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_28_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.28.26]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.29' resolves to 9 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_29_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.29.23]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_left]
+    WHERE [dq_left].[CustomerHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.3' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_3_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.3.126]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'CustomerHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[CustomerHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_CustomerStore] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[CustomerHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.30' resolves to 10 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_30_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.30.22]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksAnalytics.dw.Dim_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'CustomerID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[CustomerID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_Customer] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+    WHERE [dq_left].[CustomerID] = [dq_right].[CustomerID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.31' resolves to 11 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_31_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.31.84]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.32' resolves to 12 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_32_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.32.80]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_left]
+    WHERE [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.33' resolves to 13 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_33_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.33.78]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'BusinessEntityID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[BusinessEntityID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_Salesperson] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_left]
+    WHERE [dq_left].[BusinessEntityID] = [dq_right].[BusinessEntityID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.34' resolves to 14 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_34_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.34.74]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.35' resolves to 15 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_35_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.35.70]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_left]
+    WHERE [dq_left].[SalesTerritoryHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.36' resolves to 16 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_36_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.36.68]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'TerritoryID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[TerritoryID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_SalesTerritory] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_left]
+    WHERE [dq_left].[TerritoryID] = [dq_right].[TerritoryID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.37' resolves to 17 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_37_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.37.12]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.38' resolves to 18 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_38_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.38.9]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_left]
+    WHERE [dq_left].[ShipToAddressHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.39' resolves to 19 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_39_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.39.8]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'AddressID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[AddressID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_Geography] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_left]
+    WHERE [dq_left].[AddressID] = [dq_right].[AddressID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.4' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_4_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.4.124]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerStore -> AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_Store_StoreProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_CustomerStore] AS [dq_left]
+    WHERE [dq_left].[StoreHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.40' resolves to 20 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_40_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.42.46]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrder_SalesOrderHeader] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.41' resolves to 21 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_41_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.43.43]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.42' cannot be rendered: only simple column equality predicates can be rendered; found 'detail.VersionRank' = 'ScalarExpression:955'. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_42_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.44.40]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_left]
+    WHERE [dq_left].[CustomerHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.43' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_43_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.45.29]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksAnalytics.dw.Dim_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'CustomerID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[CustomerID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_Customer] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+    WHERE [dq_left].[CustomerID] = [dq_right].[CustomerID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.44' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_44_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.46.104]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.45' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_45_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.47.100]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_left]
+    WHERE [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.46' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_46_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.48.98]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'BusinessEntityID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[BusinessEntityID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_Salesperson] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_left]
+    WHERE [dq_left].[BusinessEntityID] = [dq_right].[BusinessEntityID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.47' resolves to 6 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_47_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.49.94]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.48' resolves to 7 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_48_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.5.110]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_CountryRegion] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_StateProvinceCountryRegion] AS [dq_left]
+    WHERE [dq_left].[CountryRegionHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.49' resolves to 8 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_49_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.50.90]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_left]
+    WHERE [dq_left].[SalesTerritoryHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.5' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_5_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.51.88]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'TerritoryID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[TerritoryID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_SalesTerritory] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_left]
+    WHERE [dq_left].[TerritoryID] = [dq_right].[TerritoryID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.50' resolves to 9 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_50_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.52.19]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderBillToAddress] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.51' resolves to 10 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_51_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.53.16]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderBillToAddress] AS [dq_left]
+    WHERE [dq_left].[BillToAddressHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.52' resolves to 11 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_52_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.54.15]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'AddressID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[AddressID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_Geography] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_left]
+    WHERE [dq_left].[AddressID] = [dq_right].[AddressID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.53' resolves to 12 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_53_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.55.5]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.54' resolves to 13 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_54_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.56.2]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_left]
+    WHERE [dq_left].[ShipToAddressHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.55' resolves to 14 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_55_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.57.1]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'AddressID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[AddressID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_Geography] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_left]
+    WHERE [dq_left].[AddressID] = [dq_right].[AddressID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.56' resolves to 15 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_56_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.6.108]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_CountryRegion -> AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_CountryRegion_CountryRegionProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_CountryRegion] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.57' resolves to 15 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_57_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.63.65]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_SalesPersonQuota_SalesPersonQuotaProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPersonQuota] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.58' resolves to 15 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_58_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.64.62]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesPersonQuotaHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[SalesPersonQuotaHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesPersonQuotaSalesPerson] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPersonQuota] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesPersonQuotaHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.59' resolves to 16 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_59_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.65.59]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesPersonQuotaSalesPerson] AS [dq_left]
+    WHERE [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.6' resolves to 6 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_6_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.66.58]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'BusinessEntityID=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[BusinessEntityID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksAnalytics].[dw].[Dim_Salesperson] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_left]
+    WHERE [dq_left].[BusinessEntityID] = [dq_right].[BusinessEntityID]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.60' resolves to 16 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_60_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.7.122]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_Address_AddressProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.61' resolves to 16 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_61_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.8.118]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'AddressHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[AddressHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_AddressStateProvince] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_left]
+    WHERE [dq_left].[HashKey] = [dq_right].[AddressHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.62' resolves to 17 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_62_JoinOrphan]
+CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.9.116]
 AS
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HubHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_right].[HubHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BHS_StateProvince_StateProvinceProfile] AS [dq_right]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_AddressStateProvince] AS [dq_left]
+    WHERE [dq_left].[StateProvinceHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.63' cannot be rendered: only simple column equality predicates can be rendered; found 'quotaDetail.VersionRank' = 'ScalarExpression:1238'. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_63_JoinOrphan]
-AS
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
-GO
-
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.64' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_64_JoinOrphan]
-AS
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
-GO
-
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.65' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_65_JoinOrphan]
-AS
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
-GO
-
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.66' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_66_JoinOrphan]
-AS
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
-GO
-
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.67' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_67_JoinOrphan]
-AS
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
-GO
-
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.7' cannot be rendered: only simple column equality predicates can be rendered; found 'addressProfile.VersionRank' = 'ScalarExpression:678'. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_7_JoinOrphan]
-AS
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
-GO
-
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.8' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_8_JoinOrphan]
-AS
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
-GO
-
-/* MetaDataQuality: Missing referenced rows */
-/* Warning: Join relationship 'JoinPattern.9' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_JoinOrphan_JoinPattern_9_JoinOrphan]
-AS
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
-GO
-
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern' cannot be rendered: only simple column equality predicates can be rendered; found 'customerProfile.VersionRank' = 'ScalarExpression:777'. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.1.136]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_CustomerPerson] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[CustomerHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.1' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_1_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.10.114]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'StateProvinceHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[StateProvinceHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_AddressStateProvince] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_StateProvinceCountryRegion] AS [dq_right]
+    WHERE [dq_left].[StateProvinceHashKey] = [dq_right].[StateProvinceHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.10' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_10_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.11.153]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Product] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_Product_ProductProfile] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.11' cannot be rendered: only simple column equality predicates can be rendered; found 'profile.VersionRank' = 'ScalarExpression:600'. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_11_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.12.150]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Product] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryAssignment] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[ProductHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.12' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_12_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.13.147]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ProductSubcategoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ProductSubcategoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryAssignment] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_ProductSubcategory_ProductSubcategoryProfile] AS [dq_right]
+    WHERE [dq_left].[ProductSubcategoryHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.13' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_13_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.139]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_Customer_CustomerProfile] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.14' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_14_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.14.144]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ProductSubcategoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ProductSubcategoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryAssignment] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryCategory] AS [dq_right]
+    WHERE [dq_left].[ProductSubcategoryHashKey] = [dq_right].[ProductSubcategoryHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.15' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_15_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.15.141]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory -> AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ProductCategoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ProductCategoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryCategory] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_ProductCategory_ProductCategoryProfile] AS [dq_right]
+    WHERE [dq_left].[ProductCategoryHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-CREATE OR ALTER VIEW [dq].[v_Unexpected_NULLs_from_outer_joins_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_Sale]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.16.158]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -1835,472 +1941,531 @@ WHERE NOT EXISTS
 )
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.17' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_17_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.17.155]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Salesperson' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'PersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[PersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesPersonPerson] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_Person_PersonProfile] AS [dq_right]
+    WHERE [dq_left].[PersonHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.18' cannot be rendered: only simple column equality predicates can be rendered; found 'profile.VersionRank' = 'ScalarExpression:879'. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_18_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.18.167]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_SalesTerritory_SalesTerritoryProfile] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.19' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_19_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.19.164]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesTerritoryCountryRegion] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesTerritoryHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.2' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_2_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.2.132]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'PersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[PersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_CustomerPerson] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_Person_PersonProfile] AS [dq_right]
+    WHERE [dq_left].[PersonHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.20' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_20_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.20.161]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'CountryRegionHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[CountryRegionHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesTerritoryCountryRegion] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_CountryRegion] AS [dq_right]
+    WHERE [dq_left].[CountryRegionHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.3' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_3_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.3.128]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_CustomerStore] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[CustomerHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.31' resolves to 11 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_31_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.31.86]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.32' resolves to 12 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_32_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.32.82]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesPersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesPersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+    WHERE [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.33' resolves to 13 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_33_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.33.79]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'BusinessEntityID=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[BusinessEntityID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksAnalytics].[dw].[Dim_Salesperson] AS [dq_right]
+    WHERE [dq_left].[BusinessEntityID] = [dq_right].[BusinessEntityID]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.34' resolves to 14 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_34_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.34.76]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.35' resolves to 15 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_35_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.35.72]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesTerritoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesTerritoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_right]
+    WHERE [dq_left].[SalesTerritoryHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.36' resolves to 16 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_36_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.36.69]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'TerritoryID=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[TerritoryID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksAnalytics].[dw].[Dim_SalesTerritory] AS [dq_right]
+    WHERE [dq_left].[TerritoryID] = [dq_right].[TerritoryID]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.4' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_4_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.4.125]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerStore -> AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'StoreHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[StoreHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_CustomerStore] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_Store_StoreProfile] AS [dq_right]
+    WHERE [dq_left].[StoreHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.46' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_46_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.46.106]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.47' resolves to 6 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_47_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.47.102]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesPersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesPersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+    WHERE [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.48' resolves to 7 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_48_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.48.99]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'BusinessEntityID=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[BusinessEntityID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksAnalytics].[dw].[Dim_Salesperson] AS [dq_right]
+    WHERE [dq_left].[BusinessEntityID] = [dq_right].[BusinessEntityID]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.49' resolves to 8 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_49_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.49.96]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.5' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_5_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.5.111]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'CountryRegionHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[CountryRegionHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_StateProvinceCountryRegion] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_CountryRegion] AS [dq_right]
+    WHERE [dq_left].[CountryRegionHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.50' resolves to 9 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_50_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.50.92]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesTerritoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesTerritoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_right]
+    WHERE [dq_left].[SalesTerritoryHashKey] = [dq_right].[HashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.51' resolves to 10 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_51_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.51.89]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'TerritoryID=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[TerritoryID]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksAnalytics].[dw].[Dim_SalesTerritory] AS [dq_right]
+    WHERE [dq_left].[TerritoryID] = [dq_right].[TerritoryID]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.6' resolves to 6 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_6_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.6.109]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_CountryRegion -> AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_CountryRegion] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_CountryRegion_CountryRegionProfile] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.60' resolves to 16 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_60_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.7.123]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_Address_AddressProfile] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.7' cannot be rendered: only simple column equality predicates can be rendered; found 'addressProfile.VersionRank' = 'ScalarExpression:678'. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_7_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.8.120]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BL_AddressStateProvince] AS [dq_right]
+    WHERE [dq_left].[HashKey] = [dq_right].[AddressHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.8' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_8_OuterJoinNullExpansion]
+CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion.JoinPattern.9.117]
 AS
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'StateProvinceHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[StateProvinceHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(1 AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_AddressStateProvince] AS [dq_left]
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM [AdventureWorksBusinessVault].[dbo].[BHS_StateProvince_StateProvinceProfile] AS [dq_right]
+    WHERE [dq_left].[StateProvinceHashKey] = [dq_right].[HubHashKey]
+)
 GO
 
-/* MetaDataQuality: Unexpected NULLs from outer joins */
-/* Warning: Join relationship 'JoinPattern.9' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OuterJoinNullExpansion_JoinPattern_9_OuterJoinNullExpansion]
-AS
-SELECT
-    CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
-    CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
-GO
-
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.1' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_1_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.1.137]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_CustomerPerson] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[CustomerHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.10' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_10_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.10.115]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'StateProvinceHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[StateProvinceHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_AddressStateProvince] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_StateProvinceCountryRegion] AS [dq_right]
+    ON [dq_left].[StateProvinceHashKey] = [dq_right].[StateProvinceHashKey]
+GROUP BY [dq_left].[StateProvinceHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.12' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_12_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.12.151]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Product] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryAssignment] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[ProductHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.14' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_14_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.14.145]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ProductSubcategoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ProductSubcategoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryAssignment] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_ProductSubcategoryCategory] AS [dq_right]
+    ON [dq_left].[ProductSubcategoryHashKey] = [dq_right].[ProductSubcategoryHashKey]
+GROUP BY [dq_left].[ProductSubcategoryHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-CREATE OR ALTER VIEW [dq].[v_Duplicate_output_rows_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPerso]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.16.159]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -2317,519 +2482,550 @@ GROUP BY [dq_left].[HashKey]
 HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.19' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_19_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.19.165]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesTerritoryCountryRegion] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesTerritoryHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.2' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_2_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.2.133]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'PersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[PersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_CustomerPerson] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_Person_PersonProfile] AS [dq_right]
+    ON [dq_left].[PersonHashKey] = [dq_right].[HubHashKey]
+GROUP BY [dq_left].[PersonHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.21' cannot be rendered: only simple column equality predicates can be rendered; found 'lineDetail.VersionRank' = 'ScalarExpression:1119'. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_21_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.21.57]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrderLine] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrderLine_SalesOrderLineDetail] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[HubHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.22' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_22_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.22.54]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrderLine] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineSalesOrder] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderLineHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.23' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_23_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.23.51]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder -> AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesOrderHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesOrderHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineSalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_right]
+    ON [dq_left].[SalesOrderHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesOrderHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.24' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_24_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.24.39]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrder_SalesOrderHeader] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[HubHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.25' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_25_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.25.36]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrderLine] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineProduct] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderLineHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.26' resolves to 6 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_26_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.26.33]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct -> AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ProductHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ProductHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineProduct] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Product] AS [dq_right]
+    ON [dq_left].[ProductHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[ProductHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.28' resolves to 8 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_28_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.28.28]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.29' resolves to 9 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_29_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.29.25]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'CustomerHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[CustomerHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_right]
+    ON [dq_left].[CustomerHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[CustomerHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.3' resolves to 4 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_3_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.3.129]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_CustomerStore] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[CustomerHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.31' resolves to 11 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_31_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.31.87]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.32' resolves to 12 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_32_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.32.83]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesPersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesPersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+    ON [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesPersonHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.34' resolves to 14 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_34_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.34.77]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.35' resolves to 15 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_35_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.35.73]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesTerritoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesTerritoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_right]
+    ON [dq_left].[SalesTerritoryHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesTerritoryHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.37' resolves to 17 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_37_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.37.14]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.38' resolves to 18 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_38_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.38.11]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ShipToAddressHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ShipToAddressHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_right]
+    ON [dq_left].[ShipToAddressHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[ShipToAddressHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.42' cannot be rendered: only simple column equality predicates can be rendered; found 'detail.VersionRank' = 'ScalarExpression:955'. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_42_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.42.48]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrder_SalesOrderHeader] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[HubHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.43' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_43_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.43.45]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.44' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_44_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.44.42]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'CustomerHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[CustomerHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS [dq_right]
+    ON [dq_left].[CustomerHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[CustomerHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.46' resolves to 5 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_46_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.46.107]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.47' resolves to 6 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_47_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.47.103]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesPersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesPersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+    ON [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesPersonHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.49' resolves to 8 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_49_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.49.97]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.50' resolves to 9 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_50_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.50.93]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesTerritoryHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesTerritoryHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesTerritory] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS [dq_right]
+    ON [dq_left].[SalesTerritoryHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesTerritoryHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.52' resolves to 11 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_52_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.52.21]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderBillToAddress] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.53' resolves to 12 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_53_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.53.18]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'BillToAddressHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[BillToAddressHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderBillToAddress] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_right]
+    ON [dq_left].[BillToAddressHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[BillToAddressHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.55' resolves to 14 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_55_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.55.7]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesOrderHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.56' resolves to 15 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_56_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.56.4]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'ShipToAddressHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[ShipToAddressHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderShipToAddress] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_right]
+    ON [dq_left].[ShipToAddressHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[ShipToAddressHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.63' cannot be rendered: only simple column equality predicates can be rendered; found 'quotaDetail.VersionRank' = 'ScalarExpression:1238'. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_63_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.63.67]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPersonQuota] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesPersonQuota_SalesPersonQuotaProfile] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[HubHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.64' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_64_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.64.64]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesPersonQuota] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesPersonQuotaSalesPerson] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[SalesPersonQuotaHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.65' resolves to 3 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_65_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.65.61]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'SalesPersonHashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[SalesPersonHashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesPersonQuotaSalesPerson] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS [dq_right]
+    ON [dq_left].[SalesPersonHashKey] = [dq_right].[HashKey]
+GROUP BY [dq_left].[SalesPersonHashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Duplicate output rows */
-/* Warning: Join relationship 'JoinPattern.8' resolves to 2 left table(s) and 1 right table(s); exactly one of each is required for SQL generation. */
-CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk_JoinPattern_8_OutputDuplicateRisk]
+CREATE OR ALTER VIEW [dq].[v_OutputDuplicateRisk.JoinPattern.8.121]
 AS
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [Issue],
-    CAST(NULL AS nvarchar(512)) AS [Relationship],
-    CAST(NULL AS nvarchar(max)) AS [TransformViews],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(N'No renderable join relationship was found for this generated view.' AS nvarchar(max)) AS [KeyValues],
-    CAST(0 AS bigint) AS [SuspectCount]
-WHERE 1 = 0
-
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [Relationship],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [SuspectSide],
+    CAST(CONCAT(N'HashKey=', COALESCE(CONVERT(nvarchar(4000), [dq_left].[HashKey]), N'<NULL>')) AS nvarchar(max)) AS [KeyValues],
+    CAST(COUNT_BIG(*) AS bigint) AS [SuspectCount]
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Address] AS [dq_left]
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_AddressStateProvince] AS [dq_right]
+    ON [dq_left].[HashKey] = [dq_right].[AddressHashKey]
+GROUP BY [dq_left].[HashKey]
+HAVING COUNT_BIG(*) > 1
 GO
 
-/* MetaDataQuality: Review dashboard */
 CREATE OR ALTER VIEW [dq].[v_DataQualityReview]
 AS
 SELECT
@@ -2838,10 +3034,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.1.144' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.1.135' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -2853,7 +3049,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -2882,12 +3078,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_1_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_1_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_1_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.1.135' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.1.135] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.1.135] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_1_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.1.135]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -2895,10 +3091,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.10.122' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.10.113' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -2910,7 +3106,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -2939,12 +3135,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_10_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_10_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_10_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.10.113' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.10.113] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.10.113] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_10_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.10.113]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -2952,10 +3148,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.12.158' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.12.149' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -2967,7 +3163,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -2996,12 +3192,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_12_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_12_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_12_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.12.149' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.12.149] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.12.149] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_12_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.12.149]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3009,10 +3205,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.14.152' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.14.143' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3024,7 +3220,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3053,12 +3249,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_14_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_14_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_14_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.14.143' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.14.143] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.14.143] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_14_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.14.143]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3066,7 +3262,7 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.16.166' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.16.157' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
     CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson' AS nvarchar(512)) AS [Relationship],
     CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson' AS nvarchar(512)) AS [RelationshipLabel],
@@ -3110,12 +3306,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_Row_multiplication_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPerson' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_Row_multiplication_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPerson] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_Row_multiplication_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPerson] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'SELECT TOP (100) * FROM [Dim_Salesperson];' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'SELECT TOP (100) * FROM [Dim_Salesperson];' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_Row_multiplication_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPerson]
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.16.157' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.16.157] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.16.157] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
+    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.16.157]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3123,10 +3319,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.19.172' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.19.163' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3138,7 +3334,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3167,12 +3363,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_19_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_19_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_19_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.19.163' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.19.163] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.19.163] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_19_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.19.163]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3180,10 +3376,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.2.140' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.2.131' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3195,7 +3391,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3224,12 +3420,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_2_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_2_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_2_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.2.131' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.2.131] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.2.131] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_2_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.2.131]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3237,10 +3433,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.21.63' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.21.56' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3252,7 +3448,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3281,12 +3477,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_21_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_21_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_21_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.21.56' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.21.56] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.21.56] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_21_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.21.56]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3294,10 +3490,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.22.60' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.22.53' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3309,7 +3505,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3338,12 +3534,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_22_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_22_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_22_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.22.53' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.22.53] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.22.53] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_22_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.22.53]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3351,10 +3547,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.23.57' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.23.50' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder -> AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder -> AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3366,7 +3562,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3395,12 +3591,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_23_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_23_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_23_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.23.50' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.23.50] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.23.50] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_23_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.23.50]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3408,10 +3604,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.24.45' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.24.38' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3423,7 +3619,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3452,12 +3648,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_24_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_24_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_24_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.24.38' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.24.38] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.24.38] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_24_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.24.38]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3465,10 +3661,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.25.42' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.25.35' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3480,7 +3676,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3509,12 +3705,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_25_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_25_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_25_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.25.35' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.25.35] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.25.35] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_25_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.25.35]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3522,10 +3718,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.26.39' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.26.32' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct -> AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct -> AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3537,7 +3733,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3566,12 +3762,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_26_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_26_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_26_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.26.32' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.26.32] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.26.32] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_26_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.26.32]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3579,10 +3775,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.28.33' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.28.27' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3594,7 +3790,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3623,12 +3819,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_28_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_28_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_28_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.28.27' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.28.27] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.28.27] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_28_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.28.27]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3636,10 +3832,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.29.30' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.29.24' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3651,7 +3847,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3680,12 +3876,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_29_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_29_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_29_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.29.24' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.29.24] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.29.24] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_29_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.29.24]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3693,10 +3889,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.3.136' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.3.127' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3708,7 +3904,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3737,12 +3933,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_3_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_3_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_3_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.3.127' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.3.127] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.3.127] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_3_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.3.127]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3750,10 +3946,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.31.94' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.31.85' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3765,7 +3961,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3794,12 +3990,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_31_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_31_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_31_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.31.85' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.31.85] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.31.85] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_31_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.31.85]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3807,10 +4003,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.32.90' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.32.81' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3822,7 +4018,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3851,12 +4047,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_32_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_32_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_32_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.32.81' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.32.81] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.32.81] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_32_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.32.81]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3864,10 +4060,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.34.84' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.34.75' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3879,7 +4075,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3908,12 +4104,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_34_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_34_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_34_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.34.75' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.34.75] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.34.75] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_34_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.34.75]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3921,10 +4117,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.35.80' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.35.71' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3936,7 +4132,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -3965,12 +4161,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_35_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_35_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_35_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.35.71' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.35.71] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.35.71] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_35_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.35.71]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -3978,10 +4174,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.37.19' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.37.13' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -3993,7 +4189,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4022,12 +4218,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_37_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_37_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_37_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.37.13' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.37.13] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.37.13] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_37_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.37.13]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4035,10 +4231,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.38.16' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.38.10' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4050,7 +4246,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4079,12 +4275,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_38_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_38_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_38_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.38.10' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.38.10] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.38.10] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_38_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.38.10]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4092,10 +4288,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.42.54' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.42.47' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4107,7 +4303,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4136,12 +4332,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_42_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_42_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_42_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.42.47' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.42.47] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.42.47] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_42_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.42.47]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4149,10 +4345,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.43.51' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.43.44' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4164,7 +4360,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4193,12 +4389,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_43_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_43_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_43_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.43.44' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.43.44] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.43.44] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_43_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.43.44]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4206,10 +4402,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.44.48' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.44.41' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4221,7 +4417,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4250,12 +4446,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_44_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_44_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_44_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.44.41' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.44.41] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.44.41] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_44_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.44.41]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4263,10 +4459,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.46.114' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.46.105' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4278,7 +4474,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4307,12 +4503,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_46_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_46_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_46_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.46.105' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.46.105] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.46.105] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_46_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.46.105]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4320,10 +4516,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.47.110' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.47.101' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4335,7 +4531,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4364,12 +4560,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_47_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_47_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_47_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.47.101' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.47.101] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.47.101] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_47_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.47.101]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4377,10 +4573,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.49.104' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.49.95' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4392,7 +4588,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4421,12 +4617,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_49_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_49_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_49_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.49.95' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.49.95] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.49.95] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_49_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.49.95]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4434,10 +4630,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.50.100' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.50.91' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4449,7 +4645,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4478,12 +4674,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_50_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_50_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_50_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.50.91' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.50.91] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.50.91] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_50_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.50.91]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4491,10 +4687,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.52.26' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.52.20' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4506,7 +4702,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4535,12 +4731,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_52_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_52_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_52_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.52.20' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.52.20] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.52.20] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_52_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.52.20]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4548,10 +4744,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.53.23' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.53.17' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4563,7 +4759,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4592,12 +4788,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_53_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_53_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_53_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.53.17' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.53.17] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.53.17] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_53_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.53.17]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4605,10 +4801,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.55.12' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.55.6' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4620,7 +4816,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4649,12 +4845,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_55_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_55_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_55_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.55.6' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.55.6] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.55.6] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_55_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.55.6]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4662,10 +4858,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.56.9' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.56.3' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4677,7 +4873,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4706,12 +4902,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_56_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_56_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_56_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.56.3' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.56.3] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.56.3] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_56_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.56.3]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4719,10 +4915,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.63.73' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.63.66' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4734,7 +4930,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4763,12 +4959,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_63_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_63_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_63_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.63.66' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.63.66] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.63.66] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_63_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.63.66]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4776,10 +4972,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.64.70' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.64.63' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4791,7 +4987,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4820,12 +5016,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_64_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_64_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_64_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.64.63' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.64.63] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.64.63] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_64_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.64.63]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4833,10 +5029,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.65.67' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.65.60' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4848,7 +5044,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4877,12 +5073,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_65_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_65_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_65_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.65.60' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.65.60] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.65.60] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_65_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.65.60]
 UNION ALL
 SELECT
     CAST(N'Row multiplication' AS nvarchar(128)) AS [DQView],
@@ -4890,10 +5086,10 @@ SELECT
     CAST(N'Join fanout risk' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Join cardinality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinMultiplicityExplosion.JoinPattern.8.128' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinMultiplicityExplosion.JoinPattern.8.119' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinMultiplicityExplosion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4905,7 +5101,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4934,12 +5130,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinMultiplicityExplosion_JoinPattern_8_JoinMultiplicityExplosion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_8_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_8_JoinMultiplicityExplosion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinMultiplicityExplosion.JoinPattern.8.119' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.8.119] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.8.119] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinMultiplicityExplosion_JoinPattern_8_JoinMultiplicityExplosion]
+FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.8.119]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -4947,10 +5143,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.147' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.1.134' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -4962,7 +5158,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -4991,12 +5187,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.1.134' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.1.134] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.1.134] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.1.134]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5004,10 +5200,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.1.143' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.10.112' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5019,7 +5215,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5048,12 +5244,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_1_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_1_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_1_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.10.112' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.10.112] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.10.112] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_1_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.10.112]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5061,10 +5257,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.10.121' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.11.152' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5076,7 +5272,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5105,12 +5301,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_10_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_10_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_10_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.11.152' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.11.152] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.11.152] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_10_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.11.152]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5118,10 +5314,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.11.161' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.12.148' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5133,7 +5329,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5162,12 +5358,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_11_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_11_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_11_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.12.148' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.12.148] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.12.148] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_11_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.12.148]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5175,10 +5371,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.12.157' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.13.146' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5190,7 +5386,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5219,12 +5415,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_12_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_12_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_12_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.13.146' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.13.146] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.13.146] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_12_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.13.146]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5232,10 +5428,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.13.155' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.138' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5247,7 +5443,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5276,12 +5472,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_13_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_13_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_13_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.138' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.138] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.138] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_13_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.138]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5289,10 +5485,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.14.151' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.14.142' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5304,7 +5500,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5333,12 +5529,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_14_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_14_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_14_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.14.142' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.14.142] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.14.142] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_14_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.14.142]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5346,10 +5542,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.15.149' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.15.140' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory -> AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory -> AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5361,7 +5557,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5390,12 +5586,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_15_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_15_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_15_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.15.140' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.15.140] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.15.140] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_15_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.15.140]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5403,7 +5599,7 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.16.165' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.16.156' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
     CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson' AS nvarchar(512)) AS [Relationship],
     CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson' AS nvarchar(512)) AS [RelationshipLabel],
@@ -5447,12 +5643,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_Missing_referenced_rows_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPer' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_Missing_referenced_rows_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPer] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_Missing_referenced_rows_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPer] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'SELECT TOP (100) * FROM [Dim_Salesperson];' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'SELECT TOP (100) * FROM [Dim_Salesperson];' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_Missing_referenced_rows_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPer]
+    CAST(N'dq.v_JoinOrphan.JoinPattern.16.156' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.16.156] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.16.156] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
+    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
+FROM [dq].[v_JoinOrphan.JoinPattern.16.156]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5460,10 +5656,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.17.163' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.17.154' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5475,7 +5671,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Salesperson' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5504,12 +5700,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_17_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_17_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_17_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.17.154' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.17.154] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.17.154] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_17_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.17.154]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5517,10 +5713,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.18.175' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.18.166' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5532,7 +5728,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5561,12 +5757,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_18_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_18_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_18_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.18.166' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.18.166] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.18.166] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_18_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.18.166]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5574,10 +5770,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.19.171' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.19.162' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5589,7 +5785,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5618,12 +5814,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_19_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_19_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_19_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.19.162' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.19.162] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.19.162] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_19_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.19.162]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5631,10 +5827,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.2.139' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.2.130' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5646,7 +5842,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5675,12 +5871,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_2_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_2_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_2_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.2.130' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.2.130] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.2.130] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_2_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.2.130]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5688,10 +5884,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.20.169' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.20.160' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5703,7 +5899,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5732,12 +5928,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_20_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_20_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_20_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.20.160' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.20.160] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.20.160] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_20_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.20.160]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5745,10 +5941,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.21.62' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.21.55' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5760,7 +5956,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5789,12 +5985,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_21_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_21_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_21_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.21.55' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.21.55] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.21.55] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_21_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.21.55]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5802,10 +5998,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.22.59' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.22.52' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5817,7 +6013,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5846,12 +6042,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_22_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_22_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_22_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.22.52' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.22.52] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.22.52] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_22_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.22.52]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5859,10 +6055,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.23.56' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.23.49' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder -> AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder -> AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5874,7 +6070,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5903,12 +6099,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_23_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_23_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_23_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.23.49' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.23.49] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.23.49] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_23_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.23.49]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5916,10 +6112,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.24.44' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.24.37' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5931,7 +6127,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -5960,12 +6156,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_24_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_24_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_24_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.24.37' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.24.37] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.24.37] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_24_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.24.37]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -5973,10 +6169,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.25.41' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.25.34' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -5988,7 +6184,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6017,12 +6213,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_25_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_25_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_25_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.25.34' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.25.34] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.25.34] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_25_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.25.34]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6030,10 +6226,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.26.38' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.26.31' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct -> AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct -> AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6045,7 +6241,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6074,12 +6270,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_26_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_26_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_26_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.26.31' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.26.31] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.26.31] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_26_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.26.31]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6087,10 +6283,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.27.37' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.27.30' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksAnalytics.dw.Dim_Product' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksAnalytics.dw.Dim_Product' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6102,7 +6298,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6131,12 +6327,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_27_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_27_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_27_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.27.30' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.27.30] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.27.30] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_27_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.27.30]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6144,10 +6340,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.28.32' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.28.26' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6159,7 +6355,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6188,12 +6384,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_28_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_28_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_28_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.28.26' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.28.26] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.28.26] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_28_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.28.26]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6201,10 +6397,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.29.29' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.29.23' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6216,7 +6412,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6245,12 +6441,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_29_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_29_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_29_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.29.23' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.29.23] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.29.23] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_29_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.29.23]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6258,10 +6454,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.3.135' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.3.126' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6273,7 +6469,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6302,12 +6498,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_3_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_3_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_3_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.3.126' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.3.126] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.3.126] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_3_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.3.126]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6315,10 +6511,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.30.28' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.30.22' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksAnalytics.dw.Dim_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksAnalytics.dw.Dim_Customer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6330,7 +6526,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6359,12 +6555,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_30_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_30_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_30_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.30.22' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.30.22] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.30.22] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_30_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.30.22]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6372,10 +6568,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.31.93' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.31.84' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6387,7 +6583,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6416,12 +6612,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_31_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_31_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_31_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.31.84' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.31.84] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.31.84] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_31_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.31.84]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6429,10 +6625,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.32.89' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.32.80' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6444,7 +6640,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6473,12 +6669,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_32_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_32_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_32_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.32.80' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.32.80] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.32.80] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_32_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.32.80]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6486,10 +6682,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.33.87' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.33.78' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6501,7 +6697,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6530,12 +6726,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_33_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_33_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_33_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.33.78' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.33.78] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.33.78] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_33_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.33.78]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6543,10 +6739,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.34.83' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.34.74' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6558,7 +6754,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6587,12 +6783,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_34_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_34_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_34_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.34.74' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.34.74] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.34.74] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_34_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.34.74]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6600,10 +6796,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.35.79' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.35.70' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6615,7 +6811,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6644,12 +6840,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_35_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_35_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_35_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.35.70' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.35.70] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.35.70] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_35_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.35.70]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6657,10 +6853,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.36.77' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.36.68' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6672,7 +6868,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6701,12 +6897,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_36_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_36_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_36_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.36.68' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.36.68] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.36.68] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_36_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.36.68]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6714,10 +6910,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.37.18' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.37.12' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6729,7 +6925,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6758,12 +6954,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_37_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_37_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_37_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.37.12' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.37.12] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.37.12] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_37_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.37.12]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6771,10 +6967,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.38.15' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.38.9' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6786,7 +6982,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6815,12 +7011,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_38_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_38_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_38_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.38.9' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.38.9] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.38.9] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_38_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.38.9]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6828,10 +7024,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.39.14' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.39.8' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6843,7 +7039,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6872,12 +7068,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_39_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_39_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_39_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.39.8' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.39.8] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.39.8] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_39_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.39.8]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6885,10 +7081,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.4.133' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.4.124' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerStore -> AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerStore -> AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6900,7 +7096,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6929,12 +7125,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_4_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_4_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_4_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.4.124' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.4.124] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.4.124] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_4_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.4.124]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6942,10 +7138,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.40.5' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.42.46' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -6957,7 +7153,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -6986,12 +7182,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_40_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_40_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_40_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.42.46' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.42.46] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.42.46] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_40_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.42.46]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -6999,10 +7195,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.41.1' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.43.43' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7014,7 +7210,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7043,12 +7239,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_41_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_41_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_41_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.43.43' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.43.43] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.43.43] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_41_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.43.43]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7056,10 +7252,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.42.53' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.44.40' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7071,7 +7267,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7100,12 +7296,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_42_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_42_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_42_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.44.40' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.44.40] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.44.40] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_42_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.44.40]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7113,10 +7309,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.43.50' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.45.29' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksAnalytics.dw.Dim_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksAnalytics.dw.Dim_Customer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7128,7 +7324,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7157,12 +7353,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_43_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_43_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_43_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.45.29' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.45.29] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.45.29] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_43_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.45.29]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7170,10 +7366,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.44.47' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.46.104' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7185,7 +7381,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7214,12 +7410,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_44_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_44_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_44_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.46.104' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.46.104] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.46.104] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_44_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.46.104]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7227,10 +7423,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.45.36' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.47.100' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7242,7 +7438,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7271,12 +7467,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_45_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_45_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_45_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.47.100' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.47.100] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.47.100] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_45_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.47.100]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7284,10 +7480,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.46.113' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.48.98' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7299,7 +7495,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7328,12 +7524,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_46_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_46_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_46_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.48.98' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.48.98] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.48.98] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_46_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.48.98]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7341,10 +7537,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.47.109' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.49.94' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7356,7 +7552,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7385,12 +7581,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_47_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_47_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_47_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.49.94' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.49.94] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.49.94] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_47_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.49.94]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7398,10 +7594,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.48.107' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.5.110' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7413,7 +7609,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7442,12 +7638,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_48_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_48_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_48_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.5.110' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.5.110] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.5.110] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_48_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.5.110]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7455,10 +7651,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.49.103' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.50.90' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7470,7 +7666,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7499,12 +7695,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_49_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_49_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_49_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.50.90' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.50.90] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.50.90] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_49_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.50.90]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7512,10 +7708,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.5.119' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.51.88' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7527,7 +7723,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7556,12 +7752,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_5_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_5_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_5_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.51.88' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.51.88] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.51.88] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_5_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.51.88]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7569,10 +7765,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.50.99' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.52.19' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7584,7 +7780,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7613,12 +7809,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_50_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_50_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_50_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.52.19' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.52.19] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.52.19] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_50_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.52.19]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7626,10 +7822,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.51.97' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.53.16' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7641,7 +7837,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7670,12 +7866,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_51_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_51_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_51_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.53.16' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.53.16] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.53.16] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_51_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.53.16]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7683,10 +7879,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.52.25' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.54.15' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7698,7 +7894,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7727,12 +7923,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_52_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_52_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_52_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.54.15' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.54.15] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.54.15] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_52_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.54.15]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7740,10 +7936,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.53.22' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.55.5' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7755,7 +7951,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7784,12 +7980,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_53_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_53_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_53_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.55.5' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.55.5] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.55.5] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_53_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.55.5]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7797,10 +7993,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.54.21' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.56.2' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7812,7 +8008,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7841,12 +8037,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_54_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_54_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_54_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.56.2' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.56.2] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.56.2] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_54_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.56.2]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7854,10 +8050,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.55.11' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.57.1' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksAnalytics.dw.Dim_Geography' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7869,7 +8065,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7898,12 +8094,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_55_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_55_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_55_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.57.1' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.57.1] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.57.1] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_55_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.57.1]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7911,10 +8107,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.56.8' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.6.108' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_CountryRegion -> AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_CountryRegion -> AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7926,7 +8122,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -7955,12 +8151,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_56_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_56_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_56_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.6.108' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.6.108] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.6.108] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_56_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.6.108]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -7968,10 +8164,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.57.7' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.63.65' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -7983,7 +8179,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -8012,12 +8208,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_57_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_57_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_57_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.63.65' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.63.65] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.63.65] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_57_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.63.65]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -8025,10 +8221,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.58.6' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.64.62' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -8040,7 +8236,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -8069,12 +8265,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_58_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_58_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_58_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.64.62' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.64.62] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.64.62] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_58_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.64.62]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -8082,10 +8278,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.59.3' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.65.59' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -8097,7 +8293,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -8126,12 +8322,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_59_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_59_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_59_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.65.59' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.65.59] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.65.59] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_59_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.65.59]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -8139,10 +8335,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.6.117' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.66.58' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -8154,7 +8350,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -8183,12 +8379,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_6_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_6_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_6_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.66.58' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.66.58] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.66.58] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_6_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.66.58]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -8196,10 +8392,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.60.75' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.7.122' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -8211,7 +8407,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -8240,12 +8436,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_60_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_60_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_60_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.7.122' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.7.122] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.7.122] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_60_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.7.122]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -8253,10 +8449,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.61.4' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.8.118' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -8268,7 +8464,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -8297,12 +8493,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_61_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_61_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_61_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.8.118' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.8.118] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.8.118] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_61_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.8.118]
 UNION ALL
 SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
@@ -8310,10 +8506,10 @@ SELECT
     CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.62.2' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'JoinOrphan.JoinPattern.9.116' AS nvarchar(256)) AS [CandidateId],
     CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -8325,7 +8521,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -8354,468 +8550,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_62_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_62_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_62_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_JoinOrphan.JoinPattern.9.116' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.9.116] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_JoinOrphan.JoinPattern.9.116] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_62_JoinOrphan]
-UNION ALL
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
-    CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
-    CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.63.72' AS nvarchar(256)) AS [CandidateId],
-    CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
-    CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
-    CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
-    CAST(NULL AS nvarchar(512)) AS [CheckedObject],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(NULL AS nvarchar(512)) AS [SuspectObject],
-    CAST(NULL AS nvarchar(512)) AS [LookupObject],
-    CAST(NULL AS nvarchar(512)) AS [RelatedObject],
-    CAST(N'' AS nvarchar(512)) AS [CorpusRelationship],
-    CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
-    CAST(N'' AS nvarchar(max)) AS [DominantPattern],
-    CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
-    CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
-    CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
-    CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [TotalSuspectCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [SuspectRowCount],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [Explanation],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [FindingExplanation],
-    CAST(N'Outlier evidence from unknown transforms and unknown occurrences (dominant ratio n/a, outlier ratio n/a). Confidence Low: No additional calibration details.' AS nvarchar(max)) AS [EvidenceSummary],
-    CAST(NULL AS bigint) AS [EvidenceOccurrenceCount],
-    CAST(NULL AS bigint) AS [OutlierOccurrenceCount],
-    CAST(NULL AS bigint) AS [EvidenceTransformCount],
-    CAST(NULL AS bigint) AS [OutlierTransformCount],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [DominantConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceOutlierRatio],
-    CAST(NULL AS decimal(18,6)) AS [OutlierRatio],
-    CAST(N'Low' AS nvarchar(16)) AS [EvidenceQuality],
-    CAST(N'Low' AS nvarchar(16)) AS [ConfidenceBand],
-    CAST(N'No corpus evidence row was found for this candidate.' AS nvarchar(max)) AS [ConfidenceReason],
-    CAST(N'' AS nvarchar(max)) AS [EvidenceDiversitySummary],
-    CAST(N'Confidence Low: no persisted corpus evidence metrics.' AS nvarchar(max)) AS [ConfidenceSummary],
-    CAST(NULL AS bigint) AS [DistinctTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceObjectCount],
-    CAST(NULL AS bigint) AS [DistinctRelationshipPatternCount],
-    CAST(NULL AS bigint) AS [EffectiveTransformCount],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
-    CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_63_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_63_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_63_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_63_JoinOrphan]
-UNION ALL
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
-    CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
-    CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.64.69' AS nvarchar(256)) AS [CandidateId],
-    CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
-    CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
-    CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
-    CAST(NULL AS nvarchar(512)) AS [CheckedObject],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(NULL AS nvarchar(512)) AS [SuspectObject],
-    CAST(NULL AS nvarchar(512)) AS [LookupObject],
-    CAST(NULL AS nvarchar(512)) AS [RelatedObject],
-    CAST(N'' AS nvarchar(512)) AS [CorpusRelationship],
-    CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
-    CAST(N'' AS nvarchar(max)) AS [DominantPattern],
-    CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
-    CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
-    CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
-    CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [TotalSuspectCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [SuspectRowCount],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [Explanation],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [FindingExplanation],
-    CAST(N'Outlier evidence from unknown transforms and unknown occurrences (dominant ratio n/a, outlier ratio n/a). Confidence Low: No additional calibration details.' AS nvarchar(max)) AS [EvidenceSummary],
-    CAST(NULL AS bigint) AS [EvidenceOccurrenceCount],
-    CAST(NULL AS bigint) AS [OutlierOccurrenceCount],
-    CAST(NULL AS bigint) AS [EvidenceTransformCount],
-    CAST(NULL AS bigint) AS [OutlierTransformCount],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [DominantConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceOutlierRatio],
-    CAST(NULL AS decimal(18,6)) AS [OutlierRatio],
-    CAST(N'Low' AS nvarchar(16)) AS [EvidenceQuality],
-    CAST(N'Low' AS nvarchar(16)) AS [ConfidenceBand],
-    CAST(N'No corpus evidence row was found for this candidate.' AS nvarchar(max)) AS [ConfidenceReason],
-    CAST(N'' AS nvarchar(max)) AS [EvidenceDiversitySummary],
-    CAST(N'Confidence Low: no persisted corpus evidence metrics.' AS nvarchar(max)) AS [ConfidenceSummary],
-    CAST(NULL AS bigint) AS [DistinctTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceObjectCount],
-    CAST(NULL AS bigint) AS [DistinctRelationshipPatternCount],
-    CAST(NULL AS bigint) AS [EffectiveTransformCount],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
-    CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_64_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_64_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_64_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_64_JoinOrphan]
-UNION ALL
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
-    CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
-    CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.65.66' AS nvarchar(256)) AS [CandidateId],
-    CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
-    CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
-    CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
-    CAST(NULL AS nvarchar(512)) AS [CheckedObject],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(NULL AS nvarchar(512)) AS [SuspectObject],
-    CAST(NULL AS nvarchar(512)) AS [LookupObject],
-    CAST(NULL AS nvarchar(512)) AS [RelatedObject],
-    CAST(N'' AS nvarchar(512)) AS [CorpusRelationship],
-    CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
-    CAST(N'' AS nvarchar(max)) AS [DominantPattern],
-    CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
-    CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
-    CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
-    CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [TotalSuspectCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [SuspectRowCount],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [Explanation],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [FindingExplanation],
-    CAST(N'Outlier evidence from unknown transforms and unknown occurrences (dominant ratio n/a, outlier ratio n/a). Confidence Low: No additional calibration details.' AS nvarchar(max)) AS [EvidenceSummary],
-    CAST(NULL AS bigint) AS [EvidenceOccurrenceCount],
-    CAST(NULL AS bigint) AS [OutlierOccurrenceCount],
-    CAST(NULL AS bigint) AS [EvidenceTransformCount],
-    CAST(NULL AS bigint) AS [OutlierTransformCount],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [DominantConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceOutlierRatio],
-    CAST(NULL AS decimal(18,6)) AS [OutlierRatio],
-    CAST(N'Low' AS nvarchar(16)) AS [EvidenceQuality],
-    CAST(N'Low' AS nvarchar(16)) AS [ConfidenceBand],
-    CAST(N'No corpus evidence row was found for this candidate.' AS nvarchar(max)) AS [ConfidenceReason],
-    CAST(N'' AS nvarchar(max)) AS [EvidenceDiversitySummary],
-    CAST(N'Confidence Low: no persisted corpus evidence metrics.' AS nvarchar(max)) AS [ConfidenceSummary],
-    CAST(NULL AS bigint) AS [DistinctTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceObjectCount],
-    CAST(NULL AS bigint) AS [DistinctRelationshipPatternCount],
-    CAST(NULL AS bigint) AS [EffectiveTransformCount],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
-    CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_65_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_65_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_65_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_65_JoinOrphan]
-UNION ALL
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
-    CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
-    CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.66.65' AS nvarchar(256)) AS [CandidateId],
-    CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
-    CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
-    CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
-    CAST(NULL AS nvarchar(512)) AS [CheckedObject],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(NULL AS nvarchar(512)) AS [SuspectObject],
-    CAST(NULL AS nvarchar(512)) AS [LookupObject],
-    CAST(NULL AS nvarchar(512)) AS [RelatedObject],
-    CAST(N'' AS nvarchar(512)) AS [CorpusRelationship],
-    CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
-    CAST(N'' AS nvarchar(max)) AS [DominantPattern],
-    CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
-    CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
-    CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
-    CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [TotalSuspectCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [SuspectRowCount],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [Explanation],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [FindingExplanation],
-    CAST(N'Outlier evidence from unknown transforms and unknown occurrences (dominant ratio n/a, outlier ratio n/a). Confidence Low: No additional calibration details.' AS nvarchar(max)) AS [EvidenceSummary],
-    CAST(NULL AS bigint) AS [EvidenceOccurrenceCount],
-    CAST(NULL AS bigint) AS [OutlierOccurrenceCount],
-    CAST(NULL AS bigint) AS [EvidenceTransformCount],
-    CAST(NULL AS bigint) AS [OutlierTransformCount],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [DominantConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceOutlierRatio],
-    CAST(NULL AS decimal(18,6)) AS [OutlierRatio],
-    CAST(N'Low' AS nvarchar(16)) AS [EvidenceQuality],
-    CAST(N'Low' AS nvarchar(16)) AS [ConfidenceBand],
-    CAST(N'No corpus evidence row was found for this candidate.' AS nvarchar(max)) AS [ConfidenceReason],
-    CAST(N'' AS nvarchar(max)) AS [EvidenceDiversitySummary],
-    CAST(N'Confidence Low: no persisted corpus evidence metrics.' AS nvarchar(max)) AS [ConfidenceSummary],
-    CAST(NULL AS bigint) AS [DistinctTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceObjectCount],
-    CAST(NULL AS bigint) AS [DistinctRelationshipPatternCount],
-    CAST(NULL AS bigint) AS [EffectiveTransformCount],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
-    CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_66_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_66_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_66_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_66_JoinOrphan]
-UNION ALL
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
-    CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
-    CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.67.35' AS nvarchar(256)) AS [CandidateId],
-    CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
-    CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
-    CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
-    CAST(NULL AS nvarchar(512)) AS [CheckedObject],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(NULL AS nvarchar(512)) AS [SuspectObject],
-    CAST(NULL AS nvarchar(512)) AS [LookupObject],
-    CAST(NULL AS nvarchar(512)) AS [RelatedObject],
-    CAST(N'' AS nvarchar(512)) AS [CorpusRelationship],
-    CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
-    CAST(N'' AS nvarchar(max)) AS [DominantPattern],
-    CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
-    CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
-    CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
-    CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [TotalSuspectCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [SuspectRowCount],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [Explanation],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [FindingExplanation],
-    CAST(N'Outlier evidence from unknown transforms and unknown occurrences (dominant ratio n/a, outlier ratio n/a). Confidence Low: No additional calibration details.' AS nvarchar(max)) AS [EvidenceSummary],
-    CAST(NULL AS bigint) AS [EvidenceOccurrenceCount],
-    CAST(NULL AS bigint) AS [OutlierOccurrenceCount],
-    CAST(NULL AS bigint) AS [EvidenceTransformCount],
-    CAST(NULL AS bigint) AS [OutlierTransformCount],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [DominantConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceOutlierRatio],
-    CAST(NULL AS decimal(18,6)) AS [OutlierRatio],
-    CAST(N'Low' AS nvarchar(16)) AS [EvidenceQuality],
-    CAST(N'Low' AS nvarchar(16)) AS [ConfidenceBand],
-    CAST(N'No corpus evidence row was found for this candidate.' AS nvarchar(max)) AS [ConfidenceReason],
-    CAST(N'' AS nvarchar(max)) AS [EvidenceDiversitySummary],
-    CAST(N'Confidence Low: no persisted corpus evidence metrics.' AS nvarchar(max)) AS [ConfidenceSummary],
-    CAST(NULL AS bigint) AS [DistinctTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceObjectCount],
-    CAST(NULL AS bigint) AS [DistinctRelationshipPatternCount],
-    CAST(NULL AS bigint) AS [EffectiveTransformCount],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
-    CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_67_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_67_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_67_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_67_JoinOrphan]
-UNION ALL
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
-    CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
-    CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.7.131' AS nvarchar(256)) AS [CandidateId],
-    CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
-    CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
-    CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
-    CAST(NULL AS nvarchar(512)) AS [CheckedObject],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(NULL AS nvarchar(512)) AS [SuspectObject],
-    CAST(NULL AS nvarchar(512)) AS [LookupObject],
-    CAST(NULL AS nvarchar(512)) AS [RelatedObject],
-    CAST(N'' AS nvarchar(512)) AS [CorpusRelationship],
-    CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
-    CAST(N'' AS nvarchar(max)) AS [DominantPattern],
-    CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
-    CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
-    CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
-    CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [TotalSuspectCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [SuspectRowCount],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [Explanation],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [FindingExplanation],
-    CAST(N'Outlier evidence from unknown transforms and unknown occurrences (dominant ratio n/a, outlier ratio n/a). Confidence Low: No additional calibration details.' AS nvarchar(max)) AS [EvidenceSummary],
-    CAST(NULL AS bigint) AS [EvidenceOccurrenceCount],
-    CAST(NULL AS bigint) AS [OutlierOccurrenceCount],
-    CAST(NULL AS bigint) AS [EvidenceTransformCount],
-    CAST(NULL AS bigint) AS [OutlierTransformCount],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [DominantConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceOutlierRatio],
-    CAST(NULL AS decimal(18,6)) AS [OutlierRatio],
-    CAST(N'Low' AS nvarchar(16)) AS [EvidenceQuality],
-    CAST(N'Low' AS nvarchar(16)) AS [ConfidenceBand],
-    CAST(N'No corpus evidence row was found for this candidate.' AS nvarchar(max)) AS [ConfidenceReason],
-    CAST(N'' AS nvarchar(max)) AS [EvidenceDiversitySummary],
-    CAST(N'Confidence Low: no persisted corpus evidence metrics.' AS nvarchar(max)) AS [ConfidenceSummary],
-    CAST(NULL AS bigint) AS [DistinctTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceObjectCount],
-    CAST(NULL AS bigint) AS [DistinctRelationshipPatternCount],
-    CAST(NULL AS bigint) AS [EffectiveTransformCount],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
-    CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_7_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_7_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_7_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_7_JoinOrphan]
-UNION ALL
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
-    CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
-    CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.8.127' AS nvarchar(256)) AS [CandidateId],
-    CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
-    CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
-    CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
-    CAST(NULL AS nvarchar(512)) AS [CheckedObject],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(NULL AS nvarchar(512)) AS [SuspectObject],
-    CAST(NULL AS nvarchar(512)) AS [LookupObject],
-    CAST(NULL AS nvarchar(512)) AS [RelatedObject],
-    CAST(N'' AS nvarchar(512)) AS [CorpusRelationship],
-    CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
-    CAST(N'' AS nvarchar(max)) AS [DominantPattern],
-    CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
-    CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
-    CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
-    CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [TotalSuspectCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [SuspectRowCount],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [Explanation],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [FindingExplanation],
-    CAST(N'Outlier evidence from unknown transforms and unknown occurrences (dominant ratio n/a, outlier ratio n/a). Confidence Low: No additional calibration details.' AS nvarchar(max)) AS [EvidenceSummary],
-    CAST(NULL AS bigint) AS [EvidenceOccurrenceCount],
-    CAST(NULL AS bigint) AS [OutlierOccurrenceCount],
-    CAST(NULL AS bigint) AS [EvidenceTransformCount],
-    CAST(NULL AS bigint) AS [OutlierTransformCount],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [DominantConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceOutlierRatio],
-    CAST(NULL AS decimal(18,6)) AS [OutlierRatio],
-    CAST(N'Low' AS nvarchar(16)) AS [EvidenceQuality],
-    CAST(N'Low' AS nvarchar(16)) AS [ConfidenceBand],
-    CAST(N'No corpus evidence row was found for this candidate.' AS nvarchar(max)) AS [ConfidenceReason],
-    CAST(N'' AS nvarchar(max)) AS [EvidenceDiversitySummary],
-    CAST(N'Confidence Low: no persisted corpus evidence metrics.' AS nvarchar(max)) AS [ConfidenceSummary],
-    CAST(NULL AS bigint) AS [DistinctTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceObjectCount],
-    CAST(NULL AS bigint) AS [DistinctRelationshipPatternCount],
-    CAST(NULL AS bigint) AS [EffectiveTransformCount],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
-    CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_8_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_8_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_8_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_8_JoinOrphan]
-UNION ALL
-SELECT
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [DQView],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [Issue],
-    CAST(N'Missing referenced rows' AS nvarchar(128)) AS [FindingTitle],
-    CAST(N'Referential integrity' AS nvarchar(128)) AS [FindingCategory],
-    CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'JoinOrphan.JoinPattern.9.125' AS nvarchar(256)) AS [CandidateId],
-    CAST(N'JoinOrphan' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
-    CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
-    CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
-    CAST(NULL AS nvarchar(512)) AS [CheckedObject],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(NULL AS nvarchar(512)) AS [SuspectObject],
-    CAST(NULL AS nvarchar(512)) AS [LookupObject],
-    CAST(NULL AS nvarchar(512)) AS [RelatedObject],
-    CAST(N'' AS nvarchar(512)) AS [CorpusRelationship],
-    CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
-    CAST(N'' AS nvarchar(max)) AS [DominantPattern],
-    CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
-    CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
-    CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
-    CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [TotalSuspectCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [SuspectRowCount],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [Explanation],
-    CAST(N'Qualified joins with equality predicates were found; orphan anti-join checks are likely relevant.' AS nvarchar(max)) AS [FindingExplanation],
-    CAST(N'Outlier evidence from unknown transforms and unknown occurrences (dominant ratio n/a, outlier ratio n/a). Confidence Low: No additional calibration details.' AS nvarchar(max)) AS [EvidenceSummary],
-    CAST(NULL AS bigint) AS [EvidenceOccurrenceCount],
-    CAST(NULL AS bigint) AS [OutlierOccurrenceCount],
-    CAST(NULL AS bigint) AS [EvidenceTransformCount],
-    CAST(NULL AS bigint) AS [OutlierTransformCount],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [DominantConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceOutlierRatio],
-    CAST(NULL AS decimal(18,6)) AS [OutlierRatio],
-    CAST(N'Low' AS nvarchar(16)) AS [EvidenceQuality],
-    CAST(N'Low' AS nvarchar(16)) AS [ConfidenceBand],
-    CAST(N'No corpus evidence row was found for this candidate.' AS nvarchar(max)) AS [ConfidenceReason],
-    CAST(N'' AS nvarchar(max)) AS [EvidenceDiversitySummary],
-    CAST(N'Confidence Low: no persisted corpus evidence metrics.' AS nvarchar(max)) AS [ConfidenceSummary],
-    CAST(NULL AS bigint) AS [DistinctTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceObjectCount],
-    CAST(NULL AS bigint) AS [DistinctRelationshipPatternCount],
-    CAST(NULL AS bigint) AS [EffectiveTransformCount],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
-    CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_JoinOrphan_JoinPattern_9_JoinOrphan' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_9_JoinOrphan] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_JoinOrphan_JoinPattern_9_JoinOrphan] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_JoinOrphan_JoinPattern_9_JoinOrphan]
+FROM [dq].[v_JoinOrphan.JoinPattern.9.116]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -8823,10 +8563,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.148' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.1.136' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -8838,7 +8578,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -8867,12 +8607,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.1.136' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.1.136] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.1.136] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.1.136]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -8880,10 +8620,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.1.145' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.10.114' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -8895,7 +8635,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -8924,12 +8664,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_1_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_1_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_1_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.10.114' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.10.114] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.10.114] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_1_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.10.114]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -8937,10 +8677,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.10.123' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.11.153' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -8952,7 +8692,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -8981,12 +8721,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_10_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_10_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_10_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.11.153' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.11.153] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.11.153] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_10_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.11.153]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -8994,10 +8734,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.11.162' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.12.150' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9009,7 +8749,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9038,12 +8778,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_11_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_11_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_11_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.12.150' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.12.150] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.12.150] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_11_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.12.150]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9051,10 +8791,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.12.159' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.13.147' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9066,7 +8806,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9095,12 +8835,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_12_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_12_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_12_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.13.147' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.13.147] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.13.147] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_12_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.13.147]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9108,10 +8848,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.13.156' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.139' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9123,7 +8863,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9152,12 +8892,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_13_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_13_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_13_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.139' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.139] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.139] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_13_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.139]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9165,10 +8905,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.14.153' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.14.144' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9180,7 +8920,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9209,12 +8949,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_14_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_14_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_14_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.14.144' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.14.144] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.14.144] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_14_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.14.144]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9222,10 +8962,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.15.150' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.15.141' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory -> AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory -> AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9237,7 +8977,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9266,12 +9006,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_15_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_15_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_15_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.15.141' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.15.141] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.15.141] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_15_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.15.141]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9279,7 +9019,7 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.16.167' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.16.158' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
     CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson' AS nvarchar(512)) AS [Relationship],
     CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson' AS nvarchar(512)) AS [RelationshipLabel],
@@ -9323,12 +9063,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_Unexpected_NULLs_from_outer_joins_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_Sale' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_Unexpected_NULLs_from_outer_joins_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_Sale] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_Unexpected_NULLs_from_outer_joins_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_Sale] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'SELECT TOP (100) * FROM [Dim_Salesperson];' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'SELECT TOP (100) * FROM [Dim_Salesperson];' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_Unexpected_NULLs_from_outer_joins_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_Sale]
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.16.158' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.16.158] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.16.158] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
+    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.16.158]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9336,10 +9076,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.17.164' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.17.155' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9351,7 +9091,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Salesperson' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9380,12 +9120,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_17_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_17_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_17_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.17.155' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.17.155] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.17.155] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_17_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.17.155]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9393,10 +9133,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.18.176' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.18.167' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9408,7 +9148,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9437,12 +9177,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_18_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_18_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_18_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.18.167' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.18.167] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.18.167] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_18_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.18.167]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9450,10 +9190,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.19.173' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.19.164' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9465,7 +9205,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9494,12 +9234,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_19_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_19_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_19_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.19.164' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.19.164] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.19.164] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_19_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.19.164]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9507,10 +9247,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.2.141' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.2.132' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9522,7 +9262,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9551,12 +9291,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_2_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_2_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_2_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.2.132' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.2.132] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.2.132] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_2_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.2.132]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9564,10 +9304,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.20.170' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.20.161' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9579,7 +9319,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9608,12 +9348,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_20_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_20_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_20_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.20.161' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.20.161] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.20.161] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_20_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.20.161]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9621,10 +9361,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.3.137' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.3.128' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9636,7 +9376,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9665,12 +9405,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_3_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_3_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_3_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.3.128' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.3.128] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.3.128] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_3_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.3.128]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9678,10 +9418,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.31.95' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.31.86' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9693,7 +9433,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9722,12 +9462,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_31_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_31_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_31_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.31.86' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.31.86] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.31.86] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_31_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.31.86]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9735,10 +9475,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.32.91' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.32.82' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9750,7 +9490,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9779,12 +9519,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_32_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_32_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_32_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.32.82' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.32.82] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.32.82] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_32_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.32.82]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9792,10 +9532,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.33.88' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.33.79' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9807,7 +9547,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9836,12 +9576,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_33_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_33_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_33_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.33.79' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.33.79] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.33.79] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_33_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.33.79]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9849,10 +9589,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.34.85' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.34.76' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9864,7 +9604,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9893,12 +9633,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_34_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_34_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_34_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.34.76' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.34.76] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.34.76] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_34_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.34.76]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9906,10 +9646,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.35.81' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.35.72' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9921,7 +9661,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -9950,12 +9690,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_35_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_35_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_35_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.35.72' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.35.72] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.35.72] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_35_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.35.72]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -9963,10 +9703,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.36.78' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.36.69' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -9978,7 +9718,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10007,12 +9747,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_36_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_36_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_36_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.36.69' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.36.69] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.36.69] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_36_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.36.69]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10020,10 +9760,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.4.134' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.4.125' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerStore -> AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerStore -> AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10035,7 +9775,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10064,12 +9804,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_4_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_4_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_4_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.4.125' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.4.125] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.4.125] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_4_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.4.125]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10077,10 +9817,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.46.115' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.46.106' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10092,7 +9832,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10121,12 +9861,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_46_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_46_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_46_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.46.106' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.46.106] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.46.106] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_46_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.46.106]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10134,10 +9874,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.47.111' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.47.102' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10149,7 +9889,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10178,12 +9918,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_47_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_47_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_47_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.47.102' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.47.102] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.47.102] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_47_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.47.102]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10191,10 +9931,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.48.108' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.48.99' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksAnalytics.dw.Dim_Salesperson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10206,7 +9946,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10235,12 +9975,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_48_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_48_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_48_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.48.99' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.48.99] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.48.99] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_48_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.48.99]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10248,10 +9988,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.49.105' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.49.96' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10263,7 +10003,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10292,12 +10032,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_49_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_49_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_49_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.49.96' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.49.96] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.49.96] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_49_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.49.96]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10305,10 +10045,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.5.120' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.5.111' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion -> AdventureWorksBusinessVault.dbo.BH_CountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10320,7 +10060,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10349,12 +10089,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_5_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_5_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_5_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.5.111' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.5.111] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.5.111] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_5_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.5.111]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10362,10 +10102,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.50.101' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.50.92' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10377,7 +10117,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10406,12 +10146,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_50_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_50_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_50_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.50.92' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.50.92] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.50.92] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_50_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.50.92]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10419,10 +10159,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.51.98' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.51.89' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksAnalytics.dw.Dim_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10434,7 +10174,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10463,12 +10203,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_51_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_51_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_51_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.51.89' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.51.89] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.51.89] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_51_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.51.89]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10476,10 +10216,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.6.118' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.6.109' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_CountryRegion -> AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_CountryRegion -> AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10491,7 +10231,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10520,12 +10260,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_6_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_6_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_6_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.6.109' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.6.109] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.6.109] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_6_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.6.109]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10533,10 +10273,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.60.76' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.7.123' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10548,7 +10288,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10577,12 +10317,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_60_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_60_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_60_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.7.123' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.7.123] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.7.123] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_60_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.7.123]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10590,10 +10330,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.7.132' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.8.120' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10605,7 +10345,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10634,12 +10374,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_7_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_7_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_7_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.8.120' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.8.120] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.8.120] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_7_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.8.120]
 UNION ALL
 SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
@@ -10647,10 +10387,10 @@ SELECT
     CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.8.129' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OuterJoinNullExpansion.JoinPattern.9.117' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10662,7 +10402,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10691,69 +10431,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_8_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_8_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_8_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OuterJoinNullExpansion.JoinPattern.9.117' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.9.117] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.9.117] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_8_OuterJoinNullExpansion]
-UNION ALL
-SELECT
-    CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [DQView],
-    CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [Issue],
-    CAST(N'Unexpected NULLs from outer joins' AS nvarchar(128)) AS [FindingTitle],
-    CAST(N'Optionality' AS nvarchar(128)) AS [FindingCategory],
-    CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OuterJoinNullExpansion.JoinPattern.9.126' AS nvarchar(256)) AS [CandidateId],
-    CAST(N'OuterJoinNullExpansion' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
-    CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
-    CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
-    CAST(NULL AS nvarchar(512)) AS [CheckedObject],
-    CAST(NULL AS nvarchar(512)) AS [SuspectSide],
-    CAST(NULL AS nvarchar(512)) AS [SuspectObject],
-    CAST(NULL AS nvarchar(512)) AS [LookupObject],
-    CAST(NULL AS nvarchar(512)) AS [RelatedObject],
-    CAST(N'' AS nvarchar(512)) AS [CorpusRelationship],
-    CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
-    CAST(N'' AS nvarchar(max)) AS [DominantPattern],
-    CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
-    CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
-    CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
-    CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [TotalSuspectCount],
-    CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [SuspectRowCount],
-    CAST(N'Outer join usage was found; null-expansion checks are likely relevant.' AS nvarchar(max)) AS [Explanation],
-    CAST(N'Outer join usage was found; null-expansion checks are likely relevant.' AS nvarchar(max)) AS [FindingExplanation],
-    CAST(N'Outlier evidence from unknown transforms and unknown occurrences (dominant ratio n/a, outlier ratio n/a). Confidence Low: No additional calibration details.' AS nvarchar(max)) AS [EvidenceSummary],
-    CAST(NULL AS bigint) AS [EvidenceOccurrenceCount],
-    CAST(NULL AS bigint) AS [OutlierOccurrenceCount],
-    CAST(NULL AS bigint) AS [EvidenceTransformCount],
-    CAST(NULL AS bigint) AS [OutlierTransformCount],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [DominantConsensusRatio],
-    CAST(NULL AS decimal(18,6)) AS [EvidenceOutlierRatio],
-    CAST(NULL AS decimal(18,6)) AS [OutlierRatio],
-    CAST(N'Low' AS nvarchar(16)) AS [EvidenceQuality],
-    CAST(N'Low' AS nvarchar(16)) AS [ConfidenceBand],
-    CAST(N'No corpus evidence row was found for this candidate.' AS nvarchar(max)) AS [ConfidenceReason],
-    CAST(N'' AS nvarchar(max)) AS [EvidenceDiversitySummary],
-    CAST(N'Confidence Low: no persisted corpus evidence metrics.' AS nvarchar(max)) AS [ConfidenceSummary],
-    CAST(NULL AS bigint) AS [DistinctTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceTransformCount],
-    CAST(NULL AS bigint) AS [DistinctSourceObjectCount],
-    CAST(NULL AS bigint) AS [DistinctRelationshipPatternCount],
-    CAST(NULL AS bigint) AS [EffectiveTransformCount],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
-    CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OuterJoinNullExpansion_JoinPattern_9_OuterJoinNullExpansion' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_9_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_9_OuterJoinNullExpansion] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OuterJoinNullExpansion_JoinPattern_9_OuterJoinNullExpansion]
+FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.9.117]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -10761,10 +10444,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.1.146' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.1.137' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10776,7 +10459,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10805,12 +10488,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_1_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_1_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_1_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.1.137' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.1.137] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.1.137] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_1_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.1.137]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -10818,10 +10501,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.10.124' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.10.115' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_AddressStateProvince -> AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10833,7 +10516,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10862,12 +10545,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_10_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_10_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_10_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.10.115' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.10.115] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.10.115] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_10_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.10.115]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -10875,10 +10558,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.12.160' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.12.151' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Product -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10890,7 +10573,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10919,12 +10602,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_12_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_12_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_12_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.12.151' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.12.151] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.12.151] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_12_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.12.151]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -10932,10 +10615,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.14.154' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.14.145' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment -> AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -10947,7 +10630,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Product' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -10976,12 +10659,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_14_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_14_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_14_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.14.145' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.14.145] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.14.145] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_14_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.14.145]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -10989,7 +10672,7 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.16.168' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.16.159' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
     CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson' AS nvarchar(512)) AS [Relationship],
     CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPerson -> AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson' AS nvarchar(512)) AS [RelationshipLabel],
@@ -11033,12 +10716,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_Duplicate_output_rows_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPerso' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_Duplicate_output_rows_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPerso] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_Duplicate_output_rows_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPerso] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
-    CAST(N'SELECT TOP (100) * FROM [Dim_Salesperson];' AS nvarchar(max)) AS [TransformViewQuery],
-    CAST(N'SELECT TOP (100) * FROM [Dim_Salesperson];' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_Duplicate_output_rows_AdventureWorksBusinessVault_dbo_BH_SalesPerson_AdventureWorksBusinessVault_dbo_BL_SalesPersonPerso]
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.16.159' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.16.159] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.16.159] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
+    CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.16.159]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11046,10 +10729,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.19.174' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.19.165' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesTerritory -> AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11061,7 +10744,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_SalesTerritory' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11090,12 +10773,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_19_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_19_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_19_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.19.165' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.19.165] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.19.165] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_19_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.19.165]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11103,10 +10786,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.2.142' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.2.133' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_CustomerPerson -> AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11118,7 +10801,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11147,12 +10830,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_2_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_2_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_2_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.2.133' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.2.133] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.2.133] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_2_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.2.133]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11160,10 +10843,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.21.64' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.21.57' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11175,7 +10858,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11204,12 +10887,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_21_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_21_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_21_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.21.57' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.21.57] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.21.57] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_21_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.21.57]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11217,10 +10900,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.22.61' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.22.54' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11232,7 +10915,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11261,12 +10944,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_22_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_22_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_22_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.22.54' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.22.54] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.22.54] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_22_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.22.54]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11274,10 +10957,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.23.58' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.23.51' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder -> AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder -> AdventureWorksBusinessVault.dbo.BH_SalesOrder' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11289,7 +10972,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11318,12 +11001,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_23_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_23_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_23_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.23.51' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.23.51] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.23.51] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_23_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.23.51]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11331,10 +11014,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.24.46' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.24.39' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11346,7 +11029,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11375,12 +11058,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_24_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_24_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_24_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.24.39' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.24.39] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.24.39] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_24_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.24.39]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11388,10 +11071,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.25.43' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.25.36' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine -> AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11403,7 +11086,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11432,12 +11115,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_25_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_25_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_25_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.25.36' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.25.36] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.25.36] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_25_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.25.36]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11445,10 +11128,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.26.40' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.26.33' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct -> AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct -> AdventureWorksBusinessVault.dbo.BH_Product' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11460,7 +11143,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11489,12 +11172,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_26_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_26_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_26_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.26.33' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.26.33] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.26.33] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_26_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.26.33]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11502,10 +11185,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.28.34' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.28.28' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11517,7 +11200,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11546,12 +11229,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_28_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_28_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_28_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.28.28' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.28.28] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.28.28] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_28_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.28.28]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11559,10 +11242,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.29.31' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.29.25' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11574,7 +11257,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11603,12 +11286,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_29_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_29_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_29_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.29.25' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.29.25] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.29.25] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_29_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.29.25]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11616,10 +11299,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.3.138' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.3.129' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Customer -> AdventureWorksBusinessVault.dbo.BL_CustomerStore' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11631,7 +11314,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Customer' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11660,12 +11343,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_3_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_3_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_3_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.3.129' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.3.129] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.3.129] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_3_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.3.129]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11673,10 +11356,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.31.96' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.31.87' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11688,7 +11371,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11717,12 +11400,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_31_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_31_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_31_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.31.87' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.31.87] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.31.87] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_31_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.31.87]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11730,10 +11413,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.32.92' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.32.83' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11745,7 +11428,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11774,12 +11457,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_32_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_32_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_32_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.32.83' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.32.83] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.32.83] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_32_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.32.83]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11787,10 +11470,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.34.86' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.34.77' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11802,7 +11485,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11831,12 +11514,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_34_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_34_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_34_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.34.77' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.34.77] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.34.77] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_34_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.34.77]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11844,10 +11527,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.35.82' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.35.73' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11859,7 +11542,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11888,12 +11571,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_35_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_35_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_35_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.35.73' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.35.73] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.35.73] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_35_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.35.73]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11901,10 +11584,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.37.20' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.37.14' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11916,7 +11599,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -11945,12 +11628,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_37_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_37_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_37_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.37.14' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.37.14] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.37.14] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_37_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.37.14]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -11958,10 +11641,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.38.17' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.38.11' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -11973,7 +11656,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesLine' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12002,12 +11685,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_38_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_38_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_38_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.38.11' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.38.11] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.38.11] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_38_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.38.11]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12015,10 +11698,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.42.55' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.42.48' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12030,7 +11713,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12059,12 +11742,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_42_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_42_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_42_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.42.48' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.42.48] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.42.48] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_42_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.42.48]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12072,10 +11755,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.43.52' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.43.45' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12087,7 +11770,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12116,12 +11799,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_43_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_43_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_43_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.43.45' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.43.45] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.43.45] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_43_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.43.45]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12129,10 +11812,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.44.49' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.44.42' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer -> AdventureWorksBusinessVault.dbo.BH_Customer' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12144,7 +11827,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12173,12 +11856,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_44_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_44_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_44_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.44.42' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.44.42] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.44.42] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_44_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.44.42]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12186,10 +11869,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.46.116' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.46.107' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12201,7 +11884,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12230,12 +11913,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_46_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_46_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_46_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.46.107' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.46.107] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.46.107] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_46_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.46.107]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12243,10 +11926,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.47.112' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.47.103' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12258,7 +11941,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12287,12 +11970,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_47_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_47_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_47_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.47.103' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.47.103] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.47.103] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_47_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.47.103]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12300,10 +11983,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.49.106' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.49.97' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12315,7 +11998,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12344,12 +12027,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_49_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_49_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_49_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.49.97' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.49.97] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.49.97] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_49_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.49.97]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12357,10 +12040,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.50.102' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.50.93' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory -> AdventureWorksBusinessVault.dbo.BH_SalesTerritory' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12372,7 +12055,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12401,12 +12084,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_50_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_50_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_50_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.50.93' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.50.93] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.50.93] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_50_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.50.93]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12414,10 +12097,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.52.27' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.52.21' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12429,7 +12112,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12458,12 +12141,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_52_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_52_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_52_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.52.21' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.52.21] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.52.21] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_52_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.52.21]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12471,10 +12154,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.53.24' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.53.18' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12486,7 +12169,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12515,12 +12198,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_53_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_53_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_53_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.53.18' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.53.18] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.53.18] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_53_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.53.18]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12528,10 +12211,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.55.13' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.55.7' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesOrder -> AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12543,7 +12226,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12572,12 +12255,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_55_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_55_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_55_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.55.7' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.55.7] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.55.7] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_55_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.55.7]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12585,10 +12268,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.56.10' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.56.4' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress -> AdventureWorksBusinessVault.dbo.BH_Address' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12600,7 +12283,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalesOrder' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12629,12 +12312,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_56_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_56_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_56_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.56.4' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.56.4] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.56.4] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_56_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.56.4]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12642,10 +12325,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.63.74' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.63.67' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12657,7 +12340,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12686,12 +12369,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_63_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_63_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_63_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.63.67' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.63.67] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.63.67] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_63_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.63.67]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12699,10 +12382,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.64.71' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.64.64' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota -> AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12714,7 +12397,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12743,12 +12426,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_64_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_64_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_64_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.64.64' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.64.64] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.64.64] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_64_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.64.64]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12756,10 +12439,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.65.68' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.65.61' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson -> AdventureWorksBusinessVault.dbo.BH_SalesPerson' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12771,7 +12454,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Fact_SalespersonQuota' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12800,12 +12483,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_65_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_65_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_65_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.65.61' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.65.61] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.65.61] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_65_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.65.61]
 UNION ALL
 SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [DQView],
@@ -12813,10 +12496,10 @@ SELECT
     CAST(N'Duplicate output rows' AS nvarchar(128)) AS [FindingTitle],
     CAST(N'Output uniqueness' AS nvarchar(128)) AS [FindingCategory],
     CAST(N'RuntimeCheck' AS nvarchar(64)) AS [OutputMode],
-    CAST(N'OutputDuplicateRisk.JoinPattern.8.130' AS nvarchar(256)) AS [CandidateId],
+    CAST(N'OutputDuplicateRisk.JoinPattern.8.121' AS nvarchar(256)) AS [CandidateId],
     CAST(N'OutputDuplicateRisk' AS nvarchar(128)) AS [CandidateKind],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [Relationship],
-    CAST(N'(unresolved relationship)' AS nvarchar(512)) AS [RelationshipLabel],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [Relationship],
+    CAST(N'AdventureWorksBusinessVault.dbo.BH_Address -> AdventureWorksBusinessVault.dbo.BL_AddressStateProvince' AS nvarchar(512)) AS [RelationshipLabel],
     CAST(NULL AS nvarchar(512)) AS [ReferencingObject],
     CAST(NULL AS nvarchar(512)) AS [ReferencedObject],
     CAST(NULL AS nvarchar(512)) AS [CheckedObject],
@@ -12828,7 +12511,7 @@ SELECT
     CAST(N'' AS nvarchar(max)) AS [CorpusRelationshipPattern],
     CAST(N'' AS nvarchar(max)) AS [DominantPattern],
     CAST(N'' AS nvarchar(max)) AS [OutlierPattern],
-    CAST(N'(unknown transform view)' AS nvarchar(max)) AS [TransformViews],
+    CAST(N'Dim_Geography' AS nvarchar(max)) AS [TransformViews],
     CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned],
     CAST(COUNT_BIG(*) AS bigint) AS [ResultRowCount],
     CAST(COUNT_BIG(*) AS bigint) AS [FindingGroupCount],
@@ -12857,12 +12540,12 @@ SELECT
     CAST(NULL AS bigint) AS [EffectiveTransformCount],
     CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'Review returned rows' ELSE N'No rows returned' END AS nvarchar(128)) AS [RecommendedAction],
     CAST(N'Runtime counts' AS nvarchar(64)) AS [RuntimeCountStatus],
-    CAST(N'dq.v_OutputDuplicateRisk_JoinPattern_8_OutputDuplicateRisk' AS nvarchar(512)) AS [GeneratedView],
-    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_8_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
-    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk_JoinPattern_8_OutputDuplicateRisk] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
+    CAST(N'dq.v_OutputDuplicateRisk.JoinPattern.8.121' AS nvarchar(512)) AS [GeneratedView],
+    CAST(CASE WHEN COUNT_BIG(*) > 0 THEN N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.8.121] ORDER BY [Relationship], [KeyValues];' ELSE NULL END AS nvarchar(max)) AS [ReviewQuery],
+    CAST(N'SELECT * FROM [dq].[v_OutputDuplicateRisk.JoinPattern.8.121] ORDER BY [Relationship], [KeyValues];' AS nvarchar(max)) AS [DetailQuery],
     CAST(N'' AS nvarchar(max)) AS [TransformViewQuery],
     CAST(N'' AS nvarchar(max)) AS [SupportingTransformQuery]
-FROM [dq].[v_OutputDuplicateRisk_JoinPattern_8_OutputDuplicateRisk]
+FROM [dq].[v_OutputDuplicateRisk.JoinPattern.8.121]
 GO
 
 /* MetaDataQuality operational store */
@@ -13303,7 +12986,6 @@ BEGIN
 END;
 ';
 GO
-
 
 EXEC [MetaDQ].sys.sp_executesql N'
 CREATE OR ALTER PROCEDURE [dbo].[Findings]

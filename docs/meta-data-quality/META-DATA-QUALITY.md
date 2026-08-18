@@ -105,6 +105,10 @@ False-positive reduction currently uses projection evidence from the semantic Tr
 - tables `dbo.RunLog`, `dbo.FindingLog`
 - procedures `dbo.Run`, `dbo.Findings`
 
+The candidate and dashboard views are constructed as `MetaSql` by the sanctioned
+`MetaDataQuality` → `MetaSql` weave. `meta-convert` realizes those view definitions
+as combined or split deployment scripts and appends the fixed MetaDQ operational pack.
+
 Generated DQ views return investigation rows with columns such as:
 
 - `DQView`

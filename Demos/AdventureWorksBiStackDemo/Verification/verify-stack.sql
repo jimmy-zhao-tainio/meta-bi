@@ -132,8 +132,8 @@ DECLARE @DataQualityChecks bigint =
     FROM AdventureWorksAnalytics.dq.v_DataQualityReview
 );
 
-IF @DataQualityChecks <> 176
-    THROW 51000, N'The deployed Data Quality review does not contain the 176 promoted checks.', 1;
+IF @DataQualityChecks <> 167
+    THROW 51000, N'The deployed Data Quality review does not contain the 167 promoted checks.', 1;
 
 IF EXISTS
 (

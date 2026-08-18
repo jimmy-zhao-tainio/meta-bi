@@ -161,13 +161,25 @@
         <Property name="FirstExpressionDisplay" isRequired="false" />
         <Property name="FirstExpressionId" />
         <Property name="FirstJoinInputColumnName" isRequired="false" />
+        <Property name="FirstJoinInputObjectName" isRequired="false" />
         <Property name="Ordinal" />
         <Property name="SecondExpressionDisplay" isRequired="false" />
         <Property name="SecondExpressionId" />
         <Property name="SecondJoinInputColumnName" isRequired="false" />
+        <Property name="SecondJoinInputObjectName" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="JoinPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="JoinPatternKeyPartInputObjectIdentifierPart">
+      <PropertyList>
+        <Property name="InputSide" />
+        <Property name="Ordinal" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="JoinPatternKeyPart" />
       </RelationshipList>
     </Entity>
     <Entity name="JoinPatternOccurrence">

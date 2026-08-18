@@ -5,6 +5,7 @@ using Meta.Surfaces.Xml;
 using MetaBi.Tests.Common;
 using MetaConvert.DataQualityToSql;
 using MetaDataQuality.Core;
+using MetaDataQuality.Tests.Reference;
 using MetaSql;
 using MetaWeave.Core;
 using MetaWeaveScript.Execution;
@@ -123,7 +124,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
                 actual.ViewList,
                 view => Assert.StartsWith("CREATE OR ALTER VIEW", view.DefinitionSql, StringComparison.Ordinal));
 
-            new DataQualityToSqlConverter().Convert(sourcePath, oraclePath);
+            new LegacyDataQualityToSqlOracle().Convert(sourcePath, oraclePath);
             var oracleSql = File.ReadAllText(oraclePath);
             AssertRuntimeSemantics(oracleSql);
             AssertSemanticReviewSemantics(oracleSql);
@@ -182,6 +183,114 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
         Assert.Contains("CAST(NULL AS nvarchar(128)) AS [DQView]", dashboard.DefinitionSql, StringComparison.Ordinal);
         Assert.Contains("CAST(NULL AS bigint) AS [TotalSuspectCount]", dashboard.DefinitionSql, StringComparison.Ordinal);
         Assert.Contains("WHERE 1 = 0", dashboard.DefinitionSql, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task ProductionConverter_PackagesTheSanctionedMetaSqlViews()
+    {
+        var rootPath = Path.Combine(
+            Path.GetTempPath(),
+            "MetaDataQuality.Tests",
+            Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(rootPath, "source");
+        var outputPath = Path.Combine(rootPath, "DataQuality.sql");
+        var splitOutputPath = Path.Combine(rootPath, "split");
+
+        try
+        {
+            var source = CreateWitnessModel();
+            TypedWorkspaceXmlSerializer.Save(source, sourcePath);
+            var direct = await ExecuteDirectWeaveAsync(source);
+            Assert.True(direct.Result.IsSuccess, FormatIssues(direct.Result));
+            var expected = ToMetaSql(direct.Result);
+
+            var packaged = new DataQualityToSqlConverter().Convert(sourcePath, outputPath);
+            var sql = File.ReadAllText(outputPath);
+
+            Assert.Equal(15, packaged.CandidateViewCount);
+            Assert.Equal(17, packaged.ScriptCount);
+            Assert.All(
+                expected.ViewList,
+                view => Assert.Contains(view.DefinitionSql, sql, StringComparison.Ordinal));
+            Assert.Equal(
+                expected.ViewList.Count,
+                CountOccurrences(sql, "CREATE OR ALTER VIEW [dq]."));
+            Assert.Contains("/* MetaDataQuality operational store */", sql, StringComparison.Ordinal);
+            Assert.Contains("CREATE OR ALTER PROCEDURE [dbo].[Run]", sql, StringComparison.Ordinal);
+            Assert.Contains("CREATE OR ALTER PROCEDURE [dbo].[Findings]", sql, StringComparison.Ordinal);
+
+            var split = new DataQualityToSqlConverter().Convert(sourcePath, splitOutputPath);
+            Assert.Equal(packaged.CandidateViewCount, split.CandidateViewCount);
+            Assert.Equal(
+                split.ScriptCount,
+                Directory.EnumerateFiles(splitOutputPath, "*.sql", SearchOption.TopDirectoryOnly).Count());
+            Assert.True(File.Exists(Path.Combine(splitOutputPath, "v_DataQualityReview.sql")));
+            Assert.True(File.Exists(Path.Combine(splitOutputPath, "MetaDQ.Operational.sql")));
+        }
+        finally
+        {
+            if (Directory.Exists(rootPath))
+            {
+                Directory.Delete(rootPath, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void AdventureWorksProductionPath_MaterializesEveryPromotedCandidate()
+    {
+        var rootPath = Path.Combine(
+            Path.GetTempPath(),
+            "MetaDataQuality.Tests",
+            Guid.NewGuid().ToString("N"));
+        var productionPath = Path.Combine(rootPath, "production.sql");
+
+        try
+        {
+            var repositoryRoot = CliTestRunner.FindRepositoryRoot();
+            var workspacePath = Path.Combine(
+                repositoryRoot,
+                "Demos",
+                "AdventureWorksBiStackDemo",
+                "Runs",
+                "dq",
+                "DataQuality");
+
+            var production = new DataQualityToSqlConverter().Convert(workspacePath, productionPath);
+            var source = TypedWorkspaceModelMapper.Load<MetaDataQualityModel>(
+                workspacePath,
+                searchUpward: false);
+            var productionSql = File.ReadAllText(productionPath);
+
+            Assert.Equal(source.DataQualityCandidateList.Count, production.CandidateViewCount);
+            Assert.Equal(167, production.CandidateViewCount);
+            Assert.Equal(
+                production.CandidateViewCount + production.DashboardViewCount,
+                CountOccurrences(productionSql, "CREATE OR ALTER VIEW [dq]."));
+            Assert.Equal(
+                source.JoinOrphanList.Count + source.OuterJoinNullExpansionList.Count,
+                CountOccurrences(productionSql, "WHERE NOT EXISTS"));
+            Assert.Equal(
+                source.JoinMultiplicityExplosionList.Count + source.OutputDuplicateRiskList.Count,
+                CountOccurrences(productionSql, "HAVING COUNT_BIG(*) > 1"));
+            Assert.Equal(
+                production.CandidateViewCount,
+                CountOccurrences(productionSql, "AS [SuspectCount]"));
+            Assert.All(
+                source.DataQualityCandidateList,
+                candidate => Assert.Contains(
+                    $"CREATE OR ALTER VIEW [dq].[v_{candidate.Id.Replace("]", "]]", StringComparison.Ordinal)}]",
+                    productionSql,
+                    StringComparison.Ordinal));
+            AssertFrozenAdventureWorksContract(productionSql);
+        }
+        finally
+        {
+            if (Directory.Exists(rootPath))
+            {
+                Directory.Delete(rootPath, recursive: true);
+            }
+        }
     }
 
     [Fact]
@@ -1273,7 +1382,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
 
     private static void AssertFrozenAdventureWorksContract(string sql)
     {
-        Assert.Contains("MetaDataQuality: Missing referenced rows", sql, StringComparison.Ordinal);
+        Assert.Contains("CREATE OR ALTER VIEW [dq].[v_JoinOrphan.", sql, StringComparison.Ordinal);
         Assert.Contains("WHERE NOT EXISTS", sql, StringComparison.Ordinal);
         Assert.Contains("AS [KeyValues]", sql, StringComparison.Ordinal);
         Assert.Contains("AS [SuspectCount]", sql, StringComparison.Ordinal);

@@ -744,6 +744,10 @@ Examples:
 
 Currently SQL-checkable:
 
+- `JoinOrphan`
+- `OuterJoinNullExpansion`
+- `JoinMultiplicityExplosion`
+- `OutputDuplicateRisk`
 - `ImpliedForeignKeyMissingReference`
 - `ImpliedUniqueKeyViolation`
 
@@ -763,6 +767,8 @@ Currently emitted as `SemanticReviewFinding`:
 - `MinorityJoinPattern`
 - `IncompleteCompositeJoin`
 - `SuspiciousExtraJoinPredicate`
+- `MissingCommonFilter`
+- `MinorityColumnEquivalence`
 - `InnerJoinAgainstUsuallyOptionalRelationship`
 - `LeftJoinAgainstUsuallyMandatoryRelationship`
 - `ImpliedJoinFanoutRisk`
