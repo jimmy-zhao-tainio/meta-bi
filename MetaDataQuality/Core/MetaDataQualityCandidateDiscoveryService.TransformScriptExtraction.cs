@@ -1309,15 +1309,6 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
 
                     var filterPredicates = CollectQueryFilterPredicates(querySpecificationId);
 
-                    var equalityPredicates = ResolveJoinInputColumnsForEqualityPredicates(
-                        firstTableReferenceId,
-                        secondTableReferenceId,
-                        CollectEqualityPredicates(searchConditionBooleanExpressionId));
-                    var projectsRightDetailColumn = ProjectsNonKeyColumnFromJoinSide(
-                        querySpecificationId,
-                        secondTableReferenceId,
-                        equalityPredicates);
-
                     var baseTables = new List<BaseTableEvidence>();
                     ResolveJoinInputBaseTables(
                         firstTableReferenceId,
@@ -1329,6 +1320,16 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                         scope.WithPathSegment("JoinSecondInput"),
                         cteDefinitionsByName,
                         baseTables);
+
+                    var equalityPredicates = ResolveJoinInputColumnsForEqualityPredicates(
+                        firstTableReferenceId,
+                        secondTableReferenceId,
+                        baseTables,
+                        CollectEqualityPredicates(searchConditionBooleanExpressionId));
+                    var projectsRightDetailColumn = ProjectsNonKeyColumnFromJoinSide(
+                        querySpecificationId,
+                        secondTableReferenceId,
+                        equalityPredicates);
 
                     result.AddJoinLocation(new JoinLocationEvidence
                     {
@@ -1444,6 +1445,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
         private IReadOnlyList<EqualityPredicateEvidence> ResolveJoinInputColumnsForEqualityPredicates(
             string firstTableReferenceId,
             string secondTableReferenceId,
+            IReadOnlyList<BaseTableEvidence> baseTables,
             IReadOnlyList<EqualityPredicateEvidence> predicates)
         {
             if (predicates.Count == 0)
@@ -1462,29 +1464,59 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
             foreach (var predicate in predicates)
             {
                 var firstExpressionSide = ResolveJoinInputSide(
-                    predicate.FirstExpressionDisplay,
+                    predicate.FirstExpressionId,
                     firstAliases,
                     secondAliases,
+                    out var firstExpressionReference,
                     out var firstExpressionColumn);
                 var secondExpressionSide = ResolveJoinInputSide(
-                    predicate.SecondExpressionDisplay,
+                    predicate.SecondExpressionId,
                     firstAliases,
                     secondAliases,
+                    out var secondExpressionReference,
                     out var secondExpressionColumn);
 
                 var firstJoinInputColumnName = string.Empty;
                 var secondJoinInputColumnName = string.Empty;
+                var firstJoinInputObjectName = string.Empty;
+                var secondJoinInputObjectName = string.Empty;
+                IReadOnlyList<string> firstJoinInputObjectIdentifierParts = [];
+                IReadOnlyList<string> secondJoinInputObjectIdentifierParts = [];
                 if (firstExpressionSide == JoinExpressionSide.FirstInput
                     && secondExpressionSide == JoinExpressionSide.SecondInput)
                 {
                     firstJoinInputColumnName = firstExpressionColumn;
                     secondJoinInputColumnName = secondExpressionColumn;
+                    var firstObject = ResolveJoinInputObject(
+                        baseTables,
+                        firstTableReferenceId,
+                        firstExpressionReference);
+                    var secondObject = ResolveJoinInputObject(
+                        baseTables,
+                        secondTableReferenceId,
+                        secondExpressionReference);
+                    firstJoinInputObjectName = firstObject?.BaseObjectName ?? string.Empty;
+                    firstJoinInputObjectIdentifierParts = firstObject?.BaseObjectIdentifierParts ?? [];
+                    secondJoinInputObjectName = secondObject?.BaseObjectName ?? string.Empty;
+                    secondJoinInputObjectIdentifierParts = secondObject?.BaseObjectIdentifierParts ?? [];
                 }
                 else if (firstExpressionSide == JoinExpressionSide.SecondInput
                          && secondExpressionSide == JoinExpressionSide.FirstInput)
                 {
                     firstJoinInputColumnName = secondExpressionColumn;
                     secondJoinInputColumnName = firstExpressionColumn;
+                    var firstObject = ResolveJoinInputObject(
+                        baseTables,
+                        firstTableReferenceId,
+                        secondExpressionReference);
+                    var secondObject = ResolveJoinInputObject(
+                        baseTables,
+                        secondTableReferenceId,
+                        firstExpressionReference);
+                    firstJoinInputObjectName = firstObject?.BaseObjectName ?? string.Empty;
+                    firstJoinInputObjectIdentifierParts = firstObject?.BaseObjectIdentifierParts ?? [];
+                    secondJoinInputObjectName = secondObject?.BaseObjectName ?? string.Empty;
+                    secondJoinInputObjectIdentifierParts = secondObject?.BaseObjectIdentifierParts ?? [];
                 }
 
                 resolved.Add(new EqualityPredicateEvidence
@@ -1496,20 +1528,29 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                     SecondExpressionDisplay = predicate.SecondExpressionDisplay,
                     FirstJoinInputColumnName = firstJoinInputColumnName,
                     SecondJoinInputColumnName = secondJoinInputColumnName,
+                    FirstJoinInputObjectName = firstJoinInputObjectName,
+                    SecondJoinInputObjectName = secondJoinInputObjectName,
+                    FirstJoinInputObjectIdentifierParts = firstJoinInputObjectIdentifierParts,
+                    SecondJoinInputObjectIdentifierParts = secondJoinInputObjectIdentifierParts,
                 });
             }
 
             return resolved;
         }
 
-        private static JoinExpressionSide ResolveJoinInputSide(
-            string expression,
+        private JoinExpressionSide ResolveJoinInputSide(
+            string scalarExpressionId,
             ISet<string> firstAliases,
             ISet<string> secondAliases,
+            out string referenceName,
             out string column)
         {
+            referenceName = string.Empty;
             column = string.Empty;
-            if (!TryParseQualifiedColumnDisplay(expression, out var alias, out var parsedColumn))
+            if (!TryResolveQualifiedColumnReference(
+                    scalarExpressionId,
+                    out var alias,
+                    out var parsedColumn))
             {
                 return JoinExpressionSide.Unknown;
             }
@@ -1521,10 +1562,68 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 return JoinExpressionSide.Unknown;
             }
 
+            referenceName = alias;
             column = parsedColumn;
             return matchesFirst
                 ? JoinExpressionSide.FirstInput
                 : JoinExpressionSide.SecondInput;
+        }
+
+        private bool TryResolveQualifiedColumnReference(
+            string scalarExpressionId,
+            out string referenceName,
+            out string columnName)
+        {
+            referenceName = string.Empty;
+            columnName = string.Empty;
+            if (!primaryExpressionByScalarExpressionId.TryGetValue(scalarExpressionId, out var primaryExpression)
+                || !columnReferenceByPrimaryExpressionId.TryGetValue(primaryExpression.Id, out var columnReference)
+                || !columnReferenceMultiPartByColumnReferenceId.TryGetValue(columnReference.Id, out var multiPartLink)
+                || !TryGetMultiPartIdentifierValues(multiPartLink.MultiPartIdentifier.Id, out var parts)
+                || parts.Length < 2)
+            {
+                return false;
+            }
+
+            referenceName = parts[^2];
+            columnName = parts[^1];
+            return !string.IsNullOrWhiteSpace(referenceName)
+                && !string.IsNullOrWhiteSpace(columnName);
+        }
+
+        private static BaseTableEvidence? ResolveJoinInputObject(
+            IReadOnlyList<BaseTableEvidence> baseTables,
+            string joinInputTableReferenceId,
+            string referenceName)
+        {
+            var inputTables = baseTables
+                .Where(item => string.Equals(
+                    item.JoinInputTableReferenceId,
+                    joinInputTableReferenceId,
+                    StringComparison.Ordinal))
+                .ToArray();
+            var matches = inputTables
+                .Where(item => string.Equals(
+                    item.ReferenceName,
+                    referenceName,
+                    StringComparison.OrdinalIgnoreCase))
+                .ToArray();
+            if (matches.Length == 1)
+            {
+                return matches[0];
+            }
+
+            var inputObjects = inputTables
+                .Select(static item => item.BaseObjectName)
+                .Where(static item => !string.IsNullOrWhiteSpace(item))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+            return inputObjects.Length == 1
+                ? inputTables.First(item => string.Equals(
+                    item.BaseObjectName,
+                    inputObjects[0],
+                    StringComparison.OrdinalIgnoreCase))
+                : null;
         }
 
         private static bool TryParseQualifiedColumnDisplay(
@@ -1627,6 +1726,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                     out _,
                     out _,
                     out var objectBaseName,
+                    out _,
                     out _)
                 && !string.IsNullOrWhiteSpace(objectBaseName))
             {
@@ -1805,7 +1905,8 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                     out var schemaObjectNameId,
                     out var objectName,
                     out var objectBaseName,
-                    out var objectPartCount))
+                    out var objectPartCount,
+                    out var objectIdentifierParts))
             {
                 if (objectPartCount == 1
                     && cteDefinitionsByName.TryGetValue(objectBaseName, out var cteDefinition)
@@ -1832,6 +1933,10 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                     BaseNamedTableReferenceId = namedTableReferenceId,
                     BaseSchemaObjectNameId = schemaObjectNameId,
                     BaseObjectName = objectName,
+                    BaseObjectIdentifierParts = objectIdentifierParts,
+                    ReferenceName = TryGetTableReferenceAlias(tableReferenceId, out var referenceName)
+                        ? referenceName
+                        : objectBaseName,
                     ResolutionDepth = depth,
                     ResolutionPath = scope.Path,
                     ResolvedInCteId = scope.CteId,
@@ -1964,13 +2069,15 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
             out string schemaObjectNameId,
             out string objectName,
             out string objectBaseName,
-            out int objectPartCount)
+            out int objectPartCount,
+            out string[] objectIdentifierParts)
         {
             namedTableReferenceId = string.Empty;
             schemaObjectNameId = string.Empty;
             objectName = string.Empty;
             objectBaseName = string.Empty;
             objectPartCount = 0;
+            objectIdentifierParts = [];
 
             if (!tableReferenceWithAliasByTableReferenceId.TryGetValue(tableReferenceId, out var aliasBase))
             {
@@ -1991,7 +2098,8 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                     schemaObjectLink.SchemaObjectName.Id,
                     out objectName,
                     out objectBaseName,
-                    out objectPartCount))
+                    out objectPartCount,
+                    out objectIdentifierParts))
             {
                 return false;
             }
@@ -2005,11 +2113,13 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
             string schemaObjectNameId,
             out string fullName,
             out string baseName,
-            out int partCount)
+            out int partCount,
+            out string[] identifierParts)
         {
             fullName = string.Empty;
             baseName = string.Empty;
             partCount = 0;
+            identifierParts = [];
 
             if (!schemaObjectById.TryGetValue(schemaObjectNameId, out var schemaObject))
             {
@@ -2033,6 +2143,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
             fullName = string.Join(".", parts);
             baseName = parts[^1];
             partCount = parts.Length;
+            identifierParts = parts;
             return true;
         }
 
@@ -2477,6 +2588,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                     out _,
                     out var objectName,
                     out var objectBaseName,
+                    out _,
                     out _)
                 && !string.IsNullOrWhiteSpace(objectName))
             {
@@ -2943,6 +3055,10 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
 
         public string BaseObjectName { get; init; } = string.Empty;
 
+        public IReadOnlyList<string> BaseObjectIdentifierParts { get; init; } = [];
+
+        public string ReferenceName { get; init; } = string.Empty;
+
         public int ResolutionDepth { get; init; }
 
         public string ResolutionPath { get; init; } = string.Empty;
@@ -2967,6 +3083,14 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
         public string FirstJoinInputColumnName { get; init; } = string.Empty;
 
         public string SecondJoinInputColumnName { get; init; } = string.Empty;
+
+        public string FirstJoinInputObjectName { get; init; } = string.Empty;
+
+        public string SecondJoinInputObjectName { get; init; } = string.Empty;
+
+        public IReadOnlyList<string> FirstJoinInputObjectIdentifierParts { get; init; } = [];
+
+        public IReadOnlyList<string> SecondJoinInputObjectIdentifierParts { get; init; } = [];
     }
 
     private sealed class FilterPredicateEvidence

@@ -352,6 +352,119 @@ INNER JOIN dbo.[Order] o
                 row =>
                     (row.FirstExpressionDisplay ?? string.Empty).Contains("RegionId", StringComparison.OrdinalIgnoreCase)
                     || (row.SecondExpressionDisplay ?? string.Empty).Contains("RegionId", StringComparison.OrdinalIgnoreCase));
+
+            Assert.All(
+                predicateParts,
+                row =>
+                {
+                    Assert.Equal("dbo.Customer", row.FirstJoinInputObjectName);
+                    Assert.Equal("dbo.Order", row.SecondJoinInputObjectName);
+                    Assert.False(string.IsNullOrWhiteSpace(row.FirstJoinInputColumnName));
+                    Assert.False(string.IsNullOrWhiteSpace(row.SecondJoinInputColumnName));
+                });
+            Assert.All(
+                predicateParts,
+                keyPart =>
+                {
+                    var firstObjectParts = result.Model.JoinPatternKeyPartInputObjectIdentifierPartList
+                        .Where(row => string.Equals(row.JoinPatternKeyPart.Id, keyPart.Id, StringComparison.Ordinal)
+                                      && string.Equals(row.InputSide, "First", StringComparison.Ordinal))
+                        .OrderBy(row => int.Parse(row.Ordinal, CultureInfo.InvariantCulture))
+                        .Select(static row => row.Value)
+                        .ToArray();
+                    var secondObjectParts = result.Model.JoinPatternKeyPartInputObjectIdentifierPartList
+                        .Where(row => string.Equals(row.JoinPatternKeyPart.Id, keyPart.Id, StringComparison.Ordinal)
+                                      && string.Equals(row.InputSide, "Second", StringComparison.Ordinal))
+                        .OrderBy(row => int.Parse(row.Ordinal, CultureInfo.InvariantCulture))
+                        .Select(static row => row.Value)
+                        .ToArray();
+
+                    Assert.Equal(["dbo", "Customer"], firstObjectParts);
+                    Assert.Equal(["dbo", "Order"], secondObjectParts);
+                });
+            Assert.NotEmpty(result.Model.JoinOrphanList);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(rootPath);
+        }
+    }
+
+    [Fact]
+    public async Task Discovery_DoesNotCreateRuntimeChecksWithoutJoinColumnEvidence()
+    {
+        var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(rootPath, "transform");
+
+        try
+        {
+            const string sql = """
+SELECT c.CustomerId, o.OrderId
+FROM dbo.Customer c
+INNER JOIN dbo.[Order] o ON 1 = 1;
+""";
+
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
+                sql,
+                "dbo.TargetOrders",
+                transformWorkspacePath,
+                "dbo.v_customer_orders_missing_key");
+
+            var result = new MetaDataQualityCandidateDiscoveryService()
+                .DiscoverFromTransformWorkspace(transformWorkspacePath);
+
+            var keyPart = Assert.Single(result.Model.JoinPatternKeyPartList);
+            Assert.True(string.IsNullOrWhiteSpace(keyPart.FirstJoinInputObjectName));
+            Assert.True(string.IsNullOrWhiteSpace(keyPart.FirstJoinInputColumnName));
+            Assert.True(string.IsNullOrWhiteSpace(keyPart.SecondJoinInputObjectName));
+            Assert.True(string.IsNullOrWhiteSpace(keyPart.SecondJoinInputColumnName));
+            Assert.Empty(result.Model.JoinPatternKeyPartInputObjectIdentifierPartList);
+            Assert.Empty(result.Model.JoinOrphanList);
+            Assert.Empty(result.Model.JoinMultiplicityExplosionList);
+            Assert.Empty(result.Model.OuterJoinNullExpansionList);
+            Assert.Empty(result.Model.OutputDuplicateRiskList);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(rootPath);
+        }
+    }
+
+    [Fact]
+    public async Task Discovery_DoesNotCreateRuntimeChecksFromIncompleteJoinColumnEvidence()
+    {
+        var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(rootPath, "transform");
+
+        try
+        {
+            const string sql = """
+SELECT c.CustomerId, o.OrderId
+FROM dbo.Customer c
+LEFT OUTER JOIN dbo.[Order] o ON c.CustomerId = CustomerId;
+""";
+
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
+                sql,
+                "dbo.TargetOrders",
+                transformWorkspacePath,
+                "dbo.v_customer_orders_incomplete_key");
+
+            var result = new MetaDataQualityCandidateDiscoveryService()
+                .DiscoverFromTransformWorkspace(transformWorkspacePath);
+
+            var keyPart = Assert.Single(result.Model.JoinPatternKeyPartList);
+            Assert.Contains("c.CustomerId", keyPart.FirstExpressionDisplay, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("CustomerId", keyPart.SecondExpressionDisplay, StringComparison.OrdinalIgnoreCase);
+            Assert.True(string.IsNullOrWhiteSpace(keyPart.FirstJoinInputObjectName));
+            Assert.True(string.IsNullOrWhiteSpace(keyPart.FirstJoinInputColumnName));
+            Assert.True(string.IsNullOrWhiteSpace(keyPart.SecondJoinInputObjectName));
+            Assert.True(string.IsNullOrWhiteSpace(keyPart.SecondJoinInputColumnName));
+            Assert.Empty(result.Model.JoinPatternKeyPartInputObjectIdentifierPartList);
+            Assert.Empty(result.Model.JoinOrphanList);
+            Assert.Empty(result.Model.JoinMultiplicityExplosionList);
+            Assert.Empty(result.Model.OuterJoinNullExpansionList);
+            Assert.Empty(result.Model.OutputDuplicateRiskList);
         }
         finally
         {

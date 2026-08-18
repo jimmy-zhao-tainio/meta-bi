@@ -172,11 +172,22 @@ public sealed partial class JoinPatternKeyPart
     public string? FirstExpressionDisplay { get; set; }
     public string FirstExpressionId { get; set; } = null !;
     public string? FirstJoinInputColumnName { get; set; }
+    public string? FirstJoinInputObjectName { get; set; }
     public string Ordinal { get; set; } = null !;
     public string? SecondExpressionDisplay { get; set; }
     public string SecondExpressionId { get; set; } = null !;
     public string? SecondJoinInputColumnName { get; set; }
+    public string? SecondJoinInputObjectName { get; set; }
     public JoinPattern JoinPattern { get; set; } = null !;
+}
+
+public sealed partial class JoinPatternKeyPartInputObjectIdentifierPart
+{
+    public string Id { get; set; } = null !;
+    public string InputSide { get; set; } = null !;
+    public string Ordinal { get; set; } = null !;
+    public string Value { get; set; } = null !;
+    public JoinPatternKeyPart JoinPatternKeyPart { get; set; } = null !;
 }
 
 public sealed partial class JoinPatternOccurrence
@@ -301,6 +312,7 @@ public sealed partial class MetaDataQualityModel
     public List<JoinOrphan> JoinOrphanList { get; set; } = new();
     public List<JoinPattern> JoinPatternList { get; set; } = new();
     public List<JoinPatternKeyPart> JoinPatternKeyPartList { get; set; } = new();
+    public List<JoinPatternKeyPartInputObjectIdentifierPart> JoinPatternKeyPartInputObjectIdentifierPartList { get; set; } = new();
     public List<JoinPatternOccurrence> JoinPatternOccurrenceList { get; set; } = new();
     public List<JoinPatternOccurrenceBaseTable> JoinPatternOccurrenceBaseTableList { get; set; } = new();
     public List<JoinPatternOccurrenceSignal> JoinPatternOccurrenceSignalList { get; set; } = new();

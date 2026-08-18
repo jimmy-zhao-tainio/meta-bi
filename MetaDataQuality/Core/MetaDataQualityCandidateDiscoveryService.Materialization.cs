@@ -1,4 +1,5 @@
 ﻿using MetaDataQuality;
+using System.Globalization;
 using MetaTransformScript;
 
 namespace MetaDataQuality.Core;
@@ -186,7 +187,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
         ref int candidateCounter)
     {
         var joinPatternIds = new[] { aggregate.Pattern.Id };
-        if (aggregate.ContainsEqualityPredicate)
+        if (aggregate.HasExecutableRelationshipKey)
         {
             AddJoinOrphanCandidate(
                 model,
@@ -209,7 +210,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 ref candidateCounter);
         }
 
-        if (aggregate.OuterJoinOccurrenceCount > 0)
+        if (aggregate.HasExecutableRelationshipKey && aggregate.OuterJoinOccurrenceCount > 0)
         {
             AddOuterJoinNullExpansionCandidate(
                 model,
@@ -222,7 +223,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 ref candidateCounter);
         }
 
-        if (aggregate.ContainsEqualityPredicate && aggregate.HasOccurrenceWithoutDistinctOrGroupBy)
+        if (aggregate.HasExecutableRelationshipKey && aggregate.HasOccurrenceWithoutDistinctOrGroupBy)
         {
             AddOutputDuplicateRiskCandidate(
                 model,
@@ -469,7 +470,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 seenKeyPartIds,
                 $"{joinPattern.Id}.KeyPart.{i + 1}",
                 ref keyPartCounter);
-            model.JoinPatternKeyPartList.Add(new JoinPatternKeyPart
+            var keyPart = new JoinPatternKeyPart
             {
                 Id = keyPartId,
                 JoinPattern = joinPattern,
@@ -481,7 +482,40 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 SecondExpressionDisplay = predicate.SecondExpressionDisplay,
                 FirstJoinInputColumnName = predicate.FirstJoinInputColumnName,
                 SecondJoinInputColumnName = predicate.SecondJoinInputColumnName,
-            });
+                FirstJoinInputObjectName = predicate.FirstJoinInputObjectName,
+                SecondJoinInputObjectName = predicate.SecondJoinInputObjectName,
+            };
+            model.JoinPatternKeyPartList.Add(keyPart);
+            AddJoinInputObjectIdentifierParts(
+                model,
+                keyPart,
+                "First",
+                predicate.FirstJoinInputObjectIdentifierParts);
+            AddJoinInputObjectIdentifierParts(
+                model,
+                keyPart,
+                "Second",
+                predicate.SecondJoinInputObjectIdentifierParts);
+        }
+    }
+
+    private static void AddJoinInputObjectIdentifierParts(
+        MetaDataQualityModel model,
+        JoinPatternKeyPart keyPart,
+        string inputSide,
+        IReadOnlyList<string> values)
+    {
+        for (var index = 0; index < values.Count; index++)
+        {
+            model.JoinPatternKeyPartInputObjectIdentifierPartList.Add(
+                new JoinPatternKeyPartInputObjectIdentifierPart
+                {
+                    Id = $"{keyPart.Id}.{inputSide}ObjectPart.{index + 1}",
+                    JoinPatternKeyPart = keyPart,
+                    InputSide = inputSide,
+                    Ordinal = index.ToString(CultureInfo.InvariantCulture),
+                    Value = values[index],
+                });
         }
     }
 
@@ -842,6 +876,8 @@ WHERE 1 = 0;
 
         public bool HasOccurrenceWithoutRightDetailProjection { get; private set; }
 
+        public bool HasExecutableRelationshipKey { get; private set; }
+
         public void RegisterOccurrence(
             JoinLocationEvidence evidence,
             bool hasGroupBy,
@@ -856,6 +892,15 @@ WHERE 1 = 0;
             if (evidence.EqualityPredicateCount > MaxEqualityPredicateCount)
             {
                 MaxEqualityPredicateCount = evidence.EqualityPredicateCount;
+            }
+
+            if (evidence.EqualityPredicates.Any(static predicate =>
+                    !string.IsNullOrWhiteSpace(predicate.FirstJoinInputObjectName)
+                    && !string.IsNullOrWhiteSpace(predicate.FirstJoinInputColumnName)
+                    && !string.IsNullOrWhiteSpace(predicate.SecondJoinInputObjectName)
+                    && !string.IsNullOrWhiteSpace(predicate.SecondJoinInputColumnName)))
+            {
+                HasExecutableRelationshipKey = true;
             }
 
             if (hasGroupBy)
