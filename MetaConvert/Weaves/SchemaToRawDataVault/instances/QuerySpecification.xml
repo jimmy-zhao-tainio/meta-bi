@@ -133,6 +133,18 @@
     <QuerySpecification Id="QuerySpecification:6" QueryExpressionId="QueryExpression:7">
       <UniqueRowFilter></UniqueRowFilter>
     </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:60" QueryExpressionId="QueryExpression:63">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:61" QueryExpressionId="QueryExpression:64">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:62" QueryExpressionId="QueryExpression:65">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:63" QueryExpressionId="QueryExpression:66">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
     <QuerySpecification Id="QuerySpecification:7" QueryExpressionId="QueryExpression:8">
       <UniqueRowFilter></UniqueRowFilter>
     </QuerySpecification>

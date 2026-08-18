@@ -400,6 +400,21 @@
     <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:241" QuerySpecificationId="QuerySpecification:59" SelectElementId="SelectElement:240">
       <Ordinal>4</Ordinal>
     </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:242" QuerySpecificationId="QuerySpecification:60" SelectElementId="SelectElement:243">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:243" QuerySpecificationId="QuerySpecification:61" SelectElementId="SelectElement:244">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:244" QuerySpecificationId="QuerySpecification:62" SelectElementId="SelectElement:245">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:245" QuerySpecificationId="QuerySpecification:63" SelectElementId="SelectElement:242">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:246" QuerySpecificationId="QuerySpecification:63" SelectElementId="SelectElement:246">
+      <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
     <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:25" QuerySpecificationId="QuerySpecification:9" SelectElementId="SelectElement:28">
       <Ordinal>0</Ordinal>
     </QuerySpecificationSelectElementsItem>

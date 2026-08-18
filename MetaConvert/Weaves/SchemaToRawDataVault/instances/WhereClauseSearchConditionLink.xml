@@ -12,6 +12,9 @@
     <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:2" BooleanExpressionId="BooleanExpression:7" WhereClauseId="WhereClause:2" />
     <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:20" BooleanExpressionId="BooleanExpression:90" WhereClauseId="WhereClause:20" />
     <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:21" BooleanExpressionId="BooleanExpression:96" WhereClauseId="WhereClause:21" />
+    <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:22" BooleanExpressionId="BooleanExpression:97" WhereClauseId="WhereClause:22" />
+    <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:23" BooleanExpressionId="BooleanExpression:100" WhereClauseId="WhereClause:23" />
+    <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:24" BooleanExpressionId="BooleanExpression:105" WhereClauseId="WhereClause:24" />
     <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:3" BooleanExpressionId="BooleanExpression:12" WhereClauseId="WhereClause:3" />
     <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:4" BooleanExpressionId="BooleanExpression:15" WhereClauseId="WhereClause:4" />
     <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:5" BooleanExpressionId="BooleanExpression:17" WhereClauseId="WhereClause:5" />

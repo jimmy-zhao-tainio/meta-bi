@@ -24,6 +24,7 @@
     <StatementWithCtes Id="StatementWithCtes:3" TSqlStatementId="TSqlStatement:3" />
     <StatementWithCtes Id="StatementWithCtes:30" TSqlStatementId="TSqlStatement:30" />
     <StatementWithCtes Id="StatementWithCtes:31" TSqlStatementId="TSqlStatement:31" />
+    <StatementWithCtes Id="StatementWithCtes:32" TSqlStatementId="TSqlStatement:32" />
     <StatementWithCtes Id="StatementWithCtes:4" TSqlStatementId="TSqlStatement:4" />
     <StatementWithCtes Id="StatementWithCtes:5" TSqlStatementId="TSqlStatement:5" />
     <StatementWithCtes Id="StatementWithCtes:6" TSqlStatementId="TSqlStatement:6" />

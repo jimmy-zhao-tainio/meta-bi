@@ -2,6 +2,9 @@
 <MetaWeave>
   <ExistsPredicateSubqueryLinkList>
     <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:10" ExistsPredicateId="ExistsPredicate:10" ScalarSubqueryId="ScalarSubquery:14" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:11" ExistsPredicateId="ExistsPredicate:11" ScalarSubqueryId="ScalarSubquery:15" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:12" ExistsPredicateId="ExistsPredicate:12" ScalarSubqueryId="ScalarSubquery:16" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:13" ExistsPredicateId="ExistsPredicate:13" ScalarSubqueryId="ScalarSubquery:17" />
     <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:2" ExistsPredicateId="ExistsPredicate:2" ScalarSubqueryId="ScalarSubquery:2" />
     <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:3" ExistsPredicateId="ExistsPredicate:3" ScalarSubqueryId="ScalarSubquery:3" />
     <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:4" ExistsPredicateId="ExistsPredicate:4" ScalarSubqueryId="ScalarSubquery:4" />

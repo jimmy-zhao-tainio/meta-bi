@@ -3,6 +3,9 @@
   <WhenClauseThenExpressionLinkList>
     <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:1" ScalarExpressionId="ScalarExpression:62" WhenClauseId="WhenClause:1" />
     <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:10" ScalarExpressionId="ScalarExpression:466" WhenClauseId="WhenClause:10" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:11" ScalarExpressionId="ScalarExpression:501" WhenClauseId="WhenClause:11" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:12" ScalarExpressionId="ScalarExpression:508" WhenClauseId="WhenClause:12" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:13" ScalarExpressionId="ScalarExpression:517" WhenClauseId="WhenClause:13" />
     <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:2" ScalarExpressionId="ScalarExpression:67" WhenClauseId="WhenClause:2" />
     <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:7" ScalarExpressionId="ScalarExpression:372" WhenClauseId="WhenClause:7" />
     <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:8" ScalarExpressionId="ScalarExpression:379" WhenClauseId="WhenClause:8" />

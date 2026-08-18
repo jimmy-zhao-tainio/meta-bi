@@ -71,5 +71,12 @@
     <TableReferenceWithAlias Id="TableReferenceWithAlias:90" TableReferenceId="TableReference:121" />
     <TableReferenceWithAlias Id="TableReferenceWithAlias:91" TableReferenceId="TableReference:123" />
     <TableReferenceWithAlias Id="TableReferenceWithAlias:92" TableReferenceId="TableReference:125" />
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:93" TableReferenceId="TableReference:126" />
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:94" TableReferenceId="TableReference:127" />
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:95" TableReferenceId="TableReference:128" />
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:96" TableReferenceId="TableReference:130" />
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:97" TableReferenceId="TableReference:131" />
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:98" TableReferenceId="TableReference:133" />
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:99" TableReferenceId="TableReference:135" />
   </TableReferenceWithAliasList>
 </MetaWeave>

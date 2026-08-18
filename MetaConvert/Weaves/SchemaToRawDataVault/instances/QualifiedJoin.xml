@@ -58,6 +58,15 @@
     <QualifiedJoin Id="QualifiedJoin:33" JoinTableReferenceId="JoinTableReference:33">
       <QualifiedJoinType>Inner</QualifiedJoinType>
     </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:34" JoinTableReferenceId="JoinTableReference:34">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:35" JoinTableReferenceId="JoinTableReference:35">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:36" JoinTableReferenceId="JoinTableReference:36">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
     <QualifiedJoin Id="QualifiedJoin:4" JoinTableReferenceId="JoinTableReference:4">
       <QualifiedJoinType>Inner</QualifiedJoinType>
     </QualifiedJoin>

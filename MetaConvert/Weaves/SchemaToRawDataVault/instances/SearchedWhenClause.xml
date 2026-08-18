@@ -3,6 +3,9 @@
   <SearchedWhenClauseList>
     <SearchedWhenClause Id="SearchedWhenClause:1" WhenClauseId="WhenClause:1" />
     <SearchedWhenClause Id="SearchedWhenClause:10" WhenClauseId="WhenClause:10" />
+    <SearchedWhenClause Id="SearchedWhenClause:11" WhenClauseId="WhenClause:11" />
+    <SearchedWhenClause Id="SearchedWhenClause:12" WhenClauseId="WhenClause:12" />
+    <SearchedWhenClause Id="SearchedWhenClause:13" WhenClauseId="WhenClause:13" />
     <SearchedWhenClause Id="SearchedWhenClause:2" WhenClauseId="WhenClause:2" />
     <SearchedWhenClause Id="SearchedWhenClause:7" WhenClauseId="WhenClause:7" />
     <SearchedWhenClause Id="SearchedWhenClause:8" WhenClauseId="WhenClause:8" />

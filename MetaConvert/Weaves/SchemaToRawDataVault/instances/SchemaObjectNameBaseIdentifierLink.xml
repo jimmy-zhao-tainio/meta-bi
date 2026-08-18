@@ -70,5 +70,12 @@
     <SchemaObjectNameBaseIdentifierLink Id="SchemaObjectNameBaseIdentifierLink:9" IdentifierId="Identifier:90" SchemaObjectNameId="SchemaObjectName:9" />
     <SchemaObjectNameBaseIdentifierLink Id="SchemaObjectNameBaseIdentifierLink:90" IdentifierId="Identifier:1240" SchemaObjectNameId="SchemaObjectName:90" />
     <SchemaObjectNameBaseIdentifierLink Id="SchemaObjectNameBaseIdentifierLink:91" IdentifierId="Identifier:1250" SchemaObjectNameId="SchemaObjectName:91" />
+    <SchemaObjectNameBaseIdentifierLink Id="SchemaObjectNameBaseIdentifierLink:92" IdentifierId="Identifier:1258" SchemaObjectNameId="SchemaObjectName:92" />
+    <SchemaObjectNameBaseIdentifierLink Id="SchemaObjectNameBaseIdentifierLink:93" IdentifierId="Identifier:1268" SchemaObjectNameId="SchemaObjectName:93" />
+    <SchemaObjectNameBaseIdentifierLink Id="SchemaObjectNameBaseIdentifierLink:94" IdentifierId="Identifier:1271" SchemaObjectNameId="SchemaObjectName:94" />
+    <SchemaObjectNameBaseIdentifierLink Id="SchemaObjectNameBaseIdentifierLink:95" IdentifierId="Identifier:1285" SchemaObjectNameId="SchemaObjectName:95" />
+    <SchemaObjectNameBaseIdentifierLink Id="SchemaObjectNameBaseIdentifierLink:96" IdentifierId="Identifier:1288" SchemaObjectNameId="SchemaObjectName:96" />
+    <SchemaObjectNameBaseIdentifierLink Id="SchemaObjectNameBaseIdentifierLink:97" IdentifierId="Identifier:1295" SchemaObjectNameId="SchemaObjectName:97" />
+    <SchemaObjectNameBaseIdentifierLink Id="SchemaObjectNameBaseIdentifierLink:98" IdentifierId="Identifier:1306" SchemaObjectNameId="SchemaObjectName:98" />
   </SchemaObjectNameBaseIdentifierLinkList>
 </MetaWeave>

@@ -5,6 +5,8 @@ using Meta.TypedModels;
 using MetaBi.Tests.Common;
 using MetaConvert.SchemaToDataVault;
 using MetaRawDataVault;
+using MetaWeaveScript.Execution;
+using System.Reflection;
 using System.Text.Json;
 using CSharpReference = MetaConvert.SchemaToDataVault.Reference.RawDataVaultFromMetaSchemaService;
 using MS = MetaSchema;
@@ -129,6 +131,88 @@ public sealed class SchemaToRawDataVaultWeaveTests
         Assert.Equal("other", selectedKey.KeyType);
         Assert.Equal("Fallback Key", selectedKey.KeyName);
         Assert.Equal(["First Part", "Second Part"], selectedKey.FieldNames);
+    }
+
+    [Fact]
+    public void ReportIdentifiesATableWithoutModeledKeyMetadata()
+    {
+        var model = CreateBaseModel(out var schema);
+        var table = AddTable(model, schema, "table:no-key", "No Key Table");
+        AddField(model, table.SchemaObject, "field:value", "Value", "1");
+
+        var result = new RawDataVaultFromMetaSchemaService().MaterializeWithReport(model);
+
+        var tableReport = Assert.Single(result.Report.Tables);
+        Assert.False(tableReport.HubCreated);
+        Assert.Null(tableReport.SelectedKey);
+        Assert.Equal("no source key metadata was available", tableReport.Reason);
+    }
+
+    [Fact]
+    public void ReportIdentifiesAModeledKeyWithoutKeyFields()
+    {
+        var model = CreateBaseModel(out var schema);
+        var table = AddTable(model, schema, "table:empty-key", "Empty Key Table");
+        AddField(model, table.SchemaObject, "field:value", "Value", "1");
+        AddOrdinaryKey(model, table, "key:empty", "Empty Key");
+
+        var result = new RawDataVaultFromMetaSchemaService().MaterializeWithReport(model);
+
+        var tableReport = Assert.Single(result.Report.Tables);
+        Assert.False(tableReport.HubCreated);
+        Assert.Null(tableReport.SelectedKey);
+        Assert.Equal("source key metadata contained no key fields", tableReport.Reason);
+    }
+
+    [Fact]
+    public void ReportIdentifiesKeyFieldsExcludedByExplicitOptions()
+    {
+        var model = CreateBaseModel(out var schema);
+        var table = AddTable(model, schema, "table:ignored-key", "Ignored Key Table");
+        var keyField = AddField(model, table.SchemaObject, "field:ignored-key", "Ignored Key", "1");
+        AddPrimaryKey(model, table, "key:ignored", keyField);
+
+        var result = new RawDataVaultFromMetaSchemaService().MaterializeWithReport(
+            model,
+            ignoredFieldNames: ["Ignored Key"]);
+
+        var tableReport = Assert.Single(result.Report.Tables);
+        Assert.False(tableReport.HubCreated);
+        Assert.Null(tableReport.SelectedKey);
+        Assert.Equal(
+            "all source key fields were excluded by explicit ignore options",
+            tableReport.Reason);
+    }
+
+    [Fact]
+    public void EvidenceReaderRejectsOrphanSelectedKeyFields()
+    {
+        var relationOutputs = CreateEvidenceOutputs(
+            selectedKeyRows: [],
+            selectedKeyFieldRows:
+            [
+                Row("table:test", "key:orphan", "key-field:orphan", "Orphan Field", 1),
+            ],
+            assessment: "no-modeled-key");
+
+        AssertEvidenceReadFails(relationOutputs, "without a corresponding 'SelectedKeys' row");
+    }
+
+    [Fact]
+    public void EvidenceReaderRejectsSelectedKeyFieldFromAnotherKey()
+    {
+        var relationOutputs = CreateEvidenceOutputs(
+            selectedKeyRows:
+            [
+                Row("key:selected", "Selected Key", "table:test", 0),
+            ],
+            selectedKeyFieldRows:
+            [
+                Row("table:test", "key:other", "key-field:other", "Other Field", 1),
+            ],
+            assessment: "selected");
+
+        AssertEvidenceReadFails(relationOutputs, "but 'SelectedKeys' selected key 'key:selected'");
     }
 
     private static MS.MetaSchemaModel CreateOptionsWitness()
@@ -286,5 +370,64 @@ public sealed class SchemaToRawDataVaultWeaveTests
                 SourceField = sourceField,
                 TargetField = targetField,
             });
+    }
+
+    private static IReadOnlyDictionary<string, MetaWeaveScriptQueryOutput> CreateEvidenceOutputs(
+        IReadOnlyList<MetaWeaveScriptQueryRow> selectedKeyRows,
+        IReadOnlyList<MetaWeaveScriptQueryRow> selectedKeyFieldRows,
+        string assessment)
+        => new Dictionary<string, MetaWeaveScriptQueryOutput>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["IncludedTables"] = Relation(
+                ["TableId", "TableName", "SchemaId", "SchemaName", "SystemId"],
+                Row("table:test", "Test Table", "schema:test", "dbo", "system:test")),
+            ["IncludedRelationships"] = Relation(
+                [
+                    "RelationshipId",
+                    "SourceTableId",
+                    "SourceTableName",
+                    "TargetTableId",
+                    "TargetTableName",
+                    "StructuralName",
+                ]),
+            ["SelectedKeys"] = Relation(
+                ["KeyId", "KeyName", "TableId", "KeyPriority"],
+                [.. selectedKeyRows]),
+            ["SelectedKeyFields"] = Relation(
+                ["TableId", "KeyId", "KeyFieldId", "FieldName", "KeyFieldNumber"],
+                [.. selectedKeyFieldRows]),
+            ["KeyAssessments"] = Relation(
+                ["TableId", "KeyAssessment"],
+                Row("table:test", assessment)),
+        };
+
+    private static MetaWeaveScriptQueryOutput Relation(
+        IReadOnlyList<string> columns,
+        params MetaWeaveScriptQueryRow[] rows)
+        => new(
+            columns.Select(column => new MetaWeaveScriptQueryColumn(column)).ToList(),
+            rows);
+
+    private static MetaWeaveScriptQueryRow Row(params object[] values)
+        => new(values.Select(value => value switch
+        {
+            string text => MetaWeaveScriptValue.FromString(text),
+            int number => MetaWeaveScriptValue.FromInteger(number),
+            _ => throw new ArgumentOutOfRangeException(nameof(values), value, null),
+        }).ToList());
+
+    private static void AssertEvidenceReadFails(
+        IReadOnlyDictionary<string, MetaWeaveScriptQueryOutput> relationOutputs,
+        string expectedMessage)
+    {
+        var readEvidence = typeof(RawDataVaultFromMetaSchemaService).GetMethod(
+            "ReadEvidence",
+            BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.NotNull(readEvidence);
+
+        var invocation = Assert.Throws<TargetInvocationException>(() =>
+            readEvidence.Invoke(null, [relationOutputs]));
+        var failure = Assert.IsType<InvalidOperationException>(invocation.InnerException);
+        Assert.Contains(expectedMessage, failure.Message, StringComparison.Ordinal);
     }
 }

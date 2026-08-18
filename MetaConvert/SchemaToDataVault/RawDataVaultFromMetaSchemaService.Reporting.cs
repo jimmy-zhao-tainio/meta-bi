@@ -1,4 +1,3 @@
-using MS = global::MetaSchema;
 using MRDV = global::MetaRawDataVault;
 
 namespace MetaConvert.SchemaToDataVault;
@@ -6,7 +5,6 @@ namespace MetaConvert.SchemaToDataVault;
 public sealed partial class RawDataVaultFromMetaSchemaService
 {
     private static RawDataVaultFromMetaSchemaReport BuildReport(
-        MS.MetaSchemaModel source,
         MRDV.MetaRawDataVaultModel target,
         OptionsInput options,
         SchemaToRawDataVaultEvidence evidence)
@@ -16,6 +14,8 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             .ToHashSet(StringComparer.Ordinal);
         var selectedKeysByTable = evidence.SelectedKeys
             .ToDictionary(key => key.TableId, StringComparer.Ordinal);
+        var keyAssessmentsByTable = evidence.KeyAssessments
+            .ToDictionary(assessment => assessment.TableId, StringComparer.Ordinal);
         var selectedKeyFieldsByTable = evidence.SelectedKeyFields
             .GroupBy(field => field.TableId, StringComparer.Ordinal)
             .ToDictionary(
@@ -28,11 +28,11 @@ public sealed partial class RawDataVaultFromMetaSchemaService
 
         var tableReports = evidence.IncludedTables
             .Select(table => BuildTableReport(
-                source,
                 target,
                 table,
                 selectedKeysByTable,
-                selectedKeyFieldsByTable))
+                selectedKeyFieldsByTable,
+                keyAssessmentsByTable))
             .OrderBy(report => report.QualifiedTableName, StringComparer.OrdinalIgnoreCase)
             .ToList();
         var relationshipReports = evidence.IncludedRelationships
@@ -67,11 +67,11 @@ public sealed partial class RawDataVaultFromMetaSchemaService
     }
 
     private static RawDataVaultFromMetaSchemaTableReport BuildTableReport(
-        MS.MetaSchemaModel source,
         MRDV.MetaRawDataVaultModel target,
         IncludedTableEvidence table,
         IReadOnlyDictionary<string, SelectedKeyEvidence> selectedKeysByTable,
-        IReadOnlyDictionary<string, IReadOnlyList<SelectedKeyFieldEvidence>> selectedKeyFieldsByTable)
+        IReadOnlyDictionary<string, IReadOnlyList<SelectedKeyFieldEvidence>> selectedKeyFieldsByTable,
+        IReadOnlyDictionary<string, KeyAssessmentEvidence> keyAssessmentsByTable)
     {
         var hubId = "rawhub:" + table.TableId;
         var hubCreated = target.RawHubList.Any(hub =>
@@ -79,19 +79,13 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         selectedKeysByTable.TryGetValue(table.TableId, out var selectedKey);
         selectedKeyFieldsByTable.TryGetValue(table.TableId, out var selectedKeyFields);
         selectedKeyFields ??= [];
+        var keyAssessment = keyAssessmentsByTable[table.TableId];
 
         if (hubCreated != (selectedKey is not null))
         {
             throw new InvalidOperationException(
                 $"The weave evidence and produced RawHub disagree for source table '{table.TableId}'.");
         }
-        if (selectedKey is not null && selectedKeyFields.Any(field =>
-                !string.Equals(field.KeyId, selectedKey.KeyId, StringComparison.Ordinal)))
-        {
-            throw new InvalidOperationException(
-                $"The weave evidence returned fields from another key for source table '{table.TableId}'.");
-        }
-
         var selectedKeyReport = selectedKey is null
             ? null
             : new RawDataVaultFromMetaSchemaSelectedKeyReport(
@@ -104,10 +98,6 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             .ToHashSet(StringComparer.Ordinal);
         var satelliteAttributeCount = target.RawHubSatelliteAttributeList.Count(attribute =>
             satelliteIds.Contains(attribute.RawHubSatellite.Id));
-        var hasModeledKey = source.KeyList.Any(key => string.Equals(
-            key.Table.SchemaObject.Id,
-            table.TableId,
-            StringComparison.Ordinal));
 
         return new RawDataVaultFromMetaSchemaTableReport(
             QualifiedTableName: string.IsNullOrWhiteSpace(table.SchemaName)
@@ -118,9 +108,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             SatelliteAttributeCount: satelliteAttributeCount,
             Reason: hubCreated
                 ? null
-                : hasModeledKey
-                    ? "all source key fields were excluded by explicit ignore options"
-                    : "no source key metadata was available");
+                : ReasonFromAssessment(keyAssessment.Assessment));
     }
 
     private static RawDataVaultFromMetaSchemaRelationshipReport BuildRelationshipReport(
@@ -163,6 +151,16 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         2 => "other",
         _ => throw new InvalidOperationException(
             $"The weave returned unsupported selected-key priority '{keyPriority}'.")
+    };
+
+    private static string ReasonFromAssessment(TableKeyAssessment assessment) => assessment switch
+    {
+        TableKeyAssessment.NoModeledKey => "no source key metadata was available",
+        TableKeyAssessment.NoModeledKeyFields => "source key metadata contained no key fields",
+        TableKeyAssessment.KeyFieldsExcluded => "all source key fields were excluded by explicit ignore options",
+        TableKeyAssessment.Selected => throw new InvalidOperationException(
+            "The weave reported a selected key for a table that did not materialize to a RawHub."),
+        _ => throw new ArgumentOutOfRangeException(nameof(assessment), assessment, null)
     };
 
     private static IReadOnlyList<string> MaterializeOptionList(IEnumerable<string> values)

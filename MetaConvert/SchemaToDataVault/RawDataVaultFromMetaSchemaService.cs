@@ -64,7 +64,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
             MRDV.MetaRawDataVaultModel.CreateEmpty);
         return new RawDataVaultFromMetaSchemaResult(
             model,
-            BuildReport(metaSchemaModel, model, options, ReadEvidence(result.RelationOutputs)));
+            BuildReport(model, options, ReadEvidence(result.RelationOutputs)));
     }
 
     public MRDV.MetaRawDataVaultModel Materialize(

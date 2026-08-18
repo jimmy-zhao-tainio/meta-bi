@@ -45,6 +45,10 @@
     <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:58" FromClauseId="FromClause:59" QuerySpecificationId="QuerySpecification:58" />
     <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:59" FromClauseId="FromClause:58" QuerySpecificationId="QuerySpecification:59" />
     <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:6" FromClauseId="FromClause:7" QuerySpecificationId="QuerySpecification:6" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:60" FromClauseId="FromClause:60" QuerySpecificationId="QuerySpecification:60" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:61" FromClauseId="FromClause:61" QuerySpecificationId="QuerySpecification:61" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:62" FromClauseId="FromClause:62" QuerySpecificationId="QuerySpecification:62" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:63" FromClauseId="FromClause:63" QuerySpecificationId="QuerySpecification:63" />
     <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:7" FromClauseId="FromClause:5" QuerySpecificationId="QuerySpecification:7" />
     <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:8" FromClauseId="FromClause:8" QuerySpecificationId="QuerySpecification:8" />
     <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:9" FromClauseId="FromClause:9" QuerySpecificationId="QuerySpecification:9" />

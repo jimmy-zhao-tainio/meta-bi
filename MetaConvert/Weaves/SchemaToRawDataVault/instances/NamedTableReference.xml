@@ -68,5 +68,12 @@
     <NamedTableReference Id="NamedTableReference:88" TableReferenceWithAliasId="TableReferenceWithAlias:91" />
     <NamedTableReference Id="NamedTableReference:89" TableReferenceWithAliasId="TableReferenceWithAlias:92" />
     <NamedTableReference Id="NamedTableReference:9" TableReferenceWithAliasId="TableReferenceWithAlias:9" />
+    <NamedTableReference Id="NamedTableReference:90" TableReferenceWithAliasId="TableReferenceWithAlias:93" />
+    <NamedTableReference Id="NamedTableReference:91" TableReferenceWithAliasId="TableReferenceWithAlias:94" />
+    <NamedTableReference Id="NamedTableReference:92" TableReferenceWithAliasId="TableReferenceWithAlias:95" />
+    <NamedTableReference Id="NamedTableReference:93" TableReferenceWithAliasId="TableReferenceWithAlias:96" />
+    <NamedTableReference Id="NamedTableReference:94" TableReferenceWithAliasId="TableReferenceWithAlias:97" />
+    <NamedTableReference Id="NamedTableReference:95" TableReferenceWithAliasId="TableReferenceWithAlias:98" />
+    <NamedTableReference Id="NamedTableReference:96" TableReferenceWithAliasId="TableReferenceWithAlias:99" />
   </NamedTableReferenceList>
 </MetaWeave>

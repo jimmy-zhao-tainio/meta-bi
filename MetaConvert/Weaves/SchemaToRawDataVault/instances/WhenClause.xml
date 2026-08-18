@@ -3,6 +3,9 @@
   <WhenClauseList>
     <WhenClause Id="WhenClause:1" />
     <WhenClause Id="WhenClause:10" />
+    <WhenClause Id="WhenClause:11" />
+    <WhenClause Id="WhenClause:12" />
+    <WhenClause Id="WhenClause:13" />
     <WhenClause Id="WhenClause:2" />
     <WhenClause Id="WhenClause:7" />
     <WhenClause Id="WhenClause:8" />

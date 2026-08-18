@@ -7,6 +7,15 @@
     <SearchedCaseExpressionWhenClausesItem Id="SearchedCaseExpressionWhenClausesItem:10" SearchedCaseExpressionId="SearchedCaseExpression:9" SearchedWhenClauseId="SearchedWhenClause:10">
       <Ordinal>0</Ordinal>
     </SearchedCaseExpressionWhenClausesItem>
+    <SearchedCaseExpressionWhenClausesItem Id="SearchedCaseExpressionWhenClausesItem:11" SearchedCaseExpressionId="SearchedCaseExpression:10" SearchedWhenClauseId="SearchedWhenClause:11">
+      <Ordinal>0</Ordinal>
+    </SearchedCaseExpressionWhenClausesItem>
+    <SearchedCaseExpressionWhenClausesItem Id="SearchedCaseExpressionWhenClausesItem:12" SearchedCaseExpressionId="SearchedCaseExpression:10" SearchedWhenClauseId="SearchedWhenClause:12">
+      <Ordinal>1</Ordinal>
+    </SearchedCaseExpressionWhenClausesItem>
+    <SearchedCaseExpressionWhenClausesItem Id="SearchedCaseExpressionWhenClausesItem:13" SearchedCaseExpressionId="SearchedCaseExpression:10" SearchedWhenClauseId="SearchedWhenClause:13">
+      <Ordinal>2</Ordinal>
+    </SearchedCaseExpressionWhenClausesItem>
     <SearchedCaseExpressionWhenClausesItem Id="SearchedCaseExpressionWhenClausesItem:2" SearchedCaseExpressionId="SearchedCaseExpression:1" SearchedWhenClauseId="SearchedWhenClause:2">
       <Ordinal>1</Ordinal>
     </SearchedCaseExpressionWhenClausesItem>

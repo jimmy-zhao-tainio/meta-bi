@@ -3,6 +3,9 @@
   <SearchedWhenClauseWhenExpressionLinkList>
     <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:1" BooleanExpressionId="BooleanExpression:18" SearchedWhenClauseId="SearchedWhenClause:1" />
     <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:10" BooleanExpressionId="BooleanExpression:91" SearchedWhenClauseId="SearchedWhenClause:10" />
+    <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:11" BooleanExpressionId="BooleanExpression:98" SearchedWhenClauseId="SearchedWhenClause:11" />
+    <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:12" BooleanExpressionId="BooleanExpression:102" SearchedWhenClauseId="SearchedWhenClause:12" />
+    <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:13" BooleanExpressionId="BooleanExpression:107" SearchedWhenClauseId="SearchedWhenClause:13" />
     <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:2" BooleanExpressionId="BooleanExpression:20" SearchedWhenClauseId="SearchedWhenClause:2" />
     <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:7" BooleanExpressionId="BooleanExpression:81" SearchedWhenClauseId="SearchedWhenClause:7" />
     <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:8" BooleanExpressionId="BooleanExpression:82" SearchedWhenClauseId="SearchedWhenClause:8" />

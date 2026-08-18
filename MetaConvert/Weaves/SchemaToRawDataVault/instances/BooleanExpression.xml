@@ -2,6 +2,14 @@
 <MetaWeave>
   <BooleanExpressionList>
     <BooleanExpression Id="BooleanExpression:10" />
+    <BooleanExpression Id="BooleanExpression:100" />
+    <BooleanExpression Id="BooleanExpression:101" />
+    <BooleanExpression Id="BooleanExpression:102" />
+    <BooleanExpression Id="BooleanExpression:103" />
+    <BooleanExpression Id="BooleanExpression:104" />
+    <BooleanExpression Id="BooleanExpression:105" />
+    <BooleanExpression Id="BooleanExpression:106" />
+    <BooleanExpression Id="BooleanExpression:107" />
     <BooleanExpression Id="BooleanExpression:11" />
     <BooleanExpression Id="BooleanExpression:12" />
     <BooleanExpression Id="BooleanExpression:13" />
@@ -79,5 +87,8 @@
     <BooleanExpression Id="BooleanExpression:94" />
     <BooleanExpression Id="BooleanExpression:95" />
     <BooleanExpression Id="BooleanExpression:96" />
+    <BooleanExpression Id="BooleanExpression:97" />
+    <BooleanExpression Id="BooleanExpression:98" />
+    <BooleanExpression Id="BooleanExpression:99" />
   </BooleanExpressionList>
 </MetaWeave>

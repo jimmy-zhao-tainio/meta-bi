@@ -20,6 +20,9 @@
     <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:31" BooleanExpressionId="BooleanExpression:93" QualifiedJoinId="QualifiedJoin:31" />
     <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:32" BooleanExpressionId="BooleanExpression:94" QualifiedJoinId="QualifiedJoin:32" />
     <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:33" BooleanExpressionId="BooleanExpression:95" QualifiedJoinId="QualifiedJoin:33" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:34" BooleanExpressionId="BooleanExpression:99" QualifiedJoinId="QualifiedJoin:34" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:35" BooleanExpressionId="BooleanExpression:103" QualifiedJoinId="QualifiedJoin:35" />
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:36" BooleanExpressionId="BooleanExpression:104" QualifiedJoinId="QualifiedJoin:36" />
     <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:4" BooleanExpressionId="BooleanExpression:16" QualifiedJoinId="QualifiedJoin:4" />
     <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:5" BooleanExpressionId="BooleanExpression:21" QualifiedJoinId="QualifiedJoin:5" />
     <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:6" BooleanExpressionId="BooleanExpression:22" QualifiedJoinId="QualifiedJoin:6" />

@@ -2,6 +2,9 @@
 <MetaWeave>
   <ExistsPredicateList>
     <ExistsPredicate Id="ExistsPredicate:10" BooleanExpressionId="BooleanExpression:96" />
+    <ExistsPredicate Id="ExistsPredicate:11" BooleanExpressionId="BooleanExpression:98" />
+    <ExistsPredicate Id="ExistsPredicate:12" BooleanExpressionId="BooleanExpression:101" />
+    <ExistsPredicate Id="ExistsPredicate:13" BooleanExpressionId="BooleanExpression:106" />
     <ExistsPredicate Id="ExistsPredicate:2" BooleanExpressionId="BooleanExpression:8" />
     <ExistsPredicate Id="ExistsPredicate:3" BooleanExpressionId="BooleanExpression:13" />
     <ExistsPredicate Id="ExistsPredicate:4" BooleanExpressionId="BooleanExpression:18" />

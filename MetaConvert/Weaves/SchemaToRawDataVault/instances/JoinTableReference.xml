@@ -20,6 +20,9 @@
     <JoinTableReference Id="JoinTableReference:31" TableReferenceId="TableReference:119" />
     <JoinTableReference Id="JoinTableReference:32" TableReferenceId="TableReference:122" />
     <JoinTableReference Id="JoinTableReference:33" TableReferenceId="TableReference:124" />
+    <JoinTableReference Id="JoinTableReference:34" TableReferenceId="TableReference:129" />
+    <JoinTableReference Id="JoinTableReference:35" TableReferenceId="TableReference:132" />
+    <JoinTableReference Id="JoinTableReference:36" TableReferenceId="TableReference:134" />
     <JoinTableReference Id="JoinTableReference:4" TableReferenceId="TableReference:16" />
     <JoinTableReference Id="JoinTableReference:5" TableReferenceId="TableReference:21" />
     <JoinTableReference Id="JoinTableReference:6" TableReferenceId="TableReference:23" />

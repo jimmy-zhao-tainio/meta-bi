@@ -88,6 +88,18 @@
     <Literal Id="Literal:43" ValueExpressionId="ValueExpression:43">
       <Value>_</Value>
     </Literal>
+    <Literal Id="Literal:44" ValueExpressionId="ValueExpression:44">
+      <Value>selected</Value>
+    </Literal>
+    <Literal Id="Literal:45" ValueExpressionId="ValueExpression:45">
+      <Value>no-modeled-key</Value>
+    </Literal>
+    <Literal Id="Literal:46" ValueExpressionId="ValueExpression:46">
+      <Value>no-modeled-key-fields</Value>
+    </Literal>
+    <Literal Id="Literal:47" ValueExpressionId="ValueExpression:47">
+      <Value>key-fields-excluded</Value>
+    </Literal>
     <Literal Id="Literal:5" ValueExpressionId="ValueExpression:5">
       <Value>#</Value>
     </Literal>

@@ -4,6 +4,9 @@
     <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:12" QueryExpressionId="QueryExpression:55" ScalarSubqueryId="ScalarSubquery:12" />
     <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:13" QueryExpressionId="QueryExpression:57" ScalarSubqueryId="ScalarSubquery:13" />
     <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:14" QueryExpressionId="QueryExpression:60" ScalarSubqueryId="ScalarSubquery:14" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:15" QueryExpressionId="QueryExpression:63" ScalarSubqueryId="ScalarSubquery:15" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:16" QueryExpressionId="QueryExpression:64" ScalarSubqueryId="ScalarSubquery:16" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:17" QueryExpressionId="QueryExpression:65" ScalarSubqueryId="ScalarSubquery:17" />
     <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:2" QueryExpressionId="QueryExpression:6" ScalarSubqueryId="ScalarSubquery:2" />
     <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:3" QueryExpressionId="QueryExpression:7" ScalarSubqueryId="ScalarSubquery:3" />
     <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:4" QueryExpressionId="QueryExpression:10" ScalarSubqueryId="ScalarSubquery:4" />

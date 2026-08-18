@@ -4,6 +4,9 @@
     <ScalarSubquery Id="ScalarSubquery:12" PrimaryExpressionId="PrimaryExpression:438" />
     <ScalarSubquery Id="ScalarSubquery:13" PrimaryExpressionId="PrimaryExpression:461" />
     <ScalarSubquery Id="ScalarSubquery:14" PrimaryExpressionId="PrimaryExpression:495" />
+    <ScalarSubquery Id="ScalarSubquery:15" PrimaryExpressionId="PrimaryExpression:500" />
+    <ScalarSubquery Id="ScalarSubquery:16" PrimaryExpressionId="PrimaryExpression:507" />
+    <ScalarSubquery Id="ScalarSubquery:17" PrimaryExpressionId="PrimaryExpression:516" />
     <ScalarSubquery Id="ScalarSubquery:2" PrimaryExpressionId="PrimaryExpression:31" />
     <ScalarSubquery Id="ScalarSubquery:3" PrimaryExpressionId="PrimaryExpression:47" />
     <ScalarSubquery Id="ScalarSubquery:4" PrimaryExpressionId="PrimaryExpression:61" />

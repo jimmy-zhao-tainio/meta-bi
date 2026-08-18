@@ -142,7 +142,25 @@
     <BooleanComparisonExpression Id="BooleanComparisonExpression:67" BooleanExpressionId="BooleanExpression:95">
       <ComparisonType>Equals</ComparisonType>
     </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:68" BooleanExpressionId="BooleanExpression:97">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:69" BooleanExpressionId="BooleanExpression:99">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
     <BooleanComparisonExpression Id="BooleanComparisonExpression:7" BooleanExpressionId="BooleanExpression:11">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:70" BooleanExpressionId="BooleanExpression:100">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:71" BooleanExpressionId="BooleanExpression:103">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:72" BooleanExpressionId="BooleanExpression:104">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:73" BooleanExpressionId="BooleanExpression:105">
       <ComparisonType>Equals</ComparisonType>
     </BooleanComparisonExpression>
     <BooleanComparisonExpression Id="BooleanComparisonExpression:8" BooleanExpressionId="BooleanExpression:16">

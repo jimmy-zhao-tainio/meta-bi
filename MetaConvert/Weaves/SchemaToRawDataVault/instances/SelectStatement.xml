@@ -24,6 +24,7 @@
     <SelectStatement Id="SelectStatement:3" StatementWithCtesId="StatementWithCtes:3" />
     <SelectStatement Id="SelectStatement:30" StatementWithCtesId="StatementWithCtes:30" />
     <SelectStatement Id="SelectStatement:31" StatementWithCtesId="StatementWithCtes:31" />
+    <SelectStatement Id="SelectStatement:32" StatementWithCtesId="StatementWithCtes:32" />
     <SelectStatement Id="SelectStatement:4" StatementWithCtesId="StatementWithCtes:4" />
     <SelectStatement Id="SelectStatement:5" StatementWithCtesId="StatementWithCtes:5" />
     <SelectStatement Id="SelectStatement:6" StatementWithCtesId="StatementWithCtes:6" />

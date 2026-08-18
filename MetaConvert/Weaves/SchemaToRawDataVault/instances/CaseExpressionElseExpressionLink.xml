@@ -2,6 +2,7 @@
 <MetaWeave>
   <CaseExpressionElseExpressionLinkList>
     <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:1" CaseExpressionId="CaseExpression:1" ScalarExpressionId="ScalarExpression:68" />
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:10" CaseExpressionId="CaseExpression:10" ScalarExpressionId="ScalarExpression:518" />
     <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:6" CaseExpressionId="CaseExpression:6" ScalarExpressionId="ScalarExpression:373" />
     <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:7" CaseExpressionId="CaseExpression:7" ScalarExpressionId="ScalarExpression:380" />
     <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:8" CaseExpressionId="CaseExpression:8" ScalarExpressionId="ScalarExpression:451" />

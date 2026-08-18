@@ -7,6 +7,7 @@
     <DirectionRelation Id="forward/IncludedRelationshipFields" DirectionId="forward" SelectStatementId="SelectStatement:10" />
     <DirectionRelation Id="forward/IncludedRelationships" DirectionId="forward" SelectStatementId="SelectStatement:28" />
     <DirectionRelation Id="forward/IncludedTables" DirectionId="forward" SelectStatementId="SelectStatement:31" />
+    <DirectionRelation Id="forward/KeyAssessments" DirectionId="forward" SelectStatementId="SelectStatement:32" />
     <DirectionRelation Id="forward/NonIgnoredFields" DirectionId="forward" SelectStatementId="SelectStatement:3" />
     <DirectionRelation Id="forward/RawHubKeyParts" DirectionId="forward" SelectStatementId="SelectStatement:11" />
     <DirectionRelation Id="forward/RawHubs" DirectionId="forward" SelectStatementId="SelectStatement:8" />

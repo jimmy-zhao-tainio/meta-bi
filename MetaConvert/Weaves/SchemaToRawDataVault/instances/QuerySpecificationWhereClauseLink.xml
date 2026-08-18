@@ -12,6 +12,9 @@
     <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:2" QuerySpecificationId="QuerySpecification:5" WhereClauseId="WhereClause:2" />
     <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:20" QuerySpecificationId="QuerySpecification:55" WhereClauseId="WhereClause:20" />
     <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:21" QuerySpecificationId="QuerySpecification:59" WhereClauseId="WhereClause:21" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:22" QuerySpecificationId="QuerySpecification:60" WhereClauseId="WhereClause:22" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:23" QuerySpecificationId="QuerySpecification:61" WhereClauseId="WhereClause:23" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:24" QuerySpecificationId="QuerySpecification:62" WhereClauseId="WhereClause:24" />
     <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:3" QuerySpecificationId="QuerySpecification:6" WhereClauseId="WhereClause:3" />
     <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:4" QuerySpecificationId="QuerySpecification:7" WhereClauseId="WhereClause:4" />
     <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:5" QuerySpecificationId="QuerySpecification:9" WhereClauseId="WhereClause:5" />

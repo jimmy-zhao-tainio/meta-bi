@@ -70,5 +70,12 @@
     <SchemaObjectName Id="SchemaObjectName:9" MultiPartIdentifierId="MultiPartIdentifier:33" />
     <SchemaObjectName Id="SchemaObjectName:90" MultiPartIdentifierId="MultiPartIdentifier:462" />
     <SchemaObjectName Id="SchemaObjectName:91" MultiPartIdentifierId="MultiPartIdentifier:466" />
+    <SchemaObjectName Id="SchemaObjectName:92" MultiPartIdentifierId="MultiPartIdentifier:469" />
+    <SchemaObjectName Id="SchemaObjectName:93" MultiPartIdentifierId="MultiPartIdentifier:473" />
+    <SchemaObjectName Id="SchemaObjectName:94" MultiPartIdentifierId="MultiPartIdentifier:474" />
+    <SchemaObjectName Id="SchemaObjectName:95" MultiPartIdentifierId="MultiPartIdentifier:480" />
+    <SchemaObjectName Id="SchemaObjectName:96" MultiPartIdentifierId="MultiPartIdentifier:481" />
+    <SchemaObjectName Id="SchemaObjectName:97" MultiPartIdentifierId="MultiPartIdentifier:484" />
+    <SchemaObjectName Id="SchemaObjectName:98" MultiPartIdentifierId="MultiPartIdentifier:489" />
   </SchemaObjectNameList>
 </MetaWeave>

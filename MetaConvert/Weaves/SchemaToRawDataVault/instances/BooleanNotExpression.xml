@@ -6,5 +6,7 @@
     <BooleanNotExpression Id="BooleanNotExpression:3" BooleanExpressionId="BooleanExpression:42" />
     <BooleanNotExpression Id="BooleanNotExpression:4" BooleanExpressionId="BooleanExpression:57" />
     <BooleanNotExpression Id="BooleanNotExpression:5" BooleanExpressionId="BooleanExpression:60" />
+    <BooleanNotExpression Id="BooleanNotExpression:6" BooleanExpressionId="BooleanExpression:102" />
+    <BooleanNotExpression Id="BooleanNotExpression:7" BooleanExpressionId="BooleanExpression:107" />
   </BooleanNotExpressionList>
 </MetaWeave>

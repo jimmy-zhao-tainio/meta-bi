@@ -68,5 +68,12 @@
     <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:88" NamedTableReferenceId="NamedTableReference:88" SchemaObjectNameId="SchemaObjectName:90" />
     <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:89" NamedTableReferenceId="NamedTableReference:89" SchemaObjectNameId="SchemaObjectName:91" />
     <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:9" NamedTableReferenceId="NamedTableReference:9" SchemaObjectNameId="SchemaObjectName:9" />
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:90" NamedTableReferenceId="NamedTableReference:90" SchemaObjectNameId="SchemaObjectName:92" />
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:91" NamedTableReferenceId="NamedTableReference:91" SchemaObjectNameId="SchemaObjectName:93" />
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:92" NamedTableReferenceId="NamedTableReference:92" SchemaObjectNameId="SchemaObjectName:94" />
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:93" NamedTableReferenceId="NamedTableReference:93" SchemaObjectNameId="SchemaObjectName:95" />
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:94" NamedTableReferenceId="NamedTableReference:94" SchemaObjectNameId="SchemaObjectName:96" />
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:95" NamedTableReferenceId="NamedTableReference:95" SchemaObjectNameId="SchemaObjectName:97" />
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:96" NamedTableReferenceId="NamedTableReference:96" SchemaObjectNameId="SchemaObjectName:98" />
   </NamedTableReferenceSchemaObjectLinkList>
 </MetaWeave>

@@ -134,6 +134,11 @@
     <SelectScalarExpression Id="SelectScalarExpression:24" SelectElementId="SelectElement:24" />
     <SelectScalarExpression Id="SelectScalarExpression:240" SelectElementId="SelectElement:240" />
     <SelectScalarExpression Id="SelectScalarExpression:241" SelectElementId="SelectElement:241" />
+    <SelectScalarExpression Id="SelectScalarExpression:242" SelectElementId="SelectElement:242" />
+    <SelectScalarExpression Id="SelectScalarExpression:243" SelectElementId="SelectElement:243" />
+    <SelectScalarExpression Id="SelectScalarExpression:244" SelectElementId="SelectElement:244" />
+    <SelectScalarExpression Id="SelectScalarExpression:245" SelectElementId="SelectElement:245" />
+    <SelectScalarExpression Id="SelectScalarExpression:246" SelectElementId="SelectElement:246" />
     <SelectScalarExpression Id="SelectScalarExpression:25" SelectElementId="SelectElement:25" />
     <SelectScalarExpression Id="SelectScalarExpression:26" SelectElementId="SelectElement:26" />
     <SelectScalarExpression Id="SelectScalarExpression:27" SelectElementId="SelectElement:27" />
