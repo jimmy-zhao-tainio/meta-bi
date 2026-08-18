@@ -2,5 +2,6 @@
 <MetaWeave>
   <DataTypeReferenceNameLinkList>
     <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:1" DataTypeReferenceId="DataTypeReference:1" SchemaObjectNameId="SchemaObjectName:41" />
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:2" DataTypeReferenceId="DataTypeReference:2" SchemaObjectNameId="SchemaObjectName:74" />
   </DataTypeReferenceNameLinkList>
 </MetaWeave>

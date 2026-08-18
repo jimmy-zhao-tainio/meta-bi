@@ -2,5 +2,6 @@
 <MetaWeave>
   <TryConvertCallParameterLinkList>
     <TryConvertCallParameterLink Id="TryConvertCallParameterLink:1" ScalarExpressionId="ScalarExpression:182" TryConvertCallId="TryConvertCall:1" />
+    <TryConvertCallParameterLink Id="TryConvertCallParameterLink:2" ScalarExpressionId="ScalarExpression:401" TryConvertCallId="TryConvertCall:2" />
   </TryConvertCallParameterLinkList>
 </MetaWeave>

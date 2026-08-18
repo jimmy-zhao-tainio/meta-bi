@@ -2,5 +2,6 @@
 <MetaWeave>
   <TryConvertCallDataTypeLinkList>
     <TryConvertCallDataTypeLink Id="TryConvertCallDataTypeLink:1" DataTypeReferenceId="DataTypeReference:1" TryConvertCallId="TryConvertCall:1" />
+    <TryConvertCallDataTypeLink Id="TryConvertCallDataTypeLink:2" DataTypeReferenceId="DataTypeReference:2" TryConvertCallId="TryConvertCall:2" />
   </TryConvertCallDataTypeLinkList>
 </MetaWeave>

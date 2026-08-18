@@ -67,8 +67,16 @@ public sealed class SchemaToRawDataVaultWeaveTests
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(
             TypedWorkspaceModelMapper.ToInMemoryWorkspace(expected.Model),
             TypedWorkspaceModelMapper.ToInMemoryWorkspace(actual.Model)));
+        var expectedReport = expected.Report with
+        {
+            Tables = expected.Report.Tables
+                .Select(table => table.Reason == "no source primary or unique key metadata was available"
+                    ? table with { Reason = "no source key metadata was available" }
+                    : table)
+                .ToList()
+        };
         Assert.Equal(
-            JsonSerializer.Serialize(expected.Report),
+            JsonSerializer.Serialize(expectedReport),
             JsonSerializer.Serialize(actual.Report));
         Assert.Contains(actual.Model.FieldList, field => field.Name == "Résumé View Field");
         Assert.DoesNotContain(actual.Model.RawHubSatelliteAttributeList, attribute => attribute.Name == "Ignore Exactly");
@@ -96,6 +104,31 @@ public sealed class SchemaToRawDataVaultWeaveTests
                 .OrderBy(link => link.Id, StringComparer.Ordinal)
                 .Select(link => link.Name)
                 .ToArray());
+    }
+
+    [Fact]
+    public void ReportIdentifiesAnOrdinaryModeledKeyFromWeaveEvidence()
+    {
+        var model = CreateBaseModel(out var schema);
+        var table = AddTable(model, schema, "table:ordinary-key", "Ordinary Key Table");
+        var secondField = AddField(model, table.SchemaObject, "field:second", "Second Part", "2");
+        var firstField = AddField(model, table.SchemaObject, "field:first", "First Part", "1");
+        AddOrdinaryKey(
+            model,
+            table,
+            "key:ordinary",
+            "Fallback Key",
+            (secondField, "2"),
+            (firstField, "1"));
+
+        var result = new RawDataVaultFromMetaSchemaService().MaterializeWithReport(model);
+
+        var tableReport = Assert.Single(result.Report.Tables);
+        Assert.True(tableReport.HubCreated);
+        var selectedKey = Assert.IsType<RawDataVaultFromMetaSchemaSelectedKeyReport>(tableReport.SelectedKey);
+        Assert.Equal("other", selectedKey.KeyType);
+        Assert.Equal("Fallback Key", selectedKey.KeyName);
+        Assert.Equal(["First Part", "Second Part"], selectedKey.FieldNames);
     }
 
     private static MS.MetaSchemaModel CreateOptionsWitness()
@@ -205,6 +238,27 @@ public sealed class SchemaToRawDataVaultWeaveTests
             Field = field,
         });
         model.PrimaryKeyList.Add(new MS.PrimaryKey { Id = id + ":primary", Key = key });
+    }
+
+    private static void AddOrdinaryKey(
+        MS.MetaSchemaModel model,
+        MS.Table table,
+        string id,
+        string name,
+        params (MS.Field Field, string Ordinal)[] fields)
+    {
+        var key = new MS.Key { Id = id, Name = name, Table = table };
+        model.KeyList.Add(key);
+        for (var index = 0; index < fields.Length; index++)
+        {
+            model.KeyFieldList.Add(new MS.KeyField
+            {
+                Id = $"{id}:field:{index + 1}",
+                Ordinal = fields[index].Ordinal,
+                Key = key,
+                Field = fields[index].Field,
+            });
+        }
     }
 
     private static (MS.TableRelationship Relationship, MS.TableRelationshipField Field) CreateRelationship(

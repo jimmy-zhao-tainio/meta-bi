@@ -7,5 +7,11 @@
     <OrderByClauseOrderByElementsItem Id="OrderByClauseOrderByElementsItem:2" ExpressionWithSortOrderId="ExpressionWithSortOrder:2" OrderByClauseId="OrderByClause:1">
       <Ordinal>1</Ordinal>
     </OrderByClauseOrderByElementsItem>
+    <OrderByClauseOrderByElementsItem Id="OrderByClauseOrderByElementsItem:3" ExpressionWithSortOrderId="ExpressionWithSortOrder:3" OrderByClauseId="OrderByClause:2">
+      <Ordinal>0</Ordinal>
+    </OrderByClauseOrderByElementsItem>
+    <OrderByClauseOrderByElementsItem Id="OrderByClauseOrderByElementsItem:4" ExpressionWithSortOrderId="ExpressionWithSortOrder:4" OrderByClauseId="OrderByClause:2">
+      <Ordinal>1</Ordinal>
+    </OrderByClauseOrderByElementsItem>
   </OrderByClauseOrderByElementsItemList>
 </MetaWeave>

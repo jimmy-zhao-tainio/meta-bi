@@ -2,10 +2,10 @@
 <MetaWeave>
   <WhenClauseList>
     <WhenClause Id="WhenClause:1" />
+    <WhenClause Id="WhenClause:10" />
     <WhenClause Id="WhenClause:2" />
-    <WhenClause Id="WhenClause:3" />
-    <WhenClause Id="WhenClause:4" />
-    <WhenClause Id="WhenClause:5" />
-    <WhenClause Id="WhenClause:6" />
+    <WhenClause Id="WhenClause:7" />
+    <WhenClause Id="WhenClause:8" />
+    <WhenClause Id="WhenClause:9" />
   </WhenClauseList>
 </MetaWeave>

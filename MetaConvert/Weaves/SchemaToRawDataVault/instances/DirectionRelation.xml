@@ -5,17 +5,17 @@
     <DirectionRelation Id="forward/EligibleKeyFields" DirectionId="forward" SelectStatementId="SelectStatement:4" />
     <DirectionRelation Id="forward/IncludedFields" DirectionId="forward" SelectStatementId="SelectStatement:2" />
     <DirectionRelation Id="forward/IncludedRelationshipFields" DirectionId="forward" SelectStatementId="SelectStatement:10" />
-    <DirectionRelation Id="forward/IncludedRelationships" DirectionId="forward" SelectStatementId="SelectStatement:9" />
-    <DirectionRelation Id="forward/IncludedTables" DirectionId="forward" SelectStatementId="SelectStatement:1" />
+    <DirectionRelation Id="forward/IncludedRelationships" DirectionId="forward" SelectStatementId="SelectStatement:28" />
+    <DirectionRelation Id="forward/IncludedTables" DirectionId="forward" SelectStatementId="SelectStatement:31" />
     <DirectionRelation Id="forward/NonIgnoredFields" DirectionId="forward" SelectStatementId="SelectStatement:3" />
     <DirectionRelation Id="forward/RawHubKeyParts" DirectionId="forward" SelectStatementId="SelectStatement:11" />
     <DirectionRelation Id="forward/RawHubs" DirectionId="forward" SelectStatementId="SelectStatement:8" />
     <DirectionRelation Id="forward/RawHubSatelliteAttributes" DirectionId="forward" SelectStatementId="SelectStatement:12" />
     <DirectionRelation Id="forward/RawHubSatellites" DirectionId="forward" SelectStatementId="SelectStatement:13" />
     <DirectionRelation Id="forward/RawLinkRoles" DirectionId="forward" SelectStatementId="SelectStatement:16" />
-    <DirectionRelation Id="forward/RawLinks" DirectionId="forward" SelectStatementId="SelectStatement:15" />
+    <DirectionRelation Id="forward/RawLinks" DirectionId="forward" SelectStatementId="SelectStatement:30" />
     <DirectionRelation Id="forward/RelationshipDisambiguators" DirectionId="forward" SelectStatementId="SelectStatement:14" />
-    <DirectionRelation Id="forward/SelectedKeyFields" DirectionId="forward" SelectStatementId="SelectStatement:7" />
+    <DirectionRelation Id="forward/SelectedKeyFields" DirectionId="forward" SelectStatementId="SelectStatement:29" />
     <DirectionRelation Id="forward/SelectedKeys" DirectionId="forward" SelectStatementId="SelectStatement:6" />
   </DirectionRelationList>
 </MetaWeave>

@@ -2,5 +2,6 @@
 <MetaWeave>
   <ParameterizedDataTypeReferenceList>
     <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:1" DataTypeReferenceId="DataTypeReference:1" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:2" DataTypeReferenceId="DataTypeReference:2" />
   </ParameterizedDataTypeReferenceList>
 </MetaWeave>

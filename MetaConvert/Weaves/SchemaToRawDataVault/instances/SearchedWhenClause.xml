@@ -2,10 +2,10 @@
 <MetaWeave>
   <SearchedWhenClauseList>
     <SearchedWhenClause Id="SearchedWhenClause:1" WhenClauseId="WhenClause:1" />
+    <SearchedWhenClause Id="SearchedWhenClause:10" WhenClauseId="WhenClause:10" />
     <SearchedWhenClause Id="SearchedWhenClause:2" WhenClauseId="WhenClause:2" />
-    <SearchedWhenClause Id="SearchedWhenClause:3" WhenClauseId="WhenClause:3" />
-    <SearchedWhenClause Id="SearchedWhenClause:4" WhenClauseId="WhenClause:4" />
-    <SearchedWhenClause Id="SearchedWhenClause:5" WhenClauseId="WhenClause:5" />
-    <SearchedWhenClause Id="SearchedWhenClause:6" WhenClauseId="WhenClause:6" />
+    <SearchedWhenClause Id="SearchedWhenClause:7" WhenClauseId="WhenClause:7" />
+    <SearchedWhenClause Id="SearchedWhenClause:8" WhenClauseId="WhenClause:8" />
+    <SearchedWhenClause Id="SearchedWhenClause:9" WhenClauseId="WhenClause:9" />
   </SearchedWhenClauseList>
 </MetaWeave>

@@ -2,5 +2,6 @@
 <MetaWeave>
   <OrderByClauseList>
     <OrderByClause Id="OrderByClause:1" />
+    <OrderByClause Id="OrderByClause:2" />
   </OrderByClauseList>
 </MetaWeave>

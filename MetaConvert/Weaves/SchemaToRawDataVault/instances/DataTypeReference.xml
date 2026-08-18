@@ -2,5 +2,6 @@
 <MetaWeave>
   <DataTypeReferenceList>
     <DataTypeReference Id="DataTypeReference:1" />
+    <DataTypeReference Id="DataTypeReference:2" />
   </DataTypeReferenceList>
 </MetaWeave>
