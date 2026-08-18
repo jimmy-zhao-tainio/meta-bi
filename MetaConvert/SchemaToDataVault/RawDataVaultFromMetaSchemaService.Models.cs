@@ -1,35 +1,4 @@
-using MS = global::MetaSchema;
-using MRDV = global::MetaRawDataVault;
-
 namespace MetaConvert.SchemaToDataVault;
-
-internal sealed record FromMetaSchemaOptions(
-    ISet<string> IgnoredFieldNames,
-    ISet<string> IgnoredFieldSuffixes,
-    bool IncludeViews);
-
-internal sealed record CandidateKeySelection(
-    MS.Key Key,
-    IReadOnlyList<MS.KeyField> OrderedKeyFields);
-
-internal sealed record TableKeyAssessment(
-    IReadOnlyList<CandidateKeySelection> CandidateKeys,
-    CandidateKeySelection? SelectedKey,
-    string SkipReason);
-
-internal sealed record TableMaterializationReportRow(
-    MS.SchemaObject Table,
-    TableKeyAssessment? KeyAssessment,
-    bool HubCreated,
-    int SatelliteAttributeCount);
-
-internal sealed record RelationshipMaterializationReportRow(
-    MS.TableRelationship Relationship,
-    MS.SchemaObject SourceTable,
-    MS.SchemaObject TargetTable,
-    string? RawLinkName,
-    bool LinkCreated,
-    string? SkipReason);
 
 public sealed record RawDataVaultFromMetaSchemaReport(
     RawDataVaultFromMetaSchemaSummary Summary,
@@ -69,40 +38,3 @@ public sealed record RawDataVaultFromMetaSchemaRelationshipReport(
     bool LinkCreated,
     bool NameWasDisambiguated,
     string? Reason);
-
-internal sealed class SourceIndex
-{
-    public required IReadOnlyList<MS.System> IncludedSystems { get; init; }
-    public required IReadOnlyList<MS.Schema> IncludedSchemas { get; init; }
-    public required IReadOnlyList<MS.SchemaObject> IncludedTables { get; init; }
-    public required IReadOnlyList<MS.Field> IncludedFields { get; init; }
-    public required IReadOnlyList<MS.FieldDataTypeDetail> IncludedFieldDetails { get; init; }
-    public required IReadOnlyList<MS.TableRelationship> IncludedRelationships { get; init; }
-    public required IReadOnlyList<MS.TableRelationshipField> IncludedRelationshipFields { get; init; }
-    public required IReadOnlyDictionary<string, MS.Schema> SchemaById { get; init; }
-    public required IReadOnlyDictionary<string, MS.SchemaObject> TableById { get; init; }
-    public required IReadOnlyDictionary<string, MS.Field> FieldById { get; init; }
-    public required IReadOnlyDictionary<string, IReadOnlyList<MS.Field>> FieldsByTableId { get; init; }
-    public required IReadOnlyDictionary<string, IReadOnlyList<MS.TableRelationshipField>> RelationshipFieldsByRelationshipId { get; init; }
-    public required ISet<string> RelationshipSourceFieldIds { get; init; }
-    public required ISet<string> PrimaryKeyIds { get; init; }
-    public required ISet<string> UniqueKeyIds { get; init; }
-}
-
-internal sealed class FromMetaSchemaDraft
-{
-    public List<MRDV.Field> Fields { get; } = new();
-    public List<MRDV.FieldDataTypeDetail> FieldDetails { get; } = new();
-    public List<MRDV.RawHub> RawHubs { get; } = new();
-    public List<MRDV.RawHubKeyPart> RawHubKeyParts { get; } = new();
-    public List<MRDV.RawHubSatellite> RawHubSatellites { get; } = new();
-    public List<MRDV.RawHubSatelliteAttribute> RawHubSatelliteAttributes { get; } = new();
-    public List<MRDV.RawLink> RawLinks { get; } = new();
-    public List<MRDV.RawLinkRole> RawLinkRoles { get; } = new();
-    public List<MRDV.RawLinkSatellite> RawLinkSatellites { get; } = new();
-    public List<MRDV.RawLinkSatelliteAttribute> RawLinkSatelliteAttributes { get; } = new();
-
-    public Dictionary<string, MRDV.Field> FieldsById { get; } = new(StringComparer.Ordinal);
-    public Dictionary<string, MRDV.RawHub> RawHubsById { get; } = new(StringComparer.Ordinal);
-    public Dictionary<string, string> RawHubIdsBySourceTableId { get; } = new(StringComparer.Ordinal);
-}

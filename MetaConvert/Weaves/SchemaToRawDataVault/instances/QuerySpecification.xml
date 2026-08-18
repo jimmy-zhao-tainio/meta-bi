@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QuerySpecificationList>
+    <QuerySpecification Id="QuerySpecification:1" QueryExpressionId="QueryExpression:1">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:10" QueryExpressionId="QueryExpression:11">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:11" QueryExpressionId="QueryExpression:12">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:12" QueryExpressionId="QueryExpression:13">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:13" QueryExpressionId="QueryExpression:14">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:14" QueryExpressionId="QueryExpression:15">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:15" QueryExpressionId="QueryExpression:16">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:16" QueryExpressionId="QueryExpression:17">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:17" QueryExpressionId="QueryExpression:18">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:18" QueryExpressionId="QueryExpression:19">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:19" QueryExpressionId="QueryExpression:20">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:2" QueryExpressionId="QueryExpression:2">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:20" QueryExpressionId="QueryExpression:21">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:21" QueryExpressionId="QueryExpression:22">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:22" QueryExpressionId="QueryExpression:23">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:23" QueryExpressionId="QueryExpression:24">
+      <UniqueRowFilter>Distinct</UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:24" QueryExpressionId="QueryExpression:25">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:25" QueryExpressionId="QueryExpression:26">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:26" QueryExpressionId="QueryExpression:27">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:27" QueryExpressionId="QueryExpression:28">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:28" QueryExpressionId="QueryExpression:29">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:29" QueryExpressionId="QueryExpression:30">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:3" QueryExpressionId="QueryExpression:3">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:30" QueryExpressionId="QueryExpression:31">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:31" QueryExpressionId="QueryExpression:32">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:32" QueryExpressionId="QueryExpression:33">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:33" QueryExpressionId="QueryExpression:34">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:34" QueryExpressionId="QueryExpression:36">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:35" QueryExpressionId="QueryExpression:37">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:36" QueryExpressionId="QueryExpression:38">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:37" QueryExpressionId="QueryExpression:39">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:38" QueryExpressionId="QueryExpression:40">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:39" QueryExpressionId="QueryExpression:41">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:4" QueryExpressionId="QueryExpression:5">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:40" QueryExpressionId="QueryExpression:42">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:41" QueryExpressionId="QueryExpression:43">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:42" QueryExpressionId="QueryExpression:44">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:43" QueryExpressionId="QueryExpression:45">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:44" QueryExpressionId="QueryExpression:46">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:45" QueryExpressionId="QueryExpression:47">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:46" QueryExpressionId="QueryExpression:48">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:47" QueryExpressionId="QueryExpression:49">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:5" QueryExpressionId="QueryExpression:6">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:6" QueryExpressionId="QueryExpression:7">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:7" QueryExpressionId="QueryExpression:8">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:8" QueryExpressionId="QueryExpression:9">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:9" QueryExpressionId="QueryExpression:10">
+      <UniqueRowFilter></UniqueRowFilter>
+    </QuerySpecification>
+  </QuerySpecificationList>
+</MetaWeave>

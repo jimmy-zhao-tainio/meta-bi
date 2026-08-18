@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <CommonTableExpressionList>
+    <CommonTableExpression Id="CommonTableExpression:1" />
+    <CommonTableExpression Id="CommonTableExpression:2" />
+    <CommonTableExpression Id="CommonTableExpression:3" />
+    <CommonTableExpression Id="CommonTableExpression:4" />
+  </CommonTableExpressionList>
+</MetaWeave>

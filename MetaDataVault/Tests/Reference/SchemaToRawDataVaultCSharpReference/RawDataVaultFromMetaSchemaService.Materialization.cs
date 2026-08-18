@@ -3,7 +3,7 @@ using System.Text;
 using MS = global::MetaSchema;
 using MRDV = global::MetaRawDataVault;
 
-namespace MetaConvert.SchemaToDataVault;
+namespace MetaConvert.SchemaToDataVault.Reference;
 
 public sealed partial class RawDataVaultFromMetaSchemaService
 {

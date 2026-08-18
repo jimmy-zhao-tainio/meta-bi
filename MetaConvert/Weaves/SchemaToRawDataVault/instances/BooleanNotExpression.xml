@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanNotExpressionList>
+    <BooleanNotExpression Id="BooleanNotExpression:1" BooleanExpressionId="BooleanExpression:9" />
+    <BooleanNotExpression Id="BooleanNotExpression:2" BooleanExpressionId="BooleanExpression:14" />
+    <BooleanNotExpression Id="BooleanNotExpression:3" BooleanExpressionId="BooleanExpression:42" />
+    <BooleanNotExpression Id="BooleanNotExpression:4" BooleanExpressionId="BooleanExpression:57" />
+    <BooleanNotExpression Id="BooleanNotExpression:5" BooleanExpressionId="BooleanExpression:60" />
+  </BooleanNotExpressionList>
+</MetaWeave>

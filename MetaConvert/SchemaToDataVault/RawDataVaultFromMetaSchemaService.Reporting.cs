@@ -1,120 +1,205 @@
+using System.Globalization;
 using MS = global::MetaSchema;
+using MRDV = global::MetaRawDataVault;
 
 namespace MetaConvert.SchemaToDataVault;
 
 public sealed partial class RawDataVaultFromMetaSchemaService
 {
     private static RawDataVaultFromMetaSchemaReport BuildReport(
-        FromMetaSchemaDraft draft,
-        SourceIndex sourceIndex,
-        IReadOnlyList<TableMaterializationReportRow> tableReportRows,
-        IReadOnlyList<RelationshipMaterializationReportRow> relationshipReportRows,
-        FromMetaSchemaOptions options)
+        MS.MetaSchemaModel source,
+        MRDV.MetaRawDataVaultModel target,
+        OptionsInput options)
     {
-        var summary = new RawDataVaultFromMetaSchemaSummary(
-            SourceSystemCount: sourceIndex.IncludedSystems.Count,
-            SourceSchemaCount: sourceIndex.IncludedSchemas.Count,
-            SourceTableCount: sourceIndex.IncludedTables.Count,
-            SourceRelationshipCount: sourceIndex.IncludedRelationships.Count,
-            RawHubCount: draft.RawHubs.Count,
-            RawHubKeyPartCount: draft.RawHubKeyParts.Count,
-            RawLinkCount: draft.RawLinks.Count,
-            RawHubSatelliteCount: draft.RawHubSatellites.Count,
-            RawHubSatelliteAttributeCount: draft.RawHubSatelliteAttributes.Count,
-            IgnoredFieldNames: MaterializeList(options.IgnoredFieldNames),
-            IgnoredFieldSuffixes: MaterializeList(options.IgnoredFieldSuffixes),
-            IncludeViews: options.IncludeViews);
+        var includedTables = source.TableList
+            .Select(table => table.SchemaObject)
+            .Concat(options.IncludeViews
+                ? source.ViewList.Select(view => view.SchemaObject)
+                : [])
+            .OrderBy(table => table.Name, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(table => table.Id, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(table => table.Id, StringComparer.Ordinal)
+            .ToList();
+        var includedTableIds = includedTables
+            .Select(table => table.Id)
+            .ToHashSet(StringComparer.Ordinal);
+        var includedSchemas = source.SchemaList
+            .Where(schema => includedTables.Any(table =>
+                string.Equals(table.Schema.Id, schema.Id, StringComparison.Ordinal)))
+            .ToList();
+        var includedSystems = source.SystemList
+            .Where(system => includedSchemas.Any(schema =>
+                string.Equals(schema.System.Id, system.Id, StringComparison.Ordinal)))
+            .ToList();
+        var includedRelationships = source.TableRelationshipList
+            .Where(relationship =>
+                includedTableIds.Contains(relationship.SourceTable.SchemaObject.Id) &&
+                includedTableIds.Contains(relationship.TargetTable.SchemaObject.Id))
+            .ToList();
+        var rawHubIds = target.RawHubList
+            .Select(hub => hub.Id)
+            .ToHashSet(StringComparer.Ordinal);
 
-        var tables = tableReportRows
-            .OrderBy(row => BuildQualifiedTableName(row.Table, sourceIndex.SchemaById), StringComparer.OrdinalIgnoreCase)
-            .Select(row => new RawDataVaultFromMetaSchemaTableReport(
-                QualifiedTableName: BuildQualifiedTableName(row.Table, sourceIndex.SchemaById),
-                SelectedKey: BuildSelectedKeyReport(row.KeyAssessment, sourceIndex),
-                HubCreated: row.HubCreated,
-                SatelliteAttributeCount: row.SatelliteAttributeCount,
-                Reason: !row.HubCreated && !string.IsNullOrWhiteSpace(row.KeyAssessment?.SkipReason)
-                    ? row.KeyAssessment.SkipReason
-                    : null))
+        var tableReports = includedTables
+            .Select(table => BuildTableReport(source, target, table, options))
+            .OrderBy(report => report.QualifiedTableName, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+        var relationshipReports = includedRelationships
+            .Select(relationship => BuildRelationshipReport(target, rawHubIds, relationship))
+            .OrderBy(
+                report => $"{BuildStructuralLinkName(report.SourceTableName, report.TargetTableName)} ({report.SourceTableName} -> {report.TargetTableName})",
+                StringComparer.OrdinalIgnoreCase)
             .ToList();
 
-        var relationships = relationshipReportRows
-            .OrderBy(row => BuildRelationshipTitle(row.Relationship, row.SourceTable, row.TargetTable), StringComparer.OrdinalIgnoreCase)
-            .Select(row => new RawDataVaultFromMetaSchemaRelationshipReport(
-                RawLinkName: row.RawLinkName ?? BuildStructuralLinkName(row.SourceTable, row.TargetTable),
-                SourceTableName: row.SourceTable.Name,
-                TargetTableName: row.TargetTable.Name,
-                LinkCreated: row.LinkCreated,
-                NameWasDisambiguated: row.LinkCreated &&
-                                     !string.Equals(
-                                         row.RawLinkName,
-                                         BuildStructuralLinkName(row.SourceTable, row.TargetTable),
-                                         StringComparison.Ordinal),
-                Reason: row.LinkCreated ? null : row.SkipReason))
+        return new RawDataVaultFromMetaSchemaReport(
+            new RawDataVaultFromMetaSchemaSummary(
+                SourceSystemCount: includedSystems.Count,
+                SourceSchemaCount: includedSchemas.Count,
+                SourceTableCount: includedTables.Count,
+                SourceRelationshipCount: includedRelationships.Count,
+                RawHubCount: target.RawHubList.Count,
+                RawHubKeyPartCount: target.RawHubKeyPartList.Count,
+                RawLinkCount: target.RawLinkList.Count,
+                RawHubSatelliteCount: target.RawHubSatelliteList.Count,
+                RawHubSatelliteAttributeCount: target.RawHubSatelliteAttributeList.Count,
+                IgnoredFieldNames: MaterializeOptionList(options.IgnoredFieldNames),
+                IgnoredFieldSuffixes: MaterializeOptionList(options.IgnoredFieldSuffixes),
+                IncludeViews: options.IncludeViews),
+            tableReports,
+            relationshipReports);
+    }
+
+    private static RawDataVaultFromMetaSchemaTableReport BuildTableReport(
+        MS.MetaSchemaModel source,
+        MRDV.MetaRawDataVaultModel target,
+        MS.SchemaObject table,
+        OptionsInput options)
+    {
+        var hubId = "rawhub:" + table.Id;
+        var hubCreated = target.RawHubList.Any(hub =>
+            string.Equals(hub.Id, hubId, StringComparison.Ordinal));
+        var sourceKeys = source.KeyList
+            .Where(key => string.Equals(
+                key.Table.SchemaObject.Id,
+                table.Id,
+                StringComparison.Ordinal))
+            .OrderBy(key => GetKeyPriority(source, key.Id))
+            .ThenBy(key => key.Name, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(key => key.Id, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(key => key.Id, StringComparer.Ordinal)
             .ToList();
+        var selectedKey = sourceKeys
+            .Select(key => new
+            {
+                Key = key,
+                Fields = source.KeyFieldList
+                    .Where(keyField => string.Equals(keyField.Key.Id, key.Id, StringComparison.Ordinal))
+                    .Where(keyField => !ShouldIgnoreField(keyField.Field.Name, options))
+                    .OrderBy(keyField => ParseInt32(keyField.Ordinal, int.MaxValue))
+                    .ThenBy(keyField => keyField.Id, StringComparer.OrdinalIgnoreCase)
+                    .ThenBy(keyField => keyField.Id, StringComparer.Ordinal)
+                    .ToList(),
+            })
+            .FirstOrDefault(candidate => candidate.Fields.Count > 0);
+        var selectedKeyReport = selectedKey is null
+            ? null
+            : new RawDataVaultFromMetaSchemaSelectedKeyReport(
+                source.PrimaryKeyList.Any(primaryKey =>
+                    string.Equals(primaryKey.Key.Id, selectedKey.Key.Id, StringComparison.Ordinal))
+                    ? "primary"
+                    : "unique",
+                string.IsNullOrWhiteSpace(selectedKey.Key.Name) ? null : selectedKey.Key.Name,
+                selectedKey.Fields
+                    .Select(keyField => keyField.Field.Name)
+                    .Where(name => !string.IsNullOrWhiteSpace(name))
+                    .ToList());
+        var satelliteIds = target.RawHubSatelliteList
+            .Where(satellite => string.Equals(satellite.RawHub.Id, hubId, StringComparison.Ordinal))
+            .Select(satellite => satellite.Id)
+            .ToHashSet(StringComparer.Ordinal);
+        var satelliteAttributeCount = target.RawHubSatelliteAttributeList.Count(attribute =>
+            satelliteIds.Contains(attribute.RawHubSatellite.Id));
+        var reason = hubCreated
+            ? null
+            : sourceKeys.Count == 0
+                ? "no source primary or unique key metadata was available"
+                : "all source key fields were excluded by explicit ignore options";
 
-        return new RawDataVaultFromMetaSchemaReport(summary, tables, relationships);
+        return new RawDataVaultFromMetaSchemaTableReport(
+            QualifiedTableName: string.IsNullOrWhiteSpace(table.Schema.Name)
+                ? table.Name
+                : table.Schema.Name + "." + table.Name,
+            SelectedKey: selectedKeyReport,
+            HubCreated: hubCreated,
+            SatelliteAttributeCount: satelliteAttributeCount,
+            Reason: reason);
     }
 
-    private static string BuildRelationshipSkipReason(string? sourceHubId, string? targetHubId, MS.SchemaObject sourceTable, MS.SchemaObject targetTable)
+    private static RawDataVaultFromMetaSchemaRelationshipReport BuildRelationshipReport(
+        MRDV.MetaRawDataVaultModel target,
+        ISet<string> rawHubIds,
+        MS.TableRelationship relationship)
     {
-        var reasons = new List<string>();
-        if (string.IsNullOrWhiteSpace(sourceHubId))
+        var sourceTable = relationship.SourceTable.SchemaObject;
+        var targetTable = relationship.TargetTable.SchemaObject;
+        var structuralName = BuildStructuralLinkName(sourceTable.Name, targetTable.Name);
+        var rawLinkId = "rawlink:" + relationship.Id;
+        var rawLink = target.RawLinkList.FirstOrDefault(link =>
+            string.Equals(link.Id, rawLinkId, StringComparison.Ordinal));
+        var missingHubs = new List<string>();
+        if (!rawHubIds.Contains("rawhub:" + sourceTable.Id))
         {
-            reasons.Add($"source table `{sourceTable.Name}` did not materialize to a hub");
+            missingHubs.Add($"source table `{sourceTable.Name}` did not materialize to a hub");
+        }
+        if (!rawHubIds.Contains("rawhub:" + targetTable.Id))
+        {
+            missingHubs.Add($"target table `{targetTable.Name}` did not materialize to a hub");
         }
 
-        if (string.IsNullOrWhiteSpace(targetHubId))
+        return new RawDataVaultFromMetaSchemaRelationshipReport(
+            RawLinkName: rawLink?.Name ?? structuralName,
+            SourceTableName: sourceTable.Name,
+            TargetTableName: targetTable.Name,
+            LinkCreated: rawLink is not null,
+            NameWasDisambiguated: rawLink is not null &&
+                                  !string.Equals(rawLink.Name, structuralName, StringComparison.Ordinal),
+            Reason: rawLink is null && missingHubs.Count > 0
+                ? string.Join("; ", missingHubs)
+                : null);
+    }
+
+    private static int GetKeyPriority(MS.MetaSchemaModel source, string keyId)
+    {
+        if (source.PrimaryKeyList.Any(primaryKey =>
+                string.Equals(primaryKey.Key.Id, keyId, StringComparison.Ordinal)))
         {
-            reasons.Add($"target table `{targetTable.Name}` did not materialize to a hub");
+            return 0;
         }
 
-        return reasons.Count == 0
-            ? string.Empty
-            : string.Join("; ", reasons);
+        return source.UniqueKeyList.Any(uniqueKey =>
+            string.Equals(uniqueKey.Key.Id, keyId, StringComparison.Ordinal))
+            ? 1
+            : 2;
     }
 
-    private static string BuildQualifiedTableName(MS.SchemaObject table, IReadOnlyDictionary<string, MS.Schema> schemaById)
-    {
-        if (schemaById.TryGetValue(table.Schema.Id, out var schema) && !string.IsNullOrWhiteSpace(schema.Name))
-        {
-            return schema.Name + "." + table.Name;
-        }
+    private static bool ShouldIgnoreField(string fieldName, OptionsInput options)
+        => options.IgnoredFieldNames.Contains(fieldName, StringComparer.OrdinalIgnoreCase) ||
+           options.IgnoredFieldSuffixes.Any(suffix =>
+               fieldName.EndsWith(suffix, StringComparison.OrdinalIgnoreCase));
 
-        return table.Name;
-    }
+    private static int ParseInt32(string? value, int defaultValue)
+        => int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
+            ? parsed
+            : defaultValue;
 
-    private static RawDataVaultFromMetaSchemaSelectedKeyReport? BuildSelectedKeyReport(
-        TableKeyAssessment? keyAssessment,
-        SourceIndex sourceIndex)
-    {
-        if (keyAssessment?.SelectedKey == null)
-        {
-            return null;
-        }
+    private static string BuildStructuralLinkName(string sourceTableName, string targetTableName)
+        => string.Equals(sourceTableName, targetTableName, StringComparison.OrdinalIgnoreCase)
+            ? "Source" + sourceTableName + "Target" + targetTableName
+            : sourceTableName + targetTableName;
 
-        var key = keyAssessment.SelectedKey;
-        var fieldNames = key.OrderedKeyFields
-            .Select(record => record.Field.Name)
-            .Where(value => !string.IsNullOrWhiteSpace(value))
-            .ToList();
-
-        return new RawDataVaultFromMetaSchemaSelectedKeyReport(
-            KeyType: sourceIndex.PrimaryKeyIds.Contains(key.Key.Id) ? "primary" : "unique",
-            KeyName: string.IsNullOrWhiteSpace(key.Key.Name) ? null : key.Key.Name,
-            FieldNames: fieldNames);
-    }
-
-    private static string BuildRelationshipTitle(MS.TableRelationship relationship, MS.SchemaObject sourceTable, MS.SchemaObject targetTable)
-    {
-        return $"{BuildStructuralLinkName(sourceTable, targetTable)} ({sourceTable.Name} -> {targetTable.Name})";
-    }
-
-    private static IReadOnlyList<string> MaterializeList(IEnumerable<string> values)
-    {
-        return values
-            .Where(value => !string.IsNullOrWhiteSpace(value))
+    private static IReadOnlyList<string> MaterializeOptionList(IEnumerable<string> values)
+        => values
             .OrderBy(value => value, StringComparer.OrdinalIgnoreCase)
             .ThenBy(value => value, StringComparer.Ordinal)
             .ToList();
-    }
 }

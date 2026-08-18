@@ -1,6 +1,6 @@
 using MRDV = global::MetaRawDataVault;
 
-namespace MetaConvert.SchemaToDataVault;
+namespace MetaConvert.SchemaToDataVault.Reference;
 
 public sealed partial class RawDataVaultFromMetaSchemaService
 {

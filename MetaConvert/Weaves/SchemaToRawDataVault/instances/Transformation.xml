@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TransformationList>
+    <Transformation Id="forward/Field" DirectionId="forward" SelectStatementId="SelectStatement:20">
+      <TargetEntityName>Field</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/FieldDataTypeDetail" DirectionId="forward" SelectStatementId="SelectStatement:21">
+      <TargetEntityName>FieldDataTypeDetail</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/RawHub" DirectionId="forward" SelectStatementId="SelectStatement:22">
+      <TargetEntityName>RawHub</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/RawHubKeyPart" DirectionId="forward" SelectStatementId="SelectStatement:23">
+      <TargetEntityName>RawHubKeyPart</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/RawHubSatellite" DirectionId="forward" SelectStatementId="SelectStatement:24">
+      <TargetEntityName>RawHubSatellite</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/RawHubSatelliteAttribute" DirectionId="forward" SelectStatementId="SelectStatement:25">
+      <TargetEntityName>RawHubSatelliteAttribute</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/RawLink" DirectionId="forward" SelectStatementId="SelectStatement:26">
+      <TargetEntityName>RawLink</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/RawLinkRole" DirectionId="forward" SelectStatementId="SelectStatement:27">
+      <TargetEntityName>RawLinkRole</TargetEntityName>
+    </Transformation>
+  </TransformationList>
+</MetaWeave>

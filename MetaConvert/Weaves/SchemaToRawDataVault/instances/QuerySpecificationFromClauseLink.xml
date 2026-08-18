@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QuerySpecificationFromClauseLinkList>
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:1" FromClauseId="FromClause:1" QuerySpecificationId="QuerySpecification:1" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:10" FromClauseId="FromClause:10" QuerySpecificationId="QuerySpecification:10" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:11" FromClauseId="FromClause:12" QuerySpecificationId="QuerySpecification:11" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:12" FromClauseId="FromClause:11" QuerySpecificationId="QuerySpecification:12" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:13" FromClauseId="FromClause:14" QuerySpecificationId="QuerySpecification:13" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:14" FromClauseId="FromClause:13" QuerySpecificationId="QuerySpecification:14" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:15" FromClauseId="FromClause:15" QuerySpecificationId="QuerySpecification:15" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:16" FromClauseId="FromClause:16" QuerySpecificationId="QuerySpecification:16" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:17" FromClauseId="FromClause:17" QuerySpecificationId="QuerySpecification:17" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:18" FromClauseId="FromClause:18" QuerySpecificationId="QuerySpecification:18" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:19" FromClauseId="FromClause:19" QuerySpecificationId="QuerySpecification:19" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:2" FromClauseId="FromClause:3" QuerySpecificationId="QuerySpecification:2" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:20" FromClauseId="FromClause:21" QuerySpecificationId="QuerySpecification:20" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:21" FromClauseId="FromClause:22" QuerySpecificationId="QuerySpecification:21" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:22" FromClauseId="FromClause:20" QuerySpecificationId="QuerySpecification:22" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:23" FromClauseId="FromClause:23" QuerySpecificationId="QuerySpecification:23" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:24" FromClauseId="FromClause:24" QuerySpecificationId="QuerySpecification:24" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:25" FromClauseId="FromClause:25" QuerySpecificationId="QuerySpecification:25" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:26" FromClauseId="FromClause:26" QuerySpecificationId="QuerySpecification:26" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:27" FromClauseId="FromClause:27" QuerySpecificationId="QuerySpecification:27" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:28" FromClauseId="FromClause:28" QuerySpecificationId="QuerySpecification:28" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:29" FromClauseId="FromClause:29" QuerySpecificationId="QuerySpecification:29" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:3" FromClauseId="FromClause:2" QuerySpecificationId="QuerySpecification:3" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:30" FromClauseId="FromClause:30" QuerySpecificationId="QuerySpecification:30" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:31" FromClauseId="FromClause:31" QuerySpecificationId="QuerySpecification:31" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:32" FromClauseId="FromClause:32" QuerySpecificationId="QuerySpecification:32" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:33" FromClauseId="FromClause:33" QuerySpecificationId="QuerySpecification:33" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:34" FromClauseId="FromClause:34" QuerySpecificationId="QuerySpecification:34" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:35" FromClauseId="FromClause:35" QuerySpecificationId="QuerySpecification:35" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:36" FromClauseId="FromClause:36" QuerySpecificationId="QuerySpecification:36" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:37" FromClauseId="FromClause:37" QuerySpecificationId="QuerySpecification:37" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:38" FromClauseId="FromClause:38" QuerySpecificationId="QuerySpecification:38" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:39" FromClauseId="FromClause:39" QuerySpecificationId="QuerySpecification:39" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:4" FromClauseId="FromClause:4" QuerySpecificationId="QuerySpecification:4" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:40" FromClauseId="FromClause:40" QuerySpecificationId="QuerySpecification:40" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:41" FromClauseId="FromClause:41" QuerySpecificationId="QuerySpecification:41" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:42" FromClauseId="FromClause:42" QuerySpecificationId="QuerySpecification:42" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:43" FromClauseId="FromClause:43" QuerySpecificationId="QuerySpecification:43" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:44" FromClauseId="FromClause:44" QuerySpecificationId="QuerySpecification:44" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:45" FromClauseId="FromClause:45" QuerySpecificationId="QuerySpecification:45" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:46" FromClauseId="FromClause:46" QuerySpecificationId="QuerySpecification:46" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:47" FromClauseId="FromClause:47" QuerySpecificationId="QuerySpecification:47" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:5" FromClauseId="FromClause:6" QuerySpecificationId="QuerySpecification:5" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:6" FromClauseId="FromClause:7" QuerySpecificationId="QuerySpecification:6" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:7" FromClauseId="FromClause:5" QuerySpecificationId="QuerySpecification:7" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:8" FromClauseId="FromClause:8" QuerySpecificationId="QuerySpecification:8" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:9" FromClauseId="FromClause:9" QuerySpecificationId="QuerySpecification:9" />
+  </QuerySpecificationFromClauseLinkList>
+</MetaWeave>

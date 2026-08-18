@@ -37,9 +37,8 @@ internal sealed class MetaConvertCommandHandlers
         RawDataVaultFromMetaSchemaService.RawDataVaultFromMetaSchemaResult result;
         try
         {
-            result = await RunWithProgressAsync(
-                "Converting schema to raw Data Vault",
-                async () =>
+            result = await RunWithMeterAsync(
+                async meter =>
                 {
                     var sourceModel = await workspaces
                         .RequiredAsync<MetaSchemaModel>("source-workspace")
@@ -49,7 +48,15 @@ internal sealed class MetaConvertCommandHandlers
                         sourceModel,
                         invocation.Values("ignore-field-name").ToList(),
                         invocation.Values("ignore-field-suffix").ToList(),
-                        invocation.Flag("include-views"));
+                        invocation.Flag("include-views"),
+                        meter is null
+                            ? null
+                            : value => meter.Report(
+                                value.CompletedTaskCount,
+                                value.TotalTaskCount,
+                                FormatWeaveTask(
+                                    value.CompletedTaskKind?.ToString(),
+                                    value.CompletedTaskName)));
 
                     await workspaces.CreateAsync(
                             "output",

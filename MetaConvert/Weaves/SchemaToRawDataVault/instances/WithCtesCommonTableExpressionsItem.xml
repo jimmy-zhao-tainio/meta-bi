@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <WithCtesCommonTableExpressionsItemList>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:1" CommonTableExpressionId="CommonTableExpression:1" WithCtesId="WithCtes:1">
+      <Ordinal>0</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:2" CommonTableExpressionId="CommonTableExpression:2" WithCtesId="WithCtes:1">
+      <Ordinal>1</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:3" CommonTableExpressionId="CommonTableExpression:3" WithCtesId="WithCtes:1">
+      <Ordinal>2</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:4" CommonTableExpressionId="CommonTableExpression:4" WithCtesId="WithCtes:1">
+      <Ordinal>3</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+  </WithCtesCommonTableExpressionsItemList>
+</MetaWeave>

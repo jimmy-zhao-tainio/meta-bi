@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <IntegerLiteralList>
+    <IntegerLiteral Id="IntegerLiteral:1" LiteralId="Literal:1" />
+    <IntegerLiteral Id="IntegerLiteral:10" LiteralId="Literal:29" />
+    <IntegerLiteral Id="IntegerLiteral:11" LiteralId="Literal:30" />
+    <IntegerLiteral Id="IntegerLiteral:12" LiteralId="Literal:31" />
+    <IntegerLiteral Id="IntegerLiteral:2" LiteralId="Literal:2" />
+    <IntegerLiteral Id="IntegerLiteral:3" LiteralId="Literal:6" />
+    <IntegerLiteral Id="IntegerLiteral:4" LiteralId="Literal:7" />
+    <IntegerLiteral Id="IntegerLiteral:5" LiteralId="Literal:8" />
+    <IntegerLiteral Id="IntegerLiteral:6" LiteralId="Literal:17" />
+    <IntegerLiteral Id="IntegerLiteral:7" LiteralId="Literal:20" />
+    <IntegerLiteral Id="IntegerLiteral:8" LiteralId="Literal:22" />
+    <IntegerLiteral Id="IntegerLiteral:9" LiteralId="Literal:25" />
+  </IntegerLiteralList>
+</MetaWeave>

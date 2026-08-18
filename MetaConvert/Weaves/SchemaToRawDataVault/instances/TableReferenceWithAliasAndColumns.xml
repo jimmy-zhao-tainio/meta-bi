@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TableReferenceWithAliasAndColumnsList>
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:1" TableReferenceWithAliasId="TableReferenceWithAlias:55" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:2" TableReferenceWithAliasId="TableReferenceWithAlias:57" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:3" TableReferenceWithAliasId="TableReferenceWithAlias:59" />
+  </TableReferenceWithAliasAndColumnsList>
+</MetaWeave>
