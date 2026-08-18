@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BinaryQueryExpressionList>
+    <BinaryQueryExpression Id="BinaryQueryExpression:1" QueryExpressionId="QueryExpression:12" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:10" QueryExpressionId="QueryExpression:53" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:11" QueryExpressionId="QueryExpression:69" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:12" QueryExpressionId="QueryExpression:73" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:13" QueryExpressionId="QueryExpression:88" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:14" QueryExpressionId="QueryExpression:93" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:15" QueryExpressionId="QueryExpression:95" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:16" QueryExpressionId="QueryExpression:97" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:17" QueryExpressionId="QueryExpression:99" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:18" QueryExpressionId="QueryExpression:122" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:19" QueryExpressionId="QueryExpression:124" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:20" QueryExpressionId="QueryExpression:126" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:21" QueryExpressionId="QueryExpression:128" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:22" QueryExpressionId="QueryExpression:130" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:23" QueryExpressionId="QueryExpression:132" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:24" QueryExpressionId="QueryExpression:134" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:25" QueryExpressionId="QueryExpression:136" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:26" QueryExpressionId="QueryExpression:139" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:3" QueryExpressionId="QueryExpression:39" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:4" QueryExpressionId="QueryExpression:41" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:5" QueryExpressionId="QueryExpression:43" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:6" QueryExpressionId="QueryExpression:45" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:7" QueryExpressionId="QueryExpression:47" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:8" QueryExpressionId="QueryExpression:49" />
+    <BinaryQueryExpression Id="BinaryQueryExpression:9" QueryExpressionId="QueryExpression:51" />
+  </BinaryQueryExpressionList>
+</MetaWeave>

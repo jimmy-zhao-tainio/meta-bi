@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ExistsPredicateSubqueryLinkList>
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:18" ExistsPredicateId="ExistsPredicate:18" ScalarSubqueryId="ScalarSubquery:18" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:19" ExistsPredicateId="ExistsPredicate:19" ScalarSubqueryId="ScalarSubquery:19" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:20" ExistsPredicateId="ExistsPredicate:20" ScalarSubqueryId="ScalarSubquery:20" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:21" ExistsPredicateId="ExistsPredicate:21" ScalarSubqueryId="ScalarSubquery:21" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:22" ExistsPredicateId="ExistsPredicate:22" ScalarSubqueryId="ScalarSubquery:22" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:23" ExistsPredicateId="ExistsPredicate:23" ScalarSubqueryId="ScalarSubquery:23" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:24" ExistsPredicateId="ExistsPredicate:24" ScalarSubqueryId="ScalarSubquery:24" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:25" ExistsPredicateId="ExistsPredicate:25" ScalarSubqueryId="ScalarSubquery:25" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:26" ExistsPredicateId="ExistsPredicate:26" ScalarSubqueryId="ScalarSubquery:26" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:27" ExistsPredicateId="ExistsPredicate:27" ScalarSubqueryId="ScalarSubquery:27" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:28" ExistsPredicateId="ExistsPredicate:28" ScalarSubqueryId="ScalarSubquery:28" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:29" ExistsPredicateId="ExistsPredicate:29" ScalarSubqueryId="ScalarSubquery:29" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:30" ExistsPredicateId="ExistsPredicate:30" ScalarSubqueryId="ScalarSubquery:30" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:31" ExistsPredicateId="ExistsPredicate:31" ScalarSubqueryId="ScalarSubquery:31" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:32" ExistsPredicateId="ExistsPredicate:32" ScalarSubqueryId="ScalarSubquery:32" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:33" ExistsPredicateId="ExistsPredicate:33" ScalarSubqueryId="ScalarSubquery:33" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:34" ExistsPredicateId="ExistsPredicate:34" ScalarSubqueryId="ScalarSubquery:34" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:35" ExistsPredicateId="ExistsPredicate:35" ScalarSubqueryId="ScalarSubquery:35" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:36" ExistsPredicateId="ExistsPredicate:36" ScalarSubqueryId="ScalarSubquery:36" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:37" ExistsPredicateId="ExistsPredicate:37" ScalarSubqueryId="ScalarSubquery:37" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:38" ExistsPredicateId="ExistsPredicate:38" ScalarSubqueryId="ScalarSubquery:38" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:39" ExistsPredicateId="ExistsPredicate:39" ScalarSubqueryId="ScalarSubquery:39" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:40" ExistsPredicateId="ExistsPredicate:40" ScalarSubqueryId="ScalarSubquery:40" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:41" ExistsPredicateId="ExistsPredicate:41" ScalarSubqueryId="ScalarSubquery:41" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:42" ExistsPredicateId="ExistsPredicate:42" ScalarSubqueryId="ScalarSubquery:42" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:43" ExistsPredicateId="ExistsPredicate:43" ScalarSubqueryId="ScalarSubquery:43" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:44" ExistsPredicateId="ExistsPredicate:44" ScalarSubqueryId="ScalarSubquery:44" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:45" ExistsPredicateId="ExistsPredicate:45" ScalarSubqueryId="ScalarSubquery:45" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:46" ExistsPredicateId="ExistsPredicate:46" ScalarSubqueryId="ScalarSubquery:46" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:47" ExistsPredicateId="ExistsPredicate:47" ScalarSubqueryId="ScalarSubquery:47" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:48" ExistsPredicateId="ExistsPredicate:48" ScalarSubqueryId="ScalarSubquery:48" />
+    <ExistsPredicateSubqueryLink Id="ExistsPredicateSubqueryLink:49" ExistsPredicateId="ExistsPredicate:49" ScalarSubqueryId="ScalarSubquery:49" />
+  </ExistsPredicateSubqueryLinkList>
+</MetaWeave>

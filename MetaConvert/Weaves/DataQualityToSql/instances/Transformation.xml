@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TransformationList>
+    <Transformation Id="forward/Database" DirectionId="forward" SelectStatementId="SelectStatement:17">
+      <TargetEntityName>Database</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Schema" DirectionId="forward" SelectStatementId="SelectStatement:18">
+      <TargetEntityName>Schema</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/View" DirectionId="forward" SelectStatementId="SelectStatement:39">
+      <TargetEntityName>View</TargetEntityName>
+    </Transformation>
+  </TransformationList>
+</MetaWeave>

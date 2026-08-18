@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <LikePredicateList>
+    <LikePredicate Id="LikePredicate:1" BooleanExpressionId="BooleanExpression:101" />
+    <LikePredicate Id="LikePredicate:2" BooleanExpressionId="BooleanExpression:114" />
+    <LikePredicate Id="LikePredicate:3" BooleanExpressionId="BooleanExpression:117" />
+    <LikePredicate Id="LikePredicate:4" BooleanExpressionId="BooleanExpression:119" />
+    <LikePredicate Id="LikePredicate:5" BooleanExpressionId="BooleanExpression:121" />
+    <LikePredicate Id="LikePredicate:6" BooleanExpressionId="BooleanExpression:123" />
+    <LikePredicate Id="LikePredicate:7" BooleanExpressionId="BooleanExpression:130" />
+  </LikePredicateList>
+</MetaWeave>

@@ -10,6 +10,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="Meta.Surfaces.Xml" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaWeave.Core" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="xunit.assert" Version="2.9.2" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
@@ -25,6 +28,7 @@
     <ProjectReference Include="..\Cli\MetaDataQuality.Cli.csproj" />
     <ProjectReference Include="..\Core\MetaDataQuality.Core.csproj" />
     <ProjectReference Include="..\..\MetaConvert\DataQualityToSql\MetaConvert.DataQualityToSql.csproj" />
+    <ProjectReference Include="..\..\MetaSql\CSharp\MetaSql.CSharp.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
   </ItemGroup>
 

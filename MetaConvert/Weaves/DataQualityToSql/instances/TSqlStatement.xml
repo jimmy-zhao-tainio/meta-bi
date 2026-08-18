@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TSqlStatementList>
+    <TSqlStatement Id="TSqlStatement:1" />
+    <TSqlStatement Id="TSqlStatement:10" />
+    <TSqlStatement Id="TSqlStatement:15" />
+    <TSqlStatement Id="TSqlStatement:17" />
+    <TSqlStatement Id="TSqlStatement:18" />
+    <TSqlStatement Id="TSqlStatement:24" />
+    <TSqlStatement Id="TSqlStatement:27" />
+    <TSqlStatement Id="TSqlStatement:28" />
+    <TSqlStatement Id="TSqlStatement:29" />
+    <TSqlStatement Id="TSqlStatement:35" />
+    <TSqlStatement Id="TSqlStatement:36" />
+    <TSqlStatement Id="TSqlStatement:37" />
+    <TSqlStatement Id="TSqlStatement:38" />
+    <TSqlStatement Id="TSqlStatement:39" />
+    <TSqlStatement Id="TSqlStatement:4" />
+    <TSqlStatement Id="TSqlStatement:40" />
+    <TSqlStatement Id="TSqlStatement:41" />
+    <TSqlStatement Id="TSqlStatement:46" />
+    <TSqlStatement Id="TSqlStatement:47" />
+    <TSqlStatement Id="TSqlStatement:48" />
+    <TSqlStatement Id="TSqlStatement:49" />
+    <TSqlStatement Id="TSqlStatement:50" />
+    <TSqlStatement Id="TSqlStatement:51" />
+    <TSqlStatement Id="TSqlStatement:52" />
+    <TSqlStatement Id="TSqlStatement:53" />
+    <TSqlStatement Id="TSqlStatement:55" />
+    <TSqlStatement Id="TSqlStatement:56" />
+    <TSqlStatement Id="TSqlStatement:58" />
+    <TSqlStatement Id="TSqlStatement:59" />
+    <TSqlStatement Id="TSqlStatement:60" />
+    <TSqlStatement Id="TSqlStatement:61" />
+    <TSqlStatement Id="TSqlStatement:62" />
+    <TSqlStatement Id="TSqlStatement:63" />
+    <TSqlStatement Id="TSqlStatement:64" />
+    <TSqlStatement Id="TSqlStatement:65" />
+    <TSqlStatement Id="TSqlStatement:66" />
+    <TSqlStatement Id="TSqlStatement:67" />
+  </TSqlStatementList>
+</MetaWeave>

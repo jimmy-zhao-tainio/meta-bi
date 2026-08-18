@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <SelectStatementList>
+    <SelectStatement Id="SelectStatement:1" StatementWithCtesId="StatementWithCtes:1" />
+    <SelectStatement Id="SelectStatement:10" StatementWithCtesId="StatementWithCtes:10" />
+    <SelectStatement Id="SelectStatement:15" StatementWithCtesId="StatementWithCtes:15" />
+    <SelectStatement Id="SelectStatement:17" StatementWithCtesId="StatementWithCtes:17" />
+    <SelectStatement Id="SelectStatement:18" StatementWithCtesId="StatementWithCtes:18" />
+    <SelectStatement Id="SelectStatement:24" StatementWithCtesId="StatementWithCtes:24" />
+    <SelectStatement Id="SelectStatement:27" StatementWithCtesId="StatementWithCtes:27" />
+    <SelectStatement Id="SelectStatement:28" StatementWithCtesId="StatementWithCtes:28" />
+    <SelectStatement Id="SelectStatement:29" StatementWithCtesId="StatementWithCtes:29" />
+    <SelectStatement Id="SelectStatement:35" StatementWithCtesId="StatementWithCtes:35" />
+    <SelectStatement Id="SelectStatement:36" StatementWithCtesId="StatementWithCtes:36" />
+    <SelectStatement Id="SelectStatement:37" StatementWithCtesId="StatementWithCtes:37" />
+    <SelectStatement Id="SelectStatement:38" StatementWithCtesId="StatementWithCtes:38" />
+    <SelectStatement Id="SelectStatement:39" StatementWithCtesId="StatementWithCtes:39" />
+    <SelectStatement Id="SelectStatement:4" StatementWithCtesId="StatementWithCtes:4" />
+    <SelectStatement Id="SelectStatement:40" StatementWithCtesId="StatementWithCtes:40" />
+    <SelectStatement Id="SelectStatement:41" StatementWithCtesId="StatementWithCtes:41" />
+    <SelectStatement Id="SelectStatement:46" StatementWithCtesId="StatementWithCtes:46" />
+    <SelectStatement Id="SelectStatement:47" StatementWithCtesId="StatementWithCtes:47" />
+    <SelectStatement Id="SelectStatement:48" StatementWithCtesId="StatementWithCtes:48" />
+    <SelectStatement Id="SelectStatement:49" StatementWithCtesId="StatementWithCtes:49" />
+    <SelectStatement Id="SelectStatement:50" StatementWithCtesId="StatementWithCtes:50" />
+    <SelectStatement Id="SelectStatement:51" StatementWithCtesId="StatementWithCtes:51" />
+    <SelectStatement Id="SelectStatement:52" StatementWithCtesId="StatementWithCtes:52" />
+    <SelectStatement Id="SelectStatement:53" StatementWithCtesId="StatementWithCtes:53" />
+    <SelectStatement Id="SelectStatement:55" StatementWithCtesId="StatementWithCtes:55" />
+    <SelectStatement Id="SelectStatement:56" StatementWithCtesId="StatementWithCtes:56" />
+    <SelectStatement Id="SelectStatement:58" StatementWithCtesId="StatementWithCtes:58" />
+    <SelectStatement Id="SelectStatement:59" StatementWithCtesId="StatementWithCtes:59" />
+    <SelectStatement Id="SelectStatement:60" StatementWithCtesId="StatementWithCtes:60" />
+    <SelectStatement Id="SelectStatement:61" StatementWithCtesId="StatementWithCtes:61" />
+    <SelectStatement Id="SelectStatement:62" StatementWithCtesId="StatementWithCtes:62" />
+    <SelectStatement Id="SelectStatement:63" StatementWithCtesId="StatementWithCtes:63" />
+    <SelectStatement Id="SelectStatement:64" StatementWithCtesId="StatementWithCtes:64" />
+    <SelectStatement Id="SelectStatement:65" StatementWithCtesId="StatementWithCtes:65" />
+    <SelectStatement Id="SelectStatement:66" StatementWithCtesId="StatementWithCtes:66" />
+    <SelectStatement Id="SelectStatement:67" StatementWithCtesId="StatementWithCtes:67" />
+  </SelectStatementList>
+</MetaWeave>
