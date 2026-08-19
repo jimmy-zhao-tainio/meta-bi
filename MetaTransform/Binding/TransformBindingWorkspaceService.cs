@@ -228,9 +228,9 @@ public sealed class TransformBindingWorkspaceService
 
     private static TransformBindingTargetResolution? CreateTargetFromTransformScript(
         MetaTransformScriptModel transformModel,
+        TransformScriptNavigator navigator,
         TransformScript transformScript)
     {
-        var navigator = new TransformScriptNavigator(transformModel);
         var scriptObjectView = transformModel.ScriptObjectViewList.SingleOrDefault(item =>
             string.Equals(item.TransformScript.Id, transformScript.Id, StringComparison.Ordinal));
         var scriptObjectTvf = transformModel.ScriptObjectTVFList.SingleOrDefault(item =>
@@ -325,15 +325,15 @@ public sealed class TransformBindingWorkspaceService
         IReadOnlyList<TransformScript> transformScripts,
         MetaSchemaModel? sourceSchema = null)
     {
-        var bindingService = new TransformBindingService();
+        var context = sourceSchema is null
+            ? new TransformBindingContext(transformModel)
+            : new TransformBindingContext(transformModel, sourceSchema);
         var packages = new List<ScriptBindingPackage>(transformScripts.Count);
 
         foreach (var transformScript in transformScripts)
         {
-            var target = CreateTargetFromTransformScript(transformModel, transformScript);
-            var bound = sourceSchema is null
-                ? bindingService.BindTransform(transformModel, transformScript)
-                : bindingService.BindTransform(transformModel, transformScript, sourceSchema);
+            var target = CreateTargetFromTransformScript(transformModel, context.Navigator, transformScript);
+            var bound = context.Bind(transformScript);
             packages.Add(new ScriptBindingPackage(transformScript, bound, target));
         }
 
@@ -348,19 +348,18 @@ public sealed class TransformBindingWorkspaceService
         string executeSystemName,
         string executeSystemDefaultSchemaName)
     {
-        var bindingService = new TransformBindingService();
+        var context = new TransformBindingContext(
+            transformModel,
+            sourceResolver,
+            targetResolver,
+            executeSystemName,
+            executeSystemDefaultSchemaName);
         var packages = new List<ScriptBindingPackage>(transformScripts.Count);
 
         foreach (var transformScript in transformScripts)
         {
-            var target = CreateTargetFromTransformScript(transformModel, transformScript);
-            var bound = bindingService.BindTransform(
-                transformModel,
-                transformScript,
-                sourceResolver,
-                targetResolver,
-                executeSystemName,
-                executeSystemDefaultSchemaName);
+            var target = CreateTargetFromTransformScript(transformModel, context.Navigator, transformScript);
+            var bound = context.Bind(transformScript);
             packages.Add(new ScriptBindingPackage(transformScript, bound, target));
         }
 
@@ -376,21 +375,20 @@ public sealed class TransformBindingWorkspaceService
         string executeSystemDefaultSchemaName,
         ICollection<BindWorkspaceObjectIssue> objectIssues)
     {
-        var bindingService = new TransformBindingService();
+        var context = new TransformBindingContext(
+            transformModel,
+            sourceResolver,
+            targetResolver,
+            executeSystemName,
+            executeSystemDefaultSchemaName);
         var packages = new List<ScriptBindingPackage>(transformScripts.Count);
 
         foreach (var transformScript in transformScripts)
         {
             try
             {
-                var target = CreateTargetFromTransformScript(transformModel, transformScript);
-                var bound = bindingService.BindTransform(
-                    transformModel,
-                    transformScript,
-                    sourceResolver,
-                    targetResolver,
-                    executeSystemName,
-                    executeSystemDefaultSchemaName);
+                var target = CreateTargetFromTransformScript(transformModel, context.Navigator, transformScript);
+                var bound = context.Bind(transformScript);
 
                 if (bound.HasErrors)
                 {
@@ -574,12 +572,12 @@ public sealed class TransformBindingWorkspaceService
         MetaTransformScriptModel transformModel,
         IReadOnlyList<TransformScript> transformScripts)
     {
-        var bindingService = new TransformBindingService();
+        var context = new TransformBindingContext(transformModel);
         var usages = new List<SourceIdentifierUsage>();
 
         foreach (var transformScript in transformScripts)
         {
-            var bound = bindingService.BindTransform(transformModel, transformScript);
+            var bound = context.Bind(transformScript);
             foreach (var sourceRowset in bound.Rowsets.Where(item =>
                          string.Equals(item.DerivationKind, "Source", StringComparison.OrdinalIgnoreCase) &&
                          !string.IsNullOrWhiteSpace(item.SqlIdentifier)))

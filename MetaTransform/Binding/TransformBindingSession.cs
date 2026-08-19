@@ -48,8 +48,23 @@ internal sealed partial class TransformBindingSession
         MetaSchemaTableResolver? targetSchemaResolver,
         string? executeSystemName,
         string? executeSystemDefaultSchemaName)
+        : this(
+            new TransformScriptNavigator(model ?? throw new ArgumentNullException(nameof(model))),
+            sourceSchemaResolver,
+            targetSchemaResolver,
+            executeSystemName,
+            executeSystemDefaultSchemaName)
     {
-        navigator = new TransformScriptNavigator(model);
+    }
+
+    internal TransformBindingSession(
+        TransformScriptNavigator navigator,
+        MetaSchemaTableResolver? sourceSchemaResolver,
+        MetaSchemaTableResolver? targetSchemaResolver,
+        string? executeSystemName,
+        string? executeSystemDefaultSchemaName)
+    {
+        this.navigator = navigator ?? throw new ArgumentNullException(nameof(navigator));
         this.sourceSchemaResolver = sourceSchemaResolver;
         this.targetSchemaResolver = targetSchemaResolver;
         this.executeSystemName = executeSystemName?.Trim() ?? string.Empty;

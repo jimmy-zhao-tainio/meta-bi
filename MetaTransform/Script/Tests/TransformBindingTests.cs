@@ -8,6 +8,35 @@ using MetaTransformScript.Sql.Parsing;
 public sealed class TransformBindingTests
 {
     [Fact]
+    public void BindTransforms_ReusesImmutableContext_WithoutChangingResultsOrLeakingIssues()
+    {
+        var model = MetaTransformScriptModel.CreateEmpty();
+        new MetaTransformScriptSqlService().ImportSqlCodeBatch(
+            model,
+            [
+                new SqlCodeImportRequest(
+                    "CREATE VIEW dbo.InvalidProjection AS SELECT s.MissingField FROM dbo.SourceTable AS s;"),
+                new SqlCodeImportRequest(
+                    "CREATE VIEW dbo.ValidProjection AS SELECT s.CustomerId FROM dbo.SourceTable AS s;")
+            ]);
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId"]));
+        var service = new TransformBindingService();
+
+        var sequential = model.TransformScriptList
+            .Select(script => service.BindTransform(model, script, sourceSchema))
+            .ToArray();
+        var batched = service.BindTransforms(model, model.TransformScriptList, sourceSchema);
+
+        Assert.Equal(
+            sequential.Select(CreateBindingFingerprint),
+            batched.Select(CreateBindingFingerprint));
+        Assert.True(batched[0].HasErrors);
+        Assert.False(batched[1].HasErrors);
+        Assert.Empty(batched[1].Issues);
+    }
+
+    [Fact]
     public void BindSimpleSelectWithAliasesAndLiteralAlias_DerivesExpectedOutputRowset()
     {
         var model = ParseCorpus("001_basic_select.sql");
@@ -23,6 +52,25 @@ public sealed class TransformBindingTests
             ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"],
             bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
         Assert.Equal(3, bound.ColumnReferences.Count);
+    }
+
+    private static string CreateBindingFingerprint(TransformBindingResult result)
+    {
+        var lines = new List<string>
+        {
+            $"script:{result.TransformScriptId}:{result.TransformScriptName}"
+        };
+        lines.AddRange(result.Issues.Select(static issue =>
+            $"issue:{issue.Code}:{issue.Message}:{issue.MetaTransformScriptEntityId}"));
+        lines.AddRange(result.Rowsets.Select(static rowset =>
+            $"rowset:{rowset.Id}:{rowset.Name}:{rowset.DerivationKind}:{rowset.RowsetRole}:{rowset.MetaTransformScriptEntityId}:{rowset.SqlIdentifier}:" +
+            string.Join(",", rowset.Columns.Select(column => $"{column.Id}/{column.Name}/{column.Ordinal}")) + ":" +
+            string.Join(",", rowset.Inputs.Select(input => $"{input.Ordinal}/{input.InputRole}/{input.Rowset.Id}"))));
+        lines.AddRange(result.TableSources.Select(static source =>
+            $"source:{source.SyntaxTableReferenceId}:{source.ExposedName}:{source.SqlIdentifier}:{source.Rowset.Id}"));
+        lines.AddRange(result.ColumnReferences.Select(static reference =>
+            $"column:{reference.SyntaxColumnReferenceId}:{string.Join(".", reference.IdentifierParts)}:{reference.ResolvedColumn.Id}:{reference.ResolvedTableSource.SyntaxTableReferenceId}"));
+        return string.Join(Environment.NewLine, lines);
     }
 
     [Fact]

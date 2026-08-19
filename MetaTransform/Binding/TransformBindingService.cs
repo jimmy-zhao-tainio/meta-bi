@@ -6,6 +6,30 @@ namespace MetaTransform.Binding;
 
 public sealed class TransformBindingService
 {
+    public IReadOnlyList<TransformBindingResult> BindTransforms(
+        MetaTransformScriptModel model,
+        IEnumerable<TransformScript> transformScripts,
+        MetaSchemaModel sourceSchema)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentNullException.ThrowIfNull(transformScripts);
+        ArgumentNullException.ThrowIfNull(sourceSchema);
+
+        var context = new TransformBindingContext(model, sourceSchema);
+        return transformScripts.Select(context.Bind).ToArray();
+    }
+
+    public IReadOnlyList<TransformBindingResult> BindTransforms(
+        MetaTransformScriptModel model,
+        IEnumerable<TransformScript> transformScripts)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentNullException.ThrowIfNull(transformScripts);
+
+        var context = new TransformBindingContext(model);
+        return transformScripts.Select(context.Bind).ToArray();
+    }
+
     public MetaTransformBindingModel BindSingleTransformModel(
         MetaTransformScriptModel model,
         MetaSchemaModel sourceSchema)
