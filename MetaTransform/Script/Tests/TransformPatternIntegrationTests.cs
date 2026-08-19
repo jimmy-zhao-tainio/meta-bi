@@ -68,6 +68,23 @@ public sealed class TransformPatternIntegrationTests
     }
 
     [Fact]
+    public void EmptyPlaceholderValue_IsAValidScalarValue()
+    {
+        var patternService = new TransformPatternAuthoringService();
+        var instanceService = new TransformPatternInstanceAuthoringService();
+        var patterns = patternService.CreateWorkspace();
+        var instances = instanceService.CreateWorkspace();
+        patternService.AddPattern(patterns, "optional-fragment", "Optional fragment", null, "SELECT 1$(suffix);");
+        instanceService.AddInstance(instances, patterns, "without-suffix", "WithoutSuffix", "optional-fragment");
+        instanceService.SetPlaceholderValue(instances, patterns, "without-suffix", "suffix", string.Empty);
+
+        var script = Assert.Single(
+            TransformPatternToSqlScriptConverter.Convert(patterns, instances).SqlScriptList);
+
+        Assert.Equal("SELECT 1;", script.SqlText);
+    }
+
+    [Fact]
     public void SetPlaceholderValue_ReplacesTheExistingScalarValue()
     {
         var patternService = new TransformPatternAuthoringService();
@@ -100,14 +117,14 @@ public sealed class TransformPatternIntegrationTests
     }
 
     [Fact]
-    public void MultipleScalarBindingsForOnePlaceholder_AreRejectedBySanctionedWeave()
+    public void MultipleScalarValuesForOnePlaceholder_AreRejectedBySanctionedWeave()
     {
         var (patterns, instances) = CreateInsertPattern();
         var holder = instances.TransformPatternInstancePlaceholderList.Single(candidate =>
             candidate.TransformPatternPlaceholderId.EndsWith(":target", StringComparison.Ordinal));
         instances.TransformPatternInstancePlaceholderList.Add(new MTPI.TransformPatternInstancePlaceholder
         {
-            Id = "duplicate-target-binding",
+            Id = "duplicate-target-value",
             SqlText = "[dbo].[OtherCustomer]",
             TransformPatternInstance = holder.TransformPatternInstance,
             TransformPatternPlaceholderId = holder.TransformPatternPlaceholderId,
@@ -162,6 +179,20 @@ public sealed class TransformPatternIntegrationTests
             () => TransformPatternToSqlScriptConverter.Convert(patterns, instances));
 
         Assert.Contains("MWTP005", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void PlaceholderHolderWithoutScalarValue_IsRejectedBySanctionedWeave()
+    {
+        var (patterns, instances) = CreateInsertPattern();
+        var holder = instances.TransformPatternInstancePlaceholderList.Single(candidate =>
+            candidate.TransformPatternPlaceholderId.EndsWith(":source", StringComparison.Ordinal));
+        holder.SqlText = null;
+
+        var exception = Assert.Throws<InvalidOperationException>(
+            () => TransformPatternToSqlScriptConverter.Convert(patterns, instances));
+
+        Assert.Contains("MWTP008", exception.Message, StringComparison.Ordinal);
     }
 
     [Fact]

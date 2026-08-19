@@ -148,7 +148,7 @@ public sealed partial class TransformPatternAuthoringService
 
             FlushText(items, text);
             var markerStart = index;
-            var markerEnd = FindMarkerEnd(patternText, markerStart + 2);
+            var markerEnd = patternText.IndexOf(')', markerStart + 2);
             if (markerEnd < 0)
             {
                 throw new InvalidOperationException(
@@ -176,32 +176,6 @@ public sealed partial class TransformPatternAuthoringService
         }
 
         return new ParsedPattern(items, placeholders);
-    }
-
-    private static int FindMarkerEnd(string source, int start)
-    {
-        var inString = false;
-        for (var index = start; index < source.Length; index++)
-        {
-            if (source[index] == '\'')
-            {
-                if (inString && index + 1 < source.Length && source[index + 1] == '\'')
-                {
-                    index++;
-                    continue;
-                }
-
-                inString = !inString;
-                continue;
-            }
-
-            if (source[index] == ')' && !inString)
-            {
-                return index;
-            }
-        }
-
-        return -1;
     }
 
     private static void FlushText(List<ParsedItem> items, StringBuilder text)

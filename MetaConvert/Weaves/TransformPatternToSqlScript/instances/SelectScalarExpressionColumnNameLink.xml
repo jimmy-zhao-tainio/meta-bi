@@ -73,6 +73,10 @@
     <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:72" IdentifierOrValueExpressionId="IdentifierOrValueExpression:72" SelectScalarExpressionId="SelectScalarExpression:75" />
     <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:73" IdentifierOrValueExpressionId="IdentifierOrValueExpression:73" SelectScalarExpressionId="SelectScalarExpression:76" />
     <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:74" IdentifierOrValueExpressionId="IdentifierOrValueExpression:74" SelectScalarExpressionId="SelectScalarExpression:77" />
+    <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:75" IdentifierOrValueExpressionId="IdentifierOrValueExpression:75" SelectScalarExpressionId="SelectScalarExpression:78" />
+    <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:76" IdentifierOrValueExpressionId="IdentifierOrValueExpression:76" SelectScalarExpressionId="SelectScalarExpression:79" />
+    <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:77" IdentifierOrValueExpressionId="IdentifierOrValueExpression:77" SelectScalarExpressionId="SelectScalarExpression:80" />
+    <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:78" IdentifierOrValueExpressionId="IdentifierOrValueExpression:78" SelectScalarExpressionId="SelectScalarExpression:81" />
     <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:8" IdentifierOrValueExpressionId="IdentifierOrValueExpression:8" SelectScalarExpressionId="SelectScalarExpression:11" />
     <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:9" IdentifierOrValueExpressionId="IdentifierOrValueExpression:9" SelectScalarExpressionId="SelectScalarExpression:12" />
   </SelectScalarExpressionColumnNameLinkList>

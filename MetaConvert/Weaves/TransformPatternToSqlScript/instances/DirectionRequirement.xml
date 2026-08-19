@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <DirectionRequirementList>
-    <DirectionRequirement Id="forward/BindingCoverage" DirectionId="forward" SelectStatementId="SelectStatement:5">
+    <DirectionRequirement Id="forward/PlaceholderCoverage" DirectionId="forward" SelectStatementId="SelectStatement:5">
       <Code>MWTP005</Code>
       <Message>Every referenced placeholder must have exactly one scalar instance value, and every instance value must be used by its pattern.</Message>
     </DirectionRequirement>
@@ -24,6 +24,10 @@
     <DirectionRequirement Id="forward/PatternResolution" DirectionId="forward" SelectStatementId="SelectStatement:10">
       <Code>MWTP007</Code>
       <Message>Every transform-pattern instance must identify a pattern in the supplied MetaTransformPattern workspace.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/PlaceholderValues" DirectionId="forward" SelectStatementId="SelectStatement:12">
+      <Code>MWTP008</Code>
+      <Message>Every placeholder holder must carry one scalar SQL fragment; an empty fragment is valid.</Message>
     </DirectionRequirement>
   </DirectionRequirementList>
 </MetaWeave>

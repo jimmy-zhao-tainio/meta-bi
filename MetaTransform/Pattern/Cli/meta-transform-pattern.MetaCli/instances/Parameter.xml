@@ -46,26 +46,6 @@
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-clear-binding-instance" ValueShapeId="shape-text">
-      <Description>Transform-pattern instance identity.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>instance</Name>
-    </Parameter>
-    <Parameter Id="param-clear-binding-pattern-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformPattern workspace used to resolve the placeholder.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>pattern-workspace</Name>
-    </Parameter>
-    <Parameter Id="param-clear-binding-placeholder" ValueShapeId="shape-text">
-      <Description>Placeholder name or stable identity.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>placeholder</Name>
-    </Parameter>
-    <Parameter Id="param-clear-binding-workspace" ValueShapeId="shape-path">
-      <Description>MetaTransformPatternInstance workspace. Defaults to the current directory.</Description>
-      <IsRequired>false</IsRequired>
-      <Name>workspace</Name>
-    </Parameter>
     <Parameter Id="param-create-connection-env" ValueShapeId="shape-text">
       <Description>Environment variable containing the SQL workspace connection string.</Description>
       <IsRequired>false</IsRequired>
@@ -116,22 +96,22 @@
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
-    <Parameter Id="param-set-binding-instance" ValueShapeId="shape-text">
+    <Parameter Id="param-set-placeholder-instance" ValueShapeId="shape-text">
       <Description>Transform-pattern instance identity.</Description>
       <IsRequired>true</IsRequired>
       <Name>instance</Name>
     </Parameter>
-    <Parameter Id="param-set-binding-pattern-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-set-placeholder-pattern-workspace" ValueShapeId="shape-path">
       <Description>MetaTransformPattern workspace used to resolve the placeholder.</Description>
       <IsRequired>true</IsRequired>
       <Name>pattern-workspace</Name>
     </Parameter>
-    <Parameter Id="param-set-binding-placeholder" ValueShapeId="shape-text">
+    <Parameter Id="param-set-placeholder-placeholder" ValueShapeId="shape-text">
       <Description>Placeholder name or stable identity.</Description>
       <IsRequired>true</IsRequired>
       <Name>placeholder</Name>
     </Parameter>
-    <Parameter Id="param-set-binding-workspace" ValueShapeId="shape-path">
+    <Parameter Id="param-set-placeholder-workspace" ValueShapeId="shape-path">
       <Description>MetaTransformPatternInstance workspace. Defaults to the current directory.</Description>
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>

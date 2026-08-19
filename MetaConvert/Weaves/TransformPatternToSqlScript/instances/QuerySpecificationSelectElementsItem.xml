@@ -226,8 +226,20 @@
     <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:77" QuerySpecificationId="QuerySpecification:32" SelectElementId="SelectElement:77">
       <Ordinal>2</Ordinal>
     </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78" QuerySpecificationId="QuerySpecification:33" SelectElementId="SelectElement:78">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:79" QuerySpecificationId="QuerySpecification:33" SelectElementId="SelectElement:79">
+      <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
     <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:8" QuerySpecificationId="QuerySpecification:3" SelectElementId="SelectElement:8">
       <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:80" QuerySpecificationId="QuerySpecification:33" SelectElementId="SelectElement:80">
+      <Ordinal>2</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:81" QuerySpecificationId="QuerySpecification:33" SelectElementId="SelectElement:81">
+      <Ordinal>3</Ordinal>
     </QuerySpecificationSelectElementsItem>
     <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:9" QuerySpecificationId="QuerySpecification:3" SelectElementId="SelectElement:9">
       <Ordinal>2</Ordinal>

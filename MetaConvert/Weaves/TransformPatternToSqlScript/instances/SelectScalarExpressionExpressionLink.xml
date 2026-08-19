@@ -76,7 +76,11 @@
     <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:75" ScalarExpressionId="ScalarExpression:188" SelectScalarExpressionId="SelectScalarExpression:75" />
     <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:76" ScalarExpressionId="ScalarExpression:189" SelectScalarExpressionId="SelectScalarExpression:76" />
     <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:77" ScalarExpressionId="ScalarExpression:190" SelectScalarExpressionId="SelectScalarExpression:77" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:78" ScalarExpressionId="ScalarExpression:191" SelectScalarExpressionId="SelectScalarExpression:78" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:79" ScalarExpressionId="ScalarExpression:192" SelectScalarExpressionId="SelectScalarExpression:79" />
     <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:8" ScalarExpressionId="ScalarExpression:16" SelectScalarExpressionId="SelectScalarExpression:8" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:80" ScalarExpressionId="ScalarExpression:193" SelectScalarExpressionId="SelectScalarExpression:80" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:81" ScalarExpressionId="ScalarExpression:194" SelectScalarExpressionId="SelectScalarExpression:81" />
     <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:9" ScalarExpressionId="ScalarExpression:17" SelectScalarExpressionId="SelectScalarExpression:9" />
   </SelectScalarExpressionExpressionLinkList>
 </MetaWeave>

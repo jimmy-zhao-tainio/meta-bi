@@ -28,18 +28,6 @@
     <OptionToken Id="token-add-pattern-workspace" OptionId="opt-add-pattern-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-clear-binding-instance" OptionId="opt-clear-binding-instance">
-      <Token>--instance</Token>
-    </OptionToken>
-    <OptionToken Id="token-clear-binding-pattern-workspace" OptionId="opt-clear-binding-pattern-workspace">
-      <Token>--pattern-workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-clear-binding-placeholder" OptionId="opt-clear-binding-placeholder">
-      <Token>--placeholder</Token>
-    </OptionToken>
-    <OptionToken Id="token-clear-binding-workspace" OptionId="opt-clear-binding-workspace">
-      <Token>--workspace</Token>
-    </OptionToken>
     <OptionToken Id="token-create-connection-env" OptionId="opt-create-connection-env">
       <Token>--connection-env</Token>
     </OptionToken>
@@ -70,16 +58,16 @@
     <OptionToken Id="token-emit-pattern-workspace" OptionId="opt-emit-pattern-workspace">
       <Token>--workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-set-binding-instance" OptionId="opt-set-binding-instance">
+    <OptionToken Id="token-set-placeholder-instance" OptionId="opt-set-placeholder-instance">
       <Token>--instance</Token>
     </OptionToken>
-    <OptionToken Id="token-set-binding-pattern-workspace" OptionId="opt-set-binding-pattern-workspace">
+    <OptionToken Id="token-set-placeholder-pattern-workspace" OptionId="opt-set-placeholder-pattern-workspace">
       <Token>--pattern-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-set-binding-placeholder" OptionId="opt-set-binding-placeholder">
+    <OptionToken Id="token-set-placeholder-placeholder" OptionId="opt-set-placeholder-placeholder">
       <Token>--placeholder</Token>
     </OptionToken>
-    <OptionToken Id="token-set-binding-workspace" OptionId="opt-set-binding-workspace">
+    <OptionToken Id="token-set-placeholder-workspace" OptionId="opt-set-placeholder-workspace">
       <Token>--workspace</Token>
     </OptionToken>
     <OptionToken Id="token-show-instances-pattern-workspace" OptionId="opt-show-instances-pattern-workspace">

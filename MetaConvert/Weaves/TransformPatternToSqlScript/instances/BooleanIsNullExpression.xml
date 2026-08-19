@@ -13,5 +13,8 @@
     <BooleanIsNullExpression Id="BooleanIsNullExpression:4" BooleanExpressionId="BooleanExpression:70">
       <IsNot></IsNot>
     </BooleanIsNullExpression>
+    <BooleanIsNullExpression Id="BooleanIsNullExpression:5" BooleanExpressionId="BooleanExpression:71">
+      <IsNot></IsNot>
+    </BooleanIsNullExpression>
   </BooleanIsNullExpressionList>
 </MetaWeave>

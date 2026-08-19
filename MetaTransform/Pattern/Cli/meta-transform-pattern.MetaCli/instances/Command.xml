@@ -11,11 +11,6 @@
       <Name>add-pattern</Name>
       <Token>add-pattern</Token>
     </Command>
-    <Command Id="cmd-clear-binding" ApplicationId="app-meta-transform-pattern">
-      <Description>Set one instance placeholder to empty SQL text.</Description>
-      <Name>clear-binding</Name>
-      <Token>clear-binding</Token>
-    </Command>
     <Command Id="cmd-create" ApplicationId="app-meta-transform-pattern">
       <Description>Create an empty MetaTransformPattern workspace.</Description>
       <Name>create</Name>
@@ -36,10 +31,10 @@
       <Name>help</Name>
       <Token>help</Token>
     </Command>
-    <Command Id="cmd-set-binding" ApplicationId="app-meta-transform-pattern">
+    <Command Id="cmd-set-placeholder" ApplicationId="app-meta-transform-pattern">
       <Description>Replace one instance placeholder with a SQL fragment read from standard input.</Description>
-      <Name>set-binding</Name>
-      <Token>set-binding</Token>
+      <Name>set-placeholder</Name>
+      <Token>set-placeholder</Token>
     </Command>
     <Command Id="cmd-show" ApplicationId="app-meta-transform-pattern">
       <Description>Show reusable transform-pattern definitions.</Description>

@@ -60,8 +60,7 @@ internal static class Program
                 [MetaCliWorkspace.Create("output", "xml", "csharp", "sql")],
                 RunCreateInstanceWorkspace)
             .Bind("exec-add-instance", patternWorkspace, RunAddInstance)
-            .Bind("exec-set-binding", patternWorkspace, RunSetBinding)
-            .Bind("exec-clear-binding", patternWorkspace, RunClearBinding)
+            .Bind("exec-set-placeholder", patternWorkspace, RunSetPlaceholder)
             .Bind("exec-show-instances", patternWorkspace, RunShowInstances);
 
         runtime.Run(args);
@@ -72,8 +71,7 @@ internal static class Program
         args.Count > 0 && args[0] is
             "create-instance-workspace" or
             "add-instance" or
-            "set-binding" or
-            "clear-binding" or
+            "set-placeholder" or
             "show-instances";
 
     private static string CommandWorkspacePath =>
@@ -151,7 +149,7 @@ internal static class Program
         Presenter.WriteOk($"Transform-pattern instance '{instance.Id}' added");
     }
 
-    private static async Task RunSetBinding(
+    private static async Task RunSetPlaceholder(
         MetaCliInvocation invocation,
         MTPI.MetaTransformPatternInstanceModel model,
         MetaCliWorkspaces workspaces)
@@ -164,20 +162,6 @@ internal static class Program
             invocation.Required("placeholder"),
             MetaCliStandardInput.ReadToEnd());
         Presenter.WriteOk($"Placeholder '{holder.TransformPatternPlaceholderId}' set");
-    }
-
-    private static async Task RunClearBinding(
-        MetaCliInvocation invocation,
-        MTPI.MetaTransformPatternInstanceModel model,
-        MetaCliWorkspaces workspaces)
-    {
-        var patterns = await RequirePatterns(workspaces).ConfigureAwait(false);
-        var holder = InstanceService.ClearPlaceholder(
-            model,
-            patterns,
-            invocation.Required("instance"),
-            invocation.Required("placeholder"));
-        Presenter.WriteOk($"Placeholder '{holder.TransformPatternPlaceholderId}' cleared");
     }
 
     private static void RunShowPatterns(

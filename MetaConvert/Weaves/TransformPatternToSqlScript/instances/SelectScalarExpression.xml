@@ -76,7 +76,11 @@
     <SelectScalarExpression Id="SelectScalarExpression:75" SelectElementId="SelectElement:75" />
     <SelectScalarExpression Id="SelectScalarExpression:76" SelectElementId="SelectElement:76" />
     <SelectScalarExpression Id="SelectScalarExpression:77" SelectElementId="SelectElement:77" />
+    <SelectScalarExpression Id="SelectScalarExpression:78" SelectElementId="SelectElement:78" />
+    <SelectScalarExpression Id="SelectScalarExpression:79" SelectElementId="SelectElement:79" />
     <SelectScalarExpression Id="SelectScalarExpression:8" SelectElementId="SelectElement:8" />
+    <SelectScalarExpression Id="SelectScalarExpression:80" SelectElementId="SelectElement:80" />
+    <SelectScalarExpression Id="SelectScalarExpression:81" SelectElementId="SelectElement:81" />
     <SelectScalarExpression Id="SelectScalarExpression:9" SelectElementId="SelectElement:9" />
   </SelectScalarExpressionList>
 </MetaWeave>

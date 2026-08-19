@@ -75,17 +75,17 @@ meta-transform-pattern add-instance \
   --name LoadCustomer \
   --pattern insert-select
 
-echo [dbo].[Customer] | meta-transform-pattern set-binding \
+echo [dbo].[Customer] | meta-transform-pattern set-placeholder \
   --workspace <instance-workspace> \
   --pattern-workspace <pattern-workspace> \
   --instance load-customer \
   --placeholder target
 ```
 
-`set-binding` replaces a placeholder with the SQL fragment read from standard
-input. `clear-binding` sets that scalar fragment to empty text. `show` reports reusable
-definitions; `show-instances` reports concrete instances and placeholder
-coverage.
+`set-placeholder` replaces a placeholder with the SQL fragment read from
+standard input. Empty input deliberately binds the placeholder to an empty SQL
+fragment. `show` reports reusable definitions; `show-instances` reports
+concrete instances and placeholder coverage.
 
 Materialization takes both source workspaces:
 

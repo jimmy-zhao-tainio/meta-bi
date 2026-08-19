@@ -211,6 +211,18 @@
     <ColumnReferenceExpression Id="ColumnReferenceExpression:161" PrimaryExpressionId="PrimaryExpression:190">
       <ColumnType>Regular</ColumnType>
     </ColumnReferenceExpression>
+    <ColumnReferenceExpression Id="ColumnReferenceExpression:162" PrimaryExpressionId="PrimaryExpression:191">
+      <ColumnType>Regular</ColumnType>
+    </ColumnReferenceExpression>
+    <ColumnReferenceExpression Id="ColumnReferenceExpression:163" PrimaryExpressionId="PrimaryExpression:192">
+      <ColumnType>Regular</ColumnType>
+    </ColumnReferenceExpression>
+    <ColumnReferenceExpression Id="ColumnReferenceExpression:164" PrimaryExpressionId="PrimaryExpression:193">
+      <ColumnType>Regular</ColumnType>
+    </ColumnReferenceExpression>
+    <ColumnReferenceExpression Id="ColumnReferenceExpression:165" PrimaryExpressionId="PrimaryExpression:195">
+      <ColumnType>Regular</ColumnType>
+    </ColumnReferenceExpression>
     <ColumnReferenceExpression Id="ColumnReferenceExpression:17" PrimaryExpressionId="PrimaryExpression:19">
       <ColumnType>Regular</ColumnType>
     </ColumnReferenceExpression>

@@ -4,6 +4,7 @@
     <StatementWithCtes Id="StatementWithCtes:1" TSqlStatementId="TSqlStatement:1" />
     <StatementWithCtes Id="StatementWithCtes:10" TSqlStatementId="TSqlStatement:10" />
     <StatementWithCtes Id="StatementWithCtes:11" TSqlStatementId="TSqlStatement:11" />
+    <StatementWithCtes Id="StatementWithCtes:12" TSqlStatementId="TSqlStatement:12" />
     <StatementWithCtes Id="StatementWithCtes:2" TSqlStatementId="TSqlStatement:2" />
     <StatementWithCtes Id="StatementWithCtes:3" TSqlStatementId="TSqlStatement:3" />
     <StatementWithCtes Id="StatementWithCtes:4" TSqlStatementId="TSqlStatement:4" />

@@ -23,7 +23,9 @@ public sealed class MetaTransformPatternCliTests
         Assert.Contains("create-instance-workspace", result.Output);
         Assert.Contains("add-instance", result.Output);
         Assert.Contains("show-instances", result.Output);
-        Assert.Contains("set-binding", result.Output);
+        Assert.Contains("set-placeholder", result.Output);
+        Assert.DoesNotContain("set-binding", result.Output);
+        Assert.DoesNotContain("clear-binding", result.Output);
         Assert.DoesNotContain("add-binding-value", result.Output);
         Assert.DoesNotContain("add-application", result.Output);
     }
@@ -49,10 +51,18 @@ public sealed class MetaTransformPatternCliTests
 
             Assert.Equal(0, RunCli(
                 $"add-instance --workspace \"{instanceWorkspace}\" --pattern-workspace \"{patternWorkspace}\" --id load-customer --name LoadCustomer --pattern insert-select").ExitCode);
-            SetBinding(patternWorkspace, instanceWorkspace, "target", "[dbo].[Customer]");
-            SetBinding(patternWorkspace, instanceWorkspace, "target-fields", "[CustomerId], [Name]");
-            SetBinding(patternWorkspace, instanceWorkspace, "source-expressions", "[s].[CustomerId], [s].[Name]");
-            SetBinding(patternWorkspace, instanceWorkspace, "source", "[stage].[Customer] AS [s]");
+            SetPlaceholder(patternWorkspace, instanceWorkspace, "target", string.Empty);
+            var emptyInstances = TypedWorkspaceModelMapper.Load<MTPI.MetaTransformPatternInstanceModel>(
+                instanceWorkspace,
+                searchUpward: false);
+            Assert.Equal(
+                string.Empty,
+                Assert.Single(emptyInstances.TransformPatternInstancePlaceholderList).SqlText);
+
+            SetPlaceholder(patternWorkspace, instanceWorkspace, "target", "[dbo].[Customer]");
+            SetPlaceholder(patternWorkspace, instanceWorkspace, "target-fields", "[CustomerId], [Name]");
+            SetPlaceholder(patternWorkspace, instanceWorkspace, "source-expressions", "[s].[CustomerId], [s].[Name]");
+            SetPlaceholder(patternWorkspace, instanceWorkspace, "source", "[stage].[Customer] AS [s]");
 
             var showPatterns = RunCli($"show --workspace \"{patternWorkspace}\"");
             Assert.Equal(0, showPatterns.ExitCode);
@@ -111,14 +121,17 @@ public sealed class MetaTransformPatternCliTests
         }
     }
 
-    private static void SetBinding(
+    private static void SetPlaceholder(
         string patternWorkspace,
         string instanceWorkspace,
         string placeholder,
-        string value) =>
-        Assert.Equal(0, RunCli(
-            $"set-binding --workspace \"{instanceWorkspace}\" --pattern-workspace \"{patternWorkspace}\" --instance load-customer --placeholder {placeholder}",
-            value).ExitCode);
+        string value)
+    {
+        var result = RunCli(
+            $"set-placeholder --workspace \"{instanceWorkspace}\" --pattern-workspace \"{patternWorkspace}\" --instance load-customer --placeholder {placeholder}",
+            value);
+        Assert.True(result.ExitCode == 0, result.Output);
+    }
 
     private static (int ExitCode, string Output) RunCli(
         string arguments,

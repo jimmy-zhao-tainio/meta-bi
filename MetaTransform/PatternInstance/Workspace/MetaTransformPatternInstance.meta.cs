@@ -14,7 +14,7 @@ public sealed partial class TransformPatternInstance
 public sealed partial class TransformPatternInstancePlaceholder
 {
     public string Id { get; set; } = null !;
-    public string SqlText { get; set; } = null !;
+    public string? SqlText { get; set; }
     public string TransformPatternPlaceholderId { get; set; } = null !;
     public TransformPatternInstance TransformPatternInstance { get; set; } = null !;
 }

@@ -22,6 +22,9 @@
     <Literal Id="Literal:15" ValueExpressionId="ValueExpression:15">
       <Value>1</Value>
     </Literal>
+    <Literal Id="Literal:16" ValueExpressionId="ValueExpression:16">
+      <Value>missing-placeholder-value</Value>
+    </Literal>
     <Literal Id="Literal:2" ValueExpressionId="ValueExpression:2">
       <Value></Value>
     </Literal>

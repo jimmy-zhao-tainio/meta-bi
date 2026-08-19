@@ -56,21 +56,6 @@ public sealed class TransformPatternInstanceAuthoringService
         return placeholder;
     }
 
-    public MTPI.TransformPatternInstancePlaceholder ClearPlaceholder(
-        MTPI.MetaTransformPatternInstanceModel instanceModel,
-        MTP.MetaTransformPatternModel patternModel,
-        string instanceId,
-        string placeholderIdentity)
-    {
-        var placeholder = RequireInstancePlaceholder(
-            instanceModel,
-            patternModel,
-            instanceId,
-            placeholderIdentity);
-        placeholder.SqlText = string.Empty;
-        return placeholder;
-    }
-
     public MTPI.TransformPatternInstance RequireInstance(
         MTPI.MetaTransformPatternInstanceModel model,
         string instanceId)

@@ -79,6 +79,9 @@
     <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:32" FromClauseId="FromClause:32" TableReferenceId="TableReference:74">
       <Ordinal>0</Ordinal>
     </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:33" FromClauseId="FromClause:33" TableReferenceId="TableReference:75">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
     <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:4" FromClauseId="FromClause:4" TableReferenceId="TableReference:10">
       <Ordinal>0</Ordinal>
     </FromClauseTableReferencesItem>

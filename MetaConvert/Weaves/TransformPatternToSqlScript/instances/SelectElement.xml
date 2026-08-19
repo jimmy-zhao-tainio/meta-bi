@@ -76,7 +76,11 @@
     <SelectElement Id="SelectElement:75" />
     <SelectElement Id="SelectElement:76" />
     <SelectElement Id="SelectElement:77" />
+    <SelectElement Id="SelectElement:78" />
+    <SelectElement Id="SelectElement:79" />
     <SelectElement Id="SelectElement:8" />
+    <SelectElement Id="SelectElement:80" />
+    <SelectElement Id="SelectElement:81" />
     <SelectElement Id="SelectElement:9" />
   </SelectElementList>
 </MetaWeave>

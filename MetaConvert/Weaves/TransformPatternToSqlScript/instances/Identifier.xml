@@ -1949,13 +1949,73 @@
       <QuoteType>NotQuoted</QuoteType>
       <Value>script</Value>
     </Identifier>
+    <Identifier Id="Identifier:538">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>holder</Value>
+    </Identifier>
+    <Identifier Id="Identifier:539">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Id</Value>
+    </Identifier>
     <Identifier Id="Identifier:54">
       <QuoteType>NotQuoted</QuoteType>
       <Value>pattern</Value>
     </Identifier>
+    <Identifier Id="Identifier:540">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>PlaceholderHolderId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:541">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>holder</Value>
+    </Identifier>
+    <Identifier Id="Identifier:542">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformPatternInstanceId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:543">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>InstanceId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:544">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>holder</Value>
+    </Identifier>
+    <Identifier Id="Identifier:545">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformPatternPlaceholderId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:546">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>PlaceholderId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:547">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>FailureReason</Value>
+    </Identifier>
+    <Identifier Id="Identifier:548">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>instance</Value>
+    </Identifier>
+    <Identifier Id="Identifier:549">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformPatternInstancePlaceholder</Value>
+    </Identifier>
     <Identifier Id="Identifier:55">
       <QuoteType>NotQuoted</QuoteType>
       <Value>TransformPatternItem</Value>
+    </Identifier>
+    <Identifier Id="Identifier:550">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>holder</Value>
+    </Identifier>
+    <Identifier Id="Identifier:551">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>holder</Value>
+    </Identifier>
+    <Identifier Id="Identifier:552">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SqlText</Value>
     </Identifier>
     <Identifier Id="Identifier:56">
       <QuoteType>NotQuoted</QuoteType>

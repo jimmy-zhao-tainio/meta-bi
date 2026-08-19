@@ -10,10 +10,6 @@
     <Option Id="opt-add-pattern-id" ParameterId="param-add-pattern-id" />
     <Option Id="opt-add-pattern-name" ParameterId="param-add-pattern-name" />
     <Option Id="opt-add-pattern-workspace" ParameterId="param-add-pattern-workspace" />
-    <Option Id="opt-clear-binding-instance" ParameterId="param-clear-binding-instance" />
-    <Option Id="opt-clear-binding-pattern-workspace" ParameterId="param-clear-binding-pattern-workspace" />
-    <Option Id="opt-clear-binding-placeholder" ParameterId="param-clear-binding-placeholder" />
-    <Option Id="opt-clear-binding-workspace" ParameterId="param-clear-binding-workspace" />
     <Option Id="opt-create-connection-env" ParameterId="param-create-connection-env" />
     <Option Id="opt-create-csharp" ParameterId="param-create-csharp" />
     <Option Id="opt-create-instance-connection-env" ParameterId="param-create-instance-connection-env" />
@@ -24,10 +20,10 @@
     <Option Id="opt-create-xml" ParameterId="param-create-xml" />
     <Option Id="opt-emit-pattern-id" ParameterId="param-emit-pattern-id" />
     <Option Id="opt-emit-pattern-workspace" ParameterId="param-emit-pattern-workspace" />
-    <Option Id="opt-set-binding-instance" ParameterId="param-set-binding-instance" />
-    <Option Id="opt-set-binding-pattern-workspace" ParameterId="param-set-binding-pattern-workspace" />
-    <Option Id="opt-set-binding-placeholder" ParameterId="param-set-binding-placeholder" />
-    <Option Id="opt-set-binding-workspace" ParameterId="param-set-binding-workspace" />
+    <Option Id="opt-set-placeholder-instance" ParameterId="param-set-placeholder-instance" />
+    <Option Id="opt-set-placeholder-pattern-workspace" ParameterId="param-set-placeholder-pattern-workspace" />
+    <Option Id="opt-set-placeholder-placeholder" ParameterId="param-set-placeholder-placeholder" />
+    <Option Id="opt-set-placeholder-workspace" ParameterId="param-set-placeholder-workspace" />
     <Option Id="opt-show-instances-pattern-workspace" ParameterId="param-show-instances-pattern-workspace" />
     <Option Id="opt-show-instances-workspace" ParameterId="param-show-instances-workspace" />
     <Option Id="opt-show-workspace" ParameterId="param-show-workspace" />
