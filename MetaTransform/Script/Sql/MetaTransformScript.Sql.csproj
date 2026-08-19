@@ -10,6 +10,7 @@
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspaces\MetaTransformScript\MetaTransformScript.meta.cs" Link="MetaTransformScript.meta.cs" />
     <ProjectReference Include="..\..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
+    <ProjectReference Include="..\..\..\MetaSqlScript\Core\MetaSqlScript.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionTokenList>
+    <OptionToken Id="token-add-instance-id" OptionId="opt-add-instance-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-instance-name" OptionId="opt-add-instance-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-instance-pattern" OptionId="opt-add-instance-pattern">
+      <Token>--pattern</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-instance-pattern-workspace" OptionId="opt-add-instance-pattern-workspace">
+      <Token>--pattern-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-instance-workspace" OptionId="opt-add-instance-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-pattern-description" OptionId="opt-add-pattern-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-pattern-id" OptionId="opt-add-pattern-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-pattern-name" OptionId="opt-add-pattern-name">
+      <Token>--name</Token>
+    </OptionToken>
+    <OptionToken Id="token-add-pattern-workspace" OptionId="opt-add-pattern-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-clear-binding-instance" OptionId="opt-clear-binding-instance">
+      <Token>--instance</Token>
+    </OptionToken>
+    <OptionToken Id="token-clear-binding-pattern-workspace" OptionId="opt-clear-binding-pattern-workspace">
+      <Token>--pattern-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-clear-binding-placeholder" OptionId="opt-clear-binding-placeholder">
+      <Token>--placeholder</Token>
+    </OptionToken>
+    <OptionToken Id="token-clear-binding-workspace" OptionId="opt-clear-binding-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-connection-env" OptionId="opt-create-connection-env">
+      <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-csharp" OptionId="opt-create-csharp">
+      <Token>--csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-instance-connection-env" OptionId="opt-create-instance-connection-env">
+      <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-instance-csharp" OptionId="opt-create-instance-csharp">
+      <Token>--csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-instance-sql" OptionId="opt-create-instance-sql">
+      <Token>--sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-instance-xml" OptionId="opt-create-instance-xml">
+      <Token>--xml</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-sql" OptionId="opt-create-sql">
+      <Token>--sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-xml" OptionId="opt-create-xml">
+      <Token>--xml</Token>
+    </OptionToken>
+    <OptionToken Id="token-emit-pattern-id" OptionId="opt-emit-pattern-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-emit-pattern-workspace" OptionId="opt-emit-pattern-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-set-binding-instance" OptionId="opt-set-binding-instance">
+      <Token>--instance</Token>
+    </OptionToken>
+    <OptionToken Id="token-set-binding-pattern-workspace" OptionId="opt-set-binding-pattern-workspace">
+      <Token>--pattern-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-set-binding-placeholder" OptionId="opt-set-binding-placeholder">
+      <Token>--placeholder</Token>
+    </OptionToken>
+    <OptionToken Id="token-set-binding-workspace" OptionId="opt-set-binding-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-show-instances-pattern-workspace" OptionId="opt-show-instances-pattern-workspace">
+      <Token>--pattern-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-show-instances-workspace" OptionId="opt-show-instances-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-show-workspace" OptionId="opt-show-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-update-pattern-id" OptionId="opt-update-pattern-id">
+      <Token>--id</Token>
+    </OptionToken>
+    <OptionToken Id="token-update-pattern-workspace" OptionId="opt-update-pattern-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+  </OptionTokenList>
+</MetaCli>

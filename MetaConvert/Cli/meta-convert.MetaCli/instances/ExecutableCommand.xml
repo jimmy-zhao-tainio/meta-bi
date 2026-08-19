@@ -10,6 +10,7 @@
     <ExecutableCommand Id="exec-raw-datavault-to-sql" CommandId="cmd-raw-datavault-to-sql" />
     <ExecutableCommand Id="exec-schema-to-raw-datavault" CommandId="cmd-schema-to-raw-datavault" />
     <ExecutableCommand Id="exec-sql-to-transform-script" CommandId="cmd-sql-to-transform-script" />
+    <ExecutableCommand Id="exec-transform-pattern-to-sql-script" CommandId="cmd-transform-pattern-to-sql-script" />
     <ExecutableCommand Id="exec-transform-script-to-sql" CommandId="cmd-transform-script-to-sql" />
   </ExecutableCommandList>
 </MetaCli>

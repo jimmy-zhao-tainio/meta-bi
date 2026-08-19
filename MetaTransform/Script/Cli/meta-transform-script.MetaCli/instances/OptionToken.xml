@@ -70,6 +70,24 @@
     <OptionToken Id="token-from-sql-files-workspace" OptionId="opt-from-sql-files-workspace">
       <Token>--workspace</Token>
     </OptionToken>
+    <OptionToken Id="token-from-sql-script-workspace-output-connection-env" OptionId="option-from-sql-script-workspace-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-script-workspace-output-csharp" OptionId="option-from-sql-script-workspace-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-script-workspace-output-sql" OptionId="option-from-sql-script-workspace-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-script-workspace-output-xml" OptionId="option-from-sql-script-workspace-output-xml">
+      <Token>--output-xml</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-script-workspace-source-workspace" OptionId="option-from-sql-script-workspace-source-workspace">
+      <Token>--source-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-from-sql-script-workspace-workspace" OptionId="option-from-sql-script-workspace-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
     <OptionToken Id="token-stored-procedure-add-contract-name" OptionId="opt-stored-procedure-add-contract-name">
       <Token>--name</Token>
     </OptionToken>

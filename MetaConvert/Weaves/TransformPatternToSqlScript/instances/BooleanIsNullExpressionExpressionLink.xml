@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanIsNullExpressionExpressionLinkList>
+    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:1" BooleanIsNullExpressionId="BooleanIsNullExpression:1" ScalarExpressionId="ScalarExpression:4" />
+    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:2" BooleanIsNullExpressionId="BooleanIsNullExpression:2" ScalarExpressionId="ScalarExpression:64" />
+    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:3" BooleanIsNullExpressionId="BooleanIsNullExpression:3" ScalarExpressionId="ScalarExpression:179" />
+    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:4" BooleanIsNullExpressionId="BooleanIsNullExpression:4" ScalarExpressionId="ScalarExpression:187" />
+  </BooleanIsNullExpressionExpressionLinkList>
+</MetaWeave>

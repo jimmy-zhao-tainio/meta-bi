@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandList>
+    <ExecutableCommand Id="exec-add-instance" CommandId="cmd-add-instance" />
+    <ExecutableCommand Id="exec-add-pattern" CommandId="cmd-add-pattern" />
+    <ExecutableCommand Id="exec-clear-binding" CommandId="cmd-clear-binding" />
+    <ExecutableCommand Id="exec-create" CommandId="cmd-create" />
+    <ExecutableCommand Id="exec-create-instance-workspace" CommandId="cmd-create-instance-workspace" />
+    <ExecutableCommand Id="exec-emit-pattern" CommandId="cmd-emit-pattern" />
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
+    <ExecutableCommand Id="exec-set-binding" CommandId="cmd-set-binding" />
+    <ExecutableCommand Id="exec-show" CommandId="cmd-show" />
+    <ExecutableCommand Id="exec-show-instances" CommandId="cmd-show-instances" />
+    <ExecutableCommand Id="exec-update-pattern" CommandId="cmd-update-pattern" />
+  </ExecutableCommandList>
+</MetaCli>

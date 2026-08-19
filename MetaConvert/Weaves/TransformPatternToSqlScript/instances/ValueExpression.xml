@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ValueExpressionList>
+    <ValueExpression Id="ValueExpression:1" PrimaryExpressionId="PrimaryExpression:8" />
+    <ValueExpression Id="ValueExpression:10" PrimaryExpressionId="PrimaryExpression:144" />
+    <ValueExpression Id="ValueExpression:11" PrimaryExpressionId="PrimaryExpression:153" />
+    <ValueExpression Id="ValueExpression:12" PrimaryExpressionId="PrimaryExpression:165" />
+    <ValueExpression Id="ValueExpression:13" PrimaryExpressionId="PrimaryExpression:167" />
+    <ValueExpression Id="ValueExpression:14" PrimaryExpressionId="PrimaryExpression:173" />
+    <ValueExpression Id="ValueExpression:15" PrimaryExpressionId="PrimaryExpression:182" />
+    <ValueExpression Id="ValueExpression:2" PrimaryExpressionId="PrimaryExpression:47" />
+    <ValueExpression Id="ValueExpression:3" PrimaryExpressionId="PrimaryExpression:57" />
+    <ValueExpression Id="ValueExpression:4" PrimaryExpressionId="PrimaryExpression:65" />
+    <ValueExpression Id="ValueExpression:5" PrimaryExpressionId="PrimaryExpression:68" />
+    <ValueExpression Id="ValueExpression:6" PrimaryExpressionId="PrimaryExpression:80" />
+    <ValueExpression Id="ValueExpression:7" PrimaryExpressionId="PrimaryExpression:84" />
+    <ValueExpression Id="ValueExpression:8" PrimaryExpressionId="PrimaryExpression:131" />
+    <ValueExpression Id="ValueExpression:9" PrimaryExpressionId="PrimaryExpression:141" />
+  </ValueExpressionList>
+</MetaWeave>

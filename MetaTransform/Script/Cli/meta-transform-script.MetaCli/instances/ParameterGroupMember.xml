@@ -13,5 +13,9 @@
     <ParameterGroupMember Id="member-from-sql-files-target-output-csharp" ParameterGroupId="group-from-sql-files-target" ParameterId="param-from-sql-files-output-csharp" PreviousMemberId="member-from-sql-files-target-output-xml" />
     <ParameterGroupMember Id="member-from-sql-files-target-output-sql" ParameterGroupId="group-from-sql-files-target" ParameterId="param-from-sql-files-output-sql" PreviousMemberId="member-from-sql-files-target-output-csharp" />
     <ParameterGroupMember Id="member-from-sql-files-target-output-xml" ParameterGroupId="group-from-sql-files-target" ParameterId="param-from-sql-files-output-xml" PreviousMemberId="member-from-sql-files-target-first" />
+    <ParameterGroupMember Id="member-from-sql-script-workspace-target-first" ParameterGroupId="group-from-sql-script-workspace-target" ParameterId="param-from-sql-script-workspace-workspace" />
+    <ParameterGroupMember Id="member-from-sql-script-workspace-target-output-csharp" ParameterGroupId="group-from-sql-script-workspace-target" ParameterId="param-from-sql-script-workspace-output-csharp" PreviousMemberId="member-from-sql-script-workspace-target-output-xml" />
+    <ParameterGroupMember Id="member-from-sql-script-workspace-target-output-sql" ParameterGroupId="group-from-sql-script-workspace-target" ParameterId="param-from-sql-script-workspace-output-sql" PreviousMemberId="member-from-sql-script-workspace-target-output-csharp" />
+    <ParameterGroupMember Id="member-from-sql-script-workspace-target-output-xml" ParameterGroupId="group-from-sql-script-workspace-target" ParameterId="param-from-sql-script-workspace-output-xml" PreviousMemberId="member-from-sql-script-workspace-target-first" />
   </ParameterGroupMemberList>
 </MetaCli>

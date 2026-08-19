@@ -45,5 +45,11 @@
     <Option Id="option-from-sql-files-output-csharp" ParameterId="param-from-sql-files-output-csharp" />
     <Option Id="option-from-sql-files-output-sql" ParameterId="param-from-sql-files-output-sql" />
     <Option Id="option-from-sql-files-output-xml" ParameterId="param-from-sql-files-output-xml" />
+    <Option Id="option-from-sql-script-workspace-output-connection-env" ParameterId="param-from-sql-script-workspace-output-connection-env" />
+    <Option Id="option-from-sql-script-workspace-output-csharp" ParameterId="param-from-sql-script-workspace-output-csharp" />
+    <Option Id="option-from-sql-script-workspace-output-sql" ParameterId="param-from-sql-script-workspace-output-sql" />
+    <Option Id="option-from-sql-script-workspace-output-xml" ParameterId="param-from-sql-script-workspace-output-xml" />
+    <Option Id="option-from-sql-script-workspace-source-workspace" ParameterId="param-from-sql-script-workspace-source-workspace" />
+    <Option Id="option-from-sql-script-workspace-workspace" ParameterId="param-from-sql-script-workspace-workspace" />
   </OptionList>
 </MetaCli>

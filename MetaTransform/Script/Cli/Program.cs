@@ -30,6 +30,7 @@ internal static class Program
             .BindTarget("exec-from-sql-file", OutputWorkspace(), handlers.RunFromSqlFileAsync)
             .BindTarget("exec-from-sql-files", OutputWorkspace(), handlers.RunFromSqlFilesAsync)
             .BindTarget("exec-from-sql-code", OutputWorkspace(), handlers.RunFromSqlCodeAsync)
+            .BindTarget("exec-from-sql-script-workspace", OutputWorkspace(), handlers.RunFromSqlScriptWorkspaceAsync)
             .Bind("exec-to-sql-path", (invocation, model) => RunAsync(() => handlers.RunToSqlPathAsync(invocation, model)))
             .Bind("exec-to-sql-code", (invocation, model) => handlers.RunToSqlCode(invocation, model))
             .Bind("exec-target-identifiers-from-pattern", handlers.RunTargetIdentifiersFromPattern)

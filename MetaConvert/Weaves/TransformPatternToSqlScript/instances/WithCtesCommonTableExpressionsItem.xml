@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <WithCtesCommonTableExpressionsItemList>
+    <WithCtesCommonTableExpressionsItem Id="WithCtesCommonTableExpressionsItem:1" CommonTableExpressionId="CommonTableExpression:1" WithCtesId="WithCtes:1">
+      <Ordinal>0</Ordinal>
+    </WithCtesCommonTableExpressionsItem>
+  </WithCtesCommonTableExpressionsItemList>
+</MetaWeave>

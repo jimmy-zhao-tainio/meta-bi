@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandParameterList>
+    <ExecutableCommandParameter Id="exec-add-instance:parameter:param-add-instance-id" ExecutableCommandId="exec-add-instance" ParameterId="param-add-instance-id" />
+    <ExecutableCommandParameter Id="exec-add-instance:parameter:param-add-instance-name" ExecutableCommandId="exec-add-instance" ParameterId="param-add-instance-name" />
+    <ExecutableCommandParameter Id="exec-add-instance:parameter:param-add-instance-pattern" ExecutableCommandId="exec-add-instance" ParameterId="param-add-instance-pattern" />
+    <ExecutableCommandParameter Id="exec-add-instance:parameter:param-add-instance-pattern-workspace" ExecutableCommandId="exec-add-instance" ParameterId="param-add-instance-pattern-workspace" />
+    <ExecutableCommandParameter Id="exec-add-instance:parameter:param-add-instance-workspace" ExecutableCommandId="exec-add-instance" ParameterId="param-add-instance-workspace" />
+    <ExecutableCommandParameter Id="exec-add-pattern:parameter:param-add-pattern-description" ExecutableCommandId="exec-add-pattern" ParameterId="param-add-pattern-description" />
+    <ExecutableCommandParameter Id="exec-add-pattern:parameter:param-add-pattern-id" ExecutableCommandId="exec-add-pattern" ParameterId="param-add-pattern-id" />
+    <ExecutableCommandParameter Id="exec-add-pattern:parameter:param-add-pattern-name" ExecutableCommandId="exec-add-pattern" ParameterId="param-add-pattern-name" />
+    <ExecutableCommandParameter Id="exec-add-pattern:parameter:param-add-pattern-workspace" ExecutableCommandId="exec-add-pattern" ParameterId="param-add-pattern-workspace" />
+    <ExecutableCommandParameter Id="exec-clear-binding:parameter:param-clear-binding-instance" ExecutableCommandId="exec-clear-binding" ParameterId="param-clear-binding-instance" />
+    <ExecutableCommandParameter Id="exec-clear-binding:parameter:param-clear-binding-pattern-workspace" ExecutableCommandId="exec-clear-binding" ParameterId="param-clear-binding-pattern-workspace" />
+    <ExecutableCommandParameter Id="exec-clear-binding:parameter:param-clear-binding-placeholder" ExecutableCommandId="exec-clear-binding" ParameterId="param-clear-binding-placeholder" />
+    <ExecutableCommandParameter Id="exec-clear-binding:parameter:param-clear-binding-workspace" ExecutableCommandId="exec-clear-binding" ParameterId="param-clear-binding-workspace" />
+    <ExecutableCommandParameter Id="exec-create-instance-workspace:parameter:param-create-instance-connection-env" ExecutableCommandId="exec-create-instance-workspace" ParameterId="param-create-instance-connection-env" />
+    <ExecutableCommandParameter Id="exec-create-instance-workspace:parameter:param-create-instance-csharp" ExecutableCommandId="exec-create-instance-workspace" ParameterId="param-create-instance-csharp" />
+    <ExecutableCommandParameter Id="exec-create-instance-workspace:parameter:param-create-instance-sql" ExecutableCommandId="exec-create-instance-workspace" ParameterId="param-create-instance-sql" />
+    <ExecutableCommandParameter Id="exec-create-instance-workspace:parameter:param-create-instance-xml" ExecutableCommandId="exec-create-instance-workspace" ParameterId="param-create-instance-xml" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-connection-env" ExecutableCommandId="exec-create" ParameterId="param-create-connection-env" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-csharp" ExecutableCommandId="exec-create" ParameterId="param-create-csharp" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-sql" ExecutableCommandId="exec-create" ParameterId="param-create-sql" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-xml" ExecutableCommandId="exec-create" ParameterId="param-create-xml" />
+    <ExecutableCommandParameter Id="exec-emit-pattern:parameter:param-emit-pattern-id" ExecutableCommandId="exec-emit-pattern" ParameterId="param-emit-pattern-id" />
+    <ExecutableCommandParameter Id="exec-emit-pattern:parameter:param-emit-pattern-workspace" ExecutableCommandId="exec-emit-pattern" ParameterId="param-emit-pattern-workspace" />
+    <ExecutableCommandParameter Id="exec-set-binding:parameter:param-set-binding-instance" ExecutableCommandId="exec-set-binding" ParameterId="param-set-binding-instance" />
+    <ExecutableCommandParameter Id="exec-set-binding:parameter:param-set-binding-pattern-workspace" ExecutableCommandId="exec-set-binding" ParameterId="param-set-binding-pattern-workspace" />
+    <ExecutableCommandParameter Id="exec-set-binding:parameter:param-set-binding-placeholder" ExecutableCommandId="exec-set-binding" ParameterId="param-set-binding-placeholder" />
+    <ExecutableCommandParameter Id="exec-set-binding:parameter:param-set-binding-workspace" ExecutableCommandId="exec-set-binding" ParameterId="param-set-binding-workspace" />
+    <ExecutableCommandParameter Id="exec-show-instances:parameter:param-show-instances-pattern-workspace" ExecutableCommandId="exec-show-instances" ParameterId="param-show-instances-pattern-workspace" />
+    <ExecutableCommandParameter Id="exec-show-instances:parameter:param-show-instances-workspace" ExecutableCommandId="exec-show-instances" ParameterId="param-show-instances-workspace" />
+    <ExecutableCommandParameter Id="exec-show:parameter:param-show-workspace" ExecutableCommandId="exec-show" ParameterId="param-show-workspace" />
+    <ExecutableCommandParameter Id="exec-update-pattern:parameter:param-update-pattern-id" ExecutableCommandId="exec-update-pattern" ParameterId="param-update-pattern-id" />
+    <ExecutableCommandParameter Id="exec-update-pattern:parameter:param-update-pattern-workspace" ExecutableCommandId="exec-update-pattern" ParameterId="param-update-pattern-workspace" />
+  </ExecutableCommandParameterList>
+</MetaCli>

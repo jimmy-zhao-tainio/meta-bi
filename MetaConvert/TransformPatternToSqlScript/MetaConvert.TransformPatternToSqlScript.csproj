@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaWeave.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\MetaSqlScript\Core\MetaSqlScript.Core.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Pattern\Core\MetaTransformPattern.Core.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\PatternInstance\Core\MetaTransformPatternInstance.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Weaves\TransformPatternToSqlScript\**\*">
+      <Link>Weaves\TransformPatternToSqlScript\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Weaves\TransformPatternToSqlScript\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+  </ItemGroup>
+
+</Project>

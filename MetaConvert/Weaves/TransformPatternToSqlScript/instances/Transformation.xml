@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TransformationList>
+    <Transformation Id="forward/SqlScript" DirectionId="forward" SelectStatementId="SelectStatement:11">
+      <TargetEntityName>SqlScript</TargetEntityName>
+    </Transformation>
+  </TransformationList>
+</MetaWeave>

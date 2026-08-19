@@ -55,6 +55,12 @@
     <Option Id="option-sql-to-transform-script-output-csharp" ParameterId="param-sql-to-transform-script-output-csharp" />
     <Option Id="option-sql-to-transform-script-output-sql" ParameterId="param-sql-to-transform-script-output-sql" />
     <Option Id="option-sql-to-transform-script-output-xml" ParameterId="param-sql-to-transform-script-output-xml" />
+    <Option Id="option-transform-pattern-to-sql-script-instance-workspace" ParameterId="param-transform-pattern-to-sql-script-instance-workspace" />
+    <Option Id="option-transform-pattern-to-sql-script-output-connection-env" ParameterId="param-transform-pattern-to-sql-script-output-connection-env" />
+    <Option Id="option-transform-pattern-to-sql-script-output-csharp" ParameterId="param-transform-pattern-to-sql-script-output-csharp" />
+    <Option Id="option-transform-pattern-to-sql-script-output-sql" ParameterId="param-transform-pattern-to-sql-script-output-sql" />
+    <Option Id="option-transform-pattern-to-sql-script-output-xml" ParameterId="param-transform-pattern-to-sql-script-output-xml" />
+    <Option Id="option-transform-pattern-to-sql-script-pattern-workspace" ParameterId="param-transform-pattern-to-sql-script-pattern-workspace" />
     <Option Id="option-transform-script-to-sql-output-connection-env" ParameterId="param-transform-script-to-sql-output-connection-env" />
     <Option Id="option-transform-script-to-sql-output-csharp" ParameterId="param-transform-script-to-sql-output-csharp" />
     <Option Id="option-transform-script-to-sql-output-sql" ParameterId="param-transform-script-to-sql-output-sql" />

@@ -66,7 +66,8 @@ $targets = @(
     [pscustomobject]@{ Name = "MetaDataWarehouse"; Project = "MetaDataWarehouse\Cli\MetaDataWarehouse.Cli.csproj" },
     [pscustomobject]@{ Name = "MetaAnalytics"; Project = "MetaAnalytics\Cli\MetaAnalytics.Cli.csproj" },
     [pscustomobject]@{ Name = "MetaTabular"; Project = "MetaTabular\Cli\MetaTabular.Cli.csproj" },
-    [pscustomobject]@{ Name = "MetaMultiDimensional"; Project = "MetaMultiDimensional\Cli\MetaMultiDimensional.Cli.csproj" }
+    [pscustomobject]@{ Name = "MetaMultiDimensional"; Project = "MetaMultiDimensional\Cli\MetaMultiDimensional.Cli.csproj" },
+    [pscustomobject]@{ Name = "MetaTransformPattern"; Project = "MetaTransform\Pattern\Cli\MetaTransformPattern.Cli.csproj" }
 )
 
 if ($List) {

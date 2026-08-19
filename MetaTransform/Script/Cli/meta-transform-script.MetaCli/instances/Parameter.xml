@@ -115,6 +115,42 @@
       <IsRequired>false</IsRequired>
       <Name>workspace</Name>
     </Parameter>
+    <Parameter Id="param-from-sql-script-workspace-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-script-workspace-output-csharp" ValueShapeId="shape-path">
+      <Description>Create the output as a C# workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-script-workspace-output-sql" ValueShapeId="shape-path">
+      <Description>Create the output as a SQL workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-script-workspace-output-xml" ValueShapeId="shape-path">
+      <Description>Create the output as an XML workspace at this path.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>output-xml</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-script-workspace-source-workspace" ValueShapeId="shape-path">
+      <Description>Source MetaSqlScript workspace.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>true</IsRequired>
+      <Name>source-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-from-sql-script-workspace-workspace" ValueShapeId="shape-path">
+      <Description>Existing MetaTransformScript workspace to update.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
     <Parameter Id="param-stored-procedure-add-contract-name" ValueShapeId="shape-text">
       <Description>Stored procedure transform script name.</Description>
       <IsRepeatable>false</IsRepeatable>

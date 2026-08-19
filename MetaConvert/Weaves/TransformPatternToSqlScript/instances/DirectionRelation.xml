@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRelationList>
+    <DirectionRelation Id="forward/PatternItemOrder" DirectionId="forward" SelectStatementId="SelectStatement:1" />
+    <DirectionRelation Id="forward/ReferencedPlaceholders" DirectionId="forward" SelectStatementId="SelectStatement:2" />
+    <DirectionRelation Id="forward/RenderedItems" DirectionId="forward" SelectStatementId="SelectStatement:3" />
+    <DirectionRelation Id="forward/RenderedScripts" DirectionId="forward" SelectStatementId="SelectStatement:4" />
+  </DirectionRelationList>
+</MetaWeave>

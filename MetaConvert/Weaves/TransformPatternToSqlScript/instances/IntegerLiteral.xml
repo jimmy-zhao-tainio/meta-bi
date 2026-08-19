@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <IntegerLiteralList>
+    <IntegerLiteral Id="IntegerLiteral:1" LiteralId="Literal:6" />
+    <IntegerLiteral Id="IntegerLiteral:2" LiteralId="Literal:8" />
+    <IntegerLiteral Id="IntegerLiteral:3" LiteralId="Literal:9" />
+    <IntegerLiteral Id="IntegerLiteral:4" LiteralId="Literal:12" />
+    <IntegerLiteral Id="IntegerLiteral:5" LiteralId="Literal:15" />
+  </IntegerLiteralList>
+</MetaWeave>

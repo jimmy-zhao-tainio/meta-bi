@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationList>
+    <Application Id="app-meta-transform-pattern">
+      <Description>Author reusable SQL transform patterns and their concrete instance workspaces.</Description>
+      <ExecutableName>meta-transform-pattern</ExecutableName>
+      <Name>meta-transform-pattern</Name>
+    </Application>
+  </ApplicationList>
+</MetaCli>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <StatementWithCtesList>
+    <StatementWithCtes Id="StatementWithCtes:1" TSqlStatementId="TSqlStatement:1" />
+    <StatementWithCtes Id="StatementWithCtes:10" TSqlStatementId="TSqlStatement:10" />
+    <StatementWithCtes Id="StatementWithCtes:11" TSqlStatementId="TSqlStatement:11" />
+    <StatementWithCtes Id="StatementWithCtes:2" TSqlStatementId="TSqlStatement:2" />
+    <StatementWithCtes Id="StatementWithCtes:3" TSqlStatementId="TSqlStatement:3" />
+    <StatementWithCtes Id="StatementWithCtes:4" TSqlStatementId="TSqlStatement:4" />
+    <StatementWithCtes Id="StatementWithCtes:5" TSqlStatementId="TSqlStatement:5" />
+    <StatementWithCtes Id="StatementWithCtes:6" TSqlStatementId="TSqlStatement:6" />
+    <StatementWithCtes Id="StatementWithCtes:7" TSqlStatementId="TSqlStatement:7" />
+    <StatementWithCtes Id="StatementWithCtes:8" TSqlStatementId="TSqlStatement:8" />
+    <StatementWithCtes Id="StatementWithCtes:9" TSqlStatementId="TSqlStatement:9" />
+  </StatementWithCtesList>
+</MetaWeave>

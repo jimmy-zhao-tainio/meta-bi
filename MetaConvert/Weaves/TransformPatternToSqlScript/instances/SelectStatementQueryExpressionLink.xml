@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <SelectStatementQueryExpressionLinkList>
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:1" QueryExpressionId="QueryExpression:4" SelectStatementId="SelectStatement:1" />
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:10" QueryExpressionId="QueryExpression:39" SelectStatementId="SelectStatement:10" />
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:11" QueryExpressionId="QueryExpression:40" SelectStatementId="SelectStatement:11" />
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:2" QueryExpressionId="QueryExpression:5" SelectStatementId="SelectStatement:2" />
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:3" QueryExpressionId="QueryExpression:8" SelectStatementId="SelectStatement:3" />
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:4" QueryExpressionId="QueryExpression:9" SelectStatementId="SelectStatement:4" />
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:5" QueryExpressionId="QueryExpression:16" SelectStatementId="SelectStatement:5" />
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:6" QueryExpressionId="QueryExpression:17" SelectStatementId="SelectStatement:6" />
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:7" QueryExpressionId="QueryExpression:28" SelectStatementId="SelectStatement:7" />
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:8" QueryExpressionId="QueryExpression:33" SelectStatementId="SelectStatement:8" />
+    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:9" QueryExpressionId="QueryExpression:38" SelectStatementId="SelectStatement:9" />
+  </SelectStatementQueryExpressionLinkList>
+</MetaWeave>

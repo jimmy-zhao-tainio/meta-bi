@@ -21,6 +21,11 @@
       <Name>from sql-files</Name>
       <Token>sql-files</Token>
     </Command>
+    <Command Id="cmd-from-sql-script-workspace" ApplicationId="app-meta-transform-script" ParentCommandId="cmd-from">
+      <Description>Import every script from a MetaSqlScript workspace.</Description>
+      <Name>from sql-script-workspace</Name>
+      <Token>sql-script-workspace</Token>
+    </Command>
     <Command Id="cmd-help" ApplicationId="app-meta-transform-script">
       <Description>Show help.</Description>
       <Name>help</Name>

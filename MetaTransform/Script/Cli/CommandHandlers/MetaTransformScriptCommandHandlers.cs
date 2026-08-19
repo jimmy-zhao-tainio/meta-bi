@@ -1,9 +1,11 @@
 using System.Globalization;
+using Meta.Integration;
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
 using MetaCli.Core;
 using MetaTransformScript.Sql;
 using MTS = global::MetaTransformScript;
+using MSS = global::MetaSqlScript;
 
 internal sealed class MetaTransformScriptCommandHandlers
 {
@@ -284,6 +286,66 @@ internal sealed class MetaTransformScriptCommandHandlers
                 [
                     $"  Target: {DisplayTarget(targetSqlIdentifier)}",
                     $"  Workspace: {output ?? workspacePath}",
+                    $"  {ex.Message}"
+                ]);
+        }
+    }
+
+    public async Task RunFromSqlScriptWorkspaceAsync(
+        MetaCliInvocation invocation,
+        MTS.MetaTransformScriptModel model,
+        MetaCliWorkspaces workspaces)
+    {
+        var sourceWorkspacePath = Path.GetFullPath(invocation.Required("source-workspace"));
+        var output = MetaCliWorkspace.OptionalOutputLocation(invocation);
+        var workspacePath = WorkspacePath(invocation);
+
+        try
+        {
+            ImportToWorkspaceResult result;
+            using (var activity = CliActivityLine.Start("Importing"))
+            {
+                var source = await TypedWorkspaceModelMapper.LoadAsync<MSS.MetaSqlScriptModel>(
+                        sourceWorkspacePath,
+                        searchUpward: false,
+                        CancellationToken.None)
+                    .ConfigureAwait(false);
+                result = service.ImportSqlScriptWorkspace(model, source);
+                if (output is not null)
+                {
+                    await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+                }
+
+                activity.Succeed();
+            }
+
+            presenter.WriteOk($"Imported {result.ScriptCount} SQL script{(result.ScriptCount == 1 ? string.Empty : "s")}");
+            presenter.WriteKeyValueBlock("Workspace", [
+                ("Scripts", result.ScriptCount.ToString(CultureInfo.InvariantCulture)),
+                ("Path", output ?? workspacePath)
+            ]);
+        }
+        catch (MetaTransformScriptSqlImportException ex)
+        {
+            Fail(
+                GetImportFailureMessage("sql-script-workspace", ex.Kind),
+                GetImportFailureNext("sql-script-workspace", ex.Kind),
+                4,
+                [
+                    $"  Source workspace: {sourceWorkspacePath}",
+                    $"  Target workspace: {output ?? workspacePath}",
+                    $"  {ex.Message}"
+                ]);
+        }
+        catch (Exception ex) when (ex is not MetaCliExitException)
+        {
+            Fail(
+                "Cannot import SQL-script workspace.",
+                "check the MetaSqlScript workspace, SQL text, and output options, then retry.",
+                4,
+                [
+                    $"  Source workspace: {sourceWorkspacePath}",
+                    $"  Target workspace: {output ?? workspacePath}",
                     $"  {ex.Message}"
                 ]);
         }

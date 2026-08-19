@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <Compile Include="..\Workspace\MetaTransformPatternInstance.meta.cs" Link="MetaTransformPatternInstance.meta.cs" />
+    <ProjectReference Include="..\..\Pattern\Core\MetaTransformPattern.Core.csproj" />
+  </ItemGroup>
+
+</Project>

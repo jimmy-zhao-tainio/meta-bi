@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRequirementList>
+    <DirectionRequirement Id="forward/BindingCoverage" DirectionId="forward" SelectStatementId="SelectStatement:5">
+      <Code>MWTP005</Code>
+      <Message>Every referenced placeholder must have exactly one scalar instance value, and every instance value must be used by its pattern.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ItemOwnership" DirectionId="forward" SelectStatementId="SelectStatement:6">
+      <Code>MWTP002</Code>
+      <Message>A placeholder item must reference a placeholder owned by the same pattern.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ItemShape" DirectionId="forward" SelectStatementId="SelectStatement:7">
+      <Code>MWTP001</Code>
+      <Message>Every pattern item must be exactly one text item or placeholder item.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/PatternItemChain" DirectionId="forward" SelectStatementId="SelectStatement:8">
+      <Code>MWTP004</Code>
+      <Message>Every pattern item sequence must be connected and unbranched.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/PatternItemRoots" DirectionId="forward" SelectStatementId="SelectStatement:9">
+      <Code>MWTP003</Code>
+      <Message>Every pattern must contain one predecessor-rooted item sequence.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/PatternResolution" DirectionId="forward" SelectStatementId="SelectStatement:10">
+      <Code>MWTP007</Code>
+      <Message>Every transform-pattern instance must identify a pattern in the supplied MetaTransformPattern workspace.</Message>
+    </DirectionRequirement>
+  </DirectionRequirementList>
+</MetaWeave>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionList>
+    <Option Id="opt-add-instance-id" ParameterId="param-add-instance-id" />
+    <Option Id="opt-add-instance-name" ParameterId="param-add-instance-name" />
+    <Option Id="opt-add-instance-pattern" ParameterId="param-add-instance-pattern" />
+    <Option Id="opt-add-instance-pattern-workspace" ParameterId="param-add-instance-pattern-workspace" />
+    <Option Id="opt-add-instance-workspace" ParameterId="param-add-instance-workspace" />
+    <Option Id="opt-add-pattern-description" ParameterId="param-add-pattern-description" />
+    <Option Id="opt-add-pattern-id" ParameterId="param-add-pattern-id" />
+    <Option Id="opt-add-pattern-name" ParameterId="param-add-pattern-name" />
+    <Option Id="opt-add-pattern-workspace" ParameterId="param-add-pattern-workspace" />
+    <Option Id="opt-clear-binding-instance" ParameterId="param-clear-binding-instance" />
+    <Option Id="opt-clear-binding-pattern-workspace" ParameterId="param-clear-binding-pattern-workspace" />
+    <Option Id="opt-clear-binding-placeholder" ParameterId="param-clear-binding-placeholder" />
+    <Option Id="opt-clear-binding-workspace" ParameterId="param-clear-binding-workspace" />
+    <Option Id="opt-create-connection-env" ParameterId="param-create-connection-env" />
+    <Option Id="opt-create-csharp" ParameterId="param-create-csharp" />
+    <Option Id="opt-create-instance-connection-env" ParameterId="param-create-instance-connection-env" />
+    <Option Id="opt-create-instance-csharp" ParameterId="param-create-instance-csharp" />
+    <Option Id="opt-create-instance-sql" ParameterId="param-create-instance-sql" />
+    <Option Id="opt-create-instance-xml" ParameterId="param-create-instance-xml" />
+    <Option Id="opt-create-sql" ParameterId="param-create-sql" />
+    <Option Id="opt-create-xml" ParameterId="param-create-xml" />
+    <Option Id="opt-emit-pattern-id" ParameterId="param-emit-pattern-id" />
+    <Option Id="opt-emit-pattern-workspace" ParameterId="param-emit-pattern-workspace" />
+    <Option Id="opt-set-binding-instance" ParameterId="param-set-binding-instance" />
+    <Option Id="opt-set-binding-pattern-workspace" ParameterId="param-set-binding-pattern-workspace" />
+    <Option Id="opt-set-binding-placeholder" ParameterId="param-set-binding-placeholder" />
+    <Option Id="opt-set-binding-workspace" ParameterId="param-set-binding-workspace" />
+    <Option Id="opt-show-instances-pattern-workspace" ParameterId="param-show-instances-pattern-workspace" />
+    <Option Id="opt-show-instances-workspace" ParameterId="param-show-instances-workspace" />
+    <Option Id="opt-show-workspace" ParameterId="param-show-workspace" />
+    <Option Id="opt-update-pattern-id" ParameterId="param-update-pattern-id" />
+    <Option Id="opt-update-pattern-workspace" ParameterId="param-update-pattern-workspace" />
+  </OptionList>
+</MetaCli>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterList>
+    <Parameter Id="param-add-instance-id" ValueShapeId="shape-text">
+      <Description>Stable instance identity and output script identity.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-instance-name" ValueShapeId="shape-text">
+      <Description>Instance and output script name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-instance-pattern" ValueShapeId="shape-text">
+      <Description>Stable identity of the reusable pattern.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pattern</Name>
+    </Parameter>
+    <Parameter Id="param-add-instance-pattern-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPattern workspace containing the reusable pattern.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pattern-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-instance-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPatternInstance workspace. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-pattern-description" ValueShapeId="shape-text">
+      <Description>Pattern description.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-add-pattern-id" ValueShapeId="shape-text">
+      <Description>Stable pattern identity.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-pattern-name" ValueShapeId="shape-text">
+      <Description>Pattern display name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-pattern-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPattern workspace. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-clear-binding-instance" ValueShapeId="shape-text">
+      <Description>Transform-pattern instance identity.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>instance</Name>
+    </Parameter>
+    <Parameter Id="param-clear-binding-pattern-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPattern workspace used to resolve the placeholder.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pattern-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-clear-binding-placeholder" ValueShapeId="shape-text">
+      <Description>Placeholder name or stable identity.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>placeholder</Name>
+    </Parameter>
+    <Parameter Id="param-clear-binding-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPatternInstance workspace. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-create-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL workspace connection string.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-create-csharp" ValueShapeId="shape-path">
+      <Description>Create a C# workspace at this path.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>csharp</Name>
+    </Parameter>
+    <Parameter Id="param-create-instance-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL workspace connection string.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-create-instance-csharp" ValueShapeId="shape-path">
+      <Description>Create a C# MetaTransformPatternInstance workspace at this path.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>csharp</Name>
+    </Parameter>
+    <Parameter Id="param-create-instance-sql" ValueShapeId="shape-path">
+      <Description>Create a SQL MetaTransformPatternInstance workspace described by this directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>sql</Name>
+    </Parameter>
+    <Parameter Id="param-create-instance-xml" ValueShapeId="shape-path">
+      <Description>Create an XML MetaTransformPatternInstance workspace at this path.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>xml</Name>
+    </Parameter>
+    <Parameter Id="param-create-sql" ValueShapeId="shape-path">
+      <Description>Create a SQL workspace described by this directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>sql</Name>
+    </Parameter>
+    <Parameter Id="param-create-xml" ValueShapeId="shape-path">
+      <Description>Create an XML workspace at this path.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>xml</Name>
+    </Parameter>
+    <Parameter Id="param-emit-pattern-id" ValueShapeId="shape-text">
+      <Description>Pattern identity.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-emit-pattern-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPattern workspace. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-set-binding-instance" ValueShapeId="shape-text">
+      <Description>Transform-pattern instance identity.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>instance</Name>
+    </Parameter>
+    <Parameter Id="param-set-binding-pattern-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPattern workspace used to resolve the placeholder.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pattern-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-set-binding-placeholder" ValueShapeId="shape-text">
+      <Description>Placeholder name or stable identity.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>placeholder</Name>
+    </Parameter>
+    <Parameter Id="param-set-binding-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPatternInstance workspace. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-show-instances-pattern-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPattern workspace containing the reusable definitions.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pattern-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-show-instances-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPatternInstance workspace. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-show-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPattern workspace. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-update-pattern-id" ValueShapeId="shape-text">
+      <Description>Pattern identity.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-update-pattern-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformPattern workspace. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+  </ParameterList>
+</MetaCli>

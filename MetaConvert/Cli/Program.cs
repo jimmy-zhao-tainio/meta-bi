@@ -40,6 +40,7 @@ internal static class Program
             .Bind("exec-business-datavault-to-sql", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunBusinessDataVaultToSqlAsync(invocation, workspaces)))
             .Bind("exec-data-quality-to-sql", invocation => CompleteAsync(() => handlers.RunDataQualityToSqlAsync(invocation)))
             .Bind("exec-data-warehouse-to-sql", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunDataWarehouseToSqlAsync(invocation, workspaces)))
+            .Bind("exec-transform-pattern-to-sql-script", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunTransformPatternToSqlScriptAsync(invocation, workspaces)))
             .Bind("exec-transform-script-to-sql", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunTransformScriptToSqlAsync(invocation, workspaces)))
             .Bind("exec-sql-to-transform-script", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunSqlToTransformScriptAsync(invocation, workspaces)))
             .Bind("exec-analytics-to-tabular", [OutputWorkspace()], (invocation, workspaces) => CompleteAsync(() => handlers.RunAnalyticsToTabularAsync(invocation, workspaces)))

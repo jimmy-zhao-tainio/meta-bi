@@ -10,7 +10,10 @@ using MetaConvert.DataWarehouseToSql;
 using MetaConvert.SchemaToDataVault;
 using MetaConvert.SqlToTransformScript;
 using MetaConvert.TransformScriptToSql;
+using MetaConvert.TransformPatternToSqlScript;
 using MetaSchema;
+using MetaTransformPattern;
+using MetaTransformPatternInstance;
 
 internal sealed class MetaConvertCommandHandlers
 {
@@ -260,6 +263,63 @@ internal sealed class MetaConvertCommandHandlers
                 {
                     $"  Workspace: {workspacePath}",
                     $"  Database: {databaseName}",
+                    $"  Output: {MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql")}",
+                    $"  {ex.Message}",
+                });
+        }
+    }
+
+    public async Task<int> RunTransformPatternToSqlScriptAsync(
+        MetaCliInvocation invocation,
+        MetaCliWorkspaces workspaces)
+    {
+        var patternWorkspacePath = invocation.Required("pattern-workspace");
+        var instanceWorkspacePath = invocation.Required("instance-workspace");
+
+        try
+        {
+            var result = await RunWithMeterAsync(
+                async meter =>
+                {
+                    var patterns = TypedWorkspaceModelMapper.Load<MetaTransformPatternModel>(
+                        patternWorkspacePath,
+                        searchUpward: false);
+                    var instances = TypedWorkspaceModelMapper.Load<MetaTransformPatternInstanceModel>(
+                        instanceWorkspacePath,
+                        searchUpward: false);
+                    var converted = TransformPatternToSqlScriptConverter.Convert(
+                        patterns,
+                        instances,
+                        meter is null
+                            ? null
+                            : value => meter.Report(
+                                value.CompletedTaskCount,
+                                value.TotalTaskCount,
+                                FormatWeaveTask(
+                                    value.CompletedTaskKind?.ToString(),
+                                    value.CompletedTaskName)));
+                    await workspaces.CreateAsync("output", converted).ConfigureAwait(false);
+                    return converted;
+                }).ConfigureAwait(false);
+
+            presenter.WriteOk($"Generated {result.SqlScriptList.Count} SQL script{(result.SqlScriptList.Count == 1 ? string.Empty : "s")}");
+            presenter.WriteKeyValueBlock("Workspace", new[]
+            {
+                ("Scripts", result.SqlScriptList.Count.ToString()),
+                ("Path", MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql")),
+            });
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            return Fail(
+                "Cannot materialize transform patterns as SQL scripts.",
+                "check the pattern, item order, placeholder bindings, and output path, then retry.",
+                4,
+                new[]
+                {
+                    $"  Pattern workspace: {patternWorkspacePath}",
+                    $"  Instance workspace: {instanceWorkspacePath}",
                     $"  Output: {MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql")}",
                     $"  {ex.Message}",
                 });

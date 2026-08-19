@@ -26,11 +26,16 @@
   <ItemGroup>
     <ProjectReference Include="..\\..\\..\\Tests\\Common\\MetaBi.Tests.Common.csproj" />
     <ProjectReference Include="..\\..\\..\\MetaConvert\\SqlToTransformScript\\MetaConvert.SqlToTransformScript.csproj" />
+    <ProjectReference Include="..\\..\\..\\MetaConvert\\TransformPatternToSqlScript\\MetaConvert.TransformPatternToSqlScript.csproj" />
     <ProjectReference Include="..\\..\\..\\MetaConvert\\TransformScriptToSql\\MetaConvert.TransformScriptToSql.csproj" />
     <ProjectReference Include="..\\..\\..\\MetaSql\\Core\\MetaSql.Core.csproj" />
+    <ProjectReference Include="..\\..\\..\\MetaSqlScript\\Core\\MetaSqlScript.Core.csproj" />
     <ProjectReference Include="..\\..\\Binding\\Cli\\MetaTransformBinding.Cli.csproj" />
     <ProjectReference Include="..\\Cli\\MetaTransformScript.Cli.csproj" />
     <ProjectReference Include="..\\Sql\\MetaTransformScript.Sql.csproj" />
+    <ProjectReference Include="..\\..\\Pattern\\Core\\MetaTransformPattern.Core.csproj" />
+    <ProjectReference Include="..\\..\\PatternInstance\\Core\\MetaTransformPatternInstance.Core.csproj" />
+    <ProjectReference Include="..\\..\\Pattern\\Cli\\MetaTransformPattern.Cli.csproj" />
     <ProjectReference Include="..\\..\\Binding\\MetaTransform.Binding.csproj" />
   </ItemGroup>
 

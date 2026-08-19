@@ -4,6 +4,7 @@
     <ExecutableCommand Id="exec-from-sql-code" CommandId="cmd-from-sql-code" />
     <ExecutableCommand Id="exec-from-sql-file" CommandId="cmd-from-sql-file" />
     <ExecutableCommand Id="exec-from-sql-files" CommandId="cmd-from-sql-files" />
+    <ExecutableCommand Id="exec-from-sql-script-workspace" CommandId="cmd-from-sql-script-workspace" />
     <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
     <ExecutableCommand Id="exec-stored-procedure-add-contract" CommandId="cmd-stored-procedure-add-contract" />
     <ExecutableCommand Id="exec-stored-procedure-remove-contract" CommandId="cmd-stored-procedure-remove-contract" />

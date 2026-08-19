@@ -200,6 +200,7 @@ $cliProjects = @(
     'MetaPipeline\Cli\MetaPipeline.Cli.csproj',
     'MetaOrchestration\Cli\MetaOrchestration.Cli.csproj',
     'MetaTransform\Script\Cli\MetaTransformScript.Cli.csproj',
+    'MetaTransform\Pattern\Cli\MetaTransformPattern.Cli.csproj',
     'MetaTransform\Binding\Cli\MetaTransformBinding.Cli.csproj'
 )
 
@@ -218,6 +219,9 @@ $workspaces = @(
     @{ Source = 'MetaSql\Workspace'; Target = 'MetaSql' },
     @{ Source = 'MetaSql\DeployManifest\Workspace'; Target = 'MetaSqlDeployManifest' },
     @{ Source = 'MetaTransform\Script\Workspaces\MetaTransformScript'; Target = 'MetaTransformScript' },
+    @{ Source = 'MetaTransform\Pattern\Workspace'; Target = 'MetaTransformPattern' },
+    @{ Source = 'MetaTransform\PatternInstance\Workspace'; Target = 'MetaTransformPatternInstance' },
+    @{ Source = 'MetaSqlScript\Workspace'; Target = 'MetaSqlScript' },
     @{ Source = 'MetaTransform\Binding\Workspaces\MetaTransformBinding'; Target = 'MetaTransformBinding' },
     @{ Source = 'MetaPipeline\Workspaces\MetaPipeline'; Target = 'MetaPipeline' },
     @{ Source = 'MetaOrchestration\Workspaces\MetaOrchestration'; Target = 'MetaOrchestration' },

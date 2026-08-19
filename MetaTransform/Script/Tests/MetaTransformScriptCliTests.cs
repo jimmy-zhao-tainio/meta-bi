@@ -1,4 +1,7 @@
 using MetaBi.Tests.Common;
+using Meta.Integration;
+using MSS = MetaSqlScript;
+using MTS = MetaTransformScript;
 
 namespace MetaTransformScript.Tests;
 
@@ -27,6 +30,7 @@ public sealed class MetaTransformScriptCliTests
         Assert.Contains("sql-file", result.Output);
         Assert.Contains("sql-files", result.Output);
         Assert.Contains("sql-code", result.Output);
+        Assert.Contains("sql-script-workspace", result.Output);
     }
 
     [Fact]
@@ -72,6 +76,49 @@ public sealed class MetaTransformScriptCliTests
             Assert.Equal(0, export.ExitCode);
             Assert.Contains("SELECT", export.Output);
             Assert.Contains("1", export.Output);
+        }
+        finally
+        {
+            DeleteTempRoot(root);
+        }
+    }
+
+    [Fact]
+    public void FromSqlScriptWorkspace_ImportsEveryModeledScript()
+    {
+        var root = CreateTempRoot();
+        try
+        {
+            var sourcePath = Path.Combine(root, "SqlScripts");
+            var outputPath = Path.Combine(root, "Transforms");
+            var source = MSS.MetaSqlScriptModel.CreateEmpty();
+            source.SqlScriptList.Add(new MSS.SqlScript
+            {
+                Id = "load-customer",
+                Name = "LoadCustomer",
+                SqlText = "INSERT INTO dbo.Customer (CustomerId) SELECT CustomerId FROM stage.Customer;",
+            });
+            source.SqlScriptList.Add(new MSS.SqlScript
+            {
+                Id = "clear-customer-stage",
+                Name = "ClearCustomerStage",
+                SqlText = "DELETE FROM stage.Customer WHERE IsReady = 0;",
+            });
+            TypedWorkspaceModelMapper.Create(source, sourcePath, "xml");
+
+            var result = RunCli(
+                $"from sql-script-workspace --source-workspace \"{sourcePath}\" --output-xml \"{outputPath}\"");
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("Scripts: 2", result.Output);
+            var transformed = TypedWorkspaceModelMapper.Load<MTS.MetaTransformScriptModel>(
+                outputPath,
+                searchUpward: false);
+            Assert.Equal(2, transformed.TransformScriptList.Count);
+            Assert.Contains(transformed.TransformScriptList, script => script.Name == "LoadCustomer");
+            Assert.Contains(transformed.TransformScriptList, script => script.Name == "ClearCustomerStage");
+            Assert.Single(transformed.InsertStatementList);
+            Assert.Single(transformed.DeleteStatementList);
         }
         finally
         {

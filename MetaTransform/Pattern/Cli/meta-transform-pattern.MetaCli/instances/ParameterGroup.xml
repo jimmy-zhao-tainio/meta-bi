@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupList>
+    <ParameterGroup Id="group-create-instance-output" ExecutableCommandId="exec-create-instance-workspace">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select one workspace surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>Output</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-create-output" ExecutableCommandId="exec-create">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select one workspace surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>Output</Name>
+    </ParameterGroup>
+  </ParameterGroupList>
+</MetaCli>

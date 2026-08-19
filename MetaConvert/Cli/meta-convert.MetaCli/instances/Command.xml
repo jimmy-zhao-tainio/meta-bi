@@ -46,6 +46,11 @@
       <Name>sql-to-transform-script</Name>
       <Token>sql-to-transform-script</Token>
     </Command>
+    <Command Id="cmd-transform-pattern-to-sql-script" ApplicationId="app-meta-convert">
+      <Description>Materialize MetaTransformPattern definitions and MetaTransformPatternInstance values as a MetaSqlScript workspace.</Description>
+      <Name>transform-pattern-to-sql-script</Name>
+      <Token>transform-pattern-to-sql-script</Token>
+    </Command>
     <Command Id="cmd-transform-script-to-sql" ApplicationId="app-meta-convert">
       <Description>Convert MetaTransformScript SQL modules to MetaSql workspace.</Description>
       <Name>transform-script-to-sql</Name>

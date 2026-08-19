@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupMemberList>
+    <ParameterGroupMember Id="member-create-connection-env" ParameterGroupId="group-create-output" ParameterId="param-create-connection-env" PreviousMemberId="member-create-sql" />
+    <ParameterGroupMember Id="member-create-csharp" ParameterGroupId="group-create-output" ParameterId="param-create-csharp" PreviousMemberId="member-create-xml" />
+    <ParameterGroupMember Id="member-create-instance-csharp" ParameterGroupId="group-create-instance-output" ParameterId="param-create-instance-csharp" PreviousMemberId="member-create-instance-xml" />
+    <ParameterGroupMember Id="member-create-instance-sql" ParameterGroupId="group-create-instance-output" ParameterId="param-create-instance-sql" PreviousMemberId="member-create-instance-csharp" />
+    <ParameterGroupMember Id="member-create-instance-xml" ParameterGroupId="group-create-instance-output" ParameterId="param-create-instance-xml" />
+    <ParameterGroupMember Id="member-create-sql" ParameterGroupId="group-create-output" ParameterId="param-create-sql" PreviousMemberId="member-create-csharp" />
+    <ParameterGroupMember Id="member-create-xml" ParameterGroupId="group-create-output" ParameterId="param-create-xml" />
+  </ParameterGroupMemberList>
+</MetaCli>
