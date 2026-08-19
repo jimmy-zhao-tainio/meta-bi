@@ -12,6 +12,7 @@ public sealed partial class MetaTransformScriptSqlService
         ArgumentNullException.ThrowIfNull(model);
         ArgumentNullException.ThrowIfNull(source);
 
+        var requests = new List<SqlCodeImportRequest>(source.SqlScriptList.Count);
         foreach (var script in source.SqlScriptList.OrderBy(
                      static script => script.Id,
                      StringComparer.Ordinal))
@@ -23,16 +24,12 @@ public sealed partial class MetaTransformScriptSqlService
                     $"SQL script '{script.Id}' does not contain SQL text.");
             }
 
-            ImportSqlCode(
-                model,
+            requests.Add(new SqlCodeImportRequest(
                 script.SqlText,
-                targetSqlIdentifier: null,
-                script.Name);
+                TargetSqlIdentifier: null,
+                script.Name));
         }
 
-        return new ImportToWorkspaceResult(
-            model,
-            model.TransformScriptList.Count,
-            string.Empty);
+        return ImportSqlCodeBatch(model, requests);
     }
 }

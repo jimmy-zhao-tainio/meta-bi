@@ -35,6 +35,20 @@ public sealed partial class MetaTransformScriptSqlParser
         ArgumentNullException.ThrowIfNull(builder);
 
         var tokens = new MetaTransformScriptSqlLexer(sqlCode).Tokenize();
+        return ParseSqlCodeIntoBuilder(sqlCode, tokens, builder, sourcePath, bareSelectName);
+    }
+
+    internal TopLevelStatementShape ParseSqlCodeIntoBuilder(
+        string sqlCode,
+        IReadOnlyList<MetaTransformScriptSqlToken> tokens,
+        MetaTransformScriptSqlModelBuilder builder,
+        string? sourcePath = null,
+        string? bareSelectName = null)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(sqlCode);
+        ArgumentNullException.ThrowIfNull(tokens);
+        ArgumentNullException.ThrowIfNull(builder);
+
         return new Parser(sqlCode, tokens, builder, sourcePath, bareSelectName).ParseDocument();
     }
 

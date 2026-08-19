@@ -9,19 +9,19 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     private static readonly ConcurrentDictionary<Type, string?> OwnerPropertyByType = new();
     private static readonly ConcurrentDictionary<Type, string?> BasePropertyByType = new();
 
-    private static T GetById<T>(IEnumerable<T> rows, string id, string label) where T : class
+    private T GetById<T>(IEnumerable<T> rows, string id, string label) where T : class
     {
-        var match = rows.FirstOrDefault(row => string.Equals(GetString(row, "Id"), id, StringComparison.Ordinal));
+        var match = index.FindById(rows, id);
         return match ?? throw new InvalidOperationException($"Required MetaTransformScript lookup '{label}' with id '{id}' was not found.");
     }
 
-    private static T GetByBaseId<T>(IEnumerable<T> rows, string baseId, string label) where T : class
+    private T GetByBaseId<T>(IEnumerable<T> rows, string baseId, string label) where T : class
     {
         var match = FindByBaseId(rows, baseId);
         return match ?? throw new InvalidOperationException($"Required MetaTransformScript base lookup '{label}' with base id '{baseId}' was not found.");
     }
 
-    private static T? FindByBaseId<T>(IEnumerable<T> rows, string baseId) where T : class
+    private T? FindByBaseId<T>(IEnumerable<T> rows, string baseId) where T : class
     {
         var propertyName = ResolveBaseProperty(typeof(T));
         if (string.IsNullOrWhiteSpace(propertyName))
@@ -29,16 +29,16 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             return null;
         }
 
-        return rows.FirstOrDefault(row => string.Equals(GetRelatedId(row, propertyName), baseId, StringComparison.Ordinal));
+        return index.FindByRelatedId(rows, propertyName, baseId);
     }
 
-    private static TLink GetOwnerLink<TLink>(IEnumerable<TLink> links, string ownerId, string label) where TLink : class
+    private TLink GetOwnerLink<TLink>(IEnumerable<TLink> links, string ownerId, string label) where TLink : class
     {
         var match = FindOwnerLink(links, ownerId);
         return match ?? throw new InvalidOperationException($"Required MetaTransformScript link '{label}' with owner id '{ownerId}' was not found.");
     }
 
-    private static TLink? FindOwnerLink<TLink>(IEnumerable<TLink> links, string ownerId) where TLink : class
+    private TLink? FindOwnerLink<TLink>(IEnumerable<TLink> links, string ownerId) where TLink : class
     {
         var propertyName = ResolveOwnerProperty(typeof(TLink));
         if (string.IsNullOrWhiteSpace(propertyName))
@@ -46,10 +46,10 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             return null;
         }
 
-        return links.FirstOrDefault(row => string.Equals(GetRelatedId(row, propertyName), ownerId, StringComparison.Ordinal));
+        return index.FindByRelatedId(links, propertyName, ownerId);
     }
 
-    private static IEnumerable<TItem> GetOrderedItems<TItem>(IEnumerable<TItem> items, string ownerId) where TItem : class
+    private IEnumerable<TItem> GetOrderedItems<TItem>(IEnumerable<TItem> items, string ownerId) where TItem : class
     {
         var propertyName = ResolveOwnerProperty(typeof(TItem));
         if (string.IsNullOrWhiteSpace(propertyName))
@@ -57,8 +57,98 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             return [];
         }
 
-        return items.Where(row => string.Equals(GetRelatedId(row, propertyName), ownerId, StringComparison.Ordinal))
-            .OrderBy(row => ParseOrdinal(GetString(row, "Ordinal")));
+        return index.GetOrderedByRelatedId(items, propertyName, ownerId);
+    }
+
+    private sealed class MetaTransformScriptSqlModelIndex
+    {
+        private readonly Dictionary<object, object> rowsById = new(ReferenceEqualityComparer.Instance);
+        private readonly Dictionary<object, Dictionary<string, object>> rowsByRelatedId = new(ReferenceEqualityComparer.Instance);
+        private readonly Dictionary<object, Dictionary<string, object>> orderedRowsByRelatedId = new(ReferenceEqualityComparer.Instance);
+
+        public T? FindById<T>(IEnumerable<T> rows, string id) where T : class
+        {
+            if (!rowsById.TryGetValue(rows, out var boxedIndex))
+            {
+                var built = new Dictionary<string, T>(StringComparer.Ordinal);
+                foreach (var row in rows)
+                {
+                    built.TryAdd(GetString(row, "Id"), row);
+                }
+
+                boxedIndex = built;
+                rowsById.Add(rows, boxedIndex);
+            }
+
+            var typedIndex = (IReadOnlyDictionary<string, T>)boxedIndex;
+            return typedIndex.GetValueOrDefault(id);
+        }
+
+        public T? FindByRelatedId<T>(
+            IEnumerable<T> rows,
+            string propertyName,
+            string relatedId)
+            where T : class
+        {
+            var typedIndex = GetOrCreateRelatedIndex(rows, propertyName);
+            return typedIndex.GetValueOrDefault(relatedId);
+        }
+
+        public IReadOnlyList<T> GetOrderedByRelatedId<T>(
+            IEnumerable<T> rows,
+            string propertyName,
+            string relatedId)
+            where T : class
+        {
+            if (!orderedRowsByRelatedId.TryGetValue(rows, out var indexesByProperty))
+            {
+                indexesByProperty = new Dictionary<string, object>(StringComparer.Ordinal);
+                orderedRowsByRelatedId.Add(rows, indexesByProperty);
+            }
+
+            if (!indexesByProperty.TryGetValue(propertyName, out var boxedIndex))
+            {
+                var built = rows
+                    .GroupBy(row => GetRelatedId(row, propertyName), StringComparer.Ordinal)
+                    .ToDictionary(
+                        static group => group.Key,
+                        static group => (IReadOnlyList<T>)group
+                            .OrderBy(row => ParseOrdinal(GetString(row, "Ordinal")))
+                            .ToArray(),
+                        StringComparer.Ordinal);
+                boxedIndex = built;
+                indexesByProperty.Add(propertyName, boxedIndex);
+            }
+
+            var typedIndex = (IReadOnlyDictionary<string, IReadOnlyList<T>>)boxedIndex;
+            return typedIndex.GetValueOrDefault(relatedId) ?? [];
+        }
+
+        private IReadOnlyDictionary<string, T> GetOrCreateRelatedIndex<T>(
+            IEnumerable<T> rows,
+            string propertyName)
+            where T : class
+        {
+            if (!rowsByRelatedId.TryGetValue(rows, out var indexesByProperty))
+            {
+                indexesByProperty = new Dictionary<string, object>(StringComparer.Ordinal);
+                rowsByRelatedId.Add(rows, indexesByProperty);
+            }
+
+            if (!indexesByProperty.TryGetValue(propertyName, out var boxedIndex))
+            {
+                var built = new Dictionary<string, T>(StringComparer.Ordinal);
+                foreach (var row in rows)
+                {
+                    built.TryAdd(GetRelatedId(row, propertyName), row);
+                }
+
+                boxedIndex = built;
+                indexesByProperty.Add(propertyName, boxedIndex);
+            }
+
+            return (IReadOnlyDictionary<string, T>)boxedIndex;
+        }
     }
 
     private static string GetString(object target, string propertyName) =>

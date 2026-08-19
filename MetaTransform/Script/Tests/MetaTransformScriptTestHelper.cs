@@ -60,6 +60,25 @@ internal static class MetaTransformScriptTestHelper
         }
     }
 
+    public static void AssertModelListIdsEqual(
+        MetaTransformScriptModel expected,
+        MetaTransformScriptModel actual)
+    {
+        var listProperties = typeof(MetaTransformScriptModel)
+            .GetProperties()
+            .Where(static property => typeof(IEnumerable).IsAssignableFrom(property.PropertyType))
+            .OrderBy(static property => property.Name, StringComparer.Ordinal);
+
+        foreach (var property in listProperties)
+        {
+            var expectedIds = ReadIds(property.GetValue(expected));
+            var actualIds = ReadIds(property.GetValue(actual));
+            Assert.True(
+                expectedIds.SequenceEqual(actualIds, StringComparer.Ordinal),
+                $"{property.Name}: expected [{string.Join(", ", expectedIds)}], actual [{string.Join(", ", actualIds)}]");
+        }
+    }
+
     public static MetaTransformScriptModel RoundTripWorkspace(MetaTransformScriptModel model, string label)
     {
         var workspacePath = Path.Combine(Path.GetTempPath(), "meta-bi", "metatransformscript-tests", Guid.NewGuid().ToString("N"), label);
@@ -133,4 +152,11 @@ internal static class MetaTransformScriptTestHelper
             ? fallbackName
             : $"{module.SchemaName}.{module.ObjectName}";
     }
+
+    private static string[] ReadIds(object? value) =>
+        value is IEnumerable rows
+            ? rows.Cast<object>()
+                .Select(static row => row.GetType().GetProperty("Id")?.GetValue(row) as string ?? string.Empty)
+                .ToArray()
+            : [];
 }

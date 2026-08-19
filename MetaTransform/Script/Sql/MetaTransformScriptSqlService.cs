@@ -66,6 +66,52 @@ public sealed partial class MetaTransformScriptSqlService
         return new ImportToWorkspaceResult(model, model.TransformScriptList.Count, string.Empty);
     }
 
+    public ImportToWorkspaceResult ImportSqlCodeBatch(
+        MTS.MetaTransformScriptModel model,
+        IEnumerable<SqlCodeImportRequest> requests)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentNullException.ThrowIfNull(requests);
+
+        var parser = new MetaTransformScriptSqlParser();
+        var builder = new MetaTransformScriptSqlModelBuilder(model);
+        foreach (var request in requests)
+        {
+            ArgumentNullException.ThrowIfNull(request);
+            ArgumentException.ThrowIfNullOrWhiteSpace(request.SqlCode);
+
+            var checkpoint = builder.CreateCheckpoint();
+            var existingScriptCount = model.TransformScriptList.Count;
+            try
+            {
+                ParseSqlSourcesIntoBuilder(
+                    [new SqlImportSource(request.SqlCode, SourcePath: null, BareSelectName: request.ScriptName)],
+                    parser,
+                    builder);
+
+                var addedScriptCount = model.TransformScriptList.Count - existingScriptCount;
+                if (addedScriptCount != 1)
+                {
+                    throw new InvalidOperationException(
+                        $"Expected exactly one transform script from batch item, but found {addedScriptCount}.");
+                }
+
+                ApplyImportTargetToScript(
+                    model,
+                    model.TransformScriptList[^1],
+                    request.TargetSqlIdentifier,
+                    sourceLabel: "<sql-code>");
+            }
+            catch
+            {
+                builder.Rollback(checkpoint);
+                throw;
+            }
+        }
+
+        return new ImportToWorkspaceResult(model, model.TransformScriptList.Count, string.Empty);
+    }
+
     public async Task<ImportToWorkspaceResult> ImportSingleSqlFileToXmlWorkspaceAsync(
         string sqlFilePath,
         string? targetSqlIdentifier,
@@ -354,12 +400,18 @@ public sealed partial class MetaTransformScriptSqlService
 
             foreach (var batch in SplitSqlBatches(source.Sql, source.SourcePath, source.BareSelectName))
             {
-                if (string.IsNullOrWhiteSpace(batch.Sql) || IsIgnorableSetBatch(batch.Sql))
+                if (string.IsNullOrWhiteSpace(batch.Sql))
                 {
                     continue;
                 }
 
-                if (TryGetUnsupportedAuxiliaryBatchKeyword(batch.Sql, out var auxiliaryBatchKeyword))
+                var tokens = TryTokenizeBatch(batch.Sql);
+                if (tokens is not null && IsIgnorableSetBatch(tokens))
+                {
+                    continue;
+                }
+
+                if (tokens is not null && TryGetUnsupportedAuxiliaryBatchKeyword(tokens, out var auxiliaryBatchKeyword))
                 {
                     var sourceLabel = string.IsNullOrWhiteSpace(batch.SourcePath) ? "<sql-code>" : batch.SourcePath;
                     throw new MetaTransformScriptSqlImportException(
@@ -369,7 +421,9 @@ public sealed partial class MetaTransformScriptSqlService
 
                 try
                 {
-                    var parsedShape = parser.ParseSqlCodeIntoBuilder(batch.Sql, builder, batch.SourcePath, batch.BareSelectName);
+                    var parsedShape = tokens is null
+                        ? parser.ParseSqlCodeIntoBuilder(batch.Sql, builder, batch.SourcePath, batch.BareSelectName)
+                        : parser.ParseSqlCodeIntoBuilder(batch.Sql, tokens, builder, batch.SourcePath, batch.BareSelectName);
                     if (statementShape is null)
                     {
                         statementShape = parsedShape;
@@ -532,6 +586,16 @@ public sealed partial class MetaTransformScriptSqlService
 
         var parser = new MetaTransformScriptSqlParser();
         var builder = new MetaTransformScriptSqlModelBuilder();
+        ParseSqlSourcesIntoBuilder(sources, parser, builder);
+        return builder.Build();
+    }
+
+    private static void ParseSqlSourcesIntoBuilder(
+        IEnumerable<SqlImportSource> sources,
+        MetaTransformScriptSqlParser parser,
+        MetaTransformScriptSqlModelBuilder builder)
+    {
+        var existingScriptCount = builder.Build().TransformScriptList.Count;
         MetaTransformScriptSqlParser.TopLevelStatementShape? statementShape = null;
         var parsedStatementCount = 0;
 
@@ -541,12 +605,18 @@ public sealed partial class MetaTransformScriptSqlService
 
             foreach (var batch in SplitSqlBatches(source.Sql, source.SourcePath, source.BareSelectName))
             {
-                if (string.IsNullOrWhiteSpace(batch.Sql) || IsIgnorableSetBatch(batch.Sql))
+                if (string.IsNullOrWhiteSpace(batch.Sql))
                 {
                     continue;
                 }
 
-                if (TryGetUnsupportedAuxiliaryBatchKeyword(batch.Sql, out var auxiliaryBatchKeyword))
+                var tokens = TryTokenizeBatch(batch.Sql);
+                if (tokens is not null && IsIgnorableSetBatch(tokens))
+                {
+                    continue;
+                }
+
+                if (tokens is not null && TryGetUnsupportedAuxiliaryBatchKeyword(tokens, out var auxiliaryBatchKeyword))
                 {
                     var sourceLabel = string.IsNullOrWhiteSpace(batch.SourcePath) ? "<sql-code>" : batch.SourcePath;
                     throw new MetaTransformScriptSqlImportException(
@@ -556,7 +626,9 @@ public sealed partial class MetaTransformScriptSqlService
 
                 try
                 {
-                    var parsedShape = parser.ParseSqlCodeIntoBuilder(batch.Sql, builder, batch.SourcePath, batch.BareSelectName);
+                    var parsedShape = tokens is null
+                        ? parser.ParseSqlCodeIntoBuilder(batch.Sql, builder, batch.SourcePath, batch.BareSelectName)
+                        : parser.ParseSqlCodeIntoBuilder(batch.Sql, tokens, builder, batch.SourcePath, batch.BareSelectName);
                     if (statementShape is null)
                     {
                         statementShape = parsedShape;
@@ -585,15 +657,13 @@ public sealed partial class MetaTransformScriptSqlService
                 "SQL input did not contain a supported transform statement, CREATE VIEW wrapper, CREATE FUNCTION wrapper, or CREATE PROCEDURE wrapper.");
         }
 
-        var model = builder.Build();
-        if (statementShape == MetaTransformScriptSqlParser.TopLevelStatementShape.BareSelect && model.TransformScriptList.Count > 1)
+        var addedScriptCount = builder.Build().TransformScriptList.Count - existingScriptCount;
+        if (statementShape == MetaTransformScriptSqlParser.TopLevelStatementShape.BareSelect && addedScriptCount > 1)
         {
             throw new MetaTransformScriptSqlImportException(
                 MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
                 "SQL input contains multiple bare SELECT statements. Wrap them in CREATE VIEW or split them into separate files.");
         }
-
-        return model;
     }
 
     private static void EnsureModelIsBound(MTS.MetaTransformScriptModel model)
@@ -646,18 +716,20 @@ public sealed partial class MetaTransformScriptSqlService
         return batches;
     }
 
-    private static bool IsIgnorableSetBatch(string sql)
+    private static IReadOnlyList<MetaTransformScriptSqlToken>? TryTokenizeBatch(string sql)
     {
-        IReadOnlyList<MetaTransformScriptSqlToken> tokens;
         try
         {
-            tokens = new MetaTransformScriptSqlLexer(sql).Tokenize();
+            return new MetaTransformScriptSqlLexer(sql).Tokenize();
         }
         catch (MetaTransformScriptSqlParserException)
         {
-            return false;
+            return null;
         }
+    }
 
+    private static bool IsIgnorableSetBatch(IReadOnlyList<MetaTransformScriptSqlToken> tokens)
+    {
         var position = 0;
         var sawSetStatement = false;
         while (position < tokens.Count)
@@ -697,19 +769,11 @@ public sealed partial class MetaTransformScriptSqlService
         return sawSetStatement;
     }
 
-    private static bool TryGetUnsupportedAuxiliaryBatchKeyword(string sql, out string keyword)
+    private static bool TryGetUnsupportedAuxiliaryBatchKeyword(
+        IReadOnlyList<MetaTransformScriptSqlToken> tokens,
+        out string keyword)
     {
         keyword = string.Empty;
-
-        IReadOnlyList<MetaTransformScriptSqlToken> tokens;
-        try
-        {
-            tokens = new MetaTransformScriptSqlLexer(sql).Tokenize();
-        }
-        catch (MetaTransformScriptSqlParserException)
-        {
-            return false;
-        }
 
         var firstToken = tokens.FirstOrDefault(static token =>
             token.Kind != MetaTransformScriptSqlTokenKind.Semicolon &&
@@ -1828,6 +1892,11 @@ public sealed record ImportToWorkspaceResult(
     MTS.MetaTransformScriptModel Model,
     int ScriptCount,
     string WorkspacePath);
+
+public sealed record SqlCodeImportRequest(
+    string SqlCode,
+    string? TargetSqlIdentifier = null,
+    string? ScriptName = null);
 
 public sealed record ExportToPathResult(
     int ScriptCount,

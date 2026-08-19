@@ -6,6 +6,7 @@ namespace MetaTransformScript.Sql;
 internal sealed partial class MetaTransformScriptSqlEmitter
 {
     private readonly MetaTransformScriptModel model;
+    private readonly MetaTransformScriptSqlModelIndex index = new();
 
     public MetaTransformScriptSqlEmitter(MetaTransformScriptModel model)
     {

@@ -1,11 +1,22 @@
 using System.Collections;
 using System.Reflection;
+using MetaTransformScript.Sql.Parsing;
 using MTS = global::MetaTransformScript;
 
 namespace MetaTransformScript.Sql;
 
 public sealed partial class MetaTransformScriptSqlService
 {
+    private static readonly IReadOnlyList<PropertyInfo> ModelListProperties =
+        typeof(MTS.MetaTransformScriptModel)
+            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+            .Where(static property =>
+                property.Name.EndsWith("List", StringComparison.Ordinal) &&
+                typeof(IList).IsAssignableFrom(property.PropertyType) &&
+                property.GetIndexParameters().Length == 0)
+            .OrderBy(static property => property.Name, StringComparer.Ordinal)
+            .ToArray();
+
     public async Task<ImportSqlFilesToWorkspaceResult> ImportSqlFilesToNewXmlWorkspaceAsync(
         IEnumerable<SqlFileImportRequest> requests,
         string newWorkspacePath,
@@ -85,7 +96,8 @@ public sealed partial class MetaTransformScriptSqlService
 
         var successes = new List<SqlFileImportSuccess>();
         var failures = new List<SqlFileImportFailure>();
-        var nextIds = ReadNextIdState(model);
+        var parser = new MetaTransformScriptSqlParser();
+        var builder = new MetaTransformScriptSqlModelBuilder(model);
         var total = importRequests.Length;
 
         for (var index = 0; index < importRequests.Length; index++)
@@ -121,24 +133,44 @@ public sealed partial class MetaTransformScriptSqlService
                         $"SQL file '{fullPath}' must use a .sql extension.");
                 }
 
-                var imported = ImportFromSingleSqlFile(fullPath);
-                ApplySingleScriptImportTarget(imported, request.TargetSqlIdentifier, Path.GetFileName(fullPath));
-                if (imported.TransformScriptList.Count != 1)
+                var checkpoint = builder.CreateCheckpoint();
+                MTS.TransformScript importedScript;
+                try
                 {
-                    throw new MetaTransformScriptSqlImportException(
-                        MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                        $"SQL import for '{Path.GetFileName(fullPath)}' produced {imported.TransformScriptList.Count} transform scripts; one file must contain one importable script.");
-                }
+                    var existingScriptCount = model.TransformScriptList.Count;
+                    var sourcePath = Path.GetFileName(fullPath);
+                    ParseSqlSourcesIntoBuilder(
+                        [new SqlImportSource(File.ReadAllText(fullPath), sourcePath, BareSelectName: null)],
+                        parser,
+                        builder);
 
-                RemapModelIds(imported, nextIds);
-                AppendModelRows(model, imported);
+                    var addedScriptCount = model.TransformScriptList.Count - existingScriptCount;
+                    if (addedScriptCount != 1)
+                    {
+                        throw new MetaTransformScriptSqlImportException(
+                            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                            $"SQL import for '{sourcePath}' produced {addedScriptCount} transform scripts; one file must contain one importable script.");
+                    }
+
+                    importedScript = model.TransformScriptList[^1];
+                    ApplyImportTargetToScript(
+                        model,
+                        importedScript,
+                        request.TargetSqlIdentifier,
+                        sourcePath);
+                }
+                catch
+                {
+                    builder.Rollback(checkpoint);
+                    throw;
+                }
 
                 var success = new SqlFileImportSuccess(
                     resultIndex,
                     total,
                     fullPath,
                     request.TargetSqlIdentifier,
-                    imported.TransformScriptList[0].Name,
+                    importedScript.Name,
                     model.TransformScriptList.Count);
                 successes.Add(success);
                 NotifyProgress(progress, SqlFileImportProgress.Succeeded(success));
@@ -263,15 +295,7 @@ public sealed partial class MetaTransformScriptSqlService
         return nextIds;
     }
 
-    private static IReadOnlyList<PropertyInfo> GetModelListProperties() =>
-        typeof(MTS.MetaTransformScriptModel)
-            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-            .Where(static property =>
-                property.Name.EndsWith("List", StringComparison.Ordinal) &&
-                typeof(IList).IsAssignableFrom(property.PropertyType) &&
-                property.GetIndexParameters().Length == 0)
-            .OrderBy(static property => property.Name, StringComparer.Ordinal)
-            .ToArray();
+    private static IReadOnlyList<PropertyInfo> GetModelListProperties() => ModelListProperties;
 
     private static IEnumerable<object> ReadRows(PropertyInfo property, MTS.MetaTransformScriptModel model)
     {

@@ -5,6 +5,59 @@ using MetaDataType;
 
 public sealed class SqlServiceImportExportTests
 {
+    [Fact]
+    public void ImportSqlCodeBatch_MatchesSequentialImportStructureAndSql()
+    {
+        var requests = new[]
+        {
+            new SqlCodeImportRequest("CREATE VIEW dbo.v_first AS SELECT 1 AS Value;"),
+            new SqlCodeImportRequest("CREATE VIEW dbo.v_second AS SELECT Value + 1 AS NextValue FROM dbo.v_first;")
+        };
+        var service = new MetaTransformScriptSqlService();
+
+        var sequential = MetaTransformScriptModel.CreateEmpty();
+        foreach (var request in requests)
+        {
+            service.ImportSqlCode(
+                sequential,
+                request.SqlCode,
+                request.TargetSqlIdentifier,
+                request.ScriptName);
+        }
+
+        var batched = MetaTransformScriptModel.CreateEmpty();
+        service.ImportSqlCodeBatch(batched, requests);
+
+        MetaTransformScriptTestHelper.AssertModelListCountsEqual(sequential, batched);
+        MetaTransformScriptTestHelper.AssertModelListIdsEqual(sequential, batched);
+        Assert.Equal(
+            service.ExportModuleDefinitions(sequential),
+            service.ExportModuleDefinitions(batched));
+    }
+
+    [Fact]
+    public void ImportSqlCodeBatch_RollsBackOnlyTheFailingItem()
+    {
+        var service = new MetaTransformScriptSqlService();
+        var expected = MetaTransformScriptModel.CreateEmpty();
+        service.ImportSqlCode(expected, "CREATE VIEW dbo.v_first AS SELECT 1 AS Value;", null);
+
+        var actual = MetaTransformScriptModel.CreateEmpty();
+        Assert.Throws<MetaTransformScriptSqlImportException>(() =>
+            service.ImportSqlCodeBatch(
+                actual,
+                [
+                    new SqlCodeImportRequest("CREATE VIEW dbo.v_first AS SELECT 1 AS Value;"),
+                    new SqlCodeImportRequest("CREATE VIEW dbo.v_broken AS SELECT 1 + FROM dbo.v_first;")
+                ]));
+
+        MetaTransformScriptTestHelper.AssertModelListCountsEqual(expected, actual);
+        MetaTransformScriptTestHelper.AssertModelListIdsEqual(expected, actual);
+        Assert.Equal(
+            service.ExportModuleDefinitions(expected),
+            service.ExportModuleDefinitions(actual));
+    }
+
     [Theory]
     [InlineData("001_basic_select.sql")]
     [InlineData("002_select_star.sql")]

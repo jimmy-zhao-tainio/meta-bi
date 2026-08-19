@@ -59,15 +59,12 @@ public static class SqlToTransformScriptConverter
 
         var transformScriptSql = new MetaTransformScriptSqlService();
         var transformModel = MTS.MetaTransformScriptModel.CreateEmpty();
-        for (var i = 0; i < modules.Count; i++)
-        {
-            var module = modules[i];
-            transformScriptSql.ImportSqlCode(
-                transformModel,
+        transformScriptSql.ImportSqlCodeBatch(
+            transformModel,
+            modules.Select(static module => new SqlCodeImportRequest(
                 module.DefinitionSql,
-                targetSqlIdentifier: null,
-                scriptName: $"{module.SchemaName}.{module.ObjectName}");
-        }
+                TargetSqlIdentifier: null,
+                ScriptName: $"{module.SchemaName}.{module.ObjectName}")));
 
         return new SqlToTransformScriptConversionResult(
             Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(transformModel),
