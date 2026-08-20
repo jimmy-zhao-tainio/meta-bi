@@ -12,7 +12,8 @@ operate them.
 
 ## Documentation
 
-The canonical public reference is [metametabi.com/docs.html](https://metametabi.com/docs.html).
+The canonical public reference starts with the
+[Meta-BI overview](https://metametabi.com/docs.html#subject-public-meta-bi-overview).
 The repository-level [documentation index](docs/README.md) links design notes
 and product boundaries that complement the modeled reference. Use
 `meta-<tool> help` for local command help.
