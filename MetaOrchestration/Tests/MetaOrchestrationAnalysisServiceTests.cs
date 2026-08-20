@@ -2201,6 +2201,94 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
+    public async Task Analyze_AndRunPlanning_MatchQuotedObjectPartsThatContainDots()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var transformWorkspace = Path.Combine(tempRoot, "Transform");
+            var bindingWorkspace = Path.Combine(tempRoot, "Binding");
+            var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
+            const string bracketedObject = "[Reporting.Db].[sales].[Order.Detail]";
+            const string doubleQuotedObject = "\"Reporting.Db\".\"sales\".\"Order.Detail\"";
+
+            var transformModel = await BuildTransformWorkspaceAsync(
+                transformWorkspace,
+                ("load-order-detail", "SELECT CustomerId FROM dbo.RawOrderDetail", "dbo.ImportTarget1"),
+                ("read-order-detail", $"SELECT CustomerId FROM {bracketedObject}", "dbo.ImportTarget2"));
+            BuildBindingWorkspace(
+                bindingWorkspace,
+                (ResolveScript(transformModel, "load-order-detail"), ["dbo.RawOrderDetail"], bracketedObject),
+                (ResolveScript(transformModel, "read-order-detail"), [doubleQuotedObject], "dbo.OrderDetailSummary"));
+            BuildPipelineWorkspace(
+                pipelineWorkspace,
+                (PipelineName: "OrderDetail", Script: ResolveScript(transformModel, "load-order-detail"), InsertRowsTarget: bracketedObject),
+                (PipelineName: "OrderDetailSummary", Script: ResolveScript(transformModel, "read-order-detail"), InsertRowsTarget: "dbo.OrderDetailSummary"));
+
+            var result = Analyze(pipelineWorkspace, transformWorkspace, bindingWorkspace);
+
+            Assert.True(result.IsCompleteDag);
+            var edge = Assert.Single(result.Dependencies);
+            Assert.Equal("pipeline:OrderDetail", edge.PredecessorPipelineId);
+            Assert.Equal("pipeline:OrderDetailSummary", edge.SuccessorPipelineId);
+            const string normalizedObjectKey = "[REPORTING.DB].SALES.[ORDER.DETAIL]";
+            var objectAccesses = result.Pipelines
+                .SelectMany(static pipeline => pipeline.ObjectAccesses)
+                .Where(item => string.Equals(item.ObjectKey, normalizedObjectKey, StringComparison.Ordinal))
+                .ToArray();
+            Assert.Equal(2, objectAccesses.Length);
+            Assert.Contains(objectAccesses, item => string.Equals(item.SqlIdentifier, bracketedObject, StringComparison.Ordinal));
+
+            var model = CreateModel(result);
+            var policy = new MetaOrchestrationRunPlanningService().AddConcurrentAppendPolicy(
+                model,
+                doubleQuotedObject,
+                "Quoted forms identify the same modeled object.");
+
+            Assert.Equal("Added", policy.Action);
+            Assert.Same(
+                Assert.Single(model.DataObjectList, item => string.Equals(item.NormalizedKey, normalizedObjectKey, StringComparison.Ordinal)),
+                Assert.Single(model.LockCompatibilityPolicyList).DataObject);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public void CreateModel_PreservesDistinctIdsForQuotedDotsAndMultipartBoundaries()
+    {
+        const string quotedDotObject = "[Server.Db].sales.[Order.Detail]";
+        const string fourPartObject = "Server.Db.sales.[Order.Detail]";
+        var quotedDotAccess = new PipelineObjectAccessProfile(
+            quotedDotObject,
+            MetaOrchestrationSqlObjectIdentity.NormalizeKey(quotedDotObject),
+            OrchestrationObjectAccessKind.Read,
+            "Source",
+            0,
+            null,
+            "Source");
+        var fourPartAccess = new PipelineObjectAccessProfile(
+            fourPartObject,
+            MetaOrchestrationSqlObjectIdentity.NormalizeKey(fourPartObject),
+            OrchestrationObjectAccessKind.Read,
+            "Source",
+            0,
+            null,
+            "Source");
+
+        var model = CreateModel(
+            AnalyzeProfiles(
+                Profile("QuotedDot", Task("QuotedDot", 1, "read", "Select", quotedDotAccess)),
+                Profile("FourPart", Task("FourPart", 1, "read", "Select", fourPartAccess))));
+
+        Assert.Equal(2, model.DataObjectList.Count);
+        Assert.Equal(2, model.DataObjectList.Select(static item => item.Id).Distinct(StringComparer.Ordinal).Count());
+        Assert.Equal(2, model.DataObjectList.Select(static item => item.NormalizedKey).Distinct(StringComparer.Ordinal).Count());
+    }
+
+    [Fact]
     public async Task Analyze_QualifiesInsertRowsTargetFromBindingValidation_WhenDownstreamReadsThreePartName()
     {
         var tempRoot = CreateTempRoot();

@@ -489,7 +489,7 @@ public sealed class MetaOrchestrationRunPlanningService
 
     private static MO.DataObject ResolveDataObject(MO.MetaOrchestrationModel model, string selector)
     {
-        var normalized = NormalizeObjectKey(selector);
+        var normalized = MetaOrchestrationSqlObjectIdentity.NormalizeKey(selector);
         var matches = model.DataObjectList
             .Where(item =>
                 string.Equals(item.Id, selector.Trim(), StringComparison.Ordinal) ||
@@ -582,30 +582,6 @@ public sealed class MetaOrchestrationRunPlanningService
         int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var ordinal)
             ? ordinal
             : int.MaxValue;
-
-    private static string NormalizeObjectKey(string sqlIdentifier)
-    {
-        var parts = sqlIdentifier
-            .Split('.', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
-            .Select(static part => part.Trim())
-            .Select(static part =>
-            {
-                if (part.Length >= 2 && part[0] == '[' && part[^1] == ']')
-                {
-                    return part[1..^1].Replace("]]", "]", StringComparison.Ordinal);
-                }
-
-                if (part.Length >= 2 && part[0] == '"' && part[^1] == '"')
-                {
-                    return part[1..^1].Replace("\"\"", "\"", StringComparison.Ordinal);
-                }
-
-                return part;
-            })
-            .Select(static part => part.ToUpperInvariant());
-
-        return string.Join(".", parts);
-    }
 
     private static string NaturalId(params string[] parts)
     {

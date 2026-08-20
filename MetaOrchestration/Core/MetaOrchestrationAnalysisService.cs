@@ -593,7 +593,7 @@ public sealed class MetaOrchestrationAnalysisService
         var targetIds = bindingModel.TransformBindingTargetList
             .Where(item =>
                 string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal) &&
-                string.Equals(NormalizeObjectKey(item.SqlIdentifier), NormalizeObjectKey(sqlIdentifier), StringComparison.Ordinal))
+                string.Equals(MetaOrchestrationSqlObjectIdentity.NormalizeKey(item.SqlIdentifier), MetaOrchestrationSqlObjectIdentity.NormalizeKey(sqlIdentifier), StringComparison.Ordinal))
             .Select(static item => item.Id)
             .ToHashSet(StringComparer.Ordinal);
 
@@ -711,7 +711,7 @@ public sealed class MetaOrchestrationAnalysisService
         var trimmed = sqlIdentifier.Trim();
         return new PipelineObjectAccessProfile(
             trimmed,
-            NormalizeObjectKey(trimmed),
+            MetaOrchestrationSqlObjectIdentity.NormalizeKey(trimmed),
             accessKind,
             accessRole,
             ordinal,
@@ -1415,7 +1415,7 @@ public sealed class MetaOrchestrationAnalysisService
         {
             var row = new MO.DataObject
             {
-                Id = NaturalId(plan.Id, "object", dataObject.ObjectKey),
+                Id = CreateDataObjectId(plan.Id, dataObject.ObjectKey),
                 OrchestrationPlan = plan,
                 SqlIdentifier = dataObject.SqlIdentifier,
                 NormalizedKey = dataObject.ObjectKey
@@ -1592,28 +1592,12 @@ public sealed class MetaOrchestrationAnalysisService
 
     private static string BoolText(bool value) => value ? "true" : "false";
 
-    private static string NormalizeObjectKey(string sqlIdentifier)
+    private static string CreateDataObjectId(string planId, string objectKey)
     {
-        var parts = sqlIdentifier
-            .Split('.', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
-            .Select(static part => part.Trim())
-            .Select(static part =>
-            {
-                if (part.Length >= 2 && part[0] == '[' && part[^1] == ']')
-                {
-                    return part[1..^1].Replace("]]", "]", StringComparison.Ordinal);
-                }
-
-                if (part.Length >= 2 && part[0] == '"' && part[^1] == '"')
-                {
-                    return part[1..^1].Replace("\"\"", "\"", StringComparison.Ordinal);
-                }
-
-                return part;
-            })
-            .Select(static part => part.ToUpperInvariant());
-
-        return string.Join(".", parts);
+        var naturalId = NaturalId(planId, "object", objectKey);
+        return objectKey.Contains('[')
+            ? $"{naturalId}:{objectKey}"
+            : naturalId;
     }
 
     private static string NaturalId(params string[] parts)
