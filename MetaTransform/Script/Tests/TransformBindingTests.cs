@@ -804,6 +804,56 @@ WHEN NOT MATCHED THEN
         }
     }
 
+    [Theory]
+    [InlineData("insert")]
+    [InlineData("update")]
+    [InlineData("merge")]
+    [InlineData("delete")]
+    [InlineData("truncate")]
+    public void ValidationService_StructureOnlyRevalidation_RejectsPersistedMutationWithoutChangingEvidence(
+        string mutationKind)
+    {
+        var transformModel = CreateMutationTransform(mutationKind);
+        var sourceSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "CustomerStage", ["CustomerId", "Name"]));
+        var targetSchemaModel = CreateSchema(
+            "TestSystem",
+            ("dbo", "Customer", ["CustomerId", "Name"]));
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+
+        try
+        {
+            var result = BindValidated(
+                tempRoot,
+                transformModel,
+                sourceSchemaModel,
+                targetSchemaModel);
+            var persisted = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(
+                result.WorkspacePath,
+                searchUpward: false);
+            AssertMutationEvidencePresent(persisted, mutationKind);
+            var evidenceBeforeRevalidation = CaptureMutationEvidence(persisted);
+
+            var exception = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(
+                    persisted,
+                    sourceSchemaModel,
+                    targetSchemaModel));
+
+            Assert.Equal("StrictMutationTargetEvidenceMissing", exception.Code);
+            Assert.Equal(evidenceBeforeRevalidation, CaptureMutationEvidence(persisted));
+            AssertMutationEvidencePresent(persisted, mutationKind);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
     [Fact]
     public void BindValidatedUpdate_WithUnresolvedWriteExpression_FailsHard()
     {
@@ -4991,6 +5041,70 @@ GO
             "TestSystem",
             "dbo",
             bindingWorkspacePath);
+    }
+
+    private static MetaTransformScriptModel CreateMutationTransform(string mutationKind)
+    {
+        var sql = mutationKind switch
+        {
+            "insert" =>
+                "INSERT INTO dbo.Customer (CustomerId, Name) SELECT source.CustomerId, source.Name FROM dbo.CustomerStage AS source;",
+            "update" =>
+                "UPDATE dbo.Customer SET Name = source.Name FROM dbo.CustomerStage AS source WHERE source.CustomerId = dbo.Customer.CustomerId;",
+            "merge" =>
+                "MERGE dbo.Customer AS target USING dbo.CustomerStage AS source ON target.CustomerId = source.CustomerId " +
+                "WHEN MATCHED THEN UPDATE SET Name = source.Name " +
+                "WHEN NOT MATCHED THEN INSERT (CustomerId, Name) VALUES (source.CustomerId, source.Name);",
+            "delete" =>
+                "DELETE FROM dbo.Customer FROM dbo.CustomerStage AS source WHERE source.CustomerId = dbo.Customer.CustomerId;",
+            "truncate" => "TRUNCATE TABLE dbo.Customer;",
+            _ => throw new ArgumentOutOfRangeException(nameof(mutationKind), mutationKind, "Unknown mutation test kind.")
+        };
+
+        return new MetaTransformScriptSqlParser().ParseSqlCode(sql, bareSelectName: $"{mutationKind}-customer");
+    }
+
+    private static void AssertMutationEvidencePresent(MetaTransformBindingModel model, string mutationKind)
+    {
+        switch (mutationKind)
+        {
+            case "insert":
+                Assert.Single(model.InsertQueryWriteList);
+                break;
+            case "update":
+                Assert.Single(model.UpdateWriteList);
+                break;
+            case "merge":
+                Assert.Single(model.MergeInsertWriteList);
+                Assert.Single(model.MergeUpdateWriteList);
+                break;
+            case "delete":
+                Assert.Single(model.DeleteList);
+                break;
+            case "truncate":
+                Assert.Single(model.TruncateList);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(mutationKind), mutationKind, "Unknown mutation test kind.");
+        }
+    }
+
+    private static string CaptureMutationEvidence(MetaTransformBindingModel model)
+    {
+        var rows = new List<string>();
+        rows.AddRange(model.WriteList.Select(static item => $"Write:{item.Id}"));
+        rows.AddRange(model.WriteValueList.Select(static item => $"WriteValue:{item.Id}"));
+        rows.AddRange(model.WriteValueScalarExpressionList.Select(static item => $"WriteValueScalarExpression:{item.Id}"));
+        rows.AddRange(model.InsertQueryWriteList.Select(static item => $"InsertQueryWrite:{item.Id}"));
+        rows.AddRange(model.InsertValuesWriteList.Select(static item => $"InsertValuesWrite:{item.Id}"));
+        rows.AddRange(model.UpdateWriteList.Select(static item => $"UpdateWrite:{item.Id}"));
+        rows.AddRange(model.MergeInsertWriteList.Select(static item => $"MergeInsertWrite:{item.Id}"));
+        rows.AddRange(model.MergeUpdateWriteList.Select(static item => $"MergeUpdateWrite:{item.Id}"));
+        rows.AddRange(model.DeleteList.Select(static item => $"Delete:{item.Id}"));
+        rows.AddRange(model.MergeDeleteList.Select(static item => $"MergeDelete:{item.Id}"));
+        rows.AddRange(model.TruncateList.Select(static item => $"Truncate:{item.Id}"));
+        rows.AddRange(model.TargetColumnReferenceList.Select(static item => $"TargetColumnReference:{item.Id}"));
+        return string.Join("\n", rows.OrderBy(static item => item, StringComparer.Ordinal));
     }
 
     private static void SetFieldMetaDataTypeId(MetaSchemaModel schemaModel, string tableId, string fieldName, string metaDataTypeId)
