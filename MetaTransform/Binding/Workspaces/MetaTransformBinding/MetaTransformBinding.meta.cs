@@ -151,6 +151,7 @@ public sealed partial class ValidationSourceRowsetLink
 {
     public string Id { get; set; } = null !;
     public string MetaSchemaTableId { get; set; } = null !;
+    public string ResolvedSqlIdentifier { get; set; } = null !;
     public Rowset Rowset { get; set; } = null !;
     public Validation Validation { get; set; } = null !;
 }
@@ -190,6 +191,7 @@ public sealed partial class ValidationTargetRowsetLink
 {
     public string Id { get; set; } = null !;
     public string MetaSchemaTableId { get; set; } = null !;
+    public string ResolvedSqlIdentifier { get; set; } = null !;
     public Rowset Rowset { get; set; } = null !;
     public TransformBindingTarget TransformBindingTarget { get; set; } = null !;
     public Validation Validation { get; set; } = null !;

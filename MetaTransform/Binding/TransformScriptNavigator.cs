@@ -571,7 +571,7 @@ internal sealed partial class TransformScriptNavigator
             return false;
         }
 
-        resolvedSqlIdentifier = string.Join(".", parts);
+        resolvedSqlIdentifier = TransformBindingSqlIdentifier.FormatParts(parts);
         return true;
     }
 
@@ -663,7 +663,7 @@ internal sealed partial class TransformScriptNavigator
     private string? RenderSchemaObjectName(SchemaObjectName schemaObjectName)
     {
         return schemaObjectNameById.TryGetValue(schemaObjectName.Id, out var resolved)
-            ? string.Join(".", GetMultiPartIdentifierParts(resolved.MultiPartIdentifier.Id))
+            ? TransformBindingSqlIdentifier.FormatParts(GetMultiPartIdentifierParts(resolved.MultiPartIdentifier.Id))
             : null;
     }
 

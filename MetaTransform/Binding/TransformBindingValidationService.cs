@@ -305,7 +305,8 @@ public sealed class TransformBindingValidationService
             Id = sourceRowsetLinkId,
             Validation = validation,
             Rowset = sourceRowset,
-            MetaSchemaTableId = resolution.Table!.TableId
+            MetaSchemaTableId = resolution.Table!.TableId,
+            ResolvedSqlIdentifier = resolution.Table.CanonicalSqlIdentifier
         };
         sourceRowsetLinks.Add(sourceRowsetLink);
 
@@ -572,7 +573,8 @@ public sealed class TransformBindingValidationService
             Validation = validation,
             TransformBindingTarget = target,
             Rowset = finalRowset,
-            MetaSchemaTableId = resolution.Table.TableId
+            MetaSchemaTableId = resolution.Table.TableId,
+            ResolvedSqlIdentifier = resolution.Table.CanonicalSqlIdentifier
         };
         targetRowsetLinks.Add(targetRowsetLink);
 
@@ -755,7 +757,8 @@ public sealed class TransformBindingValidationService
             Validation = validation,
             TransformBindingTarget = target,
             Rowset = targetRowset,
-            MetaSchemaTableId = targetTable.TableId
+            MetaSchemaTableId = targetTable.TableId,
+            ResolvedSqlIdentifier = targetTable.CanonicalSqlIdentifier
         };
         targetRowsetLinks.Add(targetRowsetLink);
 
@@ -886,7 +889,8 @@ public sealed class TransformBindingValidationService
             Validation = validation,
             TransformBindingTarget = target,
             Rowset = targetRowset,
-            MetaSchemaTableId = targetTable.TableId
+            MetaSchemaTableId = targetTable.TableId,
+            ResolvedSqlIdentifier = targetTable.CanonicalSqlIdentifier
         };
         targetRowsetLinks.Add(targetRowsetLink);
         return targetRowsetLink;

@@ -527,6 +527,23 @@ public sealed class MetaOrchestrationAnalysisService
         MetaTransformBindingModel bindingModel,
         TransformBinding binding)
     {
+        var validatedSources = bindingModel.ValidationSourceRowsetLinkList
+            .Where(item => string.Equals(item.Validation.TransformBinding.Id, binding.Id, StringComparison.Ordinal))
+            .OrderBy(static item => item.Id, StringComparer.Ordinal)
+            .ToArray();
+
+        if (validatedSources.Length > 0)
+        {
+            return validatedSources
+                .Select(static item => RequireResolvedSqlIdentifier(
+                    item.ResolvedSqlIdentifier,
+                    "source",
+                    item.Id))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(static item => item, StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+        }
+
         return bindingModel.RowsetList
             .Where(item =>
                 string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal) &&
@@ -606,65 +623,27 @@ public sealed class MetaOrchestrationAnalysisService
             .Where(item => targetIds.Contains(item.TransformBindingTarget.Id))
             .OrderBy(static item => item.Id, StringComparer.Ordinal))
         {
-            if (TryFormatMetaSchemaTableId(validationTarget.MetaSchemaTableId, out var validatedIdentifier))
-            {
-                return validatedIdentifier;
-            }
+            return RequireResolvedSqlIdentifier(
+                validationTarget.ResolvedSqlIdentifier,
+                "target",
+                validationTarget.Id);
         }
 
         return null;
     }
 
-    private static bool TryFormatMetaSchemaTableId(string metaSchemaTableId, out string sqlIdentifier)
+    private static string RequireResolvedSqlIdentifier(
+        string? resolvedSqlIdentifier,
+        string validationRole,
+        string validationLinkId)
     {
-        sqlIdentifier = string.Empty;
-        if (string.IsNullOrWhiteSpace(metaSchemaTableId))
+        if (string.IsNullOrWhiteSpace(resolvedSqlIdentifier))
         {
-            return false;
+            throw new InvalidDataException(
+                $"Binding validation {validationRole} link '{validationLinkId}' is missing ResolvedSqlIdentifier evidence. Regenerate the Binding workspace from its TransformScript and MetaSchema inputs.");
         }
 
-        var parts = metaSchemaTableId.Split(':', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-        if (parts.Length < 6 ||
-            !string.Equals(parts[0], "sqlserver", StringComparison.OrdinalIgnoreCase))
-        {
-            return false;
-        }
-
-        var systemName = parts[1];
-        var schemaIndex = Array.FindIndex(parts, static item => string.Equals(item, "schema", StringComparison.OrdinalIgnoreCase));
-        var tableIndex = Array.FindIndex(parts, static item => string.Equals(item, "table", StringComparison.OrdinalIgnoreCase));
-        if (schemaIndex < 0 ||
-            tableIndex < 0 ||
-            schemaIndex + 1 >= parts.Length ||
-            tableIndex + 1 >= parts.Length)
-        {
-            return false;
-        }
-
-        var schemaName = parts[schemaIndex + 1];
-        var tableName = parts[tableIndex + 1];
-        if (string.IsNullOrWhiteSpace(systemName) ||
-            string.IsNullOrWhiteSpace(schemaName) ||
-            string.IsNullOrWhiteSpace(tableName))
-        {
-            return false;
-        }
-
-        sqlIdentifier = $"{FormatSqlIdentifierPart(systemName)}.{FormatSqlIdentifierPart(schemaName)}.{FormatSqlIdentifierPart(tableName)}";
-        return true;
-    }
-
-    private static string FormatSqlIdentifierPart(string value)
-    {
-        var trimmed = value.Trim();
-        if (trimmed.Length > 0 &&
-            (char.IsLetter(trimmed[0]) || trimmed[0] == '_') &&
-            trimmed.All(static character => char.IsLetterOrDigit(character) || character == '_'))
-        {
-            return trimmed;
-        }
-
-        return "[" + trimmed.Replace("]", "]]", StringComparison.Ordinal) + "]";
+        return resolvedSqlIdentifier.Trim();
     }
 
     private static IReadOnlyList<string> ResolveInsertRowsTargets(

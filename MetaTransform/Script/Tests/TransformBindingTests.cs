@@ -3511,10 +3511,12 @@ GO
 
             var sourceValidation = Assert.Single(validated.ValidationSourceRowsetLinkList);
             Assert.Equal("Table:1", sourceValidation.MetaSchemaTableId);
+            Assert.Equal("TestSystem.dbo.SourceTable", sourceValidation.ResolvedSqlIdentifier);
             Assert.Equal(validation.Id, sourceValidation.Validation.Id);
 
             var targetValidation = Assert.Single(validated.ValidationTargetRowsetLinkList);
             Assert.Equal("Table:2", targetValidation.MetaSchemaTableId);
+            Assert.Equal("TestSystem.dbo.CustomerSummary", targetValidation.ResolvedSqlIdentifier);
             Assert.Equal(validation.Id, targetValidation.Validation.Id);
 
             Assert.Equal(3, validated.ValidationSourceColumnLinkList.Count);
@@ -3523,6 +3525,43 @@ GO
             Assert.Empty(validated.ValidationTargetColumnTypeSanctionedConversionList);
             Assert.Empty(validated.ValidationTargetIgnoredColumnList);
 
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_RecordsQuoteSafeResolvedSqlIdentifiersFromMetaSchemaStructure()
+    {
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "SELECT source.CustomerId FROM [Reporting.Db].[sales].[Source.Detail] AS source;",
+            bareSelectName: "quoted-identifiers");
+        SetViewTargetSqlIdentifier(
+            transformModel,
+            transformModel.TransformScriptList[0],
+            "[Reporting.Db].[sales].[Order.Detail]");
+        var schemaModel = CreateSchema(
+            "Reporting.Db",
+            ("sales", "Source.Detail", ["CustomerId"]),
+            ("sales", "Order.Detail", ["CustomerId"]));
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+
+        try
+        {
+            var result = BindValidated(tempRoot, transformModel, schemaModel, schemaModel);
+
+            var sourceValidation = Assert.Single(result.Model.ValidationSourceRowsetLinkList);
+            Assert.EndsWith("Table:1", sourceValidation.MetaSchemaTableId, StringComparison.Ordinal);
+            Assert.Equal("[Reporting.Db].sales.[Source.Detail]", sourceValidation.ResolvedSqlIdentifier);
+
+            var targetValidation = Assert.Single(result.Model.ValidationTargetRowsetLinkList);
+            Assert.Equal("Table:2", targetValidation.MetaSchemaTableId);
+            Assert.Equal("[Reporting.Db].sales.[Order.Detail]", targetValidation.ResolvedSqlIdentifier);
         }
         finally
         {

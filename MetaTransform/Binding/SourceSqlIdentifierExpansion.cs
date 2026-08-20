@@ -106,17 +106,15 @@ internal static class SourceSqlIdentifierExpansion
             return SourceSqlIdentifierParseResult.Failure(SourceSqlIdentifierExpansionFailureKind.MissingIdentifier);
         }
 
-        var rawParts = sqlIdentifier
-            .Split('.', StringSplitOptions.TrimEntries);
-        if (rawParts.Length == 0)
+        if (!TransformBindingSqlIdentifier.TryParseParts(sqlIdentifier, out var parsedParts))
         {
-            return SourceSqlIdentifierParseResult.Failure(SourceSqlIdentifierExpansionFailureKind.MissingIdentifier);
+            return SourceSqlIdentifierParseResult.Failure(SourceSqlIdentifierExpansionFailureKind.UnsupportedIdentifierShape);
         }
 
-        var parts = new List<string>(rawParts.Length);
-        foreach (var rawPart in rawParts)
+        var parts = new List<string>(parsedParts.Count);
+        foreach (var parsedPart in parsedParts)
         {
-            var normalizedPart = NormalizeIdentifierPart(rawPart);
+            var normalizedPart = NormalizeIdentifierPart(parsedPart);
             if (string.IsNullOrWhiteSpace(normalizedPart))
             {
                 return SourceSqlIdentifierParseResult.Failure(SourceSqlIdentifierExpansionFailureKind.MissingIdentifier);
@@ -137,7 +135,7 @@ internal static class SourceSqlIdentifierExpansion
     {
         return new SourceSqlIdentifierExpansionResult(
             IsExpanded: true,
-            ExpandedSqlIdentifier: string.Join(".", parts),
+            ExpandedSqlIdentifier: TransformBindingSqlIdentifier.FormatParts(parts),
             ExpandedIdentifierParts: parts,
             FailureKind: SourceSqlIdentifierExpansionFailureKind.None);
     }

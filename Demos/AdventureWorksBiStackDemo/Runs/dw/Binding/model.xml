@@ -161,6 +161,7 @@
     <Entity name="ValidationSourceRowsetLink">
       <PropertyList>
         <Property name="MetaSchemaTableId" />
+        <Property name="ResolvedSqlIdentifier" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Rowset" />
@@ -205,6 +206,7 @@
     <Entity name="ValidationTargetRowsetLink">
       <PropertyList>
         <Property name="MetaSchemaTableId" />
+        <Property name="ResolvedSqlIdentifier" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Rowset" />

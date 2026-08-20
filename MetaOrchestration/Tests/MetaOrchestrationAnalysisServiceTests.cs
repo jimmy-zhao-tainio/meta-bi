@@ -2289,7 +2289,7 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
-    public async Task Analyze_QualifiesInsertRowsTargetFromBindingValidation_WhenDownstreamReadsThreePartName()
+    public async Task Analyze_UsesBindingResolvedSqlIdentities_WithoutInterpretingMetaSchemaIds()
     {
         var tempRoot = CreateTempRoot();
         try
@@ -2301,16 +2301,23 @@ public sealed class MetaOrchestrationAnalysisServiceTests
             var transformModel = await BuildTransformWorkspaceAsync(
                 transformWorkspace,
                 ("load-stage", "SELECT CustomerId FROM SourceDb.dbo.RawCustomer", "dbo.StageCustomer"),
-                ("load-dim", "SELECT CustomerId FROM WarehouseDb.dbo.StageCustomer", "dbo.DimCustomer"));
+                ("load-dim", "SELECT CustomerId FROM dbo.StageCustomer", "dbo.DimCustomer"));
             BuildBindingWorkspace(
                 bindingWorkspace,
                 (ResolveScript(transformModel, "load-stage"), ["SourceDb.dbo.RawCustomer"], "dbo.StageCustomer"),
-                (ResolveScript(transformModel, "load-dim"), ["WarehouseDb.dbo.StageCustomer"], "dbo.DimCustomer"));
+                (ResolveScript(transformModel, "load-dim"), ["dbo.StageCustomer"], "dbo.DimCustomer"));
             AddValidatedTarget(
                 bindingWorkspace,
                 ResolveScript(transformModel, "load-stage"),
                 "dbo.StageCustomer",
-                "sqlserver:WarehouseDb:schema:dbo:table:StageCustomer");
+                "opaque-target-table-id",
+                "WarehouseDb.dbo.StageCustomer");
+            AddValidatedSource(
+                bindingWorkspace,
+                ResolveScript(transformModel, "load-dim"),
+                "dbo.StageCustomer",
+                "another-opaque-source-table-id",
+                "WarehouseDb.dbo.StageCustomer");
             BuildPipelineWorkspace(
                 pipelineWorkspace,
                 (PipelineName: "StageCustomer", Script: ResolveScript(transformModel, "load-stage"), InsertRowsTarget: "dbo.StageCustomer"),
@@ -4724,7 +4731,8 @@ INNER JOIN dw.DimCustomer AS d
         string bindingWorkspace,
         TransformScript script,
         string targetSqlIdentifier,
-        string metaSchemaTableId)
+        string metaSchemaTableId,
+        string resolvedSqlIdentifier)
     {
         var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, searchUpward: false);
         var binding = Assert.Single(model.TransformBindingList, item =>
@@ -4749,6 +4757,44 @@ INNER JOIN dw.DimCustomer AS d
             TransformBindingTarget = target,
             Rowset = targetRowset,
             MetaSchemaTableId = metaSchemaTableId,
+            ResolvedSqlIdentifier = resolvedSqlIdentifier,
+        });
+        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace);
+    }
+
+    private static void AddValidatedSource(
+        string bindingWorkspace,
+        TransformScript script,
+        string sourceSqlIdentifier,
+        string metaSchemaTableId,
+        string resolvedSqlIdentifier)
+    {
+        var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, searchUpward: false);
+        var binding = Assert.Single(model.TransformBindingList, item =>
+            string.Equals(item.MetaTransformScriptTransformScriptId, script.Id, StringComparison.Ordinal));
+        var sourceRowset = Assert.Single(model.RowsetList, item =>
+            string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal) &&
+            string.Equals(item.DerivationKind, "Source", StringComparison.OrdinalIgnoreCase) &&
+            string.Equals(item.SqlIdentifier, sourceSqlIdentifier, StringComparison.OrdinalIgnoreCase));
+        var validation = model.ValidationList.SingleOrDefault(item =>
+            string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal));
+        if (validation is null)
+        {
+            validation = new Validation
+            {
+                Id = $"{binding.Id}:validation",
+                TransformBinding = binding,
+            };
+            model.ValidationList.Add(validation);
+        }
+
+        model.ValidationSourceRowsetLinkList.Add(new ValidationSourceRowsetLink
+        {
+            Id = $"{validation.Id}:source:{model.ValidationSourceRowsetLinkList.Count + 1}",
+            Validation = validation,
+            Rowset = sourceRowset,
+            MetaSchemaTableId = metaSchemaTableId,
+            ResolvedSqlIdentifier = resolvedSqlIdentifier,
         });
         Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace);
     }

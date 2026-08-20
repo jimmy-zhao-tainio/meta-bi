@@ -66,8 +66,8 @@ internal sealed class MetaSchemaTableResolver
                 var systemName = systemNamesById.GetValueOrDefault(systemId) ?? string.Empty;
                 var schemaName = schemaRow?.Name ?? string.Empty;
                 var canonicalSqlIdentifier = string.IsNullOrWhiteSpace(systemName)
-                    ? $"{schemaName}.{item.Name}"
-                    : $"{systemName}.{schemaName}.{item.Name}";
+                    ? TransformBindingSqlIdentifier.FormatParts([schemaName, item.Name])
+                    : TransformBindingSqlIdentifier.FormatParts([systemName, schemaName, item.Name]);
 
                 return new ResolvedSchemaTable(
                     item.Id,
@@ -117,8 +117,16 @@ internal sealed class MetaSchemaTableResolver
                 SchemaTableResolutionFailureKind.MissingIdentifier);
         }
 
-        var normalizedParts = sqlIdentifier
-            .Split('.', StringSplitOptions.TrimEntries)
+        if (!TransformBindingSqlIdentifier.TryParseParts(sqlIdentifier, out var parsedParts))
+        {
+            return new SchemaTableResolutionResult(
+                [],
+                sqlIdentifier.Trim(),
+                null,
+                SchemaTableResolutionFailureKind.UnsupportedIdentifierShape);
+        }
+
+        var normalizedParts = parsedParts
             .Select(NormalizeIdentifierPart)
             .ToArray();
 

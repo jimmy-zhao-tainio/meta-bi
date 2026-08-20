@@ -308,13 +308,16 @@ public sealed class TransformBindingWorkspaceService
                 $"Transform script '{transformScript.Name}' is missing TargetSqlIdentifier.");
         }
 
-        var parts = trimmed
-            .Split('.', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-
-        if (parts.Length is < 1 or > 3)
+        if (!TransformBindingSqlIdentifier.TryParseParts(trimmed, out var parts))
         {
             throw new InvalidOperationException(
-                $"Transform script '{transformScript.Name}' target '{scriptObjectView?.TargetSqlIdentifier}' uses {parts.Length} identifier parts; binding supports table, schema.table, or database.schema.table targets only.");
+                $"Transform script '{transformScript.Name}' target '{scriptObjectView?.TargetSqlIdentifier}' is not a valid multipart identifier.");
+        }
+
+        if (parts.Count is < 1 or > 3)
+        {
+            throw new InvalidOperationException(
+                $"Transform script '{transformScript.Name}' target '{scriptObjectView?.TargetSqlIdentifier}' uses {parts.Count} identifier parts; binding supports table, schema.table, or database.schema.table targets only.");
         }
 
         return new TransformBindingTargetResolution(trimmed, null);

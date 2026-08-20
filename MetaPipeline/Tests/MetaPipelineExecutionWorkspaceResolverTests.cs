@@ -887,6 +887,7 @@ END
                     TransformBindingTarget = target,
                     Rowset = rowset,
                     MetaSchemaTableId = "schema:table:target",
+                    ResolvedSqlIdentifier = target.SqlIdentifier,
                 };
                 model.ValidationTargetRowsetLinkList.Add(targetRowsetLink);
 
