@@ -80,6 +80,8 @@ Once the contract exists, binding consumes the declaration rows exactly as autho
 
 For each non-`Call` operation, Binding persists an explicit association from the TransformScript operation to its bound rowset. Validated Binding workspaces also persist that operation's resolved MetaSchema table identity and canonical SQL identifier. Source reads resolve in the execution-system context; writes resolve against the target schema. This is what makes a two-part identifier such as `dbo.StageCustomer` compare correctly with the canonical `WarehouseDb.dbo.StageCustomer` used elsewhere. A failed or ambiguous resolution is a validation error.
 
+Stored-procedure write operations must resolve to actual table contracts. Writing through views is intentionally unsupported, even when a database engine considers a particular view updatable.
+
 ## Orchestration Behavior
 
 Orchestration consumes `StoredProcedureContractOperation` rows in ordinal order. This lets one stored procedure represent the internal steps of a pipeline when needed.

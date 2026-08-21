@@ -328,6 +328,11 @@ public sealed class TransformBindingValidationService
                 ThrowResolutionFailure(isSource, rowset.SqlIdentifier, resolution);
             }
 
+            if (isTarget)
+            {
+                EnsureWritableTargetContract(rowset.SqlIdentifier, resolution.Table!);
+            }
+
             operationLinks.Add(new ValidationStoredProcedureOperationLink
             {
                 Id = $"{validation.Id}:stored-procedure-operation:{operationLinks.Count + 1}",

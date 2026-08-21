@@ -379,6 +379,67 @@ public sealed class StoredProcedureSupportTests
     }
 
     [Fact]
+    public async Task BindingWorkspace_RejectsStoredProcedureWriteOperationAgainstView()
+    {
+        var root = CreateTempRoot();
+        var transformWorkspacePath = Path.Combine(root, "TransformWS");
+        var targetSchemaWorkspacePath = Path.Combine(root, "TargetSchemaWS");
+        var bindingWorkspacePath = Path.Combine(root, "BindingWS");
+
+        try
+        {
+            var service = new MetaTransformScriptSqlService();
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
+                "CREATE PROCEDURE etl.RefreshStage AS SELECT 1 AS Marker;",
+                targetSqlIdentifier: null,
+                newWorkspacePath: transformWorkspacePath);
+
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var storedProcedure = Assert.Single(transformModel.ScriptObjectStoredProcedureList);
+            var contract = CreateContract(storedProcedure);
+            contract.Id = $"{storedProcedure.Id}:contract";
+            transformModel.StoredProcedureContractList.Add(contract);
+            transformModel.StoredProcedureContractOperationList.Add(new StoredProcedureContractOperation
+            {
+                Id = $"{contract.Id}:append",
+                StoredProcedureContract = contract,
+                Ordinal = "10",
+                OperationKind = "Append",
+                SqlIdentifier = "dbo.StageCustomer"
+            });
+            MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
+
+            SaveSchemaWorkspace(targetSchemaWorkspacePath, "WarehouseDb", "dbo.StageCustomer");
+            var targetSchema = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MS.MetaSchemaModel>(targetSchemaWorkspacePath, searchUpward: false);
+            var table = Assert.Single(targetSchema.TableList);
+            targetSchema.TableList.Clear();
+            targetSchema.ViewList.Add(new MS.View
+            {
+                Id = table.Id,
+                SchemaObject = table.SchemaObject
+            });
+            MetaTransformScriptTestHelper.SaveXml(targetSchema, targetSchemaWorkspacePath);
+
+            var exception = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(
+                    transformWorkspacePath,
+                    sourceSchemaWorkspacePaths: [targetSchemaWorkspacePath],
+                    targetSchemaWorkspacePath,
+                    executeSystemName: "WarehouseDb",
+                    executeSystemDefaultSchemaName: null,
+                    newWorkspacePath: bindingWorkspacePath));
+
+            Assert.Equal("TargetSchemaObjectNotWritable", exception.Code);
+            Assert.Contains("read-only view", exception.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("writable table contracts", exception.Message, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteTempRoot(root);
+        }
+    }
+
+    [Fact]
     public async Task StoredProcedureContractService_AddsViewsAndRemovesContract()
     {
         var root = CreateTempRoot();
