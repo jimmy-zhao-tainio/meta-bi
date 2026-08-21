@@ -542,6 +542,56 @@ public sealed class StoredProcedureSupportTests
         }
     }
 
+    [Fact]
+    public async Task StoredProcedureContractService_RejectsInvalidOperationOrdinalsBeforeMutation()
+    {
+        var root = CreateTempRoot();
+        var workspacePath = Path.Combine(root, "TransformScriptWS");
+
+        try
+        {
+            var service = new MetaTransformScriptSqlService();
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
+                """
+                CREATE PROCEDURE dq.RefreshStage
+                AS
+                BEGIN
+                    SELECT 1 AS Marker;
+                END
+                """,
+                targetSqlIdentifier: null,
+                newWorkspacePath: workspacePath);
+
+            var negative = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                service.AddStoredProcedureContractAsync(
+                    workspacePath,
+                    "dq.RefreshStage",
+                    new StoredProcedureContractDeclaration(
+                        [new StoredProcedureContractOperationDeclaration(-1, "Reset", "dbo.Stage")],
+                        [])));
+            Assert.Contains("non-negative", negative.Message, StringComparison.OrdinalIgnoreCase);
+
+            var duplicate = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                service.AddStoredProcedureContractAsync(
+                    workspacePath,
+                    "dq.RefreshStage",
+                    new StoredProcedureContractDeclaration(
+                        [
+                            new StoredProcedureContractOperationDeclaration(10, "Reset", "dbo.Stage"),
+                            new StoredProcedureContractOperationDeclaration(10, "Append", "dbo.Stage")
+                        ],
+                        [])));
+            Assert.Contains("unique", duplicate.Message, StringComparison.OrdinalIgnoreCase);
+
+            var inspection = await service.InspectStoredProcedureContractsAsync(workspacePath);
+            Assert.Equal(StoredProcedureContractState.Missing, Assert.Single(inspection.Items).ContractState);
+        }
+        finally
+        {
+            DeleteTempRoot(root);
+        }
+    }
+
     private static string CreateTempRoot()
     {
         var root = Path.Combine(Path.GetTempPath(), "MetaTransform.Script.Tests", Guid.NewGuid().ToString("N"));

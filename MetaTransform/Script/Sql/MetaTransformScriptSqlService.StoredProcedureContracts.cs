@@ -272,17 +272,6 @@ public sealed partial class MetaTransformScriptSqlService
         MTS.StoredProcedureContract contract,
         IReadOnlyList<StoredProcedureContractOperationDeclaration> declarations)
     {
-        var duplicateOrdinals = declarations
-            .GroupBy(static item => item.Ordinal)
-            .Where(static group => group.Count() > 1)
-            .Select(static group => group.Key)
-            .OrderBy(static item => item)
-            .ToArray();
-        if (duplicateOrdinals.Length > 0)
-        {
-            throw new InvalidOperationException($"Stored procedure contract operation ordinals must be unique. Duplicates: {string.Join(", ", duplicateOrdinals)}.");
-        }
-
         foreach (var declaration in declarations.OrderBy(static item => item.Ordinal))
         {
             var operationKind = NormalizeStoredProcedureOperationKind(declaration.OperationKind)
@@ -346,6 +335,28 @@ public sealed partial class MetaTransformScriptSqlService
     private static void ValidateStoredProcedureContractDeclaration(
         StoredProcedureContractDeclaration declaration)
     {
+        var negativeOrdinals = declaration.Operations
+            .Where(static item => item.Ordinal < 0)
+            .Select(static item => item.Ordinal)
+            .Distinct()
+            .OrderBy(static item => item)
+            .ToArray();
+        if (negativeOrdinals.Length > 0)
+        {
+            throw new InvalidOperationException($"Stored procedure contract operation ordinals must be non-negative. Invalid values: {string.Join(", ", negativeOrdinals)}.");
+        }
+
+        var duplicateOrdinals = declaration.Operations
+            .GroupBy(static item => item.Ordinal)
+            .Where(static group => group.Count() > 1)
+            .Select(static group => group.Key)
+            .OrderBy(static item => item)
+            .ToArray();
+        if (duplicateOrdinals.Length > 0)
+        {
+            throw new InvalidOperationException($"Stored procedure contract operation ordinals must be unique. Duplicates: {string.Join(", ", duplicateOrdinals)}.");
+        }
+
         if (declaration.ResultRowsets.Count > 1)
         {
             throw new InvalidOperationException("Stored procedure contracts support at most one result rowset.");
