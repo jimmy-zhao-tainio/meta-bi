@@ -513,6 +513,101 @@ WHERE c.IsDeleted = 0
     }
 
     [Fact]
+    public async Task Discovery_PreservesQuotedDotIdentityForJoinProjectionAndFilter()
+    {
+        var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(rootPath, "transform");
+
+        try
+        {
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
+                """
+                SELECT [c.x].[Customer.Id], [o.x].[Detail.Code]
+                FROM [Db.One].dbo.[Customer.Table] AS [c.x]
+                LEFT OUTER JOIN [Db.One].dbo.[Order.Table] AS [o.x]
+                    ON [c.x].[Customer.Id] = [o.x].[Customer.Id]
+                WHERE [c.x].[Status.Code] = 0;
+                """,
+                "dbo.TargetQuoted",
+                transformWorkspacePath,
+                "dbo.v_quoted_dot_witness");
+
+            var result = new MetaDataQualityCandidateDiscoveryService()
+                .DiscoverFromTransformWorkspace(transformWorkspacePath);
+
+            var keyPart = Assert.Single(result.Model.JoinPatternKeyPartList);
+            Assert.Equal("Customer.Id", keyPart.FirstJoinInputColumnName);
+            Assert.Equal("Customer.Id", keyPart.SecondJoinInputColumnName);
+            Assert.Equal("[Db.One].dbo.[Customer.Table]", keyPart.FirstJoinInputObjectName);
+            Assert.Equal("[Db.One].dbo.[Order.Table]", keyPart.SecondJoinInputObjectName);
+
+            var filter = Assert.Single(result.Model.FilterPredicateObservationList);
+            Assert.Equal("[Db.One].dbo.[Customer.Table]", filter.BaseObjectName);
+            Assert.Contains("Status.Code", filter.PredicateDisplay, StringComparison.Ordinal);
+
+            Assert.Empty(result.Model.JoinMultiplicityExplosionList);
+            Assert.Empty(result.Model.OutputDuplicateRiskList);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(rootPath);
+        }
+    }
+
+    [Fact]
+    public async Task Discovery_DistinguishesSameDisplayDifferentMultipartObjects()
+    {
+        var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(rootPath, "transform");
+
+        try
+        {
+            var sqlService = new MetaTransformScriptSqlService();
+            await sqlService.ImportFromSqlCodeToXmlWorkspaceAsync(
+                """
+                SELECT l.CustomerId, r.OrderId
+                FROM [sales.eu].Customer l
+                INNER JOIN [sales.eu].[Order] r ON l.CustomerId = r.CustomerId;
+                """,
+                "dbo.TargetTwoPart",
+                transformWorkspacePath,
+                "dbo.v_two_part");
+            await sqlService.AddSqlCodeToWorkspaceAsync(
+                """
+                SELECT l.CustomerId, r.OrderId
+                FROM sales.eu.Customer l
+                INNER JOIN sales.eu.[Order] r ON l.CustomerId = r.CustomerId;
+                """,
+                "dbo.TargetThreePart",
+                transformWorkspacePath,
+                "dbo.v_three_part");
+
+            var result = new MetaDataQualityCandidateDiscoveryService()
+                .DiscoverFromTransformWorkspace(transformWorkspacePath);
+
+            Assert.Equal(2, result.Model.JoinPatternOccurrenceList.Count);
+            Assert.Equal(2, result.Model.JoinPatternList.Count);
+            Assert.Contains(
+                result.Model.JoinPatternList,
+                item => item.CanonicalSignature.Contains("[sales.eu].Customer", StringComparison.OrdinalIgnoreCase));
+            Assert.Contains(
+                result.Model.JoinPatternList,
+                item => item.CanonicalSignature.Contains("sales.eu.Customer", StringComparison.OrdinalIgnoreCase)
+                        && !item.CanonicalSignature.Contains("[sales.eu].Customer", StringComparison.OrdinalIgnoreCase));
+            Assert.Contains(
+                result.Model.JoinPatternKeyPartInputObjectIdentifierPartList,
+                item => string.Equals(item.Value, "sales.eu", StringComparison.Ordinal));
+            Assert.Contains(
+                result.Model.JoinPatternKeyPartInputObjectIdentifierPartList,
+                item => string.Equals(item.Value, "sales", StringComparison.Ordinal));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(rootPath);
+        }
+    }
+
+    [Fact]
     public async Task Discovery_SuppressesFanoutChecksWhenRightDetailColumnIsProjected()
     {
         var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));

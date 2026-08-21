@@ -1638,12 +1638,8 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 return false;
             }
 
-            var parts = expression
-                .Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                .Select(static part => UnquoteIdentifier(part))
-                .Where(static part => !string.IsNullOrWhiteSpace(part))
-                .ToArray();
-            if (parts.Length < 2)
+            if (!TransformScriptSqlIdentifier.TryParseParts(expression, out var parts)
+                || parts.Count < 2)
             {
                 return false;
             }
@@ -1651,17 +1647,6 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
             alias = parts[^2];
             column = parts[^1];
             return !string.IsNullOrWhiteSpace(alias) && !string.IsNullOrWhiteSpace(column);
-        }
-
-        private static string UnquoteIdentifier(string value)
-        {
-            var trimmed = value.Trim();
-            if (trimmed.Length >= 2 && trimmed[0] == '[' && trimmed[^1] == ']')
-            {
-                return trimmed[1..^1].Replace("]]", "]", StringComparison.Ordinal);
-            }
-
-            return trimmed;
         }
 
         private IReadOnlyList<string> ResolveProjectedScalarExpressionDisplays(string querySpecificationId)
@@ -2140,7 +2125,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 return false;
             }
 
-            fullName = string.Join(".", parts);
+            fullName = TransformScriptSqlIdentifier.FormatParts(parts);
             baseName = parts[^1];
             partCount = parts.Length;
             identifierParts = parts;
@@ -2332,7 +2317,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
             }
             return parts.Length == 0
                 ? string.Empty
-                : string.Join(".", parts);
+                : TransformScriptSqlIdentifier.FormatParts(parts);
         }
 
         private bool TryGetMultiPartIdentifierValues(
@@ -2415,17 +2400,17 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
 
         private static string[] SplitSqlIdentifierName(string name)
         {
-            return name
-                .Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                .Select(NormalizeSqlIdentifierPart)
-                .Where(static part => !string.IsNullOrWhiteSpace(part))
-                .ToArray();
+            return TransformScriptSqlIdentifier.TryParseParts(name, out var parts)
+                ? parts
+                    .Select(NormalizeSqlIdentifierPart)
+                    .Where(static part => !string.IsNullOrWhiteSpace(part))
+                    .ToArray()
+                : [];
         }
 
         private static string NormalizeSqlIdentifierPath(IEnumerable<string> parts)
         {
-            return string.Join(
-                ".",
+            return TransformScriptSqlIdentifier.FormatParts(
                 parts
                     .Select(NormalizeSqlIdentifierPart)
                     .Where(static part => !string.IsNullOrWhiteSpace(part)));
