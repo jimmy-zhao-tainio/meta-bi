@@ -11,6 +11,7 @@ internal sealed partial class TransformBindingSession
     private readonly List<RuntimeColumnReference> boundColumnReferences = [];
     private readonly List<RuntimeRowset> boundRowsets = [];
     private readonly List<RuntimeMutationEffect> mutationEffects = [];
+    private readonly List<RuntimeStoredProcedureOperationBinding> storedProcedureOperationBindings = [];
     private readonly Stack<IReadOnlySet<string>> orderByOutputAliasScopeStack = [];
     private readonly Stack<IReadOnlySet<string>> nonNullableColumnScopeStack = [];
     private readonly HashSet<string> activeTransformFunctionParameterNames = new(StringComparer.OrdinalIgnoreCase);
@@ -423,6 +424,7 @@ internal sealed partial class TransformBindingSession
                 operation.Id,
                 sqlIdentifier,
                 columns);
+            storedProcedureOperationBindings.Add(new RuntimeStoredProcedureOperationBinding(operation.Id, rowset));
             inputRowsets.Add(new RuntimeRowsetInput(ordinal, inputRole, rowset));
             ordinal++;
         }
@@ -638,7 +640,8 @@ internal sealed partial class TransformBindingSession
             boundRowsets,
             issues)
         {
-            MutationEffects = mutationEffects.ToArray()
+            MutationEffects = mutationEffects.ToArray(),
+            StoredProcedureOperationBindings = storedProcedureOperationBindings.ToArray()
         };
     }
 

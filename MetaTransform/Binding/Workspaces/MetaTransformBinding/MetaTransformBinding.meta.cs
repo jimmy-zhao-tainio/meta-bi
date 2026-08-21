@@ -87,6 +87,14 @@ public sealed partial class SourceTarget
     public Rowset Target { get; set; } = null !;
 }
 
+public sealed partial class StoredProcedureOperationBinding
+{
+    public string Id { get; set; } = null !;
+    public string MetaTransformScriptStoredProcedureContractOperationId { get; set; } = null !;
+    public Rowset Rowset { get; set; } = null !;
+    public TransformBinding TransformBinding { get; set; } = null !;
+}
+
 public sealed partial class TableSource
 {
     public string Id { get; set; } = null !;
@@ -153,6 +161,15 @@ public sealed partial class ValidationSourceRowsetLink
     public string MetaSchemaTableId { get; set; } = null !;
     public string ResolvedSqlIdentifier { get; set; } = null !;
     public Rowset Rowset { get; set; } = null !;
+    public Validation Validation { get; set; } = null !;
+}
+
+public sealed partial class ValidationStoredProcedureOperationLink
+{
+    public string Id { get; set; } = null !;
+    public string MetaSchemaTableId { get; set; } = null !;
+    public string ResolvedSqlIdentifier { get; set; } = null !;
+    public StoredProcedureOperationBinding StoredProcedureOperationBinding { get; set; } = null !;
     public Validation Validation { get; set; } = null !;
 }
 
@@ -231,6 +248,7 @@ public sealed partial class MetaTransformBindingModel
     public List<OutputRowset> OutputRowsetList { get; set; } = new();
     public List<Rowset> RowsetList { get; set; } = new();
     public List<SourceTarget> SourceTargetList { get; set; } = new();
+    public List<StoredProcedureOperationBinding> StoredProcedureOperationBindingList { get; set; } = new();
     public List<TableSource> TableSourceList { get; set; } = new();
     public List<TargetColumnReference> TargetColumnReferenceList { get; set; } = new();
     public List<TransformBinding> TransformBindingList { get; set; } = new();
@@ -240,6 +258,7 @@ public sealed partial class MetaTransformBindingModel
     public List<Validation> ValidationList { get; set; } = new();
     public List<ValidationSourceColumnLink> ValidationSourceColumnLinkList { get; set; } = new();
     public List<ValidationSourceRowsetLink> ValidationSourceRowsetLinkList { get; set; } = new();
+    public List<ValidationStoredProcedureOperationLink> ValidationStoredProcedureOperationLinkList { get; set; } = new();
     public List<ValidationTargetColumnLink> ValidationTargetColumnLinkList { get; set; } = new();
     public List<ValidationTargetColumnTypeExact> ValidationTargetColumnTypeExactList { get; set; } = new();
     public List<ValidationTargetColumnTypeSanctionedConversion> ValidationTargetColumnTypeSanctionedConversionList { get; set; } = new();

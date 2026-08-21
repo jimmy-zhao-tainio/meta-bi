@@ -42,6 +42,17 @@ internal static class TransformBindingModelBuilder
         var rowsetsById = model.RowsetList.ToDictionary(static item => item.Id, StringComparer.Ordinal);
         var columnsById = model.ColumnList.ToDictionary(static item => item.Id, StringComparer.Ordinal);
 
+        foreach (var operationBinding in bound.StoredProcedureOperationBindings)
+        {
+            model.StoredProcedureOperationBindingList.Add(new StoredProcedureOperationBinding
+            {
+                Id = $"{bindingId}:stored-procedure-operation:{model.StoredProcedureOperationBindingList.Count + 1}",
+                TransformBinding = bindingRow,
+                Rowset = rowsetsById[operationBinding.Rowset.Id],
+                MetaTransformScriptStoredProcedureContractOperationId = operationBinding.MetaTransformScriptStoredProcedureContractOperationId
+            });
+        }
+
         foreach (var rowset in bound.Rowsets)
         {
             foreach (var input in rowset.Inputs)

@@ -78,9 +78,13 @@ Binding fails stored procedures unless exactly one `StoredProcedureContract` row
 
 Once the contract exists, binding consumes the declaration rows exactly as authored. It does not parse the stored procedure body to discover missing reads, writes, calls, or result sets.
 
+For each non-`Call` operation, Binding persists an explicit association from the TransformScript operation to its bound rowset. Validated Binding workspaces also persist that operation's resolved MetaSchema table identity and canonical SQL identifier. Source reads resolve in the execution-system context; writes resolve against the target schema. This is what makes a two-part identifier such as `dbo.StageCustomer` compare correctly with the canonical `WarehouseDb.dbo.StageCustomer` used elsewhere. A failed or ambiguous resolution is a validation error.
+
 ## Orchestration Behavior
 
 Orchestration consumes `StoredProcedureContractOperation` rows in ordinal order. This lets one stored procedure represent the internal steps of a pipeline when needed.
+
+When a Binding workspace has validation evidence, Orchestration uses the validated canonical SQL identifier for every non-`Call` operation. Missing or ambiguous per-operation evidence is treated as a stale Binding workspace that must be regenerated. Structure-only Binding workspaces retain the authored identifier as a deliberate unvalidated fallback.
 
 Operations become ordered object accesses:
 
@@ -89,6 +93,8 @@ Operations become ordered object accesses:
 - `Reset` becomes a reset write effect.
 - `Mutation` becomes a read/write effect.
 - `Call` is a declared procedure call and does not create a rowset object access.
+
+`Call` does not import the called procedure's effects. The caller's complete contract must declare any transitive rowset reads or writes that orchestration is expected to use.
 
 Task object effects are classified from the ordered accesses. A reset followed by an append is treated as a replacement-style load; an append followed by a reset is treated as a final reset.
 

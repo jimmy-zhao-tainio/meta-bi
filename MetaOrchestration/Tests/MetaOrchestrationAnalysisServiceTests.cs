@@ -2340,6 +2340,124 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
+    public async Task Analyze_StoredProcedureOperations_UseValidatedBindingIdentity()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var transformWorkspace = Path.Combine(tempRoot, "Transform");
+            var bindingWorkspace = Path.Combine(tempRoot, "Binding");
+            var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
+
+            var transformModel = await BuildTransformWorkspaceAsync(
+                transformWorkspace,
+                ("dbo.RefreshStage", "CREATE PROCEDURE dbo.RefreshStage AS SELECT 1 AS Marker;", null),
+                ("read-stage", "SELECT CustomerId FROM dbo.StageCustomer", "dbo.StageConsumer"),
+                ("read-external-stage", "SELECT CustomerId FROM ExternalDb.dbo.StageCustomer", "dbo.ExternalConsumer"));
+            AddStoredProcedureContractOperations(
+                transformModel,
+                "dbo.RefreshStage",
+                [Operation(10, "Append", "\"dbo\".\"StageCustomer\"")]);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
+                transformWorkspace,
+                bindingWorkspace);
+            Assert.Equal(0, bindingResult.ErrorCount);
+
+            var operation = Assert.Single(transformModel.StoredProcedureContractOperationList);
+            AddValidatedStoredProcedureOperation(
+                bindingWorkspace,
+                ResolveScript(transformModel, "dbo.RefreshStage"),
+                operation.Id,
+                "opaque-warehouse-stage-id",
+                "WarehouseDb.dbo.StageCustomer");
+            AddValidatedSource(
+                bindingWorkspace,
+                ResolveScript(transformModel, "read-stage"),
+                "dbo.StageCustomer",
+                "another-opaque-warehouse-stage-id",
+                "WarehouseDb.dbo.StageCustomer");
+            AddValidatedSource(
+                bindingWorkspace,
+                ResolveScript(transformModel, "read-external-stage"),
+                "ExternalDb.dbo.StageCustomer",
+                "opaque-external-stage-id",
+                "ExternalDb.dbo.StageCustomer");
+
+            BuildPipelineWorkspace(
+                pipelineWorkspace,
+                (PipelineName: "RefreshStage", Script: ResolveScript(transformModel, "dbo.RefreshStage"), InsertRowsTarget: null),
+                (PipelineName: "ReadStage", Script: ResolveScript(transformModel, "read-stage"), InsertRowsTarget: "dbo.StageConsumer"),
+                (PipelineName: "ReadExternalStage", Script: ResolveScript(transformModel, "read-external-stage"), InsertRowsTarget: "dbo.ExternalConsumer"));
+
+            var result = Analyze(pipelineWorkspace, transformWorkspace, bindingWorkspace);
+
+            Assert.True(result.IsCompleteDag);
+            var dependency = Assert.Single(result.Dependencies);
+            Assert.Equal("pipeline:RefreshStage", dependency.PredecessorPipelineId);
+            Assert.Equal("pipeline:ReadStage", dependency.SuccessorPipelineId);
+            var refreshTask = Assert.Single(
+                Assert.Single(result.Pipelines, item => item.PipelineName == "RefreshStage").Tasks);
+            Assert.Contains(refreshTask.ObjectAccesses, item =>
+                item.AccessKind == OrchestrationObjectAccessKind.Write &&
+                string.Equals(item.SqlIdentifier, "WarehouseDb.dbo.StageCustomer", StringComparison.Ordinal));
+            Assert.DoesNotContain(result.Dependencies, item =>
+                string.Equals(item.SuccessorPipelineId, "pipeline:ReadExternalStage", StringComparison.Ordinal));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task Analyze_ValidatedStoredProcedureOperationWithoutIdentityEvidence_RequiresBindingRegeneration()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var transformWorkspace = Path.Combine(tempRoot, "Transform");
+            var bindingWorkspace = Path.Combine(tempRoot, "Binding");
+            var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
+
+            var transformModel = await BuildTransformWorkspaceAsync(
+                transformWorkspace,
+                ("dbo.RefreshStage", "CREATE PROCEDURE dbo.RefreshStage AS SELECT 1 AS Marker;", null));
+            AddStoredProcedureContractOperations(
+                transformModel,
+                "dbo.RefreshStage",
+                [Operation(10, "Append", "dbo.StageCustomer")]);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
+                transformWorkspace,
+                bindingWorkspace);
+            Assert.Equal(0, bindingResult.ErrorCount);
+            var bindingModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, searchUpward: false);
+            var binding = Assert.Single(bindingModel.TransformBindingList);
+            bindingModel.ValidationList.Add(new Validation
+            {
+                Id = $"{binding.Id}:validation",
+                TransformBinding = binding,
+            });
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(bindingModel, bindingWorkspace);
+
+            BuildPipelineWorkspace(
+                pipelineWorkspace,
+                (PipelineName: "RefreshStage", Script: ResolveScript(transformModel, "dbo.RefreshStage"), InsertRowsTarget: null));
+
+            var exception = Assert.Throws<InvalidDataException>(() =>
+                Analyze(pipelineWorkspace, transformWorkspace, bindingWorkspace));
+            Assert.Contains("Regenerate the Binding workspace", exception.Message, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public async Task Analyze_AllowsScalarFunctionDefinitionsInTransformWorkspace_WhenPipelineUsesView()
     {
         var tempRoot = CreateTempRoot();
@@ -4793,6 +4911,42 @@ INNER JOIN dw.DimCustomer AS d
             Id = $"{validation.Id}:source:{model.ValidationSourceRowsetLinkList.Count + 1}",
             Validation = validation,
             Rowset = sourceRowset,
+            MetaSchemaTableId = metaSchemaTableId,
+            ResolvedSqlIdentifier = resolvedSqlIdentifier,
+        });
+        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace);
+    }
+
+    private static void AddValidatedStoredProcedureOperation(
+        string bindingWorkspace,
+        TransformScript script,
+        string operationId,
+        string metaSchemaTableId,
+        string resolvedSqlIdentifier)
+    {
+        var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, searchUpward: false);
+        var binding = Assert.Single(model.TransformBindingList, item =>
+            string.Equals(item.MetaTransformScriptTransformScriptId, script.Id, StringComparison.Ordinal));
+        var operationBinding = Assert.Single(model.StoredProcedureOperationBindingList, item =>
+            string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal) &&
+            string.Equals(item.MetaTransformScriptStoredProcedureContractOperationId, operationId, StringComparison.Ordinal));
+        var validation = model.ValidationList.SingleOrDefault(item =>
+            string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal));
+        if (validation is null)
+        {
+            validation = new Validation
+            {
+                Id = $"{binding.Id}:validation",
+                TransformBinding = binding,
+            };
+            model.ValidationList.Add(validation);
+        }
+
+        model.ValidationStoredProcedureOperationLinkList.Add(new ValidationStoredProcedureOperationLink
+        {
+            Id = $"{validation.Id}:stored-procedure-operation:{model.ValidationStoredProcedureOperationLinkList.Count + 1}",
+            Validation = validation,
+            StoredProcedureOperationBinding = operationBinding,
             MetaSchemaTableId = metaSchemaTableId,
             ResolvedSqlIdentifier = resolvedSqlIdentifier,
         });

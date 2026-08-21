@@ -40,6 +40,10 @@ public sealed record RuntimeTableSource(
     string SqlIdentifier,
     RuntimeRowset Rowset);
 
+internal sealed record RuntimeStoredProcedureOperationBinding(
+    string MetaTransformScriptStoredProcedureContractOperationId,
+    RuntimeRowset Rowset);
+
 public sealed record RuntimeColumnReference(
     string SyntaxColumnReferenceId,
     IReadOnlyList<string> IdentifierParts,
@@ -176,6 +180,7 @@ public sealed record TransformBindingResult(
     IReadOnlyList<TransformBindingIssue> Issues)
 {
     internal IReadOnlyList<RuntimeMutationEffect> MutationEffects { get; init; } = [];
+    internal IReadOnlyList<RuntimeStoredProcedureOperationBinding> StoredProcedureOperationBindings { get; init; } = [];
 
     public bool HasErrors => Issues.Count > 0;
 }

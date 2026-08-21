@@ -257,7 +257,7 @@ public sealed class StoredProcedureSupportTests
             AddSingleReadContract(transformModel, "etl.FirstLoad", "src.SharedSource");
             AddSingleReadContract(transformModel, "etl.SecondLoad", "src.SharedSource");
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
-            SaveSchemaWorkspace(schemaWorkspacePath, "src.SharedSource");
+            SaveSchemaWorkspace(schemaWorkspacePath, "Hairball", "src.SharedSource");
 
             var result = new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(
                 transformWorkspacePath,
@@ -272,6 +272,105 @@ public sealed class StoredProcedureSupportTests
             Assert.Equal(bindingModel.ColumnList.Count, bindingModel.ColumnList.Select(static item => item.Id).Distinct(StringComparer.Ordinal).Count());
             Assert.Equal(2, bindingModel.RowsetList.Count(static item =>
                 string.Equals(item.SqlIdentifier, "src.SharedSource", StringComparison.Ordinal)));
+        }
+        finally
+        {
+            DeleteTempRoot(root);
+        }
+    }
+
+    [Fact]
+    public async Task BindingWorkspace_PersistsResolvedIdentityForEachNonCallStoredProcedureOperation()
+    {
+        var root = CreateTempRoot();
+        var transformWorkspacePath = Path.Combine(root, "TransformWS");
+        var sourceSchemaWorkspacePath = Path.Combine(root, "SourceSchemaWS");
+        var targetSchemaWorkspacePath = Path.Combine(root, "TargetSchemaWS");
+        var bindingWorkspacePath = Path.Combine(root, "BindingWS");
+
+        try
+        {
+            var service = new MetaTransformScriptSqlService();
+            await service.ImportFromSqlCodeToXmlWorkspaceAsync(
+                """
+                CREATE PROCEDURE etl.RefreshStage
+                AS
+                BEGIN
+                    SELECT 1 AS Marker;
+                END
+                """,
+                targetSqlIdentifier: null,
+                newWorkspacePath: transformWorkspacePath);
+
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var storedProcedure = Assert.Single(transformModel.ScriptObjectStoredProcedureList);
+            var contract = CreateContract(storedProcedure);
+            contract.Id = $"{storedProcedure.Id}:contract";
+            transformModel.StoredProcedureContractList.Add(contract);
+            transformModel.StoredProcedureContractOperationList.Add(new StoredProcedureContractOperation
+            {
+                Id = $"{contract.Id}:read",
+                StoredProcedureContract = contract,
+                Ordinal = "10",
+                OperationKind = "Read",
+                SqlIdentifier = "src.SourceCustomer"
+            });
+            transformModel.StoredProcedureContractOperationList.Add(new StoredProcedureContractOperation
+            {
+                Id = $"{contract.Id}:append",
+                StoredProcedureContract = contract,
+                Ordinal = "20",
+                OperationKind = "Append",
+                SqlIdentifier = "dbo.StageCustomer"
+            });
+            transformModel.StoredProcedureContractOperationList.Add(new StoredProcedureContractOperation
+            {
+                Id = $"{contract.Id}:call",
+                StoredProcedureContract = contract,
+                Ordinal = "30",
+                OperationKind = "Call",
+                SqlIdentifier = "audit.MarkRefresh"
+            });
+            MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
+            SaveSchemaWorkspace(sourceSchemaWorkspacePath, "ExecutionDb", "src.SourceCustomer");
+            SaveSchemaWorkspace(targetSchemaWorkspacePath, "WarehouseDb", "dbo.StageCustomer");
+
+            var result = new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(
+                transformWorkspacePath,
+                [sourceSchemaWorkspacePath],
+                targetSchemaWorkspacePath,
+                executeSystemName: "ExecutionDb",
+                executeSystemDefaultSchemaName: null,
+                newWorkspacePath: bindingWorkspacePath);
+
+            Assert.Equal(0, result.ErrorCount);
+            var bindingModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var operationBindings = bindingModel.StoredProcedureOperationBindingList
+                .OrderBy(static item => item.MetaTransformScriptStoredProcedureContractOperationId, StringComparer.Ordinal)
+                .ToArray();
+            Assert.Equal(2, operationBindings.Length);
+            Assert.DoesNotContain(operationBindings, item =>
+                string.Equals(item.MetaTransformScriptStoredProcedureContractOperationId, $"{contract.Id}:call", StringComparison.Ordinal));
+
+            var resolvedOperations = bindingModel.ValidationStoredProcedureOperationLinkList
+                .ToDictionary(
+                    item => item.StoredProcedureOperationBinding.MetaTransformScriptStoredProcedureContractOperationId,
+                    item => item.ResolvedSqlIdentifier,
+                    StringComparer.Ordinal);
+            Assert.Equal("ExecutionDb.src.SourceCustomer", resolvedOperations[$"{contract.Id}:read"]);
+            Assert.Equal("WarehouseDb.dbo.StageCustomer", resolvedOperations[$"{contract.Id}:append"]);
+
+            var sourceSchema = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MS.MetaSchemaModel>(sourceSchemaWorkspacePath, searchUpward: false);
+            var targetSchema = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MS.MetaSchemaModel>(targetSchemaWorkspacePath, searchUpward: false);
+            var revalidated = new TransformBindingValidationService().ApplyValidation(
+                bindingModel,
+                sourceSchema,
+                targetSchema,
+                TransformBindingValidationOptions.Create(
+                    ignoredTargetColumnNames: null,
+                    executeSystemName: "ExecutionDb",
+                    executeSystemDefaultSchemaName: null));
+            Assert.Equal(2, revalidated.ValidationStoredProcedureOperationLinkList.Count);
         }
         finally
         {
@@ -433,48 +532,56 @@ public sealed class StoredProcedureSupportTests
 
     private static void SaveSchemaWorkspace(
         string workspacePath,
-        string tableSqlIdentifier)
+        string systemName,
+        params string[] tableSqlIdentifiers)
     {
-        var parts = tableSqlIdentifier.Split('.', 2);
-        Assert.Equal(2, parts.Length);
-
         var model = MS.MetaSchemaModel.CreateEmpty();
         var system = new MS.System
         {
-            Id = "hairball:system",
-            Name = "Hairball"
+            Id = $"{systemName}:system",
+            Name = systemName
         };
-        var schema = new MS.Schema
-        {
-            Id = $"hairball:schema:{parts[0]}",
-            System = system,
-            Name = parts[0]
-        };
-        var schemaObject = new MS.SchemaObject
-        {
-            Id = $"hairball:table:{parts[0]}:{parts[1]}",
-            Schema = schema,
-            Name = parts[1]
-        };
-        var table = new MS.Table
-        {
-            Id = schemaObject.Id,
-            SchemaObject = schemaObject
-        };
-
         model.SystemList.Add(system);
-        model.SchemaList.Add(schema);
-        model.SchemaObjectList.Add(schemaObject);
-        model.TableList.Add(table);
-        model.FieldList.Add(new MS.Field
+
+        foreach (var tableSqlIdentifier in tableSqlIdentifiers)
         {
-            Id = $"hairball:field:{parts[0]}:{parts[1]}:Value",
-            SchemaObject = schemaObject,
-            MetaDataTypeId = "sqlserver:type:int",
-            Name = "Value",
-            Ordinal = "0",
-            IsNullable = "false"
-        });
+            var parts = tableSqlIdentifier.Split('.', 2);
+            Assert.Equal(2, parts.Length);
+            var schema = model.SchemaList.SingleOrDefault(item =>
+                string.Equals(item.Name, parts[0], StringComparison.Ordinal)) ?? new MS.Schema
+            {
+                Id = $"{systemName}:schema:{parts[0]}",
+                System = system,
+                Name = parts[0]
+            };
+            if (!model.SchemaList.Contains(schema))
+            {
+                model.SchemaList.Add(schema);
+            }
+
+            var schemaObject = new MS.SchemaObject
+            {
+                Id = $"{systemName}:table:{parts[0]}:{parts[1]}",
+                Schema = schema,
+                Name = parts[1]
+            };
+            model.SchemaObjectList.Add(schemaObject);
+            model.TableList.Add(new MS.Table
+            {
+                Id = schemaObject.Id,
+                SchemaObject = schemaObject
+            });
+            model.FieldList.Add(new MS.Field
+            {
+                Id = $"{systemName}:field:{parts[0]}:{parts[1]}:Value",
+                SchemaObject = schemaObject,
+                MetaDataTypeId = "sqlserver:type:int",
+                Name = "Value",
+                Ordinal = "0",
+                IsNullable = "false"
+            });
+        }
+
         MetaTransformScriptTestHelper.SaveXml(model, workspacePath);
     }
 }

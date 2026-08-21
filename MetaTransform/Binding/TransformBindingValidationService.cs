@@ -57,6 +57,7 @@ public sealed class TransformBindingValidationService
 
         var validations = new List<Validation>();
         var sourceRowsetLinks = new List<ValidationSourceRowsetLink>();
+        var storedProcedureOperationLinks = new List<ValidationStoredProcedureOperationLink>();
         var targetRowsetLinks = new List<ValidationTargetRowsetLink>();
         var sourceColumnLinks = new List<ValidationSourceColumnLink>();
         var targetColumnLinks = new List<ValidationTargetColumnLink>();
@@ -104,6 +105,7 @@ public sealed class TransformBindingValidationService
                 dataTypeConversionWorkspace,
                 validations,
                 sourceRowsetLinks,
+                storedProcedureOperationLinks,
                 targetRowsetLinks,
                 sourceColumnLinks,
                 targetColumnLinks,
@@ -132,6 +134,8 @@ public sealed class TransformBindingValidationService
         bindingModel.ValidationList.AddRange(validations);
         bindingModel.ValidationSourceRowsetLinkList.Clear();
         bindingModel.ValidationSourceRowsetLinkList.AddRange(sourceRowsetLinks);
+        bindingModel.ValidationStoredProcedureOperationLinkList.Clear();
+        bindingModel.ValidationStoredProcedureOperationLinkList.AddRange(storedProcedureOperationLinks);
         bindingModel.ValidationTargetRowsetLinkList.Clear();
         bindingModel.ValidationTargetRowsetLinkList.AddRange(targetRowsetLinks);
         bindingModel.ValidationSourceColumnLinkList.Clear();
@@ -182,6 +186,7 @@ public sealed class TransformBindingValidationService
         MetaDataTypeConversionModel dataTypeConversionWorkspace,
         List<Validation> validations,
         List<ValidationSourceRowsetLink> sourceRowsetLinks,
+        List<ValidationStoredProcedureOperationLink> storedProcedureOperationLinks,
         List<ValidationTargetRowsetLink> targetRowsetLinks,
         List<ValidationSourceColumnLink> sourceColumnLinks,
         List<ValidationTargetColumnLink> targetColumnLinks,
@@ -212,6 +217,15 @@ public sealed class TransformBindingValidationService
             TransformBinding = binding
         };
         validations.Add(validation);
+
+        AddStoredProcedureOperationValidation(
+            model,
+            binding,
+            validation,
+            sourceResolver,
+            targetResolver,
+            options,
+            storedProcedureOperationLinks);
 
         var finalRowset = ResolveFinalRowset(model, binding.Id);
         var rowsetColumnsByRowsetId = model.ColumnList
@@ -277,6 +291,51 @@ public sealed class TransformBindingValidationService
                 mergeDeletes,
                 truncates,
                 targetColumnReferences);
+        }
+    }
+
+    private static void AddStoredProcedureOperationValidation(
+        MetaTransformBindingModel model,
+        TransformBinding binding,
+        Validation validation,
+        MetaSchemaTableResolver sourceResolver,
+        MetaSchemaTableResolver targetResolver,
+        TransformBindingValidationOptions options,
+        List<ValidationStoredProcedureOperationLink> operationLinks)
+    {
+        var operationBindings = model.StoredProcedureOperationBindingList
+            .Where(item => string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal))
+            .OrderBy(static item => item.Id, StringComparer.Ordinal)
+            .ToArray();
+
+        foreach (var operationBinding in operationBindings)
+        {
+            var rowset = operationBinding.Rowset;
+            var isSource = string.Equals(rowset.DerivationKind, "Source", StringComparison.OrdinalIgnoreCase);
+            var isTarget = string.Equals(rowset.DerivationKind, "Target", StringComparison.OrdinalIgnoreCase);
+            if (!isSource && !isTarget)
+            {
+                throw new TransformBindingValidationException(
+                    "StoredProcedureOperationBindingKindInvalid",
+                    $"Stored procedure operation binding '{operationBinding.Id}' points to rowset '{rowset.Id}' with unsupported derivation kind '{rowset.DerivationKind}'.");
+            }
+
+            var resolution = isSource
+                ? ResolveSourceSchemaIdentifier(sourceResolver, options, rowset.SqlIdentifier)
+                : targetResolver.ResolveSqlIdentifier(rowset.SqlIdentifier);
+            if (!resolution.IsResolved)
+            {
+                ThrowResolutionFailure(isSource, rowset.SqlIdentifier, resolution);
+            }
+
+            operationLinks.Add(new ValidationStoredProcedureOperationLink
+            {
+                Id = $"{validation.Id}:stored-procedure-operation:{operationLinks.Count + 1}",
+                Validation = validation,
+                StoredProcedureOperationBinding = operationBinding,
+                MetaSchemaTableId = resolution.Table!.TableId,
+                ResolvedSqlIdentifier = resolution.Table.CanonicalSqlIdentifier
+            });
         }
     }
 

@@ -456,12 +456,14 @@ public sealed class TransformBindingWorkspaceService
         MergeById(destination.TransformBindingTargetList, source.TransformBindingTargetList, static item => item.Id, "TransformBindingTarget", transformScriptName);
         MergeById(destination.RowsetList, source.RowsetList, static item => item.Id, "Rowset", transformScriptName);
         MergeById(destination.SourceTargetList, source.SourceTargetList, static item => item.Id, "SourceTarget", transformScriptName);
+        MergeById(destination.StoredProcedureOperationBindingList, source.StoredProcedureOperationBindingList, static item => item.Id, "StoredProcedureOperationBinding", transformScriptName);
         MergeById(destination.ColumnList, source.ColumnList, static item => item.Id, "Column", transformScriptName);
         MergeById(destination.ColumnReferenceList, source.ColumnReferenceList, static item => item.Id, "ColumnReference", transformScriptName);
         MergeById(destination.TableSourceList, source.TableSourceList, static item => item.Id, "TableSource", transformScriptName);
         MergeById(destination.OutputRowsetList, source.OutputRowsetList, static item => item.Id, "OutputRowset", transformScriptName);
         MergeById(destination.ValidationList, source.ValidationList, static item => item.Id, "Validation", transformScriptName);
         MergeById(destination.ValidationSourceRowsetLinkList, source.ValidationSourceRowsetLinkList, static item => item.Id, "ValidationSourceRowsetLink", transformScriptName);
+        MergeById(destination.ValidationStoredProcedureOperationLinkList, source.ValidationStoredProcedureOperationLinkList, static item => item.Id, "ValidationStoredProcedureOperationLink", transformScriptName);
         MergeById(destination.ValidationTargetRowsetLinkList, source.ValidationTargetRowsetLinkList, static item => item.Id, "ValidationTargetRowsetLink", transformScriptName);
         MergeById(destination.ValidationSourceColumnLinkList, source.ValidationSourceColumnLinkList, static item => item.Id, "ValidationSourceColumnLink", transformScriptName);
         MergeById(destination.ValidationTargetColumnLinkList, source.ValidationTargetColumnLinkList, static item => item.Id, "ValidationTargetColumnLink", transformScriptName);

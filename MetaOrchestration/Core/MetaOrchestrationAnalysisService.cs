@@ -329,7 +329,10 @@ public sealed class MetaOrchestrationAnalysisService
                 {
                     foreach (var operation in workspaceContext.StoredProcedureOperationsByScriptId.GetValueOrDefault(execution.TransformScriptId) ?? [])
                     {
-                        var access = TryCreateStoredProcedureOperationAccess(operation);
+                        var access = TryCreateStoredProcedureOperationAccess(
+                            workspaceContext.BindingModel,
+                            binding,
+                            operation);
                         if (access is not null)
                         {
                             accesses.Add(access);
@@ -464,6 +467,8 @@ public sealed class MetaOrchestrationAnalysisService
         };
 
     private static PipelineObjectAccessProfile? TryCreateStoredProcedureOperationAccess(
+        MetaTransformBindingModel bindingModel,
+        TransformBinding binding,
         StoredProcedureContractOperation operation)
     {
         var operationKind = NormalizeStoredProcedureOperationKind(operation.OperationKind);
@@ -492,13 +497,69 @@ public sealed class MetaOrchestrationAnalysisService
             reason = $"{reason}: {operation.Notes.Trim()}";
         }
 
+        var sqlIdentifier = ResolveStoredProcedureOperationSqlIdentifier(
+            bindingModel,
+            binding,
+            operation);
+
         return CreateAccess(
-            operation.SqlIdentifier,
+            sqlIdentifier,
             accessKind,
             accessRole,
             reason,
             ParseOrdinalOrMax(operation.Ordinal),
             operationKind);
+    }
+
+    private static string ResolveStoredProcedureOperationSqlIdentifier(
+        MetaTransformBindingModel bindingModel,
+        TransformBinding binding,
+        StoredProcedureContractOperation operation)
+    {
+        var validations = bindingModel.ValidationList
+            .Where(item => string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal))
+            .ToArray();
+        if (validations.Length == 0)
+        {
+            return operation.SqlIdentifier.Trim();
+        }
+
+        if (validations.Length > 1)
+        {
+            throw new InvalidDataException(
+                $"Transform binding '{binding.Id}' has multiple Validation rows. Regenerate the Binding workspace from its TransformScript and MetaSchema inputs.");
+        }
+
+        var operationBindings = bindingModel.StoredProcedureOperationBindingList
+            .Where(item => string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal))
+            .Where(item => string.Equals(
+                item.MetaTransformScriptStoredProcedureContractOperationId,
+                operation.Id,
+                StringComparison.Ordinal))
+            .ToArray();
+        if (operationBindings.Length != 1)
+        {
+            throw new InvalidDataException(
+                $"Validated transform binding '{binding.Id}' has {operationBindings.Length} operation bindings for stored procedure operation '{operation.Id}'. Regenerate the Binding workspace from its TransformScript and MetaSchema inputs.");
+        }
+
+        var validationLinks = bindingModel.ValidationStoredProcedureOperationLinkList
+            .Where(item => string.Equals(item.Validation.Id, validations[0].Id, StringComparison.Ordinal))
+            .Where(item => string.Equals(
+                item.StoredProcedureOperationBinding.Id,
+                operationBindings[0].Id,
+                StringComparison.Ordinal))
+            .ToArray();
+        if (validationLinks.Length != 1)
+        {
+            throw new InvalidDataException(
+                $"Validated stored procedure operation binding '{operationBindings[0].Id}' has {validationLinks.Length} resolved identity links. Regenerate the Binding workspace from its TransformScript and MetaSchema inputs.");
+        }
+
+        return RequireResolvedSqlIdentifier(
+            validationLinks[0].ResolvedSqlIdentifier,
+            "stored procedure operation",
+            validationLinks[0].Id);
     }
 
     private static string? NormalizeStoredProcedureOperationKind(string? operationKind)
