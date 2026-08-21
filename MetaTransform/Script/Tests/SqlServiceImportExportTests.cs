@@ -371,6 +371,55 @@ FROM sales.Customer AS c
     }
 
     [Fact]
+    public void ImportSqlCode_BareSelect_WithQuotedDots_PreservesTargetAcrossSqlRoundTrip()
+    {
+        const string sql = "SELECT c.CustomerId FROM sales.Customer AS c;";
+        const string targetSqlIdentifier = "[Reporting.Db].[sales].[Order.Detail]";
+        var service = new MetaTransformScriptSqlService();
+        var first = MetaTransformScriptModel.CreateEmpty();
+
+        service.ImportSqlCode(first, sql, targetSqlIdentifier, scriptName: "quoted-dot-target");
+        var emitted = service.ExportToSqlCode(first);
+
+        var second = MetaTransformScriptModel.CreateEmpty();
+        service.ImportSqlCode(second, emitted, targetSqlIdentifier, scriptName: "quoted-dot-target");
+
+        Assert.Equal(
+            targetSqlIdentifier,
+            GetViewTargetSqlIdentifier(first, Assert.Single(first.TransformScriptList)));
+        Assert.Equal(
+            targetSqlIdentifier,
+            GetViewTargetSqlIdentifier(second, Assert.Single(second.TransformScriptList)));
+        MetaTransformScriptTestHelper.AssertModelListCountsEqual(first, second);
+        MetaTransformScriptTestHelper.AssertModelListIdsEqual(first, second);
+        Assert.Equal(service.ExportToSqlCode(first), service.ExportToSqlCode(second));
+    }
+
+    [Theory]
+    [InlineData(".", "empty part")]
+    [InlineData("dbo..Customer", "empty part")]
+    [InlineData("[dbo].[Customer", "unterminated quoted part")]
+    [InlineData("[dbo]suffix.Customer", "characters after a quoted part")]
+    [InlineData("Server.Database.Schema.Owner", "uses 4 identifier parts")]
+    public void ImportSqlCode_BareSelect_RejectsMalformedOrUnsupportedTarget(
+        string targetSqlIdentifier,
+        string expectedMessage)
+    {
+        var service = new MetaTransformScriptSqlService();
+        var model = MetaTransformScriptModel.CreateEmpty();
+
+        var exception = Assert.Throws<InvalidOperationException>(() =>
+            service.ImportSqlCode(
+                model,
+                "SELECT 1 AS Value;",
+                targetSqlIdentifier,
+                scriptName: "invalid-target"));
+
+        Assert.Contains("target SQL identifier", exception.Message, StringComparison.Ordinal);
+        Assert.Contains(expectedMessage, exception.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
     public async Task ImportSingleSqlFileToXmlWorkspaceAsync_CreateView_WithTarget_AssignsTargetSqlIdentifier()
     {
         const string sql = """

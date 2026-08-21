@@ -7,11 +7,19 @@ public static class TransformScriptSqlIdentifier
     public static string FormatParts(IEnumerable<string> parts) =>
         string.Join(".", parts.Select(FormatPart));
 
-    public static bool TryParseParts(string? sqlIdentifier, out IReadOnlyList<string> parts)
+    public static bool TryParseParts(string? sqlIdentifier, out IReadOnlyList<string> parts) =>
+        TryParseParts(sqlIdentifier, out parts, out _);
+
+    public static bool TryParseParts(
+        string? sqlIdentifier,
+        out IReadOnlyList<string> parts,
+        out string? failureReason)
     {
         parts = [];
+        failureReason = null;
         if (string.IsNullOrWhiteSpace(sqlIdentifier))
         {
+            failureReason = "is empty";
             return false;
         }
 
@@ -82,6 +90,7 @@ public static class TransformScriptSqlIdentifier
                 {
                     if (!TryAddPart(parsed, buffer, partWasQuoted))
                     {
+                        failureReason = "contains an empty part";
                         return false;
                     }
 
@@ -90,6 +99,7 @@ public static class TransformScriptSqlIdentifier
                     continue;
                 }
 
+                failureReason = "contains characters after a quoted part";
                 return false;
             }
 
@@ -97,6 +107,7 @@ public static class TransformScriptSqlIdentifier
             {
                 if (!TryAddPart(parsed, buffer, partWasQuoted))
                 {
+                    failureReason = "contains an empty part";
                     return false;
                 }
 
@@ -108,6 +119,7 @@ public static class TransformScriptSqlIdentifier
             {
                 if (buffer.ToString().Trim().Length != 0)
                 {
+                    failureReason = "contains a quote delimiter inside an unquoted part";
                     return false;
                 }
 
@@ -120,8 +132,15 @@ public static class TransformScriptSqlIdentifier
             buffer.Append(character);
         }
 
-        if (quoteMode != QuoteMode.None || !TryAddPart(parsed, buffer, partWasQuoted))
+        if (quoteMode != QuoteMode.None)
         {
+            failureReason = "contains an unterminated quoted part";
+            return false;
+        }
+
+        if (!TryAddPart(parsed, buffer, partWasQuoted))
+        {
+            failureReason = "contains an empty part";
             return false;
         }
 

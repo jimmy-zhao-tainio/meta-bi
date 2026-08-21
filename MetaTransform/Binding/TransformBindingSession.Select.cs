@@ -730,9 +730,12 @@ internal sealed partial class TransformBindingSession
             return [];
         }
 
-        return sqlIdentifier
-            .Split('.', StringSplitOptions.TrimEntries)
-            .Where(static item => !string.IsNullOrWhiteSpace(item))
+        if (!TransformScriptSqlIdentifier.TryParseParts(sqlIdentifier, out var parts))
+        {
+            return [];
+        }
+
+        return parts
             .Select(NormalizeIdentifierPart)
             .ToArray();
     }

@@ -570,11 +570,16 @@ public sealed partial class MetaTransformScriptSqlService
         ArgumentException.ThrowIfNullOrWhiteSpace(targetSqlIdentifier);
 
         var trimmed = targetSqlIdentifier.Trim();
-        var parts = trimmed.Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        if (parts.Length is < 1 or > 3)
+        if (!MTS.TransformScriptSqlIdentifier.TryParseParts(trimmed, out var parts, out var failureReason))
         {
             throw new InvalidOperationException(
-                $"target SQL identifier '{targetSqlIdentifier}' uses {parts.Length} identifier parts; expected table, schema.table, or database.schema.table.");
+                $"target SQL identifier '{targetSqlIdentifier}' {failureReason}; expected table, schema.table, or database.schema.table.");
+        }
+
+        if (parts.Count is < 1 or > 3)
+        {
+            throw new InvalidOperationException(
+                $"target SQL identifier '{targetSqlIdentifier}' uses {parts.Count} identifier parts; expected table, schema.table, or database.schema.table.");
         }
 
         return trimmed;

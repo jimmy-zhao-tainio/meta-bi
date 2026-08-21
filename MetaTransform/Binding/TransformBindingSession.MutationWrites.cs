@@ -452,9 +452,9 @@ internal sealed partial class TransformBindingSession
         var targetExposedName = targetAlias?.Trim();
         if (string.IsNullOrWhiteSpace(targetExposedName))
         {
-            targetExposedName = targetRowset.SqlIdentifier?
-                .Split('.', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
-                .LastOrDefault();
+            targetExposedName = TransformScriptSqlIdentifier.TryParseParts(targetRowset.SqlIdentifier, out var parts)
+                ? parts.LastOrDefault()
+                : null;
         }
 
         targetExposedName ??= transformScript.Name;
