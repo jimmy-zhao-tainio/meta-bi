@@ -1,6 +1,6 @@
 using MetaOrchestration.Core;
 using MetaPipeline;
-using MetaTransform.Binding;
+using MetaTransformScript;
 
 namespace MetaBi.TransformSurfaceContracts.Tests;
 
@@ -25,7 +25,7 @@ END
 """));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "dbo.fnAddOne", BoundStatementKind.ScalarFunction);
+        ContractAssertions.AssertStatementKind(workspace, "dbo.fnAddOne", TransformScriptStatementKind.ScalarFunction);
         ContractAssertions.AssertNoDataQualityCandidates(workspace.DiscoverDataQuality());
 
         var script = workspace.ResolveScript("dbo.fnAddOne");

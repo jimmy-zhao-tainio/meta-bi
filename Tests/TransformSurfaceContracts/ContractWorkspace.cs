@@ -196,9 +196,9 @@ internal sealed class ContractWorkspace : IDisposable
             string.Equals(item.MetaTransformScriptTransformScriptId, script.Id, StringComparison.Ordinal));
     }
 
-    public BoundStatementKind GetStatementKind(TransformScript script)
+    public TransformScriptStatementKind GetStatementKind(TransformScript script)
     {
-        return new TransformScriptStatementKindService().GetStatementKind(TransformModel, script);
+        return new TransformScriptNavigator(TransformModel).GetTransformScriptStatementKind(script);
     }
 
     public void Dispose()

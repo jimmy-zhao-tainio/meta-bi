@@ -1,10 +1,9 @@
 using System.Collections.Concurrent;
 using System.Globalization;
-using MetaTransformScript;
 
-namespace MetaTransform.Binding;
+namespace MetaTransformScript;
 
-internal sealed partial class TransformScriptNavigator
+public sealed partial class TransformScriptNavigator
 {
     private static readonly ConcurrentDictionary<Type, string?> OwnerPropertyByType = new();
 
@@ -406,40 +405,40 @@ internal sealed partial class TransformScriptNavigator
         return selectStatementByStatementWithCtesId.GetValueOrDefault(statementWithCtes.Id);
     }
 
-    public BoundStatementKind GetTransformScriptStatementKind(TransformScript script)
+    public TransformScriptStatementKind GetTransformScriptStatementKind(TransformScript script)
     {
         if (!scriptStatementLinkByOwnerId.TryGetValue(script.Id, out var link))
         {
             if (scriptObjectScalarFunctionByOwnerId.ContainsKey(script.Id))
             {
-                return BoundStatementKind.ScalarFunction;
+                return TransformScriptStatementKind.ScalarFunction;
             }
 
             if (scriptObjectStoredProcedureByOwnerId.ContainsKey(script.Id))
             {
-                return BoundStatementKind.StoredProcedure;
+                return TransformScriptStatementKind.StoredProcedure;
             }
 
-            return BoundStatementKind.Unsupported;
+            return TransformScriptStatementKind.Unsupported;
         }
 
         if (truncateStatementBySqlStatementId.ContainsKey(link.TSqlStatement.Id))
         {
-            return BoundStatementKind.Truncate;
+            return TransformScriptStatementKind.Truncate;
         }
 
         if (!statementWithCtesBySqlStatementId.TryGetValue(link.TSqlStatement.Id, out var statementWithCtes))
         {
-            return BoundStatementKind.Unsupported;
+            return TransformScriptStatementKind.Unsupported;
         }
 
-        if (selectStatementByStatementWithCtesId.ContainsKey(statementWithCtes.Id)) return BoundStatementKind.Select;
-        if (insertStatementByStatementWithCtesId.ContainsKey(statementWithCtes.Id)) return BoundStatementKind.Insert;
-        if (updateStatementByStatementWithCtesId.ContainsKey(statementWithCtes.Id)) return BoundStatementKind.Update;
-        if (deleteStatementByStatementWithCtesId.ContainsKey(statementWithCtes.Id)) return BoundStatementKind.Delete;
-        if (mergeStatementByStatementWithCtesId.ContainsKey(statementWithCtes.Id)) return BoundStatementKind.Merge;
+        if (selectStatementByStatementWithCtesId.ContainsKey(statementWithCtes.Id)) return TransformScriptStatementKind.Select;
+        if (insertStatementByStatementWithCtesId.ContainsKey(statementWithCtes.Id)) return TransformScriptStatementKind.Insert;
+        if (updateStatementByStatementWithCtesId.ContainsKey(statementWithCtes.Id)) return TransformScriptStatementKind.Update;
+        if (deleteStatementByStatementWithCtesId.ContainsKey(statementWithCtes.Id)) return TransformScriptStatementKind.Delete;
+        if (mergeStatementByStatementWithCtesId.ContainsKey(statementWithCtes.Id)) return TransformScriptStatementKind.Merge;
 
-        return BoundStatementKind.Unsupported;
+        return TransformScriptStatementKind.Unsupported;
     }
 
     public string? TryGetMutationTargetSqlIdentifier(TransformScript script)
@@ -571,7 +570,7 @@ internal sealed partial class TransformScriptNavigator
             return false;
         }
 
-        resolvedSqlIdentifier = TransformBindingSqlIdentifier.FormatParts(parts);
+        resolvedSqlIdentifier = TransformScriptSqlIdentifier.FormatParts(parts);
         return true;
     }
 
@@ -663,7 +662,7 @@ internal sealed partial class TransformScriptNavigator
     private string? RenderSchemaObjectName(SchemaObjectName schemaObjectName)
     {
         return schemaObjectNameById.TryGetValue(schemaObjectName.Id, out var resolved)
-            ? TransformBindingSqlIdentifier.FormatParts(GetMultiPartIdentifierParts(resolved.MultiPartIdentifier.Id))
+            ? TransformScriptSqlIdentifier.FormatParts(GetMultiPartIdentifierParts(resolved.MultiPartIdentifier.Id))
             : null;
     }
 

@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
-using MetaTransformScript;
 
-namespace MetaTransform.Binding;
+namespace MetaTransformScript;
 
-internal sealed partial class TransformScriptNavigator
+public sealed partial class TransformScriptNavigator
 {
     public OrderByClause? TryGetFunctionCallWithinGroupOrderByClause(FunctionCall functionCall)
     {

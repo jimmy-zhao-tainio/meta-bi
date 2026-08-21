@@ -1,6 +1,6 @@
 using MetaOrchestration.Core;
 using MetaPipeline;
-using MetaTransform.Binding;
+using MetaTransformScript;
 
 namespace MetaBi.TransformSurfaceContracts.Tests;
 
@@ -32,7 +32,7 @@ RETURN
 """));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "dbo.fnCustomerSegments", BoundStatementKind.Select);
+        ContractAssertions.AssertStatementKind(workspace, "dbo.fnCustomerSegments", TransformScriptStatementKind.Select);
         ContractAssertions.AssertDataQualitySawJoin(workspace.DiscoverDataQuality(), "dbo.fnCustomerSegments");
 
         var script = workspace.ResolveScript("dbo.fnCustomerSegments");

@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
-using MetaTransformScript;
 
-namespace MetaTransform.Binding;
+namespace MetaTransformScript;
 
-internal sealed partial class TransformScriptNavigator
+public sealed partial class TransformScriptNavigator
 {
     public bool HasDistinctRowFilter(QuerySpecification querySpecification) =>
         string.Equals(querySpecification.UniqueRowFilter, "Distinct", StringComparison.OrdinalIgnoreCase);

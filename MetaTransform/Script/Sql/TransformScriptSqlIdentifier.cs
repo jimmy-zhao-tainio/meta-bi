@@ -1,8 +1,8 @@
 using System.Text;
 
-namespace MetaTransform.Binding;
+namespace MetaTransformScript;
 
-internal static class TransformBindingSqlIdentifier
+public static class TransformScriptSqlIdentifier
 {
     public static string FormatParts(IEnumerable<string> parts) =>
         string.Join(".", parts.Select(FormatPart));

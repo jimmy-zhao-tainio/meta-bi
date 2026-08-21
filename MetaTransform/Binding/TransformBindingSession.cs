@@ -97,7 +97,7 @@ internal sealed partial class TransformBindingSession
             activeTransformFunctionParameterNames.Add(functionParameterName);
         }
 
-        if (statementKind is not BoundStatementKind.Select)
+        if (statementKind is not TransformScriptStatementKind.Select)
         {
             return BindMutationTransform(transformScript, statementKind);
         }
@@ -145,9 +145,9 @@ internal sealed partial class TransformBindingSession
 
     private TransformBindingResult BindMutationTransform(
         TransformScript transformScript,
-        BoundStatementKind statementKind)
+        TransformScriptStatementKind statementKind)
     {
-        if (statementKind is BoundStatementKind.Unsupported)
+        if (statementKind is TransformScriptStatementKind.Unsupported)
         {
             issues.Add(new TransformBindingIssue(
                 "TransformScriptStatementKindUnsupported",
@@ -165,7 +165,7 @@ internal sealed partial class TransformBindingSession
 
         switch (statementKind)
         {
-            case BoundStatementKind.Insert:
+            case TransformScriptStatementKind.Insert:
                 var queryExpressionId = navigator.TryGetInsertStatementQueryExpressionId(transformScript);
                 if (!string.IsNullOrWhiteSpace(queryExpressionId))
                 {
@@ -186,13 +186,13 @@ internal sealed partial class TransformBindingSession
                 }
 
                 break;
-            case BoundStatementKind.Update:
+            case TransformScriptStatementKind.Update:
                 inputRowset = BindMutationFromClause(navigator.TryGetUpdateStatementFromClause(transformScript), visibleSources);
                 break;
-            case BoundStatementKind.Delete:
+            case TransformScriptStatementKind.Delete:
                 inputRowset = BindMutationFromClause(navigator.TryGetDeleteStatementFromClause(transformScript), visibleSources);
                 break;
-            case BoundStatementKind.Merge:
+            case TransformScriptStatementKind.Merge:
                 var mergeSource = navigator.TryGetMergeStatementSourceTableReference(transformScript);
                 if (mergeSource is not null)
                 {
@@ -229,7 +229,7 @@ internal sealed partial class TransformBindingSession
 
     private void BindMutationSearchCondition(
         TransformScript transformScript,
-        BoundStatementKind statementKind,
+        TransformScriptStatementKind statementKind,
         RuntimeRowset targetRowset,
         RuntimeRowset? inputRowset,
         IReadOnlyList<RuntimeTableSource> visibleSources)
@@ -239,16 +239,16 @@ internal sealed partial class TransformBindingSession
 
         switch (statementKind)
         {
-            case BoundStatementKind.Update:
+            case TransformScriptStatementKind.Update:
                 searchCondition = navigator.TryGetUpdateStatementSearchCondition(transformScript);
                 targetAlias = navigator.TryGetUpdateStatementTargetAlias(transformScript);
                 break;
 
-            case BoundStatementKind.Delete:
+            case TransformScriptStatementKind.Delete:
                 searchCondition = navigator.TryGetDeleteStatementSearchCondition(transformScript);
                 break;
 
-            case BoundStatementKind.Merge:
+            case TransformScriptStatementKind.Merge:
                 searchCondition = navigator.TryGetMergeStatementSearchCondition(transformScript);
                 targetAlias = navigator.TryGetMergeStatementTargetAlias(transformScript);
                 break;
@@ -320,7 +320,7 @@ internal sealed partial class TransformBindingSession
 
     private RuntimeRowset CreateMutationTargetRowset(
         TransformScript transformScript,
-        BoundStatementKind statementKind)
+        TransformScriptStatementKind statementKind)
     {
         var targetSqlIdentifier = navigator.TryGetMutationTargetSqlIdentifier(transformScript);
         if (string.IsNullOrWhiteSpace(targetSqlIdentifier))

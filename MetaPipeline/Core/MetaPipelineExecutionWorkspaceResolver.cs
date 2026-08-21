@@ -1,5 +1,4 @@
 using MetaTransformBinding;
-using MetaTransform.Binding;
 using MTS = MetaTransformScript;
 using MetaTransformScript;
 using MetaTransformScript.Sql;
@@ -27,7 +26,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
             searchUpward: false);
 
         var transformScript = ResolveTransformScriptById(transformModel, transformScriptId);
-        var statementKind = new TransformScriptStatementKindService().GetStatementKind(transformModel, transformScript);
+        var statementKind = new TransformScriptNavigator(transformModel).GetTransformScriptStatementKind(transformScript);
         EnsureTransformScriptIsSupported(transformModel, transformScript, statementKind);
         var rowStreamMode = ResolveRowStreamMode(transformModel, transformScript, statementKind);
         var bindingModel = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(
@@ -151,7 +150,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
     private static void EnsureTransformScriptIsSupported(
         MTS.MetaTransformScriptModel transformModel,
         MTS.TransformScript transformScript,
-        BoundStatementKind statementKind)
+        TransformScriptStatementKind statementKind)
     {
         var duplicateNameCount = transformModel.TransformScriptList.Count(item =>
             string.Equals(item.Name, transformScript.Name, StringComparison.OrdinalIgnoreCase));
@@ -161,19 +160,19 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
                 $"Transform script name '{transformScript.Name}' is ambiguous in the transform workspace.");
         }
 
-        if (statementKind is BoundStatementKind.ScalarFunction)
+        if (statementKind is TransformScriptStatementKind.ScalarFunction)
         {
             throw new MetaPipelineConfigurationException(
                 $"Transform script '{transformScript.Name}' is a scalar function definition. Scalar functions are helper objects and cannot be executed as pipeline transform steps.");
         }
 
-        if (statementKind is BoundStatementKind.Unsupported)
+        if (statementKind is TransformScriptStatementKind.Unsupported)
         {
             throw new MetaPipelineConfigurationException(
                 $"Transform script '{transformScript.Name}' does not expose a supported executable statement kind for pipeline execution.");
         }
 
-        if (statementKind is BoundStatementKind.StoredProcedure)
+        if (statementKind is TransformScriptStatementKind.StoredProcedure)
         {
             var contractCount = CountStoredProcedureContracts(transformModel, transformScript);
             if (contractCount != 1)
@@ -195,14 +194,14 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
     private static RowStreamMode ResolveRowStreamMode(
         MTS.MetaTransformScriptModel transformModel,
         MTS.TransformScript transformScript,
-        BoundStatementKind statementKind)
+        TransformScriptStatementKind statementKind)
     {
-        if (statementKind is BoundStatementKind.Select)
+        if (statementKind is TransformScriptStatementKind.Select)
         {
             return new RowStreamMode(true, RowStreamTargetResolution.BindingTarget);
         }
 
-        if (statementKind is not BoundStatementKind.StoredProcedure)
+        if (statementKind is not TransformScriptStatementKind.StoredProcedure)
         {
             return new RowStreamMode(false, RowStreamTargetResolution.BindingTarget);
         }

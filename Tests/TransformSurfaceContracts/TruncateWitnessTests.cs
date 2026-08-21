@@ -1,5 +1,5 @@
 using MetaOrchestration.Core;
-using MetaTransform.Binding;
+using MetaTransformScript;
 
 namespace MetaBi.TransformSurfaceContracts.Tests;
 
@@ -14,7 +14,7 @@ public sealed class TruncateWitnessTests
             "TRUNCATE TABLE dbo.StageCustomer"));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "truncate-stage-customer", BoundStatementKind.Truncate);
+        ContractAssertions.AssertStatementKind(workspace, "truncate-stage-customer", TransformScriptStatementKind.Truncate);
         ContractAssertions.AssertNoDataQualityCandidates(workspace.DiscoverDataQuality());
 
         var script = workspace.ResolveScript("truncate-stage-customer");

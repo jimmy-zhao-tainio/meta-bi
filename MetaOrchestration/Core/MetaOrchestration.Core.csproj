@@ -12,6 +12,7 @@
     <ProjectReference Include="..\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\..\MetaPipeline\Core\MetaPipeline.Core.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
   </ItemGroup>
 
 </Project>

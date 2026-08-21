@@ -2426,8 +2426,8 @@ END
         var transformScript = Assert.Single(transformModel.TransformScriptList);
 
         Assert.Equal(
-            BoundStatementKind.ScalarFunction,
-            new TransformScriptStatementKindService().GetStatementKind(transformModel, transformScript));
+            TransformScriptStatementKind.ScalarFunction,
+            new TransformScriptNavigator(transformModel).GetTransformScriptStatementKind(transformScript));
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");

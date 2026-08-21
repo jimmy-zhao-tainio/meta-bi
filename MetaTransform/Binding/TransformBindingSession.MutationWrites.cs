@@ -6,7 +6,7 @@ internal sealed partial class TransformBindingSession
 {
     private void BuildMutationEffects(
         TransformScript transformScript,
-        BoundStatementKind statementKind,
+        TransformScriptStatementKind statementKind,
         RuntimeRowset targetRowset,
         RuntimeRowset? inputRowset,
         IReadOnlyList<RuntimeTableSource> visibleSources)
@@ -15,23 +15,23 @@ internal sealed partial class TransformBindingSession
 
         switch (statementKind)
         {
-            case BoundStatementKind.Insert:
+            case TransformScriptStatementKind.Insert:
                 BuildInsertEffects(transformScript, targetSqlIdentifier, targetRowset, inputRowset, visibleSources);
                 return;
 
-            case BoundStatementKind.Update:
+            case TransformScriptStatementKind.Update:
                 BuildUpdateEffects(transformScript, targetSqlIdentifier, targetRowset, visibleSources);
                 return;
 
-            case BoundStatementKind.Merge:
+            case TransformScriptStatementKind.Merge:
                 BuildMergeEffects(transformScript, targetSqlIdentifier, targetRowset, inputRowset, visibleSources);
                 return;
 
-            case BoundStatementKind.Delete:
+            case TransformScriptStatementKind.Delete:
                 AddDeleteEffect(transformScript, targetSqlIdentifier, targetRowset);
                 return;
 
-            case BoundStatementKind.Truncate:
+            case TransformScriptStatementKind.Truncate:
                 AddTruncateEffect(transformScript, targetSqlIdentifier, targetRowset);
                 return;
         }

@@ -93,8 +93,8 @@ public sealed class StoredProcedureSupportTests
             SqlIdentifier = "audit.MarkStarted"
         });
 
-        var statementKind = new TransformScriptStatementKindService().GetStatementKind(model, script);
-        Assert.Equal(BoundStatementKind.StoredProcedure, statementKind);
+        var statementKind = new TransformScriptNavigator(model).GetTransformScriptStatementKind(script);
+        Assert.Equal(TransformScriptStatementKind.StoredProcedure, statementKind);
 
         var bound = new TransformBindingService().BindTransform(model, script);
         Assert.False(bound.HasErrors);

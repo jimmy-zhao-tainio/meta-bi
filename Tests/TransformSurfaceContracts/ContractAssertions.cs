@@ -2,6 +2,7 @@ using MetaDataQuality;
 using MetaOrchestration.Core;
 using MetaTransform.Binding;
 using MetaTransformBinding;
+using MetaTransformScript;
 
 namespace MetaBi.TransformSurfaceContracts.Tests;
 
@@ -20,7 +21,7 @@ internal static class ContractAssertions
     public static void AssertStatementKind(
         ContractWorkspace workspace,
         string scriptName,
-        BoundStatementKind expected)
+        TransformScriptStatementKind expected)
     {
         Assert.Equal(expected, workspace.GetStatementKind(workspace.ResolveScript(scriptName)));
     }

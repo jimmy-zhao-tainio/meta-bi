@@ -1,5 +1,5 @@
 using MetaOrchestration.Core;
-using MetaTransform.Binding;
+using MetaTransformScript;
 
 namespace MetaBi.TransformSurfaceContracts.Tests;
 
@@ -21,7 +21,7 @@ WHERE t.CustomerId = c.CustomerId
 """));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "sync-customer-segment", BoundStatementKind.Update);
+        ContractAssertions.AssertStatementKind(workspace, "sync-customer-segment", TransformScriptStatementKind.Update);
         ContractAssertions.AssertDataQualitySawJoin(workspace.DiscoverDataQuality(), "sync-customer-segment");
 
         var script = workspace.ResolveScript("sync-customer-segment");

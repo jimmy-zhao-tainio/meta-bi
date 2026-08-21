@@ -1,5 +1,5 @@
 using MetaOrchestration.Core;
-using MetaTransform.Binding;
+using MetaTransformScript;
 
 namespace MetaBi.TransformSurfaceContracts.Tests;
 
@@ -28,7 +28,7 @@ WHEN NOT MATCHED BY TARGET THEN INSERT (CustomerId, SegmentName) VALUES (src.Cus
 """));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "merge-customer-segment", BoundStatementKind.Merge);
+        ContractAssertions.AssertStatementKind(workspace, "merge-customer-segment", TransformScriptStatementKind.Merge);
         ContractAssertions.AssertDataQualitySawJoin(workspace.DiscoverDataQuality(), "merge-customer-segment");
 
         var script = workspace.ResolveScript("merge-customer-segment");

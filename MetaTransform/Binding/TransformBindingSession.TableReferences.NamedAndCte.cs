@@ -49,7 +49,7 @@ internal sealed partial class TransformBindingSession
             }
         }
 
-        var sqlIdentifier = TransformBindingSqlIdentifier.FormatParts(identifierParts);
+        var sqlIdentifier = TransformScriptSqlIdentifier.FormatParts(identifierParts);
         var exposedName = navigator.TryGetTableAlias(tableReference) ?? identifierParts.Last();
         var columns = new List<RuntimeColumn>();
         if (sourceSchemaResolver is not null)

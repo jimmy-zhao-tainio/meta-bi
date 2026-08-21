@@ -1,5 +1,5 @@
 using MetaOrchestration.Core;
-using MetaTransform.Binding;
+using MetaTransformScript;
 
 namespace MetaBi.TransformSurfaceContracts.Tests;
 
@@ -20,7 +20,7 @@ WHERE r.IsRetired = 1
 """));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "delete-retired-stage-customers", BoundStatementKind.Delete);
+        ContractAssertions.AssertStatementKind(workspace, "delete-retired-stage-customers", TransformScriptStatementKind.Delete);
         ContractAssertions.AssertDataQualitySawJoin(workspace.DiscoverDataQuality(), "delete-retired-stage-customers");
 
         var script = workspace.ResolveScript("delete-retired-stage-customers");

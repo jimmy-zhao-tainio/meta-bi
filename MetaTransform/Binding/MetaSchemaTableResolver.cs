@@ -1,5 +1,6 @@
 using System.Globalization;
 using MetaSchema;
+using MetaTransformScript;
 
 namespace MetaTransform.Binding;
 
@@ -66,8 +67,8 @@ internal sealed class MetaSchemaTableResolver
                 var systemName = systemNamesById.GetValueOrDefault(systemId) ?? string.Empty;
                 var schemaName = schemaRow?.Name ?? string.Empty;
                 var canonicalSqlIdentifier = string.IsNullOrWhiteSpace(systemName)
-                    ? TransformBindingSqlIdentifier.FormatParts([schemaName, item.Name])
-                    : TransformBindingSqlIdentifier.FormatParts([systemName, schemaName, item.Name]);
+                    ? TransformScriptSqlIdentifier.FormatParts([schemaName, item.Name])
+                    : TransformScriptSqlIdentifier.FormatParts([systemName, schemaName, item.Name]);
 
                 return new ResolvedSchemaTable(
                     item.Id,
@@ -117,7 +118,7 @@ internal sealed class MetaSchemaTableResolver
                 SchemaTableResolutionFailureKind.MissingIdentifier);
         }
 
-        if (!TransformBindingSqlIdentifier.TryParseParts(sqlIdentifier, out var parsedParts))
+        if (!TransformScriptSqlIdentifier.TryParseParts(sqlIdentifier, out var parsedParts))
         {
             return new SchemaTableResolutionResult(
                 [],

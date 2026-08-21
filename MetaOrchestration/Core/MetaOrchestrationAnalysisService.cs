@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Text;
-using MetaTransform.Binding;
 using MetaTransformBinding;
 using MetaTransformScript;
 using MP = MetaPipeline;
@@ -12,8 +11,6 @@ public sealed class MetaOrchestrationAnalysisService
 {
     private const string TaskKindTransformExecution = "TransformExecution";
     private const string TaskKindExecutable = "Executable";
-
-    private readonly TransformScriptStatementKindService statementKindService = new();
 
     public OrchestrationAnalysisResult Analyze(OrchestrationAnalysisRequest request)
     {
@@ -92,7 +89,7 @@ public sealed class MetaOrchestrationAnalysisService
         MP.MetaPipelineModel pipelineModel,
         string pipelineWorkspacePath)
     {
-        var workspaceCache = new TransformWorkspaceProfileCache(statementKindService, pipelineWorkspacePath);
+        var workspaceCache = new TransformWorkspaceProfileCache(pipelineWorkspacePath);
 
         return pipelineModel.PipelineList
             .OrderBy(static item => item.Name, StringComparer.OrdinalIgnoreCase)
@@ -245,7 +242,7 @@ public sealed class MetaOrchestrationAnalysisService
         var accesses = new List<PipelineObjectAccessProfile>();
         var issues = new List<PipelineDependencyProfileIssue>();
         var transformScriptName = execution.TransformScriptId;
-        var statementKind = BoundStatementKind.Unsupported;
+        var statementKind = TransformScriptStatementKind.Unsupported;
         var functionParameterCount = 0;
         TransformWorkspaceProfileContext? workspaceContext = null;
         TransformBinding? resolvedBinding = null;
@@ -305,7 +302,7 @@ public sealed class MetaOrchestrationAnalysisService
                 [pipeline.Id]));
         }
 
-        var isScalarFunctionTask = statementKind is BoundStatementKind.ScalarFunction;
+        var isScalarFunctionTask = statementKind is TransformScriptStatementKind.ScalarFunction;
         var isParameterizedFunctionTask = !isScalarFunctionTask && functionParameterCount > 0;
         var canContributeObjectAccesses = !isScalarFunctionTask && !isParameterizedFunctionTask;
 
@@ -328,7 +325,7 @@ public sealed class MetaOrchestrationAnalysisService
 
             if (canContributeObjectAccesses)
             {
-                if (statementKind is BoundStatementKind.StoredProcedure)
+                if (statementKind is TransformScriptStatementKind.StoredProcedure)
                 {
                     foreach (var operation in workspaceContext.StoredProcedureOperationsByScriptId.GetValueOrDefault(execution.TransformScriptId) ?? [])
                     {
@@ -394,7 +391,7 @@ public sealed class MetaOrchestrationAnalysisService
                 [pipeline.Id]));
         }
 
-        if (statementKind is BoundStatementKind.Unsupported)
+        if (statementKind is TransformScriptStatementKind.Unsupported)
         {
             issues.Add(CreateIssue(
                 OrchestrationIssueCode.MissingScriptOrBinding,
@@ -409,7 +406,7 @@ public sealed class MetaOrchestrationAnalysisService
 
         if (canContributeObjectAccesses)
         {
-            var insertRowsOrdinal = statementKind is BoundStatementKind.StoredProcedure
+            var insertRowsOrdinal = statementKind is TransformScriptStatementKind.StoredProcedure
                 ? int.MaxValue
                 : accesses.Count;
             foreach (var target in QualifyTargetSqlIdentifiersFromBindingValidation(
@@ -432,7 +429,7 @@ public sealed class MetaOrchestrationAnalysisService
             execution.TransformWorkspacePath,
             execution.BindingWorkspacePath,
             statementKind.ToString(),
-            statementKind is BoundStatementKind.StoredProcedure
+            statementKind is TransformScriptStatementKind.StoredProcedure
                 ? accesses
                     .OrderBy(static item => item.Ordinal)
                     .ThenBy(static item => item.ObjectKey, StringComparer.OrdinalIgnoreCase)
@@ -448,21 +445,21 @@ public sealed class MetaOrchestrationAnalysisService
         return new TaskProfileResult(profile, issues);
     }
 
-    private static bool IsMutationStatementKind(BoundStatementKind statementKind) =>
-        statementKind is BoundStatementKind.Insert
-            or BoundStatementKind.Update
-            or BoundStatementKind.Delete
-            or BoundStatementKind.Truncate
-            or BoundStatementKind.Merge;
+    private static bool IsMutationStatementKind(TransformScriptStatementKind statementKind) =>
+        statementKind is TransformScriptStatementKind.Insert
+            or TransformScriptStatementKind.Update
+            or TransformScriptStatementKind.Delete
+            or TransformScriptStatementKind.Truncate
+            or TransformScriptStatementKind.Merge;
 
-    private static OrchestrationObjectAccessKind ResolveMutationTargetAccessKind(BoundStatementKind statementKind) =>
+    private static OrchestrationObjectAccessKind ResolveMutationTargetAccessKind(TransformScriptStatementKind statementKind) =>
         statementKind switch
         {
-            BoundStatementKind.Insert => OrchestrationObjectAccessKind.Write,
-            BoundStatementKind.Update => OrchestrationObjectAccessKind.ReadWrite,
-            BoundStatementKind.Delete => OrchestrationObjectAccessKind.ReadWrite,
-            BoundStatementKind.Truncate => OrchestrationObjectAccessKind.ResetWrite,
-            BoundStatementKind.Merge => OrchestrationObjectAccessKind.ReadWrite,
+            TransformScriptStatementKind.Insert => OrchestrationObjectAccessKind.Write,
+            TransformScriptStatementKind.Update => OrchestrationObjectAccessKind.ReadWrite,
+            TransformScriptStatementKind.Delete => OrchestrationObjectAccessKind.ReadWrite,
+            TransformScriptStatementKind.Truncate => OrchestrationObjectAccessKind.ResetWrite,
+            TransformScriptStatementKind.Merge => OrchestrationObjectAccessKind.ReadWrite,
             _ => throw new ArgumentOutOfRangeException(nameof(statementKind), statementKind, "Statement kind is not a mutation statement kind.")
         };
 
@@ -939,7 +936,7 @@ public sealed class MetaOrchestrationAnalysisService
                                             access.Ordinal < finalMutatingAccess.Ordinal));
         var finalOperationKind = finalMutatingAccess?.OperationKind;
         var isTargetLoad = roles.Contains("InsertRowsTarget") ||
-                           string.Equals(task.StatementKind, BoundStatementKind.Select.ToString(), StringComparison.Ordinal) ||
+                           string.Equals(task.StatementKind, TransformScriptStatementKind.Select.ToString(), StringComparison.Ordinal) ||
                            string.Equals(finalOperationKind, "Append", StringComparison.Ordinal) ||
                            string.Equals(finalOperationKind, "Replace", StringComparison.Ordinal);
 
@@ -963,7 +960,7 @@ public sealed class MetaOrchestrationAnalysisService
                 reason);
         }
 
-        var mutationWriteEffect = string.Equals(task.StatementKind, BoundStatementKind.Insert.ToString(), StringComparison.Ordinal)
+        var mutationWriteEffect = string.Equals(task.StatementKind, TransformScriptStatementKind.Insert.ToString(), StringComparison.Ordinal)
             ? (hasResetBeforeFinalWrite ? OrchestrationWriteEffect.Replace : OrchestrationWriteEffect.Append)
             : OrchestrationWriteEffect.Mutation;
         var lockMode = mutationWriteEffect switch
@@ -979,7 +976,7 @@ public sealed class MetaOrchestrationAnalysisService
             first,
             hasRead || hasReadWrite ? OrchestrationAccessDirection.ReadWrite : OrchestrationAccessDirection.Write,
             mutationWriteEffect,
-            string.Equals(task.StatementKind, BoundStatementKind.Insert.ToString(), StringComparison.Ordinal)
+            string.Equals(task.StatementKind, TransformScriptStatementKind.Insert.ToString(), StringComparison.Ordinal)
                 ? OrchestrationAccessPurpose.TargetLoad
                 : OrchestrationAccessPurpose.TargetMutation,
             createsDataDependency: true,
@@ -1720,9 +1717,7 @@ public sealed class MetaOrchestrationAnalysisService
         MP.ExecutableTask? Executable,
         int Ordinal);
 
-    private sealed class TransformWorkspaceProfileCache(
-        TransformScriptStatementKindService statementKindService,
-        string pipelineWorkspacePath)
+    private sealed class TransformWorkspaceProfileCache(string pipelineWorkspacePath)
     {
         private readonly Dictionary<string, TransformWorkspaceProfileContext> cache = new(StringComparer.OrdinalIgnoreCase);
 
@@ -1738,12 +1733,16 @@ public sealed class MetaOrchestrationAnalysisService
 
             var transformModel = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(fullTransformWorkspacePath, searchUpward: false);
             var bindingModel = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(fullBindingWorkspacePath, searchUpward: false);
+            var navigator = new TransformScriptNavigator(transformModel);
             var context = new TransformWorkspaceProfileContext(
                 fullTransformWorkspacePath,
                 fullBindingWorkspacePath,
                 bindingModel,
                 transformModel.TransformScriptList.ToDictionary(static item => item.Id, StringComparer.Ordinal),
-                statementKindService.GetStatementKindsByTransformScriptId(transformModel),
+                transformModel.TransformScriptList.ToDictionary(
+                    static item => item.Id,
+                    item => navigator.GetTransformScriptStatementKind(item),
+                    StringComparer.Ordinal),
                 transformModel.TransformScriptFunctionParametersItemList
                     .GroupBy(static item => item.TransformScript.Id, StringComparer.Ordinal)
                     .ToDictionary(static group => group.Key, static group => group.Count(), StringComparer.Ordinal),
@@ -1759,7 +1758,7 @@ public sealed class MetaOrchestrationAnalysisService
         string BindingWorkspacePath,
         MetaTransformBindingModel BindingModel,
         IReadOnlyDictionary<string, TransformScript> TransformScriptsById,
-        IReadOnlyDictionary<string, BoundStatementKind> StatementKindsByScriptId,
+        IReadOnlyDictionary<string, TransformScriptStatementKind> StatementKindsByScriptId,
         IReadOnlyDictionary<string, int> FunctionParameterCountsByScriptId,
         IReadOnlyDictionary<string, IReadOnlyList<StoredProcedureContractOperation>> StoredProcedureOperationsByScriptId,
         IReadOnlyDictionary<string, TransformBinding> BindingsById);

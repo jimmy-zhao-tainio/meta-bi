@@ -1,5 +1,5 @@
 using MetaOrchestration.Core;
-using MetaTransform.Binding;
+using MetaTransformScript;
 
 namespace MetaBi.TransformSurfaceContracts.Tests;
 
@@ -22,7 +22,7 @@ INNER JOIN dbo.CustomerSegment AS s
 """));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "load-stage-customer", BoundStatementKind.Insert);
+        ContractAssertions.AssertStatementKind(workspace, "load-stage-customer", TransformScriptStatementKind.Insert);
         ContractAssertions.AssertDataQualitySawJoin(workspace.DiscoverDataQuality(), "load-stage-customer");
 
         var script = workspace.ResolveScript("load-stage-customer");

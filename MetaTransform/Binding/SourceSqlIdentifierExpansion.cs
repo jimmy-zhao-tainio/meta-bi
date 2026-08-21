@@ -1,3 +1,5 @@
+using MetaTransformScript;
+
 namespace MetaTransform.Binding;
 
 internal enum SourceSqlIdentifierExpansionFailureKind
@@ -106,7 +108,7 @@ internal static class SourceSqlIdentifierExpansion
             return SourceSqlIdentifierParseResult.Failure(SourceSqlIdentifierExpansionFailureKind.MissingIdentifier);
         }
 
-        if (!TransformBindingSqlIdentifier.TryParseParts(sqlIdentifier, out var parsedParts))
+        if (!TransformScriptSqlIdentifier.TryParseParts(sqlIdentifier, out var parsedParts))
         {
             return SourceSqlIdentifierParseResult.Failure(SourceSqlIdentifierExpansionFailureKind.UnsupportedIdentifierShape);
         }
@@ -135,7 +137,7 @@ internal static class SourceSqlIdentifierExpansion
     {
         return new SourceSqlIdentifierExpansionResult(
             IsExpanded: true,
-            ExpandedSqlIdentifier: TransformBindingSqlIdentifier.FormatParts(parts),
+            ExpandedSqlIdentifier: TransformScriptSqlIdentifier.FormatParts(parts),
             ExpandedIdentifierParts: parts,
             FailureKind: SourceSqlIdentifierExpansionFailureKind.None);
     }

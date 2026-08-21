@@ -1,5 +1,5 @@
 using MetaOrchestration.Core;
-using MetaTransform.Binding;
+using MetaTransformScript;
 
 namespace MetaBi.TransformSurfaceContracts.Tests;
 
@@ -42,8 +42,8 @@ FROM dbo.Customer AS c
                 "dbo.CustomerSegmentStats"));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "dbo.fnSegmentPeerCount", BoundStatementKind.ScalarFunction);
-        ContractAssertions.AssertStatementKind(workspace, "dbo.v_CustomerSegmentStats", BoundStatementKind.Select);
+        ContractAssertions.AssertStatementKind(workspace, "dbo.fnSegmentPeerCount", TransformScriptStatementKind.ScalarFunction);
+        ContractAssertions.AssertStatementKind(workspace, "dbo.v_CustomerSegmentStats", TransformScriptStatementKind.Select);
         ContractAssertions.AssertDataQualitySawJoin(workspace.DiscoverDataQuality(), "dbo.v_CustomerSegmentStats");
 
         var viewScript = workspace.ResolveScript("dbo.v_CustomerSegmentStats");
@@ -98,7 +98,7 @@ WHERE dbo.fnSegmentPeerCount(c.SegmentId) > 1
                 "dbo.FilteredCustomerSegment"));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "dbo.v_CustomerSegmentFilter", BoundStatementKind.Select);
+        ContractAssertions.AssertStatementKind(workspace, "dbo.v_CustomerSegmentFilter", TransformScriptStatementKind.Select);
         ContractAssertions.AssertDataQualitySawJoin(workspace.DiscoverDataQuality(), "dbo.v_CustomerSegmentFilter");
 
         var viewScript = workspace.ResolveScript("dbo.v_CustomerSegmentFilter");

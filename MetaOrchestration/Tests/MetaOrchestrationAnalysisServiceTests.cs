@@ -2399,7 +2399,7 @@ FROM dbo.Source AS s
 
             var pipeline = Assert.Single(result.Pipelines, item => string.Equals(item.PipelineName, "StageCustomer", StringComparison.OrdinalIgnoreCase));
             var transformTask = Assert.Single(pipeline.Tasks, item => string.Equals(item.TransformScriptName, "dbo.v_LoadStage", StringComparison.OrdinalIgnoreCase));
-            Assert.Equal(BoundStatementKind.Select.ToString(), transformTask.StatementKind);
+            Assert.Equal(TransformScriptStatementKind.Select.ToString(), transformTask.StatementKind);
             Assert.Contains(transformTask.ObjectAccesses, item =>
                 string.Equals(item.SqlIdentifier, "dbo.Source", StringComparison.OrdinalIgnoreCase) &&
                 item.AccessKind == OrchestrationObjectAccessKind.Read);
@@ -2459,7 +2459,7 @@ END
             Assert.DoesNotContain("unsupported for binding-driven orchestration", issue.Message, StringComparison.OrdinalIgnoreCase);
 
             var task = Assert.Single(Assert.Single(result.Pipelines).Tasks);
-            Assert.Equal(BoundStatementKind.ScalarFunction.ToString(), task.StatementKind);
+            Assert.Equal(TransformScriptStatementKind.ScalarFunction.ToString(), task.StatementKind);
             Assert.Empty(task.ObjectAccesses);
         }
         finally

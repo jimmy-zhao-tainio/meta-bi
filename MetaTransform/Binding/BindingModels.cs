@@ -1,18 +1,5 @@
 namespace MetaTransform.Binding;
 
-public enum BoundStatementKind
-{
-    Unsupported,
-    ScalarFunction,
-    StoredProcedure,
-    Select,
-    Insert,
-    Update,
-    Delete,
-    Truncate,
-    Merge
-}
-
 public sealed record TransformBindingIssue(
     string Code,
     string Message,

@@ -1,5 +1,5 @@
 using MetaOrchestration.Core;
-using MetaTransform.Binding;
+using MetaTransformScript;
 
 namespace MetaBi.TransformSurfaceContracts.Tests;
 
@@ -186,7 +186,7 @@ FROM dbo.Customer AS c
                 "dbo.CaseRisk"));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "dbo.v_CaseRisk", BoundStatementKind.Select);
+        ContractAssertions.AssertStatementKind(workspace, "dbo.v_CaseRisk", TransformScriptStatementKind.Select);
         ContractAssertions.AssertDataQualitySawJoin(workspace.DiscoverDataQuality(), "dbo.v_CaseRisk");
 
         var script = workspace.ResolveScript("dbo.v_CaseRisk");
@@ -236,7 +236,7 @@ FROM dbo.Customer AS c
                 "dbo.CoalesceRisk"));
 
         ContractAssertions.AssertBoundWithoutErrors(workspace.Bind());
-        ContractAssertions.AssertStatementKind(workspace, "dbo.v_CoalesceRisk", BoundStatementKind.Select);
+        ContractAssertions.AssertStatementKind(workspace, "dbo.v_CoalesceRisk", TransformScriptStatementKind.Select);
         ContractAssertions.AssertDataQualitySawJoin(workspace.DiscoverDataQuality(), "dbo.v_CoalesceRisk");
 
         var script = workspace.ResolveScript("dbo.v_CoalesceRisk");

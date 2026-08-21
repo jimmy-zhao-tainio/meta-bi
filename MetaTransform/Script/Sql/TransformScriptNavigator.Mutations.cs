@@ -1,8 +1,6 @@
-using MetaTransformScript;
+namespace MetaTransformScript;
 
-namespace MetaTransform.Binding;
-
-internal sealed partial class TransformScriptNavigator
+public sealed partial class TransformScriptNavigator
 {
     public IReadOnlyList<string> GetInsertTargetColumnNames(TransformScript script)
     {

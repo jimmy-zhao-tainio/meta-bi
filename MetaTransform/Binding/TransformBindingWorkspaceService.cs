@@ -298,7 +298,7 @@ public sealed class TransformBindingWorkspaceService
         if (string.IsNullOrWhiteSpace(trimmed))
         {
             var statementKind = navigator.GetTransformScriptStatementKind(transformScript);
-            if (statementKind is BoundStatementKind.Select)
+            if (statementKind is TransformScriptStatementKind.Select)
             {
                 return null;
             }
@@ -308,7 +308,7 @@ public sealed class TransformBindingWorkspaceService
                 $"Transform script '{transformScript.Name}' is missing TargetSqlIdentifier.");
         }
 
-        if (!TransformBindingSqlIdentifier.TryParseParts(trimmed, out var parts))
+        if (!TransformScriptSqlIdentifier.TryParseParts(trimmed, out var parts))
         {
             throw new InvalidOperationException(
                 $"Transform script '{transformScript.Name}' target '{scriptObjectView?.TargetSqlIdentifier}' is not a valid multipart identifier.");
