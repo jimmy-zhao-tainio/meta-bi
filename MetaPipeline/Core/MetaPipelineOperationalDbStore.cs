@@ -319,7 +319,6 @@ WHERE [PipelineRunId] = @PipelineRunId;
     public async Task CompleteRunAsync(
         Guid runId,
         MetaPipelineExecutionResult result,
-        IReadOnlyList<MetaPipelineOperationalFingerprint>? fingerprints = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(result);
@@ -356,23 +355,9 @@ WHERE [PipelineRunId] = @PipelineRunId;
             await InsertRunMetricAsync(connection, transaction, runId, null, "DurationMilliseconds", DurationMilliseconds(result.StartedAtUtc, result.CompletedAtUtc), "ms", cancellationToken).ConfigureAwait(false);
 
             Guid? failedTaskRunId = null;
-            var fingerprintList = fingerprints ?? Array.Empty<MetaPipelineOperationalFingerprint>();
-            var taskRunIdsByKey = fingerprintList.Count == 0
-                ? null
-                : new Dictionary<string, Guid>(StringComparer.OrdinalIgnoreCase);
             foreach (var task in result.TaskResults)
             {
                 var taskRunId = task.TaskRunId ?? Guid.NewGuid();
-                if (taskRunIdsByKey is not null)
-                {
-                    var taskKey = BuildTaskKey(task.TaskName, task.TaskKind);
-                    if (!taskRunIdsByKey.TryAdd(taskKey, taskRunId))
-                    {
-                        throw new MetaPipelineConfigurationException(
-                            $"Task fingerprint evidence is ambiguous because task '{task.TaskName}' kind '{task.TaskKind}' appears more than once.");
-                    }
-                }
-
                 await ExecuteNonQueryAsync(
                     connection,
                     transaction,
@@ -433,17 +418,6 @@ VALUES
                 {
                     failedTaskRunId = taskRunId;
                 }
-            }
-
-            if (fingerprintList.Count > 0)
-            {
-                await InsertFingerprintsAsync(
-                    connection,
-                    transaction,
-                    runId,
-                    taskRunIdsByKey ?? throw new InvalidOperationException("Task run id index was not initialized."),
-                    fingerprintList,
-                    cancellationToken).ConfigureAwait(false);
             }
 
             if (result.Status == MetaPipelineExecutionStatus.Failed)
@@ -591,80 +565,6 @@ VALUES
             DecimalParameter("@MetricValue", metricValue),
             Parameter("@MetricUnit", metricUnit));
     }
-
-    private static async Task InsertFingerprintsAsync(
-        SqlConnection connection,
-        SqlTransaction transaction,
-        Guid runId,
-        IReadOnlyDictionary<string, Guid> taskRunIdsByKey,
-        IReadOnlyList<MetaPipelineOperationalFingerprint> fingerprints,
-        CancellationToken cancellationToken)
-    {
-        if (fingerprints.Count == 0)
-        {
-            return;
-        }
-
-        foreach (var fingerprint in fingerprints)
-        {
-            Guid? taskRunId = null;
-            if (!string.IsNullOrWhiteSpace(fingerprint.TaskName)
-                || !string.IsNullOrWhiteSpace(fingerprint.TaskKind))
-            {
-                if (string.IsNullOrWhiteSpace(fingerprint.TaskName) || string.IsNullOrWhiteSpace(fingerprint.TaskKind))
-                {
-                    throw new MetaPipelineConfigurationException(
-                        $"Fingerprint '{fingerprint.FingerprintKind}' must provide both task name and task kind, or neither.");
-                }
-
-                var key = BuildTaskKey(fingerprint.TaskName, fingerprint.TaskKind);
-                if (!taskRunIdsByKey.TryGetValue(key, out var resolvedTaskRunId))
-                {
-                    throw new MetaPipelineConfigurationException(
-                        $"Fingerprint '{fingerprint.FingerprintKind}' references task '{fingerprint.TaskName}' kind '{fingerprint.TaskKind}', but that task was not recorded.");
-                }
-
-                taskRunId = resolvedTaskRunId;
-            }
-
-            await ExecuteNonQueryAsync(
-                connection,
-                transaction,
-                """
-INSERT INTO [MetaPipeline].[RunFingerprint]
-(
-    [PipelineRunId],
-    [TaskRunId],
-    [FingerprintKind],
-    [SubjectId],
-    [SubjectPath],
-    [Algorithm],
-    [FingerprintValue]
-)
-VALUES
-(
-    @PipelineRunId,
-    @TaskRunId,
-    @FingerprintKind,
-    @SubjectId,
-    @SubjectPath,
-    @Algorithm,
-    @FingerprintValue
-);
-""",
-                cancellationToken,
-                Parameter("@PipelineRunId", runId),
-                Parameter("@TaskRunId", taskRunId),
-                Parameter("@FingerprintKind", fingerprint.FingerprintKind),
-                Parameter("@SubjectId", Normalize(fingerprint.SubjectId)),
-                Parameter("@SubjectPath", Normalize(fingerprint.SubjectPath)),
-                Parameter("@Algorithm", fingerprint.Algorithm),
-                Parameter("@FingerprintValue", fingerprint.FingerprintValue));
-        }
-    }
-
-    private static string BuildTaskKey(string taskName, string taskKind) =>
-        taskName.Trim() + "\u001f" + taskKind.Trim();
 
     private static async Task InsertFailureAsync(
         SqlConnection connection,

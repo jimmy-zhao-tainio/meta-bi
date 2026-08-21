@@ -28,7 +28,7 @@ The modeled pipeline demonstrates:
 - `SELECT` materialized through adjacent `InsertRows`.
 
 Mutation tasks execute directly through the execution connection. The final SELECT task writes the resulting row stream through `InsertRows`; the current SQL Server runtime realizes insert rows with bulk copy.
-The demo leaves target tables and operational evidence in SQL Server for inspection instead of printing verification queries back to the console. Check the target tables for platform defaults and the `MetaPipeline` operational DB for task `AuditId`, task-level timeout setting, row-count evidence, and `RunFingerprint` evidence.
+The demo leaves target tables and operational evidence in SQL Server for inspection instead of printing verification queries back to the console. Check the target tables for platform defaults and the `MetaPipeline` operational DB for task `AuditId`, task-level timeout setting, row-count evidence, and failure details.
 
 The workflow is modeled in:
 

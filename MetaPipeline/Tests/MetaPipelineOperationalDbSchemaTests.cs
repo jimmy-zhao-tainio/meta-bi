@@ -13,7 +13,7 @@ public sealed class MetaPipelineOperationalDbSchemaTests
         Assert.Contains("[MetaPipeline].[RunLog]", sql, StringComparison.Ordinal);
         Assert.Contains("[MetaPipeline].[RunDiagnosticsLog]", sql, StringComparison.Ordinal);
         Assert.Contains("[MetaPipeline].[RunFailure]", sql, StringComparison.Ordinal);
-        Assert.Contains("[MetaPipeline].[RunFingerprint]", sql, StringComparison.Ordinal);
+        Assert.DoesNotContain("[MetaPipeline].[RunFingerprint]", sql, StringComparison.Ordinal);
         Assert.Contains("[OccurredAtUtc]", sql, StringComparison.Ordinal);
         Assert.Contains("[MetaPipeline].[AuditIdSequence]", sql, StringComparison.Ordinal);
         Assert.Contains("[AuditId] bigint", sql, StringComparison.Ordinal);
@@ -47,8 +47,7 @@ public sealed class MetaPipelineOperationalDbSchemaTests
         Assert.Contains("IX_MetaPipeline_RunLog_LoggedAtUtc", sql, StringComparison.Ordinal);
         Assert.Contains("IX_MetaPipeline_RunDiagnosticsLog_LoggedAtUtc", sql, StringComparison.Ordinal);
         Assert.Contains("IX_MetaPipeline_RunFailure_OccurredAtUtc", sql, StringComparison.Ordinal);
-        Assert.Contains("IX_MetaPipeline_RunFingerprint_PipelineRunId_Kind", sql, StringComparison.Ordinal);
-        Assert.Contains("IX_MetaPipeline_RunFingerprint_TaskRunId_Kind", sql, StringComparison.Ordinal);
+        Assert.DoesNotContain("RunFingerprint", sql, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -79,16 +78,14 @@ public sealed class MetaPipelineOperationalDbSchemaTests
     }
 
     [Fact]
-    public void BootstrapSql_AddsTaskTimeoutAndFingerprintEvidence()
+    public void BootstrapSql_AddsTaskTimeoutWithoutWorkspaceFingerprintEvidence()
     {
         var sql = global::MetaPipeline.MetaPipelineOperationalDbSchema.BootstrapSql;
 
         Assert.Contains("[TimeoutSeconds] int NULL", sql, StringComparison.Ordinal);
         Assert.Contains("COL_LENGTH(N'MetaPipeline.TaskRun', N'TimeoutSeconds')", sql, StringComparison.Ordinal);
-        Assert.Contains("[MetaPipeline].[RunFingerprint]", sql, StringComparison.Ordinal);
-        Assert.Contains("[FingerprintKind]", sql, StringComparison.Ordinal);
-        Assert.Contains("[FingerprintValue]", sql, StringComparison.Ordinal);
-        Assert.Contains("[Algorithm]", sql, StringComparison.Ordinal);
+        Assert.DoesNotContain("RunFingerprint", sql, StringComparison.Ordinal);
+        Assert.DoesNotContain("FingerprintValue", sql, StringComparison.Ordinal);
         Assert.Contains("[Version] = 5", sql, StringComparison.Ordinal);
         Assert.Contains("[Version] = 6", sql, StringComparison.Ordinal);
     }

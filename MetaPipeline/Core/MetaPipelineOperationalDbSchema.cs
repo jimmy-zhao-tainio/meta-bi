@@ -159,26 +159,6 @@ BEGIN
     );
 END;
 
-IF OBJECT_ID(N'[MetaPipeline].[RunFingerprint]', N'U') IS NULL
-BEGIN
-    CREATE TABLE [MetaPipeline].[RunFingerprint]
-    (
-        [RunFingerprintId] bigint IDENTITY(1,1) NOT NULL CONSTRAINT [PK_MetaPipeline_RunFingerprint] PRIMARY KEY,
-        [PipelineRunId] uniqueidentifier NOT NULL,
-        [TaskRunId] uniqueidentifier NULL,
-        [FingerprintKind] nvarchar(128) NOT NULL,
-        [SubjectId] nvarchar(512) NULL,
-        [SubjectPath] nvarchar(1024) NULL,
-        [Algorithm] nvarchar(64) NOT NULL,
-        [FingerprintValue] nvarchar(128) NOT NULL,
-        [CapturedAtUtc] datetimeoffset(7) NOT NULL CONSTRAINT [DF_MetaPipeline_RunFingerprint_CapturedAtUtc] DEFAULT SYSUTCDATETIME(),
-        CONSTRAINT [FK_MetaPipeline_RunFingerprint_PipelineRun] FOREIGN KEY ([PipelineRunId])
-            REFERENCES [MetaPipeline].[PipelineRun] ([PipelineRunId]),
-        CONSTRAINT [FK_MetaPipeline_RunFingerprint_TaskRun] FOREIGN KEY ([TaskRunId])
-            REFERENCES [MetaPipeline].[TaskRun] ([TaskRunId])
-    );
-END;
-
 IF COL_LENGTH(N'MetaPipeline.RunFailure', N'OccurredAtUtc') IS NULL
 BEGIN
     ALTER TABLE [MetaPipeline].[RunFailure]
@@ -421,25 +401,5 @@ BEGIN
         ON [MetaPipeline].[RunFailure] ([PipelineRunId], [OccurredAtUtc] DESC);');
 END;
 
-IF NOT EXISTS (
-    SELECT 1
-    FROM sys.indexes
-    WHERE [name] = N'IX_MetaPipeline_RunFingerprint_PipelineRunId_Kind'
-      AND [object_id] = OBJECT_ID(N'[MetaPipeline].[RunFingerprint]', N'U'))
-BEGIN
-    CREATE INDEX [IX_MetaPipeline_RunFingerprint_PipelineRunId_Kind]
-        ON [MetaPipeline].[RunFingerprint] ([PipelineRunId], [FingerprintKind]);
-END;
-
-IF NOT EXISTS (
-    SELECT 1
-    FROM sys.indexes
-    WHERE [name] = N'IX_MetaPipeline_RunFingerprint_TaskRunId_Kind'
-      AND [object_id] = OBJECT_ID(N'[MetaPipeline].[RunFingerprint]', N'U'))
-BEGIN
-    CREATE INDEX [IX_MetaPipeline_RunFingerprint_TaskRunId_Kind]
-        ON [MetaPipeline].[RunFingerprint] ([TaskRunId], [FingerprintKind])
-        WHERE [TaskRunId] IS NOT NULL;
-END;
 """;
 }

@@ -74,7 +74,7 @@ Every task should have the same backbone:
 | `OutputList` | Declared outputs such as row streams, target effects, evidence, or watermarks. |
 | `DependsOnTaskList` | Explicit dependency references. |
 | Failure behavior | A concrete policy entity when non-default behavior is needed. |
-| `EvidenceContract` | Task-level counters, timings, fingerprints, and failure classification. |
+| `EvidenceContract` | Task-level counters, timings, and failure classification. |
 
 This keeps task execution boring.
 Different ETL semantics live in concrete task and operation entities, not in a string-valued `Kind` field or a single clever executor.
@@ -197,9 +197,9 @@ Executable tasks do not use transform or binding workspaces; runtime success is 
 For SELECT-kind scripts, the transform task uses its execution connection to read and must be followed immediately by one `InsertRowsTargetWriteTask` with a target connection.
 For INSERT/UPDATE/DELETE/TRUNCATE/MERGE scripts, the transform task executes directly through the execution connection and must not feed a target-write task.
 The CLI takes connection environment variable names only; it derives the modeled connection reference name from the env name rather than exposing a separate `--...-ref` argument.
-`TimeoutSeconds` is optional; omitted means no SQL command timeout. Timeout evidence is recorded on `TaskRun`, and SHA-256 workspace fingerprints are recorded in `RunFingerprint`.
+`TimeoutSeconds` is optional; omitted means no SQL command timeout. Timeout evidence is recorded on `TaskRun`.
 The current failure policy is `StopOnFirstFailure`, and pipeline-wide transaction task primitives are intentionally unsupported.
-`prune-pipeline-db` prunes only old `RunDiagnosticsLog` rows; `PipelineRun`, `TaskRun`, `RunLog`, metrics, fingerprints, failures, and audit ids remain available for audit lineage.
+`prune-pipeline-db` prunes only old `RunDiagnosticsLog` rows; `PipelineRun`, `TaskRun`, `RunLog`, metrics, failures, and audit ids remain available for audit lineage.
 
 ## Anti-Patterns
 

@@ -158,8 +158,7 @@ public sealed class MetaPipelineExecutionCommandService
             {
                 await operationalDb.CompleteRunAsync(
                     completedRunId,
-                    result,
-                    BuildModeledOperationalFingerprints(plan, request.DataTypeConversionWorkspacePath))
+                    result)
                     .ConfigureAwait(false);
             }
 
@@ -340,8 +339,7 @@ public sealed class MetaPipelineExecutionCommandService
             {
                 await operationalDb.CompleteRunAsync(
                     completedRunId,
-                    result,
-                    BuildModeledOperationalFingerprints(plan, request.DataTypeConversionWorkspacePath))
+                    result)
                     .ConfigureAwait(false);
             }
 
@@ -528,8 +526,7 @@ public sealed class MetaPipelineExecutionCommandService
             {
                 await operationalDb.CompleteRunAsync(
                     completedRunId,
-                    result,
-                    BuildModeledOperationalFingerprints(plan, request.DataTypeConversionWorkspacePath))
+                    result)
                     .ConfigureAwait(false);
             }
 
@@ -694,8 +691,7 @@ public sealed class MetaPipelineExecutionCommandService
             {
                 await operationalDb.CompleteRunAsync(
                     completedRunId,
-                    result,
-                    BuildDirectOperationalFingerprints(request, selection, result))
+                    result)
                     .ConfigureAwait(false);
             }
 
@@ -1403,136 +1399,6 @@ public sealed class MetaPipelineExecutionCommandService
             PipelineExecutionFailureStage.None,
             string.Empty,
             TimeoutSeconds: timeoutSeconds);
-    }
-
-    private static IReadOnlyList<MetaPipelineOperationalFingerprint> BuildModeledOperationalFingerprints(
-        MetaPipelineModeledExecutionPlan plan,
-        string? dataTypeConversionWorkspacePath)
-    {
-        var service = new MetaPipelineWorkspaceFingerprintService();
-        var fingerprints = new List<MetaPipelineOperationalFingerprint>
-        {
-            service.CreateWorkspaceFingerprint(
-                "PipelineWorkspace",
-                plan.PipelineId,
-                plan.PipelineWorkspacePath),
-        };
-
-        var transformWorkspacePaths = plan.Steps
-            .Select(static step => step.TransformWorkspacePath)
-            .Where(static path => !string.IsNullOrWhiteSpace(path))
-            .Select(static path => path!)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
-        for (var index = 0; index < transformWorkspacePaths.Length; index++)
-        {
-            fingerprints.Add(service.CreateWorkspaceFingerprint(
-                "TransformWorkspace",
-                index.ToString(System.Globalization.CultureInfo.InvariantCulture),
-                transformWorkspacePaths[index]));
-        }
-
-        var bindingWorkspacePaths = plan.Steps
-            .Select(static step => step.BindingWorkspacePath)
-            .Where(static path => !string.IsNullOrWhiteSpace(path))
-            .Select(static path => path!)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
-        for (var index = 0; index < bindingWorkspacePaths.Length; index++)
-        {
-            fingerprints.Add(service.CreateWorkspaceFingerprint(
-                "BindingWorkspace",
-                index.ToString(System.Globalization.CultureInfo.InvariantCulture),
-                bindingWorkspacePaths[index]));
-        }
-
-        foreach (var step in plan.Steps)
-        {
-            if (step.StepKind == MetaPipelineModeledExecutionStepKind.Executable)
-            {
-                continue;
-            }
-
-            fingerprints.Add(service.CreateWorkspaceFingerprint(
-                "TransformScript",
-                step.TransformScriptId ?? string.Empty,
-                step.TransformWorkspacePath
-                ?? throw new MetaPipelineConfigurationException($"Transform task '{step.TaskName}' must name TransformWorkspacePath."),
-                step.TaskName,
-                "TransformExecution"));
-            fingerprints.Add(service.CreateWorkspaceFingerprint(
-                "TransformBinding",
-                step.TransformBindingId ?? string.Empty,
-                step.BindingWorkspacePath
-                ?? throw new MetaPipelineConfigurationException($"Transform task '{step.TaskName}' must name BindingWorkspacePath."),
-                step.TaskName,
-                "TransformExecution"));
-
-            if (step.IsSelect
-                && !string.IsNullOrWhiteSpace(step.TargetWriteTaskName)
-                && !string.IsNullOrWhiteSpace(dataTypeConversionWorkspacePath))
-            {
-                fingerprints.Add(service.CreateWorkspaceFingerprint(
-                    "DataTypeConversionWorkspace",
-                    step.TargetDataTypeSystemName ?? "SqlServer",
-                    dataTypeConversionWorkspacePath,
-                    step.TargetWriteTaskName,
-                    "TargetWrite"));
-            }
-        }
-
-        return fingerprints;
-    }
-
-    private static IReadOnlyList<MetaPipelineOperationalFingerprint> BuildDirectOperationalFingerprints(
-        MetaPipelineDirectSqlServerExecutionCommandRequest request,
-        MetaPipelineTransformSelection selection,
-        MetaPipelineExecutionResult result)
-    {
-        var service = new MetaPipelineWorkspaceFingerprintService();
-        var fingerprints = new List<MetaPipelineOperationalFingerprint>
-        {
-            service.CreateWorkspaceFingerprint(
-                "TransformWorkspace",
-                "all",
-                request.TransformWorkspacePath),
-            service.CreateWorkspaceFingerprint(
-                "BindingWorkspace",
-                "all",
-                request.BindingWorkspacePath),
-        };
-
-        var transformTask = result.TaskResults.FirstOrDefault(static task =>
-            string.Equals(task.TaskKind, "TransformExecution", StringComparison.Ordinal));
-        if (transformTask is not null)
-        {
-            fingerprints.Add(service.CreateWorkspaceFingerprint(
-                "TransformScript",
-                selection.TransformScriptId,
-                request.TransformWorkspacePath,
-                transformTask.TaskName,
-                transformTask.TaskKind));
-            fingerprints.Add(service.CreateWorkspaceFingerprint(
-                "TransformBinding",
-                selection.TransformBindingId,
-                request.BindingWorkspacePath,
-                transformTask.TaskName,
-                transformTask.TaskKind));
-        }
-
-        var targetWriteTask = result.TaskResults.FirstOrDefault(static task =>
-            string.Equals(task.TaskKind, "TargetWrite", StringComparison.Ordinal));
-        if (targetWriteTask is not null && !string.IsNullOrWhiteSpace(request.DataTypeConversionWorkspacePath))
-        {
-            fingerprints.Add(service.CreateWorkspaceFingerprint(
-                "DataTypeConversionWorkspace",
-                request.TargetDataTypeSystemName,
-                request.DataTypeConversionWorkspacePath,
-                targetWriteTask.TaskName,
-                targetWriteTask.TaskKind));
-        }
-
-        return fingerprints;
     }
 
     private static async Task<MetaPipelineExecutionContext?> CreateExecutionContextAsync(

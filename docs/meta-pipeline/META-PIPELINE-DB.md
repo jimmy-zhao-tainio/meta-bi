@@ -9,7 +9,6 @@ It stores:
 - pipeline run start/completion/status
 - task run status
 - row, batch, column, task, rows-affected, and duration metrics
-- SHA-256 fingerprints for the executed pipeline, transform, binding, and explicit type-conversion workspaces
 - audit-relevant warning/error run logs
 - high-volume informational diagnostic logs
 - failure records for validation, configuration, connection, runtime, and unexpected failures
@@ -40,7 +39,6 @@ The bootstrap is idempotent and creates schema `MetaPipeline` with:
 - `RunLog`
 - `RunDiagnosticsLog`
 - `RunFailure`
-- `RunFingerprint`
 
 Operational tables include date-oriented indexes for common operator queries:
 
@@ -52,8 +50,6 @@ Operational tables include date-oriented indexes for common operator queries:
 - `RunLog.LoggedAtUtc`
 - `RunDiagnosticsLog.LoggedAtUtc`
 - `RunFailure.OccurredAtUtc`
-- `RunFingerprint.PipelineRunId, FingerprintKind`
-- `RunFingerprint.TaskRunId, FingerprintKind`
 
 Execution commands do not create or initialize the operational DB.
 If the database is unavailable or the schema has not been bootstrapped, execution fails before pipeline work starts with a `Next:` helper telling the operator to initialize the operational DB.
@@ -74,13 +70,7 @@ When enabled, the CLI starts a run record before modeled validation/runtime reso
 Successful and failed runtime results are completed from `MetaPipelineExecutionResult` and its task results.
 For SQL mutation tasks, row-count metrics use SQL Server rows affected where SQL Server reports a value.
 Explicit `TimeoutSeconds` settings are stored on `TaskRun`; omitted timeout means no SQL command timeout.
-Workspace fingerprints are stored in `RunFingerprint`:
-
-- run-level fingerprints for pipeline, transform, and binding workspaces
-- task-level transform-script and transform-binding fingerprints attached to the relevant transform task
-- task-level explicit data-type conversion workspace fingerprints attached to target-write tasks when a conversion workspace path is supplied
-
-The binding workspace fingerprint is the execution-time contract evidence. Source schema workspaces are binding-time inputs and are not separately supplied to `meta-pipeline execute`.
+Pipeline, TransformScript, and Binding workspace paths and selected model identities are recorded on `PipelineRun` and `TaskRun`. Supplying mutually consistent workspaces is an operational requirement; execution does not infer freshness from workspace content. Operational databases created by older versions may retain an unused `RunFingerprint` table and its historical rows. MetaPipeline does not drop or write that retired table.
 The target operational database and `MetaPipeline` schema must already exist.
 
 ## Pruning
@@ -100,7 +90,6 @@ The lineage/audit tables are preserved:
 - `TaskRun`
 - `RunMetric`
 - `RunLog`
-- `RunFingerprint`
 - `RunFailure`
 
 Audit ids are also preserved.
