@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupMemberList>
+    <ParameterGroupMember Id="member-deploy-plan-output-csharp" ParameterGroupId="group-deploy-plan-output" ParameterId="param-deploy-plan-output-csharp" PreviousMemberId="member-deploy-plan-output-xml" />
+    <ParameterGroupMember Id="member-deploy-plan-output-sql" ParameterGroupId="group-deploy-plan-output" ParameterId="param-deploy-plan-output-sql" PreviousMemberId="member-deploy-plan-output-csharp" />
+    <ParameterGroupMember Id="member-deploy-plan-output-xml" ParameterGroupId="group-deploy-plan-output" ParameterId="param-deploy-plan-output-xml" />
     <ParameterGroupMember Id="member-execute-file" ParameterGroupId="group-execute-sql-input" ParameterId="param-execute-file" />
     <ParameterGroupMember Id="member-execute-query" ParameterGroupId="group-execute-sql-input" ParameterId="param-execute-query" PreviousMemberId="member-execute-file" />
     <ParameterGroupMember Id="member-extract-sqlserver-target-first" ParameterGroupId="group-extract-sqlserver-target" ParameterId="param-extract-sqlserver-output-xml" />

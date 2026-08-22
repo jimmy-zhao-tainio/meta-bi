@@ -1,10 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupList>
+    <ParameterGroup Id="group-analytics-to-multi-dimensional-output" ExecutableCommandId="exec-analytics-to-multi-dimensional">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select exactly one workspace output surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>output</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-analytics-to-tabular-output" ExecutableCommandId="exec-analytics-to-tabular">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select exactly one workspace output surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>output</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-business-datavault-to-sql-output" ExecutableCommandId="exec-business-datavault-to-sql">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select exactly one workspace output surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>output</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-data-warehouse-to-sql-output" ExecutableCommandId="exec-data-warehouse-to-sql">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select exactly one workspace output surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>output</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-raw-datavault-to-sql-output" ExecutableCommandId="exec-raw-datavault-to-sql">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select exactly one workspace output surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>output</Name>
+    </ParameterGroup>
     <ParameterGroup Id="group-schema-to-raw-datavault-target" ExecutableCommandId="exec-schema-to-raw-datavault">
       <Description>Choose one workspace target.</Description>
       <IsRequired>true</IsRequired>
       <Name>target</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-sql-to-transform-script-output" ExecutableCommandId="exec-sql-to-transform-script">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select exactly one workspace output surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>output</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-transform-pattern-to-sql-script-output" ExecutableCommandId="exec-transform-pattern-to-sql-script">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select exactly one workspace output surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>output</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-transform-script-to-sql-output" ExecutableCommandId="exec-transform-script-to-sql">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select exactly one workspace output surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>output</Name>
     </ParameterGroup>
   </ParameterGroupList>
 </MetaCli>

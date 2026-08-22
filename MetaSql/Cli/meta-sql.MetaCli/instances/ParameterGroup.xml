@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupList>
+    <ParameterGroup Id="group-deploy-plan-output" ExecutableCommandId="exec-deploy-plan">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Select exactly one workspace output surface.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>output</Name>
+    </ParameterGroup>
     <ParameterGroup Id="group-execute-sql-input" ExecutableCommandId="exec-execute">
       <Description>Choose one SQL input source.</Description>
       <IsRequired>true</IsRequired>

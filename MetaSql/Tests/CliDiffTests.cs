@@ -30,7 +30,7 @@ public sealed class CliCommandContractTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Usage:", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql deploy-plan [--approval-file <path>] [--approve-drop-column <value>] [--approve-drop-table <value>] [--approve-truncate-column <value>] --connection-env <value> [--output-connection-env <value>] [--output-csharp <path>] [--output-sql <path>] [--output-xml <path>] --source-workspace <path>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql deploy-plan [--approval-file <path>] [--approve-drop-column <value>] [--approve-drop-table <value>] [--approve-truncate-column <value>] --connection-env <value> [--output-connection-env <value>] --source-workspace <path> (--output-xml <path> | --output-csharp <path> | --output-sql <path>)", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-drop-table", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-drop-column", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-truncate-column", result.Output, StringComparison.Ordinal);

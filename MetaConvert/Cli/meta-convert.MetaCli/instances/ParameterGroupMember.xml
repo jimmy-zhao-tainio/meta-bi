@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupMemberList>
+    <ParameterGroupMember Id="member-analytics-to-multi-dimensional-output-csharp" ParameterGroupId="group-analytics-to-multi-dimensional-output" ParameterId="param-analytics-to-multi-dimensional-output-csharp" PreviousMemberId="member-analytics-to-multi-dimensional-output-xml" />
+    <ParameterGroupMember Id="member-analytics-to-multi-dimensional-output-sql" ParameterGroupId="group-analytics-to-multi-dimensional-output" ParameterId="param-analytics-to-multi-dimensional-output-sql" PreviousMemberId="member-analytics-to-multi-dimensional-output-csharp" />
+    <ParameterGroupMember Id="member-analytics-to-multi-dimensional-output-xml" ParameterGroupId="group-analytics-to-multi-dimensional-output" ParameterId="param-analytics-to-multi-dimensional-output-xml" />
+    <ParameterGroupMember Id="member-analytics-to-tabular-output-csharp" ParameterGroupId="group-analytics-to-tabular-output" ParameterId="param-analytics-to-tabular-output-csharp" PreviousMemberId="member-analytics-to-tabular-output-xml" />
+    <ParameterGroupMember Id="member-analytics-to-tabular-output-sql" ParameterGroupId="group-analytics-to-tabular-output" ParameterId="param-analytics-to-tabular-output-sql" PreviousMemberId="member-analytics-to-tabular-output-csharp" />
+    <ParameterGroupMember Id="member-analytics-to-tabular-output-xml" ParameterGroupId="group-analytics-to-tabular-output" ParameterId="param-analytics-to-tabular-output-xml" />
+    <ParameterGroupMember Id="member-business-datavault-to-sql-output-csharp" ParameterGroupId="group-business-datavault-to-sql-output" ParameterId="param-business-datavault-to-sql-output-csharp" PreviousMemberId="member-business-datavault-to-sql-output-xml" />
+    <ParameterGroupMember Id="member-business-datavault-to-sql-output-sql" ParameterGroupId="group-business-datavault-to-sql-output" ParameterId="param-business-datavault-to-sql-output-sql" PreviousMemberId="member-business-datavault-to-sql-output-csharp" />
+    <ParameterGroupMember Id="member-business-datavault-to-sql-output-xml" ParameterGroupId="group-business-datavault-to-sql-output" ParameterId="param-business-datavault-to-sql-output-xml" />
+    <ParameterGroupMember Id="member-data-warehouse-to-sql-output-csharp" ParameterGroupId="group-data-warehouse-to-sql-output" ParameterId="param-data-warehouse-to-sql-output-csharp" PreviousMemberId="member-data-warehouse-to-sql-output-xml" />
+    <ParameterGroupMember Id="member-data-warehouse-to-sql-output-sql" ParameterGroupId="group-data-warehouse-to-sql-output" ParameterId="param-data-warehouse-to-sql-output-sql" PreviousMemberId="member-data-warehouse-to-sql-output-csharp" />
+    <ParameterGroupMember Id="member-data-warehouse-to-sql-output-xml" ParameterGroupId="group-data-warehouse-to-sql-output" ParameterId="param-data-warehouse-to-sql-output-xml" />
+    <ParameterGroupMember Id="member-raw-datavault-to-sql-output-csharp" ParameterGroupId="group-raw-datavault-to-sql-output" ParameterId="param-raw-datavault-to-sql-output-csharp" PreviousMemberId="member-raw-datavault-to-sql-output-xml" />
+    <ParameterGroupMember Id="member-raw-datavault-to-sql-output-sql" ParameterGroupId="group-raw-datavault-to-sql-output" ParameterId="param-raw-datavault-to-sql-output-sql" PreviousMemberId="member-raw-datavault-to-sql-output-csharp" />
+    <ParameterGroupMember Id="member-raw-datavault-to-sql-output-xml" ParameterGroupId="group-raw-datavault-to-sql-output" ParameterId="param-raw-datavault-to-sql-output-xml" />
     <ParameterGroupMember Id="member-schema-to-raw-datavault-target-first" ParameterGroupId="group-schema-to-raw-datavault-target" ParameterId="param-schema-to-raw-datavault-output-xml" />
     <ParameterGroupMember Id="member-schema-to-raw-datavault-target-output-csharp" ParameterGroupId="group-schema-to-raw-datavault-target" ParameterId="param-schema-to-raw-datavault-output-csharp" PreviousMemberId="member-schema-to-raw-datavault-target-first" />
     <ParameterGroupMember Id="member-schema-to-raw-datavault-target-output-sql" ParameterGroupId="group-schema-to-raw-datavault-target" ParameterId="param-schema-to-raw-datavault-output-sql" PreviousMemberId="member-schema-to-raw-datavault-target-output-csharp" />
+    <ParameterGroupMember Id="member-sql-to-transform-script-output-csharp" ParameterGroupId="group-sql-to-transform-script-output" ParameterId="param-sql-to-transform-script-output-csharp" PreviousMemberId="member-sql-to-transform-script-output-xml" />
+    <ParameterGroupMember Id="member-sql-to-transform-script-output-sql" ParameterGroupId="group-sql-to-transform-script-output" ParameterId="param-sql-to-transform-script-output-sql" PreviousMemberId="member-sql-to-transform-script-output-csharp" />
+    <ParameterGroupMember Id="member-sql-to-transform-script-output-xml" ParameterGroupId="group-sql-to-transform-script-output" ParameterId="param-sql-to-transform-script-output-xml" />
+    <ParameterGroupMember Id="member-transform-pattern-to-sql-script-output-csharp" ParameterGroupId="group-transform-pattern-to-sql-script-output" ParameterId="param-transform-pattern-to-sql-script-output-csharp" PreviousMemberId="member-transform-pattern-to-sql-script-output-xml" />
+    <ParameterGroupMember Id="member-transform-pattern-to-sql-script-output-sql" ParameterGroupId="group-transform-pattern-to-sql-script-output" ParameterId="param-transform-pattern-to-sql-script-output-sql" PreviousMemberId="member-transform-pattern-to-sql-script-output-csharp" />
+    <ParameterGroupMember Id="member-transform-pattern-to-sql-script-output-xml" ParameterGroupId="group-transform-pattern-to-sql-script-output" ParameterId="param-transform-pattern-to-sql-script-output-xml" />
+    <ParameterGroupMember Id="member-transform-script-to-sql-output-csharp" ParameterGroupId="group-transform-script-to-sql-output" ParameterId="param-transform-script-to-sql-output-csharp" PreviousMemberId="member-transform-script-to-sql-output-xml" />
+    <ParameterGroupMember Id="member-transform-script-to-sql-output-sql" ParameterGroupId="group-transform-script-to-sql-output" ParameterId="param-transform-script-to-sql-output-sql" PreviousMemberId="member-transform-script-to-sql-output-csharp" />
+    <ParameterGroupMember Id="member-transform-script-to-sql-output-xml" ParameterGroupId="group-transform-script-to-sql-output" ParameterId="param-transform-script-to-sql-output-xml" />
   </ParameterGroupMemberList>
 </MetaCli>
