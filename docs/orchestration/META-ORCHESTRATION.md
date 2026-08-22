@@ -188,10 +188,10 @@ Failure handlers are not post-run action hooks. A handler pipeline is part of th
 
 ## CLI
 
-`MetaOrchestration` does not currently have an empty `init` command. The `infer --new-workspace` command creates the orchestration workspace by inferring from modeled pipeline profiles. Transform-backed pipeline steps carry transform and binding workspace paths in the pipeline model; executable process steps are included as dependency-neutral task profiles. Run planning is a resolution/planning pass inside that same workspace, so the common path is model -> inferred orchestration workspace -> refreshed run plan -> execution.
+`MetaOrchestration` does not currently have an empty `init` command. The `create` command creates the orchestration workspace from modeled pipeline profiles; dependency inference is part of that creation operation rather than a separate user intention. Transform-backed pipeline steps carry transform and binding workspace paths in the pipeline model; executable process steps are included as dependency-neutral task profiles. Run planning is a resolution/planning pass inside that same workspace, so the common path is model -> orchestration workspace -> refreshed run plan -> execution.
 
 ```cmd
-meta-orchestration infer --pipeline-workspace .\PipelineWS --new-workspace .\OrchestrationWS
+meta-orchestration create --pipeline-workspace .\PipelineWS --output-xml .\OrchestrationWS
 meta-orchestration list-issues --workspace .\OrchestrationWS
 meta-orchestration add-order --workspace .\OrchestrationWS --from-task RefreshStage.load --to-task AppendStage.load --object dbo.Stage --reason "Refresh before append."
 meta-orchestration add-dependency --workspace .\OrchestrationWS --from-task RefreshStage.load --to-task FailureHandler.record --condition failure --reason "Record failed refresh."

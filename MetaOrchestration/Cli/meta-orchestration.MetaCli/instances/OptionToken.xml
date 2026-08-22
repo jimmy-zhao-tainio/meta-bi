@@ -46,6 +46,24 @@
     <OptionToken Id="token-allow-concurrent-append-workspace" OptionId="opt-allow-concurrent-append-workspace">
       <Token>--workspace</Token>
     </OptionToken>
+    <OptionToken Id="token-create-description" OptionId="opt-create-description">
+      <Token>--description</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-output-connection-env" OptionId="opt-create-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-output-csharp" OptionId="opt-create-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-output-sql" OptionId="opt-create-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-output-xml" OptionId="opt-create-output-xml">
+      <Token>--output-xml</Token>
+    </OptionToken>
+    <OptionToken Id="token-create-pipeline-workspace" OptionId="opt-create-pipeline-workspace">
+      <Token>--pipeline-workspace</Token>
+    </OptionToken>
     <OptionToken Id="token-execute-data-type-conversion-workspace" OptionId="opt-execute-data-type-conversion-workspace">
       <Token>--data-type-conversion-workspace</Token>
     </OptionToken>
@@ -78,24 +96,6 @@
     </OptionToken>
     <OptionToken Id="token-explain-issue-workspace" OptionId="opt-explain-issue-workspace">
       <Token>--workspace</Token>
-    </OptionToken>
-    <OptionToken Id="token-infer-description" OptionId="opt-infer-description">
-      <Token>--description</Token>
-    </OptionToken>
-    <OptionToken Id="token-infer-output-connection-env" OptionId="option-infer-output-connection-env">
-      <Token>--output-connection-env</Token>
-    </OptionToken>
-    <OptionToken Id="token-infer-output-csharp" OptionId="option-infer-output-csharp">
-      <Token>--output-csharp</Token>
-    </OptionToken>
-    <OptionToken Id="token-infer-output-sql" OptionId="option-infer-output-sql">
-      <Token>--output-sql</Token>
-    </OptionToken>
-    <OptionToken Id="token-infer-output-xml" OptionId="option-infer-output-xml">
-      <Token>--output-xml</Token>
-    </OptionToken>
-    <OptionToken Id="token-infer-pipeline-workspace" OptionId="opt-infer-pipeline-workspace">
-      <Token>--pipeline-workspace</Token>
     </OptionToken>
     <OptionToken Id="token-inspect-run-plan-workspace" OptionId="opt-inspect-run-plan-workspace">
       <Token>--workspace</Token>

@@ -68,6 +68,31 @@
       <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
       <Name>workspace</Name>
     </Parameter>
+    <Parameter Id="param-create-description" ValueShapeId="shape-text">
+      <Description>Description recorded on the orchestration plan.</Description>
+      <Name>description</Name>
+    </Parameter>
+    <Parameter Id="param-create-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-create-output-csharp" ValueShapeId="shape-path">
+      <Description>Create the output on the selected workspace surface.</Description>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-create-output-sql" ValueShapeId="shape-path">
+      <Description>Create the output on the selected workspace surface.</Description>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-create-output-xml" ValueShapeId="shape-path">
+      <Description>Create the output on the selected workspace surface.</Description>
+      <Name>output-xml</Name>
+    </Parameter>
+    <Parameter Id="param-create-pipeline-workspace" ValueShapeId="shape-path">
+      <Description>MetaPipeline workspace to analyze.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>pipeline-workspace</Name>
+    </Parameter>
     <Parameter Id="param-execute-data-type-conversion-workspace" ValueShapeId="shape-path">
       <Description>Conversion policy workspace passed to child workers.</Description>
       <Name>data-type-conversion-workspace</Name>
@@ -114,31 +139,6 @@
     <Parameter Id="param-explain-issue-workspace" ValueShapeId="shape-path">
       <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>
       <Name>workspace</Name>
-    </Parameter>
-    <Parameter Id="param-infer-description" ValueShapeId="shape-text">
-      <Description>Description recorded on the orchestration plan.</Description>
-      <Name>description</Name>
-    </Parameter>
-    <Parameter Id="param-infer-output-connection-env" ValueShapeId="shape-text">
-      <Description>Environment variable containing the output SQL workspace connection string.</Description>
-      <Name>output-connection-env</Name>
-    </Parameter>
-    <Parameter Id="param-infer-output-csharp" ValueShapeId="shape-path">
-      <Description>Create the output on the selected workspace surface.</Description>
-      <Name>output-csharp</Name>
-    </Parameter>
-    <Parameter Id="param-infer-output-sql" ValueShapeId="shape-path">
-      <Description>Create the output on the selected workspace surface.</Description>
-      <Name>output-sql</Name>
-    </Parameter>
-    <Parameter Id="param-infer-output-xml" ValueShapeId="shape-path">
-      <Description>Create the output on the selected workspace surface.</Description>
-      <Name>output-xml</Name>
-    </Parameter>
-    <Parameter Id="param-infer-pipeline-workspace" ValueShapeId="shape-path">
-      <Description>MetaPipeline workspace to analyze.</Description>
-      <IsRequired>true</IsRequired>
-      <Name>pipeline-workspace</Name>
     </Parameter>
     <Parameter Id="param-inspect-run-plan-workspace" ValueShapeId="shape-path">
       <Description>MetaOrchestration workspace. Defaults to the current directory.</Description>

@@ -16,6 +16,12 @@
     <Option Id="opt-allow-concurrent-append-object" ParameterId="param-allow-concurrent-append-object" />
     <Option Id="opt-allow-concurrent-append-reason" ParameterId="param-allow-concurrent-append-reason" />
     <Option Id="opt-allow-concurrent-append-workspace" ParameterId="param-allow-concurrent-append-workspace" />
+    <Option Id="opt-create-description" ParameterId="param-create-description" />
+    <Option Id="opt-create-output-connection-env" ParameterId="param-create-output-connection-env" />
+    <Option Id="opt-create-output-csharp" ParameterId="param-create-output-csharp" />
+    <Option Id="opt-create-output-sql" ParameterId="param-create-output-sql" />
+    <Option Id="opt-create-output-xml" ParameterId="param-create-output-xml" />
+    <Option Id="opt-create-pipeline-workspace" ParameterId="param-create-pipeline-workspace" />
     <Option Id="opt-execute-data-type-conversion-workspace" ParameterId="param-execute-data-type-conversion-workspace" />
     <Option Id="opt-execute-max-degree-of-parallelism" ParameterId="param-execute-max-degree-of-parallelism" />
     <Option Id="opt-execute-pipeline-db-connection-env" ParameterId="param-execute-pipeline-db-connection-env" />
@@ -27,8 +33,6 @@
     <Option Id="opt-execute-workspace" ParameterId="param-execute-workspace" />
     <Option Id="opt-explain-issue-issue" ParameterId="param-explain-issue-issue" />
     <Option Id="opt-explain-issue-workspace" ParameterId="param-explain-issue-workspace" />
-    <Option Id="opt-infer-description" ParameterId="param-infer-description" />
-    <Option Id="opt-infer-pipeline-workspace" ParameterId="param-infer-pipeline-workspace" />
     <Option Id="opt-inspect-run-plan-workspace" ParameterId="param-inspect-run-plan-workspace" />
     <Option Id="opt-inspect-workspace" ParameterId="param-inspect-workspace" />
     <Option Id="opt-list-issues-workspace" ParameterId="param-list-issues-workspace" />
@@ -39,9 +43,5 @@
     <Option Id="opt-set-lock-policy-reason" ParameterId="param-set-lock-policy-reason" />
     <Option Id="opt-set-lock-policy-right-effect" ParameterId="param-set-lock-policy-right-effect" />
     <Option Id="opt-set-lock-policy-workspace" ParameterId="param-set-lock-policy-workspace" />
-    <Option Id="option-infer-output-connection-env" ParameterId="param-infer-output-connection-env" />
-    <Option Id="option-infer-output-csharp" ParameterId="param-infer-output-csharp" />
-    <Option Id="option-infer-output-sql" ParameterId="param-infer-output-sql" />
-    <Option Id="option-infer-output-xml" ParameterId="param-infer-output-xml" />
   </OptionList>
 </MetaCli>

@@ -24,9 +24,9 @@ internal static class Program
         var runtime = new MetaCliRuntime<MetaOrchestrationModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
             .Bind(
-                "exec-infer",
+                "exec-create",
                 [MetaCliWorkspace.Create("output", "output-xml", "output-csharp", "output-sql", "output-connection-env")],
-                handlers.RunInferAsync)
+                handlers.RunCreateAsync)
             .Bind("exec-inspect", handlers.RunInspect)
             .Bind("exec-list-issues", handlers.RunListIssues)
             .Bind("exec-explain-issue", handlers.RunExplainIssue)

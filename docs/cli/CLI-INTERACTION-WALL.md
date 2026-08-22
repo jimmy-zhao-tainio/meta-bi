@@ -393,7 +393,7 @@ Commands:
   allow-concurrent-append
   execute
   explain-issue
-  infer
+  create
   inspect
   inspect-run-plan
   list-issues

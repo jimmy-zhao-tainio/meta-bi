@@ -2762,14 +2762,14 @@
       <Name>clear-generated-workspaces</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:create-orchestration:infer-orchestration" OperationId="operation:create-orchestration" PreviousStepId="operation-step:create-orchestration:clear-generated-workspaces">
-      <Arguments>infer --pipeline-workspace "{workspace:pipelines.location}" --output-xml "{workspace:orchestration.location}" --description "Coordinate the complete AdventureWorks Source-to-Raw, Raw-to-Business, and Business-to-Warehouse ETL graph."</Arguments>
-      <Description>Infer orchestration from the complete pipeline workspace.</Description>
+    <OperationStep Id="operation-step:create-orchestration:create-orchestration" OperationId="operation:create-orchestration" PreviousStepId="operation-step:create-orchestration:clear-generated-workspaces">
+      <Arguments>create --pipeline-workspace "{workspace:pipelines.location}" --output-xml "{workspace:orchestration.location}" --description "Coordinate the complete AdventureWorks Source-to-Raw, Raw-to-Business, and Business-to-Warehouse ETL graph."</Arguments>
+      <Description>Create orchestration from the complete pipeline workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
-      <Name>infer-orchestration</Name>
+      <Name>create-orchestration</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:create-orchestration:refresh-run-plan" OperationId="operation:create-orchestration" PreviousStepId="operation-step:create-orchestration:infer-orchestration">
+    <OperationStep Id="operation-step:create-orchestration:refresh-run-plan" OperationId="operation:create-orchestration" PreviousStepId="operation-step:create-orchestration:create-orchestration">
       <Arguments>refresh-run-plan --workspace "{workspace:orchestration.location}"</Arguments>
       <Description>Materialize the deterministic orchestration run plan.</Description>
       <Executable>meta-orchestration.exe</Executable>

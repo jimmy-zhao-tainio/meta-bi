@@ -16,6 +16,12 @@
     <ExecutableCommandParameter Id="exec-allow-concurrent-append:parameter:param-allow-concurrent-append-object" ExecutableCommandId="exec-allow-concurrent-append" ParameterId="param-allow-concurrent-append-object" />
     <ExecutableCommandParameter Id="exec-allow-concurrent-append:parameter:param-allow-concurrent-append-reason" ExecutableCommandId="exec-allow-concurrent-append" ParameterId="param-allow-concurrent-append-reason" />
     <ExecutableCommandParameter Id="exec-allow-concurrent-append:parameter:param-allow-concurrent-append-workspace" ExecutableCommandId="exec-allow-concurrent-append" ParameterId="param-allow-concurrent-append-workspace" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-description" ExecutableCommandId="exec-create" ParameterId="param-create-description" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-output-connection-env" ExecutableCommandId="exec-create" ParameterId="param-create-output-connection-env" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-output-csharp" ExecutableCommandId="exec-create" ParameterId="param-create-output-csharp" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-output-sql" ExecutableCommandId="exec-create" ParameterId="param-create-output-sql" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-output-xml" ExecutableCommandId="exec-create" ParameterId="param-create-output-xml" />
+    <ExecutableCommandParameter Id="exec-create:parameter:param-create-pipeline-workspace" ExecutableCommandId="exec-create" ParameterId="param-create-pipeline-workspace" />
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-data-type-conversion-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-data-type-conversion-workspace" />
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-max-degree-of-parallelism" ExecutableCommandId="exec-execute" ParameterId="param-execute-max-degree-of-parallelism" />
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-pipeline-db-connection-env" ExecutableCommandId="exec-execute" ParameterId="param-execute-pipeline-db-connection-env" />
@@ -27,12 +33,6 @@
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-workspace" />
     <ExecutableCommandParameter Id="exec-explain-issue:parameter:param-explain-issue-issue" ExecutableCommandId="exec-explain-issue" ParameterId="param-explain-issue-issue" />
     <ExecutableCommandParameter Id="exec-explain-issue:parameter:param-explain-issue-workspace" ExecutableCommandId="exec-explain-issue" ParameterId="param-explain-issue-workspace" />
-    <ExecutableCommandParameter Id="exec-infer:parameter:param-infer-description" ExecutableCommandId="exec-infer" ParameterId="param-infer-description" />
-    <ExecutableCommandParameter Id="exec-infer:parameter:param-infer-output-connection-env" ExecutableCommandId="exec-infer" ParameterId="param-infer-output-connection-env" />
-    <ExecutableCommandParameter Id="exec-infer:parameter:param-infer-output-csharp" ExecutableCommandId="exec-infer" ParameterId="param-infer-output-csharp" />
-    <ExecutableCommandParameter Id="exec-infer:parameter:param-infer-output-sql" ExecutableCommandId="exec-infer" ParameterId="param-infer-output-sql" />
-    <ExecutableCommandParameter Id="exec-infer:parameter:param-infer-output-xml" ExecutableCommandId="exec-infer" ParameterId="param-infer-output-xml" />
-    <ExecutableCommandParameter Id="exec-infer:parameter:param-infer-pipeline-workspace" ExecutableCommandId="exec-infer" ParameterId="param-infer-pipeline-workspace" />
     <ExecutableCommandParameter Id="exec-inspect-run-plan:parameter:param-inspect-run-plan-workspace" ExecutableCommandId="exec-inspect-run-plan" ParameterId="param-inspect-run-plan-workspace" />
     <ExecutableCommandParameter Id="exec-inspect:parameter:param-inspect-workspace" ExecutableCommandId="exec-inspect" ParameterId="param-inspect-workspace" />
     <ExecutableCommandParameter Id="exec-list-issues:parameter:param-list-issues-workspace" ExecutableCommandId="exec-list-issues" ParameterId="param-list-issues-workspace" />

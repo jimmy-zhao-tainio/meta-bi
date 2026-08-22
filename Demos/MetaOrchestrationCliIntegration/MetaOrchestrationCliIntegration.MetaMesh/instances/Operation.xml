@@ -6,15 +6,15 @@
       <Name>cleanup</Name>
     </Operation>
     <Operation Id="operation:create-complete-run-plan" MeshId="mesh:default">
-      <Description>Author the complete MetaPipeline workspace, infer the MetaOrchestration workspace, and refresh the run plan.</Description>
+      <Description>Author the complete MetaPipeline workspace, create the MetaOrchestration workspace, and refresh the run plan.</Description>
       <Name>create-complete-run-plan</Name>
     </Operation>
     <Operation Id="operation:create-invalid-evidence" MeshId="mesh:default">
-      <Description>Author an invalid pipeline graph, expect inference diagnostics, and inspect the emitted orchestration evidence.</Description>
+      <Description>Author an invalid pipeline graph, expect dependency-analysis diagnostics, and inspect the emitted orchestration evidence.</Description>
       <Name>create-invalid-evidence</Name>
     </Operation>
     <Operation Id="operation:create-policy-run-plan" MeshId="mesh:default">
-      <Description>Author the policy MetaPipeline workspace, infer orchestration, add explicit order and lock policy, and refresh the run plan.</Description>
+      <Description>Author the policy MetaPipeline workspace, create orchestration, add explicit order and lock policy, and refresh the run plan.</Description>
       <Name>create-policy-run-plan</Name>
     </Operation>
     <Operation Id="operation:execute-complete" MeshId="mesh:default">

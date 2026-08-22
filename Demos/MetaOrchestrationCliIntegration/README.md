@@ -1,6 +1,6 @@
 # MetaOrchestration CLI Integration Demo
 
-This demo builds a SQL Server schema, imports transform scripts, binds them, creates `MetaPipeline` workspaces, and then asks `meta-orchestration` to infer DAGs, build run-plan rows, and execute planned pipeline steps from the bound read/write profiles.
+This demo builds a SQL Server schema, imports transform scripts, binds them, creates `MetaPipeline` workspaces, and then asks `meta-orchestration` to create orchestration DAGs, build run-plan rows, and execute planned pipeline steps from the bound read/write profiles.
 
 The demo workflow is modeled in:
 

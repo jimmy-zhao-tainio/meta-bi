@@ -30,7 +30,7 @@
       <Name>create-dimensional-warehouse</Name>
     </Operation>
     <Operation Id="operation:create-orchestration" MeshId="mesh:default">
-      <Description>Infer and materialize the complete ETL run plan from the three modeled pipelines and strict binding evidence.</Description>
+      <Description>Create and materialize the complete ETL run plan from the three modeled pipelines and strict binding evidence.</Description>
       <Name>create-orchestration</Name>
     </Operation>
     <Operation Id="operation:create-raw-business-pipeline" MeshId="mesh:default">

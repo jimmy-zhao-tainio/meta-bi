@@ -2143,18 +2143,19 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
-    public void CliWorkspaceCreationHelp_UsesNewWorkspaceForInferenceOnly()
+    public void CliWorkspaceCreationHelp_UsesExplicitOutputSurfaceOnlyForCreate()
     {
         var help = RunCli("--help");
-        var infer = RunCli("infer --help");
+        var create = RunCli("create --help");
         var runPlan = RunCli("refresh-run-plan --help");
 
         Assert.Equal(0, help.ExitCode);
-        Assert.Equal(0, infer.ExitCode);
+        Assert.Equal(0, create.ExitCode);
         Assert.Equal(0, runPlan.ExitCode);
-        Assert.Contains("infer", help.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("--output-xml", infer.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("--pipeline-workspace", infer.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("create", help.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("infer", help.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("--output-xml", create.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("--pipeline-workspace", create.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--output-xml", help.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--output-xml", runPlan.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--plan", help.Output, StringComparison.OrdinalIgnoreCase);
@@ -3658,7 +3659,7 @@ INNER JOIN dw.DimCustomer AS d
                 (PipelineName: "TruncateStage", Script: ResolveScript(transformModel, "truncate-stage"), InsertRowsTarget: null),
                 (PipelineName: "ReadStage", Script: ResolveScript(transformModel, "read-stage"), InsertRowsTarget: "dbo.DimCustomer"));
 
-            var result = RunCli($"infer --pipeline-workspace \"{pipelineWorkspace}\" --output-xml \"{orchestrationWorkspace}\"");
+            var result = RunCli($"create --pipeline-workspace \"{pipelineWorkspace}\" --output-xml \"{orchestrationWorkspace}\"");
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("Cannot continue", result.Output, StringComparison.Ordinal);

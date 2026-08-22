@@ -2,7 +2,7 @@
 <MetaCli>
   <ApplicationList>
     <Application Id="app-meta-orchestration">
-      <Description>Infer, author, and execute orchestration plans with task ordering, concurrency policy, and run evidence.</Description>
+      <Description>Create, inspect, plan, and execute orchestration plans with task ordering, concurrency policy, and run evidence.</Description>
       <ExecutableName>meta-orchestration</ExecutableName>
       <Name>meta-orchestration</Name>
     </Application>

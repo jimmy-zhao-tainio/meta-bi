@@ -152,11 +152,11 @@
       <Name>add-step-stage-order</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:create-complete-run-plan:infer-orchestration" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-step-private-scratch">
-      <Arguments>infer --pipeline-workspace "{workspace:complete-pipeline.location}" --output-xml "{workspace:complete-orchestration.location}"</Arguments>
-      <Description>Infer the complete MetaOrchestration workspace from the complete pipeline workspace.</Description>
+    <OperationStep Id="operation-step:create-complete-run-plan:create-orchestration" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-step-private-scratch">
+      <Arguments>create --pipeline-workspace {workspace:complete-pipeline.location} --output-xml {workspace:complete-orchestration.location}</Arguments>
+      <Description>Create the complete MetaOrchestration workspace from the complete pipeline workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
-      <Name>infer-orchestration</Name>
+      <Name>create-orchestration</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:new-pipeline-workspace" OperationId="operation:create-complete-run-plan">
@@ -166,7 +166,7 @@
       <Name>new-pipeline-workspace</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:create-complete-run-plan:refresh-run-plan" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:infer-orchestration">
+    <OperationStep Id="operation-step:create-complete-run-plan:refresh-run-plan" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:create-orchestration">
       <Arguments>refresh-run-plan --workspace "{workspace:complete-orchestration.location}"</Arguments>
       <Description>Refresh the complete orchestration run plan.</Description>
       <Executable>meta-orchestration.exe</Executable>
@@ -229,15 +229,15 @@
       <Name>add-step-write-shared-b</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:create-invalid-evidence:infer-invalid-orchestration" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-step-write-shared-b">
-      <Arguments>infer --pipeline-workspace {workspace:invalid-pipeline.location} --output-xml {workspace:invalid-orchestration.location}</Arguments>
-      <Description>Infer invalid orchestration and expect diagnostic exit code 4.</Description>
+    <OperationStep Id="operation-step:create-invalid-evidence:create-invalid-orchestration" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-step-write-shared-b">
+      <Arguments>create --pipeline-workspace {workspace:invalid-pipeline.location} --output-xml {workspace:invalid-orchestration.location}</Arguments>
+      <Description>Create the orchestration workspace from the invalid pipeline graph and expect diagnostic exit code 4.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <ExpectedExitCode>4</ExpectedExitCode>
-      <Name>infer-invalid-orchestration</Name>
+      <Name>create-invalid-orchestration</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:create-invalid-evidence:inspect-invalid-orchestration" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:infer-invalid-orchestration">
+    <OperationStep Id="operation-step:create-invalid-evidence:inspect-invalid-orchestration" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:create-invalid-orchestration">
       <Arguments>inspect --workspace {workspace:invalid-orchestration.location}</Arguments>
       <Description>Inspect the invalid orchestration evidence workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
@@ -286,16 +286,16 @@
       <Name>add-step-update-shared-landing</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:create-policy-run-plan:infer-policy-orchestration" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:add-step-merge-shared-landing">
-      <Arguments>infer --pipeline-workspace {workspace:policy-pipeline.location} --output-xml {workspace:policy-orchestration.location}</Arguments>
-      <Description>Infer policy orchestration from the policy pipeline workspace.</Description>
+    <OperationStep Id="operation-step:create-policy-run-plan:create-policy-orchestration" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:add-step-merge-shared-landing">
+      <Arguments>create --pipeline-workspace {workspace:policy-pipeline.location} --output-xml {workspace:policy-orchestration.location}</Arguments>
+      <Description>Create the policy orchestration workspace from the policy pipeline workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
-      <Name>infer-policy-orchestration</Name>
+      <Name>create-policy-orchestration</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:create-policy-run-plan:inspect-policy-orchestration" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:infer-policy-orchestration">
+    <OperationStep Id="operation-step:create-policy-run-plan:inspect-policy-orchestration" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:create-policy-orchestration">
       <Arguments>inspect --workspace {workspace:policy-orchestration.location}</Arguments>
-      <Description>Inspect the inferred policy orchestration workspace.</Description>
+      <Description>Inspect the created policy orchestration workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>inspect-policy-orchestration</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -342,7 +342,7 @@
       <Name>execute-orchestration</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:execute-failure-branch:add-failure-dependency" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:infer-failure-orchestration">
+    <OperationStep Id="operation-step:execute-failure-branch:add-failure-dependency" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:create-failure-orchestration">
       <Arguments>add-dependency --workspace {workspace:failure-orchestration.location} --from-task BrokenStageCustomer.load-stage-customer --to-task FailureHandler.record-failure --condition failure --reason "Run the modeled failure dependency branch."</Arguments>
       <Description>Add the failure dependency branch.</Description>
       <Executable>meta-orchestration.exe</Executable>
@@ -405,6 +405,13 @@
       <Name>allow-failure-log-append</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
+    <OperationStep Id="operation-step:execute-failure-branch:create-failure-orchestration" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-step-record-failure">
+      <Arguments>create --pipeline-workspace {workspace:failure-pipeline.location} --output-xml {workspace:failure-orchestration.location}</Arguments>
+      <Description>Create the failure-scenario orchestration workspace.</Description>
+      <Executable>meta-orchestration.exe</Executable>
+      <Name>create-failure-orchestration</Name>
+      <WorkingDirectory></WorkingDirectory>
+    </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:drop-raw-customer" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:inspect-failure-run-plan">
       <Arguments>execute --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --quiet --query "DROP TABLE dbo.RawCustomer;"</Arguments>
       <Description>Drop the raw customer table to force the modeled execution failure.</Description>
@@ -417,13 +424,6 @@
       <Executable>meta-orchestration.exe</Executable>
       <ExpectedExitCode>4</ExpectedExitCode>
       <Name>execute-failure-orchestration</Name>
-      <WorkingDirectory></WorkingDirectory>
-    </OperationStep>
-    <OperationStep Id="operation-step:execute-failure-branch:infer-failure-orchestration" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-step-record-failure">
-      <Arguments>infer --pipeline-workspace {workspace:failure-pipeline.location} --output-xml {workspace:failure-orchestration.location}</Arguments>
-      <Description>Infer failure scenario orchestration.</Description>
-      <Executable>meta-orchestration.exe</Executable>
-      <Name>infer-failure-orchestration</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:inspect-failure-run-plan" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:refresh-failure-run-plan">

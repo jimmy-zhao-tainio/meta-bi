@@ -4,10 +4,10 @@
     <ExecutableCommand Id="exec-add-dependency" CommandId="cmd-add-dependency" />
     <ExecutableCommand Id="exec-add-order" CommandId="cmd-add-order" />
     <ExecutableCommand Id="exec-allow-concurrent-append" CommandId="cmd-allow-concurrent-append" />
+    <ExecutableCommand Id="exec-create" CommandId="cmd-create" />
     <ExecutableCommand Id="exec-execute" CommandId="cmd-execute" />
     <ExecutableCommand Id="exec-explain-issue" CommandId="cmd-explain-issue" />
     <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
-    <ExecutableCommand Id="exec-infer" CommandId="cmd-infer" />
     <ExecutableCommand Id="exec-inspect" CommandId="cmd-inspect" />
     <ExecutableCommand Id="exec-inspect-run-plan" CommandId="cmd-inspect-run-plan" />
     <ExecutableCommand Id="exec-list-issues" CommandId="cmd-list-issues" />

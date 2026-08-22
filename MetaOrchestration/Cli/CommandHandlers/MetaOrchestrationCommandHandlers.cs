@@ -18,7 +18,7 @@ internal sealed class MetaOrchestrationCommandHandlers
         this.appName = appName;
     }
 
-    public async Task RunInferAsync(
+    public async Task RunCreateAsync(
         MetaCliInvocation invocation,
         MetaCliWorkspaces workspaces)
     {
@@ -61,7 +61,7 @@ internal sealed class MetaOrchestrationCommandHandlers
                                    (InvalidOperationException or ArgumentException or IOException or UnauthorizedAccessException))
         {
             Fail(
-                "Cannot infer orchestration.",
+                "Cannot create orchestration.",
                 "check the pipeline workspace and any transform/binding workspaces required by transform-backed steps, then retry.",
                 4,
                 [$"  {ex.Message}"]);

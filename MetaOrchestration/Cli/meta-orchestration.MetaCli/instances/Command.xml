@@ -16,6 +16,11 @@
       <Name>allow-concurrent-append</Name>
       <Token>allow-concurrent-append</Token>
     </Command>
+    <Command Id="cmd-create" ApplicationId="app-meta-orchestration">
+      <Description>Create a MetaOrchestration workspace from a modeled MetaPipeline workspace.</Description>
+      <Name>create</Name>
+      <Token>create</Token>
+    </Command>
     <Command Id="cmd-execute" ApplicationId="app-meta-orchestration">
       <Description>Execute the current run plan by coordinating meta-pipeline worker processes.</Description>
       <Name>execute</Name>
@@ -30,11 +35,6 @@
       <Description>Show help.</Description>
       <Name>help</Name>
       <Token>help</Token>
-    </Command>
-    <Command Id="cmd-infer" ApplicationId="app-meta-orchestration">
-      <Description>Infer a MetaOrchestration workspace from a modeled MetaPipeline workspace.</Description>
-      <Name>infer</Name>
-      <Token>infer</Token>
     </Command>
     <Command Id="cmd-inspect" ApplicationId="app-meta-orchestration">
       <Description>Inspect a MetaOrchestration workspace.</Description>
